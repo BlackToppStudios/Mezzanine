@@ -83,20 +83,20 @@ namespace phys
                 /// @brief For use with widget update/automation.
                 void Update(bool Force = false);
                 /// @brief Internal function for setting the location(position) of this widget.
-                void SetLocation(Vector2 &Position);
+                void SetLocation(const Vector2 &Position);
                 /// @brief Internal function for setting the area(size) of this widget.
-                void SetArea(Vector2 &Size);
+                void SetArea(const Vector2 &Size);
                 /// @brief Calculates a new offset for an individual element.
-                Vector2 CalculateOffset(Vector2 NewSize, Vector2 OldSize, Vector2 EleOffset, UI::ResizeableAnchor Anchor);
+                Vector2 CalculateOffset(const Vector2 NewSize, const Vector2 OldSize, const Vector2 EleOffset, UI::ResizeableAnchor Anchor);
                 /// @brief Calculates a new size for an individual element.
-                Vector2 CalculateSize(Vector2 NewSize, Vector2 OldSize, Vector2 EleSize, UI::ResizeableTether Tether);
+                Vector2 CalculateSize(const Vector2 NewSize, const Vector2 OldSize, const Vector2 EleSize, UI::ResizeableTether Tether);
             public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the window.
                 /// @param Position The position of the window.
                 /// @param Size The size of the window.
                 /// @param Layer The parent layer this window belongs to.
-                Window(ConstString& name, Vector2 Position, Vector2 Size, UILayer* Layer);
+                Window(ConstString& name, const Vector2 Position, const Vector2 Size, UILayer* Layer);
                 /// @brief Standard destructor.
                 virtual ~Window();
                 /// @brief Sets the visibility of this window.
@@ -118,28 +118,28 @@ namespace phys
                 /// @brief Sets the relative position of this window.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this window.
-                virtual void SetPosition(Vector2 Position);
+                virtual void SetPosition(const Vector2 Position);
                 /// @brief Gets the relative position of this window.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this window.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this window.
                 /// @param Position A vector2 representing the pixel position of this window.
-                virtual void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(const Vector2 Position);
                 /// @brief Sets the pixel position of this window.
                 /// @return Returns a vector2 representing the pixel position of this window.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this window.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this window.
-                virtual void SetSize(Vector2 Size);
+                virtual void SetSize(const Vector2 Size);
                 /// @brief Gets the relative size of this window.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this window.
                 virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this window.
                 /// @param Size A vector2 representing the pixel size of this window.
-                virtual void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(const Vector2 Size);
                 /// @brief Sets the pixel size of this window.
                 /// @return Returns a vector2 representing the pixel size of this window.
                 virtual Vector2 GetActualSize();
@@ -152,7 +152,7 @@ namespace phys
                 /// @param Name The name of the button.
                 /// @param Position The top left position of the button.
                 /// @param Size The size of the Button.
-                Button* CreateButton(ConstString& Name, Vector2 Position, Vector2 Size);
+                Button* CreateButton(ConstString& Name, const Vector2 Position, const Vector2 Size);
                 /// @brief Creates a text button within this Window.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created button.
@@ -161,19 +161,19 @@ namespace phys
                 /// @param Size The size of the Button.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
-                TextButton* CreateTextButton(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString Text);
+                TextButton* CreateTextButton(ConstString& Name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString Text);
                 /// @brief Gets an already created button by name.
                 /// @return Returns a pointer to the button of the specified name.
                 Button* GetButton(ConstString& Name);
                 /// @brief Gets an already created button by index.
                 /// @return Returns a pointer to the button at the specified index.
-                Button* GetButton(Whole Index);
+                Button* GetButton(const Whole Index);
                 /// @brief Gets the OffsetButtonInfo of an already created button by name.
                 /// @return Returns a reference to the button of the specified name.
                 OffsetButtonInfo* GetOffsetButtonInfo(ConstString& Name);
                 /// @brief Gets the OffsetButtonInfo of an already created button by index.
                 /// @return Returns a reference to the button at the specified index.
-                OffsetButtonInfo* GetOffsetButtonInfo(Whole Index);
+                OffsetButtonInfo* GetOffsetButtonInfo(const Whole Index);
                 /// @brief Gets the number of buttons created and stored in this class.
                 /// @return Returns the number of buttons this class is storing.
                 Whole GetNumButtons();
@@ -185,13 +185,13 @@ namespace phys
                 /// Rectangles are innately put behind all captions, so z-order is not necessary.
                 /// @param Position The top left position of the button.
                 /// @param Size The size of the Button.
-                Rectangle* CreateRectangle(Vector2 Position, Vector2 Size);
+                Rectangle* CreateRectangle(const Vector2 Position, const Vector2 Size);
                 /// @brief Gets an already created rectangle by index.
                 /// @return Returns a pointer to the rectangle at the specified index.
-                Rectangle* GetRectangle(Whole Index);
+                Rectangle* GetRectangle(const Whole Index);
                 /// @brief Gets the OffsetRectangleInfo of an already created rectangle by index.
                 /// @return Returns a reference to the rectangle at the specified index.
-                OffsetRectangleInfo* GetOffsetRectangleInfo(Whole Index);
+                OffsetRectangleInfo* GetOffsetRectangleInfo(const Whole Index);
                 /// @brief Gets the number of rectangles created and stored in this class.
                 /// @return Returns the number of rectangles this class is storing.
                 Whole GetNumRectangles();
@@ -206,19 +206,19 @@ namespace phys
                 /// @param Size The size of the Button.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
-                Caption* CreateCaption(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
+                Caption* CreateCaption(ConstString& Name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text);
                 /// @brief Gets an already created caption by name.
                 /// @return Returns a pointer to the caption of the specified name.
                 Caption* GetCaption(ConstString& Name);
                 /// @brief Gets an already created caption by index.
                 /// @return Returns a pointer to the caption at the specified index.
-                Caption* GetCaption(Whole Index);
+                Caption* GetCaption(const Whole Index);
                 /// @brief Gets the OffsetCaptionInfo of an already created caption by name.
                 /// @return Returns a reference to the caption of the specified name.
                 OffsetCaptionInfo* GetOffsetCaptionInfo(ConstString& Name);
                 /// @brief Gets the OffsetCaptionInfo of an already created caption by index.
                 /// @return Returns a reference to the caption at the specified index.
-                OffsetCaptionInfo* GetOffsetCaptionInfo(Whole Index);
+                OffsetCaptionInfo* GetOffsetCaptionInfo(const Whole Index);
                 /// @brief Gets the number of captions created and stored in this class.
                 /// @return Returns the number of captions this class is storing.
                 Whole GetNumCaptions();
@@ -232,19 +232,19 @@ namespace phys
                 /// @param Position The top left position of the markup text.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
-                MarkupText* CreateMarkupText(ConstString& Name, Vector2 Position, Whole Glyph, String Text);
+                MarkupText* CreateMarkupText(ConstString& Name, const Vector2 Position, const Whole Glyph, String Text);
                 /// @brief Gets an already created markup text by name.
                 /// @return Returns a pointer to the markup text of the specified name.
                 MarkupText* GetMarkupText(ConstString& Name);
                 /// @brief Gets an already created markup text by index.
                 /// @return Returns a pointer to the markup text at the specified index.
-                MarkupText* GetMarkupText(Whole Index);
+                MarkupText* GetMarkupText(const Whole Index);
                 /// @brief Gets the OffsetMarkupTextInfo of an already created markup text by name.
                 /// @return Returns a reference to the markup text of the specified name.
                 OffsetMarkupTextInfo* GetOffsetMarkupTextInfo(ConstString& Name);
                 /// @brief Gets the OffsetMarkupTextInfo of an already created markup text by index.
                 /// @return Returns a reference to the markup text at the specified index.
-                OffsetMarkupTextInfo* GetOffsetMarkupTextInfo(Whole Index);
+                OffsetMarkupTextInfo* GetOffsetMarkupTextInfo(const Whole Index);
                 /// @brief Gets the number of markup texts created and stored in this class.
                 /// @return Returns the number of markup texts this class is storing.
                 Whole GetNumMarkupTexts();
@@ -259,13 +259,13 @@ namespace phys
                 Widget* GetWidget(ConstString& Name);
                 /// @brief Gets an already created widget by index.
                 /// @return Returns a pointer to the widget at the specified index.
-                Widget* GetWidget(Whole Index);
+                Widget* GetWidget(const Whole Index);
                 /// @brief Gets the OffsetWidgetInfo of an already created widget by name.
                 /// @return Returns a reference to the widget of the specified name.
                 OffsetWidgetInfo* GetOffsetWidgetInfo(ConstString& Name);
                 /// @brief Gets the OffsetWidgetInfo of an already created widget by index.
                 /// @return Returns a reference to the widget at the specified index.
-                OffsetWidgetInfo* GetOffsetWidgetInfo(Whole Index);
+                OffsetWidgetInfo* GetOffsetWidgetInfo(const Whole Index);
                 /// @brief Gets the number of widgets created and stored in this class.
                 /// @return Returns the number of widgets this class is storing.
                 Whole GetNumWidgets();
@@ -282,7 +282,7 @@ namespace phys
                 /// @param Position The top left position of the Scrollbar.
                 /// @param Size The size of the Scrollbar.
                 /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                UI::Scrollbar* CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::ScrollbarStyle Style);
+                UI::Scrollbar* CreateScrollbar(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::ScrollbarStyle Style);
                 /// @brief Creates a CheckBox within this Window.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created CheckBox.
@@ -293,7 +293,7 @@ namespace phys
                 /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
                 /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
                 /// create a label after construction.
-                UI::CheckBox* CreateCheckBox(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText);
+                UI::CheckBox* CreateCheckBox(ConstString& Name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String &LabelText);
                 /// @brief Creates a Button List Box within this Window.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Button List Box.
@@ -302,7 +302,7 @@ namespace phys
                 /// @param Size The size of the Button List Box.
                 /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
                 /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                UI::ButtonListBox* CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
+                UI::ButtonListBox* CreateButtonListBox(ConstString& Name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
                 /// @brief Creates a List Box within this Window.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created List Box.
@@ -311,7 +311,7 @@ namespace phys
                 /// @param Size The size of the List Box.
                 /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
                 /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                UI::ListBox* CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
+                UI::ListBox* CreateListBox(ConstString& Name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
         };//window
     }//UI
 }//phys

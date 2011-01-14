@@ -70,7 +70,7 @@ namespace phys
             /// @param RA The Resize Anchor, see enum for more info.
             /// @param RT The Resize Tether, see enum for more info.
             /// @param Off The objects offset from the container position.
-            ResizingInfo(T TheObject, UI::ResizeableAnchor RA, UI::ResizeableTether RT, Vector2 Off)
+            ResizingInfo(T TheObject, UI::ResizeableAnchor RA, UI::ResizeableTether RT, const Vector2& Off)
                 : Object(TheObject),
                   Anchor(RA),
                   Tether(RT),

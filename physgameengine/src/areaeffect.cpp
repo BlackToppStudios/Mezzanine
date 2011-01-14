@@ -53,8 +53,9 @@
 
 namespace phys{
 
-    AreaEffect::AreaEffect(const String &name, Vector3 Location)
-        : Name (name)
+    AreaEffect::AreaEffect(const String &name, const Vector3 Location)
+        : Name (name),
+          Shape (NULL)
     {
         TheWorld = World::GetWorldPointer();
         CreateGhostObject(Location);
@@ -63,10 +64,11 @@ namespace phys{
     AreaEffect::~AreaEffect()
     {
         delete Ghost;
-        delete Shape;
+        if(Shape)
+            delete Shape;
     }
 
-    void AreaEffect::CreateGhostObject(Vector3 Location)
+    void AreaEffect::CreateGhostObject(const Vector3 Location)
     {
         Ghost = new btPairCachingGhostObject();
         Ghost->setCollisionFlags(Ghost->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
@@ -153,28 +155,34 @@ namespace phys{
         }
     }
 
-    void AreaEffect::CreateSphereShape(Real Radius)
+    void AreaEffect::CreateSphereShape(const Real Radius)
     {
         Shape = new btSphereShape(Radius);
         Ghost->setCollisionShape(Shape);
     }
 
-    void AreaEffect::CreateCylinderShape(Vector3 HalfExtents)
+    void AreaEffect::CreateCylinderShape(const Vector3 HalfExtents)
     {
         Shape = new btCylinderShape(HalfExtents.GetBulletVector3());
         Ghost->setCollisionShape(Shape);
     }
 
-    void AreaEffect::CreateBoxShape(Vector3 HalfExtents)
+    void AreaEffect::CreateBoxShape(const Vector3 HalfExtents, const ColourValue Colour)
     {
         Shape = new btBoxShape(HalfExtents.GetBulletVector3());
         Ghost->setCollisionShape(Shape);
+
+        if(0 != Colour.Alpha)
+        {
+
+        }
     }
 
-    void AreaEffect::CreateShapeFromMesh(String Filename, String Group)
+    void AreaEffect::CreateShapeFromMesh(String Filename, String Group, bool MakeVisible)
     {
-        Ogre::Entity* entity = Ogre::Root::getSingleton()._getCurrentSceneManager()->createEntity("AETest1", Filename, Group);
-        Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        GraphicsObject = OgreManager->createEntity(Name, Filename, Group);
+        Ogre::MeshPtr myMesh = GraphicsObject->getMesh();
         Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
         Ogre::IndexData*  indexData = subMesh->indexData;
         Ogre::VertexData* vertexData = subMesh->vertexData;
@@ -231,13 +239,21 @@ namespace phys{
         }
         delete[] vertices;
         delete[] indices;
-        Ogre::Root::getSingleton()._getCurrentSceneManager()->destroyEntity(entity);
+
+        if(MakeVisible)
+        {
+            GraphicsNode = OgreManager->createSceneNode();
+            GraphicsNode->attachObject(GraphicsObject);
+        }else{
+            OgreManager->destroyEntity(GraphicsObject);
+            GraphicsObject = NULL;
+        }
 
         Shape = new btGImpactMeshShape(trimesh);
         Ghost->setCollisionShape(Shape);
     }
 
-    void AreaEffect::ScaleFieldShape(Vector3 Scale)
+    void AreaEffect::ScaleFieldShape(const Vector3 Scale)
     {
         Ghost->getCollisionShape()->setLocalScaling(Scale.GetBulletVector3());
     }
@@ -248,7 +264,7 @@ namespace phys{
         return Scale;
     }
 
-    void AreaEffect::SetLocation(Vector3 Location)
+    void AreaEffect::SetLocation(const Vector3 Location)
     {
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
     }
@@ -282,7 +298,7 @@ namespace phys{
     ///////////////////////////////////
     // TestAE functions
 
-    TestAE::TestAE(const String &name, Vector3 Location) : AreaEffect(name, Location)
+    TestAE::TestAE(const String &name, const Vector3 Location) : AreaEffect(name, Location)
     {
     }
 

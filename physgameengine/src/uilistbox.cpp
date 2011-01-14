@@ -56,7 +56,7 @@ namespace phys
 {
     namespace UI
     {
-        ListBox::ListBox(ConstString& name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer)
+        ListBox::ListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer)
             : Widget(name,Layer),
               Selected(NULL),
               AutoHideScroll(true),
@@ -280,7 +280,7 @@ namespace phys
             return false;
         }
 
-        void ListBox::SetBasicTemplateParameters(Vector2 Size, Whole Glyph)
+        void ListBox::SetBasicTemplateParameters(Vector2 Size, const Whole Glyph)
         {
             if(Size.X > RelSize.X)
                 Size.X = RelSize.X;
@@ -290,7 +290,7 @@ namespace phys
             TGlyph = Glyph;
         }
 
-        void ListBox::SetMoreTemplateParameters(ColourValue TextColour, ColourValue BackgroundColour, UI::TextHorizontalAlign HorAlign, UI::TextVerticalAlign VertAlign)
+        void ListBox::SetMoreTemplateParameters(const ColourValue& TextColour, const ColourValue& BackgroundColour, UI::TextHorizontalAlign HorAlign, UI::TextVerticalAlign VertAlign)
         {
             TTColour = TextColour;
             TBGColour = BackgroundColour;
@@ -356,7 +356,7 @@ namespace phys
             }
         }
 
-        void ListBox::SetSelectionDistance(Real Dist)
+        void ListBox::SetSelectionDistance(const Real Dist)
         {
             SelectionDist = Dist;
         }
@@ -368,7 +368,7 @@ namespace phys
                 VertScroll->Show();
         }
 
-        void ListBox::EnableBackgroundSelector(ColourValue &Colour)
+        void ListBox::EnableBackgroundSelector(const ColourValue &Colour)
         {
             SelectColour = Colour;
         }
@@ -378,7 +378,7 @@ namespace phys
             SelectColour = ColourValue(1.0,1.0,1.0,1.0);
         }
 
-        void ListBox::SetPosition(Vector2 Position)
+        void ListBox::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
             Vector2 ScrollOffset = VertScroll->GetPosition() - RelPosition;
@@ -392,7 +392,7 @@ namespace phys
             return RelPosition;
         }
 
-        void ListBox::SetActualPosition(Vector2 Position)
+        void ListBox::SetActualPosition(const Vector2 Position)
         {
             RelPosition = Position / Manager->GetWindowDimensions();
             Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Manager->GetWindowDimensions();
@@ -406,7 +406,7 @@ namespace phys
             return RelPosition * Manager->GetWindowDimensions();
         }
 
-        void ListBox::SetSize(Vector2 Size)
+        void ListBox::SetSize(const Vector2 Size)
         {
             RelSize = Size;
             BoxBack->SetSize(Size);
@@ -423,7 +423,7 @@ namespace phys
             return RelSize;
         }
 
-        void ListBox::SetActualSize(Vector2 Size)
+        void ListBox::SetActualSize(const Vector2 Size)
         {
             RelSize = Size / Manager->GetWindowDimensions();
             BoxBack->SetActualSize(Size);

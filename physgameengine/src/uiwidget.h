@@ -119,28 +119,28 @@ namespace phys
                 /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.
-                virtual void SetPosition(Vector2 Position) = 0;
+                virtual void SetPosition(const Vector2 Position) = 0;
                 /// @brief Gets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this widget.
                 virtual Vector2 GetPosition() = 0;
                 /// @brief Sets the pixel position of this widget.
                 /// @param Position A vector2 representing the pixel position of this widget.
-                virtual void SetActualPosition(Vector2 Position) = 0;
+                virtual void SetActualPosition(const Vector2 Position) = 0;
                 /// @brief Sets the pixel position of this widget.
                 /// @return Returns a vector2 representing the pixel position of this widget.
                 virtual Vector2 GetActualPosition() = 0;
                 /// @brief Sets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
-                virtual void SetSize(Vector2 Size) = 0;
+                virtual void SetSize(const Vector2 Size) = 0;
                 /// @brief Gets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this widget.
                 virtual Vector2 GetSize() = 0;
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
-                virtual void SetActualSize(Vector2 Size) = 0;
+                virtual void SetActualSize(const Vector2 Size) = 0;
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize() = 0;

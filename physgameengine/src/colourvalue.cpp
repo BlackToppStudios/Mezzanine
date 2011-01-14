@@ -73,7 +73,7 @@ namespace phys
     {
     }
 
-    Ogre::ColourValue ColourValue::GetOgreColourValue()
+    Ogre::ColourValue ColourValue::GetOgreColourValue() const
     {
         Ogre::ColourValue OgreColour;
         OgreColour.r = this->Red;
@@ -95,6 +95,42 @@ namespace phys
         if ( Colour.Red != this->Red || Colour.Green != this->Green || Colour.Blue != this->Blue || Colour.Alpha != this->Alpha )
             { return true; }
         return false;
+    }
+
+    ColourValue ColourValue::GetBlank()
+    {
+        ColourValue Colour(0.0,0.0,0.0,0.0);
+        return Colour;
+    }
+
+    ColourValue ColourValue::GetWhite()
+    {
+        ColourValue Colour(1.0,1.0,1.0,1.0);
+        return Colour;
+    }
+
+    ColourValue ColourValue::GetBlack()
+    {
+        ColourValue Colour(0.0,0.0,0.0,1.0);
+        return Colour;
+    }
+
+    ColourValue ColourValue::GetRed()
+    {
+        ColourValue Colour(1.0,0.0,0.0,1.0);
+        return Colour;
+    }
+
+    ColourValue ColourValue::GetGreen()
+    {
+        ColourValue Colour(0.0,1.0,0.0,1.0);
+        return Colour;
+    }
+
+    ColourValue ColourValue::GetBlue()
+    {
+        ColourValue Colour(0.0,0.0,1.0,1.0);
+        return Colour;
     }
 }
 

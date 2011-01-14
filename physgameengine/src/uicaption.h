@@ -90,7 +90,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 /// @param Layer Pointer to the layer that created this caption.
-                Caption(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer);
+                Caption(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, UILayer* Layer);
                 /// @brief Class destructor.
                 virtual ~Caption();
                 /// @brief Sets the visibility of this caption.
@@ -121,14 +121,14 @@ namespace phys
                 virtual String GetText();
                 /// @brief Sets the colour for the text in this caption.
                 /// @param TextColour A colourvalue representing the desired colour.
-                virtual void SetTextColour(ColourValue& TextColour);
+                virtual void SetTextColour(const ColourValue& TextColour);
                 /// @brief Gets the colour for the text in this caption.
                 /// @return Returns a colourvalue representing the currently set colour of the text in this caption.
                 virtual ColourValue GetTextColour();
                 /// @brief Sets the glyph index to be used with this caption.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @param GlyphIndex The index of the glyph to use with this caption.
-                virtual void SetGlyphIndex(Whole GlyphIndex);
+                virtual void SetGlyphIndex(const Whole GlyphIndex);
                 /// @brief Gets the glyph index in use by this caption.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @param Returns a Whole representing the index of the glyph in use by this caption..
@@ -136,13 +136,13 @@ namespace phys
                 /// @brief Sets the number of pixels text should be offset from the side when rendering.
                 /// @details This doesn't apply when text is being rendered with a Middle alignment.
                 /// @param Offset The number of pixels from the side text should be offset.
-                virtual void SetCursorOffset(Whole Offset);
+                virtual void SetCursorOffset(const Whole Offset);
                 /// @brief Gets the number of pixels text should be offset from the side when rendering.
                 /// @return Returns a Whole representing the number of pixels text is currently being offset from the side.
                 virtual Whole GetCursorOffset();
                 /// @brief Sets the background colour of the caption.
                 /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBackgroundColour(ColourValue& Colour);
+                virtual void SetBackgroundColour(const ColourValue& Colour);
                 /// @brief Sets the background image(if provided in the atlas) of the caption.
                 /// @param Name The name of the sprite to set as the background.
                 virtual void SetBackgroundSprite(const String& Name);
@@ -156,25 +156,25 @@ namespace phys
                 virtual void VerticallyAlign(UI::TextVerticalAlign Align);
                 /// @brief Sets the relative top left position of this caption.
                 /// @param Position A Vector2 representing the location of this caption.
-                virtual void SetPosition(Vector2 Position);
+                virtual void SetPosition(const Vector2 Position);
                 /// @brief Gets the relative top left position of this caption.
                 /// @return Returns a Vector2 representing the location of this caption.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this caption in pixels.
                 /// @param Position A Vector2 representing the location of this caption.
-                virtual void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(const Vector2 Position);
                 /// @brief Gets the top left position of this caption in pixels.
                 /// @return Returns a Vector2 representing the location of this caption.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this caption.
                 /// @param Size A vector2 representing the size of this caption.
-                virtual void SetSize(Vector2 Size);
+                virtual void SetSize(const Vector2 Size);
                 /// @brief Gets the relative size of this caption.
                 /// @return Returns a vector2 representing the size of this caption.
                 virtual Vector2 GetSize();
                 /// @brief Sets the size of this caption in pixels.
                 /// @param Size A vector2 representing the size of this caption.
-                virtual void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(const Vector2 Size);
                 /// @brief Gets the size of this caption in pixels.
                 /// @return Returns a vector2 representing the size of this caption.
                 virtual Vector2 GetActualSize();

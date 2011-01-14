@@ -44,11 +44,18 @@
 #include "datatypes.h"
 #include "quaternion.h"
 #include "vector3.h"
+#include "colourvalue.h"
 
 #include <list>
 
 class btCollisionShape;
 class btPairCachingGhostObject;
+
+namespace Ogre
+{
+    class SceneNode;
+    class Entity;
+}
 
 namespace phys{
     class ActorBase;
@@ -72,6 +79,10 @@ namespace phys{
             btCollisionShape* Shape;
             /// @brief The object representing the AE field itself.
             btPairCachingGhostObject* Ghost;
+            /// @brief Ogre node required to adding a graohical representation to the scene graph.
+            Ogre::SceneNode* GraphicsNode;
+            /// @brief The Ogre object being added to the scene graph.
+            Ogre::Entity* GraphicsObject;
             /// @brief World pointer simply to enable the effects of this class to be as diverse as the engine features.
             World* TheWorld;
             /// @brief Container for actors within the field area.
@@ -82,7 +93,7 @@ namespace phys{
             std::vector < ActorBase* > RemovedActors;
             /// @brief Constructor Function.
             /// @param Location The location of the AE field.
-            virtual void CreateGhostObject(Vector3 Location);
+            virtual void CreateGhostObject(const Vector3 Location);
             /// @brief Helper function for adding actors to relevant lists.
             virtual void AddActorToList(ActorBase* Actor);
             /// @brief Helper function for adding actors to relevant lists.
@@ -92,7 +103,7 @@ namespace phys{
             /// @details Basic initialization constructor.
             /// @param name The name of the field.
             /// @param Location The location of the AE field.
-            AreaEffect(const String &name, Vector3 Location);
+            AreaEffect(const String &name, const Vector3 Location);
             /// @brief Destructor.
             /// @details Class destructor.
             virtual ~AreaEffect();
@@ -106,25 +117,27 @@ namespace phys{
             virtual void UpdateActorList();
             /// @brief Creates a Sphere shape for the field.
             /// @param Radius The radius of the sphere you want to create.
-            void CreateSphereShape(Real Radius);
+            void CreateSphereShape(const Real Radius);
             /// @brief Creates a Cylinder shape for the field.
             /// @details This function assumes the cylinder will be upright, meaning "up" will be on the positive Y axis.  @n
-            /// When making the vector to be passed in, remember the layout should be as such: (radius, height*0.5, radius).
+            /// When making the vector to be passed in, remember the layout should be as such: (radius, height*0.5, radius), with the second radius
+            /// perpendicular to the first.
             /// @param HalfExtents The vector representing the size of the shape.
-            void CreateCylinderShape(Vector3 HalfExtents);
+            void CreateCylinderShape(const Vector3 HalfExtents);
             /// @brief Creates a Box shape for the field.
             /// @details When making the vector to be passed in, remember to pass in only half values of what you want the actual
             /// size to be.
             /// @param HalfExtents The vector representing the size of the shape.
-            void CreateBoxShape(Vector3 HalfExtents);
+            void CreateBoxShape(const Vector3 HalfExtents, const ColourValue Colour = ColourValue(0,0,0,0));
             /// @brief Creates a shape from a .mesh model for the field.
             /// @param Filename The name of the .mesh file to be used.
             /// @param Group The resource group where the mesh can be found.
-            void CreateShapeFromMesh(String Filename, String Group);
+            /// @param MakeVisible If true, this function will create a visual representation from the same mesh provided.
+            void CreateShapeFromMesh(String Filename, String Group, bool MakeVisible);
             /// @brief Sets the scale of the shape of the field.
             /// @details The default scale is 1.0.
             /// @param Scale The vector3 representing the scale you wish to apply to each axis of the field shape.
-            void ScaleFieldShape(Vector3 Scale);
+            void ScaleFieldShape(const Vector3 Scale);
             /// @brief Gets the scale of the shape of the field.
             /// @details The default scale is 1.0.
             /// @return Returns the current scale applied to the fields shape.
@@ -132,7 +145,7 @@ namespace phys{
             /// @brief Sets the origin for the area effect.
             /// @details In most cases you won't want to call this, with the exception of when you want a field to follow/track an actor.
             /// @param Location The updated location of the origin for the field.
-            void SetLocation(Vector3 Location);
+            void SetLocation(const Vector3 Location);
             /// @brief Gets the origin for the area effect.
             /// @details This function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location.
             /// @return Returns the vector3 representing the location of the area effect.

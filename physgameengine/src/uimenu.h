@@ -60,7 +60,7 @@ namespace phys
         /// doesn't have a position or size like other classes.  Instead when you call those functions
         /// to set or get the position or size, you'll be working with the current top level window.
         ///////////////////////////////////////
-        class Menu : public Widget
+        class PHYS_LIB Menu : public Widget
         {
             protected:
                 MenuWindow* RootWindow;
@@ -74,7 +74,7 @@ namespace phys
                 /// @param Position The position of the window.
                 /// @param Size The size of the window.
                 /// @param Layer The parent layer this window belongs to.
-                Menu(ConstString name, Vector2 Position, Vector2 Size, UILayer* Layer);
+                Menu(ConstString name, const Vector2 Position, const Vector2 Size, UILayer* Layer);
                 /// @brief Standard destructor.
                 ~Menu();
                 /// @brief Sets the visibility of this menu.
@@ -96,28 +96,28 @@ namespace phys
                 /// @brief Sets the relative position of this menu.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this menu.
-                virtual void SetPosition(Vector2 Position);
+                virtual void SetPosition(const Vector2 Position);
                 /// @brief Gets the relative position of this menu.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this menu.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this menu.
                 /// @param Position A vector2 representing the pixel position of this menu.
-                virtual void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(const Vector2 Position);
                 /// @brief Sets the pixel position of this menu.
                 /// @return Returns a vector2 representing the pixel position of this menu.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this menu.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this menu.
-                virtual void SetSize(Vector2 Size);
+                virtual void SetSize(const Vector2 Size);
                 /// @brief Gets the relative size of this menu.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this menu.
                 virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this menu.
                 /// @param Size A vector2 representing the pixel size of this menu.
-                virtual void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(const Vector2 Size);
                 /// @brief Sets the pixel size of this menu.
                 /// @return Returns a vector2 representing the pixel size of this menu.
                 virtual Vector2 GetActualSize();

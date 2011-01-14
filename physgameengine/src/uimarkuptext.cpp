@@ -51,7 +51,7 @@ namespace phys
 {
     namespace UI
     {
-        MarkupText::MarkupText(ConstString& name, Vector2 Position, Whole Glyph, String Text, UILayer* Layer)
+        MarkupText::MarkupText(ConstString& name, const Vector2 Position, const Whole Glyph, String Text, UILayer* Layer)
             : Parent(Layer),
               RelPosition(Position),
               RelSize(Vector2(0,0)),
@@ -60,7 +60,7 @@ namespace phys
             Manager = World::GetWorldPointer()->GetUIManager();
 
             Vector2 Window = Manager->GetWindowDimensions();
-            GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Position.X,Position.Y,Text);
+            GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Position.X * Window.X,Position.Y * Window.Y,Text);
         }
 
         MarkupText::~MarkupText()
@@ -103,7 +103,7 @@ namespace phys
             return GMarkup->text();
         }
 
-        void MarkupText::SetDefaultGlyphIndex(Whole DefaultGlyphIndex)
+        void MarkupText::SetDefaultGlyphIndex(const Whole DefaultGlyphIndex)
         {
             Glyphs = DefaultGlyphIndex;
             GMarkup->SetDefaultGlyphIndex(DefaultGlyphIndex);
@@ -154,7 +154,7 @@ namespace phys
             GMarkup->vertical_align(VA);
         }*/
 
-        void MarkupText::SetPosition(Vector2 Position)
+        void MarkupText::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Manager->GetWindowDimensions();
@@ -167,7 +167,7 @@ namespace phys
             return RelPosition;
         }
 
-        void MarkupText::SetActualPosition(Vector2 Position)
+        void MarkupText::SetActualPosition(const Vector2 Position)
         {
             GMarkup->left(Position.X);
             GMarkup->top(Position.Y);
@@ -179,12 +179,12 @@ namespace phys
             return Pos;
         }
 
-        void MarkupText::SetMaxSize(Vector2 Size)
+        void MarkupText::SetMaxSize(const Vector2 Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
-            GMarkup->left(CurrDim.X * RelSize.X);
-            GMarkup->top(CurrDim.Y * RelSize.Y);
+            GMarkup->width(CurrDim.X * RelSize.X);
+            GMarkup->height(CurrDim.Y * RelSize.Y);
         }
 
         Vector2 MarkupText::GetMaxSize()
@@ -192,8 +192,9 @@ namespace phys
             return RelSize;
         }
 
-        void MarkupText::SetMaxActualSize(Vector2 Size)
+        void MarkupText::SetMaxActualSize(const Vector2 Size)
         {
+            RelSize = Size / Manager->GetWindowDimensions();
             GMarkup->width(Size.X);
             GMarkup->height(Size.Y);
         }

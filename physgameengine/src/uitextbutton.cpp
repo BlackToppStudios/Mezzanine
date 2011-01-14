@@ -49,7 +49,7 @@ namespace phys
 {
     namespace UI
     {
-        TextButton::TextButton(ConstString& name, Vector2 Position, Vector2 Size, Whole Glyph, String Text, UILayer* Layer)
+        TextButton::TextButton(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, UILayer* Layer)
             : Button(name,Position,Size,Layer)
         {
             IsText = true;
@@ -138,7 +138,7 @@ namespace phys
             GorillaButton->vertical_align(VA);
         }
 
-        void TextButton::SetPosition(Vector2 Position)
+        void TextButton::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Manager->GetWindowDimensions();
@@ -153,7 +153,7 @@ namespace phys
             return RelPosition;
         }
 
-        void TextButton::SetActualPosition(Vector2 Position)
+        void TextButton::SetActualPosition(const Vector2 Position)
         {
             GorillaButton->left(Position.X);
             GorillaButton->top(Position.Y);
@@ -167,7 +167,7 @@ namespace phys
             return Pos;
         }
 
-        void TextButton::SetSize(Vector2 Size)
+        void TextButton::SetSize(const Vector2 Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Manager->GetWindowDimensions();
@@ -182,7 +182,7 @@ namespace phys
             return RelSize;
         }
 
-        void TextButton::SetActualSize(Vector2 Size)
+        void TextButton::SetActualSize(const Vector2 Size)
         {
             GorillaButton->width(Size.X);
             GorillaButton->height(Size.Y);

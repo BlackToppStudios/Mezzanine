@@ -90,7 +90,7 @@ namespace phys
             /// @brief Creates and returns an Ogre ColourValue class with values equal to this one.
             /// @details This function is intended for internal use only.
             /// @return Returns an Ogre ColourValue class that has values equal to this one.
-            Ogre::ColourValue GetOgreColourValue();
+            Ogre::ColourValue GetOgreColourValue() const;
 
             /// @brief Equality Comparison Operator
             /// @param Colour This is another ColourValue to compare with.
@@ -98,6 +98,25 @@ namespace phys
             /// @brief Inequality Comparison Operator
             /// @param Colour This is another ColourValue to compare with.
             bool operator!= (const ColourValue &Colour);
+
+            /// @brief Creates a ColourValue representing no colour.
+            /// @return Returns the created ColourValue.
+            static ColourValue GetBlank();
+            /// @brief Creates a ColourValue representing the colour White.
+            /// @return Returns the created ColourValue.
+            static ColourValue GetWhite();
+            /// @brief Creates a ColourValue representing the colour Black.
+            /// @return Returns the created ColourValue.
+            static ColourValue GetBlack();
+            /// @brief Creates a ColourValue representing the colour Red.
+            /// @return Returns the created ColourValue.
+            static ColourValue GetRed();
+            /// @brief Creates a ColourValue representing the colour Green.
+            /// @return Returns the created ColourValue.
+            static ColourValue GetGreen();
+            /// @brief Creates a ColourValue representing the colour Blue.
+            /// @return Returns the created ColourValue.
+            static ColourValue GetBlue();
     };//colorvalue
 }//phys
 

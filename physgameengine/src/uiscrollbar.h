@@ -90,19 +90,19 @@ namespace phys
                 bool DownRightLock;
                 /// @internal
                 /// @brief Constructor helper function for creating a horizontally aligned scrollbar.
-                void CreateHorizontalScrollbar(Vector2 Position, Vector2 Size);
+                void CreateHorizontalScrollbar(const Vector2 Position, const Vector2 Size);
                 /// @internal
                 /// @brief Constructor helper function for creating a vertically aligned scrollbar.
-                void CreateVerticalScrollbar(Vector2 Position, Vector2 Size);
+                void CreateVerticalScrollbar(const Vector2 Position, const Vector2 Size);
                 /// @internal
                 /// @brief Determines if the dimensions passed into this object are valid and can be used.
-                bool IsValidDimensions(Vector2 &Size);
+                bool IsValidDimensions(const Vector2 &Size);
                 /// @internal
                 /// @brief Sets the horizontal perameter as necessary based on the size provided for the widget.
-                void SetHorizontal(Vector2 &Size);
+                void SetHorizontal(const Vector2 &Size);
                 /// @internal
                 /// @brief Calculates the relative offsets for the UI elements that make up this widget.
-                void CalculateOffsets(Vector2 &Size);
+                void CalculateOffsets(const Vector2 &Size);
                 /// @internal
                 /// @brief Calculates the limits by which the scroller is allowed to move.
                 void CalculateScrollLimits();
@@ -114,16 +114,16 @@ namespace phys
                 void SetToWithinLimits(Real &Coord);
                 /// @internal
                 /// @brief Internal function for setting the location(position) of this widget.
-                void SetLocation(Vector2 &Position);
+                void SetLocation(const Vector2 &Position);
                 /// @internal
                 /// @brief Internal function for setting the area(size) of this widget.
-                void SetArea(Vector2 &Size);
+                void SetArea(const Vector2 &Size);
                 /// @internal
                 /// @brief Scrolls the scroller either up/left or down/right, based on the parameter.  For use with buttons.
                 void ButtonScroll(bool UpLeft);
                 /// @internal
                 /// @brief Scrolls the scroller either up/left or down/right.  For use with the mouse.
-                void MouseScroll(Vector2 Scroll);
+                void MouseScroll(Vector2& Scroll);
                 /// @internal
                 /// @brief Scrolls the scroller either up/left or down/right.  For use with the scrollback.
                 void ScrollBackScroll();
@@ -137,7 +137,7 @@ namespace phys
                 /// @param Size A vector2 representing the size of this widget.
                 /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
                 /// @param parent The Layer that created this scrollbar.
-                Scrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::ScrollbarStyle Style, UILayer* parent);
+                Scrollbar(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::ScrollbarStyle Style, UILayer* parent);
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
                 /// @brief Sets the visibility of this scrollbar.
@@ -160,36 +160,36 @@ namespace phys
                 virtual Real GetScrollerValue();
                 /// @brief Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed.
                 /// @param IncDist A real representing the amount to increment.  Can be negative.
-                virtual void SetIncrementDistance(Real IncDist);
+                virtual void SetIncrementDistance(const Real IncDist);
                 /// @brief Sets the length(or height) of the scroller based on the relative size of it's background.
                 /// @param Size The relative size you with to set the scroller to.  Values range from 0.0 to 1.0.
-                virtual void SetScrollerSize(Real Size);
+                virtual void SetScrollerSize(const Real Size);
                 /// @brief Sets the relative position of this widget in pixels.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0. @n
                 /// The top and the left are considered the origin, thus values of 0 represent one of these points.
                 /// @param Position A vector2 representing the relative position of this widget.
-                virtual void SetPosition(Vector2 Position);
+                virtual void SetPosition(const Vector2 Position);
                 /// @brief Gets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this widget.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this widget.
                 /// @param Position A vector2 representing the pixel position of this widget.
-                virtual void SetActualPosition(Vector2 Position);
+                virtual void SetActualPosition(const Vector2 Position);
                 /// @brief Sets the pixel position of this widget.
                 /// @return Returns a vector2 representing the pixel position of this widget.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
-                virtual void SetSize(Vector2 Size);
+                virtual void SetSize(const Vector2 Size);
                 /// @brief Gets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this widget.
                 virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
-                virtual void SetActualSize(Vector2 Size);
+                virtual void SetActualSize(const Vector2 Size);
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize();
