@@ -118,8 +118,8 @@
 <a name="l00088"></a>00088 <span class="comment">        /// @brief This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate.</span>
 <a name="l00089"></a>00089 <span class="comment">        /// @details See xmldoc.h for additional details.</span>
 <a name="l00090"></a>00090 <span class="comment">        ///////////////////////////////////////</span>
-<a name="l00091"></a>00091 <span class="comment"></span>
-<a name="l00092"></a>00092 <span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment"></span><span class="comment"></span>
+<a name="l00092"></a>00092 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00093"></a>00093 <span class="comment">        /// @enum ParseStatus</span>
 <a name="l00094"></a>00094 <span class="comment">        /// @brief These statuses are used to help determine what issues, if any the parser had. the XML parser had.</span>
 <a name="l00095"></a>00095 <span class="comment"></span><span class="comment"></span>
@@ -167,12 +167,12 @@
 <a name="l00137"></a>00137 <span class="comment"></span><span class="comment"></span>
 <a name="l00138"></a>00138 <span class="comment">        /// @var StatusEndElementMismatch</span>
 <a name="l00139"></a>00139 <span class="comment">        /// @brief There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag).</span>
-<a name="l00140"></a>00140 <span class="comment"></span>
-<a name="l00141"></a>00141 <span class="comment"></span>
+<a name="l00140"></a>00140 <span class="comment"></span><span class="comment"></span>
+<a name="l00141"></a>00141 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00142"></a>00142 <span class="comment">        /// @struct ParseResult</span>
 <a name="l00143"></a>00143 <span class="comment">        /// @brief All the information needed to troubleshoot a Parsing error.</span>
-<a name="l00144"></a>00144 <span class="comment"></span>
-<a name="l00145"></a>00145 <span class="comment"></span>
+<a name="l00144"></a>00144 <span class="comment"></span><span class="comment"></span>
+<a name="l00145"></a>00145 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00146"></a>00146 <span class="comment">        /// @enum Encoding</span>
 <a name="l00147"></a>00147 <span class="comment">        /// @brief These flags determine the encoding of input data for an XML document.</span>
 <a name="l00148"></a>00148 <span class="comment"></span><span class="comment"></span>
@@ -202,8 +202,8 @@
 <a name="l00172"></a>00172 <span class="comment"></span><span class="comment"></span>
 <a name="l00173"></a>00173 <span class="comment">        /// @var Encodingwchar_t</span>
 <a name="l00174"></a>00174 <span class="comment">        /// @brief The same document encoding wchar_t has (usually either UTF16 or UTF32)</span>
-<a name="l00175"></a>00175 <span class="comment"></span>
-<a name="l00176"></a>00176 <span class="comment"></span>
+<a name="l00175"></a>00175 <span class="comment"></span><span class="comment"></span>
+<a name="l00176"></a>00176 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00177"></a>00177 <span class="comment">        /// @enum NodeType</span>
 <a name="l00178"></a>00178 <span class="comment">        /// @brief The types of nodes.</span>
 <a name="l00179"></a>00179 <span class="comment"></span><span class="comment"></span>
@@ -233,42 +233,109 @@
 <a name="l00203"></a>00203 <span class="comment"></span><span class="comment"></span>
 <a name="l00204"></a>00204 <span class="comment">        /// @var NodeDoctype</span>
 <a name="l00205"></a>00205 <span class="comment">        /// @brief Document type declaration, i.e. &#39;&lt;!DOCTYPE doc&gt;&#39;.</span>
-<a name="l00206"></a>00206 <span class="comment"></span>
-<a name="l00207"></a>00207     }
-<a name="l00208"></a>00208 }
-<a name="l00209"></a>00209 <span class="preprocessor">#endif</span>
-<a name="l00210"></a>00210 <span class="preprocessor"></span>
-<a name="l00211"></a>00211 <span class="comment">/*</span>
-<a name="l00212"></a>00212 <span class="comment"> *</span>
-<a name="l00213"></a>00213 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l00214"></a>00214 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l00215"></a>00215 <span class="comment"> *</span>
-<a name="l00216"></a>00216 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l00217"></a>00217 <span class="comment"> *</span>
-<a name="l00218"></a>00218 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l00219"></a>00219 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l00220"></a>00220 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l00221"></a>00221 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l00222"></a>00222 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l00223"></a>00223 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l00224"></a>00224 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l00225"></a>00225 <span class="comment"> * conditions:</span>
-<a name="l00226"></a>00226 <span class="comment"> *</span>
-<a name="l00227"></a>00227 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l00228"></a>00228 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l00229"></a>00229 <span class="comment"> *</span>
-<a name="l00230"></a>00230 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l00231"></a>00231 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l00232"></a>00232 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l00233"></a>00233 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l00234"></a>00234 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l00235"></a>00235 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l00236"></a>00236 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l00237"></a>00237 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l00238"></a>00238 <span class="comment"> */</span>
+<a name="l00206"></a>00206 <span class="comment"></span><span class="comment"></span>
+<a name="l00207"></a>00207 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00208"></a>00208 <span class="comment">        /// @var phys::xml::ParseMinimal</span>
+<a name="l00209"></a>00209 <span class="comment">        /// @brief Minimal parsing mode (equivalent to turning all other flags off).</span>
+<a name="l00210"></a>00210 <span class="comment">        /// @details Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.</span>
+<a name="l00211"></a>00211 <span class="comment"></span><span class="comment"></span>
+<a name="l00212"></a>00212 <span class="comment">        /// @var ParsePi</span>
+<a name="l00213"></a>00213 <span class="comment">        /// @brief This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default.</span>
+<a name="l00214"></a>00214 <span class="comment"></span><span class="comment"></span>
+<a name="l00215"></a>00215 <span class="comment">        /// @var ParseComments</span>
+<a name="l00216"></a>00216 <span class="comment">        /// @brief This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default.</span>
+<a name="l00217"></a>00217 <span class="comment"></span><span class="comment"></span>
+<a name="l00218"></a>00218 <span class="comment">        /// @var ParseCdata</span>
+<a name="l00219"></a>00219 <span class="comment">        /// @brief This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default.</span>
+<a name="l00220"></a>00220 <span class="comment"></span><span class="comment"></span>
+<a name="l00221"></a>00221 <span class="comment">        /// @var ParseWsPcdata</span>
+<a name="l00222"></a>00222 <span class="comment">        /// @brief This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree.</span>
+<a name="l00223"></a>00223 <span class="comment">        /// @details This flag is off by default; turning it on usually results in slower parsing and more memory consumption.</span>
+<a name="l00224"></a>00224 <span class="comment"></span><span class="comment"></span>
+<a name="l00225"></a>00225 <span class="comment">        /// @var ParseEscapes</span>
+<a name="l00226"></a>00226 <span class="comment">        /// @brief This flag determines if character and entity references are expanded during parsing. This flag is on by default.</span>
+<a name="l00227"></a>00227 <span class="comment"></span><span class="comment"></span>
+<a name="l00228"></a>00228 <span class="comment">        /// @var ParseEol</span>
+<a name="l00229"></a>00229 <span class="comment">        /// @brief This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default.</span>
+<a name="l00230"></a>00230 <span class="comment"></span><span class="comment"></span>
+<a name="l00231"></a>00231 <span class="comment">        /// @var ParseWconvAttribute</span>
+<a name="l00232"></a>00232 <span class="comment">        /// @brief This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default.</span>
+<a name="l00233"></a>00233 <span class="comment"></span><span class="comment"></span>
+<a name="l00234"></a>00234 <span class="comment">        /// @var ParseWnormAttribute</span>
+<a name="l00235"></a>00235 <span class="comment">        /// @brief This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.</span>
+<a name="l00236"></a>00236 <span class="comment"></span><span class="comment"></span>
+<a name="l00237"></a>00237 <span class="comment">        /// @var ParseDeclaration</span>
+<a name="l00238"></a>00238 <span class="comment">        /// @brief This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default.</span>
+<a name="l00239"></a>00239 <span class="comment"></span><span class="comment"></span>
+<a name="l00240"></a>00240 <span class="comment">        /// @var ParseDoctype</span>
+<a name="l00241"></a>00241 <span class="comment">        /// @brief This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default.</span>
+<a name="l00242"></a>00242 <span class="comment"></span><span class="comment"></span>
+<a name="l00243"></a>00243 <span class="comment">        /// @var ParseDefault</span>
+<a name="l00244"></a>00244 <span class="comment">        /// @brief The default parsing mode.</span>
+<a name="l00245"></a>00245 <span class="comment">        /// @details Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded,</span>
+<a name="l00246"></a>00246 <span class="comment">        /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.</span>
+<a name="l00247"></a>00247 <span class="comment"></span><span class="comment"></span>
+<a name="l00248"></a>00248 <span class="comment">        /// @var ParseFull</span>
+<a name="l00249"></a>00249 <span class="comment">        /// @brief The full parsing mode.</span>
+<a name="l00250"></a>00250 <span class="comment">        /// @details Nodes of all types are added to the DOM tree, character/reference entities are expanded,</span>
+<a name="l00251"></a>00251 <span class="comment">        /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.</span>
+<a name="l00252"></a>00252 <span class="comment"></span><span class="comment"></span>
+<a name="l00253"></a>00253 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00254"></a>00254 <span class="comment">        /// @typedef string_t</span>
+<a name="l00255"></a>00255 <span class="comment">        /// @brief A string class used internally to store data in the XML parser.</span>
+<a name="l00256"></a>00256 <span class="comment"></span><span class="comment"></span>
+<a name="l00257"></a>00257 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00258"></a>00258 <span class="comment">        /// @var FormatIndent</span>
+<a name="l00259"></a>00259 <span class="comment">        /// @brief Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default.</span>
+<a name="l00260"></a>00260 <span class="comment"></span><span class="comment"></span>
+<a name="l00261"></a>00261 <span class="comment">        /// @var FormatWriteBom</span>
+<a name="l00262"></a>00262 <span class="comment">        /// @brief Write encoding-specific Byte Order Mark (BOM) to the output stream. This flag is off by default.</span>
+<a name="l00263"></a>00263 <span class="comment"></span><span class="comment"></span>
+<a name="l00264"></a>00264 <span class="comment">        /// @var FormatRaw</span>
+<a name="l00265"></a>00265 <span class="comment">        /// @brief Use raw output mode (no indentation and no line breaks are written). This flag is off by default.</span>
+<a name="l00266"></a>00266 <span class="comment"></span><span class="comment"></span>
+<a name="l00267"></a>00267 <span class="comment">        /// @var FormatNoDeclaration</span>
+<a name="l00268"></a>00268 <span class="comment">        /// @brief Omit default XML declaration even if there is no declaration in the document. This flag is off by default.</span>
+<a name="l00269"></a>00269 <span class="comment"></span><span class="comment"></span>
+<a name="l00270"></a>00270 <span class="comment">        /// @var FormatDefault</span>
+<a name="l00271"></a>00271 <span class="comment">        /// @brief The default set of formatting flags.</span>
+<a name="l00272"></a>00272 <span class="comment">        /// @details Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.</span>
+<a name="l00273"></a>00273 <span class="comment"></span>
+<a name="l00274"></a>00274     }
+<a name="l00275"></a>00275 }
+<a name="l00276"></a>00276 <span class="preprocessor">#endif</span>
+<a name="l00277"></a>00277 <span class="preprocessor"></span>
+<a name="l00278"></a>00278 <span class="comment">/*</span>
+<a name="l00279"></a>00279 <span class="comment"> *</span>
+<a name="l00280"></a>00280 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l00281"></a>00281 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l00282"></a>00282 <span class="comment"> *</span>
+<a name="l00283"></a>00283 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l00284"></a>00284 <span class="comment"> *</span>
+<a name="l00285"></a>00285 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l00286"></a>00286 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l00287"></a>00287 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l00288"></a>00288 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l00289"></a>00289 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l00290"></a>00290 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l00291"></a>00291 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l00292"></a>00292 <span class="comment"> * conditions:</span>
+<a name="l00293"></a>00293 <span class="comment"> *</span>
+<a name="l00294"></a>00294 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l00295"></a>00295 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l00296"></a>00296 <span class="comment"> *</span>
+<a name="l00297"></a>00297 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l00298"></a>00298 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l00299"></a>00299 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l00300"></a>00300 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l00301"></a>00301 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l00302"></a>00302 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l00303"></a>00303 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l00304"></a>00304 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l00305"></a>00305 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 16 2011 21:43:48 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jan 17 2011 01:48:26 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

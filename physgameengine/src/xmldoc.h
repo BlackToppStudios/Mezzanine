@@ -89,7 +89,7 @@ namespace phys
         /// @details See xmldoc.h for additional details.
         ///////////////////////////////////////
 
-
+        ///////////////////////////////////////////////////////////////////////////////
         /// @enum ParseStatus
         /// @brief These statuses are used to help determine what issues, if any the parser had. the XML parser had.
 
@@ -138,11 +138,11 @@ namespace phys
         /// @var StatusEndElementMismatch
         /// @brief There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag).
 
-
+        ///////////////////////////////////////////////////////////////////////////////
         /// @struct ParseResult
         /// @brief All the information needed to troubleshoot a Parsing error.
 
-
+        ///////////////////////////////////////////////////////////////////////////////
         /// @enum Encoding
         /// @brief These flags determine the encoding of input data for an XML document.
 
@@ -173,7 +173,7 @@ namespace phys
         /// @var Encodingwchar_t
         /// @brief The same document encoding wchar_t has (usually either UTF16 or UTF32)
 
-
+        ///////////////////////////////////////////////////////////////////////////////
         /// @enum NodeType
         /// @brief The types of nodes.
 
@@ -203,6 +203,73 @@ namespace phys
 
         /// @var NodeDoctype
         /// @brief Document type declaration, i.e. '<!DOCTYPE doc>'.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @var phys::xml::ParseMinimal
+        /// @brief Minimal parsing mode (equivalent to turning all other flags off).
+        /// @details Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.
+
+        /// @var ParsePi
+        /// @brief This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default.
+
+        /// @var ParseComments
+        /// @brief This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default.
+
+        /// @var ParseCdata
+        /// @brief This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default.
+
+        /// @var ParseWsPcdata
+        /// @brief This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree.
+        /// @details This flag is off by default; turning it on usually results in slower parsing and more memory consumption.
+
+        /// @var ParseEscapes
+        /// @brief This flag determines if character and entity references are expanded during parsing. This flag is on by default.
+
+        /// @var ParseEol
+        /// @brief This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default.
+
+        /// @var ParseWconvAttribute
+        /// @brief This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default.
+
+        /// @var ParseWnormAttribute
+        /// @brief This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.
+
+        /// @var ParseDeclaration
+        /// @brief This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default.
+
+        /// @var ParseDoctype
+        /// @brief This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default.
+
+        /// @var ParseDefault
+        /// @brief The default parsing mode.
+        /// @details Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded,
+        /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
+
+        /// @var ParseFull
+        /// @brief The full parsing mode.
+        /// @details Nodes of all types are added to the DOM tree, character/reference entities are expanded,
+        /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @typedef string_t
+        /// @brief A string class used internally to store data in the XML parser.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @var FormatIndent
+        /// @brief Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default.
+
+        /// @var FormatWriteBom
+        /// @brief Write encoding-specific Byte Order Mark (BOM) to the output stream. This flag is off by default.
+
+        /// @var FormatRaw
+        /// @brief Use raw output mode (no indentation and no line breaks are written). This flag is off by default.
+
+        /// @var FormatNoDeclaration
+        /// @brief Omit default XML declaration even if there is no declaration in the document. This flag is off by default.
+
+        /// @var FormatDefault
+        /// @brief The default set of formatting flags.
+        /// @details Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.
 
     }
 }

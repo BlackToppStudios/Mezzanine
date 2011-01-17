@@ -165,7 +165,7 @@ namespace phys
  
 #ifndef XML_NO_STL 
 	// String type used for operations that work with STL string; depends on XML_WCHAR_MODE 
-	typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> > string_t; 
+	typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t; 
 #endif 
 } 
 } // \phys
@@ -193,48 +193,48 @@ namespace phys
  
 	// Minimal parsing mode (equivalent to turning all other flags off). 
 	// Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed. 
-	const unsigned int parse_minimal = 0x0000; 
+	const unsigned int ParseMinimal = 0x0000; 
  
 	// This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default. 
-	const unsigned int parse_pi = 0x0001; 
+	const unsigned int ParsePi = 0x0001; 
  
 	// This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default. 
-	const unsigned int parse_comments = 0x0002; 
+	const unsigned int ParseComments = 0x0002; 
  
 	// This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default. 
-	const unsigned int parse_cdata = 0x0004; 
+	const unsigned int ParseCdata = 0x0004; 
  
 	// This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree. 
 	// This flag is off by default; turning it on usually results in slower parsing and more memory consumption. 
-	const unsigned int parse_ws_pcdata = 0x0008; 
+	const unsigned int ParseWsPcdata = 0x0008; 
  
 	// This flag determines if character and entity references are expanded during parsing. This flag is on by default. 
-	const unsigned int parse_escapes = 0x0010; 
+	const unsigned int ParseEscapes = 0x0010; 
  
 	// This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default. 
-	const unsigned int parse_eol = 0x0020; 
+	const unsigned int ParseEol = 0x0020; 
 	 
  	// This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default. 
- 	const unsigned int parse_wconv_attribute = 0x0040; 
+ 	const unsigned int ParseWconvAttribute = 0x0040; 
  
  	// This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default. 
- 	const unsigned int parse_wnorm_attribute = 0x0080; 
+ 	const unsigned int ParseWnormAttribute = 0x0080; 
 	 
 	// This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. 
-	const unsigned int parse_declaration = 0x0100; 
+	const unsigned int ParseDeclaration = 0x0100; 
  
 	// This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. 
-	const unsigned int parse_doctype = 0x0200; 
+	const unsigned int ParseDoctype = 0x0200; 
  
 	// The default parsing mode. 
 	// Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, 
 	// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
-	const unsigned int parse_default = parse_cdata | parse_escapes | parse_wconv_attribute | parse_eol; 
+	const unsigned int ParseDefault = ParseCdata | ParseEscapes | ParseWconvAttribute | ParseEol; 
  
 	// The full parsing mode. 
 	// Nodes of all types are added to the DOM tree, character/reference entities are expanded, 
 	// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
-	const unsigned int parse_full = parse_default | parse_pi | parse_comments | parse_declaration | parse_doctype; 
+	const unsigned int ParseFull = ParseDefault | ParsePi | ParseComments | ParseDeclaration | ParseDoctype; 
  
 	// These flags determine the DocumentEncoding of input data for XML document 
 	enum Encoding 
@@ -253,20 +253,20 @@ namespace phys
 	// Formatting flags 
 	 
 	// Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default. 
-	const unsigned int format_indent = 0x01; 
+	const unsigned int FormatIndent = 0x01; 
 	 
 	// Write DocumentEncoding-specific BOM to the output stream. This flag is off by default. 
-	const unsigned int format_write_bom = 0x02; 
+	const unsigned int FormatWriteBom = 0x02; 
  
 	// Use raw output mode (no indentation and no line breaks are written). This flag is off by default. 
-	const unsigned int format_raw = 0x04; 
+	const unsigned int FormatRaw = 0x04; 
 	 
 	// Omit default XML declaration even if there is no declaration in the document. This flag is off by default. 
-	const unsigned int format_no_declaration = 0x08; 
+	const unsigned int FormatNoDeclaration = 0x08; 
  
 	// The default set of formatting flags. 
 	// Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none. 
-	const unsigned int format_default = format_indent; 
+	const unsigned int FormatDefault = FormatIndent; 
 		 
 	// Forward declarations 
 	struct AttributeStruct; 
@@ -596,12 +596,12 @@ namespace phys
 	#endif 
 		 
 		// Print subtree using a writer object 
-		void print(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
+		void print(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
  
 	#ifndef XML_NO_STL 
 		// Print subtree to stream 
-		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
-		void print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, unsigned int depth = 0) const; 
+		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
+		void print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, unsigned int depth = 0) const; 
 	#endif 
  
 		// Child nodes iterators 
@@ -821,40 +821,40 @@ namespace phys
  
 	#ifndef XML_NO_STL 
 		// Load document from stream. 
-		ParseResult load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
-		ParseResult load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = parse_default); 
+		ParseResult load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault); 
 	#endif 
  
 		// Load document from zero-terminated string. No DocumentEncoding conversions are applied. 
-		ParseResult load(const char_t* contents, unsigned int options = parse_default); 
+		ParseResult load(const char_t* contents, unsigned int options = ParseDefault); 
  
 		// Load document from file 
-		ParseResult load_file(const char* path, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
-		ParseResult load_file(const wchar_t* path, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult load_file(const char* path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult load_file(const wchar_t* path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns. 
-		ParseResult load_buffer(const void* contents, size_t size, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult load_buffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed. 
-		ParseResult load_buffer_inplace(void* contents, size_t size, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult load_buffer_inplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore). 
-		ParseResult load_buffer_inplace_own(void* contents, size_t size, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult load_buffer_inplace_own(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Save XML document to writer (semantics is slightly different from Node::print, see documentation for details). 
-		void save(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto) const; 
+		void save(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 	#ifndef XML_NO_STL 
 		// Save XML document to stream (semantics is slightly different from Node::print, see documentation for details). 
-		void save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto) const; 
-		void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default) const; 
+		void save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault) const; 
 	#endif 
  
 		// Save XML to file 
-		bool save_file(const char* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto) const; 
-		bool save_file(const wchar_t* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto) const; 
+		bool save_file(const char* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		bool save_file(const wchar_t* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 		// Get document element 
 		Node document_element() const; 
@@ -872,7 +872,7 @@ namespace phys
 	}; 
  
 	// XPath parsing result 
-	struct PHYS_LIB xpath_parse_result 
+	struct PHYS_LIB xpath_ParseResult 
 	{ 
 		// Error message (0 if no error) 
 		const char* error; 
@@ -881,7 +881,7 @@ namespace phys
 		ptrdiff_t Offset; 
  
 		/// @brief Default constructor, initializes object to failed state. 
-		xpath_parse_result(); 
+		xpath_ParseResult(); 
  
 		/// @brief Cast to bool operator 
 		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
@@ -963,7 +963,7 @@ namespace phys
 	{ 
 	private: 
 		void* _impl; 
-		xpath_parse_result _result; 
+		xpath_ParseResult _result; 
  
 		typedef void* xpath_query::*unspecified_bool_type; 
  
@@ -1008,7 +1008,7 @@ namespace phys
 		xpath_NodeSet evaluate_NodeSet(const xpath_node& n) const; 
  
 		// Get parsing result (used to get compilation errors in XML_NO_EXCEPTIONS mode) 
-		const xpath_parse_result& result() const; 
+		const xpath_ParseResult& result() const; 
  
 		// Safe bool conversion operator 
 		operator unspecified_bool_type() const; 
@@ -1022,17 +1022,17 @@ namespace phys
 	class PHYS_LIB xpath_exception: public std::exception 
 	{ 
 	private: 
-		xpath_parse_result _result; 
+		xpath_ParseResult _result; 
  
 	public: 
 		// Construct exception from parse result 
-		explicit xpath_exception(const xpath_parse_result& result); 
+		explicit xpath_exception(const xpath_ParseResult& result); 
  
 		// Get error message 
 		virtual const char* what() const throw(); 
  
 		// Get parse result 
-		const xpath_parse_result& result() const; 
+		const xpath_ParseResult& result() const; 
 	}; 
 	#endif 
 	 

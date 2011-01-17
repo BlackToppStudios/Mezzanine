@@ -202,9 +202,9 @@ The bulk of the engine components go in this namspace. This is where imporant cl
 
 A datatype to represent one character. 
 
-This should be a char if String is an std::string. The XML parser expects this to be either char or wchar\_\-t and has not be test with external types. 
+This should be a char if String is an std::string. The XML parser expects this to be either char or wchar\_\-t and has not be test with external types. The XML Parser expects XML\_\-WCHAR\_\-MODE to be defined if wchar\_\-t is used. A remarked definition of this exists near the Character typedef in \hyperlink{datatypes_8h_source}{datatypes.h} 
 
-Definition at line 100 of file datatypes.h.
+Definition at line 102 of file datatypes.h.
 
 \hypertarget{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{
 \index{phys@{phys}!ConstString@{ConstString}}
@@ -245,7 +245,7 @@ This is an internal datatype use to communicate with the User input Subsystem.
 This is a typedef to SDL\_\-Event. See the SDL Documentation for more details \end{DoxyInternal}
 
 
-Definition at line 106 of file datatypes.h.
+Definition at line 110 of file datatypes.h.
 
 \hypertarget{namespacephys_af7eb897198d265b8e868f45240230d5f}{
 \index{phys@{phys}!Real@{Real}}
@@ -271,7 +271,7 @@ This is a vector that stores sounds.
 
 This is a vector and can be use to store sounds that can be grouped together for similiar purposes or similiar content for easy tracking. 
 
-Definition at line 112 of file datatypes.h.
+Definition at line 116 of file datatypes.h.
 
 \hypertarget{namespacephys_aa03900411993de7fbfec4789bc1d392e}{
 \index{phys@{phys}!String@{String}}
@@ -323,7 +323,7 @@ An bouble with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Typedefs could break things 
 
-Definition at line 217 of file datatypes.h.
+Definition at line 221 of file datatypes.h.
 
 \hypertarget{namespacephys_a306865e81b7e30cd45a166b4a173c4b4}{
 \index{phys@{phys}!Tofloat@{Tofloat}}
@@ -346,7 +346,7 @@ An float with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Real Typedef could break things 
 
-Definition at line 203 of file datatypes.h.
+Definition at line 207 of file datatypes.h.
 
 \hypertarget{namespacephys_af0a6dfb0aa9e9292b96a0273e1f49d3a}{
 \index{phys@{phys}!Toint@{Toint}}
@@ -369,7 +369,7 @@ An int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 160 of file datatypes.h.
+Definition at line 164 of file datatypes.h.
 
 \hypertarget{namespacephys_a7fe8a4cf645e000483652f26ef8d6e47}{
 \index{phys@{phys}!ToInteger@{ToInteger}}
@@ -392,7 +392,7 @@ An Integer with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 145 of file datatypes.h.
+Definition at line 149 of file datatypes.h.
 
 \hypertarget{namespacephys_af9c39435b1181dab9b49b7c2aeb57127}{
 \index{phys@{phys}!ToReal@{ToReal}}
@@ -415,7 +415,7 @@ An Real with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 188 of file datatypes.h.
+Definition at line 192 of file datatypes.h.
 
 \hypertarget{namespacephys_ae81e34843c6c569026b9a7d9d54c4f04}{
 \index{phys@{phys}!ToString@{ToString}}
@@ -438,7 +438,7 @@ A String with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 121 of file datatypes.h.
+Definition at line 125 of file datatypes.h.
 
 \hypertarget{namespacephys_a16ab66903d5e438a04f4e859c8aa47a7}{
 \index{phys@{phys}!Tounsignedint@{Tounsignedint}}
@@ -461,7 +461,7 @@ An unsigned int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 175 of file datatypes.h.
+Definition at line 179 of file datatypes.h.
 
 \hypertarget{namespacephys_a53d44a46cab542ef86a541af5f1a7b62}{
 \index{phys@{phys}!ToWhole@{ToWhole}}
@@ -484,5 +484,5 @@ A Whole with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 132 of file datatypes.h.
+Definition at line 136 of file datatypes.h.
 

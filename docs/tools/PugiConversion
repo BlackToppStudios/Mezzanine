@@ -192,11 +192,21 @@ function FixNames
 	FileContent=`echo -E "$FileContent" | sed -e 's/\(DocumentEncoding\)_\([au][tf]*\)\([a-z0-9]*\)/Encoding\U\2\L\3/g'`		#Fix The Encoding Enum All the 2 part variables
 	FileContent=`echo -E "$FileContent" | sed -e 's/DocumentEncoding_wchar/Encodingwchar_t/g'`						#Fix Last enconding variable
 
-	FileContent=`echo -E "$FileContent" | sed -e 's|\(n\)\(ode\)_\(.\)\([a-z]*\)|\U\1\L\2\U\3\L\4|g'`	#Fix the NodeType Enum
+	FileContent=`echo -E "$FileContent" | sed -e 's|\(n\)\(ode\)_\(.\)\([a-z]*\)|\U\1\L\2\U\3\L\4|g'`							#Fix the NodeType Enum
 
-	FileContent=`echo -E "$FileContent" | sed -e 's|typedef XML_CHAR char_t;|typedef Character char_t;|g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|typedef XML_CHAR char_t;|typedef Character char_t;|g'`					#Integrate character typedef 
 
-																							#Documentation that could not be put in xmldoc.h
+																						#More tightly integrating Character into the XML parser
+	FileContent=`echo -E "$FileContent" | sed -e 's|typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> > string_t;|typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t;|g'`
+
+	FileContent=`echo -E "$FileContent" | sed -e 's|parse_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Parse\U\1\L\2\U\3\L\4|g'`				#Renaming 2 part Parse options
+	FileContent=`echo -E "$FileContent" | sed -e 's|parse_\(.\)\([a-z]*\)|Parse\U\1\L\2|g'`									#Renaming 1 part Parse options
+
+	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4\U\5\L\6|g'`		#Renaming 3 part Format options
+	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4|g'`							#Renaming 2 part Format options
+	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)|Format\U\1\L\2|g'`											#Renaming 1 part Format options
+
+																						#Documentation that could not be put in xmldoc.h
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|'`
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Last parsed Offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|'`
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|'`

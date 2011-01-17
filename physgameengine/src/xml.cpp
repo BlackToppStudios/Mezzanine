@@ -959,12 +959,12 @@ namespace
 {	 
 	enum chartype_t 
 	{ 
-		ct_parse_pcdata = 1,	// \0, &, \r, < 
-		ct_parse_attr = 2,		// \0, &, \r, ', " 
-		ct_parse_attr_ws = 4,	// \0, &, \r, ', ", \n, tab 
+		ct_ParsePcdata = 1,	// \0, &, \r, < 
+		ct_ParseAttr = 2,		// \0, &, \r, ', " 
+		ct_ParseAttrWs = 4,	// \0, &, \r, ', ", \n, tab 
 		ct_space = 8,			// \r, \n, space, tab 
-		ct_parse_cdata = 16,	// \0, ], >, \r 
-		ct_parse_comment = 32,	// \0, -, >, \r 
+		ct_ParseCdata = 16,	// \0, ], >, \r 
+		ct_ParseComment = 32,	// \0, -, >, \r 
 		ct_symbol = 64,			// Any symbol > 127, a-z, A-Z, 0-9, _, :, -, . 
 		ct_start_symbol = 128	// Any symbol > 127, a-z, A-Z, _, : 
 	}; 
@@ -1634,7 +1634,7 @@ namespace
 		 
 		while (true) 
 		{ 
-			while (!IS_CHARTYPE(*s, ct_parse_comment)) ++s; 
+			while (!IS_CHARTYPE(*s, ct_ParseComment)) ++s; 
 		 
 			if (*s == '\r') // Either a single 0x0d or 0x0d 0x0a pair 
 			{ 
@@ -1662,7 +1662,7 @@ namespace
 			 
 		while (true) 
 		{ 
-			while (!IS_CHARTYPE(*s, ct_parse_cdata)) ++s; 
+			while (!IS_CHARTYPE(*s, ct_ParseCdata)) ++s; 
 			 
 			if (*s == '\r') // Either a single 0x0d or 0x0d 0x0a pair 
 			{ 
@@ -1694,7 +1694,7 @@ namespace
 			 
 			while (true) 
 			{ 
-				while (!IS_CHARTYPE(*s, ct_parse_pcdata)) ++s; 
+				while (!IS_CHARTYPE(*s, ct_ParsePcdata)) ++s; 
 					 
 				if (*s == '<') // PCDATA ends here 
 				{ 
@@ -1723,7 +1723,7 @@ namespace
 	 
 	strconv_pcdata_t get_strconv_pcdata(unsigned int optmask) 
 	{ 
-		STATIC_ASSERT(parse_escapes == 0x10 && parse_eol == 0x20); 
+		STATIC_ASSERT(ParseEscapes == 0x10 && ParseEol == 0x20); 
  
 		switch ((optmask >> 4) & 3) // get bitmask for flags (eol escapes) 
 		{ 
@@ -1739,7 +1739,7 @@ namespace
 	 
 	template <typename opt_escape> struct strconv_attribute_impl 
 	{ 
-		static char_t* parse_wnorm(char_t* s, char_t end_quote) 
+		static char_t* ParseWnorm(char_t* s, char_t end_quote) 
 		{ 
 			gap g; 
  
@@ -1756,7 +1756,7 @@ namespace
  
 			while (true) 
 			{ 
-				while (!IS_CHARTYPE(*s, ct_parse_attr_ws | ct_space)) ++s; 
+				while (!IS_CHARTYPE(*s, ct_ParseAttrWs | ct_space)) ++s; 
 				 
 				if (*s == end_quote) 
 				{ 
@@ -1791,13 +1791,13 @@ namespace
 			} 
 		} 
  
-		static char_t* parse_wconv(char_t* s, char_t end_quote) 
+		static char_t* ParseWconv(char_t* s, char_t end_quote) 
 		{ 
 			gap g; 
  
 			while (true) 
 			{ 
-				while (!IS_CHARTYPE(*s, ct_parse_attr_ws)) ++s; 
+				while (!IS_CHARTYPE(*s, ct_ParseAttrWs)) ++s; 
 				 
 				if (*s == end_quote) 
 				{ 
@@ -1827,13 +1827,13 @@ namespace
 			} 
 		} 
  
-		static char_t* parse_eol(char_t* s, char_t end_quote) 
+		static char_t* ParseEol(char_t* s, char_t end_quote) 
 		{ 
 			gap g; 
  
 			while (true) 
 			{ 
-				while (!IS_CHARTYPE(*s, ct_parse_attr)) ++s; 
+				while (!IS_CHARTYPE(*s, ct_ParseAttr)) ++s; 
 				 
 				if (*s == end_quote) 
 				{ 
@@ -1859,13 +1859,13 @@ namespace
 			} 
 		} 
  
-		static char_t* parse_simple(char_t* s, char_t end_quote) 
+		static char_t* ParseSimple(char_t* s, char_t end_quote) 
 		{ 
 			gap g; 
  
 			while (true) 
 			{ 
-				while (!IS_CHARTYPE(*s, ct_parse_attr)) ++s; 
+				while (!IS_CHARTYPE(*s, ct_ParseAttr)) ++s; 
 				 
 				if (*s == end_quote) 
 				{ 
@@ -1888,31 +1888,31 @@ namespace
  
 	strconv_attribute_t get_strconv_attribute(unsigned int optmask) 
 	{ 
-		STATIC_ASSERT(parse_escapes == 0x10 && parse_eol == 0x20 && parse_wconv_attribute == 0x40 && parse_wnorm_attribute == 0x80); 
+		STATIC_ASSERT(ParseEscapes == 0x10 && ParseEol == 0x20 && ParseWconvAttribute == 0x40 && ParseWnormAttribute == 0x80); 
 		 
 		switch ((optmask >> 4) & 15) // get bitmask for flags (wconv wnorm eol escapes) 
 		{ 
-		case 0:  return strconv_attribute_impl<opt_false>::parse_simple; 
-		case 1:  return strconv_attribute_impl<opt_true>::parse_simple; 
-		case 2:  return strconv_attribute_impl<opt_false>::parse_eol; 
-		case 3:  return strconv_attribute_impl<opt_true>::parse_eol; 
-		case 4:  return strconv_attribute_impl<opt_false>::parse_wconv; 
-		case 5:  return strconv_attribute_impl<opt_true>::parse_wconv; 
-		case 6:  return strconv_attribute_impl<opt_false>::parse_wconv; 
-		case 7:  return strconv_attribute_impl<opt_true>::parse_wconv; 
-		case 8:  return strconv_attribute_impl<opt_false>::parse_wnorm; 
-		case 9:  return strconv_attribute_impl<opt_true>::parse_wnorm; 
-		case 10: return strconv_attribute_impl<opt_false>::parse_wnorm; 
-		case 11: return strconv_attribute_impl<opt_true>::parse_wnorm; 
-		case 12: return strconv_attribute_impl<opt_false>::parse_wnorm; 
-		case 13: return strconv_attribute_impl<opt_true>::parse_wnorm; 
-		case 14: return strconv_attribute_impl<opt_false>::parse_wnorm; 
-		case 15: return strconv_attribute_impl<opt_true>::parse_wnorm; 
+		case 0:  return strconv_attribute_impl<opt_false>::ParseSimple; 
+		case 1:  return strconv_attribute_impl<opt_true>::ParseSimple; 
+		case 2:  return strconv_attribute_impl<opt_false>::ParseEol; 
+		case 3:  return strconv_attribute_impl<opt_true>::ParseEol; 
+		case 4:  return strconv_attribute_impl<opt_false>::ParseWconv; 
+		case 5:  return strconv_attribute_impl<opt_true>::ParseWconv; 
+		case 6:  return strconv_attribute_impl<opt_false>::ParseWconv; 
+		case 7:  return strconv_attribute_impl<opt_true>::ParseWconv; 
+		case 8:  return strconv_attribute_impl<opt_false>::ParseWnorm; 
+		case 9:  return strconv_attribute_impl<opt_true>::ParseWnorm; 
+		case 10: return strconv_attribute_impl<opt_false>::ParseWnorm; 
+		case 11: return strconv_attribute_impl<opt_true>::ParseWnorm; 
+		case 12: return strconv_attribute_impl<opt_false>::ParseWnorm; 
+		case 13: return strconv_attribute_impl<opt_true>::ParseWnorm; 
+		case 14: return strconv_attribute_impl<opt_false>::ParseWnorm; 
+		case 15: return strconv_attribute_impl<opt_true>::ParseWnorm; 
 		default: return 0; // should not get here 
 		} 
 	} 
  
-	inline ParseResult make_parse_result(ParseStatus Status, ptrdiff_t Offset = 0) 
+	inline ParseResult make_ParseResult(ParseStatus Status, ptrdiff_t Offset = 0) 
 	{ 
 		ParseResult result; 
 		result.Status = Status; 
@@ -1949,7 +1949,7 @@ namespace
 		// First group can not contain nested groups 
 		// Second group can contain nested groups of the same type 
 		// Third group can contain all other groups 
-		char_t* parse_doctype_primitive(char_t* s) 
+		char_t* ParseDoctypePrimitive(char_t* s) 
 		{ 
 			if (*s == '"' || *s == '\'') 
 			{ 
@@ -1982,7 +1982,7 @@ namespace
 			return s; 
 		} 
  
-		char_t* parse_doctype_ignore(char_t* s) 
+		char_t* ParseDoctypeIgnore(char_t* s) 
 		{ 
 			assert(s[0] == '<' && s[1] == '!' && s[2] == '['); 
 			s++; 
@@ -1992,7 +1992,7 @@ namespace
 				if (s[0] == '<' && s[1] == '!' && s[2] == '[') 
 				{ 
 					// nested ignore section 
-					s = parse_doctype_ignore(s); 
+					s = ParseDoctypeIgnore(s); 
 				} 
 				else if (s[0] == ']' && s[1] == ']' && s[2] == '>') 
 				{ 
@@ -2009,7 +2009,7 @@ namespace
 			return s; 
 		} 
  
-		char_t* parse_doctype_group(char_t* s, char_t endch, bool toplevel) 
+		char_t* ParseDoctypeGroup(char_t* s, char_t endch, bool toplevel) 
 		{ 
 			assert(s[0] == '<' && s[1] == '!'); 
 			s++; 
@@ -2021,18 +2021,18 @@ namespace
 					if (s[2] == '[') 
 					{ 
 						// ignore 
-						s = parse_doctype_ignore(s); 
+						s = ParseDoctypeIgnore(s); 
 					} 
 					else 
 					{ 
 						// some control group 
-						s = parse_doctype_group(s, endch, false); 
+						s = ParseDoctypeGroup(s, endch, false); 
 					} 
 				} 
 				else if (s[0] == '<' || s[0] == '"' || s[0] == '\'') 
 				{ 
 					// unknown tag (forbidden), or some primitive group 
-					s = parse_doctype_primitive(s); 
+					s = ParseDoctypePrimitive(s); 
 				} 
 				else if (*s == '>') 
 				{ 
@@ -2048,7 +2048,7 @@ namespace
 			return s; 
 		} 
  
-		char_t* parse_exclamation(char_t* s, NodeStruct* cursor, unsigned int optmsk, char_t endch) 
+		char_t* ParseExclamation(char_t* s, NodeStruct* cursor, unsigned int optmsk, char_t endch) 
 		{ 
 			// parse node contents, starting with exclamation mark 
 			++s; 
@@ -2061,13 +2061,13 @@ namespace
 				{ 
 					++s; 
  
-					if (OPTSET(parse_comments)) 
+					if (OPTSET(ParseComments)) 
 					{ 
 						PUSHNODE(NodeComment); // Append a new node on the tree. 
 						cursor->value = s; // Save the Offset. 
 					} 
  
-					if (OPTSET(parse_eol) && OPTSET(parse_comments)) 
+					if (OPTSET(ParseEol) && OPTSET(ParseComments)) 
 					{ 
 						s = strconv_comment(s, endch); 
  
@@ -2079,7 +2079,7 @@ namespace
 						SCANFOR(s[0] == '-' && s[1] == '-' && ENDSWITH(s[2], '>')); 
 						CHECK_ERROR(StatusBadComment, s); 
  
-						if (OPTSET(parse_comments)) 
+						if (OPTSET(ParseComments)) 
 							*s = 0; // Zero-terminate this segment at the first terminating '-'. 
  
 						s += (s[2] == '>' ? 3 : 2); // Step over the '\0->'. 
@@ -2094,12 +2094,12 @@ namespace
 				{ 
 					++s; 
  
-					if (OPTSET(parse_cdata)) 
+					if (OPTSET(ParseCdata)) 
 					{ 
 						PUSHNODE(NodeCdata); // Append a new node on the tree. 
 						cursor->value = s; // Save the Offset. 
  
-						if (OPTSET(parse_eol)) 
+						if (OPTSET(ParseEol)) 
 						{ 
 							s = strconv_cdata(s, endch); 
  
@@ -2135,9 +2135,9 @@ namespace
  
 				char_t* mark = s + 9; 
  
-				s = parse_doctype_group(s, endch, true); 
+				s = ParseDoctypeGroup(s, endch, true); 
  
-				if (OPTSET(parse_doctype)) 
+				if (OPTSET(ParseDoctype)) 
 				{ 
 					while (IS_CHARTYPE(*mark, ct_space)) ++mark; 
  
@@ -2158,7 +2158,7 @@ namespace
 			return s; 
 		} 
  
-		char_t* parse_question(char_t* s, NodeStruct*& ref_cursor, unsigned int optmsk, char_t endch) 
+		char_t* ParseQuestion(char_t* s, NodeStruct*& ref_cursor, unsigned int optmsk, char_t endch) 
 		{ 
 			// load into registers 
 			NodeStruct* cursor = ref_cursor; 
@@ -2178,7 +2178,7 @@ namespace
 			// determine node type; stricmp / strcasecmp is not portable 
 			bool declaration = (target[0] | ' ') == 'x' && (target[1] | ' ') == 'm' && (target[2] | ' ') == 'l' && target + 3 == s; 
  
-			if (declaration ? OPTSET(parse_declaration) : OPTSET(parse_pi)) 
+			if (declaration ? OPTSET(ParseDeclaration) : OPTSET(ParsePi)) 
 			{ 
 				if (declaration) 
 				{ 
@@ -2415,14 +2415,14 @@ namespace
 					} 
 					else if (*s == '?') // '<?...' 
 					{ 
-						s = parse_question(s, cursor, optmsk, endch); 
+						s = ParseQuestion(s, cursor, optmsk, endch); 
  
 						assert(cursor); 
 						if ((cursor->header & MemoryPage_type_mask) + 1 == NodeDeclaration) goto LOC_ATTRIBUTES; 
 					} 
 					else if (*s == '!') // '<!...' 
 					{ 
-						s = parse_exclamation(s, cursor, optmsk, endch); 
+						s = ParseExclamation(s, cursor, optmsk, endch); 
 					} 
 					else if (*s == 0 && endch == '?') THROW_ERROR(StatusBadPi, s); 
 					else THROW_ERROR(StatusUnrecognizedTag, s); 
@@ -2433,7 +2433,7 @@ namespace
  
 					SKIPWS(); // Eat whitespace if no genuine PCDATA here. 
  
-					if ((!OPTSET(parse_ws_pcdata) || mark == s) && (*s == '<' || !*s)) 
+					if ((!OPTSET(ParseWsPcdata) || mark == s) && (*s == '<' || !*s)) 
 					{ 
 						continue; 
 					} 
@@ -2476,7 +2476,7 @@ namespace
 			xmldoc->buffer = buffer; 
  
 			// early-out for empty documents 
-			if (length == 0) return make_parse_result(StatusOk); 
+			if (length == 0) return make_ParseResult(StatusOk); 
  
 			// create parser on stack 
 			Parser parser(*xmldoc); 
@@ -2493,7 +2493,7 @@ namespace
 				parser.parse(buffer, xmldoc, optmsk, endch); 
 			} 
  
-			ParseResult result = make_parse_result(static_cast<ParseStatus>(error), parser.error_Offset ? parser.error_Offset - buffer : 0); 
+			ParseResult result = make_ParseResult(static_cast<ParseStatus>(error), parser.error_Offset ? parser.error_Offset - buffer : 0); 
 			assert(result.Offset >= 0 && static_cast<size_t>(result.Offset) <= length); 
  
 			// update allocator state 
@@ -2503,7 +2503,7 @@ namespace
 			if (result && endch == '<') 
 			{ 
 				// there's no possible well-formed document with < at the end 
-				return make_parse_result(StatusUnrecognizedTag, length); 
+				return make_ParseResult(StatusUnrecognizedTag, length); 
 			} 
  
 			return result; 
@@ -2931,7 +2931,7 @@ namespace
 	{ 
 		const char_t* default_name = XML_TEXT(":anonymous"); 
  
-		if ((flags & format_indent) != 0 && (flags & format_raw) == 0) 
+		if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0) 
 			for (unsigned int i = 0; i < depth; ++i) writer.write(indent); 
  
 		switch (node.type()) 
@@ -2952,7 +2952,7 @@ namespace
  
 			NodeOutput_attributes(writer, node); 
  
-			if (flags & format_raw) 
+			if (flags & FormatRaw) 
 			{ 
 				if (!node.first_child()) 
 					writer.write(' ', '/', '>'); 
@@ -2990,7 +2990,7 @@ namespace
 				for (Node n = node.first_child(); n; n = n.next_sibling()) 
 					NodeOutput(writer, n, indent, flags, depth + 1); 
  
-				if ((flags & format_indent) != 0 && (flags & format_raw) == 0) 
+				if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0) 
 					for (unsigned int i = 0; i < depth; ++i) writer.write(indent); 
 				 
 				writer.write('<', '/'); 
@@ -3003,19 +3003,19 @@ namespace
 		 
 		case NodePcdata: 
 			text_output_escaped(writer, node.value(), ctx_special_pcdata); 
-			if ((flags & format_raw) == 0) writer.write('\n'); 
+			if ((flags & FormatRaw) == 0) writer.write('\n'); 
 			break; 
  
 		case NodeCdata: 
 			text_output_cdata(writer, node.value()); 
-			if ((flags & format_raw) == 0) writer.write('\n'); 
+			if ((flags & FormatRaw) == 0) writer.write('\n'); 
 			break; 
  
 		case NodeComment: 
 			writer.write('<', '!', '-', '-'); 
 			writer.write(node.value()); 
 			writer.write('-', '-', '>'); 
-			if ((flags & format_raw) == 0) writer.write('\n'); 
+			if ((flags & FormatRaw) == 0) writer.write('\n'); 
 			break; 
  
 		case NodePi: 
@@ -3034,7 +3034,7 @@ namespace
 			} 
  
 			writer.write('?', '>'); 
-			if ((flags & format_raw) == 0) writer.write('\n'); 
+			if ((flags & FormatRaw) == 0) writer.write('\n'); 
 			break; 
  
 		case NodeDoctype: 
@@ -3048,7 +3048,7 @@ namespace
 			} 
  
 			writer.write('>'); 
-			if ((flags & format_raw) == 0) writer.write('\n'); 
+			if ((flags & FormatRaw) == 0) writer.write('\n'); 
 			break; 
  
 		default: 
@@ -3173,7 +3173,7 @@ namespace
  
 	ParseResult load_file_impl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		if (!file) return make_parse_result(StatusFileNotFound); 
+		if (!file) return make_ParseResult(StatusFileNotFound); 
  
 		// get file size (can result in I/O errors) 
 		size_t size = 0; 
@@ -3182,7 +3182,7 @@ namespace
 		if (size_Status != StatusOk) 
 		{ 
 			fclose(file); 
-			return make_parse_result(size_Status); 
+			return make_ParseResult(size_Status); 
 		} 
 		 
 		// allocate buffer for the whole file 
@@ -3191,7 +3191,7 @@ namespace
 		if (!contents) 
 		{ 
 			fclose(file); 
-			return make_parse_result(StatusOutOfMemory); 
+			return make_ParseResult(StatusOutOfMemory); 
 		} 
  
 		// read file in memory 
@@ -3201,7 +3201,7 @@ namespace
 		if (read_size != size) 
 		{ 
 			global_deallocate(contents); 
-			return make_parse_result(StatusIOError); 
+			return make_ParseResult(StatusIOError); 
 		} 
 		 
 		return doc.load_buffer_inplace_own(contents, size, options, DocumentEncoding); 
@@ -3216,21 +3216,21 @@ namespace
 		std::streamoff length = stream.tellg() - pos; 
 		stream.seekg(pos); 
  
-		if (stream.fail() || pos < 0) return make_parse_result(StatusIOError); 
+		if (stream.fail() || pos < 0) return make_ParseResult(StatusIOError); 
  
 		// guard against huge files 
 		size_t read_length = static_cast<size_t>(length); 
  
-		if (static_cast<std::streamsize>(read_length) != length || length < 0) return make_parse_result(StatusOutOfMemory); 
+		if (static_cast<std::streamsize>(read_length) != length || length < 0) return make_ParseResult(StatusOutOfMemory); 
  
 		// read stream data into memory (guard against stream exceptions with buffer holder) 
 		buffer_holder buffer(global_allocate((read_length > 0 ? read_length : 1) * sizeof(T)), global_deallocate); 
-		if (!buffer.data) return make_parse_result(StatusOutOfMemory); 
+		if (!buffer.data) return make_ParseResult(StatusOutOfMemory); 
  
 		stream.read(static_cast<T*>(buffer.data), static_cast<std::streamsize>(read_length)); 
  
 		// read may set failbit | eofbit in case gcount() is less than read_length (i.e. line ending conversion), so check for other I/O errors 
-		if (stream.bad()) return make_parse_result(StatusIOError); 
+		if (stream.bad()) return make_ParseResult(StatusIOError); 
  
 		// load data from buffer 
 		size_t actual_length = static_cast<size_t>(stream.gcount()); 
@@ -4676,7 +4676,7 @@ namespace phys
 		char_t* buffer = 0; 
 		size_t length = 0; 
  
-		if (!convert_buffer(buffer, length, buffer_DocumentEncoding, contents, size, is_mutable)) return make_parse_result(StatusOutOfMemory); 
+		if (!convert_buffer(buffer, length, buffer_DocumentEncoding, contents, size, is_mutable)) return make_ParseResult(StatusOutOfMemory); 
 		 
 		// delete original buffer if we performed a conversion 
 		if (own && buffer != contents && contents) global_deallocate(contents); 
@@ -4710,14 +4710,14 @@ namespace phys
  
 	void Document::save(Writer& writer, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		if (flags & format_write_bom) write_bom(writer, get_write_DocumentEncoding(DocumentEncoding)); 
+		if (flags & FormatWriteBom) write_bom(writer, get_write_DocumentEncoding(DocumentEncoding)); 
  
 		BufferedWriter buffered_writer(writer, DocumentEncoding); 
  
-		if (!(flags & format_no_declaration) && !has_declaration(*this)) 
+		if (!(flags & FormatNoDeclaration) && !has_declaration(*this)) 
 		{ 
 			buffered_writer.write(XML_TEXT("<?xml version=\"1.0\"?>")); 
-			if (!(flags & format_raw)) buffered_writer.write('\n'); 
+			if (!(flags & FormatRaw)) buffered_writer.write('\n'); 
 		} 
  
 		NodeOutput(buffered_writer, *this, indent, flags, 0); 
@@ -8150,7 +8150,7 @@ namespace
 		const char_t* _query; 
 		xpath_variable_set* _variables; 
  
-		xpath_parse_result* _result; 
+		xpath_ParseResult* _result; 
  
 	#ifdef XML_NO_EXCEPTIONS 
 		jmp_buf _error_handler; 
@@ -8203,7 +8203,7 @@ namespace
 			else return 0; 
 		} 
  
-		xpath_ast_node* parse_function_helper(ast_type_t type0, ast_type_t type1, size_t argc, xpath_ast_node* args[2]) 
+		xpath_ast_node* ParseFunctionHelper(ast_type_t type0, ast_type_t type1, size_t argc, xpath_ast_node* args[2]) 
 		{ 
 			assert(argc <= 1); 
  
@@ -8212,7 +8212,7 @@ namespace
 			return new (alloc_node()) xpath_ast_node(argc == 0 ? type0 : type1, xpath_type_string, args[0]); 
 		} 
  
-		xpath_ast_node* parse_function(const xpath_lexer_string& name, size_t argc, xpath_ast_node* args[2]) 
+		xpath_ast_node* ParseFunction(const xpath_lexer_string& name, size_t argc, xpath_ast_node* args[2]) 
 		{ 
 			switch (name.begin[0]) 
 			{ 
@@ -8257,15 +8257,15 @@ namespace
 				else if (name == XML_TEXT("lang") && argc == 1) 
 					return new (alloc_node()) xpath_ast_node(ast_func_lang, xpath_type_boolean, args[0]); 
 				else if (name == XML_TEXT("local-name") && argc <= 1) 
-					return parse_function_helper(ast_func_local_name_0, ast_func_local_name_1, argc, args); 
+					return ParseFunctionHelper(ast_func_local_name_0, ast_func_local_name_1, argc, args); 
 			 
 				break; 
 			 
 			case 'n': 
 				if (name == XML_TEXT("name") && argc <= 1) 
-					return parse_function_helper(ast_func_name_0, ast_func_name_1, argc, args); 
+					return ParseFunctionHelper(ast_func_name_0, ast_func_name_1, argc, args); 
 				else if (name == XML_TEXT("namespace-uri") && argc <= 1) 
-					return parse_function_helper(ast_func_namespace_uri_0, ast_func_namespace_uri_1, argc, args); 
+					return ParseFunctionHelper(ast_func_namespace_uri_0, ast_func_namespace_uri_1, argc, args); 
 				else if (name == XML_TEXT("normalize-space") && argc <= 1) 
 					return new (alloc_node()) xpath_ast_node(argc == 0 ? ast_func_normalize_space_0 : ast_func_normalize_space_1, xpath_type_string, args[0], args[1]); 
 				else if (name == XML_TEXT("not") && argc == 1) 
@@ -8322,7 +8322,7 @@ namespace
 			return 0; 
 		} 
  
-		axis_t parse_axis_name(const xpath_lexer_string& name, bool& specified) 
+		axis_t ParseAxisName(const xpath_lexer_string& name, bool& specified) 
 		{ 
 			specified = true; 
  
@@ -8387,7 +8387,7 @@ namespace
 			return axis_child; 
 		} 
  
-		nodetest_t parse_NodeTest_type(const xpath_lexer_string& name) 
+		nodetest_t ParseNodeTest_type(const xpath_lexer_string& name) 
 		{ 
 			switch (name.begin[0]) 
 			{ 
@@ -8420,7 +8420,7 @@ namespace
 		} 
  
 		// PrimaryExpr ::= VariableReference | '(' Expr ')' | Literal | Number | FunctionCall 
-		xpath_ast_node* parse_primary_expression() 
+		xpath_ast_node* ParsePrimaryExpression() 
 		{ 
 			switch (_lexer.current()) 
 			{ 
@@ -8445,7 +8445,7 @@ namespace
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* n = parse_expression(); 
+				xpath_ast_node* n = ParseExpression(); 
  
 				if (_lexer.current() != lex_close_brace) 
 					throw_error("Unmatched braces"); 
@@ -8493,7 +8493,7 @@ namespace
 				_lexer.next(); 
  
 				if (_lexer.current() != lex_close_brace) 
-					args[argc++] = parse_expression(); 
+					args[argc++] = ParseExpression(); 
  
 				while (_lexer.current() != lex_close_brace) 
 				{ 
@@ -8501,7 +8501,7 @@ namespace
 						throw_error("No comma between function arguments"); 
 					_lexer.next(); 
 					 
-					xpath_ast_node* n = parse_expression(); 
+					xpath_ast_node* n = ParseExpression(); 
 					 
 					if (argc < 2) args[argc] = n; 
 					else last_arg->set_next(n); 
@@ -8512,7 +8512,7 @@ namespace
 				 
 				_lexer.next(); 
  
-				return parse_function(function, argc, args); 
+				return ParseFunction(function, argc, args); 
 			} 
  
 			default: 
@@ -8525,15 +8525,15 @@ namespace
 		// FilterExpr ::= PrimaryExpr | FilterExpr Predicate 
 		// Predicate ::= '[' PredicateExpr ']' 
 		// PredicateExpr ::= Expr 
-		xpath_ast_node* parse_filter_expression() 
+		xpath_ast_node* ParseFilterExpression() 
 		{ 
-			xpath_ast_node* n = parse_primary_expression(); 
+			xpath_ast_node* n = ParsePrimaryExpression(); 
  
 			while (_lexer.current() == lex_open_square_brace) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = parse_expression(); 
+				xpath_ast_node* expr = ParseExpression(); 
  
 				if (n->rettype() != xpath_type_NodeSet) throw_error("Predicate has to be applied to node set"); 
  
@@ -8555,7 +8555,7 @@ namespace
 		// NodeTest ::= NameTest | NodeType '(' ')' | 'processing-instruction' '(' Literal ')' 
 		// NameTest ::= '*' | NCName ':' '*' | QName 
 		// AbbreviatedStep ::= '.' | '..' 
-		xpath_ast_node* parse_step(xpath_ast_node* set) 
+		xpath_ast_node* ParseStep(xpath_ast_node* set) 
 		{ 
 			if (set && set->rettype() != xpath_type_NodeSet) 
 				throw_error("Step has to be applied to node set"); 
@@ -8598,7 +8598,7 @@ namespace
 					// parse axis name 
 					if (axis_specified) throw_error("Two axis specifiers in one step"); 
  
-					axis = parse_axis_name(nt_name, axis_specified); 
+					axis = ParseAxisName(nt_name, axis_specified); 
  
 					if (!axis_specified) throw_error("Unknown axis"); 
  
@@ -8630,7 +8630,7 @@ namespace
 						{ 
 							_lexer.next(); 
  
-							nt_type = parse_NodeTest_type(nt_name); 
+							nt_type = ParseNodeTest_type(nt_name); 
  
 							if (nt_type == nodetest_none) throw_error("Unrecognized node type"); 
 							 
@@ -8681,7 +8681,7 @@ namespace
 			{ 
 				_lexer.next(); 
 				 
-				xpath_ast_node* expr = parse_expression(); 
+				xpath_ast_node* expr = ParseExpression(); 
  
 				xpath_ast_node* pred = new (alloc_node()) xpath_ast_node(ast_predicate, xpath_type_NodeSet, expr); 
 				 
@@ -8699,9 +8699,9 @@ namespace
 		} 
 		 
 		// RelativeLocationPath ::= Step | RelativeLocationPath '/' Step | RelativeLocationPath '//' Step 
-		xpath_ast_node* parse_relative_location_path(xpath_ast_node* set) 
+		xpath_ast_node* ParseRelativeLocation_path(xpath_ast_node* set) 
 		{ 
-			xpath_ast_node* n = parse_step(set); 
+			xpath_ast_node* n = ParseStep(set); 
 			 
 			while (_lexer.current() == lex_slash || _lexer.current() == lex_double_slash) 
 			{ 
@@ -8711,7 +8711,7 @@ namespace
 				if (l == lex_double_slash) 
 					n = new (alloc_node()) xpath_ast_node(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 				 
-				n = parse_step(n); 
+				n = ParseStep(n); 
 			} 
 			 
 			return n; 
@@ -8719,7 +8719,7 @@ namespace
 		 
 		// LocationPath ::= RelativeLocationPath | AbsoluteLocationPath 
 		// AbsoluteLocationPath ::= '/' RelativeLocationPath? | '//' RelativeLocationPath 
-		xpath_ast_node* parse_location_path() 
+		xpath_ast_node* ParseLocationPath() 
 		{ 
 			if (_lexer.current() == lex_slash) 
 			{ 
@@ -8731,7 +8731,7 @@ namespace
 				lexeme_t l = _lexer.current(); 
  
 				if (l == lex_string || l == lex_axis_attribute || l == lex_dot || l == lex_double_dot || l == lex_multiply) 
-					return parse_relative_location_path(n); 
+					return ParseRelativeLocation_path(n); 
 				else 
 					return n; 
 			} 
@@ -8742,18 +8742,18 @@ namespace
 				xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_step_root, xpath_type_NodeSet); 
 				n = new (alloc_node()) xpath_ast_node(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 				 
-				return parse_relative_location_path(n); 
+				return ParseRelativeLocation_path(n); 
 			} 
  
 			// else clause moved outside of if because of bogus warning 'control may reach end of non-void function being inlined' in gcc 4.0.1 
-			return parse_relative_location_path(0); 
+			return ParseRelativeLocation_path(0); 
 		} 
 		 
 		// PathExpr ::= LocationPath 
 		//				| FilterExpr 
 		//				| FilterExpr '/' RelativeLocationPath 
 		//				| FilterExpr '//' RelativeLocationPath 
-		xpath_ast_node* parse_path_expression() 
+		xpath_ast_node* ParsePathExpression() 
 		{ 
 			// Clarification. 
 			// PathExpr begins with either LocationPath or FilterExpr. 
@@ -8773,13 +8773,13 @@ namespace
 					 
 					while (IS_CHARTYPE(*state, ct_space)) ++state; 
 					 
-					if (*state != '(') return parse_location_path(); 
+					if (*state != '(') return ParseLocationPath(); 
  
 					// This looks like a function call; however this still can be a node-test. Check it. 
-					if (parse_NodeTest_type(_lexer.contents()) != nodetest_none) return parse_location_path(); 
+					if (ParseNodeTest_type(_lexer.contents()) != nodetest_none) return ParseLocationPath(); 
 				} 
 				 
-				xpath_ast_node* n = parse_filter_expression(); 
+				xpath_ast_node* n = ParseFilterExpression(); 
  
 				if (_lexer.current() == lex_slash || _lexer.current() == lex_double_slash) 
 				{ 
@@ -8794,24 +8794,24 @@ namespace
 					} 
 	 
 					// select from location path 
-					return parse_relative_location_path(n); 
+					return ParseRelativeLocation_path(n); 
 				} 
  
 				return n; 
 			} 
-			else return parse_location_path(); 
+			else return ParseLocationPath(); 
 		} 
  
 		// UnionExpr ::= PathExpr | UnionExpr '|' PathExpr 
-		xpath_ast_node* parse_union_expression() 
+		xpath_ast_node* ParseUnionExpression() 
 		{ 
-			xpath_ast_node* n = parse_path_expression(); 
+			xpath_ast_node* n = ParsePathExpression(); 
  
 			while (_lexer.current() == lex_union) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = parse_union_expression(); 
+				xpath_ast_node* expr = ParseUnionExpression(); 
  
 				if (n->rettype() != xpath_type_NodeSet || expr->rettype() != xpath_type_NodeSet) 
 					throw_error("Union operator has to be applied to node sets"); 
@@ -8823,26 +8823,26 @@ namespace
 		} 
  
 		// UnaryExpr ::= UnionExpr | '-' UnaryExpr 
-		xpath_ast_node* parse_unary_expression() 
+		xpath_ast_node* ParseUnaryExpression() 
 		{ 
 			if (_lexer.current() == lex_minus) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = parse_unary_expression(); 
+				xpath_ast_node* expr = ParseUnaryExpression(); 
  
 				return new (alloc_node()) xpath_ast_node(ast_op_negate, xpath_type_number, expr); 
 			} 
-			else return parse_union_expression(); 
+			else return ParseUnionExpression(); 
 		} 
 		 
 		// MultiplicativeExpr ::= UnaryExpr 
 		//						  | MultiplicativeExpr '*' UnaryExpr 
 		//						  | MultiplicativeExpr 'div' UnaryExpr 
 		//						  | MultiplicativeExpr 'mod' UnaryExpr 
-		xpath_ast_node* parse_multiplicative_expression() 
+		xpath_ast_node* ParseMultiplicativeExpression() 
 		{ 
-			xpath_ast_node* n = parse_unary_expression(); 
+			xpath_ast_node* n = ParseUnaryExpression(); 
  
 			while (_lexer.current() == lex_multiply || (_lexer.current() == lex_string && 
 				   (_lexer.contents() == XML_TEXT("mod") || _lexer.contents() == XML_TEXT("div")))) 
@@ -8851,7 +8851,7 @@ namespace
 					_lexer.contents().begin[0] == 'd' ? ast_op_divide : ast_op_mod; 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = parse_unary_expression(); 
+				xpath_ast_node* expr = ParseUnaryExpression(); 
  
 				n = new (alloc_node()) xpath_ast_node(op, xpath_type_number, n, expr); 
 			} 
@@ -8862,9 +8862,9 @@ namespace
 		// AdditiveExpr ::= MultiplicativeExpr 
 		//					| AdditiveExpr '+' MultiplicativeExpr 
 		//					| AdditiveExpr '-' MultiplicativeExpr 
-		xpath_ast_node* parse_additive_expression() 
+		xpath_ast_node* ParseAdditiveExpression() 
 		{ 
-			xpath_ast_node* n = parse_multiplicative_expression(); 
+			xpath_ast_node* n = ParseMultiplicativeExpression(); 
  
 			while (_lexer.current() == lex_plus || _lexer.current() == lex_minus) 
 			{ 
@@ -8872,7 +8872,7 @@ namespace
  
 				_lexer.next(); 
  
-				xpath_ast_node* expr = parse_multiplicative_expression(); 
+				xpath_ast_node* expr = ParseMultiplicativeExpression(); 
  
 				n = new (alloc_node()) xpath_ast_node(l == lex_plus ? ast_op_add : ast_op_subtract, xpath_type_number, n, expr); 
 			} 
@@ -8885,9 +8885,9 @@ namespace
 		//					  | RelationalExpr '>' AdditiveExpr 
 		//					  | RelationalExpr '<=' AdditiveExpr 
 		//					  | RelationalExpr '>=' AdditiveExpr 
-		xpath_ast_node* parse_relational_expression() 
+		xpath_ast_node* ParseRelationalExpression() 
 		{ 
-			xpath_ast_node* n = parse_additive_expression(); 
+			xpath_ast_node* n = ParseAdditiveExpression(); 
  
 			while (_lexer.current() == lex_less || _lexer.current() == lex_less_or_equal ||  
 				   _lexer.current() == lex_greater || _lexer.current() == lex_greater_or_equal) 
@@ -8895,7 +8895,7 @@ namespace
 				lexeme_t l = _lexer.current(); 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = parse_additive_expression(); 
+				xpath_ast_node* expr = ParseAdditiveExpression(); 
  
 				n = new (alloc_node()) xpath_ast_node(l == lex_less ? ast_op_less : l == lex_greater ? ast_op_greater : 
 								l == lex_less_or_equal ? ast_op_less_or_equal : ast_op_greater_or_equal, xpath_type_boolean, n, expr); 
@@ -8907,9 +8907,9 @@ namespace
 		// EqualityExpr ::= RelationalExpr 
 		//					| EqualityExpr '=' RelationalExpr 
 		//					| EqualityExpr '!=' RelationalExpr 
-		xpath_ast_node* parse_equality_expression() 
+		xpath_ast_node* ParseEqualityExpression() 
 		{ 
-			xpath_ast_node* n = parse_relational_expression(); 
+			xpath_ast_node* n = ParseRelationalExpression(); 
  
 			while (_lexer.current() == lex_equal || _lexer.current() == lex_not_equal) 
 			{ 
@@ -8917,7 +8917,7 @@ namespace
  
 				_lexer.next(); 
  
-				xpath_ast_node* expr = parse_relational_expression(); 
+				xpath_ast_node* expr = ParseRelationalExpression(); 
  
 				n = new (alloc_node()) xpath_ast_node(l == lex_equal ? ast_op_equal : ast_op_not_equal, xpath_type_boolean, n, expr); 
 			} 
@@ -8926,15 +8926,15 @@ namespace
 		} 
 		 
 		// AndExpr ::= EqualityExpr | AndExpr 'and' EqualityExpr 
-		xpath_ast_node* parse_and_expression() 
+		xpath_ast_node* ParseAndExpression() 
 		{ 
-			xpath_ast_node* n = parse_equality_expression(); 
+			xpath_ast_node* n = ParseEqualityExpression(); 
  
 			while (_lexer.current() == lex_string && _lexer.contents() == XML_TEXT("and")) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = parse_equality_expression(); 
+				xpath_ast_node* expr = ParseEqualityExpression(); 
  
 				n = new (alloc_node()) xpath_ast_node(ast_op_and, xpath_type_boolean, n, expr); 
 			} 
@@ -8943,15 +8943,15 @@ namespace
 		} 
  
 		// OrExpr ::= AndExpr | OrExpr 'or' AndExpr 
-		xpath_ast_node* parse_or_expression() 
+		xpath_ast_node* ParseOrExpression() 
 		{ 
-			xpath_ast_node* n = parse_and_expression(); 
+			xpath_ast_node* n = ParseAndExpression(); 
  
 			while (_lexer.current() == lex_string && _lexer.contents() == XML_TEXT("or")) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = parse_and_expression(); 
+				xpath_ast_node* expr = ParseAndExpression(); 
  
 				n = new (alloc_node()) xpath_ast_node(ast_op_or, xpath_type_boolean, n, expr); 
 			} 
@@ -8960,18 +8960,18 @@ namespace
 		} 
 		 
 		// Expr ::= OrExpr 
-		xpath_ast_node* parse_expression() 
+		xpath_ast_node* ParseExpression() 
 		{ 
-			return parse_or_expression(); 
+			return ParseOrExpression(); 
 		} 
  
-		xpath_parser(const char_t* query, xpath_variable_set* variables, xpath_allocator* alloc, xpath_parse_result* result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _result(result) 
+		xpath_parser(const char_t* query, xpath_variable_set* variables, xpath_allocator* alloc, xpath_ParseResult* result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _result(result) 
 		{ 
 		} 
  
 		xpath_ast_node* parse() 
 		{ 
-			xpath_ast_node* result = parse_expression(); 
+			xpath_ast_node* result = ParseExpression(); 
 			 
 			if (_lexer.current() != lex_eof) 
 			{ 
@@ -8982,7 +8982,7 @@ namespace
 			return result; 
 		} 
  
-		static xpath_ast_node* parse(const char_t* query, xpath_variable_set* variables, xpath_allocator* alloc, xpath_parse_result* result) 
+		static xpath_ast_node* parse(const char_t* query, xpath_variable_set* variables, xpath_allocator* alloc, xpath_ParseResult* result) 
 		{ 
 			xpath_parser parser(query, variables, alloc, result); 
  
@@ -9045,7 +9045,7 @@ namespace phys
 { namespace xml
 { 
 #ifndef XML_NO_EXCEPTIONS 
-	xpath_exception::xpath_exception(const xpath_parse_result& result): _result(result) 
+	xpath_exception::xpath_exception(const xpath_ParseResult& result): _result(result) 
 	{ 
 		assert(result.error); 
 	} 
@@ -9055,7 +9055,7 @@ namespace phys
 		return _result.error; 
 	} 
  
-	const xpath_parse_result& xpath_exception::result() const 
+	const xpath_ParseResult& xpath_exception::result() const 
 	{ 
 		return _result; 
 	} 
@@ -9232,15 +9232,15 @@ namespace phys
 		return xpath_first(_begin, _end, _type); 
 	} 
  
-	xpath_parse_result::xpath_parse_result(): error("Internal error"), Offset(0) 
+	xpath_ParseResult::xpath_ParseResult(): error("Internal error"), Offset(0) 
 	{ 
 	} 
  
-	xpath_parse_result::operator bool() const 
+	xpath_ParseResult::operator bool() const 
 	{ 
 		return error == 0; 
 	} 
-	const char* xpath_parse_result::Description() const 
+	const char* xpath_ParseResult::Description() const 
 	{ 
 		return error ? error : "No error"; 
 	} 
@@ -9541,7 +9541,7 @@ namespace phys
 		#ifdef XML_NO_EXCEPTIONS 
 			return xpath_NodeSet(); 
 		#else 
-			xpath_parse_result result; 
+			xpath_ParseResult result; 
 			result.error = "Expression does not evaluate to node set"; 
  
 			throw xpath_exception(result); 
@@ -9560,7 +9560,7 @@ namespace phys
 		return xpath_NodeSet(r.begin(), r.end(), r.type()); 
 	} 
  
-	const xpath_parse_result& xpath_query::result() const 
+	const xpath_ParseResult& xpath_query::result() const 
 	{ 
 		return _result; 
 	} 

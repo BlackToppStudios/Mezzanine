@@ -96,8 +96,12 @@ namespace phys
 
     /// @typedef Character
     /// @brief A datatype to represent one character.
-    /// @details This should be a char if String is an std::string. The XML parser expects this to be either char or wchar_t and has not be test with external types.
+    /// @details This should be a char if String is an std::string. The XML parser expects this to be either char or wchar_t
+    /// and has not be test with external types. The XML Parser expects XML_WCHAR_MODE to be defined if wchar_t is used. A remarked
+    /// definition of this exists near the Character typedef in datatypes.h
     typedef char Character;
+    // #define XML_WCHAR_MODE   //UNREMARK ME if changing the above line to typedef wchar_t Character;
+
 
     /// @internal
     /// @typedef RawEvent

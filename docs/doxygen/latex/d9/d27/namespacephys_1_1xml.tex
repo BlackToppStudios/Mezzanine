@@ -10,10 +10,10 @@ This is where bulk of the XML subsystem is declare, there are numerous class tha
 \subsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-struct \hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct}
-\item 
-struct \hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct}
-\item 
+struct \hyperlink{structphys_1_1xml_1_1xml__attribute__struct}{xml\_\-attribute\_\-struct}
+\begin{DoxyCompactList}\small\item\em A 'name=value' XML attribute structure. \item\end{DoxyCompactList}\item 
+struct \hyperlink{structphys_1_1xml_1_1xml__node__struct}{xml\_\-node\_\-struct}
+\begin{DoxyCompactList}\small\item\em An XML document tree node. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1Writer}{Writer}
 \item 
 class \hyperlink{classphys_1_1xml_1_1WriterFile}{WriterFile}
@@ -34,7 +34,7 @@ struct \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult}
 \begin{DoxyCompactList}\small\item\em All the information needed to troubleshoot a Parsing error. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1Document}{Document}
 \item 
-struct \hyperlink{structphys_1_1xml_1_1xpath__parse__result}{xpath\_\-parse\_\-result}
+struct \hyperlink{structphys_1_1xml_1_1xpath__ParseResult}{xpath\_\-ParseResult}
 \item 
 class \hyperlink{classphys_1_1xml_1_1xpath__variable}{xpath\_\-variable}
 \item 
@@ -56,11 +56,11 @@ typedef \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character} \
 \label{d9/d27/namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}
 
 \begin{DoxyCompactList}\small\item\em The character type used the internals of the XML parser, this is defined in \hyperlink{datatypes_8h_source}{datatypes.h}. \item\end{DoxyCompactList}\item 
-\hypertarget{namespacephys_1_1xml_ad721463bf480c1c4e80d423b28eff231}{
-typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR $>$, std::allocator$<$ XML\_\-CHAR $>$ $>$ {\bfseries string\_\-t}}
-\label{d9/d27/namespacephys_1_1xml_ad721463bf480c1c4e80d423b28eff231}
+\hypertarget{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{
+typedef std::basic\_\-string$<$ \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character}, std::char\_\-traits$<$ \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character} $>$, std::allocator$<$ \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character} $>$ $>$ \hyperlink{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{string\_\-t}}
+\label{d9/d27/namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}
 
-\item 
+\begin{DoxyCompactList}\small\item\em A string class used internally to store data in the XML parser. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}{
 typedef void $\ast$($\ast$ {\bfseries allocation\_\-function} )(size\_\-t size)}
 \label{d9/d27/namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}
@@ -136,37 +136,37 @@ enum {\bfseries xpath\_\-value\_\-type} \{ \par
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{namespacephys_1_1xml_aa9bd5708205af50b8b9c739d44859b8f}{
-std::string PHYS\_\-LIB {\bfseries as\_\-utf8} (const wchar\_\-t $\ast$str)}
+std::string XML\_\-FUNCTION {\bfseries as\_\-utf8} (const wchar\_\-t $\ast$str)}
 \label{d9/d27/namespacephys_1_1xml_aa9bd5708205af50b8b9c739d44859b8f}
 
 \item 
-\hypertarget{namespacephys_1_1xml_aee269289d6244419edd4b81c2586b387}{
-std::string PHYS\_\-LIB {\bfseries as\_\-utf8} (const std::wstring \&str)}
-\label{d9/d27/namespacephys_1_1xml_aee269289d6244419edd4b81c2586b387}
+\hypertarget{namespacephys_1_1xml_a6dd8431f59af2ec474e6d16f59a9f824}{
+std::string XML\_\-FUNCTION {\bfseries as\_\-utf8} (const std::wstring \&str)}
+\label{d9/d27/namespacephys_1_1xml_a6dd8431f59af2ec474e6d16f59a9f824}
 
 \item 
 \hypertarget{namespacephys_1_1xml_a4c075685a28bbb5a441228b6ef28da99}{
-std::wstring PHYS\_\-LIB {\bfseries as\_\-wide} (const char $\ast$str)}
+std::wstring XML\_\-FUNCTION {\bfseries as\_\-wide} (const char $\ast$str)}
 \label{d9/d27/namespacephys_1_1xml_a4c075685a28bbb5a441228b6ef28da99}
 
 \item 
-\hypertarget{namespacephys_1_1xml_adc79965f6aaccea720c9aca7309eada4}{
-std::wstring PHYS\_\-LIB {\bfseries as\_\-wide} (const std::string \&str)}
-\label{d9/d27/namespacephys_1_1xml_adc79965f6aaccea720c9aca7309eada4}
+\hypertarget{namespacephys_1_1xml_aefdd300e3d59cf0d5a282fce46bf5e0f}{
+std::wstring XML\_\-FUNCTION {\bfseries as\_\-wide} (const std::string \&str)}
+\label{d9/d27/namespacephys_1_1xml_aefdd300e3d59cf0d5a282fce46bf5e0f}
 
 \item 
 \hypertarget{namespacephys_1_1xml_af0fc777b09fb1cdc32f2992d1f5e2306}{
-void PHYS\_\-LIB {\bfseries set\_\-memory\_\-management\_\-functions} (allocation\_\-function allocate, deallocation\_\-function deallocate)}
+void XML\_\-FUNCTION {\bfseries set\_\-memory\_\-management\_\-functions} (allocation\_\-function allocate, deallocation\_\-function deallocate)}
 \label{d9/d27/namespacephys_1_1xml_af0fc777b09fb1cdc32f2992d1f5e2306}
 
 \item 
 \hypertarget{namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}{
-allocation\_\-function PHYS\_\-LIB {\bfseries get\_\-memory\_\-allocation\_\-function} ()}
+allocation\_\-function XML\_\-FUNCTION {\bfseries get\_\-memory\_\-allocation\_\-function} ()}
 \label{d9/d27/namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}
 
 \item 
 \hypertarget{namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}{
-deallocation\_\-function PHYS\_\-LIB {\bfseries get\_\-memory\_\-deallocation\_\-function} ()}
+deallocation\_\-function XML\_\-FUNCTION {\bfseries get\_\-memory\_\-deallocation\_\-function} ()}
 \label{d9/d27/namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}
 
 \item 
@@ -183,96 +183,81 @@ std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{namespacephys_1_1xml_af314970463b7be68809dcc1dcdc0a490}{
-const unsigned int {\bfseries parse\_\-minimal} = 0x0000}
-\label{d9/d27/namespacephys_1_1xml_af314970463b7be68809dcc1dcdc0a490}
+const unsigned int \hyperlink{namespacephys_1_1xml_ab660837afbc6aaab22425d8d23e8f2e4}{ParseMinimal} = 0x0000
+\begin{DoxyCompactList}\small\item\em Minimal parsing mode (equivalent to turning all other flags off). \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_a4d324954fc33d50155bae04587da13e2}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a4d324954fc33d50155bae04587da13e2}{ParsePi} = 0x0001}
+\label{d9/d27/namespacephys_1_1xml_a4d324954fc33d50155bae04587da13e2}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a97d216891f6a01ac5f55aca3a5599830}{
-const unsigned int {\bfseries parse\_\-pi} = 0x0001}
-\label{d9/d27/namespacephys_1_1xml_a97d216891f6a01ac5f55aca3a5599830}
+\begin{DoxyCompactList}\small\item\em This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_a83ba30a7bee5a0fd4aa2f6136c8793fc}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a83ba30a7bee5a0fd4aa2f6136c8793fc}{ParseComments} = 0x0002}
+\label{d9/d27/namespacephys_1_1xml_a83ba30a7bee5a0fd4aa2f6136c8793fc}
 
-\item 
-\hypertarget{namespacephys_1_1xml_ab706a4f00bc8abe3ac224394df56f354}{
-const unsigned int {\bfseries parse\_\-comments} = 0x0002}
-\label{d9/d27/namespacephys_1_1xml_ab706a4f00bc8abe3ac224394df56f354}
+\begin{DoxyCompactList}\small\item\em This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_aec00a2a16700dfd76f8f3c776bd000ac}{
+const unsigned int \hyperlink{namespacephys_1_1xml_aec00a2a16700dfd76f8f3c776bd000ac}{ParseCdata} = 0x0004}
+\label{d9/d27/namespacephys_1_1xml_aec00a2a16700dfd76f8f3c776bd000ac}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a670bb64322a756b39c5b23413f00f6e1}{
-const unsigned int {\bfseries parse\_\-cdata} = 0x0004}
-\label{d9/d27/namespacephys_1_1xml_a670bb64322a756b39c5b23413f00f6e1}
+\begin{DoxyCompactList}\small\item\em This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespacephys_1_1xml_a48c0da99d1ed62b1a4984293e64828c6}{ParseWsPcdata} = 0x0008
+\begin{DoxyCompactList}\small\item\em This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_a6463412ba9e404b6890e4721255cd8ed}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a6463412ba9e404b6890e4721255cd8ed}{ParseEscapes} = 0x0010}
+\label{d9/d27/namespacephys_1_1xml_a6463412ba9e404b6890e4721255cd8ed}
 
-\item 
-\hypertarget{namespacephys_1_1xml_ab417d04b168665d53eb615ef4576c612}{
-const unsigned int {\bfseries parse\_\-ws\_\-pcdata} = 0x0008}
-\label{d9/d27/namespacephys_1_1xml_ab417d04b168665d53eb615ef4576c612}
+\begin{DoxyCompactList}\small\item\em This flag determines if character and entity references are expanded during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_a52af747730d2b3a313eebed4cf49a333}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a52af747730d2b3a313eebed4cf49a333}{ParseEol} = 0x0020}
+\label{d9/d27/namespacephys_1_1xml_a52af747730d2b3a313eebed4cf49a333}
 
-\item 
-\hypertarget{namespacephys_1_1xml_ab006f38b0cb2a1a394b282b3ac6a55d8}{
-const unsigned int {\bfseries parse\_\-escapes} = 0x0010}
-\label{d9/d27/namespacephys_1_1xml_ab006f38b0cb2a1a394b282b3ac6a55d8}
+\begin{DoxyCompactList}\small\item\em This flag determines if EOL characters are normalized (converted to xA) during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}{
+const unsigned int \hyperlink{namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}{ParseWconvAttribute} = 0x0040}
+\label{d9/d27/namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a1f79781a10053699798e9318d6f68c8a}{
-const unsigned int {\bfseries parse\_\-eol} = 0x0020}
-\label{d9/d27/namespacephys_1_1xml_a1f79781a10053699798e9318d6f68c8a}
+\begin{DoxyCompactList}\small\item\em This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_acddcc88320f06c933c67cdd77704c838}{
+const unsigned int \hyperlink{namespacephys_1_1xml_acddcc88320f06c933c67cdd77704c838}{ParseWnormAttribute} = 0x0080}
+\label{d9/d27/namespacephys_1_1xml_acddcc88320f06c933c67cdd77704c838}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a3fc1010f3ede7aae963bf0e23b10b3ae}{
-const unsigned int {\bfseries parse\_\-wconv\_\-attribute} = 0x0040}
-\label{d9/d27/namespacephys_1_1xml_a3fc1010f3ede7aae963bf0e23b10b3ae}
+\begin{DoxyCompactList}\small\item\em This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}{ParseDeclaration} = 0x0100}
+\label{d9/d27/namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}
 
-\item 
-\hypertarget{namespacephys_1_1xml_afd07ef0583e306ab76620327ae52e27d}{
-const unsigned int {\bfseries parse\_\-wnorm\_\-attribute} = 0x0080}
-\label{d9/d27/namespacephys_1_1xml_afd07ef0583e306ab76620327ae52e27d}
+\begin{DoxyCompactList}\small\item\em This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}{ParseDoctype} = 0x0200}
+\label{d9/d27/namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}
 
-\item 
-\hypertarget{namespacephys_1_1xml_ac2843cd7714bca69663866319949b3a3}{
-const unsigned int {\bfseries parse\_\-declaration} = 0x0100}
-\label{d9/d27/namespacephys_1_1xml_ac2843cd7714bca69663866319949b3a3}
+\begin{DoxyCompactList}\small\item\em This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault} = \hyperlink{namespacephys_1_1xml_aec00a2a16700dfd76f8f3c776bd000ac}{ParseCdata} $|$ \hyperlink{namespacephys_1_1xml_a6463412ba9e404b6890e4721255cd8ed}{ParseEscapes} $|$ \hyperlink{namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}{ParseWconvAttribute} $|$ \hyperlink{namespacephys_1_1xml_a52af747730d2b3a313eebed4cf49a333}{ParseEol}
+\begin{DoxyCompactList}\small\item\em The default parsing mode. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{ParseFull} = \hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault} $|$ \hyperlink{namespacephys_1_1xml_a4d324954fc33d50155bae04587da13e2}{ParsePi} $|$ \hyperlink{namespacephys_1_1xml_a83ba30a7bee5a0fd4aa2f6136c8793fc}{ParseComments} $|$ \hyperlink{namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}{ParseDeclaration} $|$ \hyperlink{namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}{ParseDoctype}
+\begin{DoxyCompactList}\small\item\em The full parsing mode. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{
+const unsigned int \hyperlink{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{FormatIndent} = 0x01}
+\label{d9/d27/namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a67cc3ab7951cf52f01def23202be5c65}{
-const unsigned int {\bfseries parse\_\-doctype} = 0x0200}
-\label{d9/d27/namespacephys_1_1xml_a67cc3ab7951cf52f01def23202be5c65}
+\begin{DoxyCompactList}\small\item\em Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_a76a253f60deb94ef39c255064afb6040}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a76a253f60deb94ef39c255064afb6040}{FormatWriteBom} = 0x02}
+\label{d9/d27/namespacephys_1_1xml_a76a253f60deb94ef39c255064afb6040}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a3577ef966e9065bd045078a0c5043810}{
-const unsigned int {\bfseries parse\_\-default} = parse\_\-cdata $|$ parse\_\-escapes $|$ parse\_\-wconv\_\-attribute $|$ parse\_\-eol}
-\label{d9/d27/namespacephys_1_1xml_a3577ef966e9065bd045078a0c5043810}
+\begin{DoxyCompactList}\small\item\em Write encoding-\/specific Byte Order Mark (BOM) to the output stream. This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_a6f6696cbdc48011817adad7978e83976}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a6f6696cbdc48011817adad7978e83976}{FormatRaw} = 0x04}
+\label{d9/d27/namespacephys_1_1xml_a6f6696cbdc48011817adad7978e83976}
 
-\item 
-\hypertarget{namespacephys_1_1xml_aaba58896bffc421dc0db032c7eabdb8d}{
-const unsigned int {\bfseries parse\_\-full} = parse\_\-default $|$ parse\_\-pi $|$ parse\_\-comments $|$ parse\_\-declaration $|$ parse\_\-doctype}
-\label{d9/d27/namespacephys_1_1xml_aaba58896bffc421dc0db032c7eabdb8d}
+\begin{DoxyCompactList}\small\item\em Use raw output mode (no indentation and no line breaks are written). This flag is off by default. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_aee4ccb3535945d4808a0cf6abe4cb050}{
+const unsigned int \hyperlink{namespacephys_1_1xml_aee4ccb3535945d4808a0cf6abe4cb050}{FormatNoDeclaration} = 0x08}
+\label{d9/d27/namespacephys_1_1xml_aee4ccb3535945d4808a0cf6abe4cb050}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a643d303936cdd3d4d5b95fa4b2705a2a}{
-const unsigned int {\bfseries format\_\-indent} = 0x01}
-\label{d9/d27/namespacephys_1_1xml_a643d303936cdd3d4d5b95fa4b2705a2a}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a6a123ecad19078afaa10b47459c12720}{
-const unsigned int {\bfseries format\_\-write\_\-bom} = 0x02}
-\label{d9/d27/namespacephys_1_1xml_a6a123ecad19078afaa10b47459c12720}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a2f8b589f26166c8e744e26a208a4aa81}{
-const unsigned int {\bfseries format\_\-raw} = 0x04}
-\label{d9/d27/namespacephys_1_1xml_a2f8b589f26166c8e744e26a208a4aa81}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a6293fa2924378187e6f8e2d5d48a1079}{
-const unsigned int {\bfseries format\_\-no\_\-declaration} = 0x08}
-\label{d9/d27/namespacephys_1_1xml_a6293fa2924378187e6f8e2d5d48a1079}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a0bad653e27a327962dc6df17757aeb1f}{
-const unsigned int {\bfseries format\_\-default} = format\_\-indent}
-\label{d9/d27/namespacephys_1_1xml_a0bad653e27a327962dc6df17757aeb1f}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Omit default XML declaration even if there is no declaration in the document. This flag is off by default. \item\end{DoxyCompactList}\item 
+const unsigned int \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault} = \hyperlink{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{FormatIndent}
+\begin{DoxyCompactList}\small\item\em The default set of formatting flags. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -471,4 +456,72 @@ StatusEndElementMismatch}
 
 
 Definition at line 746 of file xml.h.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{
+\index{phys::xml@{phys::xml}!FormatDefault@{FormatDefault}}
+\index{FormatDefault@{FormatDefault}!phys::xml@{phys::xml}}
+\subsubsection[{FormatDefault}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::FormatDefault} = {\bf FormatIndent}}}
+\label{d9/d27/namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}
+
+
+The default set of formatting flags. 
+
+Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none. 
+
+Definition at line 269 of file xml.h.
+
+\hypertarget{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{
+\index{phys::xml@{phys::xml}!ParseDefault@{ParseDefault}}
+\index{ParseDefault@{ParseDefault}!phys::xml@{phys::xml}}
+\subsubsection[{ParseDefault}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::ParseDefault} = {\bf ParseCdata} $|$ {\bf ParseEscapes} $|$ {\bf ParseWconvAttribute} $|$ {\bf ParseEol}}}
+\label{d9/d27/namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}
+
+
+The default parsing mode. 
+
+Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, End-\/of-\/Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
+
+Definition at line 232 of file xml.h.
+
+\hypertarget{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{
+\index{phys::xml@{phys::xml}!ParseFull@{ParseFull}}
+\index{ParseFull@{ParseFull}!phys::xml@{phys::xml}}
+\subsubsection[{ParseFull}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::ParseFull} = {\bf ParseDefault} $|$ {\bf ParsePi} $|$ {\bf ParseComments} $|$ {\bf ParseDeclaration} $|$ {\bf ParseDoctype}}}
+\label{d9/d27/namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}
+
+
+The full parsing mode. 
+
+Nodes of all types are added to the DOM tree, character/reference entities are expanded, End-\/of-\/Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
+
+Definition at line 237 of file xml.h.
+
+\hypertarget{namespacephys_1_1xml_ab660837afbc6aaab22425d8d23e8f2e4}{
+\index{phys::xml@{phys::xml}!ParseMinimal@{ParseMinimal}}
+\index{ParseMinimal@{ParseMinimal}!phys::xml@{phys::xml}}
+\subsubsection[{ParseMinimal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::ParseMinimal} = 0x0000}}
+\label{d9/d27/namespacephys_1_1xml_ab660837afbc6aaab22425d8d23e8f2e4}
+
+
+Minimal parsing mode (equivalent to turning all other flags off). 
+
+Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed. 
+
+Definition at line 196 of file xml.h.
+
+\hypertarget{namespacephys_1_1xml_a48c0da99d1ed62b1a4984293e64828c6}{
+\index{phys::xml@{phys::xml}!ParseWsPcdata@{ParseWsPcdata}}
+\index{ParseWsPcdata@{ParseWsPcdata}!phys::xml@{phys::xml}}
+\subsubsection[{ParseWsPcdata}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::ParseWsPcdata} = 0x0008}}
+\label{d9/d27/namespacephys_1_1xml_a48c0da99d1ed62b1a4984293e64828c6}
+
+
+This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree. 
+
+This flag is off by default; turning it on usually results in slower parsing and more memory consumption. 
+
+Definition at line 209 of file xml.h.
 
