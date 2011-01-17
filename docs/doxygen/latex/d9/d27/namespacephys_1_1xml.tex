@@ -46,16 +46,16 @@ class \hyperlink{classphys_1_1xml_1_1xpath__exception}{xpath\_\-exception}
 \item 
 class \hyperlink{classphys_1_1xml_1_1xpath__node}{xpath\_\-node}
 \item 
-class \hyperlink{classphys_1_1xml_1_1xpath__node__set}{xpath\_\-node\_\-set}
+class \hyperlink{classphys_1_1xml_1_1xpath__NodeSet}{xpath\_\-NodeSet}
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{namespacephys_1_1xml_a1c4e03e90e7c8e526508111dd1935d33}{
-typedef XML\_\-CHAR {\bfseries char\_\-t}}
-\label{d9/d27/namespacephys_1_1xml_a1c4e03e90e7c8e526508111dd1935d33}
+\hypertarget{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{
+typedef \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character} \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t}}
+\label{d9/d27/namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}
 
-\item 
+\begin{DoxyCompactList}\small\item\em The character type used the internals of the XML parser, this is defined in \hyperlink{datatypes_8h_source}{datatypes.h}. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_ad721463bf480c1c4e80d423b28eff231}{
 typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR $>$, std::allocator$<$ XML\_\-CHAR $>$ $>$ {\bfseries string\_\-t}}
 \label{d9/d27/namespacephys_1_1xml_ad721463bf480c1c4e80d423b28eff231}
@@ -74,34 +74,34 @@ typedef void($\ast$ {\bfseries deallocation\_\-function} )(void $\ast$ptr)}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
-enum {\bfseries NodeType} \{ \par
-{\bfseries node\_\-null}, 
-{\bfseries node\_\-document}, 
-{\bfseries node\_\-element}, 
-{\bfseries node\_\-pcdata}, 
+enum \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} \{ \par
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3af6e95d4a0b6115c76b339961bc58d742}{NodeNull}, 
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3acfe92e6bd275972917b95f08bd46e09f}{NodeDocument}, 
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c}{NodeElement}, 
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3ab48d4b88d7a7757e3e8505c90db3b2bf}{NodePcdata}, 
 \par
-{\bfseries node\_\-cdata}, 
-{\bfseries node\_\-comment}, 
-{\bfseries node\_\-pi}, 
-{\bfseries node\_\-declaration}, 
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a353968e806a751a6da4f7ac115b4ab55}{NodeCdata}, 
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a25b778cb61ae0a9f15590cad5e0120d2}{NodeComment}, 
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa}{NodePi}, 
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035}{NodeDeclaration}, 
 \par
-{\bfseries node\_\-doctype}
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883}{NodeDoctype}
  \}
-\item 
-enum {\bfseries Encoding} \{ \par
-{\bfseries DocumentEncoding\_\-auto}, 
-{\bfseries DocumentEncoding\_\-utf8}, 
-{\bfseries DocumentEncoding\_\-utf16\_\-le}, 
-{\bfseries DocumentEncoding\_\-utf16\_\-be}, 
+\begin{DoxyCompactList}\small\item\em The types of nodes. \item\end{DoxyCompactList}\item 
+enum \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} \{ \par
+\hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a2792ef334e1061e7ad177df463256d85}{EncodingAuto}, 
+\hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a7793b4cde174342c9450abbeab675743}{EncodingUTF8}, 
+\hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015aa5e6a756e80683f376d1ef0a03b21d56}{EncodingUTF16LE}, 
+\hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a04fd7b1fef8d2dcc67a46b8fe4dbcaf4}{EncodingUTF16BE}, 
 \par
-{\bfseries DocumentEncoding\_\-utf16}, 
-{\bfseries DocumentEncoding\_\-utf32\_\-le}, 
-{\bfseries DocumentEncoding\_\-utf32\_\-be}, 
-{\bfseries DocumentEncoding\_\-utf32}, 
+\hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015ac19070aaf7044426b0fe8fa5af956130}{EncodingUTF16}, 
+\hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a127752883aaf8c9bdb5f66ec725211fc}{EncodingUTF32LE}, 
+\hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a5fb13deaf1552b0f4c00e2b8cafce0b9}{EncodingUTF32BE}, 
+\hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015ac61c2f632bd66c2466c29783beb33f8a}{EncodingUTF32}, 
 \par
-{\bfseries DocumentEncoding\_\-wchar}
+\hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef}{Encodingwchar\_\-t}
  \}
-\item 
+\begin{DoxyCompactList}\small\item\em These flags determine the encoding of input data for an XML document. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{ParseStatus} \{ \par
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa9ea9b3eecb4bb9f01745c94150982560}{StatusOk} =  0, 
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6f0279c8ce0103b77edcf3ce91fa64b4}{StatusFileNotFound}, 
@@ -125,7 +125,7 @@ enum \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{ParseSta
 \begin{DoxyCompactList}\small\item\em These statuses are used to help determine what issues, if any the parser had. the XML parser had. \item\end{DoxyCompactList}\item 
 enum {\bfseries xpath\_\-value\_\-type} \{ \par
 {\bfseries xpath\_\-type\_\-none}, 
-{\bfseries xpath\_\-type\_\-node\_\-set}, 
+{\bfseries xpath\_\-type\_\-NodeSet}, 
 {\bfseries xpath\_\-type\_\-number}, 
 {\bfseries xpath\_\-type\_\-string}, 
 \par
@@ -283,6 +283,116 @@ This is where bulk of the XML subsystem is declare, there are numerous class tha
  The one drawback PugiXML had was that it has a completely different naming convention from our code. So we created a script ( docs/tools/PugiConversion) to covert version 1.1 and hopefully future versions to out naming convention. 
 
 \subsection{Enumeration Type Documentation}
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{
+\index{phys::xml@{phys::xml}!Encoding@{Encoding}}
+\index{Encoding@{Encoding}!phys::xml@{phys::xml}}
+\subsubsection[{Encoding}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::xml::Encoding}}}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015}
+
+
+These flags determine the encoding of input data for an XML document. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{EncodingAuto@{EncodingAuto}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!EncodingAuto@{EncodingAuto}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a2792ef334e1061e7ad177df463256d85}{
+EncodingAuto}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015a2792ef334e1061e7ad177df463256d85}
+}]Auto-\/detect input document encoding using Byte Order Mark (BOM) or $<$ / $<$? detection; use UTF8 if BOM is not found . \index{EncodingUTF8@{EncodingUTF8}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!EncodingUTF8@{EncodingUTF8}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a7793b4cde174342c9450abbeab675743}{
+EncodingUTF8}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015a7793b4cde174342c9450abbeab675743}
+}]UTF8 document encoding. \index{EncodingUTF16LE@{EncodingUTF16LE}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!EncodingUTF16LE@{EncodingUTF16LE}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015aa5e6a756e80683f376d1ef0a03b21d56}{
+EncodingUTF16LE}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015aa5e6a756e80683f376d1ef0a03b21d56}
+}]Little-\/endian UTF16. \index{EncodingUTF16BE@{EncodingUTF16BE}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!EncodingUTF16BE@{EncodingUTF16BE}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a04fd7b1fef8d2dcc67a46b8fe4dbcaf4}{
+EncodingUTF16BE}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015a04fd7b1fef8d2dcc67a46b8fe4dbcaf4}
+}]Big-\/endian UTF16. \index{EncodingUTF16@{EncodingUTF16}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!EncodingUTF16@{EncodingUTF16}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015ac19070aaf7044426b0fe8fa5af956130}{
+EncodingUTF16}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015ac19070aaf7044426b0fe8fa5af956130}
+}]UTF16 with native endianness. \index{EncodingUTF32LE@{EncodingUTF32LE}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!EncodingUTF32LE@{EncodingUTF32LE}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a127752883aaf8c9bdb5f66ec725211fc}{
+EncodingUTF32LE}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015a127752883aaf8c9bdb5f66ec725211fc}
+}]Little-\/endian UTF32. \index{EncodingUTF32BE@{EncodingUTF32BE}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!EncodingUTF32BE@{EncodingUTF32BE}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a5fb13deaf1552b0f4c00e2b8cafce0b9}{
+EncodingUTF32BE}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015a5fb13deaf1552b0f4c00e2b8cafce0b9}
+}]Big-\/endian UTF32. \index{EncodingUTF32@{EncodingUTF32}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!EncodingUTF32@{EncodingUTF32}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015ac61c2f632bd66c2466c29783beb33f8a}{
+EncodingUTF32}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015ac61c2f632bd66c2466c29783beb33f8a}
+}]UTF32 with native endianness. \index{Encodingwchar\_\-t@{Encodingwchar\_\-t}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!Encodingwchar\_\-t@{Encodingwchar\_\-t}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef}{
+Encodingwchar\_\-t}
+\label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef}
+}]The same document encoding wchar\_\-t has (usually either UTF16 or UTF32). \end{description}
+\end{Desc}
+
+
+
+Definition at line 240 of file xml.h.
+
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{
+\index{phys::xml@{phys::xml}!NodeType@{NodeType}}
+\index{NodeType@{NodeType}!phys::xml@{phys::xml}}
+\subsubsection[{NodeType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::xml::NodeType}}}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}
+
+
+The types of nodes. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{NodeNull@{NodeNull}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodeNull@{NodeNull}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3af6e95d4a0b6115c76b339961bc58d742}{
+NodeNull}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3af6e95d4a0b6115c76b339961bc58d742}
+}]Empty (null) node handle. \index{NodeDocument@{NodeDocument}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodeDocument@{NodeDocument}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3acfe92e6bd275972917b95f08bd46e09f}{
+NodeDocument}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3acfe92e6bd275972917b95f08bd46e09f}
+}]A document tree's absolute root. \index{NodeElement@{NodeElement}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodeElement@{NodeElement}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c}{
+NodeElement}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c}
+}]Element tag, i.e. '$<$node$>$'. \index{NodePcdata@{NodePcdata}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodePcdata@{NodePcdata}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3ab48d4b88d7a7757e3e8505c90db3b2bf}{
+NodePcdata}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3ab48d4b88d7a7757e3e8505c90db3b2bf}
+}]Plain character data, i.e. 'text'. \index{NodeCdata@{NodeCdata}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodeCdata@{NodeCdata}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a353968e806a751a6da4f7ac115b4ab55}{
+NodeCdata}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a353968e806a751a6da4f7ac115b4ab55}
+}]Character data, i.e. '$<$!\mbox{[}CDATA\mbox{[}text\mbox{]}\mbox{]}$>$'. \index{NodeComment@{NodeComment}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodeComment@{NodeComment}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a25b778cb61ae0a9f15590cad5e0120d2}{
+NodeComment}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a25b778cb61ae0a9f15590cad5e0120d2}
+}]Comment tag, i.e. ''. \index{NodePi@{NodePi}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodePi@{NodePi}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa}{
+NodePi}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa}
+}]Processing instructions to the XML parser, i.e. '$<$?name?$>$'. \index{NodeDeclaration@{NodeDeclaration}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodeDeclaration@{NodeDeclaration}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035}{
+NodeDeclaration}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035}
+}]\hyperlink{classphys_1_1xml_1_1Document}{Document} declaration, i.e. '$<$?xml version=\char`\"{}1.0\char`\"{}?$>$'. \index{NodeDoctype@{NodeDoctype}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodeDoctype@{NodeDoctype}}\item[{\em 
+\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883}{
+NodeDoctype}
+\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883}
+}]\hyperlink{classphys_1_1xml_1_1Document}{Document} type declaration, i.e. '$<$!DOCTYPE doc$>$'. \end{description}
+\end{Desc}
+
+
+
+Definition at line 179 of file xml.h.
+
 \hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{
 \index{phys::xml@{phys::xml}!ParseStatus@{ParseStatus}}
 \index{ParseStatus@{ParseStatus}!phys::xml@{phys::xml}}

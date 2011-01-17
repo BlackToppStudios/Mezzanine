@@ -90,8 +90,8 @@ namespace phys
         ///////////////////////////////////////
 
 
-        /// @brief These statuses are used to help determine what issues, if any the parser had. the XML parser had.
         /// @enum ParseStatus
+        /// @brief These statuses are used to help determine what issues, if any the parser had. the XML parser had.
 
         /// @var StatusOk
         /// @brief This is returned to indicated there where no issues parsing the XML document
@@ -142,27 +142,67 @@ namespace phys
         /// @struct ParseResult
         /// @brief All the information needed to troubleshoot a Parsing error.
 
-        // @var ParseResult::Status
-        // @memberof ParseResult
-		// @brief Parsing status ( see \ref ParseStatus ) yyyyyy
-		//ParseStatus Status;
 
-		// Last parsed offset (in char_t units from start of input data)
-		//ptrdiff_t offset;
+        /// @enum Encoding
+        /// @brief These flags determine the encoding of input data for an XML document.
 
-		// Source document encoding
-		//Encoding encoding;
+        /// @var EncodingAuto
+        /// @brief Auto-detect input document encoding using Byte Order Mark (BOM) or < / <? detection; use UTF8 if BOM is not found .
 
-		// Default constructor, initializes object to failed state
-		//ParseResult();
+        /// @var EncodingUTF8
+        /// @brief UTF8 document encoding
 
-		// Cast to bool operator
-		//operator bool() const;
+        /// @var EncodingUTF16LE
+        /// @brief Little-endian UTF16
 
-		// Get error description
-		//const char* description() const;
+        /// @var EncodingUTF16BE
+        /// @brief Big-endian UTF16
+
+        /// @var EncodingUTF16
+        /// @brief UTF16 with native endianness
+
+        /// @var EncodingUTF32LE
+        /// @brief Little-endian UTF32
+
+        /// @var EncodingUTF32BE
+        /// @brief Big-endian UTF32
+
+        /// @var EncodingUTF32
+        /// @brief UTF32 with native endianness
+
+        /// @var Encodingwchar_t
+        /// @brief The same document encoding wchar_t has (usually either UTF16 or UTF32)
 
 
+        /// @enum NodeType
+        /// @brief The types of nodes.
+
+        /// @var NodeNull
+        /// @brief Empty (null) node handle.
+
+        /// @var NodeDocument
+        /// @brief A document tree's absolute root.
+
+        /// @var NodeElement
+        /// @brief Element tag, i.e. '<node/>'.
+
+        /// @var NodePcdata
+        /// @brief Plain character data, i.e. 'text'.
+
+        /// @var NodeCdata
+        /// @brief Character data, i.e. '<![CDATA[text]]>'.
+
+        /// @var NodeComment
+        /// @brief Comment tag, i.e. '<!-- text -->'.
+
+        /// @var NodePi
+        /// @brief Processing instructions to the XML parser, i.e. '<?name?>'.
+
+        /// @var NodeDeclaration
+        /// @brief Document declaration, i.e. '<?xml version="1.0"?>'.
+
+        /// @var NodeDoctype
+        /// @brief Document type declaration, i.e. '<!DOCTYPE doc>'.
 
     }
 }

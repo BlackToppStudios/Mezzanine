@@ -82,7 +82,7 @@
 <a name="l00052"></a>00052 {
 <a name="l00053"></a>00053     <span class="keyword">namespace </span>UI
 <a name="l00054"></a>00054     {
-<a name="l00055"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#af934bcacaa658b2d15e4b7c9ba1bc225">00055</a>         <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#af934bcacaa658b2d15e4b7c9ba1bc225" title="Class constructor.">Rectangle::Rectangle</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
+<a name="l00055"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ad28910ef2ccf9fcc15fa4496d4b8456b">00055</a>         <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ad28910ef2ccf9fcc15fa4496d4b8456b" title="Class constructor.">Rectangle::Rectangle</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
 <a name="l00056"></a>00056             : Parent(Layer),
 <a name="l00057"></a>00057               MouseHover(false),
 <a name="l00058"></a>00058               RelPosition(Position),
@@ -138,9 +138,9 @@
 <a name="l00108"></a>00108             <span class="keywordflow">return</span> MouseHover;
 <a name="l00109"></a>00109         }
 <a name="l00110"></a>00110 
-<a name="l00111"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ac777c61b1019c3a679bc121e533e2799">00111</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ac777c61b1019c3a679bc121e533e2799" title="Sets the background colour of the rectangle.">Rectangle::SetBackgroundColour</a>(<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
+<a name="l00111"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a687b524b89e6a76bc102b60023d36abd">00111</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a687b524b89e6a76bc102b60023d36abd" title="Sets the background colour of the rectangle.">Rectangle::SetBackgroundColour</a>(<span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
 <a name="l00112"></a>00112         {
-<a name="l00113"></a>00113             GRectangle-&gt;background_colour(Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a7a2978ebc5a7e04e02279664f1ea4a86" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00113"></a>00113             GRectangle-&gt;background_colour(Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
 <a name="l00114"></a>00114         }
 <a name="l00115"></a>00115 
 <a name="l00116"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ae9cc47125e075aaa9bfd397762de6e0c">00116</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ae9cc47125e075aaa9bfd397762de6e0c" title="Sets the background image(if provided in the atlas) of the rectangle.">Rectangle::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
@@ -149,9 +149,9 @@
 <a name="l00119"></a>00119             GRectangle-&gt;background_image(GSprite);
 <a name="l00120"></a>00120         }
 <a name="l00121"></a>00121 
-<a name="l00122"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a59903fec0c121da4b4fcdddc3e8488b4">00122</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a59903fec0c121da4b4fcdddc3e8488b4" title="Enables a border and sets it&amp;#39;s colour.">Rectangle::SetBorder</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Width, <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
+<a name="l00122"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#acb2598198ee72dd97becd6601c5c517d">00122</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#acb2598198ee72dd97becd6601c5c517d" title="Enables a border and sets it&amp;#39;s colour.">Rectangle::SetBorder</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Width, <span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
 <a name="l00123"></a>00123         {
-<a name="l00124"></a>00124             GRectangle-&gt;border(Width, Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a7a2978ebc5a7e04e02279664f1ea4a86" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00124"></a>00124             GRectangle-&gt;border(Width, Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
 <a name="l00125"></a>00125         }
 <a name="l00126"></a>00126 
 <a name="l00127"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#aebeea2052a72be49eb9dece731022c78">00127</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#aebeea2052a72be49eb9dece731022c78" title="Disables any border set on this rectangle if one is currently set.">Rectangle::NoBorder</a>()
@@ -159,7 +159,7 @@
 <a name="l00129"></a>00129             GRectangle-&gt;no_border();
 <a name="l00130"></a>00130         }
 <a name="l00131"></a>00131 
-<a name="l00132"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a264cb40ea238d5a4627add4cf55eb8c9">00132</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a264cb40ea238d5a4627add4cf55eb8c9" title="Sets the relative top left position of this rectangle.">Rectangle::SetPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
+<a name="l00132"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a9dce5088e8886ab1a937f800f72dfc0d">00132</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a9dce5088e8886ab1a937f800f72dfc0d" title="Sets the relative top left position of this rectangle.">Rectangle::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
 <a name="l00133"></a>00133         {
 <a name="l00134"></a>00134             RelPosition = Position;
 <a name="l00135"></a>00135             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrDim = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
@@ -171,7 +171,7 @@
 <a name="l00141"></a>00141             <span class="keywordflow">return</span> RelPosition;
 <a name="l00142"></a>00142         }
 <a name="l00143"></a>00143 
-<a name="l00144"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a77fdf1fc5f2a2d73ccfb0ac0ff125ca5">00144</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a77fdf1fc5f2a2d73ccfb0ac0ff125ca5" title="Sets the top left position of this rectangle in pixels.">Rectangle::SetActualPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
+<a name="l00144"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ab1fceb63091f7001307c634ac56e184d">00144</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ab1fceb63091f7001307c634ac56e184d" title="Sets the top left position of this rectangle in pixels.">Rectangle::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
 <a name="l00145"></a>00145         {
 <a name="l00146"></a>00146             GRectangle-&gt;position(Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#adc6efedbdfdca596b719decc87ee2e4b" title="Gets a Ogre vector2.">GetOgreVector2</a>());
 <a name="l00147"></a>00147         }
@@ -182,7 +182,7 @@
 <a name="l00152"></a>00152             <span class="keywordflow">return</span> Pos;
 <a name="l00153"></a>00153         }
 <a name="l00154"></a>00154 
-<a name="l00155"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ad199230240f116be24ddf7a85afc613f">00155</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ad199230240f116be24ddf7a85afc613f" title="Sets the relative size of this rectangle.">Rectangle::SetSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00155"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a7132423dde2e053b288cdff3e57e5147">00155</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a7132423dde2e053b288cdff3e57e5147" title="Sets the relative size of this rectangle.">Rectangle::SetSize</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
 <a name="l00156"></a>00156         {
 <a name="l00157"></a>00157             RelSize = Size;
 <a name="l00158"></a>00158             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrDim = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
@@ -195,7 +195,7 @@
 <a name="l00165"></a>00165             <span class="keywordflow">return</span> RelSize;
 <a name="l00166"></a>00166         }
 <a name="l00167"></a>00167 
-<a name="l00168"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#acf993ac61f8f5707a4fb139d5ff6fd2e">00168</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#acf993ac61f8f5707a4fb139d5ff6fd2e" title="Sets the size of this rectangle in pixels.">Rectangle::SetActualSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00168"></a><a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a554e24caf820a94d2710ed94303d899a">00168</a>         <span class="keywordtype">void</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a554e24caf820a94d2710ed94303d899a" title="Sets the size of this rectangle in pixels.">Rectangle::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
 <a name="l00169"></a>00169         {
 <a name="l00170"></a>00170             GRectangle-&gt;width(Size.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
 <a name="l00171"></a>00171             GRectangle-&gt;height(Size.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
@@ -252,7 +252,7 @@
 <a name="l00222"></a>00222 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:39 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 16 2011 21:43:47 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

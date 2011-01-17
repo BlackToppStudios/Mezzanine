@@ -66,7 +66,7 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d9e/classphys_1_1xml_1_1xpath__query.html">phys::xml::xpath_query</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dcf/classphys_1_1xml_1_1xpath__exception.html">phys::xml::xpath_exception</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d5a/classphys_1_1xml_1_1xpath__node.html">phys::xml::xpath_node</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0a/classphys_1_1xml_1_1xpath__node__set.html">phys::xml::xpath_node_set</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d32/classphys_1_1xml_1_1xpath__NodeSet.html">phys::xml::xpath_NodeSet</a></td></tr>
 <tr><td colspan="2"><h2><a name="namespaces"></a>
 Namespaces</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html">phys</a></td></tr>
@@ -91,8 +91,9 @@ Defines</h2></td></tr>
 #define&nbsp;</td><td class="memItemRight" valign="bottom"><b>XML_CHAR</b>&nbsp;&nbsp;&nbsp;char</td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c4e03e90e7c8e526508111dd1935d33"></a><!-- doxytag: member="xml.h::char_t" ref="a1c4e03e90e7c8e526508111dd1935d33" args="" -->
-typedef XML_CHAR&nbsp;</td><td class="memItemRight" valign="bottom"><b>phys::xml::char_t</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc87705cd1c2917d87b879715a2d8f6e"></a><!-- doxytag: member="xml.h::char_t" ref="afc87705cd1c2917d87b879715a2d8f6e" args="" -->
+typedef Character&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#afc87705cd1c2917d87b879715a2d8f6e">phys::xml::char_t</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The character type used the internals of the XML parser, this is defined in <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad721463bf480c1c4e80d423b28eff231"></a><!-- doxytag: member="xml.h::string_t" ref="ad721463bf480c1c4e80d423b28eff231" args="" -->
 typedef std::basic_string<br class="typebreak"/>
 &lt; XML_CHAR, std::char_traits<br class="typebreak"/>
@@ -104,34 +105,38 @@ typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>phys::xml
 typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>phys::xml::deallocation_function</b> )(void *ptr)</td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>NodeType</b> { <br/>
-&nbsp;&nbsp;<b>node_null</b>, 
-<b>node_document</b>, 
-<b>node_element</b>, 
-<b>node_pcdata</b>, 
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3">phys::xml::NodeType</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3af6e95d4a0b6115c76b339961bc58d742">phys::xml::NodeNull</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3acfe92e6bd275972917b95f08bd46e09f">phys::xml::NodeDocument</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c">phys::xml::NodeElement</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3ab48d4b88d7a7757e3e8505c90db3b2bf">phys::xml::NodePcdata</a>, 
 <br/>
-&nbsp;&nbsp;<b>node_cdata</b>, 
-<b>node_comment</b>, 
-<b>node_pi</b>, 
-<b>node_declaration</b>, 
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a353968e806a751a6da4f7ac115b4ab55">phys::xml::NodeCdata</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a25b778cb61ae0a9f15590cad5e0120d2">phys::xml::NodeComment</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa">phys::xml::NodePi</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035">phys::xml::NodeDeclaration</a>, 
 <br/>
-&nbsp;&nbsp;<b>node_doctype</b>
-<br/>
- }</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>Encoding</b> { <br/>
-&nbsp;&nbsp;<b>DocumentEncoding_auto</b>, 
-<b>DocumentEncoding_utf8</b>, 
-<b>DocumentEncoding_utf16_le</b>, 
-<b>DocumentEncoding_utf16_be</b>, 
-<br/>
-&nbsp;&nbsp;<b>DocumentEncoding_utf16</b>, 
-<b>DocumentEncoding_utf32_le</b>, 
-<b>DocumentEncoding_utf32_be</b>, 
-<b>DocumentEncoding_utf32</b>, 
-<br/>
-&nbsp;&nbsp;<b>DocumentEncoding_wchar</b>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883">phys::xml::NodeDoctype</a>
 <br/>
  }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>The types of nodes. </p>
+ <a href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015">phys::xml::Encoding</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a2792ef334e1061e7ad177df463256d85">phys::xml::EncodingAuto</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a7793b4cde174342c9450abbeab675743">phys::xml::EncodingUTF8</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015aa5e6a756e80683f376d1ef0a03b21d56">phys::xml::EncodingUTF16LE</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a04fd7b1fef8d2dcc67a46b8fe4dbcaf4">phys::xml::EncodingUTF16BE</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015ac19070aaf7044426b0fe8fa5af956130">phys::xml::EncodingUTF16</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a127752883aaf8c9bdb5f66ec725211fc">phys::xml::EncodingUTF32LE</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a5fb13deaf1552b0f4c00e2b8cafce0b9">phys::xml::EncodingUTF32BE</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015ac61c2f632bd66c2466c29783beb33f8a">phys::xml::EncodingUTF32</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef">phys::xml::Encodingwchar_t</a>
+<br/>
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>These flags determine the encoding of input data for an XML document. </p>
+ <a href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#ae7aabb879b21c73d8183a54470f8917f">phys::xml::ParseStatus</a> { <br/>
 &nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#ae7aabb879b21c73d8183a54470f8917fa9ea9b3eecb4bb9f01745c94150982560">phys::xml::StatusOk</a> =  0, 
 <a class="el" href="../../d9/d27/namespacephys_1_1xml.html#ae7aabb879b21c73d8183a54470f8917fa6f0279c8ce0103b77edcf3ce91fa64b4">phys::xml::StatusFileNotFound</a>, 
@@ -157,7 +162,7 @@ Enumerations</h2></td></tr>
  <a href="../../d9/d27/namespacephys_1_1xml.html#ae7aabb879b21c73d8183a54470f8917f">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>xpath_value_type</b> { <br/>
 &nbsp;&nbsp;<b>xpath_type_none</b>, 
-<b>xpath_type_node_set</b>, 
+<b>xpath_type_NodeSet</b>, 
 <b>xpath_type_number</b>, 
 <b>xpath_type_string</b>, 
 <br/>
@@ -231,7 +236,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><b>phys::x
 
 <p>Definition in file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:40 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 16 2011 21:43:48 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

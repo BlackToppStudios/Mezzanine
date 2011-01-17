@@ -74,24 +74,30 @@ namespace phys
 
     /// @typedef Whole
     /// @brief A Datatype used to represent an postive integer numbers
-    /// @details This is a typedef to unsigned Long. but could be smaller on
+    /// @details This is a typedef to unsigned Long. but could be smaller in some situations
     typedef unsigned long Whole;
 
     /// @typedef Integer
     /// @brief A datatype use to represent any integer close to
-    /// @details This is a typedef to int, but could int16 or smaller to improve performce on
+    /// @details This is a typedef to int, but could int16 or smaller to improve performance in some situtations
     /// handheld platforms
     typedef int Integer;
 
     /// @typedef String
     /// @brief A Datatype used to a series of characters
-    /// @details This is a typedef to std::string, but could change.
+    /// @details This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is
+    /// changed, The Character typedef should be adjusted accordingly.
     typedef std::string String;
 
     /// @typedef ConstString
     /// @brief A Datatype used to a series of imutable characters
-    /// @details This is a typedef to const std::string, but could change
-    typedef const std::string ConstString;
+    /// @details This is a typedef to const String, but could change.
+    typedef const String ConstString;
+
+    /// @typedef Character
+    /// @brief A datatype to represent one character.
+    /// @details This should be a char if String is an std::string. The XML parser expects this to be either char or wchar_t and has not be test with external types.
+    typedef char Character;
 
     /// @internal
     /// @typedef RawEvent

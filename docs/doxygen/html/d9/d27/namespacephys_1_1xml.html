@@ -67,11 +67,12 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d9e/classphys_1_1xml_1_1xpath__query.html">xpath_query</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dcf/classphys_1_1xml_1_1xpath__exception.html">xpath_exception</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d5a/classphys_1_1xml_1_1xpath__node.html">xpath_node</a></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d0a/classphys_1_1xml_1_1xpath__node__set.html">xpath_node_set</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d32/classphys_1_1xml_1_1xpath__NodeSet.html">xpath_NodeSet</a></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c4e03e90e7c8e526508111dd1935d33"></a><!-- doxytag: member="phys::xml::char_t" ref="a1c4e03e90e7c8e526508111dd1935d33" args="" -->
-typedef XML_CHAR&nbsp;</td><td class="memItemRight" valign="bottom"><b>char_t</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc87705cd1c2917d87b879715a2d8f6e"></a><!-- doxytag: member="phys::xml::char_t" ref="afc87705cd1c2917d87b879715a2d8f6e" args="" -->
+typedef <a class="el" href="../../df/dec/namespacephys.html#a3098bae5b0a3cd16eec331f766cc562b">Character</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#afc87705cd1c2917d87b879715a2d8f6e">char_t</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The character type used the internals of the XML parser, this is defined in <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad721463bf480c1c4e80d423b28eff231"></a><!-- doxytag: member="phys::xml::string_t" ref="ad721463bf480c1c4e80d423b28eff231" args="" -->
 typedef std::basic_string<br class="typebreak"/>
 &lt; XML_CHAR, std::char_traits<br class="typebreak"/>
@@ -83,34 +84,38 @@ typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>allocatio
 typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>deallocation_function</b> )(void *ptr)</td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>NodeType</b> { <br/>
-&nbsp;&nbsp;<b>node_null</b>, 
-<b>node_document</b>, 
-<b>node_element</b>, 
-<b>node_pcdata</b>, 
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3">NodeType</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3af6e95d4a0b6115c76b339961bc58d742">NodeNull</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3acfe92e6bd275972917b95f08bd46e09f">NodeDocument</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c">NodeElement</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3ab48d4b88d7a7757e3e8505c90db3b2bf">NodePcdata</a>, 
 <br/>
-&nbsp;&nbsp;<b>node_cdata</b>, 
-<b>node_comment</b>, 
-<b>node_pi</b>, 
-<b>node_declaration</b>, 
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a353968e806a751a6da4f7ac115b4ab55">NodeCdata</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a25b778cb61ae0a9f15590cad5e0120d2">NodeComment</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa">NodePi</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035">NodeDeclaration</a>, 
 <br/>
-&nbsp;&nbsp;<b>node_doctype</b>
-<br/>
- }</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>Encoding</b> { <br/>
-&nbsp;&nbsp;<b>DocumentEncoding_auto</b>, 
-<b>DocumentEncoding_utf8</b>, 
-<b>DocumentEncoding_utf16_le</b>, 
-<b>DocumentEncoding_utf16_be</b>, 
-<br/>
-&nbsp;&nbsp;<b>DocumentEncoding_utf16</b>, 
-<b>DocumentEncoding_utf32_le</b>, 
-<b>DocumentEncoding_utf32_be</b>, 
-<b>DocumentEncoding_utf32</b>, 
-<br/>
-&nbsp;&nbsp;<b>DocumentEncoding_wchar</b>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883">NodeDoctype</a>
 <br/>
  }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>The types of nodes. </p>
+ <a href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015">Encoding</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a2792ef334e1061e7ad177df463256d85">EncodingAuto</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a7793b4cde174342c9450abbeab675743">EncodingUTF8</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015aa5e6a756e80683f376d1ef0a03b21d56">EncodingUTF16LE</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a04fd7b1fef8d2dcc67a46b8fe4dbcaf4">EncodingUTF16BE</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015ac19070aaf7044426b0fe8fa5af956130">EncodingUTF16</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a127752883aaf8c9bdb5f66ec725211fc">EncodingUTF32LE</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a5fb13deaf1552b0f4c00e2b8cafce0b9">EncodingUTF32BE</a>, 
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015ac61c2f632bd66c2466c29783beb33f8a">EncodingUTF32</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef">Encodingwchar_t</a>
+<br/>
+ }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>These flags determine the encoding of input data for an XML document. </p>
+ <a href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#ae7aabb879b21c73d8183a54470f8917f">ParseStatus</a> { <br/>
 &nbsp;&nbsp;<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#ae7aabb879b21c73d8183a54470f8917fa9ea9b3eecb4bb9f01745c94150982560">StatusOk</a> =  0, 
 <a class="el" href="../../d9/d27/namespacephys_1_1xml.html#ae7aabb879b21c73d8183a54470f8917fa6f0279c8ce0103b77edcf3ce91fa64b4">StatusFileNotFound</a>, 
@@ -136,7 +141,7 @@ Enumerations</h2></td></tr>
  <a href="../../d9/d27/namespacephys_1_1xml.html#ae7aabb879b21c73d8183a54470f8917f">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>xpath_value_type</b> { <br/>
 &nbsp;&nbsp;<b>xpath_type_none</b>, 
-<b>xpath_type_node_set</b>, 
+<b>xpath_type_NodeSet</b>, 
 <b>xpath_type_number</b>, 
 <b>xpath_type_string</b>, 
 <br/>
@@ -216,6 +221,102 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><b>format_
  <br/>
  The one drawback PugiXML had was that it has a completely different naming convention from our code. So we created a script ( docs/tools/PugiConversion) to covert version 1.1 and hopefully future versions to out naming convention. </p>
 <hr/><h2>Enumeration Type Documentation</h2>
+<a class="anchor" id="a420f5de782438f88160321385bea2015"></a><!-- doxytag: member="phys::xml::Encoding" ref="a420f5de782438f88160321385bea2015" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015">phys::xml::Encoding</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>These flags determine the encoding of input data for an XML document. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a420f5de782438f88160321385bea2015a2792ef334e1061e7ad177df463256d85"></a><!-- doxytag: member="EncodingAuto" ref="a420f5de782438f88160321385bea2015a2792ef334e1061e7ad177df463256d85" args="" -->EncodingAuto</em>&nbsp;</td><td>
+<p>Auto-detect input document encoding using Byte Order Mark (BOM) or &lt; / &lt;? detection; use UTF8 if BOM is not found . </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a420f5de782438f88160321385bea2015a7793b4cde174342c9450abbeab675743"></a><!-- doxytag: member="EncodingUTF8" ref="a420f5de782438f88160321385bea2015a7793b4cde174342c9450abbeab675743" args="" -->EncodingUTF8</em>&nbsp;</td><td>
+<p>UTF8 document encoding. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a420f5de782438f88160321385bea2015aa5e6a756e80683f376d1ef0a03b21d56"></a><!-- doxytag: member="EncodingUTF16LE" ref="a420f5de782438f88160321385bea2015aa5e6a756e80683f376d1ef0a03b21d56" args="" -->EncodingUTF16LE</em>&nbsp;</td><td>
+<p>Little-endian UTF16. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a420f5de782438f88160321385bea2015a04fd7b1fef8d2dcc67a46b8fe4dbcaf4"></a><!-- doxytag: member="EncodingUTF16BE" ref="a420f5de782438f88160321385bea2015a04fd7b1fef8d2dcc67a46b8fe4dbcaf4" args="" -->EncodingUTF16BE</em>&nbsp;</td><td>
+<p>Big-endian UTF16. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a420f5de782438f88160321385bea2015ac19070aaf7044426b0fe8fa5af956130"></a><!-- doxytag: member="EncodingUTF16" ref="a420f5de782438f88160321385bea2015ac19070aaf7044426b0fe8fa5af956130" args="" -->EncodingUTF16</em>&nbsp;</td><td>
+<p>UTF16 with native endianness. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a420f5de782438f88160321385bea2015a127752883aaf8c9bdb5f66ec725211fc"></a><!-- doxytag: member="EncodingUTF32LE" ref="a420f5de782438f88160321385bea2015a127752883aaf8c9bdb5f66ec725211fc" args="" -->EncodingUTF32LE</em>&nbsp;</td><td>
+<p>Little-endian UTF32. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a420f5de782438f88160321385bea2015a5fb13deaf1552b0f4c00e2b8cafce0b9"></a><!-- doxytag: member="EncodingUTF32BE" ref="a420f5de782438f88160321385bea2015a5fb13deaf1552b0f4c00e2b8cafce0b9" args="" -->EncodingUTF32BE</em>&nbsp;</td><td>
+<p>Big-endian UTF32. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a420f5de782438f88160321385bea2015ac61c2f632bd66c2466c29783beb33f8a"></a><!-- doxytag: member="EncodingUTF32" ref="a420f5de782438f88160321385bea2015ac61c2f632bd66c2466c29783beb33f8a" args="" -->EncodingUTF32</em>&nbsp;</td><td>
+<p>UTF32 with native endianness. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef"></a><!-- doxytag: member="Encodingwchar_t" ref="a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef" args="" -->Encodingwchar_t</em>&nbsp;</td><td>
+<p>The same document encoding wchar_t has (usually either UTF16 or UTF32). </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00240">240</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3"></a><!-- doxytag: member="phys::xml::NodeType" ref="a668b0cc666a9d49f7c7222a7552115d3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3">phys::xml::NodeType</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The types of nodes. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3af6e95d4a0b6115c76b339961bc58d742"></a><!-- doxytag: member="NodeNull" ref="a668b0cc666a9d49f7c7222a7552115d3af6e95d4a0b6115c76b339961bc58d742" args="" -->NodeNull</em>&nbsp;</td><td>
+<p>Empty (null) node handle. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3acfe92e6bd275972917b95f08bd46e09f"></a><!-- doxytag: member="NodeDocument" ref="a668b0cc666a9d49f7c7222a7552115d3acfe92e6bd275972917b95f08bd46e09f" args="" -->NodeDocument</em>&nbsp;</td><td>
+<p>A document tree's absolute root. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c"></a><!-- doxytag: member="NodeElement" ref="a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" args="" -->NodeElement</em>&nbsp;</td><td>
+<p>Element tag, i.e. '&lt;node&gt;'. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3ab48d4b88d7a7757e3e8505c90db3b2bf"></a><!-- doxytag: member="NodePcdata" ref="a668b0cc666a9d49f7c7222a7552115d3ab48d4b88d7a7757e3e8505c90db3b2bf" args="" -->NodePcdata</em>&nbsp;</td><td>
+<p>Plain character data, i.e. 'text'. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3a353968e806a751a6da4f7ac115b4ab55"></a><!-- doxytag: member="NodeCdata" ref="a668b0cc666a9d49f7c7222a7552115d3a353968e806a751a6da4f7ac115b4ab55" args="" -->NodeCdata</em>&nbsp;</td><td>
+<p>Character data, i.e. '&lt;![CDATA[text]]&gt;'. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3a25b778cb61ae0a9f15590cad5e0120d2"></a><!-- doxytag: member="NodeComment" ref="a668b0cc666a9d49f7c7222a7552115d3a25b778cb61ae0a9f15590cad5e0120d2" args="" -->NodeComment</em>&nbsp;</td><td>
+<p>Comment tag, i.e. ''. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa"></a><!-- doxytag: member="NodePi" ref="a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa" args="" -->NodePi</em>&nbsp;</td><td>
+<p>Processing instructions to the XML parser, i.e. '&lt;?name?&gt;'. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035"></a><!-- doxytag: member="NodeDeclaration" ref="a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" args="" -->NodeDeclaration</em>&nbsp;</td><td>
+<p><a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html">Document</a> declaration, i.e. '&lt;?xml version="1.0"?&gt;'. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883"></a><!-- doxytag: member="NodeDoctype" ref="a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883" args="" -->NodeDoctype</em>&nbsp;</td><td>
+<p><a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html">Document</a> type declaration, i.e. '&lt;!DOCTYPE doc&gt;'. </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00179">179</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ae7aabb879b21c73d8183a54470f8917f"></a><!-- doxytag: member="phys::xml::ParseStatus" ref="ae7aabb879b21c73d8183a54470f8917f" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -283,7 +384,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><b>format_
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:48 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 16 2011 21:43:55 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -160,8 +160,8 @@ namespace std
 namespace phys
 { namespace xml
 { 
-	// Character type used for all internal storage and operations; depends on XML_WCHAR_MODE 
-	typedef XML_CHAR char_t; 
+	/// @brief The character type used the internals of the XML parser, this is defined in datatypes.h. 
+	typedef Character char_t; 
  
 #ifndef XML_NO_STL 
 	// String type used for operations that work with STL string; depends on XML_WCHAR_MODE 
@@ -178,15 +178,15 @@ namespace phys
 	// Tree node types 
 	enum NodeType 
 	{ 
-		node_null,		  // Empty (null) node handle 
-		node_document,		// A document tree's absolute root 
-		node_element,		// Element tag, i.e. '<node/>' 
-		node_pcdata,		// Plain character data, i.e. 'text' 
-		node_cdata,			// Character data, i.e. '<![CDATA[text]]>' 
-		node_comment,		// Comment tag, i.e. '<!-- text -->' 
-		node_pi,			// Processing instruction, i.e. '<?name?>' 
-		node_declaration,	// Document declaration, i.e. '<?xml version="1.0"?>' 
-		node_doctype		// Document type declaration, i.e. '<!DOCTYPE doc>' 
+		NodeNull,		  // Empty (null) node handle 
+		NodeDocument,		// A document tree's absolute root 
+		NodeElement,		// Element tag, i.e. '<node/>' 
+		NodePcdata,		// Plain character data, i.e. 'text' 
+		NodeCdata,			// Character data, i.e. '<![CDATA[text]]>' 
+		NodeComment,		// Comment tag, i.e. '<!-- text -->' 
+		NodePi,			// Processing instruction, i.e. '<?name?>' 
+		NodeDeclaration,	// Document declaration, i.e. '<?xml version="1.0"?>' 
+		NodeDoctype		// Document type declaration, i.e. '<!DOCTYPE doc>' 
 	}; 
  
 	// Parsing options 
@@ -195,16 +195,16 @@ namespace phys
 	// Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed. 
 	const unsigned int parse_minimal = 0x0000; 
  
-	// This flag determines if processing instructions (node_pi) are added to the DOM tree. This flag is off by default. 
+	// This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default. 
 	const unsigned int parse_pi = 0x0001; 
  
-	// This flag determines if comments (node_comment) are added to the DOM tree. This flag is off by default. 
+	// This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default. 
 	const unsigned int parse_comments = 0x0002; 
  
-	// This flag determines if CDATA sections (node_cdata) are added to the DOM tree. This flag is on by default. 
+	// This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default. 
 	const unsigned int parse_cdata = 0x0004; 
  
-	// This flag determines if plain character data (node_pcdata) that consist only of whitespace are added to the DOM tree. 
+	// This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree. 
 	// This flag is off by default; turning it on usually results in slower parsing and more memory consumption. 
 	const unsigned int parse_ws_pcdata = 0x0008; 
  
@@ -220,10 +220,10 @@ namespace phys
  	// This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default. 
  	const unsigned int parse_wnorm_attribute = 0x0080; 
 	 
-	// This flag determines if document declaration (node_declaration) is added to the DOM tree. This flag is off by default. 
+	// This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. 
 	const unsigned int parse_declaration = 0x0100; 
  
-	// This flag determines if document type declaration (node_doctype) is added to the DOM tree. This flag is off by default. 
+	// This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. 
 	const unsigned int parse_doctype = 0x0200; 
  
 	// The default parsing mode. 
@@ -239,15 +239,15 @@ namespace phys
 	// These flags determine the DocumentEncoding of input data for XML document 
 	enum Encoding 
 	{ 
-		DocumentEncoding_auto,	  // Auto-detect input DocumentEncoding using BOM or < / <? detection; use UTF8 if BOM is not found 
-		DocumentEncoding_utf8,	  // UTF8 DocumentEncoding 
-		DocumentEncoding_utf16_le,  // Little-endian UTF16 
-		DocumentEncoding_utf16_be,  // Big-endian UTF16 
-		DocumentEncoding_utf16,	 // UTF16 with native endianness 
-		DocumentEncoding_utf32_le,  // Little-endian UTF32 
-		DocumentEncoding_utf32_be,  // Big-endian UTF32 
-		DocumentEncoding_utf32,	 // UTF32 with native endianness 
-		DocumentEncoding_wchar	  // The same DocumentEncoding wchar_t has (either UTF16 or UTF32) 
+		EncodingAuto,	  // Auto-detect input DocumentEncoding using BOM or < / <? detection; use UTF8 if BOM is not found 
+		EncodingUTF8,	  // UTF8 DocumentEncoding 
+		EncodingUTF16LE,  // Little-endian UTF16 
+		EncodingUTF16BE,  // Big-endian UTF16 
+		EncodingUTF16,	 // UTF16 with native endianness 
+		EncodingUTF32LE,  // Little-endian UTF32 
+		EncodingUTF32BE,  // Big-endian UTF32 
+		EncodingUTF32,	 // UTF32 with native endianness 
+		Encodingwchar_t	  // The same DocumentEncoding wchar_t has (either UTF16 or UTF32) 
 	}; 
  
 	// Formatting flags 
@@ -281,7 +281,7 @@ namespace phys
  
 	#ifndef XML_NO_XPATH 
 	class xpath_node; 
-	class xpath_node_set; 
+	class xpath_NodeSet; 
 	class xpath_query; 
 	class xpath_variable_set; 
 	#endif 
@@ -497,8 +497,8 @@ namespace phys
 		Attribute insert_copy_before(const Attribute& proto, const Attribute& attr); 
  
 		// Add child node with specified type. Returns added node, or empty node on errors. 
-		Node append_child(NodeType type = node_element); 
-		Node prepend_child(NodeType type = node_element); 
+		Node append_child(NodeType type = NodeElement); 
+		Node prepend_child(NodeType type = NodeElement); 
 		Node insert_child_after(NodeType type, const Node& node); 
 		Node insert_child_before(NodeType type, const Node& node); 
  
@@ -591,16 +591,16 @@ namespace phys
 		xpath_node select_single_node(const xpath_query& query) const; 
  
 		// Select node set by evaluating XPath query 
-		xpath_node_set select_nodes(const char_t* query, xpath_variable_set* variables = 0) const; 
-		xpath_node_set select_nodes(const xpath_query& query) const; 
+		xpath_NodeSet select_nodes(const char_t* query, xpath_variable_set* variables = 0) const; 
+		xpath_NodeSet select_nodes(const xpath_query& query) const; 
 	#endif 
 		 
 		// Print subtree using a writer object 
-		void print(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = DocumentEncoding_auto, unsigned int depth = 0) const; 
+		void print(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
  
 	#ifndef XML_NO_STL 
 		// Print subtree to stream 
-		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = DocumentEncoding_auto, unsigned int depth = 0) const; 
+		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
 		void print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, unsigned int depth = 0) const; 
 	#endif 
  
@@ -821,7 +821,7 @@ namespace phys
  
 	#ifndef XML_NO_STL 
 		// Load document from stream. 
-		ParseResult load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = parse_default, Encoding DocumentEncoding = DocumentEncoding_auto); 
+		ParseResult load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
 		ParseResult load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = parse_default); 
 	#endif 
  
@@ -829,32 +829,32 @@ namespace phys
 		ParseResult load(const char_t* contents, unsigned int options = parse_default); 
  
 		// Load document from file 
-		ParseResult load_file(const char* path, unsigned int options = parse_default, Encoding DocumentEncoding = DocumentEncoding_auto); 
-		ParseResult load_file(const wchar_t* path, unsigned int options = parse_default, Encoding DocumentEncoding = DocumentEncoding_auto); 
+		ParseResult load_file(const char* path, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult load_file(const wchar_t* path, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns. 
-		ParseResult load_buffer(const void* contents, size_t size, unsigned int options = parse_default, Encoding DocumentEncoding = DocumentEncoding_auto); 
+		ParseResult load_buffer(const void* contents, size_t size, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed. 
-		ParseResult load_buffer_inplace(void* contents, size_t size, unsigned int options = parse_default, Encoding DocumentEncoding = DocumentEncoding_auto); 
+		ParseResult load_buffer_inplace(void* contents, size_t size, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore). 
-		ParseResult load_buffer_inplace_own(void* contents, size_t size, unsigned int options = parse_default, Encoding DocumentEncoding = DocumentEncoding_auto); 
+		ParseResult load_buffer_inplace_own(void* contents, size_t size, unsigned int options = parse_default, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Save XML document to writer (semantics is slightly different from Node::print, see documentation for details). 
-		void save(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = DocumentEncoding_auto) const; 
+		void save(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto) const; 
  
 	#ifndef XML_NO_STL 
 		// Save XML document to stream (semantics is slightly different from Node::print, see documentation for details). 
-		void save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = DocumentEncoding_auto) const; 
+		void save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto) const; 
 		void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default) const; 
 	#endif 
  
 		// Save XML to file 
-		bool save_file(const char* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = DocumentEncoding_auto) const; 
-		bool save_file(const wchar_t* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = DocumentEncoding_auto) const; 
+		bool save_file(const char* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto) const; 
+		bool save_file(const wchar_t* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = format_default, Encoding DocumentEncoding = EncodingAuto) const; 
  
 		// Get document element 
 		Node document_element() const; 
@@ -865,7 +865,7 @@ namespace phys
 	enum xpath_value_type 
 	{ 
 		xpath_type_none,	  // Unknown type (query failed to compile) 
-		xpath_type_node_set,  // Node set (xpath_node_set) 
+		xpath_type_NodeSet,  // Node set (xpath_NodeSet) 
 		xpath_type_number,	// Number 
 		xpath_type_string,	// String 
 		xpath_type_boolean	// Boolean 
@@ -918,13 +918,13 @@ namespace phys
 		bool get_boolean() const; 
 		double get_number() const; 
 		const char_t* get_string() const; 
-		const xpath_node_set& get_node_set() const; 
+		const xpath_NodeSet& get_NodeSet() const; 
  
 		// Set variable value; no type conversion is performed, false is returned on type mismatch error 
 		bool set(bool value); 
 		bool set(double value); 
 		bool set(const char_t* value); 
-		bool set(const xpath_node_set& value); 
+		bool set(const xpath_NodeSet& value); 
 	}; 
  
 	// A set of XPath variables 
@@ -951,7 +951,7 @@ namespace phys
 		bool set(const char_t* name, bool value); 
 		bool set(const char_t* name, double value); 
 		bool set(const char_t* name, const char_t* value); 
-		bool set(const char_t* name, const xpath_node_set& value); 
+		bool set(const char_t* name, const xpath_NodeSet& value); 
  
 		// Get existing variable by name 
 		xpath_variable* get(const char_t* name); 
@@ -1005,7 +1005,7 @@ namespace phys
 		// Evaluate expression as node set in the specified context. 
 		// If XML_NO_EXCEPTIONS is not defined, throws xpath_exception on type mismatch and std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty node set instead. 
-		xpath_node_set evaluate_node_set(const xpath_node& n) const; 
+		xpath_NodeSet evaluate_NodeSet(const xpath_node& n) const; 
  
 		// Get parsing result (used to get compilation errors in XML_NO_EXCEPTIONS mode) 
 		const xpath_parse_result& result() const; 
@@ -1078,7 +1078,7 @@ namespace phys
 #endif 
  
 	// A fixed-size collection of XPath nodes 
-	class PHYS_LIB xpath_node_set 
+	class PHYS_LIB xpath_NodeSet 
 	{ 
 	public: 
 		// Collection type 
@@ -1093,17 +1093,17 @@ namespace phys
 		typedef const xpath_node* const_iterator; 
 	 
 		// Default constructor. Constructs empty set. 
-		xpath_node_set(); 
+		xpath_NodeSet(); 
  
 		// Constructs a set from iterator range; data is not checked for duplicates and is not sorted according to provided type, so be careful 
-		xpath_node_set(const_iterator begin, const_iterator end, type_t type = type_unsorted); 
+		xpath_NodeSet(const_iterator begin, const_iterator end, type_t type = type_unsorted); 
  
 		// Destructor 
-		~xpath_node_set(); 
+		~xpath_NodeSet(); 
 		 
 		// Copy constructor/assignment operator 
-		xpath_node_set(const xpath_node_set& ns); 
-		xpath_node_set& operator=(const xpath_node_set& ns); 
+		xpath_NodeSet(const xpath_NodeSet& ns); 
+		xpath_NodeSet& operator=(const xpath_NodeSet& ns); 
  
 		// Get collection type 
 		type_t type() const; 

@@ -106,7 +106,7 @@
 <a name="l00076"></a>00076 <span class="preprocessor">        #define PHYSDEBUG</span>
 <a name="l00077"></a>00077 <span class="preprocessor"></span><span class="preprocessor">        #ifdef PHYSDEBUG</span>
 <a name="l00078"></a>00078 <span class="preprocessor"></span>        this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a6d8b325a077afc924afb70c259ec0299" title="This is another way to put data in the log.">LogStream</a>&lt;&lt; <span class="stringliteral">&quot;Entering: SoundManager::CreateSound( &quot;</span> &lt;&lt; SoundName &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; FilePath &lt;&lt; <span class="stringliteral">&quot;, &quot;</span> &lt;&lt; Stream &lt;&lt; <span class="stringliteral">&quot;);&quot;</span> &lt;&lt; endl;
-<a name="l00079"></a>00079         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Attempting to create Sound&quot;</span>);
+<a name="l00079"></a>00079         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Attempting to create Sound&quot;</span>);
 <a name="l00080"></a>00080 <span class="preprocessor">        #endif</span>
 <a name="l00081"></a>00081 <span class="preprocessor"></span>        cAudio::IAudioSource* IAudio = AudioManager-&gt;create(SoundName.c_str(), FilePath.c_str(), Stream);
 <a name="l00082"></a>00082         <a class="code" href="../../dc/d2f/classphys_1_1Sound.html" title="This is an instance of a sound that can be played and manipulated.">Sound</a>* pSound = <span class="keyword">new</span> <a class="code" href="../../dc/d2f/classphys_1_1Sound.html" title="This is an instance of a sound that can be played and manipulated.">Sound</a>(IAudio, AudioManager);
@@ -230,7 +230,7 @@
 <a name="l00200"></a>00200 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:39 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 16 2011 21:43:47 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

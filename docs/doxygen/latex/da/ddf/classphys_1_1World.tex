@@ -22,7 +22,7 @@ This is the main entry point for the entire library.
 \begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1World_a8b2c74c7e5d5ce3c46a814e183a7aff1}{$\sim$World} ()
 \begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\void PHYS\_\-LIB \hyperlink{classphys_1_1World_a115b287bc8a23dfdf314f715a818e293}{Log} (T Message)
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{classphys_1_1World_a05267a20e8d5518771d0848190b33d60}{Log} (T Message)
 \begin{DoxyCompactList}\small\item\em Runtime event and message logging. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1World_a7dbf83226aaa109a09efab00ae682761}{
 void \hyperlink{classphys_1_1World_a7dbf83226aaa109a09efab00ae682761}{Log} ()}
@@ -577,15 +577,15 @@ This returns a pointer the one and only \hyperlink{classphys_1_1World}{phys::Wor
 
 Definition at line 134 of file world.cpp.
 
-\hypertarget{classphys_1_1World_a115b287bc8a23dfdf314f715a818e293}{
+\hypertarget{classphys_1_1World_a05267a20e8d5518771d0848190b33d60}{
 \index{phys::World@{phys::World}!Log@{Log}}
 \index{Log@{Log}!phys::World@{phys::World}}
-\subsubsection[{Log}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void PHYS\_\-LIB phys::World::Log (
+\subsubsection[{Log}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void phys::World::Log (
 \begin{DoxyParamCaption}
 \item[{T}]{ Message}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
-\label{da/ddf/classphys_1_1World_a115b287bc8a23dfdf314f715a818e293}
+\label{da/ddf/classphys_1_1World_a05267a20e8d5518771d0848190b33d60}
 
 
 Runtime event and message logging. 
@@ -835,7 +835,7 @@ Definition at line 618 of file world.cpp.
 
 This is another way to put data in the log. 
 
-The contents of this will be commited to the log once per frame, just before rendering, or whenever \hyperlink{classphys_1_1World_a115b287bc8a23dfdf314f715a818e293}{World::Log} is called. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. 
+The contents of this will be commited to the log once per frame, just before rendering, or whenever \hyperlink{classphys_1_1World_a05267a20e8d5518771d0848190b33d60}{World::Log} is called. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. 
 
 Definition at line 330 of file world.h.
 

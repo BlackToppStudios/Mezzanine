@@ -186,15 +186,27 @@ function FixNames
 	FileContent=`echo -E "$FileContent" | sed -e 's/status/Status/g'`							#Fix member ParseStatus.Status
 	FileContent=`echo -E "$FileContent" | sed -e 's/encoding/DocumentEncoding/g'`			#Fix member ParseStatus.DocumentEncoding
 	FileContent=`echo -E "$FileContent" | sed -e 's/offset\([^o]\)/Offset\1/g'`					#Fix member ParseStatus.Offset
-	FileContent=`echo -E "$FileContent" | sed -e 's/description/Description/g'`			#Fix member ParseStatus.Description()
+	FileContent=`echo -E "$FileContent" | sed -e 's/description/Description/g'`				#Fix member ParseStatus.Description()
 
-																						#Documentation that could not be put in xmldoc.h
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Last parsed Offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Default constructor, initializes object to failed state|/// @brief Default constructor, initializes object to failed state.|g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Cast to bool operator|/// @brief Cast to bool operator \\n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Get error Description |/// @brief Uses the Status member to create a text description. \\n		/// @return A const char* with a brief error description based on the ParseResult::Status |g'`
+	FileContent=`echo -E "$FileContent" | sed -e 's/\(DocumentEncoding\)_\([au][tf]*\)\([a-z0-9]*\)_\([ble]*\)/Encoding\U\2\3\U\4/g'`	#Fix The Encoding Enum All 3 part variable names
+	FileContent=`echo -E "$FileContent" | sed -e 's/\(DocumentEncoding\)_\([au][tf]*\)\([a-z0-9]*\)/Encoding\U\2\L\3/g'`		#Fix The Encoding Enum All the 2 part variables
+	FileContent=`echo -E "$FileContent" | sed -e 's/DocumentEncoding_wchar/Encodingwchar_t/g'`						#Fix Last enconding variable
+
+	FileContent=`echo -E "$FileContent" | sed -e 's|\(n\)\(ode\)_\(.\)\([a-z]*\)|\U\1\L\2\U\3\L\4|g'`	#Fix the NodeType Enum
+
+	FileContent=`echo -E "$FileContent" | sed -e 's|typedef XML_CHAR char_t;|typedef Character char_t;|g'`
+
+
+																							#Documentation that could not be put in xmldoc.h
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Last parsed Offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Default constructor, initializes object to failed state|/// @brief Default constructor, initializes object to failed state.|'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Cast to bool operator|/// @brief Cast to bool operator \\n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|'`
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Get error Description |/// @brief Uses the Status member to create a text description. \\n		/// @return A const char* with a brief error description based on the ParseResult::Status |'`
+																							#The Char documentation
+	FileContent=`echo -E "$FileContent" | sed -e 's|// Character type used for all internal storage and operations; depends on XML_WCHAR_MODE|/// @brief The character type used the internals of the XML parser, this is defined in datatypes.h.|'`
+
 	#FileContent=`echo -E "$FileContent" | sed -e 's|||g'`
 
 	echo -E "$FileContent" > $1

@@ -160,8 +160,10 @@ typedef int \hyperlink{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{Integer}
 \begin{DoxyCompactList}\small\item\em A datatype use to represent any integer close to. \item\end{DoxyCompactList}\item 
 typedef std::string \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}
 \begin{DoxyCompactList}\small\item\em A Datatype used to a series of characters. \item\end{DoxyCompactList}\item 
-typedef const std::string \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString}
+typedef const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString}
 \begin{DoxyCompactList}\small\item\em A Datatype used to a series of imutable characters. \item\end{DoxyCompactList}\item 
+typedef char \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character}
+\begin{DoxyCompactList}\small\item\em A datatype to represent one character. \item\end{DoxyCompactList}\item 
 typedef SDL\_\-Event \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent}
 \begin{DoxyCompactList}\small\item\em This is an internal datatype use to communicate with the User input Subsystem. \item\end{DoxyCompactList}\item 
 typedef std::vector$<$ \hyperlink{classphys_1_1Sound}{Sound} $\ast$ $>$ \hyperlink{namespacephys_ab780c3162da5699fe421f3739ba03fc4}{SoundSet}
@@ -191,6 +193,19 @@ typedef std::vector$<$ \hyperlink{classphys_1_1Sound}{Sound} $\ast$ $>$ \hyperli
 The bulk of the engine components go in this namspace. This is where imporant classes like \hyperlink{classphys_1_1World}{World}, \hyperlink{classphys_1_1GraphicsManager}{GraphicsManager}, and The eventmanager reside. For more detailed usage information please refer to individual class documentation or the \hyperlink{index}{Physgame} main page. 
 
 \subsection{Typedef Documentation}
+\hypertarget{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{
+\index{phys@{phys}!Character@{Character}}
+\index{Character@{Character}!phys@{phys}}
+\subsubsection[{Character}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::Character}}}
+\label{df/dec/namespacephys_a3098bae5b0a3cd16eec331f766cc562b}
+
+
+A datatype to represent one character. 
+
+This should be a char if String is an std::string. The XML parser expects this to be either char or wchar\_\-t and has not be test with external types. 
+
+Definition at line 100 of file datatypes.h.
+
 \hypertarget{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{
 \index{phys@{phys}!ConstString@{ConstString}}
 \index{ConstString@{ConstString}!phys@{phys}}
@@ -200,9 +215,9 @@ The bulk of the engine components go in this namspace. This is where imporant cl
 
 A Datatype used to a series of imutable characters. 
 
-This is a typedef to const std::string, but could change 
+This is a typedef to const String, but could change. 
 
-Definition at line 94 of file datatypes.h.
+Definition at line 95 of file datatypes.h.
 
 \hypertarget{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{
 \index{phys@{phys}!Integer@{Integer}}
@@ -213,7 +228,7 @@ Definition at line 94 of file datatypes.h.
 
 A datatype use to represent any integer close to. 
 
-This is a typedef to int, but could int16 or smaller to improve performce on handheld platforms 
+This is a typedef to int, but could int16 or smaller to improve performance in some situtations handheld platforms 
 
 Definition at line 84 of file datatypes.h.
 
@@ -230,7 +245,7 @@ This is an internal datatype use to communicate with the User input Subsystem.
 This is a typedef to SDL\_\-Event. See the SDL Documentation for more details \end{DoxyInternal}
 
 
-Definition at line 100 of file datatypes.h.
+Definition at line 106 of file datatypes.h.
 
 \hypertarget{namespacephys_af7eb897198d265b8e868f45240230d5f}{
 \index{phys@{phys}!Real@{Real}}
@@ -256,7 +271,7 @@ This is a vector that stores sounds.
 
 This is a vector and can be use to store sounds that can be grouped together for similiar purposes or similiar content for easy tracking. 
 
-Definition at line 106 of file datatypes.h.
+Definition at line 112 of file datatypes.h.
 
 \hypertarget{namespacephys_aa03900411993de7fbfec4789bc1d392e}{
 \index{phys@{phys}!String@{String}}
@@ -267,9 +282,9 @@ Definition at line 106 of file datatypes.h.
 
 A Datatype used to a series of characters. 
 
-This is a typedef to std::string, but could change. 
+This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is changed, The Character typedef should be adjusted accordingly. 
 
-Definition at line 89 of file datatypes.h.
+Definition at line 90 of file datatypes.h.
 
 \hypertarget{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{
 \index{phys@{phys}!Whole@{Whole}}
@@ -280,7 +295,7 @@ Definition at line 89 of file datatypes.h.
 
 A Datatype used to represent an postive integer numbers. 
 
-This is a typedef to unsigned Long. but could be smaller on 
+This is a typedef to unsigned Long. but could be smaller in some situations 
 
 Definition at line 78 of file datatypes.h.
 
@@ -308,7 +323,7 @@ An bouble with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Typedefs could break things 
 
-Definition at line 211 of file datatypes.h.
+Definition at line 217 of file datatypes.h.
 
 \hypertarget{namespacephys_a306865e81b7e30cd45a166b4a173c4b4}{
 \index{phys@{phys}!Tofloat@{Tofloat}}
@@ -331,7 +346,7 @@ An float with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Real Typedef could break things 
 
-Definition at line 197 of file datatypes.h.
+Definition at line 203 of file datatypes.h.
 
 \hypertarget{namespacephys_af0a6dfb0aa9e9292b96a0273e1f49d3a}{
 \index{phys@{phys}!Toint@{Toint}}
@@ -354,7 +369,7 @@ An int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 154 of file datatypes.h.
+Definition at line 160 of file datatypes.h.
 
 \hypertarget{namespacephys_a7fe8a4cf645e000483652f26ef8d6e47}{
 \index{phys@{phys}!ToInteger@{ToInteger}}
@@ -377,7 +392,7 @@ An Integer with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 139 of file datatypes.h.
+Definition at line 145 of file datatypes.h.
 
 \hypertarget{namespacephys_af9c39435b1181dab9b49b7c2aeb57127}{
 \index{phys@{phys}!ToReal@{ToReal}}
@@ -400,7 +415,7 @@ An Real with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 182 of file datatypes.h.
+Definition at line 188 of file datatypes.h.
 
 \hypertarget{namespacephys_ae81e34843c6c569026b9a7d9d54c4f04}{
 \index{phys@{phys}!ToString@{ToString}}
@@ -423,7 +438,7 @@ A String with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 115 of file datatypes.h.
+Definition at line 121 of file datatypes.h.
 
 \hypertarget{namespacephys_a16ab66903d5e438a04f4e859c8aa47a7}{
 \index{phys@{phys}!Tounsignedint@{Tounsignedint}}
@@ -446,7 +461,7 @@ An unsigned int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 169 of file datatypes.h.
+Definition at line 175 of file datatypes.h.
 
 \hypertarget{namespacephys_a53d44a46cab542ef86a541af5f1a7b62}{
 \index{phys@{phys}!ToWhole@{ToWhole}}
@@ -469,5 +484,5 @@ A Whole with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 126 of file datatypes.h.
+Definition at line 132 of file datatypes.h.
 

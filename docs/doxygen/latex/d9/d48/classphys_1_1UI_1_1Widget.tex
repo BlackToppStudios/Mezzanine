@@ -65,19 +65,19 @@ virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \
 \begin{DoxyCompactList}\small\item\em Gets the name of this widget. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259dc}{CheckMouseHover} ()=0
 \begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_aae1c0b891125823e7ade8cbc7e4ba6b6}{SetPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)=0
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a3f1cd1ce55660c7de4859983bac1ab7c}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)=0
 \begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{GetPosition} ()=0
 \begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_ac8f70c390e7724e57fc99e51d8004a9b}{SetActualPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)=0
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_acba334c000c21f477238e961cd3ab2ce}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)=0
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e7}{GetActualPosition} ()=0
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_ad5af5f04b60d43341037df6b0e329bbd}{SetSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)=0
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a3fe0b767fea59e1d120ed37b26c99044}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)=0
 \begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{GetSize} ()=0
 \begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Widget_a8ceb54fd067847844b314dedd8e529f8}{SetActualSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)=0
+virtual void \hyperlink{classphys_1_1UI_1_1Widget_a8c942355474d0b250dfadd4dac4ae400}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)=0
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed2}{GetActualSize} ()=0
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
@@ -398,15 +398,15 @@ Returns a bool representing the visibility of this widget.
 
 Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a1282a1494079e47b48c8e3296b1a8bb0}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1CheckBox_a8a2be0cba227f0921071fb14de24f76d}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a638f19eb6e5a0bd3291fab1ebaccc84f}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_ae23321617d7e14448e2fab3b455c3dc7}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a213c946ccadd3b689f59e2761a1d1848}{phys::UI::Scrollbar}, and \hyperlink{classphys_1_1UI_1_1Window_aa1d88c50c0965510b494b51f3e5a7bf0}{phys::UI::Window}.
 
-\hypertarget{classphys_1_1UI_1_1Widget_ac8f70c390e7724e57fc99e51d8004a9b}{
+\hypertarget{classphys_1_1UI_1_1Widget_acba334c000c21f477238e961cd3ab2ce}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetActualPosition@{SetActualPosition}}
 \index{SetActualPosition@{SetActualPosition}!phys::UI::Widget@{phys::UI::Widget}}
 \subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::UI::Widget::SetActualPosition (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2}}]{ Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
-\label{d9/d48/classphys_1_1UI_1_1Widget_ac8f70c390e7724e57fc99e51d8004a9b}
+\label{d9/d48/classphys_1_1UI_1_1Widget_acba334c000c21f477238e961cd3ab2ce}
 
 
 Sets the pixel position of this widget. 
@@ -416,17 +416,17 @@ Sets the pixel position of this widget.
 \item[{\em Position}]A vector2 representing the pixel position of this widget. \end{DoxyParams}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a84547b5097342c7edf12a407a4208352}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1CheckBox_ad0d6efcf330bb452254beb6ce8ef03f8}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a0c135a797957bd6a78d62e3658443457}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a47467f7de6b1a3621f23652c54041435}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_ad454fa7b60cfc1359961d553389d7b6f}{phys::UI::Scrollbar}, and \hyperlink{classphys_1_1UI_1_1Window_aeedbf986dca9556fd62980a6d7d27c79}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_af2b466c6268cc469fadae7664fa3ff02}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1CheckBox_aef3136db1a0f503f3a20955faf2166db}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_afa7daa798bf8702bcc3e7c4cd9dcfdf4}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a18161cae59d7a8be52a2d77e27e0c5a1}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a6070857488f05d0349b48f249edf813f}{phys::UI::Scrollbar}, and \hyperlink{classphys_1_1UI_1_1Window_a2b8dfb4d8f2c730502ead6d1e8bb10e2}{phys::UI::Window}.
 
-\hypertarget{classphys_1_1UI_1_1Widget_a8ceb54fd067847844b314dedd8e529f8}{
+\hypertarget{classphys_1_1UI_1_1Widget_a8c942355474d0b250dfadd4dac4ae400}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetActualSize@{SetActualSize}}
 \index{SetActualSize@{SetActualSize}!phys::UI::Widget@{phys::UI::Widget}}
 \subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::UI::Widget::SetActualSize (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2}}]{ Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
-\label{d9/d48/classphys_1_1UI_1_1Widget_a8ceb54fd067847844b314dedd8e529f8}
+\label{d9/d48/classphys_1_1UI_1_1Widget_a8c942355474d0b250dfadd4dac4ae400}
 
 
 Sets the pixel size of this widget. 
@@ -436,17 +436,17 @@ Sets the pixel size of this widget.
 \item[{\em Size}]A vector2 representing the pixel size of this widget. \end{DoxyParams}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_affb1419eac8fd0818c6afabf4ee21065}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1CheckBox_aa3226d72a70e734996b58a8782e24924}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a90dfe556f5ec947834f90604f746d7ae}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_aa3fc25ae8a44a7f27becc312492f5fe6}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a0c543abcd12e168d6084471bd0e0420e}{phys::UI::Scrollbar}, and \hyperlink{classphys_1_1UI_1_1Window_ad297fc3485097a2bce7120f9f22d6c19}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a4a04ebc31c875cd0648f1f2882249635}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1CheckBox_ae60f9f812d4b19e79fd782dad88a2084}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_abb26f02d8ab44b9ebd6add14a9ba809c}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a9bbb3c347fa49cb0f3cbe50293966cf3}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_ae21108cb65871ba59da2984542eab1a1}{phys::UI::Scrollbar}, and \hyperlink{classphys_1_1UI_1_1Window_a1b9832e05d8c15a30a2ac12cc1ebb255}{phys::UI::Window}.
 
-\hypertarget{classphys_1_1UI_1_1Widget_aae1c0b891125823e7ade8cbc7e4ba6b6}{
+\hypertarget{classphys_1_1UI_1_1Widget_a3f1cd1ce55660c7de4859983bac1ab7c}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetPosition@{SetPosition}}
 \index{SetPosition@{SetPosition}!phys::UI::Widget@{phys::UI::Widget}}
 \subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::UI::Widget::SetPosition (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2}}]{ Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
-\label{d9/d48/classphys_1_1UI_1_1Widget_aae1c0b891125823e7ade8cbc7e4ba6b6}
+\label{d9/d48/classphys_1_1UI_1_1Widget_a3f1cd1ce55660c7de4859983bac1ab7c}
 
 
 Sets the relative position of this widget. 
@@ -456,17 +456,17 @@ The position is relative to the screen size. Values range from 0.0 to 1.0.
 \item[{\em Position}]A vector2 representing the relative position of this widget. \end{DoxyParams}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a9a45fe4192092b76bb879b281c29d431}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1CheckBox_aaa4723624a25171e07cf35870368fe18}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_afda3635a154c2700a952b899eae71abf}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a8c10ff94f6830198069b86ffca13180a}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a36d82993b031b7be6da66fff8ca2c2d0}{phys::UI::Scrollbar}, and \hyperlink{classphys_1_1UI_1_1Window_ac49d7c2a12293cc80b289c653b55680d}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a84dcb7e5d9f03ff69a10a75eec88cb1e}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1CheckBox_ac71d4b2b748ff00c723e36b35dfce3ec}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_ac7e4d02b6be093bd31f9904d6c0ef88f}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_afb571168819d4c78678d7a195e54b389}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_a6a61740b90f640463fff1ebe46ca68e9}{phys::UI::Scrollbar}, and \hyperlink{classphys_1_1UI_1_1Window_a66babe97151763b445e8920c5c231985}{phys::UI::Window}.
 
-\hypertarget{classphys_1_1UI_1_1Widget_ad5af5f04b60d43341037df6b0e329bbd}{
+\hypertarget{classphys_1_1UI_1_1Widget_a3fe0b767fea59e1d120ed37b26c99044}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetSize@{SetSize}}
 \index{SetSize@{SetSize}!phys::UI::Widget@{phys::UI::Widget}}
 \subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::UI::Widget::SetSize (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2}}]{ Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}}
-\label{d9/d48/classphys_1_1UI_1_1Widget_ad5af5f04b60d43341037df6b0e329bbd}
+\label{d9/d48/classphys_1_1UI_1_1Widget_a3fe0b767fea59e1d120ed37b26c99044}
 
 
 Sets the relative size of this widget. 
@@ -476,7 +476,7 @@ The size is relative to the screen size. Values range from 0.0 to 1.0.
 \item[{\em Size}]A vector2 representing the relative size of this widget. \end{DoxyParams}
 
 
-Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_a527f2c332225a04e147264dd80e4a6c1}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1CheckBox_a104be5f34ea78cc47a411a106f482d3e}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a536c2ffeec4758db3b784772275bc77b}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a49953d0696195add1c2909cfa5bca0ec}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_ae61511d6f1c7afaf27f2551897d3047d}{phys::UI::Scrollbar}, and \hyperlink{classphys_1_1UI_1_1Window_adbd4d4c908c3d3458139e87bf16006bf}{phys::UI::Window}.
+Implemented in \hyperlink{classphys_1_1UI_1_1ButtonListBox_aca2c048f3edb2f623707859225a16be9}{phys::UI::ButtonListBox}, \hyperlink{classphys_1_1UI_1_1CheckBox_abaf77736744be54dc72507e16122ecf5}{phys::UI::CheckBox}, \hyperlink{classphys_1_1UI_1_1ListBox_a73f4526ffb4d35a431bb62c816257169}{phys::UI::ListBox}, \hyperlink{classphys_1_1UI_1_1Menu_a1f8826ab4ab9e76441704634746d3147}{phys::UI::Menu}, \hyperlink{classphys_1_1UI_1_1Scrollbar_af4c4061cf2ddeb783ee52acb805f0cfb}{phys::UI::Scrollbar}, and \hyperlink{classphys_1_1UI_1_1Window_aeaf0b107e6bcf688635dd4719871bd9a}{phys::UI::Window}.
 
 \hypertarget{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{
 \index{phys::UI::Widget@{phys::UI::Widget}!SetVisible@{SetVisible}}

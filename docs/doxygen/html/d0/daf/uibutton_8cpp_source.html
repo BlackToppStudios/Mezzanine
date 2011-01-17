@@ -81,7 +81,7 @@
 <a name="l00051"></a>00051 {
 <a name="l00052"></a>00052     <span class="keyword">namespace </span>UI
 <a name="l00053"></a>00053     {
-<a name="l00054"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#ace4c868ccdf45e88c12e7563ace30571">00054</a>         <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#ace4c868ccdf45e88c12e7563ace30571" title="Internal constructor.">Button::Button</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
+<a name="l00054"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a3a6c635f427093a5e4247611e3120948">00054</a>         <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a3a6c635f427093a5e4247611e3120948" title="Internal constructor.">Button::Button</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
 <a name="l00055"></a>00055             : Parent(Layer),
 <a name="l00056"></a>00056               NormalSprite(NULL),
 <a name="l00057"></a>00057               HoveredSprite(NULL),
@@ -168,9 +168,9 @@
 <a name="l00138"></a>00138             <span class="keywordflow">return</span> MouseHover;
 <a name="l00139"></a>00139         }
 <a name="l00140"></a>00140 
-<a name="l00141"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#ac4ce81ec9cdc97ac3d29aed5031c5ac6">00141</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#ac4ce81ec9cdc97ac3d29aed5031c5ac6" title="Sets the background colour of the button.">Button::SetBackgroundColour</a>(<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
+<a name="l00141"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a390aa5a409361507b5802141380bc1d3">00141</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a390aa5a409361507b5802141380bc1d3" title="Sets the background colour of the button.">Button::SetBackgroundColour</a>(<span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
 <a name="l00142"></a>00142         {
-<a name="l00143"></a>00143             GorillaRectangle-&gt;background_colour(Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a7a2978ebc5a7e04e02279664f1ea4a86" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00143"></a>00143             GorillaRectangle-&gt;background_colour(Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
 <a name="l00144"></a>00144         }
 <a name="l00145"></a>00145 
 <a name="l00146"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a7cecb219a59fb55db6ac0070359bb23f">00146</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a7cecb219a59fb55db6ac0070359bb23f" title="Sets the background image(if provided in the atlas) of the button.">Button::SetBackgroundSprite</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
@@ -202,9 +202,9 @@
 <a name="l00172"></a>00172             }
 <a name="l00173"></a>00173         }
 <a name="l00174"></a>00174 
-<a name="l00175"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a94a4296fd5b2153f10e77aca08481d15">00175</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a94a4296fd5b2153f10e77aca08481d15" title="Enables a border and sets it&amp;#39;s colour.">Button::SetBorder</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Width, <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
+<a name="l00175"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#ac29d118258d105217f3d1f72c634072c">00175</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#ac29d118258d105217f3d1f72c634072c" title="Enables a border and sets it&amp;#39;s colour.">Button::SetBorder</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Width, <span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
 <a name="l00176"></a>00176         {
-<a name="l00177"></a>00177             GorillaRectangle-&gt;border(Width, Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a7a2978ebc5a7e04e02279664f1ea4a86" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00177"></a>00177             GorillaRectangle-&gt;border(Width, Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
 <a name="l00178"></a>00178         }
 <a name="l00179"></a>00179 
 <a name="l00180"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#adaf3f9ed9f8478e180278b71cb355db6">00180</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#adaf3f9ed9f8478e180278b71cb355db6" title="Disables any border set on this rectangle if one is currently set.">Button::NoBorder</a>()
@@ -212,7 +212,7 @@
 <a name="l00182"></a>00182             GorillaRectangle-&gt;no_border();
 <a name="l00183"></a>00183         }
 <a name="l00184"></a>00184 
-<a name="l00185"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#aadb9b867ceccad8313591ae5e434274d">00185</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#aadb9b867ceccad8313591ae5e434274d" title="Sets the relative top left position of this button.">Button::SetPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
+<a name="l00185"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a9bfcd08b027c80130dd2c7e6af119da5">00185</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a9bfcd08b027c80130dd2c7e6af119da5" title="Sets the relative top left position of this button.">Button::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
 <a name="l00186"></a>00186         {
 <a name="l00187"></a>00187             RelPosition = Position;
 <a name="l00188"></a>00188             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrDim = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
@@ -225,7 +225,7 @@
 <a name="l00195"></a>00195             <span class="keywordflow">return</span> RelPosition;
 <a name="l00196"></a>00196         }
 <a name="l00197"></a>00197 
-<a name="l00198"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a90ef37a2fa1645298237733918455814">00198</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a90ef37a2fa1645298237733918455814" title="Sets the top left position of this button in pixels.">Button::SetActualPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
+<a name="l00198"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#ad5ad1d5f72f52750c3211e7b812237a8">00198</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#ad5ad1d5f72f52750c3211e7b812237a8" title="Sets the top left position of this button in pixels.">Button::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
 <a name="l00199"></a>00199         {
 <a name="l00200"></a>00200             GorillaRectangle-&gt;left(Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
 <a name="l00201"></a>00201             GorillaRectangle-&gt;top(Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
@@ -237,7 +237,7 @@
 <a name="l00207"></a>00207             <span class="keywordflow">return</span> Pos;
 <a name="l00208"></a>00208         }
 <a name="l00209"></a>00209 
-<a name="l00210"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a3f610782e5f84ddc315d9db6ef5f9109">00210</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a3f610782e5f84ddc315d9db6ef5f9109" title="Sets the relative size of this button.">Button::SetSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00210"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a06e6526a15b3f8bb6e63c70ac7b02134">00210</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a06e6526a15b3f8bb6e63c70ac7b02134" title="Sets the relative size of this button.">Button::SetSize</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
 <a name="l00211"></a>00211         {
 <a name="l00212"></a>00212             RelSize = Size;
 <a name="l00213"></a>00213             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> CurrDim = Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
@@ -250,7 +250,7 @@
 <a name="l00220"></a>00220             <span class="keywordflow">return</span> RelSize;
 <a name="l00221"></a>00221         }
 <a name="l00222"></a>00222 
-<a name="l00223"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a4075f879a67726b80c18d3bc647e12fe">00223</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a4075f879a67726b80c18d3bc647e12fe" title="Sets the size of this button in pixels.">Button::SetActualSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00223"></a><a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a7ac62ddb9f40a701e80a4eccacdc7ea0">00223</a>         <span class="keywordtype">void</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html#a7ac62ddb9f40a701e80a4eccacdc7ea0" title="Sets the size of this button in pixels.">Button::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
 <a name="l00224"></a>00224         {
 <a name="l00225"></a>00225             GorillaRectangle-&gt;width(Size.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>);
 <a name="l00226"></a>00226             GorillaRectangle-&gt;height(Size.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>);
@@ -315,7 +315,7 @@
 <a name="l00285"></a>00285 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:39 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 16 2011 21:43:47 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

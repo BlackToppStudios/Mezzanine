@@ -492,7 +492,7 @@ namespace
 { 
 	struct DocumentStruct: public NodeStruct, public Allocator 
 	{ 
-		DocumentStruct(MemoryPage* page): NodeStruct(page, node_document), Allocator(page), buffer(0) 
+		DocumentStruct(MemoryPage* page): NodeStruct(page, NodeDocument), Allocator(page), buffer(0) 
 		{ 
 		} 
  
@@ -564,7 +564,7 @@ namespace
 		alloc.deallocate_memory(n, sizeof(NodeStruct), reinterpret_cast<MemoryPage*>(header & MemoryPage_pointer_mask)); 
 	} 
  
-	XML_NO_INLINE NodeStruct* append_node(NodeStruct* node, Allocator& alloc, NodeType type = node_element) 
+	XML_NO_INLINE NodeStruct* append_node(NodeStruct* node, Allocator& alloc, NodeType type = NodeElement) 
 	{ 
 		NodeStruct* child = allocate_node(alloc, type); 
 		if (!child) return 0; 
@@ -1042,51 +1042,51 @@ namespace
 		STATIC_ASSERT(sizeof(wchar_t) == 2 || sizeof(wchar_t) == 4); 
  
 		if (sizeof(wchar_t) == 2) 
-			return is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
+			return is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
 		else  
-			return is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
+			return is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE; 
 	} 
  
 	Encoding guess_buffer_DocumentEncoding(uint8_t d0, uint8_t d1, uint8_t d2, uint8_t d3) 
 	{ 
 		// look for BOM in first few bytes 
-		if (d0 == 0 && d1 == 0 && d2 == 0xfe && d3 == 0xff) return DocumentEncoding_utf32_be; 
-		if (d0 == 0xff && d1 == 0xfe && d2 == 0 && d3 == 0) return DocumentEncoding_utf32_le; 
-		if (d0 == 0xfe && d1 == 0xff) return DocumentEncoding_utf16_be; 
-		if (d0 == 0xff && d1 == 0xfe) return DocumentEncoding_utf16_le; 
-		if (d0 == 0xef && d1 == 0xbb && d2 == 0xbf) return DocumentEncoding_utf8; 
+		if (d0 == 0 && d1 == 0 && d2 == 0xfe && d3 == 0xff) return EncodingUTF32BE; 
+		if (d0 == 0xff && d1 == 0xfe && d2 == 0 && d3 == 0) return EncodingUTF32LE; 
+		if (d0 == 0xfe && d1 == 0xff) return EncodingUTF16BE; 
+		if (d0 == 0xff && d1 == 0xfe) return EncodingUTF16LE; 
+		if (d0 == 0xef && d1 == 0xbb && d2 == 0xbf) return EncodingUTF8; 
  
 		// look for <, <? or <?xm in various DocumentEncodings 
-		if (d0 == 0 && d1 == 0 && d2 == 0 && d3 == 0x3c) return DocumentEncoding_utf32_be; 
-		if (d0 == 0x3c && d1 == 0 && d2 == 0 && d3 == 0) return DocumentEncoding_utf32_le; 
-		if (d0 == 0 && d1 == 0x3c && d2 == 0 && d3 == 0x3f) return DocumentEncoding_utf16_be; 
-		if (d0 == 0x3c && d1 == 0 && d2 == 0x3f && d3 == 0) return DocumentEncoding_utf16_le; 
-		if (d0 == 0x3c && d1 == 0x3f && d2 == 0x78 && d3 == 0x6d) return DocumentEncoding_utf8; 
+		if (d0 == 0 && d1 == 0 && d2 == 0 && d3 == 0x3c) return EncodingUTF32BE; 
+		if (d0 == 0x3c && d1 == 0 && d2 == 0 && d3 == 0) return EncodingUTF32LE; 
+		if (d0 == 0 && d1 == 0x3c && d2 == 0 && d3 == 0x3f) return EncodingUTF16BE; 
+		if (d0 == 0x3c && d1 == 0 && d2 == 0x3f && d3 == 0) return EncodingUTF16LE; 
+		if (d0 == 0x3c && d1 == 0x3f && d2 == 0x78 && d3 == 0x6d) return EncodingUTF8; 
  
 		// look for utf16 < followed by node name (this may fail, but is better than utf8 since it's zero terminated so early) 
-		if (d0 == 0 && d1 == 0x3c) return DocumentEncoding_utf16_be; 
-		if (d0 == 0x3c && d1 == 0) return DocumentEncoding_utf16_le; 
+		if (d0 == 0 && d1 == 0x3c) return EncodingUTF16BE; 
+		if (d0 == 0x3c && d1 == 0) return EncodingUTF16LE; 
  
 		// no known BOM detected, assume utf8 
-		return DocumentEncoding_utf8; 
+		return EncodingUTF8; 
 	} 
  
 	Encoding get_buffer_DocumentEncoding(Encoding DocumentEncoding, const void* contents, size_t size) 
 	{ 
 		// replace wchar DocumentEncoding with utf implementation 
-		if (DocumentEncoding == DocumentEncoding_wchar) return get_wchar_DocumentEncoding(); 
+		if (DocumentEncoding == Encodingwchar_t) return get_wchar_DocumentEncoding(); 
  
 		// replace utf16 DocumentEncoding with utf16 with specific endianness 
-		if (DocumentEncoding == DocumentEncoding_utf16) return is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
+		if (DocumentEncoding == EncodingUTF16) return is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
  
 		// replace utf32 DocumentEncoding with utf32 with specific endianness 
-		if (DocumentEncoding == DocumentEncoding_utf32) return is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
+		if (DocumentEncoding == EncodingUTF32) return is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE; 
  
 		// only do autodetection if no explicit DocumentEncoding is requested 
-		if (DocumentEncoding != DocumentEncoding_auto) return DocumentEncoding; 
+		if (DocumentEncoding != EncodingAuto) return DocumentEncoding; 
  
 		// skip DocumentEncoding autodetection if input buffer is too small 
-		if (size < 4) return DocumentEncoding_utf8; 
+		if (size < 4) return EncodingUTF8; 
  
 		// try to guess DocumentEncoding (based on XML specification, Appendix F.1) 
 		const uint8_t* data = static_cast<const uint8_t*>(contents); 
@@ -1120,8 +1120,8 @@ namespace
 #ifdef XML_WCHAR_MODE 
 	inline bool need_endian_swap_utf(Encoding le, Encoding re) 
 	{ 
-		return (le == DocumentEncoding_utf16_be && re == DocumentEncoding_utf16_le) || (le == DocumentEncoding_utf16_le && re == DocumentEncoding_utf16_be) || 
-			   (le == DocumentEncoding_utf32_be && re == DocumentEncoding_utf32_le) || (le == DocumentEncoding_utf32_le && re == DocumentEncoding_utf32_be); 
+		return (le == EncodingUTF16BE && re == EncodingUTF16LE) || (le == EncodingUTF16LE && re == EncodingUTF16BE) || 
+			   (le == EncodingUTF32BE && re == EncodingUTF32LE) || (le == EncodingUTF32LE && re == EncodingUTF32BE); 
 	} 
  
 	bool convert_buffer_endian_swap(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable) 
@@ -1222,12 +1222,12 @@ namespace
 		if (need_endian_swap_utf(DocumentEncoding, wchar_DocumentEncoding)) return convert_buffer_endian_swap(out_buffer, out_length, contents, size, is_mutable); 
  
 		// source DocumentEncoding is utf8 
-		if (DocumentEncoding == DocumentEncoding_utf8) return convert_buffer_utf8(out_buffer, out_length, contents, size); 
+		if (DocumentEncoding == EncodingUTF8) return convert_buffer_utf8(out_buffer, out_length, contents, size); 
  
 		// source DocumentEncoding is utf16 
-		if (DocumentEncoding == DocumentEncoding_utf16_be || DocumentEncoding == DocumentEncoding_utf16_le) 
+		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE) 
 		{ 
-			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
  
 			return (native_DocumentEncoding == DocumentEncoding) ? 
 				convert_buffer_utf16(out_buffer, out_length, contents, size, opt_false()) : 
@@ -1235,9 +1235,9 @@ namespace
 		} 
  
 		// source DocumentEncoding is utf32 
-		if (DocumentEncoding == DocumentEncoding_utf32_be || DocumentEncoding == DocumentEncoding_utf32_le) 
+		if (DocumentEncoding == EncodingUTF32BE || DocumentEncoding == EncodingUTF32LE) 
 		{ 
-			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE; 
  
 			return (native_DocumentEncoding == DocumentEncoding) ? 
 				convert_buffer_utf32(out_buffer, out_length, contents, size, opt_false()) : 
@@ -1295,12 +1295,12 @@ namespace
 	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable) 
 	{ 
 		// fast path: no conversion required 
-		if (DocumentEncoding == DocumentEncoding_utf8) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
+		if (DocumentEncoding == EncodingUTF8) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
  
 		// source DocumentEncoding is utf16 
-		if (DocumentEncoding == DocumentEncoding_utf16_be || DocumentEncoding == DocumentEncoding_utf16_le) 
+		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE) 
 		{ 
-			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
  
 			return (native_DocumentEncoding == DocumentEncoding) ? 
 				convert_buffer_utf16(out_buffer, out_length, contents, size, opt_false()) : 
@@ -1308,9 +1308,9 @@ namespace
 		} 
  
 		// source DocumentEncoding is utf32 
-		if (DocumentEncoding == DocumentEncoding_utf32_be || DocumentEncoding == DocumentEncoding_utf32_le) 
+		if (DocumentEncoding == EncodingUTF32BE || DocumentEncoding == EncodingUTF32LE) 
 		{ 
-			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE; 
  
 			return (native_DocumentEncoding == DocumentEncoding) ? 
 				convert_buffer_utf32(out_buffer, out_length, contents, size, opt_false()) : 
@@ -2063,7 +2063,7 @@ namespace
  
 					if (OPTSET(parse_comments)) 
 					{ 
-						PUSHNODE(node_comment); // Append a new node on the tree. 
+						PUSHNODE(NodeComment); // Append a new node on the tree. 
 						cursor->value = s; // Save the Offset. 
 					} 
  
@@ -2096,7 +2096,7 @@ namespace
  
 					if (OPTSET(parse_cdata)) 
 					{ 
-						PUSHNODE(node_cdata); // Append a new node on the tree. 
+						PUSHNODE(NodeCdata); // Append a new node on the tree. 
 						cursor->value = s; // Save the Offset. 
  
 						if (OPTSET(parse_eol)) 
@@ -2141,7 +2141,7 @@ namespace
 				{ 
 					while (IS_CHARTYPE(*mark, ct_space)) ++mark; 
  
-					PUSHNODE(node_doctype); 
+					PUSHNODE(NodeDoctype); 
  
 					cursor->value = mark; 
  
@@ -2185,11 +2185,11 @@ namespace
 					// disallow non top-level declarations 
 					if (cursor->parent) THROW_ERROR(StatusBadPi, s); 
  
-					PUSHNODE(node_declaration); 
+					PUSHNODE(NodeDeclaration); 
 				} 
 				else 
 				{ 
-					PUSHNODE(node_pi); 
+					PUSHNODE(NodePi); 
 				} 
  
 				cursor->name = target; 
@@ -2220,7 +2220,7 @@ namespace
 						// replace ending ? with / so that 'element' terminates properly 
 						*s = '/'; 
  
-						// we exit from this function with cursor at node_declaration, which is a signal to parse() to go to LOC_ATTRIBUTES 
+						// we exit from this function with cursor at NodeDeclaration, which is a signal to parse() to go to LOC_ATTRIBUTES 
 						s = value; 
 					} 
 					else 
@@ -2269,7 +2269,7 @@ namespace
 				LOC_TAG: 
 					if (IS_CHARTYPE(*s, ct_start_symbol)) // '<#...' 
 					{ 
-						PUSHNODE(node_element); // Append a new node to the tree. 
+						PUSHNODE(NodeElement); // Append a new node to the tree. 
  
 						cursor->name = s; 
  
@@ -2418,7 +2418,7 @@ namespace
 						s = parse_question(s, cursor, optmsk, endch); 
  
 						assert(cursor); 
-						if ((cursor->header & MemoryPage_type_mask) + 1 == node_declaration) goto LOC_ATTRIBUTES; 
+						if ((cursor->header & MemoryPage_type_mask) + 1 == NodeDeclaration) goto LOC_ATTRIBUTES; 
 					} 
 					else if (*s == '!') // '<!...' 
 					{ 
@@ -2442,7 +2442,7 @@ namespace
 							 
 					if (cursor->parent) 
 					{ 
-						PUSHNODE(node_pcdata); // Append a new node on the tree. 
+						PUSHNODE(NodePcdata); // Append a new node on the tree. 
 						cursor->value = s; // Save the Offset. 
  
 						s = strconv_pcdata(s); 
@@ -2516,26 +2516,26 @@ namespace
 	#ifdef XML_WCHAR_MODE 
 		return get_wchar_DocumentEncoding(); 
 	#else 
-		return DocumentEncoding_utf8; 
+		return EncodingUTF8; 
 	#endif 
 	} 
  
 	Encoding get_write_DocumentEncoding(Encoding DocumentEncoding) 
 	{ 
 		// replace wchar DocumentEncoding with utf implementation 
-		if (DocumentEncoding == DocumentEncoding_wchar) return get_wchar_DocumentEncoding(); 
+		if (DocumentEncoding == Encodingwchar_t) return get_wchar_DocumentEncoding(); 
  
 		// replace utf16 DocumentEncoding with utf16 with specific endianness 
-		if (DocumentEncoding == DocumentEncoding_utf16) return is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
+		if (DocumentEncoding == EncodingUTF16) return is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
  
 		// replace utf32 DocumentEncoding with utf32 with specific endianness 
-		if (DocumentEncoding == DocumentEncoding_utf32) return is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
+		if (DocumentEncoding == EncodingUTF32) return is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE; 
  
 		// only do autodetection if no explicit DocumentEncoding is requested 
-		if (DocumentEncoding != DocumentEncoding_auto) return DocumentEncoding; 
+		if (DocumentEncoding != EncodingAuto) return DocumentEncoding; 
  
 		// assume utf8 DocumentEncoding 
-		return DocumentEncoding_utf8; 
+		return EncodingUTF8; 
 	} 
  
 #ifdef XML_WCHAR_MODE 
@@ -2558,7 +2558,7 @@ namespace
 		} 
 	 
 		// convert to utf8 
-		if (DocumentEncoding == DocumentEncoding_utf8) 
+		if (DocumentEncoding == EncodingUTF8) 
 		{ 
 			uint8_t* dest = reinterpret_cast<uint8_t*>(result); 
  
@@ -2570,7 +2570,7 @@ namespace
 		} 
  
 		// convert to utf16 
-		if (DocumentEncoding == DocumentEncoding_utf16_be || DocumentEncoding == DocumentEncoding_utf16_le) 
+		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE) 
 		{ 
 			uint16_t* dest = reinterpret_cast<uint16_t*>(result); 
  
@@ -2578,7 +2578,7 @@ namespace
 			uint16_t* end = utf_decoder<utf16_writer>::decode_utf32_block(reinterpret_cast<const uint32_t*>(data), length, dest); 
  
 			// swap if necessary 
-			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
  
 			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
  
@@ -2586,7 +2586,7 @@ namespace
 		} 
  
 		// convert to utf32 
-		if (DocumentEncoding == DocumentEncoding_utf32_be || DocumentEncoding == DocumentEncoding_utf32_le) 
+		if (DocumentEncoding == EncodingUTF32BE || DocumentEncoding == EncodingUTF32LE) 
 		{ 
 			uint32_t* dest = reinterpret_cast<uint32_t*>(result); 
  
@@ -2594,7 +2594,7 @@ namespace
 			uint32_t* end = utf_decoder<utf32_writer>::decode_utf16_block(reinterpret_cast<const uint16_t*>(data), length, dest); 
  
 			// swap if necessary 
-			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE; 
  
 			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
  
@@ -2623,7 +2623,7 @@ namespace
  
 	size_t convert_buffer(char* result, const char_t* data, size_t length, Encoding DocumentEncoding) 
 	{ 
-		if (DocumentEncoding == DocumentEncoding_utf16_be || DocumentEncoding == DocumentEncoding_utf16_le) 
+		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE) 
 		{ 
 			uint16_t* dest = reinterpret_cast<uint16_t*>(result); 
  
@@ -2631,14 +2631,14 @@ namespace
 			uint16_t* end = utf_decoder<utf16_writer>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
  
 			// swap if necessary 
-			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf16_le : DocumentEncoding_utf16_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
  
 			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
  
 			return static_cast<size_t>(end - dest) * sizeof(uint16_t); 
 		} 
  
-		if (DocumentEncoding == DocumentEncoding_utf32_be || DocumentEncoding == DocumentEncoding_utf32_le) 
+		if (DocumentEncoding == EncodingUTF32BE || DocumentEncoding == EncodingUTF32LE) 
 		{ 
 			uint32_t* dest = reinterpret_cast<uint32_t*>(result); 
  
@@ -2646,7 +2646,7 @@ namespace
 			uint32_t* end = utf_decoder<utf32_writer>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
  
 			// swap if necessary 
-			Encoding native_DocumentEncoding = is_little_endian() ? DocumentEncoding_utf32_le : DocumentEncoding_utf32_be; 
+			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE; 
  
 			if (native_DocumentEncoding != DocumentEncoding) convert_utf_endian_swap(dest, dest, static_cast<size_t>(end - dest)); 
  
@@ -2823,23 +2823,23 @@ namespace
 	{ 
 		switch (DocumentEncoding) 
 		{ 
-		case DocumentEncoding_utf8: 
+		case EncodingUTF8: 
 			writer.write("\xef\xbb\xbf", 3); 
 			break; 
  
-		case DocumentEncoding_utf16_be: 
+		case EncodingUTF16BE: 
 			writer.write("\xfe\xff", 2); 
 			break; 
  
-		case DocumentEncoding_utf16_le: 
+		case EncodingUTF16LE: 
 			writer.write("\xff\xfe", 2); 
 			break; 
  
-		case DocumentEncoding_utf32_be: 
+		case EncodingUTF32BE: 
 			writer.write("\x00\x00\xfe\xff", 4); 
 			break; 
  
-		case DocumentEncoding_utf32_le: 
+		case EncodingUTF32LE: 
 			writer.write("\xff\xfe\x00\x00", 4); 
 			break; 
  
@@ -2911,7 +2911,7 @@ namespace
 		while (*s); 
 	} 
  
-	void node_output_attributes(BufferedWriter& writer, const Node& node) 
+	void NodeOutput_attributes(BufferedWriter& writer, const Node& node) 
 	{ 
 		const char_t* default_name = XML_TEXT(":anonymous"); 
  
@@ -2927,7 +2927,7 @@ namespace
 		} 
 	} 
  
-	void node_output(BufferedWriter& writer, const Node& node, const char_t* indent, unsigned int flags, unsigned int depth) 
+	void NodeOutput(BufferedWriter& writer, const Node& node, const char_t* indent, unsigned int flags, unsigned int depth) 
 	{ 
 		const char_t* default_name = XML_TEXT(":anonymous"); 
  
@@ -2936,21 +2936,21 @@ namespace
  
 		switch (node.type()) 
 		{ 
-		case node_document: 
+		case NodeDocument: 
 		{ 
 			for (Node n = node.first_child(); n; n = n.next_sibling()) 
-				node_output(writer, n, indent, flags, depth); 
+				NodeOutput(writer, n, indent, flags, depth); 
 			break; 
 		} 
 			 
-		case node_element: 
+		case NodeElement: 
 		{ 
 			const char_t* name = node.name()[0] ? node.name() : default_name; 
  
 			writer.write('<'); 
 			writer.write(name); 
  
-			node_output_attributes(writer, node); 
+			NodeOutput_attributes(writer, node); 
  
 			if (flags & format_raw) 
 			{ 
@@ -2961,7 +2961,7 @@ namespace
 					writer.write('>'); 
  
 					for (Node n = node.first_child(); n; n = n.next_sibling()) 
-						node_output(writer, n, indent, flags, depth + 1); 
+						NodeOutput(writer, n, indent, flags, depth + 1); 
  
 					writer.write('<', '/'); 
 					writer.write(name); 
@@ -2970,11 +2970,11 @@ namespace
 			} 
 			else if (!node.first_child()) 
 				writer.write(' ', '/', '>', '\n'); 
-			else if (node.first_child() == node.last_child() && (node.first_child().type() == node_pcdata || node.first_child().type() == node_cdata)) 
+			else if (node.first_child() == node.last_child() && (node.first_child().type() == NodePcdata || node.first_child().type() == NodeCdata)) 
 			{ 
 				writer.write('>'); 
  
-				if (node.first_child().type() == node_pcdata) 
+				if (node.first_child().type() == NodePcdata) 
 					text_output_escaped(writer, node.first_child().value(), ctx_special_pcdata); 
 				else 
 					text_output_cdata(writer, node.first_child().value()); 
@@ -2988,7 +2988,7 @@ namespace
 				writer.write('>', '\n'); 
 				 
 				for (Node n = node.first_child(); n; n = n.next_sibling()) 
-					node_output(writer, n, indent, flags, depth + 1); 
+					NodeOutput(writer, n, indent, flags, depth + 1); 
  
 				if ((flags & format_indent) != 0 && (flags & format_raw) == 0) 
 					for (unsigned int i = 0; i < depth; ++i) writer.write(indent); 
@@ -3001,31 +3001,31 @@ namespace
 			break; 
 		} 
 		 
-		case node_pcdata: 
+		case NodePcdata: 
 			text_output_escaped(writer, node.value(), ctx_special_pcdata); 
 			if ((flags & format_raw) == 0) writer.write('\n'); 
 			break; 
  
-		case node_cdata: 
+		case NodeCdata: 
 			text_output_cdata(writer, node.value()); 
 			if ((flags & format_raw) == 0) writer.write('\n'); 
 			break; 
  
-		case node_comment: 
+		case NodeComment: 
 			writer.write('<', '!', '-', '-'); 
 			writer.write(node.value()); 
 			writer.write('-', '-', '>'); 
 			if ((flags & format_raw) == 0) writer.write('\n'); 
 			break; 
  
-		case node_pi: 
-		case node_declaration: 
+		case NodePi: 
+		case NodeDeclaration: 
 			writer.write('<', '?'); 
 			writer.write(node.name()[0] ? node.name() : default_name); 
  
-			if (node.type() == node_declaration) 
+			if (node.type() == NodeDeclaration) 
 			{ 
-				node_output_attributes(writer, node); 
+				NodeOutput_attributes(writer, node); 
 			} 
 			else if (node.value()[0]) 
 			{ 
@@ -3037,7 +3037,7 @@ namespace
 			if ((flags & format_raw) == 0) writer.write('\n'); 
 			break; 
  
-		case node_doctype: 
+		case NodeDoctype: 
 			writer.write('<', '!', 'D', 'O', 'C'); 
 			writer.write('T', 'Y', 'P', 'E'); 
  
@@ -3062,8 +3062,8 @@ namespace
 		{ 
 			NodeType type = child.type(); 
  
-			if (type == node_declaration) return true; 
-			if (type == node_element) return false; 
+			if (type == NodeDeclaration) return true; 
+			if (type == NodeElement) return false; 
 		} 
  
 		return false; 
@@ -3071,9 +3071,9 @@ namespace
  
 	inline bool allow_insert_child(NodeType parent, NodeType child) 
 	{ 
-		if (parent != node_document && parent != node_element) return false; 
-		if (child == node_document || child == node_null) return false; 
-		if (parent != node_document && (child == node_declaration || child == node_doctype)) return false; 
+		if (parent != NodeDocument && parent != NodeElement) return false; 
+		if (child == NodeDocument || child == NodeNull) return false; 
+		if (parent != NodeDocument && (child == NodeDeclaration || child == NodeDoctype)) return false; 
  
 		return true; 
 	} 
@@ -3084,7 +3084,7 @@ namespace
  
 		switch (source.type()) 
 		{ 
-		case node_element: 
+		case NodeElement: 
 		{ 
 			dest.set_name(source.name()); 
  
@@ -3104,19 +3104,19 @@ namespace
 			break; 
 		} 
  
-		case node_pcdata: 
-		case node_cdata: 
-		case node_comment: 
-		case node_doctype: 
+		case NodePcdata: 
+		case NodeCdata: 
+		case NodeComment: 
+		case NodeDoctype: 
 			dest.set_value(source.value()); 
 			break; 
  
-		case node_pi: 
+		case NodePi: 
 			dest.set_name(source.name()); 
 			dest.set_value(source.value()); 
 			break; 
  
-		case node_declaration: 
+		case NodeDeclaration: 
 		{ 
 			dest.set_name(source.name()); 
  
@@ -3671,7 +3671,7 @@ namespace phys
  
 	NodeType Node::type() const 
 	{ 
-		return _root ? static_cast<NodeType>((_root->header & MemoryPage_type_mask) + 1) : node_null; 
+		return _root ? static_cast<NodeType>((_root->header & MemoryPage_type_mask) + 1) : NodeNull; 
 	} 
 	 
 	const char_t* Node::value() const 
@@ -3758,7 +3758,7 @@ namespace phys
 		{ 
 			NodeType type = static_cast<NodeType>((i->header & MemoryPage_type_mask) + 1); 
  
-			if (i->value && (type == node_pcdata || type == node_cdata)) 
+			if (i->value && (type == NodePcdata || type == NodeCdata)) 
 				return i->value; 
 		} 
  
@@ -3794,9 +3794,9 @@ namespace phys
 	{ 
 		switch (type()) 
 		{ 
-		case node_pi: 
-		case node_declaration: 
-		case node_element: 
+		case NodePi: 
+		case NodeDeclaration: 
+		case NodeElement: 
 			return strcpy_insitu(_root->name, _root->header, MemoryPage_name_allocated_mask, rhs); 
  
 		default: 
@@ -3808,11 +3808,11 @@ namespace phys
 	{ 
 		switch (type()) 
 		{ 
-		case node_pi: 
-		case node_cdata: 
-		case node_pcdata: 
-		case node_comment: 
-		case node_doctype: 
+		case NodePi: 
+		case NodeCdata: 
+		case NodePcdata: 
+		case NodeComment: 
+		case NodeDoctype: 
 			return strcpy_insitu(_root->value, _root->header, MemoryPage_value_allocated_mask, rhs); 
  
 		default: 
@@ -3822,7 +3822,7 @@ namespace phys
  
 	Attribute Node::append_attribute(const char_t* name) 
 	{ 
-		if (type() != node_element && type() != node_declaration) return Attribute(); 
+		if (type() != NodeElement && type() != NodeDeclaration) return Attribute(); 
 		 
 		Attribute a(append_attribute_ll(_root, get_allocator(_root))); 
 		a.set_name(name); 
@@ -3832,7 +3832,7 @@ namespace phys
  
 	Attribute Node::prepend_attribute(const char_t* name) 
 	{ 
-		if (type() != node_element && type() != node_declaration) return Attribute(); 
+		if (type() != NodeElement && type() != NodeDeclaration) return Attribute(); 
 		 
 		Attribute a(allocate_attribute(get_allocator(_root))); 
 		if (!a) return Attribute(); 
@@ -3857,7 +3857,7 @@ namespace phys
  
 	Attribute Node::insert_attribute_before(const char_t* name, const Attribute& attr) 
 	{ 
-		if ((type() != node_element && type() != node_declaration) || attr.empty()) return Attribute(); 
+		if ((type() != NodeElement && type() != NodeDeclaration) || attr.empty()) return Attribute(); 
 		 
 		// check that attribute belongs to *this 
 		AttributeStruct* cur = attr._attr; 
@@ -3885,7 +3885,7 @@ namespace phys
  
 	Attribute Node::insert_attribute_after(const char_t* name, const Attribute& attr) 
 	{ 
-		if ((type() != node_element && type() != node_declaration) || attr.empty()) return Attribute(); 
+		if ((type() != NodeElement && type() != NodeDeclaration) || attr.empty()) return Attribute(); 
 		 
 		// check that attribute belongs to *this 
 		AttributeStruct* cur = attr._attr; 
@@ -3957,7 +3957,7 @@ namespace phys
 		 
 		Node n(append_node(_root, get_allocator(_root), type)); 
  
-		if (type == node_declaration) n.set_name(XML_TEXT("xml")); 
+		if (type == NodeDeclaration) n.set_name(XML_TEXT("xml")); 
  
 		return n; 
 	} 
@@ -3984,7 +3984,7 @@ namespace phys
 		n._root->next_sibling = head; 
 		_root->first_child = n._root; 
 				 
-		if (type == node_declaration) n.set_name(XML_TEXT("xml")); 
+		if (type == NodeDeclaration) n.set_name(XML_TEXT("xml")); 
  
 		return n; 
 	} 
@@ -4008,7 +4008,7 @@ namespace phys
 		n._root->next_sibling = node._root; 
 		node._root->prev_sibling_c = n._root; 
  
-		if (type == node_declaration) n.set_name(XML_TEXT("xml")); 
+		if (type == NodeDeclaration) n.set_name(XML_TEXT("xml")); 
  
 		return n; 
 	} 
@@ -4032,14 +4032,14 @@ namespace phys
 		n._root->prev_sibling_c = node._root; 
 		node._root->next_sibling = n._root; 
  
-		if (type == node_declaration) n.set_name(XML_TEXT("xml")); 
+		if (type == NodeDeclaration) n.set_name(XML_TEXT("xml")); 
  
 		return n; 
 	} 
  
 	Node Node::append_child(const char_t* name) 
 	{ 
-		Node result = append_child(node_element); 
+		Node result = append_child(NodeElement); 
  
 		result.set_name(name); 
  
@@ -4048,7 +4048,7 @@ namespace phys
  
 	Node Node::prepend_child(const char_t* name) 
 	{ 
-		Node result = prepend_child(node_element); 
+		Node result = prepend_child(NodeElement); 
  
 		result.set_name(name); 
  
@@ -4057,7 +4057,7 @@ namespace phys
  
 	Node Node::insert_child_after(const char_t* name, const Node& node) 
 	{ 
-		Node result = insert_child_after(node_element, node); 
+		Node result = insert_child_after(NodeElement, node); 
  
 		result.set_name(name); 
  
@@ -4066,7 +4066,7 @@ namespace phys
  
 	Node Node::insert_child_before(const char_t* name, const Node& node) 
 	{ 
-		Node result = insert_child_before(node_element, node); 
+		Node result = insert_child_before(NodeElement, node); 
  
 		result.set_name(name); 
  
@@ -4317,7 +4317,7 @@ namespace phys
  
 		BufferedWriter buffered_writer(writer, DocumentEncoding); 
  
-		node_output(buffered_writer, *this, indent, flags, depth); 
+		NodeOutput(buffered_writer, *this, indent, flags, depth); 
 	} 
  
 #ifndef XML_NO_STL 
@@ -4332,7 +4332,7 @@ namespace phys
 	{ 
 		WriterStream writer(stream); 
  
-		print(writer, indent, flags, DocumentEncoding_wchar, depth); 
+		print(writer, indent, flags, Encodingwchar_t, depth); 
 	} 
 #endif 
  
@@ -4348,18 +4348,18 @@ namespace phys
  
 		switch (type()) 
 		{ 
-		case node_document: 
+		case NodeDocument: 
 			return 0; 
  
-		case node_element: 
-		case node_declaration: 
-		case node_pi: 
+		case NodeElement: 
+		case NodeDeclaration: 
+		case NodePi: 
 			return (_root->header & MemoryPage_name_allocated_mask) ? -1 : _root->name - buffer; 
  
-		case node_pcdata: 
-		case node_cdata: 
-		case node_comment: 
-		case node_doctype: 
+		case NodePcdata: 
+		case NodeCdata: 
+		case NodeComment: 
+		case NodeDoctype: 
 			return (_root->header & MemoryPage_value_allocated_mask) ? -1 : _root->value - buffer; 
  
 		default: 
@@ -4501,7 +4501,7 @@ namespace phys
 		return temp; 
 	} 
  
-	ParseResult::ParseResult(): Status(StatusInternalError), Offset(0), DocumentEncoding(DocumentEncoding_auto) 
+	ParseResult::ParseResult(): Status(StatusInternalError), Offset(0), DocumentEncoding(EncodingAuto) 
 	{ 
 	} 
  
@@ -4628,7 +4628,7 @@ namespace phys
 	{ 
 		reset(); 
  
-		return load_stream_impl(*this, stream, options, DocumentEncoding_wchar); 
+		return load_stream_impl(*this, stream, options, Encodingwchar_t); 
 	} 
 #endif 
  
@@ -4636,9 +4636,9 @@ namespace phys
 	{ 
 		// Force native DocumentEncoding (skip autodetection) 
 	#ifdef XML_WCHAR_MODE 
-		Encoding DocumentEncoding = DocumentEncoding_wchar; 
+		Encoding DocumentEncoding = Encodingwchar_t; 
 	#else 
-		Encoding DocumentEncoding = DocumentEncoding_utf8; 
+		Encoding DocumentEncoding = EncodingUTF8; 
 	#endif 
  
 		return load_buffer(contents, strlength(contents) * sizeof(char_t), options, DocumentEncoding); 
@@ -4720,7 +4720,7 @@ namespace phys
 			if (!(flags & format_raw)) buffered_writer.write('\n'); 
 		} 
  
-		node_output(buffered_writer, *this, indent, flags, 0); 
+		NodeOutput(buffered_writer, *this, indent, flags, 0); 
 	} 
  
 #ifndef XML_NO_STL 
@@ -4735,7 +4735,7 @@ namespace phys
 	{ 
 		WriterStream writer(stream); 
  
-		save(writer, indent, flags, DocumentEncoding_wchar); 
+		save(writer, indent, flags, Encodingwchar_t); 
 	} 
 #endif 
  
@@ -4768,7 +4768,7 @@ namespace phys
 	Node Document::document_element() const 
 	{ 
 		for (NodeStruct* i = _root->first_child; i; i = i->next_sibling) 
-			if ((i->header & MemoryPage_type_mask) + 1 == node_element) 
+			if ((i->header & MemoryPage_type_mask) + 1 == NodeElement) 
 				return Node(i); 
  
 		return Node(); 
@@ -5468,14 +5468,14 @@ namespace
  
 			switch (n.type()) 
 			{ 
-			case node_pcdata: 
-			case node_cdata: 
-			case node_comment: 
-			case node_pi: 
+			case NodePcdata: 
+			case NodeCdata: 
+			case NodeComment: 
+			case NodePi: 
 				return xpath_string_const(n.value()); 
 			 
-			case node_document: 
-			case node_element: 
+			case NodeDocument: 
+			case NodeElement: 
 			{ 
 				xpath_string result; 
  
@@ -5483,7 +5483,7 @@ namespace
 				 
 				while (cur && cur != n) 
 				{ 
-					if (cur.type() == node_pcdata || cur.type() == node_cdata) 
+					if (cur.type() == NodePcdata || cur.type() == NodeCdata) 
 						result.append(xpath_string_const(cur.value()), alloc); 
  
 					if (cur.first_child()) 
@@ -5508,7 +5508,7 @@ namespace
 		} 
 	} 
 	 
-	unsigned int node_height(Node n) 
+	unsigned int NodeHeight(Node n) 
 	{ 
 		unsigned int result = 0; 
 		 
@@ -5521,7 +5521,7 @@ namespace
 		return result; 
 	} 
 	 
-	bool node_is_before(Node ln, unsigned int lh, Node rn, unsigned int rh) 
+	bool NodeIs_before(Node ln, unsigned int lh, Node rn, unsigned int rh) 
 	{ 
 		// normalize heights 
 		for (unsigned int i = rh; i < lh; i++) ln = ln.parent(); 
@@ -5548,7 +5548,7 @@ namespace
 		return false; 
 	} 
  
-	bool node_is_ancestor(Node parent, Node node) 
+	bool NodeIs_ancestor(Node parent, Node node) 
 	{ 
 		while (node && node != parent) node = node.parent(); 
  
@@ -5626,10 +5626,10 @@ namespace
  
 			if (ln == rn) return false; 
 			 
-			unsigned int lh = node_height(ln); 
-			unsigned int rh = node_height(rn); 
+			unsigned int lh = NodeHeight(ln); 
+			unsigned int rh = NodeHeight(rn); 
 			 
-			return node_is_before(ln, lh, rn, rh); 
+			return NodeIs_before(ln, lh, rn, rh); 
 		} 
 	}; 
  
@@ -6066,13 +6066,13 @@ namespace
 		char_t name[1]; 
 	}; 
  
-	struct xpath_variable_node_set: xpath_variable 
+	struct xpath_variable_NodeSet: xpath_variable 
 	{ 
-		xpath_node_set value; 
+		xpath_NodeSet value; 
 		char_t name[1]; 
 	}; 
  
-	const xpath_node_set dummy_node_set; 
+	const xpath_NodeSet dummy_NodeSet; 
  
 	unsigned int hash_string(const char_t* str) 
 	{ 
@@ -6113,8 +6113,8 @@ namespace
 	{ 
 		switch (type) 
 		{ 
-		case xpath_type_node_set: 
-			return new_xpath_variable<xpath_variable_node_set>(name); 
+		case xpath_type_NodeSet: 
+			return new_xpath_variable<xpath_variable_NodeSet>(name); 
  
 		case xpath_type_number: 
 			return new_xpath_variable<xpath_variable_number>(name); 
@@ -6140,8 +6140,8 @@ namespace
 	{ 
 		switch (type) 
 		{ 
-		case xpath_type_node_set: 
-			delete_xpath_variable(static_cast<xpath_variable_node_set*>(var)); 
+		case xpath_type_NodeSet: 
+			delete_xpath_variable(static_cast<xpath_variable_NodeSet*>(var)); 
 			break; 
  
 		case xpath_type_number: 
@@ -6191,15 +6191,15 @@ namespace
 // Internal node set class 
 namespace 
 { 
-	xpath_node_set::type_t xpath_sort(xpath_node* begin, xpath_node* end, xpath_node_set::type_t type, bool rev) 
+	xpath_NodeSet::type_t xpath_sort(xpath_node* begin, xpath_node* end, xpath_NodeSet::type_t type, bool rev) 
 	{ 
-		xpath_node_set::type_t order = rev ? xpath_node_set::type_sorted_reverse : xpath_node_set::type_sorted; 
+		xpath_NodeSet::type_t order = rev ? xpath_NodeSet::type_sorted_reverse : xpath_NodeSet::type_sorted; 
  
-		if (type == xpath_node_set::type_unsorted) 
+		if (type == xpath_NodeSet::type_unsorted) 
 		{ 
 			sort(begin, end, document_order_comparator()); 
  
-			type = xpath_node_set::type_sorted; 
+			type = xpath_NodeSet::type_sorted; 
 		} 
 		 
 		if (type != order) reverse(begin, end); 
@@ -6207,19 +6207,19 @@ namespace
 		return order; 
 	} 
  
-	xpath_node xpath_first(const xpath_node* begin, const xpath_node* end, xpath_node_set::type_t type) 
+	xpath_node xpath_first(const xpath_node* begin, const xpath_node* end, xpath_NodeSet::type_t type) 
 	{ 
 		if (begin == end) return xpath_node(); 
  
 		switch (type) 
 		{ 
-		case xpath_node_set::type_sorted: 
+		case xpath_NodeSet::type_sorted: 
 			return *begin; 
  
-		case xpath_node_set::type_sorted_reverse: 
+		case xpath_NodeSet::type_sorted_reverse: 
 			return *(end - 1); 
  
-		case xpath_node_set::type_unsorted: 
+		case xpath_NodeSet::type_unsorted: 
 			return *min_element(begin, end, document_order_comparator()); 
  
 		default: 
@@ -6227,16 +6227,16 @@ namespace
 			return xpath_node(); 
 		} 
 	} 
-	class xpath_node_set_raw 
+	class xpath_NodeSet_raw 
 	{ 
-		xpath_node_set::type_t _type; 
+		xpath_NodeSet::type_t _type; 
  
 		xpath_node* _begin; 
 		xpath_node* _end; 
 		xpath_node* _eos; 
  
 	public: 
-		xpath_node_set_raw(): _type(xpath_node_set::type_unsorted), _begin(0), _end(0), _eos(0) 
+		xpath_NodeSet_raw(): _type(xpath_NodeSet::type_unsorted), _begin(0), _end(0), _eos(0) 
 		{ 
 		} 
  
@@ -6323,18 +6323,18 @@ namespace
  
 		void remove_duplicates() 
 		{ 
-			if (_type == xpath_node_set::type_unsorted) 
+			if (_type == xpath_NodeSet::type_unsorted) 
 				sort(_begin, _end, duplicate_comparator()); 
 		 
 			_end = unique(_begin, _end); 
 		} 
  
-		xpath_node_set::type_t type() const 
+		xpath_NodeSet::type_t type() const 
 		{ 
 			return _type; 
 		} 
  
-		void set_type(xpath_node_set::type_t type) 
+		void set_type(xpath_NodeSet::type_t type) 
 		{ 
 			_type = type; 
 		} 
@@ -6841,7 +6841,7 @@ namespace
 		{ 
 			xpath_value_type lt = lhs->rettype(), rt = rhs->rettype(); 
  
-			if (lt != xpath_type_node_set && rt != xpath_type_node_set) 
+			if (lt != xpath_type_NodeSet && rt != xpath_type_NodeSet) 
 			{ 
 				if (lt == xpath_type_boolean || rt == xpath_type_boolean) 
 					return comp(lhs->eval_boolean(c, stack), rhs->eval_boolean(c, stack)); 
@@ -6857,12 +6857,12 @@ namespace
 					return comp(ls, rs); 
 				} 
 			} 
-			else if (lt == xpath_type_node_set && rt == xpath_type_node_set) 
+			else if (lt == xpath_type_NodeSet && rt == xpath_type_NodeSet) 
 			{ 
 				xpath_allocator_capture cr(stack.result); 
  
-				xpath_node_set_raw ls = lhs->eval_node_set(c, stack); 
-				xpath_node_set_raw rs = rhs->eval_node_set(c, stack); 
+				xpath_NodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
+				xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
 				for (const xpath_node* li = ls.begin(); li != ls.end(); ++li) 
 					for (const xpath_node* ri = rs.begin(); ri != rs.end(); ++ri) 
@@ -6877,7 +6877,7 @@ namespace
 			} 
 			else 
 			{ 
-				if (lt == xpath_type_node_set) 
+				if (lt == xpath_type_NodeSet) 
 				{ 
 					swap(lhs, rhs); 
 					swap(lt, rt); 
@@ -6890,7 +6890,7 @@ namespace
 					xpath_allocator_capture cr(stack.result); 
  
 					double l = lhs->eval_number(c, stack); 
-					xpath_node_set_raw rs = rhs->eval_node_set(c, stack); 
+					xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
 					for (const xpath_node* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
@@ -6907,7 +6907,7 @@ namespace
 					xpath_allocator_capture cr(stack.result); 
  
 					xpath_string l = lhs->eval_string(c, stack); 
-					xpath_node_set_raw rs = rhs->eval_node_set(c, stack); 
+					xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
 					for (const xpath_node* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
@@ -6929,14 +6929,14 @@ namespace
 		{ 
 			xpath_value_type lt = lhs->rettype(), rt = rhs->rettype(); 
  
-			if (lt != xpath_type_node_set && rt != xpath_type_node_set) 
+			if (lt != xpath_type_NodeSet && rt != xpath_type_NodeSet) 
 				return comp(lhs->eval_number(c, stack), rhs->eval_number(c, stack)); 
-			else if (lt == xpath_type_node_set && rt == xpath_type_node_set) 
+			else if (lt == xpath_type_NodeSet && rt == xpath_type_NodeSet) 
 			{ 
 				xpath_allocator_capture cr(stack.result); 
  
-				xpath_node_set_raw ls = lhs->eval_node_set(c, stack); 
-				xpath_node_set_raw rs = rhs->eval_node_set(c, stack); 
+				xpath_NodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
+				xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
 				for (const xpath_node* li = ls.begin(); li != ls.end(); ++li) 
 				{ 
@@ -6955,12 +6955,12 @@ namespace
  
 				return false; 
 			} 
-			else if (lt != xpath_type_node_set && rt == xpath_type_node_set) 
+			else if (lt != xpath_type_NodeSet && rt == xpath_type_NodeSet) 
 			{ 
 				xpath_allocator_capture cr(stack.result); 
  
 				double l = lhs->eval_number(c, stack); 
-				xpath_node_set_raw rs = rhs->eval_node_set(c, stack); 
+				xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
 				for (const xpath_node* ri = rs.begin(); ri != rs.end(); ++ri) 
 				{ 
@@ -6972,11 +6972,11 @@ namespace
  
 				return false; 
 			} 
-			else if (lt == xpath_type_node_set && rt != xpath_type_node_set) 
+			else if (lt == xpath_type_NodeSet && rt != xpath_type_NodeSet) 
 			{ 
 				xpath_allocator_capture cr(stack.result); 
  
-				xpath_node_set_raw ls = lhs->eval_node_set(c, stack); 
+				xpath_NodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
 				double r = rhs->eval_number(c, stack); 
  
 				for (const xpath_node* li = ls.begin(); li != ls.end(); ++li) 
@@ -6996,7 +6996,7 @@ namespace
 			} 
 		} 
  
-		void apply_predicate(xpath_node_set_raw& ns, size_t first, xpath_ast_node* expr, const xpath_stack& stack) 
+		void apply_predicate(xpath_NodeSet_raw& ns, size_t first, xpath_ast_node* expr, const xpath_stack& stack) 
 		{ 
 			assert(ns.size() >= first); 
  
@@ -7022,7 +7022,7 @@ namespace
 			ns.truncate(last); 
 		} 
  
-		void apply_predicates(xpath_node_set_raw& ns, size_t first, const xpath_stack& stack) 
+		void apply_predicates(xpath_NodeSet_raw& ns, size_t first, const xpath_stack& stack) 
 		{ 
 			if (ns.size() == first) return; 
 			 
@@ -7032,7 +7032,7 @@ namespace
 			} 
 		} 
  
-		void step_push(xpath_node_set_raw& ns, const Attribute& a, const Node& parent, xpath_allocator* alloc) 
+		void step_push(xpath_NodeSet_raw& ns, const Attribute& a, const Node& parent, xpath_allocator* alloc) 
 		{ 
 			if (!a) return; 
  
@@ -7063,14 +7063,14 @@ namespace
 			} 
 		} 
 		 
-		void step_push(xpath_node_set_raw& ns, const Node& n, xpath_allocator* alloc) 
+		void step_push(xpath_NodeSet_raw& ns, const Node& n, xpath_allocator* alloc) 
 		{ 
 			if (!n) return; 
  
 			switch (_test) 
 			{ 
 			case nodetest_name: 
-				if (n.type() == node_element && strequal(n.name(), _data.nodetest)) ns.push_back(n, alloc); 
+				if (n.type() == NodeElement && strequal(n.name(), _data.nodetest)) ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_type_node: 
@@ -7078,32 +7078,32 @@ namespace
 				break; 
 				 
 			case nodetest_type_comment: 
-				if (n.type() == node_comment) 
+				if (n.type() == NodeComment) 
 					ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_type_text: 
-				if (n.type() == node_pcdata || n.type() == node_cdata) 
+				if (n.type() == NodePcdata || n.type() == NodeCdata) 
 					ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_type_pi: 
-				if (n.type() == node_pi) 
+				if (n.type() == NodePi) 
 					ns.push_back(n, alloc); 
 				break; 
 									 
 			case nodetest_pi: 
-				if (n.type() == node_pi && strequal(n.name(), _data.nodetest)) 
+				if (n.type() == NodePi && strequal(n.name(), _data.nodetest)) 
 					ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_all: 
-				if (n.type() == node_element) 
+				if (n.type() == NodeElement) 
 					ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_all_in_namespace: 
-				if (n.type() == node_element && starts_with(n.name(), _data.nodetest)) 
+				if (n.type() == NodeElement && starts_with(n.name(), _data.nodetest)) 
 					ns.push_back(n, alloc); 
 				break; 
  
@@ -7112,7 +7112,7 @@ namespace
 			}  
 		} 
  
-		template <class T> void step_fill(xpath_node_set_raw& ns, const Node& n, xpath_allocator* alloc, T) 
+		template <class T> void step_fill(xpath_NodeSet_raw& ns, const Node& n, xpath_allocator* alloc, T) 
 		{ 
 			const axis_t axis = T::axis; 
  
@@ -7231,7 +7231,7 @@ namespace
 								cur = cur.parent(); 
 								if (!cur) break; 
  
-								if (!node_is_ancestor(cur, n)) step_push(ns, cur, alloc); 
+								if (!NodeIs_ancestor(cur, n)) step_push(ns, cur, alloc); 
 							} 
 							while (!cur.previous_sibling()); 
  
@@ -7282,7 +7282,7 @@ namespace
 			} 
 		} 
 		 
-		template <class T> void step_fill(xpath_node_set_raw& ns, const Attribute& a, const Node& p, xpath_allocator* alloc, T v) 
+		template <class T> void step_fill(xpath_NodeSet_raw& ns, const Attribute& a, const Node& p, xpath_allocator* alloc, T v) 
 		{ 
 			const axis_t axis = T::axis; 
  
@@ -7358,17 +7358,17 @@ namespace
 			} 
 		} 
 		 
-		template <class T> xpath_node_set_raw step_do(const xpath_context& c, const xpath_stack& stack, T v) 
+		template <class T> xpath_NodeSet_raw step_do(const xpath_context& c, const xpath_stack& stack, T v) 
 		{ 
 			const axis_t axis = T::axis; 
 			bool attributes = (axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_descendant_or_self || axis == axis_following || axis == axis_parent || axis == axis_preceding || axis == axis_self); 
  
-			xpath_node_set_raw ns; 
-			ns.set_type((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? xpath_node_set::type_sorted_reverse : xpath_node_set::type_sorted); 
+			xpath_NodeSet_raw ns; 
+			ns.set_type((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? xpath_NodeSet::type_sorted_reverse : xpath_NodeSet::type_sorted); 
  
 			if (_left) 
 			{ 
-				xpath_node_set_raw s = _left->eval_node_set(c, stack); 
+				xpath_NodeSet_raw s = _left->eval_NodeSet(c, stack); 
  
 				// self axis preserves the original order 
 				if (axis == axis_self) ns.set_type(s.type()); 
@@ -7378,7 +7378,7 @@ namespace
 					size_t size = ns.size(); 
  
 					// in general, all axes generate elements in a particular order, but there is no order guarantee if axis is applied to two nodes 
-					if (axis != axis_self && size != 0) ns.set_type(xpath_node_set::type_unsorted); 
+					if (axis != axis_self && size != 0) ns.set_type(xpath_NodeSet::type_unsorted); 
 					 
 					if (it->node()) 
 						step_fill(ns, it->node(), stack.result, v); 
@@ -7400,7 +7400,7 @@ namespace
  
 			// child, attribute and self axes always generate unique set of nodes 
 			// for other axis, if the set stayed sorted, it stayed unique because the traversal algorithms do not visit the same node twice 
-			if (axis != axis_child && axis != axis_attribute && axis != axis_self && ns.type() == xpath_node_set::type_unsorted) 
+			if (axis != axis_child && axis != axis_attribute && axis != axis_self && ns.type() == xpath_NodeSet::type_unsorted) 
 				ns.remove_duplicates(); 
  
 			return ns; 
@@ -7434,7 +7434,7 @@ namespace
 		} 
  
 		xpath_ast_node(ast_type_t type, xpath_ast_node* left, axis_t axis, nodetest_t test, const char_t* contents): 
-			_type((char)type), _rettype(xpath_type_node_set), _axis((char)axis), _test((char)test), _left(left), _right(0), _next(0) 
+			_type((char)type), _rettype(xpath_type_NodeSet), _axis((char)axis), _test((char)test), _left(left), _right(0), _next(0) 
 		{ 
 			_data.nodetest = contents; 
 		} 
@@ -7563,11 +7563,11 @@ namespace
 					return !eval_string(c, stack).empty(); 
 				} 
 					 
-				case xpath_type_node_set:				 
+				case xpath_type_NodeSet:				 
 				{ 
 					xpath_allocator_capture cr(stack.result); 
  
-					return !eval_node_set(c, stack).empty(); 
+					return !eval_NodeSet(c, stack).empty(); 
 				} 
  
 				default: 
@@ -7613,7 +7613,7 @@ namespace
 			{ 
 				xpath_allocator_capture cr(stack.result); 
  
-				return (double)_left->eval_node_set(c, stack).size(); 
+				return (double)_left->eval_NodeSet(c, stack).size(); 
 			} 
 			 
 			case ast_func_string_length_0: 
@@ -7646,7 +7646,7 @@ namespace
  
 				double r = 0; 
 				 
-				xpath_node_set_raw ns = _left->eval_node_set(c, stack); 
+				xpath_NodeSet_raw ns = _left->eval_NodeSet(c, stack); 
 				 
 				for (const xpath_node* it = ns.begin(); it != ns.end(); ++it) 
 				{ 
@@ -7699,7 +7699,7 @@ namespace
 					return convert_string_to_number(eval_string(c, stack).c_str()); 
 				} 
 					 
-				case xpath_type_node_set: 
+				case xpath_type_NodeSet: 
 				{ 
 					xpath_allocator_capture cr(stack.result); 
  
@@ -7782,7 +7782,7 @@ namespace
 			{ 
 				xpath_allocator_capture cr(stack.result); 
  
-				xpath_node_set_raw ns = _left->eval_node_set(c, stack); 
+				xpath_NodeSet_raw ns = _left->eval_NodeSet(c, stack); 
 				xpath_node na = ns.first(); 
 				 
 				return xpath_string_const(local_name(na)); 
@@ -7799,7 +7799,7 @@ namespace
 			{ 
 				xpath_allocator_capture cr(stack.result); 
  
-				xpath_node_set_raw ns = _left->eval_node_set(c, stack); 
+				xpath_NodeSet_raw ns = _left->eval_NodeSet(c, stack); 
 				xpath_node na = ns.first(); 
 				 
 				return xpath_string_const(qualified_name(na)); 
@@ -7816,7 +7816,7 @@ namespace
 			{ 
 				xpath_allocator_capture cr(stack.result); 
  
-				xpath_node_set_raw ns = _left->eval_node_set(c, stack); 
+				xpath_NodeSet_raw ns = _left->eval_NodeSet(c, stack); 
 				xpath_node na = ns.first(); 
 				 
 				return xpath_string_const(namespace_uri(na)); 
@@ -7964,13 +7964,13 @@ namespace
 				case xpath_type_number: 
 					return convert_number_to_string(eval_number(c, stack), stack.result); 
 					 
-				case xpath_type_node_set: 
+				case xpath_type_NodeSet: 
 				{ 
 					xpath_allocator_capture cr(stack.temp); 
  
 					xpath_stack swapped_stack = {stack.temp, stack.result}; 
  
-					xpath_node_set_raw ns = eval_node_set(c, swapped_stack); 
+					xpath_NodeSet_raw ns = eval_NodeSet(c, swapped_stack); 
 					return ns.empty() ? xpath_string() : string_value(ns.first(), stack.result); 
 				} 
 				 
@@ -7982,7 +7982,7 @@ namespace
 			} 
 		} 
  
-		xpath_node_set_raw eval_node_set(const xpath_context& c, const xpath_stack& stack) 
+		xpath_NodeSet_raw eval_NodeSet(const xpath_context& c, const xpath_stack& stack) 
 		{ 
 			switch (_type) 
 			{ 
@@ -7992,11 +7992,11 @@ namespace
  
 				xpath_stack swapped_stack = {stack.temp, stack.result}; 
  
-				xpath_node_set_raw ls = _left->eval_node_set(c, swapped_stack); 
-				xpath_node_set_raw rs = _right->eval_node_set(c, stack); 
+				xpath_NodeSet_raw ls = _left->eval_NodeSet(c, swapped_stack); 
+				xpath_NodeSet_raw rs = _right->eval_NodeSet(c, stack); 
 				 
 				// we can optimize merging two sorted sets, but this is a very rare operation, so don't bother 
-  				rs.set_type(xpath_node_set::type_unsorted); 
+  				rs.set_type(xpath_NodeSet::type_unsorted); 
  
 				rs.append(ls.begin(), ls.end(), stack.result); 
 				rs.remove_duplicates(); 
@@ -8007,7 +8007,7 @@ namespace
 			case ast_filter: 
 			case ast_filter_posinv: 
 			{ 
-				xpath_node_set_raw set = _left->eval_node_set(c, stack); 
+				xpath_NodeSet_raw set = _left->eval_NodeSet(c, stack); 
  
 				// either expression is a number or it contains position() call; sort by document order 
 				if (_type == ast_filter) set.sort_do(); 
@@ -8018,7 +8018,7 @@ namespace
 			} 
 			 
 			case ast_func_id: 
-				return xpath_node_set_raw(); 
+				return xpath_NodeSet_raw(); 
 			 
 			case ast_step: 
 			{ 
@@ -8050,7 +8050,7 @@ namespace
 				 
 				case axis_namespace: 
 					// namespaced axis is not supported 
-					return xpath_node_set_raw(); 
+					return xpath_NodeSet_raw(); 
 				 
 				case axis_parent: 
 					return step_do(c, stack, axis_to_type<axis_parent>()); 
@@ -8070,9 +8070,9 @@ namespace
 			{ 
 				assert(!_right); // root step can't have any predicates 
  
-				xpath_node_set_raw ns; 
+				xpath_NodeSet_raw ns; 
  
-				ns.set_type(xpath_node_set::type_sorted); 
+				ns.set_type(xpath_NodeSet::type_sorted); 
  
 				if (c.n.node()) ns.push_back(c.n.node().root(), stack.result); 
 				else if (c.n.attribute()) ns.push_back(c.n.parent().root(), stack.result); 
@@ -8084,11 +8084,11 @@ namespace
 			{ 
 				assert(_rettype == _data.variable->type()); 
  
-				if (_rettype == xpath_type_node_set) 
+				if (_rettype == xpath_type_NodeSet) 
 				{ 
-					const xpath_node_set& s = _data.variable->get_node_set(); 
+					const xpath_NodeSet& s = _data.variable->get_NodeSet(); 
  
-					xpath_node_set_raw ns; 
+					xpath_NodeSet_raw ns; 
  
 					ns.set_type(s.type()); 
 					ns.append(s.begin(), s.end(), stack.result); 
@@ -8101,7 +8101,7 @@ namespace
  
 			default: 
 				assert(!"Wrong expression for return type node set"); 
-				return xpath_node_set_raw(); 
+				return xpath_NodeSet_raw(); 
 			} 
 		} 
 		 
@@ -8207,7 +8207,7 @@ namespace
 		{ 
 			assert(argc <= 1); 
  
-			if (argc == 1 && args[0]->rettype() != xpath_type_node_set) throw_error("Function has to be applied to node set"); 
+			if (argc == 1 && args[0]->rettype() != xpath_type_NodeSet) throw_error("Function has to be applied to node set"); 
  
 			return new (alloc_node()) xpath_ast_node(argc == 0 ? type0 : type1, xpath_type_string, args[0]); 
 		} 
@@ -8225,7 +8225,7 @@ namespace
 			case 'c': 
 				if (name == XML_TEXT("count") && argc == 1) 
 				{ 
-					if (args[0]->rettype() != xpath_type_node_set) throw_error("Function has to be applied to node set"); 
+					if (args[0]->rettype() != xpath_type_NodeSet) throw_error("Function has to be applied to node set"); 
 					return new (alloc_node()) xpath_ast_node(ast_func_count, xpath_type_number, args[0]); 
 				} 
 				else if (name == XML_TEXT("contains") && argc == 2) 
@@ -8247,7 +8247,7 @@ namespace
 			 
 			case 'i': 
 				if (name == XML_TEXT("id") && argc == 1) 
-					return new (alloc_node()) xpath_ast_node(ast_func_id, xpath_type_node_set, args[0]); 
+					return new (alloc_node()) xpath_ast_node(ast_func_id, xpath_type_NodeSet, args[0]); 
 					 
 				break; 
 			 
@@ -8302,7 +8302,7 @@ namespace
 					return new (alloc_node()) xpath_ast_node(argc == 2 ? ast_func_substring_2 : ast_func_substring_3, xpath_type_string, args[0], args[1]); 
 				else if (name == XML_TEXT("sum") && argc == 1) 
 				{ 
-					if (args[0]->rettype() != xpath_type_node_set) throw_error("Function has to be applied to node set"); 
+					if (args[0]->rettype() != xpath_type_NodeSet) throw_error("Function has to be applied to node set"); 
 					return new (alloc_node()) xpath_ast_node(ast_func_sum, xpath_type_number, args[0]); 
 				} 
  
@@ -8387,7 +8387,7 @@ namespace
 			return axis_child; 
 		} 
  
-		nodetest_t parse_node_test_type(const xpath_lexer_string& name) 
+		nodetest_t parse_NodeTest_type(const xpath_lexer_string& name) 
 		{ 
 			switch (name.begin[0]) 
 			{ 
@@ -8535,11 +8535,11 @@ namespace
  
 				xpath_ast_node* expr = parse_expression(); 
  
-				if (n->rettype() != xpath_type_node_set) throw_error("Predicate has to be applied to node set"); 
+				if (n->rettype() != xpath_type_NodeSet) throw_error("Predicate has to be applied to node set"); 
  
 				bool posinv = expr->rettype() != xpath_type_number && expr->is_posinv(); 
  
-				n = new (alloc_node()) xpath_ast_node(posinv ? ast_filter_posinv : ast_filter, xpath_type_node_set, n, expr); 
+				n = new (alloc_node()) xpath_ast_node(posinv ? ast_filter_posinv : ast_filter, xpath_type_NodeSet, n, expr); 
  
 				if (_lexer.current() != lex_close_square_brace) 
 					throw_error("Unmatched square brace"); 
@@ -8557,7 +8557,7 @@ namespace
 		// AbbreviatedStep ::= '.' | '..' 
 		xpath_ast_node* parse_step(xpath_ast_node* set) 
 		{ 
-			if (set && set->rettype() != xpath_type_node_set) 
+			if (set && set->rettype() != xpath_type_NodeSet) 
 				throw_error("Step has to be applied to node set"); 
  
 			bool axis_specified = false; 
@@ -8630,7 +8630,7 @@ namespace
 						{ 
 							_lexer.next(); 
  
-							nt_type = parse_node_test_type(nt_name); 
+							nt_type = parse_NodeTest_type(nt_name); 
  
 							if (nt_type == nodetest_none) throw_error("Unrecognized node type"); 
 							 
@@ -8683,7 +8683,7 @@ namespace
 				 
 				xpath_ast_node* expr = parse_expression(); 
  
-				xpath_ast_node* pred = new (alloc_node()) xpath_ast_node(ast_predicate, xpath_type_node_set, expr); 
+				xpath_ast_node* pred = new (alloc_node()) xpath_ast_node(ast_predicate, xpath_type_NodeSet, expr); 
 				 
 				if (_lexer.current() != lex_close_square_brace) 
 					throw_error("Unmatched square brace"); 
@@ -8725,7 +8725,7 @@ namespace
 			{ 
 				_lexer.next(); 
 				 
-				xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_step_root, xpath_type_node_set); 
+				xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_step_root, xpath_type_NodeSet); 
  
 				// relative location path can start from axis_attribute, dot, double_dot, multiply and string lexemes; any other lexeme means standalone root path 
 				lexeme_t l = _lexer.current(); 
@@ -8739,7 +8739,7 @@ namespace
 			{ 
 				_lexer.next(); 
 				 
-				xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_step_root, xpath_type_node_set); 
+				xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_step_root, xpath_type_NodeSet); 
 				n = new (alloc_node()) xpath_ast_node(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 				 
 				return parse_relative_location_path(n); 
@@ -8776,7 +8776,7 @@ namespace
 					if (*state != '(') return parse_location_path(); 
  
 					// This looks like a function call; however this still can be a node-test. Check it. 
-					if (parse_node_test_type(_lexer.contents()) != nodetest_none) return parse_location_path(); 
+					if (parse_NodeTest_type(_lexer.contents()) != nodetest_none) return parse_location_path(); 
 				} 
 				 
 				xpath_ast_node* n = parse_filter_expression(); 
@@ -8788,7 +8788,7 @@ namespace
 					 
 					if (l == lex_double_slash) 
 					{ 
-						if (n->rettype() != xpath_type_node_set) throw_error("Step has to be applied to node set"); 
+						if (n->rettype() != xpath_type_NodeSet) throw_error("Step has to be applied to node set"); 
  
 						n = new (alloc_node()) xpath_ast_node(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 					} 
@@ -8813,10 +8813,10 @@ namespace
  
 				xpath_ast_node* expr = parse_union_expression(); 
  
-				if (n->rettype() != xpath_type_node_set || expr->rettype() != xpath_type_node_set) 
+				if (n->rettype() != xpath_type_NodeSet || expr->rettype() != xpath_type_NodeSet) 
 					throw_error("Union operator has to be applied to node sets"); 
  
-				n = new (alloc_node()) xpath_ast_node(ast_op_union, xpath_type_node_set, n, expr); 
+				n = new (alloc_node()) xpath_ast_node(ast_op_union, xpath_type_NodeSet, n, expr); 
 			} 
  
 			return n; 
@@ -9120,7 +9120,7 @@ namespace phys
 	} 
 #endif 
  
-	void xpath_node_set::_assign(const_iterator begin, const_iterator end) 
+	void xpath_NodeSet::_assign(const_iterator begin, const_iterator end) 
 	{ 
 		assert(begin <= end); 
  
@@ -9162,26 +9162,26 @@ namespace phys
 		} 
 	} 
  
-	xpath_node_set::xpath_node_set(): _type(type_unsorted), _begin(&_storage), _end(&_storage) 
+	xpath_NodeSet::xpath_NodeSet(): _type(type_unsorted), _begin(&_storage), _end(&_storage) 
 	{ 
 	} 
  
-	xpath_node_set::xpath_node_set(const_iterator begin, const_iterator end, type_t type): _type(type), _begin(&_storage), _end(&_storage) 
+	xpath_NodeSet::xpath_NodeSet(const_iterator begin, const_iterator end, type_t type): _type(type), _begin(&_storage), _end(&_storage) 
 	{ 
 		_assign(begin, end); 
 	} 
  
-	xpath_node_set::~xpath_node_set() 
+	xpath_NodeSet::~xpath_NodeSet() 
 	{ 
 		if (_begin != &_storage) global_deallocate(_begin); 
 	} 
 		 
-	xpath_node_set::xpath_node_set(const xpath_node_set& ns): _type(ns._type), _begin(&_storage), _end(&_storage) 
+	xpath_NodeSet::xpath_NodeSet(const xpath_NodeSet& ns): _type(ns._type), _begin(&_storage), _end(&_storage) 
 	{ 
 		_assign(ns._begin, ns._end); 
 	} 
 	 
-	xpath_node_set& xpath_node_set::operator=(const xpath_node_set& ns) 
+	xpath_NodeSet& xpath_NodeSet::operator=(const xpath_NodeSet& ns) 
 	{ 
 		if (this == &ns) return *this; 
 		 
@@ -9191,43 +9191,43 @@ namespace phys
 		return *this; 
 	} 
  
-	xpath_node_set::type_t xpath_node_set::type() const 
+	xpath_NodeSet::type_t xpath_NodeSet::type() const 
 	{ 
 		return _type; 
 	} 
 		 
-	size_t xpath_node_set::size() const 
+	size_t xpath_NodeSet::size() const 
 	{ 
 		return _end - _begin; 
 	} 
 		 
-	bool xpath_node_set::empty() const 
+	bool xpath_NodeSet::empty() const 
 	{ 
 		return _begin == _end; 
 	} 
 		 
-	const xpath_node& xpath_node_set::operator[](size_t index) const 
+	const xpath_node& xpath_NodeSet::operator[](size_t index) const 
 	{ 
 		assert(index < size()); 
 		return _begin[index]; 
 	} 
  
-	xpath_node_set::const_iterator xpath_node_set::begin() const 
+	xpath_NodeSet::const_iterator xpath_NodeSet::begin() const 
 	{ 
 		return _begin; 
 	} 
 		 
-	xpath_node_set::const_iterator xpath_node_set::end() const 
+	xpath_NodeSet::const_iterator xpath_NodeSet::end() const 
 	{ 
 		return _end; 
 	} 
 	 
-	void xpath_node_set::sort(bool reverse) 
+	void xpath_NodeSet::sort(bool reverse) 
 	{ 
 		_type = xpath_sort(_begin, _end, _type, reverse); 
 	} 
  
-	xpath_node xpath_node_set::first() const 
+	xpath_node xpath_NodeSet::first() const 
 	{ 
 		return xpath_first(_begin, _end, _type); 
 	} 
@@ -9253,8 +9253,8 @@ namespace phys
 	{ 
 		switch (_type) 
 		{ 
-		case xpath_type_node_set: 
-			return static_cast<const xpath_variable_node_set*>(this)->name; 
+		case xpath_type_NodeSet: 
+			return static_cast<const xpath_variable_NodeSet*>(this)->name; 
  
 		case xpath_type_number: 
 			return static_cast<const xpath_variable_number*>(this)->name; 
@@ -9292,9 +9292,9 @@ namespace phys
 		return value ? value : XML_TEXT(""); 
 	} 
  
-	const xpath_node_set& xpath_variable::get_node_set() const 
+	const xpath_NodeSet& xpath_variable::get_NodeSet() const 
 	{ 
-		return (_type == xpath_type_node_set) ? static_cast<const xpath_variable_node_set*>(this)->value : dummy_node_set; 
+		return (_type == xpath_type_NodeSet) ? static_cast<const xpath_variable_NodeSet*>(this)->value : dummy_NodeSet; 
 	} 
  
 	bool xpath_variable::set(bool value) 
@@ -9334,11 +9334,11 @@ namespace phys
 		return true; 
 	} 
  
-	bool xpath_variable::set(const xpath_node_set& value) 
+	bool xpath_variable::set(const xpath_NodeSet& value) 
 	{ 
-		if (_type != xpath_type_node_set) return false; 
+		if (_type != xpath_type_NodeSet) return false; 
  
-		static_cast<xpath_variable_node_set*>(this)->value = value; 
+		static_cast<xpath_variable_NodeSet*>(this)->value = value; 
 		return true; 
 	} 
  
@@ -9419,9 +9419,9 @@ namespace phys
 		return var ? var->set(value) : false; 
 	} 
  
-	bool xpath_variable_set::set(const char_t* name, const xpath_node_set& value) 
+	bool xpath_variable_set::set(const char_t* name, const xpath_NodeSet& value) 
 	{ 
-		xpath_variable* var = add(name, xpath_type_node_set); 
+		xpath_variable* var = add(name, xpath_type_NodeSet); 
 		return var ? var->set(value) : false; 
 	} 
  
@@ -9530,16 +9530,16 @@ namespace phys
 		return full_size; 
 	} 
  
-	xpath_node_set xpath_query::evaluate_node_set(const xpath_node& n) const 
+	xpath_NodeSet xpath_query::evaluate_NodeSet(const xpath_node& n) const 
 	{ 
-		if (!_impl) return xpath_node_set(); 
+		if (!_impl) return xpath_NodeSet(); 
  
 		xpath_ast_node* root = static_cast<xpath_query_impl*>(_impl)->root; 
  
-		if (root->rettype() != xpath_type_node_set) 
+		if (root->rettype() != xpath_type_NodeSet) 
 		{ 
 		#ifdef XML_NO_EXCEPTIONS 
-			return xpath_node_set(); 
+			return xpath_NodeSet(); 
 		#else 
 			xpath_parse_result result; 
 			result.error = "Expression does not evaluate to node set"; 
@@ -9552,12 +9552,12 @@ namespace phys
 		xpath_stack_data sd; 
  
 	#ifdef XML_NO_EXCEPTIONS 
-		if (setjmp(sd.error_handler)) return xpath_node_set(); 
+		if (setjmp(sd.error_handler)) return xpath_NodeSet(); 
 	#endif 
  
-		xpath_node_set_raw r = root->eval_node_set(c, sd.stack); 
+		xpath_NodeSet_raw r = root->eval_NodeSet(c, sd.stack); 
  
-		return xpath_node_set(r.begin(), r.end(), r.type()); 
+		return xpath_NodeSet(r.begin(), r.end(), r.type()); 
 	} 
  
 	const xpath_parse_result& xpath_query::result() const 
@@ -9583,19 +9583,19 @@ namespace phys
  
 	xpath_node Node::select_single_node(const xpath_query& query) const 
 	{ 
-		xpath_node_set s = query.evaluate_node_set(*this); 
+		xpath_NodeSet s = query.evaluate_NodeSet(*this); 
 		return s.empty() ? xpath_node() : s.first(); 
 	} 
  
-	xpath_node_set Node::select_nodes(const char_t* query, xpath_variable_set* variables) const 
+	xpath_NodeSet Node::select_nodes(const char_t* query, xpath_variable_set* variables) const 
 	{ 
 		xpath_query q(query, variables); 
 		return select_nodes(q); 
 	} 
  
-	xpath_node_set Node::select_nodes(const xpath_query& query) const 
+	xpath_NodeSet Node::select_nodes(const xpath_query& query) const 
 	{ 
-		return query.evaluate_node_set(*this); 
+		return query.evaluate_NodeSet(*this); 
 	} 
 } 
 } // \phys
