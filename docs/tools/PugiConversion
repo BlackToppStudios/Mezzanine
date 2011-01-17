@@ -196,7 +196,6 @@ function FixNames
 
 	FileContent=`echo -E "$FileContent" | sed -e 's|typedef XML_CHAR char_t;|typedef Character char_t;|g'`
 
-
 																							#Documentation that could not be put in xmldoc.h
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|'`
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Last parsed Offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|'`
