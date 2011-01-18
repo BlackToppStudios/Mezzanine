@@ -224,7 +224,7 @@ function FixNames
 	#The Writer class and compatibility options
 	sed -i -e 's|writer|WriterInstance|g' $1
 	sed -i -e 's|write|Write|g' $1
-	sed -i -e 's|_stream->Write|_stream->write|g' $1
+	sed -i -e 's|_stream->Write|_stream->write|g' $1	#These 2 lines fixe mistakes made by the above line
 	sed -i -e 's|fWrite|fwrite|g' $1
 
 	###############################
@@ -240,11 +240,12 @@ function FixNames
 	sed -i -e 's|// Character type used for all internal storage and operations; depends on XML_WCHAR_MODE|/// @brief The character type used the internals of the XML parser, this is defined in datatypes.h.|' $1
 
 	#Writer Interface class
-	sed -i -e 's|		virtual ~Writer() {} |		/// @brief Empty Virtual Destructor\n		virtual ~Writer() {} |g' $1
-	sed -i -e 's|// Write memory chunk into stream/file/whatever |/// @brief This will be used to output xml to an external source such as a file or stream\n		/// @param data This is a pointer to something that will get written to the output\n		/// @param size The size in bytes of whatever was passed in.|g' $1
+	sed -i -e 's|		virtual ~Writer() {} |		/// @brief Empty Virtual Destructor\n		virtual ~Writer() {} |' $1
+	sed -i -e 's|// Write memory chunk into stream/file/whatever |/// @brief This will be used to output xml to an external source such as a file or stream\n		/// @param data This is a pointer to something that will get written to the output\n		/// @param size The size in bytes of whatever was passed in.|' $1
 
-
-
+	#WriterFile Class
+	#sed -i -e 's|WriterFile(void* file)|/// @brief Construct a Writer from a FILE* object.\n		@details The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety.\n		WriterFile(void* file)|' $1
+	#sed -i -e 's|WriterFile(void* file);|WriterFile(void* file);\n\n		/// @brief Writes data to a file\n		///@param data A pointer to the data \n		/// @param size The size of the data in bytes|g' $1
 	#another clean line to copy/paste
 	#sed -i -e 's|||g' $1
 }

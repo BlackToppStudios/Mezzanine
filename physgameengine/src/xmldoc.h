@@ -275,6 +275,11 @@ namespace phys
         /// @class Writer
         /// Interface for node printing (see @ref Node::print)
 
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class WriterFile
+        /// An implementation of @ref Writer intended to writing to FILEs as defined in stdio.h
+
+
 
     }
 }
