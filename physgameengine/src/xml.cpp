@@ -5083,16 +5083,16 @@ namespace
 // Allocator used for AST and evaluation stacks 
 namespace 
 { 
-	struct xpath_memory_block 
+	struct XPathMemoryBlock 
 	{	 
-		xpath_memory_block* next; 
+		XPathMemoryBlock* next; 
  
 		char data[4096]; 
 	}; 
 		 
-	class xpath_allocator 
+	class XPathAllocator 
 	{ 
-		xpath_memory_block* _root; 
+		XPathMemoryBlock* _root; 
 		size_t _root_size; 
  
 	public: 
@@ -5100,7 +5100,7 @@ namespace
 		jmp_buf* error_handler; 
 	#endif 
  
-		xpath_allocator(xpath_memory_block* root, size_t root_size = 0): _root(root), _root_size(root_size) 
+		XPathAllocator(XPathMemoryBlock* root, size_t root_size = 0): _root(root), _root_size(root_size) 
 		{ 
 		#ifdef XML_NO_EXCEPTIONS 
 			error_handler = 0; 
@@ -5123,9 +5123,9 @@ namespace
 			else 
 			{ 
 				size_t block_data_size = (size > block_capacity) ? size : block_capacity; 
-				size_t block_size = block_data_size + offsetof(xpath_memory_block, data); 
+				size_t block_size = block_data_size + offsetof(XPathMemoryBlock, data); 
  
-				xpath_memory_block* block = static_cast<xpath_memory_block*>(global_allocate(block_size)); 
+				XPathMemoryBlock* block = static_cast<XPathMemoryBlock*>(global_allocate(block_size)); 
 				if (!block) return 0; 
 				 
 				block->next = _root; 
@@ -5185,7 +5185,7 @@ namespace
 					assert(_root->data == result); 
 					assert(_root->next); 
  
-					xpath_memory_block* next = _root->next->next; 
+					XPathMemoryBlock* next = _root->next->next; 
  
 					if (next) 
 					{ 
@@ -5199,14 +5199,14 @@ namespace
 			return result; 
 		} 
  
-		void revert(const xpath_allocator& state) 
+		void revert(const XPathAllocator& state) 
 		{ 
 			// free all new pages 
-			xpath_memory_block* cur = _root; 
+			XPathMemoryBlock* cur = _root; 
  
 			while (cur != state._root) 
 			{ 
-				xpath_memory_block* next = cur->next; 
+				XPathMemoryBlock* next = cur->next; 
  
 				global_deallocate(cur); 
  
@@ -5220,12 +5220,12 @@ namespace
  
 		void release() 
 		{ 
-			xpath_memory_block* cur = _root; 
+			XPathMemoryBlock* cur = _root; 
 			assert(cur); 
  
 			while (cur->next) 
 			{ 
-				xpath_memory_block* next = cur->next; 
+				XPathMemoryBlock* next = cur->next; 
  
 				global_deallocate(cur); 
  
@@ -5234,39 +5234,39 @@ namespace
 		} 
 	}; 
  
-	struct xpath_allocator_capture 
+	struct XPathAllocatorCapture 
 	{ 
-		xpath_allocator_capture(xpath_allocator* alloc): _target(alloc), _state(*alloc) 
+		XPathAllocatorCapture(XPathAllocator* alloc): _target(alloc), _state(*alloc) 
 		{ 
 		} 
  
-		~xpath_allocator_capture() 
+		~XPathAllocatorCapture() 
 		{ 
 			_target->revert(_state); 
 		} 
  
-		xpath_allocator* _target; 
-		xpath_allocator _state; 
+		XPathAllocator* _target; 
+		XPathAllocator _state; 
 	}; 
  
-	struct xpath_stack 
+	struct XPathStack 
 	{ 
-		xpath_allocator* result; 
-		xpath_allocator* temp; 
+		XPathAllocator* result; 
+		XPathAllocator* temp; 
 	}; 
  
-	struct xpath_stack_data 
+	struct XPathStackData 
 	{ 
-		xpath_memory_block blocks[2]; 
-		xpath_allocator result; 
-		xpath_allocator temp; 
-		xpath_stack stack; 
+		XPathMemoryBlock blocks[2]; 
+		XPathAllocator result; 
+		XPathAllocator temp; 
+		XPathStack stack; 
  
 	#ifdef XML_NO_EXCEPTIONS 
 		jmp_buf error_handler; 
 	#endif 
  
-		xpath_stack_data(): result(blocks + 0), temp(blocks + 1) 
+		XPathStackData(): result(blocks + 0), temp(blocks + 1) 
 		{ 
 			blocks[0].next = blocks[1].next = 0; 
  
@@ -5278,7 +5278,7 @@ namespace
 		#endif 
 		} 
  
-		~xpath_stack_data() 
+		~XPathStackData() 
 		{ 
 			result.release(); 
 			temp.release(); 
@@ -5289,12 +5289,12 @@ namespace
 // String class 
 namespace 
 { 
-	class xpath_string 
+	class XPathString 
 	{ 
 		const char_t* _buffer; 
 		bool _uses_heap; 
  
-		static char_t* duplicate_string(const char_t* string, size_t length, xpath_allocator* alloc) 
+		static char_t* duplicate_string(const char_t* string, size_t length, XPathAllocator* alloc) 
 		{ 
 			char_t* result = static_cast<char_t*>(alloc->allocate((length + 1) * sizeof(char_t))); 
 			assert(result); 
@@ -5305,17 +5305,17 @@ namespace
 			return result; 
 		} 
  
-		static char_t* duplicate_string(const char_t* string, xpath_allocator* alloc) 
+		static char_t* duplicate_string(const char_t* string, XPathAllocator* alloc) 
 		{ 
 			return duplicate_string(string, strlength(string), alloc); 
 		} 
  
 	public: 
-		xpath_string(): _buffer(XML_TEXT("")), _uses_heap(false) 
+		XPathString(): _buffer(XML_TEXT("")), _uses_heap(false) 
 		{ 
 		} 
  
-		explicit xpath_string(const char_t* str, xpath_allocator* alloc) 
+		explicit XPathString(const char_t* str, XPathAllocator* alloc) 
 		{ 
 			bool empty = (*str == 0); 
  
@@ -5323,11 +5323,11 @@ namespace
 			_uses_heap = !empty; 
 		} 
  
-		explicit xpath_string(const char_t* str, bool use_heap): _buffer(str), _uses_heap(use_heap) 
+		explicit XPathString(const char_t* str, bool use_heap): _buffer(str), _uses_heap(use_heap) 
 		{ 
 		} 
  
-		xpath_string(const char_t* begin, const char_t* end, xpath_allocator* alloc) 
+		XPathString(const char_t* begin, const char_t* end, XPathAllocator* alloc) 
 		{ 
 			assert(begin <= end); 
  
@@ -5337,7 +5337,7 @@ namespace
 			_uses_heap = !empty; 
 		} 
  
-		void append(const xpath_string& o, xpath_allocator* alloc) 
+		void append(const XPathString& o, XPathAllocator* alloc) 
 		{ 
 			// skip empty sources 
 			if (!*o._buffer) return; 
@@ -5381,7 +5381,7 @@ namespace
 			return strlength(_buffer); 
 		} 
 		 
-		char_t* data(xpath_allocator* alloc) 
+		char_t* data(XPathAllocator* alloc) 
 		{ 
 			// make private heap copy 
 			if (!_uses_heap) 
@@ -5398,12 +5398,12 @@ namespace
 			return *_buffer == 0; 
 		} 
  
-		bool operator==(const xpath_string& o) const 
+		bool operator==(const XPathString& o) const 
 		{ 
 			return strequal(_buffer, o._buffer); 
 		} 
  
-		bool operator!=(const xpath_string& o) const 
+		bool operator!=(const XPathString& o) const 
 		{ 
 			return !strequal(_buffer, o._buffer); 
 		} 
@@ -5414,9 +5414,9 @@ namespace
 		} 
 	}; 
  
-	xpath_string xpath_string_const(const char_t* str) 
+	XPathString XPathStringConst(const char_t* str) 
 	{ 
-		return xpath_string(str, false); 
+		return XPathString(str, false); 
 	} 
 } 
  
@@ -5458,10 +5458,10 @@ namespace
 		return static_cast<unsigned int>(ch - 'A') < 26 ? static_cast<char_t>(ch | ' ') : ch; 
 	} 
  
-	xpath_string string_value(const xpath_node& na, xpath_allocator* alloc) 
+	XPathString string_value(const XPathNode& na, XPathAllocator* alloc) 
 	{ 
 		if (na.attribute()) 
-			return xpath_string_const(na.attribute().value()); 
+			return XPathStringConst(na.attribute().value()); 
 		else 
 		{ 
 			const Node& n = na.node(); 
@@ -5472,19 +5472,19 @@ namespace
 			case NodeCdata: 
 			case NodeComment: 
 			case NodePi: 
-				return xpath_string_const(n.value()); 
+				return XPathStringConst(n.value()); 
 			 
 			case NodeDocument: 
 			case NodeElement: 
 			{ 
-				xpath_string result; 
+				XPathString result; 
  
 				Node cur = n.first_child(); 
 				 
 				while (cur && cur != n) 
 				{ 
 					if (cur.type() == NodePcdata || cur.type() == NodeCdata) 
-						result.append(xpath_string_const(cur.value()), alloc); 
+						result.append(XPathStringConst(cur.value()), alloc); 
  
 					if (cur.first_child()) 
 						cur = cur.first_child(); 
@@ -5503,7 +5503,7 @@ namespace
 			} 
 			 
 			default: 
-				return xpath_string(); 
+				return XPathString(); 
 			} 
 		} 
 	} 
@@ -5555,7 +5555,7 @@ namespace
 		return parent && node == parent; 
 	} 
  
-	const void* document_order(const xpath_node& xnode) 
+	const void* document_order(const XPathNode& xnode) 
 	{ 
 		NodeStruct* node = xnode.node().internal_object(); 
  
@@ -5580,7 +5580,7 @@ namespace
 	 
 	struct document_order_comparator 
 	{ 
-		bool operator()(const xpath_node& lhs, const xpath_node& rhs) const 
+		bool operator()(const XPathNode& lhs, const XPathNode& rhs) const 
 		{ 
 			// optimized document order based check 
 			const void* lo = document_order(lhs); 
@@ -5635,7 +5635,7 @@ namespace
  
 	struct duplicate_comparator 
 	{ 
-		bool operator()(const xpath_node& lhs, const xpath_node& rhs) const 
+		bool operator()(const XPathNode& lhs, const XPathNode& rhs) const 
 		{ 
 			if (lhs.attribute()) return rhs.attribute() ? lhs.attribute() < rhs.attribute() : true; 
 			else return rhs.attribute() ? false : lhs.node() < rhs.node(); 
@@ -5759,11 +5759,11 @@ namespace
 	} 
 #endif 
  
-	xpath_string convert_number_to_string(double value, xpath_allocator* alloc) 
+	XPathString convert_number_to_string(double value, XPathAllocator* alloc) 
 	{ 
 		// try special number conversion 
 		const char_t* special = convert_number_to_string_special(value); 
-		if (special) return xpath_string_const(special); 
+		if (special) return XPathStringConst(special); 
  
 		// get mantissa + exponent form 
 		char mantissa_buffer[64]; 
@@ -5819,7 +5819,7 @@ namespace
 		assert(s < result + sizeof(result) / sizeof(result[0])); 
 		*s = 0; 
  
-		return xpath_string(result, alloc); 
+		return XPathString(result, alloc); 
 	} 
 	 
 	bool check_string_to_number_format(const char_t* string) 
@@ -5903,12 +5903,12 @@ namespace
 		return (value >= -0.5 && value <= 0) ? ceil(value) : floor(value + 0.5); 
 	} 
 	 
-	const char_t* qualified_name(const xpath_node& node) 
+	const char_t* qualified_name(const XPathNode& node) 
 	{ 
 		return node.attribute() ? node.attribute().name() : node.node().name(); 
 	} 
 	 
-	const char_t* local_name(const xpath_node& node) 
+	const char_t* local_name(const XPathNode& node) 
 	{ 
 		const char_t* name = qualified_name(node); 
 		const char_t* p = find_char(name, ':'); 
@@ -5978,7 +5978,7 @@ namespace
 		return XML_TEXT(""); 
 	} 
  
-	const char_t* namespace_uri(const xpath_node& node) 
+	const char_t* namespace_uri(const XPathNode& node) 
 	{ 
 		return node.attribute() ? namespace_uri(node.attribute(), node.parent()) : namespace_uri(node.node()); 
 	} 
@@ -6031,9 +6031,9 @@ namespace
 		*write = 0; 
 	} 
  
-	struct xpath_variable_boolean: xpath_variable 
+	struct XPathVariableBoolean: XPathVariable 
 	{ 
-		xpath_variable_boolean(): value(false) 
+		XPathVariableBoolean(): value(false) 
 		{ 
 		} 
  
@@ -6041,9 +6041,9 @@ namespace
 		char_t name[1]; 
 	}; 
  
-	struct xpath_variable_number: xpath_variable 
+	struct XPathVariableNumber: XPathVariable 
 	{ 
-		xpath_variable_number(): value(0) 
+		XPathVariableNumber(): value(0) 
 		{ 
 		} 
  
@@ -6051,13 +6051,13 @@ namespace
 		char_t name[1]; 
 	}; 
  
-	struct xpath_variable_string: xpath_variable 
+	struct XPathVariableString: XPathVariable 
 	{ 
-		xpath_variable_string(): value(0) 
+		XPathVariableString(): value(0) 
 		{ 
 		} 
  
-		~xpath_variable_string() 
+		~XPathVariableString() 
 		{ 
 			if (value) global_deallocate(value); 
 		} 
@@ -6066,13 +6066,13 @@ namespace
 		char_t name[1]; 
 	}; 
  
-	struct xpath_variable_NodeSet: xpath_variable 
+	struct XPathVariableNodeSet: XPathVariable 
 	{ 
-		xpath_NodeSet value; 
+		XPathNodeSet value; 
 		char_t name[1]; 
 	}; 
  
-	const xpath_NodeSet dummy_NodeSet; 
+	const XPathNodeSet dummy_NodeSet; 
  
 	unsigned int hash_string(const char_t* str) 
 	{ 
@@ -6093,7 +6093,7 @@ namespace
 		return result; 
 	} 
  
-	template <typename T> T* new_xpath_variable(const char_t* name) 
+	template <typename T> T* new_XPathVariable(const char_t* name) 
 	{ 
 		size_t length = strlength(name); 
 		if (length == 0) return 0; // empty variable names are invalid 
@@ -6109,51 +6109,51 @@ namespace
 		return result; 
 	} 
  
-	xpath_variable* new_xpath_variable(xpath_value_type type, const char_t* name) 
+	XPathVariable* new_XPathVariable(XPathValueType type, const char_t* name) 
 	{ 
 		switch (type) 
 		{ 
-		case xpath_type_NodeSet: 
-			return new_xpath_variable<xpath_variable_NodeSet>(name); 
+		case XPathTypeNodeSet: 
+			return new_XPathVariable<XPathVariableNodeSet>(name); 
  
-		case xpath_type_number: 
-			return new_xpath_variable<xpath_variable_number>(name); 
+		case XPathTypeNumber: 
+			return new_XPathVariable<XPathVariableNumber>(name); 
  
-		case xpath_type_string: 
-			return new_xpath_variable<xpath_variable_string>(name); 
+		case XPathTypeString: 
+			return new_XPathVariable<XPathVariableString>(name); 
  
-		case xpath_type_boolean: 
-			return new_xpath_variable<xpath_variable_boolean>(name); 
+		case XPathTypeBoolean: 
+			return new_XPathVariable<XPathVariableBoolean>(name); 
  
 		default: 
 			return 0; 
 		} 
 	} 
  
-	template <typename T> void delete_xpath_variable(T* var) 
+	template <typename T> void delete_XPathVariable(T* var) 
 	{ 
 		var->~T(); 
 		global_deallocate(var); 
 	} 
  
-	void delete_xpath_variable(xpath_value_type type, xpath_variable* var) 
+	void delete_XPathVariable(XPathValueType type, XPathVariable* var) 
 	{ 
 		switch (type) 
 		{ 
-		case xpath_type_NodeSet: 
-			delete_xpath_variable(static_cast<xpath_variable_NodeSet*>(var)); 
+		case XPathTypeNodeSet: 
+			delete_XPathVariable(static_cast<XPathVariableNodeSet*>(var)); 
 			break; 
  
-		case xpath_type_number: 
-			delete_xpath_variable(static_cast<xpath_variable_number*>(var)); 
+		case XPathTypeNumber: 
+			delete_XPathVariable(static_cast<XPathVariableNumber*>(var)); 
 			break; 
  
-		case xpath_type_string: 
-			delete_xpath_variable(static_cast<xpath_variable_string*>(var)); 
+		case XPathTypeString: 
+			delete_XPathVariable(static_cast<XPathVariableString*>(var)); 
 			break; 
  
-		case xpath_type_boolean: 
-			delete_xpath_variable(static_cast<xpath_variable_boolean*>(var)); 
+		case XPathTypeBoolean: 
+			delete_XPathVariable(static_cast<XPathVariableBoolean*>(var)); 
 			break; 
  
 		default: 
@@ -6161,7 +6161,7 @@ namespace
 		} 
 	} 
  
-	xpath_variable* get_variable(xpath_variable_set* set, const char_t* begin, const char_t* end) 
+	XPathVariable* get_variable(XPathVariableSet* set, const char_t* begin, const char_t* end) 
 	{ 
 		char_t buffer[32]; 
  
@@ -6179,7 +6179,7 @@ namespace
 		memcpy(scratch, begin, length * sizeof(char_t)); 
 		scratch[length] = 0; 
  
-		xpath_variable* result = set->get(scratch); 
+		XPathVariable* result = set->get(scratch); 
  
 		// free dummy buffer 
 		if (scratch != buffer) global_deallocate(scratch); 
@@ -6191,15 +6191,15 @@ namespace
 // Internal node set class 
 namespace 
 { 
-	xpath_NodeSet::type_t xpath_sort(xpath_node* begin, xpath_node* end, xpath_NodeSet::type_t type, bool rev) 
+	XPathNodeSet::type_t XPathSort(XPathNode* begin, XPathNode* end, XPathNodeSet::type_t type, bool rev) 
 	{ 
-		xpath_NodeSet::type_t order = rev ? xpath_NodeSet::type_sorted_reverse : xpath_NodeSet::type_sorted; 
+		XPathNodeSet::type_t order = rev ? XPathNodeSet::type_sorted_reverse : XPathNodeSet::type_sorted; 
  
-		if (type == xpath_NodeSet::type_unsorted) 
+		if (type == XPathNodeSet::type_unsorted) 
 		{ 
 			sort(begin, end, document_order_comparator()); 
  
-			type = xpath_NodeSet::type_sorted; 
+			type = XPathNodeSet::type_sorted; 
 		} 
 		 
 		if (type != order) reverse(begin, end); 
@@ -6207,45 +6207,45 @@ namespace
 		return order; 
 	} 
  
-	xpath_node xpath_first(const xpath_node* begin, const xpath_node* end, xpath_NodeSet::type_t type) 
+	XPathNode XPathFirst(const XPathNode* begin, const XPathNode* end, XPathNodeSet::type_t type) 
 	{ 
-		if (begin == end) return xpath_node(); 
+		if (begin == end) return XPathNode(); 
  
 		switch (type) 
 		{ 
-		case xpath_NodeSet::type_sorted: 
+		case XPathNodeSet::type_sorted: 
 			return *begin; 
  
-		case xpath_NodeSet::type_sorted_reverse: 
+		case XPathNodeSet::type_sorted_reverse: 
 			return *(end - 1); 
  
-		case xpath_NodeSet::type_unsorted: 
+		case XPathNodeSet::type_unsorted: 
 			return *min_element(begin, end, document_order_comparator()); 
  
 		default: 
 			assert(!"Invalid node set type"); 
-			return xpath_node(); 
+			return XPathNode(); 
 		} 
 	} 
-	class xpath_NodeSet_raw 
+	class XPathNodeSet_raw 
 	{ 
-		xpath_NodeSet::type_t _type; 
+		XPathNodeSet::type_t _type; 
  
-		xpath_node* _begin; 
-		xpath_node* _end; 
-		xpath_node* _eos; 
+		XPathNode* _begin; 
+		XPathNode* _end; 
+		XPathNode* _eos; 
  
 	public: 
-		xpath_NodeSet_raw(): _type(xpath_NodeSet::type_unsorted), _begin(0), _end(0), _eos(0) 
+		XPathNodeSet_raw(): _type(XPathNodeSet::type_unsorted), _begin(0), _end(0), _eos(0) 
 		{ 
 		} 
  
-		xpath_node* begin() const 
+		XPathNode* begin() const 
 		{ 
 			return _begin; 
 		} 
  
-		xpath_node* end() const 
+		XPathNode* end() const 
 		{ 
 			return _end; 
 		} 
@@ -6260,12 +6260,12 @@ namespace
 			return static_cast<size_t>(_end - _begin); 
 		} 
  
-		xpath_node first() const 
+		XPathNode first() const 
 		{ 
-			return xpath_first(_begin, _end, _type); 
+			return XPathFirst(_begin, _end, _type); 
 		} 
  
-		void push_back(const xpath_node& node, xpath_allocator* alloc) 
+		void push_back(const XPathNode& node, XPathAllocator* alloc) 
 		{ 
 			if (_end == _eos) 
 			{ 
@@ -6275,7 +6275,7 @@ namespace
 				size_t new_capacity = capacity + capacity / 2 + 1; 
  
 				// reallocate the old array or allocate a new one 
-				xpath_node* data = static_cast<xpath_node*>(alloc->reallocate(_begin, capacity * sizeof(xpath_node), new_capacity * sizeof(xpath_node))); 
+				XPathNode* data = static_cast<XPathNode*>(alloc->reallocate(_begin, capacity * sizeof(XPathNode), new_capacity * sizeof(XPathNode))); 
 				assert(data); 
  
 				// finalize 
@@ -6287,7 +6287,7 @@ namespace
 			*_end++ = node; 
 		} 
  
-		void append(const xpath_node* begin, const xpath_node* end, xpath_allocator* alloc) 
+		void append(const XPathNode* begin, const XPathNode* end, XPathAllocator* alloc) 
 		{ 
 			size_t size = static_cast<size_t>(_end - _begin); 
 			size_t capacity = static_cast<size_t>(_eos - _begin); 
@@ -6296,7 +6296,7 @@ namespace
 			if (size + count > capacity) 
 			{ 
 				// reallocate the old array or allocate a new one 
-				xpath_node* data = static_cast<xpath_node*>(alloc->reallocate(_begin, capacity * sizeof(xpath_node), (size + count) * sizeof(xpath_node))); 
+				XPathNode* data = static_cast<XPathNode*>(alloc->reallocate(_begin, capacity * sizeof(XPathNode), (size + count) * sizeof(XPathNode))); 
 				assert(data); 
  
 				// finalize 
@@ -6305,16 +6305,16 @@ namespace
 				_eos = data + size + count; 
 			} 
  
-			memcpy(_end, begin, count * sizeof(xpath_node)); 
+			memcpy(_end, begin, count * sizeof(XPathNode)); 
 			_end += count; 
 		} 
  
 		void sort_do() 
 		{ 
-			_type = xpath_sort(_begin, _end, _type, false); 
+			_type = XPathSort(_begin, _end, _type, false); 
 		} 
  
-		void truncate(xpath_node* pos) 
+		void truncate(XPathNode* pos) 
 		{ 
 			assert(_begin <= pos && pos <= _end); 
  
@@ -6323,18 +6323,18 @@ namespace
  
 		void remove_duplicates() 
 		{ 
-			if (_type == xpath_NodeSet::type_unsorted) 
+			if (_type == XPathNodeSet::type_unsorted) 
 				sort(_begin, _end, duplicate_comparator()); 
 		 
 			_end = unique(_begin, _end); 
 		} 
  
-		xpath_NodeSet::type_t type() const 
+		XPathNodeSet::type_t type() const 
 		{ 
 			return _type; 
 		} 
  
-		void set_type(xpath_NodeSet::type_t type) 
+		void set_type(XPathNodeSet::type_t type) 
 		{ 
 			_type = type; 
 		} 
@@ -6343,12 +6343,12 @@ namespace
  
 namespace 
 { 
-	struct xpath_context 
+	struct XPathContext 
 	{ 
-		xpath_node n; 
+		XPathNode n; 
 		size_t position, size; 
  
-		xpath_context(const xpath_node& n, size_t position, size_t size): n(n), position(position), size(size) 
+		XPathContext(const XPathNode& n, size_t position, size_t size): n(n), position(position), size(size) 
 		{ 
 		} 
 	}; 
@@ -6384,12 +6384,12 @@ namespace
 		lex_eof 
 	}; 
  
-	struct xpath_lexer_string 
+	struct XPathLexerString 
 	{ 
 		const char_t* begin; 
 		const char_t* end; 
  
-		xpath_lexer_string(): begin(0), end(0) 
+		XPathLexerString(): begin(0), end(0) 
 		{ 
 		} 
  
@@ -6401,16 +6401,16 @@ namespace
 		} 
 	}; 
  
-	class xpath_lexer 
+	class XPathLexer 
 	{ 
 		const char_t* _cur; 
 		const char_t* _cur_lexeme_pos; 
-		xpath_lexer_string _cur_lexeme_contents; 
+		XPathLexerString _cur_lexeme_contents; 
  
 		lexeme_t _cur_lexeme; 
  
 	public: 
-		explicit xpath_lexer(const char_t* query): _cur(query) 
+		explicit XPathLexer(const char_t* query): _cur(query) 
 		{ 
 			next(); 
 		} 
@@ -6699,7 +6699,7 @@ namespace
 			return _cur_lexeme_pos; 
 		} 
  
-		const xpath_lexer_string& contents() const 
+		const XPathLexerString& contents() const 
 		{ 
 			assert(_cur_lexeme == lex_var_ref || _cur_lexeme == lex_number || _cur_lexeme == lex_string || _cur_lexeme == lex_quoted_string); 
  
@@ -6806,7 +6806,7 @@ namespace
  
 	template <axis_t N> const axis_t axis_to_type<N>::axis = N; 
 		 
-	class xpath_ast_node 
+	class XPathAstNode 
 	{ 
 	private: 
 		// node type 
@@ -6818,9 +6818,9 @@ namespace
 		char _test; 
  
 		// tree node structure 
-		xpath_ast_node* _left; 
-		xpath_ast_node* _right; 
-		xpath_ast_node* _next; 
+		XPathAstNode* _left; 
+		XPathAstNode* _right; 
+		XPathAstNode* _next; 
  
 		union 
 		{ 
@@ -6829,45 +6829,45 @@ namespace
 			// value for ast_number_constant 
 			double number; 
 			// variable for ast_variable 
-			xpath_variable* variable; 
+			XPathVariable* variable; 
 			// node test for ast_step (node name/namespace/node type/pi target) 
 			const char_t* nodetest; 
 		} _data; 
  
-		xpath_ast_node(const xpath_ast_node&); 
-		xpath_ast_node& operator=(const xpath_ast_node&); 
+		XPathAstNode(const XPathAstNode&); 
+		XPathAstNode& operator=(const XPathAstNode&); 
  
-		template <class Comp> static bool compare_eq(xpath_ast_node* lhs, xpath_ast_node* rhs, const xpath_context& c, const xpath_stack& stack, const Comp& comp) 
+		template <class Comp> static bool compare_eq(XPathAstNode* lhs, XPathAstNode* rhs, const XPathContext& c, const XPathStack& stack, const Comp& comp) 
 		{ 
-			xpath_value_type lt = lhs->rettype(), rt = rhs->rettype(); 
+			XPathValueType lt = lhs->rettype(), rt = rhs->rettype(); 
  
-			if (lt != xpath_type_NodeSet && rt != xpath_type_NodeSet) 
+			if (lt != XPathTypeNodeSet && rt != XPathTypeNodeSet) 
 			{ 
-				if (lt == xpath_type_boolean || rt == xpath_type_boolean) 
+				if (lt == XPathTypeBoolean || rt == XPathTypeBoolean) 
 					return comp(lhs->eval_boolean(c, stack), rhs->eval_boolean(c, stack)); 
-				else if (lt == xpath_type_number || rt == xpath_type_number) 
+				else if (lt == XPathTypeNumber || rt == XPathTypeNumber) 
 					return comp(lhs->eval_number(c, stack), rhs->eval_number(c, stack)); 
-				else if (lt == xpath_type_string || rt == xpath_type_string) 
+				else if (lt == XPathTypeString || rt == XPathTypeString) 
 				{ 
-					xpath_allocator_capture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.result); 
  
-					xpath_string ls = lhs->eval_string(c, stack); 
-					xpath_string rs = rhs->eval_string(c, stack); 
+					XPathString ls = lhs->eval_string(c, stack); 
+					XPathString rs = rhs->eval_string(c, stack); 
  
 					return comp(ls, rs); 
 				} 
 			} 
-			else if (lt == xpath_type_NodeSet && rt == xpath_type_NodeSet) 
+			else if (lt == XPathTypeNodeSet && rt == XPathTypeNodeSet) 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
-				xpath_NodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
-				xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
-				for (const xpath_node* li = ls.begin(); li != ls.end(); ++li) 
-					for (const xpath_node* ri = rs.begin(); ri != rs.end(); ++ri) 
+				for (const XPathNode* li = ls.begin(); li != ls.end(); ++li) 
+					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
-						xpath_allocator_capture cri(stack.result); 
+						XPathAllocatorCapture cri(stack.result); 
  
 						if (comp(string_value(*li, stack.result), string_value(*ri, stack.result))) 
 							return true; 
@@ -6877,24 +6877,24 @@ namespace
 			} 
 			else 
 			{ 
-				if (lt == xpath_type_NodeSet) 
+				if (lt == XPathTypeNodeSet) 
 				{ 
 					swap(lhs, rhs); 
 					swap(lt, rt); 
 				} 
  
-				if (lt == xpath_type_boolean) 
+				if (lt == XPathTypeBoolean) 
 					return comp(lhs->eval_boolean(c, stack), rhs->eval_boolean(c, stack)); 
-				else if (lt == xpath_type_number) 
+				else if (lt == XPathTypeNumber) 
 				{ 
-					xpath_allocator_capture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.result); 
  
 					double l = lhs->eval_number(c, stack); 
-					xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
+					XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
-					for (const xpath_node* ri = rs.begin(); ri != rs.end(); ++ri) 
+					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
-						xpath_allocator_capture cri(stack.result); 
+						XPathAllocatorCapture cri(stack.result); 
  
 						if (comp(l, convert_string_to_number(string_value(*ri, stack.result).c_str()))) 
 							return true; 
@@ -6902,16 +6902,16 @@ namespace
  
 					return false; 
 				} 
-				else if (lt == xpath_type_string) 
+				else if (lt == XPathTypeString) 
 				{ 
-					xpath_allocator_capture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.result); 
  
-					xpath_string l = lhs->eval_string(c, stack); 
-					xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
+					XPathString l = lhs->eval_string(c, stack); 
+					XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
-					for (const xpath_node* ri = rs.begin(); ri != rs.end(); ++ri) 
+					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
-						xpath_allocator_capture cri(stack.result); 
+						XPathAllocatorCapture cri(stack.result); 
  
 						if (comp(l, string_value(*ri, stack.result))) 
 							return true; 
@@ -6925,28 +6925,28 @@ namespace
 			return false; 
 		} 
  
-		template <class Comp> static bool compare_rel(xpath_ast_node* lhs, xpath_ast_node* rhs, const xpath_context& c, const xpath_stack& stack, const Comp& comp) 
+		template <class Comp> static bool compare_rel(XPathAstNode* lhs, XPathAstNode* rhs, const XPathContext& c, const XPathStack& stack, const Comp& comp) 
 		{ 
-			xpath_value_type lt = lhs->rettype(), rt = rhs->rettype(); 
+			XPathValueType lt = lhs->rettype(), rt = rhs->rettype(); 
  
-			if (lt != xpath_type_NodeSet && rt != xpath_type_NodeSet) 
+			if (lt != XPathTypeNodeSet && rt != XPathTypeNodeSet) 
 				return comp(lhs->eval_number(c, stack), rhs->eval_number(c, stack)); 
-			else if (lt == xpath_type_NodeSet && rt == xpath_type_NodeSet) 
+			else if (lt == XPathTypeNodeSet && rt == XPathTypeNodeSet) 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
-				xpath_NodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
-				xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
-				for (const xpath_node* li = ls.begin(); li != ls.end(); ++li) 
+				for (const XPathNode* li = ls.begin(); li != ls.end(); ++li) 
 				{ 
-					xpath_allocator_capture cri(stack.result); 
+					XPathAllocatorCapture cri(stack.result); 
  
 					double l = convert_string_to_number(string_value(*li, stack.result).c_str()); 
  
-					for (const xpath_node* ri = rs.begin(); ri != rs.end(); ++ri) 
+					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
-						xpath_allocator_capture crii(stack.result); 
+						XPathAllocatorCapture crii(stack.result); 
  
 						if (comp(l, convert_string_to_number(string_value(*ri, stack.result).c_str()))) 
 							return true; 
@@ -6955,16 +6955,16 @@ namespace
  
 				return false; 
 			} 
-			else if (lt != xpath_type_NodeSet && rt == xpath_type_NodeSet) 
+			else if (lt != XPathTypeNodeSet && rt == XPathTypeNodeSet) 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
 				double l = lhs->eval_number(c, stack); 
-				xpath_NodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
-				for (const xpath_node* ri = rs.begin(); ri != rs.end(); ++ri) 
+				for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 				{ 
-					xpath_allocator_capture cri(stack.result); 
+					XPathAllocatorCapture cri(stack.result); 
  
 					if (comp(l, convert_string_to_number(string_value(*ri, stack.result).c_str()))) 
 						return true; 
@@ -6972,16 +6972,16 @@ namespace
  
 				return false; 
 			} 
-			else if (lt == xpath_type_NodeSet && rt != xpath_type_NodeSet) 
+			else if (lt == XPathTypeNodeSet && rt != XPathTypeNodeSet) 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
-				xpath_NodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
 				double r = rhs->eval_number(c, stack); 
  
-				for (const xpath_node* li = ls.begin(); li != ls.end(); ++li) 
+				for (const XPathNode* li = ls.begin(); li != ls.end(); ++li) 
 				{ 
-					xpath_allocator_capture cri(stack.result); 
+					XPathAllocatorCapture cri(stack.result); 
  
 					if (comp(convert_string_to_number(string_value(*li, stack.result).c_str()), r)) 
 						return true; 
@@ -6996,21 +6996,21 @@ namespace
 			} 
 		} 
  
-		void apply_predicate(xpath_NodeSet_raw& ns, size_t first, xpath_ast_node* expr, const xpath_stack& stack) 
+		void apply_predicate(XPathNodeSet_raw& ns, size_t first, XPathAstNode* expr, const XPathStack& stack) 
 		{ 
 			assert(ns.size() >= first); 
  
 			size_t i = 1; 
 			size_t size = ns.size() - first; 
 				 
-			xpath_node* last = ns.begin() + first; 
+			XPathNode* last = ns.begin() + first; 
 				 
 			// remove_if... or well, sort of 
-			for (xpath_node* it = last; it != ns.end(); ++it, ++i) 
+			for (XPathNode* it = last; it != ns.end(); ++it, ++i) 
 			{ 
-				xpath_context c(*it, i, size); 
+				XPathContext c(*it, i, size); 
 			 
-				if (expr->rettype() == xpath_type_number) 
+				if (expr->rettype() == XPathTypeNumber) 
 				{ 
 					if (expr->eval_number(c, stack) == i) 
 						*last++ = *it; 
@@ -7022,17 +7022,17 @@ namespace
 			ns.truncate(last); 
 		} 
  
-		void apply_predicates(xpath_NodeSet_raw& ns, size_t first, const xpath_stack& stack) 
+		void apply_predicates(XPathNodeSet_raw& ns, size_t first, const XPathStack& stack) 
 		{ 
 			if (ns.size() == first) return; 
 			 
-			for (xpath_ast_node* pred = _right; pred; pred = pred->_next) 
+			for (XPathAstNode* pred = _right; pred; pred = pred->_next) 
 			{ 
 				apply_predicate(ns, first, pred->_left, stack); 
 			} 
 		} 
  
-		void step_push(xpath_NodeSet_raw& ns, const Attribute& a, const Node& parent, xpath_allocator* alloc) 
+		void step_push(XPathNodeSet_raw& ns, const Attribute& a, const Node& parent, XPathAllocator* alloc) 
 		{ 
 			if (!a) return; 
  
@@ -7045,17 +7045,17 @@ namespace
 			switch (_test) 
 			{ 
 			case nodetest_name: 
-				if (strequal(name, _data.nodetest)) ns.push_back(xpath_node(a, parent), alloc); 
+				if (strequal(name, _data.nodetest)) ns.push_back(XPathNode(a, parent), alloc); 
 				break; 
 				 
 			case nodetest_type_node: 
 			case nodetest_all: 
-				ns.push_back(xpath_node(a, parent), alloc); 
+				ns.push_back(XPathNode(a, parent), alloc); 
 				break; 
 				 
 			case nodetest_all_in_namespace: 
 				if (starts_with(name, _data.nodetest)) 
-					ns.push_back(xpath_node(a, parent), alloc); 
+					ns.push_back(XPathNode(a, parent), alloc); 
 				break; 
 			 
 			default: 
@@ -7063,7 +7063,7 @@ namespace
 			} 
 		} 
 		 
-		void step_push(xpath_NodeSet_raw& ns, const Node& n, xpath_allocator* alloc) 
+		void step_push(XPathNodeSet_raw& ns, const Node& n, XPathAllocator* alloc) 
 		{ 
 			if (!n) return; 
  
@@ -7112,7 +7112,7 @@ namespace
 			}  
 		} 
  
-		template <class T> void step_fill(xpath_NodeSet_raw& ns, const Node& n, xpath_allocator* alloc, T) 
+		template <class T> void step_fill(XPathNodeSet_raw& ns, const Node& n, XPathAllocator* alloc, T) 
 		{ 
 			const axis_t axis = T::axis; 
  
@@ -7282,7 +7282,7 @@ namespace
 			} 
 		} 
 		 
-		template <class T> void step_fill(xpath_NodeSet_raw& ns, const Attribute& a, const Node& p, xpath_allocator* alloc, T v) 
+		template <class T> void step_fill(XPathNodeSet_raw& ns, const Attribute& a, const Node& p, XPathAllocator* alloc, T v) 
 		{ 
 			const axis_t axis = T::axis; 
  
@@ -7358,27 +7358,27 @@ namespace
 			} 
 		} 
 		 
-		template <class T> xpath_NodeSet_raw step_do(const xpath_context& c, const xpath_stack& stack, T v) 
+		template <class T> XPathNodeSet_raw step_do(const XPathContext& c, const XPathStack& stack, T v) 
 		{ 
 			const axis_t axis = T::axis; 
 			bool attributes = (axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_descendant_or_self || axis == axis_following || axis == axis_parent || axis == axis_preceding || axis == axis_self); 
  
-			xpath_NodeSet_raw ns; 
-			ns.set_type((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? xpath_NodeSet::type_sorted_reverse : xpath_NodeSet::type_sorted); 
+			XPathNodeSet_raw ns; 
+			ns.set_type((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? XPathNodeSet::type_sorted_reverse : XPathNodeSet::type_sorted); 
  
 			if (_left) 
 			{ 
-				xpath_NodeSet_raw s = _left->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw s = _left->eval_NodeSet(c, stack); 
  
 				// self axis preserves the original order 
 				if (axis == axis_self) ns.set_type(s.type()); 
  
-				for (const xpath_node* it = s.begin(); it != s.end(); ++it) 
+				for (const XPathNode* it = s.begin(); it != s.end(); ++it) 
 				{ 
 					size_t size = ns.size(); 
  
 					// in general, all axes generate elements in a particular order, but there is no order guarantee if axis is applied to two nodes 
-					if (axis != axis_self && size != 0) ns.set_type(xpath_NodeSet::type_unsorted); 
+					if (axis != axis_self && size != 0) ns.set_type(XPathNodeSet::type_unsorted); 
 					 
 					if (it->node()) 
 						step_fill(ns, it->node(), stack.result, v); 
@@ -7400,56 +7400,56 @@ namespace
  
 			// child, attribute and self axes always generate unique set of nodes 
 			// for other axis, if the set stayed sorted, it stayed unique because the traversal algorithms do not visit the same node twice 
-			if (axis != axis_child && axis != axis_attribute && axis != axis_self && ns.type() == xpath_NodeSet::type_unsorted) 
+			if (axis != axis_child && axis != axis_attribute && axis != axis_self && ns.type() == XPathNodeSet::type_unsorted) 
 				ns.remove_duplicates(); 
  
 			return ns; 
 		} 
 		 
 	public: 
-		xpath_ast_node(ast_type_t type, xpath_value_type rettype, const char_t* value): 
+		XPathAstNode(ast_type_t type, XPathValueType rettype, const char_t* value): 
 			_type((char)type), _rettype((char)rettype), _axis(0), _test(0), _left(0), _right(0), _next(0) 
 		{ 
 			assert(type == ast_string_constant); 
 			_data.string = value; 
 		} 
  
-		xpath_ast_node(ast_type_t type, xpath_value_type rettype, double value): 
+		XPathAstNode(ast_type_t type, XPathValueType rettype, double value): 
 			_type((char)type), _rettype((char)rettype), _axis(0), _test(0), _left(0), _right(0), _next(0) 
 		{ 
 			assert(type == ast_number_constant); 
 			_data.number = value; 
 		} 
 		 
-		xpath_ast_node(ast_type_t type, xpath_value_type rettype, xpath_variable* value): 
+		XPathAstNode(ast_type_t type, XPathValueType rettype, XPathVariable* value): 
 			_type((char)type), _rettype((char)rettype), _axis(0), _test(0), _left(0), _right(0), _next(0) 
 		{ 
 			assert(type == ast_variable); 
 			_data.variable = value; 
 		} 
 		 
-		xpath_ast_node(ast_type_t type, xpath_value_type rettype, xpath_ast_node* left = 0, xpath_ast_node* right = 0): 
+		XPathAstNode(ast_type_t type, XPathValueType rettype, XPathAstNode* left = 0, XPathAstNode* right = 0): 
 			_type((char)type), _rettype((char)rettype), _axis(0), _test(0), _left(left), _right(right), _next(0) 
 		{ 
 		} 
  
-		xpath_ast_node(ast_type_t type, xpath_ast_node* left, axis_t axis, nodetest_t test, const char_t* contents): 
-			_type((char)type), _rettype(xpath_type_NodeSet), _axis((char)axis), _test((char)test), _left(left), _right(0), _next(0) 
+		XPathAstNode(ast_type_t type, XPathAstNode* left, axis_t axis, nodetest_t test, const char_t* contents): 
+			_type((char)type), _rettype(XPathTypeNodeSet), _axis((char)axis), _test((char)test), _left(left), _right(0), _next(0) 
 		{ 
 			_data.nodetest = contents; 
 		} 
  
-		void set_next(xpath_ast_node* value) 
+		void set_next(XPathAstNode* value) 
 		{ 
 			_next = value; 
 		} 
  
-		void set_right(xpath_ast_node* value) 
+		void set_right(XPathAstNode* value) 
 		{ 
 			_right = value; 
 		} 
  
-		bool eval_boolean(const xpath_context& c, const xpath_stack& stack) 
+		bool eval_boolean(const XPathContext& c, const XPathStack& stack) 
 		{ 
 			switch (_type) 
 			{ 
@@ -7479,20 +7479,20 @@ namespace
  
 			case ast_func_starts_with: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
-				xpath_string lr = _left->eval_string(c, stack); 
-				xpath_string rr = _right->eval_string(c, stack); 
+				XPathString lr = _left->eval_string(c, stack); 
+				XPathString rr = _right->eval_string(c, stack); 
  
 				return starts_with(lr.c_str(), rr.c_str()); 
 			} 
  
 			case ast_func_contains: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
-				xpath_string lr = _left->eval_string(c, stack); 
-				xpath_string rr = _right->eval_string(c, stack); 
+				XPathString lr = _left->eval_string(c, stack); 
+				XPathString rr = _right->eval_string(c, stack); 
  
 				return find_substring(lr.c_str(), rr.c_str()) != 0; 
 			} 
@@ -7513,9 +7513,9 @@ namespace
 			{ 
 				if (c.n.attribute()) return false; 
 				 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
-				xpath_string lang = _left->eval_string(c, stack); 
+				XPathString lang = _left->eval_string(c, stack); 
 				 
 				for (Node n = c.n.node(); n; n = n.parent()) 
 				{ 
@@ -7543,7 +7543,7 @@ namespace
 			{ 
 				assert(_rettype == _data.variable->type()); 
  
-				if (_rettype == xpath_type_boolean) 
+				if (_rettype == XPathTypeBoolean) 
 					return _data.variable->get_boolean(); 
  
 				// fallthrough to type conversion 
@@ -7553,19 +7553,19 @@ namespace
 			{ 
 				switch (_rettype) 
 				{ 
-				case xpath_type_number: 
+				case XPathTypeNumber: 
 					return convert_number_to_boolean(eval_number(c, stack)); 
 					 
-				case xpath_type_string: 
+				case XPathTypeString: 
 				{ 
-					xpath_allocator_capture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.result); 
  
 					return !eval_string(c, stack).empty(); 
 				} 
 					 
-				case xpath_type_NodeSet:				 
+				case XPathTypeNodeSet:				 
 				{ 
-					xpath_allocator_capture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.result); 
  
 					return !eval_NodeSet(c, stack).empty(); 
 				} 
@@ -7578,7 +7578,7 @@ namespace
 			} 
 		} 
  
-		double eval_number(const xpath_context& c, const xpath_stack& stack) 
+		double eval_number(const XPathContext& c, const XPathStack& stack) 
 		{ 
 			switch (_type) 
 			{ 
@@ -7611,28 +7611,28 @@ namespace
  
 			case ast_func_count: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
 				return (double)_left->eval_NodeSet(c, stack).size(); 
 			} 
 			 
 			case ast_func_string_length_0: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
 				return (double)string_value(c.n, stack.result).length(); 
 			} 
 			 
 			case ast_func_string_length_1: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
 				return (double)_left->eval_string(c, stack).length(); 
 			} 
 			 
 			case ast_func_number_0: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
 				return convert_string_to_number(string_value(c.n, stack.result).c_str()); 
 			} 
@@ -7642,15 +7642,15 @@ namespace
  
 			case ast_func_sum: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
 				double r = 0; 
 				 
-				xpath_NodeSet_raw ns = _left->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw ns = _left->eval_NodeSet(c, stack); 
 				 
-				for (const xpath_node* it = ns.begin(); it != ns.end(); ++it) 
+				for (const XPathNode* it = ns.begin(); it != ns.end(); ++it) 
 				{ 
-					xpath_allocator_capture cri(stack.result); 
+					XPathAllocatorCapture cri(stack.result); 
  
 					r += convert_string_to_number(string_value(*it, stack.result).c_str()); 
 				} 
@@ -7679,7 +7679,7 @@ namespace
 			{ 
 				assert(_rettype == _data.variable->type()); 
  
-				if (_rettype == xpath_type_number) 
+				if (_rettype == XPathTypeNumber) 
 					return _data.variable->get_number(); 
  
 				// fallthrough to type conversion 
@@ -7689,19 +7689,19 @@ namespace
 			{ 
 				switch (_rettype) 
 				{ 
-				case xpath_type_boolean: 
+				case XPathTypeBoolean: 
 					return eval_boolean(c, stack) ? 1 : 0; 
 					 
-				case xpath_type_string: 
+				case XPathTypeString: 
 				{ 
-					xpath_allocator_capture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.result); 
  
 					return convert_string_to_number(eval_string(c, stack).c_str()); 
 				} 
 					 
-				case xpath_type_NodeSet: 
+				case XPathTypeNodeSet: 
 				{ 
-					xpath_allocator_capture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.result); 
  
 					return convert_string_to_number(eval_string(c, stack).c_str()); 
 				} 
@@ -7715,34 +7715,34 @@ namespace
 			} 
 		} 
 		 
-		xpath_string eval_string_concat(const xpath_context& c, const xpath_stack& stack) 
+		XPathString eval_string_concat(const XPathContext& c, const XPathStack& stack) 
 		{ 
 			assert(_type == ast_func_concat); 
  
-			xpath_allocator_capture ct(stack.temp); 
+			XPathAllocatorCapture ct(stack.temp); 
  
 			// count the string number 
 			size_t count = 1; 
-			for (xpath_ast_node* nc = _right; nc; nc = nc->_next) count++; 
+			for (XPathAstNode* nc = _right; nc; nc = nc->_next) count++; 
  
 			// gather all strings 
-			xpath_string static_buffer[4]; 
-			xpath_string* buffer = static_buffer; 
+			XPathString static_buffer[4]; 
+			XPathString* buffer = static_buffer; 
  
 			// allocate on-heap for large concats 
 			if (count > sizeof(static_buffer) / sizeof(static_buffer[0])) 
 			{ 
-				buffer = static_cast<xpath_string*>(stack.temp->allocate(count * sizeof(xpath_string))); 
+				buffer = static_cast<XPathString*>(stack.temp->allocate(count * sizeof(XPathString))); 
 				assert(buffer); 
 			} 
  
 			// evaluate all strings to temporary stack 
-			xpath_stack swapped_stack = {stack.temp, stack.result}; 
+			XPathStack swapped_stack = {stack.temp, stack.result}; 
  
 			buffer[0] = _left->eval_string(c, swapped_stack); 
  
 			size_t pos = 1; 
-			for (xpath_ast_node* n = _right; n; n = n->_next, ++pos) buffer[pos] = n->eval_string(c, swapped_stack); 
+			for (XPathAstNode* n = _right; n; n = n->_next, ++pos) buffer[pos] = n->eval_string(c, swapped_stack); 
 			assert(pos == count); 
  
 			// get total length 
@@ -7761,65 +7761,65 @@ namespace
  
 			*ri = 0; 
  
-			return xpath_string(result, true); 
+			return XPathString(result, true); 
 		} 
  
-		xpath_string eval_string(const xpath_context& c, const xpath_stack& stack) 
+		XPathString eval_string(const XPathContext& c, const XPathStack& stack) 
 		{ 
 			switch (_type) 
 			{ 
 			case ast_string_constant: 
-				return xpath_string_const(_data.string); 
+				return XPathStringConst(_data.string); 
 			 
 			case ast_func_local_name_0: 
 			{ 
-				xpath_node na = c.n; 
+				XPathNode na = c.n; 
 				 
-				return xpath_string_const(local_name(na)); 
+				return XPathStringConst(local_name(na)); 
 			} 
  
 			case ast_func_local_name_1: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
-				xpath_NodeSet_raw ns = _left->eval_NodeSet(c, stack); 
-				xpath_node na = ns.first(); 
+				XPathNodeSet_raw ns = _left->eval_NodeSet(c, stack); 
+				XPathNode na = ns.first(); 
 				 
-				return xpath_string_const(local_name(na)); 
+				return XPathStringConst(local_name(na)); 
 			} 
  
 			case ast_func_name_0: 
 			{ 
-				xpath_node na = c.n; 
+				XPathNode na = c.n; 
 				 
-				return xpath_string_const(qualified_name(na)); 
+				return XPathStringConst(qualified_name(na)); 
 			} 
  
 			case ast_func_name_1: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
-				xpath_NodeSet_raw ns = _left->eval_NodeSet(c, stack); 
-				xpath_node na = ns.first(); 
+				XPathNodeSet_raw ns = _left->eval_NodeSet(c, stack); 
+				XPathNode na = ns.first(); 
 				 
-				return xpath_string_const(qualified_name(na)); 
+				return XPathStringConst(qualified_name(na)); 
 			} 
  
 			case ast_func_namespace_uri_0: 
 			{ 
-				xpath_node na = c.n; 
+				XPathNode na = c.n; 
 				 
-				return xpath_string_const(namespace_uri(na)); 
+				return XPathStringConst(namespace_uri(na)); 
 			} 
  
 			case ast_func_namespace_uri_1: 
 			{ 
-				xpath_allocator_capture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.result); 
  
-				xpath_NodeSet_raw ns = _left->eval_NodeSet(c, stack); 
-				xpath_node na = ns.first(); 
+				XPathNodeSet_raw ns = _left->eval_NodeSet(c, stack); 
+				XPathNode na = ns.first(); 
 				 
-				return xpath_string_const(namespace_uri(na)); 
+				return XPathStringConst(namespace_uri(na)); 
 			} 
  
 			case ast_func_string_0: 
@@ -7833,73 +7833,73 @@ namespace
  
 			case ast_func_substring_before: 
 			{ 
-				xpath_allocator_capture cr(stack.temp); 
+				XPathAllocatorCapture cr(stack.temp); 
  
-				xpath_stack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.result}; 
  
-				xpath_string s = _left->eval_string(c, swapped_stack); 
-				xpath_string p = _right->eval_string(c, swapped_stack); 
+				XPathString s = _left->eval_string(c, swapped_stack); 
+				XPathString p = _right->eval_string(c, swapped_stack); 
  
 				const char_t* pos = find_substring(s.c_str(), p.c_str()); 
 				 
-				return pos ? xpath_string(s.c_str(), pos, stack.result) : xpath_string(); 
+				return pos ? XPathString(s.c_str(), pos, stack.result) : XPathString(); 
 			} 
 			 
 			case ast_func_substring_after: 
 			{ 
-				xpath_allocator_capture cr(stack.temp); 
+				XPathAllocatorCapture cr(stack.temp); 
  
-				xpath_stack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.result}; 
  
-				xpath_string s = _left->eval_string(c, swapped_stack); 
-				xpath_string p = _right->eval_string(c, swapped_stack); 
+				XPathString s = _left->eval_string(c, swapped_stack); 
+				XPathString p = _right->eval_string(c, swapped_stack); 
 				 
 				const char_t* pos = find_substring(s.c_str(), p.c_str()); 
-				if (!pos) return xpath_string(); 
+				if (!pos) return XPathString(); 
  
 				const char_t* result = pos + p.length(); 
  
-				return s.uses_heap() ? xpath_string(result, stack.result) : xpath_string_const(result); 
+				return s.uses_heap() ? XPathString(result, stack.result) : XPathStringConst(result); 
 			} 
  
 			case ast_func_substring_2: 
 			{ 
-				xpath_allocator_capture cr(stack.temp); 
+				XPathAllocatorCapture cr(stack.temp); 
  
-				xpath_stack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.result}; 
  
-				xpath_string s = _left->eval_string(c, swapped_stack); 
+				XPathString s = _left->eval_string(c, swapped_stack); 
 				size_t s_length = s.length(); 
  
 				double first = round_nearest(_right->eval_number(c, stack)); 
 				 
-				if (is_nan(first)) return xpath_string(); // NaN 
-				else if (first >= s_length + 1) return xpath_string(); 
+				if (is_nan(first)) return XPathString(); // NaN 
+				else if (first >= s_length + 1) return XPathString(); 
 				 
 				size_t pos = first < 1 ? 1 : (size_t)first; 
 				assert(1 <= pos && pos <= s_length + 1); 
  
 				const char_t* rbegin = s.c_str() + (pos - 1); 
 				 
-				return s.uses_heap() ? xpath_string(rbegin, stack.result) : xpath_string_const(rbegin); 
+				return s.uses_heap() ? XPathString(rbegin, stack.result) : XPathStringConst(rbegin); 
 			} 
 			 
 			case ast_func_substring_3: 
 			{ 
-				xpath_allocator_capture cr(stack.temp); 
+				XPathAllocatorCapture cr(stack.temp); 
  
-				xpath_stack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.result}; 
  
-				xpath_string s = _left->eval_string(c, swapped_stack); 
+				XPathString s = _left->eval_string(c, swapped_stack); 
 				size_t s_length = s.length(); 
  
 				double first = round_nearest(_right->eval_number(c, stack)); 
 				double last = first + round_nearest(_right->_next->eval_number(c, stack)); 
 				 
-				if (is_nan(first) || is_nan(last)) return xpath_string(); 
-				else if (first >= s_length + 1) return xpath_string(); 
-				else if (first >= last) return xpath_string(); 
-				else if (last < 1) return xpath_string(); 
+				if (is_nan(first) || is_nan(last)) return XPathString(); 
+				else if (first >= s_length + 1) return XPathString(); 
+				else if (first >= last) return XPathString(); 
+				else if (last < 1) return XPathString(); 
 				 
 				size_t pos = first < 1 ? 1 : (size_t)first; 
 				size_t end = last >= s_length + 1 ? s_length + 1 : (size_t)last; 
@@ -7908,12 +7908,12 @@ namespace
 				const char_t* rbegin = s.c_str() + (pos - 1); 
 				const char_t* rend = s.c_str() + (end - 1); 
  
-				return (end == s_length + 1 && !s.uses_heap()) ? xpath_string_const(rbegin) : xpath_string(rbegin, rend, stack.result); 
+				return (end == s_length + 1 && !s.uses_heap()) ? XPathStringConst(rbegin) : XPathString(rbegin, rend, stack.result); 
 			} 
  
 			case ast_func_normalize_space_0: 
 			{ 
-				xpath_string s = string_value(c.n, stack.result); 
+				XPathString s = string_value(c.n, stack.result); 
  
 				normalize_space(s.data(stack.result)); 
  
@@ -7922,7 +7922,7 @@ namespace
  
 			case ast_func_normalize_space_1: 
 			{ 
-				xpath_string s = _left->eval_string(c, stack); 
+				XPathString s = _left->eval_string(c, stack); 
  
 				normalize_space(s.data(stack.result)); 
 			 
@@ -7931,13 +7931,13 @@ namespace
  
 			case ast_func_translate: 
 			{ 
-				xpath_allocator_capture cr(stack.temp); 
+				XPathAllocatorCapture cr(stack.temp); 
  
-				xpath_stack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.result}; 
  
-				xpath_string s = _left->eval_string(c, stack); 
-				xpath_string from = _right->eval_string(c, swapped_stack); 
-				xpath_string to = _right->_next->eval_string(c, swapped_stack); 
+				XPathString s = _left->eval_string(c, stack); 
+				XPathString from = _right->eval_string(c, swapped_stack); 
+				XPathString to = _right->_next->eval_string(c, swapped_stack); 
  
 				translate(s.data(stack.result), from.c_str(), to.c_str()); 
  
@@ -7948,8 +7948,8 @@ namespace
 			{ 
 				assert(_rettype == _data.variable->type()); 
  
-				if (_rettype == xpath_type_string) 
-					return xpath_string_const(_data.variable->get_string()); 
+				if (_rettype == XPathTypeString) 
+					return XPathStringConst(_data.variable->get_string()); 
  
 				// fallthrough to type conversion 
 			} 
@@ -7958,45 +7958,45 @@ namespace
 			{ 
 				switch (_rettype) 
 				{ 
-				case xpath_type_boolean: 
-					return xpath_string_const(eval_boolean(c, stack) ? XML_TEXT("true") : XML_TEXT("false")); 
+				case XPathTypeBoolean: 
+					return XPathStringConst(eval_boolean(c, stack) ? XML_TEXT("true") : XML_TEXT("false")); 
 					 
-				case xpath_type_number: 
+				case XPathTypeNumber: 
 					return convert_number_to_string(eval_number(c, stack), stack.result); 
 					 
-				case xpath_type_NodeSet: 
+				case XPathTypeNodeSet: 
 				{ 
-					xpath_allocator_capture cr(stack.temp); 
+					XPathAllocatorCapture cr(stack.temp); 
  
-					xpath_stack swapped_stack = {stack.temp, stack.result}; 
+					XPathStack swapped_stack = {stack.temp, stack.result}; 
  
-					xpath_NodeSet_raw ns = eval_NodeSet(c, swapped_stack); 
-					return ns.empty() ? xpath_string() : string_value(ns.first(), stack.result); 
+					XPathNodeSet_raw ns = eval_NodeSet(c, swapped_stack); 
+					return ns.empty() ? XPathString() : string_value(ns.first(), stack.result); 
 				} 
 				 
 				default: 
 					assert(!"Wrong expression for return type string"); 
-					return xpath_string(); 
+					return XPathString(); 
 				} 
 			} 
 			} 
 		} 
  
-		xpath_NodeSet_raw eval_NodeSet(const xpath_context& c, const xpath_stack& stack) 
+		XPathNodeSet_raw eval_NodeSet(const XPathContext& c, const XPathStack& stack) 
 		{ 
 			switch (_type) 
 			{ 
 			case ast_op_union: 
 			{ 
-				xpath_allocator_capture cr(stack.temp); 
+				XPathAllocatorCapture cr(stack.temp); 
  
-				xpath_stack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.result}; 
  
-				xpath_NodeSet_raw ls = _left->eval_NodeSet(c, swapped_stack); 
-				xpath_NodeSet_raw rs = _right->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw ls = _left->eval_NodeSet(c, swapped_stack); 
+				XPathNodeSet_raw rs = _right->eval_NodeSet(c, stack); 
 				 
 				// we can optimize merging two sorted sets, but this is a very rare operation, so don't bother 
-  				rs.set_type(xpath_NodeSet::type_unsorted); 
+  				rs.set_type(XPathNodeSet::type_unsorted); 
  
 				rs.append(ls.begin(), ls.end(), stack.result); 
 				rs.remove_duplicates(); 
@@ -8007,7 +8007,7 @@ namespace
 			case ast_filter: 
 			case ast_filter_posinv: 
 			{ 
-				xpath_NodeSet_raw set = _left->eval_NodeSet(c, stack); 
+				XPathNodeSet_raw set = _left->eval_NodeSet(c, stack); 
  
 				// either expression is a number or it contains position() call; sort by document order 
 				if (_type == ast_filter) set.sort_do(); 
@@ -8018,7 +8018,7 @@ namespace
 			} 
 			 
 			case ast_func_id: 
-				return xpath_NodeSet_raw(); 
+				return XPathNodeSet_raw(); 
 			 
 			case ast_step: 
 			{ 
@@ -8050,7 +8050,7 @@ namespace
 				 
 				case axis_namespace: 
 					// namespaced axis is not supported 
-					return xpath_NodeSet_raw(); 
+					return XPathNodeSet_raw(); 
 				 
 				case axis_parent: 
 					return step_do(c, stack, axis_to_type<axis_parent>()); 
@@ -8070,9 +8070,9 @@ namespace
 			{ 
 				assert(!_right); // root step can't have any predicates 
  
-				xpath_NodeSet_raw ns; 
+				XPathNodeSet_raw ns; 
  
-				ns.set_type(xpath_NodeSet::type_sorted); 
+				ns.set_type(XPathNodeSet::type_sorted); 
  
 				if (c.n.node()) ns.push_back(c.n.node().root(), stack.result); 
 				else if (c.n.attribute()) ns.push_back(c.n.parent().root(), stack.result); 
@@ -8084,11 +8084,11 @@ namespace
 			{ 
 				assert(_rettype == _data.variable->type()); 
  
-				if (_rettype == xpath_type_NodeSet) 
+				if (_rettype == XPathTypeNodeSet) 
 				{ 
-					const xpath_NodeSet& s = _data.variable->get_NodeSet(); 
+					const XPathNodeSet& s = _data.variable->get_NodeSet(); 
  
-					xpath_NodeSet_raw ns; 
+					XPathNodeSet_raw ns; 
  
 					ns.set_type(s.type()); 
 					ns.append(s.begin(), s.end(), stack.result); 
@@ -8101,7 +8101,7 @@ namespace
  
 			default: 
 				assert(!"Wrong expression for return type node set"); 
-				return xpath_NodeSet_raw(); 
+				return XPathNodeSet_raw(); 
 			} 
 		} 
 		 
@@ -8129,28 +8129,28 @@ namespace
 			default: 
 				if (_left && !_left->is_posinv()) return false; 
 				 
-				for (xpath_ast_node* n = _right; n; n = n->_next) 
+				for (XPathAstNode* n = _right; n; n = n->_next) 
 					if (!n->is_posinv()) return false; 
 					 
 				return true; 
 			} 
 		} 
  
-		xpath_value_type rettype() const 
+		XPathValueType rettype() const 
 		{ 
-			return static_cast<xpath_value_type>(_rettype); 
+			return static_cast<XPathValueType>(_rettype); 
 		} 
 	}; 
  
-	struct xpath_parser 
+	struct XPathParser 
 	{ 
-		xpath_allocator* _alloc; 
-		xpath_lexer _lexer; 
+		XPathAllocator* _alloc; 
+		XPathLexer _lexer; 
  
 		const char_t* _query; 
-		xpath_variable_set* _variables; 
+		XPathVariableSet* _variables; 
  
-		xpath_ParseResult* _result; 
+		XPathParseResult* _result; 
  
 	#ifdef XML_NO_EXCEPTIONS 
 		jmp_buf _error_handler; 
@@ -8164,7 +8164,7 @@ namespace
 		#ifdef XML_NO_EXCEPTIONS 
 			longjmp(_error_handler, 1); 
 		#else 
-			throw xpath_exception(*_result); 
+			throw XPathException(*_result); 
 		#endif 
 		} 
  
@@ -8179,14 +8179,14 @@ namespace
  
 		void* alloc_node() 
 		{ 
-			void* result = _alloc->allocate_nothrow(sizeof(xpath_ast_node)); 
+			void* result = _alloc->allocate_nothrow(sizeof(XPathAstNode)); 
  
 			if (!result) throw_error_oom(); 
  
 			return result; 
 		} 
  
-		const char_t* alloc_string(const xpath_lexer_string& value) 
+		const char_t* alloc_string(const XPathLexerString& value) 
 		{ 
 			if (value.begin) 
 			{ 
@@ -8203,59 +8203,59 @@ namespace
 			else return 0; 
 		} 
  
-		xpath_ast_node* ParseFunctionHelper(ast_type_t type0, ast_type_t type1, size_t argc, xpath_ast_node* args[2]) 
+		XPathAstNode* ParseFunctionHelper(ast_type_t type0, ast_type_t type1, size_t argc, XPathAstNode* args[2]) 
 		{ 
 			assert(argc <= 1); 
  
-			if (argc == 1 && args[0]->rettype() != xpath_type_NodeSet) throw_error("Function has to be applied to node set"); 
+			if (argc == 1 && args[0]->rettype() != XPathTypeNodeSet) throw_error("Function has to be applied to node set"); 
  
-			return new (alloc_node()) xpath_ast_node(argc == 0 ? type0 : type1, xpath_type_string, args[0]); 
+			return new (alloc_node()) XPathAstNode(argc == 0 ? type0 : type1, XPathTypeString, args[0]); 
 		} 
  
-		xpath_ast_node* ParseFunction(const xpath_lexer_string& name, size_t argc, xpath_ast_node* args[2]) 
+		XPathAstNode* ParseFunction(const XPathLexerString& name, size_t argc, XPathAstNode* args[2]) 
 		{ 
 			switch (name.begin[0]) 
 			{ 
 			case 'b': 
 				if (name == XML_TEXT("boolean") && argc == 1) 
-					return new (alloc_node()) xpath_ast_node(ast_func_boolean, xpath_type_boolean, args[0]); 
+					return new (alloc_node()) XPathAstNode(ast_func_boolean, XPathTypeBoolean, args[0]); 
 					 
 				break; 
 			 
 			case 'c': 
 				if (name == XML_TEXT("count") && argc == 1) 
 				{ 
-					if (args[0]->rettype() != xpath_type_NodeSet) throw_error("Function has to be applied to node set"); 
-					return new (alloc_node()) xpath_ast_node(ast_func_count, xpath_type_number, args[0]); 
+					if (args[0]->rettype() != XPathTypeNodeSet) throw_error("Function has to be applied to node set"); 
+					return new (alloc_node()) XPathAstNode(ast_func_count, XPathTypeNumber, args[0]); 
 				} 
 				else if (name == XML_TEXT("contains") && argc == 2) 
-					return new (alloc_node()) xpath_ast_node(ast_func_contains, xpath_type_string, args[0], args[1]); 
+					return new (alloc_node()) XPathAstNode(ast_func_contains, XPathTypeString, args[0], args[1]); 
 				else if (name == XML_TEXT("concat") && argc >= 2) 
-					return new (alloc_node()) xpath_ast_node(ast_func_concat, xpath_type_string, args[0], args[1]); 
+					return new (alloc_node()) XPathAstNode(ast_func_concat, XPathTypeString, args[0], args[1]); 
 				else if (name == XML_TEXT("ceiling") && argc == 1) 
-					return new (alloc_node()) xpath_ast_node(ast_func_ceiling, xpath_type_number, args[0]); 
+					return new (alloc_node()) XPathAstNode(ast_func_ceiling, XPathTypeNumber, args[0]); 
 					 
 				break; 
 			 
 			case 'f': 
 				if (name == XML_TEXT("false") && argc == 0) 
-					return new (alloc_node()) xpath_ast_node(ast_func_false, xpath_type_boolean); 
+					return new (alloc_node()) XPathAstNode(ast_func_false, XPathTypeBoolean); 
 				else if (name == XML_TEXT("floor") && argc == 1) 
-					return new (alloc_node()) xpath_ast_node(ast_func_floor, xpath_type_number, args[0]); 
+					return new (alloc_node()) XPathAstNode(ast_func_floor, XPathTypeNumber, args[0]); 
 					 
 				break; 
 			 
 			case 'i': 
 				if (name == XML_TEXT("id") && argc == 1) 
-					return new (alloc_node()) xpath_ast_node(ast_func_id, xpath_type_NodeSet, args[0]); 
+					return new (alloc_node()) XPathAstNode(ast_func_id, XPathTypeNodeSet, args[0]); 
 					 
 				break; 
 			 
 			case 'l': 
 				if (name == XML_TEXT("last") && argc == 0) 
-					return new (alloc_node()) xpath_ast_node(ast_func_last, xpath_type_number); 
+					return new (alloc_node()) XPathAstNode(ast_func_last, XPathTypeNumber); 
 				else if (name == XML_TEXT("lang") && argc == 1) 
-					return new (alloc_node()) xpath_ast_node(ast_func_lang, xpath_type_boolean, args[0]); 
+					return new (alloc_node()) XPathAstNode(ast_func_lang, XPathTypeBoolean, args[0]); 
 				else if (name == XML_TEXT("local-name") && argc <= 1) 
 					return ParseFunctionHelper(ast_func_local_name_0, ast_func_local_name_1, argc, args); 
 			 
@@ -8267,52 +8267,52 @@ namespace
 				else if (name == XML_TEXT("namespace-uri") && argc <= 1) 
 					return ParseFunctionHelper(ast_func_namespace_uri_0, ast_func_namespace_uri_1, argc, args); 
 				else if (name == XML_TEXT("normalize-space") && argc <= 1) 
-					return new (alloc_node()) xpath_ast_node(argc == 0 ? ast_func_normalize_space_0 : ast_func_normalize_space_1, xpath_type_string, args[0], args[1]); 
+					return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_normalize_space_0 : ast_func_normalize_space_1, XPathTypeString, args[0], args[1]); 
 				else if (name == XML_TEXT("not") && argc == 1) 
-					return new (alloc_node()) xpath_ast_node(ast_func_not, xpath_type_boolean, args[0]); 
+					return new (alloc_node()) XPathAstNode(ast_func_not, XPathTypeBoolean, args[0]); 
 				else if (name == XML_TEXT("number") && argc <= 1) 
-					return new (alloc_node()) xpath_ast_node(argc == 0 ? ast_func_number_0 : ast_func_number_1, xpath_type_number, args[0]); 
+					return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_number_0 : ast_func_number_1, XPathTypeNumber, args[0]); 
 			 
 				break; 
 			 
 			case 'p': 
 				if (name == XML_TEXT("position") && argc == 0) 
-					return new (alloc_node()) xpath_ast_node(ast_func_position, xpath_type_number); 
+					return new (alloc_node()) XPathAstNode(ast_func_position, XPathTypeNumber); 
 				 
 				break; 
 			 
 			case 'r': 
 				if (name == XML_TEXT("round") && argc == 1) 
-					return new (alloc_node()) xpath_ast_node(ast_func_round, xpath_type_number, args[0]); 
+					return new (alloc_node()) XPathAstNode(ast_func_round, XPathTypeNumber, args[0]); 
  
 				break; 
 			 
 			case 's': 
 				if (name == XML_TEXT("string") && argc <= 1) 
-					return new (alloc_node()) xpath_ast_node(argc == 0 ? ast_func_string_0 : ast_func_string_1, xpath_type_string, args[0]); 
+					return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_string_0 : ast_func_string_1, XPathTypeString, args[0]); 
 				else if (name == XML_TEXT("string-length") && argc <= 1) 
-					return new (alloc_node()) xpath_ast_node(argc == 0 ? ast_func_string_length_0 : ast_func_string_length_1, xpath_type_string, args[0]); 
+					return new (alloc_node()) XPathAstNode(argc == 0 ? ast_func_string_length_0 : ast_func_string_length_1, XPathTypeString, args[0]); 
 				else if (name == XML_TEXT("starts-with") && argc == 2) 
-					return new (alloc_node()) xpath_ast_node(ast_func_starts_with, xpath_type_boolean, args[0], args[1]); 
+					return new (alloc_node()) XPathAstNode(ast_func_starts_with, XPathTypeBoolean, args[0], args[1]); 
 				else if (name == XML_TEXT("substring-before") && argc == 2) 
-					return new (alloc_node()) xpath_ast_node(ast_func_substring_before, xpath_type_string, args[0], args[1]); 
+					return new (alloc_node()) XPathAstNode(ast_func_substring_before, XPathTypeString, args[0], args[1]); 
 				else if (name == XML_TEXT("substring-after") && argc == 2) 
-					return new (alloc_node()) xpath_ast_node(ast_func_substring_after, xpath_type_string, args[0], args[1]); 
+					return new (alloc_node()) XPathAstNode(ast_func_substring_after, XPathTypeString, args[0], args[1]); 
 				else if (name == XML_TEXT("substring") && (argc == 2 || argc == 3)) 
-					return new (alloc_node()) xpath_ast_node(argc == 2 ? ast_func_substring_2 : ast_func_substring_3, xpath_type_string, args[0], args[1]); 
+					return new (alloc_node()) XPathAstNode(argc == 2 ? ast_func_substring_2 : ast_func_substring_3, XPathTypeString, args[0], args[1]); 
 				else if (name == XML_TEXT("sum") && argc == 1) 
 				{ 
-					if (args[0]->rettype() != xpath_type_NodeSet) throw_error("Function has to be applied to node set"); 
-					return new (alloc_node()) xpath_ast_node(ast_func_sum, xpath_type_number, args[0]); 
+					if (args[0]->rettype() != XPathTypeNodeSet) throw_error("Function has to be applied to node set"); 
+					return new (alloc_node()) XPathAstNode(ast_func_sum, XPathTypeNumber, args[0]); 
 				} 
  
 				break; 
 			 
 			case 't': 
 				if (name == XML_TEXT("translate") && argc == 3) 
-					return new (alloc_node()) xpath_ast_node(ast_func_translate, xpath_type_string, args[0], args[1]); 
+					return new (alloc_node()) XPathAstNode(ast_func_translate, XPathTypeString, args[0], args[1]); 
 				else if (name == XML_TEXT("true") && argc == 0) 
-					return new (alloc_node()) xpath_ast_node(ast_func_true, xpath_type_boolean); 
+					return new (alloc_node()) XPathAstNode(ast_func_true, XPathTypeBoolean); 
 					 
 				break; 
 			} 
@@ -8322,7 +8322,7 @@ namespace
 			return 0; 
 		} 
  
-		axis_t ParseAxisName(const xpath_lexer_string& name, bool& specified) 
+		axis_t ParseAxisName(const XPathLexerString& name, bool& specified) 
 		{ 
 			specified = true; 
  
@@ -8387,7 +8387,7 @@ namespace
 			return axis_child; 
 		} 
  
-		nodetest_t ParseNodeTest_type(const xpath_lexer_string& name) 
+		nodetest_t ParseNodeTest_type(const XPathLexerString& name) 
 		{ 
 			switch (name.begin[0]) 
 			{ 
@@ -8420,32 +8420,32 @@ namespace
 		} 
  
 		// PrimaryExpr ::= VariableReference | '(' Expr ')' | Literal | Number | FunctionCall 
-		xpath_ast_node* ParsePrimaryExpression() 
+		XPathAstNode* ParsePrimaryExpression() 
 		{ 
 			switch (_lexer.current()) 
 			{ 
 			case lex_var_ref: 
 			{ 
-				xpath_lexer_string name = _lexer.contents(); 
+				XPathLexerString name = _lexer.contents(); 
  
 				if (!_variables) 
 					throw_error("Unknown variable: variable set is not provided"); 
  
-				xpath_variable* var = get_variable(_variables, name.begin, name.end); 
+				XPathVariable* var = get_variable(_variables, name.begin, name.end); 
  
 				if (!var) 
 					throw_error("Unknown variable: variable set does not contain the given name"); 
  
 				_lexer.next(); 
  
-				return new (alloc_node()) xpath_ast_node(ast_variable, var->type(), var); 
+				return new (alloc_node()) XPathAstNode(ast_variable, var->type(), var); 
 			} 
  
 			case lex_open_brace: 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* n = ParseExpression(); 
+				XPathAstNode* n = ParseExpression(); 
  
 				if (_lexer.current() != lex_close_brace) 
 					throw_error("Unmatched braces"); 
@@ -8459,7 +8459,7 @@ namespace
 			{ 
 				const char_t* value = alloc_string(_lexer.contents()); 
  
-				xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_string_constant, xpath_type_string, value); 
+				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_string_constant, XPathTypeString, value); 
 				_lexer.next(); 
  
 				return n; 
@@ -8472,7 +8472,7 @@ namespace
 				if (!convert_string_to_number(_lexer.contents().begin, _lexer.contents().end, &value)) 
 					throw_error_oom(); 
  
-				xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_number_constant, xpath_type_number, value); 
+				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_number_constant, XPathTypeNumber, value); 
 				_lexer.next(); 
  
 				return n; 
@@ -8480,13 +8480,13 @@ namespace
  
 			case lex_string: 
 			{ 
-				xpath_ast_node* args[2] = {0}; 
+				XPathAstNode* args[2] = {0}; 
 				size_t argc = 0; 
 				 
-				xpath_lexer_string function = _lexer.contents(); 
+				XPathLexerString function = _lexer.contents(); 
 				_lexer.next(); 
 				 
-				xpath_ast_node* last_arg = 0; 
+				XPathAstNode* last_arg = 0; 
 				 
 				if (_lexer.current() != lex_open_brace) 
 					throw_error("Unrecognized function call"); 
@@ -8501,7 +8501,7 @@ namespace
 						throw_error("No comma between function arguments"); 
 					_lexer.next(); 
 					 
-					xpath_ast_node* n = ParseExpression(); 
+					XPathAstNode* n = ParseExpression(); 
 					 
 					if (argc < 2) args[argc] = n; 
 					else last_arg->set_next(n); 
@@ -8525,21 +8525,21 @@ namespace
 		// FilterExpr ::= PrimaryExpr | FilterExpr Predicate 
 		// Predicate ::= '[' PredicateExpr ']' 
 		// PredicateExpr ::= Expr 
-		xpath_ast_node* ParseFilterExpression() 
+		XPathAstNode* ParseFilterExpression() 
 		{ 
-			xpath_ast_node* n = ParsePrimaryExpression(); 
+			XPathAstNode* n = ParsePrimaryExpression(); 
  
 			while (_lexer.current() == lex_open_square_brace) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = ParseExpression(); 
+				XPathAstNode* expr = ParseExpression(); 
  
-				if (n->rettype() != xpath_type_NodeSet) throw_error("Predicate has to be applied to node set"); 
+				if (n->rettype() != XPathTypeNodeSet) throw_error("Predicate has to be applied to node set"); 
  
-				bool posinv = expr->rettype() != xpath_type_number && expr->is_posinv(); 
+				bool posinv = expr->rettype() != XPathTypeNumber && expr->is_posinv(); 
  
-				n = new (alloc_node()) xpath_ast_node(posinv ? ast_filter_posinv : ast_filter, xpath_type_NodeSet, n, expr); 
+				n = new (alloc_node()) XPathAstNode(posinv ? ast_filter_posinv : ast_filter, XPathTypeNodeSet, n, expr); 
  
 				if (_lexer.current() != lex_close_square_brace) 
 					throw_error("Unmatched square brace"); 
@@ -8555,9 +8555,9 @@ namespace
 		// NodeTest ::= NameTest | NodeType '(' ')' | 'processing-instruction' '(' Literal ')' 
 		// NameTest ::= '*' | NCName ':' '*' | QName 
 		// AbbreviatedStep ::= '.' | '..' 
-		xpath_ast_node* ParseStep(xpath_ast_node* set) 
+		XPathAstNode* ParseStep(XPathAstNode* set) 
 		{ 
-			if (set && set->rettype() != xpath_type_NodeSet) 
+			if (set && set->rettype() != XPathTypeNodeSet) 
 				throw_error("Step has to be applied to node set"); 
  
 			bool axis_specified = false; 
@@ -8574,17 +8574,17 @@ namespace
 			{ 
 				_lexer.next(); 
 				 
-				return new (alloc_node()) xpath_ast_node(ast_step, set, axis_self, nodetest_type_node, 0); 
+				return new (alloc_node()) XPathAstNode(ast_step, set, axis_self, nodetest_type_node, 0); 
 			} 
 			else if (_lexer.current() == lex_double_dot) 
 			{ 
 				_lexer.next(); 
 				 
-				return new (alloc_node()) xpath_ast_node(ast_step, set, axis_parent, nodetest_type_node, 0); 
+				return new (alloc_node()) XPathAstNode(ast_step, set, axis_parent, nodetest_type_node, 0); 
 			} 
 		 
 			nodetest_t nt_type = nodetest_none; 
-			xpath_lexer_string nt_name; 
+			XPathLexerString nt_name; 
 			 
 			if (_lexer.current() == lex_string) 
 			{ 
@@ -8608,7 +8608,7 @@ namespace
 					if (_lexer.current() == lex_multiply) 
 					{ 
 						nt_type = nodetest_all; 
-						nt_name = xpath_lexer_string(); 
+						nt_name = XPathLexerString(); 
 						_lexer.next(); 
 					} 
 					else if (_lexer.current() == lex_string) 
@@ -8634,7 +8634,7 @@ namespace
  
 							if (nt_type == nodetest_none) throw_error("Unrecognized node type"); 
 							 
-							nt_name = xpath_lexer_string(); 
+							nt_name = XPathLexerString(); 
 						} 
 						else if (nt_name == XML_TEXT("processing-instruction")) 
 						{ 
@@ -8673,17 +8673,17 @@ namespace
 			} 
 			else throw_error("Unrecognized node test"); 
 			 
-			xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_step, set, axis, nt_type, alloc_string(nt_name)); 
+			XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_step, set, axis, nt_type, alloc_string(nt_name)); 
 			 
-			xpath_ast_node* last = 0; 
+			XPathAstNode* last = 0; 
 			 
 			while (_lexer.current() == lex_open_square_brace) 
 			{ 
 				_lexer.next(); 
 				 
-				xpath_ast_node* expr = ParseExpression(); 
+				XPathAstNode* expr = ParseExpression(); 
  
-				xpath_ast_node* pred = new (alloc_node()) xpath_ast_node(ast_predicate, xpath_type_NodeSet, expr); 
+				XPathAstNode* pred = new (alloc_node()) XPathAstNode(ast_predicate, XPathTypeNodeSet, expr); 
 				 
 				if (_lexer.current() != lex_close_square_brace) 
 					throw_error("Unmatched square brace"); 
@@ -8699,9 +8699,9 @@ namespace
 		} 
 		 
 		// RelativeLocationPath ::= Step | RelativeLocationPath '/' Step | RelativeLocationPath '//' Step 
-		xpath_ast_node* ParseRelativeLocation_path(xpath_ast_node* set) 
+		XPathAstNode* ParseRelativeLocation_path(XPathAstNode* set) 
 		{ 
-			xpath_ast_node* n = ParseStep(set); 
+			XPathAstNode* n = ParseStep(set); 
 			 
 			while (_lexer.current() == lex_slash || _lexer.current() == lex_double_slash) 
 			{ 
@@ -8709,7 +8709,7 @@ namespace
 				_lexer.next(); 
  
 				if (l == lex_double_slash) 
-					n = new (alloc_node()) xpath_ast_node(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
+					n = new (alloc_node()) XPathAstNode(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 				 
 				n = ParseStep(n); 
 			} 
@@ -8719,13 +8719,13 @@ namespace
 		 
 		// LocationPath ::= RelativeLocationPath | AbsoluteLocationPath 
 		// AbsoluteLocationPath ::= '/' RelativeLocationPath? | '//' RelativeLocationPath 
-		xpath_ast_node* ParseLocationPath() 
+		XPathAstNode* ParseLocationPath() 
 		{ 
 			if (_lexer.current() == lex_slash) 
 			{ 
 				_lexer.next(); 
 				 
-				xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_step_root, xpath_type_NodeSet); 
+				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_step_root, XPathTypeNodeSet); 
  
 				// relative location path can start from axis_attribute, dot, double_dot, multiply and string lexemes; any other lexeme means standalone root path 
 				lexeme_t l = _lexer.current(); 
@@ -8739,8 +8739,8 @@ namespace
 			{ 
 				_lexer.next(); 
 				 
-				xpath_ast_node* n = new (alloc_node()) xpath_ast_node(ast_step_root, xpath_type_NodeSet); 
-				n = new (alloc_node()) xpath_ast_node(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
+				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_step_root, XPathTypeNodeSet); 
+				n = new (alloc_node()) XPathAstNode(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 				 
 				return ParseRelativeLocation_path(n); 
 			} 
@@ -8753,7 +8753,7 @@ namespace
 		//				| FilterExpr 
 		//				| FilterExpr '/' RelativeLocationPath 
 		//				| FilterExpr '//' RelativeLocationPath 
-		xpath_ast_node* ParsePathExpression() 
+		XPathAstNode* ParsePathExpression() 
 		{ 
 			// Clarification. 
 			// PathExpr begins with either LocationPath or FilterExpr. 
@@ -8779,7 +8779,7 @@ namespace
 					if (ParseNodeTest_type(_lexer.contents()) != nodetest_none) return ParseLocationPath(); 
 				} 
 				 
-				xpath_ast_node* n = ParseFilterExpression(); 
+				XPathAstNode* n = ParseFilterExpression(); 
  
 				if (_lexer.current() == lex_slash || _lexer.current() == lex_double_slash) 
 				{ 
@@ -8788,9 +8788,9 @@ namespace
 					 
 					if (l == lex_double_slash) 
 					{ 
-						if (n->rettype() != xpath_type_NodeSet) throw_error("Step has to be applied to node set"); 
+						if (n->rettype() != XPathTypeNodeSet) throw_error("Step has to be applied to node set"); 
  
-						n = new (alloc_node()) xpath_ast_node(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
+						n = new (alloc_node()) XPathAstNode(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 					} 
 	 
 					// select from location path 
@@ -8803,35 +8803,35 @@ namespace
 		} 
  
 		// UnionExpr ::= PathExpr | UnionExpr '|' PathExpr 
-		xpath_ast_node* ParseUnionExpression() 
+		XPathAstNode* ParseUnionExpression() 
 		{ 
-			xpath_ast_node* n = ParsePathExpression(); 
+			XPathAstNode* n = ParsePathExpression(); 
  
 			while (_lexer.current() == lex_union) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = ParseUnionExpression(); 
+				XPathAstNode* expr = ParseUnionExpression(); 
  
-				if (n->rettype() != xpath_type_NodeSet || expr->rettype() != xpath_type_NodeSet) 
+				if (n->rettype() != XPathTypeNodeSet || expr->rettype() != XPathTypeNodeSet) 
 					throw_error("Union operator has to be applied to node sets"); 
  
-				n = new (alloc_node()) xpath_ast_node(ast_op_union, xpath_type_NodeSet, n, expr); 
+				n = new (alloc_node()) XPathAstNode(ast_op_union, XPathTypeNodeSet, n, expr); 
 			} 
  
 			return n; 
 		} 
  
 		// UnaryExpr ::= UnionExpr | '-' UnaryExpr 
-		xpath_ast_node* ParseUnaryExpression() 
+		XPathAstNode* ParseUnaryExpression() 
 		{ 
 			if (_lexer.current() == lex_minus) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = ParseUnaryExpression(); 
+				XPathAstNode* expr = ParseUnaryExpression(); 
  
-				return new (alloc_node()) xpath_ast_node(ast_op_negate, xpath_type_number, expr); 
+				return new (alloc_node()) XPathAstNode(ast_op_negate, XPathTypeNumber, expr); 
 			} 
 			else return ParseUnionExpression(); 
 		} 
@@ -8840,9 +8840,9 @@ namespace
 		//						  | MultiplicativeExpr '*' UnaryExpr 
 		//						  | MultiplicativeExpr 'div' UnaryExpr 
 		//						  | MultiplicativeExpr 'mod' UnaryExpr 
-		xpath_ast_node* ParseMultiplicativeExpression() 
+		XPathAstNode* ParseMultiplicativeExpression() 
 		{ 
-			xpath_ast_node* n = ParseUnaryExpression(); 
+			XPathAstNode* n = ParseUnaryExpression(); 
  
 			while (_lexer.current() == lex_multiply || (_lexer.current() == lex_string && 
 				   (_lexer.contents() == XML_TEXT("mod") || _lexer.contents() == XML_TEXT("div")))) 
@@ -8851,9 +8851,9 @@ namespace
 					_lexer.contents().begin[0] == 'd' ? ast_op_divide : ast_op_mod; 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = ParseUnaryExpression(); 
+				XPathAstNode* expr = ParseUnaryExpression(); 
  
-				n = new (alloc_node()) xpath_ast_node(op, xpath_type_number, n, expr); 
+				n = new (alloc_node()) XPathAstNode(op, XPathTypeNumber, n, expr); 
 			} 
  
 			return n; 
@@ -8862,9 +8862,9 @@ namespace
 		// AdditiveExpr ::= MultiplicativeExpr 
 		//					| AdditiveExpr '+' MultiplicativeExpr 
 		//					| AdditiveExpr '-' MultiplicativeExpr 
-		xpath_ast_node* ParseAdditiveExpression() 
+		XPathAstNode* ParseAdditiveExpression() 
 		{ 
-			xpath_ast_node* n = ParseMultiplicativeExpression(); 
+			XPathAstNode* n = ParseMultiplicativeExpression(); 
  
 			while (_lexer.current() == lex_plus || _lexer.current() == lex_minus) 
 			{ 
@@ -8872,9 +8872,9 @@ namespace
  
 				_lexer.next(); 
  
-				xpath_ast_node* expr = ParseMultiplicativeExpression(); 
+				XPathAstNode* expr = ParseMultiplicativeExpression(); 
  
-				n = new (alloc_node()) xpath_ast_node(l == lex_plus ? ast_op_add : ast_op_subtract, xpath_type_number, n, expr); 
+				n = new (alloc_node()) XPathAstNode(l == lex_plus ? ast_op_add : ast_op_subtract, XPathTypeNumber, n, expr); 
 			} 
  
 			return n; 
@@ -8885,9 +8885,9 @@ namespace
 		//					  | RelationalExpr '>' AdditiveExpr 
 		//					  | RelationalExpr '<=' AdditiveExpr 
 		//					  | RelationalExpr '>=' AdditiveExpr 
-		xpath_ast_node* ParseRelationalExpression() 
+		XPathAstNode* ParseRelationalExpression() 
 		{ 
-			xpath_ast_node* n = ParseAdditiveExpression(); 
+			XPathAstNode* n = ParseAdditiveExpression(); 
  
 			while (_lexer.current() == lex_less || _lexer.current() == lex_less_or_equal ||  
 				   _lexer.current() == lex_greater || _lexer.current() == lex_greater_or_equal) 
@@ -8895,10 +8895,10 @@ namespace
 				lexeme_t l = _lexer.current(); 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = ParseAdditiveExpression(); 
+				XPathAstNode* expr = ParseAdditiveExpression(); 
  
-				n = new (alloc_node()) xpath_ast_node(l == lex_less ? ast_op_less : l == lex_greater ? ast_op_greater : 
-								l == lex_less_or_equal ? ast_op_less_or_equal : ast_op_greater_or_equal, xpath_type_boolean, n, expr); 
+				n = new (alloc_node()) XPathAstNode(l == lex_less ? ast_op_less : l == lex_greater ? ast_op_greater : 
+								l == lex_less_or_equal ? ast_op_less_or_equal : ast_op_greater_or_equal, XPathTypeBoolean, n, expr); 
 			} 
  
 			return n; 
@@ -8907,9 +8907,9 @@ namespace
 		// EqualityExpr ::= RelationalExpr 
 		//					| EqualityExpr '=' RelationalExpr 
 		//					| EqualityExpr '!=' RelationalExpr 
-		xpath_ast_node* ParseEqualityExpression() 
+		XPathAstNode* ParseEqualityExpression() 
 		{ 
-			xpath_ast_node* n = ParseRelationalExpression(); 
+			XPathAstNode* n = ParseRelationalExpression(); 
  
 			while (_lexer.current() == lex_equal || _lexer.current() == lex_not_equal) 
 			{ 
@@ -8917,61 +8917,61 @@ namespace
  
 				_lexer.next(); 
  
-				xpath_ast_node* expr = ParseRelationalExpression(); 
+				XPathAstNode* expr = ParseRelationalExpression(); 
  
-				n = new (alloc_node()) xpath_ast_node(l == lex_equal ? ast_op_equal : ast_op_not_equal, xpath_type_boolean, n, expr); 
+				n = new (alloc_node()) XPathAstNode(l == lex_equal ? ast_op_equal : ast_op_not_equal, XPathTypeBoolean, n, expr); 
 			} 
  
 			return n; 
 		} 
 		 
 		// AndExpr ::= EqualityExpr | AndExpr 'and' EqualityExpr 
-		xpath_ast_node* ParseAndExpression() 
+		XPathAstNode* ParseAndExpression() 
 		{ 
-			xpath_ast_node* n = ParseEqualityExpression(); 
+			XPathAstNode* n = ParseEqualityExpression(); 
  
 			while (_lexer.current() == lex_string && _lexer.contents() == XML_TEXT("and")) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = ParseEqualityExpression(); 
+				XPathAstNode* expr = ParseEqualityExpression(); 
  
-				n = new (alloc_node()) xpath_ast_node(ast_op_and, xpath_type_boolean, n, expr); 
+				n = new (alloc_node()) XPathAstNode(ast_op_and, XPathTypeBoolean, n, expr); 
 			} 
  
 			return n; 
 		} 
  
 		// OrExpr ::= AndExpr | OrExpr 'or' AndExpr 
-		xpath_ast_node* ParseOrExpression() 
+		XPathAstNode* ParseOrExpression() 
 		{ 
-			xpath_ast_node* n = ParseAndExpression(); 
+			XPathAstNode* n = ParseAndExpression(); 
  
 			while (_lexer.current() == lex_string && _lexer.contents() == XML_TEXT("or")) 
 			{ 
 				_lexer.next(); 
  
-				xpath_ast_node* expr = ParseAndExpression(); 
+				XPathAstNode* expr = ParseAndExpression(); 
  
-				n = new (alloc_node()) xpath_ast_node(ast_op_or, xpath_type_boolean, n, expr); 
+				n = new (alloc_node()) XPathAstNode(ast_op_or, XPathTypeBoolean, n, expr); 
 			} 
  
 			return n; 
 		} 
 		 
 		// Expr ::= OrExpr 
-		xpath_ast_node* ParseExpression() 
+		XPathAstNode* ParseExpression() 
 		{ 
 			return ParseOrExpression(); 
 		} 
  
-		xpath_parser(const char_t* query, xpath_variable_set* variables, xpath_allocator* alloc, xpath_ParseResult* result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _result(result) 
+		XPathParser(const char_t* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _result(result) 
 		{ 
 		} 
  
-		xpath_ast_node* parse() 
+		XPathAstNode* parse() 
 		{ 
-			xpath_ast_node* result = ParseExpression(); 
+			XPathAstNode* result = ParseExpression(); 
 			 
 			if (_lexer.current() != lex_eof) 
 			{ 
@@ -8982,9 +8982,9 @@ namespace
 			return result; 
 		} 
  
-		static xpath_ast_node* parse(const char_t* query, xpath_variable_set* variables, xpath_allocator* alloc, xpath_ParseResult* result) 
+		static XPathAstNode* parse(const char_t* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* result) 
 		{ 
-			xpath_parser parser(query, variables, alloc, result); 
+			XPathParser parser(query, variables, alloc, result); 
  
 		#ifdef XML_NO_EXCEPTIONS 
 			int error = setjmp(parser._error_handler); 
@@ -8996,13 +8996,13 @@ namespace
 		} 
 	}; 
  
-	struct xpath_query_impl 
+	struct XPathQueryImpl 
 	{ 
-		static xpath_query_impl* create() 
+		static XPathQueryImpl* create() 
 		{ 
-			void* memory = global_allocate(sizeof(xpath_query_impl)); 
+			void* memory = global_allocate(sizeof(XPathQueryImpl)); 
  
-			return new (memory) xpath_query_impl(); 
+			return new (memory) XPathQueryImpl(); 
 		} 
  
 		static void destroy(void* ptr) 
@@ -9010,31 +9010,31 @@ namespace
 			if (!ptr) return; 
 			 
 			// free all allocated pages 
-			static_cast<xpath_query_impl*>(ptr)->alloc.release(); 
+			static_cast<XPathQueryImpl*>(ptr)->alloc.release(); 
  
 			// free allocator memory (with the first page) 
 			global_deallocate(ptr); 
 		} 
  
-		xpath_query_impl(): root(0), alloc(&block) 
+		XPathQueryImpl(): root(0), alloc(&block) 
 		{ 
 			block.next = 0; 
 		} 
  
-		xpath_ast_node* root; 
-		xpath_allocator alloc; 
-		xpath_memory_block block; 
+		XPathAstNode* root; 
+		XPathAllocator alloc; 
+		XPathMemoryBlock block; 
 	}; 
  
-	xpath_string evaluate_string_impl(xpath_query_impl* impl, const xpath_node& n, xpath_stack_data& sd) 
+	XPathString evaluate_string_impl(XPathQueryImpl* impl, const XPathNode& n, XPathStackData& sd) 
 	{ 
-		if (!impl) return xpath_string(); 
+		if (!impl) return XPathString(); 
  
 	#ifdef XML_NO_EXCEPTIONS 
-		if (setjmp(sd.error_handler)) return xpath_string(); 
+		if (setjmp(sd.error_handler)) return XPathString(); 
 	#endif 
  
-		xpath_context c(n, 1, 1); 
+		XPathContext c(n, 1, 1); 
  
 		return impl->root->eval_string(c, sd.stack); 
 	} 
@@ -9045,82 +9045,82 @@ namespace phys
 { namespace xml
 { 
 #ifndef XML_NO_EXCEPTIONS 
-	xpath_exception::xpath_exception(const xpath_ParseResult& result): _result(result) 
+	XPathException::XPathException(const XPathParseResult& result): _result(result) 
 	{ 
 		assert(result.error); 
 	} 
 	 
-	const char* xpath_exception::what() const throw() 
+	const char* XPathException::what() const throw() 
 	{ 
 		return _result.error; 
 	} 
  
-	const xpath_ParseResult& xpath_exception::result() const 
+	const XPathParseResult& XPathException::result() const 
 	{ 
 		return _result; 
 	} 
 #endif 
 	 
-	xpath_node::xpath_node() 
+	XPathNode::XPathNode() 
 	{ 
 	} 
 		 
-	xpath_node::xpath_node(const Node& node): _node(node) 
+	XPathNode::XPathNode(const Node& node): _node(node) 
 	{ 
 	} 
 		 
-	xpath_node::xpath_node(const Attribute& attribute, const Node& parent): _node(attribute ? parent : Node()), _attribute(attribute) 
+	XPathNode::XPathNode(const Attribute& attribute, const Node& parent): _node(attribute ? parent : Node()), _attribute(attribute) 
 	{ 
 	} 
  
-	Node xpath_node::node() const 
+	Node XPathNode::node() const 
 	{ 
 		return _attribute ? Node() : _node; 
 	} 
 		 
-	Attribute xpath_node::attribute() const 
+	Attribute XPathNode::attribute() const 
 	{ 
 		return _attribute; 
 	} 
 	 
-	Node xpath_node::parent() const 
+	Node XPathNode::parent() const 
 	{ 
 		return _attribute ? _node : _node.parent(); 
 	} 
  
-	xpath_node::operator xpath_node::unspecified_bool_type() const 
+	XPathNode::operator XPathNode::unspecified_bool_type() const 
 	{ 
-		return (_node || _attribute) ? &xpath_node::_node : 0; 
+		return (_node || _attribute) ? &XPathNode::_node : 0; 
 	} 
 	 
-	bool xpath_node::operator!() const 
+	bool XPathNode::operator!() const 
 	{ 
 		return !(_node || _attribute); 
 	} 
  
-	bool xpath_node::operator==(const xpath_node& n) const 
+	bool XPathNode::operator==(const XPathNode& n) const 
 	{ 
 		return _node == n._node && _attribute == n._attribute; 
 	} 
 	 
-	bool xpath_node::operator!=(const xpath_node& n) const 
+	bool XPathNode::operator!=(const XPathNode& n) const 
 	{ 
 		return _node != n._node || _attribute != n._attribute; 
 	} 
  
 #ifdef __BORLANDC__ 
-	bool operator&&(const xpath_node& lhs, bool rhs) 
+	bool operator&&(const XPathNode& lhs, bool rhs) 
 	{ 
 		return (bool)lhs && rhs; 
 	} 
  
-	bool operator||(const xpath_node& lhs, bool rhs) 
+	bool operator||(const XPathNode& lhs, bool rhs) 
 	{ 
 		return (bool)lhs || rhs; 
 	} 
 #endif 
  
-	void xpath_NodeSet::_assign(const_iterator begin, const_iterator end) 
+	void XPathNodeSet::_assign(const_iterator begin, const_iterator end) 
 	{ 
 		assert(begin <= end); 
  
@@ -9140,7 +9140,7 @@ namespace phys
 		else 
 		{ 
 			// make heap copy 
-			xpath_node* storage = static_cast<xpath_node*>(global_allocate(size * sizeof(xpath_node))); 
+			XPathNode* storage = static_cast<XPathNode*>(global_allocate(size * sizeof(XPathNode))); 
  
 			if (!storage) 
 			{ 
@@ -9151,7 +9151,7 @@ namespace phys
 			#endif 
 			} 
  
-			memcpy(storage, begin, size * sizeof(xpath_node)); 
+			memcpy(storage, begin, size * sizeof(XPathNode)); 
 			 
 			// deallocate old buffer 
 			if (_begin != &_storage) global_deallocate(_begin); 
@@ -9162,26 +9162,26 @@ namespace phys
 		} 
 	} 
  
-	xpath_NodeSet::xpath_NodeSet(): _type(type_unsorted), _begin(&_storage), _end(&_storage) 
+	XPathNodeSet::XPathNodeSet(): _type(type_unsorted), _begin(&_storage), _end(&_storage) 
 	{ 
 	} 
  
-	xpath_NodeSet::xpath_NodeSet(const_iterator begin, const_iterator end, type_t type): _type(type), _begin(&_storage), _end(&_storage) 
+	XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, type_t type): _type(type), _begin(&_storage), _end(&_storage) 
 	{ 
 		_assign(begin, end); 
 	} 
  
-	xpath_NodeSet::~xpath_NodeSet() 
+	XPathNodeSet::~XPathNodeSet() 
 	{ 
 		if (_begin != &_storage) global_deallocate(_begin); 
 	} 
 		 
-	xpath_NodeSet::xpath_NodeSet(const xpath_NodeSet& ns): _type(ns._type), _begin(&_storage), _end(&_storage) 
+	XPathNodeSet::XPathNodeSet(const XPathNodeSet& ns): _type(ns._type), _begin(&_storage), _end(&_storage) 
 	{ 
 		_assign(ns._begin, ns._end); 
 	} 
 	 
-	xpath_NodeSet& xpath_NodeSet::operator=(const xpath_NodeSet& ns) 
+	XPathNodeSet& XPathNodeSet::operator=(const XPathNodeSet& ns) 
 	{ 
 		if (this == &ns) return *this; 
 		 
@@ -9191,79 +9191,79 @@ namespace phys
 		return *this; 
 	} 
  
-	xpath_NodeSet::type_t xpath_NodeSet::type() const 
+	XPathNodeSet::type_t XPathNodeSet::type() const 
 	{ 
 		return _type; 
 	} 
 		 
-	size_t xpath_NodeSet::size() const 
+	size_t XPathNodeSet::size() const 
 	{ 
 		return _end - _begin; 
 	} 
 		 
-	bool xpath_NodeSet::empty() const 
+	bool XPathNodeSet::empty() const 
 	{ 
 		return _begin == _end; 
 	} 
 		 
-	const xpath_node& xpath_NodeSet::operator[](size_t index) const 
+	const XPathNode& XPathNodeSet::operator[](size_t index) const 
 	{ 
 		assert(index < size()); 
 		return _begin[index]; 
 	} 
  
-	xpath_NodeSet::const_iterator xpath_NodeSet::begin() const 
+	XPathNodeSet::const_iterator XPathNodeSet::begin() const 
 	{ 
 		return _begin; 
 	} 
 		 
-	xpath_NodeSet::const_iterator xpath_NodeSet::end() const 
+	XPathNodeSet::const_iterator XPathNodeSet::end() const 
 	{ 
 		return _end; 
 	} 
 	 
-	void xpath_NodeSet::sort(bool reverse) 
+	void XPathNodeSet::sort(bool reverse) 
 	{ 
-		_type = xpath_sort(_begin, _end, _type, reverse); 
+		_type = XPathSort(_begin, _end, _type, reverse); 
 	} 
  
-	xpath_node xpath_NodeSet::first() const 
+	XPathNode XPathNodeSet::first() const 
 	{ 
-		return xpath_first(_begin, _end, _type); 
+		return XPathFirst(_begin, _end, _type); 
 	} 
  
-	xpath_ParseResult::xpath_ParseResult(): error("Internal error"), Offset(0) 
+	XPathParseResult::XPathParseResult(): error("Internal error"), Offset(0) 
 	{ 
 	} 
  
-	xpath_ParseResult::operator bool() const 
+	XPathParseResult::operator bool() const 
 	{ 
 		return error == 0; 
 	} 
-	const char* xpath_ParseResult::Description() const 
+	const char* XPathParseResult::Description() const 
 	{ 
 		return error ? error : "No error"; 
 	} 
  
-	xpath_variable::xpath_variable() 
+	XPathVariable::XPathVariable() 
 	{ 
 	} 
  
-	const char_t* xpath_variable::name() const 
+	const char_t* XPathVariable::name() const 
 	{ 
 		switch (_type) 
 		{ 
-		case xpath_type_NodeSet: 
-			return static_cast<const xpath_variable_NodeSet*>(this)->name; 
+		case XPathTypeNodeSet: 
+			return static_cast<const XPathVariableNodeSet*>(this)->name; 
  
-		case xpath_type_number: 
-			return static_cast<const xpath_variable_number*>(this)->name; 
+		case XPathTypeNumber: 
+			return static_cast<const XPathVariableNumber*>(this)->name; 
  
-		case xpath_type_string: 
-			return static_cast<const xpath_variable_string*>(this)->name; 
+		case XPathTypeString: 
+			return static_cast<const XPathVariableString*>(this)->name; 
  
-		case xpath_type_boolean: 
-			return static_cast<const xpath_variable_boolean*>(this)->name; 
+		case XPathTypeBoolean: 
+			return static_cast<const XPathVariableBoolean*>(this)->name; 
  
 		default: 
 			assert(!"Invalid variable type"); 
@@ -9271,53 +9271,53 @@ namespace phys
 		} 
 	} 
  
-	xpath_value_type xpath_variable::type() const 
+	XPathValueType XPathVariable::type() const 
 	{ 
 		return _type; 
 	} 
  
-	bool xpath_variable::get_boolean() const 
+	bool XPathVariable::get_boolean() const 
 	{ 
-		return (_type == xpath_type_boolean) ? static_cast<const xpath_variable_boolean*>(this)->value : false; 
+		return (_type == XPathTypeBoolean) ? static_cast<const XPathVariableBoolean*>(this)->value : false; 
 	} 
  
-	double xpath_variable::get_number() const 
+	double XPathVariable::get_number() const 
 	{ 
-		return (_type == xpath_type_number) ? static_cast<const xpath_variable_number*>(this)->value : gen_nan(); 
+		return (_type == XPathTypeNumber) ? static_cast<const XPathVariableNumber*>(this)->value : gen_nan(); 
 	} 
  
-	const char_t* xpath_variable::get_string() const 
+	const char_t* XPathVariable::get_string() const 
 	{ 
-		const char_t* value = (_type == xpath_type_string) ? static_cast<const xpath_variable_string*>(this)->value : 0; 
+		const char_t* value = (_type == XPathTypeString) ? static_cast<const XPathVariableString*>(this)->value : 0; 
 		return value ? value : XML_TEXT(""); 
 	} 
  
-	const xpath_NodeSet& xpath_variable::get_NodeSet() const 
+	const XPathNodeSet& XPathVariable::get_NodeSet() const 
 	{ 
-		return (_type == xpath_type_NodeSet) ? static_cast<const xpath_variable_NodeSet*>(this)->value : dummy_NodeSet; 
+		return (_type == XPathTypeNodeSet) ? static_cast<const XPathVariableNodeSet*>(this)->value : dummy_NodeSet; 
 	} 
  
-	bool xpath_variable::set(bool value) 
+	bool XPathVariable::set(bool value) 
 	{ 
-		if (_type != xpath_type_boolean) return false; 
+		if (_type != XPathTypeBoolean) return false; 
  
-		static_cast<xpath_variable_boolean*>(this)->value = value; 
+		static_cast<XPathVariableBoolean*>(this)->value = value; 
 		return true; 
 	} 
  
-	bool xpath_variable::set(double value) 
+	bool XPathVariable::set(double value) 
 	{ 
-		if (_type != xpath_type_number) return false; 
+		if (_type != XPathTypeNumber) return false; 
  
-		static_cast<xpath_variable_number*>(this)->value = value; 
+		static_cast<XPathVariableNumber*>(this)->value = value; 
 		return true; 
 	} 
  
-	bool xpath_variable::set(const char_t* value) 
+	bool XPathVariable::set(const char_t* value) 
 	{ 
-		if (_type != xpath_type_string) return false; 
+		if (_type != XPathTypeString) return false; 
  
-		xpath_variable_string* var = static_cast<xpath_variable_string*>(this); 
+		XPathVariableString* var = static_cast<XPathVariableString*>(this); 
  
 		// duplicate string 
 		size_t size = (strlength(value) + 1) * sizeof(char_t); 
@@ -9334,61 +9334,61 @@ namespace phys
 		return true; 
 	} 
  
-	bool xpath_variable::set(const xpath_NodeSet& value) 
+	bool XPathVariable::set(const XPathNodeSet& value) 
 	{ 
-		if (_type != xpath_type_NodeSet) return false; 
+		if (_type != XPathTypeNodeSet) return false; 
  
-		static_cast<xpath_variable_NodeSet*>(this)->value = value; 
+		static_cast<XPathVariableNodeSet*>(this)->value = value; 
 		return true; 
 	} 
  
-	xpath_variable_set::xpath_variable_set() 
+	XPathVariableSet::XPathVariableSet() 
 	{ 
 		for (size_t i = 0; i < sizeof(_data) / sizeof(_data[0]); ++i) _data[i] = 0; 
 	} 
  
-	xpath_variable_set::~xpath_variable_set() 
+	XPathVariableSet::~XPathVariableSet() 
 	{ 
 		for (size_t i = 0; i < sizeof(_data) / sizeof(_data[0]); ++i) 
 		{ 
-			xpath_variable* var = _data[i]; 
+			XPathVariable* var = _data[i]; 
  
 			while (var) 
 			{ 
-				xpath_variable* next = var->_next; 
+				XPathVariable* next = var->_next; 
  
-				delete_xpath_variable(var->_type, var); 
+				delete_XPathVariable(var->_type, var); 
  
 				var = next; 
 			} 
 		} 
 	} 
  
-	xpath_variable* xpath_variable_set::find(const char_t* name) const 
+	XPathVariable* XPathVariableSet::find(const char_t* name) const 
 	{ 
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]); 
 		size_t hash = hash_string(name) % hash_size; 
  
 		// look for existing variable 
-		for (xpath_variable* var = _data[hash]; var; var = var->_next) 
+		for (XPathVariable* var = _data[hash]; var; var = var->_next) 
 			if (strequal(var->name(), name)) 
 				return var; 
  
 		return 0; 
 	} 
  
-	xpath_variable* xpath_variable_set::add(const char_t* name, xpath_value_type type) 
+	XPathVariable* XPathVariableSet::add(const char_t* name, XPathValueType type) 
 	{ 
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]); 
 		size_t hash = hash_string(name) % hash_size; 
  
 		// look for existing variable 
-		for (xpath_variable* var = _data[hash]; var; var = var->_next) 
+		for (XPathVariable* var = _data[hash]; var; var = var->_next) 
 			if (strequal(var->name(), name)) 
 				return var->type() == type ? var : 0; 
  
 		// add new variable 
-		xpath_variable* result = new_xpath_variable(type, name); 
+		XPathVariable* result = new_XPathVariable(type, name); 
  
 		if (result) 
 		{ 
@@ -9401,43 +9401,43 @@ namespace phys
 		return result; 
 	} 
  
-	bool xpath_variable_set::set(const char_t* name, bool value) 
+	bool XPathVariableSet::set(const char_t* name, bool value) 
 	{ 
-		xpath_variable* var = add(name, xpath_type_boolean); 
+		XPathVariable* var = add(name, XPathTypeBoolean); 
 		return var ? var->set(value) : false; 
 	} 
  
-	bool xpath_variable_set::set(const char_t* name, double value) 
+	bool XPathVariableSet::set(const char_t* name, double value) 
 	{ 
-		xpath_variable* var = add(name, xpath_type_number); 
+		XPathVariable* var = add(name, XPathTypeNumber); 
 		return var ? var->set(value) : false; 
 	} 
  
-	bool xpath_variable_set::set(const char_t* name, const char_t* value) 
+	bool XPathVariableSet::set(const char_t* name, const char_t* value) 
 	{ 
-		xpath_variable* var = add(name, xpath_type_string); 
+		XPathVariable* var = add(name, XPathTypeString); 
 		return var ? var->set(value) : false; 
 	} 
  
-	bool xpath_variable_set::set(const char_t* name, const xpath_NodeSet& value) 
+	bool XPathVariableSet::set(const char_t* name, const XPathNodeSet& value) 
 	{ 
-		xpath_variable* var = add(name, xpath_type_NodeSet); 
+		XPathVariable* var = add(name, XPathTypeNodeSet); 
 		return var ? var->set(value) : false; 
 	} 
  
-	xpath_variable* xpath_variable_set::get(const char_t* name) 
+	XPathVariable* XPathVariableSet::get(const char_t* name) 
 	{ 
 		return find(name); 
 	} 
  
-	const xpath_variable* xpath_variable_set::get(const char_t* name) const 
+	const XPathVariable* XPathVariableSet::get(const char_t* name) const 
 	{ 
 		return find(name); 
 	} 
  
-	xpath_query::xpath_query(const char_t* query, xpath_variable_set* variables): _impl(0) 
+	XPathQuery::XPathQuery(const char_t* query, XPathVariableSet* variables): _impl(0) 
 	{ 
-		xpath_query_impl* impl = xpath_query_impl::create(); 
+		XPathQueryImpl* impl = XPathQueryImpl::create(); 
  
 		if (!impl) 
 		{ 
@@ -9449,72 +9449,72 @@ namespace phys
 		} 
 		else 
 		{ 
-			buffer_holder impl_holder(impl, xpath_query_impl::destroy); 
+			buffer_holder impl_holder(impl, XPathQueryImpl::destroy); 
  
-			impl->root = xpath_parser::parse(query, variables, &impl->alloc, &_result); 
+			impl->root = XPathParser::parse(query, variables, &impl->alloc, &_result); 
  
 			if (impl->root) 
 			{ 
-				_impl = static_cast<xpath_query_impl*>(impl_holder.release()); 
+				_impl = static_cast<XPathQueryImpl*>(impl_holder.release()); 
 				_result.error = 0; 
 			} 
 		} 
 	} 
  
-	xpath_query::~xpath_query() 
+	XPathQuery::~XPathQuery() 
 	{ 
-		xpath_query_impl::destroy(_impl); 
+		XPathQueryImpl::destroy(_impl); 
 	} 
  
-	xpath_value_type xpath_query::return_type() const 
+	XPathValueType XPathQuery::return_type() const 
 	{ 
-		if (!_impl) return xpath_type_none; 
+		if (!_impl) return XPathTypeNone; 
  
-		return static_cast<xpath_query_impl*>(_impl)->root->rettype(); 
+		return static_cast<XPathQueryImpl*>(_impl)->root->rettype(); 
 	} 
  
-	bool xpath_query::evaluate_boolean(const xpath_node& n) const 
+	bool XPathQuery::evaluate_boolean(const XPathNode& n) const 
 	{ 
 		if (!_impl) return false; 
 		 
-		xpath_context c(n, 1, 1); 
-		xpath_stack_data sd; 
+		XPathContext c(n, 1, 1); 
+		XPathStackData sd; 
  
 	#ifdef XML_NO_EXCEPTIONS 
 		if (setjmp(sd.error_handler)) return false; 
 	#endif 
 		 
-		return static_cast<xpath_query_impl*>(_impl)->root->eval_boolean(c, sd.stack); 
+		return static_cast<XPathQueryImpl*>(_impl)->root->eval_boolean(c, sd.stack); 
 	} 
 	 
-	double xpath_query::evaluate_number(const xpath_node& n) const 
+	double XPathQuery::evaluate_number(const XPathNode& n) const 
 	{ 
 		if (!_impl) return gen_nan(); 
 		 
-		xpath_context c(n, 1, 1); 
-		xpath_stack_data sd; 
+		XPathContext c(n, 1, 1); 
+		XPathStackData sd; 
  
 	#ifdef XML_NO_EXCEPTIONS 
 		if (setjmp(sd.error_handler)) return gen_nan(); 
 	#endif 
  
-		return static_cast<xpath_query_impl*>(_impl)->root->eval_number(c, sd.stack); 
+		return static_cast<XPathQueryImpl*>(_impl)->root->eval_number(c, sd.stack); 
 	} 
  
 #ifndef XML_NO_STL 
-	string_t xpath_query::evaluate_string(const xpath_node& n) const 
+	string_t XPathQuery::evaluate_string(const XPathNode& n) const 
 	{ 
-		xpath_stack_data sd; 
+		XPathStackData sd; 
  
-		return evaluate_string_impl(static_cast<xpath_query_impl*>(_impl), n, sd).c_str(); 
+		return evaluate_string_impl(static_cast<XPathQueryImpl*>(_impl), n, sd).c_str(); 
 	} 
 #endif 
  
-	size_t xpath_query::evaluate_string(char_t* buffer, size_t capacity, const xpath_node& n) const 
+	size_t XPathQuery::evaluate_string(char_t* buffer, size_t capacity, const XPathNode& n) const 
 	{ 
-		xpath_stack_data sd; 
+		XPathStackData sd; 
  
-		xpath_string r = evaluate_string_impl(static_cast<xpath_query_impl*>(_impl), n, sd); 
+		XPathString r = evaluate_string_impl(static_cast<XPathQueryImpl*>(_impl), n, sd); 
  
 		size_t full_size = r.length() + 1; 
 		 
@@ -9530,70 +9530,70 @@ namespace phys
 		return full_size; 
 	} 
  
-	xpath_NodeSet xpath_query::evaluate_NodeSet(const xpath_node& n) const 
+	XPathNodeSet XPathQuery::evaluate_NodeSet(const XPathNode& n) const 
 	{ 
-		if (!_impl) return xpath_NodeSet(); 
+		if (!_impl) return XPathNodeSet(); 
  
-		xpath_ast_node* root = static_cast<xpath_query_impl*>(_impl)->root; 
+		XPathAstNode* root = static_cast<XPathQueryImpl*>(_impl)->root; 
  
-		if (root->rettype() != xpath_type_NodeSet) 
+		if (root->rettype() != XPathTypeNodeSet) 
 		{ 
 		#ifdef XML_NO_EXCEPTIONS 
-			return xpath_NodeSet(); 
+			return XPathNodeSet(); 
 		#else 
-			xpath_ParseResult result; 
+			XPathParseResult result; 
 			result.error = "Expression does not evaluate to node set"; 
  
-			throw xpath_exception(result); 
+			throw XPathException(result); 
 		#endif 
 		} 
 		 
-		xpath_context c(n, 1, 1); 
-		xpath_stack_data sd; 
+		XPathContext c(n, 1, 1); 
+		XPathStackData sd; 
  
 	#ifdef XML_NO_EXCEPTIONS 
-		if (setjmp(sd.error_handler)) return xpath_NodeSet(); 
+		if (setjmp(sd.error_handler)) return XPathNodeSet(); 
 	#endif 
  
-		xpath_NodeSet_raw r = root->eval_NodeSet(c, sd.stack); 
+		XPathNodeSet_raw r = root->eval_NodeSet(c, sd.stack); 
  
-		return xpath_NodeSet(r.begin(), r.end(), r.type()); 
+		return XPathNodeSet(r.begin(), r.end(), r.type()); 
 	} 
  
-	const xpath_ParseResult& xpath_query::result() const 
+	const XPathParseResult& XPathQuery::result() const 
 	{ 
 		return _result; 
 	} 
  
-	xpath_query::operator xpath_query::unspecified_bool_type() const 
+	XPathQuery::operator XPathQuery::unspecified_bool_type() const 
 	{ 
-		return _impl ? &xpath_query::_impl : 0; 
+		return _impl ? &XPathQuery::_impl : 0; 
 	} 
  
-	bool xpath_query::operator!() const 
+	bool XPathQuery::operator!() const 
 	{ 
 		return !_impl; 
 	} 
  
-	xpath_node Node::select_single_node(const char_t* query, xpath_variable_set* variables) const 
+	XPathNode Node::select_single_node(const char_t* query, XPathVariableSet* variables) const 
 	{ 
-		xpath_query q(query, variables); 
+		XPathQuery q(query, variables); 
 		return select_single_node(q); 
 	} 
  
-	xpath_node Node::select_single_node(const xpath_query& query) const 
+	XPathNode Node::select_single_node(const XPathQuery& query) const 
 	{ 
-		xpath_NodeSet s = query.evaluate_NodeSet(*this); 
-		return s.empty() ? xpath_node() : s.first(); 
+		XPathNodeSet s = query.evaluate_NodeSet(*this); 
+		return s.empty() ? XPathNode() : s.first(); 
 	} 
  
-	xpath_NodeSet Node::select_nodes(const char_t* query, xpath_variable_set* variables) const 
+	XPathNodeSet Node::select_nodes(const char_t* query, XPathVariableSet* variables) const 
 	{ 
-		xpath_query q(query, variables); 
+		XPathQuery q(query, variables); 
 		return select_nodes(q); 
 	} 
  
-	xpath_NodeSet Node::select_nodes(const xpath_query& query) const 
+	XPathNodeSet Node::select_nodes(const XPathQuery& query) const 
 	{ 
 		return query.evaluate_NodeSet(*this); 
 	} 

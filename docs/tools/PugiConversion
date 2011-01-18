@@ -200,11 +200,14 @@ function FixNames
 	FileContent=`echo -E "$FileContent" | sed -e 's|typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> > string_t;|typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t;|g'`
 
 	FileContent=`echo -E "$FileContent" | sed -e 's|parse_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Parse\U\1\L\2\U\3\L\4|g'`				#Renaming 2 part Parse options
-	FileContent=`echo -E "$FileContent" | sed -e 's|parse_\(.\)\([a-z]*\)|Parse\U\1\L\2|g'`									#Renaming 1 part Parse options
+	FileContent=`echo -E "$FileContent" | sed -e 's|parse_\(.\)\([a-z]*\)|Parse\U\1\L\2|g'`								#Renaming 1 part Parse options
 
-	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4\U\5\L\6|g'`		#Renaming 3 part Format options
-	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4|g'`							#Renaming 2 part Format options
-	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)|Format\U\1\L\2|g'`											#Renaming 1 part Format options
+	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4\U\5\L\6|g'`	#Renaming 3 part Format options
+	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4|g'`	#Renaming 2 part Format options
+	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)|Format\U\1\L\2|g'`				#Renaming 1 part Format options
+
+	FileContent=`echo -E "$FileContent" | sed -e 's|xpath_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|XPath\U\1\L\2\U\3\L\4|g'`	#Renaming 2 part Xpath Class Names
+	FileContent=`echo -E "$FileContent" | sed -e 's|xpath_\(.\)\([a-z]*\)|XPath\U\1\L\2|g'`				#Renaming 1 part Xpath Class Names
 
 																						#Documentation that could not be put in xmldoc.h
 	FileContent=`echo -E "$FileContent" | sed -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|'`
