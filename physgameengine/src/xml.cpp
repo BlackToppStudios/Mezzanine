@@ -663,7 +663,7 @@ namespace
 		} 
 	}; 
  
-	struct utf8_writer 
+	struct utf8_WriterInstance 
 	{ 
 		typedef uint8_t* value_type; 
  
@@ -723,7 +723,7 @@ namespace
 		} 
 	}; 
  
-	struct utf16_writer 
+	struct utf16_WriterInstance 
 	{ 
 		typedef uint16_t* value_type; 
  
@@ -766,7 +766,7 @@ namespace
 		} 
 	}; 
  
-	struct utf32_writer 
+	struct utf32_WriterInstance 
 	{ 
 		typedef uint32_t* value_type; 
  
@@ -798,18 +798,18 @@ namespace
 	{ 
 		typedef uint16_t type; 
 		typedef utf16_counter counter; 
-		typedef utf16_writer writer; 
+		typedef utf16_WriterInstance WriterInstance; 
 	}; 
  
 	template <> struct wchar_selector<4> 
 	{ 
 		typedef uint32_t type; 
 		typedef utf32_counter counter; 
-		typedef utf32_writer writer; 
+		typedef utf32_WriterInstance WriterInstance; 
 	}; 
  
 	typedef wchar_selector<sizeof(wchar_t)>::counter wchar_counter; 
-	typedef wchar_selector<sizeof(wchar_t)>::writer wchar_writer; 
+	typedef wchar_selector<sizeof(wchar_t)>::WriterInstance wchar_WriterInstance; 
  
 	template <typename Traits, typename opt_swap = opt_false> struct utf_decoder 
 	{ 
@@ -1157,8 +1157,8 @@ namespace
 		if (!out_buffer) return false; 
  
 		// second pass: convert utf8 input to wchar_t 
-		wchar_writer::value_type out_begin = reinterpret_cast<wchar_writer::value_type>(out_buffer); 
-		wchar_writer::value_type out_end = utf_decoder<wchar_writer>::decode_utf8_block(data, size, out_begin); 
+		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer); 
+		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1179,8 +1179,8 @@ namespace
 		if (!out_buffer) return false; 
  
 		// second pass: convert utf16 input to wchar_t 
-		wchar_writer::value_type out_begin = reinterpret_cast<wchar_writer::value_type>(out_buffer); 
-		wchar_writer::value_type out_end = utf_decoder<wchar_writer, opt_swap>::decode_utf16_block(data, length, out_begin); 
+		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer); 
+		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf16_block(data, length, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1201,8 +1201,8 @@ namespace
 		if (!out_buffer) return false; 
  
 		// second pass: convert utf32 input to wchar_t 
-		wchar_writer::value_type out_begin = reinterpret_cast<wchar_writer::value_type>(out_buffer); 
-		wchar_writer::value_type out_end = utf_decoder<wchar_writer, opt_swap>::decode_utf32_block(data, length, out_begin); 
+		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer); 
+		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf32_block(data, length, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1262,7 +1262,7 @@ namespace
  
 		// second pass: convert utf16 input to utf8 
 		uint8_t* out_begin = reinterpret_cast<uint8_t*>(out_buffer); 
-		uint8_t* out_end = utf_decoder<utf8_writer, opt_swap>::decode_utf16_block(data, length, out_begin); 
+		uint8_t* out_end = utf_decoder<utf8_WriterInstance, opt_swap>::decode_utf16_block(data, length, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1284,7 +1284,7 @@ namespace
  
 		// second pass: convert utf32 input to utf8 
 		uint8_t* out_begin = reinterpret_cast<uint8_t*>(out_buffer); 
-		uint8_t* out_end = utf_decoder<utf8_writer, opt_swap>::decode_utf32_block(data, length, out_begin); 
+		uint8_t* out_end = utf_decoder<utf8_WriterInstance, opt_swap>::decode_utf32_block(data, length, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1339,8 +1339,8 @@ namespace
 		// convert to utf8 
 		uint8_t* begin = reinterpret_cast<uint8_t*>(buffer); 
 		uint8_t* end = sizeof(wchar_t) == 2 ? 
-			utf_decoder<utf8_writer>::decode_utf16_block(reinterpret_cast<const uint16_t*>(str), length, begin) : 
-			utf_decoder<utf8_writer>::decode_utf32_block(reinterpret_cast<const uint32_t*>(str), length, begin); 
+			utf_decoder<utf8_WriterInstance>::decode_utf16_block(reinterpret_cast<const uint16_t*>(str), length, begin) : 
+			utf_decoder<utf8_WriterInstance>::decode_utf32_block(reinterpret_cast<const uint32_t*>(str), length, begin); 
 	 
 		assert(begin + size == end); 
 		(void)!end; 
@@ -1379,8 +1379,8 @@ namespace
 		// second pass: convert to wchar_t 
 		if (length > 0) 
 		{ 
-			wchar_writer::value_type begin = reinterpret_cast<wchar_writer::value_type>(&result[0]); 
-			wchar_writer::value_type end = utf_decoder<wchar_writer>::decode_utf8_block(data, size, begin); 
+			wchar_WriterInstance::value_type begin = reinterpret_cast<wchar_WriterInstance::value_type>(&result[0]); 
+			wchar_WriterInstance::value_type end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, begin); 
  
 			assert(begin + length == end); 
 			(void)!end; 
@@ -1548,9 +1548,9 @@ namespace
 				} 
  
 			#ifdef XML_WCHAR_MODE 
-				s = reinterpret_cast<char_t*>(wchar_writer::any(reinterpret_cast<wchar_writer::value_type>(s), ucsc)); 
+				s = reinterpret_cast<char_t*>(wchar_WriterInstance::any(reinterpret_cast<wchar_WriterInstance::value_type>(s), ucsc)); 
 			#else 
-				s = reinterpret_cast<char_t*>(utf8_writer::any(reinterpret_cast<uint8_t*>(s), ucsc)); 
+				s = reinterpret_cast<char_t*>(utf8_WriterInstance::any(reinterpret_cast<uint8_t*>(s), ucsc)); 
 			#endif 
 					 
 				g.push(s, stre - s); 
@@ -2511,7 +2511,7 @@ namespace
 	}; 
  
 	// Output facilities 
-	Encoding get_write_native_DocumentEncoding() 
+	Encoding get_Write_native_DocumentEncoding() 
 	{ 
 	#ifdef XML_WCHAR_MODE 
 		return get_wchar_DocumentEncoding(); 
@@ -2520,7 +2520,7 @@ namespace
 	#endif 
 	} 
  
-	Encoding get_write_DocumentEncoding(Encoding DocumentEncoding) 
+	Encoding get_Write_DocumentEncoding(Encoding DocumentEncoding) 
 	{ 
 		// replace wchar DocumentEncoding with utf implementation 
 		if (DocumentEncoding == Encodingwchar_t) return get_wchar_DocumentEncoding(); 
@@ -2563,8 +2563,8 @@ namespace
 			uint8_t* dest = reinterpret_cast<uint8_t*>(result); 
  
 			uint8_t* end = sizeof(wchar_t) == 2 ? 
-				utf_decoder<utf8_writer>::decode_utf16_block(reinterpret_cast<const uint16_t*>(data), length, dest) : 
-				utf_decoder<utf8_writer>::decode_utf32_block(reinterpret_cast<const uint32_t*>(data), length, dest); 
+				utf_decoder<utf8_WriterInstance>::decode_utf16_block(reinterpret_cast<const uint16_t*>(data), length, dest) : 
+				utf_decoder<utf8_WriterInstance>::decode_utf32_block(reinterpret_cast<const uint32_t*>(data), length, dest); 
  
 			return static_cast<size_t>(end - dest); 
 		} 
@@ -2575,7 +2575,7 @@ namespace
 			uint16_t* dest = reinterpret_cast<uint16_t*>(result); 
  
 			// convert to native utf16 
-			uint16_t* end = utf_decoder<utf16_writer>::decode_utf32_block(reinterpret_cast<const uint32_t*>(data), length, dest); 
+			uint16_t* end = utf_decoder<utf16_WriterInstance>::decode_utf32_block(reinterpret_cast<const uint32_t*>(data), length, dest); 
  
 			// swap if necessary 
 			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
@@ -2591,7 +2591,7 @@ namespace
 			uint32_t* dest = reinterpret_cast<uint32_t*>(result); 
  
 			// convert to native utf32 
-			uint32_t* end = utf_decoder<utf32_writer>::decode_utf16_block(reinterpret_cast<const uint16_t*>(data), length, dest); 
+			uint32_t* end = utf_decoder<utf32_WriterInstance>::decode_utf16_block(reinterpret_cast<const uint16_t*>(data), length, dest); 
  
 			// swap if necessary 
 			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE; 
@@ -2628,7 +2628,7 @@ namespace
 			uint16_t* dest = reinterpret_cast<uint16_t*>(result); 
  
 			// convert to native utf16 
-			uint16_t* end = utf_decoder<utf16_writer>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
+			uint16_t* end = utf_decoder<utf16_WriterInstance>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
  
 			// swap if necessary 
 			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
@@ -2643,7 +2643,7 @@ namespace
 			uint32_t* dest = reinterpret_cast<uint32_t*>(result); 
  
 			// convert to native utf32 
-			uint32_t* end = utf_decoder<utf32_writer>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
+			uint32_t* end = utf_decoder<utf32_WriterInstance>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
  
 			// swap if necessary 
 			Encoding native_DocumentEncoding = is_little_endian() ? EncodingUTF32LE : EncodingUTF32BE; 
@@ -2664,7 +2664,7 @@ namespace
 		BufferedWriter& operator=(const BufferedWriter&); 
  
 	public: 
-		BufferedWriter(Writer& writer, Encoding user_DocumentEncoding): writer(writer), bufsize(0), DocumentEncoding(get_write_DocumentEncoding(user_DocumentEncoding)) 
+		BufferedWriter(Writer& WriterInstance, Encoding user_DocumentEncoding): WriterInstance(WriterInstance), bufsize(0), DocumentEncoding(get_Write_DocumentEncoding(user_DocumentEncoding)) 
 		{ 
 		} 
  
@@ -2683,21 +2683,21 @@ namespace
 		{ 
 			if (size == 0) return; 
  
-			// fast path, just write data 
-			if (DocumentEncoding == get_write_native_DocumentEncoding()) 
-				writer.write(data, size * sizeof(char_t)); 
+			// fast path, just Write data 
+			if (DocumentEncoding == get_Write_native_DocumentEncoding()) 
+				WriterInstance.Write(data, size * sizeof(char_t)); 
 			else 
 			{ 
 				// convert chunk 
 				size_t result = convert_buffer(scratch, data, size, DocumentEncoding); 
 				assert(result <= sizeof(scratch)); 
  
-				// write data 
-				writer.write(scratch, result); 
+				// Write data 
+				WriterInstance.Write(scratch, result); 
 			} 
 		} 
  
-		void write(const char_t* data, size_t length) 
+		void Write(const char_t* data, size_t length) 
 		{ 
 			if (bufsize + length > bufcapacity) 
 			{ 
@@ -2707,10 +2707,10 @@ namespace
 				// handle large chunks 
 				if (length > bufcapacity) 
 				{ 
-					if (DocumentEncoding == get_write_native_DocumentEncoding()) 
+					if (DocumentEncoding == get_Write_native_DocumentEncoding()) 
 					{ 
-						// fast path, can just write data chunk 
-						writer.write(data, length * sizeof(char_t)); 
+						// fast path, can just Write data chunk 
+						WriterInstance.Write(data, length * sizeof(char_t)); 
 						return; 
 					} 
  
@@ -2721,7 +2721,7 @@ namespace
 						// and form a complete codepoint sequence (i.e. discard start of last codepoint if necessary) 
 						size_t chunk_size = get_valid_length(data, bufcapacity); 
  
-						// convert chunk and write 
+						// convert chunk and Write 
 						flush(data, chunk_size); 
  
 						// iterate 
@@ -2738,12 +2738,12 @@ namespace
 			bufsize += length; 
 		} 
  
-		void write(const char_t* data) 
+		void Write(const char_t* data) 
 		{ 
-			write(data, strlength(data)); 
+			Write(data, strlength(data)); 
 		} 
  
-		void write(char_t d0) 
+		void Write(char_t d0) 
 		{ 
 			if (bufsize + 1 > bufcapacity) flush(); 
  
@@ -2751,7 +2751,7 @@ namespace
 			bufsize += 1; 
 		} 
  
-		void write(char_t d0, char_t d1) 
+		void Write(char_t d0, char_t d1) 
 		{ 
 			if (bufsize + 2 > bufcapacity) flush(); 
  
@@ -2760,7 +2760,7 @@ namespace
 			bufsize += 2; 
 		} 
  
-		void write(char_t d0, char_t d1, char_t d2) 
+		void Write(char_t d0, char_t d1, char_t d2) 
 		{ 
 			if (bufsize + 3 > bufcapacity) flush(); 
  
@@ -2770,7 +2770,7 @@ namespace
 			bufsize += 3; 
 		} 
  
-		void write(char_t d0, char_t d1, char_t d2, char_t d3) 
+		void Write(char_t d0, char_t d1, char_t d2, char_t d3) 
 		{ 
 			if (bufsize + 4 > bufcapacity) flush(); 
  
@@ -2781,7 +2781,7 @@ namespace
 			bufsize += 4; 
 		} 
  
-		void write(char_t d0, char_t d1, char_t d2, char_t d3, char_t d4) 
+		void Write(char_t d0, char_t d1, char_t d2, char_t d3, char_t d4) 
 		{ 
 			if (bufsize + 5 > bufcapacity) flush(); 
  
@@ -2793,7 +2793,7 @@ namespace
 			bufsize += 5; 
 		} 
  
-		void write(char_t d0, char_t d1, char_t d2, char_t d3, char_t d4, char_t d5) 
+		void Write(char_t d0, char_t d1, char_t d2, char_t d3, char_t d4, char_t d5) 
 		{ 
 			if (bufsize + 6 > bufcapacity) flush(); 
  
@@ -2814,33 +2814,33 @@ namespace
 		char_t buffer[bufcapacity]; 
 		char scratch[4 * bufcapacity]; 
  
-		Writer& writer; 
+		Writer& WriterInstance; 
 		size_t bufsize; 
 		Encoding DocumentEncoding; 
 	}; 
  
-	void write_bom(Writer& writer, Encoding DocumentEncoding) 
+	void Write_bom(Writer& WriterInstance, Encoding DocumentEncoding) 
 	{ 
 		switch (DocumentEncoding) 
 		{ 
 		case EncodingUTF8: 
-			writer.write("\xef\xbb\xbf", 3); 
+			WriterInstance.Write("\xef\xbb\xbf", 3); 
 			break; 
  
 		case EncodingUTF16BE: 
-			writer.write("\xfe\xff", 2); 
+			WriterInstance.Write("\xfe\xff", 2); 
 			break; 
  
 		case EncodingUTF16LE: 
-			writer.write("\xff\xfe", 2); 
+			WriterInstance.Write("\xff\xfe", 2); 
 			break; 
  
 		case EncodingUTF32BE: 
-			writer.write("\x00\x00\xfe\xff", 4); 
+			WriterInstance.Write("\x00\x00\xfe\xff", 4); 
 			break; 
  
 		case EncodingUTF32LE: 
-			writer.write("\xff\xfe\x00\x00", 4); 
+			WriterInstance.Write("\xff\xfe\x00\x00", 4); 
 			break; 
  
 		default: 
@@ -2848,7 +2848,7 @@ namespace
 		} 
 	} 
  
-	void text_output_escaped(BufferedWriter& writer, const char_t* s, chartypex_t type) 
+	void text_output_escaped(BufferedWriter& WriterInstance, const char_t* s, chartypex_t type) 
 	{ 
 		while (*s) 
 		{ 
@@ -2857,25 +2857,25 @@ namespace
 			// While *s is a usual symbol 
 			while (!IS_CHARTYPEX(*s, type)) ++s; 
 		 
-			writer.write(prev, static_cast<size_t>(s - prev)); 
+			WriterInstance.Write(prev, static_cast<size_t>(s - prev)); 
  
 			switch (*s) 
 			{ 
 				case 0: break; 
 				case '&': 
-					writer.write('&', 'a', 'm', 'p', ';'); 
+					WriterInstance.Write('&', 'a', 'm', 'p', ';'); 
 					++s; 
 					break; 
 				case '<': 
-					writer.write('&', 'l', 't', ';'); 
+					WriterInstance.Write('&', 'l', 't', ';'); 
 					++s; 
 					break; 
 				case '>': 
-					writer.write('&', 'g', 't', ';'); 
+					WriterInstance.Write('&', 'g', 't', ';'); 
 					++s; 
 					break; 
 				case '"': 
-					writer.write('&', 'q', 'u', 'o', 't', ';'); 
+					WriterInstance.Write('&', 'q', 'u', 'o', 't', ';'); 
 					++s; 
 					break; 
 				default: // s is not a usual symbol 
@@ -2883,18 +2883,18 @@ namespace
 					unsigned int ch = static_cast<unsigned int>(*s++); 
 					assert(ch < 32); 
  
-					writer.write('&', '#', static_cast<char_t>((ch / 10) + '0'), static_cast<char_t>((ch % 10) + '0'), ';'); 
+					WriterInstance.Write('&', '#', static_cast<char_t>((ch / 10) + '0'), static_cast<char_t>((ch % 10) + '0'), ';'); 
 				} 
 			} 
 		} 
 	} 
  
-	void text_output_cdata(BufferedWriter& writer, const char_t* s) 
+	void text_output_cdata(BufferedWriter& WriterInstance, const char_t* s) 
 	{ 
 		do 
 		{ 
-			writer.write('<', '!', '[', 'C', 'D'); 
-			writer.write('A', 'T', 'A', '['); 
+			WriterInstance.Write('<', '!', '[', 'C', 'D'); 
+			WriterInstance.Write('A', 'T', 'A', '['); 
  
 			const char_t* prev = s; 
  
@@ -2904,42 +2904,42 @@ namespace
 			// skip ]] if we stopped at ]]>, > will go to the next CDATA section 
 			if (*s) s += 2; 
  
-			writer.write(prev, static_cast<size_t>(s - prev)); 
+			WriterInstance.Write(prev, static_cast<size_t>(s - prev)); 
  
-			writer.write(']', ']', '>'); 
+			WriterInstance.Write(']', ']', '>'); 
 		} 
 		while (*s); 
 	} 
  
-	void NodeOutput_attributes(BufferedWriter& writer, const Node& node) 
+	void NodeOutput_attributes(BufferedWriter& WriterInstance, const Node& node) 
 	{ 
 		const char_t* default_name = XML_TEXT(":anonymous"); 
  
 		for (Attribute a = node.first_attribute(); a; a = a.next_attribute()) 
 		{ 
-			writer.write(' '); 
-			writer.write(a.name()[0] ? a.name() : default_name); 
-			writer.write('=', '"'); 
+			WriterInstance.Write(' '); 
+			WriterInstance.Write(a.name()[0] ? a.name() : default_name); 
+			WriterInstance.Write('=', '"'); 
  
-			text_output_escaped(writer, a.value(), ctx_special_attr); 
+			text_output_escaped(WriterInstance, a.value(), ctx_special_attr); 
  
-			writer.write('"'); 
+			WriterInstance.Write('"'); 
 		} 
 	} 
  
-	void NodeOutput(BufferedWriter& writer, const Node& node, const char_t* indent, unsigned int flags, unsigned int depth) 
+	void NodeOutput(BufferedWriter& WriterInstance, const Node& node, const char_t* indent, unsigned int flags, unsigned int depth) 
 	{ 
 		const char_t* default_name = XML_TEXT(":anonymous"); 
  
 		if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0) 
-			for (unsigned int i = 0; i < depth; ++i) writer.write(indent); 
+			for (unsigned int i = 0; i < depth; ++i) WriterInstance.Write(indent); 
  
 		switch (node.type()) 
 		{ 
 		case NodeDocument: 
 		{ 
 			for (Node n = node.first_child(); n; n = n.next_sibling()) 
-				NodeOutput(writer, n, indent, flags, depth); 
+				NodeOutput(WriterInstance, n, indent, flags, depth); 
 			break; 
 		} 
 			 
@@ -2947,108 +2947,108 @@ namespace
 		{ 
 			const char_t* name = node.name()[0] ? node.name() : default_name; 
  
-			writer.write('<'); 
-			writer.write(name); 
+			WriterInstance.Write('<'); 
+			WriterInstance.Write(name); 
  
-			NodeOutput_attributes(writer, node); 
+			NodeOutput_attributes(WriterInstance, node); 
  
 			if (flags & FormatRaw) 
 			{ 
 				if (!node.first_child()) 
-					writer.write(' ', '/', '>'); 
+					WriterInstance.Write(' ', '/', '>'); 
 				else 
 				{ 
-					writer.write('>'); 
+					WriterInstance.Write('>'); 
  
 					for (Node n = node.first_child(); n; n = n.next_sibling()) 
-						NodeOutput(writer, n, indent, flags, depth + 1); 
+						NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
  
-					writer.write('<', '/'); 
-					writer.write(name); 
-					writer.write('>'); 
+					WriterInstance.Write('<', '/'); 
+					WriterInstance.Write(name); 
+					WriterInstance.Write('>'); 
 				} 
 			} 
 			else if (!node.first_child()) 
-				writer.write(' ', '/', '>', '\n'); 
+				WriterInstance.Write(' ', '/', '>', '\n'); 
 			else if (node.first_child() == node.last_child() && (node.first_child().type() == NodePcdata || node.first_child().type() == NodeCdata)) 
 			{ 
-				writer.write('>'); 
+				WriterInstance.Write('>'); 
  
 				if (node.first_child().type() == NodePcdata) 
-					text_output_escaped(writer, node.first_child().value(), ctx_special_pcdata); 
+					text_output_escaped(WriterInstance, node.first_child().value(), ctx_special_pcdata); 
 				else 
-					text_output_cdata(writer, node.first_child().value()); 
+					text_output_cdata(WriterInstance, node.first_child().value()); 
  
-				writer.write('<', '/'); 
-				writer.write(name); 
-				writer.write('>', '\n'); 
+				WriterInstance.Write('<', '/'); 
+				WriterInstance.Write(name); 
+				WriterInstance.Write('>', '\n'); 
 			} 
 			else 
 			{ 
-				writer.write('>', '\n'); 
+				WriterInstance.Write('>', '\n'); 
 				 
 				for (Node n = node.first_child(); n; n = n.next_sibling()) 
-					NodeOutput(writer, n, indent, flags, depth + 1); 
+					NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
  
 				if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0) 
-					for (unsigned int i = 0; i < depth; ++i) writer.write(indent); 
+					for (unsigned int i = 0; i < depth; ++i) WriterInstance.Write(indent); 
 				 
-				writer.write('<', '/'); 
-				writer.write(name); 
-				writer.write('>', '\n'); 
+				WriterInstance.Write('<', '/'); 
+				WriterInstance.Write(name); 
+				WriterInstance.Write('>', '\n'); 
 			} 
  
 			break; 
 		} 
 		 
 		case NodePcdata: 
-			text_output_escaped(writer, node.value(), ctx_special_pcdata); 
-			if ((flags & FormatRaw) == 0) writer.write('\n'); 
+			text_output_escaped(WriterInstance, node.value(), ctx_special_pcdata); 
+			if ((flags & FormatRaw) == 0) WriterInstance.Write('\n'); 
 			break; 
  
 		case NodeCdata: 
-			text_output_cdata(writer, node.value()); 
-			if ((flags & FormatRaw) == 0) writer.write('\n'); 
+			text_output_cdata(WriterInstance, node.value()); 
+			if ((flags & FormatRaw) == 0) WriterInstance.Write('\n'); 
 			break; 
  
 		case NodeComment: 
-			writer.write('<', '!', '-', '-'); 
-			writer.write(node.value()); 
-			writer.write('-', '-', '>'); 
-			if ((flags & FormatRaw) == 0) writer.write('\n'); 
+			WriterInstance.Write('<', '!', '-', '-'); 
+			WriterInstance.Write(node.value()); 
+			WriterInstance.Write('-', '-', '>'); 
+			if ((flags & FormatRaw) == 0) WriterInstance.Write('\n'); 
 			break; 
  
 		case NodePi: 
 		case NodeDeclaration: 
-			writer.write('<', '?'); 
-			writer.write(node.name()[0] ? node.name() : default_name); 
+			WriterInstance.Write('<', '?'); 
+			WriterInstance.Write(node.name()[0] ? node.name() : default_name); 
  
 			if (node.type() == NodeDeclaration) 
 			{ 
-				NodeOutput_attributes(writer, node); 
+				NodeOutput_attributes(WriterInstance, node); 
 			} 
 			else if (node.value()[0]) 
 			{ 
-				writer.write(' '); 
-				writer.write(node.value()); 
+				WriterInstance.Write(' '); 
+				WriterInstance.Write(node.value()); 
 			} 
  
-			writer.write('?', '>'); 
-			if ((flags & FormatRaw) == 0) writer.write('\n'); 
+			WriterInstance.Write('?', '>'); 
+			if ((flags & FormatRaw) == 0) WriterInstance.Write('\n'); 
 			break; 
  
 		case NodeDoctype: 
-			writer.write('<', '!', 'D', 'O', 'C'); 
-			writer.write('T', 'Y', 'P', 'E'); 
+			WriterInstance.Write('<', '!', 'D', 'O', 'C'); 
+			WriterInstance.Write('T', 'Y', 'P', 'E'); 
  
 			if (node.value()[0]) 
 			{ 
-				writer.write(' '); 
-				writer.write(node.value()); 
+				WriterInstance.Write(' '); 
+				WriterInstance.Write(node.value()); 
 			} 
  
-			writer.write('>'); 
-			if ((flags & FormatRaw) == 0) writer.write('\n'); 
+			WriterInstance.Write('>'); 
+			if ((flags & FormatRaw) == 0) WriterInstance.Write('\n'); 
 			break; 
  
 		default: 
@@ -3293,7 +3293,7 @@ namespace phys
 	{ 
 	} 
  
-	void WriterFile::write(const void* data, size_t size) 
+	void WriterFile::Write(const void* data, size_t size) 
 	{ 
 		fwrite(data, size, 1, static_cast<FILE*>(file)); 
 	} 
@@ -3307,7 +3307,7 @@ namespace phys
 	{ 
 	} 
  
-	void WriterStream::write(const void* data, size_t size) 
+	void WriterStream::Write(const void* data, size_t size) 
 	{ 
 		if (narrow_stream) 
 		{ 
@@ -4311,28 +4311,28 @@ namespace phys
 		return _root; 
 	} 
  
-	void Node::print(Writer& writer, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int depth) const 
+	void Node::print(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int depth) const 
 	{ 
 		if (!_root) return; 
  
-		BufferedWriter buffered_writer(writer, DocumentEncoding); 
+		BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding); 
  
-		NodeOutput(buffered_writer, *this, indent, flags, depth); 
+		NodeOutput(buffered_WriterInstance, *this, indent, flags, depth); 
 	} 
  
 #ifndef XML_NO_STL 
 	void Node::print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int depth) const 
 	{ 
-		WriterStream writer(stream); 
+		WriterStream WriterInstance(stream); 
  
-		print(writer, indent, flags, DocumentEncoding, depth); 
+		print(WriterInstance, indent, flags, DocumentEncoding, depth); 
 	} 
  
 	void Node::print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int depth) const 
 	{ 
-		WriterStream writer(stream); 
+		WriterStream WriterInstance(stream); 
  
-		print(writer, indent, flags, Encodingwchar_t, depth); 
+		print(WriterInstance, indent, flags, Encodingwchar_t, depth); 
 	} 
 #endif 
  
@@ -4708,34 +4708,34 @@ namespace phys
 		return load_buffer_impl(contents, size, options, DocumentEncoding, true, true); 
 	} 
  
-	void Document::save(Writer& writer, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	void Document::save(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		if (flags & FormatWriteBom) write_bom(writer, get_write_DocumentEncoding(DocumentEncoding)); 
+		if (flags & FormatWriteBom) Write_bom(WriterInstance, get_Write_DocumentEncoding(DocumentEncoding)); 
  
-		BufferedWriter buffered_writer(writer, DocumentEncoding); 
+		BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding); 
  
 		if (!(flags & FormatNoDeclaration) && !has_declaration(*this)) 
 		{ 
-			buffered_writer.write(XML_TEXT("<?xml version=\"1.0\"?>")); 
-			if (!(flags & FormatRaw)) buffered_writer.write('\n'); 
+			buffered_WriterInstance.Write(XML_TEXT("<?xml version=\"1.0\"?>")); 
+			if (!(flags & FormatRaw)) buffered_WriterInstance.Write('\n'); 
 		} 
  
-		NodeOutput(buffered_writer, *this, indent, flags, 0); 
+		NodeOutput(buffered_WriterInstance, *this, indent, flags, 0); 
 	} 
  
 #ifndef XML_NO_STL 
 	void Document::save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		WriterStream writer(stream); 
+		WriterStream WriterInstance(stream); 
  
-		save(writer, indent, flags, DocumentEncoding); 
+		save(WriterInstance, indent, flags, DocumentEncoding); 
 	} 
  
 	void Document::save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags) const 
 	{ 
-		WriterStream writer(stream); 
+		WriterStream WriterInstance(stream); 
  
-		save(writer, indent, flags, Encodingwchar_t); 
+		save(WriterInstance, indent, flags, Encodingwchar_t); 
 	} 
 #endif 
  
@@ -4744,8 +4744,8 @@ namespace phys
 		FILE* file = fopen(path, "wb"); 
 		if (!file) return false; 
  
-		WriterFile writer(file); 
-		save(writer, indent, flags, DocumentEncoding); 
+		WriterFile WriterInstance(file); 
+		save(WriterInstance, indent, flags, DocumentEncoding); 
  
 		fclose(file); 
  
@@ -4757,8 +4757,8 @@ namespace phys
 		FILE* file = open_file_wide(path, L"wb"); 
 		if (!file) return false; 
  
-		WriterFile writer(file); 
-		save(writer, indent, flags, DocumentEncoding); 
+		WriterFile WriterInstance(file); 
+		save(WriterInstance, indent, flags, DocumentEncoding); 
  
 		fclose(file); 
  
@@ -4918,19 +4918,19 @@ namespace
 		if (begin == end) return begin; 
  
 		// last written element 
-		I write = begin++;  
+		I Write = begin++;  
  
 		// merge unique elements 
 		while (begin != end) 
 		{ 
-			if (*begin != *write) 
-				*++write = *begin++; 
+			if (*begin != *Write) 
+				*++Write = *begin++; 
 			else 
 				begin++; 
 		} 
  
-		// past-the-end (write points to live element) 
-		return write + 1; 
+		// past-the-end (Write points to live element) 
+		return Write + 1; 
 	} 
  
 	template <typename I> void copy_backwards(I begin, I end, I target) 
@@ -5985,7 +5985,7 @@ namespace
  
 	void normalize_space(char_t* buffer) 
 	{ 
-		char_t* write = buffer; 
+		char_t* Write = buffer; 
  
 		for (char_t* it = buffer; *it; ) 
 		{ 
@@ -5997,23 +5997,23 @@ namespace
 				while (IS_CHARTYPE(*it, ct_space)) it++; 
  
 				// avoid leading spaces 
-				if (write != buffer) *write++ = ' '; 
+				if (Write != buffer) *Write++ = ' '; 
 			} 
-			else *write++ = ch; 
+			else *Write++ = ch; 
 		} 
  
 		// remove trailing space 
-		if (write != buffer && IS_CHARTYPE(write[-1], ct_space)) write--; 
+		if (Write != buffer && IS_CHARTYPE(Write[-1], ct_space)) Write--; 
  
 		// zero-terminate 
-		*write = 0; 
+		*Write = 0; 
 	} 
  
 	void translate(char_t* buffer, const char_t* from, const char_t* to) 
 	{ 
 		size_t to_length = strlength(to); 
  
-		char_t* write = buffer; 
+		char_t* Write = buffer; 
  
 		while (*buffer) 
 		{ 
@@ -6022,13 +6022,13 @@ namespace
 			const char_t* pos = find_char(from, ch); 
  
 			if (!pos) 
-				*write++ = ch; // do not process 
+				*Write++ = ch; // do not process 
 			else if (static_cast<size_t>(pos - from) < to_length) 
-				*write++ = to[pos - from]; // replace 
+				*Write++ = to[pos - from]; // replace 
 		} 
  
 		// zero-terminate 
-		*write = 0; 
+		*Write = 0; 
 	} 
  
 	struct XPathVariableBoolean: XPathVariable 

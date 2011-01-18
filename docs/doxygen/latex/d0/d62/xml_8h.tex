@@ -34,19 +34,19 @@ struct \hyperlink{structphys_1_1xml_1_1ParseResult}{phys::xml::ParseResult}
 \begin{DoxyCompactList}\small\item\em All the information needed to troubleshoot a Parsing error. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1Document}{phys::xml::Document}
 \item 
-struct \hyperlink{structphys_1_1xml_1_1xpath__ParseResult}{phys::xml::xpath\_\-ParseResult}
+struct \hyperlink{structphys_1_1xml_1_1XPathParseResult}{phys::xml::XPathParseResult}
 \item 
-class \hyperlink{classphys_1_1xml_1_1xpath__variable}{phys::xml::xpath\_\-variable}
+class \hyperlink{classphys_1_1xml_1_1XPathVariable}{phys::xml::XPathVariable}
 \item 
-class \hyperlink{classphys_1_1xml_1_1xpath__variable__set}{phys::xml::xpath\_\-variable\_\-set}
+class \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{phys::xml::XPathVariableSet}
 \item 
-class \hyperlink{classphys_1_1xml_1_1xpath__query}{phys::xml::xpath\_\-query}
+class \hyperlink{classphys_1_1xml_1_1XPathQuery}{phys::xml::XPathQuery}
 \item 
-class \hyperlink{classphys_1_1xml_1_1xpath__exception}{phys::xml::xpath\_\-exception}
+class \hyperlink{classphys_1_1xml_1_1XPathException}{phys::xml::XPathException}
 \item 
-class \hyperlink{classphys_1_1xml_1_1xpath__node}{phys::xml::xpath\_\-node}
+class \hyperlink{classphys_1_1xml_1_1XPathNode}{phys::xml::XPathNode}
 \item 
-class \hyperlink{classphys_1_1xml_1_1xpath__NodeSet}{phys::xml::xpath\_\-NodeSet}
+class \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{phys::xml::XPathNodeSet}
 \end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
@@ -161,20 +161,20 @@ enum \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{phys::xm
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6b8d817142e0898ad9b1c61cfa54b8ea}{phys::xml::StatusEndElementMismatch}
  \}
 \begin{DoxyCompactList}\small\item\em These statuses are used to help determine what issues, if any the parser had. the XML parser had. \item\end{DoxyCompactList}\item 
-enum {\bfseries xpath\_\-value\_\-type} \{ \par
-{\bfseries xpath\_\-type\_\-none}, 
-{\bfseries xpath\_\-type\_\-NodeSet}, 
-{\bfseries xpath\_\-type\_\-number}, 
-{\bfseries xpath\_\-type\_\-string}, 
+enum {\bfseries XPathValueType} \{ \par
+{\bfseries XPathTypeNone}, 
+{\bfseries XPathTypeNodeSet}, 
+{\bfseries XPathTypeNumber}, 
+{\bfseries XPathTypeString}, 
 \par
-{\bfseries xpath\_\-type\_\-boolean}
+{\bfseries XPathTypeBoolean}
  \}
 \end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{namespacephys_1_1xml_aa9bd5708205af50b8b9c739d44859b8f}{
-std::string XML\_\-FUNCTION {\bfseries phys::xml::as\_\-utf8} (const wchar\_\-t $\ast$str)}
+std::string PHYS\_\-LIB {\bfseries phys::xml::as\_\-utf8} (const wchar\_\-t $\ast$str)}
 \label{d9/d27/namespacephys_1_1xml_aa9bd5708205af50b8b9c739d44859b8f}
 
 \item 
@@ -184,7 +184,7 @@ std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$
 
 \item 
 \hypertarget{namespacephys_1_1xml_a4c075685a28bbb5a441228b6ef28da99}{
-std::wstring XML\_\-FUNCTION {\bfseries phys::xml::as\_\-wide} (const char $\ast$str)}
+std::wstring PHYS\_\-LIB {\bfseries phys::xml::as\_\-wide} (const char $\ast$str)}
 \label{d9/d27/namespacephys_1_1xml_a4c075685a28bbb5a441228b6ef28da99}
 
 \item 
@@ -194,17 +194,17 @@ std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::
 
 \item 
 \hypertarget{namespacephys_1_1xml_af0fc777b09fb1cdc32f2992d1f5e2306}{
-void XML\_\-FUNCTION {\bfseries phys::xml::set\_\-memory\_\-management\_\-functions} (allocation\_\-function allocate, deallocation\_\-function deallocate)}
+void PHYS\_\-LIB {\bfseries phys::xml::set\_\-memory\_\-management\_\-functions} (allocation\_\-function allocate, deallocation\_\-function deallocate)}
 \label{d9/d27/namespacephys_1_1xml_af0fc777b09fb1cdc32f2992d1f5e2306}
 
 \item 
 \hypertarget{namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}{
-allocation\_\-function XML\_\-FUNCTION {\bfseries phys::xml::get\_\-memory\_\-allocation\_\-function} ()}
+allocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::get\_\-memory\_\-allocation\_\-function} ()}
 \label{d9/d27/namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}
 
 \item 
 \hypertarget{namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}{
-deallocation\_\-function XML\_\-FUNCTION {\bfseries phys::xml::get\_\-memory\_\-deallocation\_\-function} ()}
+deallocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::get\_\-memory\_\-deallocation\_\-function} ()}
 \label{d9/d27/namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}
 
 \end{DoxyCompactItemize}

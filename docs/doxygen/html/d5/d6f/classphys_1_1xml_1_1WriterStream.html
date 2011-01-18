@@ -58,17 +58,59 @@ Public Member Functions</h2></td></tr>
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>WriterStream</b> (std::basic_ostream&lt; char, std::char_traits&lt; char &gt; &gt; &amp;stream)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaebcd545af8e44cf6556a46077f0a366"></a><!-- doxytag: member="phys::xml::WriterStream::WriterStream" ref="aaebcd545af8e44cf6556a46077f0a366" args="(std::basic_ostream&lt; wchar_t, std::char_traits&lt; wchar_t &gt; &gt; &amp;stream)" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><b>WriterStream</b> (std::basic_ostream&lt; wchar_t, std::char_traits&lt; wchar_t &gt; &gt; &amp;stream)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a806e7d693cd21a2706b628bbd195bedd"></a><!-- doxytag: member="phys::xml::WriterStream::write" ref="a806e7d693cd21a2706b628bbd195bedd" args="(const void *data, size_t size)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>write</b> (const void *data, size_t size)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9">Write</a> (const void *data, size_t size)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will be used to output xml to an external source such as a file or stream.  <a href="#a74242c8abe03f6244d3464a663f75de9"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00314">314</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00317">317</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a74242c8abe03f6244d3464a663f75de9"></a><!-- doxytag: member="phys::xml::WriterStream::Write" ref="a74242c8abe03f6244d3464a663f75de9" args="(const void *data, size_t size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::xml::WriterStream::Write </td>
+          <td>(</td>
+          <td class="paramtype">const void *&nbsp;</td>
+          <td class="paramname"> <em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This will be used to output xml to an external source such as a file or stream. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>data</em>&nbsp;</td><td>This is a pointer to something that will get written to the output </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>The size in bytes of whatever was passed in. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html#ab6d4758ab53743f236eb64d5b2dd7e9e">phys::xml::Writer</a>.</p>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03310">3310</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
+<li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jan 17 2011 01:48:34 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Jan 18 2011 12:02:19 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

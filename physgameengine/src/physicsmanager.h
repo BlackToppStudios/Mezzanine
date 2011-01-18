@@ -72,7 +72,7 @@ namespace phys
     /// @class PhysicsManager
     /// @headerfile physicsmanager.h
     /// @brief This is simply a place for storing all the Physics Related functions
-    /// @details This is a plage for storing items related to Debug physics
+    /// @details This is a place for storing items related to Debug physics
     /// drawing, Adding constraints, screwing with gravity and doing other physics
     /// Related features.
     class PHYS_LIB PhysicsManager : public ManagerBase

@@ -290,20 +290,23 @@ namespace phys
 	class PHYS_LIB Writer 
 	{ 
 	public: 
+		/// @brief Empty Virtual Destructor
 		virtual ~Writer() {} 
  
-		// Write memory chunk into stream/file/whatever 
-		virtual void write(const void* data, size_t size) = 0; 
+		/// @brief This will be used to output xml to an external source such as a file or stream
+		/// @param data This is a pointer to something that will get written to the output
+		/// @param size The size in bytes of whatever was passed in.
+		virtual void Write(const void* data, size_t size) = 0; 
 	}; 
  
 	// Writer implementation for FILE* 
 	class PHYS_LIB WriterFile: public Writer 
 	{ 
 	public: 
-		// Construct writer from a FILE* object; void* is used to avoid header dependencies on stdio 
+		// Construct WriterInstance from a FILE* object; void* is used to avoid header dependencies on stdio 
 		WriterFile(void* file); 
  
-		virtual void write(const void* data, size_t size); 
+		virtual void Write(const void* data, size_t size); 
  
 	private: 
 		void* file; 
@@ -314,11 +317,11 @@ namespace phys
 	class PHYS_LIB WriterStream: public Writer 
 	{ 
 	public: 
-		// Construct writer from an output stream object 
+		// Construct WriterInstance from an output stream object 
 		WriterStream(std::basic_ostream<char, std::char_traits<char> >& stream); 
 		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream); 
  
-		virtual void write(const void* data, size_t size); 
+		virtual void Write(const void* data, size_t size); 
  
 	private: 
 		std::basic_ostream<char, std::char_traits<char> >* narrow_stream; 
@@ -595,8 +598,8 @@ namespace phys
 		XPathNodeSet select_nodes(const XPathQuery& query) const; 
 	#endif 
 		 
-		// Print subtree using a writer object 
-		void print(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
+		// Print subtree using a WriterInstance object 
+		void print(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
  
 	#ifndef XML_NO_STL 
 		// Print subtree to stream 
@@ -780,12 +783,10 @@ namespace phys
 		/// @brief Default constructor, initializes object to failed state. 
 		ParseResult(); 
  
-		/// @brief Cast to bool operator 
-		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
+		/// @brief Cast to bool operator \n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. 
-		/// @return A const char* with a brief error description based on the ParseResult::Status 
+		/// @brief Uses the Status member to create a text description. \n		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
  
@@ -843,8 +844,8 @@ namespace phys
 		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore). 
 		ParseResult load_buffer_inplace_own(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
-		// Save XML document to writer (semantics is slightly different from Node::print, see documentation for details). 
-		void save(Writer& writer, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		// Save XML document to WriterInstance (semantics is slightly different from Node::print, see documentation for details). 
+		void save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 	#ifndef XML_NO_STL 
 		// Save XML document to stream (semantics is slightly different from Node::print, see documentation for details). 
@@ -883,12 +884,10 @@ namespace phys
 		/// @brief Default constructor, initializes object to failed state. 
 		XPathParseResult(); 
  
-		/// @brief Cast to bool operator 
-		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
+		/// @brief Cast to bool operator \n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. 
-		/// @return A const char* with a brief error description based on the ParseResult::Status 
+		/// @brief Uses the Status member to create a text description. \n		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
  

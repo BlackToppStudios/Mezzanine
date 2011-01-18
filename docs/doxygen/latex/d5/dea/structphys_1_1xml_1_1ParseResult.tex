@@ -20,9 +20,11 @@ All the information needed to troubleshoot a Parsing error.
 
 \begin{DoxyCompactList}\small\item\em Default constructor, initializes object to failed state. \item\end{DoxyCompactList}\item 
 \hyperlink{structphys_1_1xml_1_1ParseResult_a95c9989865c1bace7846995166a13e31}{operator bool} () const 
-\begin{DoxyCompactList}\small\item\em Cast to bool operator. \item\end{DoxyCompactList}\item 
-const char $\ast$ \hyperlink{structphys_1_1xml_1_1ParseResult_a7f31e89fbe1735e5092adfc352ae5a0d}{Description} () const 
-\begin{DoxyCompactList}\small\item\em Uses the Status member to create a text description. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Cast to bool operator \par
+ ///. \item\end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{structphys_1_1xml_1_1ParseResult_aeda9dd881b93496c5500cb810b2e937d}{Description} () const 
+\begin{DoxyCompactList}\small\item\em Uses the Status member to create a text description. \par
+ ///. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -46,27 +48,32 @@ ptrdiff\_\-t \hyperlink{structphys_1_1xml_1_1ParseResult_a30b2a5fa6ceae01ab30c6f
 \subsection{Detailed Description}
 All the information needed to troubleshoot a Parsing error. 
 
-Definition at line 769 of file xml.h.
+Definition at line 772 of file xml.h.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{structphys_1_1xml_1_1ParseResult_a7f31e89fbe1735e5092adfc352ae5a0d}{
+\hypertarget{structphys_1_1xml_1_1ParseResult_aeda9dd881b93496c5500cb810b2e937d}{
 \index{phys::xml::ParseResult@{phys::xml::ParseResult}!Description@{Description}}
 \index{Description@{Description}!phys::xml::ParseResult@{phys::xml::ParseResult}}
-\subsubsection[{Description}]{\setlength{\rightskip}{0pt plus 5cm}const char$\ast$ phys::xml::ParseResult::Description (
+\subsubsection[{Description}]{\setlength{\rightskip}{0pt plus 5cm}const char $\ast$ phys::xml::ParseResult::Description (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const}}
-\label{d5/dea/structphys_1_1xml_1_1ParseResult_a7f31e89fbe1735e5092adfc352ae5a0d}
+\label{d5/dea/structphys_1_1xml_1_1ParseResult_aeda9dd881b93496c5500cb810b2e937d}
 
 
-Uses the Status member to create a text description. 
+Uses the Status member to create a text description. \par
+ ///. 
 
 \begin{DoxyReturn}{Returns}
 A const char$\ast$ with a brief error description based on the \hyperlink{structphys_1_1xml_1_1ParseResult_a1bf9dfeebdb07656723bbaf18ab612b5}{ParseResult::Status} 
 \end{DoxyReturn}
+
+
+Definition at line 4513 of file xml.cpp.
+
 \hypertarget{structphys_1_1xml_1_1ParseResult_a95c9989865c1bace7846995166a13e31}{
 \index{phys::xml::ParseResult@{phys::xml::ParseResult}!operator bool@{operator bool}}
 \index{operator bool@{operator bool}!phys::xml::ParseResult@{phys::xml::ParseResult}}
@@ -78,13 +85,19 @@ A const char$\ast$ with a brief error description based on the \hyperlink{struct
 \label{d5/dea/structphys_1_1xml_1_1ParseResult_a95c9989865c1bace7846995166a13e31}
 
 
-Cast to bool operator. 
+Cast to bool operator \par
+ ///. 
 
 \begin{DoxyReturn}{Returns}
 This returns true if the \hyperlink{structphys_1_1xml_1_1ParseResult_a1bf9dfeebdb07656723bbaf18ab612b5}{ParseResult::Status} member is set to ParseStatus::StatusOk, otherwise this returns false. 
 \end{DoxyReturn}
 
 
-The documentation for this struct was generated from the following file:\begin{DoxyCompactItemize}
+Definition at line 4508 of file xml.cpp.
+
+
+
+The documentation for this struct was generated from the following files:\begin{DoxyCompactItemize}
 \item 
-\hyperlink{xml_8h}{xml.h}\end{DoxyCompactItemize}
+\hyperlink{xml_8h}{xml.h}\item 
+xml.cpp\end{DoxyCompactItemize}

@@ -271,6 +271,11 @@ namespace phys
         /// @brief The default set of formatting flags.
         /// @details Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.
 
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Writer
+        /// Interface for node printing (see @ref Node::print)
+
+
     }
 }
 #endif

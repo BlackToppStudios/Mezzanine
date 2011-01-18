@@ -57,7 +57,8 @@ cat  $OurLicenseFile > $NewCppFile
 cat  $OurLicenseFile > $PugiTempHFile
 
 # This lops of the end copyright because we can use the ending from the other file we are merging with
-PugiConfigGrabUntil="#endif"						# The Copyright notices, and other string to search for in the PugiConfig File
+PugiConfigGrabUntil="#endif"
+				# The Copyright notices, and other string to search for in the PugiConfig File
 				#This next line uses grep to get the line number of the token we are searching for and then sends the results to
 				#sed to strip of the : and the token appended to the value we want.
 PugiConfigGrabLineCount=`grep "$PugiConfigGrabUntil" $PugiConfigFile -n | head -n1 | sed s/:.*//g`
@@ -150,79 +151,102 @@ FixNamespaces $NewCppFile "$PugiNamespace" "$OurExtraNamespace $OurNamespace" "$
 #This will replace all the old PugiXML names in the file providesd in $1 with the new BTS phys::xml names
 function FixNames
 {
-	FileContent=`cat $1`
-	TempFileName="$1.tmp"
-	echo -E "$FileContent" > $TempFileName
+	#FileContent=`cat $1`
+	#TempFileName="$1.tmp"
+	#echo -E "$FileContent" > $TempFileName
 
 	#A clean line to copy and paste 
-	#FileContent=`echo -E "$FileContent" | sed -e 's/needle/replacement/'`
+	#sed -i -e 's/needle/replacement/'`
 
+	#######################################################################
 	#This is the list of items to find/replace to convert the Pugi API into Physgame API
-	FileContent=`echo -E "$FileContent" | sed -e 's|///|////|g'`								#removed doxygen documentations
 
-	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)\([a-z]*\)_\(.\)/\U\1\L\2\U\3/g'`		#Adjust the names of two word type to use CamelCase
-	FileContent=`echo -E "$FileContent" | sed -e 's/xml_\(.\)/\U\1/g'`							#Adjust the names of one word type to use CamelCase
+	#Remove the original and grossly incomplete doxygen documentations
+	sed -i -e 's|///|////|g' $1								
 
-	FileContent=`echo -E "$FileContent" | sed -e 's/XML_CLASS/PHYS_LIB/g'`					#These configure the XML API to be exported to a DLL on windows
-	FileContent=`echo -E "$FileContent" | sed -e 's/XML_FUNCTION/PHYS_LIB/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/XML_API/PHYS_LIB/g'`
+	#Adjust the names of two word type to varaibles to use CamelCase
+	sed -i -e 's/xml_\(.\)\([a-z]*\)_\(.\)/\U\1\L\2\U\3/g' $1		
+	sed -i -e 's/xml_\(.\)/\U\1/g' $1
 
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_ok/StatusOk/g'`										#Status and error codes
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_file_not_found/StatusFileNotFound/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_io_error/StatusIOError/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_out_of_memory/StatusOutOfMemory/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_unrecognized_tag/StatusUnrecognizedTag/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_pi/StatusBadPi/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_comment/StatusBadComment/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_cdata/StatusBadCdata/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_doctype/StatusBadDoctype/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_pcdata/StatusBadPcdata/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_start_element/StatusBadStartElement/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_attribute/StatusBadAttribute/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_bad_end_element/StatusBadEndElement/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_end_element_mismatch/StatusEndElementMismatch/g'`
-	FileContent=`echo -E "$FileContent" | sed -e 's/status_internal_error/StatusInternalError/g'`
+	#These configure the XML API to be exported to a DLL on windows
+	sed -i -e 's/XML_CLASS/PHYS_LIB/g' $1					
+	sed -i -e 's/XML_FUNCTION/PHYS_LIB/g' $1
+	sed -i -e 's/XML_API/PHYS_LIB/g' $1
 
-	FileContent=`echo -E "$FileContent" | sed -e 's/status/Status/g'`							#Fix member ParseStatus.Status
-	FileContent=`echo -E "$FileContent" | sed -e 's/encoding/DocumentEncoding/g'`			#Fix member ParseStatus.DocumentEncoding
-	FileContent=`echo -E "$FileContent" | sed -e 's/offset\([^o]\)/Offset\1/g'`					#Fix member ParseStatus.Offset
-	FileContent=`echo -E "$FileContent" | sed -e 's/description/Description/g'`				#Fix member ParseStatus.Description()
+	#Status and error codes
+	sed -i -e 's/status_ok/StatusOk/g' $1										
+	sed -i -e 's/status_file_not_found/StatusFileNotFound/g' $1
+	sed -i -e 's/status_io_error/StatusIOError/g' $1
+	sed -i -e 's/status_out_of_memory/StatusOutOfMemory/g' $1
+	sed -i -e 's/status_unrecognized_tag/StatusUnrecognizedTag/g' $1
+	sed -i -e 's/status_bad_pi/StatusBadPi/g' $1
+	sed -i -e 's/status_bad_comment/StatusBadComment/g' $1
+	sed -i -e 's/status_bad_cdata/StatusBadCdata/g' $1
+	sed -i -e 's/status_bad_doctype/StatusBadDoctype/g' $1
+	sed -i -e 's/status_bad_pcdata/StatusBadPcdata/g' $1
+	sed -i -e 's/status_bad_start_element/StatusBadStartElement/g' $1
+	sed -i -e 's/status_bad_attribute/StatusBadAttribute/g' $1
+	sed -i -e 's/status_bad_end_element/StatusBadEndElement/g' $1
+	sed -i -e 's/status_end_element_mismatch/StatusEndElementMismatch/g' $1
+	sed -i -e 's/status_internal_error/StatusInternalError/g' $1
 
-	FileContent=`echo -E "$FileContent" | sed -e 's/\(DocumentEncoding\)_\([au][tf]*\)\([a-z0-9]*\)_\([ble]*\)/Encoding\U\2\3\U\4/g'`	#Fix The Encoding Enum All 3 part variable names
-	FileContent=`echo -E "$FileContent" | sed -e 's/\(DocumentEncoding\)_\([au][tf]*\)\([a-z0-9]*\)/Encoding\U\2\L\3/g'`		#Fix The Encoding Enum All the 2 part variables
-	FileContent=`echo -E "$FileContent" | sed -e 's/DocumentEncoding_wchar/Encodingwchar_t/g'`						#Fix Last enconding variable
+	#Fix member ParseStatus.Status, ParseStatus.DocumentEncoding, ParseStatus.Offset and ParseStatus.Description()
+	sed -i -e 's/status/Status/g' $1
+	sed -i -e 's/encoding/DocumentEncoding/g' $1
+	sed -i -e 's/offset\([^o]\)/Offset\1/g' $1
+	sed -i -e 's/description/Description/g' $1
 
-	FileContent=`echo -E "$FileContent" | sed -e 's|\(n\)\(ode\)_\(.\)\([a-z]*\)|\U\1\L\2\U\3\L\4|g'`							#Fix the NodeType Enum
+	#Fix The Encoding Enum All 1,2 and 3 part variable names
+	sed -i -e 's/\(DocumentEncoding\)_\([au][tf]*\)\([a-z0-9]*\)_\([ble]*\)/Encoding\U\2\3\U\4/g' $1
+	sed -i -e 's/\(DocumentEncoding\)_\([au][tf]*\)\([a-z0-9]*\)/Encoding\U\2\L\3/g' $1
+	sed -i -e 's/DocumentEncoding_wchar/Encodingwchar_t/g' $1
 
-	FileContent=`echo -E "$FileContent" | sed -e 's|typedef XML_CHAR char_t;|typedef Character char_t;|g'`					#Integrate character typedef 
+	#Fix the NodeType Enum
+	sed -i -e 's|\(n\)\(ode\)_\(.\)\([a-z]*\)|\U\1\L\2\U\3\L\4|g' $1
 
-																						#More tightly integrating Character into the XML parser
-	FileContent=`echo -E "$FileContent" | sed -e 's|typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> > string_t;|typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t;|g'`
+	#More tightly integrating Character into the XML parser
+	sed -i -e 's|typedef XML_CHAR char_t;|typedef Character char_t;|g' $1
+	sed -i -e 's|typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> > string_t;|typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t;|g' $1
 
-	FileContent=`echo -E "$FileContent" | sed -e 's|parse_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Parse\U\1\L\2\U\3\L\4|g'`				#Renaming 2 part Parse options
-	FileContent=`echo -E "$FileContent" | sed -e 's|parse_\(.\)\([a-z]*\)|Parse\U\1\L\2|g'`								#Renaming 1 part Parse options
+	#Renaming 1 and2 part Parse options
+	sed -i -e 's|parse_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Parse\U\1\L\2\U\3\L\4|g' $1				
+	sed -i -e 's|parse_\(.\)\([a-z]*\)|Parse\U\1\L\2|g' $1
+	
+	#Renaming 1,2 and 3 part Format options
+	sed -i -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4\U\5\L\6|g' $1	
+	sed -i -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4|g' $1
+	sed -i -e 's|format_\(.\)\([a-z]*\)|Format\U\1\L\2|g' $1				
+	
+	#Renaming 1 and 2 part Xpath Class Names
+	sed -i -e 's|xpath_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|XPath\U\1\L\2\U\3\L\4|g' $1	
+	sed -i -e 's|xpath_\(.\)\([a-z]*\)|XPath\U\1\L\2|g' $1				
 
-	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4\U\5\L\6|g'`	#Renaming 3 part Format options
-	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4|g'`	#Renaming 2 part Format options
-	FileContent=`echo -E "$FileContent" | sed -e 's|format_\(.\)\([a-z]*\)|Format\U\1\L\2|g'`				#Renaming 1 part Format options
+	#The Writer class and compatibility options
+	sed -i -e 's|writer|WriterInstance|g' $1
+	sed -i -e 's|write|Write|g' $1
+	sed -i -e 's|_stream->Write|_stream->write|g' $1
+	sed -i -e 's|fWrite|fwrite|g' $1
 
-	FileContent=`echo -E "$FileContent" | sed -e 's|xpath_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|XPath\U\1\L\2\U\3\L\4|g'`	#Renaming 2 part Xpath Class Names
-	FileContent=`echo -E "$FileContent" | sed -e 's|xpath_\(.\)\([a-z]*\)|XPath\U\1\L\2|g'`				#Renaming 1 part Xpath Class Names
+	###############################
+	#Documentation that was not put in xmldoc.h
 
-																						#Documentation that could not be put in xmldoc.h
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Last parsed Offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Default constructor, initializes object to failed state|/// @brief Default constructor, initializes object to failed state.|'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Cast to bool operator|/// @brief Cast to bool operator \\n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|'`
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Get error Description |/// @brief Uses the Status member to create a text description. \\n		/// @return A const char* with a brief error description based on the ParseResult::Status |'`
-																							#The Char documentation
-	FileContent=`echo -E "$FileContent" | sed -e 's|// Character type used for all internal storage and operations; depends on XML_WCHAR_MODE|/// @brief The character type used the internals of the XML parser, this is defined in datatypes.h.|'`
+	#Parsing status items
+	sed -i -e 's|// Parsing Status (see ParseStatus)|/// @brief Parsing status ( see @ref ParseStatus )|' $1
+	sed -i -e 's|// Last parsed Offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|' $1
+	sed -i -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|' $1
+	sed -i -e 's|// Default constructor, initializes object to failed state|/// @brief Default constructor, initializes object to failed state.|' $1
+	sed -i -e 's|// Cast to bool operator|/// @brief Cast to bool operator \\n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|' $1
+	sed -i -e 's|// Get error Description |/// @brief Uses the Status member to create a text description. \\n		/// @return A const char* with a brief error description based on the ParseResult::Status |' $1
+	sed -i -e 's|// Character type used for all internal storage and operations; depends on XML_WCHAR_MODE|/// @brief The character type used the internals of the XML parser, this is defined in datatypes.h.|' $1
 
-	#FileContent=`echo -E "$FileContent" | sed -e 's|||g'`
+	#Writer Interface class
+	sed -i -e 's|		virtual ~Writer() {} |		/// @brief Empty Virtual Destructor\n		virtual ~Writer() {} |g' $1
+	sed -i -e 's|// Write memory chunk into stream/file/whatever |/// @brief This will be used to output xml to an external source such as a file or stream\n		/// @param data This is a pointer to something that will get written to the output\n		/// @param size The size in bytes of whatever was passed in.|g' $1
 
-	echo -E "$FileContent" > $1
-	#	mv $TempFileName $1
+
+
+	#another clean line to copy/paste
+	#sed -i -e 's|||g' $1
 }
 
 FixNames $NewHFile
