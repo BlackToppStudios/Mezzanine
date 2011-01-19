@@ -54,8 +54,8 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net) 
  */ 
  
-#ifndef _XMLXONFIG_H 
-#define _XMLXONFIG_H 
+#ifndef _XMLCONFIG_H 
+#define _XMLCONFIG_H 
  
 // Uncomment this to enable wchar_t mode 
 // #define XML_WCHAR_MODE 
@@ -303,12 +303,19 @@ namespace phys
 	class PHYS_LIB WriterFile: public Writer 
 	{ 
 	public: 
-		// Construct WriterInstance from a FILE* object; void* is used to avoid header dependencies on stdio 
-		WriterFile(void* file); 
+		/// @brief Construct a Writer from a FILE* object.
+		/// @details The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety. 
+		
+
+		/// @brief Writes data to a file
+		/// @param data A pointer to the data 
+		/// @param size The size of the data in bytes. 
  
 		virtual void Write(const void* data, size_t size); 
  
 	private: 
+		/// @brief A pointer to a FILE as define in stdio
+		/// @internal
 		void* file; 
 	}; 
  
@@ -317,9 +324,17 @@ namespace phys
 	class PHYS_LIB WriterStream: public Writer 
 	{ 
 	public: 
-		// Construct WriterInstance from an output stream object 
+		/// @brief A constructor that accepts a stream of characters
+		/// @param stream A stream to send stuff to.
 		WriterStream(std::basic_ostream<char, std::char_traits<char> >& stream); 
-		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream); 
+		
+		/// @brief A constructor that accepts a stream of wide characters
+		/// @param stream A stream to send stuff to.
+		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream); stream);
+ 
+		/// @brief Writes data to the stream
+		/// @param data A pointer to the data 
+		/// @param size The size of the data in bytes. 
  
 		virtual void Write(const void* data, size_t size); 
  
