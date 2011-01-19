@@ -279,6 +279,31 @@ namespace phys
         /// @class WriterFile
         /// An implementation of @ref Writer intended to writing to FILEs as defined in stdio.h
 
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @def XML_DEPRECATED
+        /// @brief Used to mark XML internals as deprecated at the compiler level.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        //// @def PHYS_LIB
+        //// @brief Used to hint to compilers what should be included by the compiler in dynamic libraries.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @def _XML_H
+        /// @internal
+        /// @brief Prevents accidental loading of the file xml.h multiple times.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @def XML_TEXT
+        /// @internal
+        /// @brief Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @def XML_CHAR
+        /// @internal
+        /// @brief Links the  Pugi character datatype to match the Physgame phys::Characterdatatype
+
+
+
 
 
     }

@@ -54,8 +54,8 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net) 
  */ 
  
-#ifndef _xmlconfig_h 
-#define _xmlconfig_h 
+#ifndef _XMLXONFIG_H 
+#define _XMLXONFIG_H 
  
 // Uncomment this to enable wchar_t mode 
 // #define XML_WCHAR_MODE 
@@ -79,8 +79,8 @@
  
 #endif 
  
-#ifndef _H 
-#define _H 
+#ifndef _XML_H 
+#define _XML_H 
  
 #include "crossplatform.h" 
 #include "xmldoc.h" 
