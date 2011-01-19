@@ -277,15 +277,15 @@ namespace phys
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WriterFile
-        /// An implementation of @ref Writer intended to writing to FILEs as defined in stdio.h
+        /// An implementation of @ref Writer intended for writing to FILEs as defined in stdio
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class WriterStream
+        /// An implementation of @ref Writer intended for writing std::ostreams
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @def XML_DEPRECATED
         /// @brief Used to mark XML internals as deprecated at the compiler level.
-
-        ///////////////////////////////////////////////////////////////////////////////
-        //// @def PHYS_LIB
-        //// @brief Used to hint to compilers what should be included by the compiler in dynamic libraries.
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @def _XML_H

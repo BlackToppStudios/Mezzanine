@@ -21,6 +21,7 @@
   <div class="tabs2">
     <ul class="tablist">
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="../../globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
 <div class="header">
@@ -2943,7 +2944,7 @@
 <a name="l02913"></a>02913  
 <a name="l02914"></a>02914         <span class="keywordtype">void</span> NodeOutput_attributes(BufferedWriter&amp; WriterInstance, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
 <a name="l02915"></a>02915         { 
-<a name="l02916"></a>02916                 <span class="keyword">const</span> char_t* default_name = XML_TEXT(<span class="stringliteral">&quot;:anonymous&quot;</span>); 
+<a name="l02916"></a>02916                 <span class="keyword">const</span> char_t* default_name = <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;:anonymous&quot;</span>); 
 <a name="l02917"></a>02917  
 <a name="l02918"></a>02918                 <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> a = node.first_attribute(); a; a = a.next_attribute()) 
 <a name="l02919"></a>02919                 { 
@@ -2959,7 +2960,7 @@
 <a name="l02929"></a>02929  
 <a name="l02930"></a>02930         <span class="keywordtype">void</span> NodeOutput(BufferedWriter&amp; WriterInstance, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth) 
 <a name="l02931"></a>02931         { 
-<a name="l02932"></a>02932                 <span class="keyword">const</span> char_t* default_name = XML_TEXT(<span class="stringliteral">&quot;:anonymous&quot;</span>); 
+<a name="l02932"></a>02932                 <span class="keyword">const</span> char_t* default_name = <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;:anonymous&quot;</span>); 
 <a name="l02933"></a>02933  
 <a name="l02934"></a>02934                 <span class="keywordflow">if</span> ((flags &amp; <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#afaad0b8f59b5f103218ed5cb39b1bbde" title="Indent the nodes that are written to output stream with as many indentation strings as deep the node ...">FormatIndent</a>) != 0 &amp;&amp; (flags &amp; <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a6f6696cbdc48011817adad7978e83976" title="Use raw output mode (no indentation and no line breaks are written). This flag is off by default...">FormatRaw</a>) == 0) 
 <a name="l02935"></a>02935                         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; depth; ++i) WriterInstance.Write(indent); 
@@ -3323,21 +3324,21 @@
 <a name="l03293"></a>03293         { 
 <a name="l03294"></a>03294         } 
 <a name="l03295"></a>03295  
-<a name="l03296"></a><a class="code" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#a4c4348e30dc03b22f7d4ee15bd386ab2">03296</a>         <span class="keywordtype">void</span> <a class="code" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#a4c4348e30dc03b22f7d4ee15bd386ab2" title="This will be used to output xml to an external source such as a file or stream.">WriterFile::Write</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size) 
+<a name="l03296"></a><a class="code" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#a4c4348e30dc03b22f7d4ee15bd386ab2">03296</a>         <span class="keywordtype">void</span> <a class="code" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#a4c4348e30dc03b22f7d4ee15bd386ab2" title="Construct a Writer from a FILE* object.">WriterFile::Write</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size) 
 <a name="l03297"></a>03297         { 
 <a name="l03298"></a>03298                 fwrite(data, size, 1, static_cast&lt;FILE*&gt;(file)); 
 <a name="l03299"></a>03299         } 
 <a name="l03300"></a>03300  
 <a name="l03301"></a>03301 <span class="preprocessor">#ifndef XML_NO_STL </span>
-<a name="l03302"></a>03302 <span class="preprocessor"></span>        WriterStream::WriterStream(std::basic_ostream&lt;<span class="keywordtype">char</span>, std::char_traits&lt;char&gt; &gt;&amp; stream): narrow_stream(&amp;stream), wide_stream(0) 
+<a name="l03302"></a><a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#ae170ab7c429b6f7149d3540243329dfa">03302</a> <span class="preprocessor"></span>        <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#ae170ab7c429b6f7149d3540243329dfa" title="A constructor that accepts a stream of characters.">WriterStream::WriterStream</a>(std::basic_ostream&lt;<span class="keywordtype">char</span>, std::char_traits&lt;char&gt; &gt;&amp; stream): narrow_stream(&amp;stream), wide_stream(0) 
 <a name="l03303"></a>03303         { 
 <a name="l03304"></a>03304         } 
 <a name="l03305"></a>03305  
-<a name="l03306"></a>03306         WriterStream::WriterStream(std::basic_ostream&lt;<span class="keywordtype">wchar_t</span>, std::char_traits&lt;wchar_t&gt; &gt;&amp; stream): narrow_stream(0), wide_stream(&amp;stream) 
+<a name="l03306"></a>03306         <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#ae170ab7c429b6f7149d3540243329dfa" title="A constructor that accepts a stream of characters.">WriterStream::WriterStream</a>(std::basic_ostream&lt;<span class="keywordtype">wchar_t</span>, std::char_traits&lt;wchar_t&gt; &gt;&amp; stream): narrow_stream(0), wide_stream(&amp;stream) 
 <a name="l03307"></a>03307         { 
 <a name="l03308"></a>03308         } 
 <a name="l03309"></a>03309  
-<a name="l03310"></a><a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9">03310</a>         <span class="keywordtype">void</span> <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9" title="This will be used to output xml to an external source such as a file or stream.">WriterStream::Write</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size) 
+<a name="l03310"></a><a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9">03310</a>         <span class="keywordtype">void</span> <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9" title="Writes data to the stream.">WriterStream::Write</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size) 
 <a name="l03311"></a>03311         { 
 <a name="l03312"></a>03312                 <span class="keywordflow">if</span> (narrow_stream) 
 <a name="l03313"></a>03313                 { 
@@ -3497,12 +3498,12 @@
 <a name="l03467"></a>03467  
 <a name="l03468"></a>03468         <span class="keyword">const</span> char_t* Attribute::name()<span class="keyword"> const </span>
 <a name="l03469"></a>03469 <span class="keyword">        </span>{ 
-<a name="l03470"></a>03470                 <span class="keywordflow">return</span> (_attr &amp;&amp; _attr-&gt;name) ? _attr-&gt;name : XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l03470"></a>03470                 <span class="keywordflow">return</span> (_attr &amp;&amp; _attr-&gt;name) ? _attr-&gt;name : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03471"></a>03471         } 
 <a name="l03472"></a>03472  
 <a name="l03473"></a>03473         <span class="keyword">const</span> char_t* Attribute::value()<span class="keyword"> const </span>
 <a name="l03474"></a>03474 <span class="keyword">        </span>{ 
-<a name="l03475"></a>03475                 <span class="keywordflow">return</span> (_attr &amp;&amp; _attr-&gt;value) ? _attr-&gt;value : XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l03475"></a>03475                 <span class="keywordflow">return</span> (_attr &amp;&amp; _attr-&gt;value) ? _attr-&gt;value : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03476"></a>03476         } 
 <a name="l03477"></a>03477  
 <a name="l03478"></a>03478         <span class="keywordtype">size_t</span> Attribute::hash_value()<span class="keyword"> const </span>
@@ -3606,7 +3607,7 @@
 <a name="l03576"></a>03576          
 <a name="l03577"></a>03577         <span class="keywordtype">bool</span> Attribute::set_value(<span class="keywordtype">bool</span> rhs) 
 <a name="l03578"></a>03578         { 
-<a name="l03579"></a>03579                 <span class="keywordflow">return</span> set_value(rhs ? XML_TEXT(<span class="stringliteral">&quot;true&quot;</span>) : XML_TEXT(<span class="stringliteral">&quot;false&quot;</span>)); 
+<a name="l03579"></a>03579                 <span class="keywordflow">return</span> set_value(rhs ? <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;true&quot;</span>) : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;false&quot;</span>)); 
 <a name="l03580"></a>03580         } 
 <a name="l03581"></a>03581  
 <a name="l03582"></a>03582 <span class="preprocessor">#ifdef __BORLANDC__ </span>
@@ -3696,7 +3697,7 @@
 <a name="l03666"></a>03666          
 <a name="l03667"></a>03667         <span class="keyword">const</span> char_t* Node::name()<span class="keyword"> const </span>
 <a name="l03668"></a>03668 <span class="keyword">        </span>{ 
-<a name="l03669"></a>03669                 <span class="keywordflow">return</span> (_root &amp;&amp; _root-&gt;name) ? _root-&gt;name : XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l03669"></a>03669                 <span class="keywordflow">return</span> (_root &amp;&amp; _root-&gt;name) ? _root-&gt;name : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03670"></a>03670         } 
 <a name="l03671"></a>03671  
 <a name="l03672"></a>03672         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> Node::type()<span class="keyword"> const </span>
@@ -3706,7 +3707,7 @@
 <a name="l03676"></a>03676          
 <a name="l03677"></a>03677         <span class="keyword">const</span> char_t* Node::value()<span class="keyword"> const </span>
 <a name="l03678"></a>03678 <span class="keyword">        </span>{ 
-<a name="l03679"></a>03679                 <span class="keywordflow">return</span> (_root &amp;&amp; _root-&gt;value) ? _root-&gt;value : XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l03679"></a>03679                 <span class="keywordflow">return</span> (_root &amp;&amp; _root-&gt;value) ? _root-&gt;value : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03680"></a>03680         } 
 <a name="l03681"></a>03681          
 <a name="l03682"></a>03682         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::child(<span class="keyword">const</span> char_t* name)<span class="keyword"> const </span>
@@ -3782,7 +3783,7 @@
 <a name="l03752"></a>03752  
 <a name="l03753"></a>03753         <span class="keyword">const</span> char_t* Node::child_value()<span class="keyword"> const </span>
 <a name="l03754"></a>03754 <span class="keyword">        </span>{ 
-<a name="l03755"></a>03755                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l03755"></a>03755                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03756"></a>03756                  
 <a name="l03757"></a>03757                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;first_child; i; i = i-&gt;next_sibling) 
 <a name="l03758"></a>03758                 { 
@@ -3792,7 +3793,7 @@
 <a name="l03762"></a>03762                                 <span class="keywordflow">return</span> i-&gt;value; 
 <a name="l03763"></a>03763                 } 
 <a name="l03764"></a>03764  
-<a name="l03765"></a>03765                 <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l03765"></a>03765                 <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03766"></a>03766         } 
 <a name="l03767"></a>03767  
 <a name="l03768"></a>03768         <span class="keyword">const</span> char_t* Node::child_value(<span class="keyword">const</span> char_t* name)<span class="keyword"> const </span>
@@ -3987,7 +3988,7 @@
 <a name="l03957"></a>03957                  
 <a name="l03958"></a>03958                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n(append_node(_root, get_allocator(_root), type)); 
 <a name="l03959"></a>03959  
-<a name="l03960"></a>03960                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.set_name(XML_TEXT(<span class="stringliteral">&quot;xml&quot;</span>)); 
+<a name="l03960"></a>03960                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.set_name(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml&quot;</span>)); 
 <a name="l03961"></a>03961  
 <a name="l03962"></a>03962                 <span class="keywordflow">return</span> n; 
 <a name="l03963"></a>03963         } 
@@ -4014,7 +4015,7 @@
 <a name="l03984"></a>03984                 n._root-&gt;next_sibling = head; 
 <a name="l03985"></a>03985                 _root-&gt;first_child = n._root; 
 <a name="l03986"></a>03986                                  
-<a name="l03987"></a>03987                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.set_name(XML_TEXT(<span class="stringliteral">&quot;xml&quot;</span>)); 
+<a name="l03987"></a>03987                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.set_name(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml&quot;</span>)); 
 <a name="l03988"></a>03988  
 <a name="l03989"></a>03989                 <span class="keywordflow">return</span> n; 
 <a name="l03990"></a>03990         } 
@@ -4038,7 +4039,7 @@
 <a name="l04008"></a>04008                 n._root-&gt;next_sibling = node._root; 
 <a name="l04009"></a>04009                 node._root-&gt;prev_sibling_c = n._root; 
 <a name="l04010"></a>04010  
-<a name="l04011"></a>04011                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.set_name(XML_TEXT(<span class="stringliteral">&quot;xml&quot;</span>)); 
+<a name="l04011"></a>04011                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.set_name(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml&quot;</span>)); 
 <a name="l04012"></a>04012  
 <a name="l04013"></a>04013                 <span class="keywordflow">return</span> n; 
 <a name="l04014"></a>04014         } 
@@ -4062,7 +4063,7 @@
 <a name="l04032"></a>04032                 n._root-&gt;prev_sibling_c = node._root; 
 <a name="l04033"></a>04033                 node._root-&gt;next_sibling = n._root; 
 <a name="l04034"></a>04034  
-<a name="l04035"></a>04035                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.set_name(XML_TEXT(<span class="stringliteral">&quot;xml&quot;</span>)); 
+<a name="l04035"></a>04035                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.set_name(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml&quot;</span>)); 
 <a name="l04036"></a>04036  
 <a name="l04037"></a>04037                 <span class="keywordflow">return</span> n; 
 <a name="l04038"></a>04038         } 
@@ -4746,7 +4747,7 @@
 <a name="l04716"></a>04716  
 <a name="l04717"></a>04717                 <span class="keywordflow">if</span> (!(flags &amp; <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#aee4ccb3535945d4808a0cf6abe4cb050" title="Omit default XML declaration even if there is no declaration in the document. This flag is off by def...">FormatNoDeclaration</a>) &amp;&amp; !has_declaration(*<span class="keyword">this</span>)) 
 <a name="l04718"></a>04718                 { 
-<a name="l04719"></a>04719                         buffered_WriterInstance.Write(XML_TEXT(<span class="stringliteral">&quot;&lt;?xml version=\&quot;1.0\&quot;?&gt;&quot;</span>)); 
+<a name="l04719"></a>04719                         buffered_WriterInstance.Write(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&lt;?xml version=\&quot;1.0\&quot;?&gt;&quot;</span>)); 
 <a name="l04720"></a>04720                         <span class="keywordflow">if</span> (!(flags &amp; FormatRaw)) buffered_WriterInstance.Write(<span class="charliteral">&#39;\n&#39;</span>); 
 <a name="l04721"></a>04721                 } 
 <a name="l04722"></a>04722  
@@ -5341,7 +5342,7 @@
 <a name="l05311"></a>05311                 } 
 <a name="l05312"></a>05312  
 <a name="l05313"></a>05313         <span class="keyword">public</span>: 
-<a name="l05314"></a>05314                 XPathString(): _buffer(XML_TEXT(<span class="stringliteral">&quot;&quot;</span>)), _uses_heap(false) 
+<a name="l05314"></a>05314                 XPathString(): _buffer(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>)), _uses_heap(false) 
 <a name="l05315"></a>05315                 { 
 <a name="l05316"></a>05316                 } 
 <a name="l05317"></a>05317  
@@ -5349,7 +5350,7 @@
 <a name="l05319"></a>05319                 { 
 <a name="l05320"></a>05320                         <span class="keywordtype">bool</span> empty = (*str == 0); 
 <a name="l05321"></a>05321  
-<a name="l05322"></a>05322                         _buffer = empty ? XML_TEXT(<span class="stringliteral">&quot;&quot;</span>) : duplicate_string(str, alloc); 
+<a name="l05322"></a>05322                         _buffer = empty ? <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>) : duplicate_string(str, alloc); 
 <a name="l05323"></a>05323                         _uses_heap = !empty; 
 <a name="l05324"></a>05324                 } 
 <a name="l05325"></a>05325  
@@ -5363,7 +5364,7 @@
 <a name="l05333"></a>05333  
 <a name="l05334"></a>05334                         <span class="keywordtype">bool</span> empty = (begin == end); 
 <a name="l05335"></a>05335  
-<a name="l05336"></a>05336                         _buffer = empty ? XML_TEXT(<span class="stringliteral">&quot;&quot;</span>) : duplicate_string(begin, static_cast&lt;size_t&gt;(end - begin), alloc); 
+<a name="l05336"></a>05336                         _buffer = empty ? <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>) : duplicate_string(begin, static_cast&lt;size_t&gt;(end - begin), alloc); 
 <a name="l05337"></a>05337                         _uses_heap = !empty; 
 <a name="l05338"></a>05338                 } 
 <a name="l05339"></a>05339  
@@ -5701,20 +5702,20 @@
 <a name="l05671"></a>05671         <span class="keyword">const</span> char_t* convert_number_to_string_special(<span class="keywordtype">double</span> value) 
 <a name="l05672"></a>05672         { 
 <a name="l05673"></a>05673 <span class="preprocessor">        #if defined(_MSC_VER) || defined(__BORLANDC__) </span>
-<a name="l05674"></a>05674 <span class="preprocessor"></span>                <span class="keywordflow">if</span> (_finite(value)) <span class="keywordflow">return</span> (value == 0) ? XML_TEXT(<span class="stringliteral">&quot;0&quot;</span>) : 0; 
-<a name="l05675"></a>05675                 <span class="keywordflow">if</span> (_isnan(value)) <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;NaN&quot;</span>); 
-<a name="l05676"></a>05676                 <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;-Infinity&quot;</span>) + (value &gt; 0); 
+<a name="l05674"></a>05674 <span class="preprocessor"></span>                <span class="keywordflow">if</span> (_finite(value)) <span class="keywordflow">return</span> (value == 0) ? <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;0&quot;</span>) : 0; 
+<a name="l05675"></a>05675                 <span class="keywordflow">if</span> (_isnan(value)) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;NaN&quot;</span>); 
+<a name="l05676"></a>05676                 <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;-Infinity&quot;</span>) + (value &gt; 0); 
 <a name="l05677"></a>05677 <span class="preprocessor">        #elif defined(fpclassify) &amp;&amp; defined(FP_NAN) &amp;&amp; defined(FP_INFINITE) &amp;&amp; defined(FP_ZERO) </span>
 <a name="l05678"></a>05678 <span class="preprocessor"></span>                <span class="keywordflow">switch</span> (fpclassify(value)) 
 <a name="l05679"></a>05679                 { 
 <a name="l05680"></a>05680                 <span class="keywordflow">case</span> FP_NAN: 
-<a name="l05681"></a>05681                         <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;NaN&quot;</span>); 
+<a name="l05681"></a>05681                         <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;NaN&quot;</span>); 
 <a name="l05682"></a>05682  
 <a name="l05683"></a>05683                 <span class="keywordflow">case</span> FP_INFINITE: 
-<a name="l05684"></a>05684                         <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;-Infinity&quot;</span>) + (value &gt; 0); 
+<a name="l05684"></a>05684                         <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;-Infinity&quot;</span>) + (value &gt; 0); 
 <a name="l05685"></a>05685  
 <a name="l05686"></a>05686                 <span class="keywordflow">case</span> FP_ZERO: 
-<a name="l05687"></a>05687                         <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;0&quot;</span>); 
+<a name="l05687"></a>05687                         <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;0&quot;</span>); 
 <a name="l05688"></a>05688  
 <a name="l05689"></a>05689                 <span class="keywordflow">default</span>: 
 <a name="l05690"></a>05690                         <span class="keywordflow">return</span> 0; 
@@ -5723,9 +5724,9 @@
 <a name="l05693"></a>05693 <span class="preprocessor"></span>                <span class="comment">// fallback </span>
 <a name="l05694"></a>05694                 <span class="keyword">const</span> <span class="keyword">volatile</span> <span class="keywordtype">double</span> v = value; 
 <a name="l05695"></a>05695  
-<a name="l05696"></a>05696                 <span class="keywordflow">if</span> (v == 0) <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;0&quot;</span>); 
-<a name="l05697"></a>05697                 <span class="keywordflow">if</span> (v != v) <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;NaN&quot;</span>); 
-<a name="l05698"></a>05698                 <span class="keywordflow">if</span> (v * 2 == v) <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;-Infinity&quot;</span>) + (value &gt; 0); 
+<a name="l05696"></a>05696                 <span class="keywordflow">if</span> (v == 0) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;0&quot;</span>); 
+<a name="l05697"></a>05697                 <span class="keywordflow">if</span> (v != v) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;NaN&quot;</span>); 
+<a name="l05698"></a>05698                 <span class="keywordflow">if</span> (v * 2 == v) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;-Infinity&quot;</span>) + (value &gt; 0); 
 <a name="l05699"></a>05699                 <span class="keywordflow">return</span> 0; 
 <a name="l05700"></a>05700 <span class="preprocessor">        #endif </span>
 <a name="l05701"></a>05701 <span class="preprocessor"></span>        } 
@@ -5963,7 +5964,7 @@
 <a name="l05933"></a>05933 <span class="keyword">                </span>{ 
 <a name="l05934"></a>05934                         <span class="keyword">const</span> char_t* name = a.name(); 
 <a name="l05935"></a>05935  
-<a name="l05936"></a>05936                         <span class="keywordflow">if</span> (!starts_with(name, XML_TEXT(<span class="stringliteral">&quot;xmlns&quot;</span>))) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
+<a name="l05936"></a>05936                         <span class="keywordflow">if</span> (!starts_with(name, <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xmlns&quot;</span>))) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l05937"></a>05937  
 <a name="l05938"></a>05938                         <span class="keywordflow">return</span> prefix ? name[5] == <span class="charliteral">&#39;:&#39;</span> &amp;&amp; strequalrange(name + 6, prefix, prefix_length) : name[5] == 0; 
 <a name="l05939"></a>05939                 } 
@@ -5984,7 +5985,7 @@
 <a name="l05954"></a>05954                         p = p.parent(); 
 <a name="l05955"></a>05955                 } 
 <a name="l05956"></a>05956                  
-<a name="l05957"></a>05957                 <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l05957"></a>05957                 <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l05958"></a>05958         } 
 <a name="l05959"></a>05959  
 <a name="l05960"></a>05960         <span class="keyword">const</span> char_t* namespace_uri(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a>&amp; attr, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; parent) 
@@ -5992,7 +5993,7 @@
 <a name="l05962"></a>05962                 namespace_uri_predicate pred = attr.name(); 
 <a name="l05963"></a>05963                  
 <a name="l05964"></a>05964                 <span class="comment">// Default namespace does not apply to attributes </span>
-<a name="l05965"></a>05965                 <span class="keywordflow">if</span> (!pred.prefix) <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l05965"></a>05965                 <span class="keywordflow">if</span> (!pred.prefix) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l05966"></a>05966                  
 <a name="l05967"></a>05967                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> p = parent; 
 <a name="l05968"></a>05968                  
@@ -6005,7 +6006,7 @@
 <a name="l05975"></a>05975                         p = p.parent(); 
 <a name="l05976"></a>05976                 } 
 <a name="l05977"></a>05977                  
-<a name="l05978"></a>05978                 <span class="keywordflow">return</span> XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l05978"></a>05978                 <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l05979"></a>05979         } 
 <a name="l05980"></a>05980  
 <a name="l05981"></a>05981         <span class="keyword">const</span> char_t* namespace_uri(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; node) 
@@ -7070,7 +7071,7 @@
 <a name="l07040"></a>07040  
 <a name="l07041"></a>07041                         <span class="comment">// There are no attribute nodes corresponding to attributes that declare namespaces </span>
 <a name="l07042"></a>07042                         <span class="comment">// That is, &quot;xmlns:...&quot; or &quot;xmlns&quot; </span>
-<a name="l07043"></a>07043                         <span class="keywordflow">if</span> (starts_with(name, XML_TEXT(<span class="stringliteral">&quot;xmlns&quot;</span>)) &amp;&amp; (name[5] == 0 || name[5] == <span class="charliteral">&#39;:&#39;</span>)) <span class="keywordflow">return</span>; 
+<a name="l07043"></a>07043                         <span class="keywordflow">if</span> (starts_with(name, <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xmlns&quot;</span>)) &amp;&amp; (name[5] == 0 || name[5] == <span class="charliteral">&#39;:&#39;</span>)) <span class="keywordflow">return</span>; 
 <a name="l07044"></a>07044                          
 <a name="l07045"></a>07045                         <span class="keywordflow">switch</span> (_test) 
 <a name="l07046"></a>07046                         { 
@@ -7549,7 +7550,7 @@
 <a name="l07519"></a>07519                                  
 <a name="l07520"></a>07520                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n = c.n.node(); n; n = n.parent()) 
 <a name="l07521"></a>07521                                 { 
-<a name="l07522"></a>07522                                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> a = n.attribute(XML_TEXT(<span class="stringliteral">&quot;xml:lang&quot;</span>)); 
+<a name="l07522"></a>07522                                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> a = n.attribute(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml:lang&quot;</span>)); 
 <a name="l07523"></a>07523                                          
 <a name="l07524"></a>07524                                         <span class="keywordflow">if</span> (a) 
 <a name="l07525"></a>07525                                         { 
@@ -7989,7 +7990,7 @@
 <a name="l07959"></a>07959                                 <span class="keywordflow">switch</span> (_rettype) 
 <a name="l07960"></a>07960                                 { 
 <a name="l07961"></a>07961                                 <span class="keywordflow">case</span> XPathTypeBoolean: 
-<a name="l07962"></a>07962                                         <span class="keywordflow">return</span> XPathStringConst(eval_boolean(c, stack) ? XML_TEXT(<span class="stringliteral">&quot;true&quot;</span>) : XML_TEXT(<span class="stringliteral">&quot;false&quot;</span>)); 
+<a name="l07962"></a>07962                                         <span class="keywordflow">return</span> XPathStringConst(eval_boolean(c, stack) ? <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;true&quot;</span>) : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;false&quot;</span>)); 
 <a name="l07963"></a>07963                                          
 <a name="l07964"></a>07964                                 <span class="keywordflow">case</span> XPathTypeNumber: 
 <a name="l07965"></a>07965                                         <span class="keywordflow">return</span> convert_number_to_string(eval_number(c, stack), stack.result); 
@@ -8247,90 +8248,90 @@
 <a name="l08217"></a>08217                         <span class="keywordflow">switch</span> (name.begin[0]) 
 <a name="l08218"></a>08218                         { 
 <a name="l08219"></a>08219                         <span class="keywordflow">case</span> <span class="charliteral">&#39;b&#39;</span>: 
-<a name="l08220"></a>08220                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;boolean&quot;</span>) &amp;&amp; argc == 1) 
+<a name="l08220"></a>08220                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;boolean&quot;</span>) &amp;&amp; argc == 1) 
 <a name="l08221"></a>08221                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_boolean, XPathTypeBoolean, args[0]); 
 <a name="l08222"></a>08222                                          
 <a name="l08223"></a>08223                                 <span class="keywordflow">break</span>; 
 <a name="l08224"></a>08224                          
 <a name="l08225"></a>08225                         <span class="keywordflow">case</span> <span class="charliteral">&#39;c&#39;</span>: 
-<a name="l08226"></a>08226                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;count&quot;</span>) &amp;&amp; argc == 1) 
+<a name="l08226"></a>08226                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;count&quot;</span>) &amp;&amp; argc == 1) 
 <a name="l08227"></a>08227                                 { 
 <a name="l08228"></a>08228                                         <span class="keywordflow">if</span> (args[0]-&gt;rettype() != XPathTypeNodeSet) throw_error(<span class="stringliteral">&quot;Function has to be applied to node set&quot;</span>); 
 <a name="l08229"></a>08229                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_count, XPathTypeNumber, args[0]); 
 <a name="l08230"></a>08230                                 } 
-<a name="l08231"></a>08231                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;contains&quot;</span>) &amp;&amp; argc == 2) 
+<a name="l08231"></a>08231                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;contains&quot;</span>) &amp;&amp; argc == 2) 
 <a name="l08232"></a>08232                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_contains, XPathTypeString, args[0], args[1]); 
-<a name="l08233"></a>08233                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;concat&quot;</span>) &amp;&amp; argc &gt;= 2) 
+<a name="l08233"></a>08233                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;concat&quot;</span>) &amp;&amp; argc &gt;= 2) 
 <a name="l08234"></a>08234                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_concat, XPathTypeString, args[0], args[1]); 
-<a name="l08235"></a>08235                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;ceiling&quot;</span>) &amp;&amp; argc == 1) 
+<a name="l08235"></a>08235                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;ceiling&quot;</span>) &amp;&amp; argc == 1) 
 <a name="l08236"></a>08236                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_ceiling, XPathTypeNumber, args[0]); 
 <a name="l08237"></a>08237                                          
 <a name="l08238"></a>08238                                 <span class="keywordflow">break</span>; 
 <a name="l08239"></a>08239                          
 <a name="l08240"></a>08240                         <span class="keywordflow">case</span> <span class="charliteral">&#39;f&#39;</span>: 
-<a name="l08241"></a>08241                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;false&quot;</span>) &amp;&amp; argc == 0) 
+<a name="l08241"></a>08241                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;false&quot;</span>) &amp;&amp; argc == 0) 
 <a name="l08242"></a>08242                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_false, XPathTypeBoolean); 
-<a name="l08243"></a>08243                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;floor&quot;</span>) &amp;&amp; argc == 1) 
+<a name="l08243"></a>08243                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;floor&quot;</span>) &amp;&amp; argc == 1) 
 <a name="l08244"></a>08244                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_floor, XPathTypeNumber, args[0]); 
 <a name="l08245"></a>08245                                          
 <a name="l08246"></a>08246                                 <span class="keywordflow">break</span>; 
 <a name="l08247"></a>08247                          
 <a name="l08248"></a>08248                         <span class="keywordflow">case</span> <span class="charliteral">&#39;i&#39;</span>: 
-<a name="l08249"></a>08249                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;id&quot;</span>) &amp;&amp; argc == 1) 
+<a name="l08249"></a>08249                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;id&quot;</span>) &amp;&amp; argc == 1) 
 <a name="l08250"></a>08250                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_id, XPathTypeNodeSet, args[0]); 
 <a name="l08251"></a>08251                                          
 <a name="l08252"></a>08252                                 <span class="keywordflow">break</span>; 
 <a name="l08253"></a>08253                          
 <a name="l08254"></a>08254                         <span class="keywordflow">case</span> <span class="charliteral">&#39;l&#39;</span>: 
-<a name="l08255"></a>08255                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;last&quot;</span>) &amp;&amp; argc == 0) 
+<a name="l08255"></a>08255                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;last&quot;</span>) &amp;&amp; argc == 0) 
 <a name="l08256"></a>08256                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_last, XPathTypeNumber); 
-<a name="l08257"></a>08257                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;lang&quot;</span>) &amp;&amp; argc == 1) 
+<a name="l08257"></a>08257                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;lang&quot;</span>) &amp;&amp; argc == 1) 
 <a name="l08258"></a>08258                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_lang, XPathTypeBoolean, args[0]); 
-<a name="l08259"></a>08259                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;local-name&quot;</span>) &amp;&amp; argc &lt;= 1) 
+<a name="l08259"></a>08259                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;local-name&quot;</span>) &amp;&amp; argc &lt;= 1) 
 <a name="l08260"></a>08260                                         <span class="keywordflow">return</span> ParseFunctionHelper(ast_func_local_name_0, ast_func_local_name_1, argc, args); 
 <a name="l08261"></a>08261                          
 <a name="l08262"></a>08262                                 <span class="keywordflow">break</span>; 
 <a name="l08263"></a>08263                          
 <a name="l08264"></a>08264                         <span class="keywordflow">case</span> <span class="charliteral">&#39;n&#39;</span>: 
-<a name="l08265"></a>08265                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;name&quot;</span>) &amp;&amp; argc &lt;= 1) 
+<a name="l08265"></a>08265                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;name&quot;</span>) &amp;&amp; argc &lt;= 1) 
 <a name="l08266"></a>08266                                         <span class="keywordflow">return</span> ParseFunctionHelper(ast_func_name_0, ast_func_name_1, argc, args); 
-<a name="l08267"></a>08267                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;namespace-uri&quot;</span>) &amp;&amp; argc &lt;= 1) 
+<a name="l08267"></a>08267                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;namespace-uri&quot;</span>) &amp;&amp; argc &lt;= 1) 
 <a name="l08268"></a>08268                                         <span class="keywordflow">return</span> ParseFunctionHelper(ast_func_namespace_uri_0, ast_func_namespace_uri_1, argc, args); 
-<a name="l08269"></a>08269                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;normalize-space&quot;</span>) &amp;&amp; argc &lt;= 1) 
+<a name="l08269"></a>08269                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;normalize-space&quot;</span>) &amp;&amp; argc &lt;= 1) 
 <a name="l08270"></a>08270                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(argc == 0 ? ast_func_normalize_space_0 : ast_func_normalize_space_1, XPathTypeString, args[0], args[1]); 
-<a name="l08271"></a>08271                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;not&quot;</span>) &amp;&amp; argc == 1) 
+<a name="l08271"></a>08271                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;not&quot;</span>) &amp;&amp; argc == 1) 
 <a name="l08272"></a>08272                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_not, XPathTypeBoolean, args[0]); 
-<a name="l08273"></a>08273                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;number&quot;</span>) &amp;&amp; argc &lt;= 1) 
+<a name="l08273"></a>08273                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;number&quot;</span>) &amp;&amp; argc &lt;= 1) 
 <a name="l08274"></a>08274                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(argc == 0 ? ast_func_number_0 : ast_func_number_1, XPathTypeNumber, args[0]); 
 <a name="l08275"></a>08275                          
 <a name="l08276"></a>08276                                 <span class="keywordflow">break</span>; 
 <a name="l08277"></a>08277                          
 <a name="l08278"></a>08278                         <span class="keywordflow">case</span> <span class="charliteral">&#39;p&#39;</span>: 
-<a name="l08279"></a>08279                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;position&quot;</span>) &amp;&amp; argc == 0) 
+<a name="l08279"></a>08279                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;position&quot;</span>) &amp;&amp; argc == 0) 
 <a name="l08280"></a>08280                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_position, XPathTypeNumber); 
 <a name="l08281"></a>08281                                  
 <a name="l08282"></a>08282                                 <span class="keywordflow">break</span>; 
 <a name="l08283"></a>08283                          
 <a name="l08284"></a>08284                         <span class="keywordflow">case</span> <span class="charliteral">&#39;r&#39;</span>: 
-<a name="l08285"></a>08285                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;round&quot;</span>) &amp;&amp; argc == 1) 
+<a name="l08285"></a>08285                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;round&quot;</span>) &amp;&amp; argc == 1) 
 <a name="l08286"></a>08286                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_round, XPathTypeNumber, args[0]); 
 <a name="l08287"></a>08287  
 <a name="l08288"></a>08288                                 <span class="keywordflow">break</span>; 
 <a name="l08289"></a>08289                          
 <a name="l08290"></a>08290                         <span class="keywordflow">case</span> <span class="charliteral">&#39;s&#39;</span>: 
-<a name="l08291"></a>08291                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;string&quot;</span>) &amp;&amp; argc &lt;= 1) 
+<a name="l08291"></a>08291                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;string&quot;</span>) &amp;&amp; argc &lt;= 1) 
 <a name="l08292"></a>08292                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(argc == 0 ? ast_func_string_0 : ast_func_string_1, XPathTypeString, args[0]); 
-<a name="l08293"></a>08293                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;string-length&quot;</span>) &amp;&amp; argc &lt;= 1) 
+<a name="l08293"></a>08293                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;string-length&quot;</span>) &amp;&amp; argc &lt;= 1) 
 <a name="l08294"></a>08294                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(argc == 0 ? ast_func_string_length_0 : ast_func_string_length_1, XPathTypeString, args[0]); 
-<a name="l08295"></a>08295                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;starts-with&quot;</span>) &amp;&amp; argc == 2) 
+<a name="l08295"></a>08295                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;starts-with&quot;</span>) &amp;&amp; argc == 2) 
 <a name="l08296"></a>08296                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_starts_with, XPathTypeBoolean, args[0], args[1]); 
-<a name="l08297"></a>08297                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;substring-before&quot;</span>) &amp;&amp; argc == 2) 
+<a name="l08297"></a>08297                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;substring-before&quot;</span>) &amp;&amp; argc == 2) 
 <a name="l08298"></a>08298                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_substring_before, XPathTypeString, args[0], args[1]); 
-<a name="l08299"></a>08299                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;substring-after&quot;</span>) &amp;&amp; argc == 2) 
+<a name="l08299"></a>08299                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;substring-after&quot;</span>) &amp;&amp; argc == 2) 
 <a name="l08300"></a>08300                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_substring_after, XPathTypeString, args[0], args[1]); 
-<a name="l08301"></a>08301                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;substring&quot;</span>) &amp;&amp; (argc == 2 || argc == 3)) 
+<a name="l08301"></a>08301                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;substring&quot;</span>) &amp;&amp; (argc == 2 || argc == 3)) 
 <a name="l08302"></a>08302                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(argc == 2 ? ast_func_substring_2 : ast_func_substring_3, XPathTypeString, args[0], args[1]); 
-<a name="l08303"></a>08303                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;sum&quot;</span>) &amp;&amp; argc == 1) 
+<a name="l08303"></a>08303                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;sum&quot;</span>) &amp;&amp; argc == 1) 
 <a name="l08304"></a>08304                                 { 
 <a name="l08305"></a>08305                                         <span class="keywordflow">if</span> (args[0]-&gt;rettype() != XPathTypeNodeSet) throw_error(<span class="stringliteral">&quot;Function has to be applied to node set&quot;</span>); 
 <a name="l08306"></a>08306                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_sum, XPathTypeNumber, args[0]); 
@@ -8339,9 +8340,9 @@
 <a name="l08309"></a>08309                                 <span class="keywordflow">break</span>; 
 <a name="l08310"></a>08310                          
 <a name="l08311"></a>08311                         <span class="keywordflow">case</span> <span class="charliteral">&#39;t&#39;</span>: 
-<a name="l08312"></a>08312                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;translate&quot;</span>) &amp;&amp; argc == 3) 
+<a name="l08312"></a>08312                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;translate&quot;</span>) &amp;&amp; argc == 3) 
 <a name="l08313"></a>08313                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_translate, XPathTypeString, args[0], args[1]); 
-<a name="l08314"></a>08314                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;true&quot;</span>) &amp;&amp; argc == 0) 
+<a name="l08314"></a>08314                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;true&quot;</span>) &amp;&amp; argc == 0) 
 <a name="l08315"></a>08315                                         <span class="keywordflow">return</span> <span class="keyword">new</span> (alloc_node()) XPathAstNode(ast_func_true, XPathTypeBoolean); 
 <a name="l08316"></a>08316                                          
 <a name="l08317"></a>08317                                 <span class="keywordflow">break</span>; 
@@ -8359,55 +8360,55 @@
 <a name="l08329"></a>08329                         <span class="keywordflow">switch</span> (name.begin[0]) 
 <a name="l08330"></a>08330                         { 
 <a name="l08331"></a>08331                         <span class="keywordflow">case</span> <span class="charliteral">&#39;a&#39;</span>: 
-<a name="l08332"></a>08332                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;ancestor&quot;</span>)) 
+<a name="l08332"></a>08332                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;ancestor&quot;</span>)) 
 <a name="l08333"></a>08333                                         <span class="keywordflow">return</span> axis_ancestor; 
-<a name="l08334"></a>08334                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;ancestor-or-self&quot;</span>)) 
+<a name="l08334"></a>08334                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;ancestor-or-self&quot;</span>)) 
 <a name="l08335"></a>08335                                         <span class="keywordflow">return</span> axis_ancestor_or_self; 
-<a name="l08336"></a>08336                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;attribute&quot;</span>)) 
+<a name="l08336"></a>08336                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;attribute&quot;</span>)) 
 <a name="l08337"></a>08337                                         <span class="keywordflow">return</span> axis_attribute; 
 <a name="l08338"></a>08338                                  
 <a name="l08339"></a>08339                                 <span class="keywordflow">break</span>; 
 <a name="l08340"></a>08340                          
 <a name="l08341"></a>08341                         <span class="keywordflow">case</span> <span class="charliteral">&#39;c&#39;</span>: 
-<a name="l08342"></a>08342                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;child&quot;</span>)) 
+<a name="l08342"></a>08342                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;child&quot;</span>)) 
 <a name="l08343"></a>08343                                         <span class="keywordflow">return</span> axis_child; 
 <a name="l08344"></a>08344                                  
 <a name="l08345"></a>08345                                 <span class="keywordflow">break</span>; 
 <a name="l08346"></a>08346                          
 <a name="l08347"></a>08347                         <span class="keywordflow">case</span> <span class="charliteral">&#39;d&#39;</span>: 
-<a name="l08348"></a>08348                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;descendant&quot;</span>)) 
+<a name="l08348"></a>08348                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;descendant&quot;</span>)) 
 <a name="l08349"></a>08349                                         <span class="keywordflow">return</span> axis_descendant; 
-<a name="l08350"></a>08350                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;descendant-or-self&quot;</span>)) 
+<a name="l08350"></a>08350                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;descendant-or-self&quot;</span>)) 
 <a name="l08351"></a>08351                                         <span class="keywordflow">return</span> axis_descendant_or_self; 
 <a name="l08352"></a>08352                                  
 <a name="l08353"></a>08353                                 <span class="keywordflow">break</span>; 
 <a name="l08354"></a>08354                          
 <a name="l08355"></a>08355                         <span class="keywordflow">case</span> <span class="charliteral">&#39;f&#39;</span>: 
-<a name="l08356"></a>08356                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;following&quot;</span>)) 
+<a name="l08356"></a>08356                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;following&quot;</span>)) 
 <a name="l08357"></a>08357                                         <span class="keywordflow">return</span> axis_following; 
-<a name="l08358"></a>08358                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;following-sibling&quot;</span>)) 
+<a name="l08358"></a>08358                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;following-sibling&quot;</span>)) 
 <a name="l08359"></a>08359                                         <span class="keywordflow">return</span> axis_following_sibling; 
 <a name="l08360"></a>08360                                  
 <a name="l08361"></a>08361                                 <span class="keywordflow">break</span>; 
 <a name="l08362"></a>08362                          
 <a name="l08363"></a>08363                         <span class="keywordflow">case</span> <span class="charliteral">&#39;n&#39;</span>: 
-<a name="l08364"></a>08364                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;namespace&quot;</span>)) 
+<a name="l08364"></a>08364                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;namespace&quot;</span>)) 
 <a name="l08365"></a>08365                                         <span class="keywordflow">return</span> axis_namespace; 
 <a name="l08366"></a>08366                                  
 <a name="l08367"></a>08367                                 <span class="keywordflow">break</span>; 
 <a name="l08368"></a>08368                          
 <a name="l08369"></a>08369                         <span class="keywordflow">case</span> <span class="charliteral">&#39;p&#39;</span>: 
-<a name="l08370"></a>08370                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;parent&quot;</span>)) 
+<a name="l08370"></a>08370                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;parent&quot;</span>)) 
 <a name="l08371"></a>08371                                         <span class="keywordflow">return</span> axis_parent; 
-<a name="l08372"></a>08372                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;preceding&quot;</span>)) 
+<a name="l08372"></a>08372                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;preceding&quot;</span>)) 
 <a name="l08373"></a>08373                                         <span class="keywordflow">return</span> axis_preceding; 
-<a name="l08374"></a>08374                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;preceding-sibling&quot;</span>)) 
+<a name="l08374"></a>08374                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;preceding-sibling&quot;</span>)) 
 <a name="l08375"></a>08375                                         <span class="keywordflow">return</span> axis_preceding_sibling; 
 <a name="l08376"></a>08376                                  
 <a name="l08377"></a>08377                                 <span class="keywordflow">break</span>; 
 <a name="l08378"></a>08378                          
 <a name="l08379"></a>08379                         <span class="keywordflow">case</span> <span class="charliteral">&#39;s&#39;</span>: 
-<a name="l08380"></a>08380                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;self&quot;</span>)) 
+<a name="l08380"></a>08380                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;self&quot;</span>)) 
 <a name="l08381"></a>08381                                         <span class="keywordflow">return</span> axis_self; 
 <a name="l08382"></a>08382                                  
 <a name="l08383"></a>08383                                 <span class="keywordflow">break</span>; 
@@ -8422,25 +8423,25 @@
 <a name="l08392"></a>08392                         <span class="keywordflow">switch</span> (name.begin[0]) 
 <a name="l08393"></a>08393                         { 
 <a name="l08394"></a>08394                         <span class="keywordflow">case</span> <span class="charliteral">&#39;c&#39;</span>: 
-<a name="l08395"></a>08395                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;comment&quot;</span>)) 
+<a name="l08395"></a>08395                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;comment&quot;</span>)) 
 <a name="l08396"></a>08396                                         <span class="keywordflow">return</span> nodetest_type_comment; 
 <a name="l08397"></a>08397  
 <a name="l08398"></a>08398                                 <span class="keywordflow">break</span>; 
 <a name="l08399"></a>08399  
 <a name="l08400"></a>08400                         <span class="keywordflow">case</span> <span class="charliteral">&#39;n&#39;</span>: 
-<a name="l08401"></a>08401                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;node&quot;</span>)) 
+<a name="l08401"></a>08401                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;node&quot;</span>)) 
 <a name="l08402"></a>08402                                         <span class="keywordflow">return</span> nodetest_type_node; 
 <a name="l08403"></a>08403  
 <a name="l08404"></a>08404                                 <span class="keywordflow">break</span>; 
 <a name="l08405"></a>08405  
 <a name="l08406"></a>08406                         <span class="keywordflow">case</span> <span class="charliteral">&#39;p&#39;</span>: 
-<a name="l08407"></a>08407                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;processing-instruction&quot;</span>)) 
+<a name="l08407"></a>08407                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;processing-instruction&quot;</span>)) 
 <a name="l08408"></a>08408                                         <span class="keywordflow">return</span> nodetest_type_pi; 
 <a name="l08409"></a>08409  
 <a name="l08410"></a>08410                                 <span class="keywordflow">break</span>; 
 <a name="l08411"></a>08411  
 <a name="l08412"></a>08412                         <span class="keywordflow">case</span> <span class="charliteral">&#39;t&#39;</span>: 
-<a name="l08413"></a>08413                                 <span class="keywordflow">if</span> (name == XML_TEXT(<span class="stringliteral">&quot;text&quot;</span>)) 
+<a name="l08413"></a>08413                                 <span class="keywordflow">if</span> (name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;text&quot;</span>)) 
 <a name="l08414"></a>08414                                         <span class="keywordflow">return</span> nodetest_type_text; 
 <a name="l08415"></a>08415  
 <a name="l08416"></a>08416                                 <span class="keywordflow">break</span>; 
@@ -8666,7 +8667,7 @@
 <a name="l08636"></a>08636                                                          
 <a name="l08637"></a>08637                                                         nt_name = XPathLexerString(); 
 <a name="l08638"></a>08638                                                 } 
-<a name="l08639"></a>08639                                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (nt_name == XML_TEXT(<span class="stringliteral">&quot;processing-instruction&quot;</span>)) 
+<a name="l08639"></a>08639                                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (nt_name == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;processing-instruction&quot;</span>)) 
 <a name="l08640"></a>08640                                                 { 
 <a name="l08641"></a>08641                                                         <span class="keywordflow">if</span> (_lexer.current() != lex_quoted_string) 
 <a name="l08642"></a>08642                                                                 throw_error(<span class="stringliteral">&quot;Only literals are allowed as arguments to processing-instruction()&quot;</span>); 
@@ -8875,7 +8876,7 @@
 <a name="l08845"></a>08845                         XPathAstNode* n = ParseUnaryExpression(); 
 <a name="l08846"></a>08846  
 <a name="l08847"></a>08847                         <span class="keywordflow">while</span> (_lexer.current() == lex_multiply || (_lexer.current() == lex_string &amp;&amp; 
-<a name="l08848"></a>08848                                    (_lexer.contents() == XML_TEXT(<span class="stringliteral">&quot;mod&quot;</span>) || _lexer.contents() == XML_TEXT(<span class="stringliteral">&quot;div&quot;</span>)))) 
+<a name="l08848"></a>08848                                    (_lexer.contents() == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;mod&quot;</span>) || _lexer.contents() == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;div&quot;</span>)))) 
 <a name="l08849"></a>08849                         { 
 <a name="l08850"></a>08850                                 ast_type_t op = _lexer.current() == lex_multiply ? ast_op_multiply : 
 <a name="l08851"></a>08851                                         _lexer.contents().begin[0] == <span class="charliteral">&#39;d&#39;</span> ? ast_op_divide : ast_op_mod; 
@@ -8960,7 +8961,7 @@
 <a name="l08930"></a>08930                 { 
 <a name="l08931"></a>08931                         XPathAstNode* n = ParseEqualityExpression(); 
 <a name="l08932"></a>08932  
-<a name="l08933"></a>08933                         <span class="keywordflow">while</span> (_lexer.current() == lex_string &amp;&amp; _lexer.contents() == XML_TEXT(<span class="stringliteral">&quot;and&quot;</span>)) 
+<a name="l08933"></a>08933                         <span class="keywordflow">while</span> (_lexer.current() == lex_string &amp;&amp; _lexer.contents() == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;and&quot;</span>)) 
 <a name="l08934"></a>08934                         { 
 <a name="l08935"></a>08935                                 _lexer.next(); 
 <a name="l08936"></a>08936  
@@ -8977,7 +8978,7 @@
 <a name="l08947"></a>08947                 { 
 <a name="l08948"></a>08948                         XPathAstNode* n = ParseAndExpression(); 
 <a name="l08949"></a>08949  
-<a name="l08950"></a>08950                         <span class="keywordflow">while</span> (_lexer.current() == lex_string &amp;&amp; _lexer.contents() == XML_TEXT(<span class="stringliteral">&quot;or&quot;</span>)) 
+<a name="l08950"></a>08950                         <span class="keywordflow">while</span> (_lexer.current() == lex_string &amp;&amp; _lexer.contents() == <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;or&quot;</span>)) 
 <a name="l08951"></a>08951                         { 
 <a name="l08952"></a>08952                                 _lexer.next(); 
 <a name="l08953"></a>08953  
@@ -9319,7 +9320,7 @@
 <a name="l09289"></a>09289         <span class="keyword">const</span> char_t* XPathVariable::get_string()<span class="keyword"> const </span>
 <a name="l09290"></a>09290 <span class="keyword">        </span>{ 
 <a name="l09291"></a>09291                 <span class="keyword">const</span> char_t* value = (_type == XPathTypeString) ? static_cast&lt;const XPathVariableString*&gt;(<span class="keyword">this</span>)-&gt;value : 0; 
-<a name="l09292"></a>09292                 <span class="keywordflow">return</span> value ? value : XML_TEXT(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l09292"></a>09292                 <span class="keywordflow">return</span> value ? value : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l09293"></a>09293         } 
 <a name="l09294"></a>09294  
 <a name="l09295"></a>09295         <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; XPathVariable::get_NodeSet()<span class="keyword"> const </span>
@@ -9662,7 +9663,7 @@
 <a name="l09632"></a>09632 <span class="comment"> */</span> 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Jan 18 2011 12:02:10 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:19 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

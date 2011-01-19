@@ -21,6 +21,7 @@
   <div class="tabs2">
     <ul class="tablist">
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="../../globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
 </div>
@@ -81,14 +82,15 @@ Namespaces</h2></td></tr>
 </p>
 <tr><td colspan="2"><h2><a name="define-members"></a>
 Defines</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd12a9f19197a7beb28140ffb95d1586"></a><!-- doxytag: member="xml.h::_H" ref="acd12a9f19197a7beb28140ffb95d1586" args="" -->
-#define&nbsp;</td><td class="memItemRight" valign="bottom"><b>_H</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d62/xml_8h.html#a18cfd9eafeb7e99a44f25ab761ed4897">_XML_H</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prevents accidental loading of the file <a class="el" href="../../d0/d62/xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a> multiple times.  <a href="#a18cfd9eafeb7e99a44f25ab761ed4897"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60d2d7f2bb8f028815ac45dfd648c66c"></a><!-- doxytag: member="xml.h::XML_DEPRECATED" ref="a60d2d7f2bb8f028815ac45dfd648c66c" args="" -->
-#define&nbsp;</td><td class="memItemRight" valign="bottom"><b>XML_DEPRECATED</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a98c5d1b3853d93a60bcc08bd92b1a71b"></a><!-- doxytag: member="xml.h::XML_TEXT" ref="a98c5d1b3853d93a60bcc08bd92b1a71b" args="(t)" -->
-#define&nbsp;</td><td class="memItemRight" valign="bottom"><b>XML_TEXT</b>(t)&nbsp;&nbsp;&nbsp;t</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a75d691145d9a12b8a9ea795964a0c917"></a><!-- doxytag: member="xml.h::XML_CHAR" ref="a75d691145d9a12b8a9ea795964a0c917" args="" -->
-#define&nbsp;</td><td class="memItemRight" valign="bottom"><b>XML_CHAR</b>&nbsp;&nbsp;&nbsp;char</td></tr>
+#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d62/xml_8h.html#a60d2d7f2bb8f028815ac45dfd648c66c">XML_DEPRECATED</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to mark XML internals as deprecated at the compiler level. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b">XML_TEXT</a>(t)&nbsp;&nbsp;&nbsp;t</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time.  <a href="#a98c5d1b3853d93a60bcc08bd92b1a71b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d62/xml_8h.html#a75d691145d9a12b8a9ea795964a0c917">XML_CHAR</a>&nbsp;&nbsp;&nbsp;char</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Links the Pugi character datatype to match the Physgame phys::Characterdatatype.  <a href="#a75d691145d9a12b8a9ea795964a0c917"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc87705cd1c2917d87b879715a2d8f6e"></a><!-- doxytag: member="xml.h::char_t" ref="afc87705cd1c2917d87b879715a2d8f6e" args="" -->
@@ -249,8 +251,62 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>See <a class="el" href="../../d1/d99/xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system.">xmldoc.h</a> for additional details. </p>
 
 <p>Definition in file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Define Documentation</h2>
+<a class="anchor" id="a18cfd9eafeb7e99a44f25ab761ed4897"></a><!-- doxytag: member="xml.h::_XML_H" ref="a18cfd9eafeb7e99a44f25ab761ed4897" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define _XML_H</td>
+        </tr>
+      </table>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Jan 18 2011 12:02:10 for PhysGameEngine by&nbsp;
+<div class="memdoc">
+
+<p>Prevents accidental loading of the file <a class="el" href="../../d0/d62/xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a> multiple times. </p>
+<p><b>For internal use only.</b></p>
+
+</div>
+</div>
+<a class="anchor" id="a75d691145d9a12b8a9ea795964a0c917"></a><!-- doxytag: member="xml.h::XML_CHAR" ref="a75d691145d9a12b8a9ea795964a0c917" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XML_CHAR&nbsp;&nbsp;&nbsp;char</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Links the Pugi character datatype to match the Physgame phys::Characterdatatype. </p>
+<p><b>For internal use only.</b></p>
+
+</div>
+</div>
+<a class="anchor" id="a98c5d1b3853d93a60bcc08bd92b1a71b"></a><!-- doxytag: member="xml.h::XML_TEXT" ref="a98c5d1b3853d93a60bcc08bd92b1a71b" args="(t)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XML_TEXT</td>
+          <td>(</td>
+          <td class="paramtype">&nbsp;</td>
+          <td class="paramname">t</td>
+          <td>&nbsp;)&nbsp;</td>
+          <td>&nbsp;&nbsp;&nbsp;t</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time. </p>
+<p><b>For internal use only.</b></p>
+
+</div>
+</div>
+</div>
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:20 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
