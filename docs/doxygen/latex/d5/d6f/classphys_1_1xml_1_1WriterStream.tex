@@ -4,6 +4,11 @@
 }
 
 
+An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing std::ostreams.  
+
+
+
+
 {\ttfamily \#include $<$xmldoc.h$>$}
 
 Inheritance diagram for phys::xml::WriterStream:\begin{figure}[H]
@@ -20,13 +25,16 @@ Inheritance diagram for phys::xml::WriterStream:\begin{figure}[H]
 \hyperlink{classphys_1_1xml_1_1WriterStream_a956ab44aab151867738a77c42de35495}{WriterStream} (std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$\hyperlink{classphys_1_1xml_1_1WriterStream}{WriterStream}(std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&stream);stream)
 \begin{DoxyCompactList}\small\item\em A constructor that accepts a stream of wide characters. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1xml_1_1WriterStream_a74242c8abe03f6244d3464a663f75de9}{Write} (const void $\ast$data, size\_\-t size)
-\begin{DoxyCompactList}\small\item\em Writes data to the stream. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This will be used to output xml to an external source such as a file or stream. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing std::ostreams. 
+\begin{DoxyParams}{Parameters}
+\item[{\em data}]A pointer to the data \item[{\em size}]The size of the data in bytes.\end{DoxyParams}
 An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing std::ostreams 
 
-Definition at line 324 of file xml.h.
+Definition at line 317 of file xml.h.
 
 
 
@@ -82,11 +90,11 @@ A constructor that accepts a stream of wide characters.
 \label{d5/d6f/classphys_1_1xml_1_1WriterStream_a74242c8abe03f6244d3464a663f75de9}
 
 
-Writes data to the stream. 
+This will be used to output xml to an external source such as a file or stream. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em data}]A pointer to the data \item[{\em size}]The size of the data in bytes. \end{DoxyParams}
+\item[{\em data}]This is a pointer to something that will get written to the output \item[{\em size}]The size in bytes of whatever was passed in. \end{DoxyParams}
 
 
 Implements \hyperlink{classphys_1_1xml_1_1Writer_ab6d4758ab53743f236eb64d5b2dd7e9e}{phys::xml::Writer}.
@@ -100,4 +108,5 @@ Definition at line 3310 of file xml.cpp.
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
 \hyperlink{xml_8h}{xml.h}\item 
-xml.cpp\end{DoxyCompactItemize}
+xml.cpp\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

@@ -2695,7 +2695,7 @@
 <a name="l02664"></a>02664                 BufferedWriter&amp; operator=(<span class="keyword">const</span> BufferedWriter&amp;); 
 <a name="l02665"></a>02665  
 <a name="l02666"></a>02666         <span class="keyword">public</span>: 
-<a name="l02667"></a>02667                 BufferedWriter(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a>&amp; WriterInstance, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> user_DocumentEncoding): WriterInstance(WriterInstance), bufsize(0), DocumentEncoding(get_Write_DocumentEncoding(user_DocumentEncoding)) 
+<a name="l02667"></a>02667                 BufferedWriter(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html" title="Interface for node printing (see Node::print).">Writer</a>&amp; WriterInstance, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> user_DocumentEncoding): WriterInstance(WriterInstance), bufsize(0), DocumentEncoding(get_Write_DocumentEncoding(user_DocumentEncoding)) 
 <a name="l02668"></a>02668                 { 
 <a name="l02669"></a>02669                 } 
 <a name="l02670"></a>02670  
@@ -2845,12 +2845,12 @@
 <a name="l02814"></a>02814                 char_t buffer[bufcapacity]; 
 <a name="l02815"></a>02815                 <span class="keywordtype">char</span> scratch[4 * bufcapacity]; 
 <a name="l02816"></a>02816  
-<a name="l02817"></a>02817                 <a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a>&amp; WriterInstance; 
+<a name="l02817"></a>02817                 <a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html" title="Interface for node printing (see Node::print).">Writer</a>&amp; WriterInstance; 
 <a name="l02818"></a>02818                 <span class="keywordtype">size_t</span> bufsize; 
 <a name="l02819"></a>02819                 <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding; 
 <a name="l02820"></a>02820         }; 
 <a name="l02821"></a>02821  
-<a name="l02822"></a>02822         <span class="keywordtype">void</span> Write_bom(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a>&amp; WriterInstance, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding) 
+<a name="l02822"></a>02822         <span class="keywordtype">void</span> Write_bom(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html" title="Interface for node printing (see Node::print).">Writer</a>&amp; WriterInstance, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding) 
 <a name="l02823"></a>02823         { 
 <a name="l02824"></a>02824                 <span class="keywordflow">switch</span> (DocumentEncoding) 
 <a name="l02825"></a>02825                 { 
@@ -3320,11 +3320,11 @@
 <a name="l03289"></a>03289 <span class="keyword">namespace </span>phys
 <a name="l03290"></a>03290 { <span class="keyword">namespace </span>xml
 <a name="l03291"></a>03291 { 
-<a name="l03292"></a>03292         WriterFile::WriterFile(<span class="keywordtype">void</span>* file): file(file) 
+<a name="l03292"></a><a class="code" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#aba665d4dc17c956798a80cb4e8c2774d">03292</a>         WriterFile::WriterFile(<span class="keywordtype">void</span>* file): file(file) 
 <a name="l03293"></a>03293         { 
 <a name="l03294"></a>03294         } 
 <a name="l03295"></a>03295  
-<a name="l03296"></a><a class="code" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#a4c4348e30dc03b22f7d4ee15bd386ab2">03296</a>         <span class="keywordtype">void</span> <a class="code" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#a4c4348e30dc03b22f7d4ee15bd386ab2" title="Construct a Writer from a FILE* object.">WriterFile::Write</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size) 
+<a name="l03296"></a><a class="code" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#a4c4348e30dc03b22f7d4ee15bd386ab2">03296</a>         <span class="keywordtype">void</span> <a class="code" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#a4c4348e30dc03b22f7d4ee15bd386ab2" title="This will be used to output xml to an external source such as a file or stream.">WriterFile::Write</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size) 
 <a name="l03297"></a>03297         { 
 <a name="l03298"></a>03298                 fwrite(data, size, 1, static_cast&lt;FILE*&gt;(file)); 
 <a name="l03299"></a>03299         } 
@@ -3338,7 +3338,7 @@
 <a name="l03307"></a>03307         { 
 <a name="l03308"></a>03308         } 
 <a name="l03309"></a>03309  
-<a name="l03310"></a><a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9">03310</a>         <span class="keywordtype">void</span> <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9" title="Writes data to the stream.">WriterStream::Write</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size) 
+<a name="l03310"></a><a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9">03310</a>         <span class="keywordtype">void</span> <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9" title="This will be used to output xml to an external source such as a file or stream.">WriterStream::Write</a>(<span class="keyword">const</span> <span class="keywordtype">void</span>* data, <span class="keywordtype">size_t</span> size) 
 <a name="l03311"></a>03311         { 
 <a name="l03312"></a>03312                 <span class="keywordflow">if</span> (narrow_stream) 
 <a name="l03313"></a>03313                 { 
@@ -4342,7 +4342,7 @@
 <a name="l04311"></a>04311                 <span class="keywordflow">return</span> _root; 
 <a name="l04312"></a>04312         } 
 <a name="l04313"></a>04313  
-<a name="l04314"></a>04314         <span class="keywordtype">void</span> Node::print(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a>&amp; WriterInstance, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth)<span class="keyword"> const </span>
+<a name="l04314"></a>04314         <span class="keywordtype">void</span> Node::print(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html" title="Interface for node printing (see Node::print).">Writer</a>&amp; WriterInstance, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth)<span class="keyword"> const </span>
 <a name="l04315"></a>04315 <span class="keyword">        </span>{ 
 <a name="l04316"></a>04316                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span>; 
 <a name="l04317"></a>04317  
@@ -4354,14 +4354,14 @@
 <a name="l04323"></a>04323 <span class="preprocessor">#ifndef XML_NO_STL </span>
 <a name="l04324"></a>04324 <span class="preprocessor"></span>        <span class="keywordtype">void</span> Node::print(std::basic_ostream&lt;<span class="keywordtype">char</span>, std::char_traits&lt;char&gt; &gt;&amp; stream, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth)<span class="keyword"> const </span>
 <a name="l04325"></a>04325 <span class="keyword">        </span>{ 
-<a name="l04326"></a>04326                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html">WriterStream</a> WriterInstance(stream); 
+<a name="l04326"></a>04326                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html" title="An implementation of Writer intended for writing std::ostreams.">WriterStream</a> WriterInstance(stream); 
 <a name="l04327"></a>04327  
 <a name="l04328"></a>04328                 print(WriterInstance, indent, flags, DocumentEncoding, depth); 
 <a name="l04329"></a>04329         } 
 <a name="l04330"></a>04330  
 <a name="l04331"></a>04331         <span class="keywordtype">void</span> Node::print(std::basic_ostream&lt;<span class="keywordtype">wchar_t</span>, std::char_traits&lt;wchar_t&gt; &gt;&amp; stream, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth)<span class="keyword"> const </span>
 <a name="l04332"></a>04332 <span class="keyword">        </span>{ 
-<a name="l04333"></a>04333                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html">WriterStream</a> WriterInstance(stream); 
+<a name="l04333"></a>04333                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html" title="An implementation of Writer intended for writing std::ostreams.">WriterStream</a> WriterInstance(stream); 
 <a name="l04334"></a>04334  
 <a name="l04335"></a>04335                 print(WriterInstance, indent, flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef" title="The same document encoding wchar_t has (usually either UTF16 or UTF32).">Encodingwchar_t</a>, depth); 
 <a name="l04336"></a>04336         } 
@@ -4739,7 +4739,7 @@
 <a name="l04708"></a>04708                 <span class="keywordflow">return</span> load_buffer_impl(contents, size, options, DocumentEncoding, <span class="keyword">true</span>, <span class="keyword">true</span>); 
 <a name="l04709"></a>04709         } 
 <a name="l04710"></a>04710  
-<a name="l04711"></a>04711         <span class="keywordtype">void</span> Document::save(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a>&amp; WriterInstance, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding)<span class="keyword"> const </span>
+<a name="l04711"></a>04711         <span class="keywordtype">void</span> Document::save(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html" title="Interface for node printing (see Node::print).">Writer</a>&amp; WriterInstance, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding)<span class="keyword"> const </span>
 <a name="l04712"></a>04712 <span class="keyword">        </span>{ 
 <a name="l04713"></a>04713                 <span class="keywordflow">if</span> (flags &amp; <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a76a253f60deb94ef39c255064afb6040" title="Write encoding-specific Byte Order Mark (BOM) to the output stream. This flag is off by default...">FormatWriteBom</a>) Write_bom(WriterInstance, get_Write_DocumentEncoding(DocumentEncoding)); 
 <a name="l04714"></a>04714  
@@ -4757,14 +4757,14 @@
 <a name="l04726"></a>04726 <span class="preprocessor">#ifndef XML_NO_STL </span>
 <a name="l04727"></a>04727 <span class="preprocessor"></span>        <span class="keywordtype">void</span> Document::save(std::basic_ostream&lt;<span class="keywordtype">char</span>, std::char_traits&lt;char&gt; &gt;&amp; stream, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding)<span class="keyword"> const </span>
 <a name="l04728"></a>04728 <span class="keyword">        </span>{ 
-<a name="l04729"></a>04729                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html">WriterStream</a> WriterInstance(stream); 
+<a name="l04729"></a>04729                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html" title="An implementation of Writer intended for writing std::ostreams.">WriterStream</a> WriterInstance(stream); 
 <a name="l04730"></a>04730  
 <a name="l04731"></a>04731                 save(WriterInstance, indent, flags, DocumentEncoding); 
 <a name="l04732"></a>04732         } 
 <a name="l04733"></a>04733  
 <a name="l04734"></a>04734         <span class="keywordtype">void</span> Document::save(std::basic_ostream&lt;<span class="keywordtype">wchar_t</span>, std::char_traits&lt;wchar_t&gt; &gt;&amp; stream, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags)<span class="keyword"> const </span>
 <a name="l04735"></a>04735 <span class="keyword">        </span>{ 
-<a name="l04736"></a>04736                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html">WriterStream</a> WriterInstance(stream); 
+<a name="l04736"></a>04736                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html" title="An implementation of Writer intended for writing std::ostreams.">WriterStream</a> WriterInstance(stream); 
 <a name="l04737"></a>04737  
 <a name="l04738"></a>04738                 save(WriterInstance, indent, flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef" title="The same document encoding wchar_t has (usually either UTF16 or UTF32).">Encodingwchar_t</a>); 
 <a name="l04739"></a>04739         } 
@@ -9663,7 +9663,7 @@
 <a name="l09632"></a>09632 <span class="comment"> */</span> 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:19 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 20 2011 13:23:18 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

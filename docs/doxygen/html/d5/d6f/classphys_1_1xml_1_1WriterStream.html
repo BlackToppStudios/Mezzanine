@@ -41,6 +41,9 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::xml::WriterStream" --><!-- doxytag: inherits="phys::xml::Writer" -->
+<p>An implementation of <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> intended for writing std::ostreams.  
+<a href="#_details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for phys::xml::WriterStream:</div>
@@ -61,12 +64,20 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a956ab44aab151867738a77c42de35495">WriterStream</a> (std::basic_ostream&lt; wchar_t, std::char_traits&lt; wchar_t &gt; &gt;<a class="el" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html">WriterStream</a>(std::basic_ostream&lt; wchar_t, std::char_traits&lt; wchar_t &gt; &gt; &amp;stream);stream)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A constructor that accepts a stream of wide characters.  <a href="#a956ab44aab151867738a77c42de35495"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9">Write</a> (const void *data, size_t size)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Writes data to the stream.  <a href="#a74242c8abe03f6244d3464a663f75de9"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will be used to output xml to an external source such as a file or stream.  <a href="#a74242c8abe03f6244d3464a663f75de9"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>An implementation of <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> intended for writing std::ostreams. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>data</em>&nbsp;</td><td>A pointer to the data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>The size of the data in bytes.</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>An implementation of <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> intended for writing std::ostreams </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00324">324</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00317">317</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae170ab7c429b6f7149d3540243329dfa"></a><!-- doxytag: member="phys::xml::WriterStream::WriterStream" ref="ae170ab7c429b6f7149d3540243329dfa" args="(std::basic_ostream&lt; char, std::char_traits&lt; char &gt; &gt; &amp;stream)" -->
 <div class="memitem">
@@ -148,11 +159,11 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Writes data to the stream. </p>
+<p>This will be used to output xml to an external source such as a file or stream. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>data</em>&nbsp;</td><td>A pointer to the data </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>The size of the data in bytes. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>data</em>&nbsp;</td><td>This is a pointer to something that will get written to the output </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>The size in bytes of whatever was passed in. </td></tr>
   </table>
   </dd>
 </dl>
@@ -166,9 +177,10 @@ Public Member Functions</h2></td></tr>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
+<li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:28 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 20 2011 13:23:25 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

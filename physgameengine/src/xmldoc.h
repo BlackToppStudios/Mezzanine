@@ -273,15 +273,39 @@ namespace phys
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Writer
-        /// Interface for node printing (see @ref Node::print)
+        /// @brief Interface for node printing (see @ref Node::print)
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WriterFile
         /// An implementation of @ref Writer intended for writing to FILEs as defined in stdio
 
+        /// @fn WriterFile::WriterFile(void* file)
+        /// @brief Construct a Writer from a FILE* object.
+        /// @param file The FILE to be written to. The FILE can be a File handle as per stdio or the standard input, output or even error. The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety.
+
+        /// @fn WriterFile::Write
+        /// @brief Writes data to a file
+		/// @param data A pointer to the data
+		/// @param size The size of the data in bytes.
+
+		// @var WriterFile::file
+        // @internal
+        // @brief A pointer to a FILE as defined in stdio
+
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WriterStream
-        /// An implementation of @ref Writer intended for writing std::ostreams
+        /// @brief An implementation of @ref Writer intended for writing std::ostreams
+
+        /// @fn WriterStream::Write
+		/// @brief Writes data to the stream
+		/// @param data A pointer to the data
+		/// @param size The size of the data in bytes.
+
+		/// @var WriterStream::narrow_stream
+		/// @brief asdf
+
+
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @def XML_DEPRECATED
@@ -302,8 +326,9 @@ namespace phys
         /// @internal
         /// @brief Links the  Pugi character datatype to match the Physgame phys::Characterdatatype
 
-
-
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class WriterStream
+        /// An implementation of @ref Writer intended for writing std::ostreams
 
 
     }
