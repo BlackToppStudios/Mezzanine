@@ -193,14 +193,12 @@ namespace phys
             /// @param GeographyLowerBounds This is the lower boundary of the phyiscs estimation.
             /// @param GeographyUpperbounds This is the upper boundary of the phyiscs estimation.
             /// @param MaxPhysicsProxies This is an estimation of the limit of bodies in the physics world.
-            /// @param SceneManagerName This is the name to be given to the created Scene Manager.
             /// @param SceneType This is the type of Scene Manager to be created.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
             void Construct( const Vector3 &GeographyLowerBounds,
                             const Vector3 &GeographyUpperbounds,
                             const unsigned short int &MaxPhysicsProxies,
-                            std::string SceneManagerName,
                             SceneManager::SceneManagerType SceneType,
                             std::string LogFileName,
                             std::vector < ManagerBase* > ManagerToBeAdded);
@@ -228,7 +226,7 @@ namespace phys
             /// @brief This is the core of the Ogre rendering system.
             /// @details Even thought the largest part of ogre is 3d rendering, it does not belong in the graphics manager. It is also responsible for a
             /// large number other services, such as logging, multithreading, and timing.
-            Ogre::Root* OgreRoot;
+            //Ogre::Root* OgreRoot;
 
             /// @internal
             /// @brief
@@ -267,13 +265,11 @@ namespace phys
             /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation
             /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
             /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
-            /// @param SceneManagerName An unique indentifier for the scene manager
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @warning Do not make a new world if one already exists. This can only cause problems
             World(  const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
-                    std::string SceneManagerName,
                     SceneManager::SceneManagerType SceneType,
                     const unsigned short int &MaxPhysicsProxies_=1024,
                     std::string LogFileName="Physgame.log" );
@@ -286,14 +282,12 @@ namespace phys
             /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
             /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
             /// @param LogFileName This is the place that log messages get sent to.
-            /// @param SceneManagerName An unique indentifier for the scene manager
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
             /// @warning Do not make a new world if one already exists. This can only cause problems.
             World(  const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
                     const unsigned short int &MaxPhysicsProxies_,
-                    std::string SceneManagerName,
                     SceneManager::SceneManagerType SceneType,
                     const std::string &LogFileName,
                     const std::vector <ManagerBase*> &ManagerToBeAdded);

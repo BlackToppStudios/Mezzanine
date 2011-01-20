@@ -88,10 +88,8 @@ namespace phys
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
-            /// @param Name Name for the created Scene Manager.
             /// @param ManagerType Type of Scene Manager to be created.
-            /// @param world Pointer to the world which will work with this Manager.
-            SceneManager(const String& Name, SceneManager::SceneManagerType ManagerType);
+            SceneManager(SceneManager::SceneManagerType ManagerType);
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~SceneManager();

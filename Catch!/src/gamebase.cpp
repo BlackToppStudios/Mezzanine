@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 {
     try
     {
-        TheWorld = new World( Vector3(-1000.0,-1000.0,-1000.0), Vector3(1000.0,1000.0,1000.0), "SceneManager", SceneManager::Generic, 50);
+        TheWorld = new World( Vector3(-1000.0,-1000.0,-1000.0), Vector3(1000.0,1000.0,1000.0), SceneManager::Generic, 50);
     }catch( exception x){
         //could not create world
     }
@@ -456,10 +456,7 @@ void MakeGUI()
     UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", Vector2(0.25, 0.11), Vector2(0.5, 0.78125));
     ItemShopWindow->GetWindowBack()->SetBackgroundSprite("WindowVertBack");
 
-    //UI::Rectangle* TestBack = ItemShopWindow->CreateRectangle(Vector2(0.3,0.3),Vector2(0.4,0.4));
-    //TestBack->SetBackgroundColour(TransBlack);
-
-    //UI::MarkupText* TestMarkup = ItemShopWindow->CreateMarkupText("TestMarkup",Vector2(0.4,0.4),14,"Test1");
+    UI::MarkupText* TestMarkup = ItemShopWindow->CreateMarkupText("TestMarkup",Vector2(0.4,0.64),14,"Test1");
 
     UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.28,0.54),Vector2(0.44,0.32),0.02,UI::SB_Separate);
     ItemShopList->SetAutoHideScroll(false);
@@ -472,19 +469,18 @@ void MakeGUI()
     UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", Vector2(0.35, 0.27), Vector2(0.3, 0.45));
     UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "Return", Vector2(0.37, 0.56), Vector2(0.26, 0.05));
     ReturnButton->SetBackgroundColour(Black);
-
     UI::Button* ExitButton = GameMenu->GetRootWindow()->CreateButton( "Exit", Vector2(0.37, 0.64), Vector2(0.26, 0.05));
     ExitButton->SetBackgroundColour(Black);
 
-    UI::MenuWindow* VideoSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("VideoSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), Vector2(0.37, 0.32), Vector2(0.26, 0.05));
-    UI::Button* VideoAccess = GameMenu->GetRootWindow()->GetButton("VideoSettingsbutton");
+    UI::Button* VideoAccess = GameMenu->GetRootWindow()->CreateAccessorButton("VideoSettingsButton", Vector2(0.37, 0.32), Vector2(0.26, 0.05));
+    UI::MenuWindow* VideoSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("VideoSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), VideoAccess);
     VideoAccess->SetBackgroundColour(Black);
 
     UI::Button* VideoBack = VideoSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
     VideoBack->SetBackgroundColour(Black);
 
-    UI::MenuWindow* SoundSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("SoundSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), Vector2(0.37, 0.40), Vector2(0.26, 0.05));
-    UI::Button* SoundAccess = GameMenu->GetRootWindow()->GetButton("SoundSettingsbutton");
+    UI::Button* SoundAccess = GameMenu->GetRootWindow()->CreateAccessorButton("SoundSettingsButton", Vector2(0.37, 0.40), Vector2(0.26, 0.05));
+    UI::MenuWindow* SoundSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("SoundSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), SoundAccess);
     SoundAccess->SetBackgroundColour(Black);
 
     UI::Button* SoundBack = SoundSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));

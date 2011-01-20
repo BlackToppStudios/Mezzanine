@@ -90,6 +90,29 @@ namespace phys
             return BackButton;
         }
 
+        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const Vector2 Position, const Vector2 Size)
+        {
+            Vector2 Offset = Position - RelPosition;
+            Button* AccBut = this->CreateButton(Name,Position,Size);
+            OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Buttons.push_back(buttonoff);
+            ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
+            return buttonoff.Object;
+        }
+
+        Button* MenuWindow::GetAccessorButton(ConstString& Name)
+        {
+            for( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+            {
+                if(Name == (*it).first->GetName())
+                {
+                    Button* But = (*it).first;
+                    return But;
+                }
+            }
+            return 0;
+        }
+
         MenuWindow* MenuWindow::GetWindowOfAccessButton(Button* Accessor)
         {
             for( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
@@ -103,15 +126,19 @@ namespace phys
             return 0;
         }
 
-        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, const Vector2 WinPosition, const Vector2 WinSize, const Vector2 ButPosition, const Vector2 ButSize)
+        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, const Vector2 Position, const Vector2 Size, Button* Accessor)
         {
-            MenuWindow* MenWin = new MenuWindow(Name,WinPosition,WinSize,MasterMenu,Parent);
+            std::pair<Button*,MenuWindow*>* AccessorPair = NULL;
+            for( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+            {
+                if(Accessor == (*it).first)
+                    AccessorPair = &(*it);
+            }
+            if(NULL==AccessorPair)
+                return 0;
+            MenuWindow* MenWin = new MenuWindow(Name,Position,Size,MasterMenu,Parent);
             MenWin->ParentWindow = this;
-            Button* MenBut = this->CreateButton(Name+"button",ButPosition,ButSize);
-            ChildWindows.push_back(std::pair<Button*,MenuWindow*>(MenBut,MenWin));
-            Vector2 Offset = ButPosition - RelPosition;
-            OffsetButtonInfo buttonoff(MenBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-            Buttons.push_back(buttonoff);
+            AccessorPair->second = MenWin;
             MenWin->Hide();
             return MenWin;
         }

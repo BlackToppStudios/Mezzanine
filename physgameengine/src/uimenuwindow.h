@@ -85,19 +85,26 @@ namespace phys
                 /// @brief Gets the back button of this window.
                 /// @return Returns a pointer to the Back Button, or NULL if it hasn't been created.
                 virtual Button* GetBackButton();
+                /// @brief Creates a button to be used for accessing child windows.
+                /// @return Returns a pointer to the created button.
+                /// @param Name The name of the button.
+                /// @param Position The position of the button.
+                /// @param Size The size of the button.
+                virtual Button* CreateAccessorButton(ConstString& Name, const Vector2 Position, const Vector2 Size);
+                /// @brief Gets an Accessor button by name.
+                /// @return Returns a pointer to the named accessor button.
+                /// @param Name The name of the accessor button you want to find.
+                virtual Button* GetAccessorButton(ConstString& Name);
                 /// @brief Gets the Window corresponding to the access button.
                 /// @param Accessor Pointer to the Button of which you want to get the window for.
                 /// @return Returns A pointer to the Menu window the button provided accesses.
                 virtual MenuWindow* GetWindowOfAccessButton(Button* Accessor);
                 /// @brief Adds a child window to this window.
-                /// @details The name provided will become the windows name, the accompanying button will be the
-                /// same +"button".
+                /// @return Returns a pointer to the created child window.
                 /// @param Name The name of the window.
-                /// @param WinPosition The position of the window.
-                /// @param WimSize The size of the window.
-                /// @param ButPosition The position of the accompanying button.
-                /// @param ButSize The size of the accompanying button.
-                virtual MenuWindow* CreateChildMenuWindow(ConstString& Name, const Vector2 WinPosition, const Vector2 WinSize, const Vector2 ButPosition, const Vector2 ButSize);
+                /// @param Position The position of the window.
+                /// @param Size The size of the window.
+                virtual MenuWindow* CreateChildMenuWindow(ConstString& Name, const Vector2 Position, const Vector2 Size, Button* Accessor);
                 /// @brief Gets an already created menu window by name.
                 /// @return Returns a pointer to the menu window of the specified name.
                 virtual MenuWindow* GetChildMenuWindow(ConstString& Name);

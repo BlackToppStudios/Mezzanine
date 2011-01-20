@@ -127,7 +127,7 @@ namespace phys
     {
         try
         {
-            return this->GameWorld->OgreRoot->showConfigDialog();
+            return Ogre::Root::getSingleton().showConfigDialog();
         } catch (exception& e) {
             this->GameWorld->Log("Ogre settings windows from main UI or mandatory setting failure");
             this->GameWorld->Log(e.what());

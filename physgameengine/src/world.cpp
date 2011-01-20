@@ -93,12 +93,11 @@ namespace phys
         Vector3 Ubounds(1000.0,1000.0,1000.0);
         std::vector <ManagerBase*> temp;
 
-        this->Construct(Lbounds, Ubounds, 10, "SceneManager", SceneManager::Generic, "Physgame.log", temp);
+        this->Construct(Lbounds, Ubounds, 10, SceneManager::Generic, "Physgame.log", temp);
     }
 
     World::World(   const Vector3 &GeographyLowerBounds_,
                     const Vector3 &GeographyUpperbounds_,
-                    std::string SceneManagerName,
                     SceneManager::SceneManagerType SceneType,
                     const unsigned short int  &MaxPhysicsProxies_,
                     std::string LogFileName)
@@ -107,7 +106,6 @@ namespace phys
         this->Construct(GeographyLowerBounds_,
                         GeographyUpperbounds_,
                         MaxPhysicsProxies_,
-                        SceneManagerName,
                         SceneType,
                         LogFileName,
                         temp );
@@ -116,7 +114,6 @@ namespace phys
     World::World(  const Vector3 &GeographyLowerBounds_,
             const Vector3 &GeographyUpperbounds_,
             const unsigned short int &MaxPhysicsProxies_,
-            std::string SceneManagerName,
             SceneManager::SceneManagerType SceneType,
             const std::string &LogFileName,
             const std::vector <ManagerBase*> &ManagerToBeAdded)
@@ -124,7 +121,6 @@ namespace phys
         this->Construct(GeographyLowerBounds_,
                         GeographyUpperbounds_,
                         MaxPhysicsProxies_,
-                        SceneManagerName,
                         SceneType,
                         LogFileName,
                         ManagerToBeAdded );
@@ -140,7 +136,6 @@ namespace phys
     void World::Construct(  const Vector3 &GeographyLowerBounds_,
                                 const Vector3 &GeographyUpperbounds_,
                                 const unsigned short int &MaxPhysicsProxies_,
-                                std::string SceneManagerName,
                                 SceneManager::SceneManagerType SceneType,
                                 std::string LogFileName,
                                 std::vector <ManagerBase*> ManagerToBeAdded)
@@ -150,7 +145,7 @@ namespace phys
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
-        this->OgreRoot = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
+        Ogre::Root* OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
 
         assert(0==World::TheRealWorld);
         World::TheRealWorld = this;
@@ -173,7 +168,7 @@ namespace phys
         if(this->GetPhysicsManager()==0)
             { this->AddManager(new PhysicsManager(GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_)); }
         if(this->GetSceneManager()==0)
-            { this->AddManager(new SceneManager(SceneManagerName, SceneType)); }
+            { this->AddManager(new SceneManager(SceneType)); }
         if(this->GetUIManager()==0)
             { this->AddManager(new UIManager()); }
 
@@ -209,7 +204,7 @@ namespace phys
     World::~World()
     {
         //All the pointers Ogre made should get taken care of by OGRE
-        delete OgreRoot;
+        Ogre::Root::getSingleton().shutdown();
 
         for(std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); iter!= ManagerList.end(); iter++)
         {
@@ -355,7 +350,7 @@ namespace phys
     void World::LoadOgreSettings()
     {
         //Try loading from the default location
-        if (!this->OgreRoot->restoreConfig())
+        if (!Ogre::Root::getSingleton().restoreConfig())
         {
             //if we can't do that then lets make new settings
             if (!this->GetGraphicsManager()->ShowGraphicsSettingDialog())
@@ -401,7 +396,7 @@ namespace phys
         try
         {
             //crossplatform::WaitMilliseconds(1000);
-            OgreGameWindow = this->OgreRoot->initialise(false, this->WindowName);
+            OgreGameWindow = Ogre::Root::getSingleton().initialise(false, this->WindowName);
             #ifdef PHYSDEBUG
             this->Log("Setup Ogre Window");
             #endif
@@ -414,7 +409,7 @@ namespace phys
         Ogre::NameValuePairList *misc;
         misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
         (*misc)["title"] = Ogre::String(this->WindowName);
-        OgreGameWindow = this->OgreRoot->createRenderWindow(WindowName, this->GetGraphicsManager()->getRenderHeight(), this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getFullscreen(), misc);
+        OgreGameWindow = Ogre::Root::getSingleton().createRenderWindow(WindowName, this->GetGraphicsManager()->getRenderHeight(), this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getFullscreen(), misc);
         #ifdef PHYSDEBUG
         this->Log("Bound Ogre to an SDL window");
         #endif

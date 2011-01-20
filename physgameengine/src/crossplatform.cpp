@@ -142,11 +142,10 @@ namespace phys
             #ifndef WINDOWS
                TheOgreWindow->update(true);
             #else
-               TheWorld->OgreRoot->renderOneFrame();
+               Ogre::Root::getSingleton().renderOneFrame();
                SDL_GL_SwapBuffers();
             #endif
         }
-
     }
 }
 
