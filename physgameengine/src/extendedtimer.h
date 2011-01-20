@@ -89,7 +89,13 @@ namespace phys
             virtual void Update(const Whole MicroSecondsElapsed);
             virtual void UpdateAsNormal(const Whole MicroSecondsElapsed);
             virtual void UpdateAsStopWatch(const Whole MicroSecondsElapsed);
-            virtual void UpdateAsAlarm(const Whole MicroSecondsElapsed);
+            virtual bool CheckMicroSeconds(const ExtendedTimer::TimeStruct Struct);
+            virtual bool CheckMilliSeconds(const ExtendedTimer::TimeStruct Struct);
+            virtual bool CheckSeconds(const ExtendedTimer::TimeStruct Struct);
+            virtual bool CheckMinutes(const ExtendedTimer::TimeStruct Struct);
+            virtual bool CheckHours(const ExtendedTimer::TimeStruct Struct);
+            virtual bool CheckDays(const ExtendedTimer::TimeStruct Struct);
+            virtual bool CheckAll(const ExtendedTimer::TimeStruct Struct);
             virtual bool CompareCurrentAndGoal(const Integer Current, const Integer Goal);
             virtual bool GoalReached();
         public:

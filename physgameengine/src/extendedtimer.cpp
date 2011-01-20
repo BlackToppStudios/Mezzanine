@@ -94,8 +94,18 @@ namespace phys
                     break;
                 }
                 case Timer::Alarm:
-                    UpdateAsAlarm(MicroSecondsElapsed);
+                {
+                    UpdateAsNormal(MicroSecondsElapsed);
+                    if(GoalReached())
+                    {
+                        if(Callback)
+                            Callback->DoCallbackItems();
+                        if(ResetAtGoal)
+                            Reset();
+                        Stop();
+                    }
                     break;
+                }
             }
         }
     }
@@ -103,41 +113,11 @@ namespace phys
     void ExtendedTimer::UpdateAsNormal(const Whole MicroSecondsElapsed)
     {
         CurrentTime.Microseconds+=(Integer)MicroSecondsElapsed;
-        if(CurrentTime.Microseconds > 1000)
-        {
-            Integer GoesInto = CurrentTime.Microseconds * 0.001;
-            Integer Remainder = CurrentTime.Microseconds - GoesInto * 1000;
-            CurrentTime.Microseconds = Remainder;
-            CurrentTime.Milliseconds+=GoesInto;
-        }else{ return; /*World::GetWorldPointer()->Log("Holy **** that was a fast frame!");*/ }
-        if(CurrentTime.Milliseconds > 1000)
-        {
-            Integer GoesInto = CurrentTime.Milliseconds * 0.001;
-            Integer Remainder = CurrentTime.Milliseconds - GoesInto * 1000;
-            CurrentTime.Milliseconds = Remainder;
-            CurrentTime.Seconds+=GoesInto;
-        }else{ return; }
-        if(CurrentTime.Seconds > 60)
-        {
-            Integer GoesInto = CurrentTime.Seconds / 60;
-            Integer Remainder = CurrentTime.Seconds - GoesInto * 60;
-            CurrentTime.Seconds = Remainder;
-            CurrentTime.Minutes+=GoesInto;
-        }else{ return; }
-        if(CurrentTime.Minutes > 60)
-        {
-            Integer GoesInto = CurrentTime.Minutes / 60;
-            Integer Remainder = CurrentTime.Minutes - GoesInto * 60;
-            CurrentTime.Minutes = Remainder;
-            CurrentTime.Hours+=GoesInto;
-        }else{ return; }
-        if(CurrentTime.Hours > 24)
-        {
-            Integer GoesInto = CurrentTime.Hours / 24;
-            Integer Remainder = CurrentTime.Hours - GoesInto * 24;
-            CurrentTime.Hours = Remainder;
-            CurrentTime.Days+=GoesInto;
-        }else{ return; }
+        if(!CheckMicroSeconds(ExtendedTimer::Current)) return;
+        if(!CheckMilliSeconds(ExtendedTimer::Current)) return;
+        if(!CheckSeconds(ExtendedTimer::Current)) return;
+        if(!CheckMinutes(ExtendedTimer::Current)) return;
+        if(!CheckHours(ExtendedTimer::Current)) return;
     }
 
     void ExtendedTimer::UpdateAsStopWatch(const Whole MicroSecondsElapsed)
@@ -180,17 +160,78 @@ namespace phys
         }else{ return; }
     }
 
-    void ExtendedTimer::UpdateAsAlarm(const Whole MicroSecondsElapsed)
+    bool ExtendedTimer::CheckMicroSeconds(const ExtendedTimer::TimeStruct Struct)
     {
-        UpdateAsNormal(MicroSecondsElapsed);
-        if(GoalReached())
+        if(GetStruct(Struct).Microseconds > 1000)
         {
-            if(Callback)
-                Callback->DoCallbackItems();
-            if(ResetAtGoal)
-                Reset();
-            Stop();
-        }
+            Integer GoesInto = GetStruct(Struct).Microseconds * 0.001;
+            Integer Remainder = GetStruct(Struct).Microseconds - GoesInto * 1000;
+            GetStruct(Struct).Microseconds = Remainder;
+            GetStruct(Struct).Milliseconds+=GoesInto;
+            return true;
+        }else{ return false; }
+    }
+
+    bool ExtendedTimer::CheckMilliSeconds(const ExtendedTimer::TimeStruct Struct)
+    {
+        if(GetStruct(Struct).Milliseconds > 1000)
+        {
+            Integer GoesInto = GetStruct(Struct).Milliseconds * 0.001;
+            Integer Remainder = GetStruct(Struct).Milliseconds - GoesInto * 1000;
+            GetStruct(Struct).Milliseconds = Remainder;
+            GetStruct(Struct).Seconds+=GoesInto;
+            return true;
+        }else{ return false; }
+    }
+
+    bool ExtendedTimer::CheckSeconds(const ExtendedTimer::TimeStruct Struct)
+    {
+        if(GetStruct(Struct).Seconds > 60)
+        {
+            Integer GoesInto = GetStruct(Struct).Seconds / 60;
+            Integer Remainder = GetStruct(Struct).Seconds - GoesInto * 60;
+            GetStruct(Struct).Seconds = Remainder;
+            GetStruct(Struct).Minutes+=GoesInto;
+            return true;
+        }else{ return false; }
+    }
+
+    bool ExtendedTimer::CheckMinutes(const ExtendedTimer::TimeStruct Struct)
+    {
+        if(GetStruct(Struct).Minutes > 60)
+        {
+            Integer GoesInto = GetStruct(Struct).Minutes / 60;
+            Integer Remainder = GetStruct(Struct).Minutes - GoesInto * 60;
+            GetStruct(Struct).Minutes = Remainder;
+            GetStruct(Struct).Hours+=GoesInto;
+            return true;
+        }else{ return false; }
+    }
+
+    bool ExtendedTimer::CheckHours(const ExtendedTimer::TimeStruct Struct)
+    {
+        if(GetStruct(Struct).Hours > 24)
+        {
+            Integer GoesInto = GetStruct(Struct).Hours / 24;
+            Integer Remainder = GetStruct(Struct).Hours - GoesInto * 24;
+            GetStruct(Struct).Hours = Remainder;
+            GetStruct(Struct).Days+=GoesInto;
+            return true;
+        }else{ return false; }
+    }
+
+    bool ExtendedTimer::CheckDays(const ExtendedTimer::TimeStruct Struct)
+    {
+        return false;
+    }
+
+    bool ExtendedTimer::CheckAll(const ExtendedTimer::TimeStruct Struct)
+    {
+        if(CheckMicroSeconds(Struct) || CheckMilliSeconds(Struct) || CheckSeconds(Struct)
+           || CheckMinutes(Struct) || CheckHours(Struct) || CheckDays(Struct))
+        {
+            return true;
+        }else{ return false; }
     }
 
     bool ExtendedTimer::CompareCurrentAndGoal(const Integer Current, const Integer Goal)
@@ -256,36 +297,42 @@ namespace phys
 
     ExtendedTimer& ExtendedTimer::SetMicroseconds(Integer MS, const ExtendedTimer::TimeStruct Struct)
     {
-        if(999 < MS) MS = 999;
         GetStruct(Struct).Microseconds = MS;
+        CheckAll(Struct);
         return *this;
     }
 
     ExtendedTimer& ExtendedTimer::SetMilliseconds(Integer MS, const ExtendedTimer::TimeStruct Struct)
     {
-        if(999 < MS) MS = 999;
         GetStruct(Struct).Milliseconds = MS;
+        CheckMilliSeconds(Struct);
+        CheckSeconds(Struct);
+        CheckMinutes(Struct);
+        CheckHours(Struct);
         return *this;
     }
 
     ExtendedTimer& ExtendedTimer::SetSeconds(Integer Sec, const ExtendedTimer::TimeStruct Struct)
     {
-        if(59 < Sec) Sec = 59;
         GetStruct(Struct).Seconds = Sec;
+        CheckSeconds(Struct);
+        CheckMinutes(Struct);
+        CheckHours(Struct);
         return *this;
     }
 
     ExtendedTimer& ExtendedTimer::SetMinutes(Integer Min, const ExtendedTimer::TimeStruct Struct)
     {
-        if(59 < Min) Min = 59;
         GetStruct(Struct).Minutes = Min;
+        CheckMinutes(Struct);
+        CheckHours(Struct);
         return *this;
     }
 
     ExtendedTimer& ExtendedTimer::SetHours(Integer Hr, const ExtendedTimer::TimeStruct Struct)
     {
-        if(23 < Hr) Hr = 23;
         GetStruct(Struct).Hours = Hr;
+        CheckHours(Struct);
         return *this;
     }
 
