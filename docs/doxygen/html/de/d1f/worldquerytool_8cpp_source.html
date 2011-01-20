@@ -21,6 +21,7 @@
   <div class="tabs2">
     <ul class="tablist">
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="../../globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
 <div class="header">
@@ -182,7 +183,7 @@
 <a name="l00152"></a><a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf">00152</a>     <a class="code" href="../../d2/de8/classphys_1_1Vector3WActor.html" title="This class is used to store or transfer a position relative to an Actor.">Vector3WActor</a>* <a class="code" href="../../d8/d69/classphys_1_1WorldQueryTool.html#a67575416c2e9c652bbd873649ee38baf" title="Partially implemented. This should find the first Actor that is on or almost on the a given Ray...">WorldQueryTool::GetFirstActorOnRayByAABB</a>(<a class="code" href="../../df/d57/classphys_1_1Ray.html" title="This is used to indicate a line with one end.">Ray</a> ActorRay)
 <a name="l00153"></a>00153     {
 <a name="l00154"></a>00154 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
-<a name="l00155"></a>00155 <span class="preprocessor"></span>        this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool::GetFirstActorOnRayByAABB:&quot;</span>);
+<a name="l00155"></a>00155 <span class="preprocessor"></span>        this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool::GetFirstActorOnRayByAABB:&quot;</span>);
 <a name="l00156"></a>00156 <span class="preprocessor">        #endif</span>
 <a name="l00157"></a>00157 <span class="preprocessor"></span>        Ogre::Ray Ooray = ActorRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a0c29b1a55f42ff60d224f16cc0910cdb" title="Gets an Ogre::Ray that contains this Rays information.">GetOgreRay</a>();
 <a name="l00158"></a>00158 
@@ -242,7 +243,7 @@
 <a name="l00212"></a>00212             <span class="keywordflow">if</span>(QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> == 0 &amp;&amp; QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> == 0 &amp;&amp; QueryPlane.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a> == 0)
 <a name="l00213"></a>00213             {
 <a name="l00214"></a>00214 <span class="preprocessor">                #ifdef PHYSDEBUG</span>
-<a name="l00215"></a>00215 <span class="preprocessor"></span>                this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error:Invalid Plane. Plane contains no points.&quot;</span>);
+<a name="l00215"></a>00215 <span class="preprocessor"></span>                this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error:Invalid Plane. Plane contains no points.&quot;</span>);
 <a name="l00216"></a>00216 <span class="preprocessor">                #endif</span>
 <a name="l00217"></a>00217 <span class="preprocessor"></span>                <span class="keywordflow">return</span> 0;
 <a name="l00218"></a>00218             }
@@ -281,7 +282,7 @@
 <a name="l00251"></a>00251                 <span class="keywordflow">else</span>
 <a name="l00252"></a>00252                 {
 <a name="l00253"></a>00253 <span class="preprocessor">                    #ifdef PHYSDEBUG</span>
-<a name="l00254"></a>00254 <span class="preprocessor"></span>                    this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error: num&lt;SMALL_NUM: Ray casted with no intersection point.&quot;</span>);
+<a name="l00254"></a>00254 <span class="preprocessor"></span>                    this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error: num&lt;SMALL_NUM: Ray casted with no intersection point.&quot;</span>);
 <a name="l00255"></a>00255 <span class="preprocessor">                    #endif</span>
 <a name="l00256"></a>00256 <span class="preprocessor"></span>                    <span class="keywordflow">return</span> 0;
 <a name="l00257"></a>00257                 }
@@ -292,7 +293,7 @@
 <a name="l00262"></a>00262             <span class="keywordflow">if</span>(sI &lt; 0 || sI &gt; 1) <span class="comment">//checks if the ray is too long</span>
 <a name="l00263"></a>00263             {
 <a name="l00264"></a>00264 <span class="preprocessor">                #ifdef PHYSDEBUG</span>
-<a name="l00265"></a>00265 <span class="preprocessor"></span>                this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error:(si&lt;0 || si &gt; 1: Ray casted with no intersection point.&quot;</span>);
+<a name="l00265"></a>00265 <span class="preprocessor"></span>                this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error:(si&lt;0 || si &gt; 1: Ray casted with no intersection point.&quot;</span>);
 <a name="l00266"></a>00266 <span class="preprocessor">                #endif</span>
 <a name="l00267"></a>00267 <span class="preprocessor"></span>                <span class="keywordflow">return</span> 0;
 <a name="l00268"></a>00268             }
@@ -310,7 +311,7 @@
 <a name="l00280"></a>00280             <span class="keywordflow">if</span>(distance &gt; QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f" title="This return the distance between this point and another.">Distance</a>(QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>))
 <a name="l00281"></a>00281             {
 <a name="l00282"></a>00282 <span class="preprocessor">                #ifdef PHYSDEBUG</span>
-<a name="l00283"></a>00283 <span class="preprocessor"></span>                this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error:Ray casted hits plane but is not long enough.&quot;</span>);
+<a name="l00283"></a>00283 <span class="preprocessor"></span>                this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error:Ray casted hits plane but is not long enough.&quot;</span>);
 <a name="l00284"></a>00284 <span class="preprocessor">                #endif</span>
 <a name="l00285"></a>00285 <span class="preprocessor"></span>                <span class="keywordflow">return</span> 0;
 <a name="l00286"></a>00286             }
@@ -322,8 +323,8 @@
 <a name="l00292"></a>00292             <span class="keywordflow">return</span> return_vector;
 <a name="l00293"></a>00293         } <span class="keywordflow">catch</span>(exception e) {
 <a name="l00294"></a>00294             <span class="comment">//In case we divide b</span>
-<a name="l00295"></a>00295             this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:&quot;</span>);
-<a name="l00296"></a>00296             this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">Log</a>(e.what());
+<a name="l00295"></a>00295             this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:&quot;</span>);
+<a name="l00296"></a>00296             this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(e.what());
 <a name="l00297"></a>00297             <span class="keywordflow">return</span> 0;
 <a name="l00298"></a>00298         }
 <a name="l00299"></a>00299     }
@@ -480,7 +481,7 @@
 <a name="l00450"></a>00450 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:39 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:19 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

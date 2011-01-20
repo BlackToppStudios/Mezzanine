@@ -48,7 +48,7 @@ Namespaces</h2></td></tr>
 </p>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d53/namespacephys_1_1debug.html">debug</a></td></tr>
 
-<p><tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>This namespace is for internal debugging tools. In general it should be used in game code. </p>
+<p><tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>This namespace is for internal debugging tools. In general it shouldn't be used in game code. </p>
 <br/></td></tr>
 </p>
 <tr><td class="memItemLeft" align="right" valign="top">namespace &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d26/namespacephys_1_1internal.html">internal</a></td></tr>
@@ -177,8 +177,10 @@ Typedefs</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A datatype use to represent any integer close to.  <a href="#a7f09bf5585b2bb97613cd9aad4273a81"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A Datatype used to a series of characters.  <a href="#aa03900411993de7fbfec4789bc1d392e"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">typedef const std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A Datatype used to a series of imutable characters.  <a href="#a5ce5049f8b4bf88d6413c47b504ebb31"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">typedef char&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#a3098bae5b0a3cd16eec331f766cc562b">Character</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A datatype to represent one character.  <a href="#a3098bae5b0a3cd16eec331f766cc562b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef SDL_Event&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4">RawEvent</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is an internal datatype use to communicate with the User input Subsystem.  <a href="#a8126d26e4507e66d09876988bb941fd4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">typedef std::vector&lt; <a class="el" href="../../dc/d2f/classphys_1_1Sound.html">Sound</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#ab780c3162da5699fe421f3739ba03fc4">SoundSet</a></td></tr>
@@ -214,6 +216,24 @@ Functions</h2></td></tr>
 <p>The bulk of the engine components go in this namspace. </p>
 <p>This is where imporant classes like <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>, and The eventmanager reside. For more detailed usage information please refer to individual class documentation or the <a class="el" href="../../index.html">Physgame</a> main page. </p>
 <hr/><h2>Typedef Documentation</h2>
+<a class="anchor" id="a3098bae5b0a3cd16eec331f766cc562b"></a><!-- doxytag: member="phys::Character" ref="a3098bae5b0a3cd16eec331f766cc562b" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#a3098bae5b0a3cd16eec331f766cc562b">phys::Character</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>A datatype to represent one character. </p>
+<p>This should be a char if String is an std::string. The XML parser expects this to be either char or wchar_t and has not be test with external types. The XML Parser expects XML_WCHAR_MODE to be defined if wchar_t is used. A remarked definition of this exists near the Character typedef in <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a> </p>
+
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00102">102</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a5ce5049f8b4bf88d6413c47b504ebb31"></a><!-- doxytag: member="phys::ConstString" ref="a5ce5049f8b4bf88d6413c47b504ebb31" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -226,9 +246,9 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>A Datatype used to a series of imutable characters. </p>
-<p>This is a typedef to const std::string, but could change </p>
+<p>This is a typedef to const String, but could change. </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00094">94</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00095">95</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -244,7 +264,7 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>A datatype use to represent any integer close to. </p>
-<p>This is a typedef to int, but could int16 or smaller to improve performce on handheld platforms </p>
+<p>This is a typedef to int, but could int16 or smaller to improve performance in some situtations handheld platforms </p>
 
 <p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00084">84</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
@@ -265,7 +285,7 @@ Functions</h2></td></tr>
 <p><b>For internal use only.</b></p>
 <p>This is a typedef to SDL_Event. See the SDL Documentation for more details </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00100">100</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00110">110</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -301,7 +321,7 @@ Functions</h2></td></tr>
 <p>This is a vector that stores sounds. </p>
 <p>This is a vector and can be use to store sounds that can be grouped together for similiar purposes or similiar content for easy tracking. </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00106">106</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00116">116</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -317,9 +337,9 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>A Datatype used to a series of characters. </p>
-<p>This is a typedef to std::string, but could change. </p>
+<p>This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is changed, The Character typedef should be adjusted accordingly. </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00089">89</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00090">90</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -335,7 +355,7 @@ Functions</h2></td></tr>
 <div class="memdoc">
 
 <p>A Datatype used to represent an postive integer numbers. </p>
-<p>This is a typedef to unsigned Long. but could be smaller on </p>
+<p>This is a typedef to unsigned Long. but could be smaller in some situations </p>
 
 <p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00078">78</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
@@ -370,7 +390,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An bouble with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Typedefs could break things </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00211">211</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00221">221</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -402,7 +422,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An float with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Real Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00197">197</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00207">207</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -434,7 +454,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00154">154</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00164">164</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -465,7 +485,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An Integer with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00139">139</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00149">149</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -496,7 +516,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An Real with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00182">182</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00192">192</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -527,7 +547,7 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A String with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00115">115</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00125">125</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -559,7 +579,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An unsigned int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00169">169</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00179">179</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -590,12 +610,12 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Whole with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00126">126</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00136">136</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:40 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:20 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

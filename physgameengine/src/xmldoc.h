@@ -89,9 +89,9 @@ namespace phys
         /// @details See xmldoc.h for additional details.
         ///////////////////////////////////////
 
-
-        /// @brief These statuses are used to help determine what issues, if any the parser had. the XML parser had.
+        ///////////////////////////////////////////////////////////////////////////////
         /// @enum ParseStatus
+        /// @brief These statuses are used to help determine what issues, if any the parser had. the XML parser had.
 
         /// @var StatusOk
         /// @brief This is returned to indicated there where no issues parsing the XML document
@@ -138,29 +138,171 @@ namespace phys
         /// @var StatusEndElementMismatch
         /// @brief There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag).
 
-
+        ///////////////////////////////////////////////////////////////////////////////
         /// @struct ParseResult
         /// @brief All the information needed to troubleshoot a Parsing error.
 
-        // @var ParseResult::Status
-        // @memberof ParseResult
-		// @brief Parsing status ( see \ref ParseStatus ) yyyyyy
-		//ParseStatus Status;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @enum Encoding
+        /// @brief These flags determine the encoding of input data for an XML document.
 
-		// Last parsed offset (in char_t units from start of input data)
-		//ptrdiff_t offset;
+        /// @var EncodingAuto
+        /// @brief Auto-detect input document encoding using Byte Order Mark (BOM) or < / <? detection; use UTF8 if BOM is not found .
 
-		// Source document encoding
-		//Encoding encoding;
+        /// @var EncodingUTF8
+        /// @brief UTF8 document encoding
 
-		// Default constructor, initializes object to failed state
-		//ParseResult();
+        /// @var EncodingUTF16LE
+        /// @brief Little-endian UTF16
 
-		// Cast to bool operator
-		//operator bool() const;
+        /// @var EncodingUTF16BE
+        /// @brief Big-endian UTF16
 
-		// Get error description
-		//const char* description() const;
+        /// @var EncodingUTF16
+        /// @brief UTF16 with native endianness
+
+        /// @var EncodingUTF32LE
+        /// @brief Little-endian UTF32
+
+        /// @var EncodingUTF32BE
+        /// @brief Big-endian UTF32
+
+        /// @var EncodingUTF32
+        /// @brief UTF32 with native endianness
+
+        /// @var Encodingwchar_t
+        /// @brief The same document encoding wchar_t has (usually either UTF16 or UTF32)
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @enum NodeType
+        /// @brief The types of nodes.
+
+        /// @var NodeNull
+        /// @brief Empty (null) node handle.
+
+        /// @var NodeDocument
+        /// @brief A document tree's absolute root.
+
+        /// @var NodeElement
+        /// @brief Element tag, i.e. '<node/>'.
+
+        /// @var NodePcdata
+        /// @brief Plain character data, i.e. 'text'.
+
+        /// @var NodeCdata
+        /// @brief Character data, i.e. '<![CDATA[text]]>'.
+
+        /// @var NodeComment
+        /// @brief Comment tag, i.e. '<!-- text -->'.
+
+        /// @var NodePi
+        /// @brief Processing instructions to the XML parser, i.e. '<?name?>'.
+
+        /// @var NodeDeclaration
+        /// @brief Document declaration, i.e. '<?xml version="1.0"?>'.
+
+        /// @var NodeDoctype
+        /// @brief Document type declaration, i.e. '<!DOCTYPE doc>'.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @var phys::xml::ParseMinimal
+        /// @brief Minimal parsing mode (equivalent to turning all other flags off).
+        /// @details Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed.
+
+        /// @var ParsePi
+        /// @brief This flag determines if processing instructions (NodePi) are added to the DOM tree. This flag is off by default.
+
+        /// @var ParseComments
+        /// @brief This flag determines if comments (NodeComment) are added to the DOM tree. This flag is off by default.
+
+        /// @var ParseCdata
+        /// @brief This flag determines if CDATA sections (NodeCdata) are added to the DOM tree. This flag is on by default.
+
+        /// @var ParseWsPcdata
+        /// @brief This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree.
+        /// @details This flag is off by default; turning it on usually results in slower parsing and more memory consumption.
+
+        /// @var ParseEscapes
+        /// @brief This flag determines if character and entity references are expanded during parsing. This flag is on by default.
+
+        /// @var ParseEol
+        /// @brief This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default.
+
+        /// @var ParseWconvAttribute
+        /// @brief This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default.
+
+        /// @var ParseWnormAttribute
+        /// @brief This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default.
+
+        /// @var ParseDeclaration
+        /// @brief This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default.
+
+        /// @var ParseDoctype
+        /// @brief This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default.
+
+        /// @var ParseDefault
+        /// @brief The default parsing mode.
+        /// @details Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded,
+        /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
+
+        /// @var ParseFull
+        /// @brief The full parsing mode.
+        /// @details Nodes of all types are added to the DOM tree, character/reference entities are expanded,
+        /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @typedef string_t
+        /// @brief A string class used internally to store data in the XML parser.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @var FormatIndent
+        /// @brief Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default.
+
+        /// @var FormatWriteBom
+        /// @brief Write encoding-specific Byte Order Mark (BOM) to the output stream. This flag is off by default.
+
+        /// @var FormatRaw
+        /// @brief Use raw output mode (no indentation and no line breaks are written). This flag is off by default.
+
+        /// @var FormatNoDeclaration
+        /// @brief Omit default XML declaration even if there is no declaration in the document. This flag is off by default.
+
+        /// @var FormatDefault
+        /// @brief The default set of formatting flags.
+        /// @details Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Writer
+        /// Interface for node printing (see @ref Node::print)
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class WriterFile
+        /// An implementation of @ref Writer intended for writing to FILEs as defined in stdio
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class WriterStream
+        /// An implementation of @ref Writer intended for writing std::ostreams
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @def XML_DEPRECATED
+        /// @brief Used to mark XML internals as deprecated at the compiler level.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @def _XML_H
+        /// @internal
+        /// @brief Prevents accidental loading of the file xml.h multiple times.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @def XML_TEXT
+        /// @internal
+        /// @brief Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @def XML_CHAR
+        /// @internal
+        /// @brief Links the  Pugi character datatype to match the Physgame phys::Characterdatatype
+
+
 
 
 

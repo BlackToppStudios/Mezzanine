@@ -21,6 +21,7 @@
   <div class="tabs2">
     <ul class="tablist">
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="../../globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
 <div class="header">
@@ -108,7 +109,7 @@
 <a name="l00078"></a>00078 <span class="comment">                /// @param Position The top left position of the checkbox.</span>
 <a name="l00079"></a>00079 <span class="comment">                /// @param Size The size of the checkbox.</span>
 <a name="l00080"></a>00080 <span class="comment">                /// @param Layer Pointer to the Layer that created this checkbox.</span>
-<a name="l00081"></a>00081 <span class="comment"></span>                <a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value.">CheckBox</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a> &amp;LabelText, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer);<span class="comment"></span>
+<a name="l00081"></a>00081 <span class="comment"></span>                <a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value.">CheckBox</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a> &amp;LabelText, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer);<span class="comment"></span>
 <a name="l00082"></a>00082 <span class="comment">                /// @brief Class destructor.</span>
 <a name="l00083"></a>00083 <span class="comment"></span>                <span class="keyword">virtual</span> ~<a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value.">CheckBox</a>();<span class="comment"></span>
 <a name="l00084"></a>00084 <span class="comment">                /// @brief Sets the visibility of this checkbox.</span>
@@ -152,28 +153,28 @@
 <a name="l00122"></a>00122 <span class="comment">                /// @brief Sets the relative position of this checkbox.</span>
 <a name="l00123"></a>00123 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
 <a name="l00124"></a>00124 <span class="comment">                /// @param Position A vector2 representing the relative position of this checkbox.</span>
-<a name="l00125"></a>00125 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPosition(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
+<a name="l00125"></a>00125 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPosition(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
 <a name="l00126"></a>00126 <span class="comment">                /// @brief Gets the relative position of this checkbox.</span>
 <a name="l00127"></a>00127 <span class="comment">                /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.</span>
 <a name="l00128"></a>00128 <span class="comment">                /// @return Returns a vector2 representing the relative position of this checkbox.</span>
 <a name="l00129"></a>00129 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetPosition();<span class="comment"></span>
 <a name="l00130"></a>00130 <span class="comment">                /// @brief Sets the pixel position of this checkbox.</span>
 <a name="l00131"></a>00131 <span class="comment">                /// @param Position A vector2 representing the pixel position of this checkbox.</span>
-<a name="l00132"></a>00132 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualPosition(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
+<a name="l00132"></a>00132 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualPosition(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
 <a name="l00133"></a>00133 <span class="comment">                /// @brief Sets the pixel position of this checkbox.</span>
 <a name="l00134"></a>00134 <span class="comment">                /// @return Returns a vector2 representing the pixel position of this checkbox.</span>
 <a name="l00135"></a>00135 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualPosition();<span class="comment"></span>
 <a name="l00136"></a>00136 <span class="comment">                /// @brief Sets the relative size of this checkbox.</span>
 <a name="l00137"></a>00137 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
 <a name="l00138"></a>00138 <span class="comment">                /// @param Size A vector2 representing the relative size of this checkbox.</span>
-<a name="l00139"></a>00139 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSize(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetSize(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
 <a name="l00140"></a>00140 <span class="comment">                /// @brief Gets the relative size of this checkbox.</span>
 <a name="l00141"></a>00141 <span class="comment">                /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.</span>
 <a name="l00142"></a>00142 <span class="comment">                /// @return Returns a vector2 representing the relative size of this checkbox.</span>
 <a name="l00143"></a>00143 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetSize();<span class="comment"></span>
 <a name="l00144"></a>00144 <span class="comment">                /// @brief Sets the pixel size of this checkbox.</span>
 <a name="l00145"></a>00145 <span class="comment">                /// @param Size A vector2 representing the pixel size of this checkbox.</span>
-<a name="l00146"></a>00146 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualSize(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
+<a name="l00146"></a>00146 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualSize(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
 <a name="l00147"></a>00147 <span class="comment">                /// @brief Sets the pixel size of this checkbox.</span>
 <a name="l00148"></a>00148 <span class="comment">                /// @return Returns a vector2 representing the pixel size of this checkbox.</span>
 <a name="l00149"></a>00149 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualSize();<span class="comment"></span>
@@ -190,7 +191,7 @@
 <a name="l00160"></a>00160 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:39 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:19 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -61,8 +61,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a8b2c74c7e5d5ce3c46a814e183a7aff1">~World</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deconstructor.  <a href="#a8b2c74c7e5d5ce3c46a814e183a7aff1"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">void PHYS_LIB&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293">Log</a> (T Message)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Runtime event and message logging.  <a href="#a115b287bc8a23dfdf314f715a818e293"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60">Log</a> (T Message)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Runtime event and message logging.  <a href="#a05267a20e8d5518771d0848190b33d60"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dbf83226aaa109a09efab00ae682761"></a><!-- doxytag: member="phys::World::Log" ref="a7dbf83226aaa109a09efab00ae682761" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a7dbf83226aaa109a09efab00ae682761">Log</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Force any outstanding logs to be commited to logs. <br/></td></tr>
@@ -804,14 +804,14 @@ Static Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a115b287bc8a23dfdf314f715a818e293"></a><!-- doxytag: member="phys::World::Log" ref="a115b287bc8a23dfdf314f715a818e293" args="(T Message)" -->
+<a class="anchor" id="a05267a20e8d5518771d0848190b33d60"></a><!-- doxytag: member="phys::World::Log" ref="a05267a20e8d5518771d0848190b33d60" args="(T Message)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void PHYS_LIB phys::World::Log </td>
+          <td class="memname">void phys::World::Log </td>
           <td>(</td>
           <td class="paramtype">T&nbsp;</td>
           <td class="paramname"> <em>Message</em></td>
@@ -1178,7 +1178,7 @@ template&lt;class T &gt; </div>
 <div class="memdoc">
 
 <p>This is another way to put data in the log. </p>
-<p>The contents of this will be commited to the log once per frame, just before rendering, or whenever <a class="el" href="../../da/ddf/classphys_1_1World.html#a115b287bc8a23dfdf314f715a818e293" title="Runtime event and message logging.">World::Log</a> is called. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. </p>
+<p>The contents of this will be commited to the log once per frame, just before rendering, or whenever <a class="el" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">World::Log</a> is called. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. </p>
 
 <p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00330">330</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
@@ -1226,7 +1226,7 @@ template&lt;class T &gt; </div>
 <li><a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:46 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:25 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

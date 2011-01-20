@@ -63,7 +63,7 @@ namespace phys
 {
     /// @internal
     /// @namespace phys::debug
-    /// @brief This namespace is for internal debugging tools. In general it should be used in game code.
+    /// @brief This namespace is for internal debugging tools. In general it shouldn't be used in game code.
     /// @details This whole debug namespace is a dirty hack. This is where internal only classes and functions go
     /// that can and maybe should be ommited from release builds
     namespace debug

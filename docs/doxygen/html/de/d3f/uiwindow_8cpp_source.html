@@ -21,6 +21,7 @@
   <div class="tabs2">
     <ul class="tablist">
       <li><a href="../../files.html"><span>File&nbsp;List</span></a></li>
+      <li><a href="../../globals.html"><span>File&nbsp;Members</span></a></li>
     </ul>
   </div>
 <div class="header">
@@ -91,7 +92,7 @@
 <a name="l00061"></a>00061 {
 <a name="l00062"></a>00062     <span class="keyword">namespace </span>UI
 <a name="l00063"></a>00063     {
-<a name="l00064"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a81bb894db3fb0dc63e2a5b6f65ecfe4d">00064</a>         <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a81bb894db3fb0dc63e2a5b6f65ecfe4d" title="Standard initialization constructor.">Window::Window</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
+<a name="l00064"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aefaaf53a19b0b298e0a5c96d505d7355">00064</a>         <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aefaaf53a19b0b298e0a5c96d505d7355" title="Standard initialization constructor.">Window::Window</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
 <a name="l00065"></a>00065             : <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>(name,Layer)
 <a name="l00066"></a>00066         {
 <a name="l00067"></a>00067             RelPosition = Position;
@@ -165,9 +166,9 @@
 <a name="l00135"></a>00135             }
 <a name="l00136"></a>00136         }
 <a name="l00137"></a>00137 
-<a name="l00138"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac6d3747e32b21e71d12f5b32568cc74c">00138</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac6d3747e32b21e71d12f5b32568cc74c" title="Internal function for setting the location(position) of this widget.">Window::SetLocation</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Position)
+<a name="l00138"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a72f45126d1a8282f03054470c94218bf">00138</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a72f45126d1a8282f03054470c94218bf" title="Internal function for setting the location(position) of this widget.">Window::SetLocation</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Position)
 <a name="l00139"></a>00139         {
-<a name="l00140"></a>00140             WindowBack-&gt;<a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a77fdf1fc5f2a2d73ccfb0ac0ff125ca5" title="Sets the top left position of this rectangle in pixels.">SetActualPosition</a>(Position);
+<a name="l00140"></a>00140             WindowBack-&gt;<a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ab1fceb63091f7001307c634ac56e184d" title="Sets the top left position of this rectangle in pixels.">SetActualPosition</a>(Position);
 <a name="l00141"></a>00141             <span class="keywordflow">for</span>( std::vector&lt;OffsetButtonInfo&gt;::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
 <a name="l00142"></a>00142             {
 <a name="l00143"></a>00143                 (*it).Object-&gt;SetActualPosition(Position+(*it).Offset);
@@ -190,49 +191,49 @@
 <a name="l00160"></a>00160             }
 <a name="l00161"></a>00161         }
 <a name="l00162"></a>00162 
-<a name="l00163"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae3fc6f6c92250fc9a563de93ecffa6e1">00163</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae3fc6f6c92250fc9a563de93ecffa6e1" title="Internal function for setting the area(size) of this widget.">Window::SetArea</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Size)
+<a name="l00163"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab0917b15904f30d66e6ef81b840601e2">00163</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab0917b15904f30d66e6ef81b840601e2" title="Internal function for setting the area(size) of this widget.">Window::SetArea</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> &amp;Size)
 <a name="l00164"></a>00164         {
 <a name="l00165"></a>00165             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> OldSize = WindowBack-&gt;<a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#ae29501765e3af7eac37d5ac581e77b24" title="Gets the size of this rectangle in pixels.">GetActualSize</a>();
 <a name="l00166"></a>00166             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position = WindowBack-&gt;<a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a976f977ee23e805b4a193fc0f9e8392f" title="Gets the top left position of this rectangle in pixels.">GetActualPosition</a>();
-<a name="l00167"></a>00167             WindowBack-&gt;<a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#acf993ac61f8f5707a4fb139d5ff6fd2e" title="Sets the size of this rectangle in pixels.">SetActualSize</a>(Size);
+<a name="l00167"></a>00167             WindowBack-&gt;<a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html#a554e24caf820a94d2710ed94303d899a" title="Sets the size of this rectangle in pixels.">SetActualSize</a>(Size);
 <a name="l00168"></a>00168             <span class="keywordflow">for</span>( std::vector&lt;OffsetButtonInfo&gt;::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
 <a name="l00169"></a>00169             {
-<a name="l00170"></a>00170                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aced8fdd2865324d01ab03afb71235f61" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
+<a name="l00170"></a>00170                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae733d9dc3b0bc37c91dc7002c8b01bc7" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
 <a name="l00171"></a>00171                 <span class="keywordflow">if</span>((*it).Tether != RT_TetherNone)
-<a name="l00172"></a>00172                     (*it).Object-&gt;SetActualSize(<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a69e6f07894c09a56edab7d78d05b139f" title="Calculates a new size for an individual element.">CalculateSize</a>(Size,OldSize,(*it).Object-&gt;GetActualSize(),(*it).Tether));
+<a name="l00172"></a>00172                     (*it).Object-&gt;SetActualSize(<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4d120ac244f9a9c683f8b9bdb90835a8" title="Calculates a new size for an individual element.">CalculateSize</a>(Size,OldSize,(*it).Object-&gt;GetActualSize(),(*it).Tether));
 <a name="l00173"></a>00173                 (*it).Object-&gt;SetActualPosition(Position+(*it).Offset);
 <a name="l00174"></a>00174             }
 <a name="l00175"></a>00175             <span class="keywordflow">for</span>( std::vector&lt;OffsetRectangleInfo&gt;::iterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
 <a name="l00176"></a>00176             {
-<a name="l00177"></a>00177                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aced8fdd2865324d01ab03afb71235f61" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
+<a name="l00177"></a>00177                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae733d9dc3b0bc37c91dc7002c8b01bc7" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
 <a name="l00178"></a>00178                 <span class="keywordflow">if</span>((*it).Tether != RT_TetherNone)
-<a name="l00179"></a>00179                     (*it).Object-&gt;SetActualSize(<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a69e6f07894c09a56edab7d78d05b139f" title="Calculates a new size for an individual element.">CalculateSize</a>(Size,OldSize,(*it).Object-&gt;GetActualSize(),(*it).Tether));
+<a name="l00179"></a>00179                     (*it).Object-&gt;SetActualSize(<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4d120ac244f9a9c683f8b9bdb90835a8" title="Calculates a new size for an individual element.">CalculateSize</a>(Size,OldSize,(*it).Object-&gt;GetActualSize(),(*it).Tether));
 <a name="l00180"></a>00180                 (*it).Object-&gt;SetActualPosition(Position+(*it).Offset);
 <a name="l00181"></a>00181             }
 <a name="l00182"></a>00182             <span class="keywordflow">for</span>( std::vector&lt;OffsetCaptionInfo&gt;::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
 <a name="l00183"></a>00183             {
-<a name="l00184"></a>00184                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aced8fdd2865324d01ab03afb71235f61" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
+<a name="l00184"></a>00184                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae733d9dc3b0bc37c91dc7002c8b01bc7" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
 <a name="l00185"></a>00185                 <span class="keywordflow">if</span>((*it).Tether != RT_TetherNone)
-<a name="l00186"></a>00186                     (*it).Object-&gt;SetActualSize(<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a69e6f07894c09a56edab7d78d05b139f" title="Calculates a new size for an individual element.">CalculateSize</a>(Size,OldSize,(*it).Object-&gt;GetActualSize(),(*it).Tether));
+<a name="l00186"></a>00186                     (*it).Object-&gt;SetActualSize(<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4d120ac244f9a9c683f8b9bdb90835a8" title="Calculates a new size for an individual element.">CalculateSize</a>(Size,OldSize,(*it).Object-&gt;GetActualSize(),(*it).Tether));
 <a name="l00187"></a>00187                 (*it).Object-&gt;SetActualPosition(Position+(*it).Offset);
 <a name="l00188"></a>00188             }
 <a name="l00189"></a>00189             <span class="keywordflow">for</span>( std::vector&lt;OffsetMarkupTextInfo&gt;::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
 <a name="l00190"></a>00190             {
-<a name="l00191"></a>00191                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aced8fdd2865324d01ab03afb71235f61" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
+<a name="l00191"></a>00191                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae733d9dc3b0bc37c91dc7002c8b01bc7" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
 <a name="l00192"></a>00192                 <span class="comment">//if((*it).Tether != RT_TetherNone)</span>
 <a name="l00193"></a>00193                 <span class="comment">//    (*it).Object-&gt;SetActualSize(CalculateSize(Size,OldSize,(*it).Object-&gt;GetActualSize(),(*it).Tether));</span>
 <a name="l00194"></a>00194                 (*it).Object-&gt;SetActualPosition(Position+(*it).Offset);
 <a name="l00195"></a>00195             }
 <a name="l00196"></a>00196             <span class="keywordflow">for</span>( std::vector&lt;OffsetWidgetInfo&gt;::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
 <a name="l00197"></a>00197             {
-<a name="l00198"></a>00198                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aced8fdd2865324d01ab03afb71235f61" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
+<a name="l00198"></a>00198                 (*it).Offset = <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae733d9dc3b0bc37c91dc7002c8b01bc7" title="Calculates a new offset for an individual element.">CalculateOffset</a>(Size,OldSize,(*it).Offset,(*it).Anchor);
 <a name="l00199"></a>00199                 <span class="keywordflow">if</span>((*it).Tether != RT_TetherNone)
-<a name="l00200"></a>00200                     (*it).Object-&gt;SetActualSize(<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a69e6f07894c09a56edab7d78d05b139f" title="Calculates a new size for an individual element.">CalculateSize</a>(Size,OldSize,(*it).Object-&gt;GetActualSize(),(*it).Tether));
+<a name="l00200"></a>00200                     (*it).Object-&gt;SetActualSize(<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4d120ac244f9a9c683f8b9bdb90835a8" title="Calculates a new size for an individual element.">CalculateSize</a>(Size,OldSize,(*it).Object-&gt;GetActualSize(),(*it).Tether));
 <a name="l00201"></a>00201                 (*it).Object-&gt;SetActualPosition(Position+(*it).Offset);
 <a name="l00202"></a>00202             }
 <a name="l00203"></a>00203         }
 <a name="l00204"></a>00204 
-<a name="l00205"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aced8fdd2865324d01ab03afb71235f61">00205</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aced8fdd2865324d01ab03afb71235f61" title="Calculates a new offset for an individual element.">Window::CalculateOffset</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewSize, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> OldSize, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> EleOffset, UI::ResizeableAnchor Anchor)
+<a name="l00205"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae733d9dc3b0bc37c91dc7002c8b01bc7">00205</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae733d9dc3b0bc37c91dc7002c8b01bc7" title="Calculates a new offset for an individual element.">Window::CalculateOffset</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewSize, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> OldSize, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> EleOffset, UI::ResizeableAnchor Anchor)
 <a name="l00206"></a>00206         {
 <a name="l00207"></a>00207             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewOffset;
 <a name="l00208"></a>00208             <span class="keywordflow">switch</span> (Anchor)
@@ -295,7 +296,7 @@
 <a name="l00265"></a>00265             <span class="keywordflow">return</span> NewOffset;
 <a name="l00266"></a>00266         }
 <a name="l00267"></a>00267 
-<a name="l00268"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a69e6f07894c09a56edab7d78d05b139f">00268</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a69e6f07894c09a56edab7d78d05b139f" title="Calculates a new size for an individual element.">Window::CalculateSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewSize, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> OldSize, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> EleSize, UI::ResizeableTether Tether)
+<a name="l00268"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4d120ac244f9a9c683f8b9bdb90835a8">00268</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4d120ac244f9a9c683f8b9bdb90835a8" title="Calculates a new size for an individual element.">Window::CalculateSize</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewSize, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> OldSize, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> EleSize, UI::ResizeableTether Tether)
 <a name="l00269"></a>00269         {
 <a name="l00270"></a>00270             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> NewEleSize;
 <a name="l00271"></a>00271             <span class="keywordflow">switch</span> (Tether)
@@ -468,11 +469,11 @@
 <a name="l00438"></a>00438             <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00439"></a>00439         }
 <a name="l00440"></a>00440 
-<a name="l00441"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac49d7c2a12293cc80b289c653b55680d">00441</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac49d7c2a12293cc80b289c653b55680d" title="Sets the relative position of this window.">Window::SetPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
+<a name="l00441"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a66babe97151763b445e8920c5c231985">00441</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a66babe97151763b445e8920c5c231985" title="Sets the relative position of this window.">Window::SetPosition</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
 <a name="l00442"></a>00442         {
 <a name="l00443"></a>00443             RelPosition = Position;
 <a name="l00444"></a>00444             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ActPos = Position * Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
-<a name="l00445"></a>00445             <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac6d3747e32b21e71d12f5b32568cc74c" title="Internal function for setting the location(position) of this widget.">SetLocation</a>(ActPos);
+<a name="l00445"></a>00445             <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a72f45126d1a8282f03054470c94218bf" title="Internal function for setting the location(position) of this widget.">SetLocation</a>(ActPos);
 <a name="l00446"></a>00446         }
 <a name="l00447"></a>00447 
 <a name="l00448"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a29fca96d9a2dab29d77a36d6a329f306">00448</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a29fca96d9a2dab29d77a36d6a329f306" title="Gets the relative position of this window.">Window::GetPosition</a>()
@@ -480,10 +481,10 @@
 <a name="l00450"></a>00450             <span class="keywordflow">return</span> RelPosition;
 <a name="l00451"></a>00451         }
 <a name="l00452"></a>00452 
-<a name="l00453"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aeedbf986dca9556fd62980a6d7d27c79">00453</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aeedbf986dca9556fd62980a6d7d27c79" title="Sets the pixel position of this window.">Window::SetActualPosition</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
+<a name="l00453"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a2b8dfb4d8f2c730502ead6d1e8bb10e2">00453</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a2b8dfb4d8f2c730502ead6d1e8bb10e2" title="Sets the pixel position of this window.">Window::SetActualPosition</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
 <a name="l00454"></a>00454         {
 <a name="l00455"></a>00455             RelPosition = Position / Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
-<a name="l00456"></a>00456             <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac6d3747e32b21e71d12f5b32568cc74c" title="Internal function for setting the location(position) of this widget.">SetLocation</a>(Position);
+<a name="l00456"></a>00456             <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a72f45126d1a8282f03054470c94218bf" title="Internal function for setting the location(position) of this widget.">SetLocation</a>(Position);
 <a name="l00457"></a>00457         }
 <a name="l00458"></a>00458 
 <a name="l00459"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a811fb495bc698752e03778b18f2b1a30">00459</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a811fb495bc698752e03778b18f2b1a30" title="Sets the pixel position of this window.">Window::GetActualPosition</a>()
@@ -491,11 +492,11 @@
 <a name="l00461"></a>00461             <span class="keywordflow">return</span> RelPosition * Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
 <a name="l00462"></a>00462         }
 <a name="l00463"></a>00463 
-<a name="l00464"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#adbd4d4c908c3d3458139e87bf16006bf">00464</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#adbd4d4c908c3d3458139e87bf16006bf" title="Sets the relative size of this window.">Window::SetSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00464"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aeaf0b107e6bcf688635dd4719871bd9a">00464</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aeaf0b107e6bcf688635dd4719871bd9a" title="Sets the relative size of this window.">Window::SetSize</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
 <a name="l00465"></a>00465         {
 <a name="l00466"></a>00466             RelSize = Size;
 <a name="l00467"></a>00467             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ActSize = Size * Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
-<a name="l00468"></a>00468             <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae3fc6f6c92250fc9a563de93ecffa6e1" title="Internal function for setting the area(size) of this widget.">SetArea</a>(ActSize);
+<a name="l00468"></a>00468             <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab0917b15904f30d66e6ef81b840601e2" title="Internal function for setting the area(size) of this widget.">SetArea</a>(ActSize);
 <a name="l00469"></a>00469         }
 <a name="l00470"></a>00470 
 <a name="l00471"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9946100eb6e6e985921bbea9e87cede3">00471</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9946100eb6e6e985921bbea9e87cede3" title="Gets the relative size of this window.">Window::GetSize</a>()
@@ -503,10 +504,10 @@
 <a name="l00473"></a>00473             <span class="keywordflow">return</span> RelSize;
 <a name="l00474"></a>00474         }
 <a name="l00475"></a>00475 
-<a name="l00476"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ad297fc3485097a2bce7120f9f22d6c19">00476</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ad297fc3485097a2bce7120f9f22d6c19" title="Sets the pixel size of this window.">Window::SetActualSize</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00476"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a1b9832e05d8c15a30a2ac12cc1ebb255">00476</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a1b9832e05d8c15a30a2ac12cc1ebb255" title="Sets the pixel size of this window.">Window::SetActualSize</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
 <a name="l00477"></a>00477         {
 <a name="l00478"></a>00478             RelSize = Size / Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
-<a name="l00479"></a>00479             <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ae3fc6f6c92250fc9a563de93ecffa6e1" title="Internal function for setting the area(size) of this widget.">SetArea</a>(Size);
+<a name="l00479"></a>00479             <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab0917b15904f30d66e6ef81b840601e2" title="Internal function for setting the area(size) of this widget.">SetArea</a>(Size);
 <a name="l00480"></a>00480         }
 <a name="l00481"></a>00481 
 <a name="l00482"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a22f5ca800e44c5e2cfeed59c243b03ed">00482</a>         <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a22f5ca800e44c5e2cfeed59c243b03ed" title="Sets the pixel size of this window.">Window::GetActualSize</a>()
@@ -514,7 +515,7 @@
 <a name="l00484"></a>00484             <span class="keywordflow">return</span> RelSize * Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>();
 <a name="l00485"></a>00485         }
 <a name="l00486"></a>00486 
-<a name="l00487"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a022f3d02aa8d99cb6d8abccddbc9e662">00487</a>         <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a022f3d02aa8d99cb6d8abccddbc9e662" title="Creates a button within this Window.">Window::CreateButton</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00487"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5414660c47246997cd1ed9654847055b">00487</a>         <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5414660c47246997cd1ed9654847055b" title="Creates a button within this Window.">Window::CreateButton</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
 <a name="l00488"></a>00488         {
 <a name="l00489"></a>00489             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
 <a name="l00490"></a>00490             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetButtonInfo</a> button(<span class="keyword">new</span> <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>(Name, Position, Size, Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -522,7 +523,7 @@
 <a name="l00492"></a>00492             <span class="keywordflow">return</span> button.<a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html#a2f925cf9136fdba5612d9ba741201dc2" title="The class this template applies to.">Object</a>;
 <a name="l00493"></a>00493         }
 <a name="l00494"></a>00494 
-<a name="l00495"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aa4b5e6287496b6a47728ce9bde53ad90">00495</a>         <a class="code" href="../../df/d03/classphys_1_1UI_1_1TextButton.html" title="This is a button class that provides text capabilities.">TextButton</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aa4b5e6287496b6a47728ce9bde53ad90" title="Creates a text button within this Window.">Window::CreateTextButton</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a> Text)
+<a name="l00495"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4852c7abd3ce842a424ae0621b70df34">00495</a>         <a class="code" href="../../df/d03/classphys_1_1UI_1_1TextButton.html" title="This is a button class that provides text capabilities.">TextButton</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4852c7abd3ce842a424ae0621b70df34" title="Creates a text button within this Window.">Window::CreateTextButton</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a> Text)
 <a name="l00496"></a>00496         {
 <a name="l00497"></a>00497             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
 <a name="l00498"></a>00498             <a class="code" href="../../df/d03/classphys_1_1UI_1_1TextButton.html" title="This is a button class that provides text capabilities.">TextButton</a>* tbutton = <span class="keyword">new</span> <a class="code" href="../../df/d03/classphys_1_1UI_1_1TextButton.html" title="This is a button class that provides text capabilities.">TextButton</a>(Name, Position, Size, Glyph, Text, Parent);
@@ -544,7 +545,7 @@
 <a name="l00514"></a>00514             <span class="keywordflow">return</span> 0;
 <a name="l00515"></a>00515         }
 <a name="l00516"></a>00516 
-<a name="l00517"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aba0c70a91112b87383f83c86784ce7cd">00517</a>         <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab1152992cf6b636c8a4911889d930d9a" title="Gets an already created button by name.">Window::GetButton</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00517"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a1ec54b75619613e173509bd4d5533171">00517</a>         <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab1152992cf6b636c8a4911889d930d9a" title="Gets an already created button by name.">Window::GetButton</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
 <a name="l00518"></a>00518         {
 <a name="l00519"></a>00519             <span class="keywordflow">return</span> Buttons[Index].Object;
 <a name="l00520"></a>00520         }
@@ -562,7 +563,7 @@
 <a name="l00532"></a>00532             <span class="keywordflow">return</span> 0;
 <a name="l00533"></a>00533         }
 <a name="l00534"></a>00534 
-<a name="l00535"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aca8ae5c3dd73f101e33df8f1a2ff0f27">00535</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetButtonInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ad0d6b12c2f69ea1bc580bba7e69949a5" title="Gets the OffsetButtonInfo of an already created button by name.">Window::GetOffsetButtonInfo</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00535"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a2f940826aae5071b60a31beeb9fd0f27">00535</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetButtonInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ad0d6b12c2f69ea1bc580bba7e69949a5" title="Gets the OffsetButtonInfo of an already created button by name.">Window::GetOffsetButtonInfo</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
 <a name="l00536"></a>00536         {
 <a name="l00537"></a>00537             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetButtonInfo</a>* Offset = &amp;Buttons[Index];
 <a name="l00538"></a>00538             <span class="keywordflow">return</span> Offset;
@@ -586,7 +587,7 @@
 <a name="l00556"></a>00556             }
 <a name="l00557"></a>00557         }
 <a name="l00558"></a>00558 
-<a name="l00559"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a16bd1a1a35d61c597bca648e127aaf3a">00559</a>         <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a16bd1a1a35d61c597bca648e127aaf3a" title="Creates a rectangle within this Window.">Window::CreateRectangle</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
+<a name="l00559"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a7a4e6a554f4b35200197242a779cde4a">00559</a>         <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a7a4e6a554f4b35200197242a779cde4a" title="Creates a rectangle within this Window.">Window::CreateRectangle</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
 <a name="l00560"></a>00560         {
 <a name="l00561"></a>00561             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
 <a name="l00562"></a>00562             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetRectangleInfo</a> rectangle(<span class="keyword">new</span> <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>(Position,Size,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -594,12 +595,12 @@
 <a name="l00564"></a>00564             <span class="keywordflow">return</span> rectangle.<a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html#a2f925cf9136fdba5612d9ba741201dc2" title="The class this template applies to.">Object</a>;
 <a name="l00565"></a>00565         }
 <a name="l00566"></a>00566 
-<a name="l00567"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#adb076e699dd41c27cb4e60711711fc77">00567</a>         <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#adb076e699dd41c27cb4e60711711fc77" title="Gets an already created rectangle by index.">Window::GetRectangle</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00567"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5cd67d1e89ceb52663f472e110e978b1">00567</a>         <a class="code" href="../../d1/d5d/classphys_1_1UI_1_1Rectangle.html" title="This class is a helper class, specifically for use with background sprites and colours.">Rectangle</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5cd67d1e89ceb52663f472e110e978b1" title="Gets an already created rectangle by index.">Window::GetRectangle</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
 <a name="l00568"></a>00568         {
 <a name="l00569"></a>00569             <span class="keywordflow">return</span> Rectangles[Index].Object;
 <a name="l00570"></a>00570         }
 <a name="l00571"></a>00571 
-<a name="l00572"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4661554adce63570ae43016f358b2893">00572</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetRectangleInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4661554adce63570ae43016f358b2893" title="Gets the OffsetRectangleInfo of an already created rectangle by index.">Window::GetOffsetRectangleInfo</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00572"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aa39dd6dba9202cc9c0e8bd52efd53cba">00572</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetRectangleInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aa39dd6dba9202cc9c0e8bd52efd53cba" title="Gets the OffsetRectangleInfo of an already created rectangle by index.">Window::GetOffsetRectangleInfo</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
 <a name="l00573"></a>00573         {
 <a name="l00574"></a>00574             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetRectangleInfo</a>* Offset = &amp;Rectangles[Index];
 <a name="l00575"></a>00575             <span class="keywordflow">return</span> Offset;
@@ -623,7 +624,7 @@
 <a name="l00593"></a>00593             }
 <a name="l00594"></a>00594         }
 <a name="l00595"></a>00595 
-<a name="l00596"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a840c88419fc2874f6b2520c238bf33f1">00596</a>         <a class="code" href="../../d4/dfe/classphys_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a840c88419fc2874f6b2520c238bf33f1" title="Creates a caption within this Window.">Window::CreateCaption</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Text)
+<a name="l00596"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4d4c97599313e188805c8697d4fbb13f">00596</a>         <a class="code" href="../../d4/dfe/classphys_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4d4c97599313e188805c8697d4fbb13f" title="Creates a caption within this Window.">Window::CreateCaption</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Text)
 <a name="l00597"></a>00597         {
 <a name="l00598"></a>00598             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
 <a name="l00599"></a>00599             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetCaptionInfo</a> caption(<span class="keyword">new</span> <a class="code" href="../../d4/dfe/classphys_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>(Name,Position,Size,Glyph,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -644,7 +645,7 @@
 <a name="l00614"></a>00614             <span class="keywordflow">return</span> 0;
 <a name="l00615"></a>00615         }
 <a name="l00616"></a>00616 
-<a name="l00617"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a06186f11ba6909d5271a86b317290adf">00617</a>         <a class="code" href="../../d4/dfe/classphys_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#acfc2669ecac2824bfa7cc53eb724d191" title="Gets an already created caption by name.">Window::GetCaption</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00617"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#acfd87d8fa929b8a25d968f04d3e05aca">00617</a>         <a class="code" href="../../d4/dfe/classphys_1_1UI_1_1Caption.html" title="This class is a helper class, specifically for use with text.">Caption</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#acfc2669ecac2824bfa7cc53eb724d191" title="Gets an already created caption by name.">Window::GetCaption</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
 <a name="l00618"></a>00618         {
 <a name="l00619"></a>00619             <span class="keywordflow">return</span> Captions[Index].Object;
 <a name="l00620"></a>00620         }
@@ -662,7 +663,7 @@
 <a name="l00632"></a>00632             <span class="keywordflow">return</span> 0;
 <a name="l00633"></a>00633         }
 <a name="l00634"></a>00634 
-<a name="l00635"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a25dbba29f002817646d4fafd8e2cc905">00635</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetCaptionInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#afa081532c017f5e8c4f04bfd2df207b6" title="Gets the OffsetCaptionInfo of an already created caption by name.">Window::GetOffsetCaptionInfo</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00635"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aaef954a5d93c48ae09f891d737019f75">00635</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetCaptionInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#afa081532c017f5e8c4f04bfd2df207b6" title="Gets the OffsetCaptionInfo of an already created caption by name.">Window::GetOffsetCaptionInfo</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
 <a name="l00636"></a>00636         {
 <a name="l00637"></a>00637             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetCaptionInfo</a>* Offset = &amp;Captions[Index];
 <a name="l00638"></a>00638             <span class="keywordflow">return</span> Offset;
@@ -686,195 +687,196 @@
 <a name="l00656"></a>00656             }
 <a name="l00657"></a>00657         }
 <a name="l00658"></a>00658 
-<a name="l00659"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ad8750e7e7eed2ef68b2e5abb19075c62">00659</a>         <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ad8750e7e7eed2ef68b2e5abb19075c62" title="Creates a markup text within this Window.">Window::CreateMarkupText</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Text)
+<a name="l00659"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a39e80f1bf3dcf3441c107b359b888305">00659</a>         <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a39e80f1bf3dcf3441c107b359b888305" title="Creates a markup text within this Window.">Window::CreateMarkupText</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Text)
 <a name="l00660"></a>00660         {
 <a name="l00661"></a>00661             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
-<a name="l00662"></a>00662             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a> markup(<span class="keyword">new</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>(Name,Position,Glyph,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-<a name="l00663"></a>00663             MarkupTexts.push_back(markup);
-<a name="l00664"></a>00664             <span class="keywordflow">return</span> markup.<a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html#a2f925cf9136fdba5612d9ba741201dc2" title="The class this template applies to.">Object</a>;
-<a name="l00665"></a>00665         }
-<a name="l00666"></a>00666 
-<a name="l00667"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af5bf2246915fc68558d2a68ed016a68b">00667</a>         <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af5bf2246915fc68558d2a68ed016a68b" title="Gets an already created markup text by name.">Window::GetMarkupText</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
-<a name="l00668"></a>00668         {
-<a name="l00669"></a>00669             <span class="keywordflow">for</span> ( std::vector&lt;OffsetMarkupTextInfo&gt;::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
-<a name="l00670"></a>00670             {
-<a name="l00671"></a>00671                 <span class="keywordflow">if</span> ( Name == (*it).Object-&gt;GetName() )
-<a name="l00672"></a>00672                 {
-<a name="l00673"></a>00673                     <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* markup = (*it).Object;
-<a name="l00674"></a>00674                     <span class="keywordflow">return</span> markup;
-<a name="l00675"></a>00675                 }
-<a name="l00676"></a>00676             }
-<a name="l00677"></a>00677             <span class="keywordflow">return</span> 0;
-<a name="l00678"></a>00678         }
-<a name="l00679"></a>00679 
-<a name="l00680"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a119b5ff513cb70d4190b3ccdfa980ac2">00680</a>         <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af5bf2246915fc68558d2a68ed016a68b" title="Gets an already created markup text by name.">Window::GetMarkupText</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00681"></a>00681         {
-<a name="l00682"></a>00682             <span class="keywordflow">return</span> MarkupTexts[Index].Object;
-<a name="l00683"></a>00683         }
-<a name="l00684"></a>00684 
-<a name="l00685"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9906bb131f631af0a9aed7dbb7744112">00685</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9906bb131f631af0a9aed7dbb7744112" title="Gets the OffsetMarkupTextInfo of an already created markup text by name.">Window::GetOffsetMarkupTextInfo</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
-<a name="l00686"></a>00686         {
-<a name="l00687"></a>00687             <span class="keywordflow">for</span> ( std::vector&lt;OffsetMarkupTextInfo&gt;::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
-<a name="l00688"></a>00688             {
-<a name="l00689"></a>00689                 <span class="keywordflow">if</span> ( Name == (*it).Object-&gt;GetName() )
-<a name="l00690"></a>00690                 {
-<a name="l00691"></a>00691                     <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a>* Offset = &amp;(*it);
-<a name="l00692"></a>00692                     <span class="keywordflow">return</span> Offset;
-<a name="l00693"></a>00693                 }
-<a name="l00694"></a>00694             }
-<a name="l00695"></a>00695             <span class="keywordflow">return</span> 0;
-<a name="l00696"></a>00696         }
-<a name="l00697"></a>00697 
-<a name="l00698"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a05205cbfec7f8824d0d856047307c799">00698</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9906bb131f631af0a9aed7dbb7744112" title="Gets the OffsetMarkupTextInfo of an already created markup text by name.">Window::GetOffsetMarkupTextInfo</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00699"></a>00699         {
-<a name="l00700"></a>00700             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a>* Offset = &amp;MarkupTexts[Index];
-<a name="l00701"></a>00701             <span class="keywordflow">return</span> Offset;
-<a name="l00702"></a>00702         }
-<a name="l00703"></a>00703 
-<a name="l00704"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac9e23e41ffff8ef475fcdb0c25bad240">00704</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac9e23e41ffff8ef475fcdb0c25bad240" title="Gets the number of markup texts created and stored in this class.">Window::GetNumMarkupTexts</a>()
-<a name="l00705"></a>00705         {
-<a name="l00706"></a>00706             <span class="keywordflow">return</span> MarkupTexts.size();
-<a name="l00707"></a>00707         }
-<a name="l00708"></a>00708 
-<a name="l00709"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aba2506738c7cccfbf8297bf03e431cb8">00709</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aba2506738c7cccfbf8297bf03e431cb8" title="Destroys a markup text.">Window::DestroyMarkupText</a>(<a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* ToBeDestroyed)
-<a name="l00710"></a>00710         {
-<a name="l00711"></a>00711             <span class="keywordflow">for</span> ( std::vector&lt;OffsetMarkupTextInfo&gt;::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
-<a name="l00712"></a>00712             {
-<a name="l00713"></a>00713                 <span class="keywordflow">if</span> ( ToBeDestroyed == (*it).Object )
-<a name="l00714"></a>00714                 {
-<a name="l00715"></a>00715                     <span class="keyword">delete</span> ToBeDestroyed;
-<a name="l00716"></a>00716                     MarkupTexts.erase(it);
-<a name="l00717"></a>00717                     <span class="keywordflow">return</span>;
-<a name="l00718"></a>00718                 }
-<a name="l00719"></a>00719             }
-<a name="l00720"></a>00720         }
-<a name="l00721"></a>00721 
-<a name="l00722"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a0d2274afdabda9915d242dc3d057ae61">00722</a>         <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a0d2274afdabda9915d242dc3d057ae61" title="Gets an already created widget by name.">Window::GetWidget</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
-<a name="l00723"></a>00723         {
-<a name="l00724"></a>00724             <span class="keywordflow">for</span> ( std::vector&lt;OffsetWidgetInfo&gt;::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
-<a name="l00725"></a>00725             {
-<a name="l00726"></a>00726                 <span class="keywordflow">if</span> ( Name == (*it).Object-&gt;GetName() )
-<a name="l00727"></a>00727                 {
-<a name="l00728"></a>00728                     <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* widget = (*it).Object;
-<a name="l00729"></a>00729                     <span class="keywordflow">return</span> widget;
-<a name="l00730"></a>00730                 }
-<a name="l00731"></a>00731             }
-<a name="l00732"></a>00732             <span class="keywordflow">return</span> 0;
-<a name="l00733"></a>00733         }
-<a name="l00734"></a>00734 
-<a name="l00735"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a267f830c09afa7f5455be14c2fc52ecd">00735</a>         <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a0d2274afdabda9915d242dc3d057ae61" title="Gets an already created widget by name.">Window::GetWidget</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00736"></a>00736         {
-<a name="l00737"></a>00737             <span class="keywordflow">return</span> Widgets[Index].Object;
-<a name="l00738"></a>00738         }
-<a name="l00739"></a>00739 
-<a name="l00740"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a77a2091e41766344253cac55af650f54">00740</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a77a2091e41766344253cac55af650f54" title="Gets the OffsetWidgetInfo of an already created widget by name.">Window::GetOffsetWidgetInfo</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
-<a name="l00741"></a>00741         {
-<a name="l00742"></a>00742             <span class="keywordflow">for</span> ( std::vector&lt;OffsetWidgetInfo&gt;::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
-<a name="l00743"></a>00743             {
-<a name="l00744"></a>00744                 <span class="keywordflow">if</span> ( Name == (*it).Object-&gt;GetName() )
-<a name="l00745"></a>00745                 {
-<a name="l00746"></a>00746                     <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a>* Offset = &amp;(*it);
-<a name="l00747"></a>00747                     <span class="keywordflow">return</span> Offset;
-<a name="l00748"></a>00748                 }
-<a name="l00749"></a>00749             }
-<a name="l00750"></a>00750             <span class="keywordflow">return</span> 0;
-<a name="l00751"></a>00751         }
-<a name="l00752"></a>00752 
-<a name="l00753"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a237b11a0dde5dc46856c96c61e6bb977">00753</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a77a2091e41766344253cac55af650f54" title="Gets the OffsetWidgetInfo of an already created widget by name.">Window::GetOffsetWidgetInfo</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00754"></a>00754         {
-<a name="l00755"></a>00755             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a>* Offset = &amp;Widgets[Index];
-<a name="l00756"></a>00756             <span class="keywordflow">return</span> Offset;
-<a name="l00757"></a>00757         }
-<a name="l00758"></a>00758 
-<a name="l00759"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a062270984d25dca44f0bc4d65ef324a0">00759</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a062270984d25dca44f0bc4d65ef324a0" title="Gets the number of widgets created and stored in this class.">Window::GetNumWidgets</a>()
-<a name="l00760"></a>00760         {
-<a name="l00761"></a>00761             <span class="keywordflow">return</span> Widgets.size();
-<a name="l00762"></a>00762         }
-<a name="l00763"></a>00763 
-<a name="l00764"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab4bda54a82b64aec2cf4e03201a40772">00764</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab4bda54a82b64aec2cf4e03201a40772" title="Destroys a widget.">Window::DestroyWidget</a>(<a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* ToBeDestroyed)
-<a name="l00765"></a>00765         {
-<a name="l00766"></a>00766             <span class="keywordflow">for</span> ( std::vector&lt;OffsetWidgetInfo&gt;::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
-<a name="l00767"></a>00767             {
-<a name="l00768"></a>00768                 <span class="keywordflow">if</span> ( ToBeDestroyed == (*it).Object )
-<a name="l00769"></a>00769                 {
-<a name="l00770"></a>00770                     <span class="keyword">delete</span> (*it).Object;
-<a name="l00771"></a>00771                     <span class="comment">/*Widget::WidgetType Type = ToBeDestroyed-&gt;GetType();</span>
-<a name="l00772"></a>00772 <span class="comment">                    switch (Type)</span>
-<a name="l00773"></a>00773 <span class="comment">                    {</span>
-<a name="l00774"></a>00774 <span class="comment">                        case Widget::Scrollbar:</span>
-<a name="l00775"></a>00775 <span class="comment">                        {</span>
-<a name="l00776"></a>00776 <span class="comment">                            UI::Scrollbar* Scroll = static_cast&lt;UI::Scrollbar*&gt; (ToBeDestroyed);</span>
-<a name="l00777"></a>00777 <span class="comment">                            delete Scroll;</span>
-<a name="l00778"></a>00778 <span class="comment">                            return;</span>
-<a name="l00779"></a>00779 <span class="comment">                        }</span>
-<a name="l00780"></a>00780 <span class="comment">                        case Widget::CheckBox:</span>
-<a name="l00781"></a>00781 <span class="comment">                        {</span>
-<a name="l00782"></a>00782 <span class="comment">                            UI::CheckBox* Check = static_cast&lt;UI::CheckBox*&gt; (ToBeDestroyed);</span>
-<a name="l00783"></a>00783 <span class="comment">                            delete Check;</span>
-<a name="l00784"></a>00784 <span class="comment">                            return;</span>
-<a name="l00785"></a>00785 <span class="comment">                        }</span>
-<a name="l00786"></a>00786 <span class="comment">                        case Widget::ButtonListBox:</span>
-<a name="l00787"></a>00787 <span class="comment">                        {</span>
-<a name="l00788"></a>00788 <span class="comment">                            UI::ButtonListBox* ButtonList = static_cast&lt;UI::ButtonListBox*&gt; (ToBeDestroyed);</span>
-<a name="l00789"></a>00789 <span class="comment">                            delete ButtonList;</span>
-<a name="l00790"></a>00790 <span class="comment">                            return;</span>
-<a name="l00791"></a>00791 <span class="comment">                        }</span>
-<a name="l00792"></a>00792 <span class="comment">                        case Widget::ListBox:</span>
-<a name="l00793"></a>00793 <span class="comment">                        {</span>
-<a name="l00794"></a>00794 <span class="comment">                            UI::ListBox* List = static_cast&lt;UI::ListBox*&gt; (ToBeDestroyed);</span>
-<a name="l00795"></a>00795 <span class="comment">                            delete List;</span>
-<a name="l00796"></a>00796 <span class="comment">                            return;</span>
-<a name="l00797"></a>00797 <span class="comment">                        }</span>
-<a name="l00798"></a>00798 <span class="comment">                        default:</span>
-<a name="l00799"></a>00799 <span class="comment">                            return;</span>
-<a name="l00800"></a>00800 <span class="comment">                    }*/</span>
-<a name="l00801"></a>00801                     Widgets.erase(it);
-<a name="l00802"></a>00802                 }
-<a name="l00803"></a>00803             }
-<a name="l00804"></a>00804         }
-<a name="l00805"></a>00805 
-<a name="l00806"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a2e66d320eb95d4e8474558267e85bdd4">00806</a>         <a class="code" href="../../d0/d3e/classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">UI::Scrollbar</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a2e66d320eb95d4e8474558267e85bdd4" title="Creates a Scrollbar within this Window.">Window::CreateScrollbar</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, UI::ScrollbarStyle Style)
-<a name="l00807"></a>00807         {
-<a name="l00808"></a>00808             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
-<a name="l00809"></a>00809             <a class="code" href="../../d0/d3e/classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">UI::Scrollbar</a>* Scroll = <span class="keyword">new</span> <a class="code" href="../../d0/d3e/classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">UI::Scrollbar</a>(Name,Position,Size,Style,Parent);
-<a name="l00810"></a>00810             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a> ScrollInfo(Scroll,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-<a name="l00811"></a>00811             Widgets.push_back(ScrollInfo);
-<a name="l00812"></a>00812             <span class="keywordflow">return</span> Scroll;
-<a name="l00813"></a>00813         }
-<a name="l00814"></a>00814 
-<a name="l00815"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9178c34cd4cd68d18056e7131ae0a77a">00815</a>         <a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value.">UI::CheckBox</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9178c34cd4cd68d18056e7131ae0a77a" title="Creates a CheckBox within this Window.">Window::CreateCheckBox</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;LabelText)
-<a name="l00816"></a>00816         {
-<a name="l00817"></a>00817             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
-<a name="l00818"></a>00818             <a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value.">UI::CheckBox</a>* Check = <span class="keyword">new</span> <a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value.">UI::CheckBox</a>(Name,Position,Size,Glyph,LabelText,Parent);
-<a name="l00819"></a>00819             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a> CheckInfo(Check,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-<a name="l00820"></a>00820             Widgets.push_back(CheckInfo);
-<a name="l00821"></a>00821             <span class="keywordflow">return</span> Check;
-<a name="l00822"></a>00822         }
-<a name="l00823"></a>00823 
-<a name="l00824"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af610b6a37bfe4d6c2050f2fba3977020">00824</a>         <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">UI::ButtonListBox</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af610b6a37bfe4d6c2050f2fba3977020" title="Creates a Button List Box within this Window.">Window::CreateButtonListBox</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
-<a name="l00825"></a>00825         {
-<a name="l00826"></a>00826             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
-<a name="l00827"></a>00827             <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">UI::ButtonListBox</a>* BLB = <span class="keyword">new</span> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">UI::ButtonListBox</a>(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
-<a name="l00828"></a>00828             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a> BLBInfo(BLB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-<a name="l00829"></a>00829             Widgets.push_back(BLBInfo);
-<a name="l00830"></a>00830             <span class="keywordflow">return</span> BLB;
-<a name="l00831"></a>00831         }
-<a name="l00832"></a>00832 
-<a name="l00833"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a551f162bdb505f3fc497ff19d8ed9f01">00833</a>         <a class="code" href="../../d0/d28/classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a551f162bdb505f3fc497ff19d8ed9f01" title="Creates a List Box within this Window.">Window::CreateListBox</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
-<a name="l00834"></a>00834         {
-<a name="l00835"></a>00835             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
-<a name="l00836"></a>00836             <a class="code" href="../../d0/d28/classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>* LB = <span class="keyword">new</span> <a class="code" href="../../d0/d28/classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
-<a name="l00837"></a>00837             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a> LBInfo(LB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-<a name="l00838"></a>00838             Widgets.push_back(LBInfo);
-<a name="l00839"></a>00839             <span class="keywordflow">return</span> LB;
-<a name="l00840"></a>00840         }
-<a name="l00841"></a>00841     }<span class="comment">//UI</span>
-<a name="l00842"></a>00842 }<span class="comment">//phys</span>
-<a name="l00843"></a>00843 
-<a name="l00844"></a>00844 <span class="preprocessor">#endif</span>
+<a name="l00662"></a>00662             <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* markup = <span class="keyword">new</span> <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>(Name,Position,Glyph,Text,Parent);
+<a name="l00663"></a>00663             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a> markupinfo(markup,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+<a name="l00664"></a>00664             MarkupTexts.push_back(markupinfo);
+<a name="l00665"></a>00665             <span class="keywordflow">return</span> markupinfo.<a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html#a2f925cf9136fdba5612d9ba741201dc2" title="The class this template applies to.">Object</a>;
+<a name="l00666"></a>00666         }
+<a name="l00667"></a>00667 
+<a name="l00668"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af5bf2246915fc68558d2a68ed016a68b">00668</a>         <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af5bf2246915fc68558d2a68ed016a68b" title="Gets an already created markup text by name.">Window::GetMarkupText</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
+<a name="l00669"></a>00669         {
+<a name="l00670"></a>00670             <span class="keywordflow">for</span> ( std::vector&lt;OffsetMarkupTextInfo&gt;::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+<a name="l00671"></a>00671             {
+<a name="l00672"></a>00672                 <span class="keywordflow">if</span> ( Name == (*it).Object-&gt;GetName() )
+<a name="l00673"></a>00673                 {
+<a name="l00674"></a>00674                     <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* markup = (*it).Object;
+<a name="l00675"></a>00675                     <span class="keywordflow">return</span> markup;
+<a name="l00676"></a>00676                 }
+<a name="l00677"></a>00677             }
+<a name="l00678"></a>00678             <span class="keywordflow">return</span> 0;
+<a name="l00679"></a>00679         }
+<a name="l00680"></a>00680 
+<a name="l00681"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a90e9c02fe3374e386495e95965e25158">00681</a>         <a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af5bf2246915fc68558d2a68ed016a68b" title="Gets an already created markup text by name.">Window::GetMarkupText</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00682"></a>00682         {
+<a name="l00683"></a>00683             <span class="keywordflow">return</span> MarkupTexts[Index].Object;
+<a name="l00684"></a>00684         }
+<a name="l00685"></a>00685 
+<a name="l00686"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9906bb131f631af0a9aed7dbb7744112">00686</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9906bb131f631af0a9aed7dbb7744112" title="Gets the OffsetMarkupTextInfo of an already created markup text by name.">Window::GetOffsetMarkupTextInfo</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
+<a name="l00687"></a>00687         {
+<a name="l00688"></a>00688             <span class="keywordflow">for</span> ( std::vector&lt;OffsetMarkupTextInfo&gt;::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+<a name="l00689"></a>00689             {
+<a name="l00690"></a>00690                 <span class="keywordflow">if</span> ( Name == (*it).Object-&gt;GetName() )
+<a name="l00691"></a>00691                 {
+<a name="l00692"></a>00692                     <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a>* Offset = &amp;(*it);
+<a name="l00693"></a>00693                     <span class="keywordflow">return</span> Offset;
+<a name="l00694"></a>00694                 }
+<a name="l00695"></a>00695             }
+<a name="l00696"></a>00696             <span class="keywordflow">return</span> 0;
+<a name="l00697"></a>00697         }
+<a name="l00698"></a>00698 
+<a name="l00699"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac4f6c031c334a3165e098e7e3546bb33">00699</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a9906bb131f631af0a9aed7dbb7744112" title="Gets the OffsetMarkupTextInfo of an already created markup text by name.">Window::GetOffsetMarkupTextInfo</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00700"></a>00700         {
+<a name="l00701"></a>00701             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetMarkupTextInfo</a>* Offset = &amp;MarkupTexts[Index];
+<a name="l00702"></a>00702             <span class="keywordflow">return</span> Offset;
+<a name="l00703"></a>00703         }
+<a name="l00704"></a>00704 
+<a name="l00705"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac9e23e41ffff8ef475fcdb0c25bad240">00705</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ac9e23e41ffff8ef475fcdb0c25bad240" title="Gets the number of markup texts created and stored in this class.">Window::GetNumMarkupTexts</a>()
+<a name="l00706"></a>00706         {
+<a name="l00707"></a>00707             <span class="keywordflow">return</span> MarkupTexts.size();
+<a name="l00708"></a>00708         }
+<a name="l00709"></a>00709 
+<a name="l00710"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aba2506738c7cccfbf8297bf03e431cb8">00710</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aba2506738c7cccfbf8297bf03e431cb8" title="Destroys a markup text.">Window::DestroyMarkupText</a>(<a class="code" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html" title="This is a helper class for use with specialized text display.">MarkupText</a>* ToBeDestroyed)
+<a name="l00711"></a>00711         {
+<a name="l00712"></a>00712             <span class="keywordflow">for</span> ( std::vector&lt;OffsetMarkupTextInfo&gt;::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+<a name="l00713"></a>00713             {
+<a name="l00714"></a>00714                 <span class="keywordflow">if</span> ( ToBeDestroyed == (*it).Object )
+<a name="l00715"></a>00715                 {
+<a name="l00716"></a>00716                     <span class="keyword">delete</span> ToBeDestroyed;
+<a name="l00717"></a>00717                     MarkupTexts.erase(it);
+<a name="l00718"></a>00718                     <span class="keywordflow">return</span>;
+<a name="l00719"></a>00719                 }
+<a name="l00720"></a>00720             }
+<a name="l00721"></a>00721         }
+<a name="l00722"></a>00722 
+<a name="l00723"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a0d2274afdabda9915d242dc3d057ae61">00723</a>         <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a0d2274afdabda9915d242dc3d057ae61" title="Gets an already created widget by name.">Window::GetWidget</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
+<a name="l00724"></a>00724         {
+<a name="l00725"></a>00725             <span class="keywordflow">for</span> ( std::vector&lt;OffsetWidgetInfo&gt;::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+<a name="l00726"></a>00726             {
+<a name="l00727"></a>00727                 <span class="keywordflow">if</span> ( Name == (*it).Object-&gt;GetName() )
+<a name="l00728"></a>00728                 {
+<a name="l00729"></a>00729                     <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* widget = (*it).Object;
+<a name="l00730"></a>00730                     <span class="keywordflow">return</span> widget;
+<a name="l00731"></a>00731                 }
+<a name="l00732"></a>00732             }
+<a name="l00733"></a>00733             <span class="keywordflow">return</span> 0;
+<a name="l00734"></a>00734         }
+<a name="l00735"></a>00735 
+<a name="l00736"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aaae8adbb33e9bd13aca4eec49ec978c9">00736</a>         <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a0d2274afdabda9915d242dc3d057ae61" title="Gets an already created widget by name.">Window::GetWidget</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00737"></a>00737         {
+<a name="l00738"></a>00738             <span class="keywordflow">return</span> Widgets[Index].Object;
+<a name="l00739"></a>00739         }
+<a name="l00740"></a>00740 
+<a name="l00741"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a77a2091e41766344253cac55af650f54">00741</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a77a2091e41766344253cac55af650f54" title="Gets the OffsetWidgetInfo of an already created widget by name.">Window::GetOffsetWidgetInfo</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
+<a name="l00742"></a>00742         {
+<a name="l00743"></a>00743             <span class="keywordflow">for</span> ( std::vector&lt;OffsetWidgetInfo&gt;::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+<a name="l00744"></a>00744             {
+<a name="l00745"></a>00745                 <span class="keywordflow">if</span> ( Name == (*it).Object-&gt;GetName() )
+<a name="l00746"></a>00746                 {
+<a name="l00747"></a>00747                     <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a>* Offset = &amp;(*it);
+<a name="l00748"></a>00748                     <span class="keywordflow">return</span> Offset;
+<a name="l00749"></a>00749                 }
+<a name="l00750"></a>00750             }
+<a name="l00751"></a>00751             <span class="keywordflow">return</span> 0;
+<a name="l00752"></a>00752         }
+<a name="l00753"></a>00753 
+<a name="l00754"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a7c87561dd83402f852c98c18fce675eb">00754</a>         <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a77a2091e41766344253cac55af650f54" title="Gets the OffsetWidgetInfo of an already created widget by name.">Window::GetOffsetWidgetInfo</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00755"></a>00755         {
+<a name="l00756"></a>00756             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a>* Offset = &amp;Widgets[Index];
+<a name="l00757"></a>00757             <span class="keywordflow">return</span> Offset;
+<a name="l00758"></a>00758         }
+<a name="l00759"></a>00759 
+<a name="l00760"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a062270984d25dca44f0bc4d65ef324a0">00760</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a062270984d25dca44f0bc4d65ef324a0" title="Gets the number of widgets created and stored in this class.">Window::GetNumWidgets</a>()
+<a name="l00761"></a>00761         {
+<a name="l00762"></a>00762             <span class="keywordflow">return</span> Widgets.size();
+<a name="l00763"></a>00763         }
+<a name="l00764"></a>00764 
+<a name="l00765"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab4bda54a82b64aec2cf4e03201a40772">00765</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#ab4bda54a82b64aec2cf4e03201a40772" title="Destroys a widget.">Window::DestroyWidget</a>(<a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">Widget</a>* ToBeDestroyed)
+<a name="l00766"></a>00766         {
+<a name="l00767"></a>00767             <span class="keywordflow">for</span> ( std::vector&lt;OffsetWidgetInfo&gt;::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+<a name="l00768"></a>00768             {
+<a name="l00769"></a>00769                 <span class="keywordflow">if</span> ( ToBeDestroyed == (*it).Object )
+<a name="l00770"></a>00770                 {
+<a name="l00771"></a>00771                     <span class="keyword">delete</span> (*it).Object;
+<a name="l00772"></a>00772                     <span class="comment">/*Widget::WidgetType Type = ToBeDestroyed-&gt;GetType();</span>
+<a name="l00773"></a>00773 <span class="comment">                    switch (Type)</span>
+<a name="l00774"></a>00774 <span class="comment">                    {</span>
+<a name="l00775"></a>00775 <span class="comment">                        case Widget::Scrollbar:</span>
+<a name="l00776"></a>00776 <span class="comment">                        {</span>
+<a name="l00777"></a>00777 <span class="comment">                            UI::Scrollbar* Scroll = static_cast&lt;UI::Scrollbar*&gt; (ToBeDestroyed);</span>
+<a name="l00778"></a>00778 <span class="comment">                            delete Scroll;</span>
+<a name="l00779"></a>00779 <span class="comment">                            return;</span>
+<a name="l00780"></a>00780 <span class="comment">                        }</span>
+<a name="l00781"></a>00781 <span class="comment">                        case Widget::CheckBox:</span>
+<a name="l00782"></a>00782 <span class="comment">                        {</span>
+<a name="l00783"></a>00783 <span class="comment">                            UI::CheckBox* Check = static_cast&lt;UI::CheckBox*&gt; (ToBeDestroyed);</span>
+<a name="l00784"></a>00784 <span class="comment">                            delete Check;</span>
+<a name="l00785"></a>00785 <span class="comment">                            return;</span>
+<a name="l00786"></a>00786 <span class="comment">                        }</span>
+<a name="l00787"></a>00787 <span class="comment">                        case Widget::ButtonListBox:</span>
+<a name="l00788"></a>00788 <span class="comment">                        {</span>
+<a name="l00789"></a>00789 <span class="comment">                            UI::ButtonListBox* ButtonList = static_cast&lt;UI::ButtonListBox*&gt; (ToBeDestroyed);</span>
+<a name="l00790"></a>00790 <span class="comment">                            delete ButtonList;</span>
+<a name="l00791"></a>00791 <span class="comment">                            return;</span>
+<a name="l00792"></a>00792 <span class="comment">                        }</span>
+<a name="l00793"></a>00793 <span class="comment">                        case Widget::ListBox:</span>
+<a name="l00794"></a>00794 <span class="comment">                        {</span>
+<a name="l00795"></a>00795 <span class="comment">                            UI::ListBox* List = static_cast&lt;UI::ListBox*&gt; (ToBeDestroyed);</span>
+<a name="l00796"></a>00796 <span class="comment">                            delete List;</span>
+<a name="l00797"></a>00797 <span class="comment">                            return;</span>
+<a name="l00798"></a>00798 <span class="comment">                        }</span>
+<a name="l00799"></a>00799 <span class="comment">                        default:</span>
+<a name="l00800"></a>00800 <span class="comment">                            return;</span>
+<a name="l00801"></a>00801 <span class="comment">                    }*/</span>
+<a name="l00802"></a>00802                     Widgets.erase(it);
+<a name="l00803"></a>00803                 }
+<a name="l00804"></a>00804             }
+<a name="l00805"></a>00805         }
+<a name="l00806"></a>00806 
+<a name="l00807"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aaa780401181e4ed69409b8f8a6396872">00807</a>         <a class="code" href="../../d0/d3e/classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">UI::Scrollbar</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#aaa780401181e4ed69409b8f8a6396872" title="Creates a Scrollbar within this Window.">Window::CreateScrollbar</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, UI::ScrollbarStyle Style)
+<a name="l00808"></a>00808         {
+<a name="l00809"></a>00809             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
+<a name="l00810"></a>00810             <a class="code" href="../../d0/d3e/classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">UI::Scrollbar</a>* Scroll = <span class="keyword">new</span> <a class="code" href="../../d0/d3e/classphys_1_1UI_1_1Scrollbar.html" title="This class is a widget class, to be used alongside any scrollable widget.">UI::Scrollbar</a>(Name,Position,Size,Style,Parent);
+<a name="l00811"></a>00811             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a> ScrollInfo(Scroll,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+<a name="l00812"></a>00812             Widgets.push_back(ScrollInfo);
+<a name="l00813"></a>00813             <span class="keywordflow">return</span> Scroll;
+<a name="l00814"></a>00814         }
+<a name="l00815"></a>00815 
+<a name="l00816"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af0d9c9d8795ed9b8239dee779aba62ab">00816</a>         <a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value.">UI::CheckBox</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#af0d9c9d8795ed9b8239dee779aba62ab" title="Creates a CheckBox within this Window.">Window::CreateCheckBox</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Glyph, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> &amp;LabelText)
+<a name="l00817"></a>00817         {
+<a name="l00818"></a>00818             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
+<a name="l00819"></a>00819             <a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value.">UI::CheckBox</a>* Check = <span class="keyword">new</span> <a class="code" href="../../dd/d10/classphys_1_1UI_1_1CheckBox.html" title="This is a simple widget for storing a bool value.">UI::CheckBox</a>(Name,Position,Size,Glyph,LabelText,Parent);
+<a name="l00820"></a>00820             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a> CheckInfo(Check,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+<a name="l00821"></a>00821             Widgets.push_back(CheckInfo);
+<a name="l00822"></a>00822             <span class="keywordflow">return</span> Check;
+<a name="l00823"></a>00823         }
+<a name="l00824"></a>00824 
+<a name="l00825"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a236c65069633c605a71623993e8ad68e">00825</a>         <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">UI::ButtonListBox</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a236c65069633c605a71623993e8ad68e" title="Creates a Button List Box within this Window.">Window::CreateButtonListBox</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+<a name="l00826"></a>00826         {
+<a name="l00827"></a>00827             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
+<a name="l00828"></a>00828             <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">UI::ButtonListBox</a>* BLB = <span class="keyword">new</span> <a class="code" href="../../d4/dd7/classphys_1_1UI_1_1ButtonListBox.html" title="This is a widget for displaying a list of buttons in a box.">UI::ButtonListBox</a>(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
+<a name="l00829"></a>00829             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a> BLBInfo(BLB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+<a name="l00830"></a>00830             Widgets.push_back(BLBInfo);
+<a name="l00831"></a>00831             <span class="keywordflow">return</span> BLB;
+<a name="l00832"></a>00832         }
+<a name="l00833"></a>00833 
+<a name="l00834"></a><a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4bb271eb2307dd1b223c4b009f75e02f">00834</a>         <a class="code" href="../../d0/d28/classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>* <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a4bb271eb2307dd1b223c4b009f75e02f" title="Creates a List Box within this Window.">Window::CreateListBox</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+<a name="l00835"></a>00835         {
+<a name="l00836"></a>00836             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
+<a name="l00837"></a>00837             <a class="code" href="../../d0/d28/classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>* LB = <span class="keyword">new</span> <a class="code" href="../../d0/d28/classphys_1_1UI_1_1ListBox.html" title="This is a widget for displaying a list of captions in a box.">UI::ListBox</a>(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
+<a name="l00838"></a>00838             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetWidgetInfo</a> LBInfo(LB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+<a name="l00839"></a>00839             Widgets.push_back(LBInfo);
+<a name="l00840"></a>00840             <span class="keywordflow">return</span> LB;
+<a name="l00841"></a>00841         }
+<a name="l00842"></a>00842     }<span class="comment">//UI</span>
+<a name="l00843"></a>00843 }<span class="comment">//phys</span>
+<a name="l00844"></a>00844 
+<a name="l00845"></a>00845 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:39 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:19 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

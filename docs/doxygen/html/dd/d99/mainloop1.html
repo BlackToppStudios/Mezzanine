@@ -36,7 +36,7 @@ Main loop Overview</h2>
 <p>The Main loop runs in <a class="el" href="../../da/ddf/classphys_1_1World.html#af1d9e36d43f5e50543fa2351a32c8362" title="This Function house the main loop.">World.MainLoop()</a> which is called by default from <a class="el" href="../../da/ddf/classphys_1_1World.html#a21cc36be08a61f40619584d4c438936b">World::GameInit()</a>. By default this Method also starts the render, the physics andthe input systems. It does very little on it's own. The main loop then calls the PreMainLoopItems(), DoMainLoopItems and PreMainLoopItems(), for each manager in the order of their priority from Lowest to Highest. <br/>
  Here is a listing of default priorities for each of the managers the a world intantiates by default: -50 User Input and events -40 Actors -30 Physics -20 <a class="el" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a> -10 Lighting (Not yet implemented) 0 Graphics 10 <a class="el" href="../../dc/d2f/classphys_1_1Sound.html" title="This is an instance of a sound that can be played and manipulated.">Sound</a> 20 Resources </p>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:40 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:20 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

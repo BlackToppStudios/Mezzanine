@@ -2,6 +2,10 @@
 \section{phys::xml::WriterFile Class Reference}
 \label{dc/d53/classphys_1_1xml_1_1WriterFile}\index{phys::xml::WriterFile@{phys::xml::WriterFile}}
 }
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
 Inheritance diagram for phys::xml::WriterFile:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -11,22 +15,42 @@ Inheritance diagram for phys::xml::WriterFile:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1xml_1_1WriterFile_aba665d4dc17c956798a80cb4e8c2774d}{
-{\bfseries WriterFile} (void $\ast$file)}
-\label{dc/d53/classphys_1_1xml_1_1WriterFile_aba665d4dc17c956798a80cb4e8c2774d}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1WriterFile_a32cd8bff528e80601228098a019e551d}{
-virtual void {\bfseries write} (const void $\ast$data, size\_\-t size)}
-\label{dc/d53/classphys_1_1xml_1_1WriterFile_a32cd8bff528e80601228098a019e551d}
-
-\end{DoxyCompactItemize}
+virtual void \hyperlink{classphys_1_1xml_1_1WriterFile_a4c4348e30dc03b22f7d4ee15bd386ab2}{Write} (const void $\ast$data, size\_\-t size)
+\begin{DoxyCompactList}\small\item\em Construct a \hyperlink{classphys_1_1xml_1_1Writer}{Writer} from a FILE$\ast$ object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing to FILEs as defined in stdio 
+
+Definition at line 303 of file xml.h.
 
 
-Definition at line 300 of file xml.h.
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1WriterFile_a4c4348e30dc03b22f7d4ee15bd386ab2}{
+\index{phys::xml::WriterFile@{phys::xml::WriterFile}!Write@{Write}}
+\index{Write@{Write}!phys::xml::WriterFile@{phys::xml::WriterFile}}
+\subsubsection[{Write}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::WriterFile::Write (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{ data, }
+\item[{size\_\-t}]{ size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dc/d53/classphys_1_1xml_1_1WriterFile_a4c4348e30dc03b22f7d4ee15bd386ab2}
+
+
+Construct a \hyperlink{classphys_1_1xml_1_1Writer}{Writer} from a FILE$\ast$ object. 
+
+The use of void$\ast$ was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety. Writes data to a file 
+\begin{DoxyParams}{Parameters}
+\item[{\em data}]A pointer to the data \item[{\em size}]The size of the data in bytes. \end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1xml_1_1Writer_ab6d4758ab53743f236eb64d5b2dd7e9e}{phys::xml::Writer}.
+
+
+
+Definition at line 3296 of file xml.cpp.
 
 
 

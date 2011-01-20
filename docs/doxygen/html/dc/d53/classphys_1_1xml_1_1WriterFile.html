@@ -40,7 +40,9 @@
 <h1>phys::xml::WriterFile Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="phys::xml::WriterFile" --><!-- doxytag: inherits="phys::xml::Writer" --><div class="dynheader">
+<!-- doxytag: class="phys::xml::WriterFile" --><!-- doxytag: inherits="phys::xml::Writer" -->
+<p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for phys::xml::WriterFile:</div>
 <div class="dyncontent">
  <div class="center">
@@ -54,20 +56,61 @@ Inheritance diagram for phys::xml::WriterFile:</div>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba665d4dc17c956798a80cb4e8c2774d"></a><!-- doxytag: member="phys::xml::WriterFile::WriterFile" ref="aba665d4dc17c956798a80cb4e8c2774d" args="(void *file)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>WriterFile</b> (void *file)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32cd8bff528e80601228098a019e551d"></a><!-- doxytag: member="phys::xml::WriterFile::write" ref="a32cd8bff528e80601228098a019e551d" args="(const void *data, size_t size)" -->
-virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><b>write</b> (const void *data, size_t size)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#a4c4348e30dc03b22f7d4ee15bd386ab2">Write</a> (const void *data, size_t size)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> from a FILE* object.  <a href="#a4c4348e30dc03b22f7d4ee15bd386ab2"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>An implementation of <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> intended for writing to FILEs as defined in stdio </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00300">300</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00303">303</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a4c4348e30dc03b22f7d4ee15bd386ab2"></a><!-- doxytag: member="phys::xml::WriterFile::Write" ref="a4c4348e30dc03b22f7d4ee15bd386ab2" args="(const void *data, size_t size)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::xml::WriterFile::Write </td>
+          <td>(</td>
+          <td class="paramtype">const void *&nbsp;</td>
+          <td class="paramname"> <em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>size</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Construct a <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> from a FILE* object. </p>
+<p>The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety. Writes data to a file </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>data</em>&nbsp;</td><td>A pointer to the data </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>size</em>&nbsp;</td><td>The size of the data in bytes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html#ab6d4758ab53743f236eb64d5b2dd7e9e">phys::xml::Writer</a>.</p>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03296">3296</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 13 2011 13:30:48 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 19 2011 13:20:28 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

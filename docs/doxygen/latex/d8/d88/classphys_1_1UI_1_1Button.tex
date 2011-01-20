@@ -20,7 +20,7 @@ Inheritance diagram for phys::UI::Button:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1Button_ace4c868ccdf45e88c12e7563ace30571}{Button} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\hyperlink{classphys_1_1UI_1_1Button_a3a6c635f427093a5e4247611e3120948}{Button} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
 \begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}{
 virtual \hyperlink{classphys_1_1UI_1_1Button_a80c8c92ae289e3161dde94bf1a5de59e}{$\sim$Button} ()}
@@ -51,7 +51,7 @@ virtual bool \hyperlink{classphys_1_1UI_1_1Button_a72d76501d15053e3fbd9e7eb933e2
 \begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this button. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1Button_a66522ebf5f3c75e96a6dfd99700a0f74}{GetMouseHover} ()
 \begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_ac4ce81ec9cdc97ac3d29aed5031c5ac6}{SetBackgroundColour} (\hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a390aa5a409361507b5802141380bc1d3}{SetBackgroundColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
 \begin{DoxyCompactList}\small\item\em Sets the background colour of the button. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Button_a7cecb219a59fb55db6ac0070359bb23f}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the button. \item\end{DoxyCompactList}\item 
@@ -61,26 +61,26 @@ virtual void \hyperlink{classphys_1_1UI_1_1Button_a8c3a5657daf79a882f71691e91785
 \begin{DoxyCompactList}\small\item\em Sets an alternate background image that is stored and can be quickly swapped with the active sprite. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1Button_a4fe6560484f1d78b08c96eaf967404d2}{EnableUserSprite} (bool Enable)
 \begin{DoxyCompactList}\small\item\em Enables(or disables) the currently set User sprite. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a94a4296fd5b2153f10e77aca08481d15}{SetBorder} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Width, \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+virtual void \hyperlink{classphys_1_1UI_1_1Button_ac29d118258d105217f3d1f72c634072c}{SetBorder} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Width, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
 \begin{DoxyCompactList}\small\item\em Enables a border and sets it's colour. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Button_adaf3f9ed9f8478e180278b71cb355db6}{
 virtual void \hyperlink{classphys_1_1UI_1_1Button_adaf3f9ed9f8478e180278b71cb355db6}{NoBorder} ()}
 \label{d8/d88/classphys_1_1UI_1_1Button_adaf3f9ed9f8478e180278b71cb355db6}
 
 \begin{DoxyCompactList}\small\item\em Disables any border set on this rectangle if one is currently set. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_aadb9b867ceccad8313591ae5e434274d}{SetPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a9bfcd08b027c80130dd2c7e6af119da5}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative top left position of this button. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_adfa08ace813b88cae114e18f88942642}{GetPosition} ()
 \begin{DoxyCompactList}\small\item\em Gets the relative top left position of this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a90ef37a2fa1645298237733918455814}{SetActualPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+virtual void \hyperlink{classphys_1_1UI_1_1Button_ad5ad1d5f72f52750c3211e7b812237a8}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
 \begin{DoxyCompactList}\small\item\em Sets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_a0b991ada87707d8d951dae7c0e3246f6}{GetActualPosition} ()
 \begin{DoxyCompactList}\small\item\em Gets the top left position of this button in pixels. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a3f610782e5f84ddc315d9db6ef5f9109}{SetSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a06e6526a15b3f8bb6e63c70ac7b02134}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
 \begin{DoxyCompactList}\small\item\em Sets the relative size of this button. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_ade75e042d1a19be5d4fb1b16913af5a5}{GetSize} ()
 \begin{DoxyCompactList}\small\item\em Gets the relative size of this button. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Button_a4075f879a67726b80c18d3bc647e12fe}{SetActualSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+virtual void \hyperlink{classphys_1_1UI_1_1Button_a7ac62ddb9f40a701e80a4eccacdc7ea0}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
 \begin{DoxyCompactList}\small\item\em Sets the size of this button in pixels. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Button_ab6640af433afe96d5f6bd7016986d73f}{GetActualSize} ()
 \begin{DoxyCompactList}\small\item\em Gets the size of this button in pixels. \item\end{DoxyCompactList}\item 
@@ -161,18 +161,18 @@ Definition at line 71 of file uibutton.h.
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1Button_ace4c868ccdf45e88c12e7563ace30571}{
+\hypertarget{classphys_1_1UI_1_1Button_a3a6c635f427093a5e4247611e3120948}{
 \index{phys::UI::Button@{phys::UI::Button}!Button@{Button}}
 \index{Button@{Button}!phys::UI::Button@{phys::UI::Button}}
 \subsubsection[{Button}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Button::Button (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString} \&}]{ name, }
-\item[{{\bf Vector2}}]{ Position, }
-\item[{{\bf Vector2}}]{ Size, }
+\item[{const {\bf Vector2}}]{ Position, }
+\item[{const {\bf Vector2}}]{ Size, }
 \item[{{\bf UILayer} $\ast$}]{ Layer}
 \end{DoxyParamCaption}
 )}}
-\label{d8/d88/classphys_1_1UI_1_1Button_ace4c868ccdf45e88c12e7563ace30571}
+\label{d8/d88/classphys_1_1UI_1_1Button_a3a6c635f427093a5e4247611e3120948}
 
 
 Internal constructor. 
@@ -431,15 +431,15 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a505167a00d343d704df1f
 
 Definition at line 82 of file uibutton.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Button_a90ef37a2fa1645298237733918455814}{
+\hypertarget{classphys_1_1UI_1_1Button_ad5ad1d5f72f52750c3211e7b812237a8}{
 \index{phys::UI::Button@{phys::UI::Button}!SetActualPosition@{SetActualPosition}}
 \index{SetActualPosition@{SetActualPosition}!phys::UI::Button@{phys::UI::Button}}
 \subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetActualPosition (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2}}]{ Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d8/d88/classphys_1_1UI_1_1Button_a90ef37a2fa1645298237733918455814}
+\label{d8/d88/classphys_1_1UI_1_1Button_ad5ad1d5f72f52750c3211e7b812237a8}
 
 
 Sets the top left position of this button in pixels. 
@@ -449,21 +449,21 @@ Sets the top left position of this button in pixels.
 \item[{\em Position}]A \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this button. \end{DoxyParams}
 
 
-Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_ab459720bb401b99ebc4a5287e36a91ee}{phys::UI::TextButton}.
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a717a2a7fdcf625e833764381989c4b56}{phys::UI::TextButton}.
 
 
 
 Definition at line 198 of file uibutton.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Button_a4075f879a67726b80c18d3bc647e12fe}{
+\hypertarget{classphys_1_1UI_1_1Button_a7ac62ddb9f40a701e80a4eccacdc7ea0}{
 \index{phys::UI::Button@{phys::UI::Button}!SetActualSize@{SetActualSize}}
 \index{SetActualSize@{SetActualSize}!phys::UI::Button@{phys::UI::Button}}
 \subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetActualSize (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2}}]{ Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d8/d88/classphys_1_1UI_1_1Button_a4075f879a67726b80c18d3bc647e12fe}
+\label{d8/d88/classphys_1_1UI_1_1Button_a7ac62ddb9f40a701e80a4eccacdc7ea0}
 
 
 Sets the size of this button in pixels. 
@@ -473,21 +473,21 @@ Sets the size of this button in pixels.
 \item[{\em Size}]A vector2 representing the size of this button. \end{DoxyParams}
 
 
-Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_ad83c81eda54a861b9e34b565027b8254}{phys::UI::TextButton}.
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a7ed2be5c895c7fe01d7650746ccc57e9}{phys::UI::TextButton}.
 
 
 
 Definition at line 223 of file uibutton.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Button_ac4ce81ec9cdc97ac3d29aed5031c5ac6}{
+\hypertarget{classphys_1_1UI_1_1Button_a390aa5a409361507b5802141380bc1d3}{
 \index{phys::UI::Button@{phys::UI::Button}!SetBackgroundColour@{SetBackgroundColour}}
 \index{SetBackgroundColour@{SetBackgroundColour}!phys::UI::Button@{phys::UI::Button}}
 \subsubsection[{SetBackgroundColour}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetBackgroundColour (
 \begin{DoxyParamCaption}
-\item[{{\bf ColourValue} \&}]{ Colour}
+\item[{const {\bf ColourValue} \&}]{ Colour}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d8/d88/classphys_1_1UI_1_1Button_ac4ce81ec9cdc97ac3d29aed5031c5ac6}
+\label{d8/d88/classphys_1_1UI_1_1Button_a390aa5a409361507b5802141380bc1d3}
 
 
 Sets the background colour of the button. 
@@ -519,16 +519,16 @@ Sets the background image(if provided in the atlas) of the button.
 
 Definition at line 146 of file uibutton.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Button_a94a4296fd5b2153f10e77aca08481d15}{
+\hypertarget{classphys_1_1UI_1_1Button_ac29d118258d105217f3d1f72c634072c}{
 \index{phys::UI::Button@{phys::UI::Button}!SetBorder@{SetBorder}}
 \index{SetBorder@{SetBorder}!phys::UI::Button@{phys::UI::Button}}
 \subsubsection[{SetBorder}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetBorder (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ Width, }
-\item[{{\bf ColourValue} \&}]{ Colour}
+\item[{const {\bf Real}}]{ Width, }
+\item[{const {\bf ColourValue} \&}]{ Colour}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d8/d88/classphys_1_1UI_1_1Button_a94a4296fd5b2153f10e77aca08481d15}
+\label{d8/d88/classphys_1_1UI_1_1Button_ac29d118258d105217f3d1f72c634072c}
 
 
 Enables a border and sets it's colour. 
@@ -580,15 +580,15 @@ Sets an alternate background image that will be applied when the mouse is over t
 
 Definition at line 153 of file uibutton.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Button_aadb9b867ceccad8313591ae5e434274d}{
+\hypertarget{classphys_1_1UI_1_1Button_a9bfcd08b027c80130dd2c7e6af119da5}{
 \index{phys::UI::Button@{phys::UI::Button}!SetPosition@{SetPosition}}
 \index{SetPosition@{SetPosition}!phys::UI::Button@{phys::UI::Button}}
 \subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetPosition (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2}}]{ Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d8/d88/classphys_1_1UI_1_1Button_aadb9b867ceccad8313591ae5e434274d}
+\label{d8/d88/classphys_1_1UI_1_1Button_a9bfcd08b027c80130dd2c7e6af119da5}
 
 
 Sets the relative top left position of this button. 
@@ -598,7 +598,7 @@ Sets the relative top left position of this button.
 \item[{\em Position}]A \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this button. \end{DoxyParams}
 
 
-Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a57f8955e357e9e55e339237a91d8c209}{phys::UI::TextButton}.
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_acf40fd3a8382cdfc959d078e99f6ff0b}{phys::UI::TextButton}.
 
 
 
@@ -628,15 +628,15 @@ Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a7d4e22acd792b10f2f798
 
 Definition at line 235 of file uibutton.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Button_a3f610782e5f84ddc315d9db6ef5f9109}{
+\hypertarget{classphys_1_1UI_1_1Button_a06e6526a15b3f8bb6e63c70ac7b02134}{
 \index{phys::UI::Button@{phys::UI::Button}!SetSize@{SetSize}}
 \index{SetSize@{SetSize}!phys::UI::Button@{phys::UI::Button}}
 \subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Button::SetSize (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2}}]{ Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d8/d88/classphys_1_1UI_1_1Button_a3f610782e5f84ddc315d9db6ef5f9109}
+\label{d8/d88/classphys_1_1UI_1_1Button_a06e6526a15b3f8bb6e63c70ac7b02134}
 
 
 Sets the relative size of this button. 
@@ -646,7 +646,7 @@ Sets the relative size of this button.
 \item[{\em Size}]A vector2 representing the size of this button. \end{DoxyParams}
 
 
-Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a04a27287b038220fa8183079c1a727ec}{phys::UI::TextButton}.
+Reimplemented in \hyperlink{classphys_1_1UI_1_1TextButton_a7ed2a635d23906fcf1844e75018e20de}{phys::UI::TextButton}.
 
 
 

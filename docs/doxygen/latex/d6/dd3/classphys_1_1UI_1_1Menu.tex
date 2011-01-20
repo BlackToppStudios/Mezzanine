@@ -20,7 +20,7 @@ Inheritance diagram for phys::UI::Menu:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1Menu_a1ac37cef302ff52d80218bc2cceb30ba}{Menu} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} name, \hyperlink{classphys_1_1Vector2}{Vector2} Position, \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\hyperlink{classphys_1_1UI_1_1Menu_af7dfd6dd92b4477cdc4df7ed4bf5499c}{Menu} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} name, const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
 \begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}{
 \hyperlink{classphys_1_1UI_1_1Menu_a54b60c45238a3655da9dfa83104adb18}{$\sim$Menu} ()}
@@ -45,19 +45,19 @@ virtual void \hyperlink{classphys_1_1UI_1_1Menu_a5525e3823dcd23269cd410dfb2a1e23
 \begin{DoxyCompactList}\small\item\em Sets autohiding of sub-\/windows. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1UI_1_1Menu_af2514d2614322856f604be2e167d0872}{CheckMouseHover} ()
 \begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this menu. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Menu_a8c10ff94f6830198069b86ffca13180a}{SetPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+virtual void \hyperlink{classphys_1_1UI_1_1Menu_afb571168819d4c78678d7a195e54b389}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative position of this menu. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_a3c19fe2596fe4049325cc580daa70387}{GetPosition} ()
 \begin{DoxyCompactList}\small\item\em Gets the relative position of this menu. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Menu_a47467f7de6b1a3621f23652c54041435}{SetActualPosition} (\hyperlink{classphys_1_1Vector2}{Vector2} Position)
+virtual void \hyperlink{classphys_1_1UI_1_1Menu_a18161cae59d7a8be52a2d77e27e0c5a1}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this menu. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_a74a1b8e9b1c5d36c12e5a0a7f813c40a}{GetActualPosition} ()
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this menu. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Menu_a49953d0696195add1c2909cfa5bca0ec}{SetSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+virtual void \hyperlink{classphys_1_1UI_1_1Menu_a1f8826ab4ab9e76441704634746d3147}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
 \begin{DoxyCompactList}\small\item\em Sets the relative size of this menu. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_a81781199a62bbe7c2e7693ef301223b4}{GetSize} ()
 \begin{DoxyCompactList}\small\item\em Gets the relative size of this menu. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Menu_aa3fc25ae8a44a7f27becc312492f5fe6}{SetActualSize} (\hyperlink{classphys_1_1Vector2}{Vector2} Size)
+virtual void \hyperlink{classphys_1_1UI_1_1Menu_a9bbb3c347fa49cb0f3cbe50293966cf3}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this menu. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Menu_af7566b83c50a4a02ac78d174d7c61817}{GetActualSize} ()
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this menu. \item\end{DoxyCompactList}\item 
@@ -103,18 +103,18 @@ Definition at line 63 of file uimenu.h.
 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1Menu_a1ac37cef302ff52d80218bc2cceb30ba}{
+\hypertarget{classphys_1_1UI_1_1Menu_af7dfd6dd92b4477cdc4df7ed4bf5499c}{
 \index{phys::UI::Menu@{phys::UI::Menu}!Menu@{Menu}}
 \index{Menu@{Menu}!phys::UI::Menu@{phys::UI::Menu}}
 \subsubsection[{Menu}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Menu::Menu (
 \begin{DoxyParamCaption}
 \item[{{\bf ConstString}}]{ name, }
-\item[{{\bf Vector2}}]{ Position, }
-\item[{{\bf Vector2}}]{ Size, }
+\item[{const {\bf Vector2}}]{ Position, }
+\item[{const {\bf Vector2}}]{ Size, }
 \item[{{\bf UILayer} $\ast$}]{ Layer}
 \end{DoxyParamCaption}
 )}}
-\label{d6/dd3/classphys_1_1UI_1_1Menu_a1ac37cef302ff52d80218bc2cceb30ba}
+\label{d6/dd3/classphys_1_1UI_1_1Menu_af7dfd6dd92b4477cdc4df7ed4bf5499c}
 
 
 Standard initialization constructor. 
@@ -313,15 +313,15 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7a
 
 Definition at line 136 of file uimenu.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Menu_a47467f7de6b1a3621f23652c54041435}{
+\hypertarget{classphys_1_1UI_1_1Menu_a18161cae59d7a8be52a2d77e27e0c5a1}{
 \index{phys::UI::Menu@{phys::UI::Menu}!SetActualPosition@{SetActualPosition}}
 \index{SetActualPosition@{SetActualPosition}!phys::UI::Menu@{phys::UI::Menu}}
 \subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Menu::SetActualPosition (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2}}]{ Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d6/dd3/classphys_1_1UI_1_1Menu_a47467f7de6b1a3621f23652c54041435}
+\label{d6/dd3/classphys_1_1UI_1_1Menu_a18161cae59d7a8be52a2d77e27e0c5a1}
 
 
 Sets the pixel position of this menu. 
@@ -331,21 +331,21 @@ Sets the pixel position of this menu.
 \item[{\em Position}]A vector2 representing the pixel position of this menu. \end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_ac8f70c390e7724e57fc99e51d8004a9b}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_acba334c000c21f477238e961cd3ab2ce}{phys::UI::Widget}.
 
 
 
 Definition at line 197 of file uimenu.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Menu_aa3fc25ae8a44a7f27becc312492f5fe6}{
+\hypertarget{classphys_1_1UI_1_1Menu_a9bbb3c347fa49cb0f3cbe50293966cf3}{
 \index{phys::UI::Menu@{phys::UI::Menu}!SetActualSize@{SetActualSize}}
 \index{SetActualSize@{SetActualSize}!phys::UI::Menu@{phys::UI::Menu}}
 \subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Menu::SetActualSize (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2}}]{ Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d6/dd3/classphys_1_1UI_1_1Menu_aa3fc25ae8a44a7f27becc312492f5fe6}
+\label{d6/dd3/classphys_1_1UI_1_1Menu_a9bbb3c347fa49cb0f3cbe50293966cf3}
 
 
 Sets the pixel size of this menu. 
@@ -355,7 +355,7 @@ Sets the pixel size of this menu.
 \item[{\em Size}]A vector2 representing the pixel size of this menu. \end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_a8ceb54fd067847844b314dedd8e529f8}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a8c942355474d0b250dfadd4dac4ae400}{phys::UI::Widget}.
 
 
 
@@ -381,15 +381,15 @@ Sets autohiding of sub-\/windows.
 
 Definition at line 169 of file uimenu.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Menu_a8c10ff94f6830198069b86ffca13180a}{
+\hypertarget{classphys_1_1UI_1_1Menu_afb571168819d4c78678d7a195e54b389}{
 \index{phys::UI::Menu@{phys::UI::Menu}!SetPosition@{SetPosition}}
 \index{SetPosition@{SetPosition}!phys::UI::Menu@{phys::UI::Menu}}
 \subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Menu::SetPosition (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2}}]{ Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d6/dd3/classphys_1_1UI_1_1Menu_a8c10ff94f6830198069b86ffca13180a}
+\label{d6/dd3/classphys_1_1UI_1_1Menu_afb571168819d4c78678d7a195e54b389}
 
 
 Sets the relative position of this menu. 
@@ -399,21 +399,21 @@ The position is relative to the screen size. Values range from 0.0 to 1.0.
 \item[{\em Position}]A vector2 representing the relative position of this menu. \end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_aae1c0b891125823e7ade8cbc7e4ba6b6}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3f1cd1ce55660c7de4859983bac1ab7c}{phys::UI::Widget}.
 
 
 
 Definition at line 187 of file uimenu.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Menu_a49953d0696195add1c2909cfa5bca0ec}{
+\hypertarget{classphys_1_1UI_1_1Menu_a1f8826ab4ab9e76441704634746d3147}{
 \index{phys::UI::Menu@{phys::UI::Menu}!SetSize@{SetSize}}
 \index{SetSize@{SetSize}!phys::UI::Menu@{phys::UI::Menu}}
 \subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Menu::SetSize (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2}}]{ Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d6/dd3/classphys_1_1UI_1_1Menu_a49953d0696195add1c2909cfa5bca0ec}
+\label{d6/dd3/classphys_1_1UI_1_1Menu_a1f8826ab4ab9e76441704634746d3147}
 
 
 Sets the relative size of this menu. 
@@ -423,7 +423,7 @@ The size is relative to the screen size. Values range from 0.0 to 1.0.
 \item[{\em Size}]A vector2 representing the relative size of this menu. \end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_ad5af5f04b60d43341037df6b0e329bbd}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3fe0b767fea59e1d120ed37b26c99044}{phys::UI::Widget}.
 
 
 
