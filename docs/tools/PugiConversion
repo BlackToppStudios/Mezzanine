@@ -246,17 +246,24 @@ function FixNames
 	sed -i -e 's|// Write memory chunk into stream/file/whatever |/// @brief This will be used to output xml to an external source such as a file or stream\n		/// @param data This is a pointer to something that will get written to the output\n		/// @param size The size in bytes of whatever was passed in.|' $1
 
 	#WriterFile Class
-	sed -i -e 's|// Construct WriterInstance from a FILE\* object; void\* is used to avoid header dependencies on stdio|/// @brief Construct a Writer from a FILE* object.\n		/// @details The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety.|' $1
-	sed -i -e 's|WriterFile(void\* file);|WriterFile(void\* file);\n\n		/// @brief Writes data to a file\n		/// @param data A pointer to the data \n		/// @param size The size of the data in bytes.|' $1
-	sed -i -e 's|void\* file;|/// @brief A pointer to a FILE as define in stdio\n		/// @internal\n		void* file;|' $1
+	#sed -i -e 's|// Construct WriterInstance from a FILE\* object; void\* is used to avoid header dependencies on stdio|/// @brief Construct a Writer from a FILE* object.\n		/// @details The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety.|' $1
+	#sed -i -e 's|WriterFile(void\* file);|WriterFile(void\* file);\n\n		/// @brief Writes data to a file\n		/// @param data A pointer to the data \n		/// @param size The size of the data in bytes.|' $1
+	#sed -i -e 's|void\* file;|/// @brief A pointer to a FILE as define in stdio\n		/// @internal\n		void* file;|' $1
 
 	#WriterStream Class
 	sed -i -e 's|// Construct WriterInstance from an output stream object |/// @brief A constructor that accepts a stream of characters\n		/// @param stream A stream to send stuff to.|' $1
 	sed -i -e 's|WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);|\n		/// @brief A constructor that accepts a stream of wide characters\n		/// @param stream A stream to send stuff to.\n		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);|' $1
 	#sed -i -e 's|std::basic_ostream<char, std::char_traits<char> >\* narrow_stream;|/// @internal\n		std::basic_ostream<char, std::char_traits<char> >* narrow_stream;|' $1
-	sed -i -e 's|std::basic_ostream<wchar_t, std::char_traits<wchar_t> >\* wide_stream;|/// @internal\n		std::basic_ostream<wchar_t, std::char_traits<wchar_t> >* wide_stream;|' $1
+	#sed -i -e 's|std::basic_ostream<wchar_t, std::char_traits<wchar_t> >\* wide_stream;|/// @internal\n		std::basic_ostream<wchar_t, std::char_traits<wchar_t> >* wide_stream;|' $1
+
+	#Attribute
+	sed -i -e 's|// Safe bool conversion operator|/// @brief Used to convert this attribute to a boolean value in a safe way\n		/// @return Returns true if the internal pointer AttributeStruct is set and false otherwise|' $1
+	sed -i -e 's|// Borland C++ workaround|/// @brief Used to convert this attribute the opposite of it`s normal boolean value\n		/// @details This is described in the PugiXML source a a workaround for a borland c++ issue.\n		/// @return Returns false if the internal pointer AttributeStruct is set and true otherwise.|' $1
+
 	#another clean line to copy/paste
 	#sed -i -e 's|||' $1
+
+
 }
 
 FixNames $NewHFile

@@ -29,8 +29,6 @@ if(${PhysProfile})
 		set(CommonBuildFlags "${CommonBuildFlags} -pg")
 endif(${PhysProfile})
 
-
-
 set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR})
 
 #Add subprojects

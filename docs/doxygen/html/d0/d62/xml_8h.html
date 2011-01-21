@@ -53,9 +53,11 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">phys::xml::Writer</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Interface for node printing (see Node::print).  <a href="../../d2/d28/classphys_1_1xml_1_1Writer.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html">phys::xml::WriterFile</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">An implementation of <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> intended for writing to FILEs as defined in stdio.  <a href="../../dc/d53/classphys_1_1xml_1_1WriterFile.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html">phys::xml::WriterStream</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">An implementation of <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> intended for writing std::ostreams.  <a href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">phys::xml::Attribute</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A light-weight handle for manipulating attributes in DOM tree.  <a href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">phys::xml::Node</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">phys::xml::NodeIterator</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">phys::xml::AttributeIterator</a></td></tr>
@@ -86,9 +88,8 @@ Namespaces</h2></td></tr>
 Defines</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d62/xml_8h.html#a18cfd9eafeb7e99a44f25ab761ed4897">_XML_H</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prevents accidental loading of the file <a class="el" href="../../d0/d62/xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a> multiple times.  <a href="#a18cfd9eafeb7e99a44f25ab761ed4897"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60d2d7f2bb8f028815ac45dfd648c66c"></a><!-- doxytag: member="xml.h::XML_DEPRECATED" ref="a60d2d7f2bb8f028815ac45dfd648c66c" args="" -->
-#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d62/xml_8h.html#a60d2d7f2bb8f028815ac45dfd648c66c">XML_DEPRECATED</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to mark XML internals as deprecated at the compiler level. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d62/xml_8h.html#a60d2d7f2bb8f028815ac45dfd648c66c">XML_DEPRECATED</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to mark XML internals as deprecated at the compiler level.  <a href="#a60d2d7f2bb8f028815ac45dfd648c66c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b">XML_TEXT</a>(t)&nbsp;&nbsp;&nbsp;t</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time.  <a href="#a98c5d1b3853d93a60bcc08bd92b1a71b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">#define&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d62/xml_8h.html#a75d691145d9a12b8a9ea795964a0c917">XML_CHAR</a>&nbsp;&nbsp;&nbsp;char</td></tr>
@@ -286,6 +287,22 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 
 </div>
 </div>
+<a class="anchor" id="a60d2d7f2bb8f028815ac45dfd648c66c"></a><!-- doxytag: member="xml.h::XML_DEPRECATED" ref="a60d2d7f2bb8f028815ac45dfd648c66c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define XML_DEPRECATED</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Used to mark XML internals as deprecated at the compiler level. </p>
+<p><b>For internal use only.</b></p>
+
+</div>
+</div>
 <a class="anchor" id="a98c5d1b3853d93a60bcc08bd92b1a71b"></a><!-- doxytag: member="xml.h::XML_TEXT" ref="a98c5d1b3853d93a60bcc08bd92b1a71b" args="(t)" -->
 <div class="memitem">
 <div class="memproto">
@@ -308,7 +325,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 20 2011 13:23:18 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 21 2011 13:12:52 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

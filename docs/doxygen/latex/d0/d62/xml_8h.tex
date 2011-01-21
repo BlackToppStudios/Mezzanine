@@ -17,11 +17,11 @@ This is where bulk of the XML subsystem is declare, there are numerous class tha
 class \hyperlink{classphys_1_1xml_1_1Writer}{phys::xml::Writer}
 \begin{DoxyCompactList}\small\item\em Interface for node printing (see Node::print). \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1WriterFile}{phys::xml::WriterFile}
-\item 
+\begin{DoxyCompactList}\small\item\em An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing to FILEs as defined in stdio. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1WriterStream}{phys::xml::WriterStream}
 \begin{DoxyCompactList}\small\item\em An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing std::ostreams. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1Attribute}{phys::xml::Attribute}
-\item 
+\begin{DoxyCompactList}\small\item\em A light-\/weight handle for manipulating attributes in DOM tree. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1Node}{phys::xml::Node}
 \item 
 class \hyperlink{classphys_1_1xml_1_1NodeIterator}{phys::xml::NodeIterator}
@@ -68,10 +68,7 @@ namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
 \item 
 \#define \hyperlink{xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}{\_\-XML\_\-H}
 \begin{DoxyCompactList}\small\item\em Prevents accidental loading of the file \hyperlink{xml_8h}{xml.h} multiple times. \item\end{DoxyCompactList}\item 
-\hypertarget{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{
-\#define \hyperlink{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{XML\_\-DEPRECATED}}
-\label{d0/d62/xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}
-
+\#define \hyperlink{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{XML\_\-DEPRECATED}
 \begin{DoxyCompactList}\small\item\em Used to mark XML internals as deprecated at the compiler level. \item\end{DoxyCompactList}\item 
 \#define \hyperlink{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{XML\_\-TEXT}(t)~t
 \begin{DoxyCompactList}\small\item\em Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time. \item\end{DoxyCompactList}\item 
@@ -306,6 +303,17 @@ Prevents accidental loading of the file \hyperlink{xml_8h}{xml.h} multiple times
 
 
 Links the Pugi character datatype to match the Physgame phys::Characterdatatype. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+\hypertarget{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{
+\index{xml.h@{xml.h}!XML\_\-DEPRECATED@{XML\_\-DEPRECATED}}
+\index{XML\_\-DEPRECATED@{XML\_\-DEPRECATED}!xml.h@{xml.h}}
+\subsubsection[{XML\_\-DEPRECATED}]{\setlength{\rightskip}{0pt plus 5cm}\#define XML\_\-DEPRECATED}}
+\label{d0/d62/xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}
+
+
+Used to mark XML internals as deprecated at the compiler level. 
 
 \begin{DoxyInternal}{For internal use only.}
 \end{DoxyInternal}
