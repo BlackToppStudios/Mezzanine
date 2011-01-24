@@ -1,0 +1,463 @@
+\hypertarget{classphys_1_1xml_1_1Node}{
+\section{phys::xml::Node Class Reference}
+\label{d7/d0a/classphys_1_1xml_1_1Node}\index{phys::xml::Node@{phys::xml::Node}}
+}
+Inheritance diagram for phys::xml::Node:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d7/d0a/classphys_1_1xml_1_1Node}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a0da067636c89829a111dd51037cea6b3}{
+typedef \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator} {\bfseries iterator}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0da067636c89829a111dd51037cea6b3}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a3b37ee9a716fc3a6cd92733ccf28f26a}{
+typedef \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} {\bfseries attribute\_\-iterator}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a3b37ee9a716fc3a6cd92733ccf28f26a}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}{
+{\bfseries Node} (\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$p)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}
+
+\item 
+\hyperlink{classphys_1_1xml_1_1Node_a1a3af56736ef4dd39596bb71607ebbc7}{operator unspecified\_\-bool\_\-type} () const 
+\begin{DoxyCompactList}\small\item\em Used to convert this attribute to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1Node_a121ff268fa51c4a66ad8d4a6734f4535}{
+bool {\bfseries operator!} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a121ff268fa51c4a66ad8d4a6734f4535}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aa4008ce4f37c81ffc204198d9a026539}{
+bool {\bfseries operator==} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_aa4008ce4f37c81ffc204198d9a026539}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a00077491f468d40745a15963fc8c8bf7}{
+bool {\bfseries operator!=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a00077491f468d40745a15963fc8c8bf7}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ae60944f0610e55a12d772575a97e0e89}{
+bool {\bfseries operator$<$} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ae60944f0610e55a12d772575a97e0e89}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a394f3b55158abd6716eeb8d7dd966262}{
+bool {\bfseries operator$>$} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a394f3b55158abd6716eeb8d7dd966262}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a332214f0dddb3f70f4859dc13a3da09d}{
+bool {\bfseries operator$<$=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a332214f0dddb3f70f4859dc13a3da09d}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ac17b64d023f82a29048a01a97a60c681}{
+bool {\bfseries operator$>$=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ac17b64d023f82a29048a01a97a60c681}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aba1aa3acb0a4e824d27ea47e1ee6babb}{
+bool {\bfseries empty} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_aba1aa3acb0a4e824d27ea47e1ee6babb}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aeeab99e4798aa73cbdbafacf6cd3260b}{
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} {\bfseries type} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_aeeab99e4798aa73cbdbafacf6cd3260b}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aad418ac3d573170a47dcc372ac03c2fd}{
+const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries name} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_aad418ac3d573170a47dcc372ac03c2fd}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a01319c62026515fa40beb2a4ad382e0a}{
+const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries value} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a01319c62026515fa40beb2a4ad382e0a}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a1a7a7f8bd281438fbcdec154a45895df}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries first\_\-attribute} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a1a7a7f8bd281438fbcdec154a45895df}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a58f0dec5e77665a2ffd30a48c7f9b341}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries last\_\-attribute} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a58f0dec5e77665a2ffd30a48c7f9b341}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a0bd8c44af5a2e77fdd05e239a4d3c6f6}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries first\_\-child} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0bd8c44af5a2e77fdd05e239a4d3c6f6}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a2c0f2440aeb854bee7cbd79b16138a2c}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries last\_\-child} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a2c0f2440aeb854bee7cbd79b16138a2c}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ae0b7a14f6984c141f7989c8298d33688}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries next\_\-sibling} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ae0b7a14f6984c141f7989c8298d33688}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ac8fcf74064a8786a567559c3fc1bbc93}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries previous\_\-sibling} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ac8fcf74064a8786a567559c3fc1bbc93}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a3588251e1a604c90869bb42419512272}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries parent} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a3588251e1a604c90869bb42419512272}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a217f994285838f34c7d6d9464ff6effd}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries root} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a217f994285838f34c7d6d9464ff6effd}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a227ad0bd82f6676660de3fbaea1890eb}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries child} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a227ad0bd82f6676660de3fbaea1890eb}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a35ed5fae9a1286d5c08ec5819485c9da}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a35ed5fae9a1286d5c08ec5819485c9da}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a682b97e4d5d7efcba0d790a92b75227d}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries next\_\-sibling} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a682b97e4d5d7efcba0d790a92b75227d}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a7ec6a86fbf7f99afa11ac7e266e675d8}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries previous\_\-sibling} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a7ec6a86fbf7f99afa11ac7e266e675d8}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aaa50cedf42226b2f3865f2dc5275b589}{
+const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries child\_\-value} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_aaa50cedf42226b2f3865f2dc5275b589}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a483a61a6ab2ccb84cb33a0228630b1c3}{
+const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries child\_\-value} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a483a61a6ab2ccb84cb33a0228630b1c3}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aa8c259aaaf405d9332130f40ca6679fc}{
+bool {\bfseries set\_\-name} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_aa8c259aaaf405d9332130f40ca6679fc}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a765ff43292ade8e24c5b7b2808f3c7de}{
+bool {\bfseries set\_\-value} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a765ff43292ade8e24c5b7b2808f3c7de}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a33b7c276f62e0c25ff7833a897888125}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries append\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a33b7c276f62e0c25ff7833a897888125}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_abc20afab0e50b0d9c578a02e91608226}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries prepend\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_abc20afab0e50b0d9c578a02e91608226}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aae7d7e21d419c9f95549d14ddccb1334}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries insert\_\-attribute\_\-after} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name, const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&attr)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_aae7d7e21d419c9f95549d14ddccb1334}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a0b22783a8ce773f7b3847d7f2ec9b475}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries insert\_\-attribute\_\-before} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name, const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&attr)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0b22783a8ce773f7b3847d7f2ec9b475}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a8067d9c5861a4dc89c644eded1987b7d}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries append\_\-copy} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&proto)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a8067d9c5861a4dc89c644eded1987b7d}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a875eb8b249394050178e26d978a247cf}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries prepend\_\-copy} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&proto)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a875eb8b249394050178e26d978a247cf}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a0d12c7f719d26042afb83b8045babbf0}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries insert\_\-copy\_\-after} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&proto, const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&attr)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0d12c7f719d26042afb83b8045babbf0}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_af4b5824124e70eda957c410e66123896}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries insert\_\-copy\_\-before} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&proto, const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&attr)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_af4b5824124e70eda957c410e66123896}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_af2601376ae30b9744b3b10067d26de9a}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries append\_\-child} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} type=NodeElement)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_af2601376ae30b9744b3b10067d26de9a}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ae34bde1d0157fe19996c26099a22695c}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries prepend\_\-child} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} type=NodeElement)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_ae34bde1d0157fe19996c26099a22695c}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a6c6b4225db38e4f031ee68d5c8c86377}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-after} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} type, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a6c6b4225db38e4f031ee68d5c8c86377}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a36dd60f74bcf0ac054169c3c6ae8e286}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-before} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} type, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a36dd60f74bcf0ac054169c3c6ae8e286}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aae3d925cc040d9fddfe173410bcdd322}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries append\_\-child} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_aae3d925cc040d9fddfe173410bcdd322}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ab6e8a5ec035a2b66a3d0475498012f3d}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries prepend\_\-child} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_ab6e8a5ec035a2b66a3d0475498012f3d}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a6b3345a4e9f56147c21c76a8aeb5d9df}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-after} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a6b3345a4e9f56147c21c76a8aeb5d9df}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a9212a51ca71f8098b5425bb459eb366c}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-before} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a9212a51ca71f8098b5425bb459eb366c}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a0bf9542120cadd27890fa60aa365a849}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries append\_\-copy} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&proto)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0bf9542120cadd27890fa60aa365a849}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a96508d5e780085b962263c093dcb1e27}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries prepend\_\-copy} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&proto)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a96508d5e780085b962263c093dcb1e27}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a0620e8a5196afc37694f5385e639d006}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-copy\_\-after} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&proto, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0620e8a5196afc37694f5385e639d006}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a80828f043fc136104b602126cfc566a5}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-copy\_\-before} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&proto, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a80828f043fc136104b602126cfc566a5}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a99699d6740844fd73bd4704c954a222d}{
+bool {\bfseries remove\_\-attribute} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&a)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a99699d6740844fd73bd4704c954a222d}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a070ffe875695188e68f0554cd2efc2a9}{
+bool {\bfseries remove\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a070ffe875695188e68f0554cd2efc2a9}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a2cf35b26227f6067a25a2ae1647e8f31}{
+bool {\bfseries remove\_\-child} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&n)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a2cf35b26227f6067a25a2ae1647e8f31}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ab10af5783c31fb58cc533b58a3c11ae0}{
+bool {\bfseries remove\_\-child} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_ab10af5783c31fb58cc533b58a3c11ae0}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a59e43a51c83065e02fea2f39a37d84f0}{
+{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries find\_\-attribute} (Predicate pred) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a59e43a51c83065e02fea2f39a37d84f0}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aa46f1a55d5fead8ea4cc68235e45f3fc}{
+{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries find\_\-child} (Predicate pred) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_aa46f1a55d5fead8ea4cc68235e45f3fc}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_af755f4925f6839e0f8a768cfc3b265d4}{
+{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries find\_\-node} (Predicate pred) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_af755f4925f6839e0f8a768cfc3b265d4}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ad877293c5bfd97ea7f4e6319db816ac4}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries find\_\-child\_\-by\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$name, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$attr\_\-name, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$attr\_\-value) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ad877293c5bfd97ea7f4e6319db816ac4}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_aa3ea620c51e0af54aebcf78586086a9a}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries find\_\-child\_\-by\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$attr\_\-name, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$attr\_\-value) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_aa3ea620c51e0af54aebcf78586086a9a}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a74b9f51a6642808510e71f643cc861ad}{
+\hyperlink{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{string\_\-t} {\bfseries path} (\hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} delimiter= '/') const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a74b9f51a6642808510e71f643cc861ad}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ad771e6d5faca7c608a6a6cd1e29dd3d8}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries first\_\-element\_\-by\_\-path} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$path, \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} delimiter= '/') const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ad771e6d5faca7c608a6a6cd1e29dd3d8}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_abf6c5b96ced5404a204a4700f044f982}{
+bool {\bfseries traverse} (\hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker} \&walker)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_abf6c5b96ced5404a204a4700f044f982}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ad3caa2f4cafd56c79000a5af848f3e62}{
+\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} {\bfseries select\_\-single\_\-node} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ad3caa2f4cafd56c79000a5af848f3e62}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a599ed26773b23999c6f2e87e76deb0fd}{
+\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} {\bfseries select\_\-single\_\-node} (const \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} \&query) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a599ed26773b23999c6f2e87e76deb0fd}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ad8bc358815511c63677a60149fe9a6dd}{
+\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} {\bfseries select\_\-nodes} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ad8bc358815511c63677a60149fe9a6dd}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ae1e232d5d010ca9272edd7bbe3154b44}{
+\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} {\bfseries select\_\-nodes} (const \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} \&query) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ae1e232d5d010ca9272edd7bbe3154b44}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a526817671e39653b0dca70c2ba8daa55}{
+void {\bfseries print} (\hyperlink{classphys_1_1xml_1_1Writer}{Writer} \&WriterInstance, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int depth=0) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a526817671e39653b0dca70c2ba8daa55}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a99158a08970f0497a3925dddf8227b87}{
+void {\bfseries print} (std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&os, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int depth=0) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a99158a08970f0497a3925dddf8227b87}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a27b7869e5208547e06b6164bbc68ca0e}{
+void {\bfseries print} (std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&os, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, unsigned int depth=0) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a27b7869e5208547e06b6164bbc68ca0e}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a78c82f35dcf7b2c37f1f5ff37d526329}{
+\hyperlink{classphys_1_1xml_1_1NodeIterator}{iterator} {\bfseries begin} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a78c82f35dcf7b2c37f1f5ff37d526329}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ae69ca8be6e9eb53a4faf8bb50a2996d6}{
+\hyperlink{classphys_1_1xml_1_1NodeIterator}{iterator} {\bfseries end} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ae69ca8be6e9eb53a4faf8bb50a2996d6}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a601285bed116eb5d63cea9a8d117e5b7}{
+\hyperlink{classphys_1_1xml_1_1AttributeIterator}{attribute\_\-iterator} {\bfseries attributes\_\-begin} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a601285bed116eb5d63cea9a8d117e5b7}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a9af9e0bff5b8ed06bc40861dccb6b4ec}{
+\hyperlink{classphys_1_1xml_1_1AttributeIterator}{attribute\_\-iterator} {\bfseries attributes\_\-end} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a9af9e0bff5b8ed06bc40861dccb6b4ec}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a6439833c334aa4d4dd3032609d697497}{
+ptrdiff\_\-t {\bfseries Offset\_\-debug} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a6439833c334aa4d4dd3032609d697497}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ad759e1e8c2c131e7ed438ce6308fd79b}{
+size\_\-t {\bfseries hash\_\-value} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_ad759e1e8c2c131e7ed438ce6308fd79b}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a911d3691004d14cb60dcefbe85c41046}{
+\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$ {\bfseries internal\_\-object} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_a911d3691004d14cb60dcefbe85c41046}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_abace2c2c7e70431d920579917417c1e4}{
+typedef \hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$Node::$\ast$ {\bfseries unspecified\_\-bool\_\-type}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_abace2c2c7e70431d920579917417c1e4}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ae76db7e7025e29af83e487cf4b270424}{
+\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$ {\bfseries \_\-root}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_ae76db7e7025e29af83e487cf4b270424}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_a1ed8790083a80b2604beba1c666bce6e}{
+class {\bfseries AttributeIterator}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a1ed8790083a80b2604beba1c666bce6e}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Node_ac5a1d2c6036b7ba1894a7c3b8d96a312}{
+class {\bfseries NodeIterator}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_ac5a1d2c6036b7ba1894a7c3b8d96a312}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 420 of file xml.h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1Node_a1a3af56736ef4dd39596bb71607ebbc7}{
+\index{phys::xml::Node@{phys::xml::Node}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
+\index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{operator unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator Node::unspecified\_\-bool\_\-type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a1a3af56736ef4dd39596bb71607ebbc7}
+
+
+Used to convert this attribute to a boolean value in a safe way. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the internal pointer \hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} is set and false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 3602 of file xml.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\item 
+xml.cpp\end{DoxyCompactItemize}

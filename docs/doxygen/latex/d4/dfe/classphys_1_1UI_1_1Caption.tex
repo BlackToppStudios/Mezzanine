@@ -1,0 +1,721 @@
+\hypertarget{classphys_1_1UI_1_1Caption}{
+\section{phys::UI::Caption Class Reference}
+\label{d4/dfe/classphys_1_1UI_1_1Caption}\index{phys::UI::Caption@{phys::UI::Caption}}
+}
+
+
+This class is a helper class, specifically for use with text.  
+
+
+
+
+{\ttfamily \#include $<$uicaption.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UI_1_1Caption_a8e643db77a6f9b18147cf01cf3bd9238}{Caption} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Glyph, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Text, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}{
+virtual \hyperlink{classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}{$\sim$Caption} ()}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a5443ce0c7c7dc4b4f1c56b124e092a98}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_afce46e42eb3ab522c29d5c13a5691065}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this caption. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Caption_a965d162160c26a2f9a2a16b88aa8f05d}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this caption. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a9801eaaadf70f7373b410995b255936e}{
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a9801eaaadf70f7373b410995b255936e}{Show} ()}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a9801eaaadf70f7373b410995b255936e}
+
+\begin{DoxyCompactList}\small\item\em Forces this caption to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a12e772b19e723334747fcf2ca009965c}{
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a12e772b19e723334747fcf2ca009965c}{Hide} ()}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a12e772b19e723334747fcf2ca009965c}
+
+\begin{DoxyCompactList}\small\item\em Forces this caption to hide. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Caption_a3dc84a08ea80de8d75e9614decbad605}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Determines whether the mouse is over this caption. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Caption_afdb8c018e33bc28c77291ea797c042c0}{GetMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Gets the stored value of whether or not the mouse is over the caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1UI_1_1Caption_ac189115176b58b77b32b5b61fe8fec1b}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a4592228fd6874958e6767b9d461ac2ce}{SetText} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Text)
+\begin{DoxyCompactList}\small\item\em Sets the text displayed within the caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Caption_ad35be48f6f9df9ca9d9a2e3d0cb99c78}{GetText} ()
+\begin{DoxyCompactList}\small\item\em Gets the text displayed within the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a48e02a811a03a7542ee9bdcc4303a264}{SetTextColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&TextColour)
+\begin{DoxyCompactList}\small\item\em Sets the colour for the text in this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_1UI_1_1Caption_a32bb578e6e92986839e1cd49edfe9422}{GetTextColour} ()
+\begin{DoxyCompactList}\small\item\em Gets the colour for the text in this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a854b4f5d5a18c4e5f0cebeb17cf2ece4}{SetGlyphIndex} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} GlyphIndex)
+\begin{DoxyCompactList}\small\item\em Sets the glyph index to be used with this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Caption_a4181591a3186ec4d1f87946891a0ef26}{GetGlyphIndex} ()
+\begin{DoxyCompactList}\small\item\em Gets the glyph index in use by this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a55c748adf8f23689c71c38fab284b567}{SetCursorOffset} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Offset)
+\begin{DoxyCompactList}\small\item\em Sets the number of pixels text should be offset from the side when rendering. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1Caption_a381133922b882500ae0bf503acb4c6a4}{GetCursorOffset} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of pixels text should be offset from the side when rendering. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a33ec6c09671474529b0f33f0f1cd51ad}{SetBackgroundColour} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Sets the background colour of the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a98422dc633dfb68ea87d0f54fda25f48}{SetBackgroundSprite} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Sets the background image(if provided in the atlas) of the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a1b7d2736ee545f518c33f0cd99a4ef0a}{HorizontallyAlign} (UI::TextHorizontalAlign Align)
+\begin{DoxyCompactList}\small\item\em Aligns the text of the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_adb3936d7eea2137e60943825acf4a5d0}{VerticallyAlign} (UI::TextVerticalAlign Align)
+\begin{DoxyCompactList}\small\item\em Aligns the text of the caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a3a0e4e927afe9c8fb7fd4f3771fc3bd0}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative top left position of this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_a3096383b16f81c3b4894afd61110ffa0}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative top left position of this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a49b9972c95d710a9496d9cc2ca486890}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
+\begin{DoxyCompactList}\small\item\em Sets the top left position of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_aae3e6728a26111e12b081992d6d04e1a}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the top left position of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a9551a0efc894dd97cead9db69f018f5d}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this caption. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_a1da2e0e9ce0d904595f53a10244fcaf4}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this caption. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_ad92716cc1c3ad3544aab5e892ae24225}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Sets the size of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Caption_aa80a4328d76458a6e869c485bea48b98}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the size of this caption in pixels. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Caption_a27e71736c847ff6e50be7191e3db5225}{SetRenderPriority} (UI::RenderPriority Priority)
+\begin{DoxyCompactList}\small\item\em Sets the priority this caption should be rendered with. \item\end{DoxyCompactList}\item 
+virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1Caption_ada0bf1e830f8f672adbc3263e7095896}{GetRenderPriority} ()
+\begin{DoxyCompactList}\small\item\em Gets the priority this caption should be rendered with. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a7a93d509acea460f79c40cb0306709d4}{
+Gorilla::Caption $\ast$ {\bfseries GorillaCaption}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a7a93d509acea460f79c40cb0306709d4}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a784ae5ce5d499f1905e6e7a121e26ac0}{
+Gorilla::Rectangle $\ast$ {\bfseries GorillaRectangle}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a784ae5ce5d499f1905e6e7a121e26ac0}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a10f1d8cde30267671f082947d8fbdcab}{
+\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ {\bfseries Parent}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a10f1d8cde30267671f082947d8fbdcab}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a1102b88d8e70c89191f15826aac2afa5}{
+\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a1102b88d8e70c89191f15826aac2afa5}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a466a606964575ebbd1af6a91ed3b9375}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries Glyphs}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a466a606964575ebbd1af6a91ed3b9375}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a9923417253f29965257d7fb9f707542e}{
+bool {\bfseries MouseHover}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a9923417253f29965257d7fb9f707542e}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a63061f6c9799bea406eba1060ec9daa4}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries RelPosition}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a63061f6c9799bea406eba1060ec9daa4}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_acd511c5bc0d19986a1869d5d5e4f9094}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries RelSize}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_acd511c5bc0d19986a1869d5d5e4f9094}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Caption_a6d5f0c79c720695e3f4e009e590a8827}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a6d5f0c79c720695e3f4e009e590a8827}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is a helper class, specifically for use with text. Unlike a button, this class cannot be interacted with by clicking. It is important to understand what you want your space to do when selecting the class to use. \par
+ \par
+ Markup Texts and Captions are similar in that they both display text messages that can be altered readily, the primary difference between the two is that Captions are meant for small simple messages with background functionality built in, where as Markup Texts have no background functionality, but they use a light markup language to accomplish special effects with the text. 
+
+Definition at line 73 of file uicaption.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UI_1_1Caption_a8e643db77a6f9b18147cf01cf3bd9238}{
+\index{phys::UI::Caption@{phys::UI::Caption}!Caption@{Caption}}
+\index{Caption@{Caption}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{Caption}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Caption::Caption (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ name, }
+\item[{const {\bf Vector2}}]{ Position, }
+\item[{const {\bf Vector2}}]{ Size, }
+\item[{const {\bf Whole}}]{ Glyph, }
+\item[{{\bf String}}]{ Text, }
+\item[{{\bf UILayer} $\ast$}]{ Layer}
+\end{DoxyParamCaption}
+)}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a8e643db77a6f9b18147cf01cf3bd9238}
+
+
+Internal constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of this caption. \item[{\em Position}]The top left position of the caption. \item[{\em Size}]The size of the \hyperlink{classphys_1_1UI_1_1Button}{Button}. \item[{\em Glyph}]One of the glyphs specified in your gorilla file. Must be valid. \item[{\em Text}]Any text you want printed on the caption. \item[{\em Layer}]Pointer to the layer that created this caption. \end{DoxyParams}
+
+
+Definition at line 55 of file uicaption.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1UI_1_1Caption_a3dc84a08ea80de8d75e9614decbad605}{
+\index{phys::UI::Caption@{phys::UI::Caption}!CheckMouseHover@{CheckMouseHover}}
+\index{CheckMouseHover@{CheckMouseHover}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Caption::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a3dc84a08ea80de8d75e9614decbad605}
+
+
+Determines whether the mouse is over this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether the mouse is over this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 102 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_aae3e6728a26111e12b081992d6d04e1a}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Caption::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_aae3e6728a26111e12b081992d6d04e1a}
+
+
+Gets the top left position of this caption in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 243 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_aa80a4328d76458a6e869c485bea48b98}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Caption::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_aa80a4328d76458a6e869c485bea48b98}
+
+
+Gets the size of this caption in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 272 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a381133922b882500ae0bf503acb4c6a4}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetCursorOffset@{GetCursorOffset}}
+\index{GetCursorOffset@{GetCursorOffset}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetCursorOffset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UI::Caption::GetCursorOffset (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a381133922b882500ae0bf503acb4c6a4}
+
+
+Gets the number of pixels text should be offset from the side when rendering. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the number of pixels text is currently being offset from the side. 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a4181591a3186ec4d1f87946891a0ef26}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetGlyphIndex@{GetGlyphIndex}}
+\index{GetGlyphIndex@{GetGlyphIndex}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetGlyphIndex}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UI::Caption::GetGlyphIndex (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a4181591a3186ec4d1f87946891a0ef26}
+
+
+Gets the glyph index in use by this caption. 
+
+The glyph index is defined in your gorilla file. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Returns}]a Whole representing the index of the glyph in use by this caption.. \end{DoxyParams}
+
+
+Definition at line 153 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_afdb8c018e33bc28c77291ea797c042c0}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetMouseHover@{GetMouseHover}}
+\index{GetMouseHover@{GetMouseHover}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Caption::GetMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_afdb8c018e33bc28c77291ea797c042c0}
+
+
+Gets the stored value of whether or not the mouse is over the caption. 
+
+This function does not perform any checks. If you want to do a manual check, call \hyperlink{classphys_1_1UI_1_1Caption_a3dc84a08ea80de8d75e9614decbad605}{CheckMouseHover()}. \begin{DoxyReturn}{Returns}
+Returns the stored value of whether or not the mouse is over the caption. 
+\end{DoxyReturn}
+
+
+Definition at line 116 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_ac189115176b58b77b32b5b61fe8fec1b}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& phys::UI::Caption::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_ac189115176b58b77b32b5b61fe8fec1b}
+
+
+Gets the name of this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a3096383b16f81c3b4894afd61110ffa0}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Caption::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a3096383b16f81c3b4894afd61110ffa0}
+
+
+Gets the relative top left position of this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 230 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_ada0bf1e830f8f672adbc3263e7095896}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetRenderPriority@{GetRenderPriority}}
+\index{GetRenderPriority@{GetRenderPriority}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}UI::RenderPriority phys::UI::Caption::GetRenderPriority (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_ada0bf1e830f8f672adbc3263e7095896}
+
+
+Gets the priority this caption should be rendered with. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing this caption's priority level. 
+\end{DoxyReturn}
+
+
+Definition at line 299 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a1da2e0e9ce0d904595f53a10244fcaf4}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Caption::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a1da2e0e9ce0d904595f53a10244fcaf4}
+
+
+Gets the relative size of this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the size of this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 259 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_ad35be48f6f9df9ca9d9a2e3d0cb99c78}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetText@{GetText}}
+\index{GetText@{GetText}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetText}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::UI::Caption::GetText (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_ad35be48f6f9df9ca9d9a2e3d0cb99c78}
+
+
+Gets the text displayed within the caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns the text being displayed. 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a32bb578e6e92986839e1cd49edfe9422}{
+\index{phys::UI::Caption@{phys::UI::Caption}!GetTextColour@{GetTextColour}}
+\index{GetTextColour@{GetTextColour}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{GetTextColour}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} phys::UI::Caption::GetTextColour (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a32bb578e6e92986839e1cd49edfe9422}
+
+
+Gets the colour for the text in this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a colourvalue representing the currently set colour of the text in this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 141 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a1b7d2736ee545f518c33f0cd99a4ef0a}{
+\index{phys::UI::Caption@{phys::UI::Caption}!HorizontallyAlign@{HorizontallyAlign}}
+\index{HorizontallyAlign@{HorizontallyAlign}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{HorizontallyAlign}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::HorizontallyAlign (
+\begin{DoxyParamCaption}
+\item[{UI::TextHorizontalAlign}]{ Align}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a1b7d2736ee545f518c33f0cd99a4ef0a}
+
+
+Aligns the text of the caption. 
+
+Default value for this is UI::Txt\_\-Middle. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Align}]The enum value representing the horizontal alignment to be set. \end{DoxyParams}
+
+
+Definition at line 180 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a965d162160c26a2f9a2a16b88aa8f05d}{
+\index{phys::UI::Caption@{phys::UI::Caption}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Caption::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a965d162160c26a2f9a2a16b88aa8f05d}
+
+
+Gets the visibility of this caption. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this caption. 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a49b9972c95d710a9496d9cc2ca486890}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a49b9972c95d710a9496d9cc2ca486890}
+
+
+Sets the top left position of this caption in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this caption. \end{DoxyParams}
+
+
+Definition at line 235 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_ad92716cc1c3ad3544aab5e892ae24225}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_ad92716cc1c3ad3544aab5e892ae24225}
+
+
+Sets the size of this caption in pixels. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Size}]A vector2 representing the size of this caption. \end{DoxyParams}
+
+
+Definition at line 264 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a33ec6c09671474529b0f33f0f1cd51ad}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetBackgroundColour@{SetBackgroundColour}}
+\index{SetBackgroundColour@{SetBackgroundColour}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetBackgroundColour}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetBackgroundColour (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ Colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a33ec6c09671474529b0f33f0f1cd51ad}
+
+
+Sets the background colour of the caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Colour}]A colour value representing the colour to be set. \end{DoxyParams}
+
+
+Definition at line 168 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a98422dc633dfb68ea87d0f54fda25f48}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetBackgroundSprite@{SetBackgroundSprite}}
+\index{SetBackgroundSprite@{SetBackgroundSprite}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetBackgroundSprite}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetBackgroundSprite (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a98422dc633dfb68ea87d0f54fda25f48}
+
+
+Sets the background image(if provided in the atlas) of the caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the sprite to set as the background. \end{DoxyParams}
+
+
+Definition at line 173 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a55c748adf8f23689c71c38fab284b567}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetCursorOffset@{SetCursorOffset}}
+\index{SetCursorOffset@{SetCursorOffset}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetCursorOffset}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetCursorOffset (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole}}]{ Offset}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a55c748adf8f23689c71c38fab284b567}
+
+
+Sets the number of pixels text should be offset from the side when rendering. 
+
+This doesn't apply when text is being rendered with a Middle alignment. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Offset}]The number of pixels from the side text should be offset. \end{DoxyParams}
+
+
+Definition at line 158 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a854b4f5d5a18c4e5f0cebeb17cf2ece4}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetGlyphIndex@{SetGlyphIndex}}
+\index{SetGlyphIndex@{SetGlyphIndex}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetGlyphIndex}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetGlyphIndex (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole}}]{ GlyphIndex}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a854b4f5d5a18c4e5f0cebeb17cf2ece4}
+
+
+Sets the glyph index to be used with this caption. 
+
+The glyph index is defined in your gorilla file. 
+\begin{DoxyParams}{Parameters}
+\item[{\em GlyphIndex}]The index of the glyph to use with this caption. \end{DoxyParams}
+
+
+Definition at line 147 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a3a0e4e927afe9c8fb7fd4f3771fc3bd0}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2}}]{ Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a3a0e4e927afe9c8fb7fd4f3771fc3bd0}
+
+
+Sets the relative top left position of this caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]A \hyperlink{classphys_1_1Vector2}{Vector2} representing the location of this caption. \end{DoxyParams}
+
+
+Definition at line 220 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a27e71736c847ff6e50be7191e3db5225}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetRenderPriority@{SetRenderPriority}}
+\index{SetRenderPriority@{SetRenderPriority}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetRenderPriority (
+\begin{DoxyParamCaption}
+\item[{UI::RenderPriority}]{ Priority}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a27e71736c847ff6e50be7191e3db5225}
+
+
+Sets the priority this caption should be rendered with. 
+
+The default value for this is Medium. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Priority}]The priority level to be used when rendering this caption. \end{DoxyParams}
+
+
+Definition at line 278 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a9551a0efc894dd97cead9db69f018f5d}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a9551a0efc894dd97cead9db69f018f5d}
+
+
+Sets the relative size of this caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Size}]A vector2 representing the size of this caption. \end{DoxyParams}
+
+
+Definition at line 249 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a4592228fd6874958e6767b9d461ac2ce}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetText@{SetText}}
+\index{SetText@{SetText}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetText}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetText (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Text}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a4592228fd6874958e6767b9d461ac2ce}
+
+
+Sets the text displayed within the caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Text}]The text to be displayed. \end{DoxyParams}
+
+
+Definition at line 126 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_a48e02a811a03a7542ee9bdcc4303a264}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetTextColour@{SetTextColour}}
+\index{SetTextColour@{SetTextColour}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetTextColour}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetTextColour (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ TextColour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_a48e02a811a03a7542ee9bdcc4303a264}
+
+
+Sets the colour for the text in this caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em TextColour}]A colourvalue representing the desired colour. \end{DoxyParams}
+
+
+Definition at line 136 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_afce46e42eb3ab522c29d5c13a5691065}{
+\index{phys::UI::Caption@{phys::UI::Caption}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{ Visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_afce46e42eb3ab522c29d5c13a5691065}
+
+
+Sets the visibility of this caption. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Visible}]Bool determining whether or not this caption should be visible. \end{DoxyParams}
+
+
+Definition at line 79 of file uicaption.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Caption_adb3936d7eea2137e60943825acf4a5d0}{
+\index{phys::UI::Caption@{phys::UI::Caption}!VerticallyAlign@{VerticallyAlign}}
+\index{VerticallyAlign@{VerticallyAlign}!phys::UI::Caption@{phys::UI::Caption}}
+\subsubsection[{VerticallyAlign}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Caption::VerticallyAlign (
+\begin{DoxyParamCaption}
+\item[{UI::TextVerticalAlign}]{ Align}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/dfe/classphys_1_1UI_1_1Caption_adb3936d7eea2137e60943825acf4a5d0}
+
+
+Aligns the text of the caption. 
+
+Default value for this is UI::Txt\_\-Center. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Align}]The enum value representing the vertical alignment to be set. \end{DoxyParams}
+
+
+Definition at line 200 of file uicaption.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uicaption.h\item 
+uicaption.cpp\end{DoxyCompactItemize}

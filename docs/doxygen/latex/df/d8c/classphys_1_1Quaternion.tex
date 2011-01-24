@@ -1,0 +1,214 @@
+\hypertarget{classphys_1_1Quaternion}{
+\section{phys::Quaternion Class Reference}
+\label{df/d8c/classphys_1_1Quaternion}\index{phys::Quaternion@{phys::Quaternion}}
+}
+
+
+This is used to store information about rotation in 3d space.  
+
+
+
+
+{\ttfamily \#include $<$quaternion.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1Quaternion_aca4ee6fd6d3967f06cc4a32361fa5a62}{Quaternion} ()
+\begin{DoxyCompactList}\small\item\em Blank Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion_ac8037875c08ce10c0195f3e6fd08b172}{Quaternion} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&x, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&y, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&z, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&w)
+\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion_ab9f13d19fe7d602d7c5feaed0aaf4620}{Quaternion} (const btQuaternion \&Theirs)
+\begin{DoxyCompactList}\small\item\em Bullet \hyperlink{classphys_1_1Quaternion}{Quaternion} constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion_a4902c05489ebae03a55433d947c53d03}{Quaternion} (const Ogre::Quaternion \&Theirs)
+\begin{DoxyCompactList}\small\item\em Ogre \hyperlink{classphys_1_1Quaternion}{Quaternion} constructor. \item\end{DoxyCompactList}\item 
+btQuaternion \hyperlink{classphys_1_1Quaternion_a30944ae1fe905ee4f5c946c9a0b354f7}{GetBulletQuaternion} (bool normalize=false)
+\begin{DoxyCompactList}\small\item\em Gets a Bullet quaternion. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Quaternion_a10d3582b2731e70279d7bab43173f317}{ExtractBulletQuaternion} (const btQuaternion \&Ours)
+\begin{DoxyCompactList}\small\item\em Copies an existing Bullet quaternion. \item\end{DoxyCompactList}\item 
+Ogre::Quaternion \hyperlink{classphys_1_1Quaternion_ad7501687205092c203d2358ca53d3bfe}{GetOgreQuaternion} (bool normalize=false)
+\begin{DoxyCompactList}\small\item\em Gets a Ogre quaternion. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Quaternion_a942fab675a0b124e1dc5e2febab113e6}{ExtractOgreQuaternion} (const Ogre::Quaternion \&Ours)
+\begin{DoxyCompactList}\small\item\em Copies an existing Ogre quaternion. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is used to store information about rotation in 3d space. This is used to store information about rotation in 3d space. The X, Y and Z are used to identify a ray from the origin (0,0,0), about which W represents an amount of rotation. \begin{DoxyWarning}{Warning}
+The Documentation for this class needs to be revised. It describes 2 mutually exclusive means of storing 
+\end{DoxyWarning}
+
+
+Definition at line 62 of file quaternion.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1Quaternion_aca4ee6fd6d3967f06cc4a32361fa5a62}{
+\index{phys::Quaternion@{phys::Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}phys::Quaternion::Quaternion (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_aca4ee6fd6d3967f06cc4a32361fa5a62}
+
+
+Blank Constructor. 
+
+Basic no-\/initialization constructor. 
+
+Definition at line 50 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_ac8037875c08ce10c0195f3e6fd08b172}{
+\index{phys::Quaternion@{phys::Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}phys::Quaternion::Quaternion (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ x, }
+\item[{const {\bf Real} \&}]{ y, }
+\item[{const {\bf Real} \&}]{ z, }
+\item[{const {\bf Real} \&}]{ w}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_ac8037875c08ce10c0195f3e6fd08b172}
+
+
+Constructor. 
+
+Constructor that sets all four axis' of rotation. 
+\begin{DoxyParams}{Parameters}
+\item[{\em x}]Rotation on the X Axis. \item[{\em y}]Rotation on the Y Axis. \item[{\em z}]Rotation on the Z Axis. \item[{\em w}]Rotation on the W Axis. \end{DoxyParams}
+
+
+Definition at line 58 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_ab9f13d19fe7d602d7c5feaed0aaf4620}{
+\index{phys::Quaternion@{phys::Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}phys::Quaternion::Quaternion (
+\begin{DoxyParamCaption}
+\item[{const btQuaternion \&}]{ Theirs}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_ab9f13d19fe7d602d7c5feaed0aaf4620}
+
+
+Bullet \hyperlink{classphys_1_1Quaternion}{Quaternion} constructor. 
+
+Constructor that sets all values to match the Bullet quaternion. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Theirs}]The quaternion to be copied to make this quaternion. \end{DoxyParams}
+
+
+Definition at line 66 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a4902c05489ebae03a55433d947c53d03}{
+\index{phys::Quaternion@{phys::Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}phys::Quaternion::Quaternion (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Quaternion \&}]{ Theirs}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a4902c05489ebae03a55433d947c53d03}
+
+
+Ogre \hyperlink{classphys_1_1Quaternion}{Quaternion} constructor. 
+
+Constructor that sets all values to match the Ogre quaternion. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Theirs}]The quaternion to be copied to make this quaternion. \end{DoxyParams}
+
+
+Definition at line 71 of file quaternion.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1Quaternion_a10d3582b2731e70279d7bab43173f317}{
+\index{phys::Quaternion@{phys::Quaternion}!ExtractBulletQuaternion@{ExtractBulletQuaternion}}
+\index{ExtractBulletQuaternion@{ExtractBulletQuaternion}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{ExtractBulletQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Quaternion::ExtractBulletQuaternion (
+\begin{DoxyParamCaption}
+\item[{const btQuaternion \&}]{ Ours}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a10d3582b2731e70279d7bab43173f317}
+
+
+Copies an existing Bullet quaternion. 
+
+This function will copy the values stored in an existing Bullet quaternion and set the values of this class to be the same. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Ours}]The quaternion to be extracted. \end{DoxyParams}
+
+
+Definition at line 90 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a942fab675a0b124e1dc5e2febab113e6}{
+\index{phys::Quaternion@{phys::Quaternion}!ExtractOgreQuaternion@{ExtractOgreQuaternion}}
+\index{ExtractOgreQuaternion@{ExtractOgreQuaternion}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{ExtractOgreQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Quaternion::ExtractOgreQuaternion (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Quaternion \&}]{ Ours}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a942fab675a0b124e1dc5e2febab113e6}
+
+
+Copies an existing Ogre quaternion. 
+
+This function will copy the values stored in an existing Ogre quaternion and set the values of this class to be the same. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Ours}]The quaternion to be extracted. \end{DoxyParams}
+
+
+Definition at line 112 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a30944ae1fe905ee4f5c946c9a0b354f7}{
+\index{phys::Quaternion@{phys::Quaternion}!GetBulletQuaternion@{GetBulletQuaternion}}
+\index{GetBulletQuaternion@{GetBulletQuaternion}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{GetBulletQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}btQuaternion phys::Quaternion::GetBulletQuaternion (
+\begin{DoxyParamCaption}
+\item[{bool}]{ normalize = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a30944ae1fe905ee4f5c946c9a0b354f7}
+
+
+Gets a Bullet quaternion. 
+
+Creates a Bullet quaternion with values equal to this class and returns it. 
+\begin{DoxyParams}{Parameters}
+\item[{\em normalize}]Whether or not you want this function to normalize the quaternion for you. \end{DoxyParams}
+
+
+Definition at line 76 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_ad7501687205092c203d2358ca53d3bfe}{
+\index{phys::Quaternion@{phys::Quaternion}!GetOgreQuaternion@{GetOgreQuaternion}}
+\index{GetOgreQuaternion@{GetOgreQuaternion}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{GetOgreQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Quaternion phys::Quaternion::GetOgreQuaternion (
+\begin{DoxyParamCaption}
+\item[{bool}]{ normalize = {\ttfamily false}}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_ad7501687205092c203d2358ca53d3bfe}
+
+
+Gets a Ogre quaternion. 
+
+Creates a Ogre quaternion with values equal to this class and returns it. 
+\begin{DoxyParams}{Parameters}
+\item[{\em normalize}]Whether or not you want this function to normalize the quaternion for you. \end{DoxyParams}
+
+
+Definition at line 98 of file quaternion.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+quaternion.h\item 
+quaternion.cpp\end{DoxyCompactItemize}

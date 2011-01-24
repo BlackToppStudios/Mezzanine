@@ -1,0 +1,423 @@
+\hypertarget{classphys_1_1Vector2}{
+\section{phys::Vector2 Class Reference}
+\label{d0/d2c/classphys_1_1Vector2}\index{phys::Vector2@{phys::Vector2}}
+}
+
+
+This is used to represent a point on a 2 dimentional area, such as a screen.  
+
+
+
+
+{\ttfamily \#include $<$vector2.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1Vector2_a1e9c6000e5acd162a49836414a27bac7}{Vector2} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2_ae8d3c95a5a60d12e706739cbadf01ffb}{Vector2} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} x, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} y)
+\begin{DoxyCompactList}\small\item\em Real value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2_af3dbb91ef994e19b68c84e4e26eafac3}{Vector2} (Ogre::Vector2 Vec)
+\begin{DoxyCompactList}\small\item\em Ogre Value Constructor. \item\end{DoxyCompactList}\item 
+Ogre::Vector2 \hyperlink{classphys_1_1Vector2_adc6efedbdfdca596b719decc87ee2e4b}{GetOgreVector2} () const 
+\begin{DoxyCompactList}\small\item\em Gets a Ogre vector2. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector2_af12824b786ce4b91443b5dbd700dfd58}{ExtractOgreVector2} (Ogre::Vector2 Ours)
+\begin{DoxyCompactList}\small\item\em Copies an existing Ogre vector2. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector2_a89874b6def8107146ca7079a2de49360}{operator==} (const \hyperlink{classphys_1_1Vector2}{phys::Vector2} \&Vec2)
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector2_a074ca2a4d54925f745dbb9effd5c7e19}{operator!=} (const \hyperlink{classphys_1_1Vector2}{phys::Vector2} \&Vec2)
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector2_a2fe433e9401748547b19cc5be891ed52}{operator==} (const Ogre::Vector2 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector2_a186c1da597e1471a9ee5b07cc8bb9fb8}{operator!=} (const Ogre::Vector2 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1Vector2_a59fa4aaadcccd04bf6de8fcd84b31c6d}{operator$\ast$} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar) const 
+\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1Vector2_a51f7d8ce03f7ab05137b277532edf93b}{operator/} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar) const 
+\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector2_a0b1555274551eb9bdea20d762c446e99}{operator$\ast$=} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector2_a27a0da5b4cfa49ea92dd16107692775b}{operator/=} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1Vector2_a62102e9d75364c6be43723867cec3df8}{operator+} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Vec2) const 
+\begin{DoxyCompactList}\small\item\em Addition Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1Vector2_a0aef47f873ef5a78707dd850d7d59504}{operator-\/} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Vec2) const 
+\begin{DoxyCompactList}\small\item\em Subraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1Vector2_a6a253bb2507b9254a102c0793bf0f215}{operator$\ast$} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Vec2) const 
+\begin{DoxyCompactList}\small\item\em Multiplaction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1Vector2_a3e4afe212ce1c739942aa8385c8f71e9}{operator/} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Vec2) const 
+\begin{DoxyCompactList}\small\item\em Division Operator. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Vector2_a68e65741d34a298e420657180bf03d75}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector2_a68e65741d34a298e420657180bf03d75}{X}}
+\label{d0/d2c/classphys_1_1Vector2_a68e65741d34a298e420657180bf03d75}
+
+\begin{DoxyCompactList}\small\item\em Coordinate on the X vector. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Vector2_ad1d77a1b2bf6c0040ecbd2b88b8a1ba4}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector2_ad1d77a1b2bf6c0040ecbd2b88b8a1ba4}{Y}}
+\label{d0/d2c/classphys_1_1Vector2_ad1d77a1b2bf6c0040ecbd2b88b8a1ba4}
+
+\begin{DoxyCompactList}\small\item\em Coordinate on the Y vector. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is used to represent a point on a 2 dimentional area, such as a screen. This contains an X and Y value used to represent coordinates. This also has a number of facilities to make converting to graphics subsystems as easy as possible. 
+
+Definition at line 61 of file vector2.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1Vector2_a1e9c6000e5acd162a49836414a27bac7}{
+\index{phys::Vector2@{phys::Vector2}!Vector2@{Vector2}}
+\index{Vector2@{Vector2}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{Vector2}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector2::Vector2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_a1e9c6000e5acd162a49836414a27bac7}
+
+
+Default Constructor. 
+
+Basic all zero initialization constructor. 
+
+Definition at line 48 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_ae8d3c95a5a60d12e706739cbadf01ffb}{
+\index{phys::Vector2@{phys::Vector2}!Vector2@{Vector2}}
+\index{Vector2@{Vector2}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{Vector2}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector2::Vector2 (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ x, }
+\item[{{\bf Real}}]{ y}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_ae8d3c95a5a60d12e706739cbadf01ffb}
+
+
+Real value Constructor. 
+
+Constructor that sets both vectors. 
+\begin{DoxyParams}{Parameters}
+\item[{\em X}]Coordinate on the X vector. \item[{\em Y}]Coordinate on the Y vector. \end{DoxyParams}
+
+
+Definition at line 54 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_af3dbb91ef994e19b68c84e4e26eafac3}{
+\index{phys::Vector2@{phys::Vector2}!Vector2@{Vector2}}
+\index{Vector2@{Vector2}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{Vector2}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector2::Vector2 (
+\begin{DoxyParamCaption}
+\item[{Ogre::Vector2}]{ Vec}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_af3dbb91ef994e19b68c84e4e26eafac3}
+
+
+Ogre Value Constructor. 
+
+Constructor that sets all values to match the Ogre vector. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec}]The vector to be copied to make this vector. \end{DoxyParams}
+
+
+Definition at line 60 of file vector2.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1Vector2_af12824b786ce4b91443b5dbd700dfd58}{
+\index{phys::Vector2@{phys::Vector2}!ExtractOgreVector2@{ExtractOgreVector2}}
+\index{ExtractOgreVector2@{ExtractOgreVector2}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{ExtractOgreVector2}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector2::ExtractOgreVector2 (
+\begin{DoxyParamCaption}
+\item[{Ogre::Vector2}]{ Ours}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_af12824b786ce4b91443b5dbd700dfd58}
+
+
+Copies an existing Ogre vector2. 
+
+This function will copy the values stored in an existing Ogre vector2 and set the values of this class to be the same. 
+\begin{DoxyParams}{Parameters}
+\item[{\em temp}]The vector2 to be extracted. \end{DoxyParams}
+
+
+Definition at line 73 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_adc6efedbdfdca596b719decc87ee2e4b}{
+\index{phys::Vector2@{phys::Vector2}!GetOgreVector2@{GetOgreVector2}}
+\index{GetOgreVector2@{GetOgreVector2}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{GetOgreVector2}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Vector2 phys::Vector2::GetOgreVector2 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d0/d2c/classphys_1_1Vector2_adc6efedbdfdca596b719decc87ee2e4b}
+
+
+Gets a Ogre vector2. 
+
+Creates a Ogre vector2 with values equal to this class and returns it. 
+
+Definition at line 65 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a074ca2a4d54925f745dbb9effd5c7e19}{
+\index{phys::Vector2@{phys::Vector2}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector2::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf phys::Vector2} \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_a074ca2a4d54925f745dbb9effd5c7e19}
+
+
+Equality Comparison Operator. 
+
+Returns true if X!=X or Y!=Y. If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2}. \end{DoxyParams}
+
+
+Definition at line 89 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a186c1da597e1471a9ee5b07cc8bb9fb8}{
+\index{phys::Vector2@{phys::Vector2}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector2::operator!= (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector2 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_a186c1da597e1471a9ee5b07cc8bb9fb8}
+
+
+Equality Comparison Operator. 
+
+Returns true if X!=X or Y!=Y. If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other Ogre::Vector2. \end{DoxyParams}
+
+
+Definition at line 103 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a6a253bb2507b9254a102c0793bf0f215}{
+\index{phys::Vector2@{phys::Vector2}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{ Vec2}
+\end{DoxyParamCaption}
+) const}}
+\label{d0/d2c/classphys_1_1Vector2_a6a253bb2507b9254a102c0793bf0f215}
+
+
+Multiplaction Operator. 
+
+Allows for multiplaction from a \hyperlink{classphys_1_1Vector2}{phys::Vector2} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \end{DoxyParams}
+
+
+Definition at line 161 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a59fa4aaadcccd04bf6de8fcd84b31c6d}{
+\index{phys::Vector2@{phys::Vector2}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ scalar}
+\end{DoxyParamCaption}
+) const}}
+\label{d0/d2c/classphys_1_1Vector2_a59fa4aaadcccd04bf6de8fcd84b31c6d}
+
+
+Scaling by multiplication. 
+
+This Multiplies X, Y and Z by scalar \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Vector2}{Vector2} that has been scaled 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by \end{DoxyParams}
+
+
+Definition at line 112 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a0b1555274551eb9bdea20d762c446e99}{
+\index{phys::Vector2@{phys::Vector2}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector2::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ scalar}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_a0b1555274551eb9bdea20d762c446e99}
+
+
+Scaling by multiplication. 
+
+This Multiplies X, Y and Z by scalar and stores the changes in this \hyperlink{classphys_1_1Vector2}{Vector2}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by. \end{DoxyParams}
+
+
+Definition at line 130 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a62102e9d75364c6be43723867cec3df8}{
+\index{phys::Vector2@{phys::Vector2}!operator+@{operator+}}
+\index{operator+@{operator+}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{ Vec2}
+\end{DoxyParamCaption}
+) const}}
+\label{d0/d2c/classphys_1_1Vector2_a62102e9d75364c6be43723867cec3df8}
+
+
+Addition Operator. 
+
+Allows for addition from a \hyperlink{classphys_1_1Vector2}{phys::Vector2} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \end{DoxyParams}
+
+
+Definition at line 145 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a0aef47f873ef5a78707dd850d7d59504}{
+\index{phys::Vector2@{phys::Vector2}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{ Vec2}
+\end{DoxyParamCaption}
+) const}}
+\label{d0/d2c/classphys_1_1Vector2_a0aef47f873ef5a78707dd850d7d59504}
+
+
+Subraction Operator. 
+
+Allows for subtraction from a \hyperlink{classphys_1_1Vector2}{phys::Vector2} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \end{DoxyParams}
+
+
+Definition at line 153 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a51f7d8ce03f7ab05137b277532edf93b}{
+\index{phys::Vector2@{phys::Vector2}!operator/@{operator/}}
+\index{operator/@{operator/}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ scalar}
+\end{DoxyParamCaption}
+) const}}
+\label{d0/d2c/classphys_1_1Vector2_a51f7d8ce03f7ab05137b277532edf93b}
+
+
+Scaling by Division. 
+
+This Diisionn X, Y and Z by scalar \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Vector2}{Vector2} that has been scaled 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by \end{DoxyParams}
+
+
+Definition at line 120 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a3e4afe212ce1c739942aa8385c8f71e9}{
+\index{phys::Vector2@{phys::Vector2}!operator/@{operator/}}
+\index{operator/@{operator/}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{ Vec2}
+\end{DoxyParamCaption}
+) const}}
+\label{d0/d2c/classphys_1_1Vector2_a3e4afe212ce1c739942aa8385c8f71e9}
+
+
+Division Operator. 
+
+Allows for division from a \hyperlink{classphys_1_1Vector2}{phys::Vector2} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \end{DoxyParams}
+
+
+Definition at line 169 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a27a0da5b4cfa49ea92dd16107692775b}{
+\index{phys::Vector2@{phys::Vector2}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector2::operator/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ scalar}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_a27a0da5b4cfa49ea92dd16107692775b}
+
+
+Scaling by Division. 
+
+This Division X, Y and Z by scalar and and stores the changes in this \hyperlink{classphys_1_1Vector2}{Vector2}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by \end{DoxyParams}
+
+
+Definition at line 136 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a2fe433e9401748547b19cc5be891ed52}{
+\index{phys::Vector2@{phys::Vector2}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector2::operator== (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector2 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_a2fe433e9401748547b19cc5be891ed52}
+
+
+Equality Comparison Operator. 
+
+Returns true if X==X and Y==Y. If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other Ogre::Vector2. \end{DoxyParams}
+
+
+Definition at line 96 of file vector2.cpp.
+
+\hypertarget{classphys_1_1Vector2_a89874b6def8107146ca7079a2de49360}{
+\index{phys::Vector2@{phys::Vector2}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::Vector2@{phys::Vector2}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector2::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf phys::Vector2} \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d0/d2c/classphys_1_1Vector2_a89874b6def8107146ca7079a2de49360}
+
+
+Equality Comparison Operator. 
+
+Returns true if X==X and Y==Y. If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2}. \end{DoxyParams}
+
+
+Definition at line 82 of file vector2.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+vector2.h\item 
+vector2.cpp\end{DoxyCompactItemize}

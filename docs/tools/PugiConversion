@@ -13,11 +13,11 @@ E_BADARGS=1
 E_MISSINGPUGIXML=3
 
 #Input Files
-PugiCppFile="PugiSrc/pugixml.cpp"
+PugiCppFile="pugisrc/pugixml.cpp"
 #PugiTempCppFile="PugiSrc/temp.cpp"
-PugiHFile="PugiSrc/pugixml.hpp"
-PugiConfigFile="PugiSrc/pugiconfig.hpp"
-PugiTempHFile="PugiSrc/temp.hpp"
+PugiHFile="pugisrc/pugixml.hpp"
+PugiConfigFile="pugisrc/pugiconfig.hpp"
+PugiTempHFile="pugisrc/temp.hpp"
 
 
 #Output Files
@@ -247,7 +247,7 @@ function FixNames
 
 	#WriterStream Class
 	sed -i -e 's|// Construct WriterInstance from an output stream object |/// @brief A constructor that accepts a stream of characters\n		/// @param stream A stream to send stuff to.|' $1
-	sed -i -e 's|WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);|\n		/// @brief A constructor that accepts a stream of wide characters\n		/// @param stream A stream to send stuff to.\n		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);|' $1
+	sed -i -e 's|WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);|\n		/// @brief A constructor that accepts a stream of wide characters\n		/// @param stream A stream to send stuff to.\n		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >\& stream);|' $1
 
 	#Attribute
 	sed -i -e 's|// Safe bool conversion operator|/// @brief Used to convert this attribute to a boolean value in a safe way\n		/// @return Returns true if the internal pointer AttributeStruct is set and false otherwise|' $1

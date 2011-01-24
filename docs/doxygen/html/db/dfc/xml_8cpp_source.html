@@ -3334,7 +3334,7 @@
 <a name="l03303"></a>03303         { 
 <a name="l03304"></a>03304         } 
 <a name="l03305"></a>03305  
-<a name="l03306"></a>03306         <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#ae170ab7c429b6f7149d3540243329dfa" title="A constructor that accepts a stream of characters.">WriterStream::WriterStream</a>(std::basic_ostream&lt;<span class="keywordtype">wchar_t</span>, std::char_traits&lt;wchar_t&gt; &gt;&amp; stream): narrow_stream(0), wide_stream(&amp;stream) 
+<a name="l03306"></a><a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#aaebcd545af8e44cf6556a46077f0a366">03306</a>         <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#ae170ab7c429b6f7149d3540243329dfa" title="A constructor that accepts a stream of characters.">WriterStream::WriterStream</a>(std::basic_ostream&lt;<span class="keywordtype">wchar_t</span>, std::char_traits&lt;wchar_t&gt; &gt;&amp; stream): narrow_stream(0), wide_stream(&amp;stream) 
 <a name="l03307"></a>03307         { 
 <a name="l03308"></a>03308         } 
 <a name="l03309"></a>03309  
@@ -3391,37 +3391,37 @@
 <a name="l03360"></a>03360                 <span class="keywordflow">return</span> _attr ? &amp;Attribute::_attr : 0; 
 <a name="l03361"></a>03361         } 
 <a name="l03362"></a>03362  
-<a name="l03363"></a>03363         <span class="keywordtype">bool</span> Attribute::operator!()<span class="keyword"> const </span>
+<a name="l03363"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a18cb9f6900b0fc9e246b36d90e5bea5b">03363</a>         <span class="keywordtype">bool</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a18cb9f6900b0fc9e246b36d90e5bea5b" title="Used to convert this attribute the opposite of it&amp;#39;s normal boolean value.">Attribute::operator!</a>()<span class="keyword"> const </span>
 <a name="l03364"></a>03364 <span class="keyword">        </span>{ 
 <a name="l03365"></a>03365                 <span class="keywordflow">return</span> !_attr; 
 <a name="l03366"></a>03366         } 
 <a name="l03367"></a>03367  
-<a name="l03368"></a>03368         <span class="keywordtype">bool</span> Attribute::operator==(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03368"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a68b6ba1299cc9a2019ec97b10bb8978b">03368</a>         <span class="keywordtype">bool</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a68b6ba1299cc9a2019ec97b10bb8978b" title="Compares the internal values to check equality.">Attribute::operator==</a>(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03369"></a>03369 <span class="keyword">        </span>{ 
 <a name="l03370"></a>03370                 <span class="keywordflow">return</span> (_attr == r._attr); 
 <a name="l03371"></a>03371         } 
 <a name="l03372"></a>03372          
-<a name="l03373"></a>03373         <span class="keywordtype">bool</span> Attribute::operator!=(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03373"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ae2371203e07dd781d2b38ba403b00816">03373</a>         <span class="keywordtype">bool</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ae2371203e07dd781d2b38ba403b00816" title="Compares the internal values to check inequality.">Attribute::operator!=</a>(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03374"></a>03374 <span class="keyword">        </span>{ 
 <a name="l03375"></a>03375                 <span class="keywordflow">return</span> (_attr != r._attr); 
 <a name="l03376"></a>03376         } 
 <a name="l03377"></a>03377  
-<a name="l03378"></a>03378         <span class="keywordtype">bool</span> Attribute::operator&lt;(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03378"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ac383f0c514e550fe992b1c0a0f3cbd7a">03378</a>         <span class="keywordtype">bool</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ac383f0c514e550fe992b1c0a0f3cbd7a" title="Compares the internal values to check for inequality.">Attribute::operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03379"></a>03379 <span class="keyword">        </span>{ 
 <a name="l03380"></a>03380                 <span class="keywordflow">return</span> (_attr &lt; r._attr); 
 <a name="l03381"></a>03381         } 
 <a name="l03382"></a>03382          
-<a name="l03383"></a>03383         <span class="keywordtype">bool</span> Attribute::operator&gt;(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03383"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ac778ad4d7aa3a179217de1425e220848">03383</a>         <span class="keywordtype">bool</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ac778ad4d7aa3a179217de1425e220848" title="Compares the internal values to check for inequality.">Attribute::operator&gt;</a>(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03384"></a>03384 <span class="keyword">        </span>{ 
 <a name="l03385"></a>03385                 <span class="keywordflow">return</span> (_attr &gt; r._attr); 
 <a name="l03386"></a>03386         } 
 <a name="l03387"></a>03387          
-<a name="l03388"></a>03388         <span class="keywordtype">bool</span> Attribute::operator&lt;=(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03388"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a3b73bd409a2b6b9a7d72c3affc96bae1">03388</a>         <span class="keywordtype">bool</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a3b73bd409a2b6b9a7d72c3affc96bae1" title="Compares the internal values to check for inequality.">Attribute::operator&lt;=</a>(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03389"></a>03389 <span class="keyword">        </span>{ 
 <a name="l03390"></a>03390                 <span class="keywordflow">return</span> (_attr &lt;= r._attr); 
 <a name="l03391"></a>03391         } 
 <a name="l03392"></a>03392          
-<a name="l03393"></a>03393         <span class="keywordtype">bool</span> Attribute::operator&gt;=(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03393"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ab1d63c57891107848492dc3316c95455">03393</a>         <span class="keywordtype">bool</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ab1d63c57891107848492dc3316c95455" title="Compares the internal values to check for inequality.">Attribute::operator&gt;=</a>(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03394"></a>03394 <span class="keyword">        </span>{ 
 <a name="l03395"></a>03395                 <span class="keywordflow">return</span> (_attr &gt;= r._attr); 
 <a name="l03396"></a>03396         } 
@@ -9663,7 +9663,7 @@
 <a name="l09632"></a>09632 <span class="comment"> */</span> 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 23 2011 18:15:26 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jan 24 2011 01:12:15 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

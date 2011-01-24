@@ -1,0 +1,385 @@
+\hypertarget{classphys_1_1xml_1_1Attribute}{
+\section{phys::xml::Attribute Class Reference}
+\label{da/ddf/classphys_1_1xml_1_1Attribute}\index{phys::xml::Attribute@{phys::xml::Attribute}}
+}
+
+
+A light-\/weight handle for manipulating attributes in DOM tree.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a962ad273e447bb714925c331e00cc3e7}{
+\hyperlink{classphys_1_1xml_1_1Attribute_a962ad273e447bb714925c331e00cc3e7}{Attribute} ()}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a962ad273e447bb714925c331e00cc3e7}
+
+\begin{DoxyCompactList}\small\item\em Constructs an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Attribute_a6786df9d66c675c5a55761a7d3d512a5}{Attribute} (\hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} $\ast$attr)
+\begin{DoxyCompactList}\small\item\em Constructs attribute from internal pointer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Attribute_ab2cf442667b8ad1b443f0512ccaedcf9}{operator unspecified\_\-bool\_\-type} () const 
+\begin{DoxyCompactList}\small\item\em Used to convert this attribute to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_a18cb9f6900b0fc9e246b36d90e5bea5b}{operator!} () const 
+\begin{DoxyCompactList}\small\item\em Used to convert this attribute the opposite of it's normal boolean value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_a68b6ba1299cc9a2019ec97b10bb8978b}{operator==} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check equality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_ae2371203e07dd781d2b38ba403b00816}{operator!=} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_ac383f0c514e550fe992b1c0a0f3cbd7a}{operator$<$} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_ac778ad4d7aa3a179217de1425e220848}{operator$>$} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_a3b73bd409a2b6b9a7d72c3affc96bae1}{operator$<$=} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_ab1d63c57891107848492dc3316c95455}{operator$>$=} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_ae986efee2893c4cff57e360f693d82ef}{
+bool {\bfseries empty} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ae986efee2893c4cff57e360f693d82ef}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_ab5b67f7dbda951ca1a82593e5635699f}{
+const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries name} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ab5b67f7dbda951ca1a82593e5635699f}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a96bfdbd42157114770a29813c56db05a}{
+const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries value} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a96bfdbd42157114770a29813c56db05a}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_ad865f6df7b8bb110371739a552b944da}{
+int {\bfseries as\_\-int} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ad865f6df7b8bb110371739a552b944da}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_addac363a40265e10f4770a69354f6ae2}{
+unsigned int {\bfseries as\_\-uint} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_addac363a40265e10f4770a69354f6ae2}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a7552167dde5eede5a8feafa1cc0dbee2}{
+double {\bfseries as\_\-double} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a7552167dde5eede5a8feafa1cc0dbee2}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a0d1a10da35266684221c7fedceb84d0d}{
+float {\bfseries as\_\-float} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a0d1a10da35266684221c7fedceb84d0d}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a55fc2218177050d4be21da447273ed0d}{
+bool {\bfseries as\_\-bool} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a55fc2218177050d4be21da447273ed0d}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a2db101b2ae348b45dc0345f9450506f8}{
+bool {\bfseries set\_\-name} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a2db101b2ae348b45dc0345f9450506f8}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a91f96b88a55b503593c39c7cc2c7a722}{
+bool {\bfseries set\_\-value} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a91f96b88a55b503593c39c7cc2c7a722}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_ae19876aff39d047230d444d3626a559e}{
+bool {\bfseries set\_\-value} (int rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ae19876aff39d047230d444d3626a559e}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a5ac914ed2da9f53d626dfd9bcf892ffb}{
+bool {\bfseries set\_\-value} (unsigned int rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a5ac914ed2da9f53d626dfd9bcf892ffb}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a038106b67d94097d57385155c877beab}{
+bool {\bfseries set\_\-value} (double rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a038106b67d94097d57385155c877beab}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a82f251b28bc47ba9c895abcc91c9d194}{
+bool {\bfseries set\_\-value} (bool rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a82f251b28bc47ba9c895abcc91c9d194}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_aae1cefd991086d19e46fbfee8b2177d1}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& {\bfseries operator=} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_aae1cefd991086d19e46fbfee8b2177d1}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a4b169613fcd57dc4eb4312ad4f08842f}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& {\bfseries operator=} (int rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a4b169613fcd57dc4eb4312ad4f08842f}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_ab0b03d2896e8225bc12bde676c845c56}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& {\bfseries operator=} (unsigned int rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ab0b03d2896e8225bc12bde676c845c56}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a07f4e485acd82989f7c5dea713334ad7}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& {\bfseries operator=} (double rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a07f4e485acd82989f7c5dea713334ad7}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a8cd071aa767c6856d9f6b45958af9974}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& {\bfseries operator=} (bool rhs)}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a8cd071aa767c6856d9f6b45958af9974}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_adc9eccad158b9f58c72ff6918431f915}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries next\_\-attribute} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_adc9eccad158b9f58c72ff6918431f915}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_af7c71a59a52293cfe67620611cc65cc4}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries previous\_\-attribute} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_af7c71a59a52293cfe67620611cc65cc4}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a8600500caea51d6341d8ca59a78c0464}{
+size\_\-t {\bfseries hash\_\-value} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a8600500caea51d6341d8ca59a78c0464}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a1bdbaa9dfbfe63afb9533a777a13fb8d}{
+\hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} $\ast$ {\bfseries internal\_\-object} () const }
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a1bdbaa9dfbfe63afb9533a777a13fb8d}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a1ed8790083a80b2604beba1c666bce6e}{
+class {\bfseries AttributeIterator}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a1ed8790083a80b2604beba1c666bce6e}
+
+\item 
+\hypertarget{classphys_1_1xml_1_1Attribute_a6db9d28bd448a131448276ee03de1e6d}{
+class {\bfseries Node}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a6db9d28bd448a131448276ee03de1e6d}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A light-\/weight handle for manipulating attributes in DOM tree. 
+
+Definition at line 337 of file xml.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1xml_1_1Attribute_a6786df9d66c675c5a55761a7d3d512a5}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!Attribute@{Attribute}}
+\index{Attribute@{Attribute}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{Attribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Attribute (
+\begin{DoxyParamCaption}
+\item[{{\bf AttributeStruct} $\ast$}]{ attr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a6786df9d66c675c5a55761a7d3d512a5}
+
+
+Constructs attribute from internal pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em attr}]An internal \hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} pointer containing all the data to create an attribute. \end{DoxyParams}
+
+
+Definition at line 3354 of file xml.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1Attribute_ab2cf442667b8ad1b443f0512ccaedcf9}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
+\index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator Attribute::unspecified\_\-bool\_\-type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ab2cf442667b8ad1b443f0512ccaedcf9}
+
+
+Used to convert this attribute to a boolean value in a safe way. 
+
+\begin{DoxyReturn}{Returns}
+Returns true if the internal pointer \hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} is set and false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 3358 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a18cb9f6900b0fc9e246b36d90e5bea5b}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator!@{operator!}}
+\index{operator!@{operator!}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator! (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a18cb9f6900b0fc9e246b36d90e5bea5b}
+
+
+Used to convert this attribute the opposite of it's normal boolean value. 
+
+This is described in the PugiXML source a a workaround for a borland c++ issue. \begin{DoxyReturn}{Returns}
+Returns false if the internal pointer \hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} is set and true otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 3363 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_ae2371203e07dd781d2b38ba403b00816}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ae2371203e07dd781d2b38ba403b00816}
+
+
+Compares the internal values to check inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns true if any of the internal values don't match between this and the other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. 
+\end{DoxyReturn}
+
+
+Definition at line 3373 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_ac383f0c514e550fe992b1c0a0f3cbd7a}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ac383f0c514e550fe992b1c0a0f3cbd7a}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is greater than this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+
+
+Definition at line 3378 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a3b73bd409a2b6b9a7d72c3affc96bae1}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$<$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a3b73bd409a2b6b9a7d72c3affc96bae1}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is greater than or equal to this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+
+
+Definition at line 3388 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a68b6ba1299cc9a2019ec97b10bb8978b}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a68b6ba1299cc9a2019ec97b10bb8978b}
+
+
+Compares the internal values to check equality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns true if all the internal values match between this and the other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. 
+\end{DoxyReturn}
+
+
+Definition at line 3368 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_ac778ad4d7aa3a179217de1425e220848}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ac778ad4d7aa3a179217de1425e220848}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is less than this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+
+
+Definition at line 3383 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_ab1d63c57891107848492dc3316c95455}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$>$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ab1d63c57891107848492dc3316c95455}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is less than or equal to this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+
+
+Definition at line 3393 of file xml.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\item 
+xml.cpp\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

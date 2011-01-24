@@ -296,15 +296,6 @@ namespace phys
         /// @class WriterStream
         /// @brief An implementation of @ref Writer intended for writing std::ostreams
 
-        // @fn WriterStream::Write
-		// @brief Writes data to the stream
-		// @param data A pointer to the data
-		// @param size The size of the data in bytes.
-
-		/// @fn WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream)
-		/// @memberof WriterStream
-		/// @brief A constructor that accepts a stream of wide characters
-		/// @param stream A stream to send stuff to.
 
 
 		/// @var WriterStream::narrow_stream
@@ -348,11 +339,46 @@ namespace phys
         /// @brief Constructs attribute from internal pointer.
         /// @param attr An internal AttributeStruct pointer containing all the data to create an attribute.
 
-        /// @fn %operator!()
-        /// @memberof Attribute
+        /// @fn Attribute::operator!() const
         /// @brief Used to convert this attribute the opposite of it's normal boolean value
         /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
         /// @return Returns false if the internal pointer AttributeStruct is set and true otherwise.
+
+        /// @fn Attribute::operator==(const Attribute& r) const;
+        /// @brief Compares the internal values to check equality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns true if all the internal values match between this and the other Attribute.
+
+        /// @fn Attribute::operator!=(const Attribute& r) const;
+        /// @brief Compares the internal values to check inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns true if any of the internal values don't match between this and the other @ref Attribute.
+
+        /// @fn Attribute::operator<(const Attribute& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Attribute is greater than this one as per sequential comparison of internal pointers.
+
+        /// @fn Attribute::operator>(const Attribute& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Attribute is less than this one as per sequential comparison of internal pointers.
+
+        /// @fn Attribute::operator<=(const Attribute& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Attribute is greater than or equal to this one as per sequential comparison of internal pointers.
+
+        /// @fn Attribute::operator>=(const Attribute& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Attribute is less than or equal to this one as per sequential comparison of internal pointers.
 
     }
 }
