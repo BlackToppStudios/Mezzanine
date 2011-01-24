@@ -273,15 +273,44 @@ namespace phys
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Writer
-        /// Interface for node printing (see @ref Node::print)
+        /// @brief Interface for node printing (see @ref Node::print)
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WriterFile
-        /// An implementation of @ref Writer intended for writing to FILEs as defined in stdio
+        /// @brief An implementation of @ref Writer intended for writing to FILEs as defined in stdio
+
+        /// @var WriterFile::file
+        /// @internal
+        /// @brief A pointer to a FILE as defined in stdio
+
+        /// @fn WriterFile::WriterFile(void* file)
+        /// @brief Construct a Writer from a FILE* object.
+        /// @param file The FILE to be written to. The FILE can be a File handle as per stdio or the standard input, output or even error. The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety.
+
+        // @fn WriterFile::Write
+        // @brief Writes data to a file.asdf
+		// @param data A pointer to the data.
+		// @param size The size of the data in bytes.
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WriterStream
-        /// An implementation of @ref Writer intended for writing std::ostreams
+        /// @brief An implementation of @ref Writer intended for writing std::ostreams
+
+        // @fn WriterStream::Write
+		// @brief Writes data to the stream
+		// @param data A pointer to the data
+		// @param size The size of the data in bytes.
+		/// @fn WriterStream::WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream)
+		/// @brief A constructor that accepts a stream of wide characters
+		/// @param stream A stream to send stuff to.
+
+
+		/// @var WriterStream::narrow_stream
+		/// @internal
+
+        /// @var WriterStream::wide_stream
+		/// @internal
+
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @def XML_DEPRECATED
@@ -302,9 +331,26 @@ namespace phys
         /// @internal
         /// @brief Links the  Pugi character datatype to match the Physgame phys::Characterdatatype
 
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Attribute
+        /// @brief A light-weight handle for manipulating attributes in DOM tree
 
+        /// @var Attribute::_attr
+        /// @internal
+        /// @brief Stores pointers to the attribute data and some metadata about the attribute.
 
+        /// @fn Attribute::Attribute()
+        /// @brief Constructs an empty Attribute.
 
+        /// @fn Attribute::Attribute(AttributeStruct* attr)
+        /// @brief Constructs attribute from internal pointer.
+        /// @param attr An internal AttributeStruct pointer containing all the data to create an attribute.
+
+        /// @fn %operator!()
+        /// @memberof Attribute
+        /// @brief Used to convert this attribute the opposite of it's normal boolean value
+        /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
+        /// @return Returns false if the internal pointer AttributeStruct is set and true otherwise.
 
     }
 }
