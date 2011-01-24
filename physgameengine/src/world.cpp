@@ -265,12 +265,20 @@ namespace phys
         this->Log("Created the Render Work");
         #endif
 
+        //Some managers depend on the functionality of other managers, so they must be initialized in order.
+        GetGraphicsManager()->Initialize();
+        GetPhysicsManager()->Initialize();
+
+        //Remaining Non-Critical managers get initialized.
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
-            (*Iter)->Initialize();
-            #ifdef PHYSDEBUG
-            this->LogStream << "Initializing " << (*Iter)->GetTypeName() << " Manager";
-            #endif
+            if((*Iter)->GetType() != ManagerBase::GraphicsManager && (*Iter)->GetType() != ManagerBase::PhysicsManager)
+            {
+                (*Iter)->Initialize();
+                #ifdef PHYSDEBUG
+                this->LogStream << "Initializing " << (*Iter)->GetTypeName() << " Manager";
+                #endif
+            }
         }
         HasSDLBeenInitialized = GetGraphicsManager()->HasSDLBeenInitialized();
 
