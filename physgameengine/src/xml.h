@@ -184,7 +184,7 @@ namespace phys
 		NodePcdata,		// Plain character data, i.e. 'text' 
 		NodeCdata,			// Character data, i.e. '<![CDATA[text]]>' 
 		NodeComment,		// Comment tag, i.e. '<!-- text -->' 
-		NodePi,			// Processing instruction, i.e. '<?name?>' 
+		NodePi,			// Processing instruction, i.e. '<?Name?>' 
 		NodeDeclaration,	// Document declaration, i.e. '<?xml version="1.0"?>' 
 		NodeDoctype		// Document type declaration, i.e. '<!DOCTYPE doc>' 
 	}; 
@@ -214,10 +214,10 @@ namespace phys
 	// This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default. 
 	const unsigned int ParseEol = 0x0020; 
 	 
- 	// This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default. 
+ 	// This flag determines if attribute Values are normalized using CDATA normalization rules during parsing. This flag is on by default. 
  	const unsigned int ParseWconvAttribute = 0x0040; 
  
- 	// This flag determines if attribute values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default. 
+ 	// This flag determines if attribute Values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default. 
  	const unsigned int ParseWnormAttribute = 0x0080; 
 	 
 	// This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. 
@@ -228,12 +228,12 @@ namespace phys
  
 	// The default parsing mode. 
 	// Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, 
-	// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
+	// End-of-Line characters are normalized, attribute Values are normalized using CDATA normalization rules. 
 	const unsigned int ParseDefault = ParseCdata | ParseEscapes | ParseWconvAttribute | ParseEol; 
  
 	// The full parsing mode. 
 	// Nodes of all types are added to the DOM tree, character/reference entities are expanded, 
-	// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
+	// End-of-Line characters are normalized, attribute Values are normalized using CDATA normalization rules. 
 	const unsigned int ParseFull = ParseDefault | ParsePi | ParseComments | ParseDeclaration | ParseDoctype; 
  
 	// These flags determine the DocumentEncoding of input data for XML document 
@@ -367,32 +367,32 @@ namespace phys
 		bool operator>=(const Attribute& r) const; 
  
 		// Check if attribute is empty 
-		bool empty() const; 
+		bool Empty() const; 
  
-		// Get attribute name/value, or "" if attribute is empty 
-		const char_t* name() const; 
-		const char_t* value() const; 
+		// Get attribute Name/Value, or "" if attribute is empty 
+		const char_t* Name() const; 
+		const char_t* Value() const; 
  
-		// Get attribute value as a number, or 0 if conversion did not succeed or attribute is empty 
-		int as_int() const; 
-		unsigned int as_uint() const; 
-		double as_double() const; 
-		float as_float() const; 
+		// Get attribute Value as a number, or 0 if conversion did not succeed or attribute is empty 
+		int AsInt() const; 
+		unsigned int AsUint() const; 
+		double AsDouble() const; 
+		float AsFloat() const; 
  
-		// Get attribute value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty 
-		bool as_bool() const; 
+		// Get attribute Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty 
+		bool AsBool() const; 
  
-		// Set attribute name/value (returns false if attribute is empty or there is not enough memory) 
-		bool set_name(const char_t* rhs); 
-		bool set_value(const char_t* rhs); 
+		// Set attribute Name/Value (returns false if attribute is empty or there is not enough memory) 
+		bool SetName(const char_t* rhs); 
+		bool SetValue(const char_t* rhs); 
  
-		// Set attribute value with type conversion (numbers are converted to strings, boolean is converted to "true"/"false") 
-		bool set_value(int rhs); 
-		bool set_value(unsigned int rhs); 
-		bool set_value(double rhs); 
-		bool set_value(bool rhs); 
+		// Set attribute Value with type conversion (numbers are converted to strings, boolean is converted to "true"/"false") 
+		bool SetValue(int rhs); 
+		bool SetValue(unsigned int rhs); 
+		bool SetValue(double rhs); 
+		bool SetValue(bool rhs); 
  
-		// Set attribute value (equivalent to set_value without error checking) 
+		// Set attribute Value (equivalent to SetValue without error checking) 
 		Attribute& operator=(const char_t* rhs); 
 		Attribute& operator=(int rhs); 
 		Attribute& operator=(unsigned int rhs); 
@@ -400,14 +400,14 @@ namespace phys
 		Attribute& operator=(bool rhs); 
  
 		// Get next/previous attribute in the attribute list of the parent node 
-		Attribute next_attribute() const; 
-		Attribute previous_attribute() const; 
+		Attribute NextAttribute() const; 
+		Attribute PreviousAttribute() const; 
  
-		// Get hash value (unique for handles to the same object) 
-		size_t hash_value() const; 
+		// Get hash Value (unique for handles to the same object) 
+		size_t HashValue() const; 
  
 		// Get internal pointer 
-		AttributeStruct* internal_object() const; 
+		AttributeStruct* InternalObject() const; 
 	}; 
  
 #ifdef __BORLANDC__ 
@@ -450,26 +450,26 @@ namespace phys
 		bool operator>=(const Node& r) const; 
  
 		// Check if node is empty. 
-		bool empty() const; 
+		bool Empty() const; 
  
 		// Get node type 
 		NodeType type() const; 
  
-		// Get node name/value, or "" if node is empty or it has no name/value 
-		const char_t* name() const; 
-		const char_t* value() const; 
+		// Get node Name/Value, or "" if node is empty or it has no Name/Value 
+		const char_t* Name() const; 
+		const char_t* Value() const; 
 	 
 		// Get attribute list 
-		Attribute first_attribute() const; 
-		Attribute last_attribute() const; 
+		Attribute FirstAttribute() const; 
+		Attribute LastAttribute() const; 
  
 		// Get children list 
-		Node first_child() const; 
-		Node last_child() const; 
+		Node FirstChild() const; 
+		Node LastChild() const; 
  
 		// Get next/previous sibling in the children list of the parent node 
-		Node next_sibling() const; 
-		Node previous_sibling() const; 
+		Node NextSibling() const; 
+		Node PreviousSibling() const; 
 		 
 		// Get parent node 
 		Node parent() const; 
@@ -477,27 +477,27 @@ namespace phys
 		// Get root of DOM tree this node belongs to 
 		Node root() const; 
  
-		// Get child, attribute or next/previous sibling with the specified name 
-		Node child(const char_t* name) const; 
-		Attribute attribute(const char_t* name) const; 
-		Node next_sibling(const char_t* name) const; 
-		Node previous_sibling(const char_t* name) const; 
+		// Get child, attribute or next/previous sibling with the specified Name 
+		Node child(const char_t* Name) const; 
+		Attribute attribute(const char_t* Name) const; 
+		Node NextSibling(const char_t* Name) const; 
+		Node PreviousSibling(const char_t* Name) const; 
  
-		// Get child value of current node; that is, value of the first child node of type PCDATA/CDATA 
-		const char_t* child_value() const; 
+		// Get child Value of current node; that is, Value of the first child node of type PCDATA/CDATA 
+		const char_t* child_Value() const; 
  
-		// Get child value of child with specified name. Equivalent to child(name).child_value(). 
-		const char_t* child_value(const char_t* name) const; 
+		// Get child Value of child with specified Name. Equivalent to child(Name).child_Value(). 
+		const char_t* child_Value(const char_t* Name) const; 
  
-		// Set node name/value (returns false if node is empty, there is not enough memory, or node can not have name/value) 
-		bool set_name(const char_t* rhs); 
-		bool set_value(const char_t* rhs); 
+		// Set node Name/Value (returns false if node is empty, there is not enough memory, or node can not have Name/Value) 
+		bool SetName(const char_t* rhs); 
+		bool SetValue(const char_t* rhs); 
 		 
-		// Add attribute with specified name. Returns added attribute, or empty attribute on errors. 
-		Attribute append_attribute(const char_t* name); 
-		Attribute prepend_attribute(const char_t* name); 
-		Attribute insert_attribute_after(const char_t* name, const Attribute& attr); 
-		Attribute insert_attribute_before(const char_t* name, const Attribute& attr); 
+		// Add attribute with specified Name. Returns added attribute, or empty attribute on errors. 
+		Attribute append_attribute(const char_t* Name); 
+		Attribute prepend_attribute(const char_t* Name); 
+		Attribute insert_attribute_after(const char_t* Name, const Attribute& attr); 
+		Attribute insert_attribute_before(const char_t* Name, const Attribute& attr); 
  
 		// Add a copy of the specified attribute. Returns added attribute, or empty attribute on errors. 
 		Attribute append_copy(const Attribute& proto); 
@@ -511,11 +511,11 @@ namespace phys
 		Node insert_child_after(NodeType type, const Node& node); 
 		Node insert_child_before(NodeType type, const Node& node); 
  
-		// Add child element with specified name. Returns added node, or empty node on errors. 
-		Node append_child(const char_t* name); 
-		Node prepend_child(const char_t* name); 
-		Node insert_child_after(const char_t* name, const Node& node); 
-		Node insert_child_before(const char_t* name, const Node& node); 
+		// Add child element with specified Name. Returns added node, or empty node on errors. 
+		Node append_child(const char_t* Name); 
+		Node prepend_child(const char_t* Name); 
+		Node insert_child_after(const char_t* Name, const Node& node); 
+		Node insert_child_before(const char_t* Name, const Node& node); 
  
 		// Add a copy of the specified node as a child. Returns added node, or empty node on errors. 
 		Node append_copy(const Node& proto); 
@@ -525,18 +525,18 @@ namespace phys
  
 		// Remove specified attribute 
 		bool remove_attribute(const Attribute& a); 
-		bool remove_attribute(const char_t* name); 
+		bool remove_attribute(const char_t* Name); 
  
 		// Remove specified child 
 		bool remove_child(const Node& n); 
-		bool remove_child(const char_t* name); 
+		bool remove_child(const char_t* Name); 
  
 		// Find attribute using predicate. Returns first attribute for which predicate returned true. 
 		template <typename Predicate> Attribute find_attribute(Predicate pred) const 
 		{ 
 			if (!_root) return Attribute(); 
 			 
-			for (Attribute attrib = first_attribute(); attrib; attrib = attrib.next_attribute()) 
+			for (Attribute attrib = FirstAttribute(); attrib; attrib = attrib.NextAttribute()) 
 				if (pred(attrib)) 
 					return attrib; 
 		 
@@ -548,7 +548,7 @@ namespace phys
 		{ 
 			if (!_root) return Node(); 
 	 
-			for (Node node = first_child(); node; node = node.next_sibling()) 
+			for (Node node = FirstChild(); node; node = node.NextSibling()) 
 				if (pred(node)) 
 					return node; 
 		 
@@ -560,28 +560,28 @@ namespace phys
 		{ 
 			if (!_root) return Node(); 
  
-			Node cur = first_child(); 
+			Node cur = FirstChild(); 
 			 
 			while (cur._root && cur._root != _root) 
 			{ 
 				if (pred(cur)) return cur; 
  
-				if (cur.first_child()) cur = cur.first_child(); 
-				else if (cur.next_sibling()) cur = cur.next_sibling(); 
+				if (cur.FirstChild()) cur = cur.FirstChild(); 
+				else if (cur.NextSibling()) cur = cur.NextSibling(); 
 				else 
 				{ 
-					while (!cur.next_sibling() && cur._root != _root) cur = cur.parent(); 
+					while (!cur.NextSibling() && cur._root != _root) cur = cur.parent(); 
  
-					if (cur._root != _root) cur = cur.next_sibling(); 
+					if (cur._root != _root) cur = cur.NextSibling(); 
 				} 
 			} 
  
 			return Node(); 
 		} 
  
-		// Find child node by attribute name/value 
-		Node find_child_by_attribute(const char_t* name, const char_t* attr_name, const char_t* attr_value) const; 
-		Node find_child_by_attribute(const char_t* attr_name, const char_t* attr_value) const; 
+		// Find child node by attribute Name/Value 
+		Node find_child_by_attribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const; 
+		Node find_child_by_attribute(const char_t* attr_Name, const char_t* attr_Value) const; 
  
 	#ifndef XML_NO_STL 
 		// Get the absolute node path from root as a text string. 
@@ -589,7 +589,7 @@ namespace phys
 	#endif 
  
 		// Search for a node by path consisting of node names and . or .. elements. 
-		Node first_element_by_path(const char_t* path, char_t delimiter = '/') const; 
+		Node FirstElement_by_path(const char_t* path, char_t delimiter = '/') const; 
  
 		// Recursively traverse subtree with TreeWalker 
 		bool traverse(TreeWalker& walker); 
@@ -626,13 +626,13 @@ namespace phys
 		attribute_iterator attributes_end() const; 
  
 		// Get node Offset in parsed file/string (in char_t units) for debugging purposes 
-		ptrdiff_t Offset_debug() const; 
+		ptrdiff_t OffSetDebug() const; 
  
-		// Get hash value (unique for handles to the same object) 
-		size_t hash_value() const; 
+		// Get hash Value (unique for handles to the same object) 
+		size_t HashValue() const; 
  
 		// Get internal pointer 
-		NodeStruct* internal_object() const; 
+		NodeStruct* InternalObject() const; 
 	}; 
  
 #ifdef __BORLANDC__ 
@@ -655,7 +655,7 @@ namespace phys
 	public: 
 		// Iterator traits 
 		typedef ptrdiff_t difference_type; 
-		typedef Node value_type; 
+		typedef Node Value_type; 
 		typedef Node* pointer; 
 		typedef Node& reference; 
  
@@ -697,7 +697,7 @@ namespace phys
 	public: 
 		// Iterator traits 
 		typedef ptrdiff_t difference_type; 
-		typedef Attribute value_type; 
+		typedef Attribute Value_type; 
 		typedef Attribute* pointer; 
 		typedef Attribute& reference; 
  
@@ -771,7 +771,7 @@ namespace phys
 		StatusBadStartElement,   // Parsing error occurred while parsing start element tag 
 		StatusBadAttribute,	   // Parsing error occurred while parsing element attribute 
 		StatusBadEndElement,	 // Parsing error occurred while parsing end element tag 
-		StatusEndElementMismatch // There was a mismatch of start-end tags (closing tag had incorrect name, some tag was not closed or there was an excessive closing tag) 
+		StatusEndElementMismatch // There was a mismatch of start-end tags (closing tag had incorrect Name, some tag was not closed or there was an excessive closing tag) 
 	}; 
  
 	// Parsing result 
@@ -913,23 +913,23 @@ namespace phys
 		XPathVariable& operator=(const XPathVariable&); 
 		 
 	public: 
-		// Get variable name 
-		const char_t* name() const; 
+		// Get variable Name 
+		const char_t* Name() const; 
  
 		// Get variable type 
 		XPathValueType type() const; 
  
-		// Get variable value; no type conversion is performed, default value (false, NaN, empty string, empty node set) is returned on type mismatch error 
+		// Get variable Value; no type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on type mismatch error 
 		bool get_boolean() const; 
 		double get_number() const; 
 		const char_t* get_string() const; 
 		const XPathNodeSet& get_NodeSet() const; 
  
-		// Set variable value; no type conversion is performed, false is returned on type mismatch error 
-		bool set(bool value); 
-		bool set(double value); 
-		bool set(const char_t* value); 
-		bool set(const XPathNodeSet& value); 
+		// Set variable Value; no type conversion is performed, false is returned on type mismatch error 
+		bool set(bool Value); 
+		bool set(double Value); 
+		bool set(const char_t* Value); 
+		bool set(const XPathNodeSet& Value); 
 	}; 
  
 	// A set of XPath variables 
@@ -942,7 +942,7 @@ namespace phys
 		XPathVariableSet(const XPathVariableSet&); 
 		XPathVariableSet& operator=(const XPathVariableSet&); 
  
-		XPathVariable* find(const char_t* name) const; 
+		XPathVariable* find(const char_t* Name) const; 
  
 	public: 
 		// Default constructor/destructor 
@@ -950,17 +950,17 @@ namespace phys
 		~XPathVariableSet(); 
  
 		// Add a new variable or get the existing one, if the types match 
-		XPathVariable* add(const char_t* name, XPathValueType type); 
+		XPathVariable* add(const char_t* Name, XPathValueType type); 
  
-		// Set value of an existing variable; no type conversion is performed, false is returned if there is no such variable or if types mismatch 
-		bool set(const char_t* name, bool value); 
-		bool set(const char_t* name, double value); 
-		bool set(const char_t* name, const char_t* value); 
-		bool set(const char_t* name, const XPathNodeSet& value); 
+		// Set Value of an existing variable; no type conversion is performed, false is returned if there is no such variable or if types mismatch 
+		bool set(const char_t* Name, bool Value); 
+		bool set(const char_t* Name, double Value); 
+		bool set(const char_t* Name, const char_t* Value); 
+		bool set(const char_t* Name, const XPathNodeSet& Value); 
  
-		// Get existing variable by name 
-		XPathVariable* get(const char_t* name); 
-		const XPathVariable* get(const char_t* name) const; 
+		// Get existing variable by Name 
+		XPathVariable* get(const char_t* Name); 
+		const XPathVariable* get(const char_t* Name) const; 
 	}; 
  
 	// A compiled XPath query object 
@@ -987,21 +987,21 @@ namespace phys
 		// Get query expression return type 
 		XPathValueType return_type() const; 
 		 
-		// Evaluate expression as boolean value in the specified context; performs type conversion if necessary. 
+		// Evaluate expression as boolean Value in the specified context; performs type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		bool evaluate_boolean(const XPathNode& n) const; 
 		 
-		// Evaluate expression as double value in the specified context; performs type conversion if necessary. 
+		// Evaluate expression as double Value in the specified context; performs type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		double evaluate_number(const XPathNode& n) const; 
 		 
 	#ifndef XML_NO_STL 
-		// Evaluate expression as string value in the specified context; performs type conversion if necessary. 
+		// Evaluate expression as string Value in the specified context; performs type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		string_t evaluate_string(const XPathNode& n) const; 
 	#endif 
 		 
-		// Evaluate expression as string value in the specified context; performs type conversion if necessary. 
+		// Evaluate expression as string Value in the specified context; performs type conversion if necessary. 
 		// At most capacity characters are written to the destination buffer, full result size is returned (includes terminating zero). 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty  set instead. 
@@ -1132,7 +1132,7 @@ namespace phys
 		XPathNode first() const; 
 		 
 		// Check if collection is empty 
-		bool empty() const; 
+		bool Empty() const; 
 	 
 	private: 
 		type_t _type; 
@@ -1148,12 +1148,12 @@ namespace phys
  
 #ifndef XML_NO_STL 
 	// Convert wide string to UTF8 
-	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PHYS_LIB as_utf8(const wchar_t* str); 
-	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PHYS_LIB as_utf8(const std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >& str); 
+	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PHYS_LIB AsUtf8(const wchar_t* str); 
+	std::basic_string<char, std::char_traits<char>, std::allocator<char> > PHYS_LIB AsUtf8(const std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >& str); 
 	 
 	// Convert UTF8 to wide string 
-	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PHYS_LIB as_wide(const char* str); 
-	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PHYS_LIB as_wide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str); 
+	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PHYS_LIB AsWide(const char* str); 
+	std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > PHYS_LIB AsWide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str); 
 #endif 
  
 	// Memory allocation function interface; returns pointer to allocated memory or NULL on failure 
@@ -1163,7 +1163,7 @@ namespace phys
 	typedef void (*deallocation_function)(void* ptr); 
  
 	// Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. 
-	void PHYS_LIB set_memory_management_functions(allocation_function allocate, deallocation_function deallocate); 
+	void PHYS_LIB SetMemory_management_functions(allocation_function allocate, deallocation_function deallocate); 
 	 
 	// Get current memory management functions 
 	allocation_function PHYS_LIB get_memory_allocation_function(); 

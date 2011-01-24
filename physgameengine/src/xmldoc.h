@@ -380,6 +380,21 @@ namespace phys
         /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
         /// @return Returns True if the other @ref Attribute is less than or equal to this one as per sequential comparison of internal pointers.
 
+        /// @fn Attribute::Empty() const;
+        /// @brief Is this storing anything at all?
+        /// @return Returns True if this @ref Attribute is storing nothing. False if it is storing anything.
+
+        /// @fn Attribute::Name() const;
+        /// @brief Get the name of this @ref Attribute.
+        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the name.
+        /// @warning returns "" if attribute is empty.
+
+        /// @fn Attribute::Value() const;
+        /// @brief Get the Value of this @ref Attribute.
+        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the value.
+        /// @warning returns "" if attribute is empty.
+
+
     }
 }
 #endif

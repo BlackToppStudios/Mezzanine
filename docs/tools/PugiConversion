@@ -227,7 +227,21 @@ function FixNames
 	sed -i -e 's|_stream->Write|_stream->write|g' $1	#These 2 lines fixe mistakes made by the above line
 	sed -i -e 's|fWrite|fwrite|g' $1
 
-	#
+	#Common class member
+	sed -i -e 's|set_\(.\)\([a-z]*\)|Set\U\1\L\2|g' $1
+	sed -i -e 's|as_\(.\)\([a-z]*\)|As\U\1\L\2|g' $1
+	sed -i -e 's|next_\(.\)\([a-z]*\)|Next\U\1\L\2|g' $1
+	sed -i -e 's|previous_\(.\)\([a-z]*\)|Previous\U\1\L\2|g' $1
+	sed -i -e 's|first_\(.\)\([a-z]*\)|First\U\1\L\2|g' $1
+	sed -i -e 's|last_\(.\)\([a-z]*\)|Last\U\1\L\2|g' $1
+	sed -i -e 's|hash_value|HashValue|g' $1								
+	sed -i -e 's|internal_object|InternalObject|g' $1								
+
+	#The Attribute class
+	sed -i -e 's|empty(|Empty(|g' $1
+	sed -i -e 's|\([^e]\)name\([^s]\)|\1Name\2|g' $1
+	#sed -i -e 's|\([^e]\)name\([^s]\)|\1Name\2|g' $1 #done twice to get instances of like
+	sed -i -e 's|value|Value|g' $1
 
 	###############################
 	#Documentation that was not put in xmldoc.h
@@ -251,7 +265,6 @@ function FixNames
 
 	#Attribute
 	sed -i -e 's|// Safe bool conversion operator|/// @brief Used to convert this attribute to a boolean value in a safe way\n		/// @return Returns true if the internal pointer AttributeStruct is set and false otherwise|' $1
-	#sed -i -e 's|// Borland C++ workaround|/// @brief Used to convert this attribute the opposite of it`s normal boolean value\n		/// @details This is described in the PugiXML source a a workaround for a borland c++ issue.\n		/// @return Returns false if the internal pointer AttributeStruct is set and true otherwise.|' $1
 
 
 	#another clean line to copy/paste
