@@ -300,7 +300,9 @@ namespace phys
 		// @brief Writes data to the stream
 		// @param data A pointer to the data
 		// @param size The size of the data in bytes.
-		/// @fn WriterStream::WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream)
+
+		/// @fn WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream)
+		/// @memberof WriterStream
 		/// @brief A constructor that accepts a stream of wide characters
 		/// @param stream A stream to send stuff to.
 
