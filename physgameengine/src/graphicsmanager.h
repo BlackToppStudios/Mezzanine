@@ -49,6 +49,8 @@ namespace Ogre
     class RenderWindow;
 }
 
+class SDL_Surface;
+
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
@@ -84,11 +86,17 @@ namespace phys
             /// do not support arbitrary resolutions in fullscreen mode.
             void Construct( const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
 
+            void CreateRenderWindow();
+            void DestroyRenderWindow();
+
             Ogre::Timer *RenderTimer;
 
             Ogre::RenderWindow* OgreGameWindow;
 
+            SDL_Surface* SDLscreen;
+
             Whole FrameDelay;
+            bool SDLBeenInitialized;
 
         public:
             /// @brief Basic constructor
@@ -103,6 +111,9 @@ namespace phys
             /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
             /// arbitrary resolutions in fullscreen mode.
             GraphicsManager(const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
+
+            /// @brief Class Destructor.
+            ~GraphicsManager();
 
             /// @brief Gets the Fullscreen Setting
             /// @details Gets the Fullscreen Setting
@@ -139,6 +150,10 @@ namespace phys
             /// @param Width_ The new desired Width for the rendering area as a whole number
             /// @param Height_ The new desired Width for the rendering area as a whole number
             void setRenderResolution(const Whole &Width_, const Whole &Height_);
+
+            /// @brief Gets whether or not SDL has been started.
+            /// @return Returns a bool indicating whether or not SDL has been initialized yet.
+            bool HasSDLBeenInitialized();
 
             /// @brief This Shows an Engine Generated Configuration Screen
             /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration

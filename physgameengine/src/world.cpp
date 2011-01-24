@@ -63,6 +63,7 @@
 #include "soundmanager.h"
 #include "resourcemanager.h"
 #include "scenemanager.h"
+#include "timermanager.h"
 #include "uimanager.h"
 
 #include "actorcontainervector.h"
@@ -259,7 +260,7 @@ namespace phys
         this->Log("Loaded Graphics Settings");
         #endif
 
-        this->CreateRenderWindow();
+        //this->CreateRenderWindow();
         #ifdef PHYSDEBUG
         this->Log("Created the Render Work");
         #endif
@@ -271,6 +272,7 @@ namespace phys
             this->LogStream << "Initializing " << (*Iter)->GetTypeName() << " Manager";
             #endif
         }
+        HasSDLBeenInitialized = GetGraphicsManager()->HasSDLBeenInitialized();
 
         if(CallMainLoop)
         {
@@ -332,7 +334,7 @@ namespace phys
         }//End of main loop
 
         //Some after loop cleanup
-        this->DestroyRenderWindow();
+        //this->DestroyRenderWindow();
     }
 
     void  World::DoMainLoopLogging()
@@ -434,11 +436,11 @@ namespace phys
 
         //viewport connects camera and render window
         Ogre::Viewport* OgreViewport = NULL;
-        OgreViewport = this->GetGraphicsManager()->GetOgreWindowPointer()->addViewport(camera->Cam);
+        OgreViewport = this->GetGraphicsManager()->GetOgreWindowPointer()->addViewport(camera->GetOgreCamera());
         this->GetCameraManager()->Viewports["DefaultViewport"] = OgreViewport;
 
         //setting the aspect ratio must be done after we setup the viewport
-        camera->Cam->setAspectRatio( Ogre::Real(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
+        camera->SetAspectRatio( (Real)(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
         #ifdef PHYSDEBUG
         this->Log("Configured Viewport and Aspect Ratio");
         #endif
@@ -663,6 +665,11 @@ namespace phys
     ResourceManager* World::GetResourceManager(const short unsigned int &WhichOne)
     {
         return dynamic_cast<ResourceManager*> (this->GetManager(ManagerBase::ResourceManager, WhichOne));
+    }
+
+    TimerManager* World::GetTimerManager(const short unsigned int &WhichOne)
+    {
+        return dynamic_cast<TimerManager*> (this->GetManager(ManagerBase::TimerManager, WhichOne));
     }
 
     UIManager* World::GetUIManager(const short unsigned int &WhichOne)

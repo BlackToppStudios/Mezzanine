@@ -59,6 +59,7 @@ namespace phys
 {
     class Camera;
     class SceneManager;
+    class GraphicsManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CameraManager
     /// @headerfile cameramanager.h
@@ -70,6 +71,7 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     class PHYS_LIB CameraManager : public ManagerBase {
         protected:
+            friend class GraphicsManager;
             friend class World;
             friend class Camera;
             std::map< String, Ogre::Viewport* > Viewports;

@@ -120,6 +120,7 @@ namespace phys
     class GraphicsManager;
     class SoundManager;
     class ResourceManager;
+    class TimerManager;
     //namespace UI
     //{
         class UIManager;
@@ -483,6 +484,11 @@ namespace phys
             /// @param WhichOne If you have multiple ResourceManagers this will choose which one to return.
             /// @return This returns a pointer to a ResourceManager, or a NULL pointer if no matching manager exists.
             ResourceManager* GetResourceManager(const short unsigned int &WhichOne=0);
+
+            /// @brief This gets the TimerManager from the manager list.
+            /// @param WhichOne If you have multiple TimerManagers this will choose which one to return.
+            /// @return This returns a pointer to a TimerManager, or a NULL pointer if no matching manager exists.
+            TimerManager* GetTimerManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the UIManager from the manager list.
             /// @param WhichOne If you have multiple UIManagers this will choose which one to return.

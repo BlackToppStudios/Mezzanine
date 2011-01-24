@@ -200,6 +200,11 @@ namespace phys
         zoom=0-zoom;
         this->Cam->moveRelative(Ogre::Vector3(0,0,zoom));
     }
+
+    Ogre::Camera* Camera::GetOgreCamera()
+    {
+        return Cam;
+    }
 }//phys
 
 #endif
