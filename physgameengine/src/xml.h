@@ -317,8 +317,6 @@ namespace phys
 	class PHYS_LIB WriterStream: public Writer
 	{
 	public:
-		/// @brief A constructor that accepts a stream of characters
-		/// @param stream A stream to send stuff to.
 		WriterStream(std::basic_ostream<char, std::char_traits<char> >& stream);
 
 		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);
