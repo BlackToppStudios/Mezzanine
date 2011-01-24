@@ -300,6 +300,10 @@ namespace phys
 		// @brief Writes data to the stream
 		// @param data A pointer to the data
 		// @param size The size of the data in bytes.
+		/// @fn WriterStream::WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream)
+		/// @brief A constructor that accepts a stream of wide characters
+		/// @param stream A stream to send stuff to.
+
 
 		/// @var WriterStream::narrow_stream
 		/// @internal
@@ -342,11 +346,11 @@ namespace phys
         /// @brief Constructs attribute from internal pointer.
         /// @param attr An internal AttributeStruct pointer containing all the data to create an attribute.
 
-
-        // @fn Attribute::operator!()
-        // @brief Used to convert this attribute the opposite of it's normal boolean value
-        // @details This is described in the PugiXML source a a workaround for a borland c++ issue.
-        // @return Returns false if the internal pointer AttributeStruct is set and true otherwise.
+        /// @fn %operator!()
+        /// @memberof Attribute
+        /// @brief Used to convert this attribute the opposite of it's normal boolean value
+        /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
+        /// @return Returns false if the internal pointer AttributeStruct is set and true otherwise.
 
     }
 }

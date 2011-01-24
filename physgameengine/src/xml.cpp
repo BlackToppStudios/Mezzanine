@@ -4281,9 +4281,7 @@ namespace phys
 					cur = cur.next_sibling(); 
 				else 
 				{ 
-					/// @brief Used to convert this attribute the opposite of it`s normal boolean value
-		/// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
-		/// @return Returns false if the internal pointer AttributeStruct is set and true otherwise. 
+					// Borland C++ workaround 
 					while (!cur.next_sibling() && cur != *this && (bool)cur.parent()) 
 					{ 
 						--walker._depth; 
