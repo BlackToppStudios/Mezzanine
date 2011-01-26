@@ -22,7 +22,7 @@ A light-\/weight handle for manipulating attributes in DOM tree.
 \hyperlink{classphys_1_1xml_1_1Attribute_a6786df9d66c675c5a55761a7d3d512a5}{Attribute} (\hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} $\ast$attr)
 \begin{DoxyCompactList}\small\item\em Constructs attribute from internal pointer. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Attribute_ab2cf442667b8ad1b443f0512ccaedcf9}{operator unspecified\_\-bool\_\-type} () const 
-\begin{DoxyCompactList}\small\item\em Used to convert this attribute to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Used to convert this to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1Attribute_a18cb9f6900b0fc9e246b36d90e5bea5b}{operator!} () const 
 \begin{DoxyCompactList}\small\item\em Used to convert this attribute the opposite of it's normal boolean value. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1Attribute_a68b6ba1299cc9a2019ec97b10bb8978b}{operator==} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&r) const 
@@ -365,10 +365,10 @@ Definition at line 3398 of file xml.cpp.
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ab2cf442667b8ad1b443f0512ccaedcf9}
 
 
-Used to convert this attribute to a boolean value in a safe way. 
+Used to convert this to a boolean value in a safe way. 
 
 \begin{DoxyReturn}{Returns}
-Returns true if the internal pointer \hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} is set and false otherwise 
+Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
 \end{DoxyReturn}
 
 

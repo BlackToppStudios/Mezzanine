@@ -473,6 +473,69 @@ namespace phys
 		/// @return A void pointer to the internal data.
 		/// @internal
 
+        /// @fn operator&&(const Attribute& lhs, bool rhs);
+        /// @brief Used to work around a Borland c++ issue casting @ref Attribute class instances to boolean values.
+        /// @param lhs Left Hand Side of the operator.
+        /// @param rhs Right Hand Side of the operator.
+        /// @return A bool that has the correct value for a && operation.
+
+        /// @fn operator||(const Attribute& lhs, bool rhs);
+        /// @brief Used to work around a Borland c++ issue casting @ref Attribute class instances to boolean values.
+        /// @param lhs Left Hand Side of the operator.
+        /// @param rhs Right Hand Side of the operator.
+        /// @return A bool that has the correct value for a || operation.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Node
+        /// @brief A light-weight handle for manipulating nodes in DOM tree
+
+        /// @var Node::_root
+        /// @internal
+        /// @brief Stores pointers to the Node data and some metadata.
+
+        /// @fn Node::Node()
+        /// @brief Default constructor. Constructs an empty node.
+
+        /// @fn Node::operator!() const
+        /// @brief Used to convert this node the opposite of it's normal boolean value
+        /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
+        /// @return Returns false if the internal pointer NodeStruct is set and true otherwise.
+
+        /// @fn Node::operator==(const Node& r) const;
+        /// @brief Compares the internal values to check equality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns true if all the internal values match between this and the other Node.
+
+        /// @fn Node::operator!=(const Node& r) const;
+        /// @brief Compares the internal values to check inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns true if any of the internal values don't match between this and the other @ref Node.
+
+        /// @fn Node::operator<(const Node& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Node is greater than this one as per sequential comparison of internal pointers.
+
+        /// @fn Node::operator>(const Node& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Node is less than this one as per sequential comparison of internal pointers.
+
+        /// @fn Node::operator<=(const Node& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Node is greater than or equal to this one as per sequential comparison of internal pointers.
+
+        /// @fn Node::operator>=(const Node& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Node is less than or equal to this one as per sequential comparison of internal pointers.
 
     }
 }

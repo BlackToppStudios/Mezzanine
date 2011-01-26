@@ -503,43 +503,106 @@
 <a name="l00472"></a>00472 <span class="comment">                /// @brief Retrieve a pointer to the internal data.</span>
 <a name="l00473"></a>00473 <span class="comment">                /// @return A void pointer to the internal data.</span>
 <a name="l00474"></a>00474 <span class="comment">                /// @internal</span>
-<a name="l00475"></a>00475 <span class="comment"></span>
-<a name="l00476"></a>00476 
-<a name="l00477"></a>00477     }
-<a name="l00478"></a>00478 }
-<a name="l00479"></a>00479 <span class="preprocessor">#endif</span>
-<a name="l00480"></a>00480 <span class="preprocessor"></span>
-<a name="l00481"></a>00481 <span class="comment">/*</span>
-<a name="l00482"></a>00482 <span class="comment"> *</span>
-<a name="l00483"></a>00483 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l00484"></a>00484 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l00485"></a>00485 <span class="comment"> *</span>
-<a name="l00486"></a>00486 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l00487"></a>00487 <span class="comment"> *</span>
-<a name="l00488"></a>00488 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l00489"></a>00489 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l00490"></a>00490 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l00491"></a>00491 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l00492"></a>00492 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l00493"></a>00493 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l00494"></a>00494 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l00495"></a>00495 <span class="comment"> * conditions:</span>
-<a name="l00496"></a>00496 <span class="comment"> *</span>
-<a name="l00497"></a>00497 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l00498"></a>00498 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l00499"></a>00499 <span class="comment"> *</span>
-<a name="l00500"></a>00500 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l00501"></a>00501 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l00502"></a>00502 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l00503"></a>00503 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l00504"></a>00504 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l00505"></a>00505 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l00506"></a>00506 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l00507"></a>00507 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l00508"></a>00508 <span class="comment"> */</span>
+<a name="l00475"></a>00475 <span class="comment"></span><span class="comment"></span>
+<a name="l00476"></a>00476 <span class="comment">        /// @fn operator&amp;&amp;(const Attribute&amp; lhs, bool rhs);</span>
+<a name="l00477"></a>00477 <span class="comment">        /// @brief Used to work around a Borland c++ issue casting @ref Attribute class instances to boolean values.</span>
+<a name="l00478"></a>00478 <span class="comment">        /// @param lhs Left Hand Side of the operator.</span>
+<a name="l00479"></a>00479 <span class="comment">        /// @param rhs Right Hand Side of the operator.</span>
+<a name="l00480"></a>00480 <span class="comment">        /// @return A bool that has the correct value for a &amp;&amp; operation.</span>
+<a name="l00481"></a>00481 <span class="comment"></span><span class="comment"></span>
+<a name="l00482"></a>00482 <span class="comment">        /// @fn operator||(const Attribute&amp; lhs, bool rhs);</span>
+<a name="l00483"></a>00483 <span class="comment">        /// @brief Used to work around a Borland c++ issue casting @ref Attribute class instances to boolean values.</span>
+<a name="l00484"></a>00484 <span class="comment">        /// @param lhs Left Hand Side of the operator.</span>
+<a name="l00485"></a>00485 <span class="comment">        /// @param rhs Right Hand Side of the operator.</span>
+<a name="l00486"></a>00486 <span class="comment">        /// @return A bool that has the correct value for a || operation.</span>
+<a name="l00487"></a>00487 <span class="comment"></span><span class="comment"></span>
+<a name="l00488"></a>00488 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00489"></a>00489 <span class="comment">        /// @class Node</span>
+<a name="l00490"></a>00490 <span class="comment">        /// @brief A light-weight handle for manipulating nodes in DOM tree</span>
+<a name="l00491"></a>00491 <span class="comment"></span><span class="comment"></span>
+<a name="l00492"></a>00492 <span class="comment">        /// @var Node::_root</span>
+<a name="l00493"></a>00493 <span class="comment">        /// @internal</span>
+<a name="l00494"></a>00494 <span class="comment">        /// @brief Stores pointers to the Node data and some metadata.</span>
+<a name="l00495"></a>00495 <span class="comment"></span><span class="comment"></span>
+<a name="l00496"></a>00496 <span class="comment">        /// @fn Node::Node()</span>
+<a name="l00497"></a>00497 <span class="comment">        /// @brief Default constructor. Constructs an empty node.</span>
+<a name="l00498"></a>00498 <span class="comment"></span><span class="comment"></span>
+<a name="l00499"></a>00499 <span class="comment">        /// @fn Node::operator!() const</span>
+<a name="l00500"></a>00500 <span class="comment">        /// @brief Used to convert this node the opposite of it&#39;s normal boolean value</span>
+<a name="l00501"></a>00501 <span class="comment">        /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.</span>
+<a name="l00502"></a>00502 <span class="comment">        /// @return Returns false if the internal pointer NodeStruct is set and true otherwise.</span>
+<a name="l00503"></a>00503 <span class="comment"></span><span class="comment"></span>
+<a name="l00504"></a>00504 <span class="comment">        /// @fn Node::operator==(const Node&amp; r) const;</span>
+<a name="l00505"></a>00505 <span class="comment">        /// @brief Compares the internal values to check equality.</span>
+<a name="l00506"></a>00506 <span class="comment">        /// @param r The other @ref Node this is being compared to.</span>
+<a name="l00507"></a>00507 <span class="comment">        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.</span>
+<a name="l00508"></a>00508 <span class="comment">        /// @return Returns true if all the internal values match between this and the other Node.</span>
+<a name="l00509"></a>00509 <span class="comment"></span><span class="comment"></span>
+<a name="l00510"></a>00510 <span class="comment">        /// @fn Node::operator!=(const Node&amp; r) const;</span>
+<a name="l00511"></a>00511 <span class="comment">        /// @brief Compares the internal values to check inequality.</span>
+<a name="l00512"></a>00512 <span class="comment">        /// @param r The other @ref Node this is being compared to.</span>
+<a name="l00513"></a>00513 <span class="comment">        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.</span>
+<a name="l00514"></a>00514 <span class="comment">        /// @return Returns true if any of the internal values don&#39;t match between this and the other @ref Node.</span>
+<a name="l00515"></a>00515 <span class="comment"></span><span class="comment"></span>
+<a name="l00516"></a>00516 <span class="comment">        /// @fn Node::operator&lt;(const Node&amp; r) const;</span>
+<a name="l00517"></a>00517 <span class="comment">        /// @brief Compares the internal values to check for inequality.</span>
+<a name="l00518"></a>00518 <span class="comment">        /// @param r The other @ref Node this is being compared to.</span>
+<a name="l00519"></a>00519 <span class="comment">        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.</span>
+<a name="l00520"></a>00520 <span class="comment">        /// @return Returns True if the other @ref Node is greater than this one as per sequential comparison of internal pointers.</span>
+<a name="l00521"></a>00521 <span class="comment"></span><span class="comment"></span>
+<a name="l00522"></a>00522 <span class="comment">        /// @fn Node::operator&gt;(const Node&amp; r) const;</span>
+<a name="l00523"></a>00523 <span class="comment">        /// @brief Compares the internal values to check for inequality.</span>
+<a name="l00524"></a>00524 <span class="comment">        /// @param r The other @ref Node this is being compared to.</span>
+<a name="l00525"></a>00525 <span class="comment">        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.</span>
+<a name="l00526"></a>00526 <span class="comment">        /// @return Returns True if the other @ref Node is less than this one as per sequential comparison of internal pointers.</span>
+<a name="l00527"></a>00527 <span class="comment"></span><span class="comment"></span>
+<a name="l00528"></a>00528 <span class="comment">        /// @fn Node::operator&lt;=(const Node&amp; r) const;</span>
+<a name="l00529"></a>00529 <span class="comment">        /// @brief Compares the internal values to check for inequality.</span>
+<a name="l00530"></a>00530 <span class="comment">        /// @param r The other @ref Node this is being compared to.</span>
+<a name="l00531"></a>00531 <span class="comment">        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.</span>
+<a name="l00532"></a>00532 <span class="comment">        /// @return Returns True if the other @ref Node is greater than or equal to this one as per sequential comparison of internal pointers.</span>
+<a name="l00533"></a>00533 <span class="comment"></span><span class="comment"></span>
+<a name="l00534"></a>00534 <span class="comment">        /// @fn Node::operator&gt;=(const Node&amp; r) const;</span>
+<a name="l00535"></a>00535 <span class="comment">        /// @brief Compares the internal values to check for inequality.</span>
+<a name="l00536"></a>00536 <span class="comment">        /// @param r The other @ref Node this is being compared to.</span>
+<a name="l00537"></a>00537 <span class="comment">        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.</span>
+<a name="l00538"></a>00538 <span class="comment">        /// @return Returns True if the other @ref Node is less than or equal to this one as per sequential comparison of internal pointers.</span>
+<a name="l00539"></a>00539 <span class="comment"></span>
+<a name="l00540"></a>00540     }
+<a name="l00541"></a>00541 }
+<a name="l00542"></a>00542 <span class="preprocessor">#endif</span>
+<a name="l00543"></a>00543 <span class="preprocessor"></span>
+<a name="l00544"></a>00544 <span class="comment">/*</span>
+<a name="l00545"></a>00545 <span class="comment"> *</span>
+<a name="l00546"></a>00546 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l00547"></a>00547 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l00548"></a>00548 <span class="comment"> *</span>
+<a name="l00549"></a>00549 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l00550"></a>00550 <span class="comment"> *</span>
+<a name="l00551"></a>00551 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l00552"></a>00552 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l00553"></a>00553 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l00554"></a>00554 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l00555"></a>00555 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l00556"></a>00556 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l00557"></a>00557 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l00558"></a>00558 <span class="comment"> * conditions:</span>
+<a name="l00559"></a>00559 <span class="comment"> *</span>
+<a name="l00560"></a>00560 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l00561"></a>00561 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l00562"></a>00562 <span class="comment"> *</span>
+<a name="l00563"></a>00563 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l00564"></a>00564 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l00565"></a>00565 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l00566"></a>00566 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l00567"></a>00567 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l00568"></a>00568 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l00569"></a>00569 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l00570"></a>00570 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l00571"></a>00571 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 12:49:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 13:27:45 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

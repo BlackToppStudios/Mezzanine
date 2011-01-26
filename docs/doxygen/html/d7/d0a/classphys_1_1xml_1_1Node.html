@@ -44,7 +44,12 @@
 <h1>phys::xml::Node Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="phys::xml::Node" --><div class="dynheader">
+<!-- doxytag: class="phys::xml::Node" -->
+<p>A light-weight handle for manipulating nodes in DOM tree.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
+<div class="dynheader">
 Inheritance diagram for phys::xml::Node:</div>
 <div class="dyncontent">
  <div class="center">
@@ -64,24 +69,27 @@ typedef <a class="el" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">
 typedef <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>attribute_iterator</b></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaefbe98a05a7bf304612c3e7f7556f42"></a><!-- doxytag: member="phys::xml::Node::Node" ref="aaefbe98a05a7bf304612c3e7f7556f42" args="(NodeStruct *p)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b> (<a class="el" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a> *p)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82203e57f13363aee523feb696f64bb9"></a><!-- doxytag: member="phys::xml::Node::Node" ref="a82203e57f13363aee523feb696f64bb9" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9">Node</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor. Constructs an empty node. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aaefbe98a05a7bf304612c3e7f7556f42">Node</a> (<a class="el" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a> *p)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructs node from internal pointer.  <a href="#aaefbe98a05a7bf304612c3e7f7556f42"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a1a3af56736ef4dd39596bb71607ebbc7">operator unspecified_bool_type</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to convert this attribute to a boolean value in a safe way.  <a href="#a1a3af56736ef4dd39596bb71607ebbc7"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a121ff268fa51c4a66ad8d4a6734f4535"></a><!-- doxytag: member="phys::xml::Node::operator!" ref="a121ff268fa51c4a66ad8d4a6734f4535" args="() const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4008ce4f37c81ffc204198d9a026539"></a><!-- doxytag: member="phys::xml::Node::operator==" ref="aa4008ce4f37c81ffc204198d9a026539" args="(const Node &amp;r) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00077491f468d40745a15963fc8c8bf7"></a><!-- doxytag: member="phys::xml::Node::operator!=" ref="a00077491f468d40745a15963fc8c8bf7" args="(const Node &amp;r) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae60944f0610e55a12d772575a97e0e89"></a><!-- doxytag: member="phys::xml::Node::operator&lt;" ref="ae60944f0610e55a12d772575a97e0e89" args="(const Node &amp;r) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator&lt;</b> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a394f3b55158abd6716eeb8d7dd966262"></a><!-- doxytag: member="phys::xml::Node::operator&gt;" ref="a394f3b55158abd6716eeb8d7dd966262" args="(const Node &amp;r) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator&gt;</b> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a332214f0dddb3f70f4859dc13a3da09d"></a><!-- doxytag: member="phys::xml::Node::operator&lt;=" ref="a332214f0dddb3f70f4859dc13a3da09d" args="(const Node &amp;r) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator&lt;=</b> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac17b64d023f82a29048a01a97a60c681"></a><!-- doxytag: member="phys::xml::Node::operator&gt;=" ref="ac17b64d023f82a29048a01a97a60c681" args="(const Node &amp;r) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator&gt;=</b> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to convert this to a boolean value in a safe way.  <a href="#a1a3af56736ef4dd39596bb71607ebbc7"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11c8e41002682a2742bd168a9318b6e8">operator!</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to convert this node the opposite of it's normal boolean value.  <a href="#a11c8e41002682a2742bd168a9318b6e8"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a5ae85504c26f8494c0ba048dc2370ac2">operator==</a> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares the internal values to check equality.  <a href="#a5ae85504c26f8494c0ba048dc2370ac2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a2fdcc611f72c98bc18ef25c9be5dc8ef">operator!=</a> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares the internal values to check inequality.  <a href="#a2fdcc611f72c98bc18ef25c9be5dc8ef"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a509304b9bcc6e7891c6b4daa16168f94">operator&lt;</a> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares the internal values to check for inequality.  <a href="#a509304b9bcc6e7891c6b4daa16168f94"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7fc3bf84e390269a115e546babf89dfd">operator&gt;</a> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares the internal values to check for inequality.  <a href="#a7fc3bf84e390269a115e546babf89dfd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a01986a425fb67bb6157aea7f861f8729">operator&lt;=</a> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares the internal values to check for inequality.  <a href="#a01986a425fb67bb6157aea7f861f8729"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a444f80194136237ebc7c971b1c837155">operator&gt;=</a> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;r) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares the internal values to check for inequality.  <a href="#a444f80194136237ebc7c971b1c837155"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84ac54dff957399fd3fb9318ee8cccab"></a><!-- doxytag: member="phys::xml::Node::Empty" ref="a84ac54dff957399fd3fb9318ee8cccab" args="() const " -->
 bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>Empty</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeeab99e4798aa73cbdbafacf6cd3260b"></a><!-- doxytag: member="phys::xml::Node::type" ref="aeeab99e4798aa73cbdbafacf6cd3260b" args="() const " -->
@@ -223,8 +231,8 @@ Protected Types</h2></td></tr>
 typedef <a class="el" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a> *Node::*&nbsp;</td><td class="memItemRight" valign="bottom"><b>unspecified_bool_type</b></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae76db7e7025e29af83e487cf4b270424"></a><!-- doxytag: member="phys::xml::Node::_root" ref="ae76db7e7025e29af83e487cf4b270424" args="" -->
-<a class="el" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>_root</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df">_root</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stores pointers to the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> data and some metadata.  <a href="#ad7009bbac9b61709a760de20d27b34df"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1ed8790083a80b2604beba1c666bce6e"></a><!-- doxytag: member="phys::xml::Node::AttributeIterator" ref="a1ed8790083a80b2604beba1c666bce6e" args="" -->
@@ -233,8 +241,38 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>AttributeIterator</b
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>NodeIterator</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>A light-weight handle for manipulating nodes in DOM tree. </p>
 
 <p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00440">440</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="aaefbe98a05a7bf304612c3e7f7556f42"></a><!-- doxytag: member="phys::xml::Node::Node" ref="aaefbe98a05a7bf304612c3e7f7556f42" args="(NodeStruct *p)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::Node </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a> *&nbsp;</td>
+          <td class="paramname"> <em>p</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [explicit]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Constructs node from internal pointer. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>p</em>&nbsp;</td><td>An internal node pointer. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03598">3598</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a1a3af56736ef4dd39596bb71607ebbc7"></a><!-- doxytag: member="phys::xml::Node::operator unspecified_bool_type" ref="a1a3af56736ef4dd39596bb71607ebbc7" args="() const " -->
 <div class="memitem">
@@ -251,10 +289,213 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>NodeIterator</b></td
 </div>
 <div class="memdoc">
 
-<p>Used to convert this attribute to a boolean value in a safe way. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the internal pointer <a class="el" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a> is set and false otherwise </dd></dl>
+<p>Used to convert this to a boolean value in a safe way. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03602">3602</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a11c8e41002682a2742bd168a9318b6e8"></a><!-- doxytag: member="phys::xml::Node::operator!" ref="a11c8e41002682a2742bd168a9318b6e8" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::operator! </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Used to convert this node the opposite of it's normal boolean value. </p>
+<p>This is described in the PugiXML source a a workaround for a borland c++ issue. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns false if the internal pointer <a class="el" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a> is set and true otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03607">3607</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2fdcc611f72c98bc18ef25c9be5dc8ef"></a><!-- doxytag: member="phys::xml::Node::operator!=" ref="a2fdcc611f72c98bc18ef25c9be5dc8ef" args="(const Node &amp;r) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>r</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compares the internal values to check inequality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>The other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> this is being compared to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Many of the internal values are pointers, and it is the addresses of these that are being compared. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if any of the internal values don't match between this and the other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03637">3637</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a509304b9bcc6e7891c6b4daa16168f94"></a><!-- doxytag: member="phys::xml::Node::operator&lt;" ref="a509304b9bcc6e7891c6b4daa16168f94" args="(const Node &amp;r) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::operator&lt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>r</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compares the internal values to check for inequality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>The other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> this is being compared to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Many of the internal values are pointers, and it is the addresses of these that are being compared. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns True if the other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> is greater than this one as per sequential comparison of internal pointers. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03642">3642</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a01986a425fb67bb6157aea7f861f8729"></a><!-- doxytag: member="phys::xml::Node::operator&lt;=" ref="a01986a425fb67bb6157aea7f861f8729" args="(const Node &amp;r) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::operator&lt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>r</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compares the internal values to check for inequality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>The other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> this is being compared to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Many of the internal values are pointers, and it is the addresses of these that are being compared. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns True if the other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> is greater than or equal to this one as per sequential comparison of internal pointers. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03652">3652</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5ae85504c26f8494c0ba048dc2370ac2"></a><!-- doxytag: member="phys::xml::Node::operator==" ref="a5ae85504c26f8494c0ba048dc2370ac2" args="(const Node &amp;r) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>r</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compares the internal values to check equality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>The other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> this is being compared to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Many of the internal values are pointers, and it is the addresses of these that are being compared. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if all the internal values match between this and the other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03632">3632</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7fc3bf84e390269a115e546babf89dfd"></a><!-- doxytag: member="phys::xml::Node::operator&gt;" ref="a7fc3bf84e390269a115e546babf89dfd" args="(const Node &amp;r) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::operator&gt; </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>r</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compares the internal values to check for inequality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>The other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> this is being compared to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Many of the internal values are pointers, and it is the addresses of these that are being compared. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns True if the other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> is less than this one as per sequential comparison of internal pointers. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03647">3647</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a444f80194136237ebc7c971b1c837155"></a><!-- doxytag: member="phys::xml::Node::operator&gt;=" ref="a444f80194136237ebc7c971b1c837155" args="(const Node &amp;r) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::operator&gt;= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>r</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compares the internal values to check for inequality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>r</em>&nbsp;</td><td>The other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> this is being compared to.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Many of the internal values are pointers, and it is the addresses of these that are being compared. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns True if the other <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> is less than or equal to this one as per sequential comparison of internal pointers. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03657">3657</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -288,12 +529,32 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>NodeIterator</b></td
 
 </div>
 </div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="ad7009bbac9b61709a760de20d27b34df"></a><!-- doxytag: member="phys::xml::Node::_root" ref="ad7009bbac9b61709a760de20d27b34df" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df">phys::xml::Node::_root</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Stores pointers to the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> data and some metadata. </p>
+<p><b>For internal use only.</b></p>
+
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00446">446</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
+<li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 12:49:55 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 13:27:55 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

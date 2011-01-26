@@ -351,8 +351,8 @@ namespace phys
 		// Constructs attribute from internal pointer 
 		explicit Attribute(AttributeStruct* attr); 
  
-		/// @brief Used to convert this attribute to a boolean value in a safe way
-		/// @return Returns true if the internal pointer AttributeStruct is set and false otherwise 
+		/// @brief Used to convert this to a boolean value in a safe way
+		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -451,11 +451,12 @@ namespace phys
 		// Default constructor. Constructs an empty node. 
 		Node(); 
  
-		// Constructs node from internal pointer 
+		/// @brief Constructs node from internal pointer
+		/// @param p An internal node pointer. 
 		explicit Node(NodeStruct* p); 
  
-		/// @brief Used to convert this attribute to a boolean value in a safe way
-		/// @return Returns true if the internal pointer AttributeStruct is set and false otherwise 
+		/// @brief Used to convert this to a boolean value in a safe way
+		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -1039,8 +1040,8 @@ namespace phys
 		// Get parsing result (used to get compilation errors in XML_NO_EXCEPTIONS mode) 
 		const XPathParseResult& result() const; 
  
-		/// @brief Used to convert this attribute to a boolean value in a safe way
-		/// @return Returns true if the internal pointer AttributeStruct is set and false otherwise 
+		/// @brief Used to convert this to a boolean value in a safe way
+		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -1090,8 +1091,8 @@ namespace phys
 		// Get parent of contained node/attribute 
 		Node parent() const; 
  
-		/// @brief Used to convert this attribute to a boolean value in a safe way
-		/// @return Returns true if the internal pointer AttributeStruct is set and false otherwise 
+		/// @brief Used to convert this to a boolean value in a safe way
+		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
 		operator unspecified_bool_type() const; 
 		 
 		// Borland C++ workaround 

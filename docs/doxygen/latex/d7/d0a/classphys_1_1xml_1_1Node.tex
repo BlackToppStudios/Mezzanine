@@ -2,6 +2,15 @@
 \section{phys::xml::Node Class Reference}
 \label{d7/d0a/classphys_1_1xml_1_1Node}\index{phys::xml::Node@{phys::xml::Node}}
 }
+
+
+A light-\/weight handle for manipulating nodes in DOM tree.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
 Inheritance diagram for phys::xml::Node:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,48 +33,29 @@ typedef \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} {\b
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}{
-{\bfseries Node} (\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$p)}
-\label{d7/d0a/classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}
+\hypertarget{classphys_1_1xml_1_1Node_a82203e57f13363aee523feb696f64bb9}{
+\hyperlink{classphys_1_1xml_1_1Node_a82203e57f13363aee523feb696f64bb9}{Node} ()}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a82203e57f13363aee523feb696f64bb9}
 
-\item 
+\begin{DoxyCompactList}\small\item\em Default constructor. Constructs an empty node. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}{Node} (\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Constructs node from internal pointer. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Node_a1a3af56736ef4dd39596bb71607ebbc7}{operator unspecified\_\-bool\_\-type} () const 
-\begin{DoxyCompactList}\small\item\em Used to convert this attribute to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1Node_a121ff268fa51c4a66ad8d4a6734f4535}{
-bool {\bfseries operator!} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a121ff268fa51c4a66ad8d4a6734f4535}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_aa4008ce4f37c81ffc204198d9a026539}{
-bool {\bfseries operator==} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_aa4008ce4f37c81ffc204198d9a026539}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a00077491f468d40745a15963fc8c8bf7}{
-bool {\bfseries operator!=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a00077491f468d40745a15963fc8c8bf7}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_ae60944f0610e55a12d772575a97e0e89}{
-bool {\bfseries operator$<$} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_ae60944f0610e55a12d772575a97e0e89}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a394f3b55158abd6716eeb8d7dd966262}{
-bool {\bfseries operator$>$} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a394f3b55158abd6716eeb8d7dd966262}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a332214f0dddb3f70f4859dc13a3da09d}{
-bool {\bfseries operator$<$=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a332214f0dddb3f70f4859dc13a3da09d}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_ac17b64d023f82a29048a01a97a60c681}{
-bool {\bfseries operator$>$=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_ac17b64d023f82a29048a01a97a60c681}
-
-\item 
+\begin{DoxyCompactList}\small\item\em Used to convert this to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Node_a11c8e41002682a2742bd168a9318b6e8}{operator!} () const 
+\begin{DoxyCompactList}\small\item\em Used to convert this node the opposite of it's normal boolean value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Node_a5ae85504c26f8494c0ba048dc2370ac2}{operator==} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check equality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Node_a2fdcc611f72c98bc18ef25c9be5dc8ef}{operator!=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Node_a509304b9bcc6e7891c6b4daa16168f94}{operator$<$} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Node_a7fc3bf84e390269a115e546babf89dfd}{operator$>$} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Node_a01986a425fb67bb6157aea7f861f8729}{operator$<$=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Node_a444f80194136237ebc7c971b1c837155}{operator$>$=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const 
+\begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1Node_a84ac54dff957399fd3fb9318ee8cccab}{
 bool {\bfseries Empty} () const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a84ac54dff957399fd3fb9318ee8cccab}
@@ -404,11 +394,8 @@ typedef \hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$Node::$\as
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1xml_1_1Node_ae76db7e7025e29af83e487cf4b270424}{
-\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$ {\bfseries \_\-root}}
-\label{d7/d0a/classphys_1_1xml_1_1Node_ae76db7e7025e29af83e487cf4b270424}
-
-\end{DoxyCompactItemize}
+\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$ \hyperlink{classphys_1_1xml_1_1Node_ad7009bbac9b61709a760de20d27b34df}{\_\-root}
+\begin{DoxyCompactList}\small\item\em Stores pointers to the \hyperlink{classphys_1_1xml_1_1Node}{Node} data and some metadata. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -425,9 +412,32 @@ class {\bfseries NodeIterator}}
 
 
 \subsection{Detailed Description}
-
+A light-\/weight handle for manipulating nodes in DOM tree. 
 
 Definition at line 440 of file xml.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}{
+\index{phys::xml::Node@{phys::xml::Node}!Node@{Node}}
+\index{Node@{Node}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Node (
+\begin{DoxyParamCaption}
+\item[{{\bf NodeStruct} $\ast$}]{ p}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}
+
+
+Constructs node from internal pointer. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em p}]An internal node pointer. \end{DoxyParams}
+
+
+Definition at line 3598 of file xml.cpp.
 
 
 
@@ -443,14 +453,172 @@ Definition at line 440 of file xml.h.
 \label{d7/d0a/classphys_1_1xml_1_1Node_a1a3af56736ef4dd39596bb71607ebbc7}
 
 
-Used to convert this attribute to a boolean value in a safe way. 
+Used to convert this to a boolean value in a safe way. 
 
 \begin{DoxyReturn}{Returns}
-Returns true if the internal pointer \hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} is set and false otherwise 
+Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
 \end{DoxyReturn}
 
 
 Definition at line 3602 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a11c8e41002682a2742bd168a9318b6e8}{
+\index{phys::xml::Node@{phys::xml::Node}!operator!@{operator!}}
+\index{operator!@{operator!}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator! (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a11c8e41002682a2742bd168a9318b6e8}
+
+
+Used to convert this node the opposite of it's normal boolean value. 
+
+This is described in the PugiXML source a a workaround for a borland c++ issue. \begin{DoxyReturn}{Returns}
+Returns false if the internal pointer \hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} is set and true otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 3607 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a2fdcc611f72c98bc18ef25c9be5dc8ef}{
+\index{phys::xml::Node@{phys::xml::Node}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a2fdcc611f72c98bc18ef25c9be5dc8ef}
+
+
+Compares the internal values to check inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns true if any of the internal values don't match between this and the other \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+
+
+Definition at line 3637 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a509304b9bcc6e7891c6b4daa16168f94}{
+\index{phys::xml::Node@{phys::xml::Node}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a509304b9bcc6e7891c6b4daa16168f94}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is greater than this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+
+
+Definition at line 3642 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a01986a425fb67bb6157aea7f861f8729}{
+\index{phys::xml::Node@{phys::xml::Node}!operator$<$=@{operator$<$=}}
+\index{operator$<$=@{operator$<$=}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$<$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a01986a425fb67bb6157aea7f861f8729}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is greater than or equal to this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+
+
+Definition at line 3652 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a5ae85504c26f8494c0ba048dc2370ac2}{
+\index{phys::xml::Node@{phys::xml::Node}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a5ae85504c26f8494c0ba048dc2370ac2}
+
+
+Compares the internal values to check equality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns true if all the internal values match between this and the other \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+
+
+Definition at line 3632 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a7fc3bf84e390269a115e546babf89dfd}{
+\index{phys::xml::Node@{phys::xml::Node}!operator$>$@{operator$>$}}
+\index{operator$>$@{operator$>$}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a7fc3bf84e390269a115e546babf89dfd}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is less than this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+
+
+Definition at line 3647 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a444f80194136237ebc7c971b1c837155}{
+\index{phys::xml::Node@{phys::xml::Node}!operator$>$=@{operator$>$=}}
+\index{operator$>$=@{operator$>$=}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$>$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a444f80194136237ebc7c971b1c837155}
+
+
+Compares the internal values to check for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
+Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is less than or equal to this one as per sequential comparison of internal pointers. 
+\end{DoxyReturn}
+
+
+Definition at line 3657 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}{
 \index{phys::xml::Node@{phys::xml::Node}!SetValue@{SetValue}}
@@ -479,7 +647,26 @@ Definition at line 3807 of file xml.cpp.
 
 
 
+\subsection{Member Data Documentation}
+\hypertarget{classphys_1_1xml_1_1Node_ad7009bbac9b61709a760de20d27b34df}{
+\index{phys::xml::Node@{phys::xml::Node}!\_\-root@{\_\-root}}
+\index{\_\-root@{\_\-root}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{\_\-root}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::Node::\_\-root}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_ad7009bbac9b61709a760de20d27b34df}
+
+
+Stores pointers to the \hyperlink{classphys_1_1xml_1_1Node}{Node} data and some metadata. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 446 of file xml.h.
+
+
+
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
 \hyperlink{xml_8h}{xml.h}\item 
-xml.cpp\end{DoxyCompactItemize}
+xml.cpp\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

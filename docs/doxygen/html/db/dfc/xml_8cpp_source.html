@@ -2942,7 +2942,7 @@
 <a name="l02911"></a>02911                 <span class="keywordflow">while</span> (*s); 
 <a name="l02912"></a>02912         } 
 <a name="l02913"></a>02913  
-<a name="l02914"></a>02914         <span class="keywordtype">void</span> NodeOutput_attributes(BufferedWriter&amp; WriterInstance, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
+<a name="l02914"></a>02914         <span class="keywordtype">void</span> NodeOutput_attributes(BufferedWriter&amp; WriterInstance, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) 
 <a name="l02915"></a>02915         { 
 <a name="l02916"></a>02916                 <span class="keyword">const</span> char_t* default_Name = <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;:anonymous&quot;</span>); 
 <a name="l02917"></a>02917  
@@ -2958,7 +2958,7 @@
 <a name="l02927"></a>02927                 } 
 <a name="l02928"></a>02928         } 
 <a name="l02929"></a>02929  
-<a name="l02930"></a>02930         <span class="keywordtype">void</span> NodeOutput(BufferedWriter&amp; WriterInstance, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth) 
+<a name="l02930"></a>02930         <span class="keywordtype">void</span> NodeOutput(BufferedWriter&amp; WriterInstance, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth) 
 <a name="l02931"></a>02931         { 
 <a name="l02932"></a>02932                 <span class="keyword">const</span> char_t* default_Name = <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;:anonymous&quot;</span>); 
 <a name="l02933"></a>02933  
@@ -2969,7 +2969,7 @@
 <a name="l02938"></a>02938                 { 
 <a name="l02939"></a>02939                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3acfe92e6bd275972917b95f08bd46e09f" title="A document tree&amp;#39;s absolute root.">NodeDocument</a>: 
 <a name="l02940"></a>02940                 { 
-<a name="l02941"></a>02941                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n = node.FirstChild(); n; n = n.NextSibling()) 
+<a name="l02941"></a>02941                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = node.FirstChild(); n; n = n.NextSibling()) 
 <a name="l02942"></a>02942                                 NodeOutput(WriterInstance, n, indent, flags, depth); 
 <a name="l02943"></a>02943                         <span class="keywordflow">break</span>; 
 <a name="l02944"></a>02944                 } 
@@ -2991,7 +2991,7 @@
 <a name="l02960"></a>02960                                 { 
 <a name="l02961"></a>02961                                         WriterInstance.Write(<span class="charliteral">&#39;&gt;&#39;</span>); 
 <a name="l02962"></a>02962  
-<a name="l02963"></a>02963                                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n = node.FirstChild(); n; n = n.NextSibling()) 
+<a name="l02963"></a>02963                                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = node.FirstChild(); n; n = n.NextSibling()) 
 <a name="l02964"></a>02964                                                 NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
 <a name="l02965"></a>02965  
 <a name="l02966"></a>02966                                         WriterInstance.Write(<span class="charliteral">&#39;&lt;&#39;</span>, <span class="charliteral">&#39;/&#39;</span>); 
@@ -3018,7 +3018,7 @@
 <a name="l02987"></a>02987                         { 
 <a name="l02988"></a>02988                                 WriterInstance.Write(<span class="charliteral">&#39;&gt;&#39;</span>, <span class="charliteral">&#39;\n&#39;</span>); 
 <a name="l02989"></a>02989                                  
-<a name="l02990"></a>02990                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n = node.FirstChild(); n; n = n.NextSibling()) 
+<a name="l02990"></a>02990                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = node.FirstChild(); n; n = n.NextSibling()) 
 <a name="l02991"></a>02991                                         NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
 <a name="l02992"></a>02992  
 <a name="l02993"></a>02993                                 <span class="keywordflow">if</span> ((flags &amp; FormatIndent) != 0 &amp;&amp; (flags &amp; FormatRaw) == 0) 
@@ -3087,9 +3087,9 @@
 <a name="l03056"></a>03056                 } 
 <a name="l03057"></a>03057         } 
 <a name="l03058"></a>03058  
-<a name="l03059"></a>03059         <span class="keyword">inline</span> <span class="keywordtype">bool</span> hAsDeclaration(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
+<a name="l03059"></a>03059         <span class="keyword">inline</span> <span class="keywordtype">bool</span> hAsDeclaration(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) 
 <a name="l03060"></a>03060         { 
-<a name="l03061"></a>03061                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> child = node.FirstChild(); child; child = child.NextSibling()) 
+<a name="l03061"></a>03061                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> child = node.FirstChild(); child; child = child.NextSibling()) 
 <a name="l03062"></a>03062                 { 
 <a name="l03063"></a>03063                         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type = child.type(); 
 <a name="l03064"></a>03064  
@@ -3109,7 +3109,7 @@
 <a name="l03078"></a>03078                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l03079"></a>03079         } 
 <a name="l03080"></a>03080  
-<a name="l03081"></a>03081         <span class="keywordtype">void</span> recursive_copy_skip(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; dest, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; source, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; skip) 
+<a name="l03081"></a>03081         <span class="keywordtype">void</span> recursive_copy_skip(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; dest, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; source, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; skip) 
 <a name="l03082"></a>03082         { 
 <a name="l03083"></a>03083                 assert(dest.type() == source.type()); 
 <a name="l03084"></a>03084  
@@ -3122,11 +3122,11 @@
 <a name="l03091"></a>03091                         <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = source.FirstAttribute(); a; a = a.NextAttribute()) 
 <a name="l03092"></a>03092                                 dest.append_attribute(a.Name()).SetValue(a.Value()); 
 <a name="l03093"></a>03093  
-<a name="l03094"></a>03094                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> c = source.FirstChild(); c; c = c.NextSibling()) 
+<a name="l03094"></a>03094                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> c = source.FirstChild(); c; c = c.NextSibling()) 
 <a name="l03095"></a>03095                         { 
 <a name="l03096"></a>03096                                 <span class="keywordflow">if</span> (c == skip) <span class="keywordflow">continue</span>; 
 <a name="l03097"></a>03097  
-<a name="l03098"></a>03098                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cc = dest.append_child(c.type()); 
+<a name="l03098"></a>03098                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cc = dest.append_child(c.type()); 
 <a name="l03099"></a>03099                                 assert(cc); 
 <a name="l03100"></a>03100  
 <a name="l03101"></a>03101                                 recursive_copy_skip(cc, c, skip); 
@@ -3368,12 +3368,12 @@
 <a name="l03337"></a>03337                 <span class="keywordflow">return</span> _depth; 
 <a name="l03338"></a>03338         } 
 <a name="l03339"></a>03339  
-<a name="l03340"></a>03340         <span class="keywordtype">bool</span> TreeWalker::begin(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp;) 
+<a name="l03340"></a>03340         <span class="keywordtype">bool</span> TreeWalker::begin(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp;) 
 <a name="l03341"></a>03341         { 
 <a name="l03342"></a>03342                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l03343"></a>03343         } 
 <a name="l03344"></a>03344  
-<a name="l03345"></a>03345         <span class="keywordtype">bool</span> TreeWalker::end(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp;) 
+<a name="l03345"></a>03345         <span class="keywordtype">bool</span> TreeWalker::end(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp;) 
 <a name="l03346"></a>03346         { 
 <a name="l03347"></a>03347                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l03348"></a>03348         } 
@@ -3622,170 +3622,170 @@
 <a name="l03591"></a>03591         } 
 <a name="l03592"></a>03592 <span class="preprocessor">#endif </span>
 <a name="l03593"></a>03593 <span class="preprocessor"></span> 
-<a name="l03594"></a>03594         Node::Node(): _root(0) 
+<a name="l03594"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9">03594</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node::Node</a>(): _root(0) 
 <a name="l03595"></a>03595         { 
 <a name="l03596"></a>03596         } 
 <a name="l03597"></a>03597  
-<a name="l03598"></a>03598         Node::Node(<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* p): _root(p) 
+<a name="l03598"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aaefbe98a05a7bf304612c3e7f7556f42">03598</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node::Node</a>(<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* p): _root(p) 
 <a name="l03599"></a>03599         { 
 <a name="l03600"></a>03600         } 
 <a name="l03601"></a>03601          
 <a name="l03602"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a1a3af56736ef4dd39596bb71607ebbc7">03602</a>         Node::operator Node::unspecified_bool_type()<span class="keyword"> const </span>
 <a name="l03603"></a>03603 <span class="keyword">        </span>{ 
-<a name="l03604"></a>03604                 <span class="keywordflow">return</span> _root ? &amp;Node::_root : 0; 
+<a name="l03604"></a>03604                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> ? &amp;<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">Node::_root</a> : 0; 
 <a name="l03605"></a>03605         } 
 <a name="l03606"></a>03606  
-<a name="l03607"></a>03607         <span class="keywordtype">bool</span> Node::operator!()<span class="keyword"> const </span>
+<a name="l03607"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11c8e41002682a2742bd168a9318b6e8">03607</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11c8e41002682a2742bd168a9318b6e8" title="Used to convert this node the opposite of it&amp;#39;s normal boolean value.">Node::operator!</a>()<span class="keyword"> const </span>
 <a name="l03608"></a>03608 <span class="keyword">        </span>{ 
-<a name="l03609"></a>03609                 <span class="keywordflow">return</span> !_root; 
+<a name="l03609"></a>03609                 <span class="keywordflow">return</span> !<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l03610"></a>03610         } 
 <a name="l03611"></a>03611  
 <a name="l03612"></a>03612         <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">Node::iterator</a> Node::begin()<span class="keyword"> const </span>
 <a name="l03613"></a>03613 <span class="keyword">        </span>{ 
-<a name="l03614"></a>03614                 <span class="keywordflow">return</span> iterator(_root ? _root-&gt;FirstChild : 0, _root); 
+<a name="l03614"></a>03614                 <span class="keywordflow">return</span> iterator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild : 0, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03615"></a>03615         } 
 <a name="l03616"></a>03616  
 <a name="l03617"></a>03617         <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">Node::iterator</a> Node::end()<span class="keyword"> const </span>
 <a name="l03618"></a>03618 <span class="keyword">        </span>{ 
-<a name="l03619"></a>03619                 <span class="keywordflow">return</span> iterator(0, _root); 
+<a name="l03619"></a>03619                 <span class="keywordflow">return</span> iterator(0, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03620"></a>03620         } 
 <a name="l03621"></a>03621          
 <a name="l03622"></a>03622         <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">Node::attribute_iterator</a> Node::attributes_begin()<span class="keyword"> const </span>
 <a name="l03623"></a>03623 <span class="keyword">        </span>{ 
-<a name="l03624"></a>03624                 <span class="keywordflow">return</span> attribute_iterator(_root ? _root-&gt;FirstAttribute : 0, _root); 
+<a name="l03624"></a>03624                 <span class="keywordflow">return</span> attribute_iterator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute : 0, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03625"></a>03625         } 
 <a name="l03626"></a>03626  
 <a name="l03627"></a>03627         <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">Node::attribute_iterator</a> Node::attributes_end()<span class="keyword"> const </span>
 <a name="l03628"></a>03628 <span class="keyword">        </span>{ 
-<a name="l03629"></a>03629                 <span class="keywordflow">return</span> attribute_iterator(0, _root); 
+<a name="l03629"></a>03629                 <span class="keywordflow">return</span> attribute_iterator(0, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03630"></a>03630         } 
 <a name="l03631"></a>03631  
-<a name="l03632"></a>03632         <span class="keywordtype">bool</span> Node::operator==(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03632"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a5ae85504c26f8494c0ba048dc2370ac2">03632</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a5ae85504c26f8494c0ba048dc2370ac2" title="Compares the internal values to check equality.">Node::operator==</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03633"></a>03633 <span class="keyword">        </span>{ 
-<a name="l03634"></a>03634                 <span class="keywordflow">return</span> (_root == r._root); 
+<a name="l03634"></a>03634                 <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> == r.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03635"></a>03635         } 
 <a name="l03636"></a>03636  
-<a name="l03637"></a>03637         <span class="keywordtype">bool</span> Node::operator!=(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03637"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a2fdcc611f72c98bc18ef25c9be5dc8ef">03637</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a2fdcc611f72c98bc18ef25c9be5dc8ef" title="Compares the internal values to check inequality.">Node::operator!=</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03638"></a>03638 <span class="keyword">        </span>{ 
-<a name="l03639"></a>03639                 <span class="keywordflow">return</span> (_root != r._root); 
+<a name="l03639"></a>03639                 <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> != r.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03640"></a>03640         } 
 <a name="l03641"></a>03641  
-<a name="l03642"></a>03642         <span class="keywordtype">bool</span> Node::operator&lt;(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03642"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a509304b9bcc6e7891c6b4daa16168f94">03642</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a509304b9bcc6e7891c6b4daa16168f94" title="Compares the internal values to check for inequality.">Node::operator&lt;</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03643"></a>03643 <span class="keyword">        </span>{ 
-<a name="l03644"></a>03644                 <span class="keywordflow">return</span> (_root &lt; r._root); 
+<a name="l03644"></a>03644                 <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> &lt; r.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03645"></a>03645         } 
 <a name="l03646"></a>03646          
-<a name="l03647"></a>03647         <span class="keywordtype">bool</span> Node::operator&gt;(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03647"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7fc3bf84e390269a115e546babf89dfd">03647</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7fc3bf84e390269a115e546babf89dfd" title="Compares the internal values to check for inequality.">Node::operator&gt;</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03648"></a>03648 <span class="keyword">        </span>{ 
-<a name="l03649"></a>03649                 <span class="keywordflow">return</span> (_root &gt; r._root); 
+<a name="l03649"></a>03649                 <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> &gt; r.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03650"></a>03650         } 
 <a name="l03651"></a>03651          
-<a name="l03652"></a>03652         <span class="keywordtype">bool</span> Node::operator&lt;=(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03652"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a01986a425fb67bb6157aea7f861f8729">03652</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a01986a425fb67bb6157aea7f861f8729" title="Compares the internal values to check for inequality.">Node::operator&lt;=</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03653"></a>03653 <span class="keyword">        </span>{ 
-<a name="l03654"></a>03654                 <span class="keywordflow">return</span> (_root &lt;= r._root); 
+<a name="l03654"></a>03654                 <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> &lt;= r.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03655"></a>03655         } 
 <a name="l03656"></a>03656          
-<a name="l03657"></a>03657         <span class="keywordtype">bool</span> Node::operator&gt;=(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; r)<span class="keyword"> const </span>
+<a name="l03657"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a444f80194136237ebc7c971b1c837155">03657</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a444f80194136237ebc7c971b1c837155" title="Compares the internal values to check for inequality.">Node::operator&gt;=</a>(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; r)<span class="keyword"> const </span>
 <a name="l03658"></a>03658 <span class="keyword">        </span>{ 
-<a name="l03659"></a>03659                 <span class="keywordflow">return</span> (_root &gt;= r._root); 
+<a name="l03659"></a>03659                 <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> &gt;= r.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l03660"></a>03660         } 
 <a name="l03661"></a>03661  
 <a name="l03662"></a>03662         <span class="keywordtype">bool</span> Node::Empty()<span class="keyword"> const </span>
 <a name="l03663"></a>03663 <span class="keyword">        </span>{ 
-<a name="l03664"></a>03664                 <span class="keywordflow">return</span> !_root; 
+<a name="l03664"></a>03664                 <span class="keywordflow">return</span> !<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l03665"></a>03665         } 
 <a name="l03666"></a>03666          
 <a name="l03667"></a>03667         <span class="keyword">const</span> char_t* Node::Name()<span class="keyword"> const </span>
 <a name="l03668"></a>03668 <span class="keyword">        </span>{ 
-<a name="l03669"></a>03669                 <span class="keywordflow">return</span> (_root &amp;&amp; _root-&gt;Name) ? _root-&gt;Name : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l03669"></a>03669                 <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> &amp;&amp; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;Name) ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;Name : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03670"></a>03670         } 
 <a name="l03671"></a>03671  
 <a name="l03672"></a>03672         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> Node::type()<span class="keyword"> const </span>
 <a name="l03673"></a>03673 <span class="keyword">        </span>{ 
-<a name="l03674"></a>03674                 <span class="keywordflow">return</span> _root ? <span class="keyword">static_cast&lt;</span><a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a><span class="keyword">&gt;</span>((_root-&gt;header &amp; MemoryPage_type_mask) + 1) : <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3af6e95d4a0b6115c76b339961bc58d742" title="Empty (null) node handle.">NodeNull</a>; 
+<a name="l03674"></a>03674                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> ? <span class="keyword">static_cast&lt;</span><a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a><span class="keyword">&gt;</span>((<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;header &amp; MemoryPage_type_mask) + 1) : <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3af6e95d4a0b6115c76b339961bc58d742" title="Empty (null) node handle.">NodeNull</a>; 
 <a name="l03675"></a>03675         } 
 <a name="l03676"></a>03676          
 <a name="l03677"></a>03677         <span class="keyword">const</span> char_t* Node::Value()<span class="keyword"> const </span>
 <a name="l03678"></a>03678 <span class="keyword">        </span>{ 
-<a name="l03679"></a>03679                 <span class="keywordflow">return</span> (_root &amp;&amp; _root-&gt;Value) ? _root-&gt;Value : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l03679"></a>03679                 <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> &amp;&amp; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;Value) ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;Value : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03680"></a>03680         } 
 <a name="l03681"></a>03681          
-<a name="l03682"></a>03682         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::child(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
+<a name="l03682"></a>03682         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::child(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l03683"></a>03683 <span class="keyword">        </span>{ 
-<a name="l03684"></a>03684                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03684"></a>03684                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03685"></a>03685  
-<a name="l03686"></a>03686                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;FirstChild; i; i = i-&gt;NextSibling) 
-<a name="l03687"></a>03687                         <span class="keywordflow">if</span> (i-&gt;Name &amp;&amp; strequal(Name, i-&gt;Name)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(i); 
+<a name="l03686"></a>03686                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild; i; i = i-&gt;NextSibling) 
+<a name="l03687"></a>03687                         <span class="keywordflow">if</span> (i-&gt;Name &amp;&amp; strequal(Name, i-&gt;Name)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(i); 
 <a name="l03688"></a>03688  
-<a name="l03689"></a>03689                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03689"></a>03689                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03690"></a>03690         } 
 <a name="l03691"></a>03691  
 <a name="l03692"></a>03692         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> Node::attribute(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l03693"></a>03693 <span class="keyword">        </span>{ 
-<a name="l03694"></a>03694                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
+<a name="l03694"></a>03694                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03695"></a>03695  
-<a name="l03696"></a>03696                 <span class="keywordflow">for</span> (<a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* i = _root-&gt;FirstAttribute; i; i = i-&gt;NextAttribute) 
+<a name="l03696"></a>03696                 <span class="keywordflow">for</span> (<a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* i = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute; i; i = i-&gt;NextAttribute) 
 <a name="l03697"></a>03697                         <span class="keywordflow">if</span> (i-&gt;Name &amp;&amp; strequal(Name, i-&gt;Name)) 
 <a name="l03698"></a>03698                                 <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(i); 
 <a name="l03699"></a>03699                  
 <a name="l03700"></a>03700                 <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03701"></a>03701         } 
 <a name="l03702"></a>03702          
-<a name="l03703"></a>03703         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::NextSibling(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
+<a name="l03703"></a>03703         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::NextSibling(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l03704"></a>03704 <span class="keyword">        </span>{ 
-<a name="l03705"></a>03705                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03705"></a>03705                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03706"></a>03706                  
-<a name="l03707"></a>03707                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;NextSibling; i; i = i-&gt;NextSibling) 
-<a name="l03708"></a>03708                         <span class="keywordflow">if</span> (i-&gt;Name &amp;&amp; strequal(Name, i-&gt;Name)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(i); 
+<a name="l03707"></a>03707                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling; i; i = i-&gt;NextSibling) 
+<a name="l03708"></a>03708                         <span class="keywordflow">if</span> (i-&gt;Name &amp;&amp; strequal(Name, i-&gt;Name)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(i); 
 <a name="l03709"></a>03709  
-<a name="l03710"></a>03710                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03710"></a>03710                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03711"></a>03711         } 
 <a name="l03712"></a>03712  
-<a name="l03713"></a>03713         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::NextSibling()<span class="keyword"> const </span>
+<a name="l03713"></a>03713         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::NextSibling()<span class="keyword"> const </span>
 <a name="l03714"></a>03714 <span class="keyword">        </span>{ 
-<a name="l03715"></a>03715                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03715"></a>03715                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03716"></a>03716                  
-<a name="l03717"></a>03717                 <span class="keywordflow">if</span> (_root-&gt;NextSibling) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(_root-&gt;NextSibling); 
-<a name="l03718"></a>03718                 <span class="keywordflow">else</span> <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03717"></a>03717                 <span class="keywordflow">if</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling); 
+<a name="l03718"></a>03718                 <span class="keywordflow">else</span> <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03719"></a>03719         } 
 <a name="l03720"></a>03720  
-<a name="l03721"></a>03721         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::PreviousSibling(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
+<a name="l03721"></a>03721         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::PreviousSibling(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l03722"></a>03722 <span class="keyword">        </span>{ 
-<a name="l03723"></a>03723                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03723"></a>03723                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03724"></a>03724                  
-<a name="l03725"></a>03725                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;prev_sibling_c; i-&gt;NextSibling; i = i-&gt;prev_sibling_c) 
-<a name="l03726"></a>03726                         <span class="keywordflow">if</span> (i-&gt;Name &amp;&amp; strequal(Name, i-&gt;Name)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(i); 
+<a name="l03725"></a>03725                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c; i-&gt;NextSibling; i = i-&gt;prev_sibling_c) 
+<a name="l03726"></a>03726                         <span class="keywordflow">if</span> (i-&gt;Name &amp;&amp; strequal(Name, i-&gt;Name)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(i); 
 <a name="l03727"></a>03727  
-<a name="l03728"></a>03728                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03728"></a>03728                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03729"></a>03729         } 
 <a name="l03730"></a>03730  
-<a name="l03731"></a>03731         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::PreviousSibling()<span class="keyword"> const </span>
+<a name="l03731"></a>03731         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::PreviousSibling()<span class="keyword"> const </span>
 <a name="l03732"></a>03732 <span class="keyword">        </span>{ 
-<a name="l03733"></a>03733                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03733"></a>03733                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03734"></a>03734                  
-<a name="l03735"></a>03735                 <span class="keywordflow">if</span> (_root-&gt;prev_sibling_c-&gt;NextSibling) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(_root-&gt;prev_sibling_c); 
-<a name="l03736"></a>03736                 <span class="keywordflow">else</span> <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03735"></a>03735                 <span class="keywordflow">if</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c-&gt;NextSibling) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c); 
+<a name="l03736"></a>03736                 <span class="keywordflow">else</span> <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03737"></a>03737         } 
 <a name="l03738"></a>03738  
-<a name="l03739"></a>03739         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::parent()<span class="keyword"> const </span>
+<a name="l03739"></a>03739         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::parent()<span class="keyword"> const </span>
 <a name="l03740"></a>03740 <span class="keyword">        </span>{ 
-<a name="l03741"></a>03741                 <span class="keywordflow">return</span> _root ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(_root-&gt;parent) : Node(); 
+<a name="l03741"></a>03741                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;parent) : Node(); 
 <a name="l03742"></a>03742         } 
 <a name="l03743"></a>03743  
-<a name="l03744"></a>03744         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::root()<span class="keyword"> const </span>
+<a name="l03744"></a>03744         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::root()<span class="keyword"> const </span>
 <a name="l03745"></a>03745 <span class="keyword">        </span>{ 
-<a name="l03746"></a>03746                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03746"></a>03746                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03747"></a>03747  
-<a name="l03748"></a>03748                 MemoryPage* page = <span class="keyword">reinterpret_cast&lt;</span>MemoryPage*<span class="keyword">&gt;</span>(_root-&gt;header &amp; MemoryPage_pointer_mask); 
+<a name="l03748"></a>03748                 MemoryPage* page = <span class="keyword">reinterpret_cast&lt;</span>MemoryPage*<span class="keyword">&gt;</span>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;header &amp; MemoryPage_pointer_mask); 
 <a name="l03749"></a>03749  
-<a name="l03750"></a>03750                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(static_cast&lt;DocumentStruct*&gt;(page-&gt;allocator)); 
+<a name="l03750"></a>03750                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(static_cast&lt;DocumentStruct*&gt;(page-&gt;allocator)); 
 <a name="l03751"></a>03751         } 
 <a name="l03752"></a>03752  
 <a name="l03753"></a>03753         <span class="keyword">const</span> char_t* Node::child_Value()<span class="keyword"> const </span>
 <a name="l03754"></a>03754 <span class="keyword">        </span>{ 
-<a name="l03755"></a>03755                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
+<a name="l03755"></a>03755                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03756"></a>03756                  
-<a name="l03757"></a>03757                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;FirstChild; i; i = i-&gt;NextSibling) 
+<a name="l03757"></a>03757                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild; i; i = i-&gt;NextSibling) 
 <a name="l03758"></a>03758                 { 
 <a name="l03759"></a>03759                         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type = <span class="keyword">static_cast&lt;</span><a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a><span class="keyword">&gt;</span>((i-&gt;header &amp; MemoryPage_type_mask) + 1); 
 <a name="l03760"></a>03760  
@@ -3803,22 +3803,22 @@
 <a name="l03772"></a>03772  
 <a name="l03773"></a>03773         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> Node::FirstAttribute()<span class="keyword"> const </span>
 <a name="l03774"></a>03774 <span class="keyword">        </span>{ 
-<a name="l03775"></a>03775                 <span class="keywordflow">return</span> _root ? <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(_root-&gt;FirstAttribute) : Attribute(); 
+<a name="l03775"></a>03775                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> ? <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute) : Attribute(); 
 <a name="l03776"></a>03776         } 
 <a name="l03777"></a>03777  
 <a name="l03778"></a>03778         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> Node::LastAttribute()<span class="keyword"> const </span>
 <a name="l03779"></a>03779 <span class="keyword">        </span>{ 
-<a name="l03780"></a>03780                 <span class="keywordflow">return</span> _root &amp;&amp; _root-&gt;FirstAttribute ? <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(_root-&gt;FirstAttribute-&gt;prev_attribute_c) : <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
+<a name="l03780"></a>03780                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> &amp;&amp; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute ? <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute-&gt;prev_attribute_c) : <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03781"></a>03781         } 
 <a name="l03782"></a>03782  
-<a name="l03783"></a>03783         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::FirstChild()<span class="keyword"> const </span>
+<a name="l03783"></a>03783         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::FirstChild()<span class="keyword"> const </span>
 <a name="l03784"></a>03784 <span class="keyword">        </span>{ 
-<a name="l03785"></a>03785                 <span class="keywordflow">return</span> _root ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(_root-&gt;FirstChild) : Node(); 
+<a name="l03785"></a>03785                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild) : Node(); 
 <a name="l03786"></a>03786         } 
 <a name="l03787"></a>03787  
-<a name="l03788"></a>03788         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::LastChild()<span class="keyword"> const </span>
+<a name="l03788"></a>03788         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::LastChild()<span class="keyword"> const </span>
 <a name="l03789"></a>03789 <span class="keyword">        </span>{ 
-<a name="l03790"></a>03790                 <span class="keywordflow">return</span> _root &amp;&amp; _root-&gt;FirstChild ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(_root-&gt;FirstChild-&gt;prev_sibling_c) : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03790"></a>03790                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> &amp;&amp; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild-&gt;prev_sibling_c) : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>(); 
 <a name="l03791"></a>03791         } 
 <a name="l03792"></a>03792  
 <a name="l03793"></a>03793         <span class="keywordtype">bool</span> Node::SetName(<span class="keyword">const</span> char_t* rhs) 
@@ -3828,7 +3828,7 @@
 <a name="l03797"></a>03797                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa" title="Processing instructions to the XML parser, i.e. &amp;#39;&amp;lt;?name?&amp;gt;&amp;#39;.">NodePi</a>: 
 <a name="l03798"></a>03798                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>: 
 <a name="l03799"></a>03799                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>: 
-<a name="l03800"></a>03800                         <span class="keywordflow">return</span> strcpy_insitu(_root-&gt;Name, _root-&gt;header, MemoryPage_Name_allocated_mask, rhs); 
+<a name="l03800"></a>03800                         <span class="keywordflow">return</span> strcpy_insitu(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;Name, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;header, MemoryPage_Name_allocated_mask, rhs); 
 <a name="l03801"></a>03801  
 <a name="l03802"></a>03802                 <span class="keywordflow">default</span>: 
 <a name="l03803"></a>03803                         <span class="keywordflow">return</span> <span class="keyword">false</span>; 
@@ -3844,7 +3844,7 @@
 <a name="l03813"></a>03813                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3ab48d4b88d7a7757e3e8505c90db3b2bf" title="Plain character data, i.e. &amp;#39;text&amp;#39;.">NodePcdata</a>: 
 <a name="l03814"></a>03814                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a25b778cb61ae0a9f15590cad5e0120d2" title="Comment tag, i.e. &amp;#39;&amp;#39;.">NodeComment</a>: 
 <a name="l03815"></a>03815                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883" title="Document type declaration, i.e. &amp;#39;&amp;lt;!DOCTYPE doc&amp;gt;&amp;#39;.">NodeDoctype</a>: 
-<a name="l03816"></a>03816                         <span class="keywordflow">return</span> strcpy_insitu(_root-&gt;Value, _root-&gt;header, MemoryPage_Value_allocated_mask, rhs); 
+<a name="l03816"></a>03816                         <span class="keywordflow">return</span> strcpy_insitu(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;Value, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;header, MemoryPage_Value_allocated_mask, rhs); 
 <a name="l03817"></a>03817  
 <a name="l03818"></a>03818                 <span class="keywordflow">default</span>: 
 <a name="l03819"></a>03819                         <span class="keywordflow">return</span> <span class="keyword">false</span>; 
@@ -3855,7 +3855,7 @@
 <a name="l03824"></a>03824         { 
 <a name="l03825"></a>03825                 <span class="keywordflow">if</span> (type() != <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a> &amp;&amp; type() != <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03826"></a>03826                  
-<a name="l03827"></a>03827                 <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a(append_attribute_ll(_root, get_allocator(_root))); 
+<a name="l03827"></a>03827                 <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a(append_attribute_ll(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>, get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>))); 
 <a name="l03828"></a>03828                 a.SetName(Name); 
 <a name="l03829"></a>03829                  
 <a name="l03830"></a>03830                 <span class="keywordflow">return</span> a; 
@@ -3865,12 +3865,12 @@
 <a name="l03834"></a>03834         { 
 <a name="l03835"></a>03835                 <span class="keywordflow">if</span> (type() != <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a> &amp;&amp; type() != <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03836"></a>03836                  
-<a name="l03837"></a>03837                 <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a(allocate_attribute(get_allocator(_root))); 
+<a name="l03837"></a>03837                 <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a(allocate_attribute(get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>))); 
 <a name="l03838"></a>03838                 <span class="keywordflow">if</span> (!a) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03839"></a>03839  
 <a name="l03840"></a>03840                 a.SetName(Name); 
 <a name="l03841"></a>03841                  
-<a name="l03842"></a>03842                 <a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* head = _root-&gt;FirstAttribute; 
+<a name="l03842"></a>03842                 <a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* head = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute; 
 <a name="l03843"></a>03843  
 <a name="l03844"></a>03844                 <span class="keywordflow">if</span> (head) 
 <a name="l03845"></a>03845                 { 
@@ -3881,7 +3881,7 @@
 <a name="l03850"></a>03850                         a._attr-&gt;prev_attribute_c = a._attr; 
 <a name="l03851"></a>03851                  
 <a name="l03852"></a>03852                 a._attr-&gt;NextAttribute = head; 
-<a name="l03853"></a>03853                 _root-&gt;FirstAttribute = a._attr; 
+<a name="l03853"></a>03853                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute = a._attr; 
 <a name="l03854"></a>03854                                  
 <a name="l03855"></a>03855                 <span class="keywordflow">return</span> a; 
 <a name="l03856"></a>03856         } 
@@ -3895,9 +3895,9 @@
 <a name="l03864"></a>03864  
 <a name="l03865"></a>03865                 <span class="keywordflow">while</span> (cur-&gt;prev_attribute_c-&gt;NextAttribute) cur = cur-&gt;prev_attribute_c; 
 <a name="l03866"></a>03866  
-<a name="l03867"></a>03867                 <span class="keywordflow">if</span> (cur != _root-&gt;FirstAttribute) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
+<a name="l03867"></a>03867                 <span class="keywordflow">if</span> (cur != <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03868"></a>03868  
-<a name="l03869"></a>03869                 <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a(allocate_attribute(get_allocator(_root))); 
+<a name="l03869"></a>03869                 <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a(allocate_attribute(get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>))); 
 <a name="l03870"></a>03870                 <span class="keywordflow">if</span> (!a) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03871"></a>03871  
 <a name="l03872"></a>03872                 a.SetName(Name); 
@@ -3905,7 +3905,7 @@
 <a name="l03874"></a>03874                 <span class="keywordflow">if</span> (attr._attr-&gt;prev_attribute_c-&gt;NextAttribute) 
 <a name="l03875"></a>03875                         attr._attr-&gt;prev_attribute_c-&gt;NextAttribute = a._attr; 
 <a name="l03876"></a>03876                 <span class="keywordflow">else</span> 
-<a name="l03877"></a>03877                         _root-&gt;FirstAttribute = a._attr; 
+<a name="l03877"></a>03877                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute = a._attr; 
 <a name="l03878"></a>03878                  
 <a name="l03879"></a>03879                 a._attr-&gt;prev_attribute_c = attr._attr-&gt;prev_attribute_c; 
 <a name="l03880"></a>03880                 a._attr-&gt;NextAttribute = attr._attr; 
@@ -3923,9 +3923,9 @@
 <a name="l03892"></a>03892  
 <a name="l03893"></a>03893                 <span class="keywordflow">while</span> (cur-&gt;prev_attribute_c-&gt;NextAttribute) cur = cur-&gt;prev_attribute_c; 
 <a name="l03894"></a>03894  
-<a name="l03895"></a>03895                 <span class="keywordflow">if</span> (cur != _root-&gt;FirstAttribute) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
+<a name="l03895"></a>03895                 <span class="keywordflow">if</span> (cur != <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03896"></a>03896  
-<a name="l03897"></a>03897                 <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a(allocate_attribute(get_allocator(_root))); 
+<a name="l03897"></a>03897                 <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a(allocate_attribute(get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>))); 
 <a name="l03898"></a>03898                 <span class="keywordflow">if</span> (!a) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03899"></a>03899  
 <a name="l03900"></a>03900                 a.SetName(Name); 
@@ -3933,7 +3933,7 @@
 <a name="l03902"></a>03902                 <span class="keywordflow">if</span> (attr._attr-&gt;NextAttribute) 
 <a name="l03903"></a>03903                         attr._attr-&gt;NextAttribute-&gt;prev_attribute_c = a._attr; 
 <a name="l03904"></a>03904                 <span class="keywordflow">else</span> 
-<a name="l03905"></a>03905                         _root-&gt;FirstAttribute-&gt;prev_attribute_c = a._attr; 
+<a name="l03905"></a>03905                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute-&gt;prev_attribute_c = a._attr; 
 <a name="l03906"></a>03906                  
 <a name="l03907"></a>03907                 a._attr-&gt;NextAttribute = attr._attr-&gt;NextAttribute; 
 <a name="l03908"></a>03908                 a._attr-&gt;prev_attribute_c = attr._attr; 
@@ -3982,27 +3982,27 @@
 <a name="l03951"></a>03951                 <span class="keywordflow">return</span> result; 
 <a name="l03952"></a>03952         } 
 <a name="l03953"></a>03953  
-<a name="l03954"></a>03954         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::append_child(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type) 
+<a name="l03954"></a>03954         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::append_child(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type) 
 <a name="l03955"></a>03955         { 
-<a name="l03956"></a>03956                 <span class="keywordflow">if</span> (!allow_insert_child(this-&gt;type(), type)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03956"></a>03956                 <span class="keywordflow">if</span> (!allow_insert_child(this-&gt;type(), type)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03957"></a>03957                  
-<a name="l03958"></a>03958                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n(append_node(_root, get_allocator(_root), type)); 
+<a name="l03958"></a>03958                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n(append_node(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>, get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>), type)); 
 <a name="l03959"></a>03959  
 <a name="l03960"></a>03960                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.SetName(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml&quot;</span>)); 
 <a name="l03961"></a>03961  
 <a name="l03962"></a>03962                 <span class="keywordflow">return</span> n; 
 <a name="l03963"></a>03963         } 
 <a name="l03964"></a>03964  
-<a name="l03965"></a>03965         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::prepend_child(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type) 
+<a name="l03965"></a>03965         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::prepend_child(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type) 
 <a name="l03966"></a>03966         { 
-<a name="l03967"></a>03967                 <span class="keywordflow">if</span> (!allow_insert_child(this-&gt;type(), type)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03967"></a>03967                 <span class="keywordflow">if</span> (!allow_insert_child(this-&gt;type(), type)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03968"></a>03968                  
-<a name="l03969"></a>03969                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n(allocate_node(get_allocator(_root), type)); 
-<a name="l03970"></a>03970                 <span class="keywordflow">if</span> (!n) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03969"></a>03969                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n(allocate_node(get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>), type)); 
+<a name="l03970"></a>03970                 <span class="keywordflow">if</span> (!n) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03971"></a>03971  
-<a name="l03972"></a>03972                 n._root-&gt;parent = _root; 
+<a name="l03972"></a>03972                 n._root-&gt;parent = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l03973"></a>03973  
-<a name="l03974"></a>03974                 <a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* head = _root-&gt;FirstChild; 
+<a name="l03974"></a>03974                 <a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* head = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild; 
 <a name="l03975"></a>03975  
 <a name="l03976"></a>03976                 <span class="keywordflow">if</span> (head) 
 <a name="l03977"></a>03977                 { 
@@ -4013,127 +4013,127 @@
 <a name="l03982"></a>03982                         n._root-&gt;prev_sibling_c = n._root; 
 <a name="l03983"></a>03983                  
 <a name="l03984"></a>03984                 n._root-&gt;NextSibling = head; 
-<a name="l03985"></a>03985                 _root-&gt;FirstChild = n._root; 
+<a name="l03985"></a>03985                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild = n._root; 
 <a name="l03986"></a>03986                                  
 <a name="l03987"></a>03987                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.SetName(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml&quot;</span>)); 
 <a name="l03988"></a>03988  
 <a name="l03989"></a>03989                 <span class="keywordflow">return</span> n; 
 <a name="l03990"></a>03990         } 
 <a name="l03991"></a>03991  
-<a name="l03992"></a>03992         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::insert_child_before(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
+<a name="l03992"></a>03992         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::insert_child_before(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) 
 <a name="l03993"></a>03993         { 
-<a name="l03994"></a>03994                 <span class="keywordflow">if</span> (!allow_insert_child(this-&gt;type(), type)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
-<a name="l03995"></a>03995                 <span class="keywordflow">if</span> (!node._root || node._root-&gt;parent != _root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03994"></a>03994                 <span class="keywordflow">if</span> (!allow_insert_child(this-&gt;type(), type)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
+<a name="l03995"></a>03995                 <span class="keywordflow">if</span> (!node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> || node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;parent != <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03996"></a>03996          
-<a name="l03997"></a>03997                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n(allocate_node(get_allocator(_root), type)); 
-<a name="l03998"></a>03998                 <span class="keywordflow">if</span> (!n) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l03997"></a>03997                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n(allocate_node(get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>), type)); 
+<a name="l03998"></a>03998                 <span class="keywordflow">if</span> (!n) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03999"></a>03999  
-<a name="l04000"></a>04000                 n._root-&gt;parent = _root; 
+<a name="l04000"></a>04000                 n._root-&gt;parent = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l04001"></a>04001                  
-<a name="l04002"></a>04002                 <span class="keywordflow">if</span> (node._root-&gt;prev_sibling_c-&gt;NextSibling) 
-<a name="l04003"></a>04003                         node._root-&gt;prev_sibling_c-&gt;NextSibling = n._root; 
+<a name="l04002"></a>04002                 <span class="keywordflow">if</span> (node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c-&gt;NextSibling) 
+<a name="l04003"></a>04003                         node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c-&gt;NextSibling = n._root; 
 <a name="l04004"></a>04004                 <span class="keywordflow">else</span> 
-<a name="l04005"></a>04005                         _root-&gt;FirstChild = n._root; 
+<a name="l04005"></a>04005                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild = n._root; 
 <a name="l04006"></a>04006                  
-<a name="l04007"></a>04007                 n._root-&gt;prev_sibling_c = node._root-&gt;prev_sibling_c; 
-<a name="l04008"></a>04008                 n._root-&gt;NextSibling = node._root; 
-<a name="l04009"></a>04009                 node._root-&gt;prev_sibling_c = n._root; 
+<a name="l04007"></a>04007                 n._root-&gt;prev_sibling_c = node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c; 
+<a name="l04008"></a>04008                 n._root-&gt;NextSibling = node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
+<a name="l04009"></a>04009                 node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c = n._root; 
 <a name="l04010"></a>04010  
 <a name="l04011"></a>04011                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.SetName(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml&quot;</span>)); 
 <a name="l04012"></a>04012  
 <a name="l04013"></a>04013                 <span class="keywordflow">return</span> n; 
 <a name="l04014"></a>04014         } 
 <a name="l04015"></a>04015  
-<a name="l04016"></a>04016         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::insert_child_after(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
+<a name="l04016"></a>04016         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::insert_child_after(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3" title="The types of nodes.">NodeType</a> type, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) 
 <a name="l04017"></a>04017         { 
-<a name="l04018"></a>04018                 <span class="keywordflow">if</span> (!allow_insert_child(this-&gt;type(), type)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
-<a name="l04019"></a>04019                 <span class="keywordflow">if</span> (!node._root || node._root-&gt;parent != _root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l04018"></a>04018                 <span class="keywordflow">if</span> (!allow_insert_child(this-&gt;type(), type)) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
+<a name="l04019"></a>04019                 <span class="keywordflow">if</span> (!node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> || node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;parent != <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04020"></a>04020          
-<a name="l04021"></a>04021                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n(allocate_node(get_allocator(_root), type)); 
-<a name="l04022"></a>04022                 <span class="keywordflow">if</span> (!n) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l04021"></a>04021                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n(allocate_node(get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>), type)); 
+<a name="l04022"></a>04022                 <span class="keywordflow">if</span> (!n) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04023"></a>04023  
-<a name="l04024"></a>04024                 n._root-&gt;parent = _root; 
+<a name="l04024"></a>04024                 n._root-&gt;parent = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l04025"></a>04025          
-<a name="l04026"></a>04026                 <span class="keywordflow">if</span> (node._root-&gt;NextSibling) 
-<a name="l04027"></a>04027                         node._root-&gt;NextSibling-&gt;prev_sibling_c = n._root; 
+<a name="l04026"></a>04026                 <span class="keywordflow">if</span> (node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling) 
+<a name="l04027"></a>04027                         node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling-&gt;prev_sibling_c = n._root; 
 <a name="l04028"></a>04028                 <span class="keywordflow">else</span> 
-<a name="l04029"></a>04029                         _root-&gt;FirstChild-&gt;prev_sibling_c = n._root; 
+<a name="l04029"></a>04029                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild-&gt;prev_sibling_c = n._root; 
 <a name="l04030"></a>04030                  
-<a name="l04031"></a>04031                 n._root-&gt;NextSibling = node._root-&gt;NextSibling; 
-<a name="l04032"></a>04032                 n._root-&gt;prev_sibling_c = node._root; 
-<a name="l04033"></a>04033                 node._root-&gt;NextSibling = n._root; 
+<a name="l04031"></a>04031                 n._root-&gt;NextSibling = node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling; 
+<a name="l04032"></a>04032                 n._root-&gt;prev_sibling_c = node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
+<a name="l04033"></a>04033                 node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling = n._root; 
 <a name="l04034"></a>04034  
 <a name="l04035"></a>04035                 <span class="keywordflow">if</span> (type == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>) n.SetName(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml&quot;</span>)); 
 <a name="l04036"></a>04036  
 <a name="l04037"></a>04037                 <span class="keywordflow">return</span> n; 
 <a name="l04038"></a>04038         } 
 <a name="l04039"></a>04039  
-<a name="l04040"></a>04040         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::append_child(<span class="keyword">const</span> char_t* Name) 
+<a name="l04040"></a>04040         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::append_child(<span class="keyword">const</span> char_t* Name) 
 <a name="l04041"></a>04041         { 
-<a name="l04042"></a>04042                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> result = append_child(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>); 
+<a name="l04042"></a>04042                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = append_child(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>); 
 <a name="l04043"></a>04043  
 <a name="l04044"></a>04044                 result.SetName(Name); 
 <a name="l04045"></a>04045  
 <a name="l04046"></a>04046                 <span class="keywordflow">return</span> result; 
 <a name="l04047"></a>04047         } 
 <a name="l04048"></a>04048  
-<a name="l04049"></a>04049         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::prepend_child(<span class="keyword">const</span> char_t* Name) 
+<a name="l04049"></a>04049         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::prepend_child(<span class="keyword">const</span> char_t* Name) 
 <a name="l04050"></a>04050         { 
-<a name="l04051"></a>04051                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> result = prepend_child(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>); 
+<a name="l04051"></a>04051                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = prepend_child(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>); 
 <a name="l04052"></a>04052  
 <a name="l04053"></a>04053                 result.SetName(Name); 
 <a name="l04054"></a>04054  
 <a name="l04055"></a>04055                 <span class="keywordflow">return</span> result; 
 <a name="l04056"></a>04056         } 
 <a name="l04057"></a>04057  
-<a name="l04058"></a>04058         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::insert_child_after(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
+<a name="l04058"></a>04058         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::insert_child_after(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) 
 <a name="l04059"></a>04059         { 
-<a name="l04060"></a>04060                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> result = insert_child_after(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>, node); 
+<a name="l04060"></a>04060                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = insert_child_after(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>, node); 
 <a name="l04061"></a>04061  
 <a name="l04062"></a>04062                 result.SetName(Name); 
 <a name="l04063"></a>04063  
 <a name="l04064"></a>04064                 <span class="keywordflow">return</span> result; 
 <a name="l04065"></a>04065         } 
 <a name="l04066"></a>04066  
-<a name="l04067"></a>04067         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::insert_child_before(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
+<a name="l04067"></a>04067         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::insert_child_before(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) 
 <a name="l04068"></a>04068         { 
-<a name="l04069"></a>04069                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> result = insert_child_before(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>, node); 
+<a name="l04069"></a>04069                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = insert_child_before(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>, node); 
 <a name="l04070"></a>04070  
 <a name="l04071"></a>04071                 result.SetName(Name); 
 <a name="l04072"></a>04072  
 <a name="l04073"></a>04073                 <span class="keywordflow">return</span> result; 
 <a name="l04074"></a>04074         } 
 <a name="l04075"></a>04075  
-<a name="l04076"></a>04076         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::append_copy(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; proto) 
+<a name="l04076"></a>04076         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::append_copy(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; proto) 
 <a name="l04077"></a>04077         { 
-<a name="l04078"></a>04078                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> result = append_child(proto.type()); 
+<a name="l04078"></a>04078                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = append_child(proto.type()); 
 <a name="l04079"></a>04079  
 <a name="l04080"></a>04080                 <span class="keywordflow">if</span> (result) recursive_copy_skip(result, proto, result); 
 <a name="l04081"></a>04081  
 <a name="l04082"></a>04082                 <span class="keywordflow">return</span> result; 
 <a name="l04083"></a>04083         } 
 <a name="l04084"></a>04084  
-<a name="l04085"></a>04085         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::prepend_copy(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; proto) 
+<a name="l04085"></a>04085         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::prepend_copy(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; proto) 
 <a name="l04086"></a>04086         { 
-<a name="l04087"></a>04087                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> result = prepend_child(proto.type()); 
+<a name="l04087"></a>04087                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = prepend_child(proto.type()); 
 <a name="l04088"></a>04088  
 <a name="l04089"></a>04089                 <span class="keywordflow">if</span> (result) recursive_copy_skip(result, proto, result); 
 <a name="l04090"></a>04090  
 <a name="l04091"></a>04091                 <span class="keywordflow">return</span> result; 
 <a name="l04092"></a>04092         } 
 <a name="l04093"></a>04093  
-<a name="l04094"></a>04094         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::insert_copy_after(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; proto, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
+<a name="l04094"></a>04094         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::insert_copy_after(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; proto, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) 
 <a name="l04095"></a>04095         { 
-<a name="l04096"></a>04096                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> result = insert_child_after(proto.type(), node); 
+<a name="l04096"></a>04096                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = insert_child_after(proto.type(), node); 
 <a name="l04097"></a>04097  
 <a name="l04098"></a>04098                 <span class="keywordflow">if</span> (result) recursive_copy_skip(result, proto, result); 
 <a name="l04099"></a>04099  
 <a name="l04100"></a>04100                 <span class="keywordflow">return</span> result; 
 <a name="l04101"></a>04101         } 
 <a name="l04102"></a>04102  
-<a name="l04103"></a>04103         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::insert_copy_before(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; proto, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
+<a name="l04103"></a>04103         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::insert_copy_before(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; proto, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) 
 <a name="l04104"></a>04104         { 
-<a name="l04105"></a>04105                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> result = insert_child_before(proto.type(), node); 
+<a name="l04105"></a>04105                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = insert_child_before(proto.type(), node); 
 <a name="l04106"></a>04106  
 <a name="l04107"></a>04107                 <span class="keywordflow">if</span> (result) recursive_copy_skip(result, proto, result); 
 <a name="l04108"></a>04108  
@@ -4147,22 +4147,22 @@
 <a name="l04116"></a>04116  
 <a name="l04117"></a>04117         <span class="keywordtype">bool</span> Node::remove_attribute(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; a) 
 <a name="l04118"></a>04118         { 
-<a name="l04119"></a>04119                 <span class="keywordflow">if</span> (!_root || !a._attr) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
+<a name="l04119"></a>04119                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> || !a._attr) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l04120"></a>04120  
 <a name="l04121"></a>04121                 <span class="comment">// check that attribute belongs to *this </span>
 <a name="l04122"></a>04122                 <a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* attr = a._attr; 
 <a name="l04123"></a>04123  
 <a name="l04124"></a>04124                 <span class="keywordflow">while</span> (attr-&gt;prev_attribute_c-&gt;NextAttribute) attr = attr-&gt;prev_attribute_c; 
 <a name="l04125"></a>04125  
-<a name="l04126"></a>04126                 <span class="keywordflow">if</span> (attr != _root-&gt;FirstAttribute) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
+<a name="l04126"></a>04126                 <span class="keywordflow">if</span> (attr != <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l04127"></a>04127  
 <a name="l04128"></a>04128                 <span class="keywordflow">if</span> (a._attr-&gt;NextAttribute) a._attr-&gt;NextAttribute-&gt;prev_attribute_c = a._attr-&gt;prev_attribute_c; 
-<a name="l04129"></a>04129                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (_root-&gt;FirstAttribute) _root-&gt;FirstAttribute-&gt;prev_attribute_c = a._attr-&gt;prev_attribute_c; 
+<a name="l04129"></a>04129                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute) <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute-&gt;prev_attribute_c = a._attr-&gt;prev_attribute_c; 
 <a name="l04130"></a>04130                  
 <a name="l04131"></a>04131                 <span class="keywordflow">if</span> (a._attr-&gt;prev_attribute_c-&gt;NextAttribute) a._attr-&gt;prev_attribute_c-&gt;NextAttribute = a._attr-&gt;NextAttribute; 
-<a name="l04132"></a>04132                 <span class="keywordflow">else</span> _root-&gt;FirstAttribute = a._attr-&gt;NextAttribute; 
+<a name="l04132"></a>04132                 <span class="keywordflow">else</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstAttribute = a._attr-&gt;NextAttribute; 
 <a name="l04133"></a>04133  
-<a name="l04134"></a>04134                 destroy_attribute(a._attr, get_allocator(_root)); 
+<a name="l04134"></a>04134                 destroy_attribute(a._attr, get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>)); 
 <a name="l04135"></a>04135  
 <a name="l04136"></a>04136                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l04137"></a>04137         } 
@@ -4172,46 +4172,46 @@
 <a name="l04141"></a>04141                 <span class="keywordflow">return</span> remove_child(child(Name)); 
 <a name="l04142"></a>04142         } 
 <a name="l04143"></a>04143  
-<a name="l04144"></a>04144         <span class="keywordtype">bool</span> Node::remove_child(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; n) 
+<a name="l04144"></a>04144         <span class="keywordtype">bool</span> Node::remove_child(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; n) 
 <a name="l04145"></a>04145         { 
-<a name="l04146"></a>04146                 <span class="keywordflow">if</span> (!_root || !n._root || n._root-&gt;parent != _root) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
+<a name="l04146"></a>04146                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> || !n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> || n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;parent != <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l04147"></a>04147  
-<a name="l04148"></a>04148                 <span class="keywordflow">if</span> (n._root-&gt;NextSibling) n._root-&gt;NextSibling-&gt;prev_sibling_c = n._root-&gt;prev_sibling_c; 
-<a name="l04149"></a>04149                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (_root-&gt;FirstChild) _root-&gt;FirstChild-&gt;prev_sibling_c = n._root-&gt;prev_sibling_c; 
+<a name="l04148"></a>04148                 <span class="keywordflow">if</span> (n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling) n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling-&gt;prev_sibling_c = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c; 
+<a name="l04149"></a>04149                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild) <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild-&gt;prev_sibling_c = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c; 
 <a name="l04150"></a>04150                  
-<a name="l04151"></a>04151                 <span class="keywordflow">if</span> (n._root-&gt;prev_sibling_c-&gt;NextSibling) n._root-&gt;prev_sibling_c-&gt;NextSibling = n._root-&gt;NextSibling; 
-<a name="l04152"></a>04152                 <span class="keywordflow">else</span> _root-&gt;FirstChild = n._root-&gt;NextSibling; 
+<a name="l04151"></a>04151                 <span class="keywordflow">if</span> (n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c-&gt;NextSibling) n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c-&gt;NextSibling = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling; 
+<a name="l04152"></a>04152                 <span class="keywordflow">else</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling; 
 <a name="l04153"></a>04153                  
-<a name="l04154"></a>04154                 destroy_node(n._root, get_allocator(_root)); 
+<a name="l04154"></a>04154                 destroy_node(n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>, get_allocator(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>)); 
 <a name="l04155"></a>04155  
 <a name="l04156"></a>04156                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l04157"></a>04157         } 
 <a name="l04158"></a>04158  
-<a name="l04159"></a>04159         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::find_child_by_attribute(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value)<span class="keyword"> const </span>
+<a name="l04159"></a>04159         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::find_child_by_attribute(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value)<span class="keyword"> const </span>
 <a name="l04160"></a>04160 <span class="keyword">        </span>{ 
-<a name="l04161"></a>04161                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l04161"></a>04161                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04162"></a>04162                  
-<a name="l04163"></a>04163                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;FirstChild; i; i = i-&gt;NextSibling) 
+<a name="l04163"></a>04163                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild; i; i = i-&gt;NextSibling) 
 <a name="l04164"></a>04164                         <span class="keywordflow">if</span> (i-&gt;Name &amp;&amp; strequal(Name, i-&gt;Name)) 
 <a name="l04165"></a>04165                         { 
 <a name="l04166"></a>04166                                 <span class="keywordflow">for</span> (<a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* a = i-&gt;FirstAttribute; a; a = a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a58faea36f12b6e57cc6d5891661c4ca9" title="Get the next attribute.">NextAttribute</a>) 
 <a name="l04167"></a>04167                                         <span class="keywordflow">if</span> (strequal(attr_Name, a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ab4c1186366d975d2086bf81df2ce1135" title="Get the name of this Attribute.">Name</a>) &amp;&amp; strequal(attr_Value, a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>)) 
-<a name="l04168"></a>04168                                                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(i); 
+<a name="l04168"></a>04168                                                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(i); 
 <a name="l04169"></a>04169                         } 
 <a name="l04170"></a>04170  
-<a name="l04171"></a>04171                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l04171"></a>04171                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04172"></a>04172         } 
 <a name="l04173"></a>04173  
-<a name="l04174"></a>04174         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::find_child_by_attribute(<span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value)<span class="keyword"> const </span>
+<a name="l04174"></a>04174         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::find_child_by_attribute(<span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value)<span class="keyword"> const </span>
 <a name="l04175"></a>04175 <span class="keyword">        </span>{ 
-<a name="l04176"></a>04176                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l04176"></a>04176                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04177"></a>04177                  
-<a name="l04178"></a>04178                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;FirstChild; i; i = i-&gt;NextSibling) 
+<a name="l04178"></a>04178                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild; i; i = i-&gt;NextSibling) 
 <a name="l04179"></a>04179                         <span class="keywordflow">for</span> (<a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* a = i-&gt;FirstAttribute; a; a = a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a58faea36f12b6e57cc6d5891661c4ca9" title="Get the next attribute.">NextAttribute</a>) 
 <a name="l04180"></a>04180                                 <span class="keywordflow">if</span> (strequal(attr_Name, a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ab4c1186366d975d2086bf81df2ce1135" title="Get the name of this Attribute.">Name</a>) &amp;&amp; strequal(attr_Value, a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>)) 
-<a name="l04181"></a>04181                                         <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(i); 
+<a name="l04181"></a>04181                                         <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(i); 
 <a name="l04182"></a>04182  
-<a name="l04183"></a>04183                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l04183"></a>04183                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04184"></a>04184         } 
 <a name="l04185"></a>04185  
 <a name="l04186"></a>04186 <span class="preprocessor">#ifndef XML_NO_STL </span>
@@ -4219,7 +4219,7 @@
 <a name="l04188"></a>04188 <span class="keyword">        </span>{ 
 <a name="l04189"></a>04189                 <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a6db751f2b35502e04c123bb70daa0d20" title="A string class used internally to store data in the XML parser.">string_t</a> path; 
 <a name="l04190"></a>04190  
-<a name="l04191"></a>04191                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cursor = *<span class="keyword">this</span>; <span class="comment">// Make a copy. </span>
+<a name="l04191"></a>04191                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cursor = *<span class="keyword">this</span>; <span class="comment">// Make a copy. </span>
 <a name="l04192"></a>04192                  
 <a name="l04193"></a>04193                 path = cursor.Name(); 
 <a name="l04194"></a>04194  
@@ -4237,11 +4237,11 @@
 <a name="l04206"></a>04206         } 
 <a name="l04207"></a>04207 <span class="preprocessor">#endif </span>
 <a name="l04208"></a>04208 <span class="preprocessor"></span> 
-<a name="l04209"></a>04209         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Node::FirstElement_by_path(<span class="keyword">const</span> char_t* path, char_t delimiter)<span class="keyword"> const </span>
+<a name="l04209"></a>04209         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::FirstElement_by_path(<span class="keyword">const</span> char_t* path, char_t delimiter)<span class="keyword"> const </span>
 <a name="l04210"></a>04210 <span class="keyword">        </span>{ 
-<a name="l04211"></a>04211                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> found = *<span class="keyword">this</span>; <span class="comment">// Current search context. </span>
+<a name="l04211"></a>04211                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> found = *<span class="keyword">this</span>; <span class="comment">// Current search context. </span>
 <a name="l04212"></a>04212  
-<a name="l04213"></a>04213                 <span class="keywordflow">if</span> (!_root || !path || !path[0]) <span class="keywordflow">return</span> found; 
+<a name="l04213"></a>04213                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> || !path || !path[0]) <span class="keywordflow">return</span> found; 
 <a name="l04214"></a>04214  
 <a name="l04215"></a>04215                 <span class="keywordflow">if</span> (path[0] == delimiter) 
 <a name="l04216"></a>04216                 { 
@@ -4270,17 +4270,17 @@
 <a name="l04239"></a>04239                         <span class="keywordflow">return</span> found.parent().FirstElement_by_path(NextSegment, delimiter); 
 <a name="l04240"></a>04240                 <span class="keywordflow">else</span> 
 <a name="l04241"></a>04241                 { 
-<a name="l04242"></a>04242                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* j = found._root-&gt;FirstChild; j; j = j-&gt;NextSibling) 
+<a name="l04242"></a>04242                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* j = found.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild; j; j = j-&gt;NextSibling) 
 <a name="l04243"></a>04243                         { 
 <a name="l04244"></a>04244                                 <span class="keywordflow">if</span> (j-&gt;Name &amp;&amp; strequalrange(j-&gt;Name, path_segment, static_cast&lt;size_t&gt;(path_segment_end - path_segment))) 
 <a name="l04245"></a>04245                                 { 
-<a name="l04246"></a>04246                                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> subsearch = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(j).FirstElement_by_path(NextSegment, delimiter); 
+<a name="l04246"></a>04246                                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> subsearch = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(j).FirstElement_by_path(NextSegment, delimiter); 
 <a name="l04247"></a>04247  
 <a name="l04248"></a>04248                                         <span class="keywordflow">if</span> (subsearch) <span class="keywordflow">return</span> subsearch; 
 <a name="l04249"></a>04249                                 } 
 <a name="l04250"></a>04250                         } 
 <a name="l04251"></a>04251  
-<a name="l04252"></a>04252                         <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l04252"></a>04252                         <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04253"></a>04253                 } 
 <a name="l04254"></a>04254         } 
 <a name="l04255"></a>04255  
@@ -4288,10 +4288,10 @@
 <a name="l04257"></a>04257         { 
 <a name="l04258"></a>04258                 walker._depth = -1; 
 <a name="l04259"></a>04259                  
-<a name="l04260"></a>04260                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> arg_begin = *<span class="keyword">this</span>; 
+<a name="l04260"></a>04260                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> arg_begin = *<span class="keyword">this</span>; 
 <a name="l04261"></a>04261                 <span class="keywordflow">if</span> (!walker.begin(arg_begin)) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l04262"></a>04262  
-<a name="l04263"></a>04263                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cur = FirstChild(); 
+<a name="l04263"></a>04263                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = FirstChild(); 
 <a name="l04264"></a>04264                                  
 <a name="l04265"></a>04265                 <span class="keywordflow">if</span> (cur) 
 <a name="l04266"></a>04266                 { 
@@ -4299,7 +4299,7 @@
 <a name="l04268"></a>04268  
 <a name="l04269"></a>04269                         <span class="keywordflow">do</span>  
 <a name="l04270"></a>04270                         { 
-<a name="l04271"></a>04271                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> arg_for_each = cur; 
+<a name="l04271"></a>04271                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> arg_for_each = cur; 
 <a name="l04272"></a>04272                                 <span class="keywordflow">if</span> (!walker.for_each(arg_for_each)) 
 <a name="l04273"></a>04273                                         <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l04274"></a>04274                                                  
@@ -4328,23 +4328,23 @@
 <a name="l04297"></a>04297  
 <a name="l04298"></a>04298                 assert(walker._depth == -1); 
 <a name="l04299"></a>04299  
-<a name="l04300"></a>04300                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> arg_end = *<span class="keyword">this</span>; 
+<a name="l04300"></a>04300                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> arg_end = *<span class="keyword">this</span>; 
 <a name="l04301"></a>04301                 <span class="keywordflow">return</span> walker.end(arg_end); 
 <a name="l04302"></a>04302         } 
 <a name="l04303"></a>04303  
 <a name="l04304"></a>04304         <span class="keywordtype">size_t</span> Node::HashValue()<span class="keyword"> const </span>
 <a name="l04305"></a>04305 <span class="keyword">        </span>{ 
-<a name="l04306"></a>04306                 <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(<span class="keyword">reinterpret_cast&lt;</span>uintptr_t<span class="keyword">&gt;</span>(_root) / <span class="keyword">sizeof</span>(<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>)); 
+<a name="l04306"></a>04306                 <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(<span class="keyword">reinterpret_cast&lt;</span>uintptr_t<span class="keyword">&gt;</span>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) / <span class="keyword">sizeof</span>(<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>)); 
 <a name="l04307"></a>04307         } 
 <a name="l04308"></a>04308  
 <a name="l04309"></a>04309         <a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* Node::InternalObject()<span class="keyword"> const </span>
 <a name="l04310"></a>04310 <span class="keyword">        </span>{ 
-<a name="l04311"></a>04311                 <span class="keywordflow">return</span> _root; 
+<a name="l04311"></a>04311                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l04312"></a>04312         } 
 <a name="l04313"></a>04313  
 <a name="l04314"></a>04314         <span class="keywordtype">void</span> Node::print(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html" title="Interface for node printing (see Node::print).">Writer</a>&amp; WriterInstance, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth)<span class="keyword"> const </span>
 <a name="l04315"></a>04315 <span class="keyword">        </span>{ 
-<a name="l04316"></a>04316                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span>; 
+<a name="l04316"></a>04316                 <span class="keywordflow">if</span> (!<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) <span class="keywordflow">return</span>; 
 <a name="l04317"></a>04317  
 <a name="l04318"></a>04318                 BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding); 
 <a name="l04319"></a>04319  
@@ -4385,13 +4385,13 @@
 <a name="l04354"></a>04354                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>: 
 <a name="l04355"></a>04355                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>: 
 <a name="l04356"></a>04356                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa" title="Processing instructions to the XML parser, i.e. &amp;#39;&amp;lt;?name?&amp;gt;&amp;#39;.">NodePi</a>: 
-<a name="l04357"></a>04357                         <span class="keywordflow">return</span> (_root-&gt;header &amp; MemoryPage_Name_allocated_mask) ? -1 : _root-&gt;Name - buffer; 
+<a name="l04357"></a>04357                         <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;header &amp; MemoryPage_Name_allocated_mask) ? -1 : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;Name - buffer; 
 <a name="l04358"></a>04358  
 <a name="l04359"></a>04359                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3ab48d4b88d7a7757e3e8505c90db3b2bf" title="Plain character data, i.e. &amp;#39;text&amp;#39;.">NodePcdata</a>: 
 <a name="l04360"></a>04360                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a353968e806a751a6da4f7ac115b4ab55" title="Character data, i.e. &amp;#39;&amp;lt;![CDATA[text]]&amp;gt;&amp;#39;.">NodeCdata</a>: 
 <a name="l04361"></a>04361                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a25b778cb61ae0a9f15590cad5e0120d2" title="Comment tag, i.e. &amp;#39;&amp;#39;.">NodeComment</a>: 
 <a name="l04362"></a>04362                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883" title="Document type declaration, i.e. &amp;#39;&amp;lt;!DOCTYPE doc&amp;gt;&amp;#39;.">NodeDoctype</a>: 
-<a name="l04363"></a>04363                         <span class="keywordflow">return</span> (_root-&gt;header &amp; MemoryPage_Value_allocated_mask) ? -1 : _root-&gt;Value - buffer; 
+<a name="l04363"></a>04363                         <span class="keywordflow">return</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;header &amp; MemoryPage_Value_allocated_mask) ? -1 : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;Value - buffer; 
 <a name="l04364"></a>04364  
 <a name="l04365"></a>04365                 <span class="keywordflow">default</span>: 
 <a name="l04366"></a>04366                         <span class="keywordflow">return</span> -1; 
@@ -4399,12 +4399,12 @@
 <a name="l04368"></a>04368         } 
 <a name="l04369"></a>04369  
 <a name="l04370"></a>04370 <span class="preprocessor">#ifdef __BORLANDC__ </span>
-<a name="l04371"></a>04371 <span class="preprocessor"></span>        <span class="keywordtype">bool</span> operator&amp;&amp;(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; lhs, <span class="keywordtype">bool</span> rhs) 
+<a name="l04371"></a>04371 <span class="preprocessor"></span>        <span class="keywordtype">bool</span> operator&amp;&amp;(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; lhs, <span class="keywordtype">bool</span> rhs) 
 <a name="l04372"></a>04372         { 
 <a name="l04373"></a>04373                 <span class="keywordflow">return</span> (<span class="keywordtype">bool</span>)lhs &amp;&amp; rhs; 
 <a name="l04374"></a>04374         } 
 <a name="l04375"></a>04375  
-<a name="l04376"></a>04376         <span class="keywordtype">bool</span> operator||(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; lhs, <span class="keywordtype">bool</span> rhs) 
+<a name="l04376"></a>04376         <span class="keywordtype">bool</span> operator||(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; lhs, <span class="keywordtype">bool</span> rhs) 
 <a name="l04377"></a>04377         { 
 <a name="l04378"></a>04378                 <span class="keywordflow">return</span> (<span class="keywordtype">bool</span>)lhs || rhs; 
 <a name="l04379"></a>04379         } 
@@ -4414,7 +4414,7 @@
 <a name="l04383"></a>04383         { 
 <a name="l04384"></a>04384         } 
 <a name="l04385"></a>04385  
-<a name="l04386"></a>04386         NodeIterator::NodeIterator(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node): _wrap(node), _parent(node.parent()) 
+<a name="l04386"></a>04386         NodeIterator::NodeIterator(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node): _wrap(node), _parent(node.parent()) 
 <a name="l04387"></a>04387         { 
 <a name="l04388"></a>04388         } 
 <a name="l04389"></a>04389  
@@ -4424,30 +4424,30 @@
 <a name="l04393"></a>04393  
 <a name="l04394"></a>04394         <span class="keywordtype">bool</span> NodeIterator::operator==(<span class="keyword">const</span> <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">NodeIterator</a>&amp; rhs)<span class="keyword"> const </span>
 <a name="l04395"></a>04395 <span class="keyword">        </span>{ 
-<a name="l04396"></a>04396                 <span class="keywordflow">return</span> _wrap._root == rhs._wrap._root &amp;&amp; _parent._root == rhs._parent._root; 
+<a name="l04396"></a>04396                 <span class="keywordflow">return</span> _wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> == rhs._wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> &amp;&amp; _parent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> == rhs._parent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l04397"></a>04397         } 
 <a name="l04398"></a>04398          
 <a name="l04399"></a>04399         <span class="keywordtype">bool</span> NodeIterator::operator!=(<span class="keyword">const</span> <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">NodeIterator</a>&amp; rhs)<span class="keyword"> const </span>
 <a name="l04400"></a>04400 <span class="keyword">        </span>{ 
-<a name="l04401"></a>04401                 <span class="keywordflow">return</span> _wrap._root != rhs._wrap._root || _parent._root != rhs._parent._root; 
+<a name="l04401"></a>04401                 <span class="keywordflow">return</span> _wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> != rhs._wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> || _parent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> != rhs._parent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l04402"></a>04402         } 
 <a name="l04403"></a>04403  
-<a name="l04404"></a>04404         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; NodeIterator::operator*() 
+<a name="l04404"></a>04404         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; NodeIterator::operator*() 
 <a name="l04405"></a>04405         { 
-<a name="l04406"></a>04406                 assert(_wrap._root); 
+<a name="l04406"></a>04406                 assert(_wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l04407"></a>04407                 <span class="keywordflow">return</span> _wrap; 
 <a name="l04408"></a>04408         } 
 <a name="l04409"></a>04409  
-<a name="l04410"></a>04410         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>* NodeIterator::operator-&gt;() 
+<a name="l04410"></a>04410         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>* NodeIterator::operator-&gt;() 
 <a name="l04411"></a>04411         { 
-<a name="l04412"></a>04412                 assert(_wrap._root); 
+<a name="l04412"></a>04412                 assert(_wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l04413"></a>04413                 <span class="keywordflow">return</span> &amp;_wrap; 
 <a name="l04414"></a>04414         } 
 <a name="l04415"></a>04415  
 <a name="l04416"></a>04416         <span class="keyword">const</span> <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">NodeIterator</a>&amp; NodeIterator::operator++() 
 <a name="l04417"></a>04417         { 
-<a name="l04418"></a>04418                 assert(_wrap._root); 
-<a name="l04419"></a>04419                 _wrap._root = _wrap._root-&gt;NextSibling; 
+<a name="l04418"></a>04418                 assert(_wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
+<a name="l04419"></a>04419                 _wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> = _wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;NextSibling; 
 <a name="l04420"></a>04420                 <span class="keywordflow">return</span> *<span class="keyword">this</span>; 
 <a name="l04421"></a>04421         } 
 <a name="l04422"></a>04422  
@@ -4460,7 +4460,7 @@
 <a name="l04429"></a>04429  
 <a name="l04430"></a>04430         <span class="keyword">const</span> <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">NodeIterator</a>&amp; NodeIterator::operator--() 
 <a name="l04431"></a>04431         { 
-<a name="l04432"></a>04432                 _wrap = _wrap._root ? _wrap.PreviousSibling() : _parent.LastChild(); 
+<a name="l04432"></a>04432                 _wrap = _wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> ? _wrap.PreviousSibling() : _parent.LastChild(); 
 <a name="l04433"></a>04433                 <span class="keywordflow">return</span> *<span class="keyword">this</span>; 
 <a name="l04434"></a>04434         } 
 <a name="l04435"></a>04435  
@@ -4475,7 +4475,7 @@
 <a name="l04444"></a>04444         { 
 <a name="l04445"></a>04445         } 
 <a name="l04446"></a>04446  
-<a name="l04447"></a>04447         AttributeIterator::AttributeIterator(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; attr, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; parent): _wrap(attr), _parent(parent) 
+<a name="l04447"></a>04447         AttributeIterator::AttributeIterator(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; attr, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; parent): _wrap(attr), _parent(parent) 
 <a name="l04448"></a>04448         { 
 <a name="l04449"></a>04449         } 
 <a name="l04450"></a>04450  
@@ -4485,12 +4485,12 @@
 <a name="l04454"></a>04454  
 <a name="l04455"></a>04455         <span class="keywordtype">bool</span> AttributeIterator::operator==(<span class="keyword">const</span> <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a>&amp; rhs)<span class="keyword"> const </span>
 <a name="l04456"></a>04456 <span class="keyword">        </span>{ 
-<a name="l04457"></a>04457                 <span class="keywordflow">return</span> _wrap._attr == rhs._wrap._attr &amp;&amp; _parent._root == rhs._parent._root; 
+<a name="l04457"></a>04457                 <span class="keywordflow">return</span> _wrap._attr == rhs._wrap._attr &amp;&amp; _parent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> == rhs._parent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l04458"></a>04458         } 
 <a name="l04459"></a>04459          
 <a name="l04460"></a>04460         <span class="keywordtype">bool</span> AttributeIterator::operator!=(<span class="keyword">const</span> <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a>&amp; rhs)<span class="keyword"> const </span>
 <a name="l04461"></a>04461 <span class="keyword">        </span>{ 
-<a name="l04462"></a>04462                 <span class="keywordflow">return</span> _wrap._attr != rhs._wrap._attr || _parent._root != rhs._parent._root; 
+<a name="l04462"></a>04462                 <span class="keywordflow">return</span> _wrap._attr != rhs._wrap._attr || _parent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> != rhs._parent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l04463"></a>04463         } 
 <a name="l04464"></a>04464  
 <a name="l04465"></a>04465         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; AttributeIterator::operator*() 
@@ -4588,7 +4588,7 @@
 <a name="l04557"></a>04557         { 
 <a name="l04558"></a>04558                 reset(); 
 <a name="l04559"></a>04559  
-<a name="l04560"></a>04560                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cur = proto.FirstChild(); cur; cur = cur.NextSibling()) 
+<a name="l04560"></a>04560                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = proto.FirstChild(); cur; cur = cur.NextSibling()) 
 <a name="l04561"></a>04561                         append_copy(cur); 
 <a name="l04562"></a>04562         } 
 <a name="l04563"></a>04563  
@@ -4606,11 +4606,11 @@
 <a name="l04575"></a>04575                 page-&gt;busy_size = MemoryPage_size; 
 <a name="l04576"></a>04576  
 <a name="l04577"></a>04577                 <span class="comment">// allocate new root </span>
-<a name="l04578"></a>04578                 _root = <span class="keyword">new</span> (page-&gt;data) DocumentStruct(page); 
-<a name="l04579"></a>04579                 _root-&gt;prev_sibling_c = _root; 
+<a name="l04578"></a>04578                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> = <span class="keyword">new</span> (page-&gt;data) DocumentStruct(page); 
+<a name="l04579"></a>04579                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;prev_sibling_c = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>; 
 <a name="l04580"></a>04580  
 <a name="l04581"></a>04581                 <span class="comment">// setup sentinel page </span>
-<a name="l04582"></a>04582                 page-&gt;allocator = <span class="keyword">static_cast&lt;</span>DocumentStruct*<span class="keyword">&gt;</span>(_root); 
+<a name="l04582"></a>04582                 page-&gt;allocator = <span class="keyword">static_cast&lt;</span>DocumentStruct*<span class="keyword">&gt;</span>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>); 
 <a name="l04583"></a>04583         } 
 <a name="l04584"></a>04584  
 <a name="l04585"></a>04585         <span class="keywordtype">void</span> Document::destroy() 
@@ -4623,9 +4623,9 @@
 <a name="l04592"></a>04592                 } 
 <a name="l04593"></a>04593  
 <a name="l04594"></a>04594                 <span class="comment">// destroy dynamic storage, leave sentinel page (it&#39;s in static memory) </span>
-<a name="l04595"></a>04595                 <span class="keywordflow">if</span> (_root) 
+<a name="l04595"></a>04595                 <span class="keywordflow">if</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>) 
 <a name="l04596"></a>04596                 { 
-<a name="l04597"></a>04597                         MemoryPage* root_page = <span class="keyword">reinterpret_cast&lt;</span>MemoryPage*<span class="keyword">&gt;</span>(_root-&gt;header &amp; MemoryPage_pointer_mask); 
+<a name="l04597"></a>04597                         MemoryPage* root_page = <span class="keyword">reinterpret_cast&lt;</span>MemoryPage*<span class="keyword">&gt;</span>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;header &amp; MemoryPage_pointer_mask); 
 <a name="l04598"></a>04598                         assert(root_page &amp;&amp; !root_page-&gt;prev &amp;&amp; !root_page-&gt;memory); 
 <a name="l04599"></a>04599  
 <a name="l04600"></a>04600                         <span class="comment">// destroy all pages </span>
@@ -4643,7 +4643,7 @@
 <a name="l04612"></a>04612                         root_page-&gt;next = 0; 
 <a name="l04613"></a>04613                         root_page-&gt;busy_size = root_page-&gt;freed_size = 0; 
 <a name="l04614"></a>04614  
-<a name="l04615"></a>04615                         _root = 0; 
+<a name="l04615"></a>04615                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a> = 0; 
 <a name="l04616"></a>04616                 } 
 <a name="l04617"></a>04617         } 
 <a name="l04618"></a>04618  
@@ -4713,7 +4713,7 @@
 <a name="l04682"></a>04682                 <span class="keywordflow">if</span> (own &amp;&amp; buffer != contents &amp;&amp; contents) global_deallocate(contents); 
 <a name="l04683"></a>04683  
 <a name="l04684"></a>04684                 <span class="comment">// parse </span>
-<a name="l04685"></a>04685                 <a class="code" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html" title="All the information needed to troubleshoot a Parsing error.">ParseResult</a> res = Parser::parse(buffer, length, _root, options); 
+<a name="l04685"></a>04685                 <a class="code" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html" title="All the information needed to troubleshoot a Parsing error.">ParseResult</a> res = Parser::parse(buffer, length, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>, options); 
 <a name="l04686"></a>04686  
 <a name="l04687"></a>04687                 <span class="comment">// remember DocumentEncoding </span>
 <a name="l04688"></a>04688                 res.<a class="code" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html#a95c39cf7a95875a4cd9708656a976dfc" title="Source document encoding ( see Encoding ).">DocumentEncoding</a> = buffer_DocumentEncoding; 
@@ -4796,13 +4796,13 @@
 <a name="l04765"></a>04765                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l04766"></a>04766         } 
 <a name="l04767"></a>04767  
-<a name="l04768"></a>04768         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> Document::document_element()<span class="keyword"> const </span>
+<a name="l04768"></a>04768         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Document::document_element()<span class="keyword"> const </span>
 <a name="l04769"></a>04769 <span class="keyword">        </span>{ 
-<a name="l04770"></a>04770                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;FirstChild; i; i = i-&gt;NextSibling) 
+<a name="l04770"></a>04770                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ad7009bbac9b61709a760de20d27b34df" title="Stores pointers to the Node data and some metadata.">_root</a>-&gt;FirstChild; i; i = i-&gt;NextSibling) 
 <a name="l04771"></a>04771                         <span class="keywordflow">if</span> ((i-&gt;header &amp; MemoryPage_type_mask) + 1 == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>) 
-<a name="l04772"></a>04772                                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(i); 
+<a name="l04772"></a>04772                                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(i); 
 <a name="l04773"></a>04773  
-<a name="l04774"></a>04774                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
+<a name="l04774"></a>04774                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04775"></a>04775         } 
 <a name="l04776"></a>04776  
 <a name="l04777"></a>04777 <span class="preprocessor">#ifndef XML_NO_STL </span>
@@ -5495,7 +5495,7 @@
 <a name="l05464"></a>05464                         <span class="keywordflow">return</span> XPathStringConst(na.attribute().<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>()); 
 <a name="l05465"></a>05465                 <span class="keywordflow">else</span> 
 <a name="l05466"></a>05466                 { 
-<a name="l05467"></a>05467                         <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; n = na.node(); 
+<a name="l05467"></a>05467                         <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; n = na.node(); 
 <a name="l05468"></a>05468  
 <a name="l05469"></a>05469                         <span class="keywordflow">switch</span> (n.type()) 
 <a name="l05470"></a>05470                         { 
@@ -5510,7 +5510,7 @@
 <a name="l05479"></a>05479                         { 
 <a name="l05480"></a>05480                                 XPathString result; 
 <a name="l05481"></a>05481  
-<a name="l05482"></a>05482                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cur = n.FirstChild(); 
+<a name="l05482"></a>05482                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = n.FirstChild(); 
 <a name="l05483"></a>05483                                  
 <a name="l05484"></a>05484                                 <span class="keywordflow">while</span> (cur &amp;&amp; cur != n) 
 <a name="l05485"></a>05485                                 { 
@@ -5539,7 +5539,7 @@
 <a name="l05508"></a>05508                 } 
 <a name="l05509"></a>05509         } 
 <a name="l05510"></a>05510          
-<a name="l05511"></a>05511         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> NodeHeight(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n) 
+<a name="l05511"></a>05511         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> NodeHeight(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n) 
 <a name="l05512"></a>05512         { 
 <a name="l05513"></a>05513                 <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> result = 0; 
 <a name="l05514"></a>05514                  
@@ -5552,7 +5552,7 @@
 <a name="l05521"></a>05521                 <span class="keywordflow">return</span> result; 
 <a name="l05522"></a>05522         } 
 <a name="l05523"></a>05523          
-<a name="l05524"></a>05524         <span class="keywordtype">bool</span> NodeIs_before(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> ln, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lh, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> rn, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rh) 
+<a name="l05524"></a>05524         <span class="keywordtype">bool</span> NodeIs_before(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> ln, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lh, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> rn, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rh) 
 <a name="l05525"></a>05525         { 
 <a name="l05526"></a>05526                 <span class="comment">// normalize heights </span>
 <a name="l05527"></a>05527                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = rh; i &lt; lh; i++) ln = ln.parent(); 
@@ -5579,7 +5579,7 @@
 <a name="l05548"></a>05548                 <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l05549"></a>05549         } 
 <a name="l05550"></a>05550  
-<a name="l05551"></a>05551         <span class="keywordtype">bool</span> NodeIs_ancestor(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> parent, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> node) 
+<a name="l05551"></a>05551         <span class="keywordtype">bool</span> NodeIs_ancestor(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> parent, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> node) 
 <a name="l05552"></a>05552         { 
 <a name="l05553"></a>05553                 <span class="keywordflow">while</span> (node &amp;&amp; node != parent) node = node.parent(); 
 <a name="l05554"></a>05554  
@@ -5620,7 +5620,7 @@
 <a name="l05589"></a>05589                         <span class="keywordflow">if</span> (lo &amp;&amp; ro) <span class="keywordflow">return</span> lo &lt; ro; 
 <a name="l05590"></a>05590  
 <a name="l05591"></a>05591                         <span class="comment">// slow comparison </span>
-<a name="l05592"></a>05592                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> ln = lhs.node(), rn = rhs.node(); 
+<a name="l05592"></a>05592                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> ln = lhs.node(), rn = rhs.node(); 
 <a name="l05593"></a>05593  
 <a name="l05594"></a>05594                         <span class="comment">// compare attributes </span>
 <a name="l05595"></a>05595                         <span class="keywordflow">if</span> (lhs.attribute() &amp;&amp; rhs.attribute()) 
@@ -5970,11 +5970,11 @@
 <a name="l05939"></a>05939                 } 
 <a name="l05940"></a>05940         }; 
 <a name="l05941"></a>05941  
-<a name="l05942"></a>05942         <span class="keyword">const</span> char_t* namespace_uri(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node) 
+<a name="l05942"></a>05942         <span class="keyword">const</span> char_t* namespace_uri(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) 
 <a name="l05943"></a>05943         { 
 <a name="l05944"></a>05944                 namespace_uri_predicate pred = node.Name(); 
 <a name="l05945"></a>05945                  
-<a name="l05946"></a>05946                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> p = node; 
+<a name="l05946"></a>05946                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> p = node; 
 <a name="l05947"></a>05947                  
 <a name="l05948"></a>05948                 <span class="keywordflow">while</span> (p) 
 <a name="l05949"></a>05949                 { 
@@ -5988,14 +5988,14 @@
 <a name="l05957"></a>05957                 <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l05958"></a>05958         } 
 <a name="l05959"></a>05959  
-<a name="l05960"></a>05960         <span class="keyword">const</span> char_t* namespace_uri(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; attr, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; parent) 
+<a name="l05960"></a>05960         <span class="keyword">const</span> char_t* namespace_uri(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; attr, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; parent) 
 <a name="l05961"></a>05961         { 
 <a name="l05962"></a>05962                 namespace_uri_predicate pred = attr.<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ab4c1186366d975d2086bf81df2ce1135" title="Get the name of this Attribute.">Name</a>(); 
 <a name="l05963"></a>05963                  
 <a name="l05964"></a>05964                 <span class="comment">// Default namespace does not apply to attributes </span>
 <a name="l05965"></a>05965                 <span class="keywordflow">if</span> (!pred.prefix) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l05966"></a>05966                  
-<a name="l05967"></a>05967                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> p = parent; 
+<a name="l05967"></a>05967                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> p = parent; 
 <a name="l05968"></a>05968                  
 <a name="l05969"></a>05969                 <span class="keywordflow">while</span> (p) 
 <a name="l05970"></a>05970                 { 
@@ -7063,7 +7063,7 @@
 <a name="l07032"></a>07032                         } 
 <a name="l07033"></a>07033                 } 
 <a name="l07034"></a>07034  
-<a name="l07035"></a>07035                 <span class="keywordtype">void</span> step_push(XPathNodeSet_raw&amp; ns, <span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; a, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; parent, XPathAllocator* alloc) 
+<a name="l07035"></a>07035                 <span class="keywordtype">void</span> step_push(XPathNodeSet_raw&amp; ns, <span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; a, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; parent, XPathAllocator* alloc) 
 <a name="l07036"></a>07036                 { 
 <a name="l07037"></a>07037                         <span class="keywordflow">if</span> (!a) <span class="keywordflow">return</span>; 
 <a name="l07038"></a>07038  
@@ -7094,7 +7094,7 @@
 <a name="l07063"></a>07063                         } 
 <a name="l07064"></a>07064                 } 
 <a name="l07065"></a>07065                  
-<a name="l07066"></a>07066                 <span class="keywordtype">void</span> step_push(XPathNodeSet_raw&amp; ns, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; n, XPathAllocator* alloc) 
+<a name="l07066"></a>07066                 <span class="keywordtype">void</span> step_push(XPathNodeSet_raw&amp; ns, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; n, XPathAllocator* alloc) 
 <a name="l07067"></a>07067                 { 
 <a name="l07068"></a>07068                         <span class="keywordflow">if</span> (!n) <span class="keywordflow">return</span>; 
 <a name="l07069"></a>07069  
@@ -7143,7 +7143,7 @@
 <a name="l07112"></a>07112                         }  
 <a name="l07113"></a>07113                 } 
 <a name="l07114"></a>07114  
-<a name="l07115"></a>07115                 <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> step_fill(XPathNodeSet_raw&amp; ns, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; n, XPathAllocator* alloc, T) 
+<a name="l07115"></a>07115                 <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> step_fill(XPathNodeSet_raw&amp; ns, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; n, XPathAllocator* alloc, T) 
 <a name="l07116"></a>07116                 { 
 <a name="l07117"></a>07117                         <span class="keyword">const</span> axis_t axis = T::axis; 
 <a name="l07118"></a>07118  
@@ -7159,7 +7159,7 @@
 <a name="l07128"></a>07128                          
 <a name="l07129"></a>07129                         <span class="keywordflow">case</span> axis_child: 
 <a name="l07130"></a>07130                         { 
-<a name="l07131"></a>07131                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> c = n.FirstChild(); c; c = c.NextSibling()) 
+<a name="l07131"></a>07131                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> c = n.FirstChild(); c; c = c.NextSibling()) 
 <a name="l07132"></a>07132                                         step_push(ns, c, alloc); 
 <a name="l07133"></a>07133                                          
 <a name="l07134"></a>07134                                 <span class="keywordflow">break</span>; 
@@ -7171,7 +7171,7 @@
 <a name="l07140"></a>07140                                 <span class="keywordflow">if</span> (axis == axis_descendant_or_self) 
 <a name="l07141"></a>07141                                         step_push(ns, n, alloc); 
 <a name="l07142"></a>07142                                          
-<a name="l07143"></a>07143                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cur = n.FirstChild(); 
+<a name="l07143"></a>07143                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = n.FirstChild(); 
 <a name="l07144"></a>07144                                  
 <a name="l07145"></a>07145                                 <span class="keywordflow">while</span> (cur &amp;&amp; cur != n) 
 <a name="l07146"></a>07146                                 { 
@@ -7195,7 +7195,7 @@
 <a name="l07164"></a>07164                          
 <a name="l07165"></a>07165                         <span class="keywordflow">case</span> axis_following_sibling: 
 <a name="l07166"></a>07166                         { 
-<a name="l07167"></a>07167                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> c = n.NextSibling(); c; c = c.NextSibling()) 
+<a name="l07167"></a>07167                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> c = n.NextSibling(); c; c = c.NextSibling()) 
 <a name="l07168"></a>07168                                         step_push(ns, c, alloc); 
 <a name="l07169"></a>07169                                  
 <a name="l07170"></a>07170                                 <span class="keywordflow">break</span>; 
@@ -7203,7 +7203,7 @@
 <a name="l07172"></a>07172                          
 <a name="l07173"></a>07173                         <span class="keywordflow">case</span> axis_preceding_sibling: 
 <a name="l07174"></a>07174                         { 
-<a name="l07175"></a>07175                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> c = n.PreviousSibling(); c; c = c.PreviousSibling()) 
+<a name="l07175"></a>07175                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> c = n.PreviousSibling(); c; c = c.PreviousSibling()) 
 <a name="l07176"></a>07176                                         step_push(ns, c, alloc); 
 <a name="l07177"></a>07177                                  
 <a name="l07178"></a>07178                                 <span class="keywordflow">break</span>; 
@@ -7211,7 +7211,7 @@
 <a name="l07180"></a>07180                          
 <a name="l07181"></a>07181                         <span class="keywordflow">case</span> axis_following: 
 <a name="l07182"></a>07182                         { 
-<a name="l07183"></a>07183                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cur = n; 
+<a name="l07183"></a>07183                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = n; 
 <a name="l07184"></a>07184  
 <a name="l07185"></a>07185                                 <span class="comment">// exit from this node so that we don&#39;t include descendants </span>
 <a name="l07186"></a>07186                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.NextSibling()) cur = cur.parent(); 
@@ -7239,7 +7239,7 @@
 <a name="l07208"></a>07208  
 <a name="l07209"></a>07209                         <span class="keywordflow">case</span> axis_preceding: 
 <a name="l07210"></a>07210                         { 
-<a name="l07211"></a>07211                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cur = n; 
+<a name="l07211"></a>07211                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = n; 
 <a name="l07212"></a>07212  
 <a name="l07213"></a>07213                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.PreviousSibling()) cur = cur.parent(); 
 <a name="l07214"></a>07214                                 cur = cur.PreviousSibling(); 
@@ -7282,7 +7282,7 @@
 <a name="l07251"></a>07251                                 <span class="keywordflow">if</span> (axis == axis_ancestor_or_self) 
 <a name="l07252"></a>07252                                         step_push(ns, n, alloc); 
 <a name="l07253"></a>07253  
-<a name="l07254"></a>07254                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cur = n.parent(); 
+<a name="l07254"></a>07254                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = n.parent(); 
 <a name="l07255"></a>07255                                  
 <a name="l07256"></a>07256                                 <span class="keywordflow">while</span> (cur) 
 <a name="l07257"></a>07257                                 { 
@@ -7313,7 +7313,7 @@
 <a name="l07282"></a>07282                         } 
 <a name="l07283"></a>07283                 } 
 <a name="l07284"></a>07284                  
-<a name="l07285"></a>07285                 <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> step_fill(XPathNodeSet_raw&amp; ns, <span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; a, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; p, XPathAllocator* alloc, T v) 
+<a name="l07285"></a>07285                 <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> step_fill(XPathNodeSet_raw&amp; ns, <span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; a, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; p, XPathAllocator* alloc, T v) 
 <a name="l07286"></a>07286                 { 
 <a name="l07287"></a>07287                         <span class="keyword">const</span> axis_t axis = T::axis; 
 <a name="l07288"></a>07288  
@@ -7325,7 +7325,7 @@
 <a name="l07294"></a>07294                                 <span class="keywordflow">if</span> (axis == axis_ancestor_or_self &amp;&amp; _test == nodetest_type_node) <span class="comment">// reject attributes based on principal node type test </span>
 <a name="l07295"></a>07295                                         step_push(ns, a, p, alloc); 
 <a name="l07296"></a>07296  
-<a name="l07297"></a>07297                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cur = p; 
+<a name="l07297"></a>07297                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = p; 
 <a name="l07298"></a>07298                                  
 <a name="l07299"></a>07299                                 <span class="keywordflow">while</span> (cur) 
 <a name="l07300"></a>07300                                 { 
@@ -7348,7 +7348,7 @@
 <a name="l07317"></a>07317  
 <a name="l07318"></a>07318                         <span class="keywordflow">case</span> axis_following: 
 <a name="l07319"></a>07319                         { 
-<a name="l07320"></a>07320                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> cur = p; 
+<a name="l07320"></a>07320                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = p; 
 <a name="l07321"></a>07321                                  
 <a name="l07322"></a>07322                                 <span class="keywordflow">for</span> (;;) 
 <a name="l07323"></a>07323                                 { 
@@ -7548,7 +7548,7 @@
 <a name="l07517"></a>07517  
 <a name="l07518"></a>07518                                 XPathString lang = _left-&gt;eval_string(c, stack); 
 <a name="l07519"></a>07519                                  
-<a name="l07520"></a>07520                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> n = c.n.node(); n; n = n.parent()) 
+<a name="l07520"></a>07520                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = c.n.node(); n; n = n.parent()) 
 <a name="l07521"></a>07521                                 { 
 <a name="l07522"></a>07522                                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = n.attribute(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml:lang&quot;</span>)); 
 <a name="l07523"></a>07523                                          
@@ -9096,17 +9096,17 @@
 <a name="l09065"></a>09065         { 
 <a name="l09066"></a>09066         } 
 <a name="l09067"></a>09067                  
-<a name="l09068"></a>09068         XPathNode::XPathNode(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; node): _node(node) 
+<a name="l09068"></a>09068         XPathNode::XPathNode(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node): _node(node) 
 <a name="l09069"></a>09069         { 
 <a name="l09070"></a>09070         } 
 <a name="l09071"></a>09071                  
-<a name="l09072"></a>09072         XPathNode::XPathNode(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; attribute, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&amp; parent): _node(attribute ? parent : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>()), _attribute(attribute) 
+<a name="l09072"></a>09072         XPathNode::XPathNode(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; attribute, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; parent): _node(attribute ? parent : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>()), _attribute(attribute) 
 <a name="l09073"></a>09073         { 
 <a name="l09074"></a>09074         } 
 <a name="l09075"></a>09075  
-<a name="l09076"></a>09076         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> XPathNode::node()<span class="keyword"> const </span>
+<a name="l09076"></a>09076         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> XPathNode::node()<span class="keyword"> const </span>
 <a name="l09077"></a>09077 <span class="keyword">        </span>{ 
-<a name="l09078"></a>09078                 <span class="keywordflow">return</span> _attribute ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>() : _node; 
+<a name="l09078"></a>09078                 <span class="keywordflow">return</span> _attribute ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>() : _node; 
 <a name="l09079"></a>09079         } 
 <a name="l09080"></a>09080                  
 <a name="l09081"></a>09081         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> XPathNode::attribute()<span class="keyword"> const </span>
@@ -9114,7 +9114,7 @@
 <a name="l09083"></a>09083                 <span class="keywordflow">return</span> _attribute; 
 <a name="l09084"></a>09084         } 
 <a name="l09085"></a>09085          
-<a name="l09086"></a>09086         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> XPathNode::parent()<span class="keyword"> const </span>
+<a name="l09086"></a>09086         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> XPathNode::parent()<span class="keyword"> const </span>
 <a name="l09087"></a>09087 <span class="keyword">        </span>{ 
 <a name="l09088"></a>09088                 <span class="keywordflow">return</span> _attribute ? _node : _node.parent(); 
 <a name="l09089"></a>09089         } 
@@ -9663,7 +9663,7 @@
 <a name="l09632"></a>09632 <span class="comment"> */</span> 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 12:49:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 13:27:45 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
