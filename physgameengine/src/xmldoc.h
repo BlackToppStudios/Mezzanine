@@ -394,6 +394,88 @@ namespace phys
         /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the value.
         /// @warning returns "" if attribute is empty.
 
+        /// @fn Attribute::AsInt() const;
+        /// @brief Attempts to convert the value of the attribute to an int and returns the results.
+        /// @return If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+        /// @todo Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
+        /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check "errno" and see if it is set to "ERANGE" to test for this condition.
+
+        /// @fn Attribute::AsUint() const;
+        /// @brief Attempts to convert the value of the attribute to an unsigned int and returns the results.
+        /// @return If the value of this attribute can be convert to an unsigned int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+        /// @todo Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
+        /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check "errno" and see if it is set to "ERANGE" to test for this condition.
+
+        /// @fn Attribute::AsDouble() const;
+        /// @brief Attempts to convert the value of the attribute to a double and returns the results.
+        /// @return If the value of this attribute can be convert to a double by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+        /// @todo Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
+        /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and double. Check "errno" and see if it is set to "ERANGE" to test for this condition.
+
+        /// @fn Attribute::AsFloat() const;
+        /// @brief Attempts to convert the value of the attribute to a float and returns the results.
+        /// @return If the value of this attribute can be convert to a float by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+        /// @todo Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
+        /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check "errno" and see if it is set to "ERANGE" to test for this condition.
+
+        /// @fn Attribute::AsBool() const;
+        /// @brief Attempts to convert the value of the attribute to a float and returns the results.
+        /// @return Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty
+
+		/// @fn Attribute::SetName(const char_t* rhs);
+		/// @brief Set the name of this attribute.
+		/// @param rhs The new name.
+		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
+		/// @todo update this to make the error return code redudant and use an exception instead.
+
+		/// @fn Attribute::SetValue(int rhs);
+        /// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
+        /// @param rhs The new value as an int.
+        /// @return True if successful, returns false if Attribute is empty or there is not enough memory.
+		/// @todo update this to make the error return code redudant and use an exception instead.
+
+		/// @fn Attribute::SetValue(unsigned int rhs);
+        /// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
+        /// @param rhs The new value as an unsigned int.
+        /// @return True if successful, returns false if Attribute is empty or there is not enough memory.
+		/// @todo update this to make the error return code redudant and use an exception instead.
+
+		/// @fn Attribute::SetValue(double rhs);
+        /// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
+        /// @param rhs The new value as a double.
+        /// @return True if successful, returns false if Attribute is empty or there is not enough memory.
+		/// @todo update this to make the error return code redudant and use an exception instead.
+
+		/// @fn Attribute::SetValue(bool rhs);
+        /// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.
+        /// @param rhs This with be interpretted, then converted to "true" or "false"  and used as the new value.
+        /// @return True if successful, returns false if Attribute is empty or there is not enough memory.
+		/// @todo update this to make the error return code redudant and use an exception instead.
+
+		/// @fn Attribute::operator=(const char_t* rhs);
+		/// @param rhs The new value as an c-style string.
+		/// @brief The same as @ref Attribute::SetValue(const char_t* rhs); without the error return
+		/// @return An reference to this attribute.
+
+		/// @fn Attribute::operator=(int rhs);
+		/// @param rhs The new value as an int.
+		/// @brief The same as @ref Attribute::SetValue(); without the error return.
+		/// @return An reference to this attribute.
+
+		/// @fn Attribute::operator=(unsigned int rhs);
+		/// @param rhs The new value as an unsigned int.
+		/// @brief The same as @ref Attribute::SetValue(); without the error return.
+		/// @return An reference to this attribute.
+
+		/// @fn Attribute::operator=(double rhs);
+		/// @brief The same as @ref Attribute::SetValue(); without the error return.
+		/// @param rhs The new value as a double.
+		/// @return An reference to this attribute.
+
+		/// @fn Attribute::operator=(bool rhs);
+		/// @brief The same as @ref Attribute::SetValue(); without the error return.
+		/// @param rhs This with be interpretted, then converted to "true" or "false" and used as the new value.
+		/// @return An reference to this attribute.
 
     }
 }

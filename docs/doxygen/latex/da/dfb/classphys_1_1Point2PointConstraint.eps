@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 231.213873
+%%BoundingBox: 0 0 500 231.214
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,7 +19,7 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 2.162500 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 2.1625 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
@@ -186,12 +186,12 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (phys::Point2PointConstraint) 0.000000 0.000000 box
- (phys::TypedConstraint) 0.000000 1.000000 box
+ (phys::Point2PointConstraint) 0 0 box
+ (phys::TypedConstraint) 0 1 box
 
 % ----- relations -----
 
 solid
-0 0.000000 0.000000 out
+0 0 0 out
 solid
-1 0.000000 1.000000 in
+1 0 1 in

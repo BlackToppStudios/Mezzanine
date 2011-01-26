@@ -384,6 +384,10 @@ namespace phys
  
 		// Set attribute Name/Value (returns false if attribute is empty or there is not enough memory) 
 		bool SetName(const char_t* rhs); 
+		/// @brief Set the value of this.
+		/// @param rhs The new Value.
+		/// @return True if successful, returns false if this is empty or there is not enough memory.
+		/// @todo update this to make the error return code redudant and use an exception instead.
 		bool SetValue(const char_t* rhs); 
  
 		// Set attribute Value with type conversion (numbers are converted to strings, boolean is converted to "true"/"false") 
@@ -491,6 +495,10 @@ namespace phys
  
 		// Set node Name/Value (returns false if node is empty, there is not enough memory, or node can not have Name/Value) 
 		bool SetName(const char_t* rhs); 
+		/// @brief Set the value of this.
+		/// @param rhs The new Value.
+		/// @return True if successful, returns false if this is empty or there is not enough memory.
+		/// @todo update this to make the error return code redudant and use an exception instead.
 		bool SetValue(const char_t* rhs); 
 		 
 		// Add attribute with specified Name. Returns added attribute, or empty attribute on errors. 
