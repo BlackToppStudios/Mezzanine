@@ -57,28 +57,16 @@ bool \hyperlink{classphys_1_1xml_1_1Attribute_af669654308122897f98858563375bf4c}
 \begin{DoxyCompactList}\small\item\em Set the name of this attribute. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{SetValue} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)
 \begin{DoxyCompactList}\small\item\em Set the value of this. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1Attribute_a693f7bd8015866c3c4979101c343ce50}{
-bool {\bfseries SetValue} (int rhs)}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a693f7bd8015866c3c4979101c343ce50}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Attribute_a289ac36b218f3912224fd904ccade1ed}{
-bool {\bfseries SetValue} (unsigned int rhs)}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a289ac36b218f3912224fd904ccade1ed}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}{
-bool {\bfseries SetValue} (double rhs)}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}{
-bool {\bfseries SetValue} (bool rhs)}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}
-
-\item 
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}{operator=} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)
+bool \hyperlink{classphys_1_1xml_1_1Attribute_a693f7bd8015866c3c4979101c343ce50}{SetValue} (int rhs)
+\begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_a289ac36b218f3912224fd904ccade1ed}{SetValue} (unsigned int rhs)
+\begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}{SetValue} (double rhs)
+\begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}{SetValue} (bool rhs)
 \begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}{operator=} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)
+\begin{DoxyCompactList}\small\item\em The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue(const char\_\-t$\ast$ rhs)}; without the error return. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classphys_1_1xml_1_1Attribute_ac9a18c2b6c4bfc0cdfe4eede938a91fe}{operator=} (int rhs)
 \begin{DoxyCompactList}\small\item\em The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue()}; without the error return. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classphys_1_1xml_1_1Attribute_af6b6e5202b23be948b986cb0bcdf5da8}{operator=} (unsigned int rhs)
@@ -133,7 +121,11 @@ Definition at line 337 of file xml.h.
 \hypertarget{classphys_1_1xml_1_1Attribute_a6786df9d66c675c5a55761a7d3d512a5}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!Attribute@{Attribute}}
 \index{Attribute@{Attribute}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{Attribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Attribute ({\bf AttributeStruct} $\ast$ {\em attr})\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
+\subsubsection[{Attribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Attribute (
+\begin{DoxyParamCaption}
+\item[{{\bf AttributeStruct} $\ast$}]{ attr}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a6786df9d66c675c5a55761a7d3d512a5}
 
 
@@ -152,7 +144,11 @@ Definition at line 3354 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_a1c3e0f3a1722aac6a43daa135fdf622e}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!AsBool@{AsBool}}
 \index{AsBool@{AsBool}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{AsBool}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsBool () const}}
+\subsubsection[{AsBool}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsBool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a1c3e0f3a1722aac6a43daa135fdf622e}
 
 
@@ -168,7 +164,11 @@ Definition at line 3452 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!AsDouble@{AsDouble}}
 \index{AsDouble@{AsDouble}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{AsDouble}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsDouble () const}}
+\subsubsection[{AsDouble}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsDouble (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}
 
 
@@ -178,7 +178,7 @@ Attempts to convert the value of the attribute to a double and returns the resul
 If the value of this attribute can be convert to a double by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000041}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}{Attribute::AsDouble()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000045}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}{Attribute::AsDouble()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and double. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -189,7 +189,11 @@ Definition at line 3430 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!AsFloat@{AsFloat}}
 \index{AsFloat@{AsFloat}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{AsFloat}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsFloat () const}}
+\subsubsection[{AsFloat}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsFloat (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}
 
 
@@ -199,7 +203,7 @@ Attempts to convert the value of the attribute to a float and returns the result
 If the value of this attribute can be convert to a float by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000042}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}{Attribute::AsFloat()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000046}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}{Attribute::AsFloat()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -210,7 +214,11 @@ Definition at line 3441 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!AsInt@{AsInt}}
 \index{AsInt@{AsInt}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{AsInt}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsInt () const}}
+\subsubsection[{AsInt}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsInt (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}
 
 
@@ -220,7 +228,7 @@ Attempts to convert the value of the attribute to an int and returns the results
 If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000039}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}{Attribute::AsInt()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000043}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}{Attribute::AsInt()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -231,7 +239,11 @@ Definition at line 3408 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_ad00ec5857fc4afcda892a0057419a9a0}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!AsUint@{AsUint}}
 \index{AsUint@{AsUint}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{AsUint}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsUint () const}}
+\subsubsection[{AsUint}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::AsUint (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ad00ec5857fc4afcda892a0057419a9a0}
 
 
@@ -241,7 +253,7 @@ Attempts to convert the value of the attribute to an unsigned int and returns th
 If the value of this attribute can be convert to an unsigned int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000040}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ad00ec5857fc4afcda892a0057419a9a0}{Attribute::AsUint()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000044}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ad00ec5857fc4afcda892a0057419a9a0}{Attribute::AsUint()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -252,7 +264,11 @@ Definition at line 3419 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_a6d0157a562f283e9c87d1cc46b3405cc}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!Empty@{Empty}}
 \index{Empty@{Empty}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{Empty}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Empty () const}}
+\subsubsection[{Empty}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Empty (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a6d0157a562f283e9c87d1cc46b3405cc}
 
 
@@ -268,7 +284,11 @@ Definition at line 3463 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_ab4c1186366d975d2086bf81df2ce1135}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!Name@{Name}}
 \index{Name@{Name}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Name () const}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ab4c1186366d975d2086bf81df2ce1135}
 
 
@@ -287,7 +307,11 @@ Definition at line 3468 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_ab2cf442667b8ad1b443f0512ccaedcf9}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
 \index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator Attribute::unspecified\_\-bool\_\-type () const}}
+\subsubsection[{operator unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator Attribute::unspecified\_\-bool\_\-type (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ab2cf442667b8ad1b443f0512ccaedcf9}
 
 
@@ -303,7 +327,11 @@ Definition at line 3358 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_a18cb9f6900b0fc9e246b36d90e5bea5b}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator!@{operator!}}
 \index{operator!@{operator!}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator! () const}}
+\subsubsection[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator! (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a18cb9f6900b0fc9e246b36d90e5bea5b}
 
 
@@ -319,7 +347,11 @@ Definition at line 3363 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_ae2371203e07dd781d2b38ba403b00816}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator!=@{operator!=}}
 \index{operator!=@{operator!=}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator!= (const {\bf Attribute} \& {\em r}) const}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ae2371203e07dd781d2b38ba403b00816}
 
 
@@ -338,7 +370,11 @@ Definition at line 3373 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_ac383f0c514e550fe992b1c0a0f3cbd7a}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$<$ (const {\bf Attribute} \& {\em r}) const}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$<$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ac383f0c514e550fe992b1c0a0f3cbd7a}
 
 
@@ -357,7 +393,11 @@ Definition at line 3378 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_a3b73bd409a2b6b9a7d72c3affc96bae1}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator$<$=@{operator$<$=}}
 \index{operator$<$=@{operator$<$=}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$<$= (const {\bf Attribute} \& {\em r}) const}}
+\subsubsection[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$<$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a3b73bd409a2b6b9a7d72c3affc96bae1}
 
 
@@ -373,48 +413,14 @@ Returns True if the other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} i
 
 Definition at line 3388 of file xml.cpp.
 
-\hypertarget{classphys_1_1xml_1_1Attribute_a008397ad3c9c63bf27a4dca4b68e5efd}{
-\index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
-\index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (bool {\em rhs})}}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a008397ad3c9c63bf27a4dca4b68e5efd}
-
-
-The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue()}; without the error return. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em rhs}]This with be interpretted, then converted to \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{} and used as the new value. \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-An reference to this attribute. 
-\end{DoxyReturn}
-
-
-Definition at line 3512 of file xml.cpp.
-
-\hypertarget{classphys_1_1xml_1_1Attribute_ac92a92492d624984a52b64bc4fabf355}{
-\index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
-\index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (double {\em rhs})}}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_ac92a92492d624984a52b64bc4fabf355}
-
-
-The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue()}; without the error return. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The new value as a double. \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-An reference to this attribute. 
-\end{DoxyReturn}
-
-
-Definition at line 3506 of file xml.cpp.
-
 \hypertarget{classphys_1_1xml_1_1Attribute_af6b6e5202b23be948b986cb0bcdf5da8}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
 \index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (unsigned int {\em rhs})}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{ rhs}
+\end{DoxyParamCaption}
+)}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_af6b6e5202b23be948b986cb0bcdf5da8}
 
 
@@ -430,10 +436,37 @@ An reference to this attribute.
 
 Definition at line 3500 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{ rhs}
+\end{DoxyParamCaption}
+)}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}
+
+
+The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue(const char\_\-t$\ast$ rhs)}; without the error return. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rhs}]The new value as an c-\/style string. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An reference to this attribute. 
+\end{DoxyReturn}
+
+
+Definition at line 3488 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Attribute_ac9a18c2b6c4bfc0cdfe4eede938a91fe}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
 \index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (int {\em rhs})}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{int}]{ rhs}
+\end{DoxyParamCaption}
+)}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ac9a18c2b6c4bfc0cdfe4eede938a91fe}
 
 
@@ -449,37 +482,60 @@ An reference to this attribute.
 
 Definition at line 3494 of file xml.cpp.
 
-\hypertarget{classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}{
+\hypertarget{classphys_1_1xml_1_1Attribute_ac92a92492d624984a52b64bc4fabf355}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
 \index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (const {\bf char\_\-t} $\ast$ {\em rhs})}}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{double}]{ rhs}
+\end{DoxyParamCaption}
+)}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ac92a92492d624984a52b64bc4fabf355}
 
 
-Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. 
+The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue()}; without the error return. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em rhs}]This with be interpretted, then converted to \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{} and used as the new value. \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
-\end{DoxyReturn}
-\begin{Desc}
-\item[\hyperlink{todo__todo000047}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
-
-\begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The new value as an c-\/style string. The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue(const char\_\-t$\ast$ rhs)}; without the error return \end{DoxyParams}
+\item[{\em rhs}]The new value as a double. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 An reference to this attribute. 
 \end{DoxyReturn}
 
 
-Definition at line 3488 of file xml.cpp.
+Definition at line 3506 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a008397ad3c9c63bf27a4dca4b68e5efd}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{bool}]{ rhs}
+\end{DoxyParamCaption}
+)}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a008397ad3c9c63bf27a4dca4b68e5efd}
+
+
+The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue()}; without the error return. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rhs}]This with be interpretted, then converted to \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{} and used as the new value. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An reference to this attribute. 
+\end{DoxyReturn}
+
+
+Definition at line 3512 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Attribute_a68b6ba1299cc9a2019ec97b10bb8978b}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator==@{operator==}}
 \index{operator==@{operator==}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator== (const {\bf Attribute} \& {\em r}) const}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a68b6ba1299cc9a2019ec97b10bb8978b}
 
 
@@ -498,7 +554,11 @@ Definition at line 3368 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_ac778ad4d7aa3a179217de1425e220848}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator$>$@{operator$>$}}
 \index{operator$>$@{operator$>$}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$>$ (const {\bf Attribute} \& {\em r}) const}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$>$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ac778ad4d7aa3a179217de1425e220848}
 
 
@@ -517,7 +577,11 @@ Definition at line 3383 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_ab1d63c57891107848492dc3316c95455}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator$>$=@{operator$>$=}}
 \index{operator$>$=@{operator$>$=}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$>$= (const {\bf Attribute} \& {\em r}) const}}
+\subsubsection[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator$>$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ r}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_ab1d63c57891107848492dc3316c95455}
 
 
@@ -536,7 +600,11 @@ Definition at line 3393 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_af669654308122897f98858563375bf4c}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!SetName@{SetName}}
 \index{SetName@{SetName}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{SetName}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::SetName (const {\bf char\_\-t} $\ast$ {\em rhs})}}
+\subsubsection[{SetName}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::SetName (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{ rhs}
+\end{DoxyParamCaption}
+)}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_af669654308122897f98858563375bf4c}
 
 
@@ -549,15 +617,119 @@ Set the name of this attribute.
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000043}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+\item[\hyperlink{todo__todo000047}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
 
 
 Definition at line 3518 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Attribute_a289ac36b218f3912224fd904ccade1ed}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{ rhs}
+\end{DoxyParamCaption}
+)}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a289ac36b218f3912224fd904ccade1ed}
+
+
+Convert rhs to a character array that contains rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rhs}]The new value as an unsigned int. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000039}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+
+
+Definition at line 3547 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{bool}]{ rhs}
+\end{DoxyParamCaption}
+)}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}
+
+
+Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rhs}]This with be interpretted, then converted to \char`\"{}true\char`\"{} or \char`\"{}false\char`\"{} and used as the new value. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000041}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+
+
+Definition at line 3577 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{double}]{ rhs}
+\end{DoxyParamCaption}
+)}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}
+
+
+Convert rhs to a character array that contains rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rhs}]The new value as a double. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000040}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+
+
+Definition at line 3562 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a693f7bd8015866c3c4979101c343ce50}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{int}]{ rhs}
+\end{DoxyParamCaption}
+)}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a693f7bd8015866c3c4979101c343ce50}
+
+
+Convert rhs to a character array that contains rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rhs}]The new value as an int. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000038}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+
+
+Definition at line 3532 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
 \index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Attribute::SetValue (const {\bf char\_\-t} $\ast$ {\em rhs})}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{const {\bf char\_\-t} $\ast$}]{ rhs}
+\end{DoxyParamCaption}
+)}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}
 
 
@@ -578,7 +750,11 @@ Definition at line 3525 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Attribute_a8a8099b39bca8894a8226ce0e82d3451}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!Value@{Value}}
 \index{Value@{Value}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{Value}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Value () const}}
+\subsubsection[{Value}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
 \label{da/ddf/classphys_1_1xml_1_1Attribute_a8a8099b39bca8894a8226ce0e82d3451}
 
 
