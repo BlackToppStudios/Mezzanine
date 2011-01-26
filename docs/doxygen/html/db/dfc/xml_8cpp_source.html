@@ -3426,14 +3426,14 @@
 <a name="l03395"></a>03395                 <span class="keywordflow">return</span> (_attr &gt;= r._attr); 
 <a name="l03396"></a>03396         } 
 <a name="l03397"></a>03397  
-<a name="l03398"></a>03398         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> Attribute::NextAttribute()<span class="keyword"> const </span>
+<a name="l03398"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a58faea36f12b6e57cc6d5891661c4ca9">03398</a>         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a58faea36f12b6e57cc6d5891661c4ca9" title="Get the next attribute.">Attribute::NextAttribute</a>()<span class="keyword"> const </span>
 <a name="l03399"></a>03399 <span class="keyword">        </span>{ 
-<a name="l03400"></a>03400                 <span class="keywordflow">return</span> _attr ? <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a962ad273e447bb714925c331e00cc3e7" title="Constructs an empty Attribute.">Attribute</a>(_attr-&gt;NextAttribute) : Attribute(); 
+<a name="l03400"></a>03400                 <span class="keywordflow">return</span> _attr ? <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a962ad273e447bb714925c331e00cc3e7" title="Constructs an empty Attribute.">Attribute</a>(_attr-&gt;NextAttribute) : <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a962ad273e447bb714925c331e00cc3e7" title="Constructs an empty Attribute.">Attribute</a>(); 
 <a name="l03401"></a>03401         } 
 <a name="l03402"></a>03402  
-<a name="l03403"></a>03403         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> Attribute::PreviousAttribute()<span class="keyword"> const </span>
+<a name="l03403"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a02fa8a573b2adf5142d363d6eb95e1d5">03403</a>         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a02fa8a573b2adf5142d363d6eb95e1d5" title="Get the previous attribute.">Attribute::PreviousAttribute</a>()<span class="keyword"> const </span>
 <a name="l03404"></a>03404 <span class="keyword">        </span>{ 
-<a name="l03405"></a>03405                 <span class="keywordflow">return</span> _attr &amp;&amp; _attr-&gt;prev_attribute_c-&gt;NextAttribute ? <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a962ad273e447bb714925c331e00cc3e7" title="Constructs an empty Attribute.">Attribute</a>(_attr-&gt;prev_attribute_c) : <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
+<a name="l03405"></a>03405                 <span class="keywordflow">return</span> _attr &amp;&amp; _attr-&gt;prev_attribute_c-&gt;NextAttribute ? <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a962ad273e447bb714925c331e00cc3e7" title="Constructs an empty Attribute.">Attribute</a>(_attr-&gt;prev_attribute_c) : <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a962ad273e447bb714925c331e00cc3e7" title="Constructs an empty Attribute.">Attribute</a>(); 
 <a name="l03406"></a>03406         } 
 <a name="l03407"></a>03407  
 <a name="l03408"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ada1f2e45ce636ad8482972263364e7fa">03408</a>         <span class="keywordtype">int</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ada1f2e45ce636ad8482972263364e7fa" title="Attempts to convert the value of the attribute to an int and returns the results.">Attribute::AsInt</a>()<span class="keyword"> const </span>
@@ -3506,12 +3506,12 @@
 <a name="l03475"></a>03475                 <span class="keywordflow">return</span> (_attr &amp;&amp; _attr-&gt;Value) ? _attr-&gt;Value : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03476"></a>03476         } 
 <a name="l03477"></a>03477  
-<a name="l03478"></a>03478         <span class="keywordtype">size_t</span> Attribute::HashValue()<span class="keyword"> const </span>
+<a name="l03478"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ac0c27e07b705c41670a0903f4fe18378">03478</a>         <span class="keywordtype">size_t</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ac0c27e07b705c41670a0903f4fe18378" title="Get a unique indentifying value for the Attribute this represents.">Attribute::HashValue</a>()<span class="keyword"> const </span>
 <a name="l03479"></a>03479 <span class="keyword">        </span>{ 
 <a name="l03480"></a>03480                 <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(<span class="keyword">reinterpret_cast&lt;</span>uintptr_t<span class="keyword">&gt;</span>(_attr) / <span class="keyword">sizeof</span>(<a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>)); 
 <a name="l03481"></a>03481         } 
 <a name="l03482"></a>03482  
-<a name="l03483"></a>03483         <a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* Attribute::InternalObject()<span class="keyword"> const </span>
+<a name="l03483"></a><a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a1354d5f93309a999651e11b1cd4c2f62">03483</a>         <a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a1354d5f93309a999651e11b1cd4c2f62" title="Retrieve a pointer to the internal data.">Attribute::InternalObject</a>()<span class="keyword"> const </span>
 <a name="l03484"></a>03484 <span class="keyword">        </span>{ 
 <a name="l03485"></a>03485                 <span class="keywordflow">return</span> _attr; 
 <a name="l03486"></a>03486         } 
@@ -4194,7 +4194,7 @@
 <a name="l04163"></a>04163                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;FirstChild; i; i = i-&gt;NextSibling) 
 <a name="l04164"></a>04164                         <span class="keywordflow">if</span> (i-&gt;Name &amp;&amp; strequal(Name, i-&gt;Name)) 
 <a name="l04165"></a>04165                         { 
-<a name="l04166"></a>04166                                 <span class="keywordflow">for</span> (<a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* a = i-&gt;FirstAttribute; a; a = a-&gt;NextAttribute) 
+<a name="l04166"></a>04166                                 <span class="keywordflow">for</span> (<a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* a = i-&gt;FirstAttribute; a; a = a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a58faea36f12b6e57cc6d5891661c4ca9" title="Get the next attribute.">NextAttribute</a>) 
 <a name="l04167"></a>04167                                         <span class="keywordflow">if</span> (strequal(attr_Name, a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ab4c1186366d975d2086bf81df2ce1135" title="Get the name of this Attribute.">Name</a>) &amp;&amp; strequal(attr_Value, a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>)) 
 <a name="l04168"></a>04168                                                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(i); 
 <a name="l04169"></a>04169                         } 
@@ -4207,7 +4207,7 @@
 <a name="l04176"></a>04176                 <span class="keywordflow">if</span> (!_root) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(); 
 <a name="l04177"></a>04177                  
 <a name="l04178"></a>04178                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* i = _root-&gt;FirstChild; i; i = i-&gt;NextSibling) 
-<a name="l04179"></a>04179                         <span class="keywordflow">for</span> (<a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* a = i-&gt;FirstAttribute; a; a = a-&gt;NextAttribute) 
+<a name="l04179"></a>04179                         <span class="keywordflow">for</span> (<a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* a = i-&gt;FirstAttribute; a; a = a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a58faea36f12b6e57cc6d5891661c4ca9" title="Get the next attribute.">NextAttribute</a>) 
 <a name="l04180"></a>04180                                 <span class="keywordflow">if</span> (strequal(attr_Name, a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ab4c1186366d975d2086bf81df2ce1135" title="Get the name of this Attribute.">Name</a>) &amp;&amp; strequal(attr_Value, a-&gt;<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>)) 
 <a name="l04181"></a>04181                                         <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>(i); 
 <a name="l04182"></a>04182  
@@ -4521,7 +4521,7 @@
 <a name="l04490"></a>04490  
 <a name="l04491"></a>04491         <span class="keyword">const</span> <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a>&amp; AttributeIterator::operator--() 
 <a name="l04492"></a>04492         { 
-<a name="l04493"></a>04493                 _wrap = _wrap._attr ? _wrap.PreviousAttribute() : _parent.LastAttribute(); 
+<a name="l04493"></a>04493                 _wrap = _wrap._attr ? _wrap.<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a02fa8a573b2adf5142d363d6eb95e1d5" title="Get the previous attribute.">PreviousAttribute</a>() : _parent.LastAttribute(); 
 <a name="l04494"></a>04494                 <span class="keywordflow">return</span> *<span class="keyword">this</span>; 
 <a name="l04495"></a>04495         } 
 <a name="l04496"></a>04496  
@@ -5597,7 +5597,7 @@
 <a name="l05566"></a>05566                         <span class="keywordflow">return</span> 0; 
 <a name="l05567"></a>05567                 } 
 <a name="l05568"></a>05568  
-<a name="l05569"></a>05569                 <a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* attr = xnode.attribute().InternalObject(); 
+<a name="l05569"></a>05569                 <a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a>* attr = xnode.attribute().<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a1354d5f93309a999651e11b1cd4c2f62" title="Retrieve a pointer to the internal data.">InternalObject</a>(); 
 <a name="l05570"></a>05570  
 <a name="l05571"></a>05571                 <span class="keywordflow">if</span> (attr) 
 <a name="l05572"></a>05572                 { 
@@ -5629,7 +5629,7 @@
 <a name="l05598"></a>05598                                 <span class="keywordflow">if</span> (lhs.parent() == rhs.parent()) 
 <a name="l05599"></a>05599                                 { 
 <a name="l05600"></a>05600                                         <span class="comment">// determine sibling order </span>
-<a name="l05601"></a>05601                                         <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = lhs.attribute(); a; a = a.NextAttribute()) 
+<a name="l05601"></a>05601                                         <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = lhs.attribute(); a; a = a.<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a58faea36f12b6e57cc6d5891661c4ca9" title="Get the next attribute.">NextAttribute</a>()) 
 <a name="l05602"></a>05602                                                 <span class="keywordflow">if</span> (a == rhs.attribute()) 
 <a name="l05603"></a>05603                                                         <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l05604"></a>05604                                          
@@ -7151,7 +7151,7 @@
 <a name="l07120"></a>07120                         { 
 <a name="l07121"></a>07121                         <span class="keywordflow">case</span> axis_attribute: 
 <a name="l07122"></a>07122                         { 
-<a name="l07123"></a>07123                                 <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = n.FirstAttribute(); a; a = a.NextAttribute()) 
+<a name="l07123"></a>07123                                 <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = n.FirstAttribute(); a; a = a.<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a58faea36f12b6e57cc6d5891661c4ca9" title="Get the next attribute.">NextAttribute</a>()) 
 <a name="l07124"></a>07124                                         step_push(ns, a, n, alloc); 
 <a name="l07125"></a>07125                                  
 <a name="l07126"></a>07126                                 <span class="keywordflow">break</span>; 
@@ -9663,7 +9663,7 @@
 <a name="l09632"></a>09632 <span class="comment"> */</span> 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 11:30:04 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 12:49:43 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

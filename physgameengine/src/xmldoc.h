@@ -453,6 +453,27 @@ namespace phys
 		/// @param rhs This with be interpretted, then converted to "true" or "false" and used as the new value.
 		/// @return An reference to this attribute.
 
+		/// @fn Attribute::NextAttribute() const;
+		/// @brief Get the next attribute.
+		/// @details This will get the next sibling attribute. That is, another Attribute on the same node as this attribute. This is internally a circular linked list, so once you reach the end, you simply be given the first node. If this attribute is empty this will return a empty attribute.
+		/// @return Either the next attribute or if this attribute is empty an empty attribute.
+
+		/// @fn Attribute::PreviousAttribute() const;
+		/// @brief Get the previous attribute.
+		/// @details This will get the previous sibling attribute. That is, another Attribute on the same node as this attribute. This is internally a circular linked list, so once you reach the beginning, you simply be given the last node. If this attribute is empty this will return a empty attribute.
+		/// @return Either the previous attribute or if this attribute is empty an empty attribute.
+
+		// Get hash Value (unique for handles to the same object)
+		/// @fn Attribute::HashValue() const;
+		/// @brief Get a unique indentifying value for the Attribute this represents
+		/// @return A size_t that is unique per Attribute that an attribute could represent.
+
+		/// @fn Attribute::InternalObject() const;
+		/// @brief Retrieve a pointer to the internal data.
+		/// @return A void pointer to the internal data.
+		/// @internal
+
+
     }
 }
 #endif

@@ -75,26 +75,14 @@ bool \hyperlink{classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}
 \begin{DoxyCompactList}\small\item\em The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue()}; without the error return. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classphys_1_1xml_1_1Attribute_a008397ad3c9c63bf27a4dca4b68e5efd}{operator=} (bool rhs)
 \begin{DoxyCompactList}\small\item\em The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue()}; without the error return. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1Attribute_a584a1b0029258e22bbc8b3e449733584}{
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries NextAttribute} () const }
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a584a1b0029258e22bbc8b3e449733584}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Attribute_a3e2a48a8df4fac68c6775313a2a9185d}{
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries PreviousAttribute} () const }
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a3e2a48a8df4fac68c6775313a2a9185d}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Attribute_aca77a7c7197f13a34ea80f217938a731}{
-size\_\-t {\bfseries HashValue} () const }
-\label{da/ddf/classphys_1_1xml_1_1Attribute_aca77a7c7197f13a34ea80f217938a731}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Attribute_ad2dd987ea56d7fe659a3529b9bca03ee}{
-\hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} $\ast$ {\bfseries InternalObject} () const }
-\label{da/ddf/classphys_1_1xml_1_1Attribute_ad2dd987ea56d7fe659a3529b9bca03ee}
-
-\end{DoxyCompactItemize}
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \hyperlink{classphys_1_1xml_1_1Attribute_a58faea36f12b6e57cc6d5891661c4ca9}{NextAttribute} () const 
+\begin{DoxyCompactList}\small\item\em Get the next attribute. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \hyperlink{classphys_1_1xml_1_1Attribute_a02fa8a573b2adf5142d363d6eb95e1d5}{PreviousAttribute} () const 
+\begin{DoxyCompactList}\small\item\em Get the previous attribute. \item\end{DoxyCompactList}\item 
+size\_\-t \hyperlink{classphys_1_1xml_1_1Attribute_ac0c27e07b705c41670a0903f4fe18378}{HashValue} () const 
+\begin{DoxyCompactList}\small\item\em Get a unique indentifying value for the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this represents. \item\end{DoxyCompactList}\item 
+\hyperlink{structphys_1_1xml_1_1AttributeStruct}{AttributeStruct} $\ast$ \hyperlink{classphys_1_1xml_1_1Attribute_a1354d5f93309a999651e11b1cd4c2f62}{InternalObject} () const 
+\begin{DoxyCompactList}\small\item\em Retrieve a pointer to the internal data. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -281,6 +269,48 @@ Returns True if this \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is sto
 
 Definition at line 3463 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Attribute_ac0c27e07b705c41670a0903f4fe18378}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!HashValue@{HashValue}}
+\index{HashValue@{HashValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{HashValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::HashValue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ac0c27e07b705c41670a0903f4fe18378}
+
+
+Get a unique indentifying value for the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this represents. 
+
+\begin{DoxyReturn}{Returns}
+A size\_\-t that is unique per \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that an attribute could represent. 
+\end{DoxyReturn}
+
+
+Definition at line 3478 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a1354d5f93309a999651e11b1cd4c2f62}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!InternalObject@{InternalObject}}
+\index{InternalObject@{InternalObject}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{InternalObject}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::InternalObject (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a1354d5f93309a999651e11b1cd4c2f62}
+
+
+Retrieve a pointer to the internal data. 
+
+\begin{DoxyReturn}{Returns}
+A void pointer to the internal data. 
+\end{DoxyReturn}
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 3483 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Attribute_ab4c1186366d975d2086bf81df2ce1135}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!Name@{Name}}
 \index{Name@{Name}!phys::xml::Attribute@{phys::xml::Attribute}}
@@ -303,6 +333,26 @@ returns \char`\"{}\char`\"{} if attribute is empty.
 
 
 Definition at line 3468 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a58faea36f12b6e57cc6d5891661c4ca9}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!NextAttribute@{NextAttribute}}
+\index{NextAttribute@{NextAttribute}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{NextAttribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::NextAttribute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a58faea36f12b6e57cc6d5891661c4ca9}
+
+
+Get the next attribute. 
+
+This will get the next sibling attribute. That is, another \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on the same node as this attribute. This is internally a circular linked list, so once you reach the end, you simply be given the first node. If this attribute is empty this will return a empty attribute. \begin{DoxyReturn}{Returns}
+Either the next attribute or if this attribute is empty an empty attribute. 
+\end{DoxyReturn}
+
+
+Definition at line 3398 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Attribute_ab2cf442667b8ad1b443f0512ccaedcf9}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
@@ -596,6 +646,26 @@ Returns True if the other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} i
 
 
 Definition at line 3393 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a02fa8a573b2adf5142d363d6eb95e1d5}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!PreviousAttribute@{PreviousAttribute}}
+\index{PreviousAttribute@{PreviousAttribute}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{PreviousAttribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::PreviousAttribute (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a02fa8a573b2adf5142d363d6eb95e1d5}
+
+
+Get the previous attribute. 
+
+This will get the previous sibling attribute. That is, another \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on the same node as this attribute. This is internally a circular linked list, so once you reach the beginning, you simply be given the last node. If this attribute is empty this will return a empty attribute. \begin{DoxyReturn}{Returns}
+Either the previous attribute or if this attribute is empty an empty attribute. 
+\end{DoxyReturn}
+
+
+Definition at line 3403 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Attribute_af669654308122897f98858563375bf4c}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!SetName@{SetName}}

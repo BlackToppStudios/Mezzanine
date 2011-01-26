@@ -430,10 +430,6 @@
 /home/dev/physgame/physgameengine/src/xml.cpp:486: warning: Member FirstAttribute (variable) of class phys::xml::NodeStruct is not documented.
 /home/dev/physgame/physgameengine/src/xmldoc.h:276: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xmldoc.h:276: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xml.h:423: warning: Member NextAttribute() const  (function) of class phys::xml::Attribute is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:424: warning: Member PreviousAttribute() const  (function) of class phys::xml::Attribute is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:427: warning: Member HashValue() const  (function) of class phys::xml::Attribute is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:430: warning: Member InternalObject() const  (function) of class phys::xml::Attribute is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:641: warning: Member iterator (typedef) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:647: warning: Member attribute_iterator (typedef) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:455: warning: Member Node(NodeStruct *p) (function) of class phys::xml::Node is not documented.

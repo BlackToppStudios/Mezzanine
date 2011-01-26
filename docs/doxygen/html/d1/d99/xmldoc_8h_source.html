@@ -483,42 +483,63 @@
 <a name="l00452"></a>00452 <span class="comment">                /// @brief The same as @ref Attribute::SetValue(); without the error return.</span>
 <a name="l00453"></a>00453 <span class="comment">                /// @param rhs This with be interpretted, then converted to &quot;true&quot; or &quot;false&quot; and used as the new value.</span>
 <a name="l00454"></a>00454 <span class="comment">                /// @return An reference to this attribute.</span>
-<a name="l00455"></a>00455 <span class="comment"></span>
-<a name="l00456"></a>00456     }
-<a name="l00457"></a>00457 }
-<a name="l00458"></a>00458 <span class="preprocessor">#endif</span>
-<a name="l00459"></a>00459 <span class="preprocessor"></span>
-<a name="l00460"></a>00460 <span class="comment">/*</span>
-<a name="l00461"></a>00461 <span class="comment"> *</span>
-<a name="l00462"></a>00462 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l00463"></a>00463 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l00464"></a>00464 <span class="comment"> *</span>
-<a name="l00465"></a>00465 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l00466"></a>00466 <span class="comment"> *</span>
-<a name="l00467"></a>00467 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l00468"></a>00468 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l00469"></a>00469 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l00470"></a>00470 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l00471"></a>00471 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l00472"></a>00472 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l00473"></a>00473 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l00474"></a>00474 <span class="comment"> * conditions:</span>
-<a name="l00475"></a>00475 <span class="comment"> *</span>
-<a name="l00476"></a>00476 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l00477"></a>00477 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l00478"></a>00478 <span class="comment"> *</span>
-<a name="l00479"></a>00479 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l00480"></a>00480 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l00481"></a>00481 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l00482"></a>00482 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l00483"></a>00483 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l00484"></a>00484 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l00485"></a>00485 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l00486"></a>00486 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l00487"></a>00487 <span class="comment"> */</span>
+<a name="l00455"></a>00455 <span class="comment"></span><span class="comment"></span>
+<a name="l00456"></a>00456 <span class="comment">                /// @fn Attribute::NextAttribute() const;</span>
+<a name="l00457"></a>00457 <span class="comment">                /// @brief Get the next attribute.</span>
+<a name="l00458"></a>00458 <span class="comment">                /// @details This will get the next sibling attribute. That is, another Attribute on the same node as this attribute. This is internally a circular linked list, so once you reach the end, you simply be given the first node. If this attribute is empty this will return a empty attribute.</span>
+<a name="l00459"></a>00459 <span class="comment">                /// @return Either the next attribute or if this attribute is empty an empty attribute.</span>
+<a name="l00460"></a>00460 <span class="comment"></span><span class="comment"></span>
+<a name="l00461"></a>00461 <span class="comment">                /// @fn Attribute::PreviousAttribute() const;</span>
+<a name="l00462"></a>00462 <span class="comment">                /// @brief Get the previous attribute.</span>
+<a name="l00463"></a>00463 <span class="comment">                /// @details This will get the previous sibling attribute. That is, another Attribute on the same node as this attribute. This is internally a circular linked list, so once you reach the beginning, you simply be given the last node. If this attribute is empty this will return a empty attribute.</span>
+<a name="l00464"></a>00464 <span class="comment">                /// @return Either the previous attribute or if this attribute is empty an empty attribute.</span>
+<a name="l00465"></a>00465 <span class="comment"></span>
+<a name="l00466"></a>00466                 <span class="comment">// Get hash Value (unique for handles to the same object)</span><span class="comment"></span>
+<a name="l00467"></a>00467 <span class="comment">                /// @fn Attribute::HashValue() const;</span>
+<a name="l00468"></a>00468 <span class="comment">                /// @brief Get a unique indentifying value for the Attribute this represents</span>
+<a name="l00469"></a>00469 <span class="comment">                /// @return A size_t that is unique per Attribute that an attribute could represent.</span>
+<a name="l00470"></a>00470 <span class="comment"></span><span class="comment"></span>
+<a name="l00471"></a>00471 <span class="comment">                /// @fn Attribute::InternalObject() const;</span>
+<a name="l00472"></a>00472 <span class="comment">                /// @brief Retrieve a pointer to the internal data.</span>
+<a name="l00473"></a>00473 <span class="comment">                /// @return A void pointer to the internal data.</span>
+<a name="l00474"></a>00474 <span class="comment">                /// @internal</span>
+<a name="l00475"></a>00475 <span class="comment"></span>
+<a name="l00476"></a>00476 
+<a name="l00477"></a>00477     }
+<a name="l00478"></a>00478 }
+<a name="l00479"></a>00479 <span class="preprocessor">#endif</span>
+<a name="l00480"></a>00480 <span class="preprocessor"></span>
+<a name="l00481"></a>00481 <span class="comment">/*</span>
+<a name="l00482"></a>00482 <span class="comment"> *</span>
+<a name="l00483"></a>00483 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l00484"></a>00484 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l00485"></a>00485 <span class="comment"> *</span>
+<a name="l00486"></a>00486 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l00487"></a>00487 <span class="comment"> *</span>
+<a name="l00488"></a>00488 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l00489"></a>00489 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l00490"></a>00490 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l00491"></a>00491 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l00492"></a>00492 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l00493"></a>00493 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l00494"></a>00494 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l00495"></a>00495 <span class="comment"> * conditions:</span>
+<a name="l00496"></a>00496 <span class="comment"> *</span>
+<a name="l00497"></a>00497 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l00498"></a>00498 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l00499"></a>00499 <span class="comment"> *</span>
+<a name="l00500"></a>00500 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l00501"></a>00501 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l00502"></a>00502 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l00503"></a>00503 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l00504"></a>00504 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l00505"></a>00505 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l00506"></a>00506 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l00507"></a>00507 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l00508"></a>00508 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 11:30:04 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Jan 26 2011 12:49:43 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
