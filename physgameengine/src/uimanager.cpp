@@ -140,6 +140,14 @@ namespace phys
         Silver->loadAtlas(Name);
     }
 
+    void UIManager::RedrawAll(bool Force)
+    {
+        for( std::vector<UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        {
+            (*it)->GetGorillaScreen()->_redrawAllIndexes(Force);
+        }
+    }
+
     UI::Button* UIManager::GetHoveredButton()
     {
         return HoveredButton;

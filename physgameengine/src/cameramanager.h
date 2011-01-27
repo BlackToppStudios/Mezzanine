@@ -59,6 +59,7 @@ namespace phys
 {
     class Camera;
     class SceneManager;
+    class GraphicsManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class CameraManager
     /// @headerfile cameramanager.h
@@ -70,6 +71,7 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     class PHYS_LIB CameraManager : public ManagerBase {
         protected:
+            friend class GraphicsManager;
             friend class World;
             friend class Camera;
             std::map< String, Ogre::Viewport* > Viewports;
@@ -118,17 +120,17 @@ namespace phys
             void CreateViewport(const String& Name, Camera* ViewportCam);
 
             //Inherited From ManagerBase
-            /// @brief Empty Initializor
+            /// @brief Empty Initializor.
             /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
-            /// in case a derived class wants to override it for some reason
+            /// in case a derived class wants to override it for some reason.
             virtual void Initialize();
 
-            /// @brief Empty MainLoopItems
-            /// @details This class implements this for the sake of entension and compatibility this function does nothing
+            /// @brief Empty MainLoopItems.
+            /// @details This class implements this for the sake of extension and compatibility.  This function does nothing.
             virtual void DoMainLoopItems();
 
             /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::CameraManager
+            /// @return This returns ManagerTypeName::CameraManager.
             virtual ManagerTypeName GetType() const;
 
             /// @brief Gets the internal Ogre viewport.

@@ -25,7 +25,7 @@ int main(int argc, char **argv)
 {
     try
     {
-        TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), "SceneManager", SceneManager::Generic, 30);
+        TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), SceneManager::Generic, 30);
     }catch( exception x){
         cerr << "Could not create world:" << x.what();
         return 1;
@@ -237,6 +237,31 @@ bool PostInput()
             Theme->Play2d(false);
         }
     }
+
+    //Resize the window
+    static bool videobuttonpushed = false;
+    if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_f) && !videobuttonpushed )
+    {
+        videobuttonpushed = true;
+        TheWorld->GetGraphicsManager()->setRenderOptions(1280,1024,true);
+        //TheWorld->GetGraphicsManager()->setFullscreen(true);
+    }
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_g)  && !videobuttonpushed )
+    {
+        videobuttonpushed = true;
+        TheWorld->GetGraphicsManager()->setFullscreen(false);
+    }
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_r)  && !videobuttonpushed )
+    {
+        videobuttonpushed = true;
+        TheWorld->GetGraphicsManager()->setRenderResolution(1280,1024);
+    }
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_t)  && !videobuttonpushed )
+    {
+        videobuttonpushed = true;
+        TheWorld->GetGraphicsManager()->setRenderResolution(800,600);
+    }
+    else { videobuttonpushed = false; }
 
     // Make a declaration for a static constrain so it survives the function lifetime
     // static *constraint MouseDragger = 0;

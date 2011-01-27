@@ -79,8 +79,6 @@ namespace phys
             void Construct(Ogre::Camera* Camera, CameraManager* Manager);
 
         protected:
-            //needed mostly just for initialization of the world class when defaults are being made.
-            friend class World;
             friend class Node;
             friend class CameraManager;
             /// @internal
@@ -190,14 +188,14 @@ namespace phys
             /// @param Screenx A Real representing the relative location on screen, on the x axis(0.0-1.0).
             /// @param Screeny A Real representing the relative location on screen, on the y axis(0.0-1.0).
             Ray GetCameraToViewportRay(Real Screenx, Real Screeny);
-            /// @brief Gets the node attached to a camera.
+            /// @brief Gets the node attached to the camera.
             /// @details This will return a string that is the name of the node the specified camera is attached to if any.
             String GetNodeAttachedToCamera();
-            /// @brief Gets the relative location of a camera.
-            /// @details Gets the location of the camera, relative to any connected nodes, specified.
+            /// @brief Gets the relative location of the camera.
+            /// @details Gets the location of the camera, relative to any parent nodes.
             Vector3 GetCameraRelativeLocation();
-            /// @brief Gets the global location of a camera.
-            /// @details Gets the real world location of the camera specified.
+            /// @brief Gets the global location of the camera.
+            /// @details Gets the real world location of the camera.
             Vector3 GetCameraGlobalLocation();
             /// @brief Will zoom in or out the camera.
             /// @details This function will zoom in the camera by the amount specified.
@@ -209,6 +207,10 @@ namespace phys
             /// @details This function will return the zoom level back to normal.  Note this function will only work if
             /// the camera is attached to a node.
             void ResetZoom();
+            /// @internal
+            /// @brief Gets the internal camera this camera is based on.
+            /// @return Returns a pointer to the Ogre Camera this camera is based on.
+            Ogre::Camera* GetOgreCamera();
     };
 }//phys
 

@@ -397,6 +397,7 @@ namespace phys{
     void ActorBase::SetInitLocation(Vector3 Location)
     {
         this->SetBulletLocation(Location);
+        this->SetOgreLocation(Location);
     }
 
     ///////////////////////////////////

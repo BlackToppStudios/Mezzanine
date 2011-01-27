@@ -49,7 +49,7 @@
 
 namespace phys
 {
-    SceneManager::SceneManager(const String& Name, SceneManager::SceneManagerType ManagerType)
+    SceneManager::SceneManager(SceneManager::SceneManagerType ManagerType)
     {
         Ogre::SceneType Type;
         switch (ManagerType)
@@ -69,7 +69,7 @@ namespace phys
             default:
                 Type = Ogre::ST_GENERIC;
         }
-        OgreManager = Ogre::Root::getSingleton().createSceneManager(Type, Name);
+        OgreManager = Ogre::Root::getSingleton().createSceneManager(Type);
     }
 
     SceneManager::~SceneManager()

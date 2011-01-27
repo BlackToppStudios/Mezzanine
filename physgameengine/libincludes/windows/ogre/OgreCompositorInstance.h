@@ -29,7 +29,7 @@ THE SOFTWARE.
 #define __CompositorInstance_H__
 
 #include "OgrePrerequisites.h"
-#include "OgreMaterial.h"
+#include "OgreMaterialManager.h"
 #include "OgreTexture.h"
 #include "OgreRenderQueue.h"
 #include "OgreCompositionTechnique.h"
@@ -108,11 +108,11 @@ namespace Ogre {
             TargetOperation()
             { 
             }
-            TargetOperation(RenderTarget *target):
-                target(target), currentQueueGroupID(0), visibilityMask(0xFFFFFFFF),
+            TargetOperation(RenderTarget *inTarget):
+                target(inTarget), currentQueueGroupID(0), visibilityMask(0xFFFFFFFF),
                 lodBias(1.0f),
                 onlyInitial(false), hasBeenRendered(false), findVisibleObjects(false), 
-				shadowsEnabled(true)
+				materialScheme(MaterialManager::DEFAULT_SCHEME_NAME), shadowsEnabled(true)
             { 
             }
             /// Target

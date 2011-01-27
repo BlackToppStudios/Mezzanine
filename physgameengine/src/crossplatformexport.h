@@ -75,7 +75,7 @@
 #endif
 
 //Check for windows, but not in a way that overides what is passed on the command prompt
-#ifndef NONWINDOWS
+#ifdef NONWINDOWS
     #ifdef __WIN32__
     #define WINDOWS
     #endif

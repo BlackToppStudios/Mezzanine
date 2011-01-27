@@ -185,6 +185,11 @@ namespace phys
         }
         return 0;
     }
+
+    Gorilla::Screen* UIScreen::GetGorillaScreen()
+    {
+        return GorillaScreen;
+    }
 }
 
 #endif

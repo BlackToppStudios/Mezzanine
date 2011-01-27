@@ -79,13 +79,16 @@ namespace Ogre {
 		@param freeMode The mechanism to use to free the pointer
 		*/
         template< class Y>
-		explicit SharedPtr(Y* rep, SharedPtrFreeMethod freeMethod = SPFM_DELETE) 
+		explicit SharedPtr(Y* rep, SharedPtrFreeMethod inFreeMethod = SPFM_DELETE) 
 			: pRep(rep)
 			, pUseCount(rep ? OGRE_NEW_T(unsigned int, MEMCATEGORY_GENERAL)(1) : 0)
-			, useFreeMethod(freeMethod)
+			, useFreeMethod(inFreeMethod)
 		{
             OGRE_SET_AUTO_SHARED_MUTEX_NULL
-			OGRE_NEW_AUTO_SHARED_MUTEX
+			if (rep)
+			{
+				OGRE_NEW_AUTO_SHARED_MUTEX
+			}
 		}
 		SharedPtr(const SharedPtr& r)
             : pRep(0), pUseCount(0), useFreeMethod(SPFM_DELETE)
@@ -161,13 +164,13 @@ namespace Ogre {
 			@remarks
 				Assumes that the SharedPtr is uninitialised!
 		*/
-		void bind(T* rep, SharedPtrFreeMethod freeMethod = SPFM_DELETE) {
+		void bind(T* rep, SharedPtrFreeMethod inFreeMethod = SPFM_DELETE) {
 			assert(!pRep && !pUseCount);
             OGRE_NEW_AUTO_SHARED_MUTEX
 			OGRE_LOCK_AUTO_SHARED_MUTEX
 			pUseCount = OGRE_NEW_T(unsigned int, MEMCATEGORY_GENERAL)(1);
 			pRep = rep;
-			useFreeMethod = freeMethod;
+			useFreeMethod = inFreeMethod;
 		}
 
 		inline bool unique() const { OGRE_LOCK_AUTO_SHARED_MUTEX assert(pUseCount); return *pUseCount == 1; }
