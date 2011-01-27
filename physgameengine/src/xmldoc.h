@@ -120,7 +120,7 @@ namespace phys
         /// @var StatusBadCdata
         /// @brief Parsing error occurred while parsing CDATA section.
 
-        /// @var StatusBadDoctype
+        /// @var StatusBadDocType
         /// @brief Parsing error occurred while parsing document type declaration.
 
         /// @var StatusBadPcdata
@@ -453,12 +453,12 @@ namespace phys
 		/// @param rhs This with be interpretted, then converted to "true" or "false" and used as the new value.
 		/// @return An reference to this attribute.
 
-		/// @fn Attribute::NextAttribute() const;
+		/// @fn Attribute::GetNextAttribute() const;
 		/// @brief Get the next attribute.
 		/// @details This will get the next sibling attribute. That is, another Attribute on the same node as this attribute. This is internally a circular linked list, so once you reach the end, you simply be given the first node. If this attribute is empty this will return a empty attribute.
 		/// @return Either the next attribute or if this attribute is empty an empty attribute.
 
-		/// @fn Attribute::PreviousAttribute() const;
+		/// @fn Attribute::GetPreviousAttribute() const;
 		/// @brief Get the previous attribute.
 		/// @details This will get the previous sibling attribute. That is, another Attribute on the same node as this attribute. This is internally a circular linked list, so once you reach the beginning, you simply be given the last node. If this attribute is empty this will return a empty attribute.
 		/// @return Either the previous attribute or if this attribute is empty an empty attribute.
@@ -555,14 +555,21 @@ namespace phys
         /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the value.
         /// @warning returns "" if Node is empty.
 
-		/// @fn Node::FirstAttribute() const;
-		/// @brief Get the First Attribute in this node.
+		/// @fn Node::GetFirstAttribute() const;
+		/// @brief Get the First Attribute in this Node.
 		/// @return This attempts to return the First @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
 
-
-		/// @fn Node::LastAttribute() const;
-        /// @brief Get the Last Attribute in this node.
+        /// @fn Node::GetLastAttribute() const;
+        /// @brief Get the Last Attribute in this Node.
         /// @return This attempts to return the Last @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
+
+		/// @fn Node::GetFirstChild() const;
+		/// @brief Get the first child Node of this Node.
+		/// @return Returns the First child node if it exists, otherwise it return an empty node.
+
+		/// @fn Node::GetLastChild() const;
+		/// @brief Get the last child Node of this Node.
+		/// @return Returns the last child node if it exists, otherwise it return an empty node.
 
     }
 }

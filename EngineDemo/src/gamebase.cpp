@@ -555,7 +555,7 @@ void LoadContent()
                             << "xml::StatusBadPi :" << xml::StatusBadPi << endl
                             << "xml::StatusBadComment :" << xml::StatusBadComment << endl
                             << "xml::StatusBadCdata :" << xml::StatusBadCdata << endl
-                            << "xml::StatusBadDoctype :" << xml::StatusBadDoctype << endl
+                            << "xml::StatusBadDoctype :" << xml::StatusBadDocType << endl
                             << "xml::StatusBadPcdata :" << xml::StatusBadPcdata << endl
                             << "xml::StatusBadStartElement :" << xml::StatusBadStartElement << endl
                             << "xml::StatusBadAttribute :" << xml::StatusBadAttribute << endl

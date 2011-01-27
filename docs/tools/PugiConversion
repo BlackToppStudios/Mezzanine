@@ -241,9 +241,31 @@ function FixNames
 	sed -i -e 's|empty(|Empty(|g' $1
 	sed -i -e 's|\([^e]\)name\([^s]\)|\1Name\2|g' $1
 	sed -i -e 's|value|Value|g' $1
+	sed -i -e 's|NextAttribute|GetNextAttribute|g' $1
+	sed -i -e 's|PreviousAttribute|GetPreviousAttribute|g' $1
 
 	#The Node Class
+	sed -i -e 's|child_\(.\)\([a-z]*\)|Child\U\1\L\2|g' $1
+	sed -i -e 's|append_\(.\)\([a-z]*\)|Append\U\1\L\2|g' $1
+	sed -i -e 's|prepend_\(.\)\([a-z]*\)|Prepend\U\1\L\2|g' $1
+	sed -i -e 's|insert_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Insert\U\1\L\2\U\3\L\4|g' $1
+	sed -i -e 's|insert_\(.\)\([a-z]*\)|Insert\U\1\L\2|g' $1
+	sed -i -e 's|append_\(.\)\([a-z]*\)|Append\U\1\L\2|g' $1
+	sed -i -e 's|remove_\(.\)\([a-z]*\)|Remove\U\1\L\2|g' $1
+
+
 	sed -i -e 's|\([^_]\)type\([^dn]\)|\1Type\2|g' $1
+	sed -i -e 's|\([^_]\)attribute\([^_s]\)|\1GetAttribute\2|g' $1
+	sed -i -e 's|FirstAttribute|GetFirstAttribute|g' $1
+	sed -i -e 's|LastAttribute|GetLastAttribute|g' $1
+	sed -i -e 's|FirstChild|GetFirstChild|g' $1
+	sed -i -e 's|LastChild|GetLastChild|g' $1
+	sed -i -e 's|parent|GetParent|g' $1
+	sed -i -e 's|root|GetRoot|g' $1
+	sed -i -e 's|child|GetChild|g' $1
+	sed -i -e 's|NextSibling|GetNextSibling|g' $1
+	sed -i -e 's|PreviousSibling|GetPreviousSibling|g' $1
+
 
 	###############################
 	#Documentation that was not put in xmldoc.h

@@ -179,7 +179,7 @@ namespace phys
 	enum NodeType 
 	{ 
 		NodeNull,		  // Empty (null) node handle 
-		NodeDocument,		// A document tree's absolute root 
+		NodeDocument,		// A document tree's absolute GetRoot 
 		NodeElement,		// Element tag, i.e. '<node/>' 
 		NodePcdata,		// Plain character data, i.e. 'text' 
 		NodeCdata,			// Character data, i.e. '<![CDATA[text]]>' 
@@ -214,10 +214,10 @@ namespace phys
 	// This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default. 
 	const unsigned int ParseEol = 0x0020; 
 	 
- 	// This flag determines if attribute Values are normalized using CDATA normalization rules during parsing. This flag is on by default. 
+ 	// This flag determines if GetAttribute Values are normalized using CDATA normalization rules during parsing. This flag is on by default. 
  	const unsigned int ParseWconvAttribute = 0x0040; 
  
- 	// This flag determines if attribute Values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default. 
+ 	// This flag determines if GetAttribute Values are normalized using NMTOKENS normalization rules during parsing. This flag is off by default. 
  	const unsigned int ParseWnormAttribute = 0x0080; 
 	 
 	// This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. 
@@ -228,12 +228,12 @@ namespace phys
  
 	// The default parsing mode. 
 	// Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, 
-	// End-of-Line characters are normalized, attribute Values are normalized using CDATA normalization rules. 
+	// End-of-Line characters are normalized, GetAttribute Values are normalized using CDATA normalization rules. 
 	const unsigned int ParseDefault = ParseCdata | ParseEscapes | ParseWconvAttribute | ParseEol; 
  
 	// The full parsing mode. 
 	// Nodes of all Types are added to the DOM tree, character/reference entities are expanded, 
-	// End-of-Line characters are normalized, attribute Values are normalized using CDATA normalization rules. 
+	// End-of-Line characters are normalized, GetAttribute Values are normalized using CDATA normalization rules. 
 	const unsigned int ParseFull = ParseDefault | ParsePi | ParseComments | ParseDeclaration | ParseDocType; 
  
 	// These flags determine the DocumentEncoding of input data for XML document 
@@ -345,10 +345,10 @@ namespace phys
 		typedef AttributeStruct* Attribute::*unspecified_bool_type; 
  
 	public: 
-		// Default constructor. Constructs an empty attribute. 
+		// Default constructor. Constructs an empty GetAttribute. 
 		Attribute(); 
 		 
-		// Constructs attribute from internal pointer 
+		// Constructs GetAttribute from internal pointer 
 		explicit Attribute(AttributeStruct* attr); 
  
 		/// @brief Used to convert this to a boolean value in a safe way
@@ -358,7 +358,7 @@ namespace phys
 		// Borland C++ workaround 
 		bool operator!() const; 
  
-		// Comparison operators (compares wrapped attribute pointers) 
+		// Comparison operators (compares wrapped GetAttribute pointers) 
 		bool operator==(const Attribute& r) const; 
 		bool operator!=(const Attribute& r) const; 
 		bool operator<(const Attribute& r) const; 
@@ -366,23 +366,23 @@ namespace phys
 		bool operator<=(const Attribute& r) const; 
 		bool operator>=(const Attribute& r) const; 
  
-		// Check if attribute is empty 
+		// Check if GetAttribute is empty 
 		bool Empty() const; 
  
-		// Get attribute Name/Value, or "" if attribute is empty 
+		// Get GetAttribute Name/Value, or "" if GetAttribute is empty 
 		const char_t* Name() const; 
 		const char_t* Value() const; 
  
-		// Get attribute Value as a number, or 0 if conversion did not succeed or attribute is empty 
+		// Get GetAttribute Value as a number, or 0 if conversion did not succeed or GetAttribute is empty 
 		int AsInt() const; 
 		unsigned int AsUint() const; 
 		double AsDouble() const; 
 		float AsFloat() const; 
  
-		// Get attribute Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty 
+		// Get GetAttribute Value as bool (returns true if first character is in '1tTyY' set), or false if GetAttribute is empty 
 		bool AsBool() const; 
  
-		// Set attribute Name/Value (returns false if attribute is empty or there is not enough memory) 
+		// Set GetAttribute Name/Value (returns false if GetAttribute is empty or there is not enough memory) 
 		bool SetName(const char_t* rhs); 
 		/// @brief Set the value of this.
 		/// @param rhs The new Value.
@@ -390,7 +390,7 @@ namespace phys
 		/// @todo update this to make the error return code redudant and use an exception instead.
 		bool SetValue(const char_t* rhs); 
  
-		// Set attribute Value with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false") 
+		// Set GetAttribute Value with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false") 
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as an int.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
@@ -412,16 +412,16 @@ namespace phys
 		/// @todo update this to make the error return code redudant and use an exception instead.
 		bool SetValue(bool rhs); 
  
-		// Set attribute Value (equivalent to SetValue without error checking) 
+		// Set GetAttribute Value (equivalent to SetValue without error checking) 
 		Attribute& operator=(const char_t* rhs); 
 		Attribute& operator=(int rhs); 
 		Attribute& operator=(unsigned int rhs); 
 		Attribute& operator=(double rhs); 
 		Attribute& operator=(bool rhs); 
  
-		// Get next/previous attribute in the attribute list of the parent node 
-		Attribute NextAttribute() const; 
-		Attribute PreviousAttribute() const; 
+		// Get next/previous GetAttribute in the GetAttribute list of the GetParent node 
+		Attribute GetNextAttribute() const; 
+		Attribute GetPreviousAttribute() const; 
  
 		// Get hash Value (unique for handles to the same object) 
 		size_t HashValue() const; 
@@ -443,7 +443,7 @@ namespace phys
 		friend class NodeIterator; 
  
 	protected: 
-		NodeStruct* _root; 
+		NodeStruct* _GetRoot; 
  
 		typedef NodeStruct* Node::*unspecified_bool_type; 
  
@@ -480,35 +480,35 @@ namespace phys
 		const char_t* Name() const; 
 		const char_t* Value() const; 
 	 
-		// Get attribute list 
-		Attribute FirstAttribute() const; 
-		Attribute LastAttribute() const; 
+		// Get GetAttribute list 
+		Attribute GetFirstAttribute() const; 
+		Attribute GetLastAttribute() const; 
  
-		// Get children list 
-		Node FirstChild() const; 
-		Node LastChild() const; 
+		// Get GetChildren list 
+		Node GetFirstChild() const; 
+		Node GetLastChild() const; 
  
-		// Get next/previous sibling in the children list of the parent node 
-		Node NextSibling() const; 
-		Node PreviousSibling() const; 
+		// Get next/previous sibling in the GetChildren list of the GetParent node 
+		Node GetNextSibling() const; 
+		Node GetPreviousSibling() const; 
 		 
-		// Get parent node 
-		Node parent() const; 
+		// Get GetParent node 
+		Node GetParent() const; 
  
-		// Get root of DOM tree this node belongs to 
-		Node root() const; 
+		// Get GetRoot of DOM tree this node belongs to 
+		Node GetRoot() const; 
  
-		// Get child, attribute or next/previous sibling with the specified Name 
-		Node child(const char_t* Name) const; 
-		Attribute attribute(const char_t* Name) const; 
-		Node NextSibling(const char_t* Name) const; 
-		Node PreviousSibling(const char_t* Name) const; 
+		// Get GetChild, GetAttribute or next/previous sibling with the specified Name 
+		Node GetChild(const char_t* Name) const; 
+		Attribute GetAttribute(const char_t* Name) const; 
+		Node GetNextSibling(const char_t* Name) const; 
+		Node GetPreviousSibling(const char_t* Name) const; 
  
-		// Get child Value of current node; that is, Value of the first child node of Type PCDATA/CDATA 
-		const char_t* child_Value() const; 
+		// Get GetChild Value of current node; that is, Value of the first GetChild node of Type PCDATA/CDATA 
+		const char_t* ChildValue() const; 
  
-		// Get child Value of child with specified Name. Equivalent to child(Name).child_Value(). 
-		const char_t* child_Value(const char_t* Name) const; 
+		// Get GetChild Value of GetChild with specified Name. Equivalent to GetChild(Name).ChildValue(). 
+		const char_t* ChildValue(const char_t* Name) const; 
  
 		// Set node Name/Value (returns false if node is empty, there is not enough memory, or node can not have Name/Value) 
 		bool SetName(const char_t* rhs); 
@@ -518,62 +518,62 @@ namespace phys
 		/// @todo update this to make the error return code redudant and use an exception instead.
 		bool SetValue(const char_t* rhs); 
 		 
-		// Add attribute with specified Name. Returns added attribute, or empty attribute on errors. 
-		Attribute append_attribute(const char_t* Name); 
-		Attribute prepend_attribute(const char_t* Name); 
-		Attribute insert_attribute_after(const char_t* Name, const Attribute& attr); 
-		Attribute insert_attribute_before(const char_t* Name, const Attribute& attr); 
+		// Add GetAttribute with specified Name. Returns added GetAttribute, or empty GetAttribute on errors. 
+		Attribute AppendAttribute(const char_t* Name); 
+		Attribute PrependAttribute(const char_t* Name); 
+		Attribute InsertAttributeAfter(const char_t* Name, const Attribute& attr); 
+		Attribute InsertAttributeBefore(const char_t* Name, const Attribute& attr); 
  
-		// Add a copy of the specified attribute. Returns added attribute, or empty attribute on errors. 
-		Attribute append_copy(const Attribute& proto); 
-		Attribute prepend_copy(const Attribute& proto); 
-		Attribute insert_copy_after(const Attribute& proto, const Attribute& attr); 
-		Attribute insert_copy_before(const Attribute& proto, const Attribute& attr); 
+		// Add a copy of the specified GetAttribute. Returns added GetAttribute, or empty GetAttribute on errors. 
+		Attribute AppendCopy(const Attribute& proto); 
+		Attribute PrependCopy(const Attribute& proto); 
+		Attribute InsertCopyAfter(const Attribute& proto, const Attribute& attr); 
+		Attribute InsertCopyBefore(const Attribute& proto, const Attribute& attr); 
  
-		// Add child node with specified Type. Returns added node, or empty node on errors. 
-		Node append_child(NodeType Type = NodeElement); 
-		Node prepend_child(NodeType Type = NodeElement); 
-		Node insert_child_after(NodeType Type, const Node& node); 
-		Node insert_child_before(NodeType Type, const Node& node); 
+		// Add GetChild node with specified Type. Returns added node, or empty node on errors. 
+		Node AppendChild(NodeType Type = NodeElement); 
+		Node PrependChild(NodeType Type = NodeElement); 
+		Node InsertChildAfter(NodeType Type, const Node& node); 
+		Node InsertChildBefore(NodeType Type, const Node& node); 
  
-		// Add child element with specified Name. Returns added node, or empty node on errors. 
-		Node append_child(const char_t* Name); 
-		Node prepend_child(const char_t* Name); 
-		Node insert_child_after(const char_t* Name, const Node& node); 
-		Node insert_child_before(const char_t* Name, const Node& node); 
+		// Add GetChild element with specified Name. Returns added node, or empty node on errors. 
+		Node AppendChild(const char_t* Name); 
+		Node PrependChild(const char_t* Name); 
+		Node InsertChildAfter(const char_t* Name, const Node& node); 
+		Node InsertChildBefore(const char_t* Name, const Node& node); 
  
-		// Add a copy of the specified node as a child. Returns added node, or empty node on errors. 
-		Node append_copy(const Node& proto); 
-		Node prepend_copy(const Node& proto); 
-		Node insert_copy_after(const Node& proto, const Node& node); 
-		Node insert_copy_before(const Node& proto, const Node& node); 
+		// Add a copy of the specified node as a GetChild. Returns added node, or empty node on errors. 
+		Node AppendCopy(const Node& proto); 
+		Node PrependCopy(const Node& proto); 
+		Node InsertCopyAfter(const Node& proto, const Node& node); 
+		Node InsertCopyBefore(const Node& proto, const Node& node); 
  
-		// Remove specified attribute 
-		bool remove_attribute(const Attribute& a); 
-		bool remove_attribute(const char_t* Name); 
+		// Remove specified GetAttribute 
+		bool RemoveAttribute(const Attribute& a); 
+		bool RemoveAttribute(const char_t* Name); 
  
-		// Remove specified child 
-		bool remove_child(const Node& n); 
-		bool remove_child(const char_t* Name); 
+		// Remove specified GetChild 
+		bool RemoveChild(const Node& n); 
+		bool RemoveChild(const char_t* Name); 
  
-		// Find attribute using predicate. Returns first attribute for which predicate returned true. 
+		// Find GetAttribute using predicate. Returns first GetAttribute for which predicate returned true. 
 		template <typename Predicate> Attribute find_attribute(Predicate pred) const 
 		{ 
-			if (!_root) return Attribute(); 
+			if (!_GetRoot) return Attribute(); 
 			 
-			for (Attribute attrib = FirstAttribute(); attrib; attrib = attrib.NextAttribute()) 
+			for (Attribute attrib = GetFirstAttribute(); attrib; attrib = attrib.GetNextAttribute()) 
 				if (pred(attrib)) 
 					return attrib; 
 		 
 			return Attribute(); 
 		} 
  
-		// Find child node using predicate. Returns first child for which predicate returned true. 
-		template <typename Predicate> Node find_child(Predicate pred) const 
+		// Find GetChild node using predicate. Returns first GetChild for which predicate returned true. 
+		template <typename Predicate> Node find_GetChild(Predicate pred) const 
 		{ 
-			if (!_root) return Node(); 
+			if (!_GetRoot) return Node(); 
 	 
-			for (Node node = FirstChild(); node; node = node.NextSibling()) 
+			for (Node node = GetFirstChild(); node; node = node.GetNextSibling()) 
 				if (pred(node)) 
 					return node; 
 		 
@@ -583,33 +583,33 @@ namespace phys
 		// Find node from subtree using predicate. Returns first node from subtree (depth-first), for which predicate returned true. 
 		template <typename Predicate> Node find_node(Predicate pred) const 
 		{ 
-			if (!_root) return Node(); 
+			if (!_GetRoot) return Node(); 
  
-			Node cur = FirstChild(); 
+			Node cur = GetFirstChild(); 
 			 
-			while (cur._root && cur._root != _root) 
+			while (cur._GetRoot && cur._GetRoot != _GetRoot) 
 			{ 
 				if (pred(cur)) return cur; 
  
-				if (cur.FirstChild()) cur = cur.FirstChild(); 
-				else if (cur.NextSibling()) cur = cur.NextSibling(); 
+				if (cur.GetFirstChild()) cur = cur.GetFirstChild(); 
+				else if (cur.GetNextSibling()) cur = cur.GetNextSibling(); 
 				else 
 				{ 
-					while (!cur.NextSibling() && cur._root != _root) cur = cur.parent(); 
+					while (!cur.GetNextSibling() && cur._GetRoot != _GetRoot) cur = cur.GetParent(); 
  
-					if (cur._root != _root) cur = cur.NextSibling(); 
+					if (cur._GetRoot != _GetRoot) cur = cur.GetNextSibling(); 
 				} 
 			} 
  
 			return Node(); 
 		} 
  
-		// Find child node by attribute Name/Value 
-		Node find_child_by_attribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const; 
-		Node find_child_by_attribute(const char_t* attr_Name, const char_t* attr_Value) const; 
+		// Find GetChild node by GetAttribute Name/Value 
+		Node find_ChildBy_attribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const; 
+		Node find_ChildBy_attribute(const char_t* attr_Name, const char_t* attr_Value) const; 
  
 	#ifndef XML_NO_STL 
-		// Get the absolute node path from root as a text string. 
+		// Get the absolute node path from GetRoot as a text string. 
 		string_t path(char_t delimiter = '/') const; 
 	#endif 
  
@@ -673,9 +673,9 @@ namespace phys
  
 	private: 
 		Node _wrap; 
-		Node _parent; 
+		Node _GetParent; 
  
-		NodeIterator(NodeStruct* ref, NodeStruct* parent); 
+		NodeIterator(NodeStruct* ref, NodeStruct* GetParent); 
  
 	public: 
 		// Iterator traits 
@@ -715,9 +715,9 @@ namespace phys
  
 	private: 
 		Attribute _wrap; 
-		Node _parent; 
+		Node _GetParent; 
  
-		AttributeIterator(AttributeStruct* ref, NodeStruct* parent); 
+		AttributeIterator(AttributeStruct* ref, NodeStruct* GetParent); 
  
 	public: 
 		// Iterator traits 
@@ -733,8 +733,8 @@ namespace phys
 		// Default constructor 
 		AttributeIterator(); 
  
-		// Construct an iterator which points to the specified attribute 
-		AttributeIterator(const Attribute& attr, const Node& parent); 
+		// Construct an iterator which points to the specified GetAttribute 
+		AttributeIterator(const Attribute& attr, const Node& GetParent); 
  
 		// Iterator operators 
 		bool operator==(const AttributeIterator& rhs) const; 
@@ -794,7 +794,7 @@ namespace phys
 		StatusBadDocType,		 // Parsing error occurred while parsing document Type declaration 
 		StatusBadPcdata,		  // Parsing error occurred while parsing PCDATA section 
 		StatusBadStartElement,   // Parsing error occurred while parsing start element tag 
-		StatusBadAttribute,	   // Parsing error occurred while parsing element attribute 
+		StatusBadAttribute,	   // Parsing error occurred while parsing element GetAttribute 
 		StatusBadEndElement,	 // Parsing error occurred while parsing end element tag 
 		StatusEndElementMismatch // There was a mismatch of start-end tags (closing tag had incorrect Name, some tag was not closed or there was an excessive closing tag) 
 	}; 
@@ -821,7 +821,7 @@ namespace phys
 		const char* Description() const; 
 	}; 
  
-	// Document class (DOM tree root) 
+	// Document class (DOM tree GetRoot) 
 	class PHYS_LIB Document: public Node 
 	{ 
 	private: 
@@ -842,7 +842,7 @@ namespace phys
 		// Default constructor, makes empty document 
 		Document(); 
  
-		// Destructor, invalidates all node/attribute handles to this document 
+		// Destructor, invalidates all node/GetAttribute handles to this document 
 		~Document(); 
  
 		// Removes all nodes, leaving the empty document 
@@ -1080,16 +1080,16 @@ namespace phys
 		// Default constructor; constructs empty XPath node 
 		XPathNode(); 
 		 
-		// Construct XPath node from XML node/attribute 
+		// Construct XPath node from XML node/GetAttribute 
 		XPathNode(const Node& node); 
-		XPathNode(const Attribute& attribute, const Node& parent); 
+		XPathNode(const Attribute& GetAttribute, const Node& GetParent); 
  
-		// Get node/attribute, if any 
+		// Get node/GetAttribute, if any 
 		Node node() const; 
-		Attribute attribute() const; 
+		Attribute GetAttribute() const; 
 		 
-		// Get parent of contained node/attribute 
-		Node parent() const; 
+		// Get GetParent of contained node/GetAttribute 
+		Node GetParent() const; 
  
 		/// @brief Used to convert this to a boolean value in a safe way
 		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
