@@ -97,6 +97,9 @@ namespace phys
             /// @brief Loads a Gorilla file for use with this manager.
             /// @param Name The name of the file to be loaded, not including the extension.
             void LoadGorilla(const String& Name);
+            /// @brief Forces everything loaded into the UI system to be redrawn.
+            /// @param Force If Force is set to true, it will redraw everything regardless of if it has changed.
+            void RedrawAll(bool Force = false);
             /// @brief Gets the button the mouse is hovering over.
             /// @details This check will look through both standalone buttons and widget buttons.
             /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
@@ -116,7 +119,7 @@ namespace phys
             /// @param Screen The name to be given to the screen.
             /// @param Atlas The name of a previously loaded Gorilla file to be used with this screen.
             /// @param Viewport The name of the viewport to create this screen in.
-            UIScreen* CreateScreen(const String& Screen, const String& Atlas, const String& Viewport="DefaultViewport");
+            UIScreen* CreateScreen(const String& Screen, const String& Atlas, const String& Viewport="Viewport1");
             /// @brief Gets an already created screen by name.
             /// @return Returns a pointer to the screen of the specified name.
             UIScreen* GetScreen(const String& Name);

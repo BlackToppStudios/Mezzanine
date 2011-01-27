@@ -326,6 +326,8 @@ namespace phys
     void PhysicsManager::Initialize()
     {
         // This came from the Game init function, and may need to go to a game init.
+        /// @todo Possibly restructure this so that it'll detect ogre first, preventing a crash.
+        /// At current this makes the physics manager depend on the graphicsmanager.
         this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
         this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
     }

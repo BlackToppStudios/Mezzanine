@@ -272,12 +272,10 @@ namespace phys
         //Remaining Non-Critical managers get initialized.
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
+            this->LogStream << "Initializing " << (*Iter)->GetTypeName() << " Manager" << endl;
             if((*Iter)->GetType() != ManagerBase::GraphicsManager && (*Iter)->GetType() != ManagerBase::PhysicsManager)
             {
                 (*Iter)->Initialize();
-                #ifdef PHYSDEBUG
-                this->LogStream << "Initializing " << (*Iter)->GetTypeName() << " Manager";
-                #endif
             }
         }
         HasSDLBeenInitialized = GetGraphicsManager()->HasSDLBeenInitialized();

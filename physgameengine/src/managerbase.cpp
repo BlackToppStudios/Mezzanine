@@ -132,6 +132,15 @@ namespace phys
             case ManagerBase::ResourceManager:
                 return "ResourceManager";
                 break;
+            case ManagerBase::UIManager:
+                return "UIManager";
+                break;
+            case ManagerBase::TimerManager:
+                return "TimerManager";
+                break;
+            case ManagerBase::SceneManager:
+                return "SceneManager";
+                break;
             case ManagerBase::UserCreated:
                 return "UserCreated";
                 break;

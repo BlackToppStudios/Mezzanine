@@ -127,6 +127,10 @@ namespace phys
             /// @details This function searches only the visable layers contained in this screen.
             /// @return Returns the widget the mouse is over, or NULL if there are none.
             UI::Widget* CheckWidgetMouseIsOver();
+            /// @internal
+            /// @brief Gets the internal screen this screen is based on.
+            /// @return Returns a pointer to the Gorilla screen this screen is based on.
+            Gorilla::Screen* GetGorillaScreen();
     };//uiscreen
 }//phys
 

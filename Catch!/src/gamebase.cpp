@@ -202,6 +202,30 @@ bool PostUI()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
         { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
 
+    //Resize the window
+    static bool videobuttonpushed = false;
+    if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_f) && !videobuttonpushed )
+    {
+        videobuttonpushed = true;
+        TheWorld->GetGraphicsManager()->setFullscreen(true);
+    }
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_g)  && !videobuttonpushed )
+    {
+        videobuttonpushed = true;
+        TheWorld->GetGraphicsManager()->setFullscreen(false);
+    }
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_r)  && !videobuttonpushed )
+    {
+        videobuttonpushed = true;
+        TheWorld->GetGraphicsManager()->setRenderResolution(1024,768);
+    }
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_t)  && !videobuttonpushed )
+    {
+        videobuttonpushed = true;
+        TheWorld->GetGraphicsManager()->setRenderResolution(800,600);
+    }
+    else { videobuttonpushed = false; }
+
     static Point2PointConstraint* Dragger=NULL;
 
     if( Queryer.IsMouseButtonPushed(1) )

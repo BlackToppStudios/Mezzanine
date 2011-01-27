@@ -89,6 +89,8 @@ namespace phys
             void CreateRenderWindow();
             void DestroyRenderWindow();
 
+            void UpdateWindowStats();
+
             Ogre::Timer *RenderTimer;
 
             Ogre::RenderWindow* OgreGameWindow;
@@ -146,10 +148,17 @@ namespace phys
             void setRenderWidth(const Whole &Width_);
 
             /// @brief Changes the X and Y Resolution at the same time
-            /// @details This should be useful in situations where it is not possible to update the width and hright separately.
+            /// @details This should be useful in situations where it is not possible to update the width and height separately.
             /// @param Width_ The new desired Width for the rendering area as a whole number
             /// @param Height_ The new desired Width for the rendering area as a whole number
             void setRenderResolution(const Whole &Width_, const Whole &Height_);
+
+            /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
+            /// @details This should be useful in situations where it is not possible to update all of the options separately.
+            /// @param Width_ The new desired Width for the rendering area as a whole number
+            /// @param Height_ The new desired Width for the rendering area as a whole number
+            /// @param Fullscreen_ This accepts a bool. True for fullscreen, false for windowed
+            void setRenderOptions(const Whole &Width_, const Whole &Height_, const bool &Fullscreen_);
 
             /// @brief Gets whether or not SDL has been started.
             /// @return Returns a bool indicating whether or not SDL has been initialized yet.
