@@ -232,6 +232,9 @@ function FixNames
 	sed -i -e 's|as_\(.\)\([a-z]*\)|As\U\1\L\2|g' $1
 	sed -i -e 's|next_\(.\)\([a-z]*\)|Next\U\1\L\2|g' $1
 	sed -i -e 's|previous_\(.\)\([a-z]*\)|Previous\U\1\L\2|g' $1
+	sed -i -e 's|first_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|First\U\1\L\2\U\3\L\4\U\5\L\6\U\7\L\8|g' $1
+	sed -i -e 's|first_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|First\U\1\L\2\U\3\L\4\U\5\L\6|g' $1
+	sed -i -e 's|first_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|First\U\1\L\2\U\3\L\4|g' $1
 	sed -i -e 's|first_\(.\)\([a-z]*\)|First\U\1\L\2|g' $1
 	sed -i -e 's|last_\(.\)\([a-z]*\)|Last\U\1\L\2|g' $1
 	sed -i -e 's|hash_value|HashValue|g' $1								
@@ -252,7 +255,11 @@ function FixNames
 	sed -i -e 's|insert_\(.\)\([a-z]*\)|Insert\U\1\L\2|g' $1
 	sed -i -e 's|append_\(.\)\([a-z]*\)|Append\U\1\L\2|g' $1
 	sed -i -e 's|remove_\(.\)\([a-z]*\)|Remove\U\1\L\2|g' $1
-
+	sed -i -e 's|find_\(.\)\([a-zA-Z]*\)_\(.\)\([a-z]*\)|Find\U\1\L\2\U\3\L\4|g' $1
+	sed -i -e 's|find_\(.\)\([a-z]*\)|Find\U\1\L\2|g' $1
+	sed -i -e 's|select_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Find\U\1\L\2\U\3\L\4\U\5\L\6|g' $1
+	sed -i -e 's|select_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Find\U\1\L\2\U\3\L\4|g' $1
+	sed -i -e 's|select_\(.\)\([a-z]*\)|Find\U\1\L\2|g' $1
 
 	sed -i -e 's|\([^_]\)type\([^dn]\)|\1Type\2|g' $1
 	sed -i -e 's|\([^_]\)attribute\([^_s]\)|\1GetAttribute\2|g' $1
@@ -265,7 +272,7 @@ function FixNames
 	sed -i -e 's|child|GetChild|g' $1
 	sed -i -e 's|NextSibling|GetNextSibling|g' $1
 	sed -i -e 's|PreviousSibling|GetPreviousSibling|g' $1
-
+	sed -i -e 's|traverse|Traverse|g' $1
 
 	###############################
 	#Documentation that was not put in xmldoc.h
