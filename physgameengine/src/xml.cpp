@@ -466,8 +466,8 @@ namespace phys
 	struct NodeStruct 
 	{ 
 		//// Default ctor 
-		//// \param type - node type 
-		NodeStruct(MemoryPage* page, NodeType type): header(reinterpret_cast<uintptr_t>(page) | (type - 1)), parent(0), Name(0), Value(0), FirstChild(0), prev_sibling_c(0), NextSibling(0), FirstAttribute(0) 
+		//// \param Type - node Type 
+		NodeStruct(MemoryPage* page, NodeType Type): header(reinterpret_cast<uintptr_t>(page) | (Type - 1)), parent(0), Name(0), Value(0), FirstChild(0), prev_sibling_c(0), NextSibling(0), FirstAttribute(0) 
 		{ 
 		} 
  
@@ -518,12 +518,12 @@ namespace
 		return new (memory) AttributeStruct(page); 
 	} 
  
-	inline NodeStruct* allocate_node(Allocator& alloc, NodeType type) 
+	inline NodeStruct* allocate_node(Allocator& alloc, NodeType Type) 
 	{ 
 		MemoryPage* page; 
 		void* memory = alloc.allocate_memory(sizeof(NodeStruct), page); 
  
-		return new (memory) NodeStruct(page, type); 
+		return new (memory) NodeStruct(page, Type); 
 	} 
  
 	inline void destroy_attribute(AttributeStruct* a, Allocator& alloc) 
@@ -564,9 +564,9 @@ namespace
 		alloc.deallocate_memory(n, sizeof(NodeStruct), reinterpret_cast<MemoryPage*>(header & MemoryPage_pointer_mask)); 
 	} 
  
-	XML_NO_INLINE NodeStruct* append_node(NodeStruct* node, Allocator& alloc, NodeType type = NodeElement) 
+	XML_NO_INLINE NodeStruct* append_node(NodeStruct* node, Allocator& alloc, NodeType Type = NodeElement) 
 	{ 
-		NodeStruct* child = allocate_node(alloc, type); 
+		NodeStruct* child = allocate_node(alloc, Type); 
 		if (!child) return 0; 
  
 		child->parent = node; 
@@ -796,14 +796,14 @@ namespace
  
 	template <> struct wchar_selector<2> 
 	{ 
-		typedef uint16_t type; 
+		typedef uint16_t Type; 
 		typedef utf16_counter counter; 
 		typedef utf16_WriterInstance WriterInstance; 
 	}; 
  
 	template <> struct wchar_selector<4> 
 	{ 
-		typedef uint32_t type; 
+		typedef uint32_t Type; 
 		typedef utf32_counter counter; 
 		typedef utf32_WriterInstance WriterInstance; 
 	}; 
@@ -951,13 +951,13 @@ namespace
  
 	inline void convert_wchar_endian_swap(wchar_t* result, const wchar_t* data, size_t length) 
 	{ 
-		for (size_t i = 0; i < length; ++i) result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_selector<sizeof(wchar_t)>::type>(data[i]))); 
+		for (size_t i = 0; i < length; ++i) result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_selector<sizeof(wchar_t)>::Type>(data[i]))); 
 	} 
 } 
  
 namespace 
 {	 
-	enum chartype_t 
+	enum charType_t 
 	{ 
 		ct_ParsePcdata = 1,	// \0, &, \r, < 
 		ct_ParseAttr = 2,		// \0, &, \r, ', " 
@@ -969,7 +969,7 @@ namespace
 		ct_start_symbol = 128	// Any symbol > 127, a-z, A-Z, _, : 
 	}; 
  
-	const unsigned char chartype_table[256] = 
+	const unsigned char charType_table[256] = 
 	{ 
 		55,  0,   0,   0,   0,   0,   0,   0,	  0,   12,  12,  0,   0,   63,  0,   0,   // 0-15 
 		0,   0,   0,   0,   0,   0,   0,   0,	  0,   0,   0,   0,   0,   0,   0,   0,   // 16-31 
@@ -990,7 +990,7 @@ namespace
 		192, 192, 192, 192, 192, 192, 192, 192,	192, 192, 192, 192, 192, 192, 192, 192 
 	}; 
  
-	enum chartypex_t 
+	enum charTypex_t 
 	{ 
 		ctx_special_pcdata = 1,   // Any symbol >= 0 and < 32 (except \t, \r, \n), &, <, > 
 		ctx_special_attr = 2,	 // Any symbol >= 0 and < 32 (except \t), &, <, >, " 
@@ -999,7 +999,7 @@ namespace
 		ctx_symbol = 16			  // Any symbol > 127, a-z, A-Z, 0-9, _, -, . 
 	}; 
 	 
-	const unsigned char chartypex_table[256] = 
+	const unsigned char charTypex_table[256] = 
 	{ 
 		3,  3,  3,  3,  3,  3,  3,  3,	 3,  0,  2,  3,  3,  2,  3,  3,	 // 0-15 
 		3,  3,  3,  3,  3,  3,  3,  3,	 3,  3,  3,  3,  3,  3,  3,  3,	 // 16-31 
@@ -1027,8 +1027,8 @@ namespace
 	#define IS_CHARTYPE_IMPL(c, ct, table) (table[static_cast<unsigned char>(c)] & (ct)) 
 #endif 
  
-	#define IS_CHARTYPE(c, ct) IS_CHARTYPE_IMPL(c, ct, chartype_table) 
-	#define IS_CHARTYPEX(c, ct) IS_CHARTYPE_IMPL(c, ct, chartypex_table) 
+	#define IS_CHARTYPE(c, ct) IS_CHARTYPE_IMPL(c, ct, charType_table) 
+	#define IS_CHARTYPEX(c, ct) IS_CHARTYPE_IMPL(c, ct, charTypex_table) 
  
 	bool is_little_endian() 
 	{ 
@@ -1942,21 +1942,21 @@ namespace
 		{ 
 		} 
  
-		// DOCTYPE consists of nested sections of the following possible types: 
+		// DOCTYPE consists of nested sections of the following possible Types: 
 		// <!-- ... -->, <? ... ?>, "...", '...' 
 		// <![...]]> 
 		// <!...> 
 		// First group can not contain nested groups 
-		// Second group can contain nested groups of the same type 
+		// Second group can contain nested groups of the same Type 
 		// Third group can contain all other groups 
-		char_t* ParseDoctypePrimitive(char_t* s) 
+		char_t* ParseDocTypePrimitive(char_t* s) 
 		{ 
 			if (*s == '"' || *s == '\'') 
 			{ 
 				// quoted string 
 				char_t ch = *s++; 
 				SCANFOR(*s == ch); 
-				if (!*s) THROW_ERROR(StatusBadDoctype, s); 
+				if (!*s) THROW_ERROR(StatusBadDocType, s); 
  
 				s++; 
 			} 
@@ -1964,25 +1964,25 @@ namespace
 			{ 
 				// <? ... ?> 
 				s += 2; 
-				SCANFOR(s[0] == '?' && s[1] == '>'); // no need for ENDSWITH because ?> can't terminate proper doctype 
-				if (!*s) THROW_ERROR(StatusBadDoctype, s); 
+				SCANFOR(s[0] == '?' && s[1] == '>'); // no need for ENDSWITH because ?> can't terminate proper docType 
+				if (!*s) THROW_ERROR(StatusBadDocType, s); 
  
 				s += 2; 
 			} 
 			else if (s[0] == '<' && s[1] == '!' && s[2] == '-' && s[3] == '-') 
 			{ 
 				s += 4; 
-				SCANFOR(s[0] == '-' && s[1] == '-' && s[2] == '>'); // no need for ENDSWITH because --> can't terminate proper doctype 
-				if (!*s) THROW_ERROR(StatusBadDoctype, s); 
+				SCANFOR(s[0] == '-' && s[1] == '-' && s[2] == '>'); // no need for ENDSWITH because --> can't terminate proper docType 
+				if (!*s) THROW_ERROR(StatusBadDocType, s); 
  
 				s += 4; 
 			} 
-			else THROW_ERROR(StatusBadDoctype, s); 
+			else THROW_ERROR(StatusBadDocType, s); 
  
 			return s; 
 		} 
  
-		char_t* ParseDoctypeIgnore(char_t* s) 
+		char_t* ParseDocTypeIgnore(char_t* s) 
 		{ 
 			assert(s[0] == '<' && s[1] == '!' && s[2] == '['); 
 			s++; 
@@ -1992,7 +1992,7 @@ namespace
 				if (s[0] == '<' && s[1] == '!' && s[2] == '[') 
 				{ 
 					// nested ignore section 
-					s = ParseDoctypeIgnore(s); 
+					s = ParseDocTypeIgnore(s); 
 				} 
 				else if (s[0] == ']' && s[1] == ']' && s[2] == '>') 
 				{ 
@@ -2004,12 +2004,12 @@ namespace
 				else s++; 
 			} 
  
-			THROW_ERROR(StatusBadDoctype, s); 
+			THROW_ERROR(StatusBadDocType, s); 
  
 			return s; 
 		} 
  
-		char_t* ParseDoctypeGroup(char_t* s, char_t endch, bool toplevel) 
+		char_t* ParseDocTypeGroup(char_t* s, char_t endch, bool toplevel) 
 		{ 
 			assert(s[0] == '<' && s[1] == '!'); 
 			s++; 
@@ -2021,18 +2021,18 @@ namespace
 					if (s[2] == '[') 
 					{ 
 						// ignore 
-						s = ParseDoctypeIgnore(s); 
+						s = ParseDocTypeIgnore(s); 
 					} 
 					else 
 					{ 
 						// some control group 
-						s = ParseDoctypeGroup(s, endch, false); 
+						s = ParseDocTypeGroup(s, endch, false); 
 					} 
 				} 
 				else if (s[0] == '<' || s[0] == '"' || s[0] == '\'') 
 				{ 
 					// unknown tag (forbidden), or some primitive group 
-					s = ParseDoctypePrimitive(s); 
+					s = ParseDocTypePrimitive(s); 
 				} 
 				else if (*s == '>') 
 				{ 
@@ -2043,7 +2043,7 @@ namespace
 				else s++; 
 			} 
  
-			if (!toplevel || endch != '>') THROW_ERROR(StatusBadDoctype, s); 
+			if (!toplevel || endch != '>') THROW_ERROR(StatusBadDocType, s); 
  
 			return s; 
 		} 
@@ -2131,17 +2131,17 @@ namespace
 			{ 
 				s -= 2; 
  
-				if (cursor->parent) THROW_ERROR(StatusBadDoctype, s); 
+				if (cursor->parent) THROW_ERROR(StatusBadDocType, s); 
  
 				char_t* mark = s + 9; 
  
-				s = ParseDoctypeGroup(s, endch, true); 
+				s = ParseDocTypeGroup(s, endch, true); 
  
-				if (OPTSET(ParseDoctype)) 
+				if (OPTSET(ParseDocType)) 
 				{ 
 					while (IS_CHARTYPE(*mark, ct_space)) ++mark; 
  
-					PUSHNODE(NodeDoctype); 
+					PUSHNODE(NodeDocType); 
  
 					cursor->Value = mark; 
  
@@ -2175,7 +2175,7 @@ namespace
 			SCANWHILE(IS_CHARTYPE(*s, ct_symbol)); 
 			CHECK_ERROR(StatusBadPi, s); 
  
-			// determine node type; stricmp / strcasecmp is not portable 
+			// determine node Type; stricmp / strcasecmp is not portable 
 			bool declaration = (target[0] | ' ') == 'x' && (target[1] | ' ') == 'm' && (target[2] | ' ') == 'l' && target + 3 == s; 
  
 			if (declaration ? OPTSET(ParseDeclaration) : OPTSET(ParsePi)) 
@@ -2848,14 +2848,14 @@ namespace
 		} 
 	} 
  
-	void text_output_escaped(BufferedWriter& WriterInstance, const char_t* s, chartypex_t type) 
+	void text_output_escaped(BufferedWriter& WriterInstance, const char_t* s, charTypex_t Type) 
 	{ 
 		while (*s) 
 		{ 
 			const char_t* prev = s; 
 			 
 			// While *s is a usual symbol 
-			while (!IS_CHARTYPEX(*s, type)) ++s; 
+			while (!IS_CHARTYPEX(*s, Type)) ++s; 
 		 
 			WriterInstance.Write(prev, static_cast<size_t>(s - prev)); 
  
@@ -2934,7 +2934,7 @@ namespace
 		if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0) 
 			for (unsigned int i = 0; i < depth; ++i) WriterInstance.Write(indent); 
  
-		switch (node.type()) 
+		switch (node.Type()) 
 		{ 
 		case NodeDocument: 
 		{ 
@@ -2970,11 +2970,11 @@ namespace
 			} 
 			else if (!node.FirstChild()) 
 				WriterInstance.Write(' ', '/', '>', '\n'); 
-			else if (node.FirstChild() == node.LastChild() && (node.FirstChild().type() == NodePcdata || node.FirstChild().type() == NodeCdata)) 
+			else if (node.FirstChild() == node.LastChild() && (node.FirstChild().Type() == NodePcdata || node.FirstChild().Type() == NodeCdata)) 
 			{ 
 				WriterInstance.Write('>'); 
  
-				if (node.FirstChild().type() == NodePcdata) 
+				if (node.FirstChild().Type() == NodePcdata) 
 					text_output_escaped(WriterInstance, node.FirstChild().Value(), ctx_special_pcdata); 
 				else 
 					text_output_cdata(WriterInstance, node.FirstChild().Value()); 
@@ -3023,7 +3023,7 @@ namespace
 			WriterInstance.Write('<', '?'); 
 			WriterInstance.Write(node.Name()[0] ? node.Name() : default_Name); 
  
-			if (node.type() == NodeDeclaration) 
+			if (node.Type() == NodeDeclaration) 
 			{ 
 				NodeOutput_attributes(WriterInstance, node); 
 			} 
@@ -3037,7 +3037,7 @@ namespace
 			if ((flags & FormatRaw) == 0) WriterInstance.Write('\n'); 
 			break; 
  
-		case NodeDoctype: 
+		case NodeDocType: 
 			WriterInstance.Write('<', '!', 'D', 'O', 'C'); 
 			WriterInstance.Write('T', 'Y', 'P', 'E'); 
  
@@ -3052,7 +3052,7 @@ namespace
 			break; 
  
 		default: 
-			assert(!"Invalid node type"); 
+			assert(!"Invalid node Type"); 
 		} 
 	} 
  
@@ -3060,10 +3060,10 @@ namespace
 	{ 
 		for (Node child = node.FirstChild(); child; child = child.NextSibling()) 
 		{ 
-			NodeType type = child.type(); 
+			NodeType Type = child.Type(); 
  
-			if (type == NodeDeclaration) return true; 
-			if (type == NodeElement) return false; 
+			if (Type == NodeDeclaration) return true; 
+			if (Type == NodeElement) return false; 
 		} 
  
 		return false; 
@@ -3073,16 +3073,16 @@ namespace
 	{ 
 		if (parent != NodeDocument && parent != NodeElement) return false; 
 		if (child == NodeDocument || child == NodeNull) return false; 
-		if (parent != NodeDocument && (child == NodeDeclaration || child == NodeDoctype)) return false; 
+		if (parent != NodeDocument && (child == NodeDeclaration || child == NodeDocType)) return false; 
  
 		return true; 
 	} 
  
 	void recursive_copy_skip(Node& dest, const Node& source, const Node& skip) 
 	{ 
-		assert(dest.type() == source.type()); 
+		assert(dest.Type() == source.Type()); 
  
-		switch (source.type()) 
+		switch (source.Type()) 
 		{ 
 		case NodeElement: 
 		{ 
@@ -3095,7 +3095,7 @@ namespace
 			{ 
 				if (c == skip) continue; 
  
-				Node cc = dest.append_child(c.type()); 
+				Node cc = dest.append_child(c.Type()); 
 				assert(cc); 
  
 				recursive_copy_skip(cc, c, skip); 
@@ -3107,7 +3107,7 @@ namespace
 		case NodePcdata: 
 		case NodeCdata: 
 		case NodeComment: 
-		case NodeDoctype: 
+		case NodeDocType: 
 			dest.SetValue(source.Value()); 
 			break; 
  
@@ -3127,7 +3127,7 @@ namespace
 		} 
  
 		default: 
-			assert(!"Invalid node type"); 
+			assert(!"Invalid node Type"); 
 		} 
 	} 
  
@@ -3669,7 +3669,7 @@ namespace phys
 		return (_root && _root->Name) ? _root->Name : XML_TEXT(""); 
 	} 
  
-	NodeType Node::type() const 
+	NodeType Node::Type() const 
 	{ 
 		return _root ? static_cast<NodeType>((_root->header & MemoryPage_type_mask) + 1) : NodeNull; 
 	} 
@@ -3756,9 +3756,9 @@ namespace phys
 		 
 		for (NodeStruct* i = _root->FirstChild; i; i = i->NextSibling) 
 		{ 
-			NodeType type = static_cast<NodeType>((i->header & MemoryPage_type_mask) + 1); 
+			NodeType Type = static_cast<NodeType>((i->header & MemoryPage_type_mask) + 1); 
  
-			if (i->Value && (type == NodePcdata || type == NodeCdata)) 
+			if (i->Value && (Type == NodePcdata || Type == NodeCdata)) 
 				return i->Value; 
 		} 
  
@@ -3792,7 +3792,7 @@ namespace phys
  
 	bool Node::SetName(const char_t* rhs) 
 	{ 
-		switch (type()) 
+		switch (Type()) 
 		{ 
 		case NodePi: 
 		case NodeDeclaration: 
@@ -3806,13 +3806,13 @@ namespace phys
 		 
 	bool Node::SetValue(const char_t* rhs) 
 	{ 
-		switch (type()) 
+		switch (Type()) 
 		{ 
 		case NodePi: 
 		case NodeCdata: 
 		case NodePcdata: 
 		case NodeComment: 
-		case NodeDoctype: 
+		case NodeDocType: 
 			return strcpy_insitu(_root->Value, _root->header, MemoryPage_Value_allocated_mask, rhs); 
  
 		default: 
@@ -3822,7 +3822,7 @@ namespace phys
  
 	Attribute Node::append_attribute(const char_t* Name) 
 	{ 
-		if (type() != NodeElement && type() != NodeDeclaration) return Attribute(); 
+		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute(); 
 		 
 		Attribute a(append_attribute_ll(_root, get_allocator(_root))); 
 		a.SetName(Name); 
@@ -3832,7 +3832,7 @@ namespace phys
  
 	Attribute Node::prepend_attribute(const char_t* Name) 
 	{ 
-		if (type() != NodeElement && type() != NodeDeclaration) return Attribute(); 
+		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute(); 
 		 
 		Attribute a(allocate_attribute(get_allocator(_root))); 
 		if (!a) return Attribute(); 
@@ -3857,7 +3857,7 @@ namespace phys
  
 	Attribute Node::insert_attribute_before(const char_t* Name, const Attribute& attr) 
 	{ 
-		if ((type() != NodeElement && type() != NodeDeclaration) || attr.Empty()) return Attribute(); 
+		if ((Type() != NodeElement && Type() != NodeDeclaration) || attr.Empty()) return Attribute(); 
 		 
 		// check that attribute belongs to *this 
 		AttributeStruct* cur = attr._attr; 
@@ -3885,7 +3885,7 @@ namespace phys
  
 	Attribute Node::insert_attribute_after(const char_t* Name, const Attribute& attr) 
 	{ 
-		if ((type() != NodeElement && type() != NodeDeclaration) || attr.Empty()) return Attribute(); 
+		if ((Type() != NodeElement && Type() != NodeDeclaration) || attr.Empty()) return Attribute(); 
 		 
 		// check that attribute belongs to *this 
 		AttributeStruct* cur = attr._attr; 
@@ -3951,22 +3951,22 @@ namespace phys
 		return result; 
 	} 
  
-	Node Node::append_child(NodeType type) 
+	Node Node::append_child(NodeType Type) 
 	{ 
-		if (!allow_insert_child(this->type(), type)) return Node(); 
+		if (!allow_insert_child(this->Type(), Type)) return Node(); 
 		 
-		Node n(append_node(_root, get_allocator(_root), type)); 
+		Node n(append_node(_root, get_allocator(_root), Type)); 
  
-		if (type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
+		if (Type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
  
 		return n; 
 	} 
  
-	Node Node::prepend_child(NodeType type) 
+	Node Node::prepend_child(NodeType Type) 
 	{ 
-		if (!allow_insert_child(this->type(), type)) return Node(); 
+		if (!allow_insert_child(this->Type(), Type)) return Node(); 
 		 
-		Node n(allocate_node(get_allocator(_root), type)); 
+		Node n(allocate_node(get_allocator(_root), Type)); 
 		if (!n) return Node(); 
  
 		n._root->parent = _root; 
@@ -3984,17 +3984,17 @@ namespace phys
 		n._root->NextSibling = head; 
 		_root->FirstChild = n._root; 
 				 
-		if (type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
+		if (Type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
  
 		return n; 
 	} 
  
-	Node Node::insert_child_before(NodeType type, const Node& node) 
+	Node Node::insert_child_before(NodeType Type, const Node& node) 
 	{ 
-		if (!allow_insert_child(this->type(), type)) return Node(); 
+		if (!allow_insert_child(this->Type(), Type)) return Node(); 
 		if (!node._root || node._root->parent != _root) return Node(); 
 	 
-		Node n(allocate_node(get_allocator(_root), type)); 
+		Node n(allocate_node(get_allocator(_root), Type)); 
 		if (!n) return Node(); 
  
 		n._root->parent = _root; 
@@ -4008,17 +4008,17 @@ namespace phys
 		n._root->NextSibling = node._root; 
 		node._root->prev_sibling_c = n._root; 
  
-		if (type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
+		if (Type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
  
 		return n; 
 	} 
  
-	Node Node::insert_child_after(NodeType type, const Node& node) 
+	Node Node::insert_child_after(NodeType Type, const Node& node) 
 	{ 
-		if (!allow_insert_child(this->type(), type)) return Node(); 
+		if (!allow_insert_child(this->Type(), Type)) return Node(); 
 		if (!node._root || node._root->parent != _root) return Node(); 
 	 
-		Node n(allocate_node(get_allocator(_root), type)); 
+		Node n(allocate_node(get_allocator(_root), Type)); 
 		if (!n) return Node(); 
  
 		n._root->parent = _root; 
@@ -4032,7 +4032,7 @@ namespace phys
 		n._root->prev_sibling_c = node._root; 
 		node._root->NextSibling = n._root; 
  
-		if (type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
+		if (Type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
  
 		return n; 
 	} 
@@ -4075,7 +4075,7 @@ namespace phys
  
 	Node Node::append_copy(const Node& proto) 
 	{ 
-		Node result = append_child(proto.type()); 
+		Node result = append_child(proto.Type()); 
  
 		if (result) recursive_copy_skip(result, proto, result); 
  
@@ -4084,7 +4084,7 @@ namespace phys
  
 	Node Node::prepend_copy(const Node& proto) 
 	{ 
-		Node result = prepend_child(proto.type()); 
+		Node result = prepend_child(proto.Type()); 
  
 		if (result) recursive_copy_skip(result, proto, result); 
  
@@ -4093,7 +4093,7 @@ namespace phys
  
 	Node Node::insert_copy_after(const Node& proto, const Node& node) 
 	{ 
-		Node result = insert_child_after(proto.type(), node); 
+		Node result = insert_child_after(proto.Type(), node); 
  
 		if (result) recursive_copy_skip(result, proto, result); 
  
@@ -4102,7 +4102,7 @@ namespace phys
  
 	Node Node::insert_copy_before(const Node& proto, const Node& node) 
 	{ 
-		Node result = insert_child_before(proto.type(), node); 
+		Node result = insert_child_before(proto.Type(), node); 
  
 		if (result) recursive_copy_skip(result, proto, result); 
  
@@ -4346,7 +4346,7 @@ namespace phys
  
 		if (!buffer) return -1; 
  
-		switch (type()) 
+		switch (Type()) 
 		{ 
 		case NodeDocument: 
 			return 0; 
@@ -4359,7 +4359,7 @@ namespace phys
 		case NodePcdata: 
 		case NodeCdata: 
 		case NodeComment: 
-		case NodeDoctype: 
+		case NodeDocType: 
 			return (_root->header & MemoryPage_Value_allocated_mask) ? -1 : _root->Value - buffer; 
  
 		default: 
@@ -4521,12 +4521,12 @@ namespace phys
 		case StatusOutOfMemory: return "Could not allocate memory"; 
 		case StatusInternalError: return "Internal error occurred"; 
  
-		case StatusUnrecognizedTag: return "Could not determine tag type"; 
+		case StatusUnrecognizedTag: return "Could not determine tag Type"; 
  
 		case StatusBadPi: return "Error parsing document declaration/processing instruction"; 
 		case StatusBadComment: return "Error parsing comment"; 
 		case StatusBadCdata: return "Error parsing CDATA section"; 
-		case StatusBadDoctype: return "Error parsing document type declaration"; 
+		case StatusBadDocType: return "Error parsing document Type declaration"; 
 		case StatusBadPcdata: return "Error parsing PCDATA section"; 
 		case StatusBadStartElement: return "Error parsing start element tag"; 
 		case StatusBadAttribute: return "Error parsing element attribute"; 
@@ -5466,7 +5466,7 @@ namespace
 		{ 
 			const Node& n = na.node(); 
  
-			switch (n.type()) 
+			switch (n.Type()) 
 			{ 
 			case NodePcdata: 
 			case NodeCdata: 
@@ -5483,7 +5483,7 @@ namespace
 				 
 				while (cur && cur != n) 
 				{ 
-					if (cur.type() == NodePcdata || cur.type() == NodeCdata) 
+					if (cur.Type() == NodePcdata || cur.Type() == NodeCdata) 
 						result.append(XPathStringConst(cur.Value()), alloc); 
  
 					if (cur.FirstChild()) 
@@ -6109,9 +6109,9 @@ namespace
 		return result; 
 	} 
  
-	XPathVariable* new_XPathVariable(XPathValueType type, const char_t* Name) 
+	XPathVariable* new_XPathVariable(XPathValueType Type, const char_t* Name) 
 	{ 
-		switch (type) 
+		switch (Type) 
 		{ 
 		case XPathTypeNodeSet: 
 			return new_XPathVariable<XPathVariableNodeSet>(Name); 
@@ -6136,9 +6136,9 @@ namespace
 		global_deallocate(var); 
 	} 
  
-	void delete_XPathVariable(XPathValueType type, XPathVariable* var) 
+	void delete_XPathVariable(XPathValueType Type, XPathVariable* var) 
 	{ 
-		switch (type) 
+		switch (Type) 
 		{ 
 		case XPathTypeNodeSet: 
 			delete_XPathVariable(static_cast<XPathVariableNodeSet*>(var)); 
@@ -6157,7 +6157,7 @@ namespace
 			break; 
  
 		default: 
-			assert(!"Invalid variable type"); 
+			assert(!"Invalid variable Type"); 
 		} 
 	} 
  
@@ -6191,52 +6191,52 @@ namespace
 // Internal node set class 
 namespace 
 { 
-	XPathNodeSet::type_t XPathSort(XPathNode* begin, XPathNode* end, XPathNodeSet::type_t type, bool rev) 
+	XPathNodeSet::Type_t XPathSort(XPathNode* begin, XPathNode* end, XPathNodeSet::Type_t Type, bool rev) 
 	{ 
-		XPathNodeSet::type_t order = rev ? XPathNodeSet::type_sorted_reverse : XPathNodeSet::type_sorted; 
+		XPathNodeSet::Type_t order = rev ? XPathNodeSet::Type_sorted_reverse : XPathNodeSet::Type_sorted; 
  
-		if (type == XPathNodeSet::type_unsorted) 
+		if (Type == XPathNodeSet::Type_unsorted) 
 		{ 
 			sort(begin, end, document_order_comparator()); 
  
-			type = XPathNodeSet::type_sorted; 
+			Type = XPathNodeSet::Type_sorted; 
 		} 
 		 
-		if (type != order) reverse(begin, end); 
+		if (Type != order) reverse(begin, end); 
 			 
 		return order; 
 	} 
  
-	XPathNode XPathFirst(const XPathNode* begin, const XPathNode* end, XPathNodeSet::type_t type) 
+	XPathNode XPathFirst(const XPathNode* begin, const XPathNode* end, XPathNodeSet::Type_t Type) 
 	{ 
 		if (begin == end) return XPathNode(); 
  
-		switch (type) 
+		switch (Type) 
 		{ 
-		case XPathNodeSet::type_sorted: 
+		case XPathNodeSet::Type_sorted: 
 			return *begin; 
  
-		case XPathNodeSet::type_sorted_reverse: 
+		case XPathNodeSet::Type_sorted_reverse: 
 			return *(end - 1); 
  
-		case XPathNodeSet::type_unsorted: 
+		case XPathNodeSet::Type_unsorted: 
 			return *min_element(begin, end, document_order_comparator()); 
  
 		default: 
-			assert(!"Invalid node set type"); 
+			assert(!"Invalid node set Type"); 
 			return XPathNode(); 
 		} 
 	} 
 	class XPathNodeSet_raw 
 	{ 
-		XPathNodeSet::type_t _type; 
+		XPathNodeSet::Type_t _type; 
  
 		XPathNode* _begin; 
 		XPathNode* _end; 
 		XPathNode* _eos; 
  
 	public: 
-		XPathNodeSet_raw(): _type(XPathNodeSet::type_unsorted), _begin(0), _end(0), _eos(0) 
+		XPathNodeSet_raw(): _type(XPathNodeSet::Type_unsorted), _begin(0), _end(0), _eos(0) 
 		{ 
 		} 
  
@@ -6323,20 +6323,20 @@ namespace
  
 		void remove_duplicates() 
 		{ 
-			if (_type == XPathNodeSet::type_unsorted) 
+			if (_type == XPathNodeSet::Type_unsorted) 
 				sort(_begin, _end, duplicate_comparator()); 
 		 
 			_end = unique(_begin, _end); 
 		} 
  
-		XPathNodeSet::type_t type() const 
+		XPathNodeSet::Type_t Type() const 
 		{ 
 			return _type; 
 		} 
  
-		void SetType(XPathNodeSet::type_t type) 
+		void SetType(XPathNodeSet::Type_t Type) 
 		{ 
-			_type = type; 
+			_type = Type; 
 		} 
 	}; 
 } 
@@ -6809,9 +6809,9 @@ namespace
 	class XPathAstNode 
 	{ 
 	private: 
-		// node type 
+		// node Type 
 		char _type; 
-		char _rettype; 
+		char _retType; 
  
 		// for ast_step / ast_predicate 
 		char _axis; 
@@ -6830,7 +6830,7 @@ namespace
 			double number; 
 			// variable for ast_variable 
 			XPathVariable* variable; 
-			// node test for ast_step (node Name/namespace/node type/pi target) 
+			// node test for ast_step (node Name/namespace/node Type/pi target) 
 			const char_t* nodetest; 
 		} _data; 
  
@@ -6839,7 +6839,7 @@ namespace
  
 		template <class Comp> static bool compare_eq(XPathAstNode* lhs, XPathAstNode* rhs, const XPathContext& c, const XPathStack& stack, const Comp& comp) 
 		{ 
-			XPathValueType lt = lhs->rettype(), rt = rhs->rettype(); 
+			XPathValueType lt = lhs->retType(), rt = rhs->retType(); 
  
 			if (lt != XPathTypeNodeSet && rt != XPathTypeNodeSet) 
 			{ 
@@ -6921,13 +6921,13 @@ namespace
 				} 
 			} 
  
-			assert(!"Wrong types"); 
+			assert(!"Wrong Types"); 
 			return false; 
 		} 
  
 		template <class Comp> static bool compare_rel(XPathAstNode* lhs, XPathAstNode* rhs, const XPathContext& c, const XPathStack& stack, const Comp& comp) 
 		{ 
-			XPathValueType lt = lhs->rettype(), rt = rhs->rettype(); 
+			XPathValueType lt = lhs->retType(), rt = rhs->retType(); 
  
 			if (lt != XPathTypeNodeSet && rt != XPathTypeNodeSet) 
 				return comp(lhs->eval_number(c, stack), rhs->eval_number(c, stack)); 
@@ -6991,7 +6991,7 @@ namespace
 			} 
 			else 
 			{ 
-				assert(!"Wrong types"); 
+				assert(!"Wrong Types"); 
 				return false; 
 			} 
 		} 
@@ -7010,7 +7010,7 @@ namespace
 			{ 
 				XPathContext c(*it, i, size); 
 			 
-				if (expr->rettype() == XPathTypeNumber) 
+				if (expr->retType() == XPathTypeNumber) 
 				{ 
 					if (expr->eval_number(c, stack) == i) 
 						*last++ = *it; 
@@ -7070,7 +7070,7 @@ namespace
 			switch (_test) 
 			{ 
 			case nodetest_Name: 
-				if (n.type() == NodeElement && strequal(n.Name(), _data.nodetest)) ns.push_back(n, alloc); 
+				if (n.Type() == NodeElement && strequal(n.Name(), _data.nodetest)) ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_type_node: 
@@ -7078,32 +7078,32 @@ namespace
 				break; 
 				 
 			case nodetest_type_comment: 
-				if (n.type() == NodeComment) 
+				if (n.Type() == NodeComment) 
 					ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_type_text: 
-				if (n.type() == NodePcdata || n.type() == NodeCdata) 
+				if (n.Type() == NodePcdata || n.Type() == NodeCdata) 
 					ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_type_pi: 
-				if (n.type() == NodePi) 
+				if (n.Type() == NodePi) 
 					ns.push_back(n, alloc); 
 				break; 
 									 
 			case nodetest_pi: 
-				if (n.type() == NodePi && strequal(n.Name(), _data.nodetest)) 
+				if (n.Type() == NodePi && strequal(n.Name(), _data.nodetest)) 
 					ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_all: 
-				if (n.type() == NodeElement) 
+				if (n.Type() == NodeElement) 
 					ns.push_back(n, alloc); 
 				break; 
 				 
 			case nodetest_all_in_namespace: 
-				if (n.type() == NodeElement && starts_with(n.Name(), _data.nodetest)) 
+				if (n.Type() == NodeElement && starts_with(n.Name(), _data.nodetest)) 
 					ns.push_back(n, alloc); 
 				break; 
  
@@ -7291,7 +7291,7 @@ namespace
 			case axis_ancestor: 
 			case axis_ancestor_or_self: 
 			{ 
-				if (axis == axis_ancestor_or_self && _test == nodetest_type_node) // reject attributes based on principal node type test 
+				if (axis == axis_ancestor_or_self && _test == nodetest_type_node) // reject attributes based on principal node Type test 
 					step_push(ns, a, p, alloc); 
  
 				Node cur = p; 
@@ -7309,7 +7309,7 @@ namespace
 			case axis_descendant_or_self: 
 			case axis_self: 
 			{ 
-				if (_test == nodetest_type_node) // reject attributes based on principal node type test 
+				if (_test == nodetest_type_node) // reject attributes based on principal node Type test 
 					step_push(ns, a, p, alloc); 
  
 				break; 
@@ -7364,21 +7364,21 @@ namespace
 			bool attributes = (axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_descendant_or_self || axis == axis_following || axis == axis_parent || axis == axis_preceding || axis == axis_self); 
  
 			XPathNodeSet_raw ns; 
-			ns.SetType((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? XPathNodeSet::type_sorted_reverse : XPathNodeSet::type_sorted); 
+			ns.SetType((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? XPathNodeSet::Type_sorted_reverse : XPathNodeSet::Type_sorted); 
  
 			if (_left) 
 			{ 
 				XPathNodeSet_raw s = _left->eval_NodeSet(c, stack); 
  
 				// self axis preserves the original order 
-				if (axis == axis_self) ns.SetType(s.type()); 
+				if (axis == axis_self) ns.SetType(s.Type()); 
  
 				for (const XPathNode* it = s.begin(); it != s.end(); ++it) 
 				{ 
 					size_t size = ns.size(); 
  
 					// in general, all axes generate elements in a particular order, but there is no order guarantee if axis is applied to two nodes 
-					if (axis != axis_self && size != 0) ns.SetType(XPathNodeSet::type_unsorted); 
+					if (axis != axis_self && size != 0) ns.SetType(XPathNodeSet::Type_unsorted); 
 					 
 					if (it->node()) 
 						step_fill(ns, it->node(), stack.result, v); 
@@ -7400,41 +7400,41 @@ namespace
  
 			// child, attribute and self axes always generate unique set of nodes 
 			// for other axis, if the set stayed sorted, it stayed unique because the traversal algorithms do not visit the same node twice 
-			if (axis != axis_child && axis != axis_attribute && axis != axis_self && ns.type() == XPathNodeSet::type_unsorted) 
+			if (axis != axis_child && axis != axis_attribute && axis != axis_self && ns.Type() == XPathNodeSet::Type_unsorted) 
 				ns.remove_duplicates(); 
  
 			return ns; 
 		} 
 		 
 	public: 
-		XPathAstNode(ast_type_t type, XPathValueType rettype, const char_t* Value): 
-			_type((char)type), _rettype((char)rettype), _axis(0), _test(0), _left(0), _right(0), _next(0) 
+		XPathAstNode(ast_type_t Type, XPathValueType retType, const char_t* Value): 
+			_type((char)Type), _retType((char)retType), _axis(0), _test(0), _left(0), _right(0), _next(0) 
 		{ 
-			assert(type == ast_string_constant); 
+			assert(Type == ast_string_constant); 
 			_data.string = Value; 
 		} 
  
-		XPathAstNode(ast_type_t type, XPathValueType rettype, double Value): 
-			_type((char)type), _rettype((char)rettype), _axis(0), _test(0), _left(0), _right(0), _next(0) 
+		XPathAstNode(ast_type_t Type, XPathValueType retType, double Value): 
+			_type((char)Type), _retType((char)retType), _axis(0), _test(0), _left(0), _right(0), _next(0) 
 		{ 
-			assert(type == ast_number_constant); 
+			assert(Type == ast_number_constant); 
 			_data.number = Value; 
 		} 
 		 
-		XPathAstNode(ast_type_t type, XPathValueType rettype, XPathVariable* Value): 
-			_type((char)type), _rettype((char)rettype), _axis(0), _test(0), _left(0), _right(0), _next(0) 
+		XPathAstNode(ast_type_t Type, XPathValueType retType, XPathVariable* Value): 
+			_type((char)Type), _retType((char)retType), _axis(0), _test(0), _left(0), _right(0), _next(0) 
 		{ 
-			assert(type == ast_variable); 
+			assert(Type == ast_variable); 
 			_data.variable = Value; 
 		} 
 		 
-		XPathAstNode(ast_type_t type, XPathValueType rettype, XPathAstNode* left = 0, XPathAstNode* right = 0): 
-			_type((char)type), _rettype((char)rettype), _axis(0), _test(0), _left(left), _right(right), _next(0) 
+		XPathAstNode(ast_type_t Type, XPathValueType retType, XPathAstNode* left = 0, XPathAstNode* right = 0): 
+			_type((char)Type), _retType((char)retType), _axis(0), _test(0), _left(left), _right(right), _next(0) 
 		{ 
 		} 
  
-		XPathAstNode(ast_type_t type, XPathAstNode* left, axis_t axis, nodetest_t test, const char_t* contents): 
-			_type((char)type), _rettype(XPathTypeNodeSet), _axis((char)axis), _test((char)test), _left(left), _right(0), _next(0) 
+		XPathAstNode(ast_type_t Type, XPathAstNode* left, axis_t axis, nodetest_t test, const char_t* contents): 
+			_type((char)Type), _retType(XPathTypeNodeSet), _axis((char)axis), _test((char)test), _left(left), _right(0), _next(0) 
 		{ 
 			_data.nodetest = contents; 
 		} 
@@ -7541,17 +7541,17 @@ namespace
  
 			case ast_variable: 
 			{ 
-				assert(_rettype == _data.variable->type()); 
+				assert(_retType == _data.variable->Type()); 
  
-				if (_rettype == XPathTypeBoolean) 
+				if (_retType == XPathTypeBoolean) 
 					return _data.variable->get_boolean(); 
  
-				// fallthrough to type conversion 
+				// fallthrough to Type conversion 
 			} 
  
 			default: 
 			{ 
-				switch (_rettype) 
+				switch (_retType) 
 				{ 
 				case XPathTypeNumber: 
 					return convert_number_to_boolean(eval_number(c, stack)); 
@@ -7571,7 +7571,7 @@ namespace
 				} 
  
 				default: 
-					assert(!"Wrong expression for return type boolean"); 
+					assert(!"Wrong expression for return Type boolean"); 
 					return false; 
 				} 
 			} 
@@ -7677,17 +7677,17 @@ namespace
 			 
 			case ast_variable: 
 			{ 
-				assert(_rettype == _data.variable->type()); 
+				assert(_retType == _data.variable->Type()); 
  
-				if (_rettype == XPathTypeNumber) 
+				if (_retType == XPathTypeNumber) 
 					return _data.variable->get_number(); 
  
-				// fallthrough to type conversion 
+				// fallthrough to Type conversion 
 			} 
  
 			default: 
 			{ 
-				switch (_rettype) 
+				switch (_retType) 
 				{ 
 				case XPathTypeBoolean: 
 					return eval_boolean(c, stack) ? 1 : 0; 
@@ -7707,7 +7707,7 @@ namespace
 				} 
 					 
 				default: 
-					assert(!"Wrong expression for return type number"); 
+					assert(!"Wrong expression for return Type number"); 
 					return 0; 
 				} 
 				 
@@ -7946,17 +7946,17 @@ namespace
  
 			case ast_variable: 
 			{ 
-				assert(_rettype == _data.variable->type()); 
+				assert(_retType == _data.variable->Type()); 
  
-				if (_rettype == XPathTypeString) 
+				if (_retType == XPathTypeString) 
 					return XPathStringConst(_data.variable->get_string()); 
  
-				// fallthrough to type conversion 
+				// fallthrough to Type conversion 
 			} 
  
 			default: 
 			{ 
-				switch (_rettype) 
+				switch (_retType) 
 				{ 
 				case XPathTypeBoolean: 
 					return XPathStringConst(eval_boolean(c, stack) ? XML_TEXT("true") : XML_TEXT("false")); 
@@ -7975,7 +7975,7 @@ namespace
 				} 
 				 
 				default: 
-					assert(!"Wrong expression for return type string"); 
+					assert(!"Wrong expression for return Type string"); 
 					return XPathString(); 
 				} 
 			} 
@@ -7996,7 +7996,7 @@ namespace
 				XPathNodeSet_raw rs = _right->eval_NodeSet(c, stack); 
 				 
 				// we can optimize merging two sorted sets, but this is a very rare operation, so don't bother 
-  				rs.SetType(XPathNodeSet::type_unsorted); 
+  				rs.SetType(XPathNodeSet::Type_unsorted); 
  
 				rs.append(ls.begin(), ls.end(), stack.result); 
 				rs.remove_duplicates(); 
@@ -8072,7 +8072,7 @@ namespace
  
 				XPathNodeSet_raw ns; 
  
-				ns.SetType(XPathNodeSet::type_sorted); 
+				ns.SetType(XPathNodeSet::Type_sorted); 
  
 				if (c.n.node()) ns.push_back(c.n.node().root(), stack.result); 
 				else if (c.n.attribute()) ns.push_back(c.n.parent().root(), stack.result); 
@@ -8082,25 +8082,25 @@ namespace
  
 			case ast_variable: 
 			{ 
-				assert(_rettype == _data.variable->type()); 
+				assert(_retType == _data.variable->Type()); 
  
-				if (_rettype == XPathTypeNodeSet) 
+				if (_retType == XPathTypeNodeSet) 
 				{ 
 					const XPathNodeSet& s = _data.variable->get_NodeSet(); 
  
 					XPathNodeSet_raw ns; 
  
-					ns.SetType(s.type()); 
+					ns.SetType(s.Type()); 
 					ns.append(s.begin(), s.end(), stack.result); 
  
 					return ns; 
 				} 
  
-				// fallthrough to type conversion 
+				// fallthrough to Type conversion 
 			} 
  
 			default: 
-				assert(!"Wrong expression for return type node set"); 
+				assert(!"Wrong expression for return Type node set"); 
 				return XPathNodeSet_raw(); 
 			} 
 		} 
@@ -8136,9 +8136,9 @@ namespace
 			} 
 		} 
  
-		XPathValueType rettype() const 
+		XPathValueType retType() const 
 		{ 
-			return static_cast<XPathValueType>(_rettype); 
+			return static_cast<XPathValueType>(_retType); 
 		} 
 	}; 
  
@@ -8203,13 +8203,13 @@ namespace
 			else return 0; 
 		} 
  
-		XPathAstNode* ParseFunctionHelper(ast_type_t type0, ast_type_t type1, size_t argc, XPathAstNode* args[2]) 
+		XPathAstNode* ParseFunctionHelper(ast_type_t Type0, ast_type_t Type1, size_t argc, XPathAstNode* args[2]) 
 		{ 
 			assert(argc <= 1); 
  
-			if (argc == 1 && args[0]->rettype() != XPathTypeNodeSet) throw_error("Function has to be applied to node set"); 
+			if (argc == 1 && args[0]->retType() != XPathTypeNodeSet) throw_error("Function has to be applied to node set"); 
  
-			return new (alloc_node()) XPathAstNode(argc == 0 ? type0 : type1, XPathTypeString, args[0]); 
+			return new (alloc_node()) XPathAstNode(argc == 0 ? Type0 : Type1, XPathTypeString, args[0]); 
 		} 
  
 		XPathAstNode* ParseFunction(const XPathLexerString& Name, size_t argc, XPathAstNode* args[2]) 
@@ -8225,7 +8225,7 @@ namespace
 			case 'c': 
 				if (Name == XML_TEXT("count") && argc == 1) 
 				{ 
-					if (args[0]->rettype() != XPathTypeNodeSet) throw_error("Function has to be applied to node set"); 
+					if (args[0]->retType() != XPathTypeNodeSet) throw_error("Function has to be applied to node set"); 
 					return new (alloc_node()) XPathAstNode(ast_func_count, XPathTypeNumber, args[0]); 
 				} 
 				else if (Name == XML_TEXT("contains") && argc == 2) 
@@ -8302,7 +8302,7 @@ namespace
 					return new (alloc_node()) XPathAstNode(argc == 2 ? ast_func_substring_2 : ast_func_substring_3, XPathTypeString, args[0], args[1]); 
 				else if (Name == XML_TEXT("sum") && argc == 1) 
 				{ 
-					if (args[0]->rettype() != XPathTypeNodeSet) throw_error("Function has to be applied to node set"); 
+					if (args[0]->retType() != XPathTypeNodeSet) throw_error("Function has to be applied to node set"); 
 					return new (alloc_node()) XPathAstNode(ast_func_sum, XPathTypeNumber, args[0]); 
 				} 
  
@@ -8438,7 +8438,7 @@ namespace
  
 				_lexer.next(); 
  
-				return new (alloc_node()) XPathAstNode(ast_variable, var->type(), var); 
+				return new (alloc_node()) XPathAstNode(ast_variable, var->Type(), var); 
 			} 
  
 			case lex_open_brace: 
@@ -8535,9 +8535,9 @@ namespace
  
 				XPathAstNode* expr = ParseExpression(); 
  
-				if (n->rettype() != XPathTypeNodeSet) throw_error("Predicate has to be applied to node set"); 
+				if (n->retType() != XPathTypeNodeSet) throw_error("Predicate has to be applied to node set"); 
  
-				bool posinv = expr->rettype() != XPathTypeNumber && expr->is_posinv(); 
+				bool posinv = expr->retType() != XPathTypeNumber && expr->is_posinv(); 
  
 				n = new (alloc_node()) XPathAstNode(posinv ? ast_filter_posinv : ast_filter, XPathTypeNodeSet, n, expr); 
  
@@ -8557,7 +8557,7 @@ namespace
 		// AbbreviatedStep ::= '.' | '..' 
 		XPathAstNode* ParseStep(XPathAstNode* set) 
 		{ 
-			if (set && set->rettype() != XPathTypeNodeSet) 
+			if (set && set->retType() != XPathTypeNodeSet) 
 				throw_error("Step has to be applied to node set"); 
  
 			bool axis_specified = false; 
@@ -8621,7 +8621,7 @@ namespace
 				 
 				if (nt_type == nodetest_none) 
 				{ 
-					// node type test or processing-instruction 
+					// node Type test or processing-instruction 
 					if (_lexer.current() == lex_open_brace) 
 					{ 
 						_lexer.next(); 
@@ -8632,7 +8632,7 @@ namespace
  
 							nt_type = ParseNodeTest_type(nt_Name); 
  
-							if (nt_type == nodetest_none) throw_error("Unrecognized node type"); 
+							if (nt_type == nodetest_none) throw_error("Unrecognized node Type"); 
 							 
 							nt_Name = XPathLexerString(); 
 						} 
@@ -8650,7 +8650,7 @@ namespace
 							_lexer.next(); 
 						} 
 						else 
-							throw_error("Unmatched brace near node type test"); 
+							throw_error("Unmatched brace near node Type test"); 
  
 					} 
 					// QName or NCName:* 
@@ -8788,7 +8788,7 @@ namespace
 					 
 					if (l == lex_double_slash) 
 					{ 
-						if (n->rettype() != XPathTypeNodeSet) throw_error("Step has to be applied to node set"); 
+						if (n->retType() != XPathTypeNodeSet) throw_error("Step has to be applied to node set"); 
  
 						n = new (alloc_node()) XPathAstNode(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 					} 
@@ -8813,7 +8813,7 @@ namespace
  
 				XPathAstNode* expr = ParseUnionExpression(); 
  
-				if (n->rettype() != XPathTypeNodeSet || expr->rettype() != XPathTypeNodeSet) 
+				if (n->retType() != XPathTypeNodeSet || expr->retType() != XPathTypeNodeSet) 
 					throw_error("Union operator has to be applied to node sets"); 
  
 				n = new (alloc_node()) XPathAstNode(ast_op_union, XPathTypeNodeSet, n, expr); 
@@ -9162,11 +9162,11 @@ namespace phys
 		} 
 	} 
  
-	XPathNodeSet::XPathNodeSet(): _type(type_unsorted), _begin(&_storage), _end(&_storage) 
+	XPathNodeSet::XPathNodeSet(): _type(Type_unsorted), _begin(&_storage), _end(&_storage) 
 	{ 
 	} 
  
-	XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, type_t type): _type(type), _begin(&_storage), _end(&_storage) 
+	XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, Type_t Type): _type(Type), _begin(&_storage), _end(&_storage) 
 	{ 
 		_assign(begin, end); 
 	} 
@@ -9191,7 +9191,7 @@ namespace phys
 		return *this; 
 	} 
  
-	XPathNodeSet::type_t XPathNodeSet::type() const 
+	XPathNodeSet::Type_t XPathNodeSet::Type() const 
 	{ 
 		return _type; 
 	} 
@@ -9266,12 +9266,12 @@ namespace phys
 			return static_cast<const XPathVariableBoolean*>(this)->Name; 
  
 		default: 
-			assert(!"Invalid variable type"); 
+			assert(!"Invalid variable Type"); 
 			return 0; 
 		} 
 	} 
  
-	XPathValueType XPathVariable::type() const 
+	XPathValueType XPathVariable::Type() const 
 	{ 
 		return _type; 
 	} 
@@ -9377,7 +9377,7 @@ namespace phys
 		return 0; 
 	} 
  
-	XPathVariable* XPathVariableSet::add(const char_t* Name, XPathValueType type) 
+	XPathVariable* XPathVariableSet::add(const char_t* Name, XPathValueType Type) 
 	{ 
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]); 
 		size_t hash = hash_string(Name) % hash_size; 
@@ -9385,14 +9385,14 @@ namespace phys
 		// look for existing variable 
 		for (XPathVariable* var = _data[hash]; var; var = var->_next) 
 			if (strequal(var->Name(), Name)) 
-				return var->type() == type ? var : 0; 
+				return var->Type() == Type ? var : 0; 
  
 		// add new variable 
-		XPathVariable* result = new_XPathVariable(type, Name); 
+		XPathVariable* result = new_XPathVariable(Type, Name); 
  
 		if (result) 
 		{ 
-			result->_type = type; 
+			result->_type = Type; 
 			result->_next = _data[hash]; 
  
 			_data[hash] = result; 
@@ -9470,7 +9470,7 @@ namespace phys
 	{ 
 		if (!_impl) return XPathTypeNone; 
  
-		return static_cast<XPathQueryImpl*>(_impl)->root->rettype(); 
+		return static_cast<XPathQueryImpl*>(_impl)->root->retType(); 
 	} 
  
 	bool XPathQuery::evaluate_boolean(const XPathNode& n) const 
@@ -9536,7 +9536,7 @@ namespace phys
  
 		XPathAstNode* root = static_cast<XPathQueryImpl*>(_impl)->root; 
  
-		if (root->rettype() != XPathTypeNodeSet) 
+		if (root->retType() != XPathTypeNodeSet) 
 		{ 
 		#ifdef XML_NO_EXCEPTIONS 
 			return XPathNodeSet(); 
@@ -9557,7 +9557,7 @@ namespace phys
  
 		XPathNodeSet_raw r = root->eval_NodeSet(c, sd.stack); 
  
-		return XPathNodeSet(r.begin(), r.end(), r.type()); 
+		return XPathNodeSet(r.begin(), r.end(), r.Type()); 
 	} 
  
 	const XPathParseResult& XPathQuery::result() const 

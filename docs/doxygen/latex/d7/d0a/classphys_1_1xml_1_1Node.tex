@@ -14,7 +14,7 @@ A light-\/weight handle for manipulating nodes in DOM tree.
 Inheritance diagram for phys::xml::Node:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{d7/d0a/classphys_1_1xml_1_1Node}
+\includegraphics[height=2cm]{d7/d0a/classphys_1_1xml_1_1Node}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -56,31 +56,16 @@ bool \hyperlink{classphys_1_1xml_1_1Node_a01986a425fb67bb6157aea7f861f8729}{oper
 \begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1Node_a444f80194136237ebc7c971b1c837155}{operator$>$=} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&r) const 
 \begin{DoxyCompactList}\small\item\em Compares the internal values to check for inequality. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1Node_a84ac54dff957399fd3fb9318ee8cccab}{
-bool {\bfseries Empty} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a84ac54dff957399fd3fb9318ee8cccab}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_aeeab99e4798aa73cbdbafacf6cd3260b}{
-\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} {\bfseries type} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_aeeab99e4798aa73cbdbafacf6cd3260b}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_ab7562fa34bdf2a3312ecbc97facf127f}{
-const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries Name} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_ab7562fa34bdf2a3312ecbc97facf127f}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a96119b5bc9e52698105cfbcccf6e5cc9}{
-const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries Value} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a96119b5bc9e52698105cfbcccf6e5cc9}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_aa9d059722ace62072e6b6a46353a1c81}{
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries FirstAttribute} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_aa9d059722ace62072e6b6a46353a1c81}
-
-\item 
+bool \hyperlink{classphys_1_1xml_1_1Node_a22c00132e42702d16468489ff0bd01d8}{Empty} () const 
+\begin{DoxyCompactList}\small\item\em Is this storing anything at all? \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} \hyperlink{classphys_1_1xml_1_1Node_a33288f89218baf24d1061c6eeb08687f}{Type} () const 
+\begin{DoxyCompactList}\small\item\em Identify what kind of \hyperlink{classphys_1_1xml_1_1Node}{Node} this is. \item\end{DoxyCompactList}\item 
+const char\_\-t $\ast$ \hyperlink{classphys_1_1xml_1_1Node_a53facd97d76240a3f3fffc86caacdc24}{Name} () const 
+\begin{DoxyCompactList}\small\item\em Get the name of this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+const char\_\-t $\ast$ \hyperlink{classphys_1_1xml_1_1Node_a90e8efb31007ade54d62c1752979461f}{Value} () const 
+\begin{DoxyCompactList}\small\item\em Get the Value of this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \hyperlink{classphys_1_1xml_1_1Node_a0e25a4612b33f12e44ec174308fcc364}{FirstAttribute} () const 
+\begin{DoxyCompactList}\small\item\em Get the First \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} in this node. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1Node_a5fa1c66ad335c09b74a7cb2494b739a4}{
 \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries LastAttribute} () const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a5fa1c66ad335c09b74a7cb2494b739a4}
@@ -117,59 +102,59 @@ const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a074b7085fd51a7be5a83e6b160c0408e}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries child} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name) const }
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries child} (const char\_\-t $\ast$Name) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a074b7085fd51a7be5a83e6b160c0408e}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a3eb72afcbc487a264b0806f9c211b6de}{
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name) const }
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries attribute} (const char\_\-t $\ast$Name) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a3eb72afcbc487a264b0806f9c211b6de}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a018cd0be54d300d6a1eca75cc2b000f8}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries NextSibling} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name) const }
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries NextSibling} (const char\_\-t $\ast$Name) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a018cd0be54d300d6a1eca75cc2b000f8}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a3e686deff74f5b896e11188ff8405cd4}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries PreviousSibling} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name) const }
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries PreviousSibling} (const char\_\-t $\ast$Name) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a3e686deff74f5b896e11188ff8405cd4}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a7b8474e79dac5d3fed554e93f3245cbd}{
-const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries child\_\-Value} () const }
+const char\_\-t $\ast$ {\bfseries child\_\-Value} () const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a7b8474e79dac5d3fed554e93f3245cbd}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_aa9c2bcfbe39b0ac6e4b6cf6172896450}{
-const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$ {\bfseries child\_\-Value} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name) const }
+const char\_\-t $\ast$ {\bfseries child\_\-Value} (const char\_\-t $\ast$Name) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_aa9c2bcfbe39b0ac6e4b6cf6172896450}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_ab686e72f297e120682e7278538fa7e66}{
-bool {\bfseries SetName} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)}
+bool {\bfseries SetName} (const char\_\-t $\ast$rhs)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_ab686e72f297e120682e7278538fa7e66}
 
 \item 
-bool \hyperlink{classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}{SetValue} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$rhs)
+bool \hyperlink{classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}{SetValue} (const char\_\-t $\ast$rhs)
 \begin{DoxyCompactList}\small\item\em Set the value of this. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1Node_a502e81e67bb7a331d65d089bb06ffdc3}{
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries append\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)}
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries append\_\-attribute} (const char\_\-t $\ast$Name)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a502e81e67bb7a331d65d089bb06ffdc3}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_aef5720e2c89071706b3af7df7ad0590f}{
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries prepend\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)}
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries prepend\_\-attribute} (const char\_\-t $\ast$Name)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_aef5720e2c89071706b3af7df7ad0590f}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a44e0467ffc730fa9600e6b323415f94e}{
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries insert\_\-attribute\_\-after} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&attr)}
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries insert\_\-attribute\_\-after} (const char\_\-t $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&attr)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a44e0467ffc730fa9600e6b323415f94e}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a68b76b59b4935547517d03cbe61b1429}{
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries insert\_\-attribute\_\-before} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&attr)}
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries insert\_\-attribute\_\-before} (const char\_\-t $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&attr)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a68b76b59b4935547517d03cbe61b1429}
 
 \item 
@@ -193,43 +178,43 @@ bool \hyperlink{classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}{SetV
 \label{d7/d0a/classphys_1_1xml_1_1Node_af4b5824124e70eda957c410e66123896}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1Node_af2601376ae30b9744b3b10067d26de9a}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries append\_\-child} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} type=NodeElement)}
-\label{d7/d0a/classphys_1_1xml_1_1Node_af2601376ae30b9744b3b10067d26de9a}
+\hypertarget{classphys_1_1xml_1_1Node_abf0e62aab8e180508ed1671e4a4bc4fd}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries append\_\-child} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} Type=NodeElement)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_abf0e62aab8e180508ed1671e4a4bc4fd}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1Node_ae34bde1d0157fe19996c26099a22695c}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries prepend\_\-child} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} type=NodeElement)}
-\label{d7/d0a/classphys_1_1xml_1_1Node_ae34bde1d0157fe19996c26099a22695c}
+\hypertarget{classphys_1_1xml_1_1Node_a84e5b2681e6adcc77baacbad132be969}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries prepend\_\-child} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} Type=NodeElement)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a84e5b2681e6adcc77baacbad132be969}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1Node_a6c6b4225db38e4f031ee68d5c8c86377}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-after} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} type, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
-\label{d7/d0a/classphys_1_1xml_1_1Node_a6c6b4225db38e4f031ee68d5c8c86377}
+\hypertarget{classphys_1_1xml_1_1Node_adfea944cd7b51f3b410af783b7234aac}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-after} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} Type, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_adfea944cd7b51f3b410af783b7234aac}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1Node_a36dd60f74bcf0ac054169c3c6ae8e286}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-before} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} type, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
-\label{d7/d0a/classphys_1_1xml_1_1Node_a36dd60f74bcf0ac054169c3c6ae8e286}
+\hypertarget{classphys_1_1xml_1_1Node_ab3e530db99e52ababa328f4d467c1131}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-before} (\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} Type, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\label{d7/d0a/classphys_1_1xml_1_1Node_ab3e530db99e52ababa328f4d467c1131}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_ad677dbf1c4a38d15b03b0ae2269cdcdb}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries append\_\-child} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)}
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries append\_\-child} (const char\_\-t $\ast$Name)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_ad677dbf1c4a38d15b03b0ae2269cdcdb}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a20b4aa3acdd90003205e7817518fa2d7}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries prepend\_\-child} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)}
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries prepend\_\-child} (const char\_\-t $\ast$Name)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a20b4aa3acdd90003205e7817518fa2d7}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_af599afc940be73e8348e5382e0c61a75}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-after} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-after} (const char\_\-t $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_af599afc940be73e8348e5382e0c61a75}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a26b7989a0ffd051bcebb72ec4850681e}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-before} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries insert\_\-child\_\-before} (const char\_\-t $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a26b7989a0ffd051bcebb72ec4850681e}
 
 \item 
@@ -259,7 +244,7 @@ bool {\bfseries remove\_\-attribute} (const \hyperlink{classphys_1_1xml_1_1Attri
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a0c1f1f7b2dfecafd0b84fb0e90bbda5c}{
-bool {\bfseries remove\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)}
+bool {\bfseries remove\_\-attribute} (const char\_\-t $\ast$Name)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a0c1f1f7b2dfecafd0b84fb0e90bbda5c}
 
 \item 
@@ -269,7 +254,7 @@ bool {\bfseries remove\_\-child} (const \hyperlink{classphys_1_1xml_1_1Node}{Nod
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a8291a274fba998f4db49407a59abcf5b}{
-bool {\bfseries remove\_\-child} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)}
+bool {\bfseries remove\_\-child} (const char\_\-t $\ast$Name)}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a8291a274fba998f4db49407a59abcf5b}
 
 \item 
@@ -289,22 +274,22 @@ bool {\bfseries remove\_\-child} (const \hyperlink{namespacephys_1_1xml_afc87705
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a6a44505fc526dfb003238a648309dab3}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries find\_\-child\_\-by\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$attr\_\-Name, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$attr\_\-Value) const }
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries find\_\-child\_\-by\_\-attribute} (const char\_\-t $\ast$Name, const char\_\-t $\ast$attr\_\-Name, const char\_\-t $\ast$attr\_\-Value) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a6a44505fc526dfb003238a648309dab3}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_abac54c450e3c50b3d73a0fafe6b4bafd}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries find\_\-child\_\-by\_\-attribute} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$attr\_\-Name, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$attr\_\-Value) const }
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries find\_\-child\_\-by\_\-attribute} (const char\_\-t $\ast$attr\_\-Name, const char\_\-t $\ast$attr\_\-Value) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_abac54c450e3c50b3d73a0fafe6b4bafd}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a74b9f51a6642808510e71f643cc861ad}{
-\hyperlink{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{string\_\-t} {\bfseries path} (\hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} delimiter= '/') const }
+\hyperlink{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{string\_\-t} {\bfseries path} (char\_\-t delimiter= '/') const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a74b9f51a6642808510e71f643cc861ad}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_ad53eb05b9c0c2ac9388f5207c38ca98e}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries FirstElement\_\-by\_\-path} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$path, \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} delimiter= '/') const }
+\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries FirstElement\_\-by\_\-path} (const char\_\-t $\ast$path, char\_\-t delimiter= '/') const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_ad53eb05b9c0c2ac9388f5207c38ca98e}
 
 \item 
@@ -314,7 +299,7 @@ bool {\bfseries traverse} (\hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_ad3caa2f4cafd56c79000a5af848f3e62}{
-\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} {\bfseries select\_\-single\_\-node} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
+\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} {\bfseries select\_\-single\_\-node} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_ad3caa2f4cafd56c79000a5af848f3e62}
 
 \item 
@@ -324,7 +309,7 @@ bool {\bfseries traverse} (\hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_ad8bc358815511c63677a60149fe9a6dd}{
-\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} {\bfseries select\_\-nodes} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
+\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} {\bfseries select\_\-nodes} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_ad8bc358815511c63677a60149fe9a6dd}
 
 \item 
@@ -334,17 +319,17 @@ bool {\bfseries traverse} (\hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a526817671e39653b0dca70c2ba8daa55}{
-void {\bfseries print} (\hyperlink{classphys_1_1xml_1_1Writer}{Writer} \&WriterInstance, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int depth=0) const }
+void {\bfseries print} (\hyperlink{classphys_1_1xml_1_1Writer}{Writer} \&WriterInstance, const char\_\-t $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int depth=0) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a526817671e39653b0dca70c2ba8daa55}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a99158a08970f0497a3925dddf8227b87}{
-void {\bfseries print} (std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&os, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int depth=0) const }
+void {\bfseries print} (std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&os, const char\_\-t $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int depth=0) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a99158a08970f0497a3925dddf8227b87}
 
 \item 
 \hypertarget{classphys_1_1xml_1_1Node_a27b7869e5208547e06b6164bbc68ca0e}{
-void {\bfseries print} (std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&os, const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, unsigned int depth=0) const }
+void {\bfseries print} (std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&os, const char\_\-t $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, unsigned int depth=0) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a27b7869e5208547e06b6164bbc68ca0e}
 
 \item 
@@ -422,11 +407,7 @@ Definition at line 440 of file xml.h.
 \hypertarget{classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}{
 \index{phys::xml::Node@{phys::xml::Node}!Node@{Node}}
 \index{Node@{Node}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Node (
-\begin{DoxyParamCaption}
-\item[{{\bf NodeStruct} $\ast$}]{ p}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
+\subsubsection[{Node}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Node ({\bf NodeStruct} $\ast$ {\em p})\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}
 
 
@@ -442,14 +423,61 @@ Definition at line 3598 of file xml.cpp.
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1Node_a22c00132e42702d16468489ff0bd01d8}{
+\index{phys::xml::Node@{phys::xml::Node}!Empty@{Empty}}
+\index{Empty@{Empty}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Empty}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Empty () const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a22c00132e42702d16468489ff0bd01d8}
+
+
+Is this storing anything at all? 
+
+\begin{DoxyReturn}{Returns}
+Returns True if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is storing nothing. False if it is storing anything. 
+\end{DoxyReturn}
+
+
+Definition at line 3662 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a0e25a4612b33f12e44ec174308fcc364}{
+\index{phys::xml::Node@{phys::xml::Node}!FirstAttribute@{FirstAttribute}}
+\index{FirstAttribute@{FirstAttribute}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FirstAttribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::FirstAttribute () const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0e25a4612b33f12e44ec174308fcc364}
+
+
+Get the First \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} in this node. 
+
+\begin{DoxyReturn}{Returns}
+This attempts to return the First \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} in this node, if it cannot it returns an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. 
+\end{DoxyReturn}
+
+
+Definition at line 3773 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a53facd97d76240a3f3fffc86caacdc24}{
+\index{phys::xml::Node@{phys::xml::Node}!Name@{Name}}
+\index{Name@{Name}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Name}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Name () const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a53facd97d76240a3f3fffc86caacdc24}
+
+
+Get the name of this \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+Returns A pointer to a const c-\/style array of the the character type (usually char or wchar\_\-t) containing the name. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+returns \char`\"{}\char`\"{} if \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. 
+\end{DoxyWarning}
+
+
+Definition at line 3667 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_a1a3af56736ef4dd39596bb71607ebbc7}{
 \index{phys::xml::Node@{phys::xml::Node}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
 \index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{operator unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator Node::unspecified\_\-bool\_\-type (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}}
+\subsubsection[{operator unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator Node::unspecified\_\-bool\_\-type () const}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a1a3af56736ef4dd39596bb71607ebbc7}
 
 
@@ -465,11 +493,7 @@ Definition at line 3602 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Node_a11c8e41002682a2742bd168a9318b6e8}{
 \index{phys::xml::Node@{phys::xml::Node}!operator!@{operator!}}
 \index{operator!@{operator!}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator! (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}}
+\subsubsection[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator! () const}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a11c8e41002682a2742bd168a9318b6e8}
 
 
@@ -485,11 +509,7 @@ Definition at line 3607 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Node_a2fdcc611f72c98bc18ef25c9be5dc8ef}{
 \index{phys::xml::Node@{phys::xml::Node}!operator!=@{operator!=}}
 \index{operator!=@{operator!=}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator!= (
-\begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
-\end{DoxyParamCaption}
-) const}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator!= (const {\bf Node} \& {\em r}) const}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a2fdcc611f72c98bc18ef25c9be5dc8ef}
 
 
@@ -508,11 +528,7 @@ Definition at line 3637 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Node_a509304b9bcc6e7891c6b4daa16168f94}{
 \index{phys::xml::Node@{phys::xml::Node}!operator$<$@{operator$<$}}
 \index{operator$<$@{operator$<$}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$<$ (
-\begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
-\end{DoxyParamCaption}
-) const}}
+\subsubsection[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$<$ (const {\bf Node} \& {\em r}) const}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a509304b9bcc6e7891c6b4daa16168f94}
 
 
@@ -531,11 +547,7 @@ Definition at line 3642 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Node_a01986a425fb67bb6157aea7f861f8729}{
 \index{phys::xml::Node@{phys::xml::Node}!operator$<$=@{operator$<$=}}
 \index{operator$<$=@{operator$<$=}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$<$= (
-\begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
-\end{DoxyParamCaption}
-) const}}
+\subsubsection[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$<$= (const {\bf Node} \& {\em r}) const}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a01986a425fb67bb6157aea7f861f8729}
 
 
@@ -554,11 +566,7 @@ Definition at line 3652 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Node_a5ae85504c26f8494c0ba048dc2370ac2}{
 \index{phys::xml::Node@{phys::xml::Node}!operator==@{operator==}}
 \index{operator==@{operator==}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator== (
-\begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
-\end{DoxyParamCaption}
-) const}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator== (const {\bf Node} \& {\em r}) const}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a5ae85504c26f8494c0ba048dc2370ac2}
 
 
@@ -577,11 +585,7 @@ Definition at line 3632 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Node_a7fc3bf84e390269a115e546babf89dfd}{
 \index{phys::xml::Node@{phys::xml::Node}!operator$>$@{operator$>$}}
 \index{operator$>$@{operator$>$}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$>$ (
-\begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
-\end{DoxyParamCaption}
-) const}}
+\subsubsection[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$>$ (const {\bf Node} \& {\em r}) const}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a7fc3bf84e390269a115e546babf89dfd}
 
 
@@ -600,11 +604,7 @@ Definition at line 3647 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Node_a444f80194136237ebc7c971b1c837155}{
 \index{phys::xml::Node@{phys::xml::Node}!operator$>$=@{operator$>$=}}
 \index{operator$>$=@{operator$>$=}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$>$= (
-\begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
-\end{DoxyParamCaption}
-) const}}
+\subsubsection[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$>$= (const {\bf Node} \& {\em r}) const}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a444f80194136237ebc7c971b1c837155}
 
 
@@ -623,11 +623,7 @@ Definition at line 3657 of file xml.cpp.
 \hypertarget{classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}{
 \index{phys::xml::Node@{phys::xml::Node}!SetValue@{SetValue}}
 \index{SetValue@{SetValue}!phys::xml::Node@{phys::xml::Node}}
-\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Node::SetValue (
-\begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ rhs}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Node::SetValue (const char\_\-t $\ast$ {\em rhs})}}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}
 
 
@@ -644,6 +640,41 @@ True if successful, returns false if this is empty or there is not enough memory
 
 
 Definition at line 3807 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a33288f89218baf24d1061c6eeb08687f}{
+\index{phys::xml::Node@{phys::xml::Node}!Type@{Type}}
+\index{Type@{Type}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Type}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Type () const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a33288f89218baf24d1061c6eeb08687f}
+
+
+Identify what kind of \hyperlink{classphys_1_1xml_1_1Node}{Node} this is. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType} identifying this \hyperlink{classphys_1_1xml_1_1Node}{Node}, or o/NULL if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. 
+\end{DoxyReturn}
+
+
+Definition at line 3672 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a90e8efb31007ade54d62c1752979461f}{
+\index{phys::xml::Node@{phys::xml::Node}!Value@{Value}}
+\index{Value@{Value}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Value}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Value () const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a90e8efb31007ade54d62c1752979461f}
+
+
+Get the Value of this \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+Returns A pointer to a const c-\/style array of the the character type (usually char or wchar\_\-t) containing the value. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+returns \char`\"{}\char`\"{} if \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. 
+\end{DoxyWarning}
+
+
+Definition at line 3677 of file xml.cpp.
 
 
 

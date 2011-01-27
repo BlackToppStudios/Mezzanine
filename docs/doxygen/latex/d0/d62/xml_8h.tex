@@ -70,6 +70,21 @@ namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
 \begin{DoxyCompactList}\small\item\em Prevents accidental loading of the file \hyperlink{xml_8h}{xml.h} multiple times. \item\end{DoxyCompactList}\item 
 \#define \hyperlink{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{XML\_\-DEPRECATED}
 \begin{DoxyCompactList}\small\item\em Used to mark XML internals as deprecated at the compiler level. \item\end{DoxyCompactList}\item 
+\hypertarget{xml_8h_a8e0e39c40f338510ac3b8334bc4cec7e}{
+\#define {\bfseries PHYS\_\-LIB}}
+\label{d0/d62/xml_8h_a8e0e39c40f338510ac3b8334bc4cec7e}
+
+\item 
+\hypertarget{xml_8h_a8e0e39c40f338510ac3b8334bc4cec7e}{
+\#define {\bfseries PHYS\_\-LIB}~PHYS\_\-LIB}
+\label{d0/d62/xml_8h_a8e0e39c40f338510ac3b8334bc4cec7e}
+
+\item 
+\hypertarget{xml_8h_a8e0e39c40f338510ac3b8334bc4cec7e}{
+\#define {\bfseries PHYS\_\-LIB}~PHYS\_\-LIB}
+\label{d0/d62/xml_8h_a8e0e39c40f338510ac3b8334bc4cec7e}
+
+\item 
 \#define \hyperlink{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{XML\_\-TEXT}(t)~t
 \begin{DoxyCompactList}\small\item\em Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time. \item\end{DoxyCompactList}\item 
 \#define \hyperlink{xml_8h_a75d691145d9a12b8a9ea795964a0c917}{XML\_\-CHAR}~char
@@ -78,10 +93,10 @@ namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{
-typedef Character \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t}}
+typedef Character {\bfseries phys::xml::char\_\-t}}
 \label{d9/d27/namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}
 
-\begin{DoxyCompactList}\small\item\em The character type used the internals of the XML parser, this is defined in \hyperlink{datatypes_8h_source}{datatypes.h}. \item\end{DoxyCompactList}\item 
+\item 
 \hypertarget{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{
 typedef std::basic\_\-string$<$ Character, std::char\_\-traits$<$ Character $>$, std::allocator$<$ Character $>$ $>$ \hyperlink{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{phys::xml::string\_\-t}}
 \label{d9/d27/namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}
@@ -111,7 +126,7 @@ enum \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{phys::xm
 \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa}{phys::xml::NodePi}, 
 \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035}{phys::xml::NodeDeclaration}, 
 \par
-\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883}{phys::xml::NodeDoctype}
+{\bfseries NodeDocType}
  \}
 \begin{DoxyCompactList}\small\item\em The types of nodes. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{phys::xml::Encoding} \{ \par
@@ -140,7 +155,7 @@ enum \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{phys::xm
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa8f3864efd7b684ae57a8a7886a23f19a}{phys::xml::StatusBadComment}, 
 \par
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa18f36b8d712a6bbc716f90af8659df22}{phys::xml::StatusBadCdata}, 
-\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa22f9163dc29ca7017022e4ce96c97ef9}{phys::xml::StatusBadDoctype}, 
+{\bfseries StatusBadDocType}, 
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fab30b3a432145b0e9c6595e75da773628}{phys::xml::StatusBadPcdata}, 
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fadbc5b334b4215ce2332073de46c58155}{phys::xml::StatusBadStartElement}, 
 \par
@@ -243,14 +258,14 @@ const unsigned int \hyperlink{namespacephys_1_1xml_a463f15fc43d69ab835c8598826f6
 \label{d9/d27/namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}
 
 \begin{DoxyCompactList}\small\item\em This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
-\hypertarget{namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}{
-const unsigned int \hyperlink{namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}{phys::xml::ParseDoctype} = 0x0200}
-\label{d9/d27/namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}
+\hypertarget{namespacephys_1_1xml_a37851039450a5fa38ef6b8c717b2e0e6}{
+const unsigned int {\bfseries phys::xml::ParseDocType} = 0x0200}
+\label{d9/d27/namespacephys_1_1xml_a37851039450a5fa38ef6b8c717b2e0e6}
 
-\begin{DoxyCompactList}\small\item\em This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+\item 
 const unsigned int \hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{phys::xml::ParseDefault} = ParseCdata $|$ ParseEscapes $|$ ParseWconvAttribute $|$ ParseEol
 \begin{DoxyCompactList}\small\item\em The default parsing mode. \item\end{DoxyCompactList}\item 
-const unsigned int \hyperlink{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{phys::xml::ParseFull} = ParseDefault $|$ ParsePi $|$ ParseComments $|$ ParseDeclaration $|$ ParseDoctype
+const unsigned int \hyperlink{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{phys::xml::ParseFull} = ParseDefault $|$ ParsePi $|$ ParseComments $|$ ParseDeclaration $|$ ParseDocType
 \begin{DoxyCompactList}\small\item\em The full parsing mode. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{
 const unsigned int \hyperlink{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{phys::xml::FormatIndent} = 0x01}
@@ -320,11 +335,7 @@ Used to mark XML internals as deprecated at the compiler level.
 \hypertarget{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{
 \index{xml.h@{xml.h}!XML\_\-TEXT@{XML\_\-TEXT}}
 \index{XML\_\-TEXT@{XML\_\-TEXT}!xml.h@{xml.h}}
-\subsubsection[{XML\_\-TEXT}]{\setlength{\rightskip}{0pt plus 5cm}\#define XML\_\-TEXT(
-\begin{DoxyParamCaption}
-\item[{}]{t}
-\end{DoxyParamCaption}
-)~t}}
+\subsubsection[{XML\_\-TEXT}]{\setlength{\rightskip}{0pt plus 5cm}\#define XML\_\-TEXT(t)~t}}
 \label{d0/d62/xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}
 
 

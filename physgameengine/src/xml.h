@@ -106,7 +106,7 @@ namespace std
 	template <class _Elem, class _Traits, class _Ax> class basic_string; 
 #endif 
  
-	// Digital Mars compiler has a bug which requires a forward declaration for explicit instantiation (otherwise type selection is messed up later, producing link errors) 
+	// Digital Mars compiler has a bug which requires a forward declaration for explicit instantiation (otherwise Type selection is messed up later, producing link errors) 
 	// Also note that we have to declare char_traits as a class here, since it's defined that way 
 #ifdef __DMC__ 
 	template <> class char_traits<char>; 
@@ -160,11 +160,11 @@ namespace std
 namespace phys
 { namespace xml
 { 
-	/// @brief The character type used the internals of the XML parser, this is defined in datatypes.h. 
+	// Character Type used for all internal storage and operations; depends on XML_WCHAR_MODE 
 	typedef Character char_t; 
  
 #ifndef XML_NO_STL 
-	// String type used for operations that work with STL string; depends on XML_WCHAR_MODE 
+	// String Type used for operations that work with STL string; depends on XML_WCHAR_MODE 
 	typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t; 
 #endif 
 } 
@@ -175,7 +175,7 @@ namespace phys
 namespace phys
 { namespace xml
 { 
-	// Tree node types 
+	// Tree node Types 
 	enum NodeType 
 	{ 
 		NodeNull,		  // Empty (null) node handle 
@@ -186,7 +186,7 @@ namespace phys
 		NodeComment,		// Comment tag, i.e. '<!-- text -->' 
 		NodePi,			// Processing instruction, i.e. '<?Name?>' 
 		NodeDeclaration,	// Document declaration, i.e. '<?xml version="1.0"?>' 
-		NodeDoctype		// Document type declaration, i.e. '<!DOCTYPE doc>' 
+		NodeDocType		// Document Type declaration, i.e. '<!DOCTYPE doc>' 
 	}; 
  
 	// Parsing options 
@@ -223,8 +223,8 @@ namespace phys
 	// This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. 
 	const unsigned int ParseDeclaration = 0x0100; 
  
-	// This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. 
-	const unsigned int ParseDoctype = 0x0200; 
+	// This flag determines if document Type declaration (NodeDocType) is added to the DOM tree. This flag is off by default. 
+	const unsigned int ParseDocType = 0x0200; 
  
 	// The default parsing mode. 
 	// Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, 
@@ -232,9 +232,9 @@ namespace phys
 	const unsigned int ParseDefault = ParseCdata | ParseEscapes | ParseWconvAttribute | ParseEol; 
  
 	// The full parsing mode. 
-	// Nodes of all types are added to the DOM tree, character/reference entities are expanded, 
+	// Nodes of all Types are added to the DOM tree, character/reference entities are expanded, 
 	// End-of-Line characters are normalized, attribute Values are normalized using CDATA normalization rules. 
-	const unsigned int ParseFull = ParseDefault | ParsePi | ParseComments | ParseDeclaration | ParseDoctype; 
+	const unsigned int ParseFull = ParseDefault | ParsePi | ParseComments | ParseDeclaration | ParseDocType; 
  
 	// These flags determine the DocumentEncoding of input data for XML document 
 	enum Encoding 
@@ -390,7 +390,7 @@ namespace phys
 		/// @todo update this to make the error return code redudant and use an exception instead.
 		bool SetValue(const char_t* rhs); 
  
-		// Set attribute Value with type conversion (numbers are converted to strings, boolean is converted to "true"/"false") 
+		// Set attribute Value with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false") 
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as an int.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
@@ -473,8 +473,8 @@ namespace phys
 		// Check if node is empty. 
 		bool Empty() const; 
  
-		// Get node type 
-		NodeType type() const; 
+		// Get node Type 
+		NodeType Type() const; 
  
 		// Get node Name/Value, or "" if node is empty or it has no Name/Value 
 		const char_t* Name() const; 
@@ -504,7 +504,7 @@ namespace phys
 		Node NextSibling(const char_t* Name) const; 
 		Node PreviousSibling(const char_t* Name) const; 
  
-		// Get child Value of current node; that is, Value of the first child node of type PCDATA/CDATA 
+		// Get child Value of current node; that is, Value of the first child node of Type PCDATA/CDATA 
 		const char_t* child_Value() const; 
  
 		// Get child Value of child with specified Name. Equivalent to child(Name).child_Value(). 
@@ -530,11 +530,11 @@ namespace phys
 		Attribute insert_copy_after(const Attribute& proto, const Attribute& attr); 
 		Attribute insert_copy_before(const Attribute& proto, const Attribute& attr); 
  
-		// Add child node with specified type. Returns added node, or empty node on errors. 
-		Node append_child(NodeType type = NodeElement); 
-		Node prepend_child(NodeType type = NodeElement); 
-		Node insert_child_after(NodeType type, const Node& node); 
-		Node insert_child_before(NodeType type, const Node& node); 
+		// Add child node with specified Type. Returns added node, or empty node on errors. 
+		Node append_child(NodeType Type = NodeElement); 
+		Node prepend_child(NodeType Type = NodeElement); 
+		Node insert_child_after(NodeType Type, const Node& node); 
+		Node insert_child_before(NodeType Type, const Node& node); 
  
 		// Add child element with specified Name. Returns added node, or empty node on errors. 
 		Node append_child(const char_t* Name); 
@@ -786,12 +786,12 @@ namespace phys
 		StatusOutOfMemory,	   // Could not allocate memory 
 		StatusInternalError,	  // Internal error occurred 
  
-		StatusUnrecognizedTag,	// Parser could not determine tag type 
+		StatusUnrecognizedTag,	// Parser could not determine tag Type 
  
 		StatusBadPi,			  // Parsing error occurred while parsing document declaration/processing instruction 
 		StatusBadComment,		 // Parsing error occurred while parsing comment 
 		StatusBadCdata,		   // Parsing error occurred while parsing CDATA section 
-		StatusBadDoctype,		 // Parsing error occurred while parsing document type declaration 
+		StatusBadDocType,		 // Parsing error occurred while parsing document Type declaration 
 		StatusBadPcdata,		  // Parsing error occurred while parsing PCDATA section 
 		StatusBadStartElement,   // Parsing error occurred while parsing start element tag 
 		StatusBadAttribute,	   // Parsing error occurred while parsing element attribute 
@@ -893,10 +893,10 @@ namespace phys
 	}; 
  
 #ifndef XML_NO_XPATH 
-	// XPath query return type 
+	// XPath query return Type 
 	enum XPathValueType 
 	{ 
-		XPathTypeNone,	  // Unknown type (query failed to compile) 
+		XPathTypeNone,	  // Unknown Type (query failed to compile) 
 		XPathTypeNodeSet,  // Node set (XPathNodeSet) 
 		XPathTypeNumber,	// Number 
 		XPathTypeString,	// String 
@@ -941,16 +941,16 @@ namespace phys
 		// Get variable Name 
 		const char_t* Name() const; 
  
-		// Get variable type 
-		XPathValueType type() const; 
+		// Get variable Type 
+		XPathValueType Type() const; 
  
-		// Get variable Value; no type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on type mismatch error 
+		// Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error 
 		bool get_boolean() const; 
 		double get_number() const; 
 		const char_t* get_string() const; 
 		const XPathNodeSet& get_NodeSet() const; 
  
-		// Set variable Value; no type conversion is performed, false is returned on type mismatch error 
+		// Set variable Value; no Type conversion is performed, false is returned on Type mismatch error 
 		bool set(bool Value); 
 		bool set(double Value); 
 		bool set(const char_t* Value); 
@@ -974,10 +974,10 @@ namespace phys
 		XPathVariableSet(); 
 		~XPathVariableSet(); 
  
-		// Add a new variable or get the existing one, if the types match 
-		XPathVariable* add(const char_t* Name, XPathValueType type); 
+		// Add a new variable or get the existing one, if the Types match 
+		XPathVariable* add(const char_t* Name, XPathValueType Type); 
  
-		// Set Value of an existing variable; no type conversion is performed, false is returned if there is no such variable or if types mismatch 
+		// Set Value of an existing variable; no Type conversion is performed, false is returned if there is no such variable or if Types mismatch 
 		bool set(const char_t* Name, bool Value); 
 		bool set(const char_t* Name, double Value); 
 		bool set(const char_t* Name, const char_t* Value); 
@@ -1009,31 +1009,31 @@ namespace phys
 		// Destructor 
 		~XPathQuery(); 
  
-		// Get query expression return type 
+		// Get query expression return Type 
 		XPathValueType return_type() const; 
 		 
-		// Evaluate expression as boolean Value in the specified context; performs type conversion if necessary. 
+		// Evaluate expression as boolean Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		bool evaluate_boolean(const XPathNode& n) const; 
 		 
-		// Evaluate expression as double Value in the specified context; performs type conversion if necessary. 
+		// Evaluate expression as double Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		double evaluate_number(const XPathNode& n) const; 
 		 
 	#ifndef XML_NO_STL 
-		// Evaluate expression as string Value in the specified context; performs type conversion if necessary. 
+		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		string_t evaluate_string(const XPathNode& n) const; 
 	#endif 
 		 
-		// Evaluate expression as string Value in the specified context; performs type conversion if necessary. 
+		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary. 
 		// At most capacity characters are written to the destination buffer, full result size is returned (includes terminating zero). 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty  set instead. 
 		size_t evaluate_string(char_t* buffer, size_t capacity, const XPathNode& n) const; 
  
 		// Evaluate expression as node set in the specified context. 
-		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on type mismatch and std::bad_alloc on out of memory errors. 
+		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on Type mismatch and std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty node set instead. 
 		XPathNodeSet evaluate_NodeSet(const XPathNode& n) const; 
  
@@ -1113,22 +1113,22 @@ namespace phys
 	class PHYS_LIB XPathNodeSet 
 	{ 
 	public: 
-		// Collection type 
-		enum type_t 
+		// Collection Type 
+		enum Type_t 
 		{ 
-			type_unsorted,			// Not ordered 
-			type_sorted,			// Sorted by document order (ascending) 
-			type_sorted_reverse		// Sorted by document order (descending) 
+			Type_unsorted,			// Not ordered 
+			Type_sorted,			// Sorted by document order (ascending) 
+			Type_sorted_reverse		// Sorted by document order (descending) 
 		}; 
 		 
-		// Constant iterator type 
+		// Constant iterator Type 
 		typedef const XPathNode* const_iterator; 
 	 
 		// Default constructor. Constructs empty set. 
 		XPathNodeSet(); 
  
-		// Constructs a set from iterator range; data is not checked for duplicates and is not sorted according to provided type, so be careful 
-		XPathNodeSet(const_iterator begin, const_iterator end, type_t type = type_unsorted); 
+		// Constructs a set from iterator range; data is not checked for duplicates and is not sorted according to provided Type, so be careful 
+		XPathNodeSet(const_iterator begin, const_iterator end, Type_t Type = Type_unsorted); 
  
 		// Destructor 
 		~XPathNodeSet(); 
@@ -1137,8 +1137,8 @@ namespace phys
 		XPathNodeSet(const XPathNodeSet& ns); 
 		XPathNodeSet& operator=(const XPathNodeSet& ns); 
  
-		// Get collection type 
-		type_t type() const; 
+		// Get collection Type 
+		Type_t Type() const; 
 		 
 		// Get collection size 
 		size_t size() const; 
@@ -1160,7 +1160,7 @@ namespace phys
 		bool Empty() const; 
 	 
 	private: 
-		type_t _type; 
+		Type_t _type; 
 		 
 		XPathNode _storage; 
 		 

@@ -537,6 +537,33 @@ namespace phys
         /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
         /// @return Returns True if the other @ref Node is less than or equal to this one as per sequential comparison of internal pointers.
 
+        /// @fn Node::Empty() const;
+        /// @brief Is this storing anything at all?
+        /// @return Returns True if this @ref Node is storing nothing. False if it is storing anything.
+
+        /// @fn Node::Type() const;
+        /// @brief Identify what kind of Node this is.
+        /// @return A @ref NodeType identifying this Node, or o/NULL if this Node is empty.
+
+        /// @fn Node::Name() const;
+        /// @brief Get the name of this @ref Node.
+        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the name.
+        /// @warning returns "" if Node is empty.
+
+        /// @fn Node::Value() const;
+        /// @brief Get the Value of this @ref Node.
+        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the value.
+        /// @warning returns "" if Node is empty.
+
+		/// @fn Node::FirstAttribute() const;
+		/// @brief Get the First Attribute in this node.
+		/// @return This attempts to return the First @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
+
+
+		/// @fn Node::LastAttribute() const;
+        /// @brief Get the Last Attribute in this node.
+        /// @return This attempts to return the Last @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
+
     }
 }
 #endif

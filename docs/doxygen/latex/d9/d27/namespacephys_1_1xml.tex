@@ -52,10 +52,10 @@ class \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{
-typedef \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character} \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t}}
+typedef \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character} {\bfseries char\_\-t}}
 \label{d9/d27/namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}
 
-\begin{DoxyCompactList}\small\item\em The character type used the internals of the XML parser, this is defined in \hyperlink{datatypes_8h_source}{datatypes.h}. \item\end{DoxyCompactList}\item 
+\item 
 \hypertarget{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{
 typedef std::basic\_\-string$<$ \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character}, std::char\_\-traits$<$ \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character} $>$, std::allocator$<$ \hyperlink{namespacephys_a3098bae5b0a3cd16eec331f766cc562b}{Character} $>$ $>$ \hyperlink{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{string\_\-t}}
 \label{d9/d27/namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}
@@ -85,7 +85,7 @@ enum \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{NodeType
 \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa}{NodePi}, 
 \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035}{NodeDeclaration}, 
 \par
-\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883}{NodeDoctype}
+{\bfseries NodeDocType}
  \}
 \begin{DoxyCompactList}\small\item\em The types of nodes. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} \{ \par
@@ -114,7 +114,7 @@ enum \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{ParseSta
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa8f3864efd7b684ae57a8a7886a23f19a}{StatusBadComment}, 
 \par
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa18f36b8d712a6bbc716f90af8659df22}{StatusBadCdata}, 
-\hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa22f9163dc29ca7017022e4ce96c97ef9}{StatusBadDoctype}, 
+{\bfseries StatusBadDocType}, 
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fab30b3a432145b0e9c6595e75da773628}{StatusBadPcdata}, 
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fadbc5b334b4215ce2332073de46c58155}{StatusBadStartElement}, 
 \par
@@ -227,14 +227,14 @@ const unsigned int \hyperlink{namespacephys_1_1xml_a463f15fc43d69ab835c8598826f6
 \label{d9/d27/namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}
 
 \begin{DoxyCompactList}\small\item\em This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
-\hypertarget{namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}{
-const unsigned int \hyperlink{namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}{ParseDoctype} = 0x0200}
-\label{d9/d27/namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}
+\hypertarget{namespacephys_1_1xml_a37851039450a5fa38ef6b8c717b2e0e6}{
+const unsigned int {\bfseries ParseDocType} = 0x0200}
+\label{d9/d27/namespacephys_1_1xml_a37851039450a5fa38ef6b8c717b2e0e6}
 
-\begin{DoxyCompactList}\small\item\em This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
+\item 
 const unsigned int \hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault} = \hyperlink{namespacephys_1_1xml_aec00a2a16700dfd76f8f3c776bd000ac}{ParseCdata} $|$ \hyperlink{namespacephys_1_1xml_a6463412ba9e404b6890e4721255cd8ed}{ParseEscapes} $|$ \hyperlink{namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}{ParseWconvAttribute} $|$ \hyperlink{namespacephys_1_1xml_a52af747730d2b3a313eebed4cf49a333}{ParseEol}
 \begin{DoxyCompactList}\small\item\em The default parsing mode. \item\end{DoxyCompactList}\item 
-const unsigned int \hyperlink{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{ParseFull} = \hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault} $|$ \hyperlink{namespacephys_1_1xml_a4d324954fc33d50155bae04587da13e2}{ParsePi} $|$ \hyperlink{namespacephys_1_1xml_a83ba30a7bee5a0fd4aa2f6136c8793fc}{ParseComments} $|$ \hyperlink{namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}{ParseDeclaration} $|$ \hyperlink{namespacephys_1_1xml_a11ebdd115aeacd6a8216bfcc863bed2d}{ParseDoctype}
+const unsigned int \hyperlink{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{ParseFull} = \hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault} $|$ \hyperlink{namespacephys_1_1xml_a4d324954fc33d50155bae04587da13e2}{ParsePi} $|$ \hyperlink{namespacephys_1_1xml_a83ba30a7bee5a0fd4aa2f6136c8793fc}{ParseComments} $|$ \hyperlink{namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}{ParseDeclaration} $|$ ParseDocType
 \begin{DoxyCompactList}\small\item\em The full parsing mode. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{
 const unsigned int \hyperlink{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{FormatIndent} = 0x01}
@@ -367,11 +367,7 @@ NodePi}
 \hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035}{
 NodeDeclaration}
 \label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035}
-}]\hyperlink{classphys_1_1xml_1_1Document}{Document} declaration, i.e. '$<$?xml version=\char`\"{}1.0\char`\"{}?$>$'. \index{NodeDoctype@{NodeDoctype}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!NodeDoctype@{NodeDoctype}}\item[{\em 
-\hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883}{
-NodeDoctype}
-\label{d9/d27/namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a079e78516a732a77616552ddaebd7883}
-}]\hyperlink{classphys_1_1xml_1_1Document}{Document} type declaration, i.e. '$<$!DOCTYPE doc$>$'. \end{description}
+}]\hyperlink{classphys_1_1xml_1_1Document}{Document} declaration, i.e. '$<$?xml version=\char`\"{}1.0\char`\"{}?$>$'. \end{description}
 \end{Desc}
 
 
@@ -426,11 +422,7 @@ StatusBadComment}
 \hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa18f36b8d712a6bbc716f90af8659df22}{
 StatusBadCdata}
 \label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa18f36b8d712a6bbc716f90af8659df22}
-}]Parsing error occurred while parsing CDATA section. \index{StatusBadDoctype@{StatusBadDoctype}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadDoctype@{StatusBadDoctype}}\item[{\em 
-\hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa22f9163dc29ca7017022e4ce96c97ef9}{
-StatusBadDoctype}
-\label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa22f9163dc29ca7017022e4ce96c97ef9}
-}]Parsing error occurred while parsing document type declaration. \index{StatusBadPcdata@{StatusBadPcdata}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadPcdata@{StatusBadPcdata}}\item[{\em 
+}]Parsing error occurred while parsing CDATA section. \index{StatusBadPcdata@{StatusBadPcdata}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!StatusBadPcdata@{StatusBadPcdata}}\item[{\em 
 \hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fab30b3a432145b0e9c6595e75da773628}{
 StatusBadPcdata}
 \label{d9/d27/namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fab30b3a432145b0e9c6595e75da773628}
@@ -489,7 +481,7 @@ Definition at line 232 of file xml.h.
 \hypertarget{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{
 \index{phys::xml@{phys::xml}!ParseFull@{ParseFull}}
 \index{ParseFull@{ParseFull}!phys::xml@{phys::xml}}
-\subsubsection[{ParseFull}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::ParseFull} = {\bf ParseDefault} $|$ {\bf ParsePi} $|$ {\bf ParseComments} $|$ {\bf ParseDeclaration} $|$ {\bf ParseDoctype}}}
+\subsubsection[{ParseFull}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::ParseFull} = {\bf ParseDefault} $|$ {\bf ParsePi} $|$ {\bf ParseComments} $|$ {\bf ParseDeclaration} $|$ ParseDocType}}
 \label{d9/d27/namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}
 
 

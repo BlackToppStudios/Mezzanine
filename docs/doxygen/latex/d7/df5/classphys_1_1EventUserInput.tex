@@ -14,7 +14,7 @@ This is a container for MetaCodes that is used in the physEventManager.
 Inheritance diagram for phys::EventUserInput:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{d7/df5/classphys_1_1EventUserInput}
+\includegraphics[height=2cm]{d7/df5/classphys_1_1EventUserInput}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
@@ -70,11 +70,7 @@ Definition at line 96 of file eventuserinput.h.
 \hypertarget{classphys_1_1EventUserInput_ae7358d184021306da8979000c225845e}{
 \index{phys::EventUserInput@{phys::EventUserInput}!EventUserInput@{EventUserInput}}
 \index{EventUserInput@{EventUserInput}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{EventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventUserInput::EventUserInput (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{EventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventUserInput::EventUserInput ()}}
 \label{d7/df5/classphys_1_1EventUserInput_ae7358d184021306da8979000c225845e}
 
 
@@ -87,11 +83,7 @@ Definition at line 67 of file eventuserinput.cpp.
 \hypertarget{classphys_1_1EventUserInput_af54d4604d18b25a2dc99a4a3090b9f1d}{
 \index{phys::EventUserInput@{phys::EventUserInput}!EventUserInput@{EventUserInput}}
 \index{EventUserInput@{EventUserInput}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{EventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventUserInput::EventUserInput (
-\begin{DoxyParamCaption}
-\item[{const {\bf MetaCode} \&}]{ Code\_\-}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{EventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventUserInput::EventUserInput (const {\bf MetaCode} \& {\em Code\_\-})}}
 \label{d7/df5/classphys_1_1EventUserInput_af54d4604d18b25a2dc99a4a3090b9f1d}
 
 
@@ -107,11 +99,7 @@ Definition at line 72 of file eventuserinput.cpp.
 \hypertarget{classphys_1_1EventUserInput_a56ca671dd5d28396cab0d7036e08a1f1}{
 \index{phys::EventUserInput@{phys::EventUserInput}!EventUserInput@{EventUserInput}}
 \index{EventUserInput@{EventUserInput}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{EventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventUserInput::EventUserInput (
-\begin{DoxyParamCaption}
-\item[{const vector$<$ {\bf MetaCode} $>$ \&}]{ Codes\_\-}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{EventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventUserInput::EventUserInput (const vector$<$ {\bf MetaCode} $>$ \& {\em Codes\_\-})}}
 \label{d7/df5/classphys_1_1EventUserInput_a56ca671dd5d28396cab0d7036e08a1f1}
 
 
@@ -127,11 +115,7 @@ Definition at line 77 of file eventuserinput.cpp.
 \hypertarget{classphys_1_1EventUserInput_a5c4bb6a5016dad4cb32f51cc1d88eac3}{
 \index{phys::EventUserInput@{phys::EventUserInput}!$\sim$EventUserInput@{$\sim$EventUserInput}}
 \index{$\sim$EventUserInput@{$\sim$EventUserInput}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{$\sim$EventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventUserInput::$\sim$EventUserInput (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{$\sim$EventUserInput}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventUserInput::$\sim$EventUserInput ()\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d7/df5/classphys_1_1EventUserInput_a5c4bb6a5016dad4cb32f51cc1d88eac3}
 
 
@@ -144,56 +128,26 @@ Definition at line 82 of file eventuserinput.cpp.
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classphys_1_1EventUserInput_a648f820aea2b6bca23eaa3c1e1f54181}{
+\hypertarget{classphys_1_1EventUserInput_a6b6071496574fbb719ba4a5d97e74b52}{
 \index{phys::EventUserInput@{phys::EventUserInput}!AddCode@{AddCode}}
 \index{AddCode@{AddCode}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCode (
-\begin{DoxyParamCaption}
-\item[{const {\bf MetaCode} \&}]{ Code\_\-}
-\end{DoxyParamCaption}
-)}}
-\label{d7/df5/classphys_1_1EventUserInput_a648f820aea2b6bca23eaa3c1e1f54181}
+\subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCode (const vector$<$ {\bf MetaCode} $>$ \& {\em Codes})}}
+\label{d7/df5/classphys_1_1EventUserInput_a6b6071496574fbb719ba4a5d97e74b52}
 
 
-Adds a \hyperlink{classphys_1_1MetaCode}{MetaCode}. 
+Add Several MetaCodes from a vector. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Code\_\-}]The User Input \hyperlink{classphys_1_1MetaCode}{MetaCode} tobe added\end{DoxyParams}
-This adds an existing metacode to this event. 
+\item[{\em Codes}]A vector of MetaCodes to be added to this event\end{DoxyParams}
+This adds several existing metacodes to this event. 
 
-Definition at line 97 of file eventuserinput.cpp.
-
-\hypertarget{classphys_1_1EventUserInput_ac9d4d8372fad7d91a5508d9e612a10e9}{
-\index{phys::EventUserInput@{phys::EventUserInput}!AddCode@{AddCode}}
-\index{AddCode@{AddCode}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCode (
-\begin{DoxyParamCaption}
-\item[{const int \&}]{ MetaValue\_\-, }
-\item[{const short unsigned int \&}]{ ID\_\-, }
-\item[{const {\bf MetaCode::InputCode} \&}]{ Code\_\-}
-\end{DoxyParamCaption}
-)}}
-\label{d7/df5/classphys_1_1EventUserInput_ac9d4d8372fad7d91a5508d9e612a10e9}
-
-
-Adds a Created From Raw Values. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em MetaValue\_\-}]The MetaValue that will be in the \hyperlink{classphys_1_1MetaCode}{MetaCode} \item[{\em ID\_\-}]The ID that will be in the \hyperlink{classphys_1_1MetaCode}{MetaCode} \item[{\em Code\_\-}]The InputCode that will be in the \hyperlink{classphys_1_1MetaCode}{MetaCode}\end{DoxyParams}
-This creates metacode a metacode and adds it to this event. 
-
-Definition at line 108 of file eventuserinput.cpp.
+Definition at line 114 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a9b0787db5ed6e326c4932fd83798e118}{
 \index{phys::EventUserInput@{phys::EventUserInput}!AddCode@{AddCode}}
 \index{AddCode@{AddCode}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCode (
-\begin{DoxyParamCaption}
-\item[{const {\bf RawEvent} \&}]{ RawEvent\_\-}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCode (const {\bf RawEvent} \& {\em RawEvent\_\-})}}
 \label{d7/df5/classphys_1_1EventUserInput_a9b0787db5ed6e326c4932fd83798e118}
 
 
@@ -209,34 +163,42 @@ Do not use this without reading and fully understanding the warnings on \hyperli
 
 Definition at line 102 of file eventuserinput.cpp.
 
-\hypertarget{classphys_1_1EventUserInput_a6b6071496574fbb719ba4a5d97e74b52}{
+\hypertarget{classphys_1_1EventUserInput_ac9d4d8372fad7d91a5508d9e612a10e9}{
 \index{phys::EventUserInput@{phys::EventUserInput}!AddCode@{AddCode}}
 \index{AddCode@{AddCode}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCode (
-\begin{DoxyParamCaption}
-\item[{const vector$<$ {\bf MetaCode} $>$ \&}]{ Codes}
-\end{DoxyParamCaption}
-)}}
-\label{d7/df5/classphys_1_1EventUserInput_a6b6071496574fbb719ba4a5d97e74b52}
+\subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCode (const int \& {\em MetaValue\_\-}, \/  const short unsigned int \& {\em ID\_\-}, \/  const {\bf MetaCode::InputCode} \& {\em Code\_\-})}}
+\label{d7/df5/classphys_1_1EventUserInput_ac9d4d8372fad7d91a5508d9e612a10e9}
 
 
-Add Several MetaCodes from a vector. 
+Adds a Created From Raw Values. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Codes}]A vector of MetaCodes to be added to this event\end{DoxyParams}
-This adds several existing metacodes to this event. 
+\item[{\em MetaValue\_\-}]The MetaValue that will be in the \hyperlink{classphys_1_1MetaCode}{MetaCode} \item[{\em ID\_\-}]The ID that will be in the \hyperlink{classphys_1_1MetaCode}{MetaCode} \item[{\em Code\_\-}]The InputCode that will be in the \hyperlink{classphys_1_1MetaCode}{MetaCode}\end{DoxyParams}
+This creates metacode a metacode and adds it to this event. 
 
-Definition at line 114 of file eventuserinput.cpp.
+Definition at line 108 of file eventuserinput.cpp.
+
+\hypertarget{classphys_1_1EventUserInput_a648f820aea2b6bca23eaa3c1e1f54181}{
+\index{phys::EventUserInput@{phys::EventUserInput}!AddCode@{AddCode}}
+\index{AddCode@{AddCode}!phys::EventUserInput@{phys::EventUserInput}}
+\subsubsection[{AddCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCode (const {\bf MetaCode} \& {\em Code\_\-})}}
+\label{d7/df5/classphys_1_1EventUserInput_a648f820aea2b6bca23eaa3c1e1f54181}
+
+
+Adds a \hyperlink{classphys_1_1MetaCode}{MetaCode}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Code\_\-}]The User Input \hyperlink{classphys_1_1MetaCode}{MetaCode} tobe added\end{DoxyParams}
+This adds an existing metacode to this event. 
+
+Definition at line 97 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a26a39a23deab9e54c140cc0a1cbbe6a9}{
 \index{phys::EventUserInput@{phys::EventUserInput}!AddCodesFromRawEvent@{AddCodesFromRawEvent}}
 \index{AddCodesFromRawEvent@{AddCodesFromRawEvent}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{AddCodesFromRawEvent}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCodesFromRawEvent (
-\begin{DoxyParamCaption}
-\item[{const {\bf RawEvent} \&}]{ RawEvent\_\-}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{AddCodesFromRawEvent}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::AddCodesFromRawEvent (const {\bf RawEvent} \& {\em RawEvent\_\-})}}
 \label{d7/df5/classphys_1_1EventUserInput_a26a39a23deab9e54c140cc0a1cbbe6a9}
 
 
@@ -253,34 +215,10 @@ If game code is using RawEvents at all, the game logic should be scrutinized car
 
 Definition at line 165 of file eventuserinput.cpp.
 
-\hypertarget{classphys_1_1EventUserInput_a34c05a76a790435799441da75a83fa9c}{
-\index{phys::EventUserInput@{phys::EventUserInput}!EraseCode@{EraseCode}}
-\index{EraseCode@{EraseCode}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{EraseCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::EraseCode (
-\begin{DoxyParamCaption}
-\item[{const {\bf MetaCode} \&}]{ Code\_\-}
-\end{DoxyParamCaption}
-)}}
-\label{d7/df5/classphys_1_1EventUserInput_a34c05a76a790435799441da75a83fa9c}
-
-
-Removes a specific code from storage. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em Code\_\-}]This will search for all matching copies of this\end{DoxyParams}
-All MetaCodes that are equal to Code\_\- will simply be erased. 
-
-Definition at line 123 of file eventuserinput.cpp.
-
 \hypertarget{classphys_1_1EventUserInput_a583084578443019d6e286b8f0e02ce58}{
 \index{phys::EventUserInput@{phys::EventUserInput}!EraseCode@{EraseCode}}
 \index{EraseCode@{EraseCode}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{EraseCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::EraseCode (
-\begin{DoxyParamCaption}
-\item[{const unsigned int \&}]{ Index}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{EraseCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::EraseCode (const unsigned int \& {\em Index})}}
 \label{d7/df5/classphys_1_1EventUserInput_a583084578443019d6e286b8f0e02ce58}
 
 
@@ -293,14 +231,26 @@ The \hyperlink{classphys_1_1MetaCode}{MetaCode} at and only at the given Index w
 
 Definition at line 136 of file eventuserinput.cpp.
 
+\hypertarget{classphys_1_1EventUserInput_a34c05a76a790435799441da75a83fa9c}{
+\index{phys::EventUserInput@{phys::EventUserInput}!EraseCode@{EraseCode}}
+\index{EraseCode@{EraseCode}!phys::EventUserInput@{phys::EventUserInput}}
+\subsubsection[{EraseCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::EraseCode (const {\bf MetaCode} \& {\em Code\_\-})}}
+\label{d7/df5/classphys_1_1EventUserInput_a34c05a76a790435799441da75a83fa9c}
+
+
+Removes a specific code from storage. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Code\_\-}]This will search for all matching copies of this\end{DoxyParams}
+All MetaCodes that are equal to Code\_\- will simply be erased. 
+
+Definition at line 123 of file eventuserinput.cpp.
+
 \hypertarget{classphys_1_1EventUserInput_a5f67c5ad4aa4edcce629955fd7d869ac}{
 \index{phys::EventUserInput@{phys::EventUserInput}!GetMetaCode@{GetMetaCode}}
 \index{GetMetaCode@{GetMetaCode}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{GetMetaCode}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf MetaCode} \& phys::EventUserInput::GetMetaCode (
-\begin{DoxyParamCaption}
-\item[{const unsigned int \&}]{ Index}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{GetMetaCode}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf MetaCode} \& phys::EventUserInput::GetMetaCode (const unsigned int \& {\em Index})}}
 \label{d7/df5/classphys_1_1EventUserInput_a5f67c5ad4aa4edcce629955fd7d869ac}
 
 
@@ -317,11 +267,7 @@ Definition at line 87 of file eventuserinput.cpp.
 \hypertarget{classphys_1_1EventUserInput_a17aa65dcf0ef8689affa50232eec4ccb}{
 \index{phys::EventUserInput@{phys::EventUserInput}!GetMetaCodeCount@{GetMetaCodeCount}}
 \index{GetMetaCodeCount@{GetMetaCodeCount}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{GetMetaCodeCount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int phys::EventUserInput::GetMetaCodeCount (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{GetMetaCodeCount}]{\setlength{\rightskip}{0pt plus 5cm}unsigned int phys::EventUserInput::GetMetaCodeCount ()}}
 \label{d7/df5/classphys_1_1EventUserInput_a17aa65dcf0ef8689affa50232eec4ccb}
 
 
@@ -337,11 +283,7 @@ Definition at line 92 of file eventuserinput.cpp.
 \hypertarget{classphys_1_1EventUserInput_a3e803a8d9bcc1576fe04d2245a86ec80}{
 \index{phys::EventUserInput@{phys::EventUserInput}!GetType@{GetType}}
 \index{GetType@{GetType}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventBase::EventType} phys::EventUserInput::GetType (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventBase::EventType} phys::EventUserInput::GetType () const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d7/df5/classphys_1_1EventUserInput_a3e803a8d9bcc1576fe04d2245a86ec80}
 
 
@@ -361,11 +303,7 @@ Definition at line 160 of file eventuserinput.cpp.
 \hypertarget{classphys_1_1EventUserInput_a1d6895e1b3814c1a63f5605b88ba85e5}{
 \index{phys::EventUserInput@{phys::EventUserInput}!operator+=@{operator+=}}
 \index{operator+=@{operator+=}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventUserInput} \& phys::EventUserInput::operator+= (
-\begin{DoxyParamCaption}
-\item[{const {\bf EventUserInput} \&}]{ Add}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventUserInput} \& phys::EventUserInput::operator+= (const {\bf EventUserInput} \& {\em Add})}}
 \label{d7/df5/classphys_1_1EventUserInput_a1d6895e1b3814c1a63f5605b88ba85e5}
 
 
@@ -384,11 +322,7 @@ Definition at line 198 of file eventuserinput.cpp.
 \hypertarget{classphys_1_1EventUserInput_adf603505c43162cf9331a486d5832f75}{
 \index{phys::EventUserInput@{phys::EventUserInput}!ToggleCode@{ToggleCode}}
 \index{ToggleCode@{ToggleCode}!phys::EventUserInput@{phys::EventUserInput}}
-\subsubsection[{ToggleCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::ToggleCode (
-\begin{DoxyParamCaption}
-\item[{const {\bf MetaCode} \&}]{ Code\_\-}
-\end{DoxyParamCaption}
-)}}
+\subsubsection[{ToggleCode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventUserInput::ToggleCode (const {\bf MetaCode} \& {\em Code\_\-})}}
 \label{d7/df5/classphys_1_1EventUserInput_adf603505c43162cf9331a486d5832f75}
 
 
