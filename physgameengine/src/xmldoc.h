@@ -120,7 +120,7 @@ namespace phys
         /// @var StatusBadCdata
         /// @brief Parsing error occurred while parsing CDATA section.
 
-        /// @var StatusBadDoctype
+        /// @var StatusBadDocType
         /// @brief Parsing error occurred while parsing document type declaration.
 
         /// @var StatusBadPcdata
@@ -296,15 +296,6 @@ namespace phys
         /// @class WriterStream
         /// @brief An implementation of @ref Writer intended for writing std::ostreams
 
-        // @fn WriterStream::Write
-		// @brief Writes data to the stream
-		// @param data A pointer to the data
-		// @param size The size of the data in bytes.
-
-		/// @fn WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream)
-		/// @memberof WriterStream
-		/// @brief A constructor that accepts a stream of wide characters
-		/// @param stream A stream to send stuff to.
 
 
 		/// @var WriterStream::narrow_stream
@@ -348,11 +339,237 @@ namespace phys
         /// @brief Constructs attribute from internal pointer.
         /// @param attr An internal AttributeStruct pointer containing all the data to create an attribute.
 
-        /// @fn %operator!()
-        /// @memberof Attribute
+        /// @fn Attribute::operator!() const
         /// @brief Used to convert this attribute the opposite of it's normal boolean value
         /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
         /// @return Returns false if the internal pointer AttributeStruct is set and true otherwise.
+
+        /// @fn Attribute::operator==(const Attribute& r) const;
+        /// @brief Compares the internal values to check equality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns true if all the internal values match between this and the other Attribute.
+
+        /// @fn Attribute::operator!=(const Attribute& r) const;
+        /// @brief Compares the internal values to check inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns true if any of the internal values don't match between this and the other @ref Attribute.
+
+        /// @fn Attribute::operator<(const Attribute& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Attribute is greater than this one as per sequential comparison of internal pointers.
+
+        /// @fn Attribute::operator>(const Attribute& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Attribute is less than this one as per sequential comparison of internal pointers.
+
+        /// @fn Attribute::operator<=(const Attribute& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Attribute is greater than or equal to this one as per sequential comparison of internal pointers.
+
+        /// @fn Attribute::operator>=(const Attribute& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Attribute this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Attribute is less than or equal to this one as per sequential comparison of internal pointers.
+
+        /// @fn Attribute::Empty() const;
+        /// @brief Is this storing anything at all?
+        /// @return Returns True if this @ref Attribute is storing nothing. False if it is storing anything.
+
+        /// @fn Attribute::Name() const;
+        /// @brief Get the name of this @ref Attribute.
+        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the name.
+        /// @warning returns "" if attribute is empty.
+
+        /// @fn Attribute::Value() const;
+        /// @brief Get the Value of this @ref Attribute.
+        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the value.
+        /// @warning returns "" if attribute is empty.
+
+        /// @fn Attribute::AsInt() const;
+        /// @brief Attempts to convert the value of the attribute to an int and returns the results.
+        /// @return If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+        /// @todo Update Attribute::AsInt() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
+        /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check "errno" and see if it is set to "ERANGE" to test for this condition.
+
+        /// @fn Attribute::AsUint() const;
+        /// @brief Attempts to convert the value of the attribute to an unsigned int and returns the results.
+        /// @return If the value of this attribute can be convert to an unsigned int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+        /// @todo Update Attribute::AsUint() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
+        /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check "errno" and see if it is set to "ERANGE" to test for this condition.
+
+        /// @fn Attribute::AsDouble() const;
+        /// @brief Attempts to convert the value of the attribute to a double and returns the results.
+        /// @return If the value of this attribute can be convert to a double by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+        /// @todo Update Attribute::AsDouble() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
+        /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and double. Check "errno" and see if it is set to "ERANGE" to test for this condition.
+
+        /// @fn Attribute::AsFloat() const;
+        /// @brief Attempts to convert the value of the attribute to a float and returns the results.
+        /// @return If the value of this attribute can be convert to a float by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure.
+        /// @todo Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
+        /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check "errno" and see if it is set to "ERANGE" to test for this condition.
+
+        /// @fn Attribute::AsBool() const;
+        /// @brief Attempts to convert the value of the attribute to a float and returns the results.
+        /// @return Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty
+
+		/// @fn Attribute::SetName(const char_t* rhs);
+		/// @brief Set the name of this attribute.
+		/// @param rhs The new name.
+		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
+		/// @todo update this to make the error return code redudant and use an exception instead.
+
+		/// @fn Attribute::operator=(const char_t* rhs);
+		/// @param rhs The new value as an c-style string.
+		/// @brief The same as @ref Attribute::SetValue(const char_t* rhs); without the error return
+		/// @return An reference to this attribute.
+
+		/// @fn Attribute::operator=(int rhs);
+		/// @param rhs The new value as an int.
+		/// @brief The same as @ref Attribute::SetValue(); without the error return.
+		/// @return An reference to this attribute.
+
+		/// @fn Attribute::operator=(unsigned int rhs);
+		/// @param rhs The new value as an unsigned int.
+		/// @brief The same as @ref Attribute::SetValue(); without the error return.
+		/// @return An reference to this attribute.
+
+		/// @fn Attribute::operator=(double rhs);
+		/// @brief The same as @ref Attribute::SetValue(); without the error return.
+		/// @param rhs The new value as a double.
+		/// @return An reference to this attribute.
+
+		/// @fn Attribute::operator=(bool rhs);
+		/// @brief The same as @ref Attribute::SetValue(); without the error return.
+		/// @param rhs This with be interpretted, then converted to "true" or "false" and used as the new value.
+		/// @return An reference to this attribute.
+
+		/// @fn Attribute::GetNextAttribute() const;
+		/// @brief Get the next attribute.
+		/// @details This will get the next sibling attribute. That is, another Attribute on the same node as this attribute. This is internally a circular linked list, so once you reach the end, you simply be given the first node. If this attribute is empty this will return a empty attribute.
+		/// @return Either the next attribute or if this attribute is empty an empty attribute.
+
+		/// @fn Attribute::GetPreviousAttribute() const;
+		/// @brief Get the previous attribute.
+		/// @details This will get the previous sibling attribute. That is, another Attribute on the same node as this attribute. This is internally a circular linked list, so once you reach the beginning, you simply be given the last node. If this attribute is empty this will return a empty attribute.
+		/// @return Either the previous attribute or if this attribute is empty an empty attribute.
+
+		// Get hash Value (unique for handles to the same object)
+		/// @fn Attribute::HashValue() const;
+		/// @brief Get a unique indentifying value for the Attribute this represents
+		/// @return A size_t that is unique per Attribute that an attribute could represent.
+
+		/// @fn Attribute::InternalObject() const;
+		/// @brief Retrieve a pointer to the internal data.
+		/// @return A void pointer to the internal data.
+		/// @internal
+
+        /// @fn operator&&(const Attribute& lhs, bool rhs);
+        /// @brief Used to work around a Borland c++ issue casting @ref Attribute class instances to boolean values.
+        /// @param lhs Left Hand Side of the operator.
+        /// @param rhs Right Hand Side of the operator.
+        /// @return A bool that has the correct value for a && operation.
+
+        /// @fn operator||(const Attribute& lhs, bool rhs);
+        /// @brief Used to work around a Borland c++ issue casting @ref Attribute class instances to boolean values.
+        /// @param lhs Left Hand Side of the operator.
+        /// @param rhs Right Hand Side of the operator.
+        /// @return A bool that has the correct value for a || operation.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Node
+        /// @brief A light-weight handle for manipulating nodes in DOM tree
+
+        /// @var Node::_root
+        /// @internal
+        /// @brief Stores pointers to the Node data and some metadata.
+
+        /// @fn Node::Node()
+        /// @brief Default constructor. Constructs an empty node.
+
+        /// @fn Node::operator!() const
+        /// @brief Used to convert this node the opposite of it's normal boolean value
+        /// @details This is described in the PugiXML source a a workaround for a borland c++ issue.
+        /// @return Returns false if the internal pointer NodeStruct is set and true otherwise.
+
+        /// @fn Node::operator==(const Node& r) const;
+        /// @brief Compares the internal values to check equality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns true if all the internal values match between this and the other Node.
+
+        /// @fn Node::operator!=(const Node& r) const;
+        /// @brief Compares the internal values to check inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns true if any of the internal values don't match between this and the other @ref Node.
+
+        /// @fn Node::operator<(const Node& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Node is greater than this one as per sequential comparison of internal pointers.
+
+        /// @fn Node::operator>(const Node& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Node is less than this one as per sequential comparison of internal pointers.
+
+        /// @fn Node::operator<=(const Node& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Node is greater than or equal to this one as per sequential comparison of internal pointers.
+
+        /// @fn Node::operator>=(const Node& r) const;
+        /// @brief Compares the internal values to check for inequality.
+        /// @param r The other @ref Node this is being compared to.
+        /// @details Many of the internal values are pointers, and it is the addresses of these that are being compared.
+        /// @return Returns True if the other @ref Node is less than or equal to this one as per sequential comparison of internal pointers.
+
+        /// @fn Node::Empty() const;
+        /// @brief Is this storing anything at all?
+        /// @return Returns True if this @ref Node is storing nothing. False if it is storing anything.
+
+        /// @fn Node::Type() const;
+        /// @brief Identify what kind of Node this is.
+        /// @return A @ref NodeType identifying this Node, or o/NULL if this Node is empty.
+
+        /// @fn Node::Name() const;
+        /// @brief Get the name of this @ref Node.
+        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the name.
+        /// @warning returns "" if Node is empty.
+
+        /// @fn Node::Value() const;
+        /// @brief Get the Value of this @ref Node.
+        /// @return Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the value.
+        /// @warning returns "" if Node is empty.
+
+		/// @fn Node::GetFirstAttribute() const;
+		/// @brief Get the First Attribute in this Node.
+		/// @return This attempts to return the First @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
+
+        /// @fn Node::GetLastAttribute() const;
+        /// @brief Get the Last Attribute in this Node.
+        /// @return This attempts to return the Last @ref Attribute in this node, if it cannot it returns an empty @ref Attribute.
+
+		/// @fn Node::GetFirstChild() const;
+		/// @brief Get the first child Node of this Node.
+		/// @return Returns the First child node if it exists, otherwise it return an empty node.
+
+		/// @fn Node::GetLastChild() const;
+		/// @brief Get the last child Node of this Node.
+		/// @return Returns the last child node if it exists, otherwise it return an empty node.
 
     }
 }

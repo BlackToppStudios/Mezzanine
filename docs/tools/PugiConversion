@@ -13,11 +13,11 @@ E_BADARGS=1
 E_MISSINGPUGIXML=3
 
 #Input Files
-PugiCppFile="PugiSrc/pugixml.cpp"
+PugiCppFile="pugisrc/pugixml.cpp"
 #PugiTempCppFile="PugiSrc/temp.cpp"
-PugiHFile="PugiSrc/pugixml.hpp"
-PugiConfigFile="PugiSrc/pugiconfig.hpp"
-PugiTempHFile="PugiSrc/temp.hpp"
+PugiHFile="pugisrc/pugixml.hpp"
+PugiConfigFile="pugisrc/pugiconfig.hpp"
+PugiTempHFile="pugisrc/temp.hpp"
 
 
 #Output Files
@@ -227,7 +227,45 @@ function FixNames
 	sed -i -e 's|_stream->Write|_stream->write|g' $1	#These 2 lines fixe mistakes made by the above line
 	sed -i -e 's|fWrite|fwrite|g' $1
 
-	#
+	#Common class member
+	sed -i -e 's|set_\(.\)\([a-z]*\)|Set\U\1\L\2|g' $1
+	sed -i -e 's|as_\(.\)\([a-z]*\)|As\U\1\L\2|g' $1
+	sed -i -e 's|next_\(.\)\([a-z]*\)|Next\U\1\L\2|g' $1
+	sed -i -e 's|previous_\(.\)\([a-z]*\)|Previous\U\1\L\2|g' $1
+	sed -i -e 's|first_\(.\)\([a-z]*\)|First\U\1\L\2|g' $1
+	sed -i -e 's|last_\(.\)\([a-z]*\)|Last\U\1\L\2|g' $1
+	sed -i -e 's|hash_value|HashValue|g' $1								
+	sed -i -e 's|internal_object|InternalObject|g' $1								
+
+	#The Attribute class
+	sed -i -e 's|empty(|Empty(|g' $1
+	sed -i -e 's|\([^e]\)name\([^s]\)|\1Name\2|g' $1
+	sed -i -e 's|value|Value|g' $1
+	sed -i -e 's|NextAttribute|GetNextAttribute|g' $1
+	sed -i -e 's|PreviousAttribute|GetPreviousAttribute|g' $1
+
+	#The Node Class
+	sed -i -e 's|child_\(.\)\([a-z]*\)|Child\U\1\L\2|g' $1
+	sed -i -e 's|append_\(.\)\([a-z]*\)|Append\U\1\L\2|g' $1
+	sed -i -e 's|prepend_\(.\)\([a-z]*\)|Prepend\U\1\L\2|g' $1
+	sed -i -e 's|insert_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Insert\U\1\L\2\U\3\L\4|g' $1
+	sed -i -e 's|insert_\(.\)\([a-z]*\)|Insert\U\1\L\2|g' $1
+	sed -i -e 's|append_\(.\)\([a-z]*\)|Append\U\1\L\2|g' $1
+	sed -i -e 's|remove_\(.\)\([a-z]*\)|Remove\U\1\L\2|g' $1
+
+
+	sed -i -e 's|\([^_]\)type\([^dn]\)|\1Type\2|g' $1
+	sed -i -e 's|\([^_]\)attribute\([^_s]\)|\1GetAttribute\2|g' $1
+	sed -i -e 's|FirstAttribute|GetFirstAttribute|g' $1
+	sed -i -e 's|LastAttribute|GetLastAttribute|g' $1
+	sed -i -e 's|FirstChild|GetFirstChild|g' $1
+	sed -i -e 's|LastChild|GetLastChild|g' $1
+	sed -i -e 's|parent|GetParent|g' $1
+	sed -i -e 's|root|GetRoot|g' $1
+	sed -i -e 's|child|GetChild|g' $1
+	sed -i -e 's|NextSibling|GetNextSibling|g' $1
+	sed -i -e 's|PreviousSibling|GetPreviousSibling|g' $1
+
 
 	###############################
 	#Documentation that was not put in xmldoc.h
@@ -247,17 +285,23 @@ function FixNames
 
 	#WriterStream Class
 	sed -i -e 's|// Construct WriterInstance from an output stream object |/// @brief A constructor that accepts a stream of characters\n		/// @param stream A stream to send stuff to.|' $1
-	sed -i -e 's|WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);|\n		/// @brief A constructor that accepts a stream of wide characters\n		/// @param stream A stream to send stuff to.\n		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);|' $1
+	sed -i -e 's|WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream);|\n		/// @brief A constructor that accepts a stream of wide characters\n		/// @param stream A stream to send stuff to.\n		WriterStream(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >\& stream);|' $1
+	sed -i -e 's|// Safe bool conversion operator|/// @brief Used to convert this to a boolean value in a safe way\n		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class.|' $1
 
 	#Attribute
-	sed -i -e 's|// Safe bool conversion operator|/// @brief Used to convert this attribute to a boolean value in a safe way\n		/// @return Returns true if the internal pointer AttributeStruct is set and false otherwise|' $1
-	#sed -i -e 's|// Borland C++ workaround|/// @brief Used to convert this attribute the opposite of it`s normal boolean value\n		/// @details This is described in the PugiXML source a a workaround for a borland c++ issue.\n		/// @return Returns false if the internal pointer AttributeStruct is set and true otherwise.|' $1
+	sed -i -e 's|bool SetValue(const char_t\* rhs);|/// @brief Set the value of this.\n		/// @param rhs The new Value.\n		/// @return True if successful, returns false if this is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(const char_t* rhs);|' $1
+	sed -i -e 's|bool SetValue(int rhs);|/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.\n		/// @param rhs The new value as an int.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(int rhs);|' $1
+	sed -i -e 's|bool SetValue(unsigned int rhs);|/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.\n		/// @param rhs The new value as an unsigned int.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(unsigned int rhs);|' $1
+	sed -i -e 's|bool SetValue(double rhs);|/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.\n		/// @param rhs The new value as a double.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(double rhs);|' $1
+	sed -i -e 's|bool SetValue(bool rhs);|/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.\n		/// @param rhs This with be interpretted, then converted to "true" or "false"  and used as the new value.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(bool rhs);|' $1
+
+	#Node
+	sed -i -e  's|// Constructs node from internal pointer|/// @brief Constructs node from internal pointer\n		/// @param p An internal node pointer.|' $1
+
 
 
 	#another clean line to copy/paste
 	#sed -i -e 's|||' $1
-
-
 }
 
 FixNames $NewHFile
