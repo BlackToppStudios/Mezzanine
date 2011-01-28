@@ -199,19 +199,19 @@
 <a name="l00168"></a>00168         <span class="keywordflow">return</span> R;
 <a name="l00169"></a>00169     }
 <a name="l00170"></a>00170 
-<a name="l00171"></a>00171     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab32a8c708e5e22f65dde9ab821ea20fc" title="Gets the node attached to a camera.">Camera::GetNodeAttachedToCamera</a>()
+<a name="l00171"></a>00171     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#ab32a8c708e5e22f65dde9ab821ea20fc" title="Gets the node attached to the camera.">Camera::GetNodeAttachedToCamera</a>()
 <a name="l00172"></a>00172     {
 <a name="l00173"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a771fc7005191c3f83ac1fedb09699943">00173</a>         Ogre::SceneNode* tempnode = this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getParentSceneNode();
 <a name="l00174"></a>00174         <span class="keywordflow">return</span> tempnode-&gt;getName();
 <a name="l00175"></a>00175     }
 <a name="l00176"></a>00176 
-<a name="l00177"></a>00177     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a771fc7005191c3f83ac1fedb09699943" title="Gets the relative location of a camera.">Camera::GetCameraRelativeLocation</a>()
+<a name="l00177"></a>00177     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a771fc7005191c3f83ac1fedb09699943" title="Gets the relative location of the camera.">Camera::GetCameraRelativeLocation</a>()
 <a name="l00178"></a>00178     {
 <a name="l00179"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a53b61b6c163270ffb4f46eb66a973b10">00179</a>         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> camloc(this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition());
 <a name="l00180"></a>00180         <span class="keywordflow">return</span> camloc;
 <a name="l00181"></a>00181     }
 <a name="l00182"></a>00182 
-<a name="l00183"></a>00183     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a53b61b6c163270ffb4f46eb66a973b10" title="Gets the global location of a camera.">Camera::GetCameraGlobalLocation</a>()
+<a name="l00183"></a>00183     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a53b61b6c163270ffb4f46eb66a973b10" title="Gets the global location of the camera.">Camera::GetCameraGlobalLocation</a>()
 <a name="l00184"></a>00184     {
 <a name="l00185"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a1cb593d12be4e6e1e51cb8f74ce2d97c">00185</a>         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> camloc(this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getRealPosition());
 <a name="l00186"></a>00186         <span class="keywordflow">return</span> camloc;
@@ -228,15 +228,20 @@
 <a name="l00197"></a>00197         Ogre::Vector3 loc;
 <a name="l00198"></a>00198         loc = this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;getPosition();
 <a name="l00199"></a>00199         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> zoom=loc.z;
-<a name="l00200"></a>00200         zoom=0-zoom;
+<a name="l00200"></a><a class="code" href="../../d9/df8/classphys_1_1Camera.html#a48c1fb8e83f3d81d40ce04d2de2fd7eb">00200</a>         zoom=0-zoom;
 <a name="l00201"></a>00201         this-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>-&gt;moveRelative(Ogre::Vector3(0,0,zoom));
 <a name="l00202"></a>00202     }
-<a name="l00203"></a>00203 }<span class="comment">//phys</span>
-<a name="l00204"></a>00204 
-<a name="l00205"></a>00205 <span class="preprocessor">#endif</span>
+<a name="l00203"></a>00203 
+<a name="l00204"></a>00204     Ogre::Camera* <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a48c1fb8e83f3d81d40ce04d2de2fd7eb" title="Gets the internal camera this camera is based on.">Camera::GetOgreCamera</a>()
+<a name="l00205"></a>00205     {
+<a name="l00206"></a>00206         <span class="keywordflow">return</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>;
+<a name="l00207"></a>00207     }
+<a name="l00208"></a>00208 }<span class="comment">//phys</span>
+<a name="l00209"></a>00209 
+<a name="l00210"></a>00210 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:40 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:10 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -64,15 +64,17 @@ void \hyperlink{classphys_1_1Camera_a1b4d5be85c528541c7a1cbebb41bfd89}{SetFixedY
 \hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Camera_a47c437c8755301512c2757f879e03e73}{GetCameraToViewportRay} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screenx, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screeny)
 \begin{DoxyCompactList}\small\item\em Enables or disables auto tracking for the camera. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Camera_ab32a8c708e5e22f65dde9ab821ea20fc}{GetNodeAttachedToCamera} ()
-\begin{DoxyCompactList}\small\item\em Gets the node attached to a camera. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets the node attached to the camera. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a771fc7005191c3f83ac1fedb09699943}{GetCameraRelativeLocation} ()
-\begin{DoxyCompactList}\small\item\em Gets the relative location of a camera. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets the relative location of the camera. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a53b61b6c163270ffb4f46eb66a973b10}{GetCameraGlobalLocation} ()
-\begin{DoxyCompactList}\small\item\em Gets the global location of a camera. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets the global location of the camera. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Camera_a1cb593d12be4e6e1e51cb8f74ce2d97c}{ZoomCamera} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Zoom)
 \begin{DoxyCompactList}\small\item\em Will zoom in or out the camera. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Camera_a181465e6add36c07a63fdd26aee7c69a}{ResetZoom} ()
-\begin{DoxyCompactList}\small\item\em Resets the zoom level back to the default. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Resets the zoom level back to the default. \item\end{DoxyCompactList}\item 
+Ogre::Camera $\ast$ \hyperlink{classphys_1_1Camera_a48c1fb8e83f3d81d40ce04d2de2fd7eb}{GetOgreCamera} ()
+\begin{DoxyCompactList}\small\item\em Gets the internal camera this camera is based on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -82,11 +84,6 @@ Ogre::Camera $\ast$ \hyperlink{classphys_1_1Camera_a91622148b9b9a9ae1554c828f7e2
 \begin{DoxyCompactList}\small\item\em This is the \hyperlink{classphys_1_1Camera}{Camera} manager that this camera is attached to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1Camera_a7b4bcdf992c21ae83363f25df05b1d25}{
-class {\bfseries World}}
-\label{d9/df8/classphys_1_1Camera_a7b4bcdf992c21ae83363f25df05b1d25}
-
 \item 
 \hypertarget{classphys_1_1Camera_a6db9d28bd448a131448276ee03de1e6d}{
 class {\bfseries Node}}
@@ -175,9 +172,9 @@ Definition at line 67 of file camera.cpp.
 \label{d9/df8/classphys_1_1Camera_a53b61b6c163270ffb4f46eb66a973b10}
 
 
-Gets the global location of a camera. 
+Gets the global location of the camera. 
 
-Gets the real world location of the camera specified. 
+Gets the real world location of the camera. 
 
 Definition at line 179 of file camera.cpp.
 
@@ -192,9 +189,9 @@ Definition at line 179 of file camera.cpp.
 \label{d9/df8/classphys_1_1Camera_a771fc7005191c3f83ac1fedb09699943}
 
 
-Gets the relative location of a camera. 
+Gets the relative location of the camera. 
 
-Gets the location of the camera, relative to any connected nodes, specified. 
+Gets the location of the camera, relative to any parent nodes. 
 
 Definition at line 173 of file camera.cpp.
 
@@ -260,11 +257,33 @@ Definition at line 72 of file camera.cpp.
 \label{d9/df8/classphys_1_1Camera_ab32a8c708e5e22f65dde9ab821ea20fc}
 
 
-Gets the node attached to a camera. 
+Gets the node attached to the camera. 
 
 This will return a string that is the name of the node the specified camera is attached to if any. 
 
 Definition at line 167 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a48c1fb8e83f3d81d40ce04d2de2fd7eb}{
+\index{phys::Camera@{phys::Camera}!GetOgreCamera@{GetOgreCamera}}
+\index{GetOgreCamera@{GetOgreCamera}!phys::Camera@{phys::Camera}}
+\subsubsection[{GetOgreCamera}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Camera $\ast$ phys::Camera::GetOgreCamera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d9/df8/classphys_1_1Camera_a48c1fb8e83f3d81d40ce04d2de2fd7eb}
+
+
+Gets the internal camera this camera is based on. 
+
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Ogre \hyperlink{classphys_1_1Camera}{Camera} this camera is based on. 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 200 of file camera.cpp.
 
 \hypertarget{classphys_1_1Camera_a6534be5001bf06ab4c4b32a084629842}{
 \index{phys::Camera@{phys::Camera}!LookAt@{LookAt}}
@@ -581,7 +600,7 @@ This is the \hyperlink{classphys_1_1Camera}{Camera} used by the graphics Subsyst
 \end{DoxyInternal}
 
 
-Definition at line 88 of file camera.h.
+Definition at line 86 of file camera.h.
 
 \hypertarget{classphys_1_1Camera_a909203ede748deb1b587a8758ba8cec4}{
 \index{phys::Camera@{phys::Camera}!CamManager@{CamManager}}
@@ -596,7 +615,7 @@ This is the \hyperlink{classphys_1_1Camera}{Camera} manager that this camera is 
 \end{DoxyInternal}
 
 
-Definition at line 92 of file camera.h.
+Definition at line 90 of file camera.h.
 
 
 

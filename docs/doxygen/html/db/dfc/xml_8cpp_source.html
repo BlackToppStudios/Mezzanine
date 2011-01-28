@@ -4187,7 +4187,7 @@
 <a name="l04156"></a>04156                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l04157"></a>04157         } 
 <a name="l04158"></a>04158  
-<a name="l04159"></a>04159         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::find_ChildBy_attribute(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value)<span class="keyword"> const </span>
+<a name="l04159"></a>04159         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::FindChildbyAttribute(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value)<span class="keyword"> const </span>
 <a name="l04160"></a>04160 <span class="keyword">        </span>{ 
 <a name="l04161"></a>04161                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04162"></a>04162                  
@@ -4202,7 +4202,7 @@
 <a name="l04171"></a>04171                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04172"></a>04172         } 
 <a name="l04173"></a>04173  
-<a name="l04174"></a>04174         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::find_ChildBy_attribute(<span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value)<span class="keyword"> const </span>
+<a name="l04174"></a>04174         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::FindChildbyAttribute(<span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value)<span class="keyword"> const </span>
 <a name="l04175"></a>04175 <span class="keyword">        </span>{ 
 <a name="l04176"></a>04176                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l04177"></a>04177                  
@@ -4237,7 +4237,7 @@
 <a name="l04206"></a>04206         } 
 <a name="l04207"></a>04207 <span class="preprocessor">#endif </span>
 <a name="l04208"></a>04208 <span class="preprocessor"></span> 
-<a name="l04209"></a>04209         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::FirstElement_by_path(<span class="keyword">const</span> char_t* path, char_t delimiter)<span class="keyword"> const </span>
+<a name="l04209"></a>04209         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::FirstElementByPath(<span class="keyword">const</span> char_t* path, char_t delimiter)<span class="keyword"> const </span>
 <a name="l04210"></a>04210 <span class="keyword">        </span>{ 
 <a name="l04211"></a>04211                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> found = *<span class="keyword">this</span>; <span class="comment">// Current search context. </span>
 <a name="l04212"></a>04212  
@@ -4265,16 +4265,16 @@
 <a name="l04234"></a>04234                 <span class="keywordflow">while</span> (*NextSegment == delimiter) ++NextSegment; 
 <a name="l04235"></a>04235  
 <a name="l04236"></a>04236                 <span class="keywordflow">if</span> (*path_segment == <span class="charliteral">&#39;.&#39;</span> &amp;&amp; path_segment + 1 == path_segment_end) 
-<a name="l04237"></a>04237                         <span class="keywordflow">return</span> found.FirstElement_by_path(NextSegment, delimiter); 
+<a name="l04237"></a>04237                         <span class="keywordflow">return</span> found.FirstElementByPath(NextSegment, delimiter); 
 <a name="l04238"></a>04238                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (*path_segment == <span class="charliteral">&#39;.&#39;</span> &amp;&amp; *(path_segment+1) == <span class="charliteral">&#39;.&#39;</span> &amp;&amp; path_segment + 2 == path_segment_end) 
-<a name="l04239"></a>04239                         <span class="keywordflow">return</span> found.GetParent().FirstElement_by_path(NextSegment, delimiter); 
+<a name="l04239"></a>04239                         <span class="keywordflow">return</span> found.GetParent().FirstElementByPath(NextSegment, delimiter); 
 <a name="l04240"></a>04240                 <span class="keywordflow">else</span> 
 <a name="l04241"></a>04241                 { 
 <a name="l04242"></a>04242                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* j = found._GetRoot-&gt;GetFirstChild; j; j = j-&gt;GetNextSibling) 
 <a name="l04243"></a>04243                         { 
 <a name="l04244"></a>04244                                 <span class="keywordflow">if</span> (j-&gt;Name &amp;&amp; strequalrange(j-&gt;Name, path_segment, static_cast&lt;size_t&gt;(path_segment_end - path_segment))) 
 <a name="l04245"></a>04245                                 { 
-<a name="l04246"></a>04246                                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> subsearch = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(j).FirstElement_by_path(NextSegment, delimiter); 
+<a name="l04246"></a>04246                                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> subsearch = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(j).FirstElementByPath(NextSegment, delimiter); 
 <a name="l04247"></a>04247  
 <a name="l04248"></a>04248                                         <span class="keywordflow">if</span> (subsearch) <span class="keywordflow">return</span> subsearch; 
 <a name="l04249"></a>04249                                 } 
@@ -4284,7 +4284,7 @@
 <a name="l04253"></a>04253                 } 
 <a name="l04254"></a>04254         } 
 <a name="l04255"></a>04255  
-<a name="l04256"></a>04256         <span class="keywordtype">bool</span> Node::traverse(<a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">TreeWalker</a>&amp; walker) 
+<a name="l04256"></a>04256         <span class="keywordtype">bool</span> Node::Traverse(<a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">TreeWalker</a>&amp; walker) 
 <a name="l04257"></a>04257         { 
 <a name="l04258"></a>04258                 walker._depth = -1; 
 <a name="l04259"></a>04259                  
@@ -5464,7 +5464,7 @@
 <a name="l05433"></a>05433                 <span class="keywordflow">return</span> *pattern == 0; 
 <a name="l05434"></a>05434         } 
 <a name="l05435"></a>05435  
-<a name="l05436"></a>05436         <span class="keyword">const</span> char_t* find_char(<span class="keyword">const</span> char_t* s, char_t c) 
+<a name="l05436"></a>05436         <span class="keyword">const</span> char_t* FindChar(<span class="keyword">const</span> char_t* s, char_t c) 
 <a name="l05437"></a>05437         { 
 <a name="l05438"></a>05438 <span class="preprocessor">        #ifdef XML_WCHAR_MODE </span>
 <a name="l05439"></a>05439 <span class="preprocessor"></span>                <span class="keywordflow">return</span> wcschr(s, c); 
@@ -5473,7 +5473,7 @@
 <a name="l05442"></a>05442 <span class="preprocessor">        #endif </span>
 <a name="l05443"></a>05443 <span class="preprocessor"></span>        } 
 <a name="l05444"></a>05444  
-<a name="l05445"></a>05445         <span class="keyword">const</span> char_t* find_substring(<span class="keyword">const</span> char_t* s, <span class="keyword">const</span> char_t* p) 
+<a name="l05445"></a>05445         <span class="keyword">const</span> char_t* FindSubstring(<span class="keyword">const</span> char_t* s, <span class="keyword">const</span> char_t* p) 
 <a name="l05446"></a>05446         { 
 <a name="l05447"></a>05447 <span class="preprocessor">        #ifdef XML_WCHAR_MODE </span>
 <a name="l05448"></a>05448 <span class="preprocessor"></span>                <span class="comment">// MSVC6 wcsstr bug workaround (if s is empty it always returns 0) </span>
@@ -5942,7 +5942,7 @@
 <a name="l05911"></a>05911         <span class="keyword">const</span> char_t* local_Name(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; node) 
 <a name="l05912"></a>05912         { 
 <a name="l05913"></a>05913                 <span class="keyword">const</span> char_t* Name = qualified_Name(node); 
-<a name="l05914"></a>05914                 <span class="keyword">const</span> char_t* p = find_char(Name, <span class="charliteral">&#39;:&#39;</span>); 
+<a name="l05914"></a>05914                 <span class="keyword">const</span> char_t* p = FindChar(Name, <span class="charliteral">&#39;:&#39;</span>); 
 <a name="l05915"></a>05915                  
 <a name="l05916"></a>05916                 <span class="keywordflow">return</span> p ? p + 1 : Name; 
 <a name="l05917"></a>05917         } 
@@ -5954,7 +5954,7 @@
 <a name="l05923"></a>05923  
 <a name="l05924"></a>05924                 namespace_uri_predicate(<span class="keyword">const</span> char_t* Name) 
 <a name="l05925"></a>05925                 { 
-<a name="l05926"></a>05926                         <span class="keyword">const</span> char_t* pos = find_char(Name, <span class="charliteral">&#39;:&#39;</span>); 
+<a name="l05926"></a>05926                         <span class="keyword">const</span> char_t* pos = FindChar(Name, <span class="charliteral">&#39;:&#39;</span>); 
 <a name="l05927"></a>05927  
 <a name="l05928"></a>05928                         prefix = pos ? Name : 0; 
 <a name="l05929"></a>05929                         prefix_length = pos ? <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(pos - Name) : 0; 
@@ -5978,7 +5978,7 @@
 <a name="l05947"></a>05947                  
 <a name="l05948"></a>05948                 <span class="keywordflow">while</span> (p) 
 <a name="l05949"></a>05949                 { 
-<a name="l05950"></a>05950                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = p.find_attribute(pred); 
+<a name="l05950"></a>05950                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = p.FindAttribute(pred); 
 <a name="l05951"></a>05951                          
 <a name="l05952"></a>05952                         <span class="keywordflow">if</span> (a) <span class="keywordflow">return</span> a.<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>(); 
 <a name="l05953"></a>05953                          
@@ -5999,7 +5999,7 @@
 <a name="l05968"></a>05968                  
 <a name="l05969"></a>05969                 <span class="keywordflow">while</span> (p) 
 <a name="l05970"></a>05970                 { 
-<a name="l05971"></a>05971                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = p.find_attribute(pred); 
+<a name="l05971"></a>05971                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = p.FindAttribute(pred); 
 <a name="l05972"></a>05972                          
 <a name="l05973"></a>05973                         <span class="keywordflow">if</span> (a) <span class="keywordflow">return</span> a.<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>(); 
 <a name="l05974"></a>05974                          
@@ -6050,7 +6050,7 @@
 <a name="l06019"></a>06019                 { 
 <a name="l06020"></a>06020                         DMC_VOLATILE char_t ch = *buffer++; 
 <a name="l06021"></a>06021  
-<a name="l06022"></a>06022                         <span class="keyword">const</span> char_t* pos = find_char(from, ch); 
+<a name="l06022"></a>06022                         <span class="keyword">const</span> char_t* pos = FindChar(from, ch); 
 <a name="l06023"></a>06023  
 <a name="l06024"></a>06024                         <span class="keywordflow">if</span> (!pos) 
 <a name="l06025"></a>06025                                 *Write++ = ch; <span class="comment">// do not process </span>
@@ -7525,7 +7525,7 @@
 <a name="l07494"></a>07494                                 XPathString lr = _left-&gt;eval_string(c, stack); 
 <a name="l07495"></a>07495                                 XPathString rr = _right-&gt;eval_string(c, stack); 
 <a name="l07496"></a>07496  
-<a name="l07497"></a>07497                                 <span class="keywordflow">return</span> find_substring(lr.c_str(), rr.c_str()) != 0; 
+<a name="l07497"></a>07497                                 <span class="keywordflow">return</span> FindSubstring(lr.c_str(), rr.c_str()) != 0; 
 <a name="l07498"></a>07498                         } 
 <a name="l07499"></a>07499  
 <a name="l07500"></a>07500                         <span class="keywordflow">case</span> ast_func_boolean: 
@@ -7871,7 +7871,7 @@
 <a name="l07840"></a>07840                                 XPathString s = _left-&gt;eval_string(c, swapped_stack); 
 <a name="l07841"></a>07841                                 XPathString p = _right-&gt;eval_string(c, swapped_stack); 
 <a name="l07842"></a>07842  
-<a name="l07843"></a>07843                                 <span class="keyword">const</span> char_t* pos = find_substring(s.c_str(), p.c_str()); 
+<a name="l07843"></a>07843                                 <span class="keyword">const</span> char_t* pos = FindSubstring(s.c_str(), p.c_str()); 
 <a name="l07844"></a>07844                                  
 <a name="l07845"></a>07845                                 <span class="keywordflow">return</span> pos ? XPathString(s.c_str(), pos, stack.result) : XPathString(); 
 <a name="l07846"></a>07846                         } 
@@ -7885,7 +7885,7 @@
 <a name="l07854"></a>07854                                 XPathString s = _left-&gt;eval_string(c, swapped_stack); 
 <a name="l07855"></a>07855                                 XPathString p = _right-&gt;eval_string(c, swapped_stack); 
 <a name="l07856"></a>07856                                  
-<a name="l07857"></a>07857                                 <span class="keyword">const</span> char_t* pos = find_substring(s.c_str(), p.c_str()); 
+<a name="l07857"></a>07857                                 <span class="keyword">const</span> char_t* pos = FindSubstring(s.c_str(), p.c_str()); 
 <a name="l07858"></a>07858                                 <span class="keywordflow">if</span> (!pos) <span class="keywordflow">return</span> XPathString(); 
 <a name="l07859"></a>07859  
 <a name="l07860"></a>07860                                 <span class="keyword">const</span> char_t* result = pos + p.length(); 
@@ -9606,25 +9606,25 @@
 <a name="l09575"></a>09575                 <span class="keywordflow">return</span> !_impl; 
 <a name="l09576"></a>09576         } 
 <a name="l09577"></a>09577  
-<a name="l09578"></a>09578         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> Node::select_single_node(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
+<a name="l09578"></a>09578         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> Node::FindSingleNode(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
 <a name="l09579"></a>09579 <span class="keyword">        </span>{ 
 <a name="l09580"></a>09580                 <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> q(query, variables); 
-<a name="l09581"></a>09581                 <span class="keywordflow">return</span> select_single_node(q); 
+<a name="l09581"></a>09581                 <span class="keywordflow">return</span> FindSingleNode(q); 
 <a name="l09582"></a>09582         } 
 <a name="l09583"></a>09583  
-<a name="l09584"></a>09584         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> Node::select_single_node(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
+<a name="l09584"></a>09584         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> Node::FindSingleNode(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
 <a name="l09585"></a>09585 <span class="keyword">        </span>{ 
 <a name="l09586"></a>09586                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> s = query.evaluate_NodeSet(*<span class="keyword">this</span>); 
 <a name="l09587"></a>09587                 <span class="keywordflow">return</span> s.Empty() ? <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>() : s.first(); 
 <a name="l09588"></a>09588         } 
 <a name="l09589"></a>09589  
-<a name="l09590"></a>09590         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> Node::select_nodes(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
+<a name="l09590"></a>09590         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> Node::FindNodes(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
 <a name="l09591"></a>09591 <span class="keyword">        </span>{ 
 <a name="l09592"></a>09592                 <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> q(query, variables); 
-<a name="l09593"></a>09593                 <span class="keywordflow">return</span> select_nodes(q); 
+<a name="l09593"></a>09593                 <span class="keywordflow">return</span> FindNodes(q); 
 <a name="l09594"></a>09594         } 
 <a name="l09595"></a>09595  
-<a name="l09596"></a>09596         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> Node::select_nodes(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
+<a name="l09596"></a>09596         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> Node::FindNodes(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
 <a name="l09597"></a>09597 <span class="keyword">        </span>{ 
 <a name="l09598"></a>09598                 <span class="keywordflow">return</span> query.evaluate_NodeSet(*<span class="keyword">this</span>); 
 <a name="l09599"></a>09599         } 
@@ -9663,7 +9663,7 @@
 <a name="l09632"></a>09632 <span class="comment"> */</span> 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:41 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:11 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

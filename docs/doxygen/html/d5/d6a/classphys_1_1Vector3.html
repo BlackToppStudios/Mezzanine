@@ -126,8 +126,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets a cAudio vector3.  <a href="#a58b1ac39dfee4c360c16944a7e7f657d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#aa12021e9cdc092c8628ced1c5910c04c">ExtractcAudioVector3</a> (cAudio::cVector3 temp)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copies an existing cAudio vector3.  <a href="#aa12021e9cdc092c8628ced1c5910c04c"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f">Distance</a> (const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;Vec2) const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This return the distance between this point and another.  <a href="#a6388c8993a8f09ba2f7fef366858634f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html#af59a586331fe9497056b7e0f207658a3">Distance</a> (const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;OtherVec) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This return the distance between this point and another.  <a href="#af59a586331fe9497056b7e0f207658a3"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23660f9d1e21a25c53aa06aa737bb56b"></a><!-- doxytag: member="phys::Vector3::X" ref="a23660f9d1e21a25c53aa06aa737bb56b" args="" -->
@@ -334,7 +334,7 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6388c8993a8f09ba2f7fef366858634f"></a><!-- doxytag: member="phys::Vector3::Distance" ref="a6388c8993a8f09ba2f7fef366858634f" args="(const Vector3 &amp;Vec2) const " -->
+<a class="anchor" id="af59a586331fe9497056b7e0f207658a3"></a><!-- doxytag: member="phys::Vector3::Distance" ref="af59a586331fe9497056b7e0f207658a3" args="(const Vector3 &amp;OtherVec) const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -342,7 +342,7 @@ Public Attributes</h2></td></tr>
           <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> phys::Vector3::Distance </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>Vec2</em></td>
+          <td class="paramname"> <em>OtherVec</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td> const</td>
         </tr>
@@ -354,7 +354,7 @@ Public Attributes</h2></td></tr>
 <p>This uses a 3d extension of pythagoras thereom to calculate the distance between This <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> and another. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Vec2</em>&nbsp;</td><td>this is the other point to measure against </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>OtherVec</em>&nbsp;</td><td>this is the other point to measure against </td></tr>
   </table>
   </dd>
 </dl>
@@ -546,7 +546,7 @@ Public Attributes</h2></td></tr>
 <p>This will return a vector that is 1 unit in away from the origin, if a line were starting and the origin it would pass through both the normal and the original point. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>At a vector3 that is the normal of this <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> or 0,0,0 if the current Vector is all 0s </dd></dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000030">Todo:</a></b></dt><dd>discuss the merits throwing an error here. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000033">Todo:</a></b></dt><dd>discuss the merits throwing an error here. </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00308">308</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
@@ -615,7 +615,7 @@ Public Attributes</h2></td></tr>
 <p>This will change this point into it's own normal relative to the origin. </p>
 <p>This will change this vector into one that is the same direction from the origin, but only one unit a away. </p>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000029">Todo:</a></b></dt><dd>discuss the merits throwing an error here. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000032">Todo:</a></b></dt><dd>discuss the merits throwing an error here. </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="../../dc/d2e/vector3_8cpp_source.html#l00297">297</a> of file <a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a>.</p>
@@ -1260,7 +1260,7 @@ Public Attributes</h2></td></tr>
 <li><a class="el" href="../../dc/d2e/vector3_8cpp_source.html">vector3.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:47 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:17 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

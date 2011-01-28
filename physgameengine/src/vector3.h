@@ -301,9 +301,9 @@ namespace phys
         /// @brief This return the distance between this point and another
         /// @details This uses a 3d extension of pythagoras thereom to calculate the distance between
         /// This Vector3 and another.
-        /// @param Vec2 this is the other point to measure against
+        /// @param OtherVec this is the other point to measure against
         /// @return This returns a Real number which is the distance.
-        Real Distance(const Vector3 &Vec2) const;
+        Real Distance(const Vector3 &OtherVec) const;
 
     };
 }// /phys
@@ -311,15 +311,29 @@ namespace phys
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 
+/// @brief Used to Serialize an phys::Vector3 to a human readable stream
+/// @details This outputs to the format of [x,y,z], where x is replaced with the X value, y is replaced with the Y value, and
+/// Z is replaced with the Z value,
+/// @param x The phys::Vector3 to be converted to characters.
+/// @param stream The place to send the characters, that define the phys::Vector3.
+/// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Vector3& x);
+
 
 Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom);
 Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
+Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const cAudio::cVector3& VecFrom);
 
 btVector3& PHYS_LIB operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom);
 btVector3& PHYS_LIB operator << (btVector3& VecTo, const phys::Vector3& VecFrom);
+btVector3& PHYS_LIB operator << (btVector3& VecTo, const cAudio::cVector3& VecFrom);
 
 phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const Ogre::Vector3& VecFrom);
 phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const btVector3& VecFrom);
+phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const cAudio::cVector3& VecFrom);
+
+cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const Ogre::Vector3& VecFrom);
+cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const btVector3& VecFrom);
+cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const phys::Vector3& VecFrom);
 
 #endif

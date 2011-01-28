@@ -121,76 +121,103 @@
 <a name="l00090"></a>00090             <span class="keywordflow">return</span> BackButton;
 <a name="l00091"></a>00091         }
 <a name="l00092"></a>00092 
-<a name="l00093"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a12b1586cd33bc03b5902018376878961">00093</a>         <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a12b1586cd33bc03b5902018376878961" title="Gets the Window corresponding to the access button.">MenuWindow::GetWindowOfAccessButton</a>(<a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* Accessor)
+<a name="l00093"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a268a077bde24ce6d1a2a4a9f1bf23ce0">00093</a>         <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a268a077bde24ce6d1a2a4a9f1bf23ce0" title="Creates a button to be used for accessing child windows.">MenuWindow::CreateAccessorButton</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size)
 <a name="l00094"></a>00094         {
-<a name="l00095"></a>00095             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;Button*,MenuWindow*&gt; &gt;::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
-<a name="l00096"></a>00096             {
-<a name="l00097"></a>00097                 <span class="keywordflow">if</span>(Accessor == (*it).first)
-<a name="l00098"></a>00098                 {
-<a name="l00099"></a>00099                     <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* MenWin = (*it).second;
-<a name="l00100"></a>00100                     <span class="keywordflow">return</span> MenWin;
-<a name="l00101"></a>00101                 }
-<a name="l00102"></a>00102             }
-<a name="l00103"></a>00103             <span class="keywordflow">return</span> 0;
-<a name="l00104"></a>00104         }
-<a name="l00105"></a>00105 
-<a name="l00106"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a5da3c65def5ce495685c086750e55132">00106</a>         <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a5da3c65def5ce495685c086750e55132" title="Adds a child window to this window.">MenuWindow::CreateChildMenuWindow</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> WinPosition, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> WinSize, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ButPosition, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> ButSize)
-<a name="l00107"></a>00107         {
-<a name="l00108"></a>00108             <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* MenWin = <span class="keyword">new</span> <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a8d62e0cdbb3e8073c62b67c3e0b4dfda" title="Standard initialization constructor.">MenuWindow</a>(Name,WinPosition,WinSize,MasterMenu,Parent);
-<a name="l00109"></a>00109             MenWin-&gt;ParentWindow = <span class="keyword">this</span>;
-<a name="l00110"></a>00110             <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* MenBut = this-&gt;<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5414660c47246997cd1ed9654847055b" title="Creates a button within this Window.">CreateButton</a>(Name+<span class="stringliteral">&quot;button&quot;</span>,ButPosition,ButSize);
-<a name="l00111"></a>00111             ChildWindows.push_back(std::pair&lt;Button*,MenuWindow*&gt;(MenBut,MenWin));
-<a name="l00112"></a>00112             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = ButPosition - RelPosition;
-<a name="l00113"></a>00113             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetButtonInfo</a> buttonoff(MenBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-<a name="l00114"></a>00114             Buttons.push_back(buttonoff);
-<a name="l00115"></a>00115             MenWin-&gt;<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5eb51c6e1b2c440b52196fcf1022285e" title="Forces this window to hide.">Hide</a>();
-<a name="l00116"></a>00116             <span class="keywordflow">return</span> MenWin;
-<a name="l00117"></a>00117         }
-<a name="l00118"></a>00118 
-<a name="l00119"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ad1136c4e4b2ff9b9dc5d6aac2dba45a7">00119</a>         <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ad1136c4e4b2ff9b9dc5d6aac2dba45a7" title="Gets an already created menu window by name.">MenuWindow::GetChildMenuWindow</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
-<a name="l00120"></a>00120         {
-<a name="l00121"></a>00121             <span class="keywordflow">for</span> ( std::vector&lt;std::pair&lt;Button*,MenuWindow*&gt; &gt;::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
-<a name="l00122"></a>00122             {
-<a name="l00123"></a>00123                 <span class="keywordflow">if</span> ( Name == (*it).second-&gt;GetName() )
-<a name="l00124"></a>00124                 {
-<a name="l00125"></a>00125                     <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* menuwindow = (*it).second;
-<a name="l00126"></a>00126                     <span class="keywordflow">return</span> menuwindow;
-<a name="l00127"></a>00127                 }
-<a name="l00128"></a>00128             }
-<a name="l00129"></a>00129             <span class="keywordflow">return</span> 0;
-<a name="l00130"></a>00130         }
-<a name="l00131"></a>00131 
-<a name="l00132"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a528d6397f8799219793978c70a26c22c">00132</a>         <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ad1136c4e4b2ff9b9dc5d6aac2dba45a7" title="Gets an already created menu window by name.">MenuWindow::GetChildMenuWindow</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
-<a name="l00133"></a>00133         {
-<a name="l00134"></a>00134             <span class="keywordflow">return</span> ChildWindows[Index].second;
-<a name="l00135"></a>00135         }
-<a name="l00136"></a>00136 
-<a name="l00137"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ab3a6ae708ba2cea16cd0de176e265459">00137</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ab3a6ae708ba2cea16cd0de176e265459" title="Gets the number of menu windows created and stored in this class.">MenuWindow::GetNumChildMenuWindows</a>()
-<a name="l00138"></a>00138         {
-<a name="l00139"></a>00139             <span class="keywordflow">return</span> ChildWindows.size();
-<a name="l00140"></a>00140         }
-<a name="l00141"></a>00141 
-<a name="l00142"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ace2796c2d250fe1582f7c43333a7295e">00142</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ace2796c2d250fe1582f7c43333a7295e" title="Destroys a menu window.">MenuWindow::DestroyChildMenuWindow</a>(<a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* ToBeDestroyed)
-<a name="l00143"></a>00143         {
-<a name="l00144"></a>00144             <span class="keywordflow">for</span> ( std::vector&lt;std::pair&lt;Button*,MenuWindow*&gt; &gt;::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
-<a name="l00145"></a>00145             {
-<a name="l00146"></a>00146                 <span class="keywordflow">if</span> ( ToBeDestroyed == (*it).second )
-<a name="l00147"></a>00147                 {
-<a name="l00148"></a>00148                     <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* But = (*it).first;
-<a name="l00149"></a>00149                     <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5a5bc10054d6e1d709b3b683a5554bf4" title="Destroys a button.">DestroyButton</a>(But);
-<a name="l00150"></a>00150                     <span class="keyword">delete</span> ToBeDestroyed;
-<a name="l00151"></a>00151                     ChildWindows.erase(it);
-<a name="l00152"></a>00152                     <span class="keywordflow">return</span>;
-<a name="l00153"></a>00153                 }
-<a name="l00154"></a>00154             }
-<a name="l00155"></a>00155         }
-<a name="l00156"></a>00156     }
-<a name="l00157"></a>00157 }
+<a name="l00095"></a>00095             <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Offset = Position - RelPosition;
+<a name="l00096"></a>00096             <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* AccBut = this-&gt;<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5414660c47246997cd1ed9654847055b" title="Creates a button within this Window.">CreateButton</a>(Name,Position,Size);
+<a name="l00097"></a>00097             <a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html" title="This is a helper struct for use in resizing UI containers.">OffsetButtonInfo</a> buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+<a name="l00098"></a>00098             Buttons.push_back(buttonoff);
+<a name="l00099"></a>00099             ChildWindows.push_back(std::pair&lt;Button*,MenuWindow*&gt;(AccBut,NULL));
+<a name="l00100"></a>00100             <span class="keywordflow">return</span> buttonoff.<a class="code" href="../../d0/d08/structphys_1_1UI_1_1ResizingInfo.html#a2f925cf9136fdba5612d9ba741201dc2" title="The class this template applies to.">Object</a>;
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102 
+<a name="l00103"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a7ee13fd6573f8c6d4f6c4992d414e7c2">00103</a>         <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a7ee13fd6573f8c6d4f6c4992d414e7c2" title="Gets an Accessor button by name.">MenuWindow::GetAccessorButton</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
+<a name="l00104"></a>00104         {
+<a name="l00105"></a>00105             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;Button*,MenuWindow*&gt; &gt;::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+<a name="l00106"></a>00106             {
+<a name="l00107"></a>00107                 <span class="keywordflow">if</span>(Name == (*it).first-&gt;GetName())
+<a name="l00108"></a>00108                 {
+<a name="l00109"></a>00109                     <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* But = (*it).first;
+<a name="l00110"></a>00110                     <span class="keywordflow">return</span> But;
+<a name="l00111"></a>00111                 }
+<a name="l00112"></a>00112             }
+<a name="l00113"></a>00113             <span class="keywordflow">return</span> 0;
+<a name="l00114"></a>00114         }
+<a name="l00115"></a>00115 
+<a name="l00116"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a12b1586cd33bc03b5902018376878961">00116</a>         <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a12b1586cd33bc03b5902018376878961" title="Gets the Window corresponding to the access button.">MenuWindow::GetWindowOfAccessButton</a>(<a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* Accessor)
+<a name="l00117"></a>00117         {
+<a name="l00118"></a>00118             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;Button*,MenuWindow*&gt; &gt;::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+<a name="l00119"></a>00119             {
+<a name="l00120"></a>00120                 <span class="keywordflow">if</span>(Accessor == (*it).first)
+<a name="l00121"></a>00121                 {
+<a name="l00122"></a>00122                     <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* MenWin = (*it).second;
+<a name="l00123"></a>00123                     <span class="keywordflow">return</span> MenWin;
+<a name="l00124"></a>00124                 }
+<a name="l00125"></a>00125             }
+<a name="l00126"></a>00126             <span class="keywordflow">return</span> 0;
+<a name="l00127"></a>00127         }
+<a name="l00128"></a>00128 
+<a name="l00129"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a5b4945e253037695a8ea7d09560dd9d8">00129</a>         <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a5b4945e253037695a8ea7d09560dd9d8" title="Adds a child window to this window.">MenuWindow::CreateChildMenuWindow</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size, <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* Accessor)
+<a name="l00130"></a>00130         {
+<a name="l00131"></a>00131             std::pair&lt;Button*,MenuWindow*&gt;* AccessorPair = NULL;
+<a name="l00132"></a>00132             <span class="keywordflow">for</span>( std::vector&lt;std::pair&lt;Button*,MenuWindow*&gt; &gt;::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+<a name="l00133"></a>00133             {
+<a name="l00134"></a>00134                 <span class="keywordflow">if</span>(Accessor == (*it).first)
+<a name="l00135"></a>00135                     AccessorPair = &amp;(*it);
+<a name="l00136"></a>00136             }
+<a name="l00137"></a>00137             <span class="keywordflow">if</span>(NULL==AccessorPair)
+<a name="l00138"></a>00138                 <span class="keywordflow">return</span> 0;
+<a name="l00139"></a>00139             <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* MenWin = <span class="keyword">new</span> <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a8d62e0cdbb3e8073c62b67c3e0b4dfda" title="Standard initialization constructor.">MenuWindow</a>(Name,Position,Size,MasterMenu,Parent);
+<a name="l00140"></a>00140             MenWin-&gt;ParentWindow = <span class="keyword">this</span>;
+<a name="l00141"></a>00141             AccessorPair-&gt;second = MenWin;
+<a name="l00142"></a>00142             MenWin-&gt;<a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5eb51c6e1b2c440b52196fcf1022285e" title="Forces this window to hide.">Hide</a>();
+<a name="l00143"></a>00143             <span class="keywordflow">return</span> MenWin;
+<a name="l00144"></a>00144         }
+<a name="l00145"></a>00145 
+<a name="l00146"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ad1136c4e4b2ff9b9dc5d6aac2dba45a7">00146</a>         <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ad1136c4e4b2ff9b9dc5d6aac2dba45a7" title="Gets an already created menu window by name.">MenuWindow::GetChildMenuWindow</a>(<a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; Name)
+<a name="l00147"></a>00147         {
+<a name="l00148"></a>00148             <span class="keywordflow">for</span> ( std::vector&lt;std::pair&lt;Button*,MenuWindow*&gt; &gt;::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+<a name="l00149"></a>00149             {
+<a name="l00150"></a>00150                 <span class="keywordflow">if</span> ( Name == (*it).second-&gt;GetName() )
+<a name="l00151"></a>00151                 {
+<a name="l00152"></a>00152                     <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* menuwindow = (*it).second;
+<a name="l00153"></a>00153                     <span class="keywordflow">return</span> menuwindow;
+<a name="l00154"></a>00154                 }
+<a name="l00155"></a>00155             }
+<a name="l00156"></a>00156             <span class="keywordflow">return</span> 0;
+<a name="l00157"></a>00157         }
 <a name="l00158"></a>00158 
-<a name="l00159"></a>00159 <span class="preprocessor">#endif</span>
+<a name="l00159"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#a528d6397f8799219793978c70a26c22c">00159</a>         <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ad1136c4e4b2ff9b9dc5d6aac2dba45a7" title="Gets an already created menu window by name.">MenuWindow::GetChildMenuWindow</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00160"></a>00160         {
+<a name="l00161"></a>00161             <span class="keywordflow">return</span> ChildWindows[Index].second;
+<a name="l00162"></a>00162         }
+<a name="l00163"></a>00163 
+<a name="l00164"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ab3a6ae708ba2cea16cd0de176e265459">00164</a>         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ab3a6ae708ba2cea16cd0de176e265459" title="Gets the number of menu windows created and stored in this class.">MenuWindow::GetNumChildMenuWindows</a>()
+<a name="l00165"></a>00165         {
+<a name="l00166"></a>00166             <span class="keywordflow">return</span> ChildWindows.size();
+<a name="l00167"></a>00167         }
+<a name="l00168"></a>00168 
+<a name="l00169"></a><a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ace2796c2d250fe1582f7c43333a7295e">00169</a>         <span class="keywordtype">void</span> <a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html#ace2796c2d250fe1582f7c43333a7295e" title="Destroys a menu window.">MenuWindow::DestroyChildMenuWindow</a>(<a class="code" href="../../d4/d07/classphys_1_1UI_1_1MenuWindow.html" title="This class is an extended version of the window class for use exclusively with the menu widget...">MenuWindow</a>* ToBeDestroyed)
+<a name="l00170"></a>00170         {
+<a name="l00171"></a>00171             <span class="keywordflow">for</span> ( std::vector&lt;std::pair&lt;Button*,MenuWindow*&gt; &gt;::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+<a name="l00172"></a>00172             {
+<a name="l00173"></a>00173                 <span class="keywordflow">if</span> ( ToBeDestroyed == (*it).second )
+<a name="l00174"></a>00174                 {
+<a name="l00175"></a>00175                     <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">Button</a>* But = (*it).first;
+<a name="l00176"></a>00176                     <a class="code" href="../../d4/d86/classphys_1_1UI_1_1Window.html#a5a5bc10054d6e1d709b3b683a5554bf4" title="Destroys a button.">DestroyButton</a>(But);
+<a name="l00177"></a>00177                     <span class="keyword">delete</span> ToBeDestroyed;
+<a name="l00178"></a>00178                     ChildWindows.erase(it);
+<a name="l00179"></a>00179                     <span class="keywordflow">return</span>;
+<a name="l00180"></a>00180                 }
+<a name="l00181"></a>00181             }
+<a name="l00182"></a>00182         }
+<a name="l00183"></a>00183     }
+<a name="l00184"></a>00184 }
+<a name="l00185"></a>00185 
+<a name="l00186"></a>00186 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:40 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:10 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

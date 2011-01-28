@@ -157,14 +157,18 @@
 <a name="l00126"></a>00126 <span class="comment">            /// @brief Gets the widget the mouse is over if any.</span>
 <a name="l00127"></a>00127 <span class="comment">            /// @details This function searches only the visable layers contained in this screen.</span>
 <a name="l00128"></a>00128 <span class="comment">            /// @return Returns the widget the mouse is over, or NULL if there are none.</span>
-<a name="l00129"></a>00129 <span class="comment"></span>            <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* CheckWidgetMouseIsOver();
-<a name="l00130"></a>00130     };<span class="comment">//uiscreen</span>
-<a name="l00131"></a>00131 }<span class="comment">//phys</span>
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133 <span class="preprocessor">#endif</span>
+<a name="l00129"></a>00129 <span class="comment"></span>            <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* CheckWidgetMouseIsOver();<span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">            /// @internal</span>
+<a name="l00131"></a>00131 <span class="comment">            /// @brief Gets the internal screen this screen is based on.</span>
+<a name="l00132"></a>00132 <span class="comment">            /// @return Returns a pointer to the Gorilla screen this screen is based on.</span>
+<a name="l00133"></a>00133 <span class="comment"></span>            Gorilla::Screen* GetGorillaScreen();
+<a name="l00134"></a>00134     };<span class="comment">//uiscreen</span>
+<a name="l00135"></a>00135 }<span class="comment">//phys</span>
+<a name="l00136"></a>00136 
+<a name="l00137"></a>00137 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:40 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:10 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

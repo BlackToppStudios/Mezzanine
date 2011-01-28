@@ -47,7 +47,7 @@ const std::list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ $\as
 void \hyperlink{classphys_1_1EventManager_af1204912be3554312e66d3a777c1f99b}{RemoveNextRenderTimeEvent} ()
 \begin{DoxyCompactList}\small\item\em Removes the First Rendertime Event From the que without looking at it. \item\end{DoxyCompactList}\item 
 std::list$<$ \hyperlink{classphys_1_1EventRenderTime}{EventRenderTime} $\ast$ $>$ $\ast$ \hyperlink{classphys_1_1EventManager_aee73dff2d113826b8c01db7f7417d527}{GetAllRenderTimeEvents} ()
-\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render Time events. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_a38b42602a3a4d621048c78b525b4db49}{GetNextUserInputEvent} ()
 \begin{DoxyCompactList}\small\item\em Returns a pointer to the Next User Input event. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1EventUserInput}{EventUserInput} $\ast$ \hyperlink{classphys_1_1EventManager_afa89317d4b16c2b7065b9f79a4354654}{PopNextUserInputEvent} ()
@@ -119,13 +119,13 @@ Definition at line 92 of file eventmanager.h.
 Default constructor. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000008}{Todo}]TODO build a deconstructor that deletes all the events still in the queue \end{Desc}
+\item[\hyperlink{todo__todo000009}{Todo}]TODO build a deconstructor that deletes all the events still in the queue \end{Desc}
 
 
 This creates an empty PhysEventManger
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000005}{Todo}]TODO: Make the \hyperlink{classphys_1_1EventManager}{EventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
+\item[\hyperlink{todo__todo000006}{Todo}]TODO: Make the \hyperlink{classphys_1_1EventManager}{EventManager} completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped\_\-lock \end{Desc}
 
 
 Definition at line 93 of file eventmanager.cpp.
@@ -254,7 +254,7 @@ Definition at line 393 of file eventmanager.cpp.
 \label{da/dde/classphys_1_1EventManager_aee73dff2d113826b8c01db7f7417d527}
 
 
-This returns a complete list of all the Render Time events. 
+This returns a complete list of all the Render \hyperlink{structphys_1_1Time}{Time} events. 
 
 This finds all the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. \begin{DoxyReturn}{Returns}
 This returns a list$<$EventRenderTime$\ast$$>$ pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. 
@@ -795,7 +795,7 @@ Pulls Events from the all the subsystems for use in the \hyperlink{classphys_1_1
 The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use \hyperlink{classphys_1_1EventManager_a0cf574c55def063d66d7db46a4d3e8a5}{UpdateSystemEvents()} or \hyperlink{classphys_1_1EventManager_a01a5a131ac26679eee5dcf5dd514045c}{UpdateUserInputEvents()} 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000006}{Todo}]There has got to be a more efficient way to do \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents()} \end{Desc}
+\item[\hyperlink{todo__todo000007}{Todo}]There has got to be a more efficient way to do \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents()} \end{Desc}
 
 
 
@@ -818,7 +818,7 @@ Pulls System and Window manager Events from the all the subsystems for use in th
 This adds events, like \hyperlink{classphys_1_1EventQuit}{EventQuit} and Other Windows manager events. The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use \hyperlink{classphys_1_1EventManager_a63cf23dc9fe0ced3e2c60ca61c97b166}{UpdateEvents()} and plans on using \hyperlink{classphys_1_1EventManager_a01a5a131ac26679eee5dcf5dd514045c}{UpdateUserInputEvents()} 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000007}{Todo}]make Physevents for each of the events in SDL\_\-WmEvents(and delete the SDL events) \end{Desc}
+\item[\hyperlink{todo__todo000008}{Todo}]make Physevents for each of the events in SDL\_\-WmEvents(and delete the SDL events) \end{Desc}
 
 
 

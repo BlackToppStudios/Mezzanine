@@ -327,7 +327,7 @@
 <a name="l00296"></a>00296 
 <a name="l00297"></a><a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#ae39fe0545df88148bcd668b3bd2a4388">00297</a>     <span class="keywordtype">void</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#ae39fe0545df88148bcd668b3bd2a4388" title="This will change this point into it&amp;#39;s own normal relative to the origin.">Vector3::Normalize</a>()
 <a name="l00298"></a>00298     {
-<a name="l00299"></a>00299         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TempLength = this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f" title="This return the distance between this point and another.">Distance</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af328c400a03fdb8d2a99fd58382d61cb" title="Default Constructor.">Vector3</a>(0.0f,0.0f,0.0f));
+<a name="l00299"></a>00299         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TempLength = this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af59a586331fe9497056b7e0f207658a3" title="This return the distance between this point and another.">Distance</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af328c400a03fdb8d2a99fd58382d61cb" title="Default Constructor.">Vector3</a>(0.0f,0.0f,0.0f));
 <a name="l00300"></a>00300         <span class="keywordflow">if</span> (0!=TempLength)
 <a name="l00301"></a>00301         {
 <a name="l00302"></a>00302              (*this) /= TempLength;
@@ -338,7 +338,7 @@
 <a name="l00307"></a>00307 
 <a name="l00308"></a><a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a81e11f45378758391c97ec55b519951c">00308</a>     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a81e11f45378758391c97ec55b519951c" title="This returns the normal for this relative to the origin.">Vector3::GetNormal</a>()<span class="keyword"> const</span>
 <a name="l00309"></a>00309 <span class="keyword">    </span>{
-<a name="l00310"></a>00310         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TempLength = this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f" title="This return the distance between this point and another.">Distance</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af328c400a03fdb8d2a99fd58382d61cb" title="Default Constructor.">Vector3</a>(0.0f,0.0f,0.0f));
+<a name="l00310"></a>00310         <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> TempLength = this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af59a586331fe9497056b7e0f207658a3" title="This return the distance between this point and another.">Distance</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af328c400a03fdb8d2a99fd58382d61cb" title="Default Constructor.">Vector3</a>(0.0f,0.0f,0.0f));
 <a name="l00311"></a>00311         <span class="keywordflow">if</span> (0!=TempLength)
 <a name="l00312"></a>00312         {
 <a name="l00313"></a>00313             <span class="keywordflow">return</span> (*<span class="keyword">this</span>) / TempLength;
@@ -406,11 +406,11 @@
 <a name="l00375"></a>00375         this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>=Ours.z;
 <a name="l00376"></a>00376     }
 <a name="l00377"></a>00377 
-<a name="l00378"></a><a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f">00378</a>     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f" title="This return the distance between this point and another.">Vector3::Distance</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;Vec2)<span class="keyword"> const</span>
+<a name="l00378"></a><a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af59a586331fe9497056b7e0f207658a3">00378</a>     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af59a586331fe9497056b7e0f207658a3" title="This return the distance between this point and another.">Vector3::Distance</a>(<span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> &amp;OtherVec)<span class="keyword"> const</span>
 <a name="l00379"></a>00379 <span class="keyword">    </span>{
-<a name="l00380"></a>00380         <span class="keywordtype">float</span> Xdelta = this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> - Vec2.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>;
-<a name="l00381"></a>00381         <span class="keywordtype">float</span> Ydelta = this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> - Vec2.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00382"></a>00382         <span class="keywordtype">float</span> Zdelta = this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a> - Vec2.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>;
+<a name="l00380"></a>00380         <span class="keywordtype">float</span> Xdelta = Ogre::Math::Abs(this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a> - OtherVec.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>);
+<a name="l00381"></a>00381         <span class="keywordtype">float</span> Ydelta = Ogre::Math::Abs(this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a> - OtherVec.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00382"></a>00382         <span class="keywordtype">float</span> Zdelta = Ogre::Math::Abs(this-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a> - OtherVec.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>);
 <a name="l00383"></a>00383         <span class="keywordflow">return</span> Ogre::Math::Sqrt( Xdelta*Xdelta + Ydelta*Ydelta + Zdelta*Zdelta );
 <a name="l00384"></a>00384     }
 <a name="l00385"></a>00385 
@@ -424,61 +424,108 @@
 <a name="l00393"></a>00393     <span class="keywordflow">return</span> stream;
 <a name="l00394"></a>00394 }
 <a name="l00395"></a>00395 
-<a name="l00396"></a>00396 
-<a name="l00397"></a>00397 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom)
-<a name="l00398"></a>00398 {
-<a name="l00399"></a>00399     VecTo.x=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>;
-<a name="l00400"></a>00400     VecTo.y=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>;
-<a name="l00401"></a>00401     VecTo.z=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>;
-<a name="l00402"></a>00402     <span class="keywordflow">return</span> VecTo;
-<a name="l00403"></a>00403 }
-<a name="l00404"></a>00404 
-<a name="l00405"></a>00405 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
-<a name="l00406"></a>00406 {
-<a name="l00407"></a>00407     VecTo.x=VecFrom.getX();
-<a name="l00408"></a>00408     VecTo.y=VecFrom.getY();
-<a name="l00409"></a>00409     VecTo.z=VecFrom.getZ();
-<a name="l00410"></a>00410     <span class="keywordflow">return</span> VecTo;
-<a name="l00411"></a>00411 }
-<a name="l00412"></a>00412 
-<a name="l00413"></a>00413 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
-<a name="l00414"></a>00414 {
-<a name="l00415"></a>00415     VecTo.setX(VecFrom.x);
-<a name="l00416"></a>00416     VecTo.setY(VecFrom.y);
-<a name="l00417"></a>00417     VecTo.setZ(VecFrom.z);
-<a name="l00418"></a>00418     VecTo.setW(0);
-<a name="l00419"></a>00419     <span class="keywordflow">return</span> VecTo;
-<a name="l00420"></a>00420 }
-<a name="l00421"></a>00421 
-<a name="l00422"></a>00422 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom)
-<a name="l00423"></a>00423 {
-<a name="l00424"></a>00424     VecTo.setX(VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>);
-<a name="l00425"></a>00425     VecTo.setY(VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>);
-<a name="l00426"></a>00426     VecTo.setZ(VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>);
-<a name="l00427"></a>00427     VecTo.setW(0);
-<a name="l00428"></a>00428     <span class="keywordflow">return</span> VecTo;
-<a name="l00429"></a>00429 }
-<a name="l00430"></a>00430 
-<a name="l00431"></a>00431 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
-<a name="l00432"></a>00432 {
-<a name="l00433"></a>00433     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=VecFrom.x;
-<a name="l00434"></a>00434     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=VecFrom.y;
-<a name="l00435"></a>00435     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>=VecFrom.z;
-<a name="l00436"></a>00436     <span class="keywordflow">return</span> VecTo;
-<a name="l00437"></a>00437 }
-<a name="l00438"></a>00438 
-<a name="l00439"></a>00439 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
-<a name="l00440"></a>00440 {
-<a name="l00441"></a>00441     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=VecFrom.getX();
-<a name="l00442"></a>00442     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=VecFrom.getY();
-<a name="l00443"></a>00443     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>=VecFrom.getZ();
-<a name="l00444"></a>00444     <span class="keywordflow">return</span> VecTo;
-<a name="l00445"></a>00445 }
-<a name="l00446"></a>00446 
-<a name="l00447"></a>00447 <span class="preprocessor">#endif</span>
+<a name="l00396"></a>00396 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom)
+<a name="l00397"></a>00397 {
+<a name="l00398"></a>00398     VecTo.x=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>;
+<a name="l00399"></a>00399     VecTo.y=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00400"></a>00400     VecTo.z=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>;
+<a name="l00401"></a>00401     <span class="keywordflow">return</span> VecTo;
+<a name="l00402"></a>00402 }
+<a name="l00403"></a>00403 
+<a name="l00404"></a>00404 Ogre::Vector3&amp; operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
+<a name="l00405"></a>00405 {
+<a name="l00406"></a>00406     VecTo.x=VecFrom.getX();
+<a name="l00407"></a>00407     VecTo.y=VecFrom.getY();
+<a name="l00408"></a>00408     VecTo.z=VecFrom.getZ();
+<a name="l00409"></a>00409     <span class="keywordflow">return</span> VecTo;
+<a name="l00410"></a>00410 }
+<a name="l00411"></a>00411 
+<a name="l00412"></a>00412 Ogre::Vector3&amp; PHYS_LIB operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> cAudio::cVector3&amp; VecFrom)
+<a name="l00413"></a>00413 {
+<a name="l00414"></a>00414     VecTo.x=VecFrom.x;
+<a name="l00415"></a>00415     VecTo.y=VecFrom.y;
+<a name="l00416"></a>00416     VecTo.z=VecFrom.z;
+<a name="l00417"></a>00417     <span class="keywordflow">return</span> VecTo;
+<a name="l00418"></a>00418 }
+<a name="l00419"></a>00419 
+<a name="l00420"></a>00420 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
+<a name="l00421"></a>00421 {
+<a name="l00422"></a>00422     VecTo.setX(VecFrom.x);
+<a name="l00423"></a>00423     VecTo.setY(VecFrom.y);
+<a name="l00424"></a>00424     VecTo.setZ(VecFrom.z);
+<a name="l00425"></a>00425     VecTo.setW(0);
+<a name="l00426"></a>00426     <span class="keywordflow">return</span> VecTo;
+<a name="l00427"></a>00427 }
+<a name="l00428"></a>00428 
+<a name="l00429"></a>00429 btVector3&amp; operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom)
+<a name="l00430"></a>00430 {
+<a name="l00431"></a>00431     VecTo.setX(VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>);
+<a name="l00432"></a>00432     VecTo.setY(VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>);
+<a name="l00433"></a>00433     VecTo.setZ(VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>);
+<a name="l00434"></a>00434     VecTo.setW(0);
+<a name="l00435"></a>00435     <span class="keywordflow">return</span> VecTo;
+<a name="l00436"></a>00436 }
+<a name="l00437"></a>00437 
+<a name="l00438"></a>00438 btVector3&amp; PHYS_LIB operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> cAudio::cVector3&amp; VecFrom)
+<a name="l00439"></a>00439 {
+<a name="l00440"></a>00440     VecTo.setX(VecFrom.x);
+<a name="l00441"></a>00441     VecTo.setY(VecFrom.y);
+<a name="l00442"></a>00442     VecTo.setZ(VecFrom.z);
+<a name="l00443"></a>00443     <span class="keywordflow">return</span> VecTo;
+<a name="l00444"></a>00444 }
+<a name="l00445"></a>00445 
+<a name="l00446"></a>00446 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
+<a name="l00447"></a>00447 {
+<a name="l00448"></a>00448     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=VecFrom.x;
+<a name="l00449"></a>00449     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=VecFrom.y;
+<a name="l00450"></a>00450     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>=VecFrom.z;
+<a name="l00451"></a>00451     <span class="keywordflow">return</span> VecTo;
+<a name="l00452"></a>00452 }
+<a name="l00453"></a>00453 
+<a name="l00454"></a>00454 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
+<a name="l00455"></a>00455 {
+<a name="l00456"></a>00456     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=VecFrom.getX();
+<a name="l00457"></a>00457     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=VecFrom.getY();
+<a name="l00458"></a>00458     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>=VecFrom.getZ();
+<a name="l00459"></a>00459     <span class="keywordflow">return</span> VecTo;
+<a name="l00460"></a>00460 }
+<a name="l00461"></a>00461 
+<a name="l00462"></a>00462 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; PHYS_LIB operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> cAudio::cVector3&amp; VecFrom)
+<a name="l00463"></a>00463 {
+<a name="l00464"></a>00464     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>=VecFrom.x;
+<a name="l00465"></a>00465     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=VecFrom.y;
+<a name="l00466"></a>00466     VecTo.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>=VecFrom.z;
+<a name="l00467"></a>00467     <span class="keywordflow">return</span> VecTo;
+<a name="l00468"></a>00468 }
+<a name="l00469"></a>00469 
+<a name="l00470"></a>00470 cAudio::cVector3&amp; PHYS_LIB operator &lt;&lt; (cAudio::cVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom)
+<a name="l00471"></a>00471 {
+<a name="l00472"></a>00472     VecTo.x=VecFrom.x;
+<a name="l00473"></a>00473     VecTo.y=VecFrom.y;
+<a name="l00474"></a>00474     VecTo.z=VecFrom.z;
+<a name="l00475"></a>00475     <span class="keywordflow">return</span> VecTo;
+<a name="l00476"></a>00476 }
+<a name="l00477"></a>00477 
+<a name="l00478"></a>00478 cAudio::cVector3&amp; PHYS_LIB operator &lt;&lt; (cAudio::cVector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom)
+<a name="l00479"></a>00479 {
+<a name="l00480"></a>00480     VecTo.x=VecFrom.getX();
+<a name="l00481"></a>00481     VecTo.y=VecFrom.getY();
+<a name="l00482"></a>00482     VecTo.z=VecFrom.getZ();
+<a name="l00483"></a>00483     <span class="keywordflow">return</span> VecTo;
+<a name="l00484"></a>00484 }
+<a name="l00485"></a>00485 
+<a name="l00486"></a>00486 cAudio::cVector3&amp; PHYS_LIB operator &lt;&lt; (cAudio::cVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom)
+<a name="l00487"></a>00487 {
+<a name="l00488"></a>00488     VecTo.x=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a23660f9d1e21a25c53aa06aa737bb56b" title="Coordinate on the X vector.">X</a>;
+<a name="l00489"></a>00489     VecTo.y=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>;
+<a name="l00490"></a>00490     VecTo.z=VecFrom.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>;
+<a name="l00491"></a>00491     <span class="keywordflow">return</span> VecTo;
+<a name="l00492"></a>00492 }
+<a name="l00493"></a>00493 
+<a name="l00494"></a>00494 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:40 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:10 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

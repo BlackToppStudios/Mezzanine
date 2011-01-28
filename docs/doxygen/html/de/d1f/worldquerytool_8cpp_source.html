@@ -306,9 +306,9 @@
 <a name="l00275"></a>00275 <span class="preprocessor"></span>
 <a name="l00276"></a>00276             <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>* return_vector = <span class="keyword">new</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a>(QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a> + (u * sI));
 <a name="l00277"></a>00277 
-<a name="l00278"></a>00278             <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> distance = return_vector-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f" title="This return the distance between this point and another.">Distance</a>(QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>);
+<a name="l00278"></a>00278             <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> distance = return_vector-&gt;<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af59a586331fe9497056b7e0f207658a3" title="This return the distance between this point and another.">Distance</a>(QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>);
 <a name="l00279"></a>00279 
-<a name="l00280"></a>00280             <span class="keywordflow">if</span>(distance &gt; QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6388c8993a8f09ba2f7fef366858634f" title="This return the distance between this point and another.">Distance</a>(QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>))
+<a name="l00280"></a>00280             <span class="keywordflow">if</span>(distance &gt; QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#a3004d52f8f1e317ee602f8f278531057" title="The origin point of the Vector.">From</a>.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#af59a586331fe9497056b7e0f207658a3" title="This return the distance between this point and another.">Distance</a>(QueryRay.<a class="code" href="../../df/d57/classphys_1_1Ray.html#aa2585a1c6d29d1533c816e7277baf1ad" title="A point on the line of the ray.">To</a>))
 <a name="l00281"></a>00281             {
 <a name="l00282"></a>00282 <span class="preprocessor">                #ifdef PHYSDEBUG</span>
 <a name="l00283"></a>00283 <span class="preprocessor"></span>                this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;WorldQueryTool Error:Ray casted hits plane but is not long enough.&quot;</span>);
@@ -481,7 +481,7 @@
 <a name="l00450"></a>00450 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:40 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:10 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

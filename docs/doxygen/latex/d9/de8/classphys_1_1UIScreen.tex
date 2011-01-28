@@ -52,7 +52,9 @@ void \hyperlink{classphys_1_1UIScreen_ac1d9dfc0b8d9b3720f1447dcc93d8b55}{Destroy
 \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UIScreen_a7bc1a10b2172ad8885901de1a65a819d}{CheckButtonMouseIsOver} ()
 \begin{DoxyCompactList}\small\item\em Gets the button the mouse is over if any. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIScreen_a00befef8c7bce9e8d149e6ba03419a53}{CheckWidgetMouseIsOver} ()
-\begin{DoxyCompactList}\small\item\em Gets the widget the mouse is over if any. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the widget the mouse is over if any. \item\end{DoxyCompactList}\item 
+Gorilla::Screen $\ast$ \hyperlink{classphys_1_1UIScreen_a1ec3a329f7864905e6dc387f469068df}{GetGorillaScreen} ()
+\begin{DoxyCompactList}\small\item\em Gets the internal screen this screen is based on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -170,7 +172,7 @@ A GUI layer is exactly that, a layer of GUI objects. You can have multiple GUI l
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000028}{Todo}]add an exception here or maybe log entry, some notification it failed. \end{Desc}
+\item[\hyperlink{todo__todo000031}{Todo}]add an exception here or maybe log entry, some notification it failed. \end{Desc}
 
 
 
@@ -196,6 +198,28 @@ Destroy's a previously created layer.
 
 
 Definition at line 142 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_a1ec3a329f7864905e6dc387f469068df}{
+\index{phys::UIScreen@{phys::UIScreen}!GetGorillaScreen@{GetGorillaScreen}}
+\index{GetGorillaScreen@{GetGorillaScreen}!phys::UIScreen@{phys::UIScreen}}
+\subsubsection[{GetGorillaScreen}]{\setlength{\rightskip}{0pt plus 5cm}Gorilla::Screen $\ast$ phys::UIScreen::GetGorillaScreen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d9/de8/classphys_1_1UIScreen_a1ec3a329f7864905e6dc387f469068df}
+
+
+Gets the internal screen this screen is based on. 
+
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Gorilla screen this screen is based on. 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 189 of file uiscreen.cpp.
 
 \hypertarget{classphys_1_1UIScreen_a8b9aeb4599c47d2b4ea0a1c5d5e6f210}{
 \index{phys::UIScreen@{phys::UIScreen}!GetLayer@{GetLayer}}

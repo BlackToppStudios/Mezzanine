@@ -60,7 +60,8 @@ Inheritance diagram for phys::ManagerBase:</div>
 <area href="../../d1/d35/classphys_1_1ResourceManager.html" alt="phys::ResourceManager" shape="rect" coords="169,336,328,360"/>
 <area href="../../dd/da8/classphys_1_1SceneManager.html" alt="phys::SceneManager" shape="rect" coords="169,392,328,416"/>
 <area href="../../d1/dc4/classphys_1_1SoundManager.html" alt="phys::SoundManager" shape="rect" coords="169,448,328,472"/>
-<area href="../../d5/dc5/classphys_1_1UIManager.html" alt="phys::UIManager" shape="rect" coords="169,504,328,528"/>
+<area href="../../dc/d66/classphys_1_1TimerManager.html" alt="phys::TimerManager" shape="rect" coords="169,504,328,528"/>
+<area href="../../d5/dc5/classphys_1_1UIManager.html" alt="phys::UIManager" shape="rect" coords="169,560,328,584"/>
 </map>
 </div>
 
@@ -79,7 +80,8 @@ Public Types</h2></td></tr>
 <b>SceneManager</b>, 
 <b>SoundManager</b>, 
 <br/>
-&nbsp;&nbsp;<b>UIManager</b>, 
+&nbsp;&nbsp;<b>TimerManager</b>, 
+<b>UIManager</b>, 
 <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c">UserCreated</a>
 <br/>
  }</td></tr>
@@ -213,7 +215,7 @@ Protected Attributes</h2></td></tr>
 <p>The main loop calls this once per frame. </p>
 <p>This is where each manager is expected to put anything that needs to be run each iteration of the main loop </p>
 
-<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a67fbde6a61602253f66fecd0416bdc2f">phys::ActorContainerBase</a>, <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a883e59ac1674421bac143088a6cf07c8">phys::ActorContainerVector</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#aca8fb3d285484dcdb943824bf11f3596">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c">phys::PhysicsManager</a>, <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a2114714999441c095bc28d3673c2490e">phys::ResourceManager</a>, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html#a27a3f6b21e15f628642b1cad524f1a18">phys::SceneManager</a>, <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">phys::SoundManager</a>, and <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#a972abedcd4343dc5966580f2f82494a8">phys::UIManager</a>.</p>
+<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a67fbde6a61602253f66fecd0416bdc2f">phys::ActorContainerBase</a>, <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a883e59ac1674421bac143088a6cf07c8">phys::ActorContainerVector</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#aca8fb3d285484dcdb943824bf11f3596">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a62741a2582ac9bfd0255cf8a3ad2310c">phys::PhysicsManager</a>, <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a2114714999441c095bc28d3673c2490e">phys::ResourceManager</a>, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html#a27a3f6b21e15f628642b1cad524f1a18">phys::SceneManager</a>, <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a577b228753ea19856b8476ab831e547e">phys::SoundManager</a>, <a class="el" href="../../dc/d66/classphys_1_1TimerManager.html#a98b7e74fe1e3eff7aee506477abe2a9c">phys::TimerManager</a>, and <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#a972abedcd4343dc5966580f2f82494a8">phys::UIManager</a>.</p>
 
 </div>
 </div>
@@ -304,7 +306,7 @@ Protected Attributes</h2></td></tr>
 <p>This has no Set counterpart to allow the changing of a manager's priority. This is expected to be set by the manager, or expose a safe method to change it at that level. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a short int that represents the priority of the manager. Lower is executed first. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d7/d44/managerbase_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/d44/managerbase_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -327,7 +329,7 @@ Protected Attributes</h2></td></tr>
 <p>This is intended to make using and casting from Manager base easier. With this is is possible to cast from <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a> to the correct Manager Type. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a ManagerTypeName to identify what this can be safely cast to. </dd></dl>
 
-<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa86380fd1b18d660f68b60f075967cf8">phys::ActorContainerBase</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6">phys::PhysicsManager</a>, <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a9e5468e5428f5c108c7b3c01e94eba46">phys::ResourceManager</a>, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html#af2b4f6bc50d40ffe06f6172c3d1dd02d">phys::SceneManager</a>, <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a6815f78a6170b119e2d1d24e862ffbf8">phys::SoundManager</a>, and <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#ab8fe74564ca5dc09cbe4b1cc2c007e79">phys::UIManager</a>.</p>
+<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa86380fd1b18d660f68b60f075967cf8">phys::ActorContainerBase</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4d151cd24052ef3cccde6b66b8745be6">phys::PhysicsManager</a>, <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a9e5468e5428f5c108c7b3c01e94eba46">phys::ResourceManager</a>, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html#af2b4f6bc50d40ffe06f6172c3d1dd02d">phys::SceneManager</a>, <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#a6815f78a6170b119e2d1d24e862ffbf8">phys::SoundManager</a>, <a class="el" href="../../dc/d66/classphys_1_1TimerManager.html#a716811f51cb9e97ed6e9db310f34e9dc">phys::TimerManager</a>, and <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#ab8fe74564ca5dc09cbe4b1cc2c007e79">phys::UIManager</a>.</p>
 
 </div>
 </div>
@@ -373,7 +375,7 @@ Protected Attributes</h2></td></tr>
 <br/>
  Yes we know it is spelled wrong, but are Zs cooler anyway. </p>
 
-<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#af36d5866e0ee9f6f450a4e62642e0928">phys::ActorContainerBase</a>, <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c">phys::ActorContainerVector</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388">phys::PhysicsManager</a>, <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a9be3250f1f1153c9e079f82736eb00a8">phys::ResourceManager</a>, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html#aa13b380a4e38f706a1977237fc4b165e">phys::SceneManager</a>, <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#ae6d3957f965b54e06ec540e903cec68d">phys::SoundManager</a>, and <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#af04e60c4f09c114ec3bf32babdb64ab7">phys::UIManager</a>.</p>
+<p>Implemented in <a class="el" href="../../d1/d00/classphys_1_1ActorContainerBase.html#af36d5866e0ee9f6f450a4e62642e0928">phys::ActorContainerBase</a>, <a class="el" href="../../d3/d64/classphys_1_1ActorContainerVector.html#adcebf4329a587669f74e1eacc1e6912c">phys::ActorContainerVector</a>, <a class="el" href="../../d9/d91/classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488">phys::CameraManager</a>, <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0">phys::EventManager</a>, <a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">phys::GraphicsManager</a>, <a class="el" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a28885be750bb763d957f122593815388">phys::PhysicsManager</a>, <a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a9be3250f1f1153c9e079f82736eb00a8">phys::ResourceManager</a>, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html#aa13b380a4e38f706a1977237fc4b165e">phys::SceneManager</a>, <a class="el" href="../../d1/dc4/classphys_1_1SoundManager.html#ae6d3957f965b54e06ec540e903cec68d">phys::SoundManager</a>, <a class="el" href="../../dc/d66/classphys_1_1TimerManager.html#ab6ee47352a406682178b4496544bcf6f">phys::TimerManager</a>, and <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html#af04e60c4f09c114ec3bf32babdb64ab7">phys::UIManager</a>.</p>
 
 </div>
 </div>
@@ -530,7 +532,7 @@ Protected Attributes</h2></td></tr>
 <p>This has no Set counterpart to allow the changing of a manager's priority. This is expected to be set by the manager, or expose a safe method to change it at that level. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a short int that represents the priority of the manager. Lower is executed first. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d7/d44/managerbase_8cpp_source.html#l00149">149</a> of file <a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/d44/managerbase_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a>.</p>
 
 </div>
 </div>
@@ -549,7 +551,7 @@ Protected Attributes</h2></td></tr>
 <p>The actual pointer to the world. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00205">205</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00206">206</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -567,7 +569,7 @@ Protected Attributes</h2></td></tr>
 <p>This is a function pointer to the function that should be called after running Main Loop Items. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00213">213</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00214">214</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -585,7 +587,7 @@ Protected Attributes</h2></td></tr>
 <p>This is a function pointer to the function that should be called before running Main Loop Items. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00209">209</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00210">210</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -603,7 +605,7 @@ Protected Attributes</h2></td></tr>
 <p>This is a weighting used by the main loop to decide what order the managers should be called in. </p>
 <p>A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at priority 0. </p>
 
-<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00218">218</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d91/managerbase_8h_source.html#l00219">219</a> of file <a class="el" href="../../dd/d91/managerbase_8h_source.html">managerbase.h</a>.</p>
 
 </div>
 </div>
@@ -612,7 +614,7 @@ Protected Attributes</h2></td></tr>
 <li><a class="el" href="../../d7/d44/managerbase_8cpp_source.html">managerbase.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:46 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:16 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -375,11 +375,11 @@ namespace phys
         this->Z=Ours.z;
     }
 
-    Real Vector3::Distance(const Vector3 &Vec2) const
+    Real Vector3::Distance(const Vector3 &OtherVec) const
     {
-        float Xdelta = this->X - Vec2.X;
-        float Ydelta = this->Y - Vec2.Y;
-        float Zdelta = this->Z - Vec2.Z;
+        float Xdelta = Ogre::Math::Abs(this->X - OtherVec.X);
+        float Ydelta = Ogre::Math::Abs(this->Y - OtherVec.Y);
+        float Zdelta = Ogre::Math::Abs(this->Z - OtherVec.Z);
         return Ogre::Math::Sqrt( Xdelta*Xdelta + Ydelta*Ydelta + Zdelta*Zdelta );
     }
 
@@ -389,10 +389,15 @@ namespace phys
 // Class External << Operators for streaming or assignment
 std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 {
-    stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
+    #ifdef PHYSXML
+        // Put real XML Code here
+
+        stream << "<vector3 x=\"" << x.X << "\" y=\"" << x.Y << "\" z=\"" << x.Z << "\" />";
+    #else
+        stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
+    #endif // \PHYSXML
     return stream;
 }
-
 
 Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom)
 {
@@ -407,6 +412,14 @@ Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom)
     VecTo.x=VecFrom.getX();
     VecTo.y=VecFrom.getY();
     VecTo.z=VecFrom.getZ();
+    return VecTo;
+}
+
+Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const cAudio::cVector3& VecFrom)
+{
+    VecTo.x=VecFrom.x;
+    VecTo.y=VecFrom.y;
+    VecTo.z=VecFrom.z;
     return VecTo;
 }
 
@@ -428,6 +441,14 @@ btVector3& operator << (btVector3& VecTo, const phys::Vector3& VecFrom)
     return VecTo;
 }
 
+btVector3& PHYS_LIB operator << (btVector3& VecTo, const cAudio::cVector3& VecFrom)
+{
+    VecTo.setX(VecFrom.x);
+    VecTo.setY(VecFrom.y);
+    VecTo.setZ(VecFrom.z);
+    return VecTo;
+}
+
 phys::Vector3& operator << (phys::Vector3& VecTo, const Ogre::Vector3& VecFrom)
 {
     VecTo.X=VecFrom.x;
@@ -441,6 +462,38 @@ phys::Vector3& operator << (phys::Vector3& VecTo, const btVector3& VecFrom)
     VecTo.X=VecFrom.getX();
     VecTo.Y=VecFrom.getY();
     VecTo.Z=VecFrom.getZ();
+    return VecTo;
+}
+
+phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const cAudio::cVector3& VecFrom)
+{
+    VecTo.X=VecFrom.x;
+    VecTo.Y=VecFrom.y;
+    VecTo.Z=VecFrom.z;
+    return VecTo;
+}
+
+cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const Ogre::Vector3& VecFrom)
+{
+    VecTo.x=VecFrom.x;
+    VecTo.y=VecFrom.y;
+    VecTo.z=VecFrom.z;
+    return VecTo;
+}
+
+cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const btVector3& VecFrom)
+{
+    VecTo.x=VecFrom.getX();
+    VecTo.y=VecFrom.getY();
+    VecTo.z=VecFrom.getZ();
+    return VecTo;
+}
+
+cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const phys::Vector3& VecFrom)
+{
+    VecTo.x=VecFrom.X;
+    VecTo.y=VecFrom.Y;
+    VecTo.z=VecFrom.Z;
     return VecTo;
 }
 
