@@ -18,7 +18,8 @@ PugiCppFile="pugisrc/pugixml.cpp"
 PugiHFile="pugisrc/pugixml.hpp"
 PugiConfigFile="pugisrc/pugiconfig.hpp"
 PugiTempHFile="pugisrc/temp.hpp"
-
+PhysxmlifdefFile="ifdef.txt"
+PhysxmlendifFile="endif.txt"
 
 #Output Files
 OutDir="../../physgameengine/src"
@@ -80,10 +81,10 @@ tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"
 #		HEADER_PUGIXML_HPP -> _xml_h
 #		HEADER_PUGICONFIG_HPP	-> _xmlconfig_h
 #	- Put the results in the final place they belong
-cat $PugiTempHFile | sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_XML_H/g 	-e s/HEADER_PUGICONFIG_HPP/_XMLCONFIG_H/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	> $NewHFile
+cat $PhysxmlifdefFile $PugiTempHFile $PhysxmlendifFile| sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_XML_H/g 	-e s/HEADER_PUGICONFIG_HPP/_XMLCONFIG_H/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	> $NewHFile
 
 # This does mostly the same thing that the header transfortmation does, a bunch of cleanup and putting the code where it belongs
-cat $PugiCppFile | sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	>> $NewCppFile
+cat $PhysxmlifdefFile $PugiCppFile $PhysxmlendifFile| sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	>> $NewCppFile
 
 # This will look in file $1 for the bracket that should end the statement that starts with $2 and ends the statement with $4
 # while doing this, old instances of $2 and replace them with $3
@@ -282,8 +283,8 @@ function FixNames
 	sed -i -e 's|// Last parsed Offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|' $1
 	sed -i -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|' $1
 	sed -i -e 's|// Default constructor, initializes object to failed state|/// @brief Default constructor, initializes object to failed state.|' $1
-	sed -i -e 's|// Cast to bool operator|/// @brief Cast to bool operator \\n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|' $1
-	sed -i -e 's|// Get error Description |/// @brief Uses the Status member to create a text description. \\n		/// @return A const char* with a brief error description based on the ParseResult::Status |' $1
+	sed -i -e 's|// Cast to bool operator|/// @brief Cast to bool operator \n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|' $1
+	sed -i -e 's|// Get error Description |/// @brief Uses the Status member to create a text description. \n		/// @return A const char* with a brief error description based on the ParseResult::Status |' $1
 	sed -i -e 's|// Character type used for all internal storage and operations; depends on XML_WCHAR_MODE|/// @brief The character type used the internals of the XML parser, this is defined in datatypes.h.|' $1
 
 	#Writer Interface class

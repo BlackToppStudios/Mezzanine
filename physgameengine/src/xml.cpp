@@ -37,6 +37,7 @@
    Joseph Toppi - toppij@gmail.com 
    John Blackwood - makoenergy02@gmail.com 
 */ 
+#ifdef PHYSXML 
 /* 
  * 
  * Software, Files, Libraries and all other items referenced in this clause refers only 
@@ -9630,3 +9631,4 @@ namespace phys
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE. 
  */ 
+#endif // \PHYSXML 

@@ -1,3 +1,4 @@
+#ifdef PHYSXML 
 //© Copyright 2010 Joseph Toppi and John Blackwood 
 /* This file is part of The PhysGame Engine. 
  
@@ -814,10 +815,12 @@ namespace phys
 		/// @brief Default constructor, initializes object to failed state. 
 		ParseResult(); 
  
-		/// @brief Cast to bool operator \n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
+		/// @brief Cast to bool operator 
+		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. \n		/// @return A const char* with a brief error description based on the ParseResult::Status 
+		/// @brief Uses the Status member to create a text description. 
+		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
  
@@ -915,10 +918,12 @@ namespace phys
 		/// @brief Default constructor, initializes object to failed state. 
 		XPathParseResult(); 
  
-		/// @brief Cast to bool operator \n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
+		/// @brief Cast to bool operator 
+		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. \n		/// @return A const char* with a brief error description based on the ParseResult::Status 
+		/// @brief Uses the Status member to create a text description. 
+		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
  
@@ -1244,3 +1249,4 @@ namespace std
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE. 
  */ 
+#endif // \PHYSXML 

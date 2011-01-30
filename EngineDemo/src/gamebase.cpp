@@ -243,7 +243,7 @@ bool PostInput()
     if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_f) && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setRenderOptions(1280,1024,true);
+        TheWorld->GetGraphicsManager()->setRenderOptions(1366,768,true);
         //TheWorld->GetGraphicsManager()->setFullscreen(true);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_g)  && !videobuttonpushed )

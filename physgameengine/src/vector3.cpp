@@ -391,9 +391,33 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 {
     #ifdef PHYSXML
-        // Put real XML Code here
+        phys::xml::Document Doc;
+        Doc.load("");           // This sets the encoding to UTF8 ?!
+        phys::xml::Node VecNode = Doc.AppendChild("Vector3");
 
-        stream << "<vector3 x=\"" << x.X << "\" y=\"" << x.Y << "\" z=\"" << x.Z << "\" />";
+        if (VecNode)
+        {
+            phys::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+            phys::xml::Attribute XAttr = VecNode.AppendAttribute("X");
+            phys::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
+            phys::xml::Attribute ZAttr = VecNode.AppendAttribute("Z");
+            if( VersionAttr && XAttr && YAttr && ZAttr)
+            {
+                if( VersionAttr.SetValue("1") && XAttr.SetValue(x.X) && YAttr.SetValue(x.Y) && ZAttr.SetValue(x.Z))
+                {
+                    // It worked we don't need to do anything
+                }else{
+                    phys::World::LogAndThrow("Could not Stream Vector3 XML Attribute Values.")
+                }
+            }else{
+                phys::World::LogAndThrow("Could not Stream Vector3 XML Attribute Names.")
+            }
+        }else{
+            phys::World::LogAndThrow("Could not Stream Vector3 XML Anything.")
+        }
+
+        Doc.save(stream);
+        //stream << "<vector3 x=\"" << x.X << "\" y=\"" << x.Y << "\" z=\"" << x.Z << "\" />";
     #else
         stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
     #endif // \PHYSXML
