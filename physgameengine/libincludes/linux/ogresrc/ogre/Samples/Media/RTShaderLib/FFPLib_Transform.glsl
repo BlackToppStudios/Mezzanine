@@ -33,7 +33,7 @@ THE SOFTWARE.
 // Language: GLSL
 // Notes: Implements core functions for FFPTransform class.
 // based on transform engine. 
-// See http://msdn.microsoft.com/en-us/library/bb206269.aspx
+// See http://msdn.microsoft.com/en-us/library/ee422511.aspx
 //-----------------------------------------------------------------------------
 
 
@@ -45,27 +45,3 @@ void FFP_Transform(in mat4 m,
 	vOut = m * v;
 }
 
-//-----------------------------------------------------------------------------
-void FFP_Transform(in mat4 m, 
-				   in vec4 v, 
-				   out vec3 vOut)
-{
-	vOut = (m * v).xyz;
-}
-
-//-----------------------------------------------------------------------------
-void FFP_Transform(in mat3x4 m, 
-				   in vec3 v, 
-				   out vec3 vOut)
-{
-	vOut = mat3(m) * v;
-}
-
-
-//-----------------------------------------------------------------------------
-void FFP_Transform(in mat4 m, 
-				   in vec3 v, 
-				   out vec3 vOut)
-{
-	vOut = mat3(m) * v;
-}

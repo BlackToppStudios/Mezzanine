@@ -32,7 +32,7 @@ THE SOFTWARE.
 // Language: HLSL
 // Notes: Implements core functions for FFPTransform class.
 // based on transform engine. 
-// See http://msdn.microsoft.com/en-us/library/bb206269.aspx
+// See http://msdn.microsoft.com/en-us/library/ee422511.aspx
 //-----------------------------------------------------------------------------
 
 
@@ -43,29 +43,3 @@ void FFP_Transform(in float4x4 m,
 {
 	vOut = mul(m, v);
 }
-
-//-----------------------------------------------------------------------------
-void FFP_Transform(in float3x4 m, 
-				   in float4 v, 
-				   out float3 vOut)
-{
-	vOut = mul(m, v);
-}
-
-//-----------------------------------------------------------------------------
-void FFP_Transform(in float3x4 m, 
-				   in float3 v, 
-				   out float3 vOut)
-{
-	vOut = mul((float3x3)m, v);
-}
-
-//-----------------------------------------------------------------------------
-void FFP_Transform(in float4x4 m, 
-				   in float3 v, 
-				   out float3 vOut)
-{
-	vOut = mul((float3x3)m, v);
-}
-
-

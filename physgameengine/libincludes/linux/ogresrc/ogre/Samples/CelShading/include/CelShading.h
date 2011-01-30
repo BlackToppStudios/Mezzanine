@@ -21,8 +21,7 @@ public:
 	StringVector getRequiredPlugins()
 	{
 		StringVector names;
-        if (!GpuProgramManager::getSingleton().isSyntaxSupported("glsles"))
-            names.push_back("Cg Program Manager");
+		names.push_back("Cg Program Manager");
 		return names;
 	}
 
@@ -31,7 +30,7 @@ public:
 		if (!caps->hasCapability(RSC_VERTEX_PROGRAM) || !caps->hasCapability(RSC_FRAGMENT_PROGRAM))
         {
 			OGRE_EXCEPT(Exception::ERR_NOT_IMPLEMENTED, "Your graphics card does not support vertex and fragment"
-				" programs, so you cannot run this sample. Sorry!", "Sample_CelShading::testCapabilities");
+				" programs, so you cannot run this sample. Sorry!", "CelShadingSample::testCapabilities");
         }
 	}
 

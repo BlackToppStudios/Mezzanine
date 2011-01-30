@@ -16,7 +16,6 @@ PROJECT(OgrePaging)
 # define header and source files for the library
 set (HEADER_FILES
 	include/OgreGrid2DPageStrategy.h
-	include/OgreGrid3DPageStrategy.h
 	include/OgrePage.h
 	include/OgrePageConnection.h
 	include/OgrePageContent.h
@@ -35,7 +34,6 @@ set (HEADER_FILES
 
 set (SOURCE_FILES
 	src/OgreGrid2DPageStrategy.cpp
-	src/OgreGrid3DPageStrategy.cpp
 	src/OgrePage.cpp
 	src/OgrePageContent.cpp
 	src/OgrePageContentCollection.cpp

@@ -208,15 +208,6 @@ if (OGRE_INSTALL_DEPENDENCIES)
 	endif()
   endif()
   
-  
-  # install GLES2 dlls
-  if (OGRE_BUILD_RENDERSYSTEM_GLES2)
-    install_debug(libEGL.dll)
-    install_debug(libGLESv2.dll)
-	install_release(libEGL.dll)
-	install_release(libGLESv2.dll)
-  endif ()
-  
 endif ()
 
 if (OGRE_COPY_DEPENDENCIES)
@@ -245,11 +236,4 @@ if (OGRE_COPY_DEPENDENCIES)
       copy_release(Cg.framework)
     endif ()
   endif ()
-  if (OGRE_BUILD_RENDERSYSTEM_GLES2)	
-	copy_debug(libEGL.dll)
-    copy_debug(libGLESv2.dll)
-	copy_release(libEGL.dll)
-	copy_release(libGLESv2.dll)
-  endif ()
-
 endif ()

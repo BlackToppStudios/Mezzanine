@@ -33,8 +33,8 @@
   add_subdirectory(SkyPlane)
   add_subdirectory(Smoke)
   add_subdirectory(SphereMapping)
+  add_subdirectory(Terrain)
   add_subdirectory(TextureFX)
-  add_subdirectory(TextureArray)
   add_subdirectory(Transparency)
   add_subdirectory(VolumeTex)
   add_subdirectory(Water)
@@ -43,7 +43,6 @@ if (NOT OGRE_BUILD_PLATFORM_IPHONE)
   add_subdirectory(DeferredShading)
   add_subdirectory(Isosurf)
   add_subdirectory(ParticleGS)
-  add_subdirectory(Terrain)
 endif ()
 
   # Add browser last

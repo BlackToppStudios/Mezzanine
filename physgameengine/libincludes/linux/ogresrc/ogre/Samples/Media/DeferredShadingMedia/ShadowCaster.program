@@ -10,7 +10,6 @@ vertex_program DeferredShading/Shadows/CasterVP cg
 		param_named_auto cWorldView worldview_matrix
 	}
 }
-
 fragment_program DeferredShading/Shadows/CasterFP cg
 {
 	source ShadowCaster.cg

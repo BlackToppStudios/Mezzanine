@@ -45,6 +45,7 @@
 #include <cAudio.h>
 
 #include "vector3.h"
+#include "xml.h"
 
 namespace phys
 {

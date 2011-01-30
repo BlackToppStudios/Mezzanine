@@ -85,8 +85,8 @@ void GLSLProgramWriter::initializeStringMaps()
 	// Custom vertex attributes defined http://www.ogre3d.org/docs/manual/manual_21.html
 	mContentToPerVertexAttributes[Parameter::SPC_POSITION_OBJECT_SPACE] = "vertex";
 	mContentToPerVertexAttributes[Parameter::SPC_NORMAL_OBJECT_SPACE] = "normal";
-	mContentToPerVertexAttributes[Parameter::SPC_TANGENT_OBJECT_SPACE] = "tangent";
-	mContentToPerVertexAttributes[Parameter::SPC_BINORMAL_OBJECT_SPACE] = "binormal";
+	mContentToPerVertexAttributes[Parameter::SPC_TANGENT] = "tangent";
+	mContentToPerVertexAttributes[Parameter::SPC_BINORMAL] = "binormal";
 
 	mContentToPerVertexAttributes[Parameter::SPC_TEXTURE_COORDINATE0] = "uv0";
 	mContentToPerVertexAttributes[Parameter::SPC_TEXTURE_COORDINATE1] = "uv1";
@@ -148,10 +148,6 @@ void GLSLProgramWriter::writeSourceCode(std::ostream& os, Program* program)
 		os << mGpuConstTypeMap[pUniformParam->getType()];
 		os << "\t";	
 		os << pUniformParam->getName();
-		if (pUniformParam->isArray() == true)
-		{
-			os << "[" << pUniformParam->getSize() << "]";	
-		}
 		os << ";" << std::endl;		
 	}
 	os << std::endl;			
@@ -568,10 +564,6 @@ void GLSLProgramWriter::writeOutParameters(std::ostream& os, Function* function,
 				os << mGpuConstTypeMap[pParam->getType()];
 				os << "\t";
 				os << pParam->getName();
-				if (pParam->isArray() == true)
-				{
-					os << "[" << pParam->getSize() << "]";	
-				}
 				os << ";" << std::endl;	
 			}
 		}
@@ -590,10 +582,6 @@ void GLSLProgramWriter::writeLocalParameter(std::ostream& os, ParameterPtr param
 	os << mGpuConstTypeMap[parameter->getType()];
 	os << "\t";	
 	os << parameter->getName();		
-	if (parameter->isArray() == true)
-	{
-		os << "[" << parameter->getSize() << "]";	
-	}
 }
 //-----------------------------------------------------------------------
 }

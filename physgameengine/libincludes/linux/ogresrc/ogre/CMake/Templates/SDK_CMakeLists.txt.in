@@ -175,19 +175,9 @@ endif (APPLE)
 if (OGRE_RTShaderSystem_FOUND)
 	add_definitions(-DUSE_RTSHADER_SYSTEM)
 	ogre_add_component_include_dir(RTShaderSystem)
-		# Link to RT Shader System if enabled.
-  		set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${OGRE_RTShaderSystem_LIBRARIES})
+	# Link to RT Shader System if enabled.
+	set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${OGRE_RTShaderSystem_LIBRARIES})
 endif()
-
-if (OGRE_Terrain_FOUND)
-    ogre_add_component_include_dir(Terrain)
-    set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${OGRE_Terrain_LIBRARIES})
-endif ()
-
-if (OGRE_Paging_FOUND)
-    ogre_add_component_include_dir(Paging)
-    set(OGRE_LIBRARIES ${OGRE_LIBRARIES} ${OGRE_Paging_LIBRARIES})
-endif ()
 
 if (UNIX AND NOT APPLE)
   # on Linux, shipped samples will still be compiled with CMake, so we need
@@ -241,6 +231,10 @@ if (OGRE_STATIC)
   if (OGRE_RenderSystem_GL_FOUND)
     include_directories(${OGRE_RenderSystem_GL_INCLUDE_DIRS})
     set(OGRE_PLUGIN_LIBRARIES ${OGRE_PLUGIN_LIBRARIES} ${OGRE_RenderSystem_GL_LIBRARIES})
+  endif ()
+  if (OGRE_RenderSystem_GLES_FOUND)
+    include_directories(${OGRE_RenderSystem_GLES_INCLUDE_DIRS})
+    set(OGRE_PLUGIN_LIBRARIES ${OGRE_PLUGIN_LIBRARIES} ${OGRE_RenderSystem_GLES_LIBRARIES})
   endif ()
 endif ()
 

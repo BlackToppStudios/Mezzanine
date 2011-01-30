@@ -86,7 +86,7 @@ extern "C" {
 #  endif
 #endif
 
-#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX || OGRE_PLATFORM == OGRE_PLATFORM_ANDROID || OGRE_PLATFORM == OGRE_PLATFORM_TEGRA2
+#if OGRE_PLATFORM == OGRE_PLATFORM_LINUX
 extern "C" {
 
 #   include <unistd.h>

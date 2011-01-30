@@ -29,7 +29,7 @@ if(${PhysProfile})
 	set(CommonBuildFlags "${CommonBuildFlags} -pg")
 endif(${PhysProfile})
 
-option(PhysXML "Enable XML and XML serialization supprt." OFF)
+option(PhysXML "Enable XML and XML serialization supprt." ON)
 if(${PhysXML})
 	message ("${PROJECT_NAME} - Enabling XML subsystem and object serialization to XML")
 	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML")

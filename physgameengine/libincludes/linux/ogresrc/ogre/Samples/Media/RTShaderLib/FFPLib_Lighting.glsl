@@ -30,10 +30,10 @@ THE SOFTWARE.
 // Program Name: FFPLib_Lighting
 // Program Desc: Lighting functions of the FFP.
 // Program Type: Vertex shader
-// Language: GLSL
+// Language: CG
 // Notes: Implements core functions for FFPLighting class.
 // based on lighting engine. 
-// See http://msdn.microsoft.com/en-us/library/bb147178.aspx
+// See http://msdn.microsoft.com/en-us/library/ee422035.aspx
 //-----------------------------------------------------------------------------
 
 

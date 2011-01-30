@@ -54,10 +54,10 @@ THE SOFTWARE
 namespace Ogre {
     // Define ogre version
     #define OGRE_VERSION_MAJOR 1
-    #define OGRE_VERSION_MINOR 8
-    #define OGRE_VERSION_PATCH 0
-	#define OGRE_VERSION_SUFFIX "unstable"
-    #define OGRE_VERSION_NAME "Byatis"
+    #define OGRE_VERSION_MINOR 7
+    #define OGRE_VERSION_PATCH 2
+	#define OGRE_VERSION_SUFFIX ""
+    #define OGRE_VERSION_NAME "Cthugha"
 
     #define OGRE_VERSION    ((OGRE_VERSION_MAJOR << 16) | (OGRE_VERSION_MINOR << 8) | OGRE_VERSION_PATCH)
 
@@ -140,7 +140,6 @@ namespace Ogre {
     template <typename T> class ControllerValue;
 	class DefaultWorkQueue;
     class Degree;
-	class DepthBuffer;
     class DynLib;
     class DynLibManager;
     class EdgeData;
@@ -169,11 +168,6 @@ namespace Ogre {
 	class HighLevelGpuProgramManager;
 	class HighLevelGpuProgramFactory;
     class IndexData;
-	class InstanceBatch;
-	class InstanceBatchShader;
-	class InstanceBatchVTF;
-	class InstanceManager;
-	class InstancedEntity;
     class IntersectionSceneQuery;
     class IntersectionSceneQueryListener;
     class Image;
