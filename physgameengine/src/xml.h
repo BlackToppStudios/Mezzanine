@@ -378,7 +378,11 @@ namespace phys
 		int AsInt() const; 
 		unsigned int AsUint() const; 
 		double AsDouble() const; 
-		float AsFloat() const; 
+		float AsFloat() const;
+		Real AsReal() const;
+		Whole AsWhole() const;
+		Integer AsInteger() const;
+		String AsString() const; 
  
 		// Get GetAttribute Value as bool (returns true if first character is in '1tTyY' set), or false if GetAttribute is empty 
 		bool AsBool() const; 

@@ -86,6 +86,14 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attempts to convert the value of the attribute to a double and returns the results.  <a href="#a467ae167d5407ae3293a22b8873cb43a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">float&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#aad74f805b9318735011d698ee39113aa">AsFloat</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attempts to convert the value of the attribute to a float and returns the results.  <a href="#aad74f805b9318735011d698ee39113aa"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a1ed9ffa5461223647168309ae4c86809">AsReal</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attempts to convert the value of the attribute to a Real and returns the results.  <a href="#a1ed9ffa5461223647168309ae4c86809"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ac40df65f4914609554d99e72624eb8d2">AsWhole</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attempts to convert the value of the attribute to a Whole and returns the results.  <a href="#ac40df65f4914609554d99e72624eb8d2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81">Integer</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a6f7ae9a3fe3ad8d88823d97e8fa04973">AsInteger</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attempts to convert the value of the attribute to a Integer and returns the results.  <a href="#a6f7ae9a3fe3ad8d88823d97e8fa04973"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a7b6b2e3e8c8f262dfca1b97d904c638a">AsString</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attempts to convert the value of the attribute to a String and returns the results.  <a href="#a7b6b2e3e8c8f262dfca1b97d904c638a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a1c3e0f3a1722aac6a43daa135fdf622e">AsBool</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attempts to convert the value of the attribute to a float and returns the results.  <a href="#a1c3e0f3a1722aac6a43daa135fdf622e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#af669654308122897f98858563375bf4c">SetName</a> (const char_t *rhs)</td></tr>
@@ -177,7 +185,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <p>Attempts to convert the value of the attribute to a float and returns the results. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03453">3453</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03477">3477</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -225,7 +233,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000049">Todo:</a></b></dt><dd>Update <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#aad74f805b9318735011d698ee39113aa" title="Attempts to convert the value of the attribute to a float and returns the results.">Attribute::AsFloat()</a> to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. </dd></dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check "errno" and see if it is set to "ERANGE" to test for this condition. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03442">3442</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03466">3466</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -253,6 +261,90 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a6f7ae9a3fe3ad8d88823d97e8fa04973"></a><!-- doxytag: member="phys::xml::Attribute::AsInteger" ref="a6f7ae9a3fe3ad8d88823d97e8fa04973" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Attribute::AsInteger </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Attempts to convert the value of the attribute to a Integer and returns the results. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>If the value of this attribute can be converted to a Integer by reading the character and interpretting them a number, that number is returned. Returns 0 on failure. </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw exception in certain overflow conditions </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03448">3448</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1ed9ffa5461223647168309ae4c86809"></a><!-- doxytag: member="phys::xml::Attribute::AsReal" ref="a1ed9ffa5461223647168309ae4c86809" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Attribute::AsReal </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Attempts to convert the value of the attribute to a Real and returns the results. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>If the value of this attribute can be converted to a Real by reading the character and interpretting them a number, that number is returned. Returns 0 on failure. </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw exception in certain overflow conditions </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03460">3460</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7b6b2e3e8c8f262dfca1b97d904c638a"></a><!-- doxytag: member="phys::xml::Attribute::AsString" ref="a7b6b2e3e8c8f262dfca1b97d904c638a" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Attribute::AsString </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Attempts to convert the value of the attribute to a String and returns the results. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>If the value of this attribute can be converted to a Real by reading the character and interpretting them a number, that number is returned. Returns 0 on failure. </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw exception in certain overflow conditions </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03454">3454</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ad00ec5857fc4afcda892a0057419a9a0"></a><!-- doxytag: member="phys::xml::Attribute::AsUint" ref="ad00ec5857fc4afcda892a0057419a9a0" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -277,6 +369,34 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac40df65f4914609554d99e72624eb8d2"></a><!-- doxytag: member="phys::xml::Attribute::AsWhole" ref="ac40df65f4914609554d99e72624eb8d2" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Attribute::AsWhole </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Attempts to convert the value of the attribute to a Whole and returns the results. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>If the value of this attribute can be converted to a Whole by reading the character and interpretting them a number, that number is returned. Returns 0 on failure. </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw exception in certain overflow conditions </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03442">3442</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a6d0157a562f283e9c87d1cc46b3405cc"></a><!-- doxytag: member="phys::xml::Attribute::Empty" ref="a6d0157a562f283e9c87d1cc46b3405cc" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -295,7 +415,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <p>Is this storing anything at all? </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns True if this <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> is storing nothing. False if it is storing anything. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03464">3464</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03488">3488</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,7 +483,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <p>Get a unique indentifying value for the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this represents. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A size_t that is unique per <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> that an attribute could represent. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03479">3479</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03503">3503</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -386,7 +506,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A void pointer to the internal data. </dd></dl>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03484">3484</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03508">3508</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -409,7 +529,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the name. </dd></dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>returns "" if attribute is empty. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03469">3469</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03493">3493</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -548,6 +668,35 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac92a92492d624984a52b64bc4fabf355"></a><!-- doxytag: member="phys::xml::Attribute::operator=" ref="ac92a92492d624984a52b64bc4fabf355" args="(double rhs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Attribute::operator= </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>rhs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The same as <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa">Attribute::SetValue()</a>; without the error return. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new value as a double. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>An reference to this attribute. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03531">3531</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a78d7a0436d386040e2d1f8954304b25b"></a><!-- doxytag: member="phys::xml::Attribute::operator=" ref="a78d7a0436d386040e2d1f8954304b25b" args="(const char_t *rhs)" -->
 <div class="memitem">
 <div class="memproto">
@@ -573,36 +722,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An reference to this attribute. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03489">3489</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac9a18c2b6c4bfc0cdfe4eede938a91fe"></a><!-- doxytag: member="phys::xml::Attribute::operator=" ref="ac9a18c2b6c4bfc0cdfe4eede938a91fe" args="(int rhs)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">phys::xml::Attribute::operator= </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>rhs</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The same as <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa">Attribute::SetValue()</a>; without the error return. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new value as an int. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>An reference to this attribute. </dd></dl>
-
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03495">3495</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03513">3513</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -631,36 +751,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An reference to this attribute. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03513">3513</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac92a92492d624984a52b64bc4fabf355"></a><!-- doxytag: member="phys::xml::Attribute::operator=" ref="ac92a92492d624984a52b64bc4fabf355" args="(double rhs)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">phys::xml::Attribute::operator= </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>rhs</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The same as <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa">Attribute::SetValue()</a>; without the error return. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new value as a double. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>An reference to this attribute. </dd></dl>
-
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03507">3507</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03537">3537</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -689,7 +780,36 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An reference to this attribute. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03501">3501</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03525">3525</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac9a18c2b6c4bfc0cdfe4eede938a91fe"></a><!-- doxytag: member="phys::xml::Attribute::operator=" ref="ac9a18c2b6c4bfc0cdfe4eede938a91fe" args="(int rhs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Attribute::operator= </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rhs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The same as <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa">Attribute::SetValue()</a>; without the error return. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new value as an int. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>An reference to this attribute. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03519">3519</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -809,127 +929,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000050">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03519">3519</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a6df4cf0f083482e69e4e6e94599a1d82"></a><!-- doxytag: member="phys::xml::Attribute::SetValue" ref="a6df4cf0f083482e69e4e6e94599a1d82" args="(bool rhs)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool phys::xml::Attribute::SetValue </td>
-          <td>(</td>
-          <td class="paramtype">bool&nbsp;</td>
-          <td class="paramname"> <em>rhs</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>This with be interpretted, then converted to "true" or "false" and used as the new value. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000044">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
-
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03578">3578</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a693f7bd8015866c3c4979101c343ce50"></a><!-- doxytag: member="phys::xml::Attribute::SetValue" ref="a693f7bd8015866c3c4979101c343ce50" args="(int rhs)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool phys::xml::Attribute::SetValue </td>
-          <td>(</td>
-          <td class="paramtype">int&nbsp;</td>
-          <td class="paramname"> <em>rhs</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Convert rhs to a character array that contains rhs, then use that as the new value. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new value as an int. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000041">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
-
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03533">3533</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a470512fcd8b4f7609319bf85df100aaa"></a><!-- doxytag: member="phys::xml::Attribute::SetValue" ref="a470512fcd8b4f7609319bf85df100aaa" args="(const char_t *rhs)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool phys::xml::Attribute::SetValue </td>
-          <td>(</td>
-          <td class="paramtype">const char_t *&nbsp;</td>
-          <td class="paramname"> <em>rhs</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Set the value of this. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new Value. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if this is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000040">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
-
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03526">3526</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a919034671f61ee408d616409a49dafca"></a><!-- doxytag: member="phys::xml::Attribute::SetValue" ref="a919034671f61ee408d616409a49dafca" args="(double rhs)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool phys::xml::Attribute::SetValue </td>
-          <td>(</td>
-          <td class="paramtype">double&nbsp;</td>
-          <td class="paramname"> <em>rhs</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Convert rhs to a character array that contains rhs, then use that as the new value. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new value as a double. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000043">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
-
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03563">3563</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03543">3543</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -959,7 +959,127 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000042">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03548">3548</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03572">3572</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a693f7bd8015866c3c4979101c343ce50"></a><!-- doxytag: member="phys::xml::Attribute::SetValue" ref="a693f7bd8015866c3c4979101c343ce50" args="(int rhs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::xml::Attribute::SetValue </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>rhs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert rhs to a character array that contains rhs, then use that as the new value. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new value as an int. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000041">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03557">3557</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a919034671f61ee408d616409a49dafca"></a><!-- doxytag: member="phys::xml::Attribute::SetValue" ref="a919034671f61ee408d616409a49dafca" args="(double rhs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::xml::Attribute::SetValue </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>rhs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert rhs to a character array that contains rhs, then use that as the new value. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new value as a double. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000043">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03587">3587</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6df4cf0f083482e69e4e6e94599a1d82"></a><!-- doxytag: member="phys::xml::Attribute::SetValue" ref="a6df4cf0f083482e69e4e6e94599a1d82" args="(bool rhs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::xml::Attribute::SetValue </td>
+          <td>(</td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>rhs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>This with be interpretted, then converted to "true" or "false" and used as the new value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> is empty or there is not enough memory. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000044">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03602">3602</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a470512fcd8b4f7609319bf85df100aaa"></a><!-- doxytag: member="phys::xml::Attribute::SetValue" ref="a470512fcd8b4f7609319bf85df100aaa" args="(const char_t *rhs)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::xml::Attribute::SetValue </td>
+          <td>(</td>
+          <td class="paramtype">const char_t *&nbsp;</td>
+          <td class="paramname"> <em>rhs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set the value of this. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The new Value. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if this is empty or there is not enough memory. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000040">Todo:</a></b></dt><dd>update this to make the error return code redudant and use an exception instead. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03550">3550</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -982,7 +1102,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns A pointer to a const c-style array of the the character type (usually char or wchar_t) containing the value. </dd></dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>returns "" if attribute is empty. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03474">3474</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03498">3498</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -992,7 +1112,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 30 2011 18:05:21 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jan 31 2011 01:56:59 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

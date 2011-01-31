@@ -452,9 +452,9 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
             {
                 if(VecNode.GetAttribute("Version").AsInt() >= 1)
                 {
-                    Vec.X=VecNode.GetAttribute("X").AsFloat();
-                    Vec.Y=VecNode.GetAttribute("Y").AsFloat();
-                    Vec.Z=VecNode.GetAttribute("Z").AsFloat();
+                    Vec.X=VecNode.GetAttribute("X").AsReal();
+                    Vec.Y=VecNode.GetAttribute("Y").AsReal();
+                    Vec.Z=VecNode.GetAttribute("Z").AsReal();
                 }else{
                     phys::World::GetWorldPointer()->LogAndThrow("Vector3 incompatible serialized version.");
                 }

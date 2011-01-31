@@ -124,8 +124,7 @@ namespace phys
     /// @return A String with the converted data
     template<class T> String ToString( const T& Datum )
     {
-        static std::stringstream Converter;
-        Converter.str("");
+        std::stringstream Converter;
         Converter << Datum;
         return Converter.str();
     }
@@ -135,8 +134,7 @@ namespace phys
     /// @return A Whole with the converted data
     template<class T> Whole ToWhole( const T& Datum )
     {
-        static std::stringstream Converter;
-        Converter.str("");
+        std::stringstream Converter;
         Converter << Datum;
         Whole Results;
         Converter >> Results;
@@ -148,8 +146,7 @@ namespace phys
     /// @return An Integer with the converted data
     template<class T> Integer ToInteger( const T& Datum )
     {
-        static std::stringstream Converter;
-        Converter.str("");
+        std::stringstream Converter;
         Converter << Datum;
         Integer Results;
         Converter >> Results;
@@ -163,8 +160,7 @@ namespace phys
     /// break things
     template<class T> int Toint( const T& Datum )
     {
-        static std::stringstream Converter;
-        Converter.str("");
+        std::stringstream Converter;
         Converter << Datum;
         int Results;
         Converter >> Results;
@@ -178,8 +174,7 @@ namespace phys
     /// break things
     template<class T> unsigned int Tounsignedint( const T& Datum )
     {
-        static std::stringstream Converter;
-        Converter.str("");
+        std::stringstream Converter;
         Converter << Datum;
         unsigned int Results;
         Converter >> Results;
@@ -188,11 +183,10 @@ namespace phys
 
     /// @brief Converts whatever to an Real as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
-    /// @return An Real with the converted data
-    template<class T> int ToReal( const T& Datum )
+    /// @return A Real with the converted data
+    template<class T> Real ToReal( const T& Datum )
     {
-        static std::stringstream Converter;
-        Converter.str("");
+        std::stringstream Converter;
         Converter << Datum;
         Real Results;
         Converter >> Results;
@@ -201,13 +195,12 @@ namespace phys
 
     /// @brief Converts whatever to a float as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
-    /// @return An float with the converted data
+    /// @return A float with the converted data
     /// @details This exists for interacting with other libraies, in situations where changing the Real Typedef could
     /// break things
-    template<class T> int Tofloat( const T& Datum )
+    template<class T> float Tofloat( const T& Datum )
     {
-        static std::stringstream Converter;
-        Converter.str("");
+        std::stringstream Converter;
         Converter << Datum;
         float Results;
         Converter >> Results;
@@ -216,12 +209,11 @@ namespace phys
 
     /// @brief Converts whatever to a double as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
-    /// @return An bouble with the converted data
+    /// @return A double with the converted data
     /// @details This exists for interacting with other libraies, in situations where changing the Typedefs could break things
-    template<class T> int Todouble( const T& Datum )
+    template<class T> double Todouble( const T& Datum )
     {
-        static std::stringstream Converter;
-        Converter.str("");
+        std::stringstream Converter;
         Converter << Datum;
         double Results;
         Converter >> Results;

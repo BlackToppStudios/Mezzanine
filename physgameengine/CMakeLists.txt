@@ -186,6 +186,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.cpp"
 )
 
 ###############################################################################

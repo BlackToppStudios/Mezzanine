@@ -421,6 +421,30 @@ namespace phys
         /// @todo Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
         /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check "errno" and see if it is set to "ERANGE" to test for this condition.
 
+        /// @fn Attribute::AsReal() const;
+        /// @brief Attempts to convert the value of the attribute to a Real and returns the results.
+        /// @return If the value of this attribute can be converted to a Real by reading the character
+        /// and interpretting them a number, that number is returned. Returns 0 on failure.
+        /// @exception This can throw exception in certain overflow conditions
+
+        /// @fn Attribute::AsWhole() const;
+        /// @brief Attempts to convert the value of the attribute to a Whole and returns the results.
+        /// @return If the value of this attribute can be converted to a Whole by reading the character
+        /// and interpretting them a number, that number is returned. Returns 0 on failure.
+        /// @exception This can throw exception in certain overflow conditions
+
+        /// @fn Attribute::AsInteger() const;
+        /// @brief Attempts to convert the value of the attribute to a Integer and returns the results.
+        /// @return If the value of this attribute can be converted to a Integer by reading the character
+        /// and interpretting them a number, that number is returned. Returns 0 on failure.
+        /// @exception This can throw exception in certain overflow conditions
+
+        /// @fn Attribute::AsString() const;
+        /// @brief Attempts to convert the value of the attribute to a String and returns the results.
+        /// @return If the value of this attribute can be converted to a Real by reading the character
+        /// and interpretting them a number, that number is returned. Returns 0 on failure.
+        /// @exception This can throw exception in certain overflow conditions
+
         /// @fn Attribute::AsBool() const;
         /// @brief Attempts to convert the value of the attribute to a float and returns the results.
         /// @return Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty
@@ -487,6 +511,7 @@ namespace phys
         /// @param lhs Left Hand Side of the operator.
         /// @param rhs Right Hand Side of the operator.
         /// @return A bool that has the correct value for a || operation.
+
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Node
@@ -573,6 +598,7 @@ namespace phys
 		/// @fn Node::GetLastChild() const;
 		/// @brief Get the last child Node of this Node.
 		/// @return Returns the last child node if it exists, otherwise it return an empty node.
+
 
 
     }

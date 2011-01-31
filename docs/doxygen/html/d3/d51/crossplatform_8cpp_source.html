@@ -170,24 +170,22 @@
 <a name="l00139"></a>00139 
 <a name="l00140"></a>00140         <span class="keywordtype">void</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a11ab7359564519dc966f997c98109f6e" title="Renders the current world contents to the screen.">RenderPhysWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TheWorld, Ogre::RenderWindow* TheOgreWindow)
 <a name="l00141"></a>00141         {<span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">            /// @todo This code was tested and proven to work in test case.  Are seperate methods nessessary?</span>
+<a name="l00142"></a>00142 <span class="comment">            /// @todo Are seperate methods nessessary?</span>
 <a name="l00143"></a>00143 <span class="comment">            /// Simple investigation showed that the same update() method is called when rendering one frame, but for all targets.</span>
 <a name="l00144"></a>00144 <span class="comment"></span><span class="preprocessor">            #ifndef WINDOWS</span>
-<a name="l00145"></a>00145 <span class="preprocessor"></span>               <span class="comment">//TheOgreWindow-&gt;update(true);</span>
-<a name="l00146"></a>00146                Ogre::Root::getSingleton().renderOneFrame();
-<a name="l00147"></a>00147                SDL_GL_SwapBuffers();
-<a name="l00148"></a>00148 <span class="preprocessor">            #else</span>
-<a name="l00149"></a>00149 <span class="preprocessor"></span>               Ogre::Root::getSingleton().renderOneFrame();
-<a name="l00150"></a>00150                SDL_GL_SwapBuffers();
-<a name="l00151"></a>00151 <span class="preprocessor">            #endif</span>
-<a name="l00152"></a>00152 <span class="preprocessor"></span>        }
-<a name="l00153"></a>00153     }
-<a name="l00154"></a>00154 }
-<a name="l00155"></a>00155 
-<a name="l00156"></a>00156 <span class="preprocessor">#endif</span>
+<a name="l00145"></a>00145 <span class="preprocessor"></span>               TheOgreWindow-&gt;update(<span class="keyword">true</span>);
+<a name="l00146"></a>00146 <span class="preprocessor">            #else</span>
+<a name="l00147"></a>00147 <span class="preprocessor"></span>               Ogre::Root::getSingleton().renderOneFrame();
+<a name="l00148"></a>00148                SDL_GL_SwapBuffers();
+<a name="l00149"></a>00149 <span class="preprocessor">            #endif</span>
+<a name="l00150"></a>00150 <span class="preprocessor"></span>        }
+<a name="l00151"></a>00151     }
+<a name="l00152"></a>00152 }
+<a name="l00153"></a>00153 
+<a name="l00154"></a>00154 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Jan 30 2011 18:05:10 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Jan 31 2011 01:56:48 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
