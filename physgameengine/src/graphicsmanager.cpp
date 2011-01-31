@@ -313,22 +313,17 @@ namespace phys
 
     void GraphicsManager::DoMainLoopItems()
     {
-        //Perform some basic checks to determine if a render needs to happen.
-        if( !OgreGameWindow->isVisible() && OgreGameWindow->isActive() )
-            OgreGameWindow->setActive(false);
-        else if( OgreGameWindow->isVisible() && !OgreGameWindow->isActive() )
-            OgreGameWindow->setActive(true);
-
         GameWorld->Log("Rendering the World.");
         Ogre::WindowEventUtilities::messagePump();
         if(OgreGameWindow->isActive())
         {
             crossplatform::RenderPhysWorld(this->GameWorld, this->OgreGameWindow);
+        }else if( !OgreGameWindow->isActive() && OgreGameWindow->isVisible()){
+            OgreGameWindow->update();
         }else{
             GameWorld->Log("Aborted Rendering, target is not active");
             // clear timings to allow smooth alt-tabbing action.
-            if( !OgreGameWindow->isVisible() )
-                Ogre::Root::getSingleton().clearEventTimes();
+            Ogre::Root::getSingleton().clearEventTimes();
         }
         GameWorld->Log("Finished Rendering");
 

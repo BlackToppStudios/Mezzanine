@@ -139,12 +139,10 @@ namespace phys
 
         void RenderPhysWorld(World *TheWorld, Ogre::RenderWindow* TheOgreWindow)
         {
-            /// @todo This code was tested and proven to work in test case.  Are seperate methods nessessary?
+            /// @todo Are seperate methods nessessary?
             /// Simple investigation showed that the same update() method is called when rendering one frame, but for all targets.
             #ifndef WINDOWS
-               //TheOgreWindow->update(true);
-               Ogre::Root::getSingleton().renderOneFrame();
-               SDL_GL_SwapBuffers();
+               TheOgreWindow->update(true);
             #else
                Ogre::Root::getSingleton().renderOneFrame();
                SDL_GL_SwapBuffers();
