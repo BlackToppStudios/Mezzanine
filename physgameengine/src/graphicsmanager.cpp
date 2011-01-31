@@ -315,7 +315,7 @@ namespace phys
     {
         GameWorld->Log("Rendering the World.");
         Ogre::WindowEventUtilities::messagePump();
-        if(OgreGameWindow->isActive())
+        if(1)//OgreGameWindow->isActive())
         {
             crossplatform::RenderPhysWorld(this->GameWorld, this->OgreGameWindow);
         }else if( !OgreGameWindow->isActive() && OgreGameWindow->isVisible()){

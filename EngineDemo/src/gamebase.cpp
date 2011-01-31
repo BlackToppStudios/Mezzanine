@@ -246,7 +246,7 @@ bool PostInput()
         //TheWorld->GetGraphicsManager()->setRenderOptions(1366,768,true);
         //TheWorld->GetGraphicsManager()->setRenderOptions(1280,1024,true);
         TheWorld->GetGraphicsManager()->setFullscreen(true);
-        TheWorld->GetGraphicsManager()->setFullscreen(false);
+        //TheWorld->GetGraphicsManager()->setFullscreen(false);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_g)  && !videobuttonpushed )
     {
@@ -600,18 +600,23 @@ void LoadContent()
         }
 
         TheWorld->Log("XML Streaming Test");
-        Vector3 ASinglePoint(1,2,3);
-        stringstream XMLStringStream;
 
-        XMLStringStream << ASinglePoint;
+        Vector3 ASinglePoint(1,2,3);
+        TheWorld->Log("ASinglePoint:");
+        TheWorld->Log(ASinglePoint);
 
         TheWorld->Log("Streaming ASinglePoint to String Stream:");
+        stringstream XMLStringStream;
+        XMLStringStream << ASinglePoint;
         TheWorld->Log(XMLStringStream.str());
 
         Vector3 ASecondPoint(0,0,0);
+        TheWorld->Log("ASecondPoint:");
+        TheWorld->Log(ASecondPoint);
+
+        TheWorld->Log("ReStreaming ASinglePoint from stringStream, to ASecondPoint:");
         XMLStringStream >> ASecondPoint;
-
-
+        TheWorld->Log(ASecondPoint);
 
 
         #ifdef PHYSDEBUG
