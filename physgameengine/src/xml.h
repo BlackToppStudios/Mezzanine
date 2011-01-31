@@ -557,7 +557,7 @@ namespace phys
 		bool RemoveChild(const char_t* Name); 
  
 		// Find GetAttribute using predicate. Returns first GetAttribute for which predicate returned true. 
-		template <typename Predicate> Attribute find_attribute(Predicate pred) const 
+		template <typename Predicate> Attribute FindAttribute(Predicate pred) const 
 		{ 
 			if (!_GetRoot) return Attribute(); 
 			 
@@ -569,7 +569,7 @@ namespace phys
 		} 
  
 		// Find GetChild node using predicate. Returns first GetChild for which predicate returned true. 
-		template <typename Predicate> Node find_GetChild(Predicate pred) const 
+		template <typename Predicate> Node FindChild(Predicate pred) const 
 		{ 
 			if (!_GetRoot) return Node(); 
 	 
@@ -581,7 +581,7 @@ namespace phys
 		} 
  
 		// Find node from subtree using predicate. Returns first node from subtree (depth-first), for which predicate returned true. 
-		template <typename Predicate> Node find_node(Predicate pred) const 
+		template <typename Predicate> Node FindNode(Predicate pred) const 
 		{ 
 			if (!_GetRoot) return Node(); 
  
@@ -605,8 +605,8 @@ namespace phys
 		} 
  
 		// Find GetChild node by GetAttribute Name/Value 
-		Node find_ChildBy_attribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const; 
-		Node find_ChildBy_attribute(const char_t* attr_Name, const char_t* attr_Value) const; 
+		Node FindChildbyAttribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const; 
+		Node FindChildbyAttribute(const char_t* attr_Name, const char_t* attr_Value) const; 
  
 	#ifndef XML_NO_STL 
 		// Get the absolute node path from GetRoot as a text string. 
@@ -614,19 +614,19 @@ namespace phys
 	#endif 
  
 		// Search for a node by path consisting of node names and . or .. elements. 
-		Node FirstElement_by_path(const char_t* path, char_t delimiter = '/') const; 
+		Node FirstElementByPath(const char_t* path, char_t delimiter = '/') const; 
  
-		// Recursively traverse subtree with TreeWalker 
-		bool traverse(TreeWalker& walker); 
+		// Recursively Traverse subtree with TreeWalker 
+		bool Traverse(TreeWalker& walker); 
 	 
 	#ifndef XML_NO_XPATH 
 		// Select single node by evaluating XPath query. Returns first node from the resulting node set. 
-		XPathNode select_single_node(const char_t* query, XPathVariableSet* variables = 0) const; 
-		XPathNode select_single_node(const XPathQuery& query) const; 
+		XPathNode FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const; 
+		XPathNode FindSingleNode(const XPathQuery& query) const; 
  
 		// Select node set by evaluating XPath query 
-		XPathNodeSet select_nodes(const char_t* query, XPathVariableSet* variables = 0) const; 
-		XPathNodeSet select_nodes(const XPathQuery& query) const; 
+		XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const; 
+		XPathNodeSet FindNodes(const XPathQuery& query) const; 
 	#endif 
 		 
 		// Print subtree using a WriterInstance object 
@@ -750,7 +750,7 @@ namespace phys
 		AttributeIterator operator--(int); 
 	}; 
  
-	// Abstract tree walker class (see Node::traverse) 
+	// Abstract tree walker class (see Node::Traverse) 
 	class PHYS_LIB TreeWalker 
 	{ 
 		friend class Node; 
@@ -769,7 +769,7 @@ namespace phys
 		// Callback that is called when traversal begins 
 		virtual bool begin(Node& node); 
  
-		// Callback that is called for each node traversed 
+		// Callback that is called for each node Traversed 
 		virtual bool for_each(Node& node) = 0; 
  
 		// Callback that is called when traversal ends 

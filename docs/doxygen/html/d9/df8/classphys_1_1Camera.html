@@ -103,15 +103,17 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/d57/classphys_1_1Ray.html">Ray</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df8/classphys_1_1Camera.html#a47c437c8755301512c2757f879e03e73">GetCameraToViewportRay</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Screenx, <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Screeny)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enables or disables auto tracking for the camera.  <a href="#a47c437c8755301512c2757f879e03e73"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df8/classphys_1_1Camera.html#ab32a8c708e5e22f65dde9ab821ea20fc">GetNodeAttachedToCamera</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the node attached to a camera.  <a href="#ab32a8c708e5e22f65dde9ab821ea20fc"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the node attached to the camera.  <a href="#ab32a8c708e5e22f65dde9ab821ea20fc"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df8/classphys_1_1Camera.html#a771fc7005191c3f83ac1fedb09699943">GetCameraRelativeLocation</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the relative location of a camera.  <a href="#a771fc7005191c3f83ac1fedb09699943"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the relative location of the camera.  <a href="#a771fc7005191c3f83ac1fedb09699943"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df8/classphys_1_1Camera.html#a53b61b6c163270ffb4f46eb66a973b10">GetCameraGlobalLocation</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the global location of a camera.  <a href="#a53b61b6c163270ffb4f46eb66a973b10"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the global location of the camera.  <a href="#a53b61b6c163270ffb4f46eb66a973b10"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df8/classphys_1_1Camera.html#a1cb593d12be4e6e1e51cb8f74ce2d97c">ZoomCamera</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Zoom)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Will zoom in or out the camera.  <a href="#a1cb593d12be4e6e1e51cb8f74ce2d97c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df8/classphys_1_1Camera.html#a181465e6add36c07a63fdd26aee7c69a">ResetZoom</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Resets the zoom level back to the default.  <a href="#a181465e6add36c07a63fdd26aee7c69a"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Ogre::Camera *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df8/classphys_1_1Camera.html#a48c1fb8e83f3d81d40ce04d2de2fd7eb">GetOgreCamera</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the internal camera this camera is based on.  <a href="#a48c1fb8e83f3d81d40ce04d2de2fd7eb"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">Ogre::Camera *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89">Cam</a></td></tr>
@@ -120,8 +122,6 @@ Protected Attributes</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the <a class="el" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a> manager that this camera is attached to.  <a href="#a909203ede748deb1b587a8758ba8cec4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7b4bcdf992c21ae83363f25df05b1d25"></a><!-- doxytag: member="phys::Camera::World" ref="a7b4bcdf992c21ae83363f25df05b1d25" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>World</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6db9d28bd448a131448276ee03de1e6d"></a><!-- doxytag: member="phys::Camera::Node" ref="a6db9d28bd448a131448276ee03de1e6d" args="" -->
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afae5bf9a900e8c5bc70c9332785e8465"></a><!-- doxytag: member="phys::Camera::CameraManager" ref="afae5bf9a900e8c5bc70c9332785e8465" args="" -->
@@ -235,8 +235,8 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>CameraManager</b></t
 </div>
 <div class="memdoc">
 
-<p>Gets the global location of a camera. </p>
-<p>Gets the real world location of the camera specified. </p>
+<p>Gets the global location of the camera. </p>
+<p>Gets the real world location of the camera. </p>
 
 <p>Definition at line <a class="el" href="../../d1/d6b/camera_8cpp_source.html#l00179">179</a> of file <a class="el" href="../../d1/d6b/camera_8cpp_source.html">camera.cpp</a>.</p>
 
@@ -257,8 +257,8 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>CameraManager</b></t
 </div>
 <div class="memdoc">
 
-<p>Gets the relative location of a camera. </p>
-<p>Gets the location of the camera, relative to any connected nodes, specified. </p>
+<p>Gets the relative location of the camera. </p>
+<p>Gets the location of the camera, relative to any parent nodes. </p>
 
 <p>Definition at line <a class="el" href="../../d1/d6b/camera_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../d1/d6b/camera_8cpp_source.html">camera.cpp</a>.</p>
 
@@ -359,10 +359,33 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>CameraManager</b></t
 </div>
 <div class="memdoc">
 
-<p>Gets the node attached to a camera. </p>
+<p>Gets the node attached to the camera. </p>
 <p>This will return a string that is the name of the node the specified camera is attached to if any. </p>
 
 <p>Definition at line <a class="el" href="../../d1/d6b/camera_8cpp_source.html#l00167">167</a> of file <a class="el" href="../../d1/d6b/camera_8cpp_source.html">camera.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a48c1fb8e83f3d81d40ce04d2de2fd7eb"></a><!-- doxytag: member="phys::Camera::GetOgreCamera" ref="a48c1fb8e83f3d81d40ce04d2de2fd7eb" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Ogre::Camera * phys::Camera::GetOgreCamera </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the internal camera this camera is based on. </p>
+<p><b>For internal use only.</b></p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the Ogre <a class="el" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a> this camera is based on. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d1/d6b/camera_8cpp_source.html#l00200">200</a> of file <a class="el" href="../../d1/d6b/camera_8cpp_source.html">camera.cpp</a>.</p>
 
 </div>
 </div>
@@ -829,7 +852,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>CameraManager</b></t
 <p>This is the <a class="el" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a> used by the graphics Subsystem, that this class wraps. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../d7/df6/camera_8h_source.html#l00088">88</a> of file <a class="el" href="../../d7/df6/camera_8h_source.html">camera.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/df6/camera_8h_source.html#l00086">86</a> of file <a class="el" href="../../d7/df6/camera_8h_source.html">camera.h</a>.</p>
 
 </div>
 </div>
@@ -847,7 +870,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>CameraManager</b></t
 <p>This is the <a class="el" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a> manager that this camera is attached to. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../d7/df6/camera_8h_source.html#l00092">92</a> of file <a class="el" href="../../d7/df6/camera_8h_source.html">camera.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/df6/camera_8h_source.html#l00090">90</a> of file <a class="el" href="../../d7/df6/camera_8h_source.html">camera.h</a>.</p>
 
 </div>
 </div>
@@ -856,7 +879,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>CameraManager</b></t
 <li><a class="el" href="../../d1/d6b/camera_8cpp_source.html">camera.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:13 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

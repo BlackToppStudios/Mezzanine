@@ -23,11 +23,17 @@ else(${PhysDebug})
 	endif(${WIN32})
 endif(${PhysDebug})
 
-option(PhysProfile "Executables will gather runtime statistics" OFF)
+option(PhysProfile "Executables will gather runtime statistics." OFF)
 if(${PhysProfile})
-		message ("${PROJECT_NAME} - Enabling gcc profiling")
-		set(CommonBuildFlags "${CommonBuildFlags} -pg")
+	message ("${PROJECT_NAME} - Enabling gcc profiling")
+	set(CommonBuildFlags "${CommonBuildFlags} -pg")
 endif(${PhysProfile})
+
+option(PhysXML "Enable XML and XML serialization supprt." OFF)
+if(${PhysXML})
+	message ("${PROJECT_NAME} - Enabling XML subsystem and object serialization to XML")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML")
+endif(${PhysXML})
 
 set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR})
 

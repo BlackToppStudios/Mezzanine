@@ -588,7 +588,7 @@
 <a name="l00557"></a>00557                 <span class="keywordtype">bool</span> RemoveChild(<span class="keyword">const</span> char_t* Name); 
 <a name="l00558"></a>00558  
 <a name="l00559"></a>00559                 <span class="comment">// Find GetAttribute using predicate. Returns first GetAttribute for which predicate returned true. </span>
-<a name="l00560"></a>00560                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> find_attribute(Predicate pred)<span class="keyword"> const </span>
+<a name="l00560"></a>00560                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> FindAttribute(Predicate pred)<span class="keyword"> const </span>
 <a name="l00561"></a>00561 <span class="keyword">                </span>{ 
 <a name="l00562"></a>00562                         <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l00563"></a>00563                          
@@ -600,7 +600,7 @@
 <a name="l00569"></a>00569                 } 
 <a name="l00570"></a>00570  
 <a name="l00571"></a>00571                 <span class="comment">// Find GetChild node using predicate. Returns first GetChild for which predicate returned true. </span>
-<a name="l00572"></a>00572                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> find_GetChild(Predicate pred)<span class="keyword"> const </span>
+<a name="l00572"></a>00572                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FindChild(Predicate pred)<span class="keyword"> const </span>
 <a name="l00573"></a>00573 <span class="keyword">                </span>{ 
 <a name="l00574"></a>00574                         <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>(); 
 <a name="l00575"></a>00575          
@@ -612,7 +612,7 @@
 <a name="l00581"></a>00581                 } 
 <a name="l00582"></a>00582  
 <a name="l00583"></a>00583                 <span class="comment">// Find node from subtree using predicate. Returns first node from subtree (depth-first), for which predicate returned true. </span>
-<a name="l00584"></a>00584                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> find_node(Predicate pred)<span class="keyword"> const </span>
+<a name="l00584"></a>00584                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FindNode(Predicate pred)<span class="keyword"> const </span>
 <a name="l00585"></a>00585 <span class="keyword">                </span>{ 
 <a name="l00586"></a>00586                         <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>(); 
 <a name="l00587"></a>00587  
@@ -636,8 +636,8 @@
 <a name="l00605"></a>00605                 } 
 <a name="l00606"></a>00606  
 <a name="l00607"></a>00607                 <span class="comment">// Find GetChild node by GetAttribute Name/Value </span>
-<a name="l00608"></a>00608                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> find_ChildBy_attribute(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value) <span class="keyword">const</span>; 
-<a name="l00609"></a>00609                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> find_ChildBy_attribute(<span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value) <span class="keyword">const</span>; 
+<a name="l00608"></a>00608                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FindChildbyAttribute(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value) <span class="keyword">const</span>; 
+<a name="l00609"></a>00609                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FindChildbyAttribute(<span class="keyword">const</span> char_t* attr_Name, <span class="keyword">const</span> char_t* attr_Value) <span class="keyword">const</span>; 
 <a name="l00610"></a>00610  
 <a name="l00611"></a>00611 <span class="preprocessor">        #ifndef XML_NO_STL </span>
 <a name="l00612"></a>00612 <span class="preprocessor"></span>                <span class="comment">// Get the absolute node path from GetRoot as a text string. </span>
@@ -645,19 +645,19 @@
 <a name="l00614"></a>00614 <span class="preprocessor">        #endif </span>
 <a name="l00615"></a>00615 <span class="preprocessor"></span> 
 <a name="l00616"></a>00616                 <span class="comment">// Search for a node by path consisting of node names and . or .. elements. </span>
-<a name="l00617"></a>00617                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FirstElement_by_path(<span class="keyword">const</span> char_t* path, char_t delimiter = <span class="charliteral">&#39;/&#39;</span>) <span class="keyword">const</span>; 
+<a name="l00617"></a>00617                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FirstElementByPath(<span class="keyword">const</span> char_t* path, char_t delimiter = <span class="charliteral">&#39;/&#39;</span>) <span class="keyword">const</span>; 
 <a name="l00618"></a>00618  
-<a name="l00619"></a>00619                 <span class="comment">// Recursively traverse subtree with TreeWalker </span>
-<a name="l00620"></a>00620                 <span class="keywordtype">bool</span> traverse(<a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">TreeWalker</a>&amp; walker); 
+<a name="l00619"></a>00619                 <span class="comment">// Recursively Traverse subtree with TreeWalker </span>
+<a name="l00620"></a>00620                 <span class="keywordtype">bool</span> Traverse(<a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">TreeWalker</a>&amp; walker); 
 <a name="l00621"></a>00621          
 <a name="l00622"></a>00622 <span class="preprocessor">        #ifndef XML_NO_XPATH </span>
 <a name="l00623"></a>00623 <span class="preprocessor"></span>                <span class="comment">// Select single node by evaluating XPath query. Returns first node from the resulting node set. </span>
-<a name="l00624"></a>00624                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> select_single_node(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables = 0) <span class="keyword">const</span>; 
-<a name="l00625"></a>00625                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> select_single_node(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query) <span class="keyword">const</span>; 
+<a name="l00624"></a>00624                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> FindSingleNode(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables = 0) <span class="keyword">const</span>; 
+<a name="l00625"></a>00625                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> FindSingleNode(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query) <span class="keyword">const</span>; 
 <a name="l00626"></a>00626  
 <a name="l00627"></a>00627                 <span class="comment">// Select node set by evaluating XPath query </span>
-<a name="l00628"></a>00628                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> select_nodes(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables = 0) <span class="keyword">const</span>; 
-<a name="l00629"></a>00629                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> select_nodes(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query) <span class="keyword">const</span>; 
+<a name="l00628"></a>00628                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> FindNodes(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables = 0) <span class="keyword">const</span>; 
+<a name="l00629"></a>00629                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> FindNodes(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query) <span class="keyword">const</span>; 
 <a name="l00630"></a>00630 <span class="preprocessor">        #endif </span>
 <a name="l00631"></a>00631 <span class="preprocessor"></span>                 
 <a name="l00632"></a>00632                 <span class="comment">// Print subtree using a WriterInstance object </span>
@@ -781,7 +781,7 @@
 <a name="l00750"></a>00750                 <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> operator--(<span class="keywordtype">int</span>); 
 <a name="l00751"></a>00751         }; 
 <a name="l00752"></a>00752  
-<a name="l00753"></a>00753         <span class="comment">// Abstract tree walker class (see Node::traverse) </span>
+<a name="l00753"></a>00753         <span class="comment">// Abstract tree walker class (see Node::Traverse) </span>
 <a name="l00754"></a><a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">00754</a>         <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">TreeWalker</a> 
 <a name="l00755"></a>00755         { 
 <a name="l00756"></a>00756                 <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>; 
@@ -800,7 +800,7 @@
 <a name="l00769"></a>00769                 <span class="comment">// Callback that is called when traversal begins </span>
 <a name="l00770"></a>00770                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> begin(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node); 
 <a name="l00771"></a>00771  
-<a name="l00772"></a>00772                 <span class="comment">// Callback that is called for each node traversed </span>
+<a name="l00772"></a>00772                 <span class="comment">// Callback that is called for each node Traversed </span>
 <a name="l00773"></a>00773                 <span class="keyword">virtual</span> <span class="keywordtype">bool</span> for_each(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node) = 0; 
 <a name="l00774"></a>00774  
 <a name="l00775"></a>00775                 <span class="comment">// Callback that is called when traversal ends </span>
@@ -1277,7 +1277,7 @@
 <a name="l01246"></a>01246 <span class="comment"> */</span> 
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Jan 27 2011 12:21:41 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:11 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

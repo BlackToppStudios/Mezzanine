@@ -14,7 +14,7 @@ This is the base class from which all the \hyperlink{classphys_1_1World}{World} 
 Inheritance diagram for phys::ManagerBase:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=10.000000cm]{d2/de3/classphys_1_1ManagerBase}
+\includegraphics[height=11.000000cm]{d2/de3/classphys_1_1ManagerBase}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -31,6 +31,7 @@ enum \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{Mana
 {\bfseries SceneManager}, 
 {\bfseries SoundManager}, 
 \par
+{\bfseries TimerManager}, 
 {\bfseries UIManager}, 
 \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c}{UserCreated}
  \}
@@ -170,7 +171,7 @@ The main loop calls this once per frame.
 
 This is where each manager is expected to put anything that needs to be run each iteration of the main loop 
 
-Implemented in \hyperlink{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_a883e59ac1674421bac143088a6cf07c8}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_aca8fb3d285484dcdb943824bf11f3596}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_a27a3f6b21e15f628642b1cad524f1a18}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{phys::SoundManager}, and \hyperlink{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{phys::UIManager}.
+Implemented in \hyperlink{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_a883e59ac1674421bac143088a6cf07c8}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_aca8fb3d285484dcdb943824bf11f3596}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_a27a3f6b21e15f628642b1cad524f1a18}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{phys::SoundManager}, \hyperlink{classphys_1_1TimerManager_a98b7e74fe1e3eff7aee506477abe2a9c}{phys::TimerManager}, and \hyperlink{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{phys::UIManager}.
 
 \hypertarget{classphys_1_1ManagerBase_addfd62fbc444ca4c2aba40768d1b284e}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetGameWorld@{GetGameWorld}}
@@ -254,7 +255,7 @@ This returns a short int that represents the priority of the manager. Lower is e
 \end{DoxyReturn}
 
 
-Definition at line 144 of file managerbase.cpp.
+Definition at line 153 of file managerbase.cpp.
 
 \hypertarget{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetType@{GetType}}
@@ -274,7 +275,7 @@ This returns a ManagerTypeName to identify what this can be safely cast to.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1ActorContainerBase_aa86380fd1b18d660f68b60f075967cf8}{phys::ActorContainerBase}, \hyperlink{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_af2b4f6bc50d40ffe06f6172c3d1dd02d}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{phys::SoundManager}, and \hyperlink{classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}{phys::UIManager}.
+Implemented in \hyperlink{classphys_1_1ActorContainerBase_aa86380fd1b18d660f68b60f075967cf8}{phys::ActorContainerBase}, \hyperlink{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_af2b4f6bc50d40ffe06f6172c3d1dd02d}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{phys::SoundManager}, \hyperlink{classphys_1_1TimerManager_a716811f51cb9e97ed6e9db310f34e9dc}{phys::TimerManager}, and \hyperlink{classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}{phys::UIManager}.
 
 \hypertarget{classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af4756}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetTypeName@{GetTypeName}}
@@ -313,7 +314,7 @@ If you are using the \hyperlink{classphys_1_1World}{phys::World} this is called 
 \par
  Yes we know it is spelled wrong, but are Zs cooler anyway. 
 
-Implemented in \hyperlink{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_aa13b380a4e38f706a1977237fc4b165e}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{phys::SoundManager}, and \hyperlink{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{phys::UIManager}.
+Implemented in \hyperlink{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_aa13b380a4e38f706a1977237fc4b165e}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{phys::SoundManager}, \hyperlink{classphys_1_1TimerManager_ab6ee47352a406682178b4496544bcf6f}{phys::TimerManager}, and \hyperlink{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{phys::UIManager}.
 
 \hypertarget{classphys_1_1ManagerBase_afc3572602f96bdeb8215c386ff870820}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PostMainLoopItems@{PostMainLoopItems}}
@@ -442,7 +443,7 @@ This returns a short int that represents the priority of the manager. Lower is e
 \end{DoxyReturn}
 
 
-Definition at line 149 of file managerbase.cpp.
+Definition at line 158 of file managerbase.cpp.
 
 
 
@@ -460,7 +461,7 @@ The actual pointer to the world.
 \end{DoxyInternal}
 
 
-Definition at line 205 of file managerbase.h.
+Definition at line 206 of file managerbase.h.
 
 \hypertarget{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PostMainLoop@{PostMainLoop}}
@@ -475,7 +476,7 @@ This is a function pointer to the function that should be called after running M
 \end{DoxyInternal}
 
 
-Definition at line 213 of file managerbase.h.
+Definition at line 214 of file managerbase.h.
 
 \hypertarget{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PreMainLoop@{PreMainLoop}}
@@ -490,7 +491,7 @@ This is a function pointer to the function that should be called before running 
 \end{DoxyInternal}
 
 
-Definition at line 209 of file managerbase.h.
+Definition at line 210 of file managerbase.h.
 
 \hypertarget{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}{
 \index{phys::ManagerBase@{phys::ManagerBase}!Priority@{Priority}}
@@ -503,7 +504,7 @@ This is a weighting used by the main loop to decide what order the managers shou
 
 A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at priority 0. 
 
-Definition at line 218 of file managerbase.h.
+Definition at line 219 of file managerbase.h.
 
 
 

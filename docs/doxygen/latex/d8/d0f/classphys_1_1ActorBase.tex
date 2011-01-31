@@ -44,7 +44,7 @@ void \hyperlink{classphys_1_1ActorBase_a72203a9c7befd1ab606ff69af4183849}{Enable
 \begin{DoxyCompactList}\small\item\em Enables the animation if one is set. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1ActorBase_ac98f9fdae0da939e352f8fcff217457c}{IsAnimated} ()
 \begin{DoxyCompactList}\small\item\em Tells whether this actor is animated or not. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1ActorBase_a37d5a8a3ae4ca3c6e7d14706096faa85}{AdvanceAnimation} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Time)
+void \hyperlink{classphys_1_1ActorBase_a37d5a8a3ae4ca3c6e7d14706096faa85}{AdvanceAnimation} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{structphys_1_1Time}{Time})
 \begin{DoxyCompactList}\small\item\em Advances the animation, making it animate. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ActorBase_ac42e5e47504d7f296bb0a2bedc2ded07}{RemoveSetAnimation} ()
 \begin{DoxyCompactList}\small\item\em Unloads a loaded animation. \item\end{DoxyCompactList}\item 
@@ -316,7 +316,7 @@ Advances the animation, making it animate.
 
 You need to call this every frame while the actor is to be animated, otherwise even with the animation enabled you will see no change in the animation. 
 
-Definition at line 490 of file actorbase.cpp.
+Definition at line 491 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a45f190cb9b647bb3385d1298f9dab589}{
 \index{phys::ActorBase@{phys::ActorBase}!AttachToGraphics@{AttachToGraphics}}
@@ -338,7 +338,7 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a37b3bf631e8f73b3f19c3bb043d0
 
 
 
-Definition at line 424 of file actorbase.cpp.
+Definition at line 425 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_aacf6737ed91267cb4aa54d4c33eb1ad0}{
 \index{phys::ActorBase@{phys::ActorBase}!CheckActivation@{CheckActivation}}
@@ -358,7 +358,7 @@ Returns true if the object is active, false if it's deactivated(at rest).
 \end{DoxyReturn}
 
 
-Definition at line 603 of file actorbase.cpp.
+Definition at line 604 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_aff7dbb190fb982a43123bee3066501c4}{
 \index{phys::ActorBase@{phys::ActorBase}!CreateEntity@{CreateEntity}}
@@ -522,7 +522,7 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a568b070c746775b73a3aa8ab33d6
 
 
 
-Definition at line 435 of file actorbase.cpp.
+Definition at line 436 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a23b32c9a9959a9d3b0f883d9b0eac460}{
 \index{phys::ActorBase@{phys::ActorBase}!DisableCollisionResponse@{DisableCollisionResponse}}
@@ -539,7 +539,7 @@ Sets the actor to be unable to collide with other objects in the world.
 
 By default collision response is enabled. Be sure to reactivate collision response if you want your objects to collide again. 
 
-Definition at line 565 of file actorbase.cpp.
+Definition at line 566 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a72203a9c7befd1ab606ff69af4183849}{
 \index{phys::ActorBase@{phys::ActorBase}!EnableAnimation@{EnableAnimation}}
@@ -559,7 +559,7 @@ This function will enable the animation if passed true, making the object animat
 \item[{\em Enable}]True to enable the animation or false to disable the animation. \end{DoxyParams}
 
 
-Definition at line 472 of file actorbase.cpp.
+Definition at line 473 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a843f60f15435071c08d3cf2480f0ffeb}{
 \index{phys::ActorBase@{phys::ActorBase}!EnableCollisionResponse@{EnableCollisionResponse}}
@@ -576,7 +576,7 @@ Sets the actor to be able to collide with other objects in the world.
 
 By default collision response is enabled. Only call this function if you have disabled collision response. 
 
-Definition at line 527 of file actorbase.cpp.
+Definition at line 528 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a9b32df1efdc346f5d6c0920b959c09a3}{
 \index{phys::ActorBase@{phys::ActorBase}!GetBulletLocation@{GetBulletLocation}}
@@ -795,7 +795,7 @@ Returns whether or not the shape of this actor has been saved.
 \end{DoxyReturn}
 
 
-Definition at line 451 of file actorbase.cpp.
+Definition at line 452 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_ab8bedea2ef0ce9194731ebeb886333ff}{
 \index{phys::ActorBase@{phys::ActorBase}!GetType@{GetType}}
@@ -815,7 +815,7 @@ ActorTypeName The type of actor that this is.
 \end{DoxyReturn}
 
 
-Definition at line 446 of file actorbase.cpp.
+Definition at line 447 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_ac98f9fdae0da939e352f8fcff217457c}{
 \index{phys::ActorBase@{phys::ActorBase}!IsAnimated@{IsAnimated}}
@@ -835,7 +835,7 @@ Returns true if an animation is set and enabled.
 \end{DoxyReturn}
 
 
-Definition at line 480 of file actorbase.cpp.
+Definition at line 481 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a0758873d315a0f70871649493d78d739}{
 \index{phys::ActorBase@{phys::ActorBase}!IsStaticOrKinematic@{IsStaticOrKinematic}}
@@ -855,7 +855,7 @@ Returns true if the actor is static or kinematic.
 \end{DoxyReturn}
 
 
-Definition at line 521 of file actorbase.cpp.
+Definition at line 522 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{
 \index{phys::ActorBase@{phys::ActorBase}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
@@ -893,7 +893,7 @@ Unloads a loaded animation.
 
 This function will remove the existing set animation. 
 
-Definition at line 498 of file actorbase.cpp.
+Definition at line 499 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a1ac7c692d7f88f39ebb1c1db5deba251}{
 \index{phys::ActorBase@{phys::ActorBase}!SetActorScaling@{SetActorScaling}}
@@ -917,7 +917,7 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_ad1696a10b3057897ca503de013aa
 
 
 
-Definition at line 440 of file actorbase.cpp.
+Definition at line 441 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a1c84866a23fdf7598462839dddae3240}{
 \index{phys::ActorBase@{phys::ActorBase}!SetAnimation@{SetAnimation}}
@@ -938,7 +938,7 @@ This function will get the specified animation for this object stored in the mes
 \item[{\em AnimationName}]Name of the stored animation to be loaded. \item[{\em Loop}]Whether or not you want the animation to loop. For example, you would want an idle animation to loop, but not a death animation. \end{DoxyParams}
 
 
-Definition at line 462 of file actorbase.cpp.
+Definition at line 463 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_ac60e1ebd1a08882234a6d04aff745260}{
 \index{phys::ActorBase@{phys::ActorBase}!SetBasicCollisionParams@{SetBasicCollisionParams}}
@@ -961,7 +961,7 @@ This function will set the Friction and Resititution of the actor, which will en
  Default: 0.0 \end{DoxyParams}
 
 
-Definition at line 456 of file actorbase.cpp.
+Definition at line 457 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_aa7ab524d2905e640cea6324cce9ccfdb}{
 \index{phys::ActorBase@{phys::ActorBase}!SetBulletLocation@{SetBulletLocation}}
@@ -1061,7 +1061,7 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_adde8ecfb7188b8cbb238e88da18a
 
 
 
-Definition at line 404 of file actorbase.cpp.
+Definition at line 405 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_acd5613286ec14fb2a8e5ed5f5003dc5f}{
 \index{phys::ActorBase@{phys::ActorBase}!SetKinematic@{SetKinematic}}
@@ -1079,7 +1079,7 @@ Sets the state of the object to Kinematic.
 This function will set the object to a Kinematic Object. \par
  Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers. 
 
-Definition at line 509 of file actorbase.cpp.
+Definition at line 510 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_a3212be459859a67bf7ae64919d58d5a5}{
 \index{phys::ActorBase@{phys::ActorBase}!SetLocation@{SetLocation}}
@@ -1200,7 +1200,7 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_a84541e8ebf7b54c91d2353d5f843
 
 
 
-Definition at line 409 of file actorbase.cpp.
+Definition at line 410 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_ac4b0bf1eff730d94f72d04957efea69d}{
 \index{phys::ActorBase@{phys::ActorBase}!SetOrientation@{SetOrientation}}
@@ -1224,7 +1224,7 @@ Reimplemented in \hyperlink{classphys_1_1ActorSoft_ad57b502da0658de31a4b3a9bb9be
 
 
 
-Definition at line 415 of file actorbase.cpp.
+Definition at line 416 of file actorbase.cpp.
 
 \hypertarget{classphys_1_1ActorBase_af0219532fe71d1d84042a20a88fe5037}{
 \index{phys::ActorBase@{phys::ActorBase}!SetStatic@{SetStatic}}
@@ -1242,7 +1242,7 @@ Sets the state of the object to Static.
 This function will set the object to a Static Object. \par
  Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects. 
 
-Definition at line 515 of file actorbase.cpp.
+Definition at line 516 of file actorbase.cpp.
 
 
 

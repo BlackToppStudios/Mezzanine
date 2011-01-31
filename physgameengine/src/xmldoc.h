@@ -54,6 +54,9 @@
  * Copyright © 2003, by Kristen Wegner (kristen@tima.net)
  */
 
+// To provide compilation option via cmake
+#ifdef PHYSXML
+
 #ifndef _xmldoc_h
 #define _xmldoc_h
 namespace phys
@@ -574,6 +577,8 @@ namespace phys
     }
 }
 #endif
+
+#endif // \PHYSXML
 
 /*
  *

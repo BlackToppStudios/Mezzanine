@@ -4156,7 +4156,7 @@ namespace phys
 		return true; 
 	} 
  
-	Node Node::find_ChildBy_attribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const 
+	Node Node::FindChildbyAttribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const 
 	{ 
 		if (!_GetRoot) return Node(); 
 		 
@@ -4171,7 +4171,7 @@ namespace phys
 		return Node(); 
 	} 
  
-	Node Node::find_ChildBy_attribute(const char_t* attr_Name, const char_t* attr_Value) const 
+	Node Node::FindChildbyAttribute(const char_t* attr_Name, const char_t* attr_Value) const 
 	{ 
 		if (!_GetRoot) return Node(); 
 		 
@@ -4206,7 +4206,7 @@ namespace phys
 	} 
 #endif 
  
-	Node Node::FirstElement_by_path(const char_t* path, char_t delimiter) const 
+	Node Node::FirstElementByPath(const char_t* path, char_t delimiter) const 
 	{ 
 		Node found = *this; // Current search context. 
  
@@ -4234,16 +4234,16 @@ namespace phys
 		while (*NextSegment == delimiter) ++NextSegment; 
  
 		if (*path_segment == '.' && path_segment + 1 == path_segment_end) 
-			return found.FirstElement_by_path(NextSegment, delimiter); 
+			return found.FirstElementByPath(NextSegment, delimiter); 
 		else if (*path_segment == '.' && *(path_segment+1) == '.' && path_segment + 2 == path_segment_end) 
-			return found.GetParent().FirstElement_by_path(NextSegment, delimiter); 
+			return found.GetParent().FirstElementByPath(NextSegment, delimiter); 
 		else 
 		{ 
 			for (NodeStruct* j = found._GetRoot->GetFirstChild; j; j = j->GetNextSibling) 
 			{ 
 				if (j->Name && strequalrange(j->Name, path_segment, static_cast<size_t>(path_segment_end - path_segment))) 
 				{ 
-					Node subsearch = Node(j).FirstElement_by_path(NextSegment, delimiter); 
+					Node subsearch = Node(j).FirstElementByPath(NextSegment, delimiter); 
  
 					if (subsearch) return subsearch; 
 				} 
@@ -4253,7 +4253,7 @@ namespace phys
 		} 
 	} 
  
-	bool Node::traverse(TreeWalker& walker) 
+	bool Node::Traverse(TreeWalker& walker) 
 	{ 
 		walker._depth = -1; 
 		 
@@ -5433,7 +5433,7 @@ namespace
 		return *pattern == 0; 
 	} 
  
-	const char_t* find_char(const char_t* s, char_t c) 
+	const char_t* FindChar(const char_t* s, char_t c) 
 	{ 
 	#ifdef XML_WCHAR_MODE 
 		return wcschr(s, c); 
@@ -5442,7 +5442,7 @@ namespace
 	#endif 
 	} 
  
-	const char_t* find_substring(const char_t* s, const char_t* p) 
+	const char_t* FindSubstring(const char_t* s, const char_t* p) 
 	{ 
 	#ifdef XML_WCHAR_MODE 
 		// MSVC6 wcsstr bug workaround (if s is empty it always returns 0) 
@@ -5911,7 +5911,7 @@ namespace
 	const char_t* local_Name(const XPathNode& node) 
 	{ 
 		const char_t* Name = qualified_Name(node); 
-		const char_t* p = find_char(Name, ':'); 
+		const char_t* p = FindChar(Name, ':'); 
 		 
 		return p ? p + 1 : Name; 
 	} 
@@ -5923,7 +5923,7 @@ namespace
  
 		namespace_uri_predicate(const char_t* Name) 
 		{ 
-			const char_t* pos = find_char(Name, ':'); 
+			const char_t* pos = FindChar(Name, ':'); 
  
 			prefix = pos ? Name : 0; 
 			prefix_length = pos ? static_cast<size_t>(pos - Name) : 0; 
@@ -5947,7 +5947,7 @@ namespace
 		 
 		while (p) 
 		{ 
-			Attribute a = p.find_attribute(pred); 
+			Attribute a = p.FindAttribute(pred); 
 			 
 			if (a) return a.Value(); 
 			 
@@ -5968,7 +5968,7 @@ namespace
 		 
 		while (p) 
 		{ 
-			Attribute a = p.find_attribute(pred); 
+			Attribute a = p.FindAttribute(pred); 
 			 
 			if (a) return a.Value(); 
 			 
@@ -6019,7 +6019,7 @@ namespace
 		{ 
 			DMC_VOLATILE char_t ch = *buffer++; 
  
-			const char_t* pos = find_char(from, ch); 
+			const char_t* pos = FindChar(from, ch); 
  
 			if (!pos) 
 				*Write++ = ch; // do not process 
@@ -7494,7 +7494,7 @@ namespace
 				XPathString lr = _left->eval_string(c, stack); 
 				XPathString rr = _right->eval_string(c, stack); 
  
-				return find_substring(lr.c_str(), rr.c_str()) != 0; 
+				return FindSubstring(lr.c_str(), rr.c_str()) != 0; 
 			} 
  
 			case ast_func_boolean: 
@@ -7840,7 +7840,7 @@ namespace
 				XPathString s = _left->eval_string(c, swapped_stack); 
 				XPathString p = _right->eval_string(c, swapped_stack); 
  
-				const char_t* pos = find_substring(s.c_str(), p.c_str()); 
+				const char_t* pos = FindSubstring(s.c_str(), p.c_str()); 
 				 
 				return pos ? XPathString(s.c_str(), pos, stack.result) : XPathString(); 
 			} 
@@ -7854,7 +7854,7 @@ namespace
 				XPathString s = _left->eval_string(c, swapped_stack); 
 				XPathString p = _right->eval_string(c, swapped_stack); 
 				 
-				const char_t* pos = find_substring(s.c_str(), p.c_str()); 
+				const char_t* pos = FindSubstring(s.c_str(), p.c_str()); 
 				if (!pos) return XPathString(); 
  
 				const char_t* result = pos + p.length(); 
@@ -9575,25 +9575,25 @@ namespace phys
 		return !_impl; 
 	} 
  
-	XPathNode Node::select_single_node(const char_t* query, XPathVariableSet* variables) const 
+	XPathNode Node::FindSingleNode(const char_t* query, XPathVariableSet* variables) const 
 	{ 
 		XPathQuery q(query, variables); 
-		return select_single_node(q); 
+		return FindSingleNode(q); 
 	} 
  
-	XPathNode Node::select_single_node(const XPathQuery& query) const 
+	XPathNode Node::FindSingleNode(const XPathQuery& query) const 
 	{ 
 		XPathNodeSet s = query.evaluate_NodeSet(*this); 
 		return s.Empty() ? XPathNode() : s.first(); 
 	} 
  
-	XPathNodeSet Node::select_nodes(const char_t* query, XPathVariableSet* variables) const 
+	XPathNodeSet Node::FindNodes(const char_t* query, XPathVariableSet* variables) const 
 	{ 
 		XPathQuery q(query, variables); 
-		return select_nodes(q); 
+		return FindNodes(q); 
 	} 
  
-	XPathNodeSet Node::select_nodes(const XPathQuery& query) const 
+	XPathNodeSet Node::FindNodes(const XPathQuery& query) const 
 	{ 
 		return query.evaluate_NodeSet(*this); 
 	} 
