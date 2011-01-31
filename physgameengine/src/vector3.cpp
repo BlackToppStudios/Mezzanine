@@ -45,7 +45,8 @@
 #include <cAudio.h>
 
 #include "vector3.h"
-#include "xml.h"
+#include "world.h"          // Needed for Error loggin in stream
+#include "xml.h"            // Needed for streaming to xml
 
 namespace phys
 {
@@ -407,21 +408,41 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
                 {
                     // It worked we don't need to do anything
                 }else{
-                    phys::World::LogAndThrow("Could not Stream Vector3 XML Attribute Values.")
+                    phys::World::GetWorldPointer()->LogAndThrow("Could not Stream Vector3 XML Attribute Values.");
                 }
             }else{
-                phys::World::LogAndThrow("Could not Stream Vector3 XML Attribute Names.")
+                phys::World::GetWorldPointer()->LogAndThrow("Could not Stream Vector3 XML Attribute Names.");
             }
         }else{
-            phys::World::LogAndThrow("Could not Stream Vector3 XML Anything.")
+            phys::World::GetWorldPointer()->LogAndThrow("Could not Stream Vector3 XML Anything.");
         }
 
-        Doc.save(stream);
+        Doc.save(stream,"\t",phys::xml::FormatNoDeclaration | phys::xml::FormatRaw);
+
         //stream << "<vector3 x=\"" << x.X << "\" y=\"" << x.Y << "\" z=\"" << x.Z << "\" />";
     #else
         stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
     #endif // \PHYSXML
     return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
+{
+    char ReadOne = 0;
+    phys::String OneTag;
+
+    while (!stream.get(ReadOne).fail())     //Read one character and if you didn't fail continue the loop
+    {
+        OneTag.push_back(ReadOne);
+        if ( '>' == ReadOne )               //Assumes native Char enconding... This is a bad deal.
+            { break; }
+    }
+
+    phys::World::GetWorldPointer()->Log(OneTag);
+
+    //phys::xml::Document Doc;
+
+    //phys::World::GetWorldPointer()->LogAndThrow("Could not Stream Vector3 XML Anything.");
 }
 
 Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom)

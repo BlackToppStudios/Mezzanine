@@ -597,13 +597,20 @@ void LoadContent()
             TheWorld->LogStream << "Failed to load and parse test.xml. With Status :" << ParsedXML.Status;
         }
 
-        //phys::xml::TestXML(XMLptr);
+        TheWorld->Log("XML Streaming Test");
+        Vector3 ASinglePoint(1,2,3);
+        stringstream XMLStringStream;
 
-        /*
-        String temp;
-        xml::Document TestXMLDoc("Test");
-        *XMLptr >> TestXMLDoc;
-        TheWorld->LogStream << "XMLDoc:" << endl << TestXMLDoc << endl << "/XMLDoc";*/
+        XMLStringStream << ASinglePoint;
+
+        TheWorld->Log("Streaming ASinglePoint to String Stream:");
+        TheWorld->Log(XMLStringStream.str());
+
+        Vector3 ASecondPoint(0,0,0);
+        XMLStringStream >> ASecondPoint;
+
+
+
 
         #ifdef PHYSDEBUG
         TheWorld->Log("End of testing XML and Streaming test 3");
