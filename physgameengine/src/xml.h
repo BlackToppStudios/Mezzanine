@@ -392,7 +392,7 @@ namespace phys
 		/// @brief Set the value of this.
 		/// @param rhs The new Value.
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
 		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(const char_t* rhs); 
  
@@ -400,25 +400,25 @@ namespace phys
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as an int.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
 		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(int rhs); 
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as an unsigned int.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
 		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(unsigned int rhs); 
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as a double.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
 		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(double rhs); 
 		/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.
 		/// @param rhs This with be interpretted, then converted to "true" or "false"  and used as the new value.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
 		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(bool rhs);
 
@@ -546,7 +546,7 @@ namespace phys
 		/// @brief Set the value of this.
 		/// @param rhs The new Value.
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
 		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(const char_t* rhs); 
 		 
