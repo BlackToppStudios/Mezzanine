@@ -393,6 +393,7 @@ namespace phys
 		/// @param rhs The new Value.
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
 		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(const char_t* rhs); 
  
 		// Set GetAttribute Value with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false") 
@@ -400,22 +401,36 @@ namespace phys
 		/// @param rhs The new value as an int.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
 		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(int rhs); 
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as an unsigned int.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
 		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(unsigned int rhs); 
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as a double.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
 		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(double rhs); 
 		/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.
 		/// @param rhs This with be interpretted, then converted to "true" or "false"  and used as the new value.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
 		/// @todo update this to make the error return code redudant and use an exception instead.
-		bool SetValue(bool rhs); 
+		/// @todo Review for possiblity of buffer overflow.
+		bool SetValue(bool rhs);
+
+		/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.
+		/// @param rhs This with be converted to a character array using the appropriate streaming operator <<, then used as the new value.
+		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
+		/// @warning You should not pass classes that stream/serialize to xml into this function, the result will be invalid XML. If you must, find a way to strip out the ">" character, then you can reinsert it later
+		/// @todo Strip ">" automatically and provide a method to reconsitute it.
+		template <class T> bool SetValue(T rhs)
+		{
+			return SetValue(ToString(rhs).c_str());
+		} 
  
 		// Set GetAttribute Value (equivalent to SetValue without error checking) 
 		Attribute& operator=(const char_t* rhs); 
@@ -495,6 +510,9 @@ namespace phys
  
 		// Get next/previous sibling in the GetChildren list of the GetParent node 
 		Node GetNextSibling() const; 
+		/// @brief Attempt to retrieve the previous sibling of this Node.
+		/// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this retrieves that Node, otherwise this return an empty Node.
+		/// @return A Node that represents a sibling, or an empty Node on failure.
 		Node GetPreviousSibling() const; 
 		 
 		// Get GetParent node 
@@ -506,7 +524,15 @@ namespace phys
 		// Get GetChild, GetAttribute or next/previous sibling with the specified Name 
 		Node GetChild(const char_t* Name) const; 
 		Attribute GetAttribute(const char_t* Name) const; 
+		/// @brief Attempt to retrieve the next sibling of this Node with a matching name.
+		/// @param Name A c-string that has the name of the node you to find.
+		/// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that Node, otherwise this return an empty Node.
+		/// @return A Node that represents a sibling with a matching name, or an empty Node on failure.
 		Node GetNextSibling(const char_t* Name) const; 
+		/// @brief Attempt to retrieve the first previous sibling of this Node with a matching name.
+		/// @param Name A c-string that has the name of the node you to find.
+		/// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that Node, otherwise this return an empty Node.
+		/// @return A Node that represents a sibling with a matching name, or an empty Node on failure.
 		Node GetPreviousSibling(const char_t* Name) const; 
  
 		// Get GetChild Value of current node; that is, Value of the first GetChild node of Type PCDATA/CDATA 
@@ -521,6 +547,7 @@ namespace phys
 		/// @param rhs The new Value.
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
 		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(const char_t* rhs); 
 		 
 		// Add GetAttribute with specified Name. Returns added GetAttribute, or empty GetAttribute on errors. 

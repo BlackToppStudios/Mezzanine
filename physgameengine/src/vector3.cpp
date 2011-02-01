@@ -427,6 +427,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
     return stream;
 }
 
+#ifdef PHYSXML
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
 {
     char ReadOne = 0;
@@ -477,7 +478,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
 
     }
 }
-
+#endif // \PHYSXML
 Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom)
 {
     VecTo.x=VecFrom.X;

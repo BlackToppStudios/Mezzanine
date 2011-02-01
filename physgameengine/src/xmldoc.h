@@ -599,7 +599,43 @@ namespace phys
 		/// @brief Get the last child Node of this Node.
 		/// @return Returns the last child node if it exists, otherwise it return an empty node.
 
+        /// @fn Node::GetNextSibling() const;
+        /// @brief Attempt to retrieve the next sibling of this Node.
+        /// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this retrieves that Node, otherwise this return an empty Node.
+        /// @return A Node that represents a sibling, or an empty Node on failure.
 
+        /// @fn Node::GetParent() const;
+        /// @brief Attempt to retrieve the parent of this Node.
+        /// @return A Node that represents the parent Node, or an empty Node on failure.
+
+        /// @fn Node::GetRoot() const;
+        /// @brief Attempt to retrieve the root Node, or the most base Node containing this Node.
+        /// @return A Node that represents the root of the XML document, or an empty Node on failure. If there are multiple roots this attempts to retrieve the appropriate one.
+
+        /// @fn Node::GetChild(const char_t* Name) const;
+        /// @brief Attempt to get a child Node with a given name.
+        /// @param Name The name of the desired child Node.
+        /// @return A Node that represents the first desired child, or an empty Node on failure.
+
+        /// @fn Node::GetAttribute(const char_t* Name) const;
+        /// @brief Attempt to get an Attribute on this Node with a given name.
+        /// @param Name The name of the desired Attribute.
+        /// @return An Attribute that represents the first matching Attribute, or an empty Attribute on failure.
+
+        /// @fn Node::ChildValue() const;
+        /// @brief Retrieve the value of this(or a child's) Nodes PCDATA child Node
+        /// @details If this node represents "<node>Some text in the PCDATA field, that is actually represent by a node</node>", then this would return "Some text in the PCDATA field, that is actually represent by a node". This will iterate through child Nodes from until it finds a PCDATA node or fails
+        /// @return This will return the Value of the first available PCDATA node.
+
+        /// @fn Node::ChildValue(const char_t* Name) const;
+        /// @brief Get the PCDATA of a given child. The same a calling "GetChild(Name).ChildValue()".
+        /// @param Name The Name of the desired child node.
+        /// @return This will return the Value of the first available matching PCDATA node.
+
+        /// @fn Node::SetName(const char_t* rhs);
+        /// @brief Set the name of this Node.
+        /// @param rhs The desired name of the Node.
+        /// @return True if successful, returns false if Node cannot store a name or there is not enough memory.
 
     }
 }

@@ -324,6 +324,7 @@ namespace phys
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Vector3& x);
 
+#ifdef PHYSXML
 /// @brief Used to de-serialize an phys::Vector3 from a stream
 /// @details If PHYSXML is enabled, this reads in the xml and sets the target vector according to values
 /// from the stream.
@@ -331,6 +332,7 @@ std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Vector3& x
 /// @param stream The place to get the characters from, that define the phys::Vector3.
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec);
+#endif // \PHYSXML
 
 /// @brief Conversion Assignment Operator to Ogre::Vector3.
 /// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.

@@ -73,6 +73,8 @@ bool \hyperlink{classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}
 \begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}{SetValue} (bool rhs)
 \begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$class T $>$ }\\bool \hyperlink{classphys_1_1xml_1_1Attribute_af9b12723a227b833d7f8986a524b0e48}{SetValue} (T rhs)
+\begin{DoxyCompactList}\small\item\em Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}{operator=} (const char\_\-t $\ast$rhs)
 \begin{DoxyCompactList}\small\item\em The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue(const char\_\-t$\ast$ rhs)}; without the error return. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \& \hyperlink{classphys_1_1xml_1_1Attribute_ac9a18c2b6c4bfc0cdfe4eede938a91fe}{operator=} (int rhs)
@@ -174,7 +176,7 @@ Attempts to convert the value of the attribute to a double and returns the resul
 If the value of this attribute can be convert to a double by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000048}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}{Attribute::AsDouble()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000049}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}{Attribute::AsDouble()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and double. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -199,7 +201,7 @@ Attempts to convert the value of the attribute to a float and returns the result
 If the value of this attribute can be convert to a float by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000049}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}{Attribute::AsFloat()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000050}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}{Attribute::AsFloat()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -224,7 +226,7 @@ Attempts to convert the value of the attribute to an int and returns the results
 If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000046}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}{Attribute::AsInt()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000047}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}{Attribute::AsInt()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -318,7 +320,7 @@ Attempts to convert the value of the attribute to an unsigned int and returns th
 If the value of this attribute can be convert to an unsigned int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000047}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ad00ec5857fc4afcda892a0057419a9a0}{Attribute::AsUint()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000048}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ad00ec5857fc4afcda892a0057419a9a0}{Attribute::AsUint()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -583,6 +585,29 @@ Returns True if the other \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} i
 
 Definition at line 3389 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Attribute_ac9a18c2b6c4bfc0cdfe4eede938a91fe}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (
+\begin{DoxyParamCaption}
+\item[{int}]{ rhs}
+\end{DoxyParamCaption}
+)}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_ac9a18c2b6c4bfc0cdfe4eede938a91fe}
+
+
+The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue()}; without the error return. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rhs}]The new value as an int. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An reference to this attribute. 
+\end{DoxyReturn}
+
+
+Definition at line 3519 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Attribute_ac92a92492d624984a52b64bc4fabf355}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
 \index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
@@ -605,29 +630,6 @@ An reference to this attribute.
 
 
 Definition at line 3531 of file xml.cpp.
-
-\hypertarget{classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}{
-\index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
-\index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (
-\begin{DoxyParamCaption}
-\item[{const char\_\-t $\ast$}]{ rhs}
-\end{DoxyParamCaption}
-)}}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}
-
-
-The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue(const char\_\-t$\ast$ rhs)}; without the error return. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The new value as an c-\/style string. \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-An reference to this attribute. 
-\end{DoxyReturn}
-
-
-Definition at line 3513 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Attribute_a008397ad3c9c63bf27a4dca4b68e5efd}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
@@ -675,28 +677,28 @@ An reference to this attribute.
 
 Definition at line 3525 of file xml.cpp.
 
-\hypertarget{classphys_1_1xml_1_1Attribute_ac9a18c2b6c4bfc0cdfe4eede938a91fe}{
+\hypertarget{classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator=@{operator=}}
 \index{operator=@{operator=}!phys::xml::Attribute@{phys::xml::Attribute}}
 \subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Attribute::operator= (
 \begin{DoxyParamCaption}
-\item[{int}]{ rhs}
+\item[{const char\_\-t $\ast$}]{ rhs}
 \end{DoxyParamCaption}
 )}}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_ac9a18c2b6c4bfc0cdfe4eede938a91fe}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a78d7a0436d386040e2d1f8954304b25b}
 
 
-The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue()}; without the error return. 
+The same as \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{Attribute::SetValue(const char\_\-t$\ast$ rhs)}; without the error return. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The new value as an int. \end{DoxyParams}
+\item[{\em rhs}]The new value as an c-\/style string. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 An reference to this attribute. 
 \end{DoxyReturn}
 
 
-Definition at line 3519 of file xml.cpp.
+Definition at line 3513 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Attribute_a68b6ba1299cc9a2019ec97b10bb8978b}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!operator==@{operator==}}
@@ -787,10 +789,65 @@ Set the name of this attribute.
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000050}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+\item[\hyperlink{todo__todo000051}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
 
 
 Definition at line 3543 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_af9b12723a227b833d7f8986a524b0e48}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ bool phys::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{T}]{ rhs}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_af9b12723a227b833d7f8986a524b0e48}
+
+
+Convert rhs to a character array that contains the meaning of rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rhs}]This with be converted to a character array using the appropriate streaming operator $<$$<$, then used as the new value. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{DoxyWarning}{Warning}
+You should not pass classes that stream/serialize to xml into this function, the result will be invalid XML. If you must, find a way to strip out the \char`\"{}$>$\char`\"{} character, then you can reinsert it later 
+\end{DoxyWarning}
+\begin{Desc}
+\item[\hyperlink{todo__todo000045}{Todo}]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. \end{Desc}
+
+
+Definition at line 430 of file xml.h.
+
+\hypertarget{classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}{
+\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
+\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
+\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Attribute::SetValue (
+\begin{DoxyParamCaption}
+\item[{double}]{ rhs}
+\end{DoxyParamCaption}
+)}}
+\label{da/ddf/classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}
+
+
+Convert rhs to a character array that contains rhs, then use that as the new value. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em rhs}]The new value as a double. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000043}{Todo}]update this to make the error return code redudant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
+
+
+Definition at line 3587 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Attribute_a289ac36b218f3912224fd904ccade1ed}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
@@ -812,7 +869,9 @@ Convert rhs to a character array that contains rhs, then use that as the new val
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000042}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+\item[\hyperlink{todo__todo000042}{Todo}]update this to make the error return code redudant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
 
 
 Definition at line 3572 of file xml.cpp.
@@ -837,35 +896,12 @@ Convert rhs to a character array that contains rhs, then use that as the new val
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000041}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+\item[\hyperlink{todo__todo000041}{Todo}]update this to make the error return code redudant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
 
 
 Definition at line 3557 of file xml.cpp.
-
-\hypertarget{classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}{
-\index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
-\index{SetValue@{SetValue}!phys::xml::Attribute@{phys::xml::Attribute}}
-\subsubsection[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Attribute::SetValue (
-\begin{DoxyParamCaption}
-\item[{double}]{ rhs}
-\end{DoxyParamCaption}
-)}}
-\label{da/ddf/classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}
-
-
-Convert rhs to a character array that contains rhs, then use that as the new value. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The new value as a double. \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
-\end{DoxyReturn}
-\begin{Desc}
-\item[\hyperlink{todo__todo000043}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
-
-
-Definition at line 3587 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Attribute_a6df4cf0f083482e69e4e6e94599a1d82}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
@@ -887,7 +923,9 @@ Convert rhs to a character array that contains the meaning of rhs, then use that
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000044}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+\item[\hyperlink{todo__todo000044}{Todo}]update this to make the error return code redudant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
 
 
 Definition at line 3602 of file xml.cpp.
@@ -912,7 +950,9 @@ Set the value of this.
 True if successful, returns false if this is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000040}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+\item[\hyperlink{todo__todo000040}{Todo}]update this to make the error return code redudant and use an exception instead. 
+
+Review for possiblity of buffer overflow. \end{Desc}
 
 
 Definition at line 3550 of file xml.cpp.

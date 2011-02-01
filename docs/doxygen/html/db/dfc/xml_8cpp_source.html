@@ -3118,7 +3118,7 @@
 <a name="l03087"></a>03087                 { 
 <a name="l03088"></a>03088                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>: 
 <a name="l03089"></a>03089                 { 
-<a name="l03090"></a>03090                         dest.SetName(source.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
+<a name="l03090"></a>03090                         dest.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(source.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
 <a name="l03091"></a>03091  
 <a name="l03092"></a>03092                         <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = source.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ae484caac4f1fb2a4b7767ddfed28bf0c" title="Get the First Attribute in this Node.">GetFirstAttribute</a>(); a; a = a.GetNextAttribute()) 
 <a name="l03093"></a>03093                                 dest.AppendAttribute(a.Name()).SetValue(a.Value()); 
@@ -3144,13 +3144,13 @@
 <a name="l03113"></a>03113                         <span class="keywordflow">break</span>; 
 <a name="l03114"></a>03114  
 <a name="l03115"></a>03115                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa" title="Processing instructions to the XML parser, i.e. &amp;#39;&amp;lt;?name?&amp;gt;&amp;#39;.">NodePi</a>: 
-<a name="l03116"></a>03116                         dest.SetName(source.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
+<a name="l03116"></a>03116                         dest.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(source.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
 <a name="l03117"></a>03117                         dest.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a50ff9948dac721339561ed3442fb7034" title="Set the value of this.">SetValue</a>(source.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a90e8efb31007ade54d62c1752979461f" title="Get the Value of this Node.">Value</a>()); 
 <a name="l03118"></a>03118                         <span class="keywordflow">break</span>; 
 <a name="l03119"></a>03119  
 <a name="l03120"></a>03120                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035" title="Document declaration, i.e. &amp;#39;&amp;lt;?xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;#39;.">NodeDeclaration</a>: 
 <a name="l03121"></a>03121                 { 
-<a name="l03122"></a>03122                         dest.SetName(source.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
+<a name="l03122"></a>03122                         dest.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(source.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>()); 
 <a name="l03123"></a>03123  
 <a name="l03124"></a>03124                         <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = source.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ae484caac4f1fb2a4b7767ddfed28bf0c" title="Get the First Attribute in this Node.">GetFirstAttribute</a>(); a; a = a.GetNextAttribute()) 
 <a name="l03125"></a>03125                                 dest.AppendAttribute(a.Name()).SetValue(a.Value()); 
@@ -3735,7 +3735,7 @@
 <a name="l03704"></a>03704                 <span class="keywordflow">return</span> (_GetRoot &amp;&amp; _GetRoot-&gt;Value) ? _GetRoot-&gt;Value : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03705"></a>03705         } 
 <a name="l03706"></a>03706          
-<a name="l03707"></a>03707         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::GetChild(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
+<a name="l03707"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4d3f74c2c2613c84376b1ab6f3ed19c9">03707</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4d3f74c2c2613c84376b1ab6f3ed19c9" title="Attempt to get a child Node with a given name.">Node::GetChild</a>(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l03708"></a>03708 <span class="keyword">        </span>{ 
 <a name="l03709"></a>03709                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03710"></a>03710  
@@ -3745,7 +3745,7 @@
 <a name="l03714"></a>03714                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03715"></a>03715         } 
 <a name="l03716"></a>03716  
-<a name="l03717"></a>03717         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> Node::GetAttribute(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
+<a name="l03717"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c">03717</a>         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">Node::GetAttribute</a>(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l03718"></a>03718 <span class="keyword">        </span>{ 
 <a name="l03719"></a>03719                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03720"></a>03720  
@@ -3756,7 +3756,7 @@
 <a name="l03725"></a>03725                 <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l03726"></a>03726         } 
 <a name="l03727"></a>03727          
-<a name="l03728"></a>03728         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::GetNextSibling(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
+<a name="l03728"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#abd5e18e840cbfc2f8336c20782bec488">03728</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">Node::GetNextSibling</a>(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l03729"></a>03729 <span class="keyword">        </span>{ 
 <a name="l03730"></a>03730                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03731"></a>03731                  
@@ -3766,7 +3766,7 @@
 <a name="l03735"></a>03735                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03736"></a>03736         } 
 <a name="l03737"></a>03737  
-<a name="l03738"></a>03738         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::GetNextSibling()<span class="keyword"> const </span>
+<a name="l03738"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb">03738</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">Node::GetNextSibling</a>()<span class="keyword"> const </span>
 <a name="l03739"></a>03739 <span class="keyword">        </span>{ 
 <a name="l03740"></a>03740                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03741"></a>03741                  
@@ -3774,7 +3774,7 @@
 <a name="l03743"></a>03743                 <span class="keywordflow">else</span> <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03744"></a>03744         } 
 <a name="l03745"></a>03745  
-<a name="l03746"></a>03746         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::GetPreviousSibling(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
+<a name="l03746"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#adaf337574156c86bbdb76264c5451c8d">03746</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">Node::GetPreviousSibling</a>(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l03747"></a>03747 <span class="keyword">        </span>{ 
 <a name="l03748"></a>03748                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03749"></a>03749                  
@@ -3784,7 +3784,7 @@
 <a name="l03753"></a>03753                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03754"></a>03754         } 
 <a name="l03755"></a>03755  
-<a name="l03756"></a>03756         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::GetPreviousSibling()<span class="keyword"> const </span>
+<a name="l03756"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3">03756</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">Node::GetPreviousSibling</a>()<span class="keyword"> const </span>
 <a name="l03757"></a>03757 <span class="keyword">        </span>{ 
 <a name="l03758"></a>03758                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03759"></a>03759                  
@@ -3792,12 +3792,12 @@
 <a name="l03761"></a>03761                 <span class="keywordflow">else</span> <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03762"></a>03762         } 
 <a name="l03763"></a>03763  
-<a name="l03764"></a>03764         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::GetParent()<span class="keyword"> const </span>
+<a name="l03764"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d">03764</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">Node::GetParent</a>()<span class="keyword"> const </span>
 <a name="l03765"></a>03765 <span class="keyword">        </span>{ 
-<a name="l03766"></a>03766                 <span class="keywordflow">return</span> _GetRoot ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(_GetRoot-&gt;GetParent) : Node(); 
+<a name="l03766"></a>03766                 <span class="keywordflow">return</span> _GetRoot ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(_GetRoot-&gt;GetParent) : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03767"></a>03767         } 
 <a name="l03768"></a>03768  
-<a name="l03769"></a>03769         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> Node::GetRoot()<span class="keyword"> const </span>
+<a name="l03769"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a19eeb7427a38ea7d8543ed0ae8508b2c">03769</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a19eeb7427a38ea7d8543ed0ae8508b2c" title="Attempt to retrieve the root Node, or the most base Node containing this Node.">Node::GetRoot</a>()<span class="keyword"> const </span>
 <a name="l03770"></a>03770 <span class="keyword">        </span>{ 
 <a name="l03771"></a>03771                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03772"></a>03772  
@@ -3806,7 +3806,7 @@
 <a name="l03775"></a>03775                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(static_cast&lt;DocumentStruct*&gt;(page-&gt;allocator)); 
 <a name="l03776"></a>03776         } 
 <a name="l03777"></a>03777  
-<a name="l03778"></a>03778         <span class="keyword">const</span> char_t* Node::ChildValue()<span class="keyword"> const </span>
+<a name="l03778"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a97363b63a1963e28bf7503c32b0702e5">03778</a>         <span class="keyword">const</span> char_t* <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a97363b63a1963e28bf7503c32b0702e5" title="Retrieve the value of this(or a child&amp;#39;s) Nodes PCDATA child Node.">Node::ChildValue</a>()<span class="keyword"> const </span>
 <a name="l03779"></a>03779 <span class="keyword">        </span>{ 
 <a name="l03780"></a>03780                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03781"></a>03781                  
@@ -3821,9 +3821,9 @@
 <a name="l03790"></a>03790                 <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l03791"></a>03791         } 
 <a name="l03792"></a>03792  
-<a name="l03793"></a>03793         <span class="keyword">const</span> char_t* Node::ChildValue(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
+<a name="l03793"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aa8ce075bf47cb586b586800576569744">03793</a>         <span class="keyword">const</span> char_t* <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a97363b63a1963e28bf7503c32b0702e5" title="Retrieve the value of this(or a child&amp;#39;s) Nodes PCDATA child Node.">Node::ChildValue</a>(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l03794"></a>03794 <span class="keyword">        </span>{ 
-<a name="l03795"></a>03795                 <span class="keywordflow">return</span> GetChild(Name).ChildValue(); 
+<a name="l03795"></a>03795                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4d3f74c2c2613c84376b1ab6f3ed19c9" title="Attempt to get a child Node with a given name.">GetChild</a>(Name).<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a97363b63a1963e28bf7503c32b0702e5" title="Retrieve the value of this(or a child&amp;#39;s) Nodes PCDATA child Node.">ChildValue</a>(); 
 <a name="l03796"></a>03796         } 
 <a name="l03797"></a>03797  
 <a name="l03798"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ae484caac4f1fb2a4b7767ddfed28bf0c">03798</a>         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#ae484caac4f1fb2a4b7767ddfed28bf0c" title="Get the First Attribute in this Node.">Node::GetFirstAttribute</a>()<span class="keyword"> const </span>
@@ -3846,7 +3846,7 @@
 <a name="l03815"></a>03815                 <span class="keywordflow">return</span> _GetRoot &amp;&amp; _GetRoot-&gt;GetFirstChild ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(_GetRoot-&gt;GetFirstChild-&gt;prev_sibling_c) : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a82203e57f13363aee523feb696f64bb9" title="Default constructor. Constructs an empty node.">Node</a>(); 
 <a name="l03816"></a>03816         } 
 <a name="l03817"></a>03817  
-<a name="l03818"></a>03818         <span class="keywordtype">bool</span> Node::SetName(<span class="keyword">const</span> char_t* rhs) 
+<a name="l03818"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f">03818</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">Node::SetName</a>(<span class="keyword">const</span> char_t* rhs) 
 <a name="l03819"></a>03819         { 
 <a name="l03820"></a>03820                 <span class="keywordflow">switch</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a33288f89218baf24d1061c6eeb08687f" title="Identify what kind of Node this is.">Type</a>()) 
 <a name="l03821"></a>03821                 { 
@@ -4097,7 +4097,7 @@
 <a name="l04066"></a>04066         { 
 <a name="l04067"></a>04067                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = AppendChild(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>); 
 <a name="l04068"></a>04068  
-<a name="l04069"></a>04069                 result.SetName(Name); 
+<a name="l04069"></a>04069                 result.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(Name); 
 <a name="l04070"></a>04070  
 <a name="l04071"></a>04071                 <span class="keywordflow">return</span> result; 
 <a name="l04072"></a>04072         } 
@@ -4106,7 +4106,7 @@
 <a name="l04075"></a>04075         { 
 <a name="l04076"></a>04076                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = PrependChild(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>); 
 <a name="l04077"></a>04077  
-<a name="l04078"></a>04078                 result.SetName(Name); 
+<a name="l04078"></a>04078                 result.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(Name); 
 <a name="l04079"></a>04079  
 <a name="l04080"></a>04080                 <span class="keywordflow">return</span> result; 
 <a name="l04081"></a>04081         } 
@@ -4115,7 +4115,7 @@
 <a name="l04084"></a>04084         { 
 <a name="l04085"></a>04085                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = InsertChildAfter(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>, node); 
 <a name="l04086"></a>04086  
-<a name="l04087"></a>04087                 result.SetName(Name); 
+<a name="l04087"></a>04087                 result.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(Name); 
 <a name="l04088"></a>04088  
 <a name="l04089"></a>04089                 <span class="keywordflow">return</span> result; 
 <a name="l04090"></a>04090         } 
@@ -4124,7 +4124,7 @@
 <a name="l04093"></a>04093         { 
 <a name="l04094"></a>04094                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> result = InsertChildBefore(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3a92facb9678134df6404ce63e7e48624c" title="Element tag, i.e. &amp;#39;&amp;lt;node&amp;gt;&amp;#39;.">NodeElement</a>, node); 
 <a name="l04095"></a>04095  
-<a name="l04096"></a>04096                 result.SetName(Name); 
+<a name="l04096"></a>04096                 result.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a81ae067921c4a37fae118c76c2af375f" title="Set the name of this Node.">SetName</a>(Name); 
 <a name="l04097"></a>04097  
 <a name="l04098"></a>04098                 <span class="keywordflow">return</span> result; 
 <a name="l04099"></a>04099         } 
@@ -4167,7 +4167,7 @@
 <a name="l04136"></a>04136  
 <a name="l04137"></a>04137         <span class="keywordtype">bool</span> Node::RemoveAttribute(<span class="keyword">const</span> char_t* Name) 
 <a name="l04138"></a>04138         { 
-<a name="l04139"></a>04139                 <span class="keywordflow">return</span> RemoveAttribute(GetAttribute(Name)); 
+<a name="l04139"></a>04139                 <span class="keywordflow">return</span> RemoveAttribute(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(Name)); 
 <a name="l04140"></a>04140         } 
 <a name="l04141"></a>04141  
 <a name="l04142"></a>04142         <span class="keywordtype">bool</span> Node::RemoveAttribute(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; a) 
@@ -4194,7 +4194,7 @@
 <a name="l04163"></a>04163  
 <a name="l04164"></a>04164         <span class="keywordtype">bool</span> Node::RemoveChild(<span class="keyword">const</span> char_t* Name) 
 <a name="l04165"></a>04165         { 
-<a name="l04166"></a>04166                 <span class="keywordflow">return</span> RemoveChild(GetChild(Name)); 
+<a name="l04166"></a>04166                 <span class="keywordflow">return</span> RemoveChild(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4d3f74c2c2613c84376b1ab6f3ed19c9" title="Attempt to get a child Node with a given name.">GetChild</a>(Name)); 
 <a name="l04167"></a>04167         } 
 <a name="l04168"></a>04168  
 <a name="l04169"></a>04169         <span class="keywordtype">bool</span> Node::RemoveChild(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; n) 
@@ -4248,9 +4248,9 @@
 <a name="l04217"></a>04217                  
 <a name="l04218"></a>04218                 path = cursor.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>(); 
 <a name="l04219"></a>04219  
-<a name="l04220"></a>04220                 <span class="keywordflow">while</span> (cursor.GetParent()) 
+<a name="l04220"></a>04220                 <span class="keywordflow">while</span> (cursor.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>()) 
 <a name="l04221"></a>04221                 { 
-<a name="l04222"></a>04222                         cursor = cursor.GetParent(); 
+<a name="l04222"></a>04222                         cursor = cursor.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l04223"></a>04223                          
 <a name="l04224"></a>04224                         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a6db751f2b35502e04c123bb70daa0d20" title="A string class used internally to store data in the XML parser.">string_t</a> temp = cursor.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>(); 
 <a name="l04225"></a>04225                         temp += delimiter; 
@@ -4271,7 +4271,7 @@
 <a name="l04240"></a>04240                 <span class="keywordflow">if</span> (path[0] == delimiter) 
 <a name="l04241"></a>04241                 { 
 <a name="l04242"></a>04242                         <span class="comment">// Absolute path; e.g. &#39;/foo/bar&#39; </span>
-<a name="l04243"></a>04243                         found = found.GetRoot(); 
+<a name="l04243"></a>04243                         found = found.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a19eeb7427a38ea7d8543ed0ae8508b2c" title="Attempt to retrieve the root Node, or the most base Node containing this Node.">GetRoot</a>(); 
 <a name="l04244"></a>04244                         ++path; 
 <a name="l04245"></a>04245                 } 
 <a name="l04246"></a>04246  
@@ -4292,7 +4292,7 @@
 <a name="l04261"></a>04261                 <span class="keywordflow">if</span> (*path_segment == <span class="charliteral">&#39;.&#39;</span> &amp;&amp; path_segment + 1 == path_segment_end) 
 <a name="l04262"></a>04262                         <span class="keywordflow">return</span> found.FirstElementByPath(NextSegment, delimiter); 
 <a name="l04263"></a>04263                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (*path_segment == <span class="charliteral">&#39;.&#39;</span> &amp;&amp; *(path_segment+1) == <span class="charliteral">&#39;.&#39;</span> &amp;&amp; path_segment + 2 == path_segment_end) 
-<a name="l04264"></a>04264                         <span class="keywordflow">return</span> found.GetParent().FirstElementByPath(NextSegment, delimiter); 
+<a name="l04264"></a>04264                         <span class="keywordflow">return</span> found.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>().FirstElementByPath(NextSegment, delimiter); 
 <a name="l04265"></a>04265                 <span class="keywordflow">else</span> 
 <a name="l04266"></a>04266                 { 
 <a name="l04267"></a>04267                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* j = found._GetRoot-&gt;GetFirstChild; j; j = j-&gt;GetNextSibling) 
@@ -4333,19 +4333,19 @@
 <a name="l04302"></a>04302                                         ++walker._depth; 
 <a name="l04303"></a>04303                                         cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); 
 <a name="l04304"></a>04304                                 } 
-<a name="l04305"></a>04305                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.GetNextSibling()) 
-<a name="l04306"></a>04306                                         cur = cur.GetNextSibling(); 
+<a name="l04305"></a>04305                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) 
+<a name="l04306"></a>04306                                         cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l04307"></a>04307                                 <span class="keywordflow">else</span> 
 <a name="l04308"></a>04308                                 { 
 <a name="l04309"></a>04309                                         <span class="comment">// Borland C++ workaround </span>
-<a name="l04310"></a>04310                                         <span class="keywordflow">while</span> (!cur.GetNextSibling() &amp;&amp; cur != *<span class="keyword">this</span> &amp;&amp; (bool)cur.GetParent()) 
+<a name="l04310"></a>04310                                         <span class="keywordflow">while</span> (!cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>() &amp;&amp; cur != *<span class="keyword">this</span> &amp;&amp; (bool)cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>()) 
 <a name="l04311"></a>04311                                         { 
 <a name="l04312"></a>04312                                                 --walker._depth; 
-<a name="l04313"></a>04313                                                 cur = cur.GetParent(); 
+<a name="l04313"></a>04313                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l04314"></a>04314                                         } 
 <a name="l04315"></a>04315                                                  
 <a name="l04316"></a>04316                                         <span class="keywordflow">if</span> (cur != *<span class="keyword">this</span>) 
-<a name="l04317"></a>04317                                                 cur = cur.GetNextSibling(); 
+<a name="l04317"></a>04317                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l04318"></a>04318                                 } 
 <a name="l04319"></a>04319                         } 
 <a name="l04320"></a>04320                         <span class="keywordflow">while</span> (cur &amp;&amp; cur != *<span class="keyword">this</span>); 
@@ -4394,7 +4394,7 @@
 <a name="l04363"></a>04363 <span class="preprocessor"></span> 
 <a name="l04364"></a>04364         ptrdiff_t Node::OffSetDebug()<span class="keyword"> const </span>
 <a name="l04365"></a>04365 <span class="keyword">        </span>{ 
-<a name="l04366"></a>04366                 <a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* r = GetRoot()._GetRoot; 
+<a name="l04366"></a>04366                 <a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html">NodeStruct</a>* r = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a19eeb7427a38ea7d8543ed0ae8508b2c" title="Attempt to retrieve the root Node, or the most base Node containing this Node.">GetRoot</a>()._GetRoot; 
 <a name="l04367"></a>04367  
 <a name="l04368"></a>04368                 <span class="keywordflow">if</span> (!r) <span class="keywordflow">return</span> -1; 
 <a name="l04369"></a>04369  
@@ -4485,7 +4485,7 @@
 <a name="l04454"></a>04454  
 <a name="l04455"></a>04455         <span class="keyword">const</span> <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">NodeIterator</a>&amp; NodeIterator::operator--() 
 <a name="l04456"></a>04456         { 
-<a name="l04457"></a>04457                 _wrap = _wrap._GetRoot ? _wrap.GetPreviousSibling() : _GetParent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a10f1a568c8c2c691126f1a9ed2afb922" title="Get the last child Node of this Node.">GetLastChild</a>(); 
+<a name="l04457"></a>04457                 _wrap = _wrap._GetRoot ? _wrap.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">GetPreviousSibling</a>() : _GetParent.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a10f1a568c8c2c691126f1a9ed2afb922" title="Get the last child Node of this Node.">GetLastChild</a>(); 
 <a name="l04458"></a>04458                 <span class="keywordflow">return</span> *<span class="keyword">this</span>; 
 <a name="l04459"></a>04459         } 
 <a name="l04460"></a>04460  
@@ -4613,7 +4613,7 @@
 <a name="l04582"></a>04582         { 
 <a name="l04583"></a>04583                 reset(); 
 <a name="l04584"></a>04584  
-<a name="l04585"></a>04585                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = proto.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); cur; cur = cur.GetNextSibling()) 
+<a name="l04585"></a>04585                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = proto.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); cur; cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) 
 <a name="l04586"></a>04586                         AppendCopy(cur); 
 <a name="l04587"></a>04587         } 
 <a name="l04588"></a>04588  
@@ -5544,14 +5544,14 @@
 <a name="l05513"></a>05513  
 <a name="l05514"></a>05514                                         <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>()) 
 <a name="l05515"></a>05515                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); 
-<a name="l05516"></a>05516                                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.GetNextSibling()) 
-<a name="l05517"></a>05517                                                 cur = cur.GetNextSibling(); 
+<a name="l05516"></a>05516                                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) 
+<a name="l05517"></a>05517                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l05518"></a>05518                                         <span class="keywordflow">else</span> 
 <a name="l05519"></a>05519                                         { 
-<a name="l05520"></a>05520                                                 <span class="keywordflow">while</span> (!cur.GetNextSibling() &amp;&amp; cur != n) 
-<a name="l05521"></a>05521                                                         cur = cur.GetParent(); 
+<a name="l05520"></a>05520                                                 <span class="keywordflow">while</span> (!cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>() &amp;&amp; cur != n) 
+<a name="l05521"></a>05521                                                         cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l05522"></a>05522  
-<a name="l05523"></a>05523                                                 <span class="keywordflow">if</span> (cur != n) cur = cur.GetNextSibling(); 
+<a name="l05523"></a>05523                                                 <span class="keywordflow">if</span> (cur != n) cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l05524"></a>05524                                         } 
 <a name="l05525"></a>05525                                 } 
 <a name="l05526"></a>05526                                  
@@ -5571,7 +5571,7 @@
 <a name="l05540"></a>05540                 <span class="keywordflow">while</span> (n) 
 <a name="l05541"></a>05541                 { 
 <a name="l05542"></a>05542                         ++result; 
-<a name="l05543"></a>05543                         n = n.GetParent(); 
+<a name="l05543"></a>05543                         n = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l05544"></a>05544                 } 
 <a name="l05545"></a>05545                  
 <a name="l05546"></a>05546                 <span class="keywordflow">return</span> result; 
@@ -5580,24 +5580,24 @@
 <a name="l05549"></a>05549         <span class="keywordtype">bool</span> NodeIs_before(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> ln, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> lh, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> rn, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> rh) 
 <a name="l05550"></a>05550         { 
 <a name="l05551"></a>05551                 <span class="comment">// normalize heights </span>
-<a name="l05552"></a>05552                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = rh; i &lt; lh; i++) ln = ln.GetParent(); 
-<a name="l05553"></a>05553                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = lh; j &lt; rh; j++) rn = rn.GetParent(); 
+<a name="l05552"></a>05552                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = rh; i &lt; lh; i++) ln = ln.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
+<a name="l05553"></a>05553                 <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> j = lh; j &lt; rh; j++) rn = rn.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l05554"></a>05554                  
 <a name="l05555"></a>05555                 <span class="comment">// one node is the ancestor of the other </span>
 <a name="l05556"></a>05556                 <span class="keywordflow">if</span> (ln == rn) <span class="keywordflow">return</span> lh &lt; rh; 
 <a name="l05557"></a>05557                  
 <a name="l05558"></a>05558                 <span class="comment">// find common ancestor </span>
-<a name="l05559"></a>05559                 <span class="keywordflow">while</span> (ln.GetParent() != rn.GetParent()) 
+<a name="l05559"></a>05559                 <span class="keywordflow">while</span> (ln.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>() != rn.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>()) 
 <a name="l05560"></a>05560                 { 
-<a name="l05561"></a>05561                         ln = ln.GetParent(); 
-<a name="l05562"></a>05562                         rn = rn.GetParent(); 
+<a name="l05561"></a>05561                         ln = ln.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
+<a name="l05562"></a>05562                         rn = rn.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l05563"></a>05563                 } 
 <a name="l05564"></a>05564  
 <a name="l05565"></a>05565                 <span class="comment">// there is no common ancestor (the shared GetParent is null), nodes are from different documents </span>
-<a name="l05566"></a>05566                 <span class="keywordflow">if</span> (!ln.GetParent()) <span class="keywordflow">return</span> ln &lt; rn; 
+<a name="l05566"></a>05566                 <span class="keywordflow">if</span> (!ln.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>()) <span class="keywordflow">return</span> ln &lt; rn; 
 <a name="l05567"></a>05567  
 <a name="l05568"></a>05568                 <span class="comment">// determine sibling order </span>
-<a name="l05569"></a>05569                 <span class="keywordflow">for</span> (; ln; ln = ln.GetNextSibling()) 
+<a name="l05569"></a>05569                 <span class="keywordflow">for</span> (; ln; ln = ln.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) 
 <a name="l05570"></a>05570                         <span class="keywordflow">if</span> (ln == rn) 
 <a name="l05571"></a>05571                                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l05572"></a>05572                                  
@@ -5606,7 +5606,7 @@
 <a name="l05575"></a>05575  
 <a name="l05576"></a>05576         <span class="keywordtype">bool</span> NodeIs_ancestor(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> GetParent, <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> node) 
 <a name="l05577"></a>05577         { 
-<a name="l05578"></a>05578                 <span class="keywordflow">while</span> (node &amp;&amp; node != GetParent) node = node.GetParent(); 
+<a name="l05578"></a>05578                 <span class="keywordflow">while</span> (node &amp;&amp; node != GetParent) node = node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l05579"></a>05579  
 <a name="l05580"></a>05580                 <span class="keywordflow">return</span> GetParent &amp;&amp; node == GetParent; 
 <a name="l05581"></a>05581         } 
@@ -6007,7 +6007,7 @@
 <a name="l05976"></a>05976                          
 <a name="l05977"></a>05977                         <span class="keywordflow">if</span> (a) <span class="keywordflow">return</span> a.<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>(); 
 <a name="l05978"></a>05978                          
-<a name="l05979"></a>05979                         p = p.GetParent(); 
+<a name="l05979"></a>05979                         p = p.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l05980"></a>05980                 } 
 <a name="l05981"></a>05981                  
 <a name="l05982"></a>05982                 <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
@@ -6028,7 +6028,7 @@
 <a name="l05997"></a>05997                          
 <a name="l05998"></a>05998                         <span class="keywordflow">if</span> (a) <span class="keywordflow">return</span> a.<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>(); 
 <a name="l05999"></a>05999                          
-<a name="l06000"></a>06000                         p = p.GetParent(); 
+<a name="l06000"></a>06000                         p = p.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l06001"></a>06001                 } 
 <a name="l06002"></a>06002                  
 <a name="l06003"></a>06003                 <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
@@ -7204,14 +7204,14 @@
 <a name="l07173"></a>07173                                          
 <a name="l07174"></a>07174                                         <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>()) 
 <a name="l07175"></a>07175                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); 
-<a name="l07176"></a>07176                                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.GetNextSibling()) 
-<a name="l07177"></a>07177                                                 cur = cur.GetNextSibling(); 
+<a name="l07176"></a>07176                                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) 
+<a name="l07177"></a>07177                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l07178"></a>07178                                         <span class="keywordflow">else</span> 
 <a name="l07179"></a>07179                                         { 
-<a name="l07180"></a>07180                                                 <span class="keywordflow">while</span> (!cur.GetNextSibling() &amp;&amp; cur != n) 
-<a name="l07181"></a>07181                                                         cur = cur.GetParent(); 
+<a name="l07180"></a>07180                                                 <span class="keywordflow">while</span> (!cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>() &amp;&amp; cur != n) 
+<a name="l07181"></a>07181                                                         cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l07182"></a>07182                                          
-<a name="l07183"></a>07183                                                 <span class="keywordflow">if</span> (cur != n) cur = cur.GetNextSibling(); 
+<a name="l07183"></a>07183                                                 <span class="keywordflow">if</span> (cur != n) cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l07184"></a>07184                                         } 
 <a name="l07185"></a>07185                                 } 
 <a name="l07186"></a>07186                                  
@@ -7220,7 +7220,7 @@
 <a name="l07189"></a>07189                          
 <a name="l07190"></a>07190                         <span class="keywordflow">case</span> axis_following_sibling: 
 <a name="l07191"></a>07191                         { 
-<a name="l07192"></a>07192                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> c = n.GetNextSibling(); c; c = c.GetNextSibling()) 
+<a name="l07192"></a>07192                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> c = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); c; c = c.GetNextSibling()) 
 <a name="l07193"></a>07193                                         step_push(ns, c, alloc); 
 <a name="l07194"></a>07194                                  
 <a name="l07195"></a>07195                                 <span class="keywordflow">break</span>; 
@@ -7228,7 +7228,7 @@
 <a name="l07197"></a>07197                          
 <a name="l07198"></a>07198                         <span class="keywordflow">case</span> axis_preceding_sibling: 
 <a name="l07199"></a>07199                         { 
-<a name="l07200"></a>07200                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> c = n.GetPreviousSibling(); c; c = c.GetPreviousSibling()) 
+<a name="l07200"></a>07200                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> c = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">GetPreviousSibling</a>(); c; c = c.GetPreviousSibling()) 
 <a name="l07201"></a>07201                                         step_push(ns, c, alloc); 
 <a name="l07202"></a>07202                                  
 <a name="l07203"></a>07203                                 <span class="keywordflow">break</span>; 
@@ -7239,8 +7239,8 @@
 <a name="l07208"></a>07208                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = n; 
 <a name="l07209"></a>07209  
 <a name="l07210"></a>07210                                 <span class="comment">// exit from this node so that we don&#39;t include descendants </span>
-<a name="l07211"></a>07211                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.GetNextSibling()) cur = cur.GetParent(); 
-<a name="l07212"></a>07212                                 cur = cur.GetNextSibling(); 
+<a name="l07211"></a>07211                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
+<a name="l07212"></a>07212                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l07213"></a>07213  
 <a name="l07214"></a>07214                                 <span class="keywordflow">for</span> (;;) 
 <a name="l07215"></a>07215                                 { 
@@ -7248,12 +7248,12 @@
 <a name="l07217"></a>07217  
 <a name="l07218"></a>07218                                         <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>()) 
 <a name="l07219"></a>07219                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); 
-<a name="l07220"></a>07220                                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.GetNextSibling()) 
-<a name="l07221"></a>07221                                                 cur = cur.GetNextSibling(); 
+<a name="l07220"></a>07220                                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) 
+<a name="l07221"></a>07221                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l07222"></a>07222                                         <span class="keywordflow">else</span> 
 <a name="l07223"></a>07223                                         { 
-<a name="l07224"></a>07224                                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.GetNextSibling()) cur = cur.GetParent(); 
-<a name="l07225"></a>07225                                                 cur = cur.GetNextSibling(); 
+<a name="l07224"></a>07224                                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
+<a name="l07225"></a>07225                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l07226"></a>07226  
 <a name="l07227"></a>07227                                                 <span class="keywordflow">if</span> (!cur) <span class="keywordflow">break</span>; 
 <a name="l07228"></a>07228                                         } 
@@ -7266,8 +7266,8 @@
 <a name="l07235"></a>07235                         { 
 <a name="l07236"></a>07236                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = n; 
 <a name="l07237"></a>07237  
-<a name="l07238"></a>07238                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.GetPreviousSibling()) cur = cur.GetParent(); 
-<a name="l07239"></a>07239                                 cur = cur.GetPreviousSibling(); 
+<a name="l07238"></a>07238                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">GetPreviousSibling</a>()) cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
+<a name="l07239"></a>07239                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">GetPreviousSibling</a>(); 
 <a name="l07240"></a>07240  
 <a name="l07241"></a>07241                                 <span class="keywordflow">for</span> (;;) 
 <a name="l07242"></a>07242                                 { 
@@ -7278,20 +7278,20 @@
 <a name="l07247"></a>07247                                                 <span class="comment">// leaf node, can&#39;t be ancestor </span>
 <a name="l07248"></a>07248                                                 step_push(ns, cur, alloc); 
 <a name="l07249"></a>07249  
-<a name="l07250"></a>07250                                                 <span class="keywordflow">if</span> (cur.GetPreviousSibling()) 
-<a name="l07251"></a>07251                                                         cur = cur.GetPreviousSibling(); 
+<a name="l07250"></a>07250                                                 <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">GetPreviousSibling</a>()) 
+<a name="l07251"></a>07251                                                         cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">GetPreviousSibling</a>(); 
 <a name="l07252"></a>07252                                                 <span class="keywordflow">else</span> 
 <a name="l07253"></a>07253                                                 { 
 <a name="l07254"></a>07254                                                         <span class="keywordflow">do</span>  
 <a name="l07255"></a>07255                                                         { 
-<a name="l07256"></a>07256                                                                 cur = cur.GetParent(); 
+<a name="l07256"></a>07256                                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l07257"></a>07257                                                                 <span class="keywordflow">if</span> (!cur) <span class="keywordflow">break</span>; 
 <a name="l07258"></a>07258  
 <a name="l07259"></a>07259                                                                 <span class="keywordflow">if</span> (!NodeIs_ancestor(cur, n)) step_push(ns, cur, alloc); 
 <a name="l07260"></a>07260                                                         } 
-<a name="l07261"></a>07261                                                         <span class="keywordflow">while</span> (!cur.GetPreviousSibling()); 
+<a name="l07261"></a>07261                                                         <span class="keywordflow">while</span> (!cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">GetPreviousSibling</a>()); 
 <a name="l07262"></a>07262  
-<a name="l07263"></a>07263                                                         cur = cur.GetPreviousSibling(); 
+<a name="l07263"></a>07263                                                         cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aef027853db1468edcebb6dbdef6031a3" title="Attempt to retrieve the previous sibling of this Node.">GetPreviousSibling</a>(); 
 <a name="l07264"></a>07264  
 <a name="l07265"></a>07265                                                         <span class="keywordflow">if</span> (!cur) <span class="keywordflow">break</span>; 
 <a name="l07266"></a>07266                                                 } 
@@ -7307,13 +7307,13 @@
 <a name="l07276"></a>07276                                 <span class="keywordflow">if</span> (axis == axis_ancestor_or_self) 
 <a name="l07277"></a>07277                                         step_push(ns, n, alloc); 
 <a name="l07278"></a>07278  
-<a name="l07279"></a>07279                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = n.GetParent(); 
+<a name="l07279"></a>07279                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l07280"></a>07280                                  
 <a name="l07281"></a>07281                                 <span class="keywordflow">while</span> (cur) 
 <a name="l07282"></a>07282                                 { 
 <a name="l07283"></a>07283                                         step_push(ns, cur, alloc); 
 <a name="l07284"></a>07284                                          
-<a name="l07285"></a>07285                                         cur = cur.GetParent(); 
+<a name="l07285"></a>07285                                         cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l07286"></a>07286                                 } 
 <a name="l07287"></a>07287                                  
 <a name="l07288"></a>07288                                 <span class="keywordflow">break</span>; 
@@ -7328,7 +7328,7 @@
 <a name="l07297"></a>07297  
 <a name="l07298"></a>07298                         <span class="keywordflow">case</span> axis_GetParent: 
 <a name="l07299"></a>07299                         { 
-<a name="l07300"></a>07300                                 <span class="keywordflow">if</span> (n.GetParent()) step_push(ns, n.GetParent(), alloc); 
+<a name="l07300"></a>07300                                 <span class="keywordflow">if</span> (n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>()) step_push(ns, n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(), alloc); 
 <a name="l07301"></a>07301  
 <a name="l07302"></a>07302                                 <span class="keywordflow">break</span>; 
 <a name="l07303"></a>07303                         } 
@@ -7356,7 +7356,7 @@
 <a name="l07325"></a>07325                                 { 
 <a name="l07326"></a>07326                                         step_push(ns, cur, alloc); 
 <a name="l07327"></a>07327                                          
-<a name="l07328"></a>07328                                         cur = cur.GetParent(); 
+<a name="l07328"></a>07328                                         cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l07329"></a>07329                                 } 
 <a name="l07330"></a>07330                                  
 <a name="l07331"></a>07331                                 <span class="keywordflow">break</span>; 
@@ -7379,12 +7379,12 @@
 <a name="l07348"></a>07348                                 { 
 <a name="l07349"></a>07349                                         <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>()) 
 <a name="l07350"></a>07350                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); 
-<a name="l07351"></a>07351                                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.GetNextSibling()) 
-<a name="l07352"></a>07352                                                 cur = cur.GetNextSibling(); 
+<a name="l07351"></a>07351                                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) 
+<a name="l07352"></a>07352                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l07353"></a>07353                                         <span class="keywordflow">else</span> 
 <a name="l07354"></a>07354                                         { 
-<a name="l07355"></a>07355                                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.GetNextSibling()) cur = cur.GetParent(); 
-<a name="l07356"></a>07356                                                 cur = cur.GetNextSibling(); 
+<a name="l07355"></a>07355                                                 <span class="keywordflow">while</span> (cur &amp;&amp; !cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
+<a name="l07356"></a>07356                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>(); 
 <a name="l07357"></a>07357                                                  
 <a name="l07358"></a>07358                                                 <span class="keywordflow">if</span> (!cur) <span class="keywordflow">break</span>; 
 <a name="l07359"></a>07359                                         } 
@@ -7573,9 +7573,9 @@
 <a name="l07542"></a>07542  
 <a name="l07543"></a>07543                                 XPathString lang = _left-&gt;eval_string(c, stack); 
 <a name="l07544"></a>07544                                  
-<a name="l07545"></a>07545                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = c.n.node(); n; n = n.GetParent()) 
+<a name="l07545"></a>07545                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = c.n.node(); n; n = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>()) 
 <a name="l07546"></a>07546                                 { 
-<a name="l07547"></a>07547                                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = n.GetAttribute(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml:lang&quot;</span>)); 
+<a name="l07547"></a>07547                                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml:lang&quot;</span>)); 
 <a name="l07548"></a>07548                                          
 <a name="l07549"></a>07549                                         <span class="keywordflow">if</span> (a) 
 <a name="l07550"></a>07550                                         { 
@@ -9141,7 +9141,7 @@
 <a name="l09110"></a>09110          
 <a name="l09111"></a>09111         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> XPathNode::GetParent()<span class="keyword"> const </span>
 <a name="l09112"></a>09112 <span class="keyword">        </span>{ 
-<a name="l09113"></a>09113                 <span class="keywordflow">return</span> _attribute ? _node : _node.GetParent(); 
+<a name="l09113"></a>09113                 <span class="keywordflow">return</span> _attribute ? _node : _node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l09114"></a>09114         } 
 <a name="l09115"></a>09115  
 <a name="l09116"></a><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a0d11818941c2e31671c5d0cd8f1ce9f9">09116</a>         XPathNode::operator XPathNode::unspecified_bool_type()<span class="keyword"> const </span>
@@ -9689,7 +9689,7 @@
 <a name="l09658"></a>09658 <span class="preprocessor">#endif // \PHYSXML </span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Jan 31 2011 01:56:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 1 2011 13:13:24 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
