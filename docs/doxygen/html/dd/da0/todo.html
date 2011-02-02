@@ -205,24 +205,31 @@
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#af669654308122897f98858563375bf4c">phys::xml::Attribute::SetName</a> (const char_t *rhs) </dt>
 <dd>update this to make the error return code redudant and use an exception instead. </dd>
 </dl>
-<p><a class="anchor" id="_todo000043"></a> </p>
+<p><a class="anchor" id="_todo000041"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a919034671f61ee408d616409a49dafca">phys::xml::Attribute::SetValue</a> (double rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redudant and use an exception instead. </p>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a693f7bd8015866c3c4979101c343ce50">phys::xml::Attribute::SetValue</a> (int rhs) </dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
 <p><a class="anchor" id="_todo000040"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa">phys::xml::Attribute::SetValue</a> (const char_t *rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redudant and use an exception instead. </p>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000041"></a> </p>
+<p><a class="anchor" id="_todo000042"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a693f7bd8015866c3c4979101c343ce50">phys::xml::Attribute::SetValue</a> (int rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redudant and use an exception instead. </p>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a289ac36b218f3912224fd904ccade1ed">phys::xml::Attribute::SetValue</a> (unsigned int rhs) </dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow. </p>
+</dd>
+</dl>
+<p><a class="anchor" id="_todo000044"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a6df4cf0f083482e69e4e6e94599a1d82">phys::xml::Attribute::SetValue</a> (bool rhs) </dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
@@ -231,29 +238,37 @@
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#af9b12723a227b833d7f8986a524b0e48">phys::xml::Attribute::SetValue</a> (T rhs) </dt>
 <dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd>
 </dl>
-<p><a class="anchor" id="_todo000044"></a> </p>
+<p><a class="anchor" id="_todo000043"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a6df4cf0f083482e69e4e6e94599a1d82">phys::xml::Attribute::SetValue</a> (bool rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redudant and use an exception instead. </p>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a919034671f61ee408d616409a49dafca">phys::xml::Attribute::SetValue</a> (double rhs) </dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000042"></a> </p>
+<p><a class="anchor" id="_todo000052"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a289ac36b218f3912224fd904ccade1ed">phys::xml::Attribute::SetValue</a> (unsigned int rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redudant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow. </p>
-</dd>
+<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4971850b72467fcdcf1b3beeb09f26cf">phys::xml::Node::AppendChild</a> (NodeType Type=NodeElement) </dt>
+<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
+</dl>
+<p><a class="anchor" id="_todo000053"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#affc4d9cc0ea7c89bac58d91a432af2ef">phys::xml::Node::InsertChildAfter</a> (NodeType Type, const Node &amp;node) </dt>
+<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
+</dl>
+<p><a class="anchor" id="_todo000054"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11be362cee3fc88c276076c8642189ab">phys::xml::Node::InsertChildBefore</a> (NodeType Type, const Node &amp;node) </dt>
+<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
 </dl>
 <p><a class="anchor" id="_todo000046"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a50ff9948dac721339561ed3442fb7034">phys::xml::Node::SetValue</a> (const char_t *rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redudant and use an exception instead. </p>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Tue Feb 1 2011 13:13:24 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 13:25:10 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

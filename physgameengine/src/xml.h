@@ -551,15 +551,40 @@ namespace phys
 		bool SetValue(const char_t* rhs); 
 		 
 		// Add GetAttribute with specified Name. Returns added GetAttribute, or empty GetAttribute on errors. 
-		Attribute AppendAttribute(const char_t* Name); 
+		
+		/// @param Name The name of the New attribute to be created
+		/// @details This attempts to create an Attribute and stick it at the end of the list of attribute on the current
+		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+		/// fail and return an empty attribute if this Node is empty.
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute AppendAttribute(const char_t* Name);  
 		Attribute PrependAttribute(const char_t* Name); 
 		Attribute InsertAttributeAfter(const char_t* Name, const Attribute& attr); 
 		Attribute InsertAttributeBefore(const char_t* Name, const Attribute& attr); 
  
 		// Add a copy of the specified GetAttribute. Returns added GetAttribute, or empty GetAttribute on errors. 
-		Attribute AppendCopy(const Attribute& proto); 
-		Attribute PrependCopy(const Attribute& proto); 
-		Attribute InsertCopyAfter(const Attribute& proto, const Attribute& attr); 
+		
+		/// @param proto The attribute to be copied.
+		/// @details This attempts to create a copy of an attribute Attribute and stick it at the end of the list of attribute on the current
+		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+		/// fail and return an empty attribute if this Node is empty.
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute AppendCopy(const Attribute& proto);  
+		
+		/// @param proto The attribute to be copied.
+		/// @details This attempts to create a copy of an attribute Attribute and stick it at the beginning of the list of attribute on the current
+		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+		/// fail and return an empty attribute if this Node is empty.
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute PrependCopy(const Attribute& proto);  
+		
+		/// @param proto The attribute to be copied.
+		/// @param attr An Attribute that represents an Attribute on this Node, and is just before where you want the new copy of proto.
+		/// @details This attempts to create a copy of an attribute Attribute and stick it in the middle of the list of attributes, just after a selected attribute, on the current
+		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+		/// fail and return an empty attribute if this Node is empty.
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute InsertCopyAfter(const Attribute& proto, const Attribute& attr);  
 		Attribute InsertCopyBefore(const Attribute& proto, const Attribute& attr); 
  
 		// Add GetChild node with specified Type. Returns added node, or empty node on errors. 

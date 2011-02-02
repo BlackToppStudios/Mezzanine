@@ -637,6 +637,59 @@ namespace phys
         /// @param rhs The desired name of the Node.
         /// @return True if successful, returns false if Node cannot store a name or there is not enough memory.
 
+        /// @fn Node::PrependAttribute(const char_t* Name);
+        /// @param Name The name of the New attribute to be created
+        /// @details This attempts to create an Attribute and stick it at the beginning of the list of attributes on the current
+        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+        /// fail and return an empty attribute if this Node is empty.
+        /// @return The created Attribute or an empty Attribute on Failure.
+
+        /// @fn Node::InsertAttributeAfter(const char_t* Name, const Attribute& attr);
+        /// @param Name The name of the New attribute to be created
+        /// @param attr An Attribute that represents an Attribute on this Node, and is just before where you want the new Attribute.
+        /// @details This attempts to create an Attribute and stick it in the list of attributes, Just after another Attribute, on the current
+        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+        /// fail and return an empty attribute if this Node is empty.
+        /// @return The created Attribute or an empty Attribute on Failure.
+
+        /// @fn Node::InsertAttributeBefore(const char_t* Name, const Attribute& attr);
+        /// @param Name The name of the New attribute to be created
+        /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new Attribute.
+        /// @details This attempts to create an Attribute and stick it in the list of attributes, Just before another Attribute, on the current
+        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+        /// fail and return an empty attribute if this Node is empty.
+        /// @return The created Attribute or an empty Attribute on Failure.
+
+        /// @fn Node::InsertCopyBefore(const Attribute& proto, const Attribute& attr);
+        /// @param proto The attribute to be copied.
+        /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new copy of proto.
+        /// @details This attempts to create a copy of an attribute Attribute and stick it in the middle of the list of attributes, just before a selected attribute, on the current
+        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+        /// fail and return an empty attribute if this Node is empty.
+        /// @return The created Attribute or an empty Attribute on Failure.
+
+		/// @fn Node::AppendChild(NodeType Type = NodeElement);
+		/// @param Type The NodeType of the Node to be added to list of child Nodes.
+		/// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+
+        /// @fn Node::PrependChild(NodeType Type = NodeElement);
+        /// @param Type The NodeType of the Node to be added to the beginning list of child Nodes.
+        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+
+        /// @fn Node::InsertChildAfter(NodeType Type, const Node& node);
+        /// @param Type The NodeType of the Node to be added, just after another specific node.
+        /// @param node The specific node to add the new one after.
+        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+
+		/// @fn Node::InsertChildBefore(NodeType Type, const Node& node);
+		/// @param Type The NodeType of the Node to be added, just before another specific node.
+        /// @param node The specific node to add the new one before.
+        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+
     }
 }
 #endif
