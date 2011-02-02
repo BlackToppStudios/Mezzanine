@@ -202,7 +202,8 @@ namespace phys{
             delete tmpshape;
             delete hull;
             btScalar mass=this->physrigidbody->getInvMass();
-            mass=1/mass;
+            if(0 != mass)
+                mass=1/mass;
             btVector3 inertia(0,0,0);
             convexShape->calculateLocalInertia(mass, inertia);
             Shape = convexShape;
@@ -225,7 +226,8 @@ namespace phys{
             this->PerformConvexDecomposition(depth,cpercent,ppercent);
 
             btScalar mass=this->physrigidbody->getInvMass();
-            mass=1/mass;
+            if(0 != mass)
+                mass=1/mass;
             btVector3 inertia(0,0,0);
             Shape->calculateLocalInertia(mass, inertia);
             this->physrigidbody->setMassProps(mass,inertia);
@@ -244,7 +246,8 @@ namespace phys{
             this->PerformConvexDecomposition(depth,cpercent,ppercent);
 
             btScalar mass=this->physrigidbody->getInvMass();
-            mass=1/mass;
+            if(0 != mass)
+                mass=1/mass;
             btVector3 inertia(0,0,0);
             Shape->calculateLocalInertia(mass, inertia);
             this->physrigidbody->setMassProps(mass,inertia);
@@ -259,7 +262,8 @@ namespace phys{
             }
             btGImpactMeshShape* gimpact = new btGImpactMeshShape(this->CreateTrimesh());
             btScalar mass=this->physrigidbody->getInvMass();
-            mass=1/mass;
+            if(0 != mass)
+                mass=1/mass;
             btVector3 inertia(0,0,0);
             gimpact->calculateLocalInertia(mass, inertia);
             gimpact->setLocalScaling(btVector3(1.f,1.f,1.f));
@@ -288,7 +292,8 @@ namespace phys{
             Real radius=test.X*0.5;
             btSphereShape* sphereshape = new btSphereShape(radius);
             btScalar mass=this->physrigidbody->getInvMass();
-            mass=1/mass;
+            if(0 != mass)
+                mass=1/mass;
             btVector3 inertia(0,0,0);
             sphereshape->calculateLocalInertia(mass, inertia);
             Shape = sphereshape;

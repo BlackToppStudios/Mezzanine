@@ -419,16 +419,14 @@ void LoadContent()
     String groupname ("Group1");
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld->GetResourceManager()->InitResourceGroup(groupname);
-
-/*    ActorRigid *object1 = new ActorRigid (0,"Ferris","ferrisWheel.mesh","Group1");
+/*
+    ActorRigid *object1 = new ActorRigid (0,"Ferris","ferrisWheel.mesh","Group1");
     object1->CreateShapeFromMeshDynamic(3);
-    object1->SetInitLocation(Vector3(0,0,0));
+    //object1->SetInitLocation(Vector3(0,0,0));
     object1->SetInitOrientation(Quaternion(1.0, 0.0, 0.0, 0.55));
     TheWorld->GetActorManager()->AddActor(object1);
     TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));
 */
-    TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0,0,-900));
-    TheWorld->GetCameraManager()->GetDefaultCamera()->LookAt(Vector3(0,0,0));
 }
 
 void MakeGUI()

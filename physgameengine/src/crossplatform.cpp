@@ -139,14 +139,26 @@ namespace phys
 
         void RenderPhysWorld(World *TheWorld, Ogre::RenderWindow* TheOgreWindow)
         {
-            /// @todo Are seperate methods nessessary?
-            /// Simple investigation showed that the same update() method is called when rendering one frame, but for all targets.
+            TheWorld->Log("Rendering the World.");
             #ifndef WINDOWS
-               TheOgreWindow->update(true);
+                TheOgreWindow->update(true);
+                if( !TheOgreWindow->isVisible() )
+                    Ogre::Root::getSingleton().clearEventTimes();
             #else
-               Ogre::Root::getSingleton().renderOneFrame();
-               SDL_GL_SwapBuffers();
+                if(TheOgreWindow->isActive())
+                {
+                    Ogre::Root::getSingleton().renderOneFrame();
+                    SDL_GL_SwapBuffers();
+                }else if( !TheOgreWindow->isActive() && TheOgreWindow->isVisible()){
+                    TheOgreWindow->update(false);
+                    SDL_GL_SwapBuffers();
+                }else{
+                    TheWorld->Log("Aborted Rendering, target is not active");
+                    // clear timings to allow smooth alt-tabbing action.
+                    Ogre::Root::getSingleton().clearEventTimes();
+                }
             #endif
+            TheWorld->Log("Finished Rendering");
         }
     }
 }
