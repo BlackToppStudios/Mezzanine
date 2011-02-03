@@ -669,95 +669,159 @@
 <a name="l00638"></a>00638 <span class="comment">        /// @return True if successful, returns false if Node cannot store a name or there is not enough memory.</span>
 <a name="l00639"></a>00639 <span class="comment"></span><span class="comment"></span>
 <a name="l00640"></a>00640 <span class="comment">        /// @fn Node::PrependAttribute(const char_t* Name);</span>
-<a name="l00641"></a>00641 <span class="comment">        /// @param Name The name of the New attribute to be created</span>
-<a name="l00642"></a>00642 <span class="comment">        /// @details This attempts to create an Attribute and stick it at the beginning of the list of attributes on the current</span>
-<a name="l00643"></a>00643 <span class="comment">        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will</span>
-<a name="l00644"></a>00644 <span class="comment">        /// fail and return an empty attribute if this Node is empty.</span>
-<a name="l00645"></a>00645 <span class="comment">        /// @return The created Attribute or an empty Attribute on Failure.</span>
-<a name="l00646"></a>00646 <span class="comment"></span><span class="comment"></span>
-<a name="l00647"></a>00647 <span class="comment">        /// @fn Node::InsertAttributeAfter(const char_t* Name, const Attribute&amp; attr);</span>
-<a name="l00648"></a>00648 <span class="comment">        /// @param Name The name of the New attribute to be created</span>
-<a name="l00649"></a>00649 <span class="comment">        /// @param attr An Attribute that represents an Attribute on this Node, and is just before where you want the new Attribute.</span>
-<a name="l00650"></a>00650 <span class="comment">        /// @details This attempts to create an Attribute and stick it in the list of attributes, Just after another Attribute, on the current</span>
-<a name="l00651"></a>00651 <span class="comment">        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will</span>
-<a name="l00652"></a>00652 <span class="comment">        /// fail and return an empty attribute if this Node is empty.</span>
-<a name="l00653"></a>00653 <span class="comment">        /// @return The created Attribute or an empty Attribute on Failure.</span>
-<a name="l00654"></a>00654 <span class="comment"></span><span class="comment"></span>
-<a name="l00655"></a>00655 <span class="comment">        /// @fn Node::InsertAttributeBefore(const char_t* Name, const Attribute&amp; attr);</span>
-<a name="l00656"></a>00656 <span class="comment">        /// @param Name The name of the New attribute to be created</span>
-<a name="l00657"></a>00657 <span class="comment">        /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new Attribute.</span>
-<a name="l00658"></a>00658 <span class="comment">        /// @details This attempts to create an Attribute and stick it in the list of attributes, Just before another Attribute, on the current</span>
-<a name="l00659"></a>00659 <span class="comment">        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will</span>
-<a name="l00660"></a>00660 <span class="comment">        /// fail and return an empty attribute if this Node is empty.</span>
-<a name="l00661"></a>00661 <span class="comment">        /// @return The created Attribute or an empty Attribute on Failure.</span>
-<a name="l00662"></a>00662 <span class="comment"></span><span class="comment"></span>
-<a name="l00663"></a>00663 <span class="comment">        /// @fn Node::InsertCopyBefore(const Attribute&amp; proto, const Attribute&amp; attr);</span>
-<a name="l00664"></a>00664 <span class="comment">        /// @param proto The attribute to be copied.</span>
-<a name="l00665"></a>00665 <span class="comment">        /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new copy of proto.</span>
-<a name="l00666"></a>00666 <span class="comment">        /// @details This attempts to create a copy of an attribute Attribute and stick it in the middle of the list of attributes, just before a selected attribute, on the current</span>
-<a name="l00667"></a>00667 <span class="comment">        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will</span>
-<a name="l00668"></a>00668 <span class="comment">        /// fail and return an empty attribute if this Node is empty.</span>
-<a name="l00669"></a>00669 <span class="comment">        /// @return The created Attribute or an empty Attribute on Failure.</span>
-<a name="l00670"></a>00670 <span class="comment"></span><span class="comment"></span>
-<a name="l00671"></a>00671 <span class="comment">                /// @fn Node::AppendChild(NodeType Type = NodeElement);</span>
-<a name="l00672"></a>00672 <span class="comment">                /// @param Type The NodeType of the Node to be added to list of child Nodes.</span>
-<a name="l00673"></a>00673 <span class="comment">                /// @return A Node representing the freshly added Node, or an empty Node if there was an error.</span>
-<a name="l00674"></a>00674 <span class="comment">                /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.</span>
-<a name="l00675"></a>00675 <span class="comment"></span><span class="comment"></span>
-<a name="l00676"></a>00676 <span class="comment">        /// @fn Node::PrependChild(NodeType Type = NodeElement);</span>
-<a name="l00677"></a>00677 <span class="comment">        /// @param Type The NodeType of the Node to be added to the beginning list of child Nodes.</span>
-<a name="l00678"></a>00678 <span class="comment">        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.</span>
+<a name="l00641"></a>00641 <span class="comment">        /// @brief Creates an Attribute and puts it at the begining of this Nodes attributes</span>
+<a name="l00642"></a>00642 <span class="comment">        /// @param Name The name of the New attribute to be created</span>
+<a name="l00643"></a>00643 <span class="comment">        /// @details This attempts to create an Attribute and stick it at the beginning of the list of attributes on the current</span>
+<a name="l00644"></a>00644 <span class="comment">        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will</span>
+<a name="l00645"></a>00645 <span class="comment">        /// fail and return an empty attribute if this Node is empty.</span>
+<a name="l00646"></a>00646 <span class="comment">        /// @return The created Attribute or an empty Attribute on Failure.</span>
+<a name="l00647"></a>00647 <span class="comment"></span><span class="comment"></span>
+<a name="l00648"></a>00648 <span class="comment">        /// @fn Node::InsertAttributeAfter(const char_t* Name, const Attribute&amp; attr);</span>
+<a name="l00649"></a>00649 <span class="comment">        /// @brief Creates an Attribute and puts it into the list of this Nodes attributes.</span>
+<a name="l00650"></a>00650 <span class="comment">        /// @param Name The name of the New attribute to be created</span>
+<a name="l00651"></a>00651 <span class="comment">        /// @param attr An Attribute that represents an Attribute on this Node, and is just before where you want the new Attribute.</span>
+<a name="l00652"></a>00652 <span class="comment">        /// @details This attempts to create an Attribute and stick it in the list of attributes, Just after another Attribute, on the current</span>
+<a name="l00653"></a>00653 <span class="comment">        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will</span>
+<a name="l00654"></a>00654 <span class="comment">        /// fail and return an empty attribute if this Node is empty.</span>
+<a name="l00655"></a>00655 <span class="comment">        /// @return The created Attribute or an empty Attribute on Failure.</span>
+<a name="l00656"></a>00656 <span class="comment"></span><span class="comment"></span>
+<a name="l00657"></a>00657 <span class="comment">        /// @fn Node::InsertAttributeBefore(const char_t* Name, const Attribute&amp; attr);</span>
+<a name="l00658"></a>00658 <span class="comment">        /// @brief Creates an Attribute and puts it into the list of this Nodes attributes.</span>
+<a name="l00659"></a>00659 <span class="comment">        /// @param Name The name of the New attribute to be created</span>
+<a name="l00660"></a>00660 <span class="comment">        /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new Attribute.</span>
+<a name="l00661"></a>00661 <span class="comment">        /// @details This attempts to create an Attribute and stick it in the list of attributes, Just before another Attribute, on the current</span>
+<a name="l00662"></a>00662 <span class="comment">        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will</span>
+<a name="l00663"></a>00663 <span class="comment">        /// fail and return an empty attribute if this Node is empty.</span>
+<a name="l00664"></a>00664 <span class="comment">        /// @return The created Attribute or an empty Attribute on Failure.</span>
+<a name="l00665"></a>00665 <span class="comment"></span><span class="comment"></span>
+<a name="l00666"></a>00666 <span class="comment">        /// @fn Node::InsertCopyBefore(const Attribute&amp; proto, const Attribute&amp; attr);</span>
+<a name="l00667"></a>00667 <span class="comment">        /// @brief Copies an Attribute and puts the copy into the list of this Nodes attributes.</span>
+<a name="l00668"></a>00668 <span class="comment">        /// @param proto The attribute to be copied.</span>
+<a name="l00669"></a>00669 <span class="comment">        /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new copy of proto.</span>
+<a name="l00670"></a>00670 <span class="comment">        /// @details This attempts to create a copy of an attribute Attribute and stick it in the middle of the list of attributes, just before a selected attribute, on the current</span>
+<a name="l00671"></a>00671 <span class="comment">        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will</span>
+<a name="l00672"></a>00672 <span class="comment">        /// fail and return an empty attribute if this Node is empty.</span>
+<a name="l00673"></a>00673 <span class="comment">        /// @return The created Attribute or an empty Attribute on Failure.</span>
+<a name="l00674"></a>00674 <span class="comment"></span><span class="comment"></span>
+<a name="l00675"></a>00675 <span class="comment">                /// @fn Node::AppendChild(NodeType Type = NodeElement);</span>
+<a name="l00676"></a>00676 <span class="comment">                /// @brief Creates a Node and makes it a child of this one.</span>
+<a name="l00677"></a>00677 <span class="comment">                /// @param Type The NodeType of the Node to be added to list of child Nodes.</span>
+<a name="l00678"></a>00678 <span class="comment">                /// @return A Node representing the freshly added Node, or an empty Node if there was an error.</span>
 <a name="l00679"></a>00679 <span class="comment">                /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.</span>
 <a name="l00680"></a>00680 <span class="comment"></span><span class="comment"></span>
-<a name="l00681"></a>00681 <span class="comment">        /// @fn Node::InsertChildAfter(NodeType Type, const Node&amp; node);</span>
-<a name="l00682"></a>00682 <span class="comment">        /// @param Type The NodeType of the Node to be added, just after another specific node.</span>
-<a name="l00683"></a>00683 <span class="comment">        /// @param node The specific node to add the new one after.</span>
+<a name="l00681"></a>00681 <span class="comment">        /// @fn Node::PrependChild(NodeType Type = NodeElement);</span>
+<a name="l00682"></a>00682 <span class="comment">        /// @brief Creates a Node and makes it a child of this one, and puts at the beginning of the Child Nodes.</span>
+<a name="l00683"></a>00683 <span class="comment">        /// @param Type The NodeType of the Node to be added to the beginning list of child Nodes.</span>
 <a name="l00684"></a>00684 <span class="comment">        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.</span>
 <a name="l00685"></a>00685 <span class="comment">                /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.</span>
 <a name="l00686"></a>00686 <span class="comment"></span><span class="comment"></span>
-<a name="l00687"></a>00687 <span class="comment">                /// @fn Node::InsertChildBefore(NodeType Type, const Node&amp; node);</span>
-<a name="l00688"></a>00688 <span class="comment">                /// @param Type The NodeType of the Node to be added, just before another specific node.</span>
-<a name="l00689"></a>00689 <span class="comment">        /// @param node The specific node to add the new one before.</span>
-<a name="l00690"></a>00690 <span class="comment">        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.</span>
-<a name="l00691"></a>00691 <span class="comment">                /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.</span>
-<a name="l00692"></a>00692 <span class="comment"></span>
-<a name="l00693"></a>00693     }
-<a name="l00694"></a>00694 }
-<a name="l00695"></a>00695 <span class="preprocessor">#endif</span>
-<a name="l00696"></a>00696 <span class="preprocessor"></span>
-<a name="l00697"></a>00697 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l00698"></a>00698 <span class="preprocessor"></span>
-<a name="l00699"></a>00699 <span class="comment">/*</span>
-<a name="l00700"></a>00700 <span class="comment"> *</span>
-<a name="l00701"></a>00701 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l00702"></a>00702 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l00703"></a>00703 <span class="comment"> *</span>
-<a name="l00704"></a>00704 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l00705"></a>00705 <span class="comment"> *</span>
-<a name="l00706"></a>00706 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l00707"></a>00707 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l00708"></a>00708 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l00709"></a>00709 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l00710"></a>00710 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l00711"></a>00711 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l00712"></a>00712 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l00713"></a>00713 <span class="comment"> * conditions:</span>
-<a name="l00714"></a>00714 <span class="comment"> *</span>
-<a name="l00715"></a>00715 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l00716"></a>00716 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l00717"></a>00717 <span class="comment"> *</span>
-<a name="l00718"></a>00718 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l00719"></a>00719 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l00720"></a>00720 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l00721"></a>00721 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l00722"></a>00722 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l00723"></a>00723 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l00724"></a>00724 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l00725"></a>00725 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l00726"></a>00726 <span class="comment"> */</span>
+<a name="l00687"></a>00687 <span class="comment">        /// @fn Node::InsertChildAfter(NodeType Type, const Node&amp; node);</span>
+<a name="l00688"></a>00688 <span class="comment">        /// @brief Creates a Node and makes it a child of this one, and puts at the middle of the Child Nodes.</span>
+<a name="l00689"></a>00689 <span class="comment">        /// @param Type The NodeType of the Node to be added, just after another specific node.</span>
+<a name="l00690"></a>00690 <span class="comment">        /// @param node The specific node to add the new one after.</span>
+<a name="l00691"></a>00691 <span class="comment">        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.</span>
+<a name="l00692"></a>00692 <span class="comment">                /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.</span>
+<a name="l00693"></a>00693 <span class="comment"></span><span class="comment"></span>
+<a name="l00694"></a>00694 <span class="comment">                /// @fn Node::InsertChildBefore(NodeType Type, const Node&amp; node);</span>
+<a name="l00695"></a>00695 <span class="comment">                /// @brief Creates a Node and makes it a child of this one, and puts at the middle of the Child Nodes.</span>
+<a name="l00696"></a>00696 <span class="comment">                /// @param Type The NodeType of the Node to be added, just before another specific node.</span>
+<a name="l00697"></a>00697 <span class="comment">        /// @param node The specific node to add the new one before.</span>
+<a name="l00698"></a>00698 <span class="comment">        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.</span>
+<a name="l00699"></a>00699 <span class="comment">                /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.</span>
+<a name="l00700"></a>00700 <span class="comment"></span><span class="comment"></span>
+<a name="l00701"></a>00701 <span class="comment">        /// @fn Node::AppendChild(const char_t* Name);</span>
+<a name="l00702"></a>00702 <span class="comment">        /// @brief Creates an element Node as a child of this Node, with the given name.</span>
+<a name="l00703"></a>00703 <span class="comment">        /// @param Name The name of the Node to be created.</span>
+<a name="l00704"></a>00704 <span class="comment">        /// @details Calls @ref Node::AppendChild(NodeType); using NodeElement as the NodeType.</span>
+<a name="l00705"></a>00705 <span class="comment">        /// @return The desired Node on success, an empty Node on failure.</span>
+<a name="l00706"></a>00706 <span class="comment"></span><span class="comment"></span>
+<a name="l00707"></a>00707 <span class="comment">                /// @fn Node::PrependChild(const char_t* Name);</span>
+<a name="l00708"></a>00708 <span class="comment">                /// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children</span>
+<a name="l00709"></a>00709 <span class="comment">                /// @param Name The name of the Node to be created.</span>
+<a name="l00710"></a>00710 <span class="comment">        /// @details Calls @ref Node::PrependChild(NodeType); using NodeElement as the NodeType.</span>
+<a name="l00711"></a>00711 <span class="comment">        /// @return The desired Node on success, an empty Node on failure.</span>
+<a name="l00712"></a>00712 <span class="comment"></span><span class="comment"></span>
+<a name="l00713"></a>00713 <span class="comment">                /// @fn Node::InsertChildBefore(const char_t* Name, const Node&amp; node);</span>
+<a name="l00714"></a>00714 <span class="comment">                /// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children</span>
+<a name="l00715"></a>00715 <span class="comment">                /// @param Name The name of the Node to be created.</span>
+<a name="l00716"></a>00716 <span class="comment">                /// @param Node The node just after were the Create node is to be placed.</span>
+<a name="l00717"></a>00717 <span class="comment">        /// @details Calls @ref Node::InsertChildBefore(NodeType, Node); using NodeElement as the NodeType.</span>
+<a name="l00718"></a>00718 <span class="comment">        /// @return The desired Node on success, an empty Node on failure.</span>
+<a name="l00719"></a>00719 <span class="comment"></span><span class="comment"></span>
+<a name="l00720"></a>00720 <span class="comment">                /// @fn Node::AppendCopy(const Node&amp; proto);</span>
+<a name="l00721"></a>00721 <span class="comment">                /// @brief Copies a Node and puts the copy at the end of the list of this Nodes Childrem.</span>
+<a name="l00722"></a>00722 <span class="comment">        /// @param proto The Node to be copied. If this is emptry, no work is performed.</span>
+<a name="l00723"></a>00723 <span class="comment">        /// @return The copied Node on success, an empty Node on failure.</span>
+<a name="l00724"></a>00724 <span class="comment"></span><span class="comment"></span>
+<a name="l00725"></a>00725 <span class="comment">                /// @fn Node::InsertCopyAfter(const Node&amp; proto, const Node&amp; node);</span>
+<a name="l00726"></a>00726 <span class="comment">                /// @brief Copies a Node and puts the copy in the middle the list of this Nodes Childrem.</span>
+<a name="l00727"></a>00727 <span class="comment">        /// @param proto The Node to be copied. If this is emptry, no work is performed.</span>
+<a name="l00728"></a>00728 <span class="comment">        /// @param node The Node just before the desired place in the list of children to insert the copied node.</span>
+<a name="l00729"></a>00729 <span class="comment">        /// @return The copied Node on success, an empty Node on failure.</span>
+<a name="l00730"></a>00730 <span class="comment"></span><span class="comment"></span>
+<a name="l00731"></a>00731 <span class="comment">                /// @fn Node::InsertCopyBefore(const Node&amp; proto, const Node&amp; node);</span>
+<a name="l00732"></a>00732 <span class="comment">                /// @brief Copies a Node and puts the copy in the middle the list of this Nodes Childrem.</span>
+<a name="l00733"></a>00733 <span class="comment">        /// @param proto The Node to be copied. If this is emptry, no work is performed.</span>
+<a name="l00734"></a>00734 <span class="comment">        /// @param node The Node just after the desired place in the list of children to insert the copied node.</span>
+<a name="l00735"></a>00735 <span class="comment">        /// @return The copied Node on success, an empty Node on failure.</span>
+<a name="l00736"></a>00736 <span class="comment"></span>
+<a name="l00737"></a>00737 <span class="comment"></span>
+<a name="l00738"></a>00738 <span class="comment">                /// @fn Node::RemoveAttribute(const Attribute&amp; a);</span>
+<a name="l00739"></a>00739 <span class="comment">                /// @brief Remove specified Attribute.</span>
+<a name="l00740"></a>00740 <span class="comment">                /// @param a The Attribute to look for. If the given Attribute doesn&#39;t belong to this Node then this will fail</span>
+<a name="l00741"></a>00741 <span class="comment">                /// @return True if the removal was successful, false otherwise</span>
+<a name="l00742"></a>00742 <span class="comment"></span><span class="comment"></span>
+<a name="l00743"></a>00743 <span class="comment">                /// @fn Node::RemoveAttribute(const char_t* Name);</span>
+<a name="l00744"></a>00744 <span class="comment">                /// @brief Remove Attribute as specified by name.</span>
+<a name="l00745"></a>00745 <span class="comment">                /// @param Name The name of the Attribute to remove.</span>
+<a name="l00746"></a>00746 <span class="comment">                /// @return True if the removal was successful, false otherwise.</span>
+<a name="l00747"></a>00747 <span class="comment"></span><span class="comment"></span>
+<a name="l00748"></a>00748 <span class="comment">                /// @fn Node::RemoveChild(const Node&amp; n);</span>
+<a name="l00749"></a>00749 <span class="comment">                /// @brief Remove specified child element.</span>
+<a name="l00750"></a>00750 <span class="comment">                /// @param n The Node to look for. If the given Attribute doesn&#39;t belong to this Node then this will fail</span>
+<a name="l00751"></a>00751 <span class="comment">                /// @return True if the removal was successful, false otherwise</span>
+<a name="l00752"></a>00752 <span class="comment"></span>
+<a name="l00753"></a>00753 
+<a name="l00754"></a>00754 
+<a name="l00755"></a>00755 
+<a name="l00756"></a>00756 
+<a name="l00757"></a>00757     }
+<a name="l00758"></a>00758 }
+<a name="l00759"></a>00759 <span class="preprocessor">#endif</span>
+<a name="l00760"></a>00760 <span class="preprocessor"></span>
+<a name="l00761"></a>00761 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l00762"></a>00762 <span class="preprocessor"></span>
+<a name="l00763"></a>00763 <span class="comment">/*</span>
+<a name="l00764"></a>00764 <span class="comment"> *</span>
+<a name="l00765"></a>00765 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l00766"></a>00766 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l00767"></a>00767 <span class="comment"> *</span>
+<a name="l00768"></a>00768 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l00769"></a>00769 <span class="comment"> *</span>
+<a name="l00770"></a>00770 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l00771"></a>00771 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l00772"></a>00772 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l00773"></a>00773 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l00774"></a>00774 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l00775"></a>00775 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l00776"></a>00776 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l00777"></a>00777 <span class="comment"> * conditions:</span>
+<a name="l00778"></a>00778 <span class="comment"> *</span>
+<a name="l00779"></a>00779 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l00780"></a>00780 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l00781"></a>00781 <span class="comment"> *</span>
+<a name="l00782"></a>00782 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l00783"></a>00783 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l00784"></a>00784 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l00785"></a>00785 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l00786"></a>00786 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l00787"></a>00787 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l00788"></a>00788 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l00789"></a>00789 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l00790"></a>00790 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 2 2011 13:25:09 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:19 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

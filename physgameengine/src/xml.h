@@ -552,6 +552,7 @@ namespace phys
 		 
 		// Add GetAttribute with specified Name. Returns added GetAttribute, or empty GetAttribute on errors. 
 		
+		/// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
 		/// @param Name The name of the New attribute to be created
 		/// @details This attempts to create an Attribute and stick it at the end of the list of attribute on the current
 		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
@@ -564,6 +565,7 @@ namespace phys
  
 		// Add a copy of the specified GetAttribute. Returns added GetAttribute, or empty GetAttribute on errors. 
 		
+		/// @brief Copies an Attribute and puts the copy at the end of this Nodes attributes.
 		/// @param proto The attribute to be copied.
 		/// @details This attempts to create a copy of an attribute Attribute and stick it at the end of the list of attribute on the current
 		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
@@ -571,6 +573,7 @@ namespace phys
 		/// @return The created Attribute or an empty Attribute on Failure.
 		Attribute AppendCopy(const Attribute& proto);  
 		
+		/// @brief Copies an Attribute and puts the copy at the beginning of this Nodes attributes.
 		/// @param proto The attribute to be copied.
 		/// @details This attempts to create a copy of an attribute Attribute and stick it at the beginning of the list of attribute on the current
 		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
@@ -578,6 +581,7 @@ namespace phys
 		/// @return The created Attribute or an empty Attribute on Failure.
 		Attribute PrependCopy(const Attribute& proto);  
 		
+		/// @brief Copies an Attribute and puts the copy into the list of this Nodes attributes.
 		/// @param proto The attribute to be copied.
 		/// @param attr An Attribute that represents an Attribute on this Node, and is just before where you want the new copy of proto.
 		/// @details This attempts to create a copy of an attribute Attribute and stick it in the middle of the list of attributes, just after a selected attribute, on the current
@@ -596,11 +600,21 @@ namespace phys
 		// Add GetChild element with specified Name. Returns added node, or empty node on errors. 
 		Node AppendChild(const char_t* Name); 
 		Node PrependChild(const char_t* Name); 
+		
+		/// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children
+		/// @param Name The name of the Node to be created.
+		/// @param Node The node just before were the Create node is to be placed.
+		/// @details Calls @ref Node::InsertChildAfter(NodeType, Node); using NodeElement as the NodeType.
+		/// @return The desired Node on success, an empty Node on failure.
 		Node InsertChildAfter(const char_t* Name, const Node& node); 
 		Node InsertChildBefore(const char_t* Name, const Node& node); 
  
 		// Add a copy of the specified node as a GetChild. Returns added node, or empty node on errors. 
 		Node AppendCopy(const Node& proto); 
+		
+		/// @brief Copies a Node and puts the copy at the start of the list of this Nodes Childrem.
+		/// @param proto The Node to be copied. If this is emptry, no work is performed.
+		/// @return The copied Node on success, an empty Node on failure.
 		Node PrependCopy(const Node& proto); 
 		Node InsertCopyAfter(const Node& proto, const Node& node); 
 		Node InsertCopyBefore(const Node& proto, const Node& node); 
@@ -611,6 +625,10 @@ namespace phys
  
 		// Remove specified GetChild 
 		bool RemoveChild(const Node& n); 
+		
+		/// @brief Remove child element as specified by name.
+		/// @param Name The name of the Node to remove.
+		/// @return True if the removal was successful, false otherwise
 		bool RemoveChild(const char_t* Name); 
  
 		// Find GetAttribute using predicate. Returns first GetAttribute for which predicate returned true. 
