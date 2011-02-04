@@ -43,6 +43,7 @@
 #include "world.h"
 #include "eventmanager.h"
 #include "eventrendertime.h"
+#include "actorcontainervector.h"
 #include "graphicsmanager.h"
 #include "cameramanager.h"
 #include "uimanager.h"
@@ -92,9 +93,9 @@ namespace phys
 			SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 			if(Fullscreen)
 			{
-			    this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN);
+			    this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN );
 			}else{
-                this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL);
+                this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
 			}
 			SDL_WM_SetCaption(GameWorld->GetWindowName().c_str(), NULL);
 			#ifdef PHYSDEBUG
@@ -182,29 +183,40 @@ namespace phys
     void GraphicsManager::UpdateWindowStats()
     {
         GameWorld->Log("Updating Screen Mode. ");
+        OgreGameWindow->destroy();
         if(Fullscreen)
         {
             GameWorld->Log("Setting SDL. ");
             this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN);
             GameWorld->Log("Setting Ogre. ");
-            OgreGameWindow->setFullscreen(true,RenderWidth,RenderHeight);
+            //OgreGameWindow->setFullscreen(true,RenderWidth,RenderHeight);
         }else{
             GameWorld->Log("Setting SDL. ");
-            this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL);
+            this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
             GameWorld->Log("Setting Ogre. ");
-            OgreGameWindow->setFullscreen(false,RenderWidth,RenderHeight);
+            //OgreGameWindow->setFullscreen(false,RenderWidth,RenderHeight);
         }
-        //OgreGameWindow->windowMovedOrResized();
+        Ogre::NameValuePairList *misc;
+        misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
+        OgreGameWindow->create(GameWorld->GetWindowName(), RenderHeight, RenderWidth, Fullscreen, misc);
+
         GameWorld->Log("Updating Viewport. ");
         Ogre::Viewport* OgreViewport = GameWorld->GetCameraManager()->GetOgreViewport("Viewport1");
         OgreViewport->setDimensions(0,0,1,1);
         OgreViewport->getCamera()->setAspectRatio((Real)(OgreViewport->getActualWidth()) / (Real)(OgreViewport->getActualHeight()));
-        //GameWorld->GetCameraManager()->GetOgreViewport("Viewport1")->_updateDimensions();
-        //GameWorld->GetCameraManager()->GetDefaultCamera()->SetAspectRatio((Real)RenderWidth/(Real)RenderHeight);
+
         Ogre::TextureManager::getSingleton().reloadAll();
-        //Ogre::MeshManager::getSingleton().reloadAll();
-        //Ogre::SkeletonManager::getSingleton().reloadAll();
-        //Ogre::MaterialManager::getSingleton().reloadAll();
+        Ogre::MeshManager::getSingleton().reloadAll();
+        Ogre::SkeletonManager::getSingleton().reloadAll();
+        Ogre::MaterialManager::getSingleton().reloadAll();
+        Ogre::CompositorManager::getSingleton().reloadAll();
+        Ogre::GpuProgramManager::getSingleton().reloadAll();
+        Ogre::HighLevelGpuProgramManager::getSingleton().reloadAll();
+        //Ogre::FontManager::getSingleton().reloadAll();
+
+        ActorContainerVector* ActorMan = static_cast<ActorContainerVector*>(GameWorld->GetActorManager());
+        for( std::vector<ActorBase*>::iterator cur = ActorMan->begin() ; cur != ActorMan->end() ; cur++ )
+            (*cur)->InitEntity(true);
         //GameWorld->GetUIManager()->RedrawAll(true);
         GameWorld->Log("Done Updating Screen Mode. ");
     }

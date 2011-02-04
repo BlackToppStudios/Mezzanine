@@ -141,7 +141,10 @@ namespace phys
         {
             TheWorld->Log("Rendering the World.");
             #ifndef WINDOWS
+                Ogre::Root::getSingleton()._fireFrameStarted();
+                Ogre::Root::getSingleton()._fireFrameRenderingQueued();
                 TheOgreWindow->update(true);
+                Ogre::Root::getSingleton()._fireFrameEnded();
                 if( !TheOgreWindow->isVisible() )
                     Ogre::Root::getSingleton().clearEventTimes();
             #else

@@ -184,6 +184,13 @@ namespace phys
             /// This function is called on by the Constructor, and shouldn't be called manually.
             void CreateSceneNode();
 
+            /// @brief Initializes the entity so it is ready to use.
+            /// @details Usually Ogre will do this for you and you won't need to call on this.  But in some edge cases when you tamper
+            /// with the internal structures of entities, or the context being rendered to you may need to rebuild those structures.
+            /// @param ForceReinitialize If true, it will destroy the extisting structures(if any) and rebuild them.  If false this will
+            /// only have an effect if the structures aren't yet built.
+            void InitializeEntity(bool ForceReinitialize);
+
             /// @brief Sets the location of the graphical body.
             /// @details This will take a Vector3 and set the location of the actor within the graphical world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
@@ -300,6 +307,8 @@ namespace phys
             /// @brief Unloads a loaded animation.
             /// @details This function will remove the existing set animation.
             void RemoveSetAnimation();
+
+            void InitEntity(bool force);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Creation, Destruction and Initialization

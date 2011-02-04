@@ -334,7 +334,7 @@ namespace phys
                 if( !(*Iter)->PostMainLoopItems() )
                     { DoNotBreak=false; }
 
-                this->LogStream << endl << (*Iter)->GetTypeName() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
+                this->LogStream << (*Iter)->GetTypeName() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
                 this->Log();
                 this->DoMainLoopLogging();
             }
