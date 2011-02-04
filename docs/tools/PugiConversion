@@ -207,7 +207,10 @@ function FixNames
 
 	#More tightly integrating Character into the XML parser
 	sed -i -e 's|typedef XML_CHAR char_t;|typedef Character char_t;|g' $1
-	sed -i -e 's|typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> > string_t;|typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t;|g' $1
+	sed -i -e 's|typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> >;|//typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t;|g' $1
+	sed -i -e 's|string_t|String|g' $1
+	
+	#sed -i -e 's|\([^w]\)char_t|\1Character|g' $1 #This very breaks the code
 
 	#Renaming 1 and2 part Parse options
 	sed -i -e 's|parse_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Parse\U\1\L\2\U\3\L\4|g' $1				
@@ -270,6 +273,7 @@ function FixNames
 	sed -i -e 's|select_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Find\U\1\L\2\U\3\L\4\U\5\L\6|g' $1
 	sed -i -e 's|select_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Find\U\1\L\2\U\3\L\4|g' $1
 	sed -i -e 's|select_\(.\)\([a-z]*\)|Find\U\1\L\2|g' $1
+	sed -i -e 's|attr_\(.\)\([a-z]*\)|Attr\U\1\L\2|g' $1
 
 	sed -i -e 's|\([^_]\)type\([^dn]\)|\1Type\2|g' $1
 	sed -i -e 's|\([^_]\)attribute\([^_s]\)|\1GetAttribute\2|g' $1
@@ -283,6 +287,7 @@ function FixNames
 	sed -i -e 's|NextSibling|GetNextSibling|g' $1
 	sed -i -e 's|PreviousSibling|GetPreviousSibling|g' $1
 	sed -i -e 's|traverse|Traverse|g' $1
+	sed -i -e 's|path|Path|g' $1
 
 	###############################
 	#Documentation that was not put in xmldoc.h

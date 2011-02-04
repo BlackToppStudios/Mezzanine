@@ -256,20 +256,20 @@ TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested 
 \item[Member \hyperlink{classphys_1_1xml_1_1Attribute_af9b12723a227b833d7f8986a524b0e48}{phys::xml::Attribute::SetValue}(T rhs) ]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000041}
-\hypertarget{dd/da0/todo__todo000041}{}
- 
-\begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a693f7bd8015866c3c4979101c343ce50}{phys::xml::Attribute::SetValue}(int rhs) ]update this to make the error return code redundant and use an exception instead. 
-
-Review for possiblity of buffer overflow. 
-\end{DoxyDescription}
-
 \label{dd/da0/todo__todo000040}
 \hypertarget{dd/da0/todo__todo000040}{}
  
 \begin{DoxyDescription}
 \item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a470512fcd8b4f7609319bf85df100aaa}{phys::xml::Attribute::SetValue}(const char\_\-t $\ast$rhs) ]update this to make the error return code redundant and use an exception instead. 
+
+Review for possiblity of buffer overflow. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000041}
+\hypertarget{dd/da0/todo__todo000041}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1xml_1_1Attribute_a693f7bd8015866c3c4979101c343ce50}{phys::xml::Attribute::SetValue}(int rhs) ]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. 
 \end{DoxyDescription}
@@ -301,6 +301,13 @@ Review for possiblity of buffer overflow.
 Review for possiblity of buffer overflow. 
 \end{DoxyDescription}
 
+\label{dd/da0/todo__todo000055}
+\hypertarget{dd/da0/todo__todo000055}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1xml_1_1Node_a7e9b4518e4d12517bc5ff756054e7395}{phys::xml::Node::AppendChild}(const char\_\-t $\ast$Name) ]Not all nodes can be added to other nodes, we need to figure it out and put it here. 
+\end{DoxyDescription}
+
 \label{dd/da0/todo__todo000052}
 \hypertarget{dd/da0/todo__todo000052}{}
  
@@ -308,11 +315,11 @@ Review for possiblity of buffer overflow.
 \item[Member \hyperlink{classphys_1_1xml_1_1Node_a4971850b72467fcdcf1b3beeb09f26cf}{phys::xml::Node::AppendChild}(NodeType Type=NodeElement) ]Not all nodes can be added to other nodes, we need to figure it out and put it here. 
 \end{DoxyDescription}
 
-\label{dd/da0/todo__todo000055}
-\hypertarget{dd/da0/todo__todo000055}{}
+\label{dd/da0/todo__todo000056}
+\hypertarget{dd/da0/todo__todo000056}{}
  
 \begin{DoxyDescription}
-\item[Member \hyperlink{classphys_1_1xml_1_1Node_a7e9b4518e4d12517bc5ff756054e7395}{phys::xml::Node::AppendChild}(const char\_\-t $\ast$Name) ]Not all nodes can be added to other nodes, we need to figure it out and put it here. 
+\item[Member \hyperlink{classphys_1_1xml_1_1Node_af2a9ac5c4e3252dca0e17720de093a9a}{phys::xml::Node::FirstElementByPath}(const char\_\-t $\ast$Path, char\_\-t delimiter= '/') const  ]Investigate this more deeply. 
 \end{DoxyDescription}
 
 \label{dd/da0/todo__todo000053}
@@ -336,4 +343,11 @@ Review for possiblity of buffer overflow.
 \item[Member \hyperlink{classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}{phys::xml::Node::SetValue}(const char\_\-t $\ast$rhs) ]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. 
+\end{DoxyDescription}
+
+\label{dd/da0/todo__todo000057}
+\hypertarget{dd/da0/todo__todo000057}{}
+ 
+\begin{DoxyDescription}
+\item[Member \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{phys::xml::Node::Traverse}(TreeWalker \&walker) ]document this once TreeWalker is documented. 
 \end{DoxyDescription}

@@ -254,8 +254,8 @@ namespace phys
         /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @typedef string_t
-        /// @brief A string class used internally to store data in the XML parser.
+        // @typedef string_t
+        // @brief A string class used internally to store data in the XML parser.
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @var FormatIndent
@@ -774,6 +774,37 @@ namespace phys
         /// Node it was just passed is returned. If Predicate never returns true, it is called on every Node and a blank Node is
         /// returned. The Predicate is never called with a null value.
         /// @return This returns the first Node that causes Predicate to return true.
+
+        /// @fn Node::FindChildbyAttribute(const char_t* Name, const char_t* AttrName, const char_t* AttrValue) const;
+        /// @brief Find a Node by an Attribute it has.
+        /// @param Name The name of the matching Node.
+        /// @param AttrName The name of the matching Attribute.
+        /// @param AttrValue The value of the matching Attribute.
+        /// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
+
+		/// @fn Node::FindChildbyAttribute(const char_t* AttrName, const char_t* AttrValue) const;
+		/// @brief Find a Node by an Attribute it has.
+        /// @param AttrName The name of the matching Attribute.
+        /// @param AttrValue The value of the matching Attribute.
+        /// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
+
+        /// @fn Node::Path(char_t delimiter = '/') const;
+        /// @brief Get the absolute XPath path to this Node
+        /// @param delimiter The character to use as a pathname separator, this defaults to '/'.
+        /// @return A String containing an XPath Path
+
+        /// @fn Node::FirstElementByPath(const char_t* Path, char_t delimiter = '/') const;
+        /// @brief Search for a node by Path consisting of node names and . or .. elements.
+        /// @todo Investigate this more deeply.
+        /// @param Path The XPath path to search for.
+        /// @param delimiter The character to use as a pathname separator, this defaults to '/'.
+        /// @return The matching Node, of an empty Node on failure.
+
+        /// @fn Node::Traverse(TreeWalker& walker);
+        /// @brief undocumented
+        /// @param walker a Treewalker
+        /// @todo document this once TreeWalker is documented.
+        /// @return A bool
 
     }
 }

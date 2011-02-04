@@ -150,31 +150,19 @@ bool \hyperlink{classphys_1_1xml_1_1Node_a2612e301caa54ac6af135b8fb11b2e25}{Remo
 \begin{DoxyCompactList}\small\item\em Search for an child ( only direct children ) \hyperlink{classphys_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classphys_1_1xml_1_1Node}{Node} individually. \item\end{DoxyCompactList}\item 
 {\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a495663e5af0745f42e48bbfd21408c99}{FindNode} (Predicate pred) const 
 \begin{DoxyCompactList}\small\item\em Search for any \hyperlink{classphys_1_1xml_1_1Node}{Node} descended from this \hyperlink{classphys_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classphys_1_1xml_1_1Node}{Node} individually. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1Node_a647302cd585c40fcdc9570176947706d}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries FindChildbyAttribute} (const char\_\-t $\ast$Name, const char\_\-t $\ast$attr\_\-Name, const char\_\-t $\ast$attr\_\-Value) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a647302cd585c40fcdc9570176947706d}
+\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a8a362455b50e54454f145f9109a85e49}{FindChildbyAttribute} (const char\_\-t $\ast$Name, const char\_\-t $\ast$AttrName, const char\_\-t $\ast$AttrValue) const 
+\begin{DoxyCompactList}\small\item\em Find a \hyperlink{classphys_1_1xml_1_1Node}{Node} by an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} it has. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1Node_af6f0c0656e2a5cc7c79e032236b2b3b1}{
+\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_af6f0c0656e2a5cc7c79e032236b2b3b1}{FindChildbyAttribute} (const char\_\-t $\ast$AttrName, const char\_\-t $\ast$AttrValue) const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_af6f0c0656e2a5cc7c79e032236b2b3b1}
 
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a3644bfc954295d9817f1385d2481a675}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries FindChildbyAttribute} (const char\_\-t $\ast$attr\_\-Name, const char\_\-t $\ast$attr\_\-Value) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a3644bfc954295d9817f1385d2481a675}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a74b9f51a6642808510e71f643cc861ad}{
-\hyperlink{namespacephys_1_1xml_a6db751f2b35502e04c123bb70daa0d20}{string\_\-t} {\bfseries path} (char\_\-t delimiter= '/') const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a74b9f51a6642808510e71f643cc861ad}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a462333d5e538343ecf2150f71bc1a3be}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries FirstElementByPath} (const char\_\-t $\ast$path, char\_\-t delimiter= '/') const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a462333d5e538343ecf2150f71bc1a3be}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_abeb7db64dccb5ab42c27a3263ba5b549}{
-bool {\bfseries Traverse} (\hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker} \&walker)}
-\label{d7/d0a/classphys_1_1xml_1_1Node_abeb7db64dccb5ab42c27a3263ba5b549}
-
-\item 
+\begin{DoxyCompactList}\small\item\em Find a \hyperlink{classphys_1_1xml_1_1Node}{Node} by an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} it has. \item\end{DoxyCompactList}\item 
+String \hyperlink{classphys_1_1xml_1_1Node_a0bf85dc0820ba204e7c9498c6651aec8}{Path} (char\_\-t delimiter= '/') const 
+\begin{DoxyCompactList}\small\item\em Get the absolute XPath path to this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_af2a9ac5c4e3252dca0e17720de093a9a}{FirstElementByPath} (const char\_\-t $\ast$Path, char\_\-t delimiter= '/') const 
+\begin{DoxyCompactList}\small\item\em Search for a node by Path consisting of node names and . or .. elements. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{Traverse} (\hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker} \&walker)
+\begin{DoxyCompactList}\small\item\em undocumented \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1Node_a9026ddc7ccab8fcd844aa52ec09affc3}{
 \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} {\bfseries FindSingleNode} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a9026ddc7ccab8fcd844aa52ec09affc3}
@@ -538,6 +526,28 @@ This returns the first \hyperlink{classphys_1_1xml_1_1Node}{Node} that causes Pr
 
 Definition at line 647 of file xml.h.
 
+\hypertarget{classphys_1_1xml_1_1Node_a8a362455b50e54454f145f9109a85e49}{
+\index{phys::xml::Node@{phys::xml::Node}!FindChildbyAttribute@{FindChildbyAttribute}}
+\index{FindChildbyAttribute@{FindChildbyAttribute}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FindChildbyAttribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::FindChildbyAttribute (
+\begin{DoxyParamCaption}
+\item[{const char\_\-t $\ast$}]{ Name, }
+\item[{const char\_\-t $\ast$}]{ AttrName, }
+\item[{const char\_\-t $\ast$}]{ AttrValue}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a8a362455b50e54454f145f9109a85e49}
+
+
+Find a \hyperlink{classphys_1_1xml_1_1Node}{Node} by an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} it has. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the matching \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item[{\em AttrName}]The name of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. \item[{\em AttrValue}]The value of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\end{DoxyParams}
+Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive. 
+
+Definition at line 4184 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_a495663e5af0745f42e48bbfd21408c99}{
 \index{phys::xml::Node@{phys::xml::Node}!FindNode@{FindNode}}
 \index{FindNode@{FindNode}!phys::xml::Node@{phys::xml::Node}}
@@ -560,6 +570,32 @@ This returns the first \hyperlink{classphys_1_1xml_1_1Node}{Node} that causes Pr
 
 
 Definition at line 659 of file xml.h.
+
+\hypertarget{classphys_1_1xml_1_1Node_af2a9ac5c4e3252dca0e17720de093a9a}{
+\index{phys::xml::Node@{phys::xml::Node}!FirstElementByPath@{FirstElementByPath}}
+\index{FirstElementByPath@{FirstElementByPath}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FirstElementByPath}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::FirstElementByPath (
+\begin{DoxyParamCaption}
+\item[{const char\_\-t $\ast$}]{ Path, }
+\item[{char\_\-t}]{ delimiter = {\ttfamily '/'}}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_af2a9ac5c4e3252dca0e17720de093a9a}
+
+
+Search for a node by Path consisting of node names and . or .. elements. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000056}{Todo}]Investigate this more deeply. \end{Desc}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Path}]The XPath path to search for. \item[{\em delimiter}]The character to use as a pathname separator, this defaults to '/'. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The matching \hyperlink{classphys_1_1xml_1_1Node}{Node}, of an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
+
+
+Definition at line 4234 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Node_a338eeb27d2a0cf39823f228abb5d936c}{
 \index{phys::xml::Node@{phys::xml::Node}!GetAttribute@{GetAttribute}}
@@ -1255,6 +1291,32 @@ Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is less tha
 
 Definition at line 3682 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Node_a0bf85dc0820ba204e7c9498c6651aec8}{
+\index{phys::xml::Node@{phys::xml::Node}!Path@{Path}}
+\index{Path@{Path}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Path}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Path (
+\begin{DoxyParamCaption}
+\item[{char\_\-t}]{ delimiter = {\ttfamily '/'}}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0bf85dc0820ba204e7c9498c6651aec8}
+
+
+Get the absolute XPath path to this \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em AttrName}]The name of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. \item[{\em AttrValue}]The value of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\end{DoxyParams}
+Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive. 
+\begin{DoxyParams}{Parameters}
+\item[{\em delimiter}]The character to use as a pathname separator, this defaults to '/'. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A String containing an XPath Path 
+\end{DoxyReturn}
+
+
+Definition at line 4212 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_aa64f2de951032177731e8cba7282529d}{
 \index{phys::xml::Node@{phys::xml::Node}!PrependAttribute@{PrependAttribute}}
 \index{PrependAttribute@{PrependAttribute}!phys::xml::Node@{phys::xml::Node}}
@@ -1514,6 +1576,31 @@ Review for possiblity of buffer overflow. \end{Desc}
 
 
 Definition at line 3832 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{
+\index{phys::xml::Node@{phys::xml::Node}!Traverse@{Traverse}}
+\index{Traverse@{Traverse}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Traverse}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Traverse (
+\begin{DoxyParamCaption}
+\item[{{\bf TreeWalker} \&}]{ walker}
+\end{DoxyParamCaption}
+)}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}
+
+
+undocumented 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em walker}]a Treewalker \end{DoxyParams}
+\begin{Desc}
+\item[\hyperlink{todo__todo000057}{Todo}]document this once \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker} is documented. \end{Desc}
+\begin{DoxyReturn}{Returns}
+A bool 
+\end{DoxyReturn}
+
+
+Definition at line 4281 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Node_a33288f89218baf24d1061c6eeb08687f}{
 \index{phys::xml::Node@{phys::xml::Node}!Type@{Type}}

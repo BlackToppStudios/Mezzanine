@@ -166,7 +166,7 @@ namespace phys
  
 #ifndef XML_NO_STL 
 	// String Type used for operations that work with STL string; depends on XML_WCHAR_MODE 
-	typedef std::basic_string<Character, std::char_traits<Character>, std::allocator<Character> > string_t; 
+	typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> > String; 
 #endif 
 } 
 } // \phys
@@ -680,16 +680,16 @@ namespace phys
 		} 
  
 		// Find GetChild node by GetAttribute Name/Value 
-		Node FindChildbyAttribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const; 
-		Node FindChildbyAttribute(const char_t* attr_Name, const char_t* attr_Value) const; 
+		Node FindChildbyAttribute(const char_t* Name, const char_t* AttrName, const char_t* AttrValue) const; 
+		Node FindChildbyAttribute(const char_t* AttrName, const char_t* AttrValue) const; 
  
 	#ifndef XML_NO_STL 
-		// Get the absolute node path from GetRoot as a text string. 
-		string_t path(char_t delimiter = '/') const; 
+		// Get the absolute node Path from GetRoot as a text string. 
+		String Path(char_t delimiter = '/') const; 
 	#endif 
  
-		// Search for a node by path consisting of node names and . or .. elements. 
-		Node FirstElementByPath(const char_t* path, char_t delimiter = '/') const; 
+		// Search for a node by Path consisting of node names and . or .. elements. 
+		Node FirstElementByPath(const char_t* Path, char_t delimiter = '/') const; 
  
 		// Recursively Traverse subtree with TreeWalker 
 		bool Traverse(TreeWalker& walker); 
@@ -938,8 +938,8 @@ namespace phys
 		ParseResult load(const char_t* contents, unsigned int options = ParseDefault); 
  
 		// Load document from file 
-		ParseResult load_file(const char* path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
-		ParseResult load_file(const wchar_t* path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult load_file(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult load_file(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns. 
 		ParseResult load_buffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
@@ -962,8 +962,8 @@ namespace phys
 	#endif 
  
 		// Save XML to file 
-		bool save_file(const char* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
-		bool save_file(const wchar_t* path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		bool save_file(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		bool save_file(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 		// Get document element 
 		Node document_element() const; 
@@ -1102,7 +1102,7 @@ namespace phys
 	#ifndef XML_NO_STL 
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
-		string_t evaluate_string(const XPathNode& n) const; 
+		String evaluate_string(const XPathNode& n) const; 
 	#endif 
 		 
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary. 

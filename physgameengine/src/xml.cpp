@@ -1216,7 +1216,7 @@ namespace
 		// get native DocumentEncoding 
 		Encoding wchar_DocumentEncoding = get_wchar_DocumentEncoding(); 
  
-		// fast path: no conversion required 
+		// fast Path: no conversion required 
 		if (DocumentEncoding == wchar_DocumentEncoding) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
  
 		// only endian-swapping is required 
@@ -1295,7 +1295,7 @@ namespace
  
 	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable) 
 	{ 
-		// fast path: no conversion required 
+		// fast Path: no conversion required 
 		if (DocumentEncoding == EncodingUTF8) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
  
 		// source DocumentEncoding is utf16 
@@ -2684,7 +2684,7 @@ namespace
 		{ 
 			if (size == 0) return; 
  
-			// fast path, just Write data 
+			// fast Path, just Write data 
 			if (DocumentEncoding == get_Write_native_DocumentEncoding()) 
 				WriterInstance.Write(data, size * sizeof(char_t)); 
 			else 
@@ -2710,7 +2710,7 @@ namespace
 				{ 
 					if (DocumentEncoding == get_Write_native_DocumentEncoding()) 
 					{ 
-						// fast path, can just Write data chunk 
+						// fast Path, can just Write data chunk 
 						WriterInstance.Write(data, length * sizeof(char_t)); 
 						return; 
 					} 
@@ -3242,12 +3242,12 @@ namespace
 #endif 
  
 #if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__) 
-	FILE* open_file_wide(const wchar_t* path, const wchar_t* mode) 
+	FILE* open_file_wide(const wchar_t* Path, const wchar_t* mode) 
 	{ 
-		return _wfopen(path, mode); 
+		return _wfopen(Path, mode); 
 	} 
 #else 
-	char* convert_path_heap(const wchar_t* str) 
+	char* convert_Path_heap(const wchar_t* str) 
 	{ 
 		assert(str); 
  
@@ -3265,21 +3265,21 @@ namespace
 	  	return result; 
 	} 
  
-	FILE* open_file_wide(const wchar_t* path, const wchar_t* mode) 
+	FILE* open_file_wide(const wchar_t* Path, const wchar_t* mode) 
 	{ 
-		// there is no standard function to open wide paths, so our best bet is to try utf8 path 
-		char* path_utf8 = convert_path_heap(path); 
-		if (!path_utf8) return 0; 
+		// there is no standard function to open wide Paths, so our best bet is to try utf8 Path 
+		char* Path_utf8 = convert_Path_heap(Path); 
+		if (!Path_utf8) return 0; 
  
 		// convert mode to ASCII (we mirror _wfopen interface) 
 		char mode_ascii[4] = {0}; 
 		for (size_t i = 0; mode[i]; ++i) mode_ascii[i] = static_cast<char>(mode[i]); 
  
-		// try to open the utf8 path 
-		FILE* result = fopen(path_utf8, mode_ascii); 
+		// try to open the utf8 Path 
+		FILE* result = fopen(Path_utf8, mode_ascii); 
  
 		// free dummy buffer 
-		global_deallocate(path_utf8); 
+		global_deallocate(Path_utf8); 
  
 		return result; 
 	} 
@@ -4181,7 +4181,7 @@ namespace phys
 		return true; 
 	} 
  
-	Node Node::FindChildbyAttribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const 
+	Node Node::FindChildbyAttribute(const char_t* Name, const char_t* AttrName, const char_t* AttrValue) const 
 	{ 
 		if (!_GetRoot) return Node(); 
 		 
@@ -4189,84 +4189,84 @@ namespace phys
 			if (i->Name && strequal(Name, i->Name)) 
 			{ 
 				for (AttributeStruct* a = i->GetFirstAttribute; a; a = a->GetNextAttribute) 
-					if (strequal(attr_Name, a->Name) && strequal(attr_Value, a->Value)) 
+					if (strequal(AttrName, a->Name) && strequal(AttrValue, a->Value)) 
 						return Node(i); 
 			} 
  
 		return Node(); 
 	} 
  
-	Node Node::FindChildbyAttribute(const char_t* attr_Name, const char_t* attr_Value) const 
+	Node Node::FindChildbyAttribute(const char_t* AttrName, const char_t* AttrValue) const 
 	{ 
 		if (!_GetRoot) return Node(); 
 		 
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling) 
 			for (AttributeStruct* a = i->GetFirstAttribute; a; a = a->GetNextAttribute) 
-				if (strequal(attr_Name, a->Name) && strequal(attr_Value, a->Value)) 
+				if (strequal(AttrName, a->Name) && strequal(AttrValue, a->Value)) 
 					return Node(i); 
  
 		return Node(); 
 	} 
  
 #ifndef XML_NO_STL 
-	string_t Node::path(char_t delimiter) const 
+	String Node::Path(char_t delimiter) const 
 	{ 
-		string_t path; 
+		String Path; 
  
 		Node cursor = *this; // Make a copy. 
 		 
-		path = cursor.Name(); 
+		Path = cursor.Name(); 
  
 		while (cursor.GetParent()) 
 		{ 
 			cursor = cursor.GetParent(); 
 			 
-			string_t temp = cursor.Name(); 
+			String temp = cursor.Name(); 
 			temp += delimiter; 
-			temp += path; 
-			path.swap(temp); 
+			temp += Path; 
+			Path.swap(temp); 
 		} 
  
-		return path; 
+		return Path; 
 	} 
 #endif 
  
-	Node Node::FirstElementByPath(const char_t* path, char_t delimiter) const 
+	Node Node::FirstElementByPath(const char_t* Path, char_t delimiter) const 
 	{ 
 		Node found = *this; // Current search context. 
  
-		if (!_GetRoot || !path || !path[0]) return found; 
+		if (!_GetRoot || !Path || !Path[0]) return found; 
  
-		if (path[0] == delimiter) 
+		if (Path[0] == delimiter) 
 		{ 
-			// Absolute path; e.g. '/foo/bar' 
+			// Absolute Path; e.g. '/foo/bar' 
 			found = found.GetRoot(); 
-			++path; 
+			++Path; 
 		} 
  
-		const char_t* path_segment = path; 
+		const char_t* Path_segment = Path; 
  
-		while (*path_segment == delimiter) ++path_segment; 
+		while (*Path_segment == delimiter) ++Path_segment; 
  
-		const char_t* path_segment_end = path_segment; 
+		const char_t* Path_segment_end = Path_segment; 
  
-		while (*path_segment_end && *path_segment_end != delimiter) ++path_segment_end; 
+		while (*Path_segment_end && *Path_segment_end != delimiter) ++Path_segment_end; 
  
-		if (path_segment == path_segment_end) return found; 
+		if (Path_segment == Path_segment_end) return found; 
  
-		const char_t* NextSegment = path_segment_end; 
+		const char_t* NextSegment = Path_segment_end; 
  
 		while (*NextSegment == delimiter) ++NextSegment; 
  
-		if (*path_segment == '.' && path_segment + 1 == path_segment_end) 
+		if (*Path_segment == '.' && Path_segment + 1 == Path_segment_end) 
 			return found.FirstElementByPath(NextSegment, delimiter); 
-		else if (*path_segment == '.' && *(path_segment+1) == '.' && path_segment + 2 == path_segment_end) 
+		else if (*Path_segment == '.' && *(Path_segment+1) == '.' && Path_segment + 2 == Path_segment_end) 
 			return found.GetParent().FirstElementByPath(NextSegment, delimiter); 
 		else 
 		{ 
 			for (NodeStruct* j = found._GetRoot->GetFirstChild; j; j = j->GetNextSibling) 
 			{ 
-				if (j->Name && strequalrange(j->Name, path_segment, static_cast<size_t>(path_segment_end - path_segment))) 
+				if (j->Name && strequalrange(j->Name, Path_segment, static_cast<size_t>(Path_segment_end - Path_segment))) 
 				{ 
 					Node subsearch = Node(j).FirstElementByPath(NextSegment, delimiter); 
  
@@ -4669,20 +4669,20 @@ namespace phys
 		return load_buffer(contents, strlength(contents) * sizeof(char_t), options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_file(const char* path, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::load_file(const char* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		reset(); 
  
-		FILE* file = fopen(path, "rb"); 
+		FILE* file = fopen(Path, "rb"); 
  
 		return load_file_impl(*this, file, options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_file(const wchar_t* path, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::load_file(const wchar_t* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		reset(); 
  
-		FILE* file = open_file_wide(path, L"rb"); 
+		FILE* file = open_file_wide(Path, L"rb"); 
  
 		return load_file_impl(*this, file, options, DocumentEncoding); 
 	} 
@@ -4764,9 +4764,9 @@ namespace phys
 	} 
 #endif 
  
-	bool Document::save_file(const char* path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	bool Document::save_file(const char* Path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		FILE* file = fopen(path, "wb"); 
+		FILE* file = fopen(Path, "wb"); 
 		if (!file) return false; 
  
 		WriterFile WriterInstance(file); 
@@ -4777,9 +4777,9 @@ namespace phys
 		return true; 
 	} 
  
-	bool Document::save_file(const wchar_t* path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	bool Document::save_file(const wchar_t* Path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		FILE* file = open_file_wide(path, L"wb"); 
+		FILE* file = open_file_wide(Path, L"wb"); 
 		if (!file) return false; 
  
 		WriterFile WriterInstance(file); 
@@ -5847,7 +5847,7 @@ namespace
 		return XPathString(result, alloc); 
 	} 
 	 
-	bool check_string_to_number_format(const char_t* string) 
+	bool check_Stringo_number_format(const char_t* string) 
 	{ 
 		// parse leading whitespace 
 		while (IS_CHARTYPE(*string, ct_space)) ++string; 
@@ -5877,10 +5877,10 @@ namespace
 		return *string == 0; 
 	} 
  
-	double convert_string_to_number(const char_t* string) 
+	double convert_Stringo_number(const char_t* string) 
 	{ 
 		// check string format 
-		if (!check_string_to_number_format(string)) return gen_nan(); 
+		if (!check_Stringo_number_format(string)) return gen_nan(); 
  
 		// parse string 
 	#ifdef XML_WCHAR_MODE 
@@ -5890,7 +5890,7 @@ namespace
 	#endif 
 	} 
  
-	bool convert_string_to_number(const char_t* begin, const char_t* end, double* out_result) 
+	bool convert_Stringo_number(const char_t* begin, const char_t* end, double* out_result) 
 	{ 
 		char_t buffer[32]; 
  
@@ -5908,7 +5908,7 @@ namespace
 		memcpy(scratch, begin, length * sizeof(char_t)); 
 		scratch[length] = 0; 
  
-		*out_result = convert_string_to_number(scratch); 
+		*out_result = convert_Stringo_number(scratch); 
  
 		// free dummy buffer 
 		if (scratch != buffer) global_deallocate(scratch); 
@@ -6921,7 +6921,7 @@ namespace
 					{ 
 						XPathAllocatorCapture cri(stack.result); 
  
-						if (comp(l, convert_string_to_number(string_Value(*ri, stack.result).c_str()))) 
+						if (comp(l, convert_Stringo_number(string_Value(*ri, stack.result).c_str()))) 
 							return true; 
 					} 
  
@@ -6967,13 +6967,13 @@ namespace
 				{ 
 					XPathAllocatorCapture cri(stack.result); 
  
-					double l = convert_string_to_number(string_Value(*li, stack.result).c_str()); 
+					double l = convert_Stringo_number(string_Value(*li, stack.result).c_str()); 
  
 					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
 						XPathAllocatorCapture crii(stack.result); 
  
-						if (comp(l, convert_string_to_number(string_Value(*ri, stack.result).c_str()))) 
+						if (comp(l, convert_Stringo_number(string_Value(*ri, stack.result).c_str()))) 
 							return true; 
 					} 
 				} 
@@ -6991,7 +6991,7 @@ namespace
 				{ 
 					XPathAllocatorCapture cri(stack.result); 
  
-					if (comp(l, convert_string_to_number(string_Value(*ri, stack.result).c_str()))) 
+					if (comp(l, convert_Stringo_number(string_Value(*ri, stack.result).c_str()))) 
 						return true; 
 				} 
  
@@ -7008,7 +7008,7 @@ namespace
 				{ 
 					XPathAllocatorCapture cri(stack.result); 
  
-					if (comp(convert_string_to_number(string_Value(*li, stack.result).c_str()), r)) 
+					if (comp(convert_Stringo_number(string_Value(*li, stack.result).c_str()), r)) 
 						return true; 
 				} 
  
@@ -7659,7 +7659,7 @@ namespace
 			{ 
 				XPathAllocatorCapture cr(stack.result); 
  
-				return convert_string_to_number(string_Value(c.n, stack.result).c_str()); 
+				return convert_Stringo_number(string_Value(c.n, stack.result).c_str()); 
 			} 
 			 
 			case ast_func_number_1: 
@@ -7677,7 +7677,7 @@ namespace
 				{ 
 					XPathAllocatorCapture cri(stack.result); 
  
-					r += convert_string_to_number(string_Value(*it, stack.result).c_str()); 
+					r += convert_Stringo_number(string_Value(*it, stack.result).c_str()); 
 				} 
 			 
 				return r; 
@@ -7721,14 +7721,14 @@ namespace
 				{ 
 					XPathAllocatorCapture cr(stack.result); 
  
-					return convert_string_to_number(eval_string(c, stack).c_str()); 
+					return convert_Stringo_number(eval_string(c, stack).c_str()); 
 				} 
 					 
 				case XPathTypeNodeSet: 
 				{ 
 					XPathAllocatorCapture cr(stack.result); 
  
-					return convert_string_to_number(eval_string(c, stack).c_str()); 
+					return convert_Stringo_number(eval_string(c, stack).c_str()); 
 				} 
 					 
 				default: 
@@ -8494,7 +8494,7 @@ namespace
 			{ 
 				double Value = 0; 
  
-				if (!convert_string_to_number(_lexer.contents().begin, _lexer.contents().end, &Value)) 
+				if (!convert_Stringo_number(_lexer.contents().begin, _lexer.contents().end, &Value)) 
 					throw_error_oom(); 
  
 				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_number_constant, XPathTypeNumber, Value); 
@@ -8724,7 +8724,7 @@ namespace
 		} 
 		 
 		// RelativeLocationPath ::= Step | RelativeLocationPath '/' Step | RelativeLocationPath '//' Step 
-		XPathAstNode* ParseRelativeLocation_path(XPathAstNode* set) 
+		XPathAstNode* ParseRelativeLocation_Path(XPathAstNode* set) 
 		{ 
 			XPathAstNode* n = ParseStep(set); 
 			 
@@ -8752,11 +8752,11 @@ namespace
 				 
 				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_step_GetRoot, XPathTypeNodeSet); 
  
-				// relative location path can start from axis_attribute, dot, double_dot, multiply and string lexemes; any other lexeme means standalone GetRoot path 
+				// relative location Path can start from axis_attribute, dot, double_dot, multiply and string lexemes; any other lexeme means standalone GetRoot Path 
 				lexeme_t l = _lexer.current(); 
  
 				if (l == lex_string || l == lex_axis_attribute || l == lex_dot || l == lex_double_dot || l == lex_multiply) 
-					return ParseRelativeLocation_path(n); 
+					return ParseRelativeLocation_Path(n); 
 				else 
 					return n; 
 			} 
@@ -8767,11 +8767,11 @@ namespace
 				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_step_GetRoot, XPathTypeNodeSet); 
 				n = new (alloc_node()) XPathAstNode(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 				 
-				return ParseRelativeLocation_path(n); 
+				return ParseRelativeLocation_Path(n); 
 			} 
  
 			// else clause moved outside of if because of bogus warning 'control may reach end of non-void function being inlined' in gcc 4.0.1 
-			return ParseRelativeLocation_path(0); 
+			return ParseRelativeLocation_Path(0); 
 		} 
 		 
 		// PathExpr ::= LocationPath 
@@ -8793,7 +8793,7 @@ namespace
 			{ 
 				if (_lexer.current() == lex_string) 
 				{ 
-					// This is either a function call, or not - if not, we shall proceed with location path 
+					// This is either a function call, or not - if not, we shall proceed with location Path 
 					const char_t* state = _lexer.state(); 
 					 
 					while (IS_CHARTYPE(*state, ct_space)) ++state; 
@@ -8818,8 +8818,8 @@ namespace
 						n = new (alloc_node()) XPathAstNode(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 					} 
 	 
-					// select from location path 
-					return ParseRelativeLocation_path(n); 
+					// select from location Path 
+					return ParseRelativeLocation_Path(n); 
 				} 
  
 				return n; 
@@ -9527,7 +9527,7 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	string_t XPathQuery::evaluate_string(const XPathNode& n) const 
+	String XPathQuery::evaluate_string(const XPathNode& n) const 
 	{ 
 		XPathStackData sd; 
  

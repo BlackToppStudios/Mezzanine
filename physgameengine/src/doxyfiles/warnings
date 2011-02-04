@@ -36,6 +36,7 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xml.h:165: warning: Member char_t (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:169: warning: Member String (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:1264: warning: Member allocation_function)(size_t size) (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:1267: warning: Member deallocation_function)(void *ptr) (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:975: warning: Member XPathValueType (enumeration) of namespace phys::xml is not documented.
@@ -473,6 +474,7 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/uiwindow.h:82: warning: Member Widgets (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xml.h:165: warning: Member char_t (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:169: warning: Member String (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:1264: warning: Member allocation_function)(size_t size) (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:1267: warning: Member deallocation_function)(void *ptr) (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:975: warning: Member XPathValueType (enumeration) of namespace phys::xml is not documented.
@@ -506,11 +508,6 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xml.h:717: warning: Member iterator (typedef) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:723: warning: Member attribute_iterator (typedef) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:683: warning: Member FindChildbyAttribute(const char_t *Name, const char_t *attr_Name, const char_t *attr_Value) const  (function) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:684: warning: Member FindChildbyAttribute(const char_t *attr_Name, const char_t *attr_Value) const  (function) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:688: warning: Member path(char_t delimiter= '/') const  (function) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:692: warning: Member FirstElementByPath(const char_t *path, char_t delimiter= '/') const  (function) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:695: warning: Member Traverse(TreeWalker &walker) (function) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:699: warning: Member FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const  (function) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:700: warning: Member FindSingleNode(const XPathQuery &query) const  (function) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:703: warning: Member FindNodes(const char_t *query, XPathVariableSet *variables=0) const  (function) of class phys::xml::Node is not documented.
@@ -549,6 +546,8 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
   parameter 'node'
 /home/dev/physgame/physgameengine/src/xmldoc.h:725: warning: The following parameters of phys::xml::Node::InsertCopyAfter(const Node &proto, const Node &node) are not documented:
   parameter 'node'
+/home/dev/physgame/physgameengine/src/xmldoc.h:791: warning: argument 'AttrName' of command @param is not found in the argument list of phys::xml::Node::Path(char_t delimiter='/') const
+/home/dev/physgame/physgameengine/src/xmldoc.h:791: warning: argument 'AttrValue' of command @param is not found in the argument list of phys::xml::Node::Path(char_t delimiter='/') const
 /home/dev/physgame/physgameengine/src/xmldoc.h:738: warning: argument 'proto' of command @param is not found in the argument list of phys::xml::Node::RemoveAttribute(const Attribute &a)
 /home/dev/physgame/physgameengine/src/xmldoc.h:738: warning: argument 'node' of command @param is not found in the argument list of phys::xml::Node::RemoveAttribute(const Attribute &a)
 /home/dev/physgame/physgameengine/src/xml.h:757: warning: Member difference_type (typedef) of class phys::xml::NodeIterator is not documented.
@@ -588,16 +587,16 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/xml.h:933: warning: Member load(std::basic_istream< char, std::char_traits< char > > &stream, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:934: warning: Member load(std::basic_istream< wchar_t, std::char_traits< wchar_t > > &stream, unsigned int options=ParseDefault) (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:938: warning: Member load(const char_t *contents, unsigned int options=ParseDefault) (function) of class phys::xml::Document is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:941: warning: Member load_file(const char *path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) (function) of class phys::xml::Document is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:942: warning: Member load_file(const wchar_t *path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) (function) of class phys::xml::Document is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:941: warning: Member load_file(const char *Path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) (function) of class phys::xml::Document is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:942: warning: Member load_file(const wchar_t *Path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:945: warning: Member load_buffer(const void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:949: warning: Member load_buffer_inplace(void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:953: warning: Member load_buffer_inplace_own(void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:956: warning: Member save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const  (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:960: warning: Member save(std::basic_ostream< char, std::char_traits< char > > &stream, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const  (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:961: warning: Member save(std::basic_ostream< wchar_t, std::char_traits< wchar_t > > &stream, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault) const  (function) of class phys::xml::Document is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:965: warning: Member save_file(const char *path, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const  (function) of class phys::xml::Document is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:966: warning: Member save_file(const wchar_t *path, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const  (function) of class phys::xml::Document is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:965: warning: Member save_file(const char *Path, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const  (function) of class phys::xml::Document is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:966: warning: Member save_file(const wchar_t *Path, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const  (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:969: warning: Member document_element() const  (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:987: warning: Member error (variable) of class phys::xml::XPathParseResult is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:990: warning: Member Offset (variable) of class phys::xml::XPathParseResult is not documented.

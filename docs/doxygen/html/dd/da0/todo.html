@@ -210,16 +210,16 @@
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#af9b12723a227b833d7f8986a524b0e48">phys::xml::Attribute::SetValue</a> (T rhs) </dt>
 <dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd>
 </dl>
-<p><a class="anchor" id="_todo000041"></a> </p>
+<p><a class="anchor" id="_todo000040"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a693f7bd8015866c3c4979101c343ce50">phys::xml::Attribute::SetValue</a> (int rhs) </dt>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa">phys::xml::Attribute::SetValue</a> (const char_t *rhs) </dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000040"></a> </p>
+<p><a class="anchor" id="_todo000041"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a470512fcd8b4f7609319bf85df100aaa">phys::xml::Attribute::SetValue</a> (const char_t *rhs) </dt>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a693f7bd8015866c3c4979101c343ce50">phys::xml::Attribute::SetValue</a> (int rhs) </dt>
 <dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
@@ -245,15 +245,20 @@
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
+<p><a class="anchor" id="_todo000055"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7e9b4518e4d12517bc5ff756054e7395">phys::xml::Node::AppendChild</a> (const char_t *Name) </dt>
+<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
+</dl>
 <p><a class="anchor" id="_todo000052"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4971850b72467fcdcf1b3beeb09f26cf">phys::xml::Node::AppendChild</a> (NodeType Type=NodeElement) </dt>
 <dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
 </dl>
-<p><a class="anchor" id="_todo000055"></a> </p>
+<p><a class="anchor" id="_todo000056"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7e9b4518e4d12517bc5ff756054e7395">phys::xml::Node::AppendChild</a> (const char_t *Name) </dt>
-<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
+<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#af2a9ac5c4e3252dca0e17720de093a9a">phys::xml::Node::FirstElementByPath</a> (const char_t *Path, char_t delimiter= '/') const  </dt>
+<dd>Investigate this more deeply. </dd>
 </dl>
 <p><a class="anchor" id="_todo000053"></a> </p>
 <dl>
@@ -272,8 +277,13 @@
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
+<p><a class="anchor" id="_todo000057"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9">phys::xml::Node::Traverse</a> (TreeWalker &amp;walker) </dt>
+<dd>document this once TreeWalker is documented. </dd>
+</dl>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 11:13:35 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 12:19:32 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
