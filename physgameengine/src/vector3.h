@@ -312,28 +312,98 @@ namespace phys
 // Class External << Operators for streaming or assignment
 
 /// @brief Used to Serialize an phys::Vector3 to a human readable stream
-/// @details This outputs to the format of [x,y,z], where x is replaced with the X value, y is replaced with the Y value, and
-/// Z is replaced with the Z value,
+/// @details If PHYSXML is disabled, this outputs to the format of [x,y,z], where x is replaced with the X value,
+/// y is replaced with the Y value, and Z is replaced with the Z value. For example [1,2,3] could be a serialized Vector3.\n\n
+/// If PHYSXML is defined/enabled the square bracket format is replaced with proper XML output,
+/// including versioning information which will be used to maintain backwards compatibility. The current XML format
+/// will create one node with no child nodes. The name of the xml node will be "Vector3". It will have 4 attributes.
+/// "Version", will be set to a value of 1, indicating if came from version 1 compatible Vector3. It will also have an "X", "Y" and
+/// "Z" attributes will values set appropriately. For example '<Vector3 Version="1" X="1" Y="2" Z="3" />'.
 /// @param x The phys::Vector3 to be converted to characters.
 /// @param stream The place to send the characters, that define the phys::Vector3.
 /// @return Get an std::ostream that was written to, this allow chaining of the << operators.
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Vector3& x);
 
+#ifdef PHYSXML
+/// @brief Used to de-serialize an phys::Vector3 from a stream
+/// @details If PHYSXML is enabled, this reads in the xml and sets the target vector according to values
+/// from the stream.
+/// @param Vec The phys::Vector3 that will accept the values from the xml
+/// @param stream The place to get the characters from, that define the phys::Vector3.
+/// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec);
+#endif // \PHYSXML
 
+/// @brief Conversion Assignment Operator to Ogre::Vector3.
+/// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a\ phys::Vector3, this vector will be copied and unchanged.
+/// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
 Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom);
+
+/// @brief Conversion Assignment Operator to Ogre::Vector3.
+/// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.
+/// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
 Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom);
+
+/// @brief Conversion Assignment Operator to Ogre::Vector3.
+/// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.
+/// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
 Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const cAudio::cVector3& VecFrom);
 
+/// @brief Conversion Assignment Operator to btVector3.
+/// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
+/// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
 btVector3& PHYS_LIB operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom);
+
+/// @brief Conversion Assignment Operator to btVector3.
+/// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a phys::Vector3, this vector will be copied and unchanged.
+/// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
 btVector3& PHYS_LIB operator << (btVector3& VecTo, const phys::Vector3& VecFrom);
+
+/// @brief Conversion Assignment Operator to btVector3.
+/// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.
+/// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
 btVector3& PHYS_LIB operator << (btVector3& VecTo, const cAudio::cVector3& VecFrom);
 
+/// @brief Conversion Assignment Operator to phys::Vector3.
+/// @param VecTo The left hand side vector, is an phys::Vector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
+/// @return An phys::Vector3 in case multiple operators are chainged together (not usually a good idea).
 phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const Ogre::Vector3& VecFrom);
+
+/// @brief Conversion Assignment Operator to phys::Vector3.
+/// @param VecTo The left hand side vector, is an phys::Vector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.
+/// @return An phys::Vector3 in case multiple operators are chainged together (not usually a good idea).
 phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const btVector3& VecFrom);
+
+/// @brief Conversion Assignment Operator to phys::Vector3.
+/// @param VecTo The left hand side vector, is an phys::Vector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.
+/// @return An phys::Vector3 in case multiple operators are chainged together (not usually a good idea).
 phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const cAudio::cVector3& VecFrom);
 
+/// @brief Conversion Assignment Operator to cAudio::cVector3.
+/// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
+/// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).
 cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const Ogre::Vector3& VecFrom);
+
+/// @brief Conversion Assignment Operator to cAudio::cVector3.
+/// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.
+/// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).
 cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const btVector3& VecFrom);
+
+/// @brief Conversion Assignment Operator to cAudio::cVector3.
+/// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.
+/// @param VecFrom The right hand side, is a phys::Vector3, this vector will be copied and unchanged.
+/// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).
 cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const phys::Vector3& VecFrom);
 
 #endif

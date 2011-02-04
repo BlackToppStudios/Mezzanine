@@ -127,7 +127,7 @@ endif ()
 set(OGRE_COMPONENTS Paging Terrain 
   Plugin_BSPSceneManager Plugin_CgProgramManager Plugin_OctreeSceneManager
   Plugin_OctreeZone Plugin_PCZSceneManager Plugin_ParticleFX
-  RenderSystem_Direct3D10 RenderSystem_Direct3D9 RenderSystem_GL RenderSystem_GLES RenderSystem_GLES2)
+  RenderSystem_Direct3D10 RenderSystem_Direct3D9 RenderSystem_GL RenderSystem_GLES)
 set(OGRE_RESET_VARS 
   OGRE_CONFIG_INCLUDE_DIR OGRE_INCLUDE_DIR 
   OGRE_LIBRARY_FWK OGRE_LIBRARY_REL OGRE_LIBRARY_DBG
@@ -235,7 +235,6 @@ if (OGRE_STATIC)
   find_package(Freetype QUIET)
   find_package(OpenGL QUIET)
   find_package(OpenGLES QUIET)
-  find_package(OpenGLES2 QUIET)
   find_package(ZLIB QUIET)
   find_package(ZZip QUIET)
   if (UNIX AND NOT APPLE)
@@ -468,8 +467,8 @@ ogre_find_plugin(Plugin_OctreeSceneManager OgreOctreeSceneManager.h PlugIns/Octr
 ogre_find_plugin(Plugin_ParticleFX OgreParticleFXPrerequisites.h PlugIns/ParticleFX/include)
 ogre_find_plugin(RenderSystem_GL OgreGLRenderSystem.h RenderSystems/GL/include)
 ogre_find_plugin(RenderSystem_GLES OgreGLESRenderSystem.h RenderSystems/GLES/include)
-ogre_find_plugin(RenderSystem_GLES2 OgreGLES2RenderSystem.h RenderSystems/GLES2/include)
 ogre_find_plugin(RenderSystem_Direct3D9 OgreD3D9RenderSystem.h RenderSystems/Direct3D9/include)
+ogre_find_plugin(RenderSystem_Direct3D10 OgreD3D10RenderSystem.h RenderSystems/Direct3D10/include)
 ogre_find_plugin(RenderSystem_Direct3D11 OgreD3D11RenderSystem.h RenderSystems/Direct3D11/include)
 
 if (OGRE_STATIC)
@@ -477,17 +476,17 @@ if (OGRE_STATIC)
   if (NOT DirectX_FOUND)
     set(OGRE_RenderSystem_Direct3D9_FOUND FALSE)
   endif ()
+  if (NOT DirectX_D3D10_FOUND)
+    set(OGRE_RenderSystem_Direct3D10_FOUND FALSE)
+  endif ()
   if (NOT DirectX_D3D11_FOUND)
     set(OGRE_RenderSystem_Direct3D11_FOUND FALSE)
   endif ()
   if (NOT OPENGL_FOUND)
     set(OGRE_RenderSystem_GL_FOUND FALSE)
   endif ()
-  if (NOT OPENGLES_FOUND)
+  if (NOT OPENGLES_FOUND AND NOT OPENGLES2_FOUND)
     set(OGRE_RenderSystem_GLES_FOUND FALSE)
-  endif ()
-  if (NOT OPENGLES2_FOUND)
-    set(OGRE_RenderSystem_GLES2_FOUND FALSE)
   endif ()
   if (NOT Cg_FOUND)
     set(OGRE_Plugin_CgProgramManager_FOUND FALSE)
@@ -496,7 +495,9 @@ if (OGRE_STATIC)
   set(OGRE_RenderSystem_Direct3D9_LIBRARIES ${OGRE_RenderSystem_Direct3D9_LIBRARIES}
     ${DirectX_LIBRARIES}
   )
-
+  set(OGRE_RenderSystem_Direct3D10_LIBRARIES ${OGRE_RenderSystem_Direct3D10_LIBRARIES}
+    ${DirectX_D3D10_LIBRARIES}
+  )
   set(OGRE_RenderSystem_Direct3D11_LIBRARIES ${OGRE_RenderSystem_Direct3D11_LIBRARIES}
     ${DirectX_D3D11_LIBRARIES}
   )
@@ -505,9 +506,6 @@ if (OGRE_STATIC)
   )
   set(OGRE_RenderSystem_GLES_LIBRARIES ${OGRE_RenderSystem_GLES_LIBRARIES}
     ${OPENGLES_LIBRARIES}
-  )
-  set(OGRE_RenderSystem_GLES2_LIBRARIES ${OGRE_RenderSystem_GLES2_LIBRARIES}
-    ${OPENGLES2_LIBRARIES}
   )
   set(OGRE_Plugin_CgProgramManager_LIBRARIES ${OGRE_Plugin_CgProgramManager_LIBRARIES}
     ${Cg_LIBRARIES}

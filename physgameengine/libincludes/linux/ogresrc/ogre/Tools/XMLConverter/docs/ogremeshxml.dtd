@@ -63,14 +63,14 @@
 	colours_diffuse 			(true|false)	"false"
 	colours_specular 			(true|false)	"false"
 	texture_coords				(0|1|2|3|4|5|6|7|8) 	"0"
-	texture_coord_dimensions_0 = (1|2|3|4|float1|float2|float3|float4|short1|short2|short3|short4|ubyte4|colour|colour_argb|colour_abgr) "2"
-	texture_coord_dimensions_1 = (1|2|3|4|float1|float2|float3|float4|short1|short2|short3|short4|ubyte4|colour|colour_argb|colour_abgr) "2"
-	texture_coord_dimensions_2 = (1|2|3|4|float1|float2|float3|float4|short1|short2|short3|short4|ubyte4|colour|colour_argb|colour_abgr) "2"
-	texture_coord_dimensions_3 = (1|2|3|4|float1|float2|float3|float4|short1|short2|short3|short4|ubyte4|colour|colour_argb|colour_abgr) "2"
-	texture_coord_dimensions_4 = (1|2|3|4|float1|float2|float3|float4|short1|short2|short3|short4|ubyte4|colour|colour_argb|colour_abgr) "2"
-	texture_coord_dimensions_5 = (1|2|3|4|float1|float2|float3|float4|short1|short2|short3|short4|ubyte4|colour|colour_argb|colour_abgr) "2"
-	texture_coord_dimensions_6 = (1|2|3|4|float1|float2|float3|float4|short1|short2|short3|short4|ubyte4|colour|colour_argb|colour_abgr) "2"
-	texture_coord_dimensions_7 = (1|2|3|4|float1|float2|float3|float4|short1|short2|short3|short4|ubyte4|colour|colour_argb|colour_abgr) "2"
+	texture_coord_dimensions_0 	(0|1|2|3)		 	"2"
+	texture_coord_dimensions_1 	(0|1|2|3)		 	"2"
+	texture_coord_dimensions_2 	(0|1|2|3)		 	"2"
+	texture_coord_dimensions_3 	(0|1|2|3)		 	"2"
+	texture_coord_dimensions_4 	(0|1|2|3)		 	"2"
+	texture_coord_dimensions_5 	(0|1|2|3)		 	"2"
+	texture_coord_dimensions_6 	(0|1|2|3)		 	"2"
+	texture_coord_dimensions_7 	(0|1|2|3)		 	"2"
 	tangents					(true|false)	"false"
 	tangent_dimensions			(3|4)			"3"
 	binormals					(true|false)	"false">
@@ -128,18 +128,13 @@
 	target	(mesh|submesh) #REQUIRED
 	index   CDATA   "0"
 	name	CDATA	"">
-<!-- poseoffset lists the vertices that change position, and by how much 
-	& also optionally an absolute normal -->
+<!-- poseoffset lists the vertices that change position, and by how much -->
 <!ELEMENT poseoffset EMPTY>
 <!ATTLIST poseoffset
     index	CDATA	#REQUIRED
 	x		CDATA	#REQUIRED
 	y		CDATA	#REQUIRED
-	z		CDATA	#REQUIRED 
-	nx		CDATA	""
-	ny		CDATA	""
-	nz		CDATA	""
-	>
+	z		CDATA	#REQUIRED >
 <!ELEMENT animations (animation+)>
 <!ELEMENT animation (tracks)>
 <!ATTLIST animation
@@ -147,7 +142,7 @@
 	length  CDATA   #REQUIRED >
 <!ELEMENT tracks (track+)>
 <!ELEMENT track (keyframes)>
-<!-- Morph animation is a keyframed set of absolute vertex positions/normals. Cannot
+<!-- Morph animation is a keyframed set of absolute vertex positions. Cannot
      be blended with other morph animations or pose animation.
      Pose animation is a set of keyframes referencing poses and a weight,
 	 with one track per set of vertex data.
@@ -162,7 +157,7 @@
 <!-- keyframes are applicable for all tracks, but for morph tracks
      they contain positions, and for pose tracks they contain pose references -->
 <!ELEMENT keyframes (keyframe*)>
-<!ELEMENT keyframe ((position|(position,normal))*, poseref*)>
+<!ELEMENT keyframe (position*, poseref*)>
 <!ATTLIST keyframe
 	time	CDATA	#REQUIRED >
 <!-- Pose reference, links to pose via numeric index. target of parent track

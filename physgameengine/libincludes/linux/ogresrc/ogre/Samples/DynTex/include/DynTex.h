@@ -34,7 +34,7 @@ public:
 			mBrushPos = (Vector2(pt.x, -pt.y) / mPlaneSize + Vector2(0.5, 0.5)) * TEXTURE_SIZE;
 		}
 
-		uint8 freezeAmount = 0;
+		Ogre::uint8 freezeAmount = 0;
 		mTimeSinceLastFreeze += evt.timeSinceLastFrame;
 
 		// find out how much to freeze the plane based on time passed
@@ -51,7 +51,7 @@ public:
 
 		return SdkSample::frameRenderingQueued(evt);  // don't forget the parent class updates!
 	}
-#if (OGRE_PLATFORM == OGRE_PLATFORM_IPHONE) || (OGRE_PLATFORM == OGRE_PLATFORM_ANDROID)
+#if OGRE_PLATFORM == OGRE_PLATFORM_IPHONE
 	bool touchPressed(const OIS::MultiTouchEvent& evt)
 	{
 		if (mTrayMgr->injectMouseDown(evt)) return true;
@@ -103,9 +103,8 @@ protected:
 		mTexBuf = tex->getBuffer();  // save off the texture buffer
 
 		// initialise the texture to have full luminance
-		mConstantTexBuf = new uint8[mTexBuf->getSizeInBytes()];
-		memset(mConstantTexBuf, 0xff, mTexBuf->getSizeInBytes());
-		memcpy(mTexBuf->lock(HardwareBuffer::HBL_NORMAL), mConstantTexBuf, TEXTURE_SIZE * TEXTURE_SIZE);
+		mTexBuf->lock(HardwareBuffer::HBL_DISCARD);
+		memset(mTexBuf->getCurrentLock().data, 0xff, mTexBuf->getSizeInBytes());
 		mTexBuf->unlock();
 
 		// create a penguin and attach him to our penguin node
@@ -137,12 +136,14 @@ protected:
 		mWiping = false;
 	}
 
-	void updateTexture(uint8 freezeAmount)
+	void updateTexture(Ogre::uint8 freezeAmount)
 	{
-		// get access to raw texel data
-		uint8* data = mConstantTexBuf;
+		mTexBuf->lock(HardwareBuffer::HBL_NORMAL);
 
-		uint8 temperature;
+		// get access to raw texel data
+		Ogre::uint8* data = (Ogre::uint8*)mTexBuf->getCurrentLock().data;
+
+		Ogre::uint8 temperature;
 		Real sqrDistToBrush;
 
 		// go through every texel...
@@ -163,27 +164,24 @@ protected:
 					// wipe frost from under the cursor
 					sqrDistToBrush = Math::Sqr(x - mBrushPos.x) + Math::Sqr(y - mBrushPos.y);
 					if (sqrDistToBrush <= SQR_BRUSH_RADIUS)
-						*data = std::min<uint8>(sqrDistToBrush / SQR_BRUSH_RADIUS * 0xff, *data);
+						*data = std::min<Ogre::uint8>(sqrDistToBrush / SQR_BRUSH_RADIUS * 0xff, *data);
 				}
 
 				data++;
 			}
 		}
 
-		memcpy(mTexBuf->lock(HardwareBuffer::HBL_NORMAL), mConstantTexBuf, TEXTURE_SIZE * TEXTURE_SIZE);
 		mTexBuf->unlock();
 	}
 
 	void cleanupContent()
 	{
-		delete [] mConstantTexBuf;
 		TextureManager::getSingleton().remove("thaw");
 	}
 
 	const unsigned int TEXTURE_SIZE;
 	const unsigned int SQR_BRUSH_RADIUS;
 	HardwarePixelBufferSharedPtr mTexBuf;
-	uint8* mConstantTexBuf;
 	Real mPlaneSize;
 	RaySceneQuery* mCursorQuery;
 	Vector2 mBrushPos;

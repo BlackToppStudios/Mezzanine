@@ -193,11 +193,11 @@ typedef std::vector$<$ \hyperlink{classphys_1_1Sound}{Sound} $\ast$ $>$ \hyperli
 \begin{DoxyCompactList}\small\item\em Converts whatever to an int as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\unsigned int \hyperlink{namespacephys_a16ab66903d5e438a04f4e859c8aa47a7}{Tounsignedint} (const T \&Datum)
 \begin{DoxyCompactList}\small\item\em Converts whatever to an unsigned int as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\int \hyperlink{namespacephys_af9c39435b1181dab9b49b7c2aeb57127}{ToReal} (const T \&Datum)
+{\footnotesize template$<$class T $>$ }\\\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{namespacephys_ac5ff9d58be770f2fe8c4928eb160c88a}{ToReal} (const T \&Datum)
 \begin{DoxyCompactList}\small\item\em Converts whatever to an Real as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\int \hyperlink{namespacephys_a306865e81b7e30cd45a166b4a173c4b4}{Tofloat} (const T \&Datum)
+{\footnotesize template$<$class T $>$ }\\float \hyperlink{namespacephys_a8f892c12296033f70cc95c43f5c7e85c}{Tofloat} (const T \&Datum)
 \begin{DoxyCompactList}\small\item\em Converts whatever to a float as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\int \hyperlink{namespacephys_ad79753f6940f454a377a029570b0a3e0}{Todouble} (const T \&Datum)
+{\footnotesize template$<$class T $>$ }\\double \hyperlink{namespacephys_aa89192e0bb495fdf141649f5abd88963}{Todouble} (const T \&Datum)
 \begin{DoxyCompactList}\small\item\em Converts whatever to a double as long as the proper streaming operators are available for it. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -314,15 +314,15 @@ Definition at line 78 of file datatypes.h.
 
 
 \subsection{Function Documentation}
-\hypertarget{namespacephys_ad79753f6940f454a377a029570b0a3e0}{
+\hypertarget{namespacephys_aa89192e0bb495fdf141649f5abd88963}{
 \index{phys@{phys}!Todouble@{Todouble}}
 \index{Todouble@{Todouble}!phys@{phys}}
-\subsubsection[{Todouble}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ int phys::Todouble (
+\subsubsection[{Todouble}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ double phys::Todouble (
 \begin{DoxyParamCaption}
 \item[{const T \&}]{ Datum}
 \end{DoxyParamCaption}
 )}}
-\label{df/dec/namespacephys_ad79753f6940f454a377a029570b0a3e0}
+\label{df/dec/namespacephys_aa89192e0bb495fdf141649f5abd88963}
 
 
 Converts whatever to a double as long as the proper streaming operators are available for it. 
@@ -331,21 +331,21 @@ Converts whatever to a double as long as the proper streaming operators are avai
 \begin{DoxyParams}{Parameters}
 \item[{\em Datum}]The whatever to be converted \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-An bouble with the converted data
+A double with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Typedefs could break things 
 
-Definition at line 221 of file datatypes.h.
+Definition at line 214 of file datatypes.h.
 
-\hypertarget{namespacephys_a306865e81b7e30cd45a166b4a173c4b4}{
+\hypertarget{namespacephys_a8f892c12296033f70cc95c43f5c7e85c}{
 \index{phys@{phys}!Tofloat@{Tofloat}}
 \index{Tofloat@{Tofloat}!phys@{phys}}
-\subsubsection[{Tofloat}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ int phys::Tofloat (
+\subsubsection[{Tofloat}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ float phys::Tofloat (
 \begin{DoxyParamCaption}
 \item[{const T \&}]{ Datum}
 \end{DoxyParamCaption}
 )}}
-\label{df/dec/namespacephys_a306865e81b7e30cd45a166b4a173c4b4}
+\label{df/dec/namespacephys_a8f892c12296033f70cc95c43f5c7e85c}
 
 
 Converts whatever to a float as long as the proper streaming operators are available for it. 
@@ -354,11 +354,11 @@ Converts whatever to a float as long as the proper streaming operators are avail
 \begin{DoxyParams}{Parameters}
 \item[{\em Datum}]The whatever to be converted \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-An float with the converted data
+A float with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Real Typedef could break things 
 
-Definition at line 207 of file datatypes.h.
+Definition at line 201 of file datatypes.h.
 
 \hypertarget{namespacephys_af0a6dfb0aa9e9292b96a0273e1f49d3a}{
 \index{phys@{phys}!Toint@{Toint}}
@@ -381,7 +381,7 @@ An int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 164 of file datatypes.h.
+Definition at line 161 of file datatypes.h.
 
 \hypertarget{namespacephys_a7fe8a4cf645e000483652f26ef8d6e47}{
 \index{phys@{phys}!ToInteger@{ToInteger}}
@@ -404,17 +404,17 @@ An Integer with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 149 of file datatypes.h.
+Definition at line 147 of file datatypes.h.
 
-\hypertarget{namespacephys_af9c39435b1181dab9b49b7c2aeb57127}{
+\hypertarget{namespacephys_ac5ff9d58be770f2fe8c4928eb160c88a}{
 \index{phys@{phys}!ToReal@{ToReal}}
 \index{ToReal@{ToReal}!phys@{phys}}
-\subsubsection[{ToReal}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ int phys::ToReal (
+\subsubsection[{ToReal}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ {\bf Real} phys::ToReal (
 \begin{DoxyParamCaption}
 \item[{const T \&}]{ Datum}
 \end{DoxyParamCaption}
 )}}
-\label{df/dec/namespacephys_af9c39435b1181dab9b49b7c2aeb57127}
+\label{df/dec/namespacephys_ac5ff9d58be770f2fe8c4928eb160c88a}
 
 
 Converts whatever to an Real as long as the proper streaming operators are available for it. 
@@ -423,11 +423,11 @@ Converts whatever to an Real as long as the proper streaming operators are avail
 \begin{DoxyParams}{Parameters}
 \item[{\em Datum}]The whatever to be converted \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-An Real with the converted data 
+A Real with the converted data 
 \end{DoxyReturn}
 
 
-Definition at line 192 of file datatypes.h.
+Definition at line 187 of file datatypes.h.
 
 \hypertarget{namespacephys_ae81e34843c6c569026b9a7d9d54c4f04}{
 \index{phys@{phys}!ToString@{ToString}}
@@ -473,7 +473,7 @@ An unsigned int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 179 of file datatypes.h.
+Definition at line 175 of file datatypes.h.
 
 \hypertarget{namespacephys_a53d44a46cab542ef86a541af5f1a7b62}{
 \index{phys@{phys}!ToWhole@{ToWhole}}
@@ -496,5 +496,5 @@ A Whole with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 136 of file datatypes.h.
+Definition at line 135 of file datatypes.h.
 

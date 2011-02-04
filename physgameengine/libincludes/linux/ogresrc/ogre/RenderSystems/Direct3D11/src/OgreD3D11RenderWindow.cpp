@@ -31,7 +31,6 @@ THE SOFTWARE.
 #include "OgreWindowEventUtilities.h"
 #include "OgreD3D11Driver.h"
 #include "OgreRoot.h"
-#include "OgreDepthBuffer.h"
 
 namespace Ogre
 {
@@ -48,7 +47,6 @@ namespace Ogre
 		mActive = false;
 		mSizing = false;
 		mClosed = false;
-		mHidden = false;
 		mSwitchingFullscreen = false;
 		mDisplayFrequency = 0;
 		mRenderTargetView = 0;
@@ -58,9 +56,6 @@ namespace Ogre
 	//---------------------------------------------------------------------
 	D3D11RenderWindow::~D3D11RenderWindow()
 	{
-		SAFE_RELEASE( mRenderTargetView );
-		SAFE_RELEASE( mDepthStencilView );
-
 		mpBackBuffer->Release();
 		mpBackBuffer = NULL;
 
@@ -136,10 +131,6 @@ namespace Ogre
 			opt = miscParams->find("vsyncInterval");
 			if(opt != miscParams->end())
 				mVSyncInterval = StringConverter::parseUnsignedInt(opt->second);
-			// hidden	[parseBool]
-			opt = miscParams->find("hidden");
-			if(opt != miscParams->end())
-				mHidden = StringConverter::parseBool(opt->second);
 			// displayFrequency
 			opt = miscParams->find("displayFrequency");
 			if(opt != miscParams->end())
@@ -188,7 +179,7 @@ namespace Ogre
 
 		if (!externalHandle)
 		{
-			DWORD dwStyle = (mHidden ? 0 : WS_VISIBLE) | WS_CLIPCHILDREN;
+			DWORD dwStyle = WS_VISIBLE | WS_CLIPCHILDREN;
 			RECT rc;
 
 			mWidth = width;
@@ -273,7 +264,7 @@ namespace Ogre
 		mHeight = rc.bottom;
 
 		mName = name;
-		mDepthBufferPoolId = depthBuffer ? DepthBuffer::POOL_DEFAULT : DepthBuffer::POOL_NO_DEPTH;
+		mIsDepthBuffered = depthBuffer;
 		mIsFullScreen = fullScreen;
 		mColourDepth = colourDepth;
 
@@ -286,7 +277,6 @@ namespace Ogre
 
 		mActive = true;
 		mClosed = false;
-		setHidden(mHidden);
 	}
 	//---------------------------------------------------------------------
 	void D3D11RenderWindow::setFullscreen(bool fullScreen, unsigned int width, unsigned int height)
@@ -342,8 +332,8 @@ namespace Ogre
 			}
 
 			md3dpp.Windowed = !fullScreen;
-			md3dpp.BufferDesc.RefreshRate.Numerator = 0;
-			md3dpp.BufferDesc.RefreshRate.Denominator=0;
+			md3dpp.BufferDesc.RefreshRate.Numerator = 1;
+			md3dpp.BufferDesc.RefreshRate.Denominator= 1;
 			md3dpp.BufferDesc.Height = height;
 			md3dpp.BufferDesc.Width = width;
 
@@ -405,12 +395,12 @@ namespace Ogre
 		md3dpp.OutputWindow 		= mHWnd;
 		md3dpp.BufferDesc.Width		= mWidth;
 		md3dpp.BufferDesc.Height	= mHeight;
-		md3dpp.BufferDesc.RefreshRate.Numerator=0;
-		md3dpp.BufferDesc.RefreshRate.Denominator = 0;
+		md3dpp.BufferDesc.RefreshRate.Numerator=1;
+		md3dpp.BufferDesc.RefreshRate.Denominator = 1;
 		if (mIsFullScreen)
 		{
-			md3dpp.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-			md3dpp.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+			md3dpp.BufferDesc.Scaling = DXGI_MODE_SCALING_STRETCHED;
+			md3dpp.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UPPER_FIELD_FIRST;
 			md3dpp.Flags = DXGI_SWAP_CHAIN_FLAG_ALLOW_MODE_SWITCH ;
 		}
 		md3dpp.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
@@ -491,7 +481,7 @@ namespace Ogre
 			ZeroMemory( &RTVDesc, sizeof(RTVDesc) );
 
 			RTVDesc.Format = BBDesc.Format;
-			RTVDesc.ViewDimension = mFSAA ? D3D11_RTV_DIMENSION_TEXTURE2DMS : D3D11_RTV_DIMENSION_TEXTURE2D;
+			RTVDesc.ViewDimension = D3D11_RTV_DIMENSION_TEXTURE2D;
 			RTVDesc.Texture2D.MipSlice = 0;
 			hr = mDevice->CreateRenderTargetView( mpBackBuffer, &RTVDesc, &mRenderTargetView );
 
@@ -504,7 +494,7 @@ namespace Ogre
 			}
 
 
-			if( mDepthBufferPoolId != DepthBuffer::POOL_NO_DEPTH )
+			if (mIsDepthBuffered) 
 			{
 				// get the backbuffer
 
@@ -517,8 +507,8 @@ namespace Ogre
 				descDepth.MipLevels = 1;
 				descDepth.ArraySize = 1;
 				descDepth.Format = DXGI_FORMAT_R32_TYPELESS;
-				descDepth.SampleDesc.Count = mFSAAType.Count;
-				descDepth.SampleDesc.Quality = mFSAAType.Quality;
+				descDepth.SampleDesc.Count = 1;
+				descDepth.SampleDesc.Quality = 0;
 				descDepth.Usage = D3D11_USAGE_DEFAULT;
 				descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;
 				descDepth.CPUAccessFlags = 0;
@@ -538,7 +528,7 @@ namespace Ogre
 				ZeroMemory( &descDSV, sizeof(D3D11_DEPTH_STENCIL_VIEW_DESC) );
 
 				descDSV.Format = DXGI_FORMAT_D32_FLOAT;
-				descDSV.ViewDimension = mFSAA ? D3D11_DSV_DIMENSION_TEXTURE2DMS : D3D11_DSV_DIMENSION_TEXTURE2D;
+				descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
 				descDSV.Texture2D.MipSlice = 0;
 				hr = mDevice->CreateDepthStencilView( pDepthStencil, &descDSV, &mDepthStencilView );
 				SAFE_RELEASE( pDepthStencil );
@@ -550,11 +540,6 @@ namespace Ogre
 						"D3D11RenderWindow::createD3DResources");
 				}
 
-				DepthBuffer *depthBuf = rsys->_addManualDepthBuffer( mDepthStencilView, mWidth, mHeight,
-																	 mFSAAType.Count, mFSAAType.Quality );
-
-				//Don't forget we want this window to use _this_ depth buffer
-				this->attachDepthBuffer( depthBuf );
 			} 
 			else 
 			{
@@ -672,18 +657,6 @@ namespace Ogre
 		return (mHWnd && !IsIconic(mHWnd));
 	}
 	//---------------------------------------------------------------------
-	void D3D11RenderWindow::setHidden(bool hidden)
-	{
-		mHidden = hidden;
-		if (!mIsExternal)
-		{
-			if (hidden)
-				ShowWindow(mHWnd, SW_HIDE);
-			else
-				ShowWindow(mHWnd, SW_SHOWNORMAL);
-		}
-	}
-	//---------------------------------------------------------------------
 	void D3D11RenderWindow::reposition(int top, int left)
 	{
 		if (mHWnd && !mIsFullScreen)
@@ -731,8 +704,8 @@ namespace Ogre
 		md3dpp.OutputWindow 		= mHWnd;
 		md3dpp.BufferDesc.Width		= mWidth;
 		md3dpp.BufferDesc.Height	= mHeight;
-		md3dpp.BufferDesc.RefreshRate.Numerator=0;
-		md3dpp.BufferDesc.RefreshRate.Denominator = 0;
+		md3dpp.BufferDesc.RefreshRate.Numerator=1;
+		md3dpp.BufferDesc.RefreshRate.Denominator = mIsFullScreen ? mDisplayFrequency : 0;
 
 		mWidth = width;
 		mHeight = height;
@@ -864,10 +837,11 @@ namespace Ogre
 			*pRTView = mRenderTargetView;
 			return;
 		}
-		else if( name == "ID3D11Texture2D" )
+		else if( name == "ID3D11DepthStencilView" )
 		{
-			ID3D11Texture2D **pBackBuffer = (ID3D11Texture2D**)pData;
-			*pBackBuffer = mpBackBuffer;
+			ID3D11DepthStencilView * *pRTDepthView = (ID3D11DepthStencilView **)pData;
+			*pRTDepthView = mDepthStencilView;
+			return;
 		}
 
 	}

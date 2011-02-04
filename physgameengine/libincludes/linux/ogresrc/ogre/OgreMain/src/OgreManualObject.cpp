@@ -510,7 +510,7 @@ namespace Ogre {
 			// first vertex, autoorganise decl
 			VertexDeclaration* oldDcl = rop->vertexData->vertexDeclaration;
 			rop->vertexData->vertexDeclaration =
-				oldDcl->getAutoOrganisedDeclaration(false, false, false);
+				oldDcl->getAutoOrganisedDeclaration(false, false);
 			HardwareBufferManager::getSingleton().destroyVertexDeclaration(oldDcl);
 		}
 		resizeTempVertexBufferIfNeeded(++rop->vertexData->vertexCount);
@@ -1011,7 +1011,6 @@ namespace Ogre {
 		mRenderOperation.operationType = opType;
 		// default to no indexes unless we're told
 		mRenderOperation.useIndexes = false;
-        mRenderOperation.useGlobalInstancingVertexBufferIsAvailable = false;
 		mRenderOperation.vertexData = OGRE_NEW VertexData();
 		mRenderOperation.vertexData->vertexCount = 0;
 

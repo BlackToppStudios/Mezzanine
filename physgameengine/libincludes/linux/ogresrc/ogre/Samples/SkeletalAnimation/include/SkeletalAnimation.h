@@ -47,7 +47,6 @@ public:
 		return SdkSample::frameRenderingQueued(evt);
     }
 
-
 protected:
 
 	void setupContent()

@@ -26,8 +26,7 @@ public:
 	StringVector getRequiredPlugins()
 	{
 		StringVector names;
-        if (!GpuProgramManager::getSingleton().isSyntaxSupported("glsles"))
-            names.push_back("Cg Program Manager");
+		names.push_back("Cg Program Manager");
 		return names;
 	}
 
@@ -40,11 +39,9 @@ public:
         }
 
 		if (!GpuProgramManager::getSingleton().isSyntaxSupported("arbfp1") &&
-			!GpuProgramManager::getSingleton().isSyntaxSupported("ps_2_0") &&
-			!GpuProgramManager::getSingleton().isSyntaxSupported("ps_4_0") &&
-			!GpuProgramManager::getSingleton().isSyntaxSupported("glsles"))
+			!GpuProgramManager::getSingleton().isSyntaxSupported("ps_2_0"))
 		{
-			OGRE_EXCEPT(Exception::ERR_NOT_IMPLEMENTED, "Your card does not support the shader model needed for this sample, "
+			OGRE_EXCEPT(Exception::ERR_NOT_IMPLEMENTED, "Your card does not support shader model 2, "
 				"so you cannot run this sample. Sorry!", "Dot3BumpSample::testCapabilities");
 		}
 	}
@@ -118,9 +115,7 @@ protected:
 
 		mCamera->setPosition(0, 0, 500);
 
-#if OGRE_PLATFORM != OGRE_PLATFORM_IPHONE
 		setDragLook(true);
-#endif
 	}
 
 
@@ -157,12 +152,23 @@ protected:
 			if (coreLibsFound) 
 				break; 
 		}
-			
+		
+		// Create the resource group of the RT Shader System.
+		rgm.createResourceGroup("RTShaderSystemMaterialsGroup");
+		rgm.addResourceLocation(shaderCoreLibsPath + "materials", "FileSystem", "RTShaderSystemMaterialsGroup");		
+		rgm.initialiseResourceGroup("RTShaderSystemMaterialsGroup");
+		rgm.loadResourceGroup("RTShaderSystemMaterialsGroup", true);
 #endif
 	}
 
 	void unloadResources()
 	{
+#ifdef USE_RTSHADER_SYSTEM
+		ResourceGroupManager& rgm = ResourceGroupManager::getSingleton();
+		
+		// Destroy the resource group of the RT Shader System			
+		rgm.destroyResourceGroup("RTShaderSystemMaterialsGroup");
+#endif
 
 	}
 

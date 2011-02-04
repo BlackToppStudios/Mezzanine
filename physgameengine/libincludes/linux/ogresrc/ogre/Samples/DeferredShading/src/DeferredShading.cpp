@@ -37,13 +37,6 @@ same license as the rest of the engine.
 #include "GBufferSchemeHandler.h"
 #include "NullSchemeHandler.h"
 
-#include "SharedData.h"
-
-namespace Ogre
-{
-    template<> SharedData* Singleton<SharedData>::ms_Singleton = 0;
-}
-
 using namespace Ogre;
 
 const Ogre::uint8 DeferredShadingSystem::PRE_GBUFFER_RENDER_QUEUE = Ogre::RENDER_QUEUE_1;
@@ -56,10 +49,10 @@ DeferredShadingSystem::DeferredShadingSystem(
 {
 	sm->setShadowTechnique(SHADOWTYPE_TEXTURE_ADDITIVE);
 	sm->setShadowTextureCasterMaterial("DeferredShading/Shadows/Caster");
-	mSceneMgr->setShadowTextureCount(1);
 	mSceneMgr->setShadowFarDistance(150);
-	//Use a value of "2" to use a different depth buffer pool and avoid sharing this with the Backbuffer's
-	mSceneMgr->setShadowTextureConfig( 0, 512, 512, PF_FLOAT16_R, 2 );
+	mSceneMgr->setShadowTextureSize(512);
+	mSceneMgr->setShadowTextureCount(1);
+	mSceneMgr->setShadowTexturePixelFormat(PF_FLOAT16_R);
 	mSceneMgr->setShadowDirectionalLightExtrusionDistance(75);
 }
 

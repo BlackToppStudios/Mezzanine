@@ -344,65 +344,60 @@
 <a name="l00313"></a>00313 
 <a name="l00314"></a>00314     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee" title="This is where the rendering takes place.">GraphicsManager::DoMainLoopItems</a>()
 <a name="l00315"></a>00315     {
-<a name="l00316"></a>00316         <span class="comment">//Perform some basic checks to determine if a render needs to happen.</span>
-<a name="l00317"></a>00317         <span class="keywordflow">if</span>( !OgreGameWindow-&gt;isVisible() &amp;&amp; OgreGameWindow-&gt;isActive() )
-<a name="l00318"></a>00318             OgreGameWindow-&gt;setActive(<span class="keyword">false</span>);
-<a name="l00319"></a>00319         <span class="keywordflow">else</span> <span class="keywordflow">if</span>( OgreGameWindow-&gt;isVisible() &amp;&amp; !OgreGameWindow-&gt;isActive() )
-<a name="l00320"></a>00320             OgreGameWindow-&gt;setActive(<span class="keyword">true</span>);
-<a name="l00321"></a>00321 
-<a name="l00322"></a>00322         <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Rendering the World.&quot;</span>);
-<a name="l00323"></a>00323         Ogre::WindowEventUtilities::messagePump();
-<a name="l00324"></a>00324         <span class="keywordflow">if</span>(OgreGameWindow-&gt;isActive())
-<a name="l00325"></a>00325         {
-<a name="l00326"></a>00326             <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a11ab7359564519dc966f997c98109f6e" title="Renders the current world contents to the screen.">crossplatform::RenderPhysWorld</a>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>, this-&gt;OgreGameWindow);
-<a name="l00327"></a>00327         }<span class="keywordflow">else</span>{
-<a name="l00328"></a>00328             <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Aborted Rendering, target is not active&quot;</span>);
-<a name="l00329"></a>00329             <span class="comment">// clear timings to allow smooth alt-tabbing action.</span>
-<a name="l00330"></a>00330             <span class="keywordflow">if</span>( !OgreGameWindow-&gt;isVisible() )
-<a name="l00331"></a>00331                 Ogre::Root::getSingleton().clearEventTimes();
-<a name="l00332"></a>00332         }
-<a name="l00333"></a>00333         <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Finished Rendering&quot;</span>);
-<a name="l00334"></a>00334 
-<a name="l00335"></a>00335         <span class="comment">//Do Time Calculations to Determine Rendering Time</span>
-<a name="l00336"></a>00336         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;SetFrameTime( this-&gt;RenderTimer-&gt;getMilliseconds() );
-<a name="l00337"></a>00337         this-&gt;RenderTimer-&gt;reset();
-<a name="l00338"></a>00338         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetTargetFrameTime() &gt; this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetFrameTime()){
-<a name="l00339"></a>00339             FrameDelay++;
-<a name="l00340"></a>00340         }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetTargetFrameTime() == this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetFrameTime()){
-<a name="l00341"></a>00341         }<span class="keywordflow">else</span>{
-<a name="l00342"></a>00342             <span class="keywordflow">if</span> (0&lt;FrameDelay){
-<a name="l00343"></a>00343                 FrameDelay--;
-<a name="l00344"></a>00344             }<span class="keywordflow">else</span>{
-<a name="l00345"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">00345</a>                 FrameDelay=0;
-<a name="l00346"></a>00346             }
-<a name="l00347"></a>00347         }
-<a name="l00348"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c">00348</a>         <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab525e3abf3625b83954e2d55a5869d18" title="Pauses the program for a given period of time.">crossplatform::WaitMilliseconds</a>( FrameDelay );
-<a name="l00349"></a>00349     }
-<a name="l00350"></a>00350 
-<a name="l00351"></a>00351     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58" title="This returns the type of this manager.">GraphicsManager::GetType</a>()<span class="keyword"> const</span>
-<a name="l00352"></a>00352 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::GraphicsManager; }
-<a name="l00353"></a>00353 
-<a name="l00354"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae08ff0d9f16d7b9bc35d2399c1389e6a">00354</a>     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c" title="This is derived from and uses the ManagerBase to perform the the post main loop callbacks.">GraphicsManager::PostMainLoopItems</a>()
-<a name="l00355"></a>00355     {
-<a name="l00356"></a>00356         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ac20a304413b4d47f9ae657983e903a67" title="This gets the EventManager from the manager list.">GetEventManager</a>()-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#abada23d83ef38e59a38eb91a88a07404" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(<span class="keyword">new</span> <a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a348cebf8f15202a9916ac1b2400c63b1" title="Gets the amount of time since the last time Rendering began.">GetFrameTime</a>()));
-<a name="l00357"></a>00357         <span class="keywordflow">return</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c" title="This is derived from and uses the ManagerBase to perform the the post main loop callbacks.">ManagerBase::PostMainLoopItems</a>();
+<a name="l00316"></a>00316         <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Rendering the World.&quot;</span>);
+<a name="l00317"></a>00317         Ogre::WindowEventUtilities::messagePump();
+<a name="l00318"></a>00318         <span class="keywordflow">if</span>(1)<span class="comment">//OgreGameWindow-&gt;isActive())</span>
+<a name="l00319"></a>00319         {
+<a name="l00320"></a>00320             <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a11ab7359564519dc966f997c98109f6e" title="Renders the current world contents to the screen.">crossplatform::RenderPhysWorld</a>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>, this-&gt;OgreGameWindow);
+<a name="l00321"></a>00321         }<span class="keywordflow">else</span> <span class="keywordflow">if</span>( !OgreGameWindow-&gt;isActive() &amp;&amp; OgreGameWindow-&gt;isVisible()){
+<a name="l00322"></a>00322             OgreGameWindow-&gt;update();
+<a name="l00323"></a>00323         }<span class="keywordflow">else</span>{
+<a name="l00324"></a>00324             <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Aborted Rendering, target is not active&quot;</span>);
+<a name="l00325"></a>00325             <span class="comment">// clear timings to allow smooth alt-tabbing action.</span>
+<a name="l00326"></a>00326             Ogre::Root::getSingleton().clearEventTimes();
+<a name="l00327"></a>00327         }
+<a name="l00328"></a>00328         <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Finished Rendering&quot;</span>);
+<a name="l00329"></a>00329 
+<a name="l00330"></a>00330         <span class="comment">//Do Time Calculations to Determine Rendering Time</span>
+<a name="l00331"></a>00331         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;SetFrameTime( this-&gt;RenderTimer-&gt;getMilliseconds() );
+<a name="l00332"></a>00332         this-&gt;RenderTimer-&gt;reset();
+<a name="l00333"></a>00333         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetTargetFrameTime() &gt; this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetFrameTime()){
+<a name="l00334"></a>00334             FrameDelay++;
+<a name="l00335"></a>00335         }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetTargetFrameTime() == this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetFrameTime()){
+<a name="l00336"></a>00336         }<span class="keywordflow">else</span>{
+<a name="l00337"></a>00337             <span class="keywordflow">if</span> (0&lt;FrameDelay){
+<a name="l00338"></a>00338                 FrameDelay--;
+<a name="l00339"></a>00339             }<span class="keywordflow">else</span>{
+<a name="l00340"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">00340</a>                 FrameDelay=0;
+<a name="l00341"></a>00341             }
+<a name="l00342"></a>00342         }
+<a name="l00343"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c">00343</a>         <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab525e3abf3625b83954e2d55a5869d18" title="Pauses the program for a given period of time.">crossplatform::WaitMilliseconds</a>( FrameDelay );
+<a name="l00344"></a>00344     }
+<a name="l00345"></a>00345 
+<a name="l00346"></a>00346     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58" title="This returns the type of this manager.">GraphicsManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00347"></a>00347 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::GraphicsManager; }
+<a name="l00348"></a>00348 
+<a name="l00349"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae08ff0d9f16d7b9bc35d2399c1389e6a">00349</a>     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c" title="This is derived from and uses the ManagerBase to perform the the post main loop callbacks.">GraphicsManager::PostMainLoopItems</a>()
+<a name="l00350"></a>00350     {
+<a name="l00351"></a>00351         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ac20a304413b4d47f9ae657983e903a67" title="This gets the EventManager from the manager list.">GetEventManager</a>()-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#abada23d83ef38e59a38eb91a88a07404" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(<span class="keyword">new</span> <a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a348cebf8f15202a9916ac1b2400c63b1" title="Gets the amount of time since the last time Rendering began.">GetFrameTime</a>()));
+<a name="l00352"></a>00352         <span class="keywordflow">return</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c" title="This is derived from and uses the ManagerBase to perform the the post main loop callbacks.">ManagerBase::PostMainLoopItems</a>();
+<a name="l00353"></a>00353     }
+<a name="l00354"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a56d2f5d2ad9fb277723facd7f54034ec">00354</a> 
+<a name="l00355"></a>00355     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae08ff0d9f16d7b9bc35d2399c1389e6a" title="This will set the stored pointer to the ogre render window.">GraphicsManager::SetOgreWindowPointer</a>(Ogre::RenderWindow* OgreWindow)
+<a name="l00356"></a>00356     {
+<a name="l00357"></a>00357         OgreGameWindow = OgreWindow;
 <a name="l00358"></a>00358     }
-<a name="l00359"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a56d2f5d2ad9fb277723facd7f54034ec">00359</a> 
-<a name="l00360"></a>00360     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae08ff0d9f16d7b9bc35d2399c1389e6a" title="This will set the stored pointer to the ogre render window.">GraphicsManager::SetOgreWindowPointer</a>(Ogre::RenderWindow* OgreWindow)
+<a name="l00359"></a>00359 
+<a name="l00360"></a>00360     Ogre::RenderWindow* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a56d2f5d2ad9fb277723facd7f54034ec" title="This will get a pointer to the RenderWindow class in use by the world.">GraphicsManager::GetOgreWindowPointer</a>()
 <a name="l00361"></a>00361     {
-<a name="l00362"></a>00362         OgreGameWindow = OgreWindow;
+<a name="l00362"></a>00362         <span class="keywordflow">return</span> OgreGameWindow;
 <a name="l00363"></a>00363     }
-<a name="l00364"></a>00364 
-<a name="l00365"></a>00365     Ogre::RenderWindow* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a56d2f5d2ad9fb277723facd7f54034ec" title="This will get a pointer to the RenderWindow class in use by the world.">GraphicsManager::GetOgreWindowPointer</a>()
-<a name="l00366"></a>00366     {
-<a name="l00367"></a>00367         <span class="keywordflow">return</span> OgreGameWindow;
-<a name="l00368"></a>00368     }
-<a name="l00369"></a>00369 }
-<a name="l00370"></a>00370 
-<a name="l00371"></a>00371 <span class="preprocessor">#endif</span>
+<a name="l00364"></a>00364 }
+<a name="l00365"></a>00365 
+<a name="l00366"></a>00366 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:10 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:18 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -215,14 +215,14 @@ Functions</h2></td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">unsigned int&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#a16ab66903d5e438a04f4e859c8aa47a7">Tounsignedint</a> (const T &amp;Datum)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts whatever to an unsigned int as long as the proper streaming operators are available for it.  <a href="#a16ab66903d5e438a04f4e859c8aa47a7"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">int&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#af9c39435b1181dab9b49b7c2aeb57127">ToReal</a> (const T &amp;Datum)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts whatever to an Real as long as the proper streaming operators are available for it.  <a href="#af9c39435b1181dab9b49b7c2aeb57127"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#ac5ff9d58be770f2fe8c4928eb160c88a">ToReal</a> (const T &amp;Datum)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts whatever to an Real as long as the proper streaming operators are available for it.  <a href="#ac5ff9d58be770f2fe8c4928eb160c88a"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">int&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#a306865e81b7e30cd45a166b4a173c4b4">Tofloat</a> (const T &amp;Datum)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts whatever to a float as long as the proper streaming operators are available for it.  <a href="#a306865e81b7e30cd45a166b4a173c4b4"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">float&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#a8f892c12296033f70cc95c43f5c7e85c">Tofloat</a> (const T &amp;Datum)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts whatever to a float as long as the proper streaming operators are available for it.  <a href="#a8f892c12296033f70cc95c43f5c7e85c"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
-<tr><td class="memTemplItemLeft" align="right" valign="top">int&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#ad79753f6940f454a377a029570b0a3e0">Todouble</a> (const T &amp;Datum)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts whatever to a double as long as the proper streaming operators are available for it.  <a href="#ad79753f6940f454a377a029570b0a3e0"></a><br/></td></tr>
+<tr><td class="memTemplItemLeft" align="right" valign="top">double&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#aa89192e0bb495fdf141649f5abd88963">Todouble</a> (const T &amp;Datum)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts whatever to a double as long as the proper streaming operators are available for it.  <a href="#aa89192e0bb495fdf141649f5abd88963"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>The bulk of the engine components go in this namspace. </p>
@@ -374,14 +374,14 @@ Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Function Documentation</h2>
-<a class="anchor" id="ad79753f6940f454a377a029570b0a3e0"></a><!-- doxytag: member="phys::Todouble" ref="ad79753f6940f454a377a029570b0a3e0" args="(const T &amp;Datum)" -->
+<a class="anchor" id="aa89192e0bb495fdf141649f5abd88963"></a><!-- doxytag: member="phys::Todouble" ref="aa89192e0bb495fdf141649f5abd88963" args="(const T &amp;Datum)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int phys::Todouble </td>
+          <td class="memname">double phys::Todouble </td>
           <td>(</td>
           <td class="paramtype">const T &amp;&nbsp;</td>
           <td class="paramname"> <em>Datum</em></td>
@@ -399,21 +399,21 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>An bouble with the converted data</dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A double with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Typedefs could break things </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00221">221</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00214">214</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a306865e81b7e30cd45a166b4a173c4b4"></a><!-- doxytag: member="phys::Tofloat" ref="a306865e81b7e30cd45a166b4a173c4b4" args="(const T &amp;Datum)" -->
+<a class="anchor" id="a8f892c12296033f70cc95c43f5c7e85c"></a><!-- doxytag: member="phys::Tofloat" ref="a8f892c12296033f70cc95c43f5c7e85c" args="(const T &amp;Datum)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int phys::Tofloat </td>
+          <td class="memname">float phys::Tofloat </td>
           <td>(</td>
           <td class="paramtype">const T &amp;&nbsp;</td>
           <td class="paramname"> <em>Datum</em></td>
@@ -431,10 +431,10 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>An float with the converted data</dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A float with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Real Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00207">207</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00201">201</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +466,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00164">164</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00161">161</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -497,18 +497,18 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An Integer with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00149">149</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00147">147</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="af9c39435b1181dab9b49b7c2aeb57127"></a><!-- doxytag: member="phys::ToReal" ref="af9c39435b1181dab9b49b7c2aeb57127" args="(const T &amp;Datum)" -->
+<a class="anchor" id="ac5ff9d58be770f2fe8c4928eb160c88a"></a><!-- doxytag: member="phys::ToReal" ref="ac5ff9d58be770f2fe8c4928eb160c88a" args="(const T &amp;Datum)" -->
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">int phys::ToReal </td>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> phys::ToReal </td>
           <td>(</td>
           <td class="paramtype">const T &amp;&nbsp;</td>
           <td class="paramname"> <em>Datum</em></td>
@@ -526,9 +526,9 @@ template&lt;class T &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>An Real with the converted data </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A Real with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00192">192</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00187">187</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -591,7 +591,7 @@ template&lt;class T &gt; </div>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An unsigned int with the converted data</dd></dl>
 <p>This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things </p>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00179">179</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00175">175</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
@@ -622,12 +622,12 @@ template&lt;class T &gt; </div>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A Whole with the converted data </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00136">136</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dc/d51/datatypes_8h_source.html#l00135">135</a> of file <a class="el" href="../../dc/d51/datatypes_8h_source.html">datatypes.h</a>.</p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:11 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:19 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

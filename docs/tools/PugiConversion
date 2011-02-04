@@ -18,7 +18,8 @@ PugiCppFile="pugisrc/pugixml.cpp"
 PugiHFile="pugisrc/pugixml.hpp"
 PugiConfigFile="pugisrc/pugiconfig.hpp"
 PugiTempHFile="pugisrc/temp.hpp"
-
+PhysxmlifdefFile="ifdef.txt"
+PhysxmlendifFile="endif.txt"
 
 #Output Files
 OutDir="../../physgameengine/src"
@@ -80,10 +81,10 @@ tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"
 #		HEADER_PUGIXML_HPP -> _xml_h
 #		HEADER_PUGICONFIG_HPP	-> _xmlconfig_h
 #	- Put the results in the final place they belong
-cat $PugiTempHFile | sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_XML_H/g 	-e s/HEADER_PUGICONFIG_HPP/_XMLCONFIG_H/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	> $NewHFile
+cat $PhysxmlifdefFile $PugiTempHFile $PhysxmlendifFile| sed  	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/\([cC]\)/©/g 	-e s/HEADER_PUGIXML_HPP/_XML_H/g 	-e s/HEADER_PUGICONFIG_HPP/_XMLCONFIG_H/g	-e s/PUGIXML_/XML_/g 	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	> $NewHFile
 
 # This does mostly the same thing that the header transfortmation does, a bunch of cleanup and putting the code where it belongs
-cat $PugiCppFile | sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	>> $NewCppFile
+cat $PhysxmlifdefFile $PugiCppFile $PhysxmlendifFile| sed 	-e s/'#include "pugixml.hpp"'/"#include \"$NewHFileOnly\""/g 	-e s/'    '/'	'/g 	-e s/"$IncompleteCopyright1"/"$CompleteCopyright1"/g 	-e s/"$IncompleteCopyright2"/"$CompleteCopyright2"/g 	-e s/$CopyrightAccidentalDoxyTags/$CopyrightCleantags/g	-e s/\([C]\)/©/g 	-e s/PUGIXML_/XML_/g	-e s/"$PugiUsingNamespace"/"$OurUsingNamespace"/g	>> $NewCppFile
 
 # This will look in file $1 for the bracket that should end the statement that starts with $2 and ends the statement with $4
 # while doing this, old instances of $2 and replace them with $3
@@ -227,6 +228,8 @@ function FixNames
 	sed -i -e 's|_stream->Write|_stream->write|g' $1	#These 2 lines fixe mistakes made by the above line
 	sed -i -e 's|fWrite|fwrite|g' $1
 
+	#sed -i -e 's|struct AttributeStruct;|struct AttributeStruct\n	{\n		AttributeStruct(MemoryPage* page): header(reinterpret_cast<uintptr_t>(page)), Name(0), Value(0), prev_attribute_c(0), GetNextAttribute(0) {} \n		uintptr_t header;\n		char_t* Name;\n		char_t*	Value;\n		AttributeStruct* prev_attribute_c;\n		AttributeStruct* GetNextAttribute;\n	}; |g' $1
+
 	#Common class member
 	sed -i -e 's|set_\(.\)\([a-z]*\)|Set\U\1\L\2|g' $1
 	sed -i -e 's|as_\(.\)\([a-z]*\)|As\U\1\L\2|g' $1
@@ -246,6 +249,13 @@ function FixNames
 	sed -i -e 's|value|Value|g' $1
 	sed -i -e 's|NextAttribute|GetNextAttribute|g' $1
 	sed -i -e 's|PreviousAttribute|GetPreviousAttribute|g' $1
+
+	sed -i -e 's|float AsFloat() const;|float AsFloat() const;\n		Real AsReal() const;\n		Whole AsWhole() const;\n		Integer AsInteger() const;\n		String AsString() const;|g' $1
+	sed -i -e 's|float Attribute::AsFloat() const|Whole Attribute::AsWhole() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToWhole(_attr->Value);\n	}\n\n	Integer Attribute::AsInteger() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToInteger(_attr->Value);\n	}\n\n	String Attribute::AsString() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToString(_attr->Value);\n	}\n\n	Real Attribute::AsReal() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToReal(_attr->Value);\n	}\n\n	float Attribute::AsFloat() const|g' $1
+
+
+
+#\n		\n		return ToReal(_attr->Value);\n	}\n\n	float AsFloat() const\1|g' $1
 
 	#The Node Class
 	sed -i -e 's|child_\(.\)\([a-z]*\)|Child\U\1\L\2|g' $1
@@ -282,8 +292,8 @@ function FixNames
 	sed -i -e 's|// Last parsed Offset (in char_t units from start of input data)|/// @brief Last parsed offset (in char_t units from start of input data)|' $1
 	sed -i -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|' $1
 	sed -i -e 's|// Default constructor, initializes object to failed state|/// @brief Default constructor, initializes object to failed state.|' $1
-	sed -i -e 's|// Cast to bool operator|/// @brief Cast to bool operator \\n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|' $1
-	sed -i -e 's|// Get error Description |/// @brief Uses the Status member to create a text description. \\n		/// @return A const char* with a brief error description based on the ParseResult::Status |' $1
+	sed -i -e 's|// Cast to bool operator|/// @brief Cast to bool operator \n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|' $1
+	sed -i -e 's|// Get error Description |/// @brief Uses the Status member to create a text description. \n		/// @return A const char* with a brief error description based on the ParseResult::Status |' $1
 	sed -i -e 's|// Character type used for all internal storage and operations; depends on XML_WCHAR_MODE|/// @brief The character type used the internals of the XML parser, this is defined in datatypes.h.|' $1
 
 	#Writer Interface class
@@ -296,14 +306,26 @@ function FixNames
 	sed -i -e 's|// Safe bool conversion operator|/// @brief Used to convert this to a boolean value in a safe way\n		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class.|' $1
 
 	#Attribute
-	sed -i -e 's|bool SetValue(const char_t\* rhs);|/// @brief Set the value of this.\n		/// @param rhs The new Value.\n		/// @return True if successful, returns false if this is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(const char_t* rhs);|' $1
-	sed -i -e 's|bool SetValue(int rhs);|/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.\n		/// @param rhs The new value as an int.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(int rhs);|' $1
-	sed -i -e 's|bool SetValue(unsigned int rhs);|/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.\n		/// @param rhs The new value as an unsigned int.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(unsigned int rhs);|' $1
-	sed -i -e 's|bool SetValue(double rhs);|/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.\n		/// @param rhs The new value as a double.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(double rhs);|' $1
-	sed -i -e 's|bool SetValue(bool rhs);|/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.\n		/// @param rhs This with be interpretted, then converted to "true" or "false"  and used as the new value.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redudant and use an exception instead.\n		bool SetValue(bool rhs);|' $1
+	sed -i -e 's|bool SetValue(const char_t\* rhs);|/// @brief Set the value of this.\n		/// @param rhs The new Value.\n		/// @return True if successful, returns false if this is empty or there is not enough memory.\n		/// @todo update this to make the error return code redundant and use an exception instead.\n		/// @todo Review for possiblity of buffer overflow.\n		bool SetValue(const char_t* rhs);|' $1
+	sed -i -e 's|bool SetValue(int rhs);|/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.\n		/// @param rhs The new value as an int.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redundant and use an exception instead.\n		/// @todo Review for possiblity of buffer overflow.\n		bool SetValue(int rhs);|' $1
+	sed -i -e 's|bool SetValue(unsigned int rhs);|/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.\n		/// @param rhs The new value as an unsigned int.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redundant and use an exception instead.\n		/// @todo Review for possiblity of buffer overflow.\n		bool SetValue(unsigned int rhs);|' $1
+	sed -i -e 's|bool SetValue(double rhs);|/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.\n		/// @param rhs The new value as a double.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redundant and use an exception instead.\n		/// @todo Review for possiblity of buffer overflow.\n		bool SetValue(double rhs);|' $1
+	sed -i -e 's|bool SetValue(bool rhs);|/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.\n		/// @param rhs This with be interpretted, then converted to "true" or "false"  and used as the new value.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @todo update this to make the error return code redundant and use an exception instead.\n		/// @todo Review for possiblity of buffer overflow.\n		bool SetValue(bool rhs);\n\n		/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.\n		/// @param rhs This with be converted to a character array using the appropriate streaming operator <<, then used as the new value.\n		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.\n		/// @warning You should not pass classes that stream/serialize to xml into this function, the result will be invalid XML. If you must, find a way to strip out the ">" character, then you can reinsert it later\n		/// @todo Strip ">" automatically and provide a method to reconsitute it.\n		template <class T> bool SetValue(T rhs)\n		{\n			return SetValue(ToString(rhs).c_str());\n		}|' $1
+
 
 	#Node
 	sed -i -e  's|// Constructs node from internal pointer|/// @brief Constructs node from internal pointer\n		/// @param p An internal node pointer.|' $1
+	sed -i -e  's|Node GetNextSibling(const char_t\* Name) const; |/// @brief Attempt to retrieve the next sibling of this Node with a matching name.\n		/// @param Name A c-string that has the name of the node you to find.\n		/// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that Node, otherwise this return an empty Node.\n		/// @return A Node that represents a sibling with a matching name, or an empty Node on failure.\n		Node GetNextSibling(const char_t* Name) const; |' $1
+	sed -i -e  's|Node GetPreviousSibling(const char_t\* Name) const; |/// @brief Attempt to retrieve the first previous sibling of this Node with a matching name.\n		/// @param Name A c-string that has the name of the node you to find.\n		/// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that Node, otherwise this return an empty Node.\n		/// @return A Node that represents a sibling with a matching name, or an empty Node on failure.\n		Node GetPreviousSibling(const char_t* Name) const; |' $1
+	sed -i -e  's|Node GetPreviousSibling() const; |/// @brief Attempt to retrieve the previous sibling of this Node.\n		/// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this retrieves that Node, otherwise this return an empty Node.\n		/// @return A Node that represents a sibling, or an empty Node on failure.\n		Node GetPreviousSibling() const; |' $1
+	sed -i -e  's|Attribute AppendAttribute(const char_t\* Name);|\n		/// @brief Creates an Attribute and puts it at the end of this Nodes attributes.\n		/// @param Name The name of the New attribute to be created\n		/// @details This attempts to create an Attribute and stick it at the end of the list of attribute on the current\n		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will\n		/// fail and return an empty attribute if this Node is empty.\n		/// @return The created Attribute or an empty Attribute on Failure.\n		Attribute AppendAttribute(const char_t* Name); |' $1
+
+	sed -i -e  's|Attribute AppendCopy(const Attribute& proto);|\n		/// @brief Copies an Attribute and puts the copy at the end of this Nodes attributes.\n		/// @param proto The attribute to be copied.\n		/// @details This attempts to create a copy of an attribute Attribute and stick it at the end of the list of attribute on the current\n		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will\n		/// fail and return an empty attribute if this Node is empty.\n		/// @return The created Attribute or an empty Attribute on Failure.\n		Attribute AppendCopy(const Attribute\& proto); |' $1
+	sed -i -e  's|Attribute PrependCopy(const Attribute& proto);|\n		/// @brief Copies an Attribute and puts the copy at the beginning of this Nodes attributes.\n		/// @param proto The attribute to be copied.\n		/// @details This attempts to create a copy of an attribute Attribute and stick it at the beginning of the list of attribute on the current\n		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will\n		/// fail and return an empty attribute if this Node is empty.\n		/// @return The created Attribute or an empty Attribute on Failure.\n		Attribute PrependCopy(const Attribute\& proto); |' $1
+	sed -i -e  's|Attribute InsertCopyAfter(const Attribute& proto, const Attribute& attr);|\n		/// @brief Copies an Attribute and puts the copy into the list of this Nodes attributes.\n		/// @param proto The attribute to be copied.\n		/// @param attr An Attribute that represents an Attribute on this Node, and is just before where you want the new copy of proto.\n		/// @details This attempts to create a copy of an attribute Attribute and stick it in the middle of the list of attributes, just after a selected attribute, on the current\n		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will\n		/// fail and return an empty attribute if this Node is empty.\n		/// @return The created Attribute or an empty Attribute on Failure.\n		Attribute InsertCopyAfter(const Attribute\& proto, const Attribute\& attr); |' $1
+	sed -i -e  's|Node InsertChildAfter(const char_t\* Name, const Node& node);|\n		/// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children\n		/// @param Name The name of the Node to be created.\n		/// @param Node The node just before were the Create node is to be placed.\n		/// @details Calls @ref Node::InsertChildAfter(NodeType, Node); using NodeElement as the NodeType.\n		/// @return The desired Node on success, an empty Node on failure.\n		Node InsertChildAfter(const char_t* Name, const Node\& node);|' $1
+	sed -i -e  's|Node PrependCopy(const Node& proto);|\n		/// @brief Copies a Node and puts the copy at the start of the list of this Nodes Childrem.\n		/// @param proto The Node to be copied. If this is emptry, no work is performed.\n		/// @return The copied Node on success, an empty Node on failure.\n		Node PrependCopy(const Node\& proto);|' $1
+	sed -i -e  's|bool RemoveChild(const char_t\* Name);|\n		/// @brief Remove child element as specified by name.\n		/// @param Name The name of the Node to remove.\n		/// @return True if the removal was successful, false otherwise\n		bool RemoveChild(const char_t* Name);|' $1
 
 
 

@@ -421,6 +421,30 @@ namespace phys
         /// @todo Update Attribute::AsFloat() to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value.
         /// @warning This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check "errno" and see if it is set to "ERANGE" to test for this condition.
 
+        /// @fn Attribute::AsReal() const;
+        /// @brief Attempts to convert the value of the attribute to a Real and returns the results.
+        /// @return If the value of this attribute can be converted to a Real by reading the character
+        /// and interpretting them a number, that number is returned. Returns 0 on failure.
+        /// @exception This can throw exception in certain overflow conditions
+
+        /// @fn Attribute::AsWhole() const;
+        /// @brief Attempts to convert the value of the attribute to a Whole and returns the results.
+        /// @return If the value of this attribute can be converted to a Whole by reading the character
+        /// and interpretting them a number, that number is returned. Returns 0 on failure.
+        /// @exception This can throw exception in certain overflow conditions
+
+        /// @fn Attribute::AsInteger() const;
+        /// @brief Attempts to convert the value of the attribute to a Integer and returns the results.
+        /// @return If the value of this attribute can be converted to a Integer by reading the character
+        /// and interpretting them a number, that number is returned. Returns 0 on failure.
+        /// @exception This can throw exception in certain overflow conditions
+
+        /// @fn Attribute::AsString() const;
+        /// @brief Attempts to convert the value of the attribute to a String and returns the results.
+        /// @return If the value of this attribute can be converted to a Real by reading the character
+        /// and interpretting them a number, that number is returned. Returns 0 on failure.
+        /// @exception This can throw exception in certain overflow conditions
+
         /// @fn Attribute::AsBool() const;
         /// @brief Attempts to convert the value of the attribute to a float and returns the results.
         /// @return Value as bool (returns true if first character is in '1tTyY' set), or false if attribute is empty
@@ -487,6 +511,7 @@ namespace phys
         /// @param lhs Left Hand Side of the operator.
         /// @param rhs Right Hand Side of the operator.
         /// @return A bool that has the correct value for a || operation.
+
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Node
@@ -573,6 +598,161 @@ namespace phys
 		/// @fn Node::GetLastChild() const;
 		/// @brief Get the last child Node of this Node.
 		/// @return Returns the last child node if it exists, otherwise it return an empty node.
+
+        /// @fn Node::GetNextSibling() const;
+        /// @brief Attempt to retrieve the next sibling of this Node.
+        /// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this retrieves that Node, otherwise this return an empty Node.
+        /// @return A Node that represents a sibling, or an empty Node on failure.
+
+        /// @fn Node::GetParent() const;
+        /// @brief Attempt to retrieve the parent of this Node.
+        /// @return A Node that represents the parent Node, or an empty Node on failure.
+
+        /// @fn Node::GetRoot() const;
+        /// @brief Attempt to retrieve the root Node, or the most base Node containing this Node.
+        /// @return A Node that represents the root of the XML document, or an empty Node on failure. If there are multiple roots this attempts to retrieve the appropriate one.
+
+        /// @fn Node::GetChild(const char_t* Name) const;
+        /// @brief Attempt to get a child Node with a given name.
+        /// @param Name The name of the desired child Node.
+        /// @return A Node that represents the first desired child, or an empty Node on failure.
+
+        /// @fn Node::GetAttribute(const char_t* Name) const;
+        /// @brief Attempt to get an Attribute on this Node with a given name.
+        /// @param Name The name of the desired Attribute.
+        /// @return An Attribute that represents the first matching Attribute, or an empty Attribute on failure.
+
+        /// @fn Node::ChildValue() const;
+        /// @brief Retrieve the value of this(or a child's) Nodes PCDATA child Node
+        /// @details If this node represents "<node>Some text in the PCDATA field, that is actually represent by a node</node>", then this would return "Some text in the PCDATA field, that is actually represent by a node". This will iterate through child Nodes from until it finds a PCDATA node or fails
+        /// @return This will return the Value of the first available PCDATA node.
+
+        /// @fn Node::ChildValue(const char_t* Name) const;
+        /// @brief Get the PCDATA of a given child. The same a calling "GetChild(Name).ChildValue()".
+        /// @param Name The Name of the desired child node.
+        /// @return This will return the Value of the first available matching PCDATA node.
+
+        /// @fn Node::SetName(const char_t* rhs);
+        /// @brief Set the name of this Node.
+        /// @param rhs The desired name of the Node.
+        /// @return True if successful, returns false if Node cannot store a name or there is not enough memory.
+
+        /// @fn Node::PrependAttribute(const char_t* Name);
+        /// @brief Creates an Attribute and puts it at the begining of this Nodes attributes
+        /// @param Name The name of the New attribute to be created
+        /// @details This attempts to create an Attribute and stick it at the beginning of the list of attributes on the current
+        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+        /// fail and return an empty attribute if this Node is empty.
+        /// @return The created Attribute or an empty Attribute on Failure.
+
+        /// @fn Node::InsertAttributeAfter(const char_t* Name, const Attribute& attr);
+        /// @brief Creates an Attribute and puts it into the list of this Nodes attributes.
+        /// @param Name The name of the New attribute to be created
+        /// @param attr An Attribute that represents an Attribute on this Node, and is just before where you want the new Attribute.
+        /// @details This attempts to create an Attribute and stick it in the list of attributes, Just after another Attribute, on the current
+        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+        /// fail and return an empty attribute if this Node is empty.
+        /// @return The created Attribute or an empty Attribute on Failure.
+
+        /// @fn Node::InsertAttributeBefore(const char_t* Name, const Attribute& attr);
+        /// @brief Creates an Attribute and puts it into the list of this Nodes attributes.
+        /// @param Name The name of the New attribute to be created
+        /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new Attribute.
+        /// @details This attempts to create an Attribute and stick it in the list of attributes, Just before another Attribute, on the current
+        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+        /// fail and return an empty attribute if this Node is empty.
+        /// @return The created Attribute or an empty Attribute on Failure.
+
+        /// @fn Node::InsertCopyBefore(const Attribute& proto, const Attribute& attr);
+        /// @brief Copies an Attribute and puts the copy into the list of this Nodes attributes.
+        /// @param proto The attribute to be copied.
+        /// @param attr An Attribute that represents an Attribute on this Node, and is just after where you want the new copy of proto.
+        /// @details This attempts to create a copy of an attribute Attribute and stick it in the middle of the list of attributes, just before a selected attribute, on the current
+        /// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+        /// fail and return an empty attribute if this Node is empty.
+        /// @return The created Attribute or an empty Attribute on Failure.
+
+		/// @fn Node::AppendChild(NodeType Type = NodeElement);
+		/// @brief Creates a Node and makes it a child of this one.
+		/// @param Type The NodeType of the Node to be added to list of child Nodes.
+		/// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+
+        /// @fn Node::PrependChild(NodeType Type = NodeElement);
+        /// @brief Creates a Node and makes it a child of this one, and puts at the beginning of the Child Nodes.
+        /// @param Type The NodeType of the Node to be added to the beginning list of child Nodes.
+        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+
+        /// @fn Node::InsertChildAfter(NodeType Type, const Node& node);
+        /// @brief Creates a Node and makes it a child of this one, and puts at the middle of the Child Nodes.
+        /// @param Type The NodeType of the Node to be added, just after another specific node.
+        /// @param node The specific node to add the new one after.
+        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+
+		/// @fn Node::InsertChildBefore(NodeType Type, const Node& node);
+		/// @brief Creates a Node and makes it a child of this one, and puts at the middle of the Child Nodes.
+		/// @param Type The NodeType of the Node to be added, just before another specific node.
+        /// @param node The specific node to add the new one before.
+        /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+
+        /// @fn Node::AppendChild(const char_t* Name);
+        /// @brief Creates an element Node as a child of this Node, with the given name.
+        /// @param Name The name of the Node to be created.
+        /// @details Calls @ref Node::AppendChild(NodeType); using NodeElement as the NodeType.
+        /// @return The desired Node on success, an empty Node on failure.
+
+		/// @fn Node::PrependChild(const char_t* Name);
+		/// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
+		/// @param Name The name of the Node to be created.
+        /// @details Calls @ref Node::PrependChild(NodeType); using NodeElement as the NodeType.
+        /// @return The desired Node on success, an empty Node on failure.
+
+		/// @fn Node::InsertChildBefore(const char_t* Name, const Node& node);
+		/// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children
+		/// @param Name The name of the Node to be created.
+		/// @param Node The node just after were the Create node is to be placed.
+        /// @details Calls @ref Node::InsertChildBefore(NodeType, Node); using NodeElement as the NodeType.
+        /// @return The desired Node on success, an empty Node on failure.
+
+		/// @fn Node::AppendCopy(const Node& proto);
+		/// @brief Copies a Node and puts the copy at the end of the list of this Nodes Childrem.
+        /// @param proto The Node to be copied. If this is emptry, no work is performed.
+        /// @return The copied Node on success, an empty Node on failure.
+
+		/// @fn Node::InsertCopyAfter(const Node& proto, const Node& node);
+		/// @brief Copies a Node and puts the copy in the middle the list of this Nodes Childrem.
+        /// @param proto The Node to be copied. If this is emptry, no work is performed.
+        /// @param node The Node just before the desired place in the list of children to insert the copied node.
+        /// @return The copied Node on success, an empty Node on failure.
+
+		/// @fn Node::InsertCopyBefore(const Node& proto, const Node& node);
+		/// @brief Copies a Node and puts the copy in the middle the list of this Nodes Childrem.
+        /// @param proto The Node to be copied. If this is emptry, no work is performed.
+        /// @param node The Node just after the desired place in the list of children to insert the copied node.
+        /// @return The copied Node on success, an empty Node on failure.
+
+
+		/// @fn Node::RemoveAttribute(const Attribute& a);
+		/// @brief Remove specified Attribute.
+		/// @param a The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
+		/// @return True if the removal was successful, false otherwise
+
+		/// @fn Node::RemoveAttribute(const char_t* Name);
+		/// @brief Remove Attribute as specified by name.
+		/// @param Name The name of the Attribute to remove.
+		/// @return True if the removal was successful, false otherwise.
+
+		/// @fn Node::RemoveChild(const Node& n);
+		/// @brief Remove specified child element.
+		/// @param n The Node to look for. If the given Attribute doesn't belong to this Node then this will fail
+		/// @return True if the removal was successful, false otherwise
+
+
+
+
 
     }
 }

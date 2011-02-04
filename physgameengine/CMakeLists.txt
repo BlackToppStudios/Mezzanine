@@ -186,6 +186,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.cpp"
 )
 
 ###############################################################################
@@ -260,8 +261,9 @@ if(${UNIX})
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
 
-	file( COPY
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so.1.8.0"
+	set(OgreSoName libOgreMain.so.1.7.2)
+	file( COPY 
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreSoName}"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
 		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
@@ -370,8 +372,8 @@ if(${UNIX})
 
 	#Copy System Dependant files during build time
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libOgreMain.so.1.8.0 libOgreMain.so.1.8.0 )
-	CreateSymlinkDuringBuild( libOgreMain.so.1.8.0 libOgreMain.so )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
+	CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
 
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
 endif(${UNIX})

@@ -29,7 +29,7 @@ THE SOFTWARE.
 // Program Name: FFPLib_Common
 // Program Desc: Common functions of the FFP.
 // Program Type: Vertex/Pixel shader
-// Language: HLSL
+// Language: CG
 // Notes: Common functions needed by all FFP implementation classes.
 //-----------------------------------------------------------------------------
 //-----------------------------------------------------------------------------

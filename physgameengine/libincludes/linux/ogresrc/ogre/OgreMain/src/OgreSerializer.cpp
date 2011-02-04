@@ -229,16 +229,14 @@ namespace Ogre {
     //---------------------------------------------------------------------
     void Serializer::writeData(const void* const buf, size_t size, size_t count)
     {
-		mStream->write(buf, size * count);
+        fwrite((void* const)buf, size, count, mpfFile);
     }
     //---------------------------------------------------------------------
     void Serializer::writeString(const String& string)
     {
-		// Old, backwards compatible way - \n terminated
-		mStream->write(string.c_str(), string.length());
-		// Write terminating newline char
-		char terminator = '\n';
-		mStream->write(&terminator, 1);
+        fputs(string.c_str(), mpfFile);
+        // Write terminating newline char
+        fputc('\n', mpfFile);
     }
     //---------------------------------------------------------------------
     void Serializer::readFileHeader(DataStreamPtr& stream)

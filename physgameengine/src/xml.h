@@ -1,3 +1,4 @@
+#ifdef PHYSXML 
 //© Copyright 2010 Joseph Toppi and John Blackwood 
 /* This file is part of The PhysGame Engine. 
  
@@ -377,7 +378,11 @@ namespace phys
 		int AsInt() const; 
 		unsigned int AsUint() const; 
 		double AsDouble() const; 
-		float AsFloat() const; 
+		float AsFloat() const;
+		Real AsReal() const;
+		Whole AsWhole() const;
+		Integer AsInteger() const;
+		String AsString() const; 
  
 		// Get GetAttribute Value as bool (returns true if first character is in '1tTyY' set), or false if GetAttribute is empty 
 		bool AsBool() const; 
@@ -387,30 +392,45 @@ namespace phys
 		/// @brief Set the value of this.
 		/// @param rhs The new Value.
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(const char_t* rhs); 
  
 		// Set GetAttribute Value with Type conversion (numbers are converted to strings, boolean is converted to "true"/"false") 
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as an int.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(int rhs); 
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as an unsigned int.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(unsigned int rhs); 
 		/// @brief Convert rhs to a character array that contains rhs, then use that as the new value.
 		/// @param rhs The new value as a double.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(double rhs); 
 		/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.
 		/// @param rhs This with be interpretted, then converted to "true" or "false"  and used as the new value.
 		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
-		bool SetValue(bool rhs); 
+		/// @todo update this to make the error return code redundant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
+		bool SetValue(bool rhs);
+
+		/// @brief Convert rhs to a character array that contains the meaning of rhs, then use that as the new value.
+		/// @param rhs This with be converted to a character array using the appropriate streaming operator <<, then used as the new value.
+		/// @return True if successful, returns false if Attribute is empty or there is not enough memory.
+		/// @warning You should not pass classes that stream/serialize to xml into this function, the result will be invalid XML. If you must, find a way to strip out the ">" character, then you can reinsert it later
+		/// @todo Strip ">" automatically and provide a method to reconsitute it.
+		template <class T> bool SetValue(T rhs)
+		{
+			return SetValue(ToString(rhs).c_str());
+		} 
  
 		// Set GetAttribute Value (equivalent to SetValue without error checking) 
 		Attribute& operator=(const char_t* rhs); 
@@ -490,6 +510,9 @@ namespace phys
  
 		// Get next/previous sibling in the GetChildren list of the GetParent node 
 		Node GetNextSibling() const; 
+		/// @brief Attempt to retrieve the previous sibling of this Node.
+		/// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this retrieves that Node, otherwise this return an empty Node.
+		/// @return A Node that represents a sibling, or an empty Node on failure.
 		Node GetPreviousSibling() const; 
 		 
 		// Get GetParent node 
@@ -501,7 +524,15 @@ namespace phys
 		// Get GetChild, GetAttribute or next/previous sibling with the specified Name 
 		Node GetChild(const char_t* Name) const; 
 		Attribute GetAttribute(const char_t* Name) const; 
+		/// @brief Attempt to retrieve the next sibling of this Node with a matching name.
+		/// @param Name A c-string that has the name of the node you to find.
+		/// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that Node, otherwise this return an empty Node.
+		/// @return A Node that represents a sibling with a matching name, or an empty Node on failure.
 		Node GetNextSibling(const char_t* Name) const; 
+		/// @brief Attempt to retrieve the first previous sibling of this Node with a matching name.
+		/// @param Name A c-string that has the name of the node you to find.
+		/// @details A sibling of a Node is another Node that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that Node, otherwise this return an empty Node.
+		/// @return A Node that represents a sibling with a matching name, or an empty Node on failure.
 		Node GetPreviousSibling(const char_t* Name) const; 
  
 		// Get GetChild Value of current node; that is, Value of the first GetChild node of Type PCDATA/CDATA 
@@ -515,19 +546,49 @@ namespace phys
 		/// @brief Set the value of this.
 		/// @param rhs The new Value.
 		/// @return True if successful, returns false if this is empty or there is not enough memory.
-		/// @todo update this to make the error return code redudant and use an exception instead.
+		/// @todo update this to make the error return code redundant and use an exception instead.
+		/// @todo Review for possiblity of buffer overflow.
 		bool SetValue(const char_t* rhs); 
 		 
 		// Add GetAttribute with specified Name. Returns added GetAttribute, or empty GetAttribute on errors. 
-		Attribute AppendAttribute(const char_t* Name); 
+		
+		/// @brief Creates an Attribute and puts it at the end of this Nodes attributes.
+		/// @param Name The name of the New attribute to be created
+		/// @details This attempts to create an Attribute and stick it at the end of the list of attribute on the current
+		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+		/// fail and return an empty attribute if this Node is empty.
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute AppendAttribute(const char_t* Name);  
 		Attribute PrependAttribute(const char_t* Name); 
 		Attribute InsertAttributeAfter(const char_t* Name, const Attribute& attr); 
 		Attribute InsertAttributeBefore(const char_t* Name, const Attribute& attr); 
  
 		// Add a copy of the specified GetAttribute. Returns added GetAttribute, or empty GetAttribute on errors. 
-		Attribute AppendCopy(const Attribute& proto); 
-		Attribute PrependCopy(const Attribute& proto); 
-		Attribute InsertCopyAfter(const Attribute& proto, const Attribute& attr); 
+		
+		/// @brief Copies an Attribute and puts the copy at the end of this Nodes attributes.
+		/// @param proto The attribute to be copied.
+		/// @details This attempts to create a copy of an attribute Attribute and stick it at the end of the list of attribute on the current
+		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+		/// fail and return an empty attribute if this Node is empty.
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute AppendCopy(const Attribute& proto);  
+		
+		/// @brief Copies an Attribute and puts the copy at the beginning of this Nodes attributes.
+		/// @param proto The attribute to be copied.
+		/// @details This attempts to create a copy of an attribute Attribute and stick it at the beginning of the list of attribute on the current
+		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+		/// fail and return an empty attribute if this Node is empty.
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute PrependCopy(const Attribute& proto);  
+		
+		/// @brief Copies an Attribute and puts the copy into the list of this Nodes attributes.
+		/// @param proto The attribute to be copied.
+		/// @param attr An Attribute that represents an Attribute on this Node, and is just before where you want the new copy of proto.
+		/// @details This attempts to create a copy of an attribute Attribute and stick it in the middle of the list of attributes, just after a selected attribute, on the current
+		/// Node. This will fail and return an Empty Attribute if this Node is neither an Element nor a Declaration. This will
+		/// fail and return an empty attribute if this Node is empty.
+		/// @return The created Attribute or an empty Attribute on Failure.
+		Attribute InsertCopyAfter(const Attribute& proto, const Attribute& attr);  
 		Attribute InsertCopyBefore(const Attribute& proto, const Attribute& attr); 
  
 		// Add GetChild node with specified Type. Returns added node, or empty node on errors. 
@@ -539,11 +600,21 @@ namespace phys
 		// Add GetChild element with specified Name. Returns added node, or empty node on errors. 
 		Node AppendChild(const char_t* Name); 
 		Node PrependChild(const char_t* Name); 
+		
+		/// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children
+		/// @param Name The name of the Node to be created.
+		/// @param Node The node just before were the Create node is to be placed.
+		/// @details Calls @ref Node::InsertChildAfter(NodeType, Node); using NodeElement as the NodeType.
+		/// @return The desired Node on success, an empty Node on failure.
 		Node InsertChildAfter(const char_t* Name, const Node& node); 
 		Node InsertChildBefore(const char_t* Name, const Node& node); 
  
 		// Add a copy of the specified node as a GetChild. Returns added node, or empty node on errors. 
 		Node AppendCopy(const Node& proto); 
+		
+		/// @brief Copies a Node and puts the copy at the start of the list of this Nodes Childrem.
+		/// @param proto The Node to be copied. If this is emptry, no work is performed.
+		/// @return The copied Node on success, an empty Node on failure.
 		Node PrependCopy(const Node& proto); 
 		Node InsertCopyAfter(const Node& proto, const Node& node); 
 		Node InsertCopyBefore(const Node& proto, const Node& node); 
@@ -554,6 +625,10 @@ namespace phys
  
 		// Remove specified GetChild 
 		bool RemoveChild(const Node& n); 
+		
+		/// @brief Remove child element as specified by name.
+		/// @param Name The name of the Node to remove.
+		/// @return True if the removal was successful, false otherwise
 		bool RemoveChild(const char_t* Name); 
  
 		// Find GetAttribute using predicate. Returns first GetAttribute for which predicate returned true. 
@@ -814,10 +889,12 @@ namespace phys
 		/// @brief Default constructor, initializes object to failed state. 
 		ParseResult(); 
  
-		/// @brief Cast to bool operator \n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
+		/// @brief Cast to bool operator 
+		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. \n		/// @return A const char* with a brief error description based on the ParseResult::Status 
+		/// @brief Uses the Status member to create a text description. 
+		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
  
@@ -915,10 +992,12 @@ namespace phys
 		/// @brief Default constructor, initializes object to failed state. 
 		XPathParseResult(); 
  
-		/// @brief Cast to bool operator \n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
+		/// @brief Cast to bool operator 
+		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. \n		/// @return A const char* with a brief error description based on the ParseResult::Status 
+		/// @brief Uses the Status member to create a text description. 
+		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
  
@@ -1244,3 +1323,4 @@ namespace std
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE. 
  */ 
+#endif // \PHYSXML 

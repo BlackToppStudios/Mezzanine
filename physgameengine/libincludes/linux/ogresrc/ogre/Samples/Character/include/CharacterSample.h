@@ -45,7 +45,7 @@ public:
 		return SdkSample::keyReleased(evt);
 	}
 
-#if (OGRE_PLATFORM == OGRE_PLATFORM_IPHONE) || (OGRE_PLATFORM == OGRE_PLATFORM_ANDROID)
+#if OGRE_PLATFORM == OGRE_PLATFORM_IPHONE
 	bool touchPressed(const OIS::MultiTouchEvent& evt)
 	{
 		// relay input events to character controller
@@ -111,20 +111,16 @@ protected:
 		floor->setCastShadows(false);
         mSceneMgr->getRootSceneNode()->attachObject(floor);
 
-		LogManager::getSingleton().logMessage("creating sinbad");
 		// create our character controller
 		mChara = new SinbadCharacterController(mCamera);
 
-		LogManager::getSingleton().logMessage("toggling stats");
 		mTrayMgr->toggleAdvancedFrameStats();
 
-		LogManager::getSingleton().logMessage("creating panel");
 		StringVector items;
 		items.push_back("Help");
 		ParamsPanel* help = mTrayMgr->createParamsPanel(TL_TOPLEFT, "HelpMessage", 100, items);
 		help->setParamValue("Help", "H / F1");
 		
-		LogManager::getSingleton().logMessage("all done");
 	}
 
 	void cleanupContent()

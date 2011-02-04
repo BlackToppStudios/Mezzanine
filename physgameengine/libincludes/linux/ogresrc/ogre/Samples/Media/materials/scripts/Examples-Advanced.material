@@ -1,11 +1,11 @@
 // -------------------------------
 // Cel Shading Section
 // -------------------------------
-vertex_program Ogre/CelShadingVPCg cg
+vertex_program Ogre/CelShadingVP cg
 {
 	source Example_CelShading.cg
 	entry_point main_vp
-	profiles vs_4_0 vs_1_1 arbvp1
+	profiles vs_1_1 arbvp1
 
 	default_params
 	{
@@ -16,45 +16,13 @@ vertex_program Ogre/CelShadingVPCg cg
 	}
 }
 
-fragment_program Ogre/CelShadingFPCg cg
+fragment_program Ogre/CelShadingFP cg
 {
 	source Example_CelShading.cg
 	entry_point main_fp
-	profiles ps_4_0 ps_1_1 arbfp1 fp20
-
+	profiles ps_1_1 arbfp1 fp20
 }
 
-vertex_program Ogre/CelShadingVPGLSLES glsles
-{
-	source Example_CelShadingVp.glsles
-	profiles glsles
-
-	default_params
-	{
-		param_named_auto lightPosition light_position_object_space 0
-		param_named_auto eyePosition camera_position_object_space
-		param_named_auto worldViewProj worldviewproj_matrix
-		param_named shininess float 10 
-	}
-}
-
-fragment_program Ogre/CelShadingFPGLSLES glsles
-{
-	source Example_CelShadingFp.glsles
-	profiles glsles
-}
-
-fragment_program Ogre/CelShadingFP unified
-{
-	delegate Ogre/CelShadingFPGLSLES
-	delegate Ogre/CelShadingFPCg
-}
-
-vertex_program Ogre/CelShadingVP unified
-{
-	delegate Ogre/CelShadingVPGLSLES
-	delegate Ogre/CelShadingVPCg
-}
 
 material Examples/CelShading
 {
@@ -71,7 +39,7 @@ material Examples/CelShading
 			{
 				// map diffuse from custom renderable param 2
 				param_named_auto diffuse custom 2
-				// map specular from custom renderable param 3
+				// map specular from custom renderable param 2
 				param_named_auto specular custom 3
 			}
 			texture_unit
@@ -104,23 +72,11 @@ material Examples/CelShading
 //------------------------
 
 // Bump map vertex program, support for this is required
-vertex_program Examples/BumpMapVPCg cg
+vertex_program Examples/BumpMapVP cg
 {
 	source Example_BumpMapping.cg
 	entry_point main_vp
-	profiles vs_4_0 vs_1_1 arbvp1
-}
-
-vertex_program Examples/BumpMapVPGLSLES glsles
-{
-	source Example_BumpMappingVp.glsles
-	profiles glsles
-}
-
-vertex_program Examples/BumpMapVP unified
-{
-	delegate Examples/BumpMapVPGLSLES
-	delegate Examples/BumpMapVPCg
+	profiles vs_1_1 arbvp1
 }
 
 // Bump map vertex program, with tangent parity support for this is required
@@ -133,124 +89,45 @@ vertex_program Examples/BumpMapVPTangentParity cg
 }
 
 // Bump map fragment program, support for this is optional
-fragment_program Examples/BumpMapFPCg cg
+fragment_program Examples/BumpMapFP cg
 {
 	source Example_BumpMapping.cg
 	entry_point main_fp
-	profiles ps_4_0 ps_2_0 arbfp1 fp20
-}
-
-fragment_program Examples/BumpMapFPGLSLES glsles
-{
-	source Example_BumpMappingFp.glsles
-	profiles glsles
-	default_params
-	{
-		// assign samplers as required by GLSL
-		param_named normalMap int 0
-	}
-}
-
-fragment_program Examples/BumpMapFP unified
-{
-	delegate Examples/BumpMapFPGLSLES
-	delegate Examples/BumpMapFPCg
+	profiles ps_2_0 arbfp1 fp20
 }
 
 // Bump map vertex program shadow receiver
-vertex_program Examples/BumpMapVPShadowRcvCg cg
+vertex_program Examples/BumpMapVPShadowRcv cg
 {
 	source Example_BumpMapping.cg
 	entry_point main_shadowreceiver_vp
 	profiles vs_1_1 arbvp1
 }
-
-// Bump map vertex program shadow receiver
-vertex_program Examples/BumpMapVPShadowRcvGLSLES glsles
-{
-	source Example_BumpMappingShadowRcvVp.glsles
-	profiles glsles
-}
-
-vertex_program Examples/BumpMapVPShadowRcv unified
-{
-	delegate Examples/BumpMapVPShadowRcvGLSLES
-	delegate Examples/BumpMapVPShadowRcvCg
-}
-
 // Bump map fragment program shadow receiver, support for this is optional
-fragment_program Examples/BumpMapFPShadowRcvCg cg
+fragment_program Examples/BumpMapFPShadowRcv cg
 {
 	source Example_BumpMapping.cg
 	entry_point main_shadowreceiver_fp
 	profiles ps_2_0 arbfp1 fp20
 }
 
-// Bump map fragment program shadow receiver, support for this is optional
-fragment_program Examples/BumpMapFPShadowRcvGLSLES glsles
-{
-	source Example_BumpMappingShadowRcvFp.glsles
-	profiles glsles
-	default_params
-	{
-		// assign samplers as required by GLSL
-		param_named shadowMap int 0
-		param_named normalMap int 1
-	}
-}
-
-fragment_program Examples/BumpMapFPShadowRcv unified
-{
-	delegate Examples/BumpMapFPShadowRcvGLSLES
-	delegate Examples/BumpMapFPShadowRcvCg
-}
 
 // Bump map with specular vertex program, support for this is required
-vertex_program Examples/BumpMapVPSpecularCg cg
+vertex_program Examples/BumpMapVPSpecular cg
 {
 	source Example_BumpMapping.cg
 	entry_point specular_vp
-	profiles vs_4_0 vs_1_1 arbvp1
-}
-
-// Bump map with specular vertex program, support for this is required
-vertex_program Examples/BumpMapVPSpecularGLSLES glsles
-{
-	source Example_BumpMappingSpecularVp.glsles
-	profiles glsles
-}
-
-vertex_program Examples/BumpMapVPSpecular unified
-{
-	delegate Examples/BumpMapVPSpecularGLSLES
-	delegate Examples/BumpMapVPSpecularCg
+	profiles vs_1_1 arbvp1
 }
 
 // Bump map fragment program, support for this is optional
-fragment_program Examples/BumpMapFPSpecularCg cg
+fragment_program Examples/BumpMapFPSpecular cg
 {
 	source Example_BumpMapping.cg
 	entry_point specular_fp
-	profiles ps_4_0 ps_2_0 arbfp1 fp20
+	profiles ps_2_0 arbfp1 fp20
 }
 
-// Bump map fragment program, support for this is optional
-fragment_program Examples/BumpMapFPSpecularGLSLES glsles
-{
-	source Example_BumpMappingSpecularFp.glsles
-	profiles glsles
-	default_params
-	{
-		// assign samplers as required by GLSL
-		param_named normalMap int 0
-	}
-}
-
-fragment_program Examples/BumpMapFPSpecular unified
-{
-	delegate Examples/BumpMapFPSpecularGLSLES
-	delegate Examples/BumpMapFPSpecularCg
-}
 
 // Any number of lights, diffuse
 material Examples/BumpMapping/MultiLight
@@ -272,13 +149,10 @@ material Examples/BumpMapping/MultiLight
 			// NB we don't use fixed function here because GL does not like
 			// mixing fixed function and vertex programs, depth fighting can
 			// be an issue
-			vertex_program_ref Ogre/BasicVertexPrograms/AmbientOneTextureUnified
+			vertex_program_ref Ogre/BasicVertexPrograms/AmbientOneTexture
 			{
 				param_named_auto worldViewProj worldviewproj_matrix
 				param_named_auto ambient ambient_light_colour
-			}
-			fragment_program_ref Ogre/BasicFragmentPrograms/PassthroughFP
-			{
 			}
 			
 		}
@@ -341,13 +215,10 @@ material Examples/BumpMapping/MultiLight
 			// NB we don't use fixed function here because GL does not like
 			// mixing fixed function and vertex programs, depth fighting can
 			// be an issue
-			vertex_program_ref Ogre/BasicVertexPrograms/AmbientOneTextureUnified
+			vertex_program_ref Ogre/BasicVertexPrograms/AmbientOneTexture
 			{
 				param_named_auto worldViewProj worldviewproj_matrix
 				param_named ambient float4 1 1 1 1
-			}
-			fragment_program_ref Ogre/BasicFragmentPrograms/PassthroughFP
-			{
 			}
 			scene_blend dest_colour zero
 			texture_unit decalmap
@@ -422,9 +293,7 @@ material Examples/BumpMapping/MultiLightTangentParity : Examples/BumpMapping/Mul
 				param_named_auto lightPosition light_position_object_space 0
 				param_named_auto worldViewProj worldviewproj_matrix
 			}
-			fragment_program_ref Ogre/BasicFragmentPrograms/PassthroughFP
-			{
-			}
+
 			
 		}
 		
@@ -490,11 +359,11 @@ material Examples/GeneralTexProjection
 // Distortion effects
 //----------------------------
 
-vertex_program Examples/FresnelRefractReflectVPCg cg
+vertex_program Examples/FresnelRefractReflectVP cg
 {
 	source Example_Fresnel.cg
 	entry_point main_vp
-	profiles vs_4_0 vs_1_1 arbvp1
+	profiles vs_1_1 arbvp1
 }
 vertex_program Examples/FresnelRefractReflectVPold cg
 {
@@ -502,25 +371,13 @@ vertex_program Examples/FresnelRefractReflectVPold cg
 	entry_point main_vp_old
 	profiles vs_1_1 arbvp1
 }
-vertex_program Examples/FresnelRefractReflectVPGLSLES glsles
-{
-	source Example_FresnelVp.glsles
-	entry_point main
-	profiles glsles
-}
 
-vertex_program Examples/FresnelRefractReflectVP unified
-{
-	delegate Examples/FresnelRefractReflectVPGLSLES
-	delegate Examples/FresnelRefractReflectVPCg
-}
-
-fragment_program Examples/FresnelRefractReflectFPCg cg
+fragment_program Examples/FresnelRefractReflectFP cg
 {
 	source Example_Fresnel.cg
 	entry_point main_fp
 	// sorry, ps_1_1 and fp20 can't do this
-	profiles ps_4_0 ps_2_0 arbfp1
+	profiles ps_2_0 arbfp1
 }
 
 fragment_program Examples/FresnelRefractReflectPS asm
@@ -528,26 +385,7 @@ fragment_program Examples/FresnelRefractReflectPS asm
 	source Example_FresnelPS.asm
 	// sorry, only for ps_1_4 :)
 	syntax ps_1_4
-}
 
-fragment_program Examples/FresnelRefractReflectFPGLSLES glsles
-{
-	source Example_FresnelFp.glsles
-	entry_point main
-	profiles glsles
-	default_params
-	{
-		// assign samplers as required by GLSL
-		param_named noiseMap int 0
-		param_named reflectMap int 1
-		param_named refractMap int 2
-	}
-}
-
-fragment_program Examples/FresnelRefractReflectFP unified
-{
-	delegate Examples/FresnelRefractReflectFPGLSLES
-	delegate Examples/FresnelRefractReflectFPCg
 }
 
 material Examples/FresnelReflectionRefraction
@@ -654,8 +492,7 @@ material Examples/FresnelReflectionRefraction
 				tex_address_mode clamp
 			}
 		}
-	}
-
+	}    
 }
 
 // Normal-mapped Athene statue
@@ -745,3 +582,8 @@ material Examples/Athene/NormalMappedSpecular : Examples/BumpMapping/MultiLightS
 
 	}
 }
+
+
+
+
+

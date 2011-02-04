@@ -42,11 +42,11 @@ Description: Utility class to load plugins statically
 #ifdef OGRE_STATIC_GLES
 #  include "OgreGLESPlugin.h"
 #endif
-#ifdef OGRE_STATIC_GLES2
-#  include "OgreGLES2Plugin.h"
-#endif
 #ifdef OGRE_STATIC_Direct3D9
 #  include "OgreD3D9Plugin.h"
+#endif
+#ifdef OGRE_STATIC_Direct3D10
+#  include "OgreD3D10Plugin.h"
 #endif
 #ifdef OGRE_STATIC_Direct3D11
 #  include "OgreD3D11Plugin.h"
@@ -96,11 +96,11 @@ namespace Ogre
 #ifdef OGRE_STATIC_GLES
 		GLESPlugin* mGLESPlugin;
 #endif
-#ifdef OGRE_STATIC_GLES2
-		GLES2Plugin* mGLES2Plugin;
-#endif
 #ifdef OGRE_STATIC_Direct3D9
 		D3D9Plugin* mD3D9Plugin;
+#endif
+#ifdef OGRE_STATIC_Direct3D10
+		D3D10Plugin* mD3D10Plugin;
 #endif
 #ifdef OGRE_STATIC_Direct3D11
 		D3D11Plugin* mD3D11Plugin;
@@ -120,13 +120,13 @@ namespace Ogre
 			mGLESPlugin = OGRE_NEW GLESPlugin();
 			root.installPlugin(mGLESPlugin);
 #endif
-#ifdef OGRE_STATIC_GLES2
-			mGLES2Plugin = OGRE_NEW GLES2Plugin();
-			root.installPlugin(mGLES2Plugin);
-#endif
 #ifdef OGRE_STATIC_Direct3D9
 			mD3D9Plugin = OGRE_NEW D3D9Plugin();
 			root.installPlugin(mD3D9Plugin);
+#endif
+#ifdef OGRE_STATIC_Direct3D10
+			mD3D10Plugin = OGRE_NEW D3D10Plugin();
+			root.installPlugin(mD3D10Plugin);
 #endif
 #ifdef OGRE_STATIC_Direct3D11
 			mD3D11Plugin = OGRE_NEW D3D11Plugin();
@@ -182,6 +182,9 @@ namespace Ogre
 #ifdef OGRE_STATIC_Direct3D9
 			OGRE_DELETE mD3D9Plugin;
 #endif
+#ifdef OGRE_STATIC_Direct3D10
+			OGRE_DELETE mD3D10Plugin;
+#endif
 #ifdef OGRE_STATIC_Direct3D11
 			OGRE_DELETE mD3D11Plugin;
 #endif
@@ -191,10 +194,7 @@ namespace Ogre
 #ifdef OGRE_STATIC_GLES
 			OGRE_DELETE mGLESPlugin;
 #endif
-#ifdef OGRE_STATIC_GLES2
-			OGRE_DELETE mGLES2Plugin;
-#endif
-            
+
 		}
 
 	};

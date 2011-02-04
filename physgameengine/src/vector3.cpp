@@ -45,6 +45,9 @@
 #include <cAudio.h>
 
 #include "vector3.h"
+#include "exception.h"
+#include "world.h"          // Needed for Error loggin in stream
+#include "xml.h"            // Needed for streaming to xml
 
 namespace phys
 {
@@ -390,15 +393,92 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 {
     #ifdef PHYSXML
-        // Put real XML Code here
+        phys::xml::Document Doc;
+        Doc.load("");           // This sets the encoding to UTF8 ?!
+        phys::xml::Node VecNode = Doc.AppendChild("Vector3");
 
-        stream << "<vector3 x=\"" << x.X << "\" y=\"" << x.Y << "\" z=\"" << x.Z << "\" />";
+        if (VecNode)
+        {
+            phys::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
+            phys::xml::Attribute XAttr = VecNode.AppendAttribute("X");
+            phys::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
+            phys::xml::Attribute ZAttr = VecNode.AppendAttribute("Z");
+            if( VersionAttr && XAttr && YAttr && ZAttr)
+            {
+                if( VersionAttr.SetValue("1") && XAttr.SetValue(x.X) && YAttr.SetValue(x.Y) && ZAttr.SetValue(x.Z))
+                {
+                    // It worked we don't need to do anything
+                }else{
+                    phys::World::GetWorldPointer()->LogAndThrow("Could not Stream Vector3 XML Attribute Values.");
+                }
+            }else{
+                phys::World::GetWorldPointer()->LogAndThrow("Could not Stream Vector3 XML Attribute Names.");
+            }
+        }else{
+            phys::World::GetWorldPointer()->LogAndThrow("Could not Stream Vector3 XML Anything.");
+        }
+
+        Doc.save(stream,"\t",phys::xml::FormatNoDeclaration | phys::xml::FormatRaw);
+
+        //stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" />";
     #else
         stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
     #endif // \PHYSXML
     return stream;
 }
 
+#ifdef PHYSXML
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
+{
+    char ReadOne = 0;
+    phys::String OneTag;
+
+    while (!stream.get(ReadOne).fail() && !stream.eof())     //Read one character and if you didn't fail continue the loop
+    {
+        OneTag.push_back(ReadOne);
+        if ( '>' == ReadOne )               //Assumes native Char enconding... This is a bad deal.
+            { break; }
+    }
+
+    try
+    {
+        phys::xml::Document Doc;
+        if(!Doc.load(OneTag.c_str()))
+            { phys::World::GetWorldPointer()->LogAndThrow("Could not Deserialize XML Stream which should contain Vector3 xml."); }
+
+        phys::xml::Node VecNode = Doc.GetFirstChild();
+        if (VecNode)
+        {
+            if( phys::String("Vector3") == phys::String(VecNode.Name()))
+            {
+                if(VecNode.GetAttribute("Version").AsInt() >= 1)
+                {
+                    Vec.X=VecNode.GetAttribute("X").AsReal();
+                    Vec.Y=VecNode.GetAttribute("Y").AsReal();
+                    Vec.Z=VecNode.GetAttribute("Z").AsReal();
+                }else{
+                    phys::World::GetWorldPointer()->LogAndThrow("Vector3 incompatible serialized version.");
+                }
+            }else{
+                //phys::World::GetWorldPointer()->Log(VecNode.Name());
+                phys::World::GetWorldPointer()->LogAndThrow("Vector3 not next item in stream, failed to serialize.");
+            }
+        }else{
+            phys::World::GetWorldPointer()->LogAndThrow("No valid XML tag in stream, when attempting to deserialize Vector3.");
+        }
+
+        return stream;
+    } catch (phys::Exception e) {
+        if (stream.eof())           // if the stream is bad for reasons we can fix, unwind the stream before exiting. then rethrrow
+        {
+            stream.clear();
+            stream.seekg(-OneTag.length(),ios_base::cur);
+        }
+        throw e;
+
+    }
+}
+#endif // \PHYSXML
 Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom)
 {
     VecTo.x=VecFrom.X;

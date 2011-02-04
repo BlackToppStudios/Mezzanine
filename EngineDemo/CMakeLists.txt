@@ -126,7 +126,7 @@ if(${UNIX})
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( libphysgame.so )
-	CopyFilesFromPhygameDuringBuild( libOgreMain.so.1.8.0 )
+	CopyFilesFromPhygameDuringBuild( libOgreMain.so.1.7.2 )
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
 endif(${UNIX})
 

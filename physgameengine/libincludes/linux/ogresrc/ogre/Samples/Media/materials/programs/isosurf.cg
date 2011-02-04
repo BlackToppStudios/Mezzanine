@@ -52,7 +52,7 @@ float4 Metaball(float3 Pos, float3 Center, float RadiusSq)
 }
 
 // Vertex shader
-SampleData mainVS(float4 pos : POSITION,
+SampleData SampleFieldVS(float4 pos : POSITION,
 						uniform float4x4 WorldViewProj,
 						uniform float4x4 origWorldViewIT)
 {
@@ -106,14 +106,14 @@ void CalcIntersection(float4 Pos0,
 // outputs: zero, one or two triangles depending if isosurface intersects tetrahedron
 LINE_ADJ
 TRIANGLE_OUT
-void mainGS(
+void TessellateTetrahedraGS(
 	AttribArray<float4> Pos : POSITION,
 	AttribArray<float3> N : TEXCOORD0,
 	AttribArray<float2> Field : TEXCOORD1
 	)
 {
 	// construct index for this tetrahedron
-	unsigned int index = (int(Field[0].y) << 3) |
+	int index = (int(Field[0].y) << 3) |
 				(int(Field[1].y) << 2) |
 				(int(Field[2].y) << 1) |
 				 int(Field[3].y);
@@ -127,7 +127,7 @@ void mainGS(
 			0x21301d2e, 0x139bd910, 0x26376e20, 0x3b700000};
 		
 		unsigned int edgeValFull = edgeListHex[index/2];
-		unsigned int edgeVal = (index % 2 == 1) ? (edgeValFull & 0xFFFF) : ((edgeValFull >> 16) & 0xFFFF);
+		unsigned short edgeVal = (index % 2 == 1) ? (edgeValFull & 0xFFFF) : ((edgeValFull >> 16) & 0xFFFF);
 		int4 e0 = int4((edgeVal >> 14) & 0x3, (edgeVal >> 12) & 0x3, (edgeVal >> 10) & 0x3, (edgeVal >> 8) & 0x3);
 		int4 e1 = int4((edgeVal >> 6) & 0x3, (edgeVal >> 4) & 0x3, (edgeVal >> 2) & 0x3, (edgeVal >> 0) & 0x3);
 		
@@ -143,7 +143,7 @@ void mainGS(
 }
 
 // Pixel shader
-float4 mainPS(float3 N : TEXCOORD0) : COLOR
+float4 MetaballPS(float3 N : TEXCOORD0) : COLOR
 {
 	//Sanitize input
 	N = normalize(N);

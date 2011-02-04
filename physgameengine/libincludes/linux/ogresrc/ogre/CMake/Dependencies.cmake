@@ -25,15 +25,6 @@ if(OGRE_BUILD_PLATFORM_IPHONE)
     "${OGRE_BINARY_DIR}/../iPhoneDependencies"
     "${OGRE_SOURCE_DIR}/../iPhoneDependencies"
   )
-elseif(OGRE_BUILD_PLATFORM_TEGRA2)
-  set(OGRE_DEP_SEARCH_PATH 
-    ${OGRE_DEPENDENCIES_DIR}
-    ${ENV_OGRE_DEPENDENCIES_DIR}
-    "${OGRE_BINARY_DIR}/Tegra2Dependencies"
-    "${OGRE_SOURCE_DIR}/Tegra2Dependencies"
-    "${OGRE_BINARY_DIR}/../Tegra2Dependencies"
-    "${OGRE_SOURCE_DIR}/../Tegra2Dependencies"
-  )
 else()
   set(OGRE_DEP_SEARCH_PATH 
     ${OGRE_DEPENDENCIES_DIR}
@@ -48,19 +39,9 @@ endif()
 message(STATUS "Search path: ${OGRE_DEP_SEARCH_PATH}")
 
 # Set hardcoded path guesses for various platforms
-if (UNIX AND NOT OGRE_BUILD_PLATFORM_TEGRA2)
+if (UNIX)
   set(OGRE_DEP_SEARCH_PATH ${OGRE_DEP_SEARCH_PATH} /usr/local)
 endif ()
-
-if(OGRE_BUILD_PLATFORM_TEGRA2)
-  getenv_path(L4TROOT)
-  set(OGRE_DEP_SEARCH_PATH
-    ${OGRE_DEP_SEARCH_PATH}
-    ${ENV_L4TROOT}/_out/3rdparty/xorg/arm-none-linux-gnueabi
-    ${ENV_L4TROOT}/_out/targetfs/usr
-    ${ENV_L4TROOT}/_out/targetfs
-  )
-endif()
 
 # give guesses as hints to the find_package calls
 set(CMAKE_PREFIX_PATH ${OGRE_DEP_SEARCH_PATH} ${CMAKE_PREFIX_PATH})
@@ -90,14 +71,12 @@ macro_log_feature(FREETYPE_FOUND "freetype" "Portable font engine" "http://www.f
 
 # Find X11
 if (UNIX)
-  find_package(X11)
-  macro_log_feature(X11_FOUND "X11" "X Window system" "http://www.x.org" TRUE "" "")
-  if (NOT OGRE_BUILD_PLATFORM_TEGRA2)
-     macro_log_feature(X11_Xt_FOUND "Xt" "X Toolkit" "http://www.x.org" TRUE "" "")
-     find_library(XAW_LIBRARY NAMES Xaw Xaw7 PATHS ${OGRE_DEP_SEARCH_PATH} ${DEP_LIB_SEARCH_DIR} ${X11_LIB_SEARCH_PATH})
-     macro_log_feature(XAW_LIBRARY "Xaw" "X11 Athena widget set" "http://www.x.org" TRUE "" "")
-     mark_as_advanced(XAW_LIBRARY)
-  endif (NOT OGRE_BUILD_PLATFORM_TEGRA2)
+	find_package(X11)
+	macro_log_feature(X11_FOUND "X11" "X Window system" "http://www.x.org" TRUE "" "")
+	macro_log_feature(X11_Xt_FOUND "Xt" "X Toolkit" "http://www.x.org" TRUE "" "")
+	find_library(XAW_LIBRARY NAMES Xaw Xaw7 PATHS ${DEP_LIB_SEARCH_DIR} ${X11_LIB_SEARCH_PATH})
+	macro_log_feature(XAW_LIBRARY "Xaw" "X11 Athena widget set" "http://www.x.org" TRUE "" "")
+  mark_as_advanced(XAW_LIBRARY)
 endif ()
 
 
@@ -111,11 +90,11 @@ macro_log_feature(OPENGL_FOUND "OpenGL" "Support for the OpenGL render system" "
 
 # Find OpenGL ES
 find_package(OpenGLES)
-macro_log_feature(OPENGLES_FOUND "OpenGL ES 1.x" "Support for the OpenGL ES 1.x render system" "http://www.khronos.org/opengles/" FALSE "" "")
+macro_log_feature(OPENGLES_FOUND "OpenGL ES" "Support for the OpenGL ES 1.x render system" "http://www.khronos.org/opengles/" FALSE "" "")
 
 # Find OpenGL ES 2.x
-find_package(OpenGLES2)
-macro_log_feature(OPENGLES2_FOUND "OpenGL ES 2.x" "Support for the OpenGL ES 2.x render system" "http://www.khronos.org/opengles/" FALSE "" "")
+#find_package(OpenGLES2)
+#macro_log_feature(OPENGLES2_FOUND "OpenGL ES 2" "Support for the OpenGL ES 2.x render system" "http://www.khronos.org/opengles/" FALSE "" "")
 
 # Find DirectX
 if(WIN32)
@@ -194,10 +173,6 @@ macro_log_feature(OIS_FOUND "OIS" "Input library needed for the samples" "http:/
 find_package(Doxygen)
 macro_log_feature(DOXYGEN_FOUND "Doxygen" "Tool for building API documentation" "http://doxygen.org" FALSE "" "")
 
-# Find Softimage SDK
-find_package(Softimage)
-macro_log_feature(Softimage_FOUND "Softimage" "Softimage SDK needed for building XSIExporter" FALSE "6.0" "")
-
 #######################################################################
 # Tests
 #######################################################################
@@ -248,7 +223,6 @@ include_directories(
   ${FREETYPE_INCLUDE_DIRS}
   ${OPENGL_INCLUDE_DIRS}
   ${OPENGLES_INCLUDE_DIRS}
-  ${OPENGLES2_INCLUDE_DIRS}
   ${OIS_INCLUDE_DIRS}
   ${Cg_INCLUDE_DIRS}
   ${X11_INCLUDE_DIR}
@@ -261,7 +235,6 @@ include_directories(
 link_directories(
   ${OPENGL_LIBRARY_DIRS}
   ${OPENGLES_LIBRARY_DIRS}
-  ${OPENGLES2_LIBRARY_DIRS}
   ${Cg_LIBRARY_DIRS}
   ${X11_LIBRARY_DIRS}
   ${DirectX_LIBRARY_DIRS}

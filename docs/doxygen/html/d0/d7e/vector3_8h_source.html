@@ -343,34 +343,104 @@
 <a name="l00312"></a>00312 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
 <a name="l00313"></a>00313 <span class="comment"></span>
 <a name="l00314"></a>00314 <span class="comment">/// @brief Used to Serialize an phys::Vector3 to a human readable stream</span>
-<a name="l00315"></a>00315 <span class="comment">/// @details This outputs to the format of [x,y,z], where x is replaced with the X value, y is replaced with the Y value, and</span>
-<a name="l00316"></a>00316 <span class="comment">/// Z is replaced with the Z value,</span>
-<a name="l00317"></a>00317 <span class="comment">/// @param x The phys::Vector3 to be converted to characters.</span>
-<a name="l00318"></a>00318 <span class="comment">/// @param stream The place to send the characters, that define the phys::Vector3.</span>
-<a name="l00319"></a>00319 <span class="comment">/// @return Get an std::ostream that was written to, this allow chaining of the &lt;&lt; operators.</span>
-<a name="l00320"></a>00320 <span class="comment"></span>std::ostream&amp; PHYS_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; x);
-<a name="l00321"></a>00321 
-<a name="l00322"></a>00322 
-<a name="l00323"></a>00323 Ogre::Vector3&amp; PHYS_LIB operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
-<a name="l00324"></a>00324 Ogre::Vector3&amp; PHYS_LIB operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
-<a name="l00325"></a>00325 Ogre::Vector3&amp; PHYS_LIB operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> cAudio::cVector3&amp; VecFrom);
+<a name="l00315"></a>00315 <span class="comment">/// @details If PHYSXML is disabled, this outputs to the format of [x,y,z], where x is replaced with the X value,</span>
+<a name="l00316"></a>00316 <span class="comment">/// y is replaced with the Y value, and Z is replaced with the Z value. For example [1,2,3] could be a serialized Vector3.\n\n</span>
+<a name="l00317"></a>00317 <span class="comment">/// If PHYSXML is defined/enabled the square bracket format is replaced with proper XML output,</span>
+<a name="l00318"></a>00318 <span class="comment">/// including versioning information which will be used to maintain backwards compatibility. The current XML format</span>
+<a name="l00319"></a>00319 <span class="comment">/// will create one node with no child nodes. The name of the xml node will be &quot;Vector3&quot;. It will have 4 attributes.</span>
+<a name="l00320"></a>00320 <span class="comment">/// &quot;Version&quot;, will be set to a value of 1, indicating if came from version 1 compatible Vector3. It will also have an &quot;X&quot;, &quot;Y&quot; and</span>
+<a name="l00321"></a>00321 <span class="comment">/// &quot;Z&quot; attributes will values set appropriately. For example &#39;&lt;Vector3 Version=&quot;1&quot; X=&quot;1&quot; Y=&quot;2&quot; Z=&quot;3&quot; /&gt;&#39;.</span>
+<a name="l00322"></a>00322 <span class="comment">/// @param x The phys::Vector3 to be converted to characters.</span>
+<a name="l00323"></a>00323 <span class="comment">/// @param stream The place to send the characters, that define the phys::Vector3.</span>
+<a name="l00324"></a>00324 <span class="comment">/// @return Get an std::ostream that was written to, this allow chaining of the &lt;&lt; operators.</span>
+<a name="l00325"></a>00325 <span class="comment"></span>std::ostream&amp; PHYS_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; x);
 <a name="l00326"></a>00326 
-<a name="l00327"></a>00327 btVector3&amp; PHYS_LIB operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
-<a name="l00328"></a>00328 btVector3&amp; PHYS_LIB operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
-<a name="l00329"></a>00329 btVector3&amp; PHYS_LIB operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> cAudio::cVector3&amp; VecFrom);
-<a name="l00330"></a>00330 
-<a name="l00331"></a>00331 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; PHYS_LIB operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
-<a name="l00332"></a>00332 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; PHYS_LIB operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
-<a name="l00333"></a>00333 <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; PHYS_LIB operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> cAudio::cVector3&amp; VecFrom);
-<a name="l00334"></a>00334 
-<a name="l00335"></a>00335 cAudio::cVector3&amp; PHYS_LIB operator &lt;&lt; (cAudio::cVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
-<a name="l00336"></a>00336 cAudio::cVector3&amp; PHYS_LIB operator &lt;&lt; (cAudio::cVector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
-<a name="l00337"></a>00337 cAudio::cVector3&amp; PHYS_LIB operator &lt;&lt; (cAudio::cVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
-<a name="l00338"></a>00338 
-<a name="l00339"></a>00339 <span class="preprocessor">#endif</span>
+<a name="l00327"></a>00327 <span class="preprocessor">#ifdef PHYSXML</span>
+<a name="l00328"></a>00328 <span class="preprocessor"></span><span class="comment">/// @brief Used to de-serialize an phys::Vector3 from a stream</span>
+<a name="l00329"></a>00329 <span class="comment"></span><span class="comment">/// @details If PHYSXML is enabled, this reads in the xml and sets the target vector according to values</span>
+<a name="l00330"></a>00330 <span class="comment"></span><span class="comment">/// from the stream.</span>
+<a name="l00331"></a>00331 <span class="comment"></span><span class="comment">/// @param Vec The phys::Vector3 that will accept the values from the xml</span>
+<a name="l00332"></a>00332 <span class="comment"></span><span class="comment">/// @param stream The place to get the characters from, that define the phys::Vector3.</span>
+<a name="l00333"></a>00333 <span class="comment"></span><span class="comment">/// @return Get an std::ostream that was read from, this allow chaining of the &gt;&gt; operators.</span>
+<a name="l00334"></a>00334 <span class="comment"></span>std::istream&amp; PHYS_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; Vec);
+<a name="l00335"></a>00335 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l00336"></a>00336 <span class="preprocessor"></span><span class="comment"></span>
+<a name="l00337"></a>00337 <span class="comment">/// @brief Conversion Assignment Operator to Ogre::Vector3.</span>
+<a name="l00338"></a>00338 <span class="comment">/// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.</span>
+<a name="l00339"></a>00339 <span class="comment">/// @param VecFrom The right hand side, is a\ phys::Vector3, this vector will be copied and unchanged.</span>
+<a name="l00340"></a>00340 <span class="comment">/// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00341"></a>00341 <span class="comment"></span>Ogre::Vector3&amp; PHYS_LIB operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
+<a name="l00342"></a>00342 <span class="comment"></span>
+<a name="l00343"></a>00343 <span class="comment">/// @brief Conversion Assignment Operator to Ogre::Vector3.</span>
+<a name="l00344"></a>00344 <span class="comment">/// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.</span>
+<a name="l00345"></a>00345 <span class="comment">/// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.</span>
+<a name="l00346"></a>00346 <span class="comment">/// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00347"></a>00347 <span class="comment"></span>Ogre::Vector3&amp; PHYS_LIB operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00348"></a>00348 <span class="comment"></span>
+<a name="l00349"></a>00349 <span class="comment">/// @brief Conversion Assignment Operator to Ogre::Vector3.</span>
+<a name="l00350"></a>00350 <span class="comment">/// @param VecTo The left hand side vector, is an Ogre::Vector3. The values of VecFrom will be copied here.</span>
+<a name="l00351"></a>00351 <span class="comment">/// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.</span>
+<a name="l00352"></a>00352 <span class="comment">/// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00353"></a>00353 <span class="comment"></span>Ogre::Vector3&amp; PHYS_LIB operator &lt;&lt; (Ogre::Vector3&amp; VecTo, <span class="keyword">const</span> cAudio::cVector3&amp; VecFrom);
+<a name="l00354"></a>00354 <span class="comment"></span>
+<a name="l00355"></a>00355 <span class="comment">/// @brief Conversion Assignment Operator to btVector3.</span>
+<a name="l00356"></a>00356 <span class="comment">/// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.</span>
+<a name="l00357"></a>00357 <span class="comment">/// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.</span>
+<a name="l00358"></a>00358 <span class="comment">/// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00359"></a>00359 <span class="comment"></span>btVector3&amp; PHYS_LIB operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
+<a name="l00360"></a>00360 <span class="comment"></span>
+<a name="l00361"></a>00361 <span class="comment">/// @brief Conversion Assignment Operator to btVector3.</span>
+<a name="l00362"></a>00362 <span class="comment">/// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.</span>
+<a name="l00363"></a>00363 <span class="comment">/// @param VecFrom The right hand side, is a phys::Vector3, this vector will be copied and unchanged.</span>
+<a name="l00364"></a>00364 <span class="comment">/// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00365"></a>00365 <span class="comment"></span>btVector3&amp; PHYS_LIB operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
+<a name="l00366"></a>00366 <span class="comment"></span>
+<a name="l00367"></a>00367 <span class="comment">/// @brief Conversion Assignment Operator to btVector3.</span>
+<a name="l00368"></a>00368 <span class="comment">/// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.</span>
+<a name="l00369"></a>00369 <span class="comment">/// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.</span>
+<a name="l00370"></a>00370 <span class="comment">/// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00371"></a>00371 <span class="comment"></span>btVector3&amp; PHYS_LIB operator &lt;&lt; (btVector3&amp; VecTo, <span class="keyword">const</span> cAudio::cVector3&amp; VecFrom);
+<a name="l00372"></a>00372 <span class="comment"></span>
+<a name="l00373"></a>00373 <span class="comment">/// @brief Conversion Assignment Operator to phys::Vector3.</span>
+<a name="l00374"></a>00374 <span class="comment">/// @param VecTo The left hand side vector, is an phys::Vector3. The values of VecFrom will be copied here.</span>
+<a name="l00375"></a>00375 <span class="comment">/// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.</span>
+<a name="l00376"></a>00376 <span class="comment">/// @return An phys::Vector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00377"></a>00377 <span class="comment"></span><a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; PHYS_LIB operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
+<a name="l00378"></a>00378 <span class="comment"></span>
+<a name="l00379"></a>00379 <span class="comment">/// @brief Conversion Assignment Operator to phys::Vector3.</span>
+<a name="l00380"></a>00380 <span class="comment">/// @param VecTo The left hand side vector, is an phys::Vector3. The values of VecFrom will be copied here.</span>
+<a name="l00381"></a>00381 <span class="comment">/// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.</span>
+<a name="l00382"></a>00382 <span class="comment">/// @return An phys::Vector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00383"></a>00383 <span class="comment"></span><a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; PHYS_LIB operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00384"></a>00384 <span class="comment"></span>
+<a name="l00385"></a>00385 <span class="comment">/// @brief Conversion Assignment Operator to phys::Vector3.</span>
+<a name="l00386"></a>00386 <span class="comment">/// @param VecTo The left hand side vector, is an phys::Vector3. The values of VecFrom will be copied here.</span>
+<a name="l00387"></a>00387 <span class="comment">/// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.</span>
+<a name="l00388"></a>00388 <span class="comment">/// @return An phys::Vector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00389"></a>00389 <span class="comment"></span><a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; PHYS_LIB operator &lt;&lt; (<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecTo, <span class="keyword">const</span> cAudio::cVector3&amp; VecFrom);
+<a name="l00390"></a>00390 <span class="comment"></span>
+<a name="l00391"></a>00391 <span class="comment">/// @brief Conversion Assignment Operator to cAudio::cVector3.</span>
+<a name="l00392"></a>00392 <span class="comment">/// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.</span>
+<a name="l00393"></a>00393 <span class="comment">/// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.</span>
+<a name="l00394"></a>00394 <span class="comment">/// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00395"></a>00395 <span class="comment"></span>cAudio::cVector3&amp; PHYS_LIB operator &lt;&lt; (cAudio::cVector3&amp; VecTo, <span class="keyword">const</span> Ogre::Vector3&amp; VecFrom);
+<a name="l00396"></a>00396 <span class="comment"></span>
+<a name="l00397"></a>00397 <span class="comment">/// @brief Conversion Assignment Operator to cAudio::cVector3.</span>
+<a name="l00398"></a>00398 <span class="comment">/// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.</span>
+<a name="l00399"></a>00399 <span class="comment">/// @param VecFrom The right hand side, is a btVector3, this vector will be copied and unchanged.</span>
+<a name="l00400"></a>00400 <span class="comment">/// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00401"></a>00401 <span class="comment"></span>cAudio::cVector3&amp; PHYS_LIB operator &lt;&lt; (cAudio::cVector3&amp; VecTo, <span class="keyword">const</span> btVector3&amp; VecFrom);
+<a name="l00402"></a>00402 <span class="comment"></span>
+<a name="l00403"></a>00403 <span class="comment">/// @brief Conversion Assignment Operator to cAudio::cVector3.</span>
+<a name="l00404"></a>00404 <span class="comment">/// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.</span>
+<a name="l00405"></a>00405 <span class="comment">/// @param VecFrom The right hand side, is a phys::Vector3, this vector will be copied and unchanged.</span>
+<a name="l00406"></a>00406 <span class="comment">/// @return An cAudio::cVector3 in case multiple operators are chainged together (not usually a good idea).</span>
+<a name="l00407"></a>00407 <span class="comment"></span>cAudio::cVector3&amp; PHYS_LIB operator &lt;&lt; (cAudio::cVector3&amp; VecTo, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; VecFrom);
+<a name="l00408"></a>00408 
+<a name="l00409"></a>00409 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Jan 28 2011 12:11:10 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:18 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

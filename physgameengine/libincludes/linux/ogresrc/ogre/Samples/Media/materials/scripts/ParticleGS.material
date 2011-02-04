@@ -1,111 +1,51 @@
-vertex_program Ogre/ParticleGS/GenerateVScg cg
+vertex_program Ogre/ParticleGS/GenerateVS cg
 {
 	source ParticleGS.cg
 	entry_point GenerateParticles_VS
 	profiles vs_1_1 arbvp1
 }
 
-geometry_program Ogre/ParticleGS/GenerateGScg cg
+geometry_program Ogre/ParticleGS/GenerateGS cg
 {
 	source ParticleGS.cg
 	entry_point GenerateParticles_GS
 	profiles gp4gp gpu_gp
 }
 
-vertex_program Ogre/ParticleGS/DisplayVScg cg
+vertex_program Ogre/ParticleGS/DisplayVS cg
 {
 	source ParticleGS.cg
 	entry_point DisplayParticles_VS
 	profiles vs_1_1 arbvp1
 }
 
-geometry_program Ogre/ParticleGS/DisplayGScg cg
+geometry_program Ogre/ParticleGS/DisplayGS cg
 {
 	source ParticleGS.cg
 	entry_point DisplayParticles_GS
 	profiles gp4gp gpu_gp
 }
 
-fragment_program Ogre/ParticleGS/DisplayPScg cg
+fragment_program Ogre/ParticleGS/DisplayPS cg
 {
 	source ParticleGS.cg
 	entry_point DisplayParticles_PS
 	profiles ps_1_1 arbfp1
 }
 
-vertex_program Ogre/ParticleGS/GenerateVShlsl4 hlsl
-{
-	source particlesgs.fx
-	entry_point VSPassThroughmain
-	target vs_4_0
-}
-
-geometry_program Ogre/ParticleGS/GenerateGShlsl4 hlsl
-{
-	source particlesgs.fx
-	entry_point GSAdvanceParticlesMain
-	target gs_4_0
-}
-
-vertex_program Ogre/ParticleGS/DisplayVShlsl4 hlsl
-{
-	source particlesgs.fx
-	entry_point VSScenemain
-	target vs_4_0
-}
-
-geometry_program Ogre/ParticleGS/DisplayGShlsl4 hlsl
-{
-	source particlesgs.fx
-	entry_point GSScenemain
-	target gs_4_0
-}
-
-fragment_program Ogre/ParticleGS/DisplayPShlsl4 hlsl
-{
-	source particlesgs.fx
-	entry_point PSScenemain
-	target ps_4_0
-}
-
 //The material used to generate the particle system geometry
 material Ogre/ParticleGS/Generate
 {
-	technique cg
+	technique
 	{
 		pass
 		{
-			vertex_program_ref Ogre/ParticleGS/GenerateVScg
+			vertex_program_ref Ogre/ParticleGS/GenerateVS
 			{
 				
 			}
 			
-			geometry_program_ref Ogre/ParticleGS/GenerateGScg
-			{
-				param_named frameGravity float3 0 -0.1 0
-				param_named globalTime float 0.0
-				param_named elapsedTime float 0.1
-				param_named secondsPerFirework float 0.3
-			}
-			
-			//This texture unit will be filled at runtime
-			texture_unit RandomTexture
-			{
-				tex_address_mode wrap
-				filtering none
-			}
-		}
-	}
-	technique hlsl4
-	{
-		pass
-		{
-			vertex_program_ref Ogre/ParticleGS/GenerateVShlsl4
-			{
-				
-			}
-			
-			geometry_program_ref Ogre/ParticleGS/GenerateGShlsl4
+			geometry_program_ref Ogre/ParticleGS/GenerateGS
 			{
 				param_named frameGravity float3 0 -0.1 0
 				param_named globalTime float 0.0
@@ -126,55 +66,24 @@ material Ogre/ParticleGS/Generate
 //The material used to display the generated particle system geometry
 material Ogre/ParticleGS/Display
 {
-	technique cg
+	technique
 	{
 		pass
 		{
 			depth_write off
 			
-			vertex_program_ref Ogre/ParticleGS/DisplayVScg
+			vertex_program_ref Ogre/ParticleGS/DisplayVS
 			{
 				
 			}
 			
-			geometry_program_ref Ogre/ParticleGS/DisplayGScg
+			geometry_program_ref Ogre/ParticleGS/DisplayGS
 			{
 				param_named_auto inverseView inverse_view_matrix
 				param_named_auto worldViewProj worldviewproj_matrix
 			}
 			
-			fragment_program_ref Ogre/ParticleGS/DisplayPScg
-			{
-				
-			}
-			
-			texture_unit
-			{
-				tex_coord_set 0
-				texture particle.dds
-			}
-			
-			scene_blend alpha_blend
-		}
-	}
-	technique hlsl4
-	{
-		pass
-		{
-			depth_write off
-			
-			vertex_program_ref Ogre/ParticleGS/DisplayVShlsl4
-			{
-				
-			}
-			
-			geometry_program_ref Ogre/ParticleGS/DisplayGShlsl4
-			{
-				param_named_auto inverseView inverse_view_matrix
-				param_named_auto worldViewProj worldviewproj_matrix
-			}
-			
-			fragment_program_ref Ogre/ParticleGS/DisplayPShlsl4
+			fragment_program_ref Ogre/ParticleGS/DisplayPS
 			{
 				
 			}

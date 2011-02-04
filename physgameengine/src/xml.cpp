@@ -37,6 +37,7 @@
    Joseph Toppi - toppij@gmail.com 
    John Blackwood - makoenergy02@gmail.com 
 */ 
+#ifdef PHYSXML 
 /* 
  * 
  * Software, Files, Libraries and all other items referenced in this clause refers only 
@@ -3438,6 +3439,30 @@ namespace phys
 	#endif 
 	} 
  
+	Whole Attribute::AsWhole() const
+	{
+		if (!_attr || !_attr->Value) return 0;
+		return ToWhole(_attr->Value);
+	}
+
+	Integer Attribute::AsInteger() const
+	{
+		if (!_attr || !_attr->Value) return 0;
+		return ToInteger(_attr->Value);
+	}
+
+	String Attribute::AsString() const
+	{
+		if (!_attr || !_attr->Value) return 0;
+		return ToString(_attr->Value);
+	}
+
+	Real Attribute::AsReal() const
+	{
+		if (!_attr || !_attr->Value) return 0;
+		return ToReal(_attr->Value);
+	}
+
 	float Attribute::AsFloat() const 
 	{ 
 		if (!_attr || !_attr->Value) return 0; 
@@ -9630,3 +9655,4 @@ namespace phys
  * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR 
  * OTHER DEALINGS IN THE SOFTWARE. 
  */ 
+#endif // \PHYSXML 

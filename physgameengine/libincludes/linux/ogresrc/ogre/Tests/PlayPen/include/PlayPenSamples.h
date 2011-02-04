@@ -73,7 +73,9 @@ class _OgreSampleClassExport PlayPen_testManualLOD : public PlayPenBase
 {
 public:
 	PlayPen_testManualLOD();
+	bool frameStarted(const Ogre::FrameEvent& evt);
 protected:
+	AnimationState* mAnimState;
 	void setupContent();
 	String getLODMesh();
 };
@@ -105,38 +107,6 @@ protected:
 
 };
 
-//---------------------------------------------------------------------
-class _OgreSampleClassExport PlayPen_testMorphAnimationWithNormals : public PlayPenBase
-{
-public:
-	PlayPen_testMorphAnimationWithNormals();
-protected:
-	void setupContent();
-};
-//---------------------------------------------------------------------
-class _OgreSampleClassExport PlayPen_testMorphAnimationWithoutNormals : public PlayPenBase
-{
-public:
-	PlayPen_testMorphAnimationWithoutNormals();
-protected:
-	void setupContent();
-};
-//---------------------------------------------------------------------
-class _OgreSampleClassExport PlayPen_testPoseAnimationWithNormals : public PlayPenBase
-{
-public:
-	PlayPen_testPoseAnimationWithNormals();
-protected:
-	void setupContent();
-};
-//---------------------------------------------------------------------
-class _OgreSampleClassExport PlayPen_testPoseAnimationWithoutNormals : public PlayPenBase
-{
-public:
-	PlayPen_testPoseAnimationWithoutNormals();
-protected:
-	void setupContent();
-};
 
 
 

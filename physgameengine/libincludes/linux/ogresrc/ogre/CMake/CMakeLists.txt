@@ -35,17 +35,14 @@ set(STATIC_INST_FILES
   Packages/FindFreeImage.cmake
   Packages/FindFreetype.cmake
   Packages/FindOpenGLES.cmake
-  Packages/FindOpenGLES2.cmake
   Packages/FindPOCO.cmake
   Packages/FindTBB.cmake
   Packages/FindZLIB.cmake
   Packages/FindZZip.cmake
-  Packages/FindSoftimage.cmake
 )
 if (WIN32)
   set(INST_FILES ${INST_FILES}
     Templates/VisualStudioUserFile.vcproj.user.in
-    Templates/VisualStudioUserFile.vcxproj.user.in
   )
 endif ()
 
