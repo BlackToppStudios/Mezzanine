@@ -64,7 +64,6 @@ namespace phys
     class PHYS_LIB GraphicsManager: public ManagerBase
     {
         private:
-
             /// @internal
             /// @brief This is the desired state of whether the window is fullscreen or not.
             bool Fullscreen;
@@ -88,13 +87,13 @@ namespace phys
 
             void CreateRenderWindow();
             void DestroyRenderWindow();
-
+            void InitSDL();
+            void ShutdownSDL();
+            void InitViewportAndCamera();
             void UpdateWindowStats();
 
             Ogre::Timer *RenderTimer;
-
             Ogre::RenderWindow* OgreGameWindow;
-
             SDL_Surface* SDLscreen;
 
             Whole FrameDelay;

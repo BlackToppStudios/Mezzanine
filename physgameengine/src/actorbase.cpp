@@ -301,6 +301,37 @@ namespace phys{
         return Ogre::ResourceGroupManager::getSingletonPtr();
     }
 
+    void ActorBase::InitializeEntity(bool ForceReinitialize)
+    {
+        DetachFromGraphics();
+
+        bool AnimSet = false;
+        bool AnimEnable = false;
+        bool AnimLoop = false;
+        Real AnimPos = 0;
+        String AnimName = "";
+        if(Animation)
+        {
+            AnimSet = true;
+            AnimEnable = Animation->getEnabled();
+            AnimLoop = Animation->getLoop();
+            AnimPos = Animation->getTimePosition();
+            AnimName = Animation->getAnimationName();
+        }
+
+        entity->_initialise(ForceReinitialize);
+
+        if(AnimSet)
+        {
+            Animation = entity->getAnimationState(AnimName);
+            Animation->setLoop(AnimLoop);
+            Animation->setEnabled(AnimEnable);
+            Animation->setTimePosition(AnimPos);
+        }
+
+        AttachToGraphics();
+    }
+
     ///////////////////////////////////
     // ActorBase Constructor functions
 
@@ -504,6 +535,11 @@ namespace phys{
             Animation->setEnabled(false);
             Animation = NULL;
         }
+    }
+
+    void ActorBase::InitEntity(bool force)
+    {
+        InitializeEntity(force);
     }
 
     ///////////////////////////////////

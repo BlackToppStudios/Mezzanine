@@ -39,7 +39,7 @@ int main(int argc, char **argv)
 
     // Set the Title
     TheWorld->SetWindowName("Catch!... The Game!");
-    TheWorld->SetTargetFrameRate(50);
+    TheWorld->SetTargetFrameRate(60);
     #ifdef PHYSDEBUG
     TheWorld->Log("Framerate and Title set");
     #endif

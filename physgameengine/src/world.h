@@ -177,16 +177,11 @@ namespace phys
         private:
             //friend class PhysicsManager;
 
-            //SDL Objects
-            SDL_Surface *SDLscreen;
+            //SDL Object
             bool HasSDLBeenInitialized;
 
             //Try to retrieve ogre settinss
             void LoadOgreSettings();
-
-            //Manages the windows all the graphics will be drawn to
-            void CreateRenderWindow();
-            void DestroyRenderWindow();
 
             //Used by the constructors
             /// @internal
@@ -221,38 +216,6 @@ namespace phys
             static World* TheRealWorld;
 
         public:
-
-            //Ogre objects
-            /// @internal
-            /// @brief This is the core of the Ogre rendering system.
-            /// @details Even thought the largest part of ogre is 3d rendering, it does not belong in the graphics manager. It is also responsible for a
-            /// large number other services, such as logging, multithreading, and timing.
-            //Ogre::Root* OgreRoot;
-
-            /// @internal
-            /// @brief
-            //Ogre::RenderSystem* OgreRenderSystem;
-
-            /// @internal
-            /// @brief
-            //Ogre::RenderWindow* OgreGameWindow;
-
-            /// @internal
-            /// @brief
-            //Ogre::ResourceGrou pManager* OgreResource;
-
-            /// @internal
-            /// @brief
-            //Ogre::Camera* OgreCamera;
-
-            /// @internal
-            /// @brief
-            //Ogre::Viewport* OgreViewport;
-
-            /// @internal
-            /// @brief
-            //Ogre::SceneManager* OgreSceneManager;
-
         ///////////////////////////////////////////////////////////////////////////////
         // Creation and Deletion methods
         ///////////////////////////////////////

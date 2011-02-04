@@ -43,6 +43,7 @@
 #include "world.h"
 #include "eventmanager.h"
 #include "eventrendertime.h"
+#include "actorcontainervector.h"
 #include "graphicsmanager.h"
 #include "cameramanager.h"
 #include "uimanager.h"
@@ -70,8 +71,7 @@ namespace phys
     GraphicsManager::~GraphicsManager()
     {
         DestroyRenderWindow();
-        SDL_FreeSurface(SDLscreen);
-        SDL_Quit();
+        ShutdownSDL();
     }
 
     void GraphicsManager::Construct(const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
@@ -85,28 +85,17 @@ namespace phys
 
     void GraphicsManager::CreateRenderWindow()
     {
-        #ifdef PHYSDEBUG
-        GameWorld->Log("Entering CreateRenderWindow()");
-        #endif
-        /// @todo TODO set multithreaded SDL so it will the run event manager in another thread
-        //Get what is needed for SDL started
-        if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-            GameWorld->Log("Error 2: Unable to init SDL, SDL Error Follows:");
-            GameWorld->LogAndThrow(SDL_GetError());
-        }
-        SDLBeenInitialized = true;
-        #ifdef PHYSDEBUG
-        GameWorld->Log("Initialized SDL");
-        #endif
+        InitSDL();
 
 		try
 		{
 			//Setup the SDL render window
+			SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 			if(Fullscreen)
 			{
-			    this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN);
+			    this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN );
 			}else{
-                this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL);
+                this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
 			}
 			SDL_WM_SetCaption(GameWorld->GetWindowName().c_str(), NULL);
 			#ifdef PHYSDEBUG
@@ -133,12 +122,41 @@ namespace phys
         //Configure Ogre to render to the SDL window
         Ogre::NameValuePairList *misc;
         misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
-        (*misc)["title"] = Ogre::String(GameWorld->GetWindowName());
         OgreGameWindow = Ogre::Root::getSingleton().createRenderWindow(GameWorld->GetWindowName(), RenderHeight, RenderWidth, Fullscreen, misc);
         #ifdef PHYSDEBUG
         GameWorld->Log("Bound Ogre to an SDL window");
         #endif
 
+        InitViewportAndCamera();
+    }
+
+    void GraphicsManager::DestroyRenderWindow()
+    {
+        OgreGameWindow->destroy();
+    }
+
+    void GraphicsManager::InitSDL()
+    {
+        /// @todo TODO set multithreaded SDL so it will the run event manager in another thread
+        //Get what is needed for SDL started
+        if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+            GameWorld->Log("Error 2: Unable to init SDL, SDL Error Follows:");
+            GameWorld->LogAndThrow(SDL_GetError());
+        }
+        SDLBeenInitialized = true;
+        #ifdef PHYSDEBUG
+        GameWorld->Log("Initialized SDL");
+        #endif
+    }
+
+    void GraphicsManager::ShutdownSDL()
+    {
+        SDL_FreeSurface(SDLscreen);
+        SDL_Quit();
+    }
+
+    void GraphicsManager::InitViewportAndCamera()
+    {
         //setup a default camera unless has been setup yet
         Camera* camera = NULL;
         if(GameWorld->GetCameraManager()==0)
@@ -156,39 +174,50 @@ namespace phys
         GameWorld->GetCameraManager()->Viewports["Viewport1"] = OgreViewport;
 
         //setting the aspect ratio must be done after we setup the viewport
-        camera->SetAspectRatio( (Real)(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
+        camera->SetAspectRatio( (Real)(OgreViewport->getActualWidth()) / (Real)(OgreViewport->getActualHeight()) );
         #ifdef PHYSDEBUG
         GameWorld->Log("Configured Viewport and Aspect Ratio");
         #endif
     }
 
-    void GraphicsManager::DestroyRenderWindow()
-    {
-        OgreGameWindow->destroy();
-    }
-
     void GraphicsManager::UpdateWindowStats()
     {
         GameWorld->Log("Updating Screen Mode. ");
+        OgreGameWindow->destroy();
         if(Fullscreen)
         {
             GameWorld->Log("Setting SDL. ");
             this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN);
             GameWorld->Log("Setting Ogre. ");
-            OgreGameWindow->setFullscreen(true,RenderWidth,RenderHeight);
+            //OgreGameWindow->setFullscreen(true,RenderWidth,RenderHeight);
         }else{
             GameWorld->Log("Setting SDL. ");
-            this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL);
+            this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
             GameWorld->Log("Setting Ogre. ");
-            OgreGameWindow->setFullscreen(false,RenderWidth,RenderHeight);
+            //OgreGameWindow->setFullscreen(false,RenderWidth,RenderHeight);
         }
-        //OgreGameWindow->windowMovedOrResized();
+        Ogre::NameValuePairList *misc;
+        misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
+        OgreGameWindow->create(GameWorld->GetWindowName(), RenderHeight, RenderWidth, Fullscreen, misc);
+
         GameWorld->Log("Updating Viewport. ");
-        GameWorld->GetCameraManager()->GetOgreViewport("Viewport1")->setDimensions(0,0,1,1);
-        //GameWorld->GetCameraManager()->GetOgreViewport("Viewport1")->_updateDimensions();
-        //GameWorld->GetCameraManager()->GetDefaultCamera()->SetAspectRatio((Real)RenderWidth/(Real)RenderHeight);
-        GameWorld->Log("Updating User Interface. ");
-        GameWorld->GetUIManager()->RedrawAll(true);
+        Ogre::Viewport* OgreViewport = GameWorld->GetCameraManager()->GetOgreViewport("Viewport1");
+        OgreViewport->setDimensions(0,0,1,1);
+        OgreViewport->getCamera()->setAspectRatio((Real)(OgreViewport->getActualWidth()) / (Real)(OgreViewport->getActualHeight()));
+
+        Ogre::TextureManager::getSingleton().reloadAll();
+        Ogre::MeshManager::getSingleton().reloadAll();
+        Ogre::SkeletonManager::getSingleton().reloadAll();
+        Ogre::MaterialManager::getSingleton().reloadAll();
+        Ogre::CompositorManager::getSingleton().reloadAll();
+        Ogre::GpuProgramManager::getSingleton().reloadAll();
+        Ogre::HighLevelGpuProgramManager::getSingleton().reloadAll();
+        //Ogre::FontManager::getSingleton().reloadAll();
+
+        ActorContainerVector* ActorMan = static_cast<ActorContainerVector*>(GameWorld->GetActorManager());
+        for( std::vector<ActorBase*>::iterator cur = ActorMan->begin() ; cur != ActorMan->end() ; cur++ )
+            (*cur)->InitEntity(true);
+        //GameWorld->GetUIManager()->RedrawAll(true);
         GameWorld->Log("Done Updating Screen Mode. ");
     }
 
@@ -313,19 +342,8 @@ namespace phys
 
     void GraphicsManager::DoMainLoopItems()
     {
-        GameWorld->Log("Rendering the World.");
         Ogre::WindowEventUtilities::messagePump();
-        if(1)//OgreGameWindow->isActive())
-        {
-            crossplatform::RenderPhysWorld(this->GameWorld, this->OgreGameWindow);
-        }else if( !OgreGameWindow->isActive() && OgreGameWindow->isVisible()){
-            OgreGameWindow->update();
-        }else{
-            GameWorld->Log("Aborted Rendering, target is not active");
-            // clear timings to allow smooth alt-tabbing action.
-            Ogre::Root::getSingleton().clearEventTimes();
-        }
-        GameWorld->Log("Finished Rendering");
+        crossplatform::RenderPhysWorld(this->GameWorld, this->OgreGameWindow);
 
         //Do Time Calculations to Determine Rendering Time
         this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );

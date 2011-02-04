@@ -172,6 +172,8 @@ namespace phys
             { this->AddManager(new SceneManager(SceneType)); }
         if(this->GetUIManager()==0)
             { this->AddManager(new UIManager()); }
+        if(this->GetTimerManager()==0)
+            { this->AddManager(new TimerManager()); }
 
         // This Tests various assumptions about the way the platform works, and will not act
         SanityChecks();
@@ -211,10 +213,6 @@ namespace phys
         {
             this->ManagerList.erase(iter);
         }
-
-        //remove sdl stuff
-        SDL_FreeSurface(SDLscreen);
-        SDL_Quit();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -315,16 +313,18 @@ namespace phys
              20 Resources
         */
 
+        Ogre::Timer* LoopTimer = new Ogre::Timer();
         //As long as all the CallBacks return true the game continues
         bool DoNotBreak=true;
         while (DoNotBreak)
         {
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
-                #ifdef PHYSDEBUG
+                //#ifdef PHYSDEBUG
                 this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " ";
                 this->Log( (*Iter)->GetPriority() );
-                #endif
+                LoopTimer->reset();
+                //#endif
 
                 if( !(*Iter)->PreMainLoopItems() )
                     { DoNotBreak=false; }
@@ -334,6 +334,8 @@ namespace phys
                 if( !(*Iter)->PostMainLoopItems() )
                     { DoNotBreak=false; }
 
+                this->LogStream << (*Iter)->GetTypeName() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
+                this->Log();
                 this->DoMainLoopLogging();
             }
 
@@ -366,96 +368,6 @@ namespace phys
                 this->LogAndThrow("Error: Could not setup Ogre.");
             }
         }
-    }
-
-    void World::CreateRenderWindow()
-    {
-         //#define PHYSDEBUG
-
-        #ifdef PHYSDEBUG
-        this->Log("Entering CreateRenderWindow()");
-        #endif
-        /// @todo TODO set multithreaded SDL so it will the run event manager in another thread
-        //Get what is needed for SDL started
-        if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-            this->Log("Error 2: Unable to init SDL, SDL Error Follows:");
-            this->LogAndThrow(SDL_GetError());
-        }
-        this->HasSDLBeenInitialized=true;
-        #ifdef PHYSDEBUG
-        this->Log("Initialized SDL");
-        #endif
-
-		try
-		{
-			//Setup the SDL render window
-			this->SDLscreen = SDL_SetVideoMode( this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getRenderHeight(),0, SDL_OPENGL);
-			SDL_WM_SetCaption(this->WindowName.c_str(), NULL);
-			#ifdef PHYSDEBUG
-            this->Log("Successfully Setup SDL");
-            #endif
-		}catch (exception& e) {
-		    this->Log("Failed to Setup SDL");
-			LogAndThrow(e.what());
-		}
-
-        //Start Ogre Without a native render window
-        Ogre::RenderWindow* OgreGameWindow = NULL;
-        try
-        {
-            //crossplatform::WaitMilliseconds(1000);
-            OgreGameWindow = Ogre::Root::getSingleton().initialise(false, this->WindowName);
-            #ifdef PHYSDEBUG
-            this->Log("Setup Ogre Window");
-            #endif
-        }catch (exception& e) {
-		    this->Log("Failed to Setup Ogre Window");
-			LogAndThrow(e.what());
-		}
-
-        //Configure Ogre to render to the SDL window
-        Ogre::NameValuePairList *misc;
-        misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
-        (*misc)["title"] = Ogre::String(this->WindowName);
-        OgreGameWindow = Ogre::Root::getSingleton().createRenderWindow(WindowName, this->GetGraphicsManager()->getRenderHeight(), this->GetGraphicsManager()->getRenderWidth(), this->GetGraphicsManager()->getFullscreen(), misc);
-        #ifdef PHYSDEBUG
-        this->Log("Bound Ogre to an SDL window");
-        #endif
-
-        this->GetGraphicsManager()->SetOgreWindowPointer(OgreGameWindow);
-        //prepare a scenemanager
-        //this->OgreSceneManager = this->OgreRoot->createSceneManager(Ogre::ST_GENERIC,"SceneManager");
-        #ifdef PHYSDEBUG
-        this->Log("Created the Ogre Scenemanager");
-        #endif
-
-        //setup a default camera unless has been setup yet
-        Camera* camera = NULL;
-        if(this->GetCameraManager()==0)
-        {
-            this->AddManager(new CameraManager (0));
-        }
-        camera = this->GetCameraManager()->DefaultCamera;
-        #ifdef PHYSDEBUG
-        this->Log("Created Default Camera");
-        #endif
-
-        //viewport connects camera and render window
-        Ogre::Viewport* OgreViewport = NULL;
-        OgreViewport = this->GetGraphicsManager()->GetOgreWindowPointer()->addViewport(camera->GetOgreCamera());
-        this->GetCameraManager()->Viewports["DefaultViewport"] = OgreViewport;
-
-        //setting the aspect ratio must be done after we setup the viewport
-        camera->SetAspectRatio( (Real)(OgreViewport->getActualWidth()) / Ogre::Real(OgreViewport->getActualHeight()) );
-        #ifdef PHYSDEBUG
-        this->Log("Configured Viewport and Aspect Ratio");
-        #endif
-    }
-
-    /// @todo Possibly move this function, along with the corresponding create function to the graphics manager as well.
-    void World::DestroyRenderWindow()
-    {
-        this->GetGraphicsManager()->GetOgreWindowPointer()->destroy();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
