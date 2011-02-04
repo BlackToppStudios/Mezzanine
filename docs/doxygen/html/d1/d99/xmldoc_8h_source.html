@@ -820,14 +820,14 @@
 <a name="l00789"></a>00789 <span class="comment">        /// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.</span>
 <a name="l00790"></a>00790 <span class="comment"></span><span class="comment"></span>
 <a name="l00791"></a>00791 <span class="comment">        /// @fn Node::Path(char_t delimiter = &#39;/&#39;) const;</span>
-<a name="l00792"></a>00792 <span class="comment">        /// @brief Get the absolute XPath path to this Node</span>
+<a name="l00792"></a>00792 <span class="comment">        /// @brief Get the absolute path to this Node</span>
 <a name="l00793"></a>00793 <span class="comment">        /// @param delimiter The character to use as a pathname separator, this defaults to &#39;/&#39;.</span>
-<a name="l00794"></a>00794 <span class="comment">        /// @return A String containing an XPath Path</span>
+<a name="l00794"></a>00794 <span class="comment">        /// @return A String containing an path</span>
 <a name="l00795"></a>00795 <span class="comment"></span><span class="comment"></span>
 <a name="l00796"></a>00796 <span class="comment">        /// @fn Node::FirstElementByPath(const char_t* Path, char_t delimiter = &#39;/&#39;) const;</span>
 <a name="l00797"></a>00797 <span class="comment">        /// @brief Search for a node by Path consisting of node names and . or .. elements.</span>
 <a name="l00798"></a>00798 <span class="comment">        /// @todo Investigate this more deeply.</span>
-<a name="l00799"></a>00799 <span class="comment">        /// @param Path The XPath path to search for.</span>
+<a name="l00799"></a>00799 <span class="comment">        /// @param Path The path to search for.</span>
 <a name="l00800"></a>00800 <span class="comment">        /// @param delimiter The character to use as a pathname separator, this defaults to &#39;/&#39;.</span>
 <a name="l00801"></a>00801 <span class="comment">        /// @return The matching Node, of an empty Node on failure.</span>
 <a name="l00802"></a>00802 <span class="comment"></span><span class="comment"></span>
@@ -836,44 +836,60 @@
 <a name="l00805"></a>00805 <span class="comment">        /// @param walker a Treewalker</span>
 <a name="l00806"></a>00806 <span class="comment">        /// @todo document this once TreeWalker is documented.</span>
 <a name="l00807"></a>00807 <span class="comment">        /// @return A bool</span>
-<a name="l00808"></a>00808 <span class="comment"></span>
-<a name="l00809"></a>00809     }
-<a name="l00810"></a>00810 }
-<a name="l00811"></a>00811 <span class="preprocessor">#endif</span>
-<a name="l00812"></a>00812 <span class="preprocessor"></span>
-<a name="l00813"></a>00813 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l00814"></a>00814 <span class="preprocessor"></span>
-<a name="l00815"></a>00815 <span class="comment">/*</span>
-<a name="l00816"></a>00816 <span class="comment"> *</span>
-<a name="l00817"></a>00817 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l00818"></a>00818 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l00819"></a>00819 <span class="comment"> *</span>
-<a name="l00820"></a>00820 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l00821"></a>00821 <span class="comment"> *</span>
-<a name="l00822"></a>00822 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l00823"></a>00823 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l00824"></a>00824 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l00825"></a>00825 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l00826"></a>00826 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l00827"></a>00827 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l00828"></a>00828 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l00829"></a>00829 <span class="comment"> * conditions:</span>
-<a name="l00830"></a>00830 <span class="comment"> *</span>
-<a name="l00831"></a>00831 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l00832"></a>00832 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l00833"></a>00833 <span class="comment"> *</span>
-<a name="l00834"></a>00834 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l00835"></a>00835 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l00836"></a>00836 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l00837"></a>00837 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l00838"></a>00838 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l00839"></a>00839 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l00840"></a>00840 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l00841"></a>00841 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l00842"></a>00842 <span class="comment"> */</span>
+<a name="l00808"></a>00808 <span class="comment"></span><span class="comment"></span>
+<a name="l00809"></a>00809 <span class="comment">        /// @fn Node::FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;</span>
+<a name="l00810"></a>00810 <span class="comment">        /// @brief Select single node by evaluating XPath query. Returns first node from the resulting node set.</span>
+<a name="l00811"></a>00811 <span class="comment">        /// @param query The XPath query as a c-string to be evaluated.</span>
+<a name="l00812"></a>00812 <span class="comment">        /// @param XPathVariableSet undocumented.</span>
+<a name="l00813"></a>00813 <span class="comment">        /// @return XPathNode The first matching XPath node.</span>
+<a name="l00814"></a>00814 <span class="comment"></span><span class="comment"></span>
+<a name="l00815"></a>00815 <span class="comment">        /// @fn Node::FindSingleNode(const XPathQuery&amp; query) const;</span>
+<a name="l00816"></a>00816 <span class="comment">        /// @brief Select single node by evaluating XPath query. Returns first node from the resulting node set.</span>
+<a name="l00817"></a>00817 <span class="comment">        /// @param query The XPath query XPathQuery class instance.</span>
+<a name="l00818"></a>00818 <span class="comment">        /// @return XPathNode The first matching XPath node.</span>
+<a name="l00819"></a>00819 <span class="comment"></span>
+<a name="l00820"></a>00820                 <span class="comment">// Select node set by evaluating XPath query</span>
+<a name="l00821"></a>00821                 <span class="comment">//XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;</span>
+<a name="l00822"></a>00822                 <span class="comment">//XPathNodeSet FindNodes(const XPathQuery&amp; query) const;</span>
+<a name="l00823"></a>00823 
+<a name="l00824"></a>00824 
+<a name="l00825"></a>00825     }
+<a name="l00826"></a>00826 }
+<a name="l00827"></a>00827 <span class="preprocessor">#endif</span>
+<a name="l00828"></a>00828 <span class="preprocessor"></span>
+<a name="l00829"></a>00829 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l00830"></a>00830 <span class="preprocessor"></span>
+<a name="l00831"></a>00831 <span class="comment">/*</span>
+<a name="l00832"></a>00832 <span class="comment"> *</span>
+<a name="l00833"></a>00833 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l00834"></a>00834 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l00835"></a>00835 <span class="comment"> *</span>
+<a name="l00836"></a>00836 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l00837"></a>00837 <span class="comment"> *</span>
+<a name="l00838"></a>00838 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l00839"></a>00839 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l00840"></a>00840 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l00841"></a>00841 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l00842"></a>00842 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l00843"></a>00843 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l00844"></a>00844 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l00845"></a>00845 <span class="comment"> * conditions:</span>
+<a name="l00846"></a>00846 <span class="comment"> *</span>
+<a name="l00847"></a>00847 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l00848"></a>00848 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l00849"></a>00849 <span class="comment"> *</span>
+<a name="l00850"></a>00850 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l00851"></a>00851 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l00852"></a>00852 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l00853"></a>00853 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l00854"></a>00854 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l00855"></a>00855 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l00856"></a>00856 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l00857"></a>00857 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l00858"></a>00858 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 12:19:32 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:11 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

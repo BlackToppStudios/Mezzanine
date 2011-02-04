@@ -88,7 +88,7 @@
 <a name="l00057"></a>00057         : Name (name),
 <a name="l00058"></a>00058           Shape (NULL)
 <a name="l00059"></a>00059     {
-<a name="l00060"></a>00060         TheWorld = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">World::GetWorldPointer</a>();
+<a name="l00060"></a>00060         TheWorld = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>();
 <a name="l00061"></a><a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#afe30d4ffa4e16dfb151446960dad61ac">00061</a>         CreateGhostObject(Location);
 <a name="l00062"></a>00062     }
 <a name="l00063"></a>00063 
@@ -211,7 +211,7 @@
 <a name="l00180"></a>00180 
 <a name="l00181"></a>00181     <span class="keywordtype">void</span> <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a129cfe777f13ea62727f684761778bcb" title="Creates a shape from a .mesh model for the field.">AreaEffect::CreateShapeFromMesh</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Filename, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Group, <span class="keywordtype">bool</span> MakeVisible)
 <a name="l00182"></a>00182     {
-<a name="l00183"></a>00183         Ogre::SceneManager* OgreManager = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a86a86a78851845837ccc43da8b3a3019" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>();
+<a name="l00183"></a>00183         Ogre::SceneManager* OgreManager = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a86a86a78851845837ccc43da8b3a3019" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>();
 <a name="l00184"></a>00184         <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a31b755c85d318438e42e300de56d2e5c" title="The Ogre object being added to the scene graph.">GraphicsObject</a> = OgreManager-&gt;createEntity(<a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a1cf5a878eb22b30a166f5b065944a986" title="The name of the Area Effect.">Name</a>, Filename, Group);
 <a name="l00185"></a>00185         Ogre::MeshPtr myMesh = <a class="code" href="../../d4/d55/classphys_1_1AreaEffect.html#a31b755c85d318438e42e300de56d2e5c" title="The Ogre object being added to the scene graph.">GraphicsObject</a>-&gt;getMesh();
 <a name="l00186"></a>00186         Ogre::SubMesh* subMesh = myMesh-&gt;getSubMesh(0);
@@ -428,7 +428,7 @@
 <a name="l00397"></a>00397 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 12:19:31 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:10 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

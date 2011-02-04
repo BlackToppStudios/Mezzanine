@@ -4240,7 +4240,7 @@
 <a name="l04209"></a>04209         } 
 <a name="l04210"></a>04210  
 <a name="l04211"></a>04211 <span class="preprocessor">#ifndef XML_NO_STL </span>
-<a name="l04212"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0bf85dc0820ba204e7c9498c6651aec8">04212</a> <span class="preprocessor"></span>        String <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0bf85dc0820ba204e7c9498c6651aec8" title="Get the absolute XPath path to this Node.">Node::Path</a>(char_t delimiter)<span class="keyword"> const </span>
+<a name="l04212"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0bf85dc0820ba204e7c9498c6651aec8">04212</a> <span class="preprocessor"></span>        String <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0bf85dc0820ba204e7c9498c6651aec8" title="Get the absolute path to this Node.">Node::Path</a>(char_t delimiter)<span class="keyword"> const </span>
 <a name="l04213"></a>04213 <span class="keyword">        </span>{ 
 <a name="l04214"></a>04214                 String Path; 
 <a name="l04215"></a>04215  
@@ -9631,13 +9631,13 @@
 <a name="l09600"></a>09600                 <span class="keywordflow">return</span> !_impl; 
 <a name="l09601"></a>09601         } 
 <a name="l09602"></a>09602  
-<a name="l09603"></a>09603         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> Node::FindSingleNode(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
+<a name="l09603"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5">09603</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating XPath query. Returns first node from the resulting node set...">Node::FindSingleNode</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
 <a name="l09604"></a>09604 <span class="keyword">        </span>{ 
 <a name="l09605"></a>09605                 <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> q(query, variables); 
-<a name="l09606"></a>09606                 <span class="keywordflow">return</span> FindSingleNode(q); 
+<a name="l09606"></a>09606                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating XPath query. Returns first node from the resulting node set...">FindSingleNode</a>(q); 
 <a name="l09607"></a>09607         } 
 <a name="l09608"></a>09608  
-<a name="l09609"></a>09609         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> Node::FindSingleNode(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
+<a name="l09609"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a13b958f663f9605061e5e47dfd8e1966">09609</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating XPath query. Returns first node from the resulting node set...">Node::FindSingleNode</a>(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
 <a name="l09610"></a>09610 <span class="keyword">        </span>{ 
 <a name="l09611"></a>09611                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> s = query.evaluate_NodeSet(*<span class="keyword">this</span>); 
 <a name="l09612"></a>09612                 <span class="keywordflow">return</span> s.Empty() ? <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>() : s.first(); 
@@ -9689,7 +9689,7 @@
 <a name="l09658"></a>09658 <span class="preprocessor">#endif // \PHYSXML </span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 12:19:32 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:11 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

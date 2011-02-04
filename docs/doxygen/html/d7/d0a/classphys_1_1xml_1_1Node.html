@@ -193,15 +193,15 @@ Public Member Functions</h2></td></tr>
 <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#af6f0c0656e2a5cc7c79e032236b2b3b1">FindChildbyAttribute</a> (const char_t *AttrName, const char_t *AttrValue) const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Find a <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> by an <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> it has. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0bf85dc0820ba204e7c9498c6651aec8">Path</a> (char_t delimiter= '/') const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the absolute XPath path to this <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>.  <a href="#a0bf85dc0820ba204e7c9498c6651aec8"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the absolute path to this <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>.  <a href="#a0bf85dc0820ba204e7c9498c6651aec8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#af2a9ac5c4e3252dca0e17720de093a9a">FirstElementByPath</a> (const char_t *Path, char_t delimiter= '/') const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Search for a node by Path consisting of node names and . or .. elements.  <a href="#af2a9ac5c4e3252dca0e17720de093a9a"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9">Traverse</a> (<a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">TreeWalker</a> &amp;walker)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">undocumented  <a href="#a0029d08d3689c36d882ada0c0c9cf6e9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9026ddc7ccab8fcd844aa52ec09affc3"></a><!-- doxytag: member="phys::xml::Node::FindSingleNode" ref="a9026ddc7ccab8fcd844aa52ec09affc3" args="(const char_t *query, XPathVariableSet *variables=0) const " -->
-<a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>FindSingleNode</b> (const char_t *query, <a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a> *variables=0) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1a69821d5eb5997c25e3a6ec1ef8b74"></a><!-- doxytag: member="phys::xml::Node::FindSingleNode" ref="ae1a69821d5eb5997c25e3a6ec1ef8b74" args="(const XPathQuery &amp;query) const " -->
-<a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>FindSingleNode</b> (const <a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> &amp;query) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5">FindSingleNode</a> (const char_t *query, <a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a> *variables=0) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Select single node by evaluating XPath query. Returns first node from the resulting node set.  <a href="#a11966aa8afdfa586404393ebae9b07f5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a13b958f663f9605061e5e47dfd8e1966">FindSingleNode</a> (const <a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> &amp;query) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Select single node by evaluating XPath query. Returns first node from the resulting node set.  <a href="#a13b958f663f9605061e5e47dfd8e1966"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7390ba1c09b83544365abc7bf8ec5b8f"></a><!-- doxytag: member="phys::xml::Node::FindNodes" ref="a7390ba1c09b83544365abc7bf8ec5b8f" args="(const char_t *query, XPathVariableSet *variables=0) const " -->
 <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>FindNodes</b> (const char_t *query, <a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a> *variables=0) const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a466766bf750da2a04acd8a32d2b8a458"></a><!-- doxytag: member="phys::xml::Node::FindNodes" ref="a466766bf750da2a04acd8a32d2b8a458" args="(const XPathQuery &amp;query) const " -->
@@ -329,7 +329,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>NodeIterator</b></td
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> representing the freshly added <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>, or an empty <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> if there was an error. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000052">Todo:</a></b></dt><dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000049">Todo:</a></b></dt><dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03979">3979</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
@@ -359,7 +359,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>NodeIterator</b></td
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> representing the freshly added <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>, or an empty <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> if there was an error. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000055">Todo:</a></b></dt><dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000052">Todo:</a></b></dt><dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> to be created.</td></tr>
@@ -643,6 +643,74 @@ template&lt;typename Predicate &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a13b958f663f9605061e5e47dfd8e1966"></a><!-- doxytag: member="phys::xml::Node::FindSingleNode" ref="a13b958f663f9605061e5e47dfd8e1966" args="(const XPathQuery &amp;query) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::FindSingleNode </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>query</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Select single node by evaluating XPath query. Returns first node from the resulting node set. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>query</em>&nbsp;</td><td>The XPath query <a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> class instance. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> The first matching XPath node. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09609">9609</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a11966aa8afdfa586404393ebae9b07f5"></a><!-- doxytag: member="phys::xml::Node::FindSingleNode" ref="a11966aa8afdfa586404393ebae9b07f5" args="(const char_t *query, XPathVariableSet *variables=0) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::Node::FindSingleNode </td>
+          <td>(</td>
+          <td class="paramtype">const char_t *&nbsp;</td>
+          <td class="paramname"> <em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a> *&nbsp;</td>
+          <td class="paramname"> <em>variables</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Select single node by evaluating XPath query. Returns first node from the resulting node set. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>query</em>&nbsp;</td><td>The XPath query as a c-string to be evaluated. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em><a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a></em>&nbsp;</td><td>undocumented. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> The first matching XPath node. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09603">9603</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="af2a9ac5c4e3252dca0e17720de093a9a"></a><!-- doxytag: member="phys::xml::Node::FirstElementByPath" ref="af2a9ac5c4e3252dca0e17720de093a9a" args="(const char_t *Path, char_t delimiter= '/') const " -->
 <div class="memitem">
 <div class="memproto">
@@ -669,10 +737,10 @@ template&lt;typename Predicate &gt; </div>
 <div class="memdoc">
 
 <p>Search for a node by Path consisting of node names and . or .. elements. </p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000056">Todo:</a></b></dt><dd>Investigate this more deeply. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000053">Todo:</a></b></dt><dd>Investigate this more deeply. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Path</em>&nbsp;</td><td>The XPath path to search for. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Path</em>&nbsp;</td><td>The path to search for. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>delimiter</em>&nbsp;</td><td>The character to use as a pathname separator, this defaults to '/'. </td></tr>
   </table>
   </dd>
@@ -1085,7 +1153,7 @@ template&lt;typename Predicate &gt; </div>
 <div class="memdoc">
 
 <p>Creates a <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> and makes it a child of this one, and puts at the middle of the Child Nodes. </p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000053">Todo:</a></b></dt><dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000050">Todo:</a></b></dt><dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Type</em>&nbsp;</td><td>The NodeType of the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> to be added, just after another specific node. </td></tr>
@@ -1165,7 +1233,7 @@ template&lt;typename Predicate &gt; </div>
 <div class="memdoc">
 
 <p>Creates a <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> and makes it a child of this one, and puts at the middle of the Child Nodes. </p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000054">Todo:</a></b></dt><dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000051">Todo:</a></b></dt><dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Type</em>&nbsp;</td><td>The NodeType of the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> to be added, just before another specific node. </td></tr>
@@ -1638,7 +1706,7 @@ template&lt;typename Predicate &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>Get the absolute XPath path to this <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>. </p>
+<p>Get the absolute path to this <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>AttrName</em>&nbsp;</td><td>The name of the matching <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>. </td></tr>
@@ -1653,7 +1721,7 @@ template&lt;typename Predicate &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A String containing an XPath Path </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A String containing an path </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04212">4212</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
@@ -1982,7 +2050,7 @@ template&lt;typename Predicate &gt; </div>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if successful, returns false if this is empty or there is not enough memory. </dd></dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000046">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000043">Todo:</a></b></dt><dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd></dl>
 
@@ -2013,7 +2081,7 @@ template&lt;typename Predicate &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000057">Todo:</a></b></dt><dd>document this once <a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">TreeWalker</a> is documented. </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000054">Todo:</a></b></dt><dd>document this once <a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">TreeWalker</a> is documented. </dd></dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A bool </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04281">4281</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
@@ -2071,7 +2139,7 @@ template&lt;typename Predicate &gt; </div>
 <li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 12:19:41 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:20 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

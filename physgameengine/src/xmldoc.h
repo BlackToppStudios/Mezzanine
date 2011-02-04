@@ -789,14 +789,14 @@ namespace phys
         /// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
 
         /// @fn Node::Path(char_t delimiter = '/') const;
-        /// @brief Get the absolute XPath path to this Node
+        /// @brief Get the absolute path to this Node
         /// @param delimiter The character to use as a pathname separator, this defaults to '/'.
-        /// @return A String containing an XPath Path
+        /// @return A String containing an path
 
         /// @fn Node::FirstElementByPath(const char_t* Path, char_t delimiter = '/') const;
         /// @brief Search for a node by Path consisting of node names and . or .. elements.
         /// @todo Investigate this more deeply.
-        /// @param Path The XPath path to search for.
+        /// @param Path The path to search for.
         /// @param delimiter The character to use as a pathname separator, this defaults to '/'.
         /// @return The matching Node, of an empty Node on failure.
 
@@ -805,6 +805,22 @@ namespace phys
         /// @param walker a Treewalker
         /// @todo document this once TreeWalker is documented.
         /// @return A bool
+
+        /// @fn Node::FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;
+        /// @brief Select single node by evaluating XPath query. Returns first node from the resulting node set.
+        /// @param query The XPath query as a c-string to be evaluated.
+        /// @param XPathVariableSet undocumented.
+        /// @return XPathNode The first matching XPath node.
+
+        /// @fn Node::FindSingleNode(const XPathQuery& query) const;
+        /// @brief Select single node by evaluating XPath query. Returns first node from the resulting node set.
+        /// @param query The XPath query XPathQuery class instance.
+        /// @return XPathNode The first matching XPath node.
+
+		// Select node set by evaluating XPath query
+		//XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;
+		//XPathNodeSet FindNodes(const XPathQuery& query) const;
+
 
     }
 }

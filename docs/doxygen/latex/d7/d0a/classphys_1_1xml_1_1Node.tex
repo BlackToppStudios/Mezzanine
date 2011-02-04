@@ -158,21 +158,15 @@ bool \hyperlink{classphys_1_1xml_1_1Node_a2612e301caa54ac6af135b8fb11b2e25}{Remo
 
 \begin{DoxyCompactList}\small\item\em Find a \hyperlink{classphys_1_1xml_1_1Node}{Node} by an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} it has. \item\end{DoxyCompactList}\item 
 String \hyperlink{classphys_1_1xml_1_1Node_a0bf85dc0820ba204e7c9498c6651aec8}{Path} (char\_\-t delimiter= '/') const 
-\begin{DoxyCompactList}\small\item\em Get the absolute XPath path to this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get the absolute path to this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_af2a9ac5c4e3252dca0e17720de093a9a}{FirstElementByPath} (const char\_\-t $\ast$Path, char\_\-t delimiter= '/') const 
 \begin{DoxyCompactList}\small\item\em Search for a node by Path consisting of node names and . or .. elements. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{Traverse} (\hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker} \&walker)
 \begin{DoxyCompactList}\small\item\em undocumented \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1Node_a9026ddc7ccab8fcd844aa52ec09affc3}{
-\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} {\bfseries FindSingleNode} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a9026ddc7ccab8fcd844aa52ec09affc3}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_ae1a69821d5eb5997c25e3a6ec1ef8b74}{
-\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} {\bfseries FindSingleNode} (const \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} \&query) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_ae1a69821d5eb5997c25e3a6ec1ef8b74}
-
-\item 
+\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \hyperlink{classphys_1_1xml_1_1Node_a11966aa8afdfa586404393ebae9b07f5}{FindSingleNode} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const 
+\begin{DoxyCompactList}\small\item\em Select single node by evaluating XPath query. Returns first node from the resulting node set. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \hyperlink{classphys_1_1xml_1_1Node_a13b958f663f9605061e5e47dfd8e1966}{FindSingleNode} (const \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} \&query) const 
+\begin{DoxyCompactList}\small\item\em Select single node by evaluating XPath query. Returns first node from the resulting node set. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1Node_a7390ba1c09b83544365abc7bf8ec5b8f}{
 \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} {\bfseries FindNodes} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a7390ba1c09b83544365abc7bf8ec5b8f}
@@ -338,7 +332,7 @@ Creates a \hyperlink{classphys_1_1xml_1_1Node}{Node} and makes it a child of thi
 A \hyperlink{classphys_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classphys_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} if there was an error. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000052}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+\item[\hyperlink{todo__todo000049}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
 
 
 Definition at line 3979 of file xml.cpp.
@@ -363,7 +357,7 @@ Creates an element \hyperlink{classphys_1_1xml_1_1Node}{Node} as a child of this
 A \hyperlink{classphys_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classphys_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} if there was an error. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000055}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+\item[\hyperlink{todo__todo000052}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Name}]The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be created.\end{DoxyParams}
@@ -571,6 +565,53 @@ This returns the first \hyperlink{classphys_1_1xml_1_1Node}{Node} that causes Pr
 
 Definition at line 659 of file xml.h.
 
+\hypertarget{classphys_1_1xml_1_1Node_a13b958f663f9605061e5e47dfd8e1966}{
+\index{phys::xml::Node@{phys::xml::Node}!FindSingleNode@{FindSingleNode}}
+\index{FindSingleNode@{FindSingleNode}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FindSingleNode}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::FindSingleNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf XPathQuery} \&}]{ query}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a13b958f663f9605061e5e47dfd8e1966}
+
+
+Select single node by evaluating XPath query. Returns first node from the resulting node set. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em query}]The XPath query \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} The first matching XPath node. 
+\end{DoxyReturn}
+
+
+Definition at line 9609 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a11966aa8afdfa586404393ebae9b07f5}{
+\index{phys::xml::Node@{phys::xml::Node}!FindSingleNode@{FindSingleNode}}
+\index{FindSingleNode@{FindSingleNode}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FindSingleNode}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::FindSingleNode (
+\begin{DoxyParamCaption}
+\item[{const char\_\-t $\ast$}]{ query, }
+\item[{{\bf XPathVariableSet} $\ast$}]{ variables = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a11966aa8afdfa586404393ebae9b07f5}
+
+
+Select single node by evaluating XPath query. Returns first node from the resulting node set. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em query}]The XPath query as a c-\/string to be evaluated. \item[{\em \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet}}]undocumented. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} The first matching XPath node. 
+\end{DoxyReturn}
+
+
+Definition at line 9603 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_af2a9ac5c4e3252dca0e17720de093a9a}{
 \index{phys::xml::Node@{phys::xml::Node}!FirstElementByPath@{FirstElementByPath}}
 \index{FirstElementByPath@{FirstElementByPath}!phys::xml::Node@{phys::xml::Node}}
@@ -586,10 +627,10 @@ Definition at line 659 of file xml.h.
 Search for a node by Path consisting of node names and . or .. elements. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000056}{Todo}]Investigate this more deeply. \end{Desc}
+\item[\hyperlink{todo__todo000053}{Todo}]Investigate this more deeply. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Path}]The XPath path to search for. \item[{\em delimiter}]The character to use as a pathname separator, this defaults to '/'. \end{DoxyParams}
+\item[{\em Path}]The path to search for. \item[{\em delimiter}]The character to use as a pathname separator, this defaults to '/'. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The matching \hyperlink{classphys_1_1xml_1_1Node}{Node}, of an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -912,7 +953,7 @@ Definition at line 3883 of file xml.cpp.
 Creates a \hyperlink{classphys_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the middle of the Child Nodes. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000053}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+\item[\hyperlink{todo__todo000050}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Type}]The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added, just after another specific node. \item[{\em node}]The specific node to add the new one after. \end{DoxyParams}
@@ -962,7 +1003,7 @@ Definition at line 4083 of file xml.cpp.
 Creates a \hyperlink{classphys_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the middle of the Child Nodes. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000054}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+\item[\hyperlink{todo__todo000051}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Type}]The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added, just before another specific node. \end{DoxyParams}
@@ -1302,7 +1343,7 @@ Definition at line 3682 of file xml.cpp.
 \label{d7/d0a/classphys_1_1xml_1_1Node_a0bf85dc0820ba204e7c9498c6651aec8}
 
 
-Get the absolute XPath path to this \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+Get the absolute path to this \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -1311,7 +1352,7 @@ Any Null pointers instead of character arrays passed in will cause undefined beh
 \begin{DoxyParams}{Parameters}
 \item[{\em delimiter}]The character to use as a pathname separator, this defaults to '/'. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A String containing an XPath Path 
+A String containing an path 
 \end{DoxyReturn}
 
 
@@ -1570,7 +1611,7 @@ Set the value of this.
 True if successful, returns false if this is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000046}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000043}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 
@@ -1594,7 +1635,7 @@ undocumented
 \begin{DoxyParams}{Parameters}
 \item[{\em walker}]a Treewalker \end{DoxyParams}
 \begin{Desc}
-\item[\hyperlink{todo__todo000057}{Todo}]document this once \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker} is documented. \end{Desc}
+\item[\hyperlink{todo__todo000054}{Todo}]document this once \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker} is documented. \end{Desc}
 \begin{DoxyReturn}{Returns}
 A bool 
 \end{DoxyReturn}
