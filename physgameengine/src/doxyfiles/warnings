@@ -1,4 +1,3 @@
-Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
 warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readable file or directory... skipping.
 /home/dev/physgame/physgameengine/src/xml.h:788: warning: Compound phys::xml::AttributeIterator is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:746: warning: Compound phys::xml::NodeIterator is not documented.
@@ -507,9 +506,6 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xml.h:717: warning: Member iterator (typedef) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:723: warning: Member attribute_iterator (typedef) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:636: warning: Member FindAttribute(Predicate pred) const  (function) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:648: warning: Member FindChild(Predicate pred) const  (function) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:660: warning: Member FindNode(Predicate pred) const  (function) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:683: warning: Member FindChildbyAttribute(const char_t *Name, const char_t *attr_Name, const char_t *attr_Value) const  (function) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:684: warning: Member FindChildbyAttribute(const char_t *attr_Name, const char_t *attr_Value) const  (function) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:688: warning: Member path(char_t delimiter= '/') const  (function) of class phys::xml::Node is not documented.
@@ -533,6 +529,15 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/xml.h:466: warning: Member _GetRoot (variable) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xmldoc.h:701: warning: argument 'node' of command @param is not found in the argument list of phys::xml::Node::AppendChild(const char_t *Name)
 /home/dev/physgame/physgameengine/src/xmldoc.h:720: warning: unable to resolve reference to `Node::InsertChildBefore(NodeType, Node)' for \ref command
+/home/dev/physgame/physgameengine/src/xmldoc.h:753: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindAttribute(Predicate pred) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:753: warning: The following parameters of phys::xml::Node::FindAttribute(Predicate pred) const are not documented:
+  parameter 'pred'
+/home/dev/physgame/physgameengine/src/xmldoc.h:761: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindChild(Predicate pred) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:761: warning: The following parameters of phys::xml::Node::FindChild(Predicate pred) const are not documented:
+  parameter 'pred'
+/home/dev/physgame/physgameengine/src/xmldoc.h:769: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindNode(Predicate pred) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:769: warning: The following parameters of phys::xml::Node::FindNode(Predicate pred) const are not documented:
+  parameter 'pred'
 /home/dev/physgame/physgameengine/src/xml.h:604: warning: argument 'Node' of command @param is not found in the argument list of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node)
 /home/dev/physgame/physgameengine/src/xml.h:608: warning: unable to resolve reference to `Node::InsertChildAfter(NodeType, Node)' for \ref command
 /home/dev/physgame/physgameengine/src/xml.h:604: warning: The following parameters of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node) are not documented:

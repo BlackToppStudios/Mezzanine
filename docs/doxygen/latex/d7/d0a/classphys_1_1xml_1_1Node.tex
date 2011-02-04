@@ -144,21 +144,12 @@ bool \hyperlink{classphys_1_1xml_1_1Node_a946bb656b94c9d3a561200cd2cd3ee11}{Remo
 \begin{DoxyCompactList}\small\item\em Remove specified child element. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1Node_a2612e301caa54ac6af135b8fb11b2e25}{RemoveChild} (const char\_\-t $\ast$Name)
 \begin{DoxyCompactList}\small\item\em Remove child element as specified by name. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1Node_ab1ad6ee2e78ddd3f591faffe675ed910}{
-{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries FindAttribute} (Predicate pred) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_ab1ad6ee2e78ddd3f591faffe675ed910}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a1041d264f8927adb691c47ccacff28d4}{
-{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries FindChild} (Predicate pred) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a1041d264f8927adb691c47ccacff28d4}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_ab2311cefdf1d7f4886cbebd7350d7731}{
-{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries FindNode} (Predicate pred) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_ab2311cefdf1d7f4886cbebd7350d7731}
-
-\item 
+{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \hyperlink{classphys_1_1xml_1_1Node_af6cf25d1823ccf0f9f123825ef8537bd}{FindAttribute} (Predicate pred) const 
+\begin{DoxyCompactList}\small\item\em Search for an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} using a function to check each \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} individually. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_aba9be6b2bab1e5ca9ca7a201e887bd48}{FindChild} (Predicate pred) const 
+\begin{DoxyCompactList}\small\item\em Search for an child ( only direct children ) \hyperlink{classphys_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classphys_1_1xml_1_1Node}{Node} individually. \item\end{DoxyCompactList}\item 
+{\footnotesize template$<$typename Predicate $>$ }\\\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a495663e5af0745f42e48bbfd21408c99}{FindNode} (Predicate pred) const 
+\begin{DoxyCompactList}\small\item\em Search for any \hyperlink{classphys_1_1xml_1_1Node}{Node} descended from this \hyperlink{classphys_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classphys_1_1xml_1_1Node}{Node} individually. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1xml_1_1Node_a647302cd585c40fcdc9570176947706d}{
 \hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries FindChildbyAttribute} (const char\_\-t $\ast$Name, const char\_\-t $\ast$attr\_\-Name, const char\_\-t $\ast$attr\_\-Value) const }
 \label{d7/d0a/classphys_1_1xml_1_1Node_a647302cd585c40fcdc9570176947706d}
@@ -500,6 +491,75 @@ Returns True if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is storing nothi
 
 
 Definition at line 3687 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_af6cf25d1823ccf0f9f123825ef8537bd}{
+\index{phys::xml::Node@{phys::xml::Node}!FindAttribute@{FindAttribute}}
+\index{FindAttribute@{FindAttribute}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FindAttribute}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Predicate $>$ phys::xml::Node::FindAttribute (
+\begin{DoxyParamCaption}
+\item[{Predicate}]{ pred}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_af6cf25d1823ccf0f9f123825ef8537bd}
+
+
+Search for an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} using a function to check each \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} individually. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Predicate}]a pointer to a function that accepts an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}, and returns bool.\end{DoxyParams}
+This iterates through each \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this node, from begining to end and calls the Predicate function passing an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} to it. If the Predicate returns true the \hyperlink{classphys_1_1xml_1_1Node}{Node} it was just passed is returned. If Precdicate never returns true, it is called on every \hyperlink{classphys_1_1xml_1_1Node}{Node} and a blank \hyperlink{classphys_1_1xml_1_1Node}{Node} is returned. The Predicate is never called with a null value. \begin{DoxyReturn}{Returns}
+This returns the first \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that causes Predicate to return true. 
+\end{DoxyReturn}
+
+
+Definition at line 635 of file xml.h.
+
+\hypertarget{classphys_1_1xml_1_1Node_aba9be6b2bab1e5ca9ca7a201e887bd48}{
+\index{phys::xml::Node@{phys::xml::Node}!FindChild@{FindChild}}
+\index{FindChild@{FindChild}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FindChild}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Predicate $>$ phys::xml::Node::FindChild (
+\begin{DoxyParamCaption}
+\item[{Predicate}]{ pred}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_aba9be6b2bab1e5ca9ca7a201e887bd48}
+
+
+Search for an child ( only direct children ) \hyperlink{classphys_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classphys_1_1xml_1_1Node}{Node} individually. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Predicate}]a pointer to a function that accepts an \hyperlink{classphys_1_1xml_1_1Node}{Node}, and returns bool.\end{DoxyParams}
+This iterates through all immediate children of this \hyperlink{classphys_1_1xml_1_1Node}{Node} and calls the Predicate function passing a \hyperlink{classphys_1_1xml_1_1Node}{Node} to it. If the Predicate returns true the \hyperlink{classphys_1_1xml_1_1Node}{Node} it was just passed is returned. If Predicate never returns true, it is called on every \hyperlink{classphys_1_1xml_1_1Node}{Node} and a blank \hyperlink{classphys_1_1xml_1_1Node}{Node} is returned. The Predicate is never called with a null value. \begin{DoxyReturn}{Returns}
+This returns the first \hyperlink{classphys_1_1xml_1_1Node}{Node} that causes Predicate to return true. 
+\end{DoxyReturn}
+
+
+Definition at line 647 of file xml.h.
+
+\hypertarget{classphys_1_1xml_1_1Node_a495663e5af0745f42e48bbfd21408c99}{
+\index{phys::xml::Node@{phys::xml::Node}!FindNode@{FindNode}}
+\index{FindNode@{FindNode}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FindNode}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Predicate $>$ phys::xml::Node::FindNode (
+\begin{DoxyParamCaption}
+\item[{Predicate}]{ pred}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a495663e5af0745f42e48bbfd21408c99}
+
+
+Search for any \hyperlink{classphys_1_1xml_1_1Node}{Node} descended from this \hyperlink{classphys_1_1xml_1_1Node}{Node} using a function to check each \hyperlink{classphys_1_1xml_1_1Node}{Node} individually. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Predicate}]a pointer to a function that accepts an \hyperlink{classphys_1_1xml_1_1Node}{Node}, and returns bool.\end{DoxyParams}
+This iterates through all children of this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and their children ( and so on), and calls the Predicate function passing each \hyperlink{classphys_1_1xml_1_1Node}{Node} to it. This iterates through all Nodes using a depth first algorithm. If the Predicate returns true the \hyperlink{classphys_1_1xml_1_1Node}{Node} it was just passed is returned. If Predicate never returns true, it is called on every \hyperlink{classphys_1_1xml_1_1Node}{Node} and a blank \hyperlink{classphys_1_1xml_1_1Node}{Node} is returned. The Predicate is never called with a null value. \begin{DoxyReturn}{Returns}
+This returns the first \hyperlink{classphys_1_1xml_1_1Node}{Node} that causes Predicate to return true. 
+\end{DoxyReturn}
+
+
+Definition at line 659 of file xml.h.
 
 \hypertarget{classphys_1_1xml_1_1Node_a338eeb27d2a0cf39823f228abb5d936c}{
 \index{phys::xml::Node@{phys::xml::Node}!GetAttribute@{GetAttribute}}

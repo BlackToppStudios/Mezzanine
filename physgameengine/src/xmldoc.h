@@ -750,9 +750,30 @@ namespace phys
 		/// @param n The Node to look for. If the given Attribute doesn't belong to this Node then this will fail
 		/// @return True if the removal was successful, false otherwise
 
+        /// @fn Node::FindAttribute(Predicate pred) const
+        /// @brief Search for an Attribute using a function to check each Attribute individually.
+        /// @param Predicate a pointer to a function that accepts an Attribute, and returns bool.
+        /// @details This iterates through each Attribute on this node, from begining to end and calls the Predicate function passing
+        /// an Attribute to it. If the Predicate returns true the Node it was just passed is returned. If Precdicate never returns
+        /// true, it is called on every Node and a blank Node is returned. The Predicate is never called with a null value.
+        /// @return This returns the first Attribute that causes Predicate to return true.
 
+        /// @fn Node::FindChild(Predicate pred) const
+        /// @brief Search for an child ( only direct children ) Node using a function to check each Node individually.
+        /// @param Predicate a pointer to a function that accepts an Node, and returns bool.
+        /// @details This iterates through all immediate children of this Node and calls the Predicate function passing a Node to it. If
+        /// the Predicate returns true the Node it was just passed is returned. If Predicate never returns true, it is called
+        /// on every Node and a blank Node is returned. The Predicate is never called with a null value.
+        /// @return This returns the first Node that causes Predicate to return true.
 
-
+        /// @fn Node::FindNode(Predicate pred) const
+        /// @brief Search for any Node descended from this Node using a function to check each Node individually.
+        /// @param Predicate a pointer to a function that accepts an Node, and returns bool.
+        /// @details This iterates through all children of this Node, and their children ( and so on), and calls the Predicate function
+        /// passing each Node to it. This iterates through all Nodes using a depth first algorithm. If the Predicate returns true the
+        /// Node it was just passed is returned. If Predicate never returns true, it is called on every Node and a blank Node is
+        /// returned. The Predicate is never called with a null value.
+        /// @return This returns the first Node that causes Predicate to return true.
 
     }
 }

@@ -780,48 +780,69 @@
 <a name="l00749"></a>00749 <span class="comment">                /// @brief Remove specified child element.</span>
 <a name="l00750"></a>00750 <span class="comment">                /// @param n The Node to look for. If the given Attribute doesn&#39;t belong to this Node then this will fail</span>
 <a name="l00751"></a>00751 <span class="comment">                /// @return True if the removal was successful, false otherwise</span>
-<a name="l00752"></a>00752 <span class="comment"></span>
-<a name="l00753"></a>00753 
-<a name="l00754"></a>00754 
-<a name="l00755"></a>00755 
-<a name="l00756"></a>00756 
-<a name="l00757"></a>00757     }
-<a name="l00758"></a>00758 }
-<a name="l00759"></a>00759 <span class="preprocessor">#endif</span>
-<a name="l00760"></a>00760 <span class="preprocessor"></span>
-<a name="l00761"></a>00761 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l00762"></a>00762 <span class="preprocessor"></span>
-<a name="l00763"></a>00763 <span class="comment">/*</span>
-<a name="l00764"></a>00764 <span class="comment"> *</span>
-<a name="l00765"></a>00765 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l00766"></a>00766 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l00767"></a>00767 <span class="comment"> *</span>
-<a name="l00768"></a>00768 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l00769"></a>00769 <span class="comment"> *</span>
-<a name="l00770"></a>00770 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l00771"></a>00771 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l00772"></a>00772 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l00773"></a>00773 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l00774"></a>00774 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l00775"></a>00775 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l00776"></a>00776 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l00777"></a>00777 <span class="comment"> * conditions:</span>
-<a name="l00778"></a>00778 <span class="comment"> *</span>
-<a name="l00779"></a>00779 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l00780"></a>00780 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l00781"></a>00781 <span class="comment"> *</span>
-<a name="l00782"></a>00782 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l00783"></a>00783 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l00784"></a>00784 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l00785"></a>00785 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l00786"></a>00786 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l00787"></a>00787 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l00788"></a>00788 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l00789"></a>00789 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l00790"></a>00790 <span class="comment"> */</span>
+<a name="l00752"></a>00752 <span class="comment"></span><span class="comment"></span>
+<a name="l00753"></a>00753 <span class="comment">        /// @fn Node::FindAttribute(Predicate pred) const</span>
+<a name="l00754"></a>00754 <span class="comment">        /// @brief Search for an Attribute using a function to check each Attribute individually.</span>
+<a name="l00755"></a>00755 <span class="comment">        /// @param Predicate a pointer to a function that accepts an Attribute, and returns bool.</span>
+<a name="l00756"></a>00756 <span class="comment">        /// @details This iterates through each Attribute on this node, from begining to end and calls the Predicate function passing</span>
+<a name="l00757"></a>00757 <span class="comment">        /// an Attribute to it. If the Predicate returns true the Node it was just passed is returned. If Precdicate never returns</span>
+<a name="l00758"></a>00758 <span class="comment">        /// true, it is called on every Node and a blank Node is returned. The Predicate is never called with a null value.</span>
+<a name="l00759"></a>00759 <span class="comment">        /// @return This returns the first Attribute that causes Predicate to return true.</span>
+<a name="l00760"></a>00760 <span class="comment"></span><span class="comment"></span>
+<a name="l00761"></a>00761 <span class="comment">        /// @fn Node::FindChild(Predicate pred) const</span>
+<a name="l00762"></a>00762 <span class="comment">        /// @brief Search for an child ( only direct children ) Node using a function to check each Node individually.</span>
+<a name="l00763"></a>00763 <span class="comment">        /// @param Predicate a pointer to a function that accepts an Node, and returns bool.</span>
+<a name="l00764"></a>00764 <span class="comment">        /// @details This iterates through all immediate children of this Node and calls the Predicate function passing a Node to it. If</span>
+<a name="l00765"></a>00765 <span class="comment">        /// the Predicate returns true the Node it was just passed is returned. If Predicate never returns true, it is called</span>
+<a name="l00766"></a>00766 <span class="comment">        /// on every Node and a blank Node is returned. The Predicate is never called with a null value.</span>
+<a name="l00767"></a>00767 <span class="comment">        /// @return This returns the first Node that causes Predicate to return true.</span>
+<a name="l00768"></a>00768 <span class="comment"></span><span class="comment"></span>
+<a name="l00769"></a>00769 <span class="comment">        /// @fn Node::FindNode(Predicate pred) const</span>
+<a name="l00770"></a>00770 <span class="comment">        /// @brief Search for any Node descended from this Node using a function to check each Node individually.</span>
+<a name="l00771"></a>00771 <span class="comment">        /// @param Predicate a pointer to a function that accepts an Node, and returns bool.</span>
+<a name="l00772"></a>00772 <span class="comment">        /// @details This iterates through all children of this Node, and their children ( and so on), and calls the Predicate function</span>
+<a name="l00773"></a>00773 <span class="comment">        /// passing each Node to it. This iterates through all Nodes using a depth first algorithm. If the Predicate returns true the</span>
+<a name="l00774"></a>00774 <span class="comment">        /// Node it was just passed is returned. If Predicate never returns true, it is called on every Node and a blank Node is</span>
+<a name="l00775"></a>00775 <span class="comment">        /// returned. The Predicate is never called with a null value.</span>
+<a name="l00776"></a>00776 <span class="comment">        /// @return This returns the first Node that causes Predicate to return true.</span>
+<a name="l00777"></a>00777 <span class="comment"></span>
+<a name="l00778"></a>00778     }
+<a name="l00779"></a>00779 }
+<a name="l00780"></a>00780 <span class="preprocessor">#endif</span>
+<a name="l00781"></a>00781 <span class="preprocessor"></span>
+<a name="l00782"></a>00782 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l00783"></a>00783 <span class="preprocessor"></span>
+<a name="l00784"></a>00784 <span class="comment">/*</span>
+<a name="l00785"></a>00785 <span class="comment"> *</span>
+<a name="l00786"></a>00786 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l00787"></a>00787 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l00788"></a>00788 <span class="comment"> *</span>
+<a name="l00789"></a>00789 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l00790"></a>00790 <span class="comment"> *</span>
+<a name="l00791"></a>00791 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l00792"></a>00792 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l00793"></a>00793 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l00794"></a>00794 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l00795"></a>00795 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l00796"></a>00796 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l00797"></a>00797 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l00798"></a>00798 <span class="comment"> * conditions:</span>
+<a name="l00799"></a>00799 <span class="comment"> *</span>
+<a name="l00800"></a>00800 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l00801"></a>00801 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l00802"></a>00802 <span class="comment"> *</span>
+<a name="l00803"></a>00803 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l00804"></a>00804 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l00805"></a>00805 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l00806"></a>00806 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l00807"></a>00807 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l00808"></a>00808 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l00809"></a>00809 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l00810"></a>00810 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l00811"></a>00811 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:19 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 11:13:35 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

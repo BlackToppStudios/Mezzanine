@@ -663,7 +663,7 @@
 <a name="l00632"></a>00632 <span class="comment"></span>                <span class="keywordtype">bool</span> RemoveChild(<span class="keyword">const</span> char_t* Name); 
 <a name="l00633"></a>00633  
 <a name="l00634"></a>00634                 <span class="comment">// Find GetAttribute using predicate. Returns first GetAttribute for which predicate returned true. </span>
-<a name="l00635"></a>00635                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> FindAttribute(Predicate pred)<span class="keyword"> const </span>
+<a name="l00635"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#af6cf25d1823ccf0f9f123825ef8537bd">00635</a>                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> FindAttribute(Predicate pred)<span class="keyword"> const </span>
 <a name="l00636"></a>00636 <span class="keyword">                </span>{ 
 <a name="l00637"></a>00637                         <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>(); 
 <a name="l00638"></a>00638                          
@@ -675,7 +675,7 @@
 <a name="l00644"></a>00644                 } 
 <a name="l00645"></a>00645  
 <a name="l00646"></a>00646                 <span class="comment">// Find GetChild node using predicate. Returns first GetChild for which predicate returned true. </span>
-<a name="l00647"></a>00647                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FindChild(Predicate pred)<span class="keyword"> const </span>
+<a name="l00647"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#aba9be6b2bab1e5ca9ca7a201e887bd48">00647</a>                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FindChild(Predicate pred)<span class="keyword"> const </span>
 <a name="l00648"></a>00648 <span class="keyword">                </span>{ 
 <a name="l00649"></a>00649                         <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>(); 
 <a name="l00650"></a>00650          
@@ -687,7 +687,7 @@
 <a name="l00656"></a>00656                 } 
 <a name="l00657"></a>00657  
 <a name="l00658"></a>00658                 <span class="comment">// Find node from subtree using predicate. Returns first node from subtree (depth-first), for which predicate returned true. </span>
-<a name="l00659"></a>00659                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FindNode(Predicate pred)<span class="keyword"> const </span>
+<a name="l00659"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a495663e5af0745f42e48bbfd21408c99">00659</a>                 <span class="keyword">template</span> &lt;<span class="keyword">typename</span> Predicate&gt; <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> FindNode(Predicate pred)<span class="keyword"> const </span>
 <a name="l00660"></a>00660 <span class="keyword">                </span>{ 
 <a name="l00661"></a>00661                         <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>(); 
 <a name="l00662"></a>00662  
@@ -745,16 +745,16 @@
 <a name="l00714"></a>00714 <span class="preprocessor">        #endif </span>
 <a name="l00715"></a>00715 <span class="preprocessor"></span> 
 <a name="l00716"></a>00716                 <span class="comment">// Child nodes iterators </span>
-<a name="l00717"></a>00717                 <span class="keyword">typedef</span> <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">NodeIterator</a> <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">iterator</a>; 
+<a name="l00717"></a>00717                 <span class="keyword">typedef</span> <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">NodeIterator</a> iterator; 
 <a name="l00718"></a>00718  
-<a name="l00719"></a>00719                 <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">iterator</a> begin() <span class="keyword">const</span>; 
-<a name="l00720"></a>00720                 <a class="code" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html">iterator</a> end() <span class="keyword">const</span>; 
+<a name="l00719"></a>00719                 iterator begin() <span class="keyword">const</span>; 
+<a name="l00720"></a>00720                 iterator end() <span class="keyword">const</span>; 
 <a name="l00721"></a>00721  
 <a name="l00722"></a>00722                 <span class="comment">// Attribute iterators </span>
-<a name="l00723"></a>00723                 <span class="keyword">typedef</span> <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">attribute_iterator</a>; 
+<a name="l00723"></a>00723                 <span class="keyword">typedef</span> <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> attribute_iterator; 
 <a name="l00724"></a>00724  
-<a name="l00725"></a>00725                 <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">attribute_iterator</a> attributes_begin() <span class="keyword">const</span>; 
-<a name="l00726"></a>00726                 <a class="code" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">attribute_iterator</a> attributes_end() <span class="keyword">const</span>; 
+<a name="l00725"></a>00725                 attribute_iterator attributes_begin() <span class="keyword">const</span>; 
+<a name="l00726"></a>00726                 attribute_iterator attributes_end() <span class="keyword">const</span>; 
 <a name="l00727"></a>00727  
 <a name="l00728"></a>00728                 <span class="comment">// Get node Offset in parsed file/string (in char_t units) for debugging purposes </span>
 <a name="l00729"></a>00729                 ptrdiff_t OffSetDebug() <span class="keyword">const</span>; 
@@ -768,8 +768,8 @@
 <a name="l00737"></a>00737  
 <a name="l00738"></a>00738 <span class="preprocessor">#ifdef __BORLANDC__ </span>
 <a name="l00739"></a>00739 <span class="preprocessor"></span>        <span class="comment">// Borland C++ workaround </span>
-<a name="l00740"></a>00740         <span class="keywordtype">bool</span> PHYS_LIB operator&amp;&amp;(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; lhs, <span class="keywordtype">bool</span> rhs); 
-<a name="l00741"></a>00741         <span class="keywordtype">bool</span> PHYS_LIB operator||(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; lhs, <span class="keywordtype">bool</span> rhs); 
+<a name="l00740"></a>00740         <span class="keywordtype">bool</span> PHYS_LIB operator&amp;&amp;(<span class="keyword">const</span> <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>&amp; lhs, <span class="keywordtype">bool</span> rhs); 
+<a name="l00741"></a>00741         <span class="keywordtype">bool</span> PHYS_LIB operator||(<span class="keyword">const</span> <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>&amp; lhs, <span class="keywordtype">bool</span> rhs); 
 <a name="l00742"></a>00742 <span class="preprocessor">#endif </span>
 <a name="l00743"></a>00743 <span class="preprocessor"></span> 
 <a name="l00744"></a>00744         <span class="comment">// Child node iterator (a bidirectional iterator over a collection of Node) </span>
@@ -1357,7 +1357,7 @@
 <a name="l01326"></a>01326 <span class="preprocessor">#endif // \PHYSXML </span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:19 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 11:13:35 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
