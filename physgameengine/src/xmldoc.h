@@ -734,7 +734,6 @@ namespace phys
         /// @param node The Node just after the desired place in the list of children to insert the copied node.
         /// @return The copied Node on success, an empty Node on failure.
 
-
 		/// @fn Node::RemoveAttribute(const Attribute& a);
 		/// @brief Remove specified Attribute.
 		/// @param a The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
@@ -801,10 +800,10 @@ namespace phys
         /// @return The matching Node, of an empty Node on failure.
 
         /// @fn Node::Traverse(TreeWalker& walker);
-        /// @brief undocumented
-        /// @param walker a Treewalker
-        /// @todo document this once TreeWalker is documented.
-        /// @return A bool
+        /// @brief Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree.
+        /// @param walker Any class that fully implement xml::Treewalker. This is where the algorithm to be run is located.
+        /// @return True if every descendant Node of this Node was iterated through, false if it didn't go through every Node.
+        /// @see xml::TreeWalker
 
         /// @fn Node::FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;
         /// @brief Select single node by evaluating XPath query. Returns first node from the resulting node set.
@@ -820,6 +819,51 @@ namespace phys
 		// Select node set by evaluating XPath query
 		//XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;
 		//XPathNodeSet FindNodes(const XPathQuery& query) const;
+
+
+
+
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class TreeWalker
+        /// @brief Used to call a function for_each member of the subtree of nodes descended from a specific node.
+        /// @details If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some
+        /// equivalent method or use a TreeWalker. This provides a helper for depth-first traversal of a subtree. In order
+        /// to use it, you have to implement xml::TreeWalker interface and call xml::Node::Traverse() function. \n\n
+        ///  * First, TreeWalker::begin() is called with traversal root as its argument.\n
+        ///  * Then, TreeWalker::for_each() function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Each Node is passed as an argument.\n
+        ///  * Finally, TreeWalker::end() function is called with traversal root as its argument.\n\n
+        /// If TreeWalker::begin(), TreeWalker::end() or any of the TreeWalker::for_each() calls return false, the traversal
+        /// is terminated and false is returned as the traversal result; otherwise, the traversal results in true. Note that
+        /// you don't have to override begin or end functions; their default implementations return true.\n\n
+        /// You can get the node's depth relative to the traversal root at any point by calling TreeWalker::Depth() function.
+
+        /// @fn TreeWalker::Depth() const;
+        /// @brief How many descendants deep are we during traversal.
+        /// @return This returns -1 if called from TreeWalker::begin() or TreeWalker::end(), and returns 0-based depth if called from for_each - depth is 0 for all children of the traversal root, 1 for all grandchildren, 2 for great-grandchildren and so on.
+
+        /// @fn TreeWalker::TreeWalker();
+        /// @brief Default constructor, initializes depth, and can do little else without a fully implemented treewalker.
+
+        /// @fn TreeWalker::~TreeWalker();
+        /// @brief Virtual deconstructor. Tears down a TreeWalker
+
+        /// @fn TreeWalker::begin(Node& node);
+        /// @brief Called on the root Node of the xml subtree when traversal begins.
+        /// @detail By default this simply returns true, but is expected to be overridden with any desired behavior
+        /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
+
+        /// @fn TreeWalker::for_each(Node& node);
+        /// @brief A Pure Virtual function that is expected to be implemented to create the desired behavior.
+        /// @detail This is called on every Node that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches
+        /// of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching
+        /// many nodes.
+        /// @return if true Traversal is expected to continue, if false, then traversal ends and the Node::Traverse() that was called is expected to return false.
+
+        /// @fn TreeWalker::end(Node& node);
+        /// @brief Called on the root Node of the xml subtree when traversal ends.
+        /// @detail By default this simply returns true, but is expected to be overridden with any desired behavior
+        /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
 
 
     }

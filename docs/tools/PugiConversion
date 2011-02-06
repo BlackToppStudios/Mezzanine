@@ -256,10 +256,6 @@ function FixNames
 	sed -i -e 's|float AsFloat() const;|float AsFloat() const;\n		Real AsReal() const;\n		Whole AsWhole() const;\n		Integer AsInteger() const;\n		String AsString() const;|g' $1
 	sed -i -e 's|float Attribute::AsFloat() const|Whole Attribute::AsWhole() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToWhole(_attr->Value);\n	}\n\n	Integer Attribute::AsInteger() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToInteger(_attr->Value);\n	}\n\n	String Attribute::AsString() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToString(_attr->Value);\n	}\n\n	Real Attribute::AsReal() const\n	{\n		if (!_attr \|\| !_attr->Value) return 0;\n		return ToReal(_attr->Value);\n	}\n\n	float Attribute::AsFloat() const|g' $1
 
-
-
-#\n		\n		return ToReal(_attr->Value);\n	}\n\n	float AsFloat() const\1|g' $1
-
 	#The Node Class
 	sed -i -e 's|child_\(.\)\([a-z]*\)|Child\U\1\L\2|g' $1
 	sed -i -e 's|append_\(.\)\([a-z]*\)|Append\U\1\L\2|g' $1
@@ -289,6 +285,9 @@ function FixNames
 	sed -i -e 's|traverse|Traverse|g' $1
 	sed -i -e 's|path|Path|g' $1
 
+	#The TreeWalker Class
+	sed -i -e 's|depth|Depth|g' $1
+	
 	###############################
 	#Documentation that was not put in xmldoc.h
 

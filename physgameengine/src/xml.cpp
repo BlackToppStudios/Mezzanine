@@ -2928,19 +2928,19 @@ namespace
 		} 
 	} 
  
-	void NodeOutput(BufferedWriter& WriterInstance, const Node& node, const char_t* indent, unsigned int flags, unsigned int depth) 
+	void NodeOutput(BufferedWriter& WriterInstance, const Node& node, const char_t* indent, unsigned int flags, unsigned int Depth) 
 	{ 
 		const char_t* default_Name = XML_TEXT(":anonymous"); 
  
 		if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0) 
-			for (unsigned int i = 0; i < depth; ++i) WriterInstance.Write(indent); 
+			for (unsigned int i = 0; i < Depth; ++i) WriterInstance.Write(indent); 
  
 		switch (node.Type()) 
 		{ 
 		case NodeDocument: 
 		{ 
 			for (Node n = node.GetFirstChild(); n; n = n.GetNextSibling()) 
-				NodeOutput(WriterInstance, n, indent, flags, depth); 
+				NodeOutput(WriterInstance, n, indent, flags, Depth); 
 			break; 
 		} 
 			 
@@ -2962,7 +2962,7 @@ namespace
 					WriterInstance.Write('>'); 
  
 					for (Node n = node.GetFirstChild(); n; n = n.GetNextSibling()) 
-						NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
+						NodeOutput(WriterInstance, n, indent, flags, Depth + 1); 
  
 					WriterInstance.Write('<', '/'); 
 					WriterInstance.Write(Name); 
@@ -2989,10 +2989,10 @@ namespace
 				WriterInstance.Write('>', '\n'); 
 				 
 				for (Node n = node.GetFirstChild(); n; n = n.GetNextSibling()) 
-					NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
+					NodeOutput(WriterInstance, n, indent, flags, Depth + 1); 
  
 				if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0) 
-					for (unsigned int i = 0; i < depth; ++i) WriterInstance.Write(indent); 
+					for (unsigned int i = 0; i < Depth; ++i) WriterInstance.Write(indent); 
 				 
 				WriterInstance.Write('<', '/'); 
 				WriterInstance.Write(Name); 
@@ -3325,7 +3325,7 @@ namespace phys
 	} 
 #endif 
  
-	TreeWalker::TreeWalker(): _depth(0) 
+	TreeWalker::TreeWalker(): _Depth(0) 
 	{ 
 	} 
 	 
@@ -3333,9 +3333,9 @@ namespace phys
 	{ 
 	} 
  
-	int TreeWalker::depth() const 
+	int TreeWalker::Depth() const 
 	{ 
-		return _depth; 
+		return _Depth; 
 	} 
  
 	bool TreeWalker::begin(Node&) 
@@ -4280,7 +4280,7 @@ namespace phys
  
 	bool Node::Traverse(TreeWalker& walker) 
 	{ 
-		walker._depth = -1; 
+		walker._Depth = -1; 
 		 
 		Node arg_begin = *this; 
 		if (!walker.begin(arg_begin)) return false; 
@@ -4289,7 +4289,7 @@ namespace phys
 				 
 		if (cur) 
 		{ 
-			++walker._depth; 
+			++walker._Depth; 
  
 			do  
 			{ 
@@ -4299,7 +4299,7 @@ namespace phys
 						 
 				if (cur.GetFirstChild()) 
 				{ 
-					++walker._depth; 
+					++walker._Depth; 
 					cur = cur.GetFirstChild(); 
 				} 
 				else if (cur.GetNextSibling()) 
@@ -4309,7 +4309,7 @@ namespace phys
 					// Borland C++ workaround 
 					while (!cur.GetNextSibling() && cur != *this && (bool)cur.GetParent()) 
 					{ 
-						--walker._depth; 
+						--walker._Depth; 
 						cur = cur.GetParent(); 
 					} 
 						 
@@ -4320,7 +4320,7 @@ namespace phys
 			while (cur && cur != *this); 
 		} 
  
-		assert(walker._depth == -1); 
+		assert(walker._Depth == -1); 
  
 		Node arg_end = *this; 
 		return walker.end(arg_end); 
@@ -4336,28 +4336,28 @@ namespace phys
 		return _GetRoot; 
 	} 
  
-	void Node::print(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int depth) const 
+	void Node::print(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const 
 	{ 
 		if (!_GetRoot) return; 
  
 		BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding); 
  
-		NodeOutput(buffered_WriterInstance, *this, indent, flags, depth); 
+		NodeOutput(buffered_WriterInstance, *this, indent, flags, Depth); 
 	} 
  
 #ifndef XML_NO_STL 
-	void Node::print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int depth) const 
+	void Node::print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		print(WriterInstance, indent, flags, DocumentEncoding, depth); 
+		print(WriterInstance, indent, flags, DocumentEncoding, Depth); 
 	} 
  
-	void Node::print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int depth) const 
+	void Node::print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int Depth) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		print(WriterInstance, indent, flags, Encodingwchar_t, depth); 
+		print(WriterInstance, indent, flags, Encodingwchar_t, Depth); 
 	} 
 #endif 
  

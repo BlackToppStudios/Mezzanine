@@ -266,7 +266,7 @@ namespace phys
 	const unsigned int FormatNoDeclaration = 0x08; 
  
 	// The default set of formatting flags. 
-	// Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none. 
+	// Nodes are indented depending on their Depth in DOM tree, a default declaration is output if document has none. 
 	const unsigned int FormatDefault = FormatIndent; 
 		 
 	// Forward declarations 
@@ -655,7 +655,7 @@ namespace phys
 			return Node(); 
 		} 
  
-		// Find node from subtree using predicate. Returns first node from subtree (depth-first), for which predicate returned true. 
+		// Find node from subtree using predicate. Returns first node from subtree (Depth-first), for which predicate returned true. 
 		template <typename Predicate> Node FindNode(Predicate pred) const 
 		{ 
 			if (!_GetRoot) return Node(); 
@@ -705,12 +705,12 @@ namespace phys
 	#endif 
 		 
 		// Print subtree using a WriterInstance object 
-		void print(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
+		void print(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const; 
  
 	#ifndef XML_NO_STL 
 		// Print subtree to stream 
-		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
-		void print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, unsigned int depth = 0) const; 
+		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const; 
+		void print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, unsigned int Depth = 0) const; 
 	#endif 
  
 		// Child nodes iterators 
@@ -831,11 +831,11 @@ namespace phys
 		friend class Node; 
  
 	private: 
-		int _depth; 
+		int _Depth; 
 	 
 	protected: 
-		// Get current traversal depth 
-		int depth() const; 
+		// Get current traversal Depth 
+		int Depth() const; 
 	 
 	public: 
 		TreeWalker(); 

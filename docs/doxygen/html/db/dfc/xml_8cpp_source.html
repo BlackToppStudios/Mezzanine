@@ -2959,19 +2959,19 @@
 <a name="l02928"></a>02928                 } 
 <a name="l02929"></a>02929         } 
 <a name="l02930"></a>02930  
-<a name="l02931"></a>02931         <span class="keywordtype">void</span> NodeOutput(BufferedWriter&amp; WriterInstance, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth) 
+<a name="l02931"></a>02931         <span class="keywordtype">void</span> NodeOutput(BufferedWriter&amp; WriterInstance, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Depth) 
 <a name="l02932"></a>02932         { 
 <a name="l02933"></a>02933                 <span class="keyword">const</span> char_t* default_Name = <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;:anonymous&quot;</span>); 
 <a name="l02934"></a>02934  
 <a name="l02935"></a>02935                 <span class="keywordflow">if</span> ((flags &amp; <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#afaad0b8f59b5f103218ed5cb39b1bbde" title="Indent the nodes that are written to output stream with as many indentation strings as deep the node ...">FormatIndent</a>) != 0 &amp;&amp; (flags &amp; <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a6f6696cbdc48011817adad7978e83976" title="Use raw output mode (no indentation and no line breaks are written). This flag is off by default...">FormatRaw</a>) == 0) 
-<a name="l02936"></a>02936                         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; depth; ++i) WriterInstance.Write(indent); 
+<a name="l02936"></a>02936                         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; Depth; ++i) WriterInstance.Write(indent); 
 <a name="l02937"></a>02937  
 <a name="l02938"></a>02938                 <span class="keywordflow">switch</span> (node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a33288f89218baf24d1061c6eeb08687f" title="Identify what kind of Node this is.">Type</a>()) 
 <a name="l02939"></a>02939                 { 
 <a name="l02940"></a>02940                 <span class="keywordflow">case</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3acfe92e6bd275972917b95f08bd46e09f" title="A document tree&amp;#39;s absolute root.">NodeDocument</a>: 
 <a name="l02941"></a>02941                 { 
 <a name="l02942"></a>02942                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); n; n = n.GetNextSibling()) 
-<a name="l02943"></a>02943                                 NodeOutput(WriterInstance, n, indent, flags, depth); 
+<a name="l02943"></a>02943                                 NodeOutput(WriterInstance, n, indent, flags, Depth); 
 <a name="l02944"></a>02944                         <span class="keywordflow">break</span>; 
 <a name="l02945"></a>02945                 } 
 <a name="l02946"></a>02946                          
@@ -2993,7 +2993,7 @@
 <a name="l02962"></a>02962                                         WriterInstance.Write(<span class="charliteral">&#39;&gt;&#39;</span>); 
 <a name="l02963"></a>02963  
 <a name="l02964"></a>02964                                         <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); n; n = n.GetNextSibling()) 
-<a name="l02965"></a>02965                                                 NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
+<a name="l02965"></a>02965                                                 NodeOutput(WriterInstance, n, indent, flags, Depth + 1); 
 <a name="l02966"></a>02966  
 <a name="l02967"></a>02967                                         WriterInstance.Write(<span class="charliteral">&#39;&lt;&#39;</span>, <span class="charliteral">&#39;/&#39;</span>); 
 <a name="l02968"></a>02968                                         WriterInstance.Write(Name); 
@@ -3020,10 +3020,10 @@
 <a name="l02989"></a>02989                                 WriterInstance.Write(<span class="charliteral">&#39;&gt;&#39;</span>, <span class="charliteral">&#39;\n&#39;</span>); 
 <a name="l02990"></a>02990                                  
 <a name="l02991"></a>02991                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); n; n = n.GetNextSibling()) 
-<a name="l02992"></a>02992                                         NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
+<a name="l02992"></a>02992                                         NodeOutput(WriterInstance, n, indent, flags, Depth + 1); 
 <a name="l02993"></a>02993  
 <a name="l02994"></a>02994                                 <span class="keywordflow">if</span> ((flags &amp; FormatIndent) != 0 &amp;&amp; (flags &amp; FormatRaw) == 0) 
-<a name="l02995"></a>02995                                         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; depth; ++i) WriterInstance.Write(indent); 
+<a name="l02995"></a>02995                                         <span class="keywordflow">for</span> (<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> i = 0; i &lt; Depth; ++i) WriterInstance.Write(indent); 
 <a name="l02996"></a>02996                                  
 <a name="l02997"></a>02997                                 WriterInstance.Write(<span class="charliteral">&#39;&lt;&#39;</span>, <span class="charliteral">&#39;/&#39;</span>); 
 <a name="l02998"></a>02998                                 WriterInstance.Write(Name); 
@@ -3356,25 +3356,25 @@
 <a name="l03325"></a>03325         } 
 <a name="l03326"></a>03326 <span class="preprocessor">#endif </span>
 <a name="l03327"></a>03327 <span class="preprocessor"></span> 
-<a name="l03328"></a>03328         TreeWalker::TreeWalker(): _depth(0) 
+<a name="l03328"></a><a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a5b4e97d7a0b433770431f8ebd8fc6489">03328</a>         <a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a5b4e97d7a0b433770431f8ebd8fc6489" title="Default constructor, initializes depth, and can do little else without a fully implemented treewalker...">TreeWalker::TreeWalker</a>(): _Depth(0) 
 <a name="l03329"></a>03329         { 
 <a name="l03330"></a>03330         } 
 <a name="l03331"></a>03331          
-<a name="l03332"></a>03332         TreeWalker::~TreeWalker() 
+<a name="l03332"></a><a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a84d0c68cf364a81e29f0cc321098ae28">03332</a>         <a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a84d0c68cf364a81e29f0cc321098ae28" title="Virtual deconstructor. Tears down a TreeWalker.">TreeWalker::~TreeWalker</a>() 
 <a name="l03333"></a>03333         { 
 <a name="l03334"></a>03334         } 
 <a name="l03335"></a>03335  
-<a name="l03336"></a>03336         <span class="keywordtype">int</span> TreeWalker::depth()<span class="keyword"> const </span>
+<a name="l03336"></a><a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a90fdd705ae4d5e8e3b931bb8896e4397">03336</a>         <span class="keywordtype">int</span> <a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a90fdd705ae4d5e8e3b931bb8896e4397" title="How many descendants deep are we during traversal.">TreeWalker::Depth</a>()<span class="keyword"> const </span>
 <a name="l03337"></a>03337 <span class="keyword">        </span>{ 
-<a name="l03338"></a>03338                 <span class="keywordflow">return</span> _depth; 
+<a name="l03338"></a>03338                 <span class="keywordflow">return</span> _Depth; 
 <a name="l03339"></a>03339         } 
 <a name="l03340"></a>03340  
-<a name="l03341"></a>03341         <span class="keywordtype">bool</span> TreeWalker::begin(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp;) 
+<a name="l03341"></a><a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a649d9e5a06542be0282d3d20994a62fc">03341</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a649d9e5a06542be0282d3d20994a62fc" title="Called on the root Node of the xml subtree when traversal begins.  By default this simply returns tru...">TreeWalker::begin</a>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp;) 
 <a name="l03342"></a>03342         { 
 <a name="l03343"></a>03343                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l03344"></a>03344         } 
 <a name="l03345"></a>03345  
-<a name="l03346"></a>03346         <span class="keywordtype">bool</span> TreeWalker::end(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp;) 
+<a name="l03346"></a><a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a210f6d60579a152f89e651be797885b9">03346</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a210f6d60579a152f89e651be797885b9" title="Called on the root Node of the xml subtree when traversal ends.  By default this simply returns true...">TreeWalker::end</a>(<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp;) 
 <a name="l03347"></a>03347         { 
 <a name="l03348"></a>03348                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l03349"></a>03349         } 
@@ -4309,28 +4309,28 @@
 <a name="l04278"></a>04278                 } 
 <a name="l04279"></a>04279         } 
 <a name="l04280"></a>04280  
-<a name="l04281"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9">04281</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9" title="undocumented">Node::Traverse</a>(<a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html">TreeWalker</a>&amp; walker) 
+<a name="l04281"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9">04281</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse</a>(<a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html" title="Used to call a function for_each member of the subtree of nodes descended from a specific node...">TreeWalker</a>&amp; walker) 
 <a name="l04282"></a>04282         { 
-<a name="l04283"></a>04283                 walker._depth = -1; 
+<a name="l04283"></a>04283                 walker._Depth = -1; 
 <a name="l04284"></a>04284                  
 <a name="l04285"></a>04285                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> arg_begin = *<span class="keyword">this</span>; 
-<a name="l04286"></a>04286                 <span class="keywordflow">if</span> (!walker.begin(arg_begin)) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
+<a name="l04286"></a>04286                 <span class="keywordflow">if</span> (!walker.<a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a649d9e5a06542be0282d3d20994a62fc" title="Called on the root Node of the xml subtree when traversal begins.  By default this simply returns tru...">begin</a>(arg_begin)) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l04287"></a>04287  
 <a name="l04288"></a>04288                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); 
 <a name="l04289"></a>04289                                  
 <a name="l04290"></a>04290                 <span class="keywordflow">if</span> (cur) 
 <a name="l04291"></a>04291                 { 
-<a name="l04292"></a>04292                         ++walker._depth; 
+<a name="l04292"></a>04292                         ++walker._Depth; 
 <a name="l04293"></a>04293  
 <a name="l04294"></a>04294                         <span class="keywordflow">do</span>  
 <a name="l04295"></a>04295                         { 
 <a name="l04296"></a>04296                                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> arg_for_each = cur; 
-<a name="l04297"></a>04297                                 <span class="keywordflow">if</span> (!walker.for_each(arg_for_each)) 
+<a name="l04297"></a>04297                                 <span class="keywordflow">if</span> (!walker.<a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a03267e73acac44809f16739fd00a536d" title="A Pure Virtual function that is expected to be implemented to create the desired behavior.  This is called on every Node that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching many nodes.">for_each</a>(arg_for_each)) 
 <a name="l04298"></a>04298                                         <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l04299"></a>04299                                                  
 <a name="l04300"></a>04300                                 <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>()) 
 <a name="l04301"></a>04301                                 { 
-<a name="l04302"></a>04302                                         ++walker._depth; 
+<a name="l04302"></a>04302                                         ++walker._Depth; 
 <a name="l04303"></a>04303                                         cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); 
 <a name="l04304"></a>04304                                 } 
 <a name="l04305"></a>04305                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) 
@@ -4340,7 +4340,7 @@
 <a name="l04309"></a>04309                                         <span class="comment">// Borland C++ workaround </span>
 <a name="l04310"></a>04310                                         <span class="keywordflow">while</span> (!cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>() &amp;&amp; cur != *<span class="keyword">this</span> &amp;&amp; (bool)cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>()) 
 <a name="l04311"></a>04311                                         { 
-<a name="l04312"></a>04312                                                 --walker._depth; 
+<a name="l04312"></a>04312                                                 --walker._Depth; 
 <a name="l04313"></a>04313                                                 cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l04314"></a>04314                                         } 
 <a name="l04315"></a>04315                                                  
@@ -4351,10 +4351,10 @@
 <a name="l04320"></a>04320                         <span class="keywordflow">while</span> (cur &amp;&amp; cur != *<span class="keyword">this</span>); 
 <a name="l04321"></a>04321                 } 
 <a name="l04322"></a>04322  
-<a name="l04323"></a>04323                 assert(walker._depth == -1); 
+<a name="l04323"></a>04323                 assert(walker._Depth == -1); 
 <a name="l04324"></a>04324  
 <a name="l04325"></a>04325                 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> arg_end = *<span class="keyword">this</span>; 
-<a name="l04326"></a>04326                 <span class="keywordflow">return</span> walker.end(arg_end); 
+<a name="l04326"></a>04326                 <span class="keywordflow">return</span> walker.<a class="code" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a210f6d60579a152f89e651be797885b9" title="Called on the root Node of the xml subtree when traversal ends.  By default this simply returns true...">end</a>(arg_end); 
 <a name="l04327"></a>04327         } 
 <a name="l04328"></a>04328  
 <a name="l04329"></a>04329         <span class="keywordtype">size_t</span> Node::HashValue()<span class="keyword"> const </span>
@@ -4367,28 +4367,28 @@
 <a name="l04336"></a>04336                 <span class="keywordflow">return</span> _GetRoot; 
 <a name="l04337"></a>04337         } 
 <a name="l04338"></a>04338  
-<a name="l04339"></a>04339         <span class="keywordtype">void</span> Node::print(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html" title="Interface for node printing (see Node::print).">Writer</a>&amp; WriterInstance, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth)<span class="keyword"> const </span>
+<a name="l04339"></a>04339         <span class="keywordtype">void</span> Node::print(<a class="code" href="../../d2/d28/classphys_1_1xml_1_1Writer.html" title="Interface for node printing (see Node::print).">Writer</a>&amp; WriterInstance, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Depth)<span class="keyword"> const </span>
 <a name="l04340"></a>04340 <span class="keyword">        </span>{ 
 <a name="l04341"></a>04341                 <span class="keywordflow">if</span> (!_GetRoot) <span class="keywordflow">return</span>; 
 <a name="l04342"></a>04342  
 <a name="l04343"></a>04343                 BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding); 
 <a name="l04344"></a>04344  
-<a name="l04345"></a>04345                 NodeOutput(buffered_WriterInstance, *<span class="keyword">this</span>, indent, flags, depth); 
+<a name="l04345"></a>04345                 NodeOutput(buffered_WriterInstance, *<span class="keyword">this</span>, indent, flags, Depth); 
 <a name="l04346"></a>04346         } 
 <a name="l04347"></a>04347  
 <a name="l04348"></a>04348 <span class="preprocessor">#ifndef XML_NO_STL </span>
-<a name="l04349"></a>04349 <span class="preprocessor"></span>        <span class="keywordtype">void</span> Node::print(std::basic_ostream&lt;<span class="keywordtype">char</span>, std::char_traits&lt;char&gt; &gt;&amp; stream, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth)<span class="keyword"> const </span>
+<a name="l04349"></a>04349 <span class="preprocessor"></span>        <span class="keywordtype">void</span> Node::print(std::basic_ostream&lt;<span class="keywordtype">char</span>, std::char_traits&lt;char&gt; &gt;&amp; stream, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Depth)<span class="keyword"> const </span>
 <a name="l04350"></a>04350 <span class="keyword">        </span>{ 
 <a name="l04351"></a>04351                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html" title="An implementation of Writer intended for writing std::ostreams.">WriterStream</a> WriterInstance(stream); 
 <a name="l04352"></a>04352  
-<a name="l04353"></a>04353                 print(WriterInstance, indent, flags, DocumentEncoding, depth); 
+<a name="l04353"></a>04353                 print(WriterInstance, indent, flags, DocumentEncoding, Depth); 
 <a name="l04354"></a>04354         } 
 <a name="l04355"></a>04355  
-<a name="l04356"></a>04356         <span class="keywordtype">void</span> Node::print(std::basic_ostream&lt;<span class="keywordtype">wchar_t</span>, std::char_traits&lt;wchar_t&gt; &gt;&amp; stream, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> depth)<span class="keyword"> const </span>
+<a name="l04356"></a>04356         <span class="keywordtype">void</span> Node::print(std::basic_ostream&lt;<span class="keywordtype">wchar_t</span>, std::char_traits&lt;wchar_t&gt; &gt;&amp; stream, <span class="keyword">const</span> char_t* indent, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> flags, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Depth)<span class="keyword"> const </span>
 <a name="l04357"></a>04357 <span class="keyword">        </span>{ 
 <a name="l04358"></a>04358                 <a class="code" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html" title="An implementation of Writer intended for writing std::ostreams.">WriterStream</a> WriterInstance(stream); 
 <a name="l04359"></a>04359  
-<a name="l04360"></a>04360                 print(WriterInstance, indent, flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef" title="The same document encoding wchar_t has (usually either UTF16 or UTF32).">Encodingwchar_t</a>, depth); 
+<a name="l04360"></a>04360                 print(WriterInstance, indent, flags, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef" title="The same document encoding wchar_t has (usually either UTF16 or UTF32).">Encodingwchar_t</a>, Depth); 
 <a name="l04361"></a>04361         } 
 <a name="l04362"></a>04362 <span class="preprocessor">#endif </span>
 <a name="l04363"></a>04363 <span class="preprocessor"></span> 
@@ -9689,7 +9689,7 @@
 <a name="l09658"></a>09658 <span class="preprocessor">#endif // \PHYSXML </span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:11 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 6 2011 15:20:56 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
