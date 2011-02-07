@@ -204,7 +204,7 @@ namespace phys
         /// @var NodeDeclaration
         /// @brief Document declaration, i.e. '<?xml version="1.0"?>'.
 
-        /// @var NodeDoctype
+        /// @var NodeDocType
         /// @brief Document type declaration, i.e. '<!DOCTYPE doc>'.
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -290,23 +290,15 @@ namespace phys
         /// @brief Construct a Writer from a FILE* object.
         /// @param file The FILE to be written to. The FILE can be a File handle as per stdio or the standard input, output or even error. The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety.
 
-        // @fn WriterFile::Write
-        // @brief Writes data to a file.asdf
-		// @param data A pointer to the data.
-		// @param size The size of the data in bytes.
-
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WriterStream
         /// @brief An implementation of @ref Writer intended for writing std::ostreams
-
-
 
 		/// @var WriterStream::narrow_stream
 		/// @internal
 
         /// @var WriterStream::wide_stream
 		/// @internal
-
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @def XML_DEPRECATED
@@ -513,11 +505,12 @@ namespace phys
         /// @return A bool that has the correct value for a || operation.
 
 
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Node
         /// @brief A light-weight handle for manipulating nodes in DOM tree
 
-        /// @var Node::_root
+        /// @var Node::_GetRoot
         /// @internal
         /// @brief Stores pointers to the Node data and some metadata.
 
@@ -806,23 +799,189 @@ namespace phys
         /// @see xml::TreeWalker
 
         /// @fn Node::FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;
-        /// @brief Select single node by evaluating XPath query. Returns first node from the resulting node set.
+        /// @brief Select single node by evaluating an XPath query. Returns first node from the resulting node set.
         /// @param query The XPath query as a c-string to be evaluated.
         /// @param XPathVariableSet undocumented.
         /// @return XPathNode The first matching XPath node.
 
         /// @fn Node::FindSingleNode(const XPathQuery& query) const;
-        /// @brief Select single node by evaluating XPath query. Returns first node from the resulting node set.
+        /// @brief Select single node by evaluating an XPath query. Returns first node from the resulting node set.
         /// @param query The XPath query XPathQuery class instance.
         /// @return XPathNode The first matching XPath node.
 
-		// Select node set by evaluating XPath query
-		//XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;
-		//XPathNodeSet FindNodes(const XPathQuery& query) const;
+        /// @typedef Node::iterator
+        /// @brief An iterator for child Nodes
 
+        /// @fn Node::begin() const;
+        /// @brief Get a Child node iterator that references the first child Node.
+        /// @return A Node::Iterator that reference the first child Node.
 
+        /// @fn Node::end() const;
+        /// @brief Get a Child node iterator that references one past the last child Node.
+        /// @return A Node::Iterator that reference the last child Node.
 
+        /// @typedef Node::attribute_iterator
+        /// @brief An iterator for Attribute members on this Node
 
+        /// @fn Node::attributes_begin() const;
+        /// @brief Get an Attribute iterator that references the first Attribute on this Node.
+        /// @return A Node::Iterator that reference the first child node.
+
+        /// @fn Node::attributes_end() const;
+        /// @brief Get an Attribute iterator that references the one past the last Attribute on this Node.
+        /// @return A Node::Iterator that reference the last Attribute on this Node.
+
+		/// @fn Node::OffSetDebug() const;
+		/// @internal
+		/// @brief Get node Offset in parsed file/string (in char_t units) for debugging purposes
+        /// @return ptrdiff_t
+
+		/// @fn Node::HashValue() const;
+		/// @internal
+		/// @brief Get hash Value (unique for handles to the same object)
+		/// @return A size_t that uniquely indentifies this node.
+
+		/// @fn Node::InternalObject() const;
+		/// @internal
+		/// @brief Get internal pointer
+		/// @return A NodeStruct* that points to the internal data of this Node
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class NodeStruct
+        /// @internal
+        /// @brief The internal data storage structure used in a Node.
+        /// @warning Not part of the API, subject to change without warning.
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class AttributeStruct
+        /// @internal
+        /// @brief The internal data storage structure used in an Attribute.
+        /// @warning Not part of the API, subject to change without warning.
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class NodeIterator
+        /// @brief Child node iterator (a bidirectional iterator over a collection of Node)
+        /// @details Node::begin() and Node::attributes_begin() return iterators that point to the first node/attribute, respectively; Node::end() and Node::attributes_end() return past-the-end iterator for node/attribute list, respectively - this iterator can't be dereferenced, but decrementing it results in an iterator pointing to the last element in the list (except for empty lists, where decrementing past-the-end iterator results in undefined behavior). Past-the-end iterator is commonly used as a termination value for iteration loops. If you want to get an iterator that points to an existing handle, you can construct the iterator with the handle as a single constructor argument, like so: xml_node_iterator(node). For xml_attribute_iterator, you'll have to provide both an attribute and its parent node.\n\n
+        /// Node::begin() and Node::end() return equal iterators if called on null Node; such iterators can't be dereferenced. Node::attributes_begin() and Node::attributes_end() behave the same way. For correct iterator usage this means that child node/attribute collections of null nodes appear to be empty.\n\n
+        /// Both types of iterators have bidirectional iterator semantics (i.e. they can be incremented and decremented, but efficient random access is not supported) and support all usual iterator operations - comparison, dereference, etc. The iterators are invalidated if the node/attribute objects they're pointing to are removed from the tree; adding nodes/attributes does not invalidate any iterators.
+
+		/// @typedef NodeIterator::difference_type;
+		/// @brief An Iterator trait
+
+		/// @typedef NodeIterator::value_type;
+		/// @brief An Iterator trait
+
+		/// @typedef NodeIterator::pointer;
+		/// @brief An Iterator trait
+
+		/// @typedef NodeIterator::reference;
+		/// @brief An Iterator trait
+
+		/// @typedef NodeIterator::iterator_category;
+		/// @brief An Iterator trait
+
+        /// @fn NodeIterator::NodeIterator();
+        /// @brief Default Constructor, makes a blank iterator
+
+        /// @fn NodeIterator::NodeIterator(const Node& node);
+        /// @brief Construct an iterator which points to the specified node
+        /// @param node A Node that this iterator will point to.
+
+        /// @fn NodeIterator::operator==(const NodeIterator& rhs) const;
+        /// @brief Compares this NodeIterator to another NodeIterator for equality
+        /// @param rhs The Right Hand Side NodeIterator
+        /// @return True if the internal data stored in Node this NodeIterator refers to is the same as the metadata in the other NodeIterator's Node, false otherwise.
+
+        /// @fn NodeIterator::operator!=(const NodeIterator& rhs) const;
+        /// @brief Compares this NodeIterator to another NodeIterator for inequality
+        /// @param rhs The Right Hand Side NodeIterator.
+        /// @return False if the internal data stored in Node this NodeIterator refers to is the same as the metadata in the other NodeIterator's Node, True otherwise.
+
+        /// @fn NodeIterator::operator*();
+        /// @brief Deferences this Iterator
+        /// @return a Node reference to the node pointed at by this NodeIterator.
+
+        /// @fn NodeIterator::operator->();
+        /// @brief Get the pointer the Node this points to.
+        /// @return A pointer to the Node this NodeIterator references.
+
+		/// @fn NodeIterator::operator++();
+		/// @brief Increment the iterator to the next member of the container.
+        /// @return Returns a const NodeIterator.
+
+		/// @fn NodeIterator::operator++(int);
+		/// @brief Increment the iterator to the next member of the container.
+        /// @return Returns a NodeIterator.
+
+		/// @fn NodeIterator::operator--();
+		/// @brief Decrement the iterator to the next member of the container.
+        /// @return Returns a const NodeIterator.
+
+		/// @fn NodeIterator::operator--(int);
+		/// @brief Decrement the iterator to the next member of the container.
+        /// @return Returns a NodeIterator.
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class AttributeIterator
+        /// @brief Attribute iterator (a bidirectional iterator over a collection of Attribute).
+        /// @see This behaves very similar to xml::NodeIterator
+
+		/// @typedef AttributeIterator::difference_type;
+		/// @brief An Iterator trait
+
+		/// @typedef AttributeIterator::value_type;
+		/// @brief An Iterator trait
+
+		/// @typedef AttributeIterator::pointer;
+		/// @brief An Iterator trait
+
+		/// @typedef AttributeIterator::reference;
+		/// @brief An Iterator trait
+
+		/// @typedef AttributeIterator::iterator_category;
+		/// @brief An Iterator trait
+
+        /// @fn AttributeIterator::AttributeIterator();
+        /// @brief Default Constructor, makes a blank iterator
+
+        /// @fn AttributeIterator::AttributeIterator(const Attribute& attr, const Node& GetParent);
+        /// @brief Construct an iterator which points to the specified node
+        /// @param GetParent A Node that contains the Attribute this iterator will point to.
+        /// @param attr The Attribute this iterator points to.
+
+        /// @fn AttributeIterator::operator==(const AttributeIterator& rhs) const;
+        /// @brief Compares this AttributeIterator to another AttributeIterator for equality
+        /// @param rhs The Right Hand Side AttributeIterator
+        /// @return True if the internal data stored in the Attribute this AttributeIterator refers to is the same as the metadata in the other AttributeIterator's Attribute, false otherwise.
+
+        /// @fn AttributeIterator::operator!=(const AttributeIterator& rhs) const;
+        /// @brief Compares this AttributeIterator to another AttributeIterator for inequality
+        /// @param rhs The Right Hand Side AttributeIterator.
+        /// @return False if the internal data stored in Node this AttributeIterator refers to is the same as the metadata in the other AttributeIterator's Attribute, True otherwise.
+
+        /// @fn AttributeIterator::operator*();
+        /// @brief Deferences this Iterator
+        /// @return a Attribute reference to the Attribute pointed at by this AttributeIterator.
+
+        /// @fn AttributeIterator::operator->();
+        /// @brief Get the pointer the Attribute this points to.
+        /// @return A pointer to the Attribute this AttributeIterator references.
+
+		/// @fn AttributeIterator::operator++();
+		/// @brief Increment the iterator to the next member of the container.
+        /// @return Returns a const AttributeIterator.
+
+		/// @fn AttributeIterator::operator++(int);
+		/// @brief Increment the iterator to the next member of the container.
+        /// @return Returns a AttributeIterator.
+
+		/// @fn AttributeIterator::operator--();
+		/// @brief Decrement the iterator to the next member of the container.
+        /// @return Returns a const AttributeIterator.
+
+		/// @fn AttributeIterator::operator--(int);
+		/// @brief Decrement the iterator to the next member of the container.
+        /// @return Returns a AttributeIterator.
 
         //////////////////////////////////////////////////////////////////////////////
         /// @class TreeWalker
@@ -864,6 +1023,8 @@ namespace phys
         /// @brief Called on the root Node of the xml subtree when traversal ends.
         /// @detail By default this simply returns true, but is expected to be overridden with any desired behavior
         /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
+
+
 
 
     }

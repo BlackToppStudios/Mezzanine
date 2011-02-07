@@ -287,7 +287,7 @@ namespace phys
 	class XPathVariableSet; 
 	#endif 
  
-	// Writer interface for node printing (see Node::print) 
+	// Writer interface for node Printing (see Node::Print) 
 	class PHYS_LIB Writer 
 	{ 
 	public: 
@@ -700,17 +700,50 @@ namespace phys
 		XPathNode FindSingleNode(const XPathQuery& query) const; 
  
 		// Select node set by evaluating XPath query 
-		XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const; 
-		XPathNodeSet FindNodes(const XPathQuery& query) const; 
+		
+		/// @brief Select a group of nodes by evaluating an XPath query.
+		/// @param query The XPath query as a c-string to be evaluated.
+		/// @param XPathVariableSet undocumented.
+		/// @return An XPathNodeSet with the Matchs of the XPath query.
+		XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;  
+		
+		/// @brief Select a group of nodes by evaluating an XPath query.
+		/// @param query The XPath query XPathQuery class instance.
+		/// @return An XPathNodeSet with the Matchs of the XPath query.
+		/// @param query The XPath query XPathQuery class instance.
+		XPathNodeSet FindNodes(const XPathQuery& query) const;  
 	#endif 
 		 
 		// Print subtree using a WriterInstance object 
-		void print(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const; 
+		
+		/// @brief Output the XML document using a Writer.
+		/// @param WriterInstance The Writer that will be used to output the xml text.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param DocumentEncoding The xml::Encoding of the document, whichs defaults to EncodingAuto
+		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
+		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
+		void Print(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const; 
  
 	#ifndef XML_NO_STL 
 		// Print subtree to stream 
-		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const; 
-		void print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, unsigned int Depth = 0) const; 
+		
+		/// @brief Output the XML document using a Output Stream.
+		/// @param os An output stream to send xml text to.
+		/// @param indent The Character(s) used to represent a tab in the outpput, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault
+		/// @param DocumentEncoding The xml::Encoding of the document, whichs defaults to EncodingAuto
+		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
+		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
+		void Print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const; 
+		
+		/// @brief Output the XML document using a Output Stream.
+		/// @param os An output stream to send xml text to.
+		/// @param indent The Character(s) used to represent a tab in the outpput, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault
+		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
+		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
+		void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, unsigned int Depth = 0) const; 
 	#endif 
  
 		// Child nodes iterators 
@@ -755,7 +788,7 @@ namespace phys
 	public: 
 		// Iterator traits 
 		typedef ptrdiff_t difference_type; 
-		typedef Node Value_type; 
+		typedef Node value_type; 
 		typedef Node* pointer; 
 		typedef Node& reference; 
  
@@ -797,7 +830,7 @@ namespace phys
 	public: 
 		// Iterator traits 
 		typedef ptrdiff_t difference_type; 
-		typedef Attribute Value_type; 
+		typedef Attribute value_type; 
 		typedef Attribute* pointer; 
 		typedef Attribute& reference; 
  
@@ -952,11 +985,11 @@ namespace phys
 		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore). 
 		ParseResult load_buffer_inplace_own(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
-		// Save XML document to WriterInstance (semantics is slightly different from Node::print, see documentation for details). 
+		// Save XML document to WriterInstance (semantics is slightly different from Node::Print, see documentation for details). 
 		void save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 	#ifndef XML_NO_STL 
-		// Save XML document to stream (semantics is slightly different from Node::print, see documentation for details). 
+		// Save XML document to stream (semantics is slightly different from Node::Print, see documentation for details). 
 		void save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
 		void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault) const; 
 	#endif 

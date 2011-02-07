@@ -645,9 +645,9 @@ namespace
  
 	struct utf8_counter 
 	{ 
-		typedef size_t Value_type; 
+		typedef size_t value_type; 
  
-		static Value_type low(Value_type result, uint32_t ch) 
+		static value_type low(value_type result, uint32_t ch) 
 		{ 
 			// U+0000..U+007F 
 			if (ch < 0x80) return result + 1; 
@@ -657,7 +657,7 @@ namespace
 			else return result + 3; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t) 
+		static value_type high(value_type result, uint32_t) 
 		{ 
 			// U+10000..U+10FFFF 
 			return result + 4; 
@@ -666,9 +666,9 @@ namespace
  
 	struct utf8_WriterInstance 
 	{ 
-		typedef uint8_t* Value_type; 
+		typedef uint8_t* value_type; 
  
-		static Value_type low(Value_type result, uint32_t ch) 
+		static value_type low(value_type result, uint32_t ch) 
 		{ 
 			// U+0000..U+007F 
 			if (ch < 0x80) 
@@ -693,7 +693,7 @@ namespace
 			} 
 		} 
  
-		static Value_type high(Value_type result, uint32_t ch) 
+		static value_type high(value_type result, uint32_t ch) 
 		{ 
 			// U+10000..U+10FFFF 
 			result[0] = static_cast<uint8_t>(0xF0 | (ch >> 18)); 
@@ -703,7 +703,7 @@ namespace
 			return result + 4; 
 		} 
  
-		static Value_type any(Value_type result, uint32_t ch) 
+		static value_type any(value_type result, uint32_t ch) 
 		{ 
 			return (ch < 0x10000) ? low(result, ch) : high(result, ch); 
 		} 
@@ -711,14 +711,14 @@ namespace
  
 	struct utf16_counter 
 	{ 
-		typedef size_t Value_type; 
+		typedef size_t value_type; 
  
-		static Value_type low(Value_type result, uint32_t) 
+		static value_type low(value_type result, uint32_t) 
 		{ 
 			return result + 1; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t) 
+		static value_type high(value_type result, uint32_t) 
 		{ 
 			return result + 2; 
 		} 
@@ -726,16 +726,16 @@ namespace
  
 	struct utf16_WriterInstance 
 	{ 
-		typedef uint16_t* Value_type; 
+		typedef uint16_t* value_type; 
  
-		static Value_type low(Value_type result, uint32_t ch) 
+		static value_type low(value_type result, uint32_t ch) 
 		{ 
 			*result = static_cast<uint16_t>(ch); 
  
 			return result + 1; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t ch) 
+		static value_type high(value_type result, uint32_t ch) 
 		{ 
 			uint32_t msh = (uint32_t)(ch - 0x10000) >> 10; 
 			uint32_t lsh = (uint32_t)(ch - 0x10000) & 0x3ff; 
@@ -746,7 +746,7 @@ namespace
 			return result + 2; 
 		} 
  
-		static Value_type any(Value_type result, uint32_t ch) 
+		static value_type any(value_type result, uint32_t ch) 
 		{ 
 			return (ch < 0x10000) ? low(result, ch) : high(result, ch); 
 		} 
@@ -754,14 +754,14 @@ namespace
  
 	struct utf32_counter 
 	{ 
-		typedef size_t Value_type; 
+		typedef size_t value_type; 
  
-		static Value_type low(Value_type result, uint32_t) 
+		static value_type low(value_type result, uint32_t) 
 		{ 
 			return result + 1; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t) 
+		static value_type high(value_type result, uint32_t) 
 		{ 
 			return result + 1; 
 		} 
@@ -769,23 +769,23 @@ namespace
  
 	struct utf32_WriterInstance 
 	{ 
-		typedef uint32_t* Value_type; 
+		typedef uint32_t* value_type; 
  
-		static Value_type low(Value_type result, uint32_t ch) 
+		static value_type low(value_type result, uint32_t ch) 
 		{ 
 			*result = ch; 
  
 			return result + 1; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t ch) 
+		static value_type high(value_type result, uint32_t ch) 
 		{ 
 			*result = ch; 
  
 			return result + 1; 
 		} 
  
-		static Value_type any(Value_type result, uint32_t ch) 
+		static value_type any(value_type result, uint32_t ch) 
 		{ 
 			*result = ch; 
  
@@ -814,7 +814,7 @@ namespace
  
 	template <typename Traits, typename opt_swap = opt_false> struct utf_decoder 
 	{ 
-		static inline typename Traits::Value_type decode_utf8_block(const uint8_t* data, size_t size, typename Traits::Value_type result) 
+		static inline typename Traits::value_type decode_utf8_block(const uint8_t* data, size_t size, typename Traits::value_type result) 
 		{ 
 			const uint8_t utf8_byte_mask = 0x3f; 
  
@@ -875,7 +875,7 @@ namespace
 			return result; 
 		} 
  
-		static inline typename Traits::Value_type decode_utf16_block(const uint16_t* data, size_t size, typename Traits::Value_type result) 
+		static inline typename Traits::value_type decode_utf16_block(const uint16_t* data, size_t size, typename Traits::value_type result) 
 		{ 
 			const uint16_t* end = data + size; 
  
@@ -919,7 +919,7 @@ namespace
 			return result; 
 		} 
  
-		static inline typename Traits::Value_type decode_utf32_block(const uint32_t* data, size_t size, typename Traits::Value_type result) 
+		static inline typename Traits::value_type decode_utf32_block(const uint32_t* data, size_t size, typename Traits::value_type result) 
 		{ 
 			const uint32_t* end = data + size; 
  
@@ -1158,8 +1158,8 @@ namespace
 		if (!out_buffer) return false; 
  
 		// second pass: convert utf8 input to wchar_t 
-		wchar_WriterInstance::Value_type out_begin = reinterpret_cast<wchar_WriterInstance::Value_type>(out_buffer); 
-		wchar_WriterInstance::Value_type out_end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, out_begin); 
+		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer); 
+		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1180,8 +1180,8 @@ namespace
 		if (!out_buffer) return false; 
  
 		// second pass: convert utf16 input to wchar_t 
-		wchar_WriterInstance::Value_type out_begin = reinterpret_cast<wchar_WriterInstance::Value_type>(out_buffer); 
-		wchar_WriterInstance::Value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf16_block(data, length, out_begin); 
+		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer); 
+		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf16_block(data, length, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1202,8 +1202,8 @@ namespace
 		if (!out_buffer) return false; 
  
 		// second pass: convert utf32 input to wchar_t 
-		wchar_WriterInstance::Value_type out_begin = reinterpret_cast<wchar_WriterInstance::Value_type>(out_buffer); 
-		wchar_WriterInstance::Value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf32_block(data, length, out_begin); 
+		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer); 
+		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf32_block(data, length, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1380,8 +1380,8 @@ namespace
 		// second pass: convert to wchar_t 
 		if (length > 0) 
 		{ 
-			wchar_WriterInstance::Value_type begin = reinterpret_cast<wchar_WriterInstance::Value_type>(&result[0]); 
-			wchar_WriterInstance::Value_type end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, begin); 
+			wchar_WriterInstance::value_type begin = reinterpret_cast<wchar_WriterInstance::value_type>(&result[0]); 
+			wchar_WriterInstance::value_type end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, begin); 
  
 			assert(begin + length == end); 
 			(void)!end; 
@@ -1549,7 +1549,7 @@ namespace
 				} 
  
 			#ifdef XML_WCHAR_MODE 
-				s = reinterpret_cast<char_t*>(wchar_WriterInstance::any(reinterpret_cast<wchar_WriterInstance::Value_type>(s), ucsc)); 
+				s = reinterpret_cast<char_t*>(wchar_WriterInstance::any(reinterpret_cast<wchar_WriterInstance::value_type>(s), ucsc)); 
 			#else 
 				s = reinterpret_cast<char_t*>(utf8_WriterInstance::any(reinterpret_cast<uint8_t*>(s), ucsc)); 
 			#endif 
@@ -4336,7 +4336,7 @@ namespace phys
 		return _GetRoot; 
 	} 
  
-	void Node::print(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const 
+	void Node::Print(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const 
 	{ 
 		if (!_GetRoot) return; 
  
@@ -4346,18 +4346,18 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	void Node::print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const 
+	void Node::Print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		print(WriterInstance, indent, flags, DocumentEncoding, Depth); 
+		Print(WriterInstance, indent, flags, DocumentEncoding, Depth); 
 	} 
  
-	void Node::print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int Depth) const 
+	void Node::Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int Depth) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		print(WriterInstance, indent, flags, Encodingwchar_t, Depth); 
+		Print(WriterInstance, indent, flags, Encodingwchar_t, Depth); 
 	} 
 #endif 
  

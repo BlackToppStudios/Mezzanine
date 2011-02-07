@@ -46,7 +46,10 @@ class {\bfseries Node}}
 
 
 \subsection{Detailed Description}
-Used to call a function for\_\-each member of the subtree of nodes descended from a specific node. If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some equivalent method or use a \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker}. This provides a helper for depth-\/first traversal of a subtree. In order to use it, you have to implement \hyperlink{classphys_1_1xml_1_1TreeWalker}{xml::TreeWalker} interface and call \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{xml::Node::Traverse()} function. \par
+Used to call a function for\_\-each member of the subtree of nodes descended from a specific node. \begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator}.
+\end{DoxyReturn}
+If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some equivalent method or use a \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker}. This provides a helper for depth-\/first traversal of a subtree. In order to use it, you have to implement \hyperlink{classphys_1_1xml_1_1TreeWalker}{xml::TreeWalker} interface and call \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{xml::Node::Traverse()} function. \par
 \par
  First, \hyperlink{classphys_1_1xml_1_1TreeWalker_a649d9e5a06542be0282d3d20994a62fc}{TreeWalker::begin()} is called with traversal root as its argument.\par
  Then, \hyperlink{classphys_1_1xml_1_1TreeWalker_a03267e73acac44809f16739fd00a536d}{TreeWalker::for\_\-each()} function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Each \hyperlink{classphys_1_1xml_1_1Node}{Node} is passed as an argument.\par
@@ -56,7 +59,7 @@ Used to call a function for\_\-each member of the subtree of nodes descended fro
 \par
  You can get the node's depth relative to the traversal root at any point by calling \hyperlink{classphys_1_1xml_1_1TreeWalker_a90fdd705ae4d5e8e3b931bb8896e4397}{TreeWalker::Depth()} function. 
 
-Definition at line 829 of file xml.h.
+Definition at line 862 of file xml.h.
 
 
 
