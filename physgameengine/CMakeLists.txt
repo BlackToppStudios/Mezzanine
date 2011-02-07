@@ -22,6 +22,8 @@ message ("Base Directory for Library binaries and data: ${${PROJECT_NAME}_LIBBIN
 set (${PROJECT_NAME}_SOURCE_DIR "${${PROJECT_NAME}_SOURCE_DIR}/src/")
 message ("Looking for source code in: ${${PROJECT_NAME}_SOURCE_DIR}")
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake_modules/")
+
 set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (PROJECT_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}")
 set (LIBRARY_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
@@ -186,7 +188,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.cpp"
 )
 
 ###############################################################################
@@ -254,16 +255,15 @@ endif(${WIN32})
 
 #######################################
 # Linux Build Specific Items
-if(${UNIX})
+if(${UNIX} AND NOT ${APPLE})
 	message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
 	set(BuildPlatform linux)
 
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
 
-	set(OgreSoName libOgreMain.so.1.7.2)
-	file( COPY 
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreSoName}"
+	file( COPY
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so.1.8.0"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
 		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
@@ -280,14 +280,57 @@ if(${UNIX})
 	add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
 	message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
-endif(${UNIX})
+endif(${UNIX} AND NOT ${APPLE})
 
 #######################################
 # Mac OS X and iPhone Build pecific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
 	set(BuildPlatform macosx)
-	add_definitions( -DMACOSX )
+        
+	include(FindSDL)
+	message("SDL Headers and Library Found - ${SDL_FOUND}")
+        
+        include(FindOpenAL)
+	message("OpenAL Headers and Library Found - ${OPENAL_LIBRARY}")
+
+	include(FindOgg)
+	message("Ogg Headers and Library Found - ${OGG_FOUND}")
+
+	include(FindVorbis)
+	message("Vorbis Headers and Library Found - ${Vorbis_FOUND}")
+
+	include(FindOgre)
+	message("Ogre Headers And library Found -	${OGRE_INCLUDE_DIRS}")
+
+	include(/Library/Frameworks/Ogre.framework)
+
+	include(FindBoost)
+	message("Boost Headers And library Found - ${BOOST_INCLUDE_DIRS}")
+	
+	find_package(OGRE REQUIRED)
+        
+	include_directories(
+		"${SDL_INCLUDE_DIR}"
+		"${OPENAL_INCLUDE_DIR}"
+		${OGRE_INCLUDE_DIRS}
+	        "${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogreSDK/boost_1_42"
+		"${OGG_INCLUDE_DIR}"
+
+	)
+
+	link_directories(
+	 ${SDL_LIBRARY}
+	 ${OPENAL_LIBRARY} 
+	 /Library/Frameworks/Ogre.framework
+	 ${OGG_LIBRARY}
+	)
+	findpkg_framework(OGRE)
+
+    
+	TARGET_LINK_LIBRARIES( /Library/Frameworks/Ogre.framework)
+
+	add_definitions( -DMACOSX)
 	message ("${PROJECT_NAME} - End Apple Specific Build Process")
 endif(${APPLE})
 
@@ -367,16 +410,16 @@ endif(${WIN32})
 
 #######################################
 # Linux File Copy Specific Items
-if(${UNIX})
+if(${UNIX} AND NOT ${APPLE})
 	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
 
 	#Copy System Dependant files during build time
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
-	CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libOgreMain.so.1.8.0 libOgreMain.so.1.8.0 )
+	CreateSymlinkDuringBuild( libOgreMain.so.1.8.0 libOgreMain.so )
 
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
-endif(${UNIX})
+endif(${UNIX} AND NOT ${APPLE})
 
 #######################################
 # Mac File Copy pecific Items
