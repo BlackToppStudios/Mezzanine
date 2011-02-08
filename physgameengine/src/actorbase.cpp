@@ -319,7 +319,11 @@ namespace phys{
             AnimName = Animation->getAnimationName();
         }
 
+        String MatName = entity->getMesh()->getSubMesh(0)->getMaterialName();
+
         entity->_initialise(ForceReinitialize);
+
+        entity->getMesh()->getSubMesh(0)->setMaterialName(MatName);
 
         if(AnimSet)
         {

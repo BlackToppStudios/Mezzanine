@@ -205,16 +205,19 @@ namespace phys
         OgreViewport->setDimensions(0,0,1,1);
         OgreViewport->getCamera()->setAspectRatio((Real)(OgreViewport->getActualWidth()) / (Real)(OgreViewport->getActualHeight()));
 
-        Ogre::TextureManager::getSingleton().reloadAll();
-        Ogre::MeshManager::getSingleton().reloadAll();
-        Ogre::SkeletonManager::getSingleton().reloadAll();
-        Ogre::MaterialManager::getSingleton().reloadAll();
+        ActorContainerVector* ActorMan = static_cast<ActorContainerVector*>(GameWorld->GetActorManager());
+        //for( std::vector<ActorBase*>::iterator cur = ActorMan->begin() ; cur != ActorMan->end() ; cur++ )
+        //    (*cur)->InitEntity(true);
+
         Ogre::CompositorManager::getSingleton().reloadAll();
         Ogre::GpuProgramManager::getSingleton().reloadAll();
         Ogre::HighLevelGpuProgramManager::getSingleton().reloadAll();
         //Ogre::FontManager::getSingleton().reloadAll();
+        Ogre::MaterialManager::getSingleton().reloadAll(false);
+        Ogre::TextureManager::getSingleton().reloadAll();
+        Ogre::MeshManager::getSingleton().reloadAll();
+        Ogre::SkeletonManager::getSingleton().reloadAll();
 
-        ActorContainerVector* ActorMan = static_cast<ActorContainerVector*>(GameWorld->GetActorManager());
         for( std::vector<ActorBase*>::iterator cur = ActorMan->begin() ; cur != ActorMan->end() ; cur++ )
             (*cur)->InitEntity(true);
         //GameWorld->GetUIManager()->RedrawAll(true);

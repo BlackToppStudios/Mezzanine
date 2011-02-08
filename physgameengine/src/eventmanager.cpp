@@ -219,6 +219,7 @@ namespace phys
             SDL_UserInputEvents.pop(); //NEXT!!!
         }
 
+        /// @todo This isn't pretty, should be replaced with a more elegant solution that'll work on keyboard events as well.
         unsigned int x=0;
         for(std::vector<std::pair<bool,bool> >::iterator it = MouseButtonCache.begin();it!=MouseButtonCache.end();it++)
         {

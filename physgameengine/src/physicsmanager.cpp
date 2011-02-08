@@ -293,10 +293,11 @@ namespace phys
         this->GeographyUpperBounds = GeographyUpperbounds_;
         this->MaxPhysicsProxies = MaxPhysicsProxies_;
 
-        this->BulletBroadphase = new btAxisSweep3(  GeographyLowerBounds.GetBulletVector3(),
+        /*this->BulletBroadphase = new btAxisSweep3(  GeographyLowerBounds.GetBulletVector3(),
                                                     GeographyUpperBounds.GetBulletVector3(),
                                                     MaxPhysicsProxies
-                                                 );
+                                                 );*/
+        this->BulletBroadphase = new btDbvtBroadphase();
 
         this->GhostCallback = new btGhostPairCallback();
         this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(GhostCallback);
@@ -350,6 +351,9 @@ namespace phys
         //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
         int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe
         this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
+
+        // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
+        this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
 
         if( this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
         {
