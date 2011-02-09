@@ -240,7 +240,7 @@ namespace phys
         /// @var ParseDeclaration
         /// @brief This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default.
 
-        /// @var ParseDoctype
+        /// @var ParseDocType
         /// @brief This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default.
 
         /// @var ParseDefault
