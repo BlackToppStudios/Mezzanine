@@ -484,7 +484,7 @@ namespace phys
 
 		// Get hash Value (unique for handles to the same object)
 		/// @fn Attribute::HashValue() const;
-		/// @brief Get a unique indentifying value for the Attribute this represents
+		/// @brief Get a unique identifying value for the Attribute this represents
 		/// @return A size_t that is unique per Attribute that an attribute could represent.
 
 		/// @fn Attribute::InternalObject() const;
@@ -839,7 +839,7 @@ namespace phys
 		/// @fn Node::HashValue() const;
 		/// @internal
 		/// @brief Get hash Value (unique for handles to the same object)
-		/// @return A size_t that uniquely indentifies this node.
+		/// @return A size_t that uniquely identifies this node.
 
 		/// @fn Node::InternalObject() const;
 		/// @internal
@@ -1024,8 +1024,107 @@ namespace phys
         /// @detail By default this simply returns true, but is expected to be overridden with any desired behavior
         /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
 
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class Document
+        /// @brief The root node of any xml hierarchy is a Document Node
+        /// @details This has all the same features as a Node and include a few features for saving, loading, streaming
+        /// and to a limited degree managing the document declaration.
+
+        /// @fn Document::Document();
+        /// @brief Creates an empty document with just a root Node
+
+        /// @fn Document::~Document()
+        /// @brief Tears down a document, and incidentally invalidates all Node and Attribute handles to this document.
+
+        /// @fn Document::Reset();
+        /// @brief Removes all nodes, leaving the empty document.
+
+        /// @fn Document::Reset(const Document& proto);
+        /// @brief Removes all nodes, then copies the entire contents of the specified document
+        /// @param proto The Document to copy.
+
+        /// @fn Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+        /// @brief Load XML from a stream.
+        /// @param stream An std::istream which has xml text in it.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+        /// @fn Document::Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault);
+        /// @brief Load XML from a wide stream.
+        /// @param stream An std::basic_istream which has xml wide character text in it.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+        /// @fn Document::Load(const char_t* contents, unsigned int options = ParseDefault);
+        /// @brief Load XML from a Character array.
+        /// @param contents A pointer to the Null terminated array of Characters.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
 
 
+		/// @fn Document::LoadFile(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+		/// @brief Load document from file
+		/// @param Path An c-style char array that contains the path and filename of the xml document to load.
+		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+		/// @fn Document::LoadFile(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+		/// @brief Load document from file
+		/// @param Path An c-style wide char array that contains the path and filename of the xml document to load.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+		/// @fn Document::LoadBufferInplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
+		/// @details You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed.
+        /// @param contents A pointer to buffer containing the xml document to be parsed, that must remain for the lifecycle of the xml::Document.
+        /// @param size The size of the buffer.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+        /// @fn Document::LoadBuffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+        /// @brief Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns.
+        /// @param contents A pointer to buffer containing the xml document to be parsed, that will remain unchanged.
+        /// @param size The size of the buffer.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+		/// @fn Document::LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
+		/// @details You should allocate the buffer with pugixml allocation function; xml::Document will free the buffer when it is no longer needed (you can't use it anymore).
+        /// @param contents A pointer to buffer containing the xml document to be parsed.
+        /// @param size The size of the buffer.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+        /// @fn Document::Save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        /// @brief Save XML document to WriterInstance.
+		/// @param WriterInstance The Writer that will be used to output the xml text.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+
+		/// @fn Document::SaveFile(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+		/// @brief Save XML to file.
+		/// @param Path A c-style array of chars that contain the filename (and any path) of the file to be output.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+        /// @return False if the target file could not be opened for writing
+
+		/// @fn Document::SaveFile(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+		/// @brief Save XML to file.
+		/// @param Path A c-style array of wide chars that contain the filename (and any path) of the file to be output.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+        /// @return False if the target file could not be opened for writing
 
     }
 }

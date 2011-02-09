@@ -46,7 +46,7 @@
  * Pugixml parser - version 1.0 
  * -------------------------------------------------------- 
  * Copyright © 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com) 
- * Report bugs and download new versions at http://pugixml.org/ 
+ * Report bugs and downLoad new versions at http://pugixml.org/ 
  * 
  * This library is distributed under the MIT License. See notice at the end 
  * of this file. 
@@ -127,7 +127,7 @@ typedef __int32 int32_t;
 // Simple static assertion 
 #define STATIC_ASSERT(cond) { static const char condition_failed[(cond) ? 1 : -1] = {0}; (void)condition_failed[0]; } 
  
-// Digital Mars C++ bug workaround for passing char loaded from memory via stack 
+// Digital Mars C++ bug workaround for passing char Loaded from memory via stack 
 #ifdef __DMC__ 
 #	define DMC_VOLATILE volatile 
 #else 
@@ -339,7 +339,7 @@ namespace
 				{ 
 					assert(_GetRoot == page); 
  
-					// top page freed, just reset sizes 
+					// top page freed, just Reset sizes 
 					page->busy_size = page->freed_size = 0; 
 					_busy_size = 0; 
 				} 
@@ -2161,7 +2161,7 @@ namespace
  
 		char_t* ParseQuestion(char_t* s, NodeStruct*& ref_cursor, unsigned int optmsk, char_t endch) 
 		{ 
-			// load into registers 
+			// Load into registers 
 			NodeStruct* cursor = ref_cursor; 
 			char_t ch = 0; 
  
@@ -2482,7 +2482,7 @@ namespace
 			// create parser on stack 
 			Parser parser(*xmldoc); 
  
-			// save last character and make buffer zero-terminated (speeds up parsing) 
+			// Save last character and make buffer zero-terminated (speeds up parsing) 
 			char_t endch = buffer[length - 1]; 
 			buffer[length - 1] = 0; 
 			 
@@ -3132,7 +3132,7 @@ namespace
 		} 
 	} 
  
-	// we need to get length of entire file to load it in memory; the only (relatively) sane way to do it is via seek/tell trick 
+	// we need to get length of entire file to Load it in memory; the only (relatively) sane way to do it is via seek/tell trick 
 	ParseStatus get_file_size(FILE* file, size_t& out_result) 
 	{ 
 	#if defined(_MSC_VER) && _MSC_VER >= 1400 
@@ -3172,7 +3172,7 @@ namespace
 		return StatusOk; 
 	} 
  
-	ParseResult load_file_impl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult LoadFileImpl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		if (!file) return make_ParseResult(StatusFileNotFound); 
  
@@ -3205,11 +3205,11 @@ namespace
 			return make_ParseResult(StatusIOError); 
 		} 
 		 
-		return doc.load_buffer_inplace_own(contents, size, options, DocumentEncoding); 
+		return doc.LoadBufferInplaceOwn(contents, size, options, DocumentEncoding); 
 	} 
  
 #ifndef XML_NO_STL 
-	template <typename T> ParseResult load_stream_impl(Document& doc, std::basic_istream<T>& stream, unsigned int options, Encoding DocumentEncoding) 
+	template <typename T> ParseResult LoadStreamImpl(Document& doc, std::basic_istream<T>& stream, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		// get length of remaining data in stream 
 		typename std::basic_istream<T>::pos_type pos = stream.tellg(); 
@@ -3233,11 +3233,11 @@ namespace
 		// read may set failbit | eofbit in case gcount() is less than read_length (i.e. line ending conversion), so check for other I/O errors 
 		if (stream.bad()) return make_ParseResult(StatusIOError); 
  
-		// load data from buffer 
+		// Load data from buffer 
 		size_t actual_length = static_cast<size_t>(stream.gcount()); 
 		assert(actual_length <= read_length); 
  
-		return doc.load_buffer_inplace_own(buffer.release(), actual_length * sizeof(T), options, DocumentEncoding); 
+		return doc.LoadBufferInplaceOwn(buffer.release(), actual_length * sizeof(T), options, DocumentEncoding); 
 	} 
 #endif 
  
@@ -4572,15 +4572,15 @@ namespace phys
 		destroy(); 
 	} 
  
-	void Document::reset() 
+	void Document::Reset() 
 	{ 
 		destroy(); 
 		create(); 
 	} 
  
-	void Document::reset(const Document& proto) 
+	void Document::Reset(const Document& proto) 
 	{ 
-		reset(); 
+		Reset(); 
  
 		for (Node cur = proto.GetFirstChild(); cur; cur = cur.GetNextSibling()) 
 			AppendCopy(cur); 
@@ -4642,22 +4642,22 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	ParseResult Document::load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		reset(); 
+		Reset(); 
  
-		return load_stream_impl(*this, stream, options, DocumentEncoding); 
+		return LoadStreamImpl(*this, stream, options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options) 
+	ParseResult Document::Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options) 
 	{ 
-		reset(); 
+		Reset(); 
  
-		return load_stream_impl(*this, stream, options, Encodingwchar_t); 
+		return LoadStreamImpl(*this, stream, options, Encodingwchar_t); 
 	} 
 #endif 
  
-	ParseResult Document::load(const char_t* contents, unsigned int options) 
+	ParseResult Document::Load(const char_t* contents, unsigned int options) 
 	{ 
 		// Force native DocumentEncoding (skip autodetection) 
 	#ifdef XML_WCHAR_MODE 
@@ -4666,30 +4666,30 @@ namespace phys
 		Encoding DocumentEncoding = EncodingUTF8; 
 	#endif 
  
-		return load_buffer(contents, strlength(contents) * sizeof(char_t), options, DocumentEncoding); 
+		return LoadBuffer(contents, strlength(contents) * sizeof(char_t), options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_file(const char* Path, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadFile(const char* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		reset(); 
+		Reset(); 
  
 		FILE* file = fopen(Path, "rb"); 
  
-		return load_file_impl(*this, file, options, DocumentEncoding); 
+		return LoadFileImpl(*this, file, options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_file(const wchar_t* Path, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadFile(const wchar_t* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		reset(); 
+		Reset(); 
  
 		FILE* file = open_file_wide(Path, L"rb"); 
  
-		return load_file_impl(*this, file, options, DocumentEncoding); 
+		return LoadFileImpl(*this, file, options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own) 
+	ParseResult Document::LoadBufferImpl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own) 
 	{ 
-		reset(); 
+		Reset(); 
  
 		// check input buffer 
 		assert(contents || size == 0); 
@@ -4718,22 +4718,22 @@ namespace phys
 		return res; 
 	} 
  
-	ParseResult Document::load_buffer(const void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadBuffer(const void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		return load_buffer_impl(const_cast<void*>(contents), size, options, DocumentEncoding, false, false); 
+		return LoadBufferImpl(const_cast<void*>(contents), size, options, DocumentEncoding, false, false); 
 	} 
  
-	ParseResult Document::load_buffer_inplace(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadBufferInplace(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		return load_buffer_impl(contents, size, options, DocumentEncoding, true, false); 
+		return LoadBufferImpl(contents, size, options, DocumentEncoding, true, false); 
 	} 
 		 
-	ParseResult Document::load_buffer_inplace_own(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		return load_buffer_impl(contents, size, options, DocumentEncoding, true, true); 
+		return LoadBufferImpl(contents, size, options, DocumentEncoding, true, true); 
 	} 
  
-	void Document::save(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	void Document::Save(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
 		if (flags & FormatWriteBom) Write_bom(WriterInstance, get_Write_DocumentEncoding(DocumentEncoding)); 
  
@@ -4749,48 +4749,48 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	void Document::save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	void Document::Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		save(WriterInstance, indent, flags, DocumentEncoding); 
+		Save(WriterInstance, indent, flags, DocumentEncoding); 
 	} 
  
-	void Document::save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags) const 
+	void Document::Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		save(WriterInstance, indent, flags, Encodingwchar_t); 
+		Save(WriterInstance, indent, flags, Encodingwchar_t); 
 	} 
 #endif 
  
-	bool Document::save_file(const char* Path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	bool Document::SaveFile(const char* Path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
 		FILE* file = fopen(Path, "wb"); 
 		if (!file) return false; 
  
 		WriterFile WriterInstance(file); 
-		save(WriterInstance, indent, flags, DocumentEncoding); 
+		Save(WriterInstance, indent, flags, DocumentEncoding); 
  
 		fclose(file); 
  
 		return true; 
 	} 
  
-	bool Document::save_file(const wchar_t* Path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	bool Document::SaveFile(const wchar_t* Path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
 		FILE* file = open_file_wide(Path, L"wb"); 
 		if (!file) return false; 
  
 		WriterFile WriterInstance(file); 
-		save(WriterInstance, indent, flags, DocumentEncoding); 
+		Save(WriterInstance, indent, flags, DocumentEncoding); 
  
 		fclose(file); 
  
 		return true; 
 	} 
  
-	Node Document::document_element() const 
+	Node Document::DocumentElement() const 
 	{ 
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling) 
 			if ((i->header & MemoryPage_type_mask) + 1 == NodeElement) 
@@ -6451,7 +6451,7 @@ namespace
  
 			while (IS_CHARTYPE(*cur, ct_space)) ++cur; 
  
-			// save lexeme position for error reporting 
+			// Save lexeme position for error reporting 
 			_cur_lexeme_pos = cur; 
  
 			switch (*cur) 

@@ -394,7 +394,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 {
     #ifdef PHYSXML
         phys::xml::Document Doc;
-        Doc.load("");           // This sets the encoding to UTF8 ?!
+        Doc.Load("");           // This sets the encoding to UTF8 ?!
         phys::xml::Node VecNode = Doc.AppendChild("Vector3");
 
         if (VecNode)
@@ -418,7 +418,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
             phys::World::GetWorldPointer()->LogAndThrow("Could not Stream Vector3 XML Anything.");
         }
 
-        Doc.save(stream,"\t",phys::xml::FormatNoDeclaration | phys::xml::FormatRaw);
+        Doc.Save(stream,"\t",phys::xml::FormatNoDeclaration | phys::xml::FormatRaw);
 
         //stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" />";
     #else
@@ -443,7 +443,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
     try
     {
         phys::xml::Document Doc;
-        if(!Doc.load(OneTag.c_str()))
+        if(!Doc.Load(OneTag.c_str()))
             { phys::World::GetWorldPointer()->LogAndThrow("Could not Deserialize XML Stream which should contain Vector3 xml."); }
 
         phys::xml::Node VecNode = Doc.GetFirstChild();

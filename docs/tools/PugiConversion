@@ -290,6 +290,17 @@ function FixNames
 	# NodeIterator
 	sed -i -e 's|Value_type|value_type|g' $1
 	
+	# Document
+	sed -i -e 's|reset|Reset|g' $1
+	sed -i -e 's|load_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Format\U\1\L\2\U\3\L\4\U\5\L\6\U\7\L\8|g' $1	
+	sed -i -e 's|load_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Load\U\1\L\2\U\3\L\4\U\5\L\6|g' $1	
+	sed -i -e 's|load_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Load\U\1\L\2\U\3\L\4|g' $1
+	sed -i -e 's|load_\(.\)\([a-z]*\)|Load\U\1\L\2|g' $1				
+	sed -i -e 's|load|Load|g' $1
+	sed -i -e 's|save_\(.\)\([a-z]*\)_\(.\)\([a-z]*\)|Save\U\1\L\2\U\3\L\4|g' $1
+	sed -i -e 's|save_\(.\)\([a-z]*\)|Save\U\1\L\2|g' $1				
+	sed -i -e 's|save|Save|g' $1
+	sed -i -e 's|document_element|DocumentElement|g' $1
 
 	#The TreeWalker Class
 	sed -i -e 's|depth|Depth|g' $1
@@ -342,7 +353,10 @@ function FixNames
 	sed -i -e  's|void Print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t\* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;|\n		/// @brief Output the XML document using a Output Stream.\n		/// @param os An output stream to send xml text to.\n		/// @param indent The Character(s) used to represent a tab in the outpput, this defaults to one tab character.\n		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault\n		/// @param DocumentEncoding The xml::Encoding of the document, whichs defaults to EncodingAuto\n		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\n		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.\n		void Print(std::basic_ostream<char, std::char_traits<char> >\& os, const char_t* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const;|' $1
 	sed -i -e  's|void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t\* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault, unsigned int Depth = 0) const;|\n		/// @brief Output the XML document using a Output Stream.\n		/// @param os An output stream to send xml text to.\n		/// @param indent The Character(s) used to represent a tab in the outpput, this defaults to one tab character.\n		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault\n		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\n		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.\n		void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >\& os, const char_t* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault, unsigned int Depth = 0) const;|' $1 
 
-
+	#Document
+	sed -i -e  's|void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t\* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; |/// @brief Save XML document to a stream.\n		/// @param stream The output stream to send the XML document to.\n		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.\n		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.\n		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.\n		void Save(std::basic_ostream<char, std::char_traits<char> >\& stream, const char_t* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;  |' $1 
+	sed -i -e  's|void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t\* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault) const;|/// @brief Save XML document to a stream of wide characters.\n		/// @param stream The output stream of wide characters to send the XML document to.\n		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.\n		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.\n		void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >\& stream, const char_t* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault) const; |' $1 
+	sed -i -e  's|Node DocumentElement() const;|/// @brief Get document element\n		/// @return An xml::Node that is the root element of the xml Document\n		Node DocumentElement() const;|' $1 
 
 	#another clean line to copy/paste
 	#sed -i -e 's|||' $1

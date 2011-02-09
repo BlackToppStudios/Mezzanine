@@ -46,7 +46,7 @@
  * Pugixml parser - version 1.0 
  * -------------------------------------------------------- 
  * Copyright © 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com) 
- * Report bugs and download new versions at http://pugixml.org/ 
+ * Report bugs and downLoad new versions at http://pugixml.org/ 
  * 
  * This library is distributed under the MIT License. See notice at the end 
  * of this file. 
@@ -889,7 +889,7 @@ namespace phys
 	{ 
 		StatusOk = 0,			  // No error 
  
-		StatusFileNotFound,	  // File was not found during load_file() 
+		StatusFileNotFound,	  // File was not found during LoadFile() 
 		StatusIOError,			// Error reading from file/stream 
 		StatusOutOfMemory,	   // Could not allocate memory 
 		StatusInternalError,	  // Internal error occurred 
@@ -946,7 +946,7 @@ namespace phys
 		void create(); 
 		void destroy(); 
  
-		ParseResult load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own); 
+		ParseResult LoadBufferImpl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own); 
  
 	public: 
 		// Default constructor, makes empty document 
@@ -956,50 +956,61 @@ namespace phys
 		~Document(); 
  
 		// Removes all nodes, leaving the empty document 
-		void reset(); 
+		void Reset(); 
  
 		// Removes all nodes, then copies the entire contents of the specified document 
-		void reset(const Document& proto); 
+		void Reset(const Document& proto); 
  
 	#ifndef XML_NO_STL 
 		// Load document from stream. 
-		ParseResult load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
-		ParseResult load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault); 
+		ParseResult Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault); 
 	#endif 
  
 		// Load document from zero-terminated string. No DocumentEncoding conversions are applied. 
-		ParseResult load(const char_t* contents, unsigned int options = ParseDefault); 
+		ParseResult Load(const char_t* contents, unsigned int options = ParseDefault); 
  
 		// Load document from file 
-		ParseResult load_file(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
-		ParseResult load_file(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadFile(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadFile(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns. 
-		ParseResult load_buffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadBuffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed. 
-		ParseResult load_buffer_inplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadBufferInplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore). 
-		ParseResult load_buffer_inplace_own(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Save XML document to WriterInstance (semantics is slightly different from Node::Print, see documentation for details). 
-		void save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		void Save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 	#ifndef XML_NO_STL 
 		// Save XML document to stream (semantics is slightly different from Node::Print, see documentation for details). 
-		void save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
-		void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault) const; 
+		/// @brief Save XML document to a stream.
+		/// @param stream The output stream to send the XML document to.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+		void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;  
+		/// @brief Save XML document to a stream of wide characters.
+		/// @param stream The output stream of wide characters to send the XML document to.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault) const;  
 	#endif 
  
 		// Save XML to file 
-		bool save_file(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
-		bool save_file(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		bool SaveFile(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		bool SaveFile(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 		// Get document element 
-		Node document_element() const; 
+		/// @brief Get document element
+		/// @return An xml::Node that is the root element of the xml Document
+		Node DocumentElement() const; 
 	}; 
  
 #ifndef XML_NO_XPATH 
