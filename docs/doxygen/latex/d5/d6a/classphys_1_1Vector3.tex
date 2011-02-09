@@ -1,0 +1,923 @@
+\hypertarget{classphys_1_1Vector3}{
+\section{phys::Vector3 Class Reference}
+\label{d5/d6a/classphys_1_1Vector3}\index{phys::Vector3@{phys::Vector3}}
+}
+
+
+This is used to represent a point in space, or a vector through space.  
+
+
+
+
+{\ttfamily \#include $<$vector3.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1Vector3_af328c400a03fdb8d2a99fd58382d61cb}{Vector3} ()
+\begin{DoxyCompactList}\small\item\em Default Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_af1d323b44d7b6ee3d0a79a196d9967da}{Vector3} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a23660f9d1e21a25c53aa06aa737bb56b}{X}, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a6c9bc2ab0995d5056dba8272c650e58e}{Y}, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a53c84fa4b38fb9c4a4d822b04c200b13}{Z})
+\begin{DoxyCompactList}\small\item\em Real value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_ad19c9ae00070b3aad5799e1f8c00bd34}{Vector3} (Ogre::Vector3 Vec)
+\begin{DoxyCompactList}\small\item\em Ogre Value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_a8ff2e969410341eaf328ab76fb3099ed}{Vector3} (btVector3 Vec)
+\begin{DoxyCompactList}\small\item\em Bullet Value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3_a0ed3fe0518fc5e29544234bd41091401}{Vector3} (cAudio::cVector3 Vec)
+\begin{DoxyCompactList}\small\item\em cAudio Value Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a81a755b7fd93ad523c63befe773b7359}{operator=} (const btVector3 \&bt3)
+\begin{DoxyCompactList}\small\item\em Assignment operator to convert from Bullet Vectors. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \& \hyperlink{classphys_1_1Vector3_a4c9602b683617d91a68ec1e885522b8b}{operator=} (const Ogre::Vector3 \&OVec3)
+\begin{DoxyCompactList}\small\item\em Assignment operator to convert from Ogre Vectors. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector3_a90dadb1a5cd2c5814e54c11c33f286c1}{operator==} (const \hyperlink{classphys_1_1Vector3}{phys::Vector3} \&Vec2)
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector3_a1146d1b1b0f3d8809edfbd24e79b724a}{operator==} (const btVector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Vector3_aef82f53ef74363d7b662cbd1d3c204db}{operator==} (const Ogre::Vector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_afb86ac7edd78353ec3d11d9f2efdf0cb}{operator-\/} ()
+\begin{DoxyCompactList}\small\item\em Additive Inverse Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ab9b40eb9eb73d806434550604e048faa}{operator$\ast$} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar) const 
+\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a4bb5377ad78c299b40a8bc9fb66a902f}{operator/} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar) const 
+\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_ae04a2cdca40ac24180d6fb62babb34d7}{operator$\ast$=} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Scaling by multiplication. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_ae16bc8ff2f9897b52c36655a8ba8a1be}{operator/=} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&scalar)
+\begin{DoxyCompactList}\small\item\em Scaling by Division. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ab9799d4796f3750d44f591986d78e436}{operator+} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec2) const 
+\begin{DoxyCompactList}\small\item\em Addition Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_aed320f9ac1374c0955a20aef50c05751}{operator-\/} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec2) const 
+\begin{DoxyCompactList}\small\item\em Subraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_aa148f18ae4cae10a4aae4170351d7c11}{operator$\ast$} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec2) const 
+\begin{DoxyCompactList}\small\item\em Multiplaction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_af8db5066a9509a5d1b7d568ef576dc6e}{operator/} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec2) const 
+\begin{DoxyCompactList}\small\item\em Division Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a70c99d125274635b07b0fe90bcc15a8c}{operator+} (const btVector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Bullet Addition Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ab7ec10d90e35c2b153a2f002f12518ce}{operator-\/} (const btVector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Bullet Subtraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a59f8b8d5c15f4b047100480ad26ba092}{operator$\ast$} (const btVector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Bullet Multiplication Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a945287bb9448b2353c90e16c6cfed876}{operator/} (const btVector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Bullet Division Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a14ca2ae8bbe9ebefd298486b2a2ba5c9}{operator+} (const Ogre::Vector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Ogre Addition Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a54d5fc20ae502ac1443ddbb6cf1fbf1f}{operator-\/} (const Ogre::Vector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Bullet Subtraction Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a34014be39219a1ad3d4808b9614ac80d}{operator$\ast$} (const Ogre::Vector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Bullet Multiplication Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a4f9f3240dab2277e8a9b80f6c7235e5b}{operator/} (const Ogre::Vector3 \&Vec2)
+\begin{DoxyCompactList}\small\item\em Bullet Division Operator. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_ae98b11238914cd77a729053798ebf339}{CrossProduct} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkVector) const 
+\begin{DoxyCompactList}\small\item\em This is used to calculate the crossproduct of this and another vector. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_ac30ef9729b1a4e6001f5f5219a88176d}{dotProduct} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&vec) const 
+\begin{DoxyCompactList}\small\item\em This is used to calculate the dotproduct of this and another vector. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_ae39fe0545df88148bcd668b3bd2a4388}{Normalize} ()
+\begin{DoxyCompactList}\small\item\em This will change this point into it's own normal relative to the origin. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Vector3_a81e11f45378758391c97ec55b519951c}{GetNormal} () const 
+\begin{DoxyCompactList}\small\item\em This returns the normal for this relative to the origin. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_a30af9c8ae51596fa00fa7f350f9668f5}{Inverse} ()
+\begin{DoxyCompactList}\small\item\em This will inverse the reals in the vector. \item\end{DoxyCompactList}\item 
+btVector3 \hyperlink{classphys_1_1Vector3_adf4129007ee41f5a03e97502f2df9c41}{GetBulletVector3} () const 
+\begin{DoxyCompactList}\small\item\em Gets a Bullet vector3. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}{ExtractBulletVector3} (btVector3 temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing Bullet vector3. \item\end{DoxyCompactList}\item 
+Ogre::Vector3 \hyperlink{classphys_1_1Vector3_a17265d86a74139398d310b56ba7e89b8}{GetOgreVector3} () const 
+\begin{DoxyCompactList}\small\item\em Gets a Ogre vector3. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}{ExtractOgreVector3} (Ogre::Vector3 temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing Ogre vector3. \item\end{DoxyCompactList}\item 
+cAudio::cVector3 \hyperlink{classphys_1_1Vector3_a58b1ac39dfee4c360c16944a7e7f657d}{GetcAudioVector3} () const 
+\begin{DoxyCompactList}\small\item\em Gets a cAudio vector3. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Vector3_aa12021e9cdc092c8628ced1c5910c04c}{ExtractcAudioVector3} (cAudio::cVector3 temp)
+\begin{DoxyCompactList}\small\item\em Copies an existing cAudio vector3. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_af59a586331fe9497056b7e0f207658a3}{Distance} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&OtherVec) const 
+\begin{DoxyCompactList}\small\item\em This return the distance between this point and another. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Vector3_a23660f9d1e21a25c53aa06aa737bb56b}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a23660f9d1e21a25c53aa06aa737bb56b}{X}}
+\label{d5/d6a/classphys_1_1Vector3_a23660f9d1e21a25c53aa06aa737bb56b}
+
+\begin{DoxyCompactList}\small\item\em Coordinate on the X vector. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Vector3_a6c9bc2ab0995d5056dba8272c650e58e}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a6c9bc2ab0995d5056dba8272c650e58e}{Y}}
+\label{d5/d6a/classphys_1_1Vector3_a6c9bc2ab0995d5056dba8272c650e58e}
+
+\begin{DoxyCompactList}\small\item\em Coordinate on the Y vector. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Vector3_a53c84fa4b38fb9c4a4d822b04c200b13}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Vector3_a53c84fa4b38fb9c4a4d822b04c200b13}{Z}}
+\label{d5/d6a/classphys_1_1Vector3_a53c84fa4b38fb9c4a4d822b04c200b13}
+
+\begin{DoxyCompactList}\small\item\em Coordinate on the Z vector. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is used to represent a point in space, or a vector through space. This contains an X, Y and a Z value used to represent coordinates. This also has a number of facilities to make converting from Physics subsystem vectors or graphics subsystems as easy as possible 
+
+Definition at line 66 of file vector3.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1Vector3_af328c400a03fdb8d2a99fd58382d61cb}{
+\index{phys::Vector3@{phys::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_af328c400a03fdb8d2a99fd58382d61cb}
+
+
+Default Constructor. 
+
+Basic all zero initialization constructor. 
+
+Definition at line 56 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_af1d323b44d7b6ee3d0a79a196d9967da}{
+\index{phys::Vector3@{phys::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ X, }
+\item[{{\bf Real}}]{ Y, }
+\item[{{\bf Real}}]{ Z}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_af1d323b44d7b6ee3d0a79a196d9967da}
+
+
+Real value Constructor. 
+
+Constructor that sets all three vectors. 
+\begin{DoxyParams}{Parameters}
+\item[{\em X}]Coordinate on the X vector. \item[{\em Y}]Coordinate on the Y vector. \item[{\em Z}]Coordinate on the Z vector. \end{DoxyParams}
+
+
+Definition at line 63 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_ad19c9ae00070b3aad5799e1f8c00bd34}{
+\index{phys::Vector3@{phys::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+\item[{Ogre::Vector3}]{ Vec}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_ad19c9ae00070b3aad5799e1f8c00bd34}
+
+
+Ogre Value Constructor. 
+
+Constructor that sets all values to match the Ogre vector. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec}]The vector to be copied to make this vector. \end{DoxyParams}
+
+
+Definition at line 70 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a8ff2e969410341eaf328ab76fb3099ed}{
+\index{phys::Vector3@{phys::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+\item[{btVector3}]{ Vec}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a8ff2e969410341eaf328ab76fb3099ed}
+
+
+Bullet Value Constructor. 
+
+Constructor that sets all values to match the Bullet vector. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec}]The vector to be copied to make this vector. \end{DoxyParams}
+
+
+Definition at line 75 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a0ed3fe0518fc5e29544234bd41091401}{
+\index{phys::Vector3@{phys::Vector3}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{Vector3}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector3::Vector3 (
+\begin{DoxyParamCaption}
+\item[{cAudio::cVector3}]{ Vec}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a0ed3fe0518fc5e29544234bd41091401}
+
+
+cAudio Value Constructor. 
+
+Constructor that sets all values to match the cAudio vector. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec}]The vector to be copied to make this vector. \end{DoxyParams}
+
+
+Definition at line 80 of file vector3.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1Vector3_ae98b11238914cd77a729053798ebf339}{
+\index{phys::Vector3@{phys::Vector3}!CrossProduct@{CrossProduct}}
+\index{CrossProduct@{CrossProduct}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{CrossProduct}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::CrossProduct (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ rkVector}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_ae98b11238914cd77a729053798ebf339}
+
+
+This is used to calculate the crossproduct of this and another vector. 
+
+This creates a third vector, which should be on a line perpendicular to lines that contain the origin and the other vectors \par
+\par
+ Thanks to the guys at Ogre3d for the well written version of this function that we based this on. 
+\begin{DoxyParams}{Parameters}
+\item[{\em rkVector}]the Vector to work with to create the cross product \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This is the crossproduct of this vector and rkVector 
+\end{DoxyReturn}
+
+
+Definition at line 286 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_af59a586331fe9497056b7e0f207658a3}{
+\index{phys::Vector3@{phys::Vector3}!Distance@{Distance}}
+\index{Distance@{Distance}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{Distance}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Vector3::Distance (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ OtherVec}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_af59a586331fe9497056b7e0f207658a3}
+
+
+This return the distance between this point and another. 
+
+This uses a 3d extension of pythagoras thereom to calculate the distance between This \hyperlink{classphys_1_1Vector3}{Vector3} and another. 
+\begin{DoxyParams}{Parameters}
+\item[{\em OtherVec}]this is the other point to measure against \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a Real number which is the distance. 
+\end{DoxyReturn}
+
+
+Definition at line 381 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_ac30ef9729b1a4e6001f5f5219a88176d}{
+\index{phys::Vector3@{phys::Vector3}!dotProduct@{dotProduct}}
+\index{dotProduct@{dotProduct}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{dotProduct}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Vector3::dotProduct (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ vec}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_ac30ef9729b1a4e6001f5f5219a88176d}
+
+
+This is used to calculate the dotproduct of this and another vector. 
+
+This calculates the sum of the products of X, Y and Z. \par
+\par
+ Thanks to the guys at Ogre3d for the well written version of this function that we based this on. 
+\begin{DoxyParams}{Parameters}
+\item[{\em vec}]The vector to work with to create the cross product \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This is the dotproduct of this vector and vec 
+\end{DoxyReturn}
+
+
+Definition at line 295 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}{
+\index{phys::Vector3@{phys::Vector3}!ExtractBulletVector3@{ExtractBulletVector3}}
+\index{ExtractBulletVector3@{ExtractBulletVector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{ExtractBulletVector3}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::ExtractBulletVector3 (
+\begin{DoxyParamCaption}
+\item[{btVector3}]{ temp}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a24ae86b068340be6727877f8c6c1a313}
+
+
+Copies an existing Bullet vector3. 
+
+This function will copy the values stored in an existing Bullet vector3 and set the values of this class to be the same. 
+\begin{DoxyParams}{Parameters}
+\item[{\em temp}]The vector3 to be extracted. \end{DoxyParams}
+
+
+Definition at line 342 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_aa12021e9cdc092c8628ced1c5910c04c}{
+\index{phys::Vector3@{phys::Vector3}!ExtractcAudioVector3@{ExtractcAudioVector3}}
+\index{ExtractcAudioVector3@{ExtractcAudioVector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{ExtractcAudioVector3}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::ExtractcAudioVector3 (
+\begin{DoxyParamCaption}
+\item[{cAudio::cVector3}]{ temp}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_aa12021e9cdc092c8628ced1c5910c04c}
+
+
+Copies an existing cAudio vector3. 
+
+This function will copy the values stored in an existing cAudio vector3 and set the values of this class to be the same. 
+\begin{DoxyParams}{Parameters}
+\item[{\em temp}]The vector3 to be extracted. \end{DoxyParams}
+
+
+Definition at line 374 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}{
+\index{phys::Vector3@{phys::Vector3}!ExtractOgreVector3@{ExtractOgreVector3}}
+\index{ExtractOgreVector3@{ExtractOgreVector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{ExtractOgreVector3}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::ExtractOgreVector3 (
+\begin{DoxyParamCaption}
+\item[{Ogre::Vector3}]{ temp}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a09a31cb8fe491f61e0cc10d21705a0df}
+
+
+Copies an existing Ogre vector3. 
+
+This function will copy the values stored in an existing Ogre vector3 and set the values of this class to be the same. 
+\begin{DoxyParams}{Parameters}
+\item[{\em temp}]The vector3 to be extracted. \end{DoxyParams}
+
+
+Definition at line 358 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_adf4129007ee41f5a03e97502f2df9c41}{
+\index{phys::Vector3@{phys::Vector3}!GetBulletVector3@{GetBulletVector3}}
+\index{GetBulletVector3@{GetBulletVector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{GetBulletVector3}]{\setlength{\rightskip}{0pt plus 5cm}btVector3 phys::Vector3::GetBulletVector3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_adf4129007ee41f5a03e97502f2df9c41}
+
+
+Gets a Bullet vector3. 
+
+Creates a Bullet vector3 with values equal to this class and returns it. 
+
+Definition at line 332 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a58b1ac39dfee4c360c16944a7e7f657d}{
+\index{phys::Vector3@{phys::Vector3}!GetcAudioVector3@{GetcAudioVector3}}
+\index{GetcAudioVector3@{GetcAudioVector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{GetcAudioVector3}]{\setlength{\rightskip}{0pt plus 5cm}cAudio::cVector3 phys::Vector3::GetcAudioVector3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_a58b1ac39dfee4c360c16944a7e7f657d}
+
+
+Gets a cAudio vector3. 
+
+Creates a cAudio vector3 with values equal to this class and returns it. 
+
+Definition at line 365 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a81e11f45378758391c97ec55b519951c}{
+\index{phys::Vector3@{phys::Vector3}!GetNormal@{GetNormal}}
+\index{GetNormal@{GetNormal}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{GetNormal}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::GetNormal (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_a81e11f45378758391c97ec55b519951c}
+
+
+This returns the normal for this relative to the origin. 
+
+This will return a vector that is 1 unit in away from the origin, if a line were starting and the origin it would pass through both the normal and the original point. \begin{DoxyReturn}{Returns}
+At a vector3 that is the normal of this \hyperlink{classphys_1_1Vector3}{Vector3} or 0,0,0 if the current Vector is all 0s 
+\end{DoxyReturn}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000032}{Todo}]discuss the merits throwing an error here. \end{Desc}
+
+
+
+
+Definition at line 311 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a17265d86a74139398d310b56ba7e89b8}{
+\index{phys::Vector3@{phys::Vector3}!GetOgreVector3@{GetOgreVector3}}
+\index{GetOgreVector3@{GetOgreVector3}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{GetOgreVector3}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Vector3 phys::Vector3::GetOgreVector3 (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_a17265d86a74139398d310b56ba7e89b8}
+
+
+Gets a Ogre vector3. 
+
+Creates a Ogre vector3 with values equal to this class and returns it. 
+
+Definition at line 349 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a30af9c8ae51596fa00fa7f350f9668f5}{
+\index{phys::Vector3@{phys::Vector3}!Inverse@{Inverse}}
+\index{Inverse@{Inverse}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{Inverse}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::Inverse (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a30af9c8ae51596fa00fa7f350f9668f5}
+
+
+This will inverse the reals in the vector. 
+
+This function will inverse all the reals in the vector. 
+
+Definition at line 323 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_ae39fe0545df88148bcd668b3bd2a4388}{
+\index{phys::Vector3@{phys::Vector3}!Normalize@{Normalize}}
+\index{Normalize@{Normalize}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{Normalize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::Normalize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_ae39fe0545df88148bcd668b3bd2a4388}
+
+
+This will change this point into it's own normal relative to the origin. 
+
+This will change this vector into one that is the same direction from the origin, but only one unit a away. 
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000031}{Todo}]discuss the merits throwing an error here. \end{Desc}
+
+
+
+
+Definition at line 300 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_ab9b40eb9eb73d806434550604e048faa}{
+\index{phys::Vector3@{phys::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ scalar}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_ab9b40eb9eb73d806434550604e048faa}
+
+
+Scaling by multiplication. 
+
+This Multiplies X, Y and Z by scalar \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Vector3}{Vector3} that has been scaled 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector3}{Vector3} by \end{DoxyParams}
+
+
+Definition at line 109 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a59f8b8d5c15f4b047100480ad26ba092}{
+\index{phys::Vector3@{phys::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a59f8b8d5c15f4b047100480ad26ba092}
+
+
+Bullet Multiplication Operator. 
+
+Allows for multiplication between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} and a btVector3 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the btVector3 to be multiplied \end{DoxyParams}
+
+
+Definition at line 226 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a34014be39219a1ad3d4808b9614ac80d}{
+\index{phys::Vector3@{phys::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a34014be39219a1ad3d4808b9614ac80d}
+
+
+Bullet Multiplication Operator. 
+
+Allows for multiplying between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} and a Ogre::Vector3 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the Ogre::Vector3 to be multiplied \end{DoxyParams}
+
+
+Definition at line 265 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_aa148f18ae4cae10a4aae4170351d7c11}{
+\index{phys::Vector3@{phys::Vector3}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ Vec2}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_aa148f18ae4cae10a4aae4170351d7c11}
+
+
+Multiplaction Operator. 
+
+Allows for multiplaction from a \hyperlink{classphys_1_1Vector3}{phys::Vector3} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3} \end{DoxyParams}
+
+
+Definition at line 187 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_ae04a2cdca40ac24180d6fb62babb34d7}{
+\index{phys::Vector3@{phys::Vector3}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::operator$\ast$= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ scalar}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_ae04a2cdca40ac24180d6fb62babb34d7}
+
+
+Scaling by multiplication. 
+
+This Multiplies X, Y and Z by scalar and stores the changes in this \hyperlink{classphys_1_1Vector3}{Vector3}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector3}{Vector3} by. \end{DoxyParams}
+
+
+Definition at line 129 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a14ca2ae8bbe9ebefd298486b2a2ba5c9}{
+\index{phys::Vector3@{phys::Vector3}!operator+@{operator+}}
+\index{operator+@{operator+}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator+ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a14ca2ae8bbe9ebefd298486b2a2ba5c9}
+
+
+Ogre Addition Operator. 
+
+Allows for addition between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} and a Ogre::Vector3 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the Ogre::Vector3 to be added \end{DoxyParams}
+
+
+Definition at line 247 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_ab9799d4796f3750d44f591986d78e436}{
+\index{phys::Vector3@{phys::Vector3}!operator+@{operator+}}
+\index{operator+@{operator+}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ Vec2}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_ab9799d4796f3750d44f591986d78e436}
+
+
+Addition Operator. 
+
+Allows for addition from a \hyperlink{classphys_1_1Vector3}{phys::Vector3} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3} \end{DoxyParams}
+
+
+Definition at line 169 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a70c99d125274635b07b0fe90bcc15a8c}{
+\index{phys::Vector3@{phys::Vector3}!operator+@{operator+}}
+\index{operator+@{operator+}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator+ (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a70c99d125274635b07b0fe90bcc15a8c}
+
+
+Bullet Addition Operator. 
+
+Allows for addition between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} and a btVector3 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the btVector3 to be added \end{DoxyParams}
+
+
+Definition at line 208 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_ab7ec10d90e35c2b153a2f002f12518ce}{
+\index{phys::Vector3@{phys::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_ab7ec10d90e35c2b153a2f002f12518ce}
+
+
+Bullet Subtraction Operator. 
+
+Allows for subtraction between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} and a btVector3 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the btVector3 to be subtracted \end{DoxyParams}
+
+
+Definition at line 217 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a54d5fc20ae502ac1443ddbb6cf1fbf1f}{
+\index{phys::Vector3@{phys::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a54d5fc20ae502ac1443ddbb6cf1fbf1f}
+
+
+Bullet Subtraction Operator. 
+
+Allows for subtraction between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} and a Ogre::Vector3 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the Ogre::Vector3 to be subtracted \end{DoxyParams}
+
+
+Definition at line 256 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_afb86ac7edd78353ec3d11d9f2efdf0cb}{
+\index{phys::Vector3@{phys::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator-\/ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_afb86ac7edd78353ec3d11d9f2efdf0cb}
+
+
+Additive Inverse Operator. 
+
+Returns the opposite \hyperlink{classphys_1_1Vector3}{Vector3} relative to 0,0,0 
+
+Definition at line 101 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_aed320f9ac1374c0955a20aef50c05751}{
+\index{phys::Vector3@{phys::Vector3}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ Vec2}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_aed320f9ac1374c0955a20aef50c05751}
+
+
+Subraction Operator. 
+
+Allows for subtraction from a \hyperlink{classphys_1_1Vector3}{phys::Vector3} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3} \end{DoxyParams}
+
+
+Definition at line 178 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a4bb5377ad78c299b40a8bc9fb66a902f}{
+\index{phys::Vector3@{phys::Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ scalar}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_a4bb5377ad78c299b40a8bc9fb66a902f}
+
+
+Scaling by Division. 
+
+This Diisionn X, Y and Z by scalar \begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Vector3}{Vector3} that has been scaled 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector3}{Vector3} by \end{DoxyParams}
+
+
+Definition at line 118 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a945287bb9448b2353c90e16c6cfed876}{
+\index{phys::Vector3@{phys::Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a945287bb9448b2353c90e16c6cfed876}
+
+
+Bullet Division Operator. 
+
+Allows for division between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} and a btVector3 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the btVector3 to be divided \end{DoxyParams}
+
+
+Definition at line 235 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a4f9f3240dab2277e8a9b80f6c7235e5b}{
+\index{phys::Vector3@{phys::Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a4f9f3240dab2277e8a9b80f6c7235e5b}
+
+
+Bullet Division Operator. 
+
+Allows for division between a \hyperlink{classphys_1_1Vector3}{phys::Vector3} and a Ogre::Vector3 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the Ogre::Vector3 to be divided \end{DoxyParams}
+
+
+Definition at line 274 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_af8db5066a9509a5d1b7d568ef576dc6e}{
+\index{phys::Vector3@{phys::Vector3}!operator/@{operator/}}
+\index{operator/@{operator/}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Vector3::operator/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ Vec2}
+\end{DoxyParamCaption}
+) const}}
+\label{d5/d6a/classphys_1_1Vector3_af8db5066a9509a5d1b7d568ef576dc6e}
+
+
+Division Operator. 
+
+Allows for division from a \hyperlink{classphys_1_1Vector3}{phys::Vector3} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3} \end{DoxyParams}
+
+
+Definition at line 196 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_ae16bc8ff2f9897b52c36655a8ba8a1be}{
+\index{phys::Vector3@{phys::Vector3}!operator/=@{operator/=}}
+\index{operator/=@{operator/=}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector3::operator/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{ scalar}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_ae16bc8ff2f9897b52c36655a8ba8a1be}
+
+
+Scaling by Division. 
+
+This Division X, Y and Z by scalar and and stores the changes in this \hyperlink{classphys_1_1Vector3}{Vector3}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector3}{Vector3} by \end{DoxyParams}
+
+
+Definition at line 136 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a4c9602b683617d91a68ec1e885522b8b}{
+\index{phys::Vector3@{phys::Vector3}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} \& phys::Vector3::operator= (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{ OVec3}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a4c9602b683617d91a68ec1e885522b8b}
+
+
+Assignment operator to convert from Ogre Vectors. 
+
+This copies the x,y and z values from the bullet into this vector 
+\begin{DoxyParams}{Parameters}
+\item[{\em OVec3}]This is a Ogre::Vector3 that will be copied. \end{DoxyParams}
+
+
+Definition at line 93 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a81a755b7fd93ad523c63befe773b7359}{
+\index{phys::Vector3@{phys::Vector3}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} \& phys::Vector3::operator= (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{ bt3}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a81a755b7fd93ad523c63befe773b7359}
+
+
+Assignment operator to convert from Bullet Vectors. 
+
+This copies the x,y and z values from the bullet into this vector 
+\begin{DoxyParams}{Parameters}
+\item[{\em bt3}]This is a btVector3 that will be copied \end{DoxyParams}
+
+
+Definition at line 87 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a1146d1b1b0f3d8809edfbd24e79b724a}{
+\index{phys::Vector3@{phys::Vector3}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector3::operator== (
+\begin{DoxyParamCaption}
+\item[{const btVector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a1146d1b1b0f3d8809edfbd24e79b724a}
+
+
+Equality Comparison Operator. 
+
+Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is an btVector3 that needs to be compared with this. \end{DoxyParams}
+
+
+Definition at line 152 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_a90dadb1a5cd2c5814e54c11c33f286c1}{
+\index{phys::Vector3@{phys::Vector3}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector3::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf phys::Vector3} \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_a90dadb1a5cd2c5814e54c11c33f286c1}
+
+
+Equality Comparison Operator. 
+
+Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector3}{phys::Vector3}. \end{DoxyParams}
+
+
+Definition at line 145 of file vector3.cpp.
+
+\hypertarget{classphys_1_1Vector3_aef82f53ef74363d7b662cbd1d3c204db}{
+\index{phys::Vector3@{phys::Vector3}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::Vector3@{phys::Vector3}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector3::operator== (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Vector3 \&}]{ Vec2}
+\end{DoxyParamCaption}
+)}}
+\label{d5/d6a/classphys_1_1Vector3_aef82f53ef74363d7b662cbd1d3c204db}
+
+
+Equality Comparison Operator. 
+
+Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Vec2}]This is an Ogre::Vector3 that needs to be compared with this. \end{DoxyParams}
+
+
+Definition at line 159 of file vector3.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+vector3.h\item 
+vector3.cpp\end{DoxyCompactItemize}

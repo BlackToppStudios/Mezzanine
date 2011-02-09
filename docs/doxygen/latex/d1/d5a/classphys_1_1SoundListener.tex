@@ -1,0 +1,370 @@
+\hypertarget{classphys_1_1SoundListener}{
+\section{phys::SoundListener Class Reference}
+\label{d1/d5a/classphys_1_1SoundListener}\index{phys::SoundListener@{phys::SoundListener}}
+}
+
+
+This is the listener class used for 3D sound.  
+
+
+
+
+{\ttfamily \#include $<$soundlistener.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1SoundListener_ab4063bdd8b0bc654a416915354ed0312}{SoundListener} (cAudio::IListener $\ast$Listener)
+\begin{DoxyCompactList}\small\item\em Class constructor. Internal use only. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1SoundListener_ab32dd020228ca0e09271f988d3a2e7f9}{$\sim$SoundListener} ()
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_ab2a679aaf18c646365285c8691ffcb0c}{SetPosition} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
+\begin{DoxyCompactList}\small\item\em Sets the listener position. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_ad4ba93b650897e355c26b09e3f95bce0}{SetDirection} (\hyperlink{classphys_1_1Vector3}{Vector3} Direction)
+\begin{DoxyCompactList}\small\item\em Sets the direction the listener is facing. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_a51d6f4ccbbbe059e330eba6ef218eda8}{SetUpVector} (\hyperlink{classphys_1_1Vector3}{Vector3} Up)
+\begin{DoxyCompactList}\small\item\em Sets the up direction for the listener. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_a22e63d58ca9710f9a54fb08dbd9be4d9}{SetVelocity} (\hyperlink{classphys_1_1Vector3}{Vector3} Velocity)
+\begin{DoxyCompactList}\small\item\em Sets the velocity of the listener. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_a8375218557d4a79889bc59da6b064a43}{SetMasterVolume} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Volume)
+\begin{DoxyCompactList}\small\item\em Sets the master volume for all sources heard by this listener. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_a6fb5a26760d0ec460271393fd493dda2}{Move} (\hyperlink{classphys_1_1Vector3}{Vector3} Position)
+\begin{DoxyCompactList}\small\item\em Moves the listener to a new location. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1SoundListener_ad0bec6f468f7bcfa3cadfafbd22a8603}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the current position of the listener. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1SoundListener_a5277c24127bd23796710516c21154b49}{GetDirection} ()
+\begin{DoxyCompactList}\small\item\em Gets the current direction of the listener. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1SoundListener_aff27f90cad8b2eec53e28d28ee2203c3}{GetUpVector} ()
+\begin{DoxyCompactList}\small\item\em Sets the upward orientation of the listener. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1SoundListener_a6b4bbf974c48ba2028bcf2f943a1b1c2}{GetVelocity} ()
+\begin{DoxyCompactList}\small\item\em Gets the current velocity of the listener. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1SoundListener_a03acbadb9e7ebad0014269bf5c3bcf3d}{GetMasterVolume} ()
+\begin{DoxyCompactList}\small\item\em Gets the master volume used to scale sound sources. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1SoundListener_ae5d432f4e1bf7eb788364e7ea0c4e0a6}{SetMetersPerUnit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Meters)
+\begin{DoxyCompactList}\small\item\em Sets the scale to be used by the manager for this listener. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1SoundListener_a97c834a1b8fec9ce3a0e705468d531e5}{GetMetersPerUnit} ()
+\begin{DoxyCompactList}\small\item\em Gets the scale used by the manager for this listener. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1SoundListener_ada88acce2006736a00c8eb3a428a3e42}{
+cAudio::IListener $\ast$ {\bfseries AudioListener}}
+\label{d1/d5a/classphys_1_1SoundListener_ada88acce2006736a00c8eb3a428a3e42}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is the listener class used for 3D sound. This is the listener class used for determining how 3D sound is played. 
+
+Definition at line 60 of file soundlistener.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1SoundListener_ab4063bdd8b0bc654a416915354ed0312}{
+\index{phys::SoundListener@{phys::SoundListener}!SoundListener@{SoundListener}}
+\index{SoundListener@{SoundListener}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{SoundListener}]{\setlength{\rightskip}{0pt plus 5cm}phys::SoundListener::SoundListener (
+\begin{DoxyParamCaption}
+\item[{cAudio::IListener $\ast$}]{ Listener}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_ab4063bdd8b0bc654a416915354ed0312}
+
+
+Class constructor. Internal use only. 
+
+The Class constructor. This is an internal function and shouldn't be called manually. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Listener}]Pointer to the internal listener. \end{DoxyParams}
+
+
+Definition at line 48 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_ab32dd020228ca0e09271f988d3a2e7f9}{
+\index{phys::SoundListener@{phys::SoundListener}!$\sim$SoundListener@{$\sim$SoundListener}}
+\index{$\sim$SoundListener@{$\sim$SoundListener}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{$\sim$SoundListener}]{\setlength{\rightskip}{0pt plus 5cm}phys::SoundListener::$\sim$SoundListener (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_ab32dd020228ca0e09271f988d3a2e7f9}
+
+
+Class destructor. 
+
+The class destructor. 
+
+Definition at line 53 of file soundlistener.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1SoundListener_a5277c24127bd23796710516c21154b49}{
+\index{phys::SoundListener@{phys::SoundListener}!GetDirection@{GetDirection}}
+\index{GetDirection@{GetDirection}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{GetDirection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::SoundListener::GetDirection (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_a5277c24127bd23796710516c21154b49}
+
+
+Gets the current direction of the listener. 
+
+This function will get the current direction of the listener. \begin{DoxyReturn}{Returns}
+Returns the current direction of the listener. 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_a03acbadb9e7ebad0014269bf5c3bcf3d}{
+\index{phys::SoundListener@{phys::SoundListener}!GetMasterVolume@{GetMasterVolume}}
+\index{GetMasterVolume@{GetMasterVolume}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{GetMasterVolume}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::SoundListener::GetMasterVolume (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_a03acbadb9e7ebad0014269bf5c3bcf3d}
+
+
+Gets the master volume used to scale sound sources. 
+
+This function will get the master volume, which is used to scale the volume of all sound sources heard by this listener. \begin{DoxyReturn}{Returns}
+Returns the current scale used for adjusting the volume of all sources heard by this listener. 
+\end{DoxyReturn}
+
+
+Definition at line 111 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_a97c834a1b8fec9ce3a0e705468d531e5}{
+\index{phys::SoundListener@{phys::SoundListener}!GetMetersPerUnit@{GetMetersPerUnit}}
+\index{GetMetersPerUnit@{GetMetersPerUnit}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{GetMetersPerUnit}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::SoundListener::GetMetersPerUnit (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_a97c834a1b8fec9ce3a0e705468d531e5}
+
+
+Gets the scale used by the manager for this listener. 
+
+This function will get the amount of meters per unit used in your game/simulation scale. The engine assumes you use meters, so default is 1.0. \begin{DoxyReturn}{Returns}
+Returns the amount of meters per unit in your scale. 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_ad0bec6f468f7bcfa3cadfafbd22a8603}{
+\index{phys::SoundListener@{phys::SoundListener}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::SoundListener::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_ad0bec6f468f7bcfa3cadfafbd22a8603}
+
+
+Gets the current position of the listener. 
+
+This function will get the current position of the listener. \begin{DoxyReturn}{Returns}
+Returns the current position of the listener. 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_aff27f90cad8b2eec53e28d28ee2203c3}{
+\index{phys::SoundListener@{phys::SoundListener}!GetUpVector@{GetUpVector}}
+\index{GetUpVector@{GetUpVector}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{GetUpVector}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::SoundListener::GetUpVector (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_aff27f90cad8b2eec53e28d28ee2203c3}
+
+
+Sets the upward orientation of the listener. 
+
+Sets which direction is up for the listener \begin{DoxyReturn}{Returns}
+Returns the current up orientation of the listener. 
+\end{DoxyReturn}
+
+
+Definition at line 99 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_a6b4bbf974c48ba2028bcf2f943a1b1c2}{
+\index{phys::SoundListener@{phys::SoundListener}!GetVelocity@{GetVelocity}}
+\index{GetVelocity@{GetVelocity}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{GetVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::SoundListener::GetVelocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_a6b4bbf974c48ba2028bcf2f943a1b1c2}
+
+
+Gets the current velocity of the listener. 
+
+This function will get the current velocity of the listener. \begin{DoxyReturn}{Returns}
+Returns the current velocity of the listener. 
+\end{DoxyReturn}
+
+
+Definition at line 105 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_a6fb5a26760d0ec460271393fd493dda2}{
+\index{phys::SoundListener@{phys::SoundListener}!Move@{Move}}
+\index{Move@{Move}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{Move}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::Move (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Position}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_a6fb5a26760d0ec460271393fd493dda2}
+
+
+Moves the listener to a new location. 
+
+This function will set a new position and velocity of the listener. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]The new position of the listener. \end{DoxyParams}
+
+
+Definition at line 82 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_ad4ba93b650897e355c26b09e3f95bce0}{
+\index{phys::SoundListener@{phys::SoundListener}!SetDirection@{SetDirection}}
+\index{SetDirection@{SetDirection}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{SetDirection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetDirection (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Direction}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_ad4ba93b650897e355c26b09e3f95bce0}
+
+
+Sets the direction the listener is facing. 
+
+Sets the direction the listener is facing. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Direction}]The new direction for the listener. \end{DoxyParams}
+
+
+Definition at line 62 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_a8375218557d4a79889bc59da6b064a43}{
+\index{phys::SoundListener@{phys::SoundListener}!SetMasterVolume@{SetMasterVolume}}
+\index{SetMasterVolume@{SetMasterVolume}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{SetMasterVolume}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetMasterVolume (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Volume}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_a8375218557d4a79889bc59da6b064a43}
+
+
+Sets the master volume for all sources heard by this listener. 
+
+This function will scale the volume for all sources heard by this listener by the amount provided. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Volume}]The amount by which to scale all sound sources heard. \end{DoxyParams}
+
+
+Definition at line 77 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_ae5d432f4e1bf7eb788364e7ea0c4e0a6}{
+\index{phys::SoundListener@{phys::SoundListener}!SetMetersPerUnit@{SetMetersPerUnit}}
+\index{SetMetersPerUnit@{SetMetersPerUnit}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{SetMetersPerUnit}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetMetersPerUnit (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Meters}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_ae5d432f4e1bf7eb788364e7ea0c4e0a6}
+
+
+Sets the scale to be used by the manager for this listener. 
+
+This function will set the engines scale for use with sounds. Internally the engine assumes all units are in meters. If that is not the case then this function should be called to set the scale. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Meters}]The amount of meters that are in one unit of your games scale. \end{DoxyParams}
+
+
+Definition at line 116 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_ab2a679aaf18c646365285c8691ffcb0c}{
+\index{phys::SoundListener@{phys::SoundListener}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetPosition (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Position}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_ab2a679aaf18c646365285c8691ffcb0c}
+
+
+Sets the listener position. 
+
+Sets the listeners position. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Position}]The new position for the listener. \end{DoxyParams}
+
+
+Definition at line 57 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_a51d6f4ccbbbe059e330eba6ef218eda8}{
+\index{phys::SoundListener@{phys::SoundListener}!SetUpVector@{SetUpVector}}
+\index{SetUpVector@{SetUpVector}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{SetUpVector}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetUpVector (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Up}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_a51d6f4ccbbbe059e330eba6ef218eda8}
+
+
+Sets the up direction for the listener. 
+
+Sets the direction that is up relative to the orientation of the listener. Default: +Y 
+\begin{DoxyParams}{Parameters}
+\item[{\em Up}]The new upward vector to be used by the listener. \end{DoxyParams}
+
+
+Definition at line 67 of file soundlistener.cpp.
+
+\hypertarget{classphys_1_1SoundListener_a22e63d58ca9710f9a54fb08dbd9be4d9}{
+\index{phys::SoundListener@{phys::SoundListener}!SetVelocity@{SetVelocity}}
+\index{SetVelocity@{SetVelocity}!phys::SoundListener@{phys::SoundListener}}
+\subsubsection[{SetVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetVelocity (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Velocity}
+\end{DoxyParamCaption}
+)}}
+\label{d1/d5a/classphys_1_1SoundListener_a22e63d58ca9710f9a54fb08dbd9be4d9}
+
+
+Sets the velocity of the listener. 
+
+Sets the listeners velocity, for use in determining doppler effects. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Velocity}]The new velocity for the listener. \end{DoxyParams}
+
+
+Definition at line 72 of file soundlistener.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+soundlistener.h\item 
+soundlistener.cpp\end{DoxyCompactItemize}
