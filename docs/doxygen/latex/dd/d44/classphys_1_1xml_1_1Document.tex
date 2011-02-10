@@ -30,13 +30,16 @@ Inheritance diagram for phys::xml::Document:\begin{figure}[H]
 \label{dd/d44/classphys_1_1xml_1_1Document_a70013c2b670c4d4b5ee55d12e7c50be4}
 
 \begin{DoxyCompactList}\small\item\em Tears down a document, and incidentally invalidates all \hyperlink{classphys_1_1xml_1_1Node}{Node} and \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} handles to this document. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1Document_a9ab556271e4a1214ecb35ba6aef9e8e4}{
-void \hyperlink{classphys_1_1xml_1_1Document_a9ab556271e4a1214ecb35ba6aef9e8e4}{Reset} ()}
-\label{dd/d44/classphys_1_1xml_1_1Document_a9ab556271e4a1214ecb35ba6aef9e8e4}
+\hypertarget{classphys_1_1xml_1_1Document_a2f6915579817f65c64428328f2310a02}{
+void {\bfseries ReSet} ()}
+\label{dd/d44/classphys_1_1xml_1_1Document_a2f6915579817f65c64428328f2310a02}
 
-\begin{DoxyCompactList}\small\item\em Removes all nodes, leaving the empty document. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1xml_1_1Document_aba87e21330118fb43b2aab2c36486b03}{Reset} (const \hyperlink{classphys_1_1xml_1_1Document}{Document} \&proto)
-\begin{DoxyCompactList}\small\item\em Removes all nodes, then copies the entire contents of the specified document. \item\end{DoxyCompactList}\item 
+\item 
+\hypertarget{classphys_1_1xml_1_1Document_a3f3caf62459ea055008edbdf2fab46be}{
+void {\bfseries ReSet} (const \hyperlink{classphys_1_1xml_1_1Document}{Document} \&proto)}
+\label{dd/d44/classphys_1_1xml_1_1Document_a3f3caf62459ea055008edbdf2fab46be}
+
+\item 
 \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} \hyperlink{classphys_1_1xml_1_1Document_a9d4ddfd3b987fa3d31d41c06d06a001e}{Load} (std::basic\_\-istream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&stream, unsigned int options=\hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto)
 \begin{DoxyCompactList}\small\item\em Load XML from a stream. \item\end{DoxyCompactList}\item 
 \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} \hyperlink{classphys_1_1xml_1_1Document_a5c31cda427eeeb61cd40932f7bec6376}{Load} (std::basic\_\-istream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&stream, unsigned int options=\hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault})
@@ -295,26 +298,6 @@ A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the 
 
 
 Definition at line 4681 of file xml.cpp.
-
-\hypertarget{classphys_1_1xml_1_1Document_aba87e21330118fb43b2aab2c36486b03}{
-\index{phys::xml::Document@{phys::xml::Document}!Reset@{Reset}}
-\index{Reset@{Reset}!phys::xml::Document@{phys::xml::Document}}
-\subsubsection[{Reset}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Document::Reset (
-\begin{DoxyParamCaption}
-\item[{const {\bf Document} \&}]{ proto}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d44/classphys_1_1xml_1_1Document_aba87e21330118fb43b2aab2c36486b03}
-
-
-Removes all nodes, then copies the entire contents of the specified document. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em proto}]The \hyperlink{classphys_1_1xml_1_1Document}{Document} to copy. \end{DoxyParams}
-
-
-Definition at line 4581 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Document_a034a5497b68d8531886fdc7a6a67bd7d}{
 \index{phys::xml::Document@{phys::xml::Document}!Save@{Save}}

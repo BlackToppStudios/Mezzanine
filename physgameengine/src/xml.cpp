@@ -500,7 +500,7 @@ namespace
 		const char_t* buffer; 
 	}; 
  
-	static inline Allocator& get_allocator(const NodeStruct* node) 
+	static inline Allocator& GetAllocator(const NodeStruct* node) 
 	{ 
 		assert(node); 
  
@@ -1038,7 +1038,7 @@ namespace
 		return *reinterpret_cast<unsigned char*>(&ui) == 1; 
 	} 
  
-	Encoding get_wchar_DocumentEncoding() 
+	Encoding GetWchar_DocumentEncoding() 
 	{ 
 		STATIC_ASSERT(sizeof(wchar_t) == 2 || sizeof(wchar_t) == 4); 
  
@@ -1072,10 +1072,10 @@ namespace
 		return EncodingUTF8; 
 	} 
  
-	Encoding get_buffer_DocumentEncoding(Encoding DocumentEncoding, const void* contents, size_t size) 
+	Encoding GetBuffer_DocumentEncoding(Encoding DocumentEncoding, const void* contents, size_t size) 
 	{ 
 		// replace wchar DocumentEncoding with utf implementation 
-		if (DocumentEncoding == Encodingwchar_t) return get_wchar_DocumentEncoding(); 
+		if (DocumentEncoding == Encodingwchar_t) return GetWchar_DocumentEncoding(); 
  
 		// replace utf16 DocumentEncoding with utf16 with specific endianness 
 		if (DocumentEncoding == EncodingUTF16) return is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
@@ -1097,7 +1097,7 @@ namespace
 		return guess_buffer_DocumentEncoding(d0, d1, d2, d3); 
 	} 
  
-	bool get_mutable_buffer(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable) 
+	bool GetMutable_buffer(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable) 
 	{ 
 		if (is_mutable) 
 		{ 
@@ -1214,10 +1214,10 @@ namespace
 	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable) 
 	{ 
 		// get native DocumentEncoding 
-		Encoding wchar_DocumentEncoding = get_wchar_DocumentEncoding(); 
+		Encoding wchar_DocumentEncoding = GetWchar_DocumentEncoding(); 
  
 		// fast Path: no conversion required 
-		if (DocumentEncoding == wchar_DocumentEncoding) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
+		if (DocumentEncoding == wchar_DocumentEncoding) return GetMutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
  
 		// only endian-swapping is required 
 		if (need_endian_swap_utf(DocumentEncoding, wchar_DocumentEncoding)) return convert_buffer_endian_swap(out_buffer, out_length, contents, size, is_mutable); 
@@ -1296,7 +1296,7 @@ namespace
 	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable) 
 	{ 
 		// fast Path: no conversion required 
-		if (DocumentEncoding == EncodingUTF8) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
+		if (DocumentEncoding == EncodingUTF8) return GetMutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
  
 		// source DocumentEncoding is utf16 
 		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE) 
@@ -1394,15 +1394,15 @@ namespace
 	inline bool strcpy_insitu_allow(size_t length, uintptr_t allocated, char_t* target) 
 	{ 
 		assert(target); 
-		size_t target_length = strlength(target); 
+		size_t tarGetLength = strlength(target); 
  
 		// always reuse document buffer memory if possible 
-		if (!allocated) return target_length >= length; 
+		if (!allocated) return tarGetLength >= length; 
  
 		// reuse heap memory if waste is not too great 
 		const size_t reuse_threshold = 32; 
  
-		return target_length >= length && (target_length < reuse_threshold || target_length - length < target_length / 2); 
+		return tarGetLength >= length && (tarGetLength < reuse_threshold || tarGetLength - length < tarGetLength / 2); 
 	} 
  
 	bool strcpy_insitu(char_t*& dest, uintptr_t& header, uintptr_t header_mask, const char_t* source) 
@@ -1722,7 +1722,7 @@ namespace
 		} 
 	}; 
 	 
-	strconv_pcdata_t get_strconv_pcdata(unsigned int optmask) 
+	strconv_pcdata_t GetStrconv_pcdata(unsigned int optmask) 
 	{ 
 		STATIC_ASSERT(ParseEscapes == 0x10 && ParseEol == 0x20); 
  
@@ -1887,7 +1887,7 @@ namespace
 		} 
 	}; 
  
-	strconv_attribute_t get_strconv_attribute(unsigned int optmask) 
+	strconv_attribute_t GetStrconv_attribute(unsigned int optmask) 
 	{ 
 		STATIC_ASSERT(ParseEscapes == 0x10 && ParseEol == 0x20 && ParseWconvAttribute == 0x40 && ParseWnormAttribute == 0x80); 
 		 
@@ -2254,8 +2254,8 @@ namespace
  
 		void parse(char_t* s, NodeStruct* xmldoc, unsigned int optmsk, char_t endch) 
 		{ 
-			strconv_attribute_t strconv_attribute = get_strconv_attribute(optmsk); 
-			strconv_pcdata_t strconv_pcdata = get_strconv_pcdata(optmsk); 
+			strconv_attribute_t strconv_attribute = GetStrconv_attribute(optmsk); 
+			strconv_pcdata_t strconv_pcdata = GetStrconv_pcdata(optmsk); 
 			 
 			char_t ch = 0; 
 			NodeStruct* cursor = xmldoc; 
@@ -2512,19 +2512,19 @@ namespace
 	}; 
  
 	// Output facilities 
-	Encoding get_Write_native_DocumentEncoding() 
+	Encoding GetWrite_native_DocumentEncoding() 
 	{ 
 	#ifdef XML_WCHAR_MODE 
-		return get_wchar_DocumentEncoding(); 
+		return GetWchar_DocumentEncoding(); 
 	#else 
 		return EncodingUTF8; 
 	#endif 
 	} 
  
-	Encoding get_Write_DocumentEncoding(Encoding DocumentEncoding) 
+	Encoding GetWrite_DocumentEncoding(Encoding DocumentEncoding) 
 	{ 
 		// replace wchar DocumentEncoding with utf implementation 
-		if (DocumentEncoding == Encodingwchar_t) return get_wchar_DocumentEncoding(); 
+		if (DocumentEncoding == Encodingwchar_t) return GetWchar_DocumentEncoding(); 
  
 		// replace utf16 DocumentEncoding with utf16 with specific endianness 
 		if (DocumentEncoding == EncodingUTF16) return is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
@@ -2540,7 +2540,7 @@ namespace
 	} 
  
 #ifdef XML_WCHAR_MODE 
-	size_t get_valid_length(const char_t* data, size_t length) 
+	size_t GetValid_length(const char_t* data, size_t length) 
 	{ 
 		assert(length > 0); 
  
@@ -2551,7 +2551,7 @@ namespace
 	size_t convert_buffer(char* result, const char_t* data, size_t length, Encoding DocumentEncoding) 
 	{ 
 		// only endian-swapping is required 
-		if (need_endian_swap_utf(DocumentEncoding, get_wchar_DocumentEncoding())) 
+		if (need_endian_swap_utf(DocumentEncoding, GetWchar_DocumentEncoding())) 
 		{ 
 			convert_wchar_endian_swap(reinterpret_cast<char_t*>(result), data, length); 
  
@@ -2606,7 +2606,7 @@ namespace
 		return 0; 
 	} 
 #else 
-	size_t get_valid_length(const char_t* data, size_t length) 
+	size_t GetValid_length(const char_t* data, size_t length) 
 	{ 
 		assert(length > 4); 
  
@@ -2665,7 +2665,7 @@ namespace
 		BufferedWriter& operator=(const BufferedWriter&); 
  
 	public: 
-		BufferedWriter(Writer& WriterInstance, Encoding user_DocumentEncoding): WriterInstance(WriterInstance), bufsize(0), DocumentEncoding(get_Write_DocumentEncoding(user_DocumentEncoding)) 
+		BufferedWriter(Writer& WriterInstance, Encoding user_DocumentEncoding): WriterInstance(WriterInstance), bufsize(0), DocumentEncoding(GetWrite_DocumentEncoding(user_DocumentEncoding)) 
 		{ 
 		} 
  
@@ -2685,7 +2685,7 @@ namespace
 			if (size == 0) return; 
  
 			// fast Path, just Write data 
-			if (DocumentEncoding == get_Write_native_DocumentEncoding()) 
+			if (DocumentEncoding == GetWrite_native_DocumentEncoding()) 
 				WriterInstance.Write(data, size * sizeof(char_t)); 
 			else 
 			{ 
@@ -2708,7 +2708,7 @@ namespace
 				// handle large chunks 
 				if (length > bufcapacity) 
 				{ 
-					if (DocumentEncoding == get_Write_native_DocumentEncoding()) 
+					if (DocumentEncoding == GetWrite_native_DocumentEncoding()) 
 					{ 
 						// fast Path, can just Write data chunk 
 						WriterInstance.Write(data, length * sizeof(char_t)); 
@@ -2720,7 +2720,7 @@ namespace
 					{ 
 						// get chunk size by selecting such number of characters that are guaranteed to fit into scratch buffer 
 						// and form a complete codepoint sequence (i.e. discard start of last codepoint if necessary) 
-						size_t chunk_size = get_valid_length(data, bufcapacity); 
+						size_t chunk_size = GetValid_length(data, bufcapacity); 
  
 						// convert chunk and Write 
 						flush(data, chunk_size); 
@@ -3133,7 +3133,7 @@ namespace
 	} 
  
 	// we need to get length of entire file to Load it in memory; the only (relatively) sane way to do it is via seek/tell trick 
-	ParseStatus get_file_size(FILE* file, size_t& out_result) 
+	ParseStatus GetFile_size(FILE* file, size_t& out_result) 
 	{ 
 	#if defined(_MSC_VER) && _MSC_VER >= 1400 
 		// there are 64-bit versions of fseek/ftell, let's use them 
@@ -3178,7 +3178,7 @@ namespace
  
 		// get file size (can result in I/O errors) 
 		size_t size = 0; 
-		ParseStatus size_Status = get_file_size(file, size); 
+		ParseStatus size_Status = GetFile_size(file, size); 
  
 		if (size_Status != StatusOk) 
 		{ 
@@ -3849,7 +3849,7 @@ namespace phys
 	{ 
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute(); 
 		 
-		Attribute a(AppendAttribute_ll(_GetRoot, get_allocator(_GetRoot))); 
+		Attribute a(AppendAttribute_ll(_GetRoot, GetAllocator(_GetRoot))); 
 		a.SetName(Name); 
 		 
 		return a; 
@@ -3859,7 +3859,7 @@ namespace phys
 	{ 
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute(); 
 		 
-		Attribute a(allocate_attribute(get_allocator(_GetRoot))); 
+		Attribute a(allocate_attribute(GetAllocator(_GetRoot))); 
 		if (!a) return Attribute(); 
  
 		a.SetName(Name); 
@@ -3891,7 +3891,7 @@ namespace phys
  
 		if (cur != _GetRoot->GetFirstAttribute) return Attribute(); 
  
-		Attribute a(allocate_attribute(get_allocator(_GetRoot))); 
+		Attribute a(allocate_attribute(GetAllocator(_GetRoot))); 
 		if (!a) return Attribute(); 
  
 		a.SetName(Name); 
@@ -3919,7 +3919,7 @@ namespace phys
  
 		if (cur != _GetRoot->GetFirstAttribute) return Attribute(); 
  
-		Attribute a(allocate_attribute(get_allocator(_GetRoot))); 
+		Attribute a(allocate_attribute(GetAllocator(_GetRoot))); 
 		if (!a) return Attribute(); 
  
 		a.SetName(Name); 
@@ -3980,7 +3980,7 @@ namespace phys
 	{ 
 		if (!allow_InsertChild(this->Type(), Type)) return Node(); 
 		 
-		Node n(AppendNode(_GetRoot, get_allocator(_GetRoot), Type)); 
+		Node n(AppendNode(_GetRoot, GetAllocator(_GetRoot), Type)); 
  
 		if (Type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
  
@@ -3991,7 +3991,7 @@ namespace phys
 	{ 
 		if (!allow_InsertChild(this->Type(), Type)) return Node(); 
 		 
-		Node n(allocate_node(get_allocator(_GetRoot), Type)); 
+		Node n(allocate_node(GetAllocator(_GetRoot), Type)); 
 		if (!n) return Node(); 
  
 		n._GetRoot->GetParent = _GetRoot; 
@@ -4019,7 +4019,7 @@ namespace phys
 		if (!allow_InsertChild(this->Type(), Type)) return Node(); 
 		if (!node._GetRoot || node._GetRoot->GetParent != _GetRoot) return Node(); 
 	 
-		Node n(allocate_node(get_allocator(_GetRoot), Type)); 
+		Node n(allocate_node(GetAllocator(_GetRoot), Type)); 
 		if (!n) return Node(); 
  
 		n._GetRoot->GetParent = _GetRoot; 
@@ -4043,7 +4043,7 @@ namespace phys
 		if (!allow_InsertChild(this->Type(), Type)) return Node(); 
 		if (!node._GetRoot || node._GetRoot->GetParent != _GetRoot) return Node(); 
 	 
-		Node n(allocate_node(get_allocator(_GetRoot), Type)); 
+		Node n(allocate_node(GetAllocator(_GetRoot), Type)); 
 		if (!n) return Node(); 
  
 		n._GetRoot->GetParent = _GetRoot; 
@@ -4156,7 +4156,7 @@ namespace phys
 		if (a._attr->prev_attribute_c->GetNextAttribute) a._attr->prev_attribute_c->GetNextAttribute = a._attr->GetNextAttribute; 
 		else _GetRoot->GetFirstAttribute = a._attr->GetNextAttribute; 
  
-		destroy_attribute(a._attr, get_allocator(_GetRoot)); 
+		destroy_attribute(a._attr, GetAllocator(_GetRoot)); 
  
 		return true; 
 	} 
@@ -4176,7 +4176,7 @@ namespace phys
 		if (n._GetRoot->prev_sibling_c->GetNextSibling) n._GetRoot->prev_sibling_c->GetNextSibling = n._GetRoot->GetNextSibling; 
 		else _GetRoot->GetFirstChild = n._GetRoot->GetNextSibling; 
 		 
-		destroy_node(n._GetRoot, get_allocator(_GetRoot)); 
+		destroy_node(n._GetRoot, GetAllocator(_GetRoot)); 
  
 		return true; 
 	} 
@@ -4572,15 +4572,15 @@ namespace phys
 		destroy(); 
 	} 
  
-	void Document::Reset() 
+	void Document::ReSet() 
 	{ 
 		destroy(); 
 		create(); 
 	} 
  
-	void Document::Reset(const Document& proto) 
+	void Document::ReSet(const Document& proto) 
 	{ 
-		Reset(); 
+		ReSet(); 
  
 		for (Node cur = proto.GetFirstChild(); cur; cur = cur.GetNextSibling()) 
 			AppendCopy(cur); 
@@ -4644,14 +4644,14 @@ namespace phys
 #ifndef XML_NO_STL 
 	ParseResult Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		Reset(); 
+		ReSet(); 
  
 		return LoadStreamImpl(*this, stream, options, DocumentEncoding); 
 	} 
  
 	ParseResult Document::Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options) 
 	{ 
-		Reset(); 
+		ReSet(); 
  
 		return LoadStreamImpl(*this, stream, options, Encodingwchar_t); 
 	} 
@@ -4671,7 +4671,7 @@ namespace phys
  
 	ParseResult Document::LoadFile(const char* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		Reset(); 
+		ReSet(); 
  
 		FILE* file = fopen(Path, "rb"); 
  
@@ -4680,7 +4680,7 @@ namespace phys
  
 	ParseResult Document::LoadFile(const wchar_t* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		Reset(); 
+		ReSet(); 
  
 		FILE* file = open_file_wide(Path, L"rb"); 
  
@@ -4689,13 +4689,13 @@ namespace phys
  
 	ParseResult Document::LoadBufferImpl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own) 
 	{ 
-		Reset(); 
+		ReSet(); 
  
 		// check input buffer 
 		assert(contents || size == 0); 
  
 		// get actual DocumentEncoding 
-		Encoding buffer_DocumentEncoding = get_buffer_DocumentEncoding(DocumentEncoding, contents, size); 
+		Encoding buffer_DocumentEncoding = GetBuffer_DocumentEncoding(DocumentEncoding, contents, size); 
  
 		// get private buffer 
 		char_t* buffer = 0; 
@@ -4735,7 +4735,7 @@ namespace phys
  
 	void Document::Save(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		if (flags & FormatWriteBom) Write_bom(WriterInstance, get_Write_DocumentEncoding(DocumentEncoding)); 
+		if (flags & FormatWriteBom) Write_bom(WriterInstance, GetWrite_DocumentEncoding(DocumentEncoding)); 
  
 		BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding); 
  
@@ -4831,12 +4831,12 @@ namespace phys
 		global_deallocate = deallocate; 
 	} 
  
-	allocation_function PHYS_LIB get_memory_allocation_function() 
+	allocation_function PHYS_LIB GetMemory_allocation_function() 
 	{ 
 		return global_allocate; 
 	} 
  
-	deallocation_function PHYS_LIB get_memory_deallocation_function() 
+	deallocation_function PHYS_LIB GetMemory_deallocation_function() 
 	{ 
 		return global_deallocate; 
 	} 
@@ -5375,19 +5375,19 @@ namespace
 			else 
 			{ 
 				// need to make heap copy 
-				size_t target_length = strlength(_buffer); 
+				size_t tarGetLength = strlength(_buffer); 
 				size_t source_length = strlength(o._buffer); 
-				size_t length = target_length + source_length; 
+				size_t length = tarGetLength + source_length; 
  
 				// allocate new buffer 
-				char_t* result = static_cast<char_t*>(alloc->reallocate(_uses_heap ? const_cast<char_t*>(_buffer) : 0, (target_length + 1) * sizeof(char_t), (length + 1) * sizeof(char_t))); 
+				char_t* result = static_cast<char_t*>(alloc->reallocate(_uses_heap ? const_cast<char_t*>(_buffer) : 0, (tarGetLength + 1) * sizeof(char_t), (length + 1) * sizeof(char_t))); 
 				assert(result); 
  
 				// append first string to the new buffer in case there was no reallocation 
-				if (!_uses_heap) memcpy(result, _buffer, target_length * sizeof(char_t)); 
+				if (!_uses_heap) memcpy(result, _buffer, tarGetLength * sizeof(char_t)); 
  
 				// append second string to the new buffer 
-				memcpy(result + target_length, o._buffer, source_length * sizeof(char_t)); 
+				memcpy(result + tarGetLength, o._buffer, source_length * sizeof(char_t)); 
 				result[length] = 0; 
  
 				// finalize 
@@ -6186,7 +6186,7 @@ namespace
 		} 
 	} 
  
-	XPathVariable* get_variable(XPathVariableSet* set, const char_t* begin, const char_t* end) 
+	XPathVariable* GetVariable(XPathVariableSet* set, const char_t* begin, const char_t* end) 
 	{ 
 		char_t buffer[32]; 
  
@@ -7569,7 +7569,7 @@ namespace
 				assert(_retType == _data.variable->Type()); 
  
 				if (_retType == XPathTypeBoolean) 
-					return _data.variable->get_boolean(); 
+					return _data.variable->GetBoolean(); 
  
 				// fallthrough to Type conversion 
 			} 
@@ -7705,7 +7705,7 @@ namespace
 				assert(_retType == _data.variable->Type()); 
  
 				if (_retType == XPathTypeNumber) 
-					return _data.variable->get_number(); 
+					return _data.variable->GetNumber(); 
  
 				// fallthrough to Type conversion 
 			} 
@@ -7974,7 +7974,7 @@ namespace
 				assert(_retType == _data.variable->Type()); 
  
 				if (_retType == XPathTypeString) 
-					return XPathStringConst(_data.variable->get_string()); 
+					return XPathStringConst(_data.variable->GetString()); 
  
 				// fallthrough to Type conversion 
 			} 
@@ -8111,7 +8111,7 @@ namespace
  
 				if (_retType == XPathTypeNodeSet) 
 				{ 
-					const XPathNodeSet& s = _data.variable->get_NodeSet(); 
+					const XPathNodeSet& s = _data.variable->GetNodeSet(); 
  
 					XPathNodeSet_raw ns; 
  
@@ -8456,7 +8456,7 @@ namespace
 				if (!_variables) 
 					throw_error("Unknown variable: variable set is not provided"); 
  
-				XPathVariable* var = get_variable(_variables, Name.begin, Name.end); 
+				XPathVariable* var = GetVariable(_variables, Name.begin, Name.end); 
  
 				if (!var) 
 					throw_error("Unknown variable: variable set does not contain the given Name"); 
@@ -9301,28 +9301,28 @@ namespace phys
 		return _type; 
 	} 
  
-	bool XPathVariable::get_boolean() const 
+	bool XPathVariable::GetBoolean() const 
 	{ 
 		return (_type == XPathTypeBoolean) ? static_cast<const XPathVariableBoolean*>(this)->Value : false; 
 	} 
  
-	double XPathVariable::get_number() const 
+	double XPathVariable::GetNumber() const 
 	{ 
 		return (_type == XPathTypeNumber) ? static_cast<const XPathVariableNumber*>(this)->Value : gen_nan(); 
 	} 
  
-	const char_t* XPathVariable::get_string() const 
+	const char_t* XPathVariable::GetString() const 
 	{ 
 		const char_t* Value = (_type == XPathTypeString) ? static_cast<const XPathVariableString*>(this)->Value : 0; 
 		return Value ? Value : XML_TEXT(""); 
 	} 
  
-	const XPathNodeSet& XPathVariable::get_NodeSet() const 
+	const XPathNodeSet& XPathVariable::GetNodeSet() const 
 	{ 
 		return (_type == XPathTypeNodeSet) ? static_cast<const XPathVariableNodeSet*>(this)->Value : dummy_NodeSet; 
 	} 
  
-	bool XPathVariable::set(bool Value) 
+	bool XPathVariable::Set(bool Value) 
 	{ 
 		if (_type != XPathTypeBoolean) return false; 
  
@@ -9330,7 +9330,7 @@ namespace phys
 		return true; 
 	} 
  
-	bool XPathVariable::set(double Value) 
+	bool XPathVariable::Set(double Value) 
 	{ 
 		if (_type != XPathTypeNumber) return false; 
  
@@ -9338,7 +9338,7 @@ namespace phys
 		return true; 
 	} 
  
-	bool XPathVariable::set(const char_t* Value) 
+	bool XPathVariable::Set(const char_t* Value) 
 	{ 
 		if (_type != XPathTypeString) return false; 
  
@@ -9359,7 +9359,7 @@ namespace phys
 		return true; 
 	} 
  
-	bool XPathVariable::set(const XPathNodeSet& Value) 
+	bool XPathVariable::Set(const XPathNodeSet& Value) 
 	{ 
 		if (_type != XPathTypeNodeSet) return false; 
  
@@ -9426,28 +9426,28 @@ namespace phys
 		return result; 
 	} 
  
-	bool XPathVariableSet::set(const char_t* Name, bool Value) 
+	bool XPathVariableSet::Set(const char_t* Name, bool Value) 
 	{ 
 		XPathVariable* var = add(Name, XPathTypeBoolean); 
-		return var ? var->set(Value) : false; 
+		return var ? var->Set(Value) : false; 
 	} 
  
-	bool XPathVariableSet::set(const char_t* Name, double Value) 
+	bool XPathVariableSet::Set(const char_t* Name, double Value) 
 	{ 
 		XPathVariable* var = add(Name, XPathTypeNumber); 
-		return var ? var->set(Value) : false; 
+		return var ? var->Set(Value) : false; 
 	} 
  
-	bool XPathVariableSet::set(const char_t* Name, const char_t* Value) 
+	bool XPathVariableSet::Set(const char_t* Name, const char_t* Value) 
 	{ 
 		XPathVariable* var = add(Name, XPathTypeString); 
-		return var ? var->set(Value) : false; 
+		return var ? var->Set(Value) : false; 
 	} 
  
-	bool XPathVariableSet::set(const char_t* Name, const XPathNodeSet& Value) 
+	bool XPathVariableSet::Set(const char_t* Name, const XPathNodeSet& Value) 
 	{ 
 		XPathVariable* var = add(Name, XPathTypeNodeSet); 
-		return var ? var->set(Value) : false; 
+		return var ? var->Set(Value) : false; 
 	} 
  
 	XPathVariable* XPathVariableSet::get(const char_t* Name) 

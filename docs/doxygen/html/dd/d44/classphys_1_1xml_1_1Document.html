@@ -65,11 +65,10 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a70013c2b670c4d4b5ee55d12e7c50be4"></a><!-- doxytag: member="phys::xml::Document::~Document" ref="a70013c2b670c4d4b5ee55d12e7c50be4" args="()" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a70013c2b670c4d4b5ee55d12e7c50be4">~Document</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Tears down a document, and incidentally invalidates all <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> and <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> handles to this document. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ab556271e4a1214ecb35ba6aef9e8e4"></a><!-- doxytag: member="phys::xml::Document::Reset" ref="a9ab556271e4a1214ecb35ba6aef9e8e4" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4">Reset</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes all nodes, leaving the empty document. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html#aba87e21330118fb43b2aab2c36486b03">Reset</a> (const <a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html">Document</a> &amp;proto)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes all nodes, then copies the entire contents of the specified document.  <a href="#aba87e21330118fb43b2aab2c36486b03"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2f6915579817f65c64428328f2310a02"></a><!-- doxytag: member="phys::xml::Document::ReSet" ref="a2f6915579817f65c64428328f2310a02" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>ReSet</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f3caf62459ea055008edbdf2fab46be"></a><!-- doxytag: member="phys::xml::Document::ReSet" ref="a3f3caf62459ea055008edbdf2fab46be" args="(const Document &amp;proto)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>ReSet</b> (const <a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html">Document</a> &amp;proto)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html">ParseResult</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9d4ddfd3b987fa3d31d41c06d06a001e">Load</a> (std::basic_istream&lt; char, std::char_traits&lt; char &gt; &gt; &amp;stream, unsigned int options=<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#aa6b8f7f8c2322fd683a235b498834d60">ParseDefault</a>, <a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015">Encoding</a> DocumentEncoding=EncodingAuto)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Load XML from a stream.  <a href="#a9d4ddfd3b987fa3d31d41c06d06a001e"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html">ParseResult</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a5c31cda427eeeb61cd40932f7bec6376">Load</a> (std::basic_istream&lt; wchar_t, std::char_traits&lt; wchar_t &gt; &gt; &amp;stream, unsigned int options=<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#aa6b8f7f8c2322fd683a235b498834d60">ParseDefault</a>)</td></tr>
@@ -504,34 +503,6 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 
 </div>
 </div>
-<a class="anchor" id="aba87e21330118fb43b2aab2c36486b03"></a><!-- doxytag: member="phys::xml::Document::Reset" ref="aba87e21330118fb43b2aab2c36486b03" args="(const Document &amp;proto)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">phys::xml::Document::Reset </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html">Document</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>proto</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Removes all nodes, then copies the entire contents of the specified document. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>proto</em>&nbsp;</td><td>The <a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">Document</a> to copy. </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04581">4581</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a034a5497b68d8531886fdc7a6a67bd7d"></a><!-- doxytag: member="phys::xml::Document::Save" ref="a034a5497b68d8531886fdc7a6a67bd7d" args="(std::basic_ostream&lt; wchar_t, std::char_traits&lt; wchar_t &gt; &gt; &amp;stream, const char_t *indent=XML_TEXT(&quot;\t&quot;), unsigned int flags=FormatDefault) const " -->
 <div class="memitem">
 <div class="memproto">
@@ -801,7 +772,7 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 <li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 9 2011 13:14:05 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 13:03:41 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -1126,6 +1126,97 @@ namespace phys
         /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
         /// @return False if the target file could not be opened for writing
 
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @enum XPathValueType
+        /// @brief XPathQuery return type
+
+		/// @var XPathTypeNone
+		/// @brief Unknown Type (query failed to compile)
+
+		/// @var XPathTypeNodeSet
+		/// @brief Node set (XPathNodeSet)
+
+		/// @var XPathTypeNumber
+		/// @brief Number This corresponds to a double or Real.
+
+		/// @var XPathTypeString
+		/// @brief Corresponds to the String type.
+
+		/// @var XPathTypeBoolean
+		/// @brief A Boolean value.
+
+		///////////////////////////////////////////////////////////////////////////////
+        /// @struct XPathParseResult
+        /// @brief XPath parsing result
+
+        /// @var XPathParseResult::Offset
+        /// @brief Last parsed Offset (in Character units from string start)
+
+        /// @var XPathParseResult::error
+        /// @brief Error message (0 if no error).
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathVariable
+        /// @brief A single XPath variable
+        /// @details This is intended to be used as a single member of an XPathVariableSet, and for moving data into and out of XPathQueries.
+
+        /// @fn XPathVariable::XPathVariable();
+        /// @brief Protected Default constructor.
+
+        /// @var XPathVariable::_type
+        /// @brief What kind of data does this variable store
+
+        /// @var XPathVariable::_next
+        /// @brief The next variable in the variable set. I think, and I am not certain, that this is a circularly linked list.
+
+        /// @fn XPathVariable::XPathVariable(const XPathVariable&);
+        /// @brief Protected Copy Constructor, used to force noncopyable semantics
+
+        /// @fn XPathVariable::operator=(const XPathVariable&);
+        /// @brief Protected assignment operator, used to force noncopyable semantics
+        /// @return Shouldn't be used, not implemented.
+
+		/// @fn XPathVariable::GetBoolean() const;
+		/// @brief Get this as a bool.
+		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return A This as a bool, without conversion.
+
+		/// @fn XPathVariable::GetNumber() const;
+		/// @brief Get this as a double.
+		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+        /// @return A This as a double, without conversion.
+
+		/// @fn XPathVariable::GetString() const;
+		/// @brief Get this as a c-string.
+		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return A This as a c-string of char_t, without conversion.
+
+		/// @fn XPathVariable::GetNodeSet() const;
+		/// @brief Get this as a XPathNodeSet.
+		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+        /// @return A This as an XPathNodeSet, without conversion.
+
+        /// @fn XPathVariable::Set(bool Value);
+        /// @brief Set variable Value; no Type conversion is performed.
+        /// @param Value The value to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+
+
+
+		/// @fn XPathVariable::Set(double Value);
+        /// @brief Set variable Value; no Type conversion is performed.
+        /// @param Value The value to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+
+		/// @fn XPathVariable::Set(const char_t* Value);
+        /// @brief Set variable Value; no Type conversion is performed.
+        /// @param Value The value to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+
+		/// @fn XPathVariable::Set(const XPathNodeSet& Value);
+        /// @brief Set variable Value; no Type conversion is performed.
+        /// @param Value The value to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
     }
 }
 #endif

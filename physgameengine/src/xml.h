@@ -926,7 +926,7 @@ namespace phys
 		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. 
+		/// @brief Creates a text description of the error situation, if any exists.
 		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
@@ -956,10 +956,10 @@ namespace phys
 		~Document(); 
  
 		// Removes all nodes, leaving the empty document 
-		void Reset(); 
+		void ReSet(); 
  
 		// Removes all nodes, then copies the entire contents of the specified document 
-		void Reset(const Document& proto); 
+		void ReSet(const Document& proto); 
  
 	#ifndef XML_NO_STL 
 		// Load document from stream. 
@@ -1040,7 +1040,7 @@ namespace phys
 		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. 
+		/// @brief Creates a text description of the error situation, if any exists.
 		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
@@ -1061,23 +1061,25 @@ namespace phys
 		XPathVariable& operator=(const XPathVariable&); 
 		 
 	public: 
-		// Get variable Name 
+		/// @brief Retrieve the name of this variable.
+		/// @return A const c-style string made of char_t, that contains the name of this variable 
 		const char_t* Name() const; 
  
-		// Get variable Type 
+		/// @brief Get the variable type.
+		/// @return An XPathValueType specifying the kind of data stored in this variable. 
 		XPathValueType Type() const; 
  
 		// Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error 
-		bool get_boolean() const; 
-		double get_number() const; 
-		const char_t* get_string() const; 
-		const XPathNodeSet& get_NodeSet() const; 
+		bool GetBoolean() const; 
+		double GetNumber() const; 
+		const char_t* GetString() const; 
+		const XPathNodeSet& GetNodeSet() const; 
  
 		// Set variable Value; no Type conversion is performed, false is returned on Type mismatch error 
-		bool set(bool Value); 
-		bool set(double Value); 
-		bool set(const char_t* Value); 
-		bool set(const XPathNodeSet& Value); 
+		bool Set(bool Value); 
+		bool Set(double Value); 
+		bool Set(const char_t* Value); 
+		bool Set(const XPathNodeSet& Value); 
 	}; 
  
 	// A set of XPath variables 
@@ -1101,10 +1103,10 @@ namespace phys
 		XPathVariable* add(const char_t* Name, XPathValueType Type); 
  
 		// Set Value of an existing variable; no Type conversion is performed, false is returned if there is no such variable or if Types mismatch 
-		bool set(const char_t* Name, bool Value); 
-		bool set(const char_t* Name, double Value); 
-		bool set(const char_t* Name, const char_t* Value); 
-		bool set(const char_t* Name, const XPathNodeSet& Value); 
+		bool Set(const char_t* Name, bool Value); 
+		bool Set(const char_t* Name, double Value); 
+		bool Set(const char_t* Name, const char_t* Value); 
+		bool Set(const char_t* Name, const XPathNodeSet& Value); 
  
 		// Get existing variable by Name 
 		XPathVariable* get(const char_t* Name); 
@@ -1314,8 +1316,8 @@ namespace phys
 	void PHYS_LIB SetMemory_management_functions(allocation_function allocate, deallocation_function deallocate); 
 	 
 	// Get current memory management functions 
-	allocation_function PHYS_LIB get_memory_allocation_function(); 
-	deallocation_function PHYS_LIB get_memory_deallocation_function(); 
+	allocation_function PHYS_LIB GetMemory_allocation_function(); 
+	deallocation_function PHYS_LIB GetMemory_deallocation_function(); 
 } 
 } // \phys
  

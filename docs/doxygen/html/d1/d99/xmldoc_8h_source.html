@@ -271,7 +271,7 @@
 <a name="l00240"></a>00240 <span class="comment">        /// @var ParseDeclaration</span>
 <a name="l00241"></a>00241 <span class="comment">        /// @brief This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default.</span>
 <a name="l00242"></a>00242 <span class="comment"></span><span class="comment"></span>
-<a name="l00243"></a>00243 <span class="comment">        /// @var ParseDoctype</span>
+<a name="l00243"></a>00243 <span class="comment">        /// @var ParseDocType</span>
 <a name="l00244"></a>00244 <span class="comment">        /// @brief This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default.</span>
 <a name="l00245"></a>00245 <span class="comment"></span><span class="comment"></span>
 <a name="l00246"></a>00246 <span class="comment">        /// @var ParseDefault</span>
@@ -1156,44 +1156,135 @@
 <a name="l01125"></a>01125 <span class="comment">                /// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.</span>
 <a name="l01126"></a>01126 <span class="comment">        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.</span>
 <a name="l01127"></a>01127 <span class="comment">        /// @return False if the target file could not be opened for writing</span>
-<a name="l01128"></a>01128 <span class="comment"></span>
-<a name="l01129"></a>01129     }
-<a name="l01130"></a>01130 }
-<a name="l01131"></a>01131 <span class="preprocessor">#endif</span>
-<a name="l01132"></a>01132 <span class="preprocessor"></span>
-<a name="l01133"></a>01133 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l01134"></a>01134 <span class="preprocessor"></span>
-<a name="l01135"></a>01135 <span class="comment">/*</span>
-<a name="l01136"></a>01136 <span class="comment"> *</span>
-<a name="l01137"></a>01137 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l01138"></a>01138 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l01139"></a>01139 <span class="comment"> *</span>
-<a name="l01140"></a>01140 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l01141"></a>01141 <span class="comment"> *</span>
-<a name="l01142"></a>01142 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l01143"></a>01143 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l01144"></a>01144 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l01145"></a>01145 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l01146"></a>01146 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l01147"></a>01147 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l01148"></a>01148 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l01149"></a>01149 <span class="comment"> * conditions:</span>
-<a name="l01150"></a>01150 <span class="comment"> *</span>
-<a name="l01151"></a>01151 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l01152"></a>01152 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l01153"></a>01153 <span class="comment"> *</span>
-<a name="l01154"></a>01154 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l01155"></a>01155 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l01156"></a>01156 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l01157"></a>01157 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l01158"></a>01158 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l01159"></a>01159 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l01160"></a>01160 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l01161"></a>01161 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l01162"></a>01162 <span class="comment"> */</span>
+<a name="l01128"></a>01128 <span class="comment"></span><span class="comment"></span>
+<a name="l01129"></a>01129 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01130"></a>01130 <span class="comment">        /// @enum XPathValueType</span>
+<a name="l01131"></a>01131 <span class="comment">        /// @brief XPathQuery return type</span>
+<a name="l01132"></a>01132 <span class="comment"></span><span class="comment"></span>
+<a name="l01133"></a>01133 <span class="comment">                /// @var XPathTypeNone</span>
+<a name="l01134"></a>01134 <span class="comment">                /// @brief Unknown Type (query failed to compile)</span>
+<a name="l01135"></a>01135 <span class="comment"></span><span class="comment"></span>
+<a name="l01136"></a>01136 <span class="comment">                /// @var XPathTypeNodeSet</span>
+<a name="l01137"></a>01137 <span class="comment">                /// @brief Node set (XPathNodeSet)</span>
+<a name="l01138"></a>01138 <span class="comment"></span><span class="comment"></span>
+<a name="l01139"></a>01139 <span class="comment">                /// @var XPathTypeNumber</span>
+<a name="l01140"></a>01140 <span class="comment">                /// @brief Number This corresponds to a double or Real.</span>
+<a name="l01141"></a>01141 <span class="comment"></span><span class="comment"></span>
+<a name="l01142"></a>01142 <span class="comment">                /// @var XPathTypeString</span>
+<a name="l01143"></a>01143 <span class="comment">                /// @brief Corresponds to the String type.</span>
+<a name="l01144"></a>01144 <span class="comment"></span><span class="comment"></span>
+<a name="l01145"></a>01145 <span class="comment">                /// @var XPathTypeBoolean</span>
+<a name="l01146"></a>01146 <span class="comment">                /// @brief A Boolean value.</span>
+<a name="l01147"></a>01147 <span class="comment"></span><span class="comment"></span>
+<a name="l01148"></a>01148 <span class="comment">                ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01149"></a>01149 <span class="comment">        /// @struct XPathParseResult</span>
+<a name="l01150"></a>01150 <span class="comment">        /// @brief XPath parsing result</span>
+<a name="l01151"></a>01151 <span class="comment"></span><span class="comment"></span>
+<a name="l01152"></a>01152 <span class="comment">        /// @var XPathParseResult::Offset</span>
+<a name="l01153"></a>01153 <span class="comment">        /// @brief Last parsed Offset (in Character units from string start)</span>
+<a name="l01154"></a>01154 <span class="comment"></span><span class="comment"></span>
+<a name="l01155"></a>01155 <span class="comment">        /// @var XPathParseResult::error</span>
+<a name="l01156"></a>01156 <span class="comment">        /// @brief Error message (0 if no error).</span>
+<a name="l01157"></a>01157 <span class="comment"></span><span class="comment"></span>
+<a name="l01158"></a>01158 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01159"></a>01159 <span class="comment">        /// @class XPathVariable</span>
+<a name="l01160"></a>01160 <span class="comment">        /// @brief A single XPath variable</span>
+<a name="l01161"></a>01161 <span class="comment">        /// @details This is intended to be used as a single member of an XPathVariableSet, and for moving data into and out of XPathQueries.</span>
+<a name="l01162"></a>01162 <span class="comment"></span><span class="comment"></span>
+<a name="l01163"></a>01163 <span class="comment">        /// @fn XPathVariable::XPathVariable();</span>
+<a name="l01164"></a>01164 <span class="comment">        /// @brief Protected Default constructor.</span>
+<a name="l01165"></a>01165 <span class="comment"></span><span class="comment"></span>
+<a name="l01166"></a>01166 <span class="comment">        /// @var XPathVariable::_type</span>
+<a name="l01167"></a>01167 <span class="comment">        /// @brief What kind of data does this variable store</span>
+<a name="l01168"></a>01168 <span class="comment"></span><span class="comment"></span>
+<a name="l01169"></a>01169 <span class="comment">        /// @var XPathVariable::_next</span>
+<a name="l01170"></a>01170 <span class="comment">        /// @brief The next variable in the variable set. I think, and I am not certain, that this is a circularly linked list.</span>
+<a name="l01171"></a>01171 <span class="comment"></span><span class="comment"></span>
+<a name="l01172"></a>01172 <span class="comment">        /// @fn XPathVariable::XPathVariable(const XPathVariable&amp;);</span>
+<a name="l01173"></a>01173 <span class="comment">        /// @brief Protected Copy Constructor, used to force noncopyable semantics</span>
+<a name="l01174"></a>01174 <span class="comment"></span><span class="comment"></span>
+<a name="l01175"></a>01175 <span class="comment">        /// @fn XPathVariable::operator=(const XPathVariable&amp;);</span>
+<a name="l01176"></a>01176 <span class="comment">        /// @brief Protected assignment operator, used to force noncopyable semantics</span>
+<a name="l01177"></a>01177 <span class="comment">        /// @return Shouldn&#39;t be used, not implemented.</span>
+<a name="l01178"></a>01178 <span class="comment"></span><span class="comment"></span>
+<a name="l01179"></a>01179 <span class="comment">                /// @fn XPathVariable::GetBoolean() const;</span>
+<a name="l01180"></a>01180 <span class="comment">                /// @brief Get this as a bool.</span>
+<a name="l01181"></a>01181 <span class="comment">                /// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error</span>
+<a name="l01182"></a>01182 <span class="comment">                /// @return A This as a bool, without conversion.</span>
+<a name="l01183"></a>01183 <span class="comment"></span><span class="comment"></span>
+<a name="l01184"></a>01184 <span class="comment">                /// @fn XPathVariable::GetNumber() const;</span>
+<a name="l01185"></a>01185 <span class="comment">                /// @brief Get this as a double.</span>
+<a name="l01186"></a>01186 <span class="comment">                /// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error</span>
+<a name="l01187"></a>01187 <span class="comment">        /// @return A This as a double, without conversion.</span>
+<a name="l01188"></a>01188 <span class="comment"></span><span class="comment"></span>
+<a name="l01189"></a>01189 <span class="comment">                /// @fn XPathVariable::GetString() const;</span>
+<a name="l01190"></a>01190 <span class="comment">                /// @brief Get this as a c-string.</span>
+<a name="l01191"></a>01191 <span class="comment">                /// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error</span>
+<a name="l01192"></a>01192 <span class="comment">                /// @return A This as a c-string of char_t, without conversion.</span>
+<a name="l01193"></a>01193 <span class="comment"></span><span class="comment"></span>
+<a name="l01194"></a>01194 <span class="comment">                /// @fn XPathVariable::GetNodeSet() const;</span>
+<a name="l01195"></a>01195 <span class="comment">                /// @brief Get this as a XPathNodeSet.</span>
+<a name="l01196"></a>01196 <span class="comment">                /// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error</span>
+<a name="l01197"></a>01197 <span class="comment">        /// @return A This as an XPathNodeSet, without conversion.</span>
+<a name="l01198"></a>01198 <span class="comment"></span><span class="comment"></span>
+<a name="l01199"></a>01199 <span class="comment">        /// @fn XPathVariable::Set(bool Value);</span>
+<a name="l01200"></a>01200 <span class="comment">        /// @brief Set variable Value; no Type conversion is performed.</span>
+<a name="l01201"></a>01201 <span class="comment">        /// @param Value The value to attempt to put into this.</span>
+<a name="l01202"></a>01202 <span class="comment">                /// @return True is return, false is returned on Type mismatch error.</span>
+<a name="l01203"></a>01203 <span class="comment"></span>
+<a name="l01204"></a>01204 
+<a name="l01205"></a>01205 <span class="comment"></span>
+<a name="l01206"></a>01206 <span class="comment">                /// @fn XPathVariable::Set(double Value);</span>
+<a name="l01207"></a>01207 <span class="comment">        /// @brief Set variable Value; no Type conversion is performed.</span>
+<a name="l01208"></a>01208 <span class="comment">        /// @param Value The value to attempt to put into this.</span>
+<a name="l01209"></a>01209 <span class="comment">                /// @return True is return, false is returned on Type mismatch error.</span>
+<a name="l01210"></a>01210 <span class="comment"></span><span class="comment"></span>
+<a name="l01211"></a>01211 <span class="comment">                /// @fn XPathVariable::Set(const char_t* Value);</span>
+<a name="l01212"></a>01212 <span class="comment">        /// @brief Set variable Value; no Type conversion is performed.</span>
+<a name="l01213"></a>01213 <span class="comment">        /// @param Value The value to attempt to put into this.</span>
+<a name="l01214"></a>01214 <span class="comment">                /// @return True is return, false is returned on Type mismatch error.</span>
+<a name="l01215"></a>01215 <span class="comment"></span><span class="comment"></span>
+<a name="l01216"></a>01216 <span class="comment">                /// @fn XPathVariable::Set(const XPathNodeSet&amp; Value);</span>
+<a name="l01217"></a>01217 <span class="comment">        /// @brief Set variable Value; no Type conversion is performed.</span>
+<a name="l01218"></a>01218 <span class="comment">        /// @param Value The value to attempt to put into this.</span>
+<a name="l01219"></a>01219 <span class="comment">                /// @return True is return, false is returned on Type mismatch error.</span>
+<a name="l01220"></a>01220 <span class="comment"></span>    }
+<a name="l01221"></a>01221 }
+<a name="l01222"></a>01222 <span class="preprocessor">#endif</span>
+<a name="l01223"></a>01223 <span class="preprocessor"></span>
+<a name="l01224"></a>01224 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l01225"></a>01225 <span class="preprocessor"></span>
+<a name="l01226"></a>01226 <span class="comment">/*</span>
+<a name="l01227"></a>01227 <span class="comment"> *</span>
+<a name="l01228"></a>01228 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l01229"></a>01229 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l01230"></a>01230 <span class="comment"> *</span>
+<a name="l01231"></a>01231 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l01232"></a>01232 <span class="comment"> *</span>
+<a name="l01233"></a>01233 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l01234"></a>01234 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l01235"></a>01235 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l01236"></a>01236 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l01237"></a>01237 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l01238"></a>01238 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l01239"></a>01239 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l01240"></a>01240 <span class="comment"> * conditions:</span>
+<a name="l01241"></a>01241 <span class="comment"> *</span>
+<a name="l01242"></a>01242 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l01243"></a>01243 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l01244"></a>01244 <span class="comment"> *</span>
+<a name="l01245"></a>01245 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l01246"></a>01246 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l01247"></a>01247 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l01248"></a>01248 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l01249"></a>01249 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l01250"></a>01250 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l01251"></a>01251 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l01252"></a>01252 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l01253"></a>01253 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 9 2011 13:13:56 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 13:03:32 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

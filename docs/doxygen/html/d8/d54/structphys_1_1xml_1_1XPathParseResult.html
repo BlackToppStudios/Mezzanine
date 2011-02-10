@@ -42,6 +42,11 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::xml::XPathParseResult" -->
+<p>XPath parsing result.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
+
 <p><a href="../../d9/df0/structphys_1_1xml_1_1XPathParseResult-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
@@ -52,15 +57,18 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html#a8dddf12100a6c40f9abcd8c0b7b37816">operator bool</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Cast to bool operator.  <a href="#a8dddf12100a6c40f9abcd8c0b7b37816"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html#a722e220fa91f9bc48357ade351b8b038">Description</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Uses the Status member to create a text description.  <a href="#a722e220fa91f9bc48357ade351b8b038"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a text description of the error situation, if any exists.  <a href="#a722e220fa91f9bc48357ade351b8b038"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad496c6f03c4664aacd024ac20afc76b7"></a><!-- doxytag: member="phys::xml::XPathParseResult::error" ref="ad496c6f03c4664aacd024ac20afc76b7" args="" -->
-const char *&nbsp;</td><td class="memItemRight" valign="bottom"><b>error</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acd023d00ea85eb8adbc0a8f4e9d5c7e9"></a><!-- doxytag: member="phys::xml::XPathParseResult::Offset" ref="acd023d00ea85eb8adbc0a8f4e9d5c7e9" args="" -->
-ptrdiff_t&nbsp;</td><td class="memItemRight" valign="bottom"><b>Offset</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5e601cfd490fd3d1ed4bcdfb36d9d920"></a><!-- doxytag: member="phys::xml::XPathParseResult::error" ref="a5e601cfd490fd3d1ed4bcdfb36d9d920" args="" -->
+const char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html#a5e601cfd490fd3d1ed4bcdfb36d9d920">error</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Error message (0 if no error). <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3933b8e57cd835316384f2f82be0d9a"></a><!-- doxytag: member="phys::xml::XPathParseResult::Offset" ref="af3933b8e57cd835316384f2f82be0d9a" args="" -->
+ptrdiff_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html#af3933b8e57cd835316384f2f82be0d9a">Offset</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Last parsed Offset (in Character units from string start). <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>XPath parsing result. </p>
 
 <p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01028">1028</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
@@ -79,7 +87,7 @@ ptrdiff_t&nbsp;</td><td class="memItemRight" valign="bottom"><b>Offset</b></td><
 </div>
 <div class="memdoc">
 
-<p>Uses the Status member to create a text description. </p>
+<p>Creates a text description of the error situation, if any exists. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A const char* with a brief error description based on the <a class="el" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html#a1bf9dfeebdb07656723bbaf18ab612b5" title="Parsing status ( see ParseStatus ).">ParseResult::Status</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09268">9268</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
@@ -111,9 +119,10 @@ ptrdiff_t&nbsp;</td><td class="memItemRight" valign="bottom"><b>Offset</b></td><
 <hr/>The documentation for this struct was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
+<li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Wed Feb 9 2011 13:14:05 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 13:03:41 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

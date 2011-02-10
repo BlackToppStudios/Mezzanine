@@ -35,9 +35,9 @@ struct \hyperlink{structphys_1_1xml_1_1ParseResult}{phys::xml::ParseResult}
 class \hyperlink{classphys_1_1xml_1_1Document}{phys::xml::Document}
 \begin{DoxyCompactList}\small\item\em The root node of any xml hierarchy is a \hyperlink{classphys_1_1xml_1_1Document}{Document} \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
 struct \hyperlink{structphys_1_1xml_1_1XPathParseResult}{phys::xml::XPathParseResult}
-\item 
+\begin{DoxyCompactList}\small\item\em XPath parsing result. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathVariable}{phys::xml::XPathVariable}
-\item 
+\begin{DoxyCompactList}\small\item\em A single XPath variable. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{phys::xml::XPathVariableSet}
 \item 
 class \hyperlink{classphys_1_1xml_1_1XPathQuery}{phys::xml::XPathQuery}
@@ -149,15 +149,15 @@ enum \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{phys::xm
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6b8d817142e0898ad9b1c61cfa54b8ea}{phys::xml::StatusEndElementMismatch}
  \}
 \begin{DoxyCompactList}\small\item\em These statuses are used to help determine what issues, if any the parser had. the XML parser had. \item\end{DoxyCompactList}\item 
-enum {\bfseries XPathValueType} \{ \par
-{\bfseries XPathTypeNone}, 
-{\bfseries XPathTypeNodeSet}, 
-{\bfseries XPathTypeNumber}, 
-{\bfseries XPathTypeString}, 
+enum \hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{phys::xml::XPathValueType} \{ \par
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575dabf243ef424b79e9da4f5e52fca25bbe5}{phys::xml::XPathTypeNone}, 
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba}{phys::xml::XPathTypeNodeSet}, 
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575da5503130cd89cdb7f6c9f0cc72091a06c}{phys::xml::XPathTypeNumber}, 
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575da1201c2db15249e26d46d828213e1e88b}{phys::xml::XPathTypeString}, 
 \par
-{\bfseries XPathTypeBoolean}
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575da7d21654ec17f33027de173dd47aa9092}{phys::xml::XPathTypeBoolean}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em XPathQuery return type. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -186,14 +186,14 @@ void PHYS\_\-LIB {\bfseries phys::xml::SetMemory\_\-management\_\-functions} (al
 \label{d9/d27/namespacephys_1_1xml_af067dbcf4b0c314947f5f51e15df98dc}
 
 \item 
-\hypertarget{namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}{
-allocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::get\_\-memory\_\-allocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}
+\hypertarget{namespacephys_1_1xml_a9162661cef0fda9528d8bf6111da31af}{
+allocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::GetMemory\_\-allocation\_\-function} ()}
+\label{d9/d27/namespacephys_1_1xml_a9162661cef0fda9528d8bf6111da31af}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}{
-deallocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::get\_\-memory\_\-deallocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}
+\hypertarget{namespacephys_1_1xml_abe490393fe211a8ecc970625a3c4bb6c}{
+deallocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::GetMemory\_\-deallocation\_\-function} ()}
+\label{d9/d27/namespacephys_1_1xml_abe490393fe211a8ecc970625a3c4bb6c}
 
 \end{DoxyCompactItemize}
 \subsection*{Variables}
@@ -243,11 +243,11 @@ const unsigned int \hyperlink{namespacephys_1_1xml_a463f15fc43d69ab835c8598826f6
 \label{d9/d27/namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}
 
 \begin{DoxyCompactList}\small\item\em This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
-\hypertarget{namespacephys_1_1xml_a37851039450a5fa38ef6b8c717b2e0e6}{
-const unsigned int {\bfseries phys::xml::ParseDocType} = 0x0200}
-\label{d9/d27/namespacephys_1_1xml_a37851039450a5fa38ef6b8c717b2e0e6}
+\hypertarget{namespacephys_1_1xml_adf5ee79dc4c200ad85b64a8308b0c805}{
+const unsigned int \hyperlink{namespacephys_1_1xml_adf5ee79dc4c200ad85b64a8308b0c805}{phys::xml::ParseDocType} = 0x0200}
+\label{d9/d27/namespacephys_1_1xml_adf5ee79dc4c200ad85b64a8308b0c805}
 
-\item 
+\begin{DoxyCompactList}\small\item\em This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
 const unsigned int \hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{phys::xml::ParseDefault} = ParseCdata $|$ ParseEscapes $|$ ParseWconvAttribute $|$ ParseEol
 \begin{DoxyCompactList}\small\item\em The default parsing mode. \item\end{DoxyCompactList}\item 
 const unsigned int \hyperlink{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{phys::xml::ParseFull} = ParseDefault $|$ ParsePi $|$ ParseComments $|$ ParseDeclaration $|$ ParseDocType

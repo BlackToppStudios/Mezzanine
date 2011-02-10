@@ -304,7 +304,12 @@ function FixNames
 
 	#The TreeWalker Class
 	sed -i -e 's|depth|Depth|g' $1
-	
+
+	#XPathVariable
+	sed -i -e 's|get_\(.\)\([a-zA-Z]*\)|Get\U\1\L\2|g' $1
+	sed -i -e 's|Nodeset|NodeSet|g' $1
+	sed -i -e 's|\([^f]\)set(|\1Set(|g' $1
+
 	###############################
 	#Documentation that was not put in xmldoc.h
 
@@ -314,7 +319,7 @@ function FixNames
 	sed -i -e 's|// Source document DocumentEncoding|/// @brief Source document encoding ( see @ref Encoding )|' $1
 	sed -i -e 's|// Default constructor, initializes object to failed state|/// @brief Default constructor, initializes object to failed state.|' $1
 	sed -i -e 's|// Cast to bool operator|/// @brief Cast to bool operator \n		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false.|' $1
-	sed -i -e 's|// Get error Description |/// @brief Uses the Status member to create a text description. \n		/// @return A const char* with a brief error description based on the ParseResult::Status |' $1
+	sed -i -e 's|// Get error Description |/// @brief Creates a text description of the error situation, if any exists.\n		/// @return A const char* with a brief error description based on the ParseResult::Status |' $1
 	sed -i -e 's|// Character type used for all internal storage and operations; depends on XML_WCHAR_MODE|/// @brief The character type used the internals of the XML parser, this is defined in datatypes.h.|' $1
 
 	#Writer Interface class
@@ -357,6 +362,11 @@ function FixNames
 	sed -i -e  's|void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t\* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; |/// @brief Save XML document to a stream.\n		/// @param stream The output stream to send the XML document to.\n		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.\n		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.\n		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.\n		void Save(std::basic_ostream<char, std::char_traits<char> >\& stream, const char_t* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;  |' $1 
 	sed -i -e  's|void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t\* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault) const;|/// @brief Save XML document to a stream of wide characters.\n		/// @param stream The output stream of wide characters to send the XML document to.\n		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.\n		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.\n		void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >\& stream, const char_t* indent = XML_TEXT("\\t"), unsigned int flags = FormatDefault) const; |' $1 
 	sed -i -e  's|Node DocumentElement() const;|/// @brief Get document element\n		/// @return An xml::Node that is the root element of the xml Document\n		Node DocumentElement() const;|' $1 
+	
+	#XPathVariable
+	sed -i -e  's|// Get variable Name|/// @brief Retrieve the name of this variable.\n		/// @return A const c-style string made of char_t, that contains the name of this variable|' $1
+	sed -i -e  's|// Get variable Type|/// @brief Get the variable type.\n		/// @return An XPathValueType specifying the kind of data stored in this variable.|' $1 
+
 
 	#another clean line to copy/paste
 	#sed -i -e 's|||' $1
