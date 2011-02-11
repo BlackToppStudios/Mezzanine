@@ -41,7 +41,7 @@ class \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable}
 class \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet}
 \begin{DoxyCompactList}\small\item\em A set of XPath variables. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery}
-\item 
+\begin{DoxyCompactList}\small\item\em A compiled XPath query object. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathException}{XPathException}
 \item 
 class \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode}
@@ -61,14 +61,14 @@ typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR 
 \label{d9/d27/namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}{
-typedef void $\ast$($\ast$ {\bfseries allocation\_\-function} )(size\_\-t size)}
-\label{d9/d27/namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}
+\hypertarget{namespacephys_1_1xml_a07e4865c24e45f8e5831e4eebadb1353}{
+typedef void $\ast$($\ast$ {\bfseries AllocationFunction} )(size\_\-t size)}
+\label{d9/d27/namespacephys_1_1xml_a07e4865c24e45f8e5831e4eebadb1353}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}{
-typedef void($\ast$ {\bfseries deallocation\_\-function} )(void $\ast$ptr)}
-\label{d9/d27/namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}
+\hypertarget{namespacephys_1_1xml_a0006efe9740ffdcfff4e03cee525f1ff}{
+typedef void($\ast$ {\bfseries deAllocationFunction} )(void $\ast$ptr)}
+\label{d9/d27/namespacephys_1_1xml_a0006efe9740ffdcfff4e03cee525f1ff}
 
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
@@ -155,19 +155,19 @@ std::wstring PHYS\_\-LIB {\bfseries AsWide} (const std::string \&str)}
 \label{d9/d27/namespacephys_1_1xml_acf80dd12469021a66d48a325484ba9f1}
 
 \item 
-\hypertarget{namespacephys_1_1xml_af067dbcf4b0c314947f5f51e15df98dc}{
-void PHYS\_\-LIB {\bfseries SetMemory\_\-management\_\-functions} (allocation\_\-function allocate, deallocation\_\-function deallocate)}
-\label{d9/d27/namespacephys_1_1xml_af067dbcf4b0c314947f5f51e15df98dc}
+\hypertarget{namespacephys_1_1xml_a404bed92ebb56ab9b0fe7192cb365736}{
+void PHYS\_\-LIB {\bfseries SetMemory\_\-management\_\-functions} (AllocationFunction allocate, deAllocationFunction deallocate)}
+\label{d9/d27/namespacephys_1_1xml_a404bed92ebb56ab9b0fe7192cb365736}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a9162661cef0fda9528d8bf6111da31af}{
-allocation\_\-function PHYS\_\-LIB {\bfseries GetMemory\_\-allocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_a9162661cef0fda9528d8bf6111da31af}
+\hypertarget{namespacephys_1_1xml_ac7c7807926da372d187c6560fa42c255}{
+AllocationFunction PHYS\_\-LIB {\bfseries GetMemoryAllocationFunction} ()}
+\label{d9/d27/namespacephys_1_1xml_ac7c7807926da372d187c6560fa42c255}
 
 \item 
-\hypertarget{namespacephys_1_1xml_abe490393fe211a8ecc970625a3c4bb6c}{
-deallocation\_\-function PHYS\_\-LIB {\bfseries GetMemory\_\-deallocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_abe490393fe211a8ecc970625a3c4bb6c}
+\hypertarget{namespacephys_1_1xml_afc978e9c1c6df7b57ce4d8bb7c3ba3e7}{
+deAllocationFunction PHYS\_\-LIB {\bfseries GetMemoryDeallocationFunction} ()}
+\label{d9/d27/namespacephys_1_1xml_afc978e9c1c6df7b57ce4d8bb7c3ba3e7}
 
 \item 
 \hypertarget{namespacephys_1_1xml_a8721da4a57634acd3a3eb754d898fb88}{
@@ -321,7 +321,7 @@ Encodingwchar\_\-t}
 
 
 
-Definition at line 241 of file xml.h.
+Definition at line 242 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{
 \index{phys::xml@{phys::xml}!NodeType@{NodeType}}
@@ -376,7 +376,7 @@ NodeDocType}
 
 
 
-Definition at line 180 of file xml.h.
+Definition at line 181 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{
 \index{phys::xml@{phys::xml}!ParseStatus@{ParseStatus}}
@@ -455,7 +455,7 @@ StatusEndElementMismatch}
 
 
 
-Definition at line 888 of file xml.h.
+Definition at line 889 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{
 \index{phys::xml@{phys::xml}!XPathValueType@{XPathValueType}}
@@ -500,7 +500,7 @@ XPathTypeBoolean}
 
 
 
-Definition at line 1018 of file xml.h.
+Definition at line 1019 of file xml.h.
 
 
 
@@ -516,7 +516,7 @@ The default set of formatting flags.
 
 Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none. 
 
-Definition at line 270 of file xml.h.
+Definition at line 271 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{
 \index{phys::xml@{phys::xml}!ParseDefault@{ParseDefault}}
@@ -529,7 +529,7 @@ The default parsing mode.
 
 Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, End-\/of-\/Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
 
-Definition at line 233 of file xml.h.
+Definition at line 234 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{
 \index{phys::xml@{phys::xml}!ParseFull@{ParseFull}}
@@ -542,7 +542,7 @@ The full parsing mode.
 
 Nodes of all types are added to the DOM tree, character/reference entities are expanded, End-\/of-\/Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
 
-Definition at line 238 of file xml.h.
+Definition at line 239 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_ab660837afbc6aaab22425d8d23e8f2e4}{
 \index{phys::xml@{phys::xml}!ParseMinimal@{ParseMinimal}}
@@ -555,7 +555,7 @@ Minimal parsing mode (equivalent to turning all other flags off).
 
 Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed. 
 
-Definition at line 197 of file xml.h.
+Definition at line 198 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_a48c0da99d1ed62b1a4984293e64828c6}{
 \index{phys::xml@{phys::xml}!ParseWsPcdata@{ParseWsPcdata}}
@@ -568,5 +568,5 @@ This flag determines if plain character data (NodePcdata) that consist only of w
 
 This flag is off by default; turning it on usually results in slower parsing and more memory consumption. 
 
-Definition at line 210 of file xml.h.
+Definition at line 211 of file xml.h.
 

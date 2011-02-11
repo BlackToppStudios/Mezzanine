@@ -41,34 +41,97 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::xml::XPathQuery" -->
+<p>A compiled XPath query object.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
+
 <p><a href="../../d6/daa/classphys_1_1xml_1_1XPathQuery-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a63135370ef4999f3dd27540c9009a2"></a><!-- doxytag: member="phys::xml::XPathQuery::XPathQuery" ref="a1a63135370ef4999f3dd27540c9009a2" args="(const char_t *query, XPathVariableSet *variables=0)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>XPathQuery</b> (const char_t *query, <a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a> *variables=0)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a707742d4a50e3aa02df27373f2bf6360"></a><!-- doxytag: member="phys::xml::XPathQuery::return_type" ref="a707742d4a50e3aa02df27373f2bf6360" args="() const " -->
-<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d">XPathValueType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>return_type</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a045c0650a983ceb24772975f0a9176d3"></a><!-- doxytag: member="phys::xml::XPathQuery::evaluate_boolean" ref="a045c0650a983ceb24772975f0a9176d3" args="(const XPathNode &amp;n) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>evaluate_boolean</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a276e1854c0644c882e384ad433bb9ec3"></a><!-- doxytag: member="phys::xml::XPathQuery::evaluate_number" ref="a276e1854c0644c882e384ad433bb9ec3" args="(const XPathNode &amp;n) const " -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>evaluate_number</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5be51b392fa2cfe55271e1da8be0df19"></a><!-- doxytag: member="phys::xml::XPathQuery::evaluate_string" ref="a5be51b392fa2cfe55271e1da8be0df19" args="(const XPathNode &amp;n) const " -->
-String&nbsp;</td><td class="memItemRight" valign="bottom"><b>evaluate_string</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51840dda4891aeac6ec47569dede3e9a"></a><!-- doxytag: member="phys::xml::XPathQuery::evaluate_string" ref="a51840dda4891aeac6ec47569dede3e9a" args="(char_t *buffer, size_t capacity, const XPathNode &amp;n) const " -->
-size_t&nbsp;</td><td class="memItemRight" valign="bottom"><b>evaluate_string</b> (char_t *buffer, size_t capacity, const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3b9b33f1db717e2f356e766c97c71f8c"></a><!-- doxytag: member="phys::xml::XPathQuery::evaluate_NodeSet" ref="a3b9b33f1db717e2f356e766c97c71f8c" args="(const XPathNode &amp;n) const " -->
-<a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>evaluate_NodeSet</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2d3a78adf02f6e1546fc60203884877"></a><!-- doxytag: member="phys::xml::XPathQuery::result" ref="ab2d3a78adf02f6e1546fc60203884877" args="() const " -->
-const <a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html">XPathParseResult</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>result</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#a1a63135370ef4999f3dd27540c9009a2">XPathQuery</a> (const char_t *query, <a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a> *variables=0)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct a compiled object from XPath expression.  <a href="#a1a63135370ef4999f3dd27540c9009a2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35f84fa63de8cfd5c9abc5320cdf12fa"></a><!-- doxytag: member="phys::xml::XPathQuery::ReturnType" ref="a35f84fa63de8cfd5c9abc5320cdf12fa" args="() const " -->
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d">XPathValueType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>ReturnType</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c61bb5b5181be4b0c4c9c638d179564"></a><!-- doxytag: member="phys::xml::XPathQuery::EvaluateBoolean" ref="a5c61bb5b5181be4b0c4c9c638d179564" args="(const XPathNode &amp;n) const " -->
+bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>EvaluateBoolean</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aacfcff30901ce20b92de56ec0e2d70e5"></a><!-- doxytag: member="phys::xml::XPathQuery::EvaluateNumber" ref="aacfcff30901ce20b92de56ec0e2d70e5" args="(const XPathNode &amp;n) const " -->
+double&nbsp;</td><td class="memItemRight" valign="bottom"><b>EvaluateNumber</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7084be2e608b38872167fe3321554b9"></a><!-- doxytag: member="phys::xml::XPathQuery::EvaluateString" ref="ab7084be2e608b38872167fe3321554b9" args="(const XPathNode &amp;n) const " -->
+String&nbsp;</td><td class="memItemRight" valign="bottom"><b>EvaluateString</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9f4705c639cbd7f3aef8266fa683cc2"></a><!-- doxytag: member="phys::xml::XPathQuery::EvaluateString" ref="ac9f4705c639cbd7f3aef8266fa683cc2" args="(char_t *buffer, size_t capacity, const XPathNode &amp;n) const " -->
+size_t&nbsp;</td><td class="memItemRight" valign="bottom"><b>EvaluateString</b> (char_t *buffer, size_t capacity, const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af00ba3d0346ccc01f249274947191333"></a><!-- doxytag: member="phys::xml::XPathQuery::EvaluateNodeSet" ref="af00ba3d0346ccc01f249274947191333" args="(const XPathNode &amp;n) const " -->
+<a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>EvaluateNodeSet</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6333b52a9eb3624f21e700331d07c83"></a><!-- doxytag: member="phys::xml::XPathQuery::Result" ref="aa6333b52a9eb3624f21e700331d07c83" args="() const " -->
+const <a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html">XPathParseResult</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>Result</b> () const </td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#a783704bb9a83379b6c8dadbfb5a835ce">operator unspecified_bool_type</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to convert this to a boolean value in a safe way.  <a href="#a783704bb9a83379b6c8dadbfb5a835ce"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dc902dc41beff8cf60e978fa2dc8861"></a><!-- doxytag: member="phys::xml::XPathQuery::operator!" ref="a6dc902dc41beff8cf60e978fa2dc8861" args="() const " -->
 bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!</b> () const </td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>A compiled XPath query object. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to the specified <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>.</dd></dl>
+<p>When you call select_nodes with an expression string as an argument, a query object is created behind the scenes. A query object represents a compiled XPath expression. Query objects can be needed in the following circumstances: <br/>
+</p>
+<ul>
+<li>You can precompile expressions to query objects to save compilation time if it becomes an issue; <br/>
+</li>
+<li>You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings; <br/>
+</li>
+<li>You can get the type of expression value via query object. <br/>
+ <br/>
+ Query objects correspond to <a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">xml::XPathQuery</a> type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to zml::XPathQuery in the container. </li>
+</ul>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01138">1138</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01139">1139</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a1a63135370ef4999f3dd27540c9009a2"></a><!-- doxytag: member="phys::xml::XPathQuery::XPathQuery" ref="a1a63135370ef4999f3dd27540c9009a2" args="(const char_t *query, XPathVariableSet *variables=0)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathQuery::XPathQuery </td>
+          <td>(</td>
+          <td class="paramtype">const char_t *&nbsp;</td>
+          <td class="paramname"> <em>query</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a> *&nbsp;</td>
+          <td class="paramname"> <em>variables</em> = <code>0</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [explicit]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Construct a compiled object from XPath expression. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>query</em>&nbsp;</td><td>The query in the form of a c-string style char_t array. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>variables</em>&nbsp;</td><td>Any extra data the query might need, passing a null pointer simply omits passing any arguments. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>If</em>&nbsp;</td><td>XML_NO_EXCEPTIONS is not defined (which is the default), throws <a class="el" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html">XPathException</a> on compilation errors. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09463">9463</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a783704bb9a83379b6c8dadbfb5a835ce"></a><!-- doxytag: member="phys::xml::XPathQuery::operator unspecified_bool_type" ref="a783704bb9a83379b6c8dadbfb5a835ce" args="() const " -->
 <div class="memitem">
@@ -97,7 +160,7 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!</b> () cons
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:59 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 13:19:32 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

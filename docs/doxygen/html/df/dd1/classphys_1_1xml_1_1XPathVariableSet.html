@@ -67,7 +67,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a61fe3aa60d13a4a224d301456a230a7c">Set</a> (const char_t *Name, const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;Value)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set contained variable Value; no Type conversion is performed.  <a href="#a61fe3aa60d13a4a224d301456a230a7c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#aaf4a46b271298bbb86a6379567e590ee">Get</a> (const char_t *Name)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set contained variable Value; no Type conversion is performed.  <a href="#aaf4a46b271298bbb86a6379567e590ee"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the named <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>.  <a href="#aaf4a46b271298bbb86a6379567e590ee"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a64274e4889036c318c701614d2cfa5ab">Get</a> (const char_t *Name) const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the named <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>.  <a href="#a64274e4889036c318c701614d2cfa5ab"></a><br/></td></tr>
 </table>
@@ -75,7 +75,7 @@ Public Member Functions</h2></td></tr>
 <p>A set of XPath variables. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True is return, false is returned on Type mismatch error. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01095">1095</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01096">1096</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 <hr/><h2>Member Function Documentation</h2>
 <a class="anchor" id="a26c9bb8f7aa3aaedfcdcdca2e1822deb"></a><!-- doxytag: member="phys::xml::XPathVariableSet::Add" ref="a26c9bb8f7aa3aaedfcdcdca2e1822deb" args="(const char_t *Name, XPathValueType Type)" -->
 <div class="memitem">
@@ -154,15 +154,8 @@ Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Set contained variable Value; no Type conversion is performed. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of variable to change. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Value</em>&nbsp;</td><td>The value to attempt to put into the named variable. </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True is return, false is returned if there is no such variable or on Type mismatch error. Get the named <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>. </dd></dl>
+<p>Get the named <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True is return, false is returned if there is no such variable or on Type mismatch error. </dd></dl>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Name</em>&nbsp;</td><td>The name of the <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a> you want. </td></tr>
@@ -335,7 +328,7 @@ Public Member Functions</h2></td></tr>
 <li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:59 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 13:19:32 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -2,47 +2,53 @@
 \section{phys::xml::XPathQuery Class Reference}
 \label{de/d52/classphys_1_1xml_1_1XPathQuery}\index{phys::xml::XPathQuery@{phys::xml::XPathQuery}}
 }
+
+
+A compiled XPath query object.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1xml_1_1XPathQuery_a1a63135370ef4999f3dd27540c9009a2}{
-{\bfseries XPathQuery} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0)}
-\label{de/d52/classphys_1_1xml_1_1XPathQuery_a1a63135370ef4999f3dd27540c9009a2}
+\hyperlink{classphys_1_1xml_1_1XPathQuery_a1a63135370ef4999f3dd27540c9009a2}{XPathQuery} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0)
+\begin{DoxyCompactList}\small\item\em Construct a compiled object from XPath expression. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1XPathQuery_a35f84fa63de8cfd5c9abc5320cdf12fa}{
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} {\bfseries ReturnType} () const }
+\label{de/d52/classphys_1_1xml_1_1XPathQuery_a35f84fa63de8cfd5c9abc5320cdf12fa}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1XPathQuery_a707742d4a50e3aa02df27373f2bf6360}{
-\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathValueType} {\bfseries return\_\-type} () const }
-\label{de/d52/classphys_1_1xml_1_1XPathQuery_a707742d4a50e3aa02df27373f2bf6360}
+\hypertarget{classphys_1_1xml_1_1XPathQuery_a5c61bb5b5181be4b0c4c9c638d179564}{
+bool {\bfseries EvaluateBoolean} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
+\label{de/d52/classphys_1_1xml_1_1XPathQuery_a5c61bb5b5181be4b0c4c9c638d179564}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1XPathQuery_a045c0650a983ceb24772975f0a9176d3}{
-bool {\bfseries evaluate\_\-boolean} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
-\label{de/d52/classphys_1_1xml_1_1XPathQuery_a045c0650a983ceb24772975f0a9176d3}
+\hypertarget{classphys_1_1xml_1_1XPathQuery_aacfcff30901ce20b92de56ec0e2d70e5}{
+double {\bfseries EvaluateNumber} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
+\label{de/d52/classphys_1_1xml_1_1XPathQuery_aacfcff30901ce20b92de56ec0e2d70e5}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1XPathQuery_a276e1854c0644c882e384ad433bb9ec3}{
-double {\bfseries evaluate\_\-number} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
-\label{de/d52/classphys_1_1xml_1_1XPathQuery_a276e1854c0644c882e384ad433bb9ec3}
+\hypertarget{classphys_1_1xml_1_1XPathQuery_ab7084be2e608b38872167fe3321554b9}{
+String {\bfseries EvaluateString} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
+\label{de/d52/classphys_1_1xml_1_1XPathQuery_ab7084be2e608b38872167fe3321554b9}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1XPathQuery_a5be51b392fa2cfe55271e1da8be0df19}{
-String {\bfseries evaluate\_\-string} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
-\label{de/d52/classphys_1_1xml_1_1XPathQuery_a5be51b392fa2cfe55271e1da8be0df19}
+\hypertarget{classphys_1_1xml_1_1XPathQuery_ac9f4705c639cbd7f3aef8266fa683cc2}{
+size\_\-t {\bfseries EvaluateString} (char\_\-t $\ast$buffer, size\_\-t capacity, const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
+\label{de/d52/classphys_1_1xml_1_1XPathQuery_ac9f4705c639cbd7f3aef8266fa683cc2}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1XPathQuery_a51840dda4891aeac6ec47569dede3e9a}{
-size\_\-t {\bfseries evaluate\_\-string} (char\_\-t $\ast$buffer, size\_\-t capacity, const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
-\label{de/d52/classphys_1_1xml_1_1XPathQuery_a51840dda4891aeac6ec47569dede3e9a}
+\hypertarget{classphys_1_1xml_1_1XPathQuery_af00ba3d0346ccc01f249274947191333}{
+\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} {\bfseries EvaluateNodeSet} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
+\label{de/d52/classphys_1_1xml_1_1XPathQuery_af00ba3d0346ccc01f249274947191333}
 
 \item 
-\hypertarget{classphys_1_1xml_1_1XPathQuery_a3b9b33f1db717e2f356e766c97c71f8c}{
-\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} {\bfseries evaluate\_\-NodeSet} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
-\label{de/d52/classphys_1_1xml_1_1XPathQuery_a3b9b33f1db717e2f356e766c97c71f8c}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1XPathQuery_ab2d3a78adf02f6e1546fc60203884877}{
-const \hyperlink{structphys_1_1xml_1_1XPathParseResult}{XPathParseResult} \& {\bfseries result} () const }
-\label{de/d52/classphys_1_1xml_1_1XPathQuery_ab2d3a78adf02f6e1546fc60203884877}
+\hypertarget{classphys_1_1xml_1_1XPathQuery_aa6333b52a9eb3624f21e700331d07c83}{
+const \hyperlink{structphys_1_1xml_1_1XPathParseResult}{XPathParseResult} \& {\bfseries Result} () const }
+\label{de/d52/classphys_1_1xml_1_1XPathQuery_aa6333b52a9eb3624f21e700331d07c83}
 
 \item 
 \hyperlink{classphys_1_1xml_1_1XPathQuery_a783704bb9a83379b6c8dadbfb5a835ce}{operator unspecified\_\-bool\_\-type} () const 
@@ -55,9 +61,49 @@ bool {\bfseries operator!} () const }
 
 
 \subsection{Detailed Description}
+A compiled XPath query object. \begin{DoxyReturn}{Returns}
+A pointer to the specified \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable}.
+\end{DoxyReturn}
+When you call select\_\-nodes with an expression string as an argument, a query object is created behind the scenes. A query object represents a compiled XPath expression. Query objects can be needed in the following circumstances: \par
+
+\begin{DoxyItemize}
+\item You can precompile expressions to query objects to save compilation time if it becomes an issue; \par
+
+\item You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings; \par
+
+\item You can get the type of expression value via query object. \par
+ \par
+ Query objects correspond to \hyperlink{classphys_1_1xml_1_1XPathQuery}{xml::XPathQuery} type. They are immutable and non-\/copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to zml::XPathQuery in the container. 
+\end{DoxyItemize}
+
+Definition at line 1139 of file xml.h.
 
 
-Definition at line 1138 of file xml.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1xml_1_1XPathQuery_a1a63135370ef4999f3dd27540c9009a2}{
+\index{phys::xml::XPathQuery@{phys::xml::XPathQuery}!XPathQuery@{XPathQuery}}
+\index{XPathQuery@{XPathQuery}!phys::xml::XPathQuery@{phys::xml::XPathQuery}}
+\subsubsection[{XPathQuery}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathQuery::XPathQuery (
+\begin{DoxyParamCaption}
+\item[{const char\_\-t $\ast$}]{ query, }
+\item[{{\bf XPathVariableSet} $\ast$}]{ variables = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
+\label{de/d52/classphys_1_1xml_1_1XPathQuery_a1a63135370ef4999f3dd27540c9009a2}
+
+
+Construct a compiled object from XPath expression. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em query}]The query in the form of a c-\/string style char\_\-t array. \item[{\em variables}]Any extra data the query might need, passing a null pointer simply omits passing any arguments. \end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+\item[{\em If}]XML\_\-NO\_\-EXCEPTIONS is not defined (which is the default), throws \hyperlink{classphys_1_1xml_1_1XPathException}{XPathException} on compilation errors. \end{DoxyExceptions}
+
+
+Definition at line 9463 of file xml.cpp.
 
 
 

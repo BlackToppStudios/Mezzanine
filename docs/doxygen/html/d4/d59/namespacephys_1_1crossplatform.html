@@ -56,6 +56,8 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pauses the program for a given period of time.  <a href="#ab525e3abf3625b83954e2d55a5869d18"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a11ab7359564519dc966f997c98109f6e">RenderPhysWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *TheWorld, Ogre::RenderWindow *TheOgreWindow)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Renders the current world contents to the screen.  <a href="#a11ab7359564519dc966f997c98109f6e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#af34fd6dc13360417a87c579744932dce">GetPlatform</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the platform currently being run on.  <a href="#af34fd6dc13360417a87c579744932dce"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>All functionality that needs different implemenations per platform will go in here. </p>
@@ -83,6 +85,26 @@ Functions</h2></td></tr>
 <p>Gets the Default Data Directory. </p>
 <p>The directory returned by this function can be used to easily graphics objects. In general the Graphics subsystem can easily open files in this location with just their filename </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A string containing the path to the default Data Directory. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="af34fd6dc13360417a87c579744932dce"></a><!-- doxytag: member="phys::crossplatform::GetPlatform" ref="af34fd6dc13360417a87c579744932dce" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> PHYS_LIB phys::crossplatform::GetPlatform </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the platform currently being run on. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string based on the platform. "Windows", "Linux", or "MacOSX". </dd></dl>
 
 </div>
 </div>
@@ -217,7 +239,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:57 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 13:19:30 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

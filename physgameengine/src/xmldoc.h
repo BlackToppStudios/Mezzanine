@@ -1232,8 +1232,16 @@ namespace phys
         /// @return A pointer to the specified XPathVariable.
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathVariableSet
+        /// @class XPathQuery
+        /// @brief A compiled XPath query object
+        /// @details When you call select_nodes with an expression string as an argument, a query object is created behind the scenes. A query object represents a compiled XPath expression. Query objects can be needed in the following circumstances: \n
+        /// - You can precompile expressions to query objects to save compilation time if it becomes an issue; \n
+        /// - You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings; \n
+        /// - You can get the type of expression value via query object. \n \n
+        /// Query objects correspond to xml::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to zml::XPathQuery in the container.
 
+        /// @fn XPathQuery::~XPathQuery();
+		/// @brief Destructor
 
 
     }

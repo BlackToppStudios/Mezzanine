@@ -3,7 +3,10 @@
 # This expects the PugiXML source files to be in the subdirectory call PugiSrc
 
 # This script isn't magic, it was designed with version 1.0 of PugiXML in mind. If new features have been added, then new commands
-# will need to be add to rename those as well. That being said, I did try to code it in such a way 
+# will need to be add to rename those as well. That being said, I did try to code it in such a way that it would still work with new versions of the source files...
+# I hope this really does simplify things when upgrade time comes around, because that is the sole reason this exists.
+
+#for reference this took 4 to 6 seconds to run on my i7 and 2 minutes to my on my p4.
 
 #disable Bash filename expansion
 set -f
@@ -70,7 +73,7 @@ PugiHeaderGrabUntil="*/"						# This ends the copyright header in the pugiheader
 PugiHeaderGrabLineCount=`grep "$PugiHeaderGrabUntil" $PugiHFile -n | head -n1 | sed s/:.*//g`
 PugiHeaderTotalLineCount=`grep "$Hardstring" $PugiHFile -vc`
 PugiHeaderTailLineCount=$[PugiHeaderTotalLineCount-PugiHeaderGrabLineCount]
-tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"'/'#include "crossplatform.h"\n#include "xmldoc.h"'/g  >> $PugiTempHFile
+tail -n$PugiHeaderTailLineCount $PugiHFile | sed -e s/'#include "pugiconfig.hpp"'/'#include "crossplatform.h"\n#include "xmldoc.h"\n#include "exception.h"'/g  >> $PugiTempHFile
 
 #This Does a number of transformations on the PugiHeader file before placing the complete converted parts onto the new headerfile
 #	- Replaces series of 4 spaces with tabs (seems to be an issue with the original source Files)
@@ -307,12 +310,34 @@ function FixNames
 
 	#XPathVariable
 	sed -i -e 's|get_\(.\)\([a-zA-Z]*\)|Get\U\1\L\2|g' $1
-	sed -i -e 's|Nodeset|NodeSet|g' $1
+
 	sed -i -e 's|\([^f]\)set(|\1Set(|g' $1
 
 	#XPathVariableSet
 	sed -i -e 's|add(|Add(|g' $1
 	sed -i -e 's|\([^r]\)get(|\1Get(|g' $1
+
+	#XPathQuery
+	sed -i -e 's|evaluate_\(.\)\([a-z]*\)|Evaluate\U\1\L\2|g' $1				
+	sed -i -e 's|return_type|ReturnType|g' $1
+	sed -i -e 's|result|Result|g' $1
+	sed -i -e 's|std::exception|phys::Exception|g' $1
+
+	#XPathNodeSet
+	sed -i -e 's|Type_unsorted|TypeUnsorted|g' $1
+	sed -i -e 's|Type_sorted|TypeSorted|g' $1
+	sed -i -e 's|Type_sorted_reverse|TypeSortedReverse|g' $1
+	sed -i -e 's|Type_t|CollectionType|g' $1
+
+	#typings and functions
+	sed -i -e 's|GetMemory_allocation_function|GetMemoryAllocationFunction|g' $1
+	sed -i -e 's|GetMemory_deallocation_function|GetMemoryDeallocationFunction|g' $1
+	sed -i -e 's|allocation_function|AllocationFunction|g' $1
+	sed -i -e 's|deallocation_function|DeallocationFunction|g' $1
+	sed -i -e 's|pugi::|phys::xml::|g' $1
+
+	#Common	
+	sed -i -e 's|Nodeset|NodeSet|g' $1
 
 	###############################
 	#Documentation that was not put in xmldoc.h
@@ -379,6 +404,9 @@ function FixNames
 	sed -i -e  's|bool Set(const char_t\* Name, double Value);|/// @brief Set contained variable Value; no Type conversion is performed.\n		/// @param Name The name of variable to change.\n		/// @param Value The value to attempt to put into the named variable.\n		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.\n		bool Set(const char_t* Name, double Value);|' $1
 	sed -i -e  's|bool Set(const char_t\* Name, const char_t\* Value);|/// @brief Set contained variable Value; no Type conversion is performed.\n		/// @param Name The name of variable to change.\n		/// @param Value The value to attempt to put into the named variable.\n		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.\n		bool Set(const char_t* Name, const char_t* Value);|' $1 
 	sed -i -e  's|bool Set(const char_t\* Name, const XPathNodeSet& Value);|/// @brief Set contained variable Value; no Type conversion is performed.\n		/// @param Name The name of variable to change.\n		/// @param Value The value to attempt to put into the named variable.\n		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.\n		bool Set(const char_t* Name, const XPathNodeSet\& Value);|' $1 
+
+	#XPathQuery
+	sed -i -e  's|explicit XPathQuery(const char_t\* query, XPathVariableSet\* variables = 0);|\n		/// @brief Construct a compiled object from XPath expression.\n		/// @param query The query in the form of a c-string style char_t array.\n		/// @param variables Any extra data the query might need, passing a null pointer simply omits passing any arguments.\n		/// @throw If XML_NO_EXCEPTIONS is not defined (which is the default), throws XPathException on compilation errors.\n		explicit XPathQuery(const char_t* query, XPathVariableSet* variables = 0);|' $1
 
 	#another clean line to copy/paste
 	#sed -i -e 's|||' $1

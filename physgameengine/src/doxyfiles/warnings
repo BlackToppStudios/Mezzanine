@@ -1,17 +1,18 @@
+Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
+warning: source /home/dev/physgame/physgameengine/src/sed4WHn5D is not a readable file or directory... skipping.
 warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readable file or directory... skipping.
 /home/dev/physgame/physgameengine/src/constraint.h:321: warning: Compound phys::Hinge2Constraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:230: warning: Compound phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:452: warning: Compound phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:132: warning: Compound phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1260: warning: Compound phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1266: warning: Compound phys::xml::XPathNodeSet is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:386: warning: Compound phys::SliderConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:262: warning: Compound phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1139: warning: Compound phys::xml::XPathQuery is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:178: warning: Compound phys::Generic6DofConstraint is not documented.
 /home/dev/physgame/physgameengine/src/uilinelist.h:67: warning: Compound phys::UI::LineList is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1200: warning: Compound phys::xml::XPathException is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1206: warning: Compound phys::xml::XPathException is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:345: warning: Compound phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1218: warning: Compound phys::xml::XPathNode is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1224: warning: Compound phys::xml::XPathNode is not documented.
 /home/dev/physgame/physgameengine/src/extendedtimer.h:76: warning: Documentation for undefined enum `The' found.
 /home/dev/physgame/physgameengine/src/timer.h:58: warning: Documentation for undefined enum `The' found.
 /home/dev/physgame/physgameengine/src/timer.h:66: warning: Documentation for undefined enum `The' found.
@@ -26,31 +27,32 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/xmldoc.h:1042: warning: no uniquely matching class member found for 
   phys::xml::Document::Reset(const Document &proto)
 
-/home/dev/physgame/physgameengine/src/xmldoc.h:1225: warning: member with no name found.
-/home/dev/physgame/physgameengine/src/xmldoc.h:1232: warning: member with no name found.
-/home/dev/physgame/physgameengine/src/xmldoc.h:1238: warning: member with no name found.
+/home/dev/physgame/physgameengine/src/xmldoc.h:1243: warning: member with no name found.
 /home/dev/physgame/physgameengine/src/xmldoc.h:190: warning: Unsupported xml/html tag <node> found
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xmldoc.h:1012: warning: Found unknown command `\detail'
 /home/dev/physgame/physgameengine/src/xmldoc.h:1024: warning: Found unknown command `\detail'
 /home/dev/physgame/physgameengine/src/xmldoc.h:1017: warning: Found unknown command `\detail'
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xml.h:165: warning: Member char_t (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:169: warning: Member String (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1331: warning: Member allocation_function)(size_t size) (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1334: warning: Member deallocation_function)(void *ptr) (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:166: warning: Member char_t (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:170: warning: Member String (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1337: warning: Member AllocationFunction)(size_t size) (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1340: warning: Member deAllocationFunction)(void *ptr) (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:4804: warning: Member AsUtf8(const wchar_t *str) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1323: warning: Member AsUtf8(const std::basic_string< wchar_t, std::char_traits< wchar_t >, std::allocator< wchar_t > > &str) (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1329: warning: Member AsUtf8(const std::basic_string< wchar_t, std::char_traits< wchar_t >, std::allocator< wchar_t > > &str) (function) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:4816: warning: Member AsWide(const char *str) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1327: warning: Member AsWide(const std::basic_string< char, std::char_traits< char >, std::allocator< char > > &str) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:4829: warning: Member SetMemory_management_functions(allocation_function allocate, deallocation_function deallocate) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:4835: warning: Member GetMemory_allocation_function() (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:4840: warning: Member GetMemory_deallocation_function() (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1333: warning: Member AsWide(const std::basic_string< char, std::char_traits< char >, std::allocator< char > > &str) (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.cpp:4829: warning: Member SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate) (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.cpp:4835: warning: Member GetMemoryAllocationFunction() (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.cpp:4840: warning: Member GetMemoryDeallocationFunction() (function) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/actorbase.h:311: warning: Member InitEntity(bool force) (function) of class phys::ActorBase is not documented.
+/home/dev/physgame/physgameengine/src/actorrigid.h:162: warning: Member GetBulletObject() (function) of class phys::ActorRigid is not documented.
+/home/dev/physgame/physgameengine/src/actorsoft.h:190: warning: Member GetBulletObject() (function) of class phys::ActorSoft is not documented.
 /home/dev/physgame/physgameengine/src/actorsoft.h:116: warning: argument 'The' of command @param is not found in the argument list of phys::ActorSoft::ActorSoft(Real mass, String name, String file, String group)
 /home/dev/physgame/physgameengine/src/actorsoft.h:116: warning: The following parameters of phys::ActorSoft::ActorSoft(Real mass, String name, String file, String group) are not documented:
   parameter 'group'
+/home/dev/physgame/physgameengine/src/actorterrain.h:93: warning: Member GetBulletObject() (function) of class phys::ActorTerrain is not documented.
 /home/dev/physgame/physgameengine/src/actorterrain.h:61: warning: Member CreateCollisionTerrain() (function) of class phys::ActorTerrain is not documented.
 /home/dev/physgame/physgameengine/src/actorterrain.h:60: warning: Member RigidBody (variable) of class phys::ActorTerrain is not documented.
 /home/dev/physgame/physgameengine/src/actorterrain.h:63: warning: argument 'Initposition' of command @param is not found in the argument list of phys::ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group)
@@ -232,6 +234,8 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/node.h:128: warning: The following parameters of phys::Node::SetOrientation(Quaternion Orientation) are not documented:
   parameter 'Orientation'
 /home/dev/physgame/physgameengine/src/resourceinputstream.h:98: warning: Member operator>>(T &Data) (function) of class phys::ResourceInputStream is not documented.
+/home/dev/physgame/physgameengine/src/resourcemanager.h:80: warning: Member AddResourceGroupName(String Name) (function) of class phys::ResourceManager is not documented.
+/home/dev/physgame/physgameengine/src/resourcemanager.h:79: warning: Member ResourceGroups (variable) of class phys::ResourceManager is not documented.
 /home/dev/physgame/physgameengine/src/scenemanager.h:73: warning: Member SceneManagerType (enumeration) of class phys::SceneManager is not documented.
 /home/dev/physgame/physgameengine/src/scenemanager.h:204: warning: The following parameters of phys::SceneManager::CreateOrbitingNode(const String &Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack) are not documented:
   parameter 'Name'
@@ -472,19 +476,19 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/uiwindow.h:81: warning: Member MarkupTexts (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/uiwindow.h:82: warning: Member Widgets (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xml.h:165: warning: Member char_t (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:169: warning: Member String (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1331: warning: Member allocation_function)(size_t size) (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1334: warning: Member deallocation_function)(void *ptr) (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:166: warning: Member char_t (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:170: warning: Member String (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1337: warning: Member AllocationFunction)(size_t size) (typedef) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1340: warning: Member deAllocationFunction)(void *ptr) (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:4804: warning: Member AsUtf8(const wchar_t *str) (function) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:4811: warning: Member AsUtf8(const std::wstring &str) (function) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:4816: warning: Member AsWide(const char *str) (function) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:4823: warning: Member AsWide(const std::string &str) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:4829: warning: Member SetMemory_management_functions(allocation_function allocate, deallocation_function deallocate) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:4835: warning: Member GetMemory_allocation_function() (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:4840: warning: Member GetMemory_deallocation_function() (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1323: warning: Member AsUtf8(const std::basic_string< wchar_t, std::char_traits< wchar_t >, std::allocator< wchar_t > > &str) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1327: warning: Member AsWide(const std::basic_string< char, std::char_traits< char >, std::allocator< char > > &str) (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.cpp:4829: warning: Member SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate) (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.cpp:4835: warning: Member GetMemoryAllocationFunction() (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.cpp:4840: warning: Member GetMemoryDeallocationFunction() (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1329: warning: Member AsUtf8(const std::basic_string< wchar_t, std::char_traits< wchar_t >, std::allocator< wchar_t > > &str) (function) of namespace phys::xml is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1333: warning: Member AsWide(const std::basic_string< char, std::char_traits< char >, std::allocator< char > > &str) (function) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xmldoc.h:190: warning: Unsupported xml/html tag <node> found
 /home/dev/physgame/physgameengine/src/xml.cpp:454: warning: Member AttributeStruct(MemoryPage *page) (function) of class phys::xml::AttributeStruct is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:457: warning: Member header (variable) of class phys::xml::AttributeStruct is not documented.
@@ -503,7 +507,7 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/xml.cpp:487: warning: Member GetFirstAttribute (variable) of class phys::xml::NodeStruct is not documented.
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xml.h:468: warning: Member unspecified_bool_type (typedef) of class phys::xml::Node is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:469: warning: Member unspecified_bool_type (typedef) of class phys::xml::Node is not documented.
 /home/dev/physgame/physgameengine/src/xmldoc.h:694: warning: argument 'node' of command @param is not found in the argument list of phys::xml::Node::AppendChild(const char_t *Name)
 /home/dev/physgame/physgameengine/src/xmldoc.h:713: warning: unable to resolve reference to `Node::InsertChildBefore(NodeType, Node)' for \ref command
 /home/dev/physgame/physgameengine/src/xmldoc.h:745: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindAttribute(Predicate pred) const
@@ -515,15 +519,15 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/xmldoc.h:761: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindNode(Predicate pred) const
 /home/dev/physgame/physgameengine/src/xmldoc.h:761: warning: The following parameters of phys::xml::Node::FindNode(Predicate pred) const are not documented:
   parameter 'pred'
-/home/dev/physgame/physgameengine/src/xml.h:704: warning: argument 'XPathVariableSet' of command @param is not found in the argument list of phys::xml::Node::FindNodes(const char_t *query, XPathVariableSet *variables=0) const
-/home/dev/physgame/physgameengine/src/xml.h:704: warning: The following parameters of phys::xml::Node::FindNodes(const char_t *query, XPathVariableSet *variables=0) const are not documented:
+/home/dev/physgame/physgameengine/src/xml.h:705: warning: argument 'XPathVariableSet' of command @param is not found in the argument list of phys::xml::Node::FindNodes(const char_t *query, XPathVariableSet *variables=0) const
+/home/dev/physgame/physgameengine/src/xml.h:705: warning: The following parameters of phys::xml::Node::FindNodes(const char_t *query, XPathVariableSet *variables=0) const are not documented:
   parameter 'variables'
 /home/dev/physgame/physgameengine/src/xmldoc.h:801: warning: argument 'XPathVariableSet' of command @param is not found in the argument list of phys::xml::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const
 /home/dev/physgame/physgameengine/src/xmldoc.h:801: warning: The following parameters of phys::xml::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const are not documented:
   parameter 'variables'
-/home/dev/physgame/physgameengine/src/xml.h:604: warning: argument 'Node' of command @param is not found in the argument list of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node)
-/home/dev/physgame/physgameengine/src/xml.h:608: warning: unable to resolve reference to `Node::InsertChildAfter(NodeType, Node)' for \ref command
-/home/dev/physgame/physgameengine/src/xml.h:604: warning: The following parameters of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node) are not documented:
+/home/dev/physgame/physgameengine/src/xml.h:605: warning: argument 'Node' of command @param is not found in the argument list of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node)
+/home/dev/physgame/physgameengine/src/xml.h:609: warning: unable to resolve reference to `Node::InsertChildAfter(NodeType, Node)' for \ref command
+/home/dev/physgame/physgameengine/src/xml.h:605: warning: The following parameters of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node) are not documented:
   parameter 'node'
 /home/dev/physgame/physgameengine/src/xmldoc.h:687: warning: The following parameters of phys::xml::Node::InsertChildBefore(NodeType Type, const Node &node) are not documented:
   parameter 'node'
@@ -542,8 +546,8 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
 /home/dev/physgame/physgameengine/src/xmldoc.h:1012: warning: Found unknown command `\detail'
 /home/dev/physgame/physgameengine/src/xmldoc.h:1024: warning: Found unknown command `\detail'
 /home/dev/physgame/physgameengine/src/xmldoc.h:1017: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xml.h:959: warning: Member ReSet() (function) of class phys::xml::Document is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:962: warning: Member ReSet(const Document &proto) (function) of class phys::xml::Document is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:960: warning: Member ReSet() (function) of class phys::xml::Document is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:963: warning: Member ReSet(const Document &proto) (function) of class phys::xml::Document is not documented.
 /home/dev/physgame/physgameengine/src/xmldoc.h:1080: warning: The following parameters of phys::xml::Document::LoadBufferInplace(void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
   parameter 'contents'
   parameter 'size'
@@ -559,37 +563,35 @@ warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readabl
   parameter 'indent'
   parameter 'flags'
 /home/dev/physgame/physgameengine/src/xmldoc.h:1113: warning: argument 'WriterInstance' of command @param is not found in the argument list of phys::xml::Document::SaveFile(const char *Path, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:1244: warning: argument 'Value' of command @param is not found in the argument list of phys::xml::XPathVariableSet::Get(const char_t *Name)
-/home/dev/physgame/physgameengine/src/xml.h:1153: warning: Member XPathQuery(const char_t *query, XPathVariableSet *variables=0) (function) of class phys::xml::XPathQuery is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1159: warning: Member return_type() const  (function) of class phys::xml::XPathQuery is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1163: warning: Member evaluate_boolean(const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1167: warning: Member evaluate_number(const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1172: warning: Member evaluate_string(const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1179: warning: Member evaluate_string(char_t *buffer, size_t capacity, const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1184: warning: Member evaluate_NodeSet(const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1187: warning: Member result() const  (function) of class phys::xml::XPathQuery is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1194: warning: Member operator!() const  (function) of class phys::xml::XPathQuery is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1206: warning: Member XPathException(const XPathParseResult &result) (function) of class phys::xml::XPathException is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1209: warning: Member what() const  (function) of class phys::xml::XPathException is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1212: warning: Member result() const  (function) of class phys::xml::XPathException is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1230: warning: Member XPathNode(const Node &node) (function) of class phys::xml::XPathNode is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1231: warning: Member XPathNode(const Attribute &GetAttribute, const Node &GetParent) (function) of class phys::xml::XPathNode is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1234: warning: Member node() const  (function) of class phys::xml::XPathNode is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1235: warning: Member GetAttribute() const  (function) of class phys::xml::XPathNode is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1238: warning: Member GetParent() const  (function) of class phys::xml::XPathNode is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1245: warning: Member operator!() const  (function) of class phys::xml::XPathNode is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1248: warning: Member operator==(const XPathNode &n) const  (function) of class phys::xml::XPathNode is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1249: warning: Member operator!=(const XPathNode &n) const  (function) of class phys::xml::XPathNode is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1264: warning: Member Type_t (enumeration) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1271: warning: Member const_iterator (typedef) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1277: warning: Member XPathNodeSet(const_iterator begin, const_iterator end, Type_t Type=Type_unsorted) (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1283: warning: Member XPathNodeSet(const XPathNodeSet &ns) (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1284: warning: Member operator=(const XPathNodeSet &ns) (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1287: warning: Member Type() const  (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1290: warning: Member size() const  (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1293: warning: Member operator[](size_t index) const  (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1296: warning: Member begin() const  (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1297: warning: Member end() const  (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1300: warning: Member sort(bool reverse=false) (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1303: warning: Member first() const  (function) of class phys::xml::XPathNodeSet is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:1306: warning: Member Empty() const  (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1165: warning: Member ReturnType() const  (function) of class phys::xml::XPathQuery is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1169: warning: Member EvaluateBoolean(const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1173: warning: Member EvaluateNumber(const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1178: warning: Member EvaluateString(const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1185: warning: Member EvaluateString(char_t *buffer, size_t capacity, const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1190: warning: Member EvaluateNodeSet(const XPathNode &n) const  (function) of class phys::xml::XPathQuery is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1193: warning: Member Result() const  (function) of class phys::xml::XPathQuery is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1200: warning: Member operator!() const  (function) of class phys::xml::XPathQuery is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1212: warning: Member XPathException(const XPathParseResult &Result) (function) of class phys::xml::XPathException is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1215: warning: Member what() const  (function) of class phys::xml::XPathException is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1218: warning: Member Result() const  (function) of class phys::xml::XPathException is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1236: warning: Member XPathNode(const Node &node) (function) of class phys::xml::XPathNode is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1237: warning: Member XPathNode(const Attribute &GetAttribute, const Node &GetParent) (function) of class phys::xml::XPathNode is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1240: warning: Member node() const  (function) of class phys::xml::XPathNode is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1241: warning: Member GetAttribute() const  (function) of class phys::xml::XPathNode is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1244: warning: Member GetParent() const  (function) of class phys::xml::XPathNode is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1251: warning: Member operator!() const  (function) of class phys::xml::XPathNode is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1254: warning: Member operator==(const XPathNode &n) const  (function) of class phys::xml::XPathNode is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1255: warning: Member operator!=(const XPathNode &n) const  (function) of class phys::xml::XPathNode is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1270: warning: Member CollectionType (enumeration) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1277: warning: Member const_iterator (typedef) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1283: warning: Member XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type=TypeUnsorted) (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1289: warning: Member XPathNodeSet(const XPathNodeSet &ns) (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1290: warning: Member operator=(const XPathNodeSet &ns) (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1293: warning: Member Type() const  (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1296: warning: Member size() const  (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1299: warning: Member operator[](size_t index) const  (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1302: warning: Member begin() const  (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1303: warning: Member end() const  (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1306: warning: Member sort(bool reverse=false) (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1309: warning: Member first() const  (function) of class phys::xml::XPathNodeSet is not documented.
+/home/dev/physgame/physgameengine/src/xml.h:1312: warning: Member Empty() const  (function) of class phys::xml::XPathNodeSet is not documented.

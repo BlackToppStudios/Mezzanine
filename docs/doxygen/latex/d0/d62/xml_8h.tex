@@ -9,6 +9,7 @@ This is where bulk of the XML subsystem is declare, there are numerous class tha
 
 {\ttfamily \#include \char`\"{}crossplatform.h\char`\"{}}\par
 {\ttfamily \#include \char`\"{}xmldoc.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}exception.h\char`\"{}}\par
 {\ttfamily \#include $<$exception$>$}\par
 {\ttfamily \#include $<$stddef.h$>$}\par
 \subsection*{Classes}
@@ -41,7 +42,7 @@ class \hyperlink{classphys_1_1xml_1_1XPathVariable}{phys::xml::XPathVariable}
 class \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{phys::xml::XPathVariableSet}
 \begin{DoxyCompactList}\small\item\em A set of XPath variables. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathQuery}{phys::xml::XPathQuery}
-\item 
+\begin{DoxyCompactList}\small\item\em A compiled XPath query object. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathException}{phys::xml::XPathException}
 \item 
 class \hyperlink{classphys_1_1xml_1_1XPathNode}{phys::xml::XPathNode}
@@ -87,14 +88,14 @@ typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR 
 \label{d9/d27/namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}{
-typedef void $\ast$($\ast$ {\bfseries phys::xml::allocation\_\-function} )(size\_\-t size)}
-\label{d9/d27/namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}
+\hypertarget{namespacephys_1_1xml_a07e4865c24e45f8e5831e4eebadb1353}{
+typedef void $\ast$($\ast$ {\bfseries phys::xml::AllocationFunction} )(size\_\-t size)}
+\label{d9/d27/namespacephys_1_1xml_a07e4865c24e45f8e5831e4eebadb1353}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}{
-typedef void($\ast$ {\bfseries phys::xml::deallocation\_\-function} )(void $\ast$ptr)}
-\label{d9/d27/namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}
+\hypertarget{namespacephys_1_1xml_a0006efe9740ffdcfff4e03cee525f1ff}{
+typedef void($\ast$ {\bfseries phys::xml::deAllocationFunction} )(void $\ast$ptr)}
+\label{d9/d27/namespacephys_1_1xml_a0006efe9740ffdcfff4e03cee525f1ff}
 
 \end{DoxyCompactItemize}
 \subsection*{Enumerations}
@@ -181,19 +182,19 @@ std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::
 \label{d9/d27/namespacephys_1_1xml_ad365a4575e9bdc674e7512a573f05c08}
 
 \item 
-\hypertarget{namespacephys_1_1xml_af067dbcf4b0c314947f5f51e15df98dc}{
-void PHYS\_\-LIB {\bfseries phys::xml::SetMemory\_\-management\_\-functions} (allocation\_\-function allocate, deallocation\_\-function deallocate)}
-\label{d9/d27/namespacephys_1_1xml_af067dbcf4b0c314947f5f51e15df98dc}
+\hypertarget{namespacephys_1_1xml_a404bed92ebb56ab9b0fe7192cb365736}{
+void PHYS\_\-LIB {\bfseries phys::xml::SetMemory\_\-management\_\-functions} (AllocationFunction allocate, deAllocationFunction deallocate)}
+\label{d9/d27/namespacephys_1_1xml_a404bed92ebb56ab9b0fe7192cb365736}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a9162661cef0fda9528d8bf6111da31af}{
-allocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::GetMemory\_\-allocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_a9162661cef0fda9528d8bf6111da31af}
+\hypertarget{namespacephys_1_1xml_ac7c7807926da372d187c6560fa42c255}{
+AllocationFunction PHYS\_\-LIB {\bfseries phys::xml::GetMemoryAllocationFunction} ()}
+\label{d9/d27/namespacephys_1_1xml_ac7c7807926da372d187c6560fa42c255}
 
 \item 
-\hypertarget{namespacephys_1_1xml_abe490393fe211a8ecc970625a3c4bb6c}{
-deallocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::GetMemory\_\-deallocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_abe490393fe211a8ecc970625a3c4bb6c}
+\hypertarget{namespacephys_1_1xml_afc978e9c1c6df7b57ce4d8bb7c3ba3e7}{
+deAllocationFunction PHYS\_\-LIB {\bfseries phys::xml::GetMemoryDeallocationFunction} ()}
+\label{d9/d27/namespacephys_1_1xml_afc978e9c1c6df7b57ce4d8bb7c3ba3e7}
 
 \end{DoxyCompactItemize}
 \subsection*{Variables}

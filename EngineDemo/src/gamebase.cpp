@@ -44,7 +44,6 @@ int main(int argc, char **argv)
     TheWorld->Log("Framerate and Title set");
     #endif
 
-
     //Give the world functions to run before and after input and physics
     TheWorld->GetEventManager()->SetPreMainLoopItems(&PreInput);
     TheWorld->GetEventManager()->SetPostMainLoopItems(&PostInput);
@@ -564,7 +563,7 @@ void LoadContent()
         TheWorld->Log("End streaming test2");
         #endif
     }
-/*
+
     {
         #ifdef PHYSDEBUG
         TheWorld->Log("Testing streaming on test.xml with phys::xml::Document");
@@ -624,7 +623,7 @@ void LoadContent()
         TheWorld->Log("End of testing XML and Streaming test 3");
         #endif
     }
-*/
+
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins
     for(unsigned int c=0; c<4; c++)     //make the back row

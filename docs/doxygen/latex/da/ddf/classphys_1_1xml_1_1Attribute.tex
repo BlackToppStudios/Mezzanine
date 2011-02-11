@@ -111,7 +111,7 @@ class {\bfseries Node}}
 \subsection{Detailed Description}
 A light-\/weight handle for manipulating attributes in DOM tree. 
 
-Definition at line 338 of file xml.h.
+Definition at line 339 of file xml.h.
 
 
 
@@ -176,7 +176,7 @@ Attempts to convert the value of the attribute to a double and returns the resul
 If the value of this attribute can be convert to a double by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000046}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}{Attribute::AsDouble()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000047}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_a467ae167d5407ae3293a22b8873cb43a}{Attribute::AsDouble()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and double. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -201,7 +201,7 @@ Attempts to convert the value of the attribute to a float and returns the result
 If the value of this attribute can be convert to a float by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000047}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}{Attribute::AsFloat()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000048}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_aad74f805b9318735011d698ee39113aa}{Attribute::AsFloat()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and float. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -226,7 +226,7 @@ Attempts to convert the value of the attribute to an int and returns the results
 If the value of this attribute can be convert to an int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000044}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}{Attribute::AsInt()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000045}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ada1f2e45ce636ad8482972263364e7fa}{Attribute::AsInt()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -320,7 +320,7 @@ Attempts to convert the value of the attribute to an unsigned int and returns th
 If the value of this attribute can be convert to an unsigned int by reading the character and interpretting them a number, that numberis returned. Returns 0 on failure. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000045}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ad00ec5857fc4afcda892a0057419a9a0}{Attribute::AsUint()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
+\item[\hyperlink{todo__todo000046}{Todo}]Update \hyperlink{classphys_1_1xml_1_1Attribute_ad00ec5857fc4afcda892a0057419a9a0}{Attribute::AsUint()} to check errno and throw exceptions were appropriate, and throw a exception on failure instead of producing a valid return value. \end{Desc}
 \begin{DoxyWarning}{Warning}
 This may silently fail if the value of the attribute exceeds the maximum value that can be stored in and int. Check \char`\"{}errno\char`\"{} and see if it is set to \char`\"{}ERANGE\char`\"{} to test for this condition. 
 \end{DoxyWarning}
@@ -789,7 +789,7 @@ Set the name of this attribute.
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000048}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
+\item[\hyperlink{todo__todo000049}{Todo}]update this to make the error return code redudant and use an exception instead. \end{Desc}
 
 
 Definition at line 3543 of file xml.cpp.
@@ -817,10 +817,10 @@ True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{A
 You should not pass classes that stream/serialize to xml into this function, the result will be invalid XML. If you must, find a way to strip out the \char`\"{}$>$\char`\"{} character, then you can reinsert it later 
 \end{DoxyWarning}
 \begin{Desc}
-\item[\hyperlink{todo__todo000042}{Todo}]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. \end{Desc}
+\item[\hyperlink{todo__todo000043}{Todo}]Strip \char`\"{}$>$\char`\"{} automatically and provide a method to reconsitute it. \end{Desc}
 
 
-Definition at line 430 of file xml.h.
+Definition at line 431 of file xml.h.
 
 \hypertarget{classphys_1_1xml_1_1Attribute_a919034671f61ee408d616409a49dafca}{
 \index{phys::xml::Attribute@{phys::xml::Attribute}!SetValue@{SetValue}}
@@ -842,7 +842,7 @@ Convert rhs to a character array that contains rhs, then use that as the new val
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000040}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000041}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 
@@ -869,7 +869,7 @@ Convert rhs to a character array that contains rhs, then use that as the new val
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000039}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000040}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 
@@ -896,7 +896,7 @@ Convert rhs to a character array that contains rhs, then use that as the new val
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000038}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000039}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 
@@ -923,7 +923,7 @@ Convert rhs to a character array that contains the meaning of rhs, then use that
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000041}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000042}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 
@@ -950,7 +950,7 @@ Set the value of this.
 True if successful, returns false if this is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000037}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000038}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 

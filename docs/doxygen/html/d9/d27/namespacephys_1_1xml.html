@@ -79,6 +79,7 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A set of XPath variables.  <a href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A compiled XPath query object.  <a href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html">XPathException</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a></td></tr>
@@ -91,10 +92,10 @@ typedef std::basic_string<br class="typebreak"/>
 &lt; XML_CHAR, std::char_traits<br class="typebreak"/>
 &lt; XML_CHAR &gt;, std::allocator<br class="typebreak"/>
 &lt; XML_CHAR &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>String</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3012ecdd41040d1471217fdac32c76ca"></a><!-- doxytag: member="phys::xml::allocation_function" ref="a3012ecdd41040d1471217fdac32c76ca" args=")(size_t size)" -->
-typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>allocation_function</b> )(size_t size)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a042e00af30d526d7d17bc4aaa3e7c592"></a><!-- doxytag: member="phys::xml::deallocation_function" ref="a042e00af30d526d7d17bc4aaa3e7c592" args=")(void *ptr)" -->
-typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>deallocation_function</b> )(void *ptr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07e4865c24e45f8e5831e4eebadb1353"></a><!-- doxytag: member="phys::xml::AllocationFunction" ref="a07e4865c24e45f8e5831e4eebadb1353" args=")(size_t size)" -->
+typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>AllocationFunction</b> )(size_t size)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0006efe9740ffdcfff4e03cee525f1ff"></a><!-- doxytag: member="phys::xml::deAllocationFunction" ref="a0006efe9740ffdcfff4e03cee525f1ff" args=")(void *ptr)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>deAllocationFunction</b> )(void *ptr)</td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3">NodeType</a> { <br/>
@@ -173,12 +174,12 @@ std::string PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsUtf
 std::wstring PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsWide</b> (const char *str)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf80dd12469021a66d48a325484ba9f1"></a><!-- doxytag: member="phys::xml::AsWide" ref="acf80dd12469021a66d48a325484ba9f1" args="(const std::string &amp;str)" -->
 std::wstring PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsWide</b> (const std::string &amp;str)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af067dbcf4b0c314947f5f51e15df98dc"></a><!-- doxytag: member="phys::xml::SetMemory_management_functions" ref="af067dbcf4b0c314947f5f51e15df98dc" args="(allocation_function allocate, deallocation_function deallocate)" -->
-void PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetMemory_management_functions</b> (allocation_function allocate, deallocation_function deallocate)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9162661cef0fda9528d8bf6111da31af"></a><!-- doxytag: member="phys::xml::GetMemory_allocation_function" ref="a9162661cef0fda9528d8bf6111da31af" args="()" -->
-allocation_function PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMemory_allocation_function</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe490393fe211a8ecc970625a3c4bb6c"></a><!-- doxytag: member="phys::xml::GetMemory_deallocation_function" ref="abe490393fe211a8ecc970625a3c4bb6c" args="()" -->
-deallocation_function PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMemory_deallocation_function</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a404bed92ebb56ab9b0fe7192cb365736"></a><!-- doxytag: member="phys::xml::SetMemory_management_functions" ref="a404bed92ebb56ab9b0fe7192cb365736" args="(AllocationFunction allocate, deAllocationFunction deallocate)" -->
+void PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetMemory_management_functions</b> (AllocationFunction allocate, deAllocationFunction deallocate)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7c7807926da372d187c6560fa42c255"></a><!-- doxytag: member="phys::xml::GetMemoryAllocationFunction" ref="ac7c7807926da372d187c6560fa42c255" args="()" -->
+AllocationFunction PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMemoryAllocationFunction</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc978e9c1c6df7b57ce4d8bb7c3ba3e7"></a><!-- doxytag: member="phys::xml::GetMemoryDeallocationFunction" ref="afc978e9c1c6df7b57ce4d8bb7c3ba3e7" args="()" -->
+deAllocationFunction PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMemoryDeallocationFunction</b> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8721da4a57634acd3a3eb754d898fb88"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="a8721da4a57634acd3a3eb754d898fb88" args="(const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)" -->
 std::basic_string&lt; char, <br class="typebreak"/>
 std::char_traits&lt; char &gt;<br class="typebreak"/>
@@ -293,7 +294,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00241">241</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00242">242</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -341,7 +342,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00180">180</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00181">181</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -407,7 +408,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00888">888</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00889">889</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -422,7 +423,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </div>
 <div class="memdoc">
 
-<p><a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> return type. </p>
+<p><a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a> return type. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>DocumentEncoding</em>&nbsp;</td><td>What kind of text is in the stream, this defaults to Encoding::EncodingAuto. </td></tr>
@@ -450,7 +451,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01018">1018</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01019">1019</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -469,7 +470,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>The default set of formatting flags. </p>
 <p>Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00270">270</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00271">271</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -487,7 +488,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>The default parsing mode. </p>
 <p>Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00233">233</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00234">234</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -505,7 +506,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>The full parsing mode. </p>
 <p>Nodes of all types are added to the DOM tree, character/reference entities are expanded, End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00238">238</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00239">239</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +524,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>Minimal parsing mode (equivalent to turning all other flags off). </p>
 <p>Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00197">197</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00198">198</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -541,12 +542,12 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree. </p>
 <p>This flag is off by default; turning it on usually results in slower parsing and more memory consumption. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00210">210</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00211">211</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:58 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 13:19:32 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
