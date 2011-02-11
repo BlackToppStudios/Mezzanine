@@ -6217,7 +6217,7 @@
 <a name="l06186"></a>06186                 } 
 <a name="l06187"></a>06187         } 
 <a name="l06188"></a>06188  
-<a name="l06189"></a>06189         <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* GetVariable(<a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* <span class="keyword">set</span>, <span class="keyword">const</span> char_t* begin, <span class="keyword">const</span> char_t* end) 
+<a name="l06189"></a>06189         <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* GetVariable(<a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* <span class="keyword">set</span>, <span class="keyword">const</span> char_t* begin, <span class="keyword">const</span> char_t* end) 
 <a name="l06190"></a>06190         { 
 <a name="l06191"></a>06191                 char_t buffer[32]; 
 <a name="l06192"></a>06192  
@@ -6235,7 +6235,7 @@
 <a name="l06204"></a>06204                 memcpy(scratch, begin, length * <span class="keyword">sizeof</span>(char_t)); 
 <a name="l06205"></a>06205                 scratch[length] = 0; 
 <a name="l06206"></a>06206  
-<a name="l06207"></a>06207                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* result = <span class="keyword">set</span>-&gt;get(scratch); 
+<a name="l06207"></a>06207                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* result = <span class="keyword">set</span>-&gt;Get(scratch); 
 <a name="l06208"></a>06208  
 <a name="l06209"></a>06209                 <span class="comment">// free dummy buffer </span>
 <a name="l06210"></a>06210                 <span class="keywordflow">if</span> (scratch != buffer) global_deallocate(scratch); 
@@ -8204,7 +8204,7 @@
 <a name="l08173"></a>08173                 XPathLexer _lexer; 
 <a name="l08174"></a>08174  
 <a name="l08175"></a>08175                 <span class="keyword">const</span> char_t* _query; 
-<a name="l08176"></a>08176                 <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* _variables; 
+<a name="l08176"></a>08176                 <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* _variables; 
 <a name="l08177"></a>08177  
 <a name="l08178"></a>08178                 <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>* _result; 
 <a name="l08179"></a>08179  
@@ -9021,7 +9021,7 @@
 <a name="l08990"></a>08990                         <span class="keywordflow">return</span> ParseOrExpression(); 
 <a name="l08991"></a>08991                 } 
 <a name="l08992"></a>08992  
-<a name="l08993"></a>08993                 XPathParser(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables, XPathAllocator* alloc, <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>* result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _result(result) 
+<a name="l08993"></a>08993                 XPathParser(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables, XPathAllocator* alloc, <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>* result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _result(result) 
 <a name="l08994"></a>08994                 { 
 <a name="l08995"></a>08995                 } 
 <a name="l08996"></a>08996  
@@ -9038,7 +9038,7 @@
 <a name="l09007"></a>09007                         <span class="keywordflow">return</span> result; 
 <a name="l09008"></a>09008                 } 
 <a name="l09009"></a>09009  
-<a name="l09010"></a>09010                 <span class="keyword">static</span> XPathAstNode* parse(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables, XPathAllocator* alloc, <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>* result) 
+<a name="l09010"></a>09010                 <span class="keyword">static</span> XPathAstNode* parse(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables, XPathAllocator* alloc, <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>* result) 
 <a name="l09011"></a>09011                 { 
 <a name="l09012"></a>09012                         XPathParser parser(query, variables, alloc, result); 
 <a name="l09013"></a>09013  
@@ -9361,7 +9361,7 @@
 <a name="l09330"></a>09330                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l09331"></a>09331         } 
 <a name="l09332"></a>09332  
-<a name="l09333"></a>09333         <span class="keywordtype">bool</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">XPathVariable::Set</a>(<span class="keywordtype">double</span> Value) 
+<a name="l09333"></a><a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#abb5f6da9b731d770e1a34ee9981b22be">09333</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">XPathVariable::Set</a>(<span class="keywordtype">double</span> Value) 
 <a name="l09334"></a>09334         { 
 <a name="l09335"></a>09335                 <span class="keywordflow">if</span> (<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a8841d47677912f4b88743928cf931eac" title="What kind of data does this variable store.">_type</a> != <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575da5503130cd89cdb7f6c9f0cc72091a06c" title="Number This corresponds to a double or Real.">XPathTypeNumber</a>) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l09336"></a>09336  
@@ -9369,7 +9369,7 @@
 <a name="l09338"></a>09338                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l09339"></a>09339         } 
 <a name="l09340"></a>09340  
-<a name="l09341"></a>09341         <span class="keywordtype">bool</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">XPathVariable::Set</a>(<span class="keyword">const</span> char_t* Value) 
+<a name="l09341"></a><a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#acf825ac8cd7dd20fc6f1c9fd7bb997fe">09341</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">XPathVariable::Set</a>(<span class="keyword">const</span> char_t* Value) 
 <a name="l09342"></a>09342         { 
 <a name="l09343"></a>09343                 <span class="keywordflow">if</span> (<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a8841d47677912f4b88743928cf931eac" title="What kind of data does this variable store.">_type</a> != <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575da1201c2db15249e26d46d828213e1e88b" title="Corresponds to the String type.">XPathTypeString</a>) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l09344"></a>09344  
@@ -9390,7 +9390,7 @@
 <a name="l09359"></a>09359                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l09360"></a>09360         } 
 <a name="l09361"></a>09361  
-<a name="l09362"></a>09362         <span class="keywordtype">bool</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">XPathVariable::Set</a>(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; Value) 
+<a name="l09362"></a><a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a121079abb73e70ade34f4e69181e5694">09362</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">XPathVariable::Set</a>(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; Value) 
 <a name="l09363"></a>09363         { 
 <a name="l09364"></a>09364                 <span class="keywordflow">if</span> (<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a8841d47677912f4b88743928cf931eac" title="What kind of data does this variable store.">_type</a> != <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba" title="Node set (XPathNodeSet).">XPathTypeNodeSet</a>) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l09365"></a>09365  
@@ -9398,12 +9398,12 @@
 <a name="l09367"></a>09367                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l09368"></a>09368         } 
 <a name="l09369"></a>09369  
-<a name="l09370"></a>09370         XPathVariableSet::XPathVariableSet() 
+<a name="l09370"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a34733feeb7720d30c2a752f6f9cd6858">09370</a>         <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a34733feeb7720d30c2a752f6f9cd6858" title="Default Constructor, Blanks any XPathVariable it contains.">XPathVariableSet::XPathVariableSet</a>() 
 <a name="l09371"></a>09371         { 
 <a name="l09372"></a>09372                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <span class="keyword">sizeof</span>(_data) / <span class="keyword">sizeof</span>(_data[0]); ++i) _data[i] = 0; 
 <a name="l09373"></a>09373         } 
 <a name="l09374"></a>09374  
-<a name="l09375"></a>09375         XPathVariableSet::~XPathVariableSet() 
+<a name="l09375"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#af9ac0b922e9399a30ee81a59eb44e464">09375</a>         <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#af9ac0b922e9399a30ee81a59eb44e464" title="Default Deconstructor, Deletes any XPathVariable it contains.">XPathVariableSet::~XPathVariableSet</a>() 
 <a name="l09376"></a>09376         { 
 <a name="l09377"></a>09377                 <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; <span class="keyword">sizeof</span>(_data) / <span class="keyword">sizeof</span>(_data[0]); ++i) 
 <a name="l09378"></a>09378                 { 
@@ -9426,22 +9426,22 @@
 <a name="l09395"></a>09395                 <span class="keywordtype">size_t</span> hash = hash_string(Name) % hash_size; 
 <a name="l09396"></a>09396  
 <a name="l09397"></a>09397                 <span class="comment">// look for existing variable </span>
-<a name="l09398"></a>09398                 <span class="keywordflow">for</span> (<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = _data[hash]; var; var = var-&gt;_next) 
-<a name="l09399"></a>09399                         <span class="keywordflow">if</span> (strequal(var-&gt;Name(), Name)) 
+<a name="l09398"></a>09398                 <span class="keywordflow">for</span> (<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = _data[hash]; var; var = var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#abe57b58f8b6d2622d5e1ae93bc5361a3" title="The next variable in the variable set. I think, and I am not certain, that this is a circularly linke...">_next</a>) 
+<a name="l09399"></a>09399                         <span class="keywordflow">if</span> (strequal(var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#af51c0a3362e130e30df85068ab95de63" title="Retrieve the name of this variable.">Name</a>(), Name)) 
 <a name="l09400"></a>09400                                 <span class="keywordflow">return</span> var; 
 <a name="l09401"></a>09401  
 <a name="l09402"></a>09402                 <span class="keywordflow">return</span> 0; 
 <a name="l09403"></a>09403         } 
 <a name="l09404"></a>09404  
-<a name="l09405"></a>09405         <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* XPathVariableSet::add(<span class="keyword">const</span> char_t* Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d" title="XPathQuery return type.">XPathValueType</a> Type) 
+<a name="l09405"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a26c9bb8f7aa3aaedfcdcdca2e1822deb">09405</a>         <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a26c9bb8f7aa3aaedfcdcdca2e1822deb" title="Add a new variable or get the existing one, if the Types match.">XPathVariableSet::Add</a>(<span class="keyword">const</span> char_t* Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d" title="XPathQuery return type.">XPathValueType</a> Type) 
 <a name="l09406"></a>09406         { 
 <a name="l09407"></a>09407                 <span class="keyword">const</span> <span class="keywordtype">size_t</span> hash_size = <span class="keyword">sizeof</span>(_data) / <span class="keyword">sizeof</span>(_data[0]); 
 <a name="l09408"></a>09408                 <span class="keywordtype">size_t</span> hash = hash_string(Name) % hash_size; 
 <a name="l09409"></a>09409  
 <a name="l09410"></a>09410                 <span class="comment">// look for existing variable </span>
-<a name="l09411"></a>09411                 <span class="keywordflow">for</span> (<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = _data[hash]; var; var = var-&gt;_next) 
-<a name="l09412"></a>09412                         <span class="keywordflow">if</span> (strequal(var-&gt;Name(), Name)) 
-<a name="l09413"></a>09413                                 <span class="keywordflow">return</span> var-&gt;Type() == Type ? var : 0; 
+<a name="l09411"></a>09411                 <span class="keywordflow">for</span> (<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = _data[hash]; var; var = var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#abe57b58f8b6d2622d5e1ae93bc5361a3" title="The next variable in the variable set. I think, and I am not certain, that this is a circularly linke...">_next</a>) 
+<a name="l09412"></a>09412                         <span class="keywordflow">if</span> (strequal(var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#af51c0a3362e130e30df85068ab95de63" title="Retrieve the name of this variable.">Name</a>(), Name)) 
+<a name="l09413"></a>09413                                 <span class="keywordflow">return</span> var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a6c2986292fe674b79ea9dbf261c4a96f" title="Get the variable type.">Type</a>() == Type ? var : 0; 
 <a name="l09414"></a>09414  
 <a name="l09415"></a>09415                 <span class="comment">// add new variable </span>
 <a name="l09416"></a>09416                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* result = new_XPathVariable(Type, Name); 
@@ -9457,41 +9457,41 @@
 <a name="l09426"></a>09426                 <span class="keywordflow">return</span> result; 
 <a name="l09427"></a>09427         } 
 <a name="l09428"></a>09428  
-<a name="l09429"></a>09429         <span class="keywordtype">bool</span> XPathVariableSet::Set(<span class="keyword">const</span> char_t* Name, <span class="keywordtype">bool</span> Value) 
+<a name="l09429"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a7095efef6fc3978479fb8b6f203c6f4c">09429</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a7095efef6fc3978479fb8b6f203c6f4c" title="Set contained variable Value; no Type conversion is performed.">XPathVariableSet::Set</a>(<span class="keyword">const</span> char_t* Name, <span class="keywordtype">bool</span> Value) 
 <a name="l09430"></a>09430         { 
-<a name="l09431"></a>09431                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = add(Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575da7d21654ec17f33027de173dd47aa9092" title="A Boolean value.">XPathTypeBoolean</a>); 
+<a name="l09431"></a>09431                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a26c9bb8f7aa3aaedfcdcdca2e1822deb" title="Add a new variable or get the existing one, if the Types match.">Add</a>(Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575da7d21654ec17f33027de173dd47aa9092" title="A Boolean value.">XPathTypeBoolean</a>); 
 <a name="l09432"></a>09432                 <span class="keywordflow">return</span> var ? var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">Set</a>(Value) : <span class="keyword">false</span>; 
 <a name="l09433"></a>09433         } 
 <a name="l09434"></a>09434  
-<a name="l09435"></a>09435         <span class="keywordtype">bool</span> XPathVariableSet::Set(<span class="keyword">const</span> char_t* Name, <span class="keywordtype">double</span> Value) 
+<a name="l09435"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#aa713e33048ee463a58b9e6988daab214">09435</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a7095efef6fc3978479fb8b6f203c6f4c" title="Set contained variable Value; no Type conversion is performed.">XPathVariableSet::Set</a>(<span class="keyword">const</span> char_t* Name, <span class="keywordtype">double</span> Value) 
 <a name="l09436"></a>09436         { 
-<a name="l09437"></a>09437                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = add(Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575da5503130cd89cdb7f6c9f0cc72091a06c" title="Number This corresponds to a double or Real.">XPathTypeNumber</a>); 
+<a name="l09437"></a>09437                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a26c9bb8f7aa3aaedfcdcdca2e1822deb" title="Add a new variable or get the existing one, if the Types match.">Add</a>(Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575da5503130cd89cdb7f6c9f0cc72091a06c" title="Number This corresponds to a double or Real.">XPathTypeNumber</a>); 
 <a name="l09438"></a>09438                 <span class="keywordflow">return</span> var ? var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">Set</a>(Value) : <span class="keyword">false</span>; 
 <a name="l09439"></a>09439         } 
 <a name="l09440"></a>09440  
-<a name="l09441"></a>09441         <span class="keywordtype">bool</span> XPathVariableSet::Set(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> char_t* Value) 
+<a name="l09441"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#afa99a98b5c4e4790a921f67a153a9ff4">09441</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a7095efef6fc3978479fb8b6f203c6f4c" title="Set contained variable Value; no Type conversion is performed.">XPathVariableSet::Set</a>(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> char_t* Value) 
 <a name="l09442"></a>09442         { 
-<a name="l09443"></a>09443                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = add(Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575da1201c2db15249e26d46d828213e1e88b" title="Corresponds to the String type.">XPathTypeString</a>); 
+<a name="l09443"></a>09443                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a26c9bb8f7aa3aaedfcdcdca2e1822deb" title="Add a new variable or get the existing one, if the Types match.">Add</a>(Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575da1201c2db15249e26d46d828213e1e88b" title="Corresponds to the String type.">XPathTypeString</a>); 
 <a name="l09444"></a>09444                 <span class="keywordflow">return</span> var ? var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">Set</a>(Value) : <span class="keyword">false</span>; 
 <a name="l09445"></a>09445         } 
 <a name="l09446"></a>09446  
-<a name="l09447"></a>09447         <span class="keywordtype">bool</span> XPathVariableSet::Set(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; Value) 
+<a name="l09447"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a61fe3aa60d13a4a224d301456a230a7c">09447</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a7095efef6fc3978479fb8b6f203c6f4c" title="Set contained variable Value; no Type conversion is performed.">XPathVariableSet::Set</a>(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; Value) 
 <a name="l09448"></a>09448         { 
-<a name="l09449"></a>09449                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = add(Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba" title="Node set (XPathNodeSet).">XPathTypeNodeSet</a>); 
+<a name="l09449"></a>09449                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a26c9bb8f7aa3aaedfcdcdca2e1822deb" title="Add a new variable or get the existing one, if the Types match.">Add</a>(Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba" title="Node set (XPathNodeSet).">XPathTypeNodeSet</a>); 
 <a name="l09450"></a>09450                 <span class="keywordflow">return</span> var ? var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">Set</a>(Value) : <span class="keyword">false</span>; 
 <a name="l09451"></a>09451         } 
 <a name="l09452"></a>09452  
-<a name="l09453"></a>09453         <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* XPathVariableSet::get(<span class="keyword">const</span> char_t* Name) 
+<a name="l09453"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#aaf4a46b271298bbb86a6379567e590ee">09453</a>         <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#aaf4a46b271298bbb86a6379567e590ee" title="Set contained variable Value; no Type conversion is performed.">XPathVariableSet::Get</a>(<span class="keyword">const</span> char_t* Name) 
 <a name="l09454"></a>09454         { 
 <a name="l09455"></a>09455                 <span class="keywordflow">return</span> find(Name); 
 <a name="l09456"></a>09456         } 
 <a name="l09457"></a>09457  
-<a name="l09458"></a>09458         <span class="keyword">const</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* XPathVariableSet::get(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
+<a name="l09458"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a64274e4889036c318c701614d2cfa5ab">09458</a>         <span class="keyword">const</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#aaf4a46b271298bbb86a6379567e590ee" title="Set contained variable Value; no Type conversion is performed.">XPathVariableSet::Get</a>(<span class="keyword">const</span> char_t* Name)<span class="keyword"> const </span>
 <a name="l09459"></a>09459 <span class="keyword">        </span>{ 
 <a name="l09460"></a>09460                 <span class="keywordflow">return</span> find(Name); 
 <a name="l09461"></a>09461         } 
 <a name="l09462"></a>09462  
-<a name="l09463"></a>09463         XPathQuery::XPathQuery(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables): _impl(0) 
+<a name="l09463"></a>09463         XPathQuery::XPathQuery(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables): _impl(0) 
 <a name="l09464"></a>09464         { 
 <a name="l09465"></a>09465                 XPathQueryImpl* impl = XPathQueryImpl::create(); 
 <a name="l09466"></a>09466  
@@ -9631,7 +9631,7 @@
 <a name="l09600"></a>09600                 <span class="keywordflow">return</span> !_impl; 
 <a name="l09601"></a>09601         } 
 <a name="l09602"></a>09602  
-<a name="l09603"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5">09603</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating an XPath query. Returns first node from the resulting node set...">Node::FindSingleNode</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
+<a name="l09603"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5">09603</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating an XPath query. Returns first node from the resulting node set...">Node::FindSingleNode</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
 <a name="l09604"></a>09604 <span class="keyword">        </span>{ 
 <a name="l09605"></a>09605                 <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> q(query, variables); 
 <a name="l09606"></a>09606                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating an XPath query. Returns first node from the resulting node set...">FindSingleNode</a>(q); 
@@ -9643,7 +9643,7 @@
 <a name="l09612"></a>09612                 <span class="keywordflow">return</span> s.Empty() ? <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>() : s.first(); 
 <a name="l09613"></a>09613         } 
 <a name="l09614"></a>09614  
-<a name="l09615"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f">09615</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f" title="Select a group of nodes by evaluating an XPath query.">Node::FindNodes</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
+<a name="l09615"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f">09615</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f" title="Select a group of nodes by evaluating an XPath query.">Node::FindNodes</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
 <a name="l09616"></a>09616 <span class="keyword">        </span>{ 
 <a name="l09617"></a>09617                 <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> q(query, variables); 
 <a name="l09618"></a>09618                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f" title="Select a group of nodes by evaluating an XPath query.">FindNodes</a>(q); 
@@ -9689,7 +9689,7 @@
 <a name="l09658"></a>09658 <span class="preprocessor">#endif // \PHYSXML </span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 13:03:32 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:50 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

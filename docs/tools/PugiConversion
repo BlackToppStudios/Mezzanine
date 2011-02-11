@@ -310,6 +310,10 @@ function FixNames
 	sed -i -e 's|Nodeset|NodeSet|g' $1
 	sed -i -e 's|\([^f]\)set(|\1Set(|g' $1
 
+	#XPathVariableSet
+	sed -i -e 's|add(|Add(|g' $1
+	sed -i -e 's|\([^r]\)get(|\1Get(|g' $1
+
 	###############################
 	#Documentation that was not put in xmldoc.h
 
@@ -367,6 +371,14 @@ function FixNames
 	sed -i -e  's|// Get variable Name|/// @brief Retrieve the name of this variable.\n		/// @return A const c-style string made of char_t, that contains the name of this variable|' $1
 	sed -i -e  's|// Get variable Type|/// @brief Get the variable type.\n		/// @return An XPathValueType specifying the kind of data stored in this variable.|' $1 
 
+	sed -i -e  's|bool Set(double Value);|/// @brief Set variable Value; no Type conversion is performed.\n		/// @param Value The value as a double to attempt to put into this.\n		/// @return True is return, false is returned on Type mismatch error.\n		bool Set(double Value); |' $1 
+	sed -i -e  's|bool Set(const char_t\* Value);|/// @brief Set variable Value; no Type conversion is performed.\n		/// @param Value The value as a char_t array to attempt to put into this.\n		/// @return True is return, false is returned on Type mismatch error.\n		bool Set(const char_t* Value); |' $1 
+	sed -i -e  's|bool Set(const XPathNodeSet& Value);|/// @brief Set variable Value; no Type conversion is performed.\n		/// @param Value The value to attempt to put into this.\n		/// @return True is return, false is returned on Type mismatch error.\n		bool Set(const XPathNodeSet\& Value); |' $1 
+
+	#XPathVariable
+	sed -i -e  's|bool Set(const char_t\* Name, double Value);|/// @brief Set contained variable Value; no Type conversion is performed.\n		/// @param Name The name of variable to change.\n		/// @param Value The value to attempt to put into the named variable.\n		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.\n		bool Set(const char_t* Name, double Value);|' $1
+	sed -i -e  's|bool Set(const char_t\* Name, const char_t\* Value);|/// @brief Set contained variable Value; no Type conversion is performed.\n		/// @param Name The name of variable to change.\n		/// @param Value The value to attempt to put into the named variable.\n		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.\n		bool Set(const char_t* Name, const char_t* Value);|' $1 
+	sed -i -e  's|bool Set(const char_t\* Name, const XPathNodeSet& Value);|/// @brief Set contained variable Value; no Type conversion is performed.\n		/// @param Name The name of variable to change.\n		/// @param Value The value to attempt to put into the named variable.\n		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.\n		bool Set(const char_t* Name, const XPathNodeSet\& Value);|' $1 
 
 	#another clean line to copy/paste
 	#sed -i -e 's|||' $1

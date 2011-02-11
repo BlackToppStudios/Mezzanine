@@ -6204,7 +6204,7 @@ namespace
 		memcpy(scratch, begin, length * sizeof(char_t)); 
 		scratch[length] = 0; 
  
-		XPathVariable* result = set->get(scratch); 
+		XPathVariable* result = set->Get(scratch); 
  
 		// free dummy buffer 
 		if (scratch != buffer) global_deallocate(scratch); 
@@ -9402,7 +9402,7 @@ namespace phys
 		return 0; 
 	} 
  
-	XPathVariable* XPathVariableSet::add(const char_t* Name, XPathValueType Type) 
+	XPathVariable* XPathVariableSet::Add(const char_t* Name, XPathValueType Type) 
 	{ 
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]); 
 		size_t hash = hash_string(Name) % hash_size; 
@@ -9428,34 +9428,34 @@ namespace phys
  
 	bool XPathVariableSet::Set(const char_t* Name, bool Value) 
 	{ 
-		XPathVariable* var = add(Name, XPathTypeBoolean); 
+		XPathVariable* var = Add(Name, XPathTypeBoolean); 
 		return var ? var->Set(Value) : false; 
 	} 
  
 	bool XPathVariableSet::Set(const char_t* Name, double Value) 
 	{ 
-		XPathVariable* var = add(Name, XPathTypeNumber); 
+		XPathVariable* var = Add(Name, XPathTypeNumber); 
 		return var ? var->Set(Value) : false; 
 	} 
  
 	bool XPathVariableSet::Set(const char_t* Name, const char_t* Value) 
 	{ 
-		XPathVariable* var = add(Name, XPathTypeString); 
+		XPathVariable* var = Add(Name, XPathTypeString); 
 		return var ? var->Set(Value) : false; 
 	} 
  
 	bool XPathVariableSet::Set(const char_t* Name, const XPathNodeSet& Value) 
 	{ 
-		XPathVariable* var = add(Name, XPathTypeNodeSet); 
+		XPathVariable* var = Add(Name, XPathTypeNodeSet); 
 		return var ? var->Set(Value) : false; 
 	} 
  
-	XPathVariable* XPathVariableSet::get(const char_t* Name) 
+	XPathVariable* XPathVariableSet::Get(const char_t* Name) 
 	{ 
 		return find(Name); 
 	} 
  
-	const XPathVariable* XPathVariableSet::get(const char_t* Name) const 
+	const XPathVariable* XPathVariableSet::Get(const char_t* Name) const 
 	{ 
 		return find(Name); 
 	} 

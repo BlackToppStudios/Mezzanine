@@ -1231,60 +1231,95 @@
 <a name="l01200"></a>01200 <span class="comment">        /// @brief Set variable Value; no Type conversion is performed.</span>
 <a name="l01201"></a>01201 <span class="comment">        /// @param Value The value to attempt to put into this.</span>
 <a name="l01202"></a>01202 <span class="comment">                /// @return True is return, false is returned on Type mismatch error.</span>
-<a name="l01203"></a>01203 <span class="comment"></span>
-<a name="l01204"></a>01204 
-<a name="l01205"></a>01205 <span class="comment"></span>
-<a name="l01206"></a>01206 <span class="comment">                /// @fn XPathVariable::Set(double Value);</span>
-<a name="l01207"></a>01207 <span class="comment">        /// @brief Set variable Value; no Type conversion is performed.</span>
-<a name="l01208"></a>01208 <span class="comment">        /// @param Value The value to attempt to put into this.</span>
-<a name="l01209"></a>01209 <span class="comment">                /// @return True is return, false is returned on Type mismatch error.</span>
+<a name="l01203"></a>01203 <span class="comment"></span><span class="comment"></span>
+<a name="l01204"></a>01204 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01205"></a>01205 <span class="comment">        /// @class XPathVariableSet</span>
+<a name="l01206"></a>01206 <span class="comment">        /// @brief A set of XPath variables.</span>
+<a name="l01207"></a>01207 <span class="comment"></span><span class="comment"></span>
+<a name="l01208"></a>01208 <span class="comment">        /// @fn XPathVariableSet::XPathVariableSet();</span>
+<a name="l01209"></a>01209 <span class="comment">        /// @brief Default Constructor, Blanks any XPathVariable it contains.</span>
 <a name="l01210"></a>01210 <span class="comment"></span><span class="comment"></span>
-<a name="l01211"></a>01211 <span class="comment">                /// @fn XPathVariable::Set(const char_t* Value);</span>
-<a name="l01212"></a>01212 <span class="comment">        /// @brief Set variable Value; no Type conversion is performed.</span>
-<a name="l01213"></a>01213 <span class="comment">        /// @param Value The value to attempt to put into this.</span>
-<a name="l01214"></a>01214 <span class="comment">                /// @return True is return, false is returned on Type mismatch error.</span>
-<a name="l01215"></a>01215 <span class="comment"></span><span class="comment"></span>
-<a name="l01216"></a>01216 <span class="comment">                /// @fn XPathVariable::Set(const XPathNodeSet&amp; Value);</span>
-<a name="l01217"></a>01217 <span class="comment">        /// @brief Set variable Value; no Type conversion is performed.</span>
-<a name="l01218"></a>01218 <span class="comment">        /// @param Value The value to attempt to put into this.</span>
-<a name="l01219"></a>01219 <span class="comment">                /// @return True is return, false is returned on Type mismatch error.</span>
-<a name="l01220"></a>01220 <span class="comment"></span>    }
-<a name="l01221"></a>01221 }
-<a name="l01222"></a>01222 <span class="preprocessor">#endif</span>
-<a name="l01223"></a>01223 <span class="preprocessor"></span>
-<a name="l01224"></a>01224 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l01225"></a>01225 <span class="preprocessor"></span>
-<a name="l01226"></a>01226 <span class="comment">/*</span>
-<a name="l01227"></a>01227 <span class="comment"> *</span>
-<a name="l01228"></a>01228 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l01229"></a>01229 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l01230"></a>01230 <span class="comment"> *</span>
-<a name="l01231"></a>01231 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l01232"></a>01232 <span class="comment"> *</span>
-<a name="l01233"></a>01233 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l01234"></a>01234 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l01235"></a>01235 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l01236"></a>01236 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l01237"></a>01237 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l01238"></a>01238 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l01239"></a>01239 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l01240"></a>01240 <span class="comment"> * conditions:</span>
-<a name="l01241"></a>01241 <span class="comment"> *</span>
-<a name="l01242"></a>01242 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l01243"></a>01243 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l01244"></a>01244 <span class="comment"> *</span>
-<a name="l01245"></a>01245 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l01246"></a>01246 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l01247"></a>01247 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l01248"></a>01248 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l01249"></a>01249 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l01250"></a>01250 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l01251"></a>01251 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l01252"></a>01252 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l01253"></a>01253 <span class="comment"> */</span>
+<a name="l01211"></a>01211 <span class="comment">        /// @fn XPathVariableSet::~XPathVariableSet();</span>
+<a name="l01212"></a>01212 <span class="comment">        /// @brief Default Deconstructor, Deletes any XPathVariable it contains.</span>
+<a name="l01213"></a>01213 <span class="comment"></span>
+<a name="l01214"></a>01214         <span class="comment">// Write rule to replace add/Add</span><span class="comment"></span>
+<a name="l01215"></a>01215 <span class="comment">        /// @fn XPathVariableSet::Add(const char_t* Name, XPathValueType Type);</span>
+<a name="l01216"></a>01216 <span class="comment">        /// @brief Add a new variable or get the existing one, if the Types match</span>
+<a name="l01217"></a>01217 <span class="comment">        /// @return A pointer to the XPathVariable you referenced or just created.</span>
+<a name="l01218"></a>01218 <span class="comment"></span><span class="comment"></span>
+<a name="l01219"></a>01219 <span class="comment">        /// @fn XPathVariableSet::Set(const char_t* Name, bool Value);</span>
+<a name="l01220"></a>01220 <span class="comment">        /// @brief Set contained variable Value; no Type conversion is performed.</span>
+<a name="l01221"></a>01221 <span class="comment">        /// @param Name The name of variable to change.</span>
+<a name="l01222"></a>01222 <span class="comment">        /// @param Value The value to attempt to put into the named variable.</span>
+<a name="l01223"></a>01223 <span class="comment">                /// @return True is return, false is returned if there is no such variable or on Type mismatch error.</span>
+<a name="l01224"></a>01224 <span class="comment"></span><span class="comment"></span>
+<a name="l01225"></a>01225 <span class="comment">                /// @fn XPathVariableSet::Set(const char_t* Name, double Value);</span>
+<a name="l01226"></a>01226 <span class="comment">        /// @brief Set contained variable Value; no Type conversion is performed.</span>
+<a name="l01227"></a>01227 <span class="comment">        /// @param Name The name of variable to change.</span>
+<a name="l01228"></a>01228 <span class="comment">        /// @param Value The value to attempt to put into this.</span>
+<a name="l01229"></a>01229 <span class="comment">        /// @param Value The value to attempt to put into the named variable.</span>
+<a name="l01230"></a>01230 <span class="comment">        /// @return True is return, false is returned if there is no such variable or on Type mismatch error.</span>
+<a name="l01231"></a>01231 <span class="comment"></span><span class="comment"></span>
+<a name="l01232"></a>01232 <span class="comment">                /// @fn XPathVariableSet::Set(const char_t* Name, const char_t* Value);</span>
+<a name="l01233"></a>01233 <span class="comment">        /// @brief Set contained variable Value; no Type conversion is performed.</span>
+<a name="l01234"></a>01234 <span class="comment">        /// @param Name The name of variable to change.</span>
+<a name="l01235"></a>01235 <span class="comment">        /// @param Value The value to attempt to put into the named variable.</span>
+<a name="l01236"></a>01236 <span class="comment">        /// @return True is return, false is returned if there is no such variable or on Type mismatch error.</span>
+<a name="l01237"></a>01237 <span class="comment"></span><span class="comment"></span>
+<a name="l01238"></a>01238 <span class="comment">                /// @fn XPathVariableSet::Set(const char_t* Name, const XPathNodeSet&amp; Value);</span>
+<a name="l01239"></a>01239 <span class="comment">        /// @brief Set contained variable Value; no Type conversion is performed.</span>
+<a name="l01240"></a>01240 <span class="comment">        /// @param Name The name of variable to change.</span>
+<a name="l01241"></a>01241 <span class="comment">        /// @param Value The value to attempt to put into the named variable.</span>
+<a name="l01242"></a>01242 <span class="comment">        /// @return True is return, false is returned if there is no such variable or on Type mismatch error.</span>
+<a name="l01243"></a>01243 <span class="comment"></span><span class="comment"></span>
+<a name="l01244"></a>01244 <span class="comment">                /// @fn XPathVariableSet::Get(const char_t* Name);</span>
+<a name="l01245"></a>01245 <span class="comment">                /// @brief Get the named XPathVariable.</span>
+<a name="l01246"></a>01246 <span class="comment">                /// @param Name The name of the XPathVariable you want.</span>
+<a name="l01247"></a>01247 <span class="comment">        /// @return A pointer to the specified XPathVariable.</span>
+<a name="l01248"></a>01248 <span class="comment"></span><span class="comment"></span>
+<a name="l01249"></a>01249 <span class="comment">                /// @fn XPathVariableSet::Get(const char_t* Name) const;</span>
+<a name="l01250"></a>01250 <span class="comment">                /// @brief Get the named XPathVariable.</span>
+<a name="l01251"></a>01251 <span class="comment">                /// @param Name The name of the XPathVariable you want.</span>
+<a name="l01252"></a>01252 <span class="comment">        /// @return A pointer to the specified XPathVariable.</span>
+<a name="l01253"></a>01253 <span class="comment"></span>
+<a name="l01254"></a>01254 
+<a name="l01255"></a>01255     }
+<a name="l01256"></a>01256 }
+<a name="l01257"></a>01257 <span class="preprocessor">#endif</span>
+<a name="l01258"></a>01258 <span class="preprocessor"></span>
+<a name="l01259"></a>01259 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l01260"></a>01260 <span class="preprocessor"></span>
+<a name="l01261"></a>01261 <span class="comment">/*</span>
+<a name="l01262"></a>01262 <span class="comment"> *</span>
+<a name="l01263"></a>01263 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l01264"></a>01264 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l01265"></a>01265 <span class="comment"> *</span>
+<a name="l01266"></a>01266 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l01267"></a>01267 <span class="comment"> *</span>
+<a name="l01268"></a>01268 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l01269"></a>01269 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l01270"></a>01270 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l01271"></a>01271 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l01272"></a>01272 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l01273"></a>01273 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l01274"></a>01274 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l01275"></a>01275 <span class="comment"> * conditions:</span>
+<a name="l01276"></a>01276 <span class="comment"> *</span>
+<a name="l01277"></a>01277 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l01278"></a>01278 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l01279"></a>01279 <span class="comment"> *</span>
+<a name="l01280"></a>01280 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l01281"></a>01281 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l01282"></a>01282 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l01283"></a>01283 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l01284"></a>01284 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l01285"></a>01285 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l01286"></a>01286 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l01287"></a>01287 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l01288"></a>01288 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 10 2011 13:03:32 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:50 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

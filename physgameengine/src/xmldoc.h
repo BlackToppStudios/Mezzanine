@@ -1201,27 +1201,6 @@ namespace phys
         /// @param Value The value to attempt to put into this.
 		/// @return True is return, false is returned on Type mismatch error.
 
-
-        //move to script
-		/// @fn XPathVariable::Set(double Value);
-        /// @brief Set variable Value; no Type conversion is performed.
-        /// @param Value The value to attempt to put into this.
-		/// @return True is return, false is returned on Type mismatch error.
-
-        //move to script
-		/// @fn XPathVariable::Set(const char_t* Value);
-        /// @brief Set variable Value; no Type conversion is performed.
-        /// @param Value The value to attempt to put into this.
-		/// @return True is return, false is returned on Type mismatch error.
-
-        //move to script
-		/// @fn XPathVariable::Set(const XPathNodeSet& Value);
-        /// @brief Set variable Value; no Type conversion is performed.
-        /// @param Value The value to attempt to put into this.
-		/// @return True is return, false is returned on Type mismatch error.
-
-
-        //test
         ///////////////////////////////////////////////////////////////////////////////
         /// @class XPathVariableSet
         /// @brief A set of XPath variables.
@@ -1232,8 +1211,7 @@ namespace phys
         /// @fn XPathVariableSet::~XPathVariableSet();
         /// @brief Default Deconstructor, Deletes any XPathVariable it contains.
 
-        // Write rule to replace add/Add
-        /// @fn XPathVariableSet::add(const char_t* Name, XPathValueType Type);
+        /// @fn XPathVariableSet::Add(const char_t* Name, XPathValueType Type);
         /// @brief Add a new variable or get the existing one, if the Types match
         /// @return A pointer to the XPathVariable you referenced or just created.
 
@@ -1243,35 +1221,19 @@ namespace phys
         /// @param Value The value to attempt to put into the named variable.
 		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
 
-		/// @fn XPathVariableSet::Set(const char_t* Name, double Value);
-        /// @brief Set contained variable Value; no Type conversion is performed.
-        /// @param Name The name of variable to change.
-        /// @param Value The value to attempt to put into this.
-        /// @param Value The value to attempt to put into the named variable.
-            /// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-
-		/// @fn XPathVariableSet::Set(const char_t* Name, const char_t* Value);
-        /// @brief Set contained variable Value; no Type conversion is performed.
-        /// @param Name The name of variable to change.
-        /// @param Value The value to attempt to put into the named variable.
-        /// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-
-		/// @fn XPathVariableSet::Set(const char_t* Name, const XPathNodeSet& Value);
-        /// @brief Set contained variable Value; no Type conversion is performed.
-        /// @param Name The name of variable to change.
-        /// @param Value The value to attempt to put into the named variable.
-        /// @return True is return, false is returned if there is no such variable or on Type mismatch error.
-
-        // Write rule to replace get/Get
-   		/// @fn XPathVariableSet::get(const char_t* Name);
+   		/// @fn XPathVariableSet::Get(const char_t* Name);
    		/// @brief Get the named XPathVariable.
    		/// @param Name The name of the XPathVariable you want.
         /// @return A pointer to the specified XPathVariable.
 
-		/// @fn XPathVariableSet::get(const char_t* Name) const;
+		/// @fn XPathVariableSet::Get(const char_t* Name) const;
 		/// @brief Get the named XPathVariable.
    		/// @param Name The name of the XPathVariable you want.
         /// @return A pointer to the specified XPathVariable.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathVariableSet
+
 
 
     }

@@ -1077,9 +1077,18 @@ namespace phys
  
 		// Set variable Value; no Type conversion is performed, false is returned on Type mismatch error 
 		bool Set(bool Value); 
-		bool Set(double Value); 
-		bool Set(const char_t* Value); 
-		bool Set(const XPathNodeSet& Value); 
+		/// @brief Set variable Value; no Type conversion is performed.
+		/// @param Value The value as a double to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+		bool Set(double Value);  
+		/// @brief Set variable Value; no Type conversion is performed.
+		/// @param Value The value as a char_t array to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+		bool Set(const char_t* Value);  
+		/// @brief Set variable Value; no Type conversion is performed.
+		/// @param Value The value to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+		bool Set(const XPathNodeSet& Value);  
 	}; 
  
 	// A set of XPath variables 
@@ -1100,17 +1109,29 @@ namespace phys
 		~XPathVariableSet(); 
  
 		// Add a new variable or get the existing one, if the Types match 
-		XPathVariable* add(const char_t* Name, XPathValueType Type); 
+		XPathVariable* Add(const char_t* Name, XPathValueType Type); 
  
 		// Set Value of an existing variable; no Type conversion is performed, false is returned if there is no such variable or if Types mismatch 
 		bool Set(const char_t* Name, bool Value); 
+		/// @brief Set contained variable Value; no Type conversion is performed.
+		/// @param Name The name of variable to change.
+		/// @param Value The value to attempt to put into the named variable.
+		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
 		bool Set(const char_t* Name, double Value); 
+		/// @brief Set contained variable Value; no Type conversion is performed.
+		/// @param Name The name of variable to change.
+		/// @param Value The value to attempt to put into the named variable.
+		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
 		bool Set(const char_t* Name, const char_t* Value); 
+		/// @brief Set contained variable Value; no Type conversion is performed.
+		/// @param Name The name of variable to change.
+		/// @param Value The value to attempt to put into the named variable.
+		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
 		bool Set(const char_t* Name, const XPathNodeSet& Value); 
  
 		// Get existing variable by Name 
-		XPathVariable* get(const char_t* Name); 
-		const XPathVariable* get(const char_t* Name) const; 
+		XPathVariable* Get(const char_t* Name); 
+		const XPathVariable* Get(const char_t* Name) const; 
 	}; 
  
 	// A compiled XPath query object 
