@@ -46,7 +46,7 @@
  * Pugixml parser - version 1.0 
  * -------------------------------------------------------- 
  * Copyright © 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com) 
- * Report bugs and download new versions at http://pugixml.org/ 
+ * Report bugs and downLoad new versions at http://pugixml.org/ 
  * 
  * This library is distributed under the MIT License. See notice at the end 
  * of this file. 
@@ -127,7 +127,7 @@ typedef __int32 int32_t;
 // Simple static assertion 
 #define STATIC_ASSERT(cond) { static const char condition_failed[(cond) ? 1 : -1] = {0}; (void)condition_failed[0]; } 
  
-// Digital Mars C++ bug workaround for passing char loaded from memory via stack 
+// Digital Mars C++ bug workaround for passing char Loaded from memory via stack 
 #ifdef __DMC__ 
 #	define DMC_VOLATILE volatile 
 #else 
@@ -339,7 +339,7 @@ namespace
 				{ 
 					assert(_GetRoot == page); 
  
-					// top page freed, just reset sizes 
+					// top page freed, just Reset sizes 
 					page->busy_size = page->freed_size = 0; 
 					_busy_size = 0; 
 				} 
@@ -500,7 +500,7 @@ namespace
 		const char_t* buffer; 
 	}; 
  
-	static inline Allocator& get_allocator(const NodeStruct* node) 
+	static inline Allocator& GetAllocator(const NodeStruct* node) 
 	{ 
 		assert(node); 
  
@@ -645,9 +645,9 @@ namespace
  
 	struct utf8_counter 
 	{ 
-		typedef size_t Value_type; 
+		typedef size_t value_type; 
  
-		static Value_type low(Value_type result, uint32_t ch) 
+		static value_type low(value_type result, uint32_t ch) 
 		{ 
 			// U+0000..U+007F 
 			if (ch < 0x80) return result + 1; 
@@ -657,7 +657,7 @@ namespace
 			else return result + 3; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t) 
+		static value_type high(value_type result, uint32_t) 
 		{ 
 			// U+10000..U+10FFFF 
 			return result + 4; 
@@ -666,9 +666,9 @@ namespace
  
 	struct utf8_WriterInstance 
 	{ 
-		typedef uint8_t* Value_type; 
+		typedef uint8_t* value_type; 
  
-		static Value_type low(Value_type result, uint32_t ch) 
+		static value_type low(value_type result, uint32_t ch) 
 		{ 
 			// U+0000..U+007F 
 			if (ch < 0x80) 
@@ -693,7 +693,7 @@ namespace
 			} 
 		} 
  
-		static Value_type high(Value_type result, uint32_t ch) 
+		static value_type high(value_type result, uint32_t ch) 
 		{ 
 			// U+10000..U+10FFFF 
 			result[0] = static_cast<uint8_t>(0xF0 | (ch >> 18)); 
@@ -703,7 +703,7 @@ namespace
 			return result + 4; 
 		} 
  
-		static Value_type any(Value_type result, uint32_t ch) 
+		static value_type any(value_type result, uint32_t ch) 
 		{ 
 			return (ch < 0x10000) ? low(result, ch) : high(result, ch); 
 		} 
@@ -711,14 +711,14 @@ namespace
  
 	struct utf16_counter 
 	{ 
-		typedef size_t Value_type; 
+		typedef size_t value_type; 
  
-		static Value_type low(Value_type result, uint32_t) 
+		static value_type low(value_type result, uint32_t) 
 		{ 
 			return result + 1; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t) 
+		static value_type high(value_type result, uint32_t) 
 		{ 
 			return result + 2; 
 		} 
@@ -726,16 +726,16 @@ namespace
  
 	struct utf16_WriterInstance 
 	{ 
-		typedef uint16_t* Value_type; 
+		typedef uint16_t* value_type; 
  
-		static Value_type low(Value_type result, uint32_t ch) 
+		static value_type low(value_type result, uint32_t ch) 
 		{ 
 			*result = static_cast<uint16_t>(ch); 
  
 			return result + 1; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t ch) 
+		static value_type high(value_type result, uint32_t ch) 
 		{ 
 			uint32_t msh = (uint32_t)(ch - 0x10000) >> 10; 
 			uint32_t lsh = (uint32_t)(ch - 0x10000) & 0x3ff; 
@@ -746,7 +746,7 @@ namespace
 			return result + 2; 
 		} 
  
-		static Value_type any(Value_type result, uint32_t ch) 
+		static value_type any(value_type result, uint32_t ch) 
 		{ 
 			return (ch < 0x10000) ? low(result, ch) : high(result, ch); 
 		} 
@@ -754,14 +754,14 @@ namespace
  
 	struct utf32_counter 
 	{ 
-		typedef size_t Value_type; 
+		typedef size_t value_type; 
  
-		static Value_type low(Value_type result, uint32_t) 
+		static value_type low(value_type result, uint32_t) 
 		{ 
 			return result + 1; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t) 
+		static value_type high(value_type result, uint32_t) 
 		{ 
 			return result + 1; 
 		} 
@@ -769,23 +769,23 @@ namespace
  
 	struct utf32_WriterInstance 
 	{ 
-		typedef uint32_t* Value_type; 
+		typedef uint32_t* value_type; 
  
-		static Value_type low(Value_type result, uint32_t ch) 
+		static value_type low(value_type result, uint32_t ch) 
 		{ 
 			*result = ch; 
  
 			return result + 1; 
 		} 
  
-		static Value_type high(Value_type result, uint32_t ch) 
+		static value_type high(value_type result, uint32_t ch) 
 		{ 
 			*result = ch; 
  
 			return result + 1; 
 		} 
  
-		static Value_type any(Value_type result, uint32_t ch) 
+		static value_type any(value_type result, uint32_t ch) 
 		{ 
 			*result = ch; 
  
@@ -814,7 +814,7 @@ namespace
  
 	template <typename Traits, typename opt_swap = opt_false> struct utf_decoder 
 	{ 
-		static inline typename Traits::Value_type decode_utf8_block(const uint8_t* data, size_t size, typename Traits::Value_type result) 
+		static inline typename Traits::value_type decode_utf8_block(const uint8_t* data, size_t size, typename Traits::value_type result) 
 		{ 
 			const uint8_t utf8_byte_mask = 0x3f; 
  
@@ -875,7 +875,7 @@ namespace
 			return result; 
 		} 
  
-		static inline typename Traits::Value_type decode_utf16_block(const uint16_t* data, size_t size, typename Traits::Value_type result) 
+		static inline typename Traits::value_type decode_utf16_block(const uint16_t* data, size_t size, typename Traits::value_type result) 
 		{ 
 			const uint16_t* end = data + size; 
  
@@ -919,7 +919,7 @@ namespace
 			return result; 
 		} 
  
-		static inline typename Traits::Value_type decode_utf32_block(const uint32_t* data, size_t size, typename Traits::Value_type result) 
+		static inline typename Traits::value_type decode_utf32_block(const uint32_t* data, size_t size, typename Traits::value_type result) 
 		{ 
 			const uint32_t* end = data + size; 
  
@@ -1038,7 +1038,7 @@ namespace
 		return *reinterpret_cast<unsigned char*>(&ui) == 1; 
 	} 
  
-	Encoding get_wchar_DocumentEncoding() 
+	Encoding GetWchar_DocumentEncoding() 
 	{ 
 		STATIC_ASSERT(sizeof(wchar_t) == 2 || sizeof(wchar_t) == 4); 
  
@@ -1072,10 +1072,10 @@ namespace
 		return EncodingUTF8; 
 	} 
  
-	Encoding get_buffer_DocumentEncoding(Encoding DocumentEncoding, const void* contents, size_t size) 
+	Encoding GetBuffer_DocumentEncoding(Encoding DocumentEncoding, const void* contents, size_t size) 
 	{ 
 		// replace wchar DocumentEncoding with utf implementation 
-		if (DocumentEncoding == Encodingwchar_t) return get_wchar_DocumentEncoding(); 
+		if (DocumentEncoding == Encodingwchar_t) return GetWchar_DocumentEncoding(); 
  
 		// replace utf16 DocumentEncoding with utf16 with specific endianness 
 		if (DocumentEncoding == EncodingUTF16) return is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
@@ -1097,7 +1097,7 @@ namespace
 		return guess_buffer_DocumentEncoding(d0, d1, d2, d3); 
 	} 
  
-	bool get_mutable_buffer(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable) 
+	bool GetMutable_buffer(char_t*& out_buffer, size_t& out_length, const void* contents, size_t size, bool is_mutable) 
 	{ 
 		if (is_mutable) 
 		{ 
@@ -1158,8 +1158,8 @@ namespace
 		if (!out_buffer) return false; 
  
 		// second pass: convert utf8 input to wchar_t 
-		wchar_WriterInstance::Value_type out_begin = reinterpret_cast<wchar_WriterInstance::Value_type>(out_buffer); 
-		wchar_WriterInstance::Value_type out_end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, out_begin); 
+		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer); 
+		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1180,8 +1180,8 @@ namespace
 		if (!out_buffer) return false; 
  
 		// second pass: convert utf16 input to wchar_t 
-		wchar_WriterInstance::Value_type out_begin = reinterpret_cast<wchar_WriterInstance::Value_type>(out_buffer); 
-		wchar_WriterInstance::Value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf16_block(data, length, out_begin); 
+		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer); 
+		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf16_block(data, length, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1202,8 +1202,8 @@ namespace
 		if (!out_buffer) return false; 
  
 		// second pass: convert utf32 input to wchar_t 
-		wchar_WriterInstance::Value_type out_begin = reinterpret_cast<wchar_WriterInstance::Value_type>(out_buffer); 
-		wchar_WriterInstance::Value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf32_block(data, length, out_begin); 
+		wchar_WriterInstance::value_type out_begin = reinterpret_cast<wchar_WriterInstance::value_type>(out_buffer); 
+		wchar_WriterInstance::value_type out_end = utf_decoder<wchar_WriterInstance, opt_swap>::decode_utf32_block(data, length, out_begin); 
  
 		assert(out_end == out_begin + out_length); 
 		(void)!out_end; 
@@ -1214,10 +1214,10 @@ namespace
 	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable) 
 	{ 
 		// get native DocumentEncoding 
-		Encoding wchar_DocumentEncoding = get_wchar_DocumentEncoding(); 
+		Encoding wchar_DocumentEncoding = GetWchar_DocumentEncoding(); 
  
-		// fast path: no conversion required 
-		if (DocumentEncoding == wchar_DocumentEncoding) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
+		// fast Path: no conversion required 
+		if (DocumentEncoding == wchar_DocumentEncoding) return GetMutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
  
 		// only endian-swapping is required 
 		if (need_endian_swap_utf(DocumentEncoding, wchar_DocumentEncoding)) return convert_buffer_endian_swap(out_buffer, out_length, contents, size, is_mutable); 
@@ -1295,8 +1295,8 @@ namespace
  
 	bool convert_buffer(char_t*& out_buffer, size_t& out_length, Encoding DocumentEncoding, const void* contents, size_t size, bool is_mutable) 
 	{ 
-		// fast path: no conversion required 
-		if (DocumentEncoding == EncodingUTF8) return get_mutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
+		// fast Path: no conversion required 
+		if (DocumentEncoding == EncodingUTF8) return GetMutable_buffer(out_buffer, out_length, contents, size, is_mutable); 
  
 		// source DocumentEncoding is utf16 
 		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE) 
@@ -1380,8 +1380,8 @@ namespace
 		// second pass: convert to wchar_t 
 		if (length > 0) 
 		{ 
-			wchar_WriterInstance::Value_type begin = reinterpret_cast<wchar_WriterInstance::Value_type>(&result[0]); 
-			wchar_WriterInstance::Value_type end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, begin); 
+			wchar_WriterInstance::value_type begin = reinterpret_cast<wchar_WriterInstance::value_type>(&result[0]); 
+			wchar_WriterInstance::value_type end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, begin); 
  
 			assert(begin + length == end); 
 			(void)!end; 
@@ -1394,15 +1394,15 @@ namespace
 	inline bool strcpy_insitu_allow(size_t length, uintptr_t allocated, char_t* target) 
 	{ 
 		assert(target); 
-		size_t target_length = strlength(target); 
+		size_t tarGetLength = strlength(target); 
  
 		// always reuse document buffer memory if possible 
-		if (!allocated) return target_length >= length; 
+		if (!allocated) return tarGetLength >= length; 
  
 		// reuse heap memory if waste is not too great 
 		const size_t reuse_threshold = 32; 
  
-		return target_length >= length && (target_length < reuse_threshold || target_length - length < target_length / 2); 
+		return tarGetLength >= length && (tarGetLength < reuse_threshold || tarGetLength - length < tarGetLength / 2); 
 	} 
  
 	bool strcpy_insitu(char_t*& dest, uintptr_t& header, uintptr_t header_mask, const char_t* source) 
@@ -1549,7 +1549,7 @@ namespace
 				} 
  
 			#ifdef XML_WCHAR_MODE 
-				s = reinterpret_cast<char_t*>(wchar_WriterInstance::any(reinterpret_cast<wchar_WriterInstance::Value_type>(s), ucsc)); 
+				s = reinterpret_cast<char_t*>(wchar_WriterInstance::any(reinterpret_cast<wchar_WriterInstance::value_type>(s), ucsc)); 
 			#else 
 				s = reinterpret_cast<char_t*>(utf8_WriterInstance::any(reinterpret_cast<uint8_t*>(s), ucsc)); 
 			#endif 
@@ -1722,7 +1722,7 @@ namespace
 		} 
 	}; 
 	 
-	strconv_pcdata_t get_strconv_pcdata(unsigned int optmask) 
+	strconv_pcdata_t GetStrconv_pcdata(unsigned int optmask) 
 	{ 
 		STATIC_ASSERT(ParseEscapes == 0x10 && ParseEol == 0x20); 
  
@@ -1887,7 +1887,7 @@ namespace
 		} 
 	}; 
  
-	strconv_attribute_t get_strconv_attribute(unsigned int optmask) 
+	strconv_attribute_t GetStrconv_attribute(unsigned int optmask) 
 	{ 
 		STATIC_ASSERT(ParseEscapes == 0x10 && ParseEol == 0x20 && ParseWconvAttribute == 0x40 && ParseWnormAttribute == 0x80); 
 		 
@@ -2161,7 +2161,7 @@ namespace
  
 		char_t* ParseQuestion(char_t* s, NodeStruct*& ref_cursor, unsigned int optmsk, char_t endch) 
 		{ 
-			// load into registers 
+			// Load into registers 
 			NodeStruct* cursor = ref_cursor; 
 			char_t ch = 0; 
  
@@ -2254,8 +2254,8 @@ namespace
  
 		void parse(char_t* s, NodeStruct* xmldoc, unsigned int optmsk, char_t endch) 
 		{ 
-			strconv_attribute_t strconv_attribute = get_strconv_attribute(optmsk); 
-			strconv_pcdata_t strconv_pcdata = get_strconv_pcdata(optmsk); 
+			strconv_attribute_t strconv_attribute = GetStrconv_attribute(optmsk); 
+			strconv_pcdata_t strconv_pcdata = GetStrconv_pcdata(optmsk); 
 			 
 			char_t ch = 0; 
 			NodeStruct* cursor = xmldoc; 
@@ -2482,7 +2482,7 @@ namespace
 			// create parser on stack 
 			Parser parser(*xmldoc); 
  
-			// save last character and make buffer zero-terminated (speeds up parsing) 
+			// Save last character and make buffer zero-terminated (speeds up parsing) 
 			char_t endch = buffer[length - 1]; 
 			buffer[length - 1] = 0; 
 			 
@@ -2512,19 +2512,19 @@ namespace
 	}; 
  
 	// Output facilities 
-	Encoding get_Write_native_DocumentEncoding() 
+	Encoding GetWrite_native_DocumentEncoding() 
 	{ 
 	#ifdef XML_WCHAR_MODE 
-		return get_wchar_DocumentEncoding(); 
+		return GetWchar_DocumentEncoding(); 
 	#else 
 		return EncodingUTF8; 
 	#endif 
 	} 
  
-	Encoding get_Write_DocumentEncoding(Encoding DocumentEncoding) 
+	Encoding GetWrite_DocumentEncoding(Encoding DocumentEncoding) 
 	{ 
 		// replace wchar DocumentEncoding with utf implementation 
-		if (DocumentEncoding == Encodingwchar_t) return get_wchar_DocumentEncoding(); 
+		if (DocumentEncoding == Encodingwchar_t) return GetWchar_DocumentEncoding(); 
  
 		// replace utf16 DocumentEncoding with utf16 with specific endianness 
 		if (DocumentEncoding == EncodingUTF16) return is_little_endian() ? EncodingUTF16LE : EncodingUTF16BE; 
@@ -2540,7 +2540,7 @@ namespace
 	} 
  
 #ifdef XML_WCHAR_MODE 
-	size_t get_valid_length(const char_t* data, size_t length) 
+	size_t GetValid_length(const char_t* data, size_t length) 
 	{ 
 		assert(length > 0); 
  
@@ -2551,7 +2551,7 @@ namespace
 	size_t convert_buffer(char* result, const char_t* data, size_t length, Encoding DocumentEncoding) 
 	{ 
 		// only endian-swapping is required 
-		if (need_endian_swap_utf(DocumentEncoding, get_wchar_DocumentEncoding())) 
+		if (need_endian_swap_utf(DocumentEncoding, GetWchar_DocumentEncoding())) 
 		{ 
 			convert_wchar_endian_swap(reinterpret_cast<char_t*>(result), data, length); 
  
@@ -2606,7 +2606,7 @@ namespace
 		return 0; 
 	} 
 #else 
-	size_t get_valid_length(const char_t* data, size_t length) 
+	size_t GetValid_length(const char_t* data, size_t length) 
 	{ 
 		assert(length > 4); 
  
@@ -2665,7 +2665,7 @@ namespace
 		BufferedWriter& operator=(const BufferedWriter&); 
  
 	public: 
-		BufferedWriter(Writer& WriterInstance, Encoding user_DocumentEncoding): WriterInstance(WriterInstance), bufsize(0), DocumentEncoding(get_Write_DocumentEncoding(user_DocumentEncoding)) 
+		BufferedWriter(Writer& WriterInstance, Encoding user_DocumentEncoding): WriterInstance(WriterInstance), bufsize(0), DocumentEncoding(GetWrite_DocumentEncoding(user_DocumentEncoding)) 
 		{ 
 		} 
  
@@ -2684,8 +2684,8 @@ namespace
 		{ 
 			if (size == 0) return; 
  
-			// fast path, just Write data 
-			if (DocumentEncoding == get_Write_native_DocumentEncoding()) 
+			// fast Path, just Write data 
+			if (DocumentEncoding == GetWrite_native_DocumentEncoding()) 
 				WriterInstance.Write(data, size * sizeof(char_t)); 
 			else 
 			{ 
@@ -2708,9 +2708,9 @@ namespace
 				// handle large chunks 
 				if (length > bufcapacity) 
 				{ 
-					if (DocumentEncoding == get_Write_native_DocumentEncoding()) 
+					if (DocumentEncoding == GetWrite_native_DocumentEncoding()) 
 					{ 
-						// fast path, can just Write data chunk 
+						// fast Path, can just Write data chunk 
 						WriterInstance.Write(data, length * sizeof(char_t)); 
 						return; 
 					} 
@@ -2720,7 +2720,7 @@ namespace
 					{ 
 						// get chunk size by selecting such number of characters that are guaranteed to fit into scratch buffer 
 						// and form a complete codepoint sequence (i.e. discard start of last codepoint if necessary) 
-						size_t chunk_size = get_valid_length(data, bufcapacity); 
+						size_t chunk_size = GetValid_length(data, bufcapacity); 
  
 						// convert chunk and Write 
 						flush(data, chunk_size); 
@@ -2928,19 +2928,19 @@ namespace
 		} 
 	} 
  
-	void NodeOutput(BufferedWriter& WriterInstance, const Node& node, const char_t* indent, unsigned int flags, unsigned int depth) 
+	void NodeOutput(BufferedWriter& WriterInstance, const Node& node, const char_t* indent, unsigned int flags, unsigned int Depth) 
 	{ 
 		const char_t* default_Name = XML_TEXT(":anonymous"); 
  
 		if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0) 
-			for (unsigned int i = 0; i < depth; ++i) WriterInstance.Write(indent); 
+			for (unsigned int i = 0; i < Depth; ++i) WriterInstance.Write(indent); 
  
 		switch (node.Type()) 
 		{ 
 		case NodeDocument: 
 		{ 
 			for (Node n = node.GetFirstChild(); n; n = n.GetNextSibling()) 
-				NodeOutput(WriterInstance, n, indent, flags, depth); 
+				NodeOutput(WriterInstance, n, indent, flags, Depth); 
 			break; 
 		} 
 			 
@@ -2962,7 +2962,7 @@ namespace
 					WriterInstance.Write('>'); 
  
 					for (Node n = node.GetFirstChild(); n; n = n.GetNextSibling()) 
-						NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
+						NodeOutput(WriterInstance, n, indent, flags, Depth + 1); 
  
 					WriterInstance.Write('<', '/'); 
 					WriterInstance.Write(Name); 
@@ -2989,10 +2989,10 @@ namespace
 				WriterInstance.Write('>', '\n'); 
 				 
 				for (Node n = node.GetFirstChild(); n; n = n.GetNextSibling()) 
-					NodeOutput(WriterInstance, n, indent, flags, depth + 1); 
+					NodeOutput(WriterInstance, n, indent, flags, Depth + 1); 
  
 				if ((flags & FormatIndent) != 0 && (flags & FormatRaw) == 0) 
-					for (unsigned int i = 0; i < depth; ++i) WriterInstance.Write(indent); 
+					for (unsigned int i = 0; i < Depth; ++i) WriterInstance.Write(indent); 
 				 
 				WriterInstance.Write('<', '/'); 
 				WriterInstance.Write(Name); 
@@ -3132,8 +3132,8 @@ namespace
 		} 
 	} 
  
-	// we need to get length of entire file to load it in memory; the only (relatively) sane way to do it is via seek/tell trick 
-	ParseStatus get_file_size(FILE* file, size_t& out_result) 
+	// we need to get length of entire file to Load it in memory; the only (relatively) sane way to do it is via seek/tell trick 
+	ParseStatus GetFile_size(FILE* file, size_t& out_result) 
 	{ 
 	#if defined(_MSC_VER) && _MSC_VER >= 1400 
 		// there are 64-bit versions of fseek/ftell, let's use them 
@@ -3172,13 +3172,13 @@ namespace
 		return StatusOk; 
 	} 
  
-	ParseResult load_file_impl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult LoadFileImpl(Document& doc, FILE* file, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		if (!file) return make_ParseResult(StatusFileNotFound); 
  
 		// get file size (can result in I/O errors) 
 		size_t size = 0; 
-		ParseStatus size_Status = get_file_size(file, size); 
+		ParseStatus size_Status = GetFile_size(file, size); 
  
 		if (size_Status != StatusOk) 
 		{ 
@@ -3205,11 +3205,11 @@ namespace
 			return make_ParseResult(StatusIOError); 
 		} 
 		 
-		return doc.load_buffer_inplace_own(contents, size, options, DocumentEncoding); 
+		return doc.LoadBufferInplaceOwn(contents, size, options, DocumentEncoding); 
 	} 
  
 #ifndef XML_NO_STL 
-	template <typename T> ParseResult load_stream_impl(Document& doc, std::basic_istream<T>& stream, unsigned int options, Encoding DocumentEncoding) 
+	template <typename T> ParseResult LoadStreamImpl(Document& doc, std::basic_istream<T>& stream, unsigned int options, Encoding DocumentEncoding) 
 	{ 
 		// get length of remaining data in stream 
 		typename std::basic_istream<T>::pos_type pos = stream.tellg(); 
@@ -3233,21 +3233,21 @@ namespace
 		// read may set failbit | eofbit in case gcount() is less than read_length (i.e. line ending conversion), so check for other I/O errors 
 		if (stream.bad()) return make_ParseResult(StatusIOError); 
  
-		// load data from buffer 
+		// Load data from buffer 
 		size_t actual_length = static_cast<size_t>(stream.gcount()); 
 		assert(actual_length <= read_length); 
  
-		return doc.load_buffer_inplace_own(buffer.release(), actual_length * sizeof(T), options, DocumentEncoding); 
+		return doc.LoadBufferInplaceOwn(buffer.release(), actual_length * sizeof(T), options, DocumentEncoding); 
 	} 
 #endif 
  
 #if defined(_MSC_VER) || defined(__BORLANDC__) || defined(__MINGW32__) 
-	FILE* open_file_wide(const wchar_t* path, const wchar_t* mode) 
+	FILE* open_file_wide(const wchar_t* Path, const wchar_t* mode) 
 	{ 
-		return _wfopen(path, mode); 
+		return _wfopen(Path, mode); 
 	} 
 #else 
-	char* convert_path_heap(const wchar_t* str) 
+	char* convert_Path_heap(const wchar_t* str) 
 	{ 
 		assert(str); 
  
@@ -3265,21 +3265,21 @@ namespace
 	  	return result; 
 	} 
  
-	FILE* open_file_wide(const wchar_t* path, const wchar_t* mode) 
+	FILE* open_file_wide(const wchar_t* Path, const wchar_t* mode) 
 	{ 
-		// there is no standard function to open wide paths, so our best bet is to try utf8 path 
-		char* path_utf8 = convert_path_heap(path); 
-		if (!path_utf8) return 0; 
+		// there is no standard function to open wide Paths, so our best bet is to try utf8 Path 
+		char* Path_utf8 = convert_Path_heap(Path); 
+		if (!Path_utf8) return 0; 
  
 		// convert mode to ASCII (we mirror _wfopen interface) 
 		char mode_ascii[4] = {0}; 
 		for (size_t i = 0; mode[i]; ++i) mode_ascii[i] = static_cast<char>(mode[i]); 
  
-		// try to open the utf8 path 
-		FILE* result = fopen(path_utf8, mode_ascii); 
+		// try to open the utf8 Path 
+		FILE* result = fopen(Path_utf8, mode_ascii); 
  
 		// free dummy buffer 
-		global_deallocate(path_utf8); 
+		global_deallocate(Path_utf8); 
  
 		return result; 
 	} 
@@ -3325,7 +3325,7 @@ namespace phys
 	} 
 #endif 
  
-	TreeWalker::TreeWalker(): _depth(0) 
+	TreeWalker::TreeWalker(): _Depth(0) 
 	{ 
 	} 
 	 
@@ -3333,9 +3333,9 @@ namespace phys
 	{ 
 	} 
  
-	int TreeWalker::depth() const 
+	int TreeWalker::Depth() const 
 	{ 
-		return _depth; 
+		return _Depth; 
 	} 
  
 	bool TreeWalker::begin(Node&) 
@@ -3849,7 +3849,7 @@ namespace phys
 	{ 
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute(); 
 		 
-		Attribute a(AppendAttribute_ll(_GetRoot, get_allocator(_GetRoot))); 
+		Attribute a(AppendAttribute_ll(_GetRoot, GetAllocator(_GetRoot))); 
 		a.SetName(Name); 
 		 
 		return a; 
@@ -3859,7 +3859,7 @@ namespace phys
 	{ 
 		if (Type() != NodeElement && Type() != NodeDeclaration) return Attribute(); 
 		 
-		Attribute a(allocate_attribute(get_allocator(_GetRoot))); 
+		Attribute a(allocate_attribute(GetAllocator(_GetRoot))); 
 		if (!a) return Attribute(); 
  
 		a.SetName(Name); 
@@ -3891,7 +3891,7 @@ namespace phys
  
 		if (cur != _GetRoot->GetFirstAttribute) return Attribute(); 
  
-		Attribute a(allocate_attribute(get_allocator(_GetRoot))); 
+		Attribute a(allocate_attribute(GetAllocator(_GetRoot))); 
 		if (!a) return Attribute(); 
  
 		a.SetName(Name); 
@@ -3919,7 +3919,7 @@ namespace phys
  
 		if (cur != _GetRoot->GetFirstAttribute) return Attribute(); 
  
-		Attribute a(allocate_attribute(get_allocator(_GetRoot))); 
+		Attribute a(allocate_attribute(GetAllocator(_GetRoot))); 
 		if (!a) return Attribute(); 
  
 		a.SetName(Name); 
@@ -3980,7 +3980,7 @@ namespace phys
 	{ 
 		if (!allow_InsertChild(this->Type(), Type)) return Node(); 
 		 
-		Node n(AppendNode(_GetRoot, get_allocator(_GetRoot), Type)); 
+		Node n(AppendNode(_GetRoot, GetAllocator(_GetRoot), Type)); 
  
 		if (Type == NodeDeclaration) n.SetName(XML_TEXT("xml")); 
  
@@ -3991,7 +3991,7 @@ namespace phys
 	{ 
 		if (!allow_InsertChild(this->Type(), Type)) return Node(); 
 		 
-		Node n(allocate_node(get_allocator(_GetRoot), Type)); 
+		Node n(allocate_node(GetAllocator(_GetRoot), Type)); 
 		if (!n) return Node(); 
  
 		n._GetRoot->GetParent = _GetRoot; 
@@ -4019,7 +4019,7 @@ namespace phys
 		if (!allow_InsertChild(this->Type(), Type)) return Node(); 
 		if (!node._GetRoot || node._GetRoot->GetParent != _GetRoot) return Node(); 
 	 
-		Node n(allocate_node(get_allocator(_GetRoot), Type)); 
+		Node n(allocate_node(GetAllocator(_GetRoot), Type)); 
 		if (!n) return Node(); 
  
 		n._GetRoot->GetParent = _GetRoot; 
@@ -4043,7 +4043,7 @@ namespace phys
 		if (!allow_InsertChild(this->Type(), Type)) return Node(); 
 		if (!node._GetRoot || node._GetRoot->GetParent != _GetRoot) return Node(); 
 	 
-		Node n(allocate_node(get_allocator(_GetRoot), Type)); 
+		Node n(allocate_node(GetAllocator(_GetRoot), Type)); 
 		if (!n) return Node(); 
  
 		n._GetRoot->GetParent = _GetRoot; 
@@ -4156,7 +4156,7 @@ namespace phys
 		if (a._attr->prev_attribute_c->GetNextAttribute) a._attr->prev_attribute_c->GetNextAttribute = a._attr->GetNextAttribute; 
 		else _GetRoot->GetFirstAttribute = a._attr->GetNextAttribute; 
  
-		destroy_attribute(a._attr, get_allocator(_GetRoot)); 
+		destroy_attribute(a._attr, GetAllocator(_GetRoot)); 
  
 		return true; 
 	} 
@@ -4176,12 +4176,12 @@ namespace phys
 		if (n._GetRoot->prev_sibling_c->GetNextSibling) n._GetRoot->prev_sibling_c->GetNextSibling = n._GetRoot->GetNextSibling; 
 		else _GetRoot->GetFirstChild = n._GetRoot->GetNextSibling; 
 		 
-		destroy_node(n._GetRoot, get_allocator(_GetRoot)); 
+		destroy_node(n._GetRoot, GetAllocator(_GetRoot)); 
  
 		return true; 
 	} 
  
-	Node Node::FindChildbyAttribute(const char_t* Name, const char_t* attr_Name, const char_t* attr_Value) const 
+	Node Node::FindChildbyAttribute(const char_t* Name, const char_t* AttrName, const char_t* AttrValue) const 
 	{ 
 		if (!_GetRoot) return Node(); 
 		 
@@ -4189,84 +4189,84 @@ namespace phys
 			if (i->Name && strequal(Name, i->Name)) 
 			{ 
 				for (AttributeStruct* a = i->GetFirstAttribute; a; a = a->GetNextAttribute) 
-					if (strequal(attr_Name, a->Name) && strequal(attr_Value, a->Value)) 
+					if (strequal(AttrName, a->Name) && strequal(AttrValue, a->Value)) 
 						return Node(i); 
 			} 
  
 		return Node(); 
 	} 
  
-	Node Node::FindChildbyAttribute(const char_t* attr_Name, const char_t* attr_Value) const 
+	Node Node::FindChildbyAttribute(const char_t* AttrName, const char_t* AttrValue) const 
 	{ 
 		if (!_GetRoot) return Node(); 
 		 
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling) 
 			for (AttributeStruct* a = i->GetFirstAttribute; a; a = a->GetNextAttribute) 
-				if (strequal(attr_Name, a->Name) && strequal(attr_Value, a->Value)) 
+				if (strequal(AttrName, a->Name) && strequal(AttrValue, a->Value)) 
 					return Node(i); 
  
 		return Node(); 
 	} 
  
 #ifndef XML_NO_STL 
-	string_t Node::path(char_t delimiter) const 
+	String Node::Path(char_t delimiter) const 
 	{ 
-		string_t path; 
+		String Path; 
  
 		Node cursor = *this; // Make a copy. 
 		 
-		path = cursor.Name(); 
+		Path = cursor.Name(); 
  
 		while (cursor.GetParent()) 
 		{ 
 			cursor = cursor.GetParent(); 
 			 
-			string_t temp = cursor.Name(); 
+			String temp = cursor.Name(); 
 			temp += delimiter; 
-			temp += path; 
-			path.swap(temp); 
+			temp += Path; 
+			Path.swap(temp); 
 		} 
  
-		return path; 
+		return Path; 
 	} 
 #endif 
  
-	Node Node::FirstElementByPath(const char_t* path, char_t delimiter) const 
+	Node Node::FirstElementByPath(const char_t* Path, char_t delimiter) const 
 	{ 
 		Node found = *this; // Current search context. 
  
-		if (!_GetRoot || !path || !path[0]) return found; 
+		if (!_GetRoot || !Path || !Path[0]) return found; 
  
-		if (path[0] == delimiter) 
+		if (Path[0] == delimiter) 
 		{ 
-			// Absolute path; e.g. '/foo/bar' 
+			// Absolute Path; e.g. '/foo/bar' 
 			found = found.GetRoot(); 
-			++path; 
+			++Path; 
 		} 
  
-		const char_t* path_segment = path; 
+		const char_t* Path_segment = Path; 
  
-		while (*path_segment == delimiter) ++path_segment; 
+		while (*Path_segment == delimiter) ++Path_segment; 
  
-		const char_t* path_segment_end = path_segment; 
+		const char_t* Path_segment_end = Path_segment; 
  
-		while (*path_segment_end && *path_segment_end != delimiter) ++path_segment_end; 
+		while (*Path_segment_end && *Path_segment_end != delimiter) ++Path_segment_end; 
  
-		if (path_segment == path_segment_end) return found; 
+		if (Path_segment == Path_segment_end) return found; 
  
-		const char_t* NextSegment = path_segment_end; 
+		const char_t* NextSegment = Path_segment_end; 
  
 		while (*NextSegment == delimiter) ++NextSegment; 
  
-		if (*path_segment == '.' && path_segment + 1 == path_segment_end) 
+		if (*Path_segment == '.' && Path_segment + 1 == Path_segment_end) 
 			return found.FirstElementByPath(NextSegment, delimiter); 
-		else if (*path_segment == '.' && *(path_segment+1) == '.' && path_segment + 2 == path_segment_end) 
+		else if (*Path_segment == '.' && *(Path_segment+1) == '.' && Path_segment + 2 == Path_segment_end) 
 			return found.GetParent().FirstElementByPath(NextSegment, delimiter); 
 		else 
 		{ 
 			for (NodeStruct* j = found._GetRoot->GetFirstChild; j; j = j->GetNextSibling) 
 			{ 
-				if (j->Name && strequalrange(j->Name, path_segment, static_cast<size_t>(path_segment_end - path_segment))) 
+				if (j->Name && strequalrange(j->Name, Path_segment, static_cast<size_t>(Path_segment_end - Path_segment))) 
 				{ 
 					Node subsearch = Node(j).FirstElementByPath(NextSegment, delimiter); 
  
@@ -4280,7 +4280,7 @@ namespace phys
  
 	bool Node::Traverse(TreeWalker& walker) 
 	{ 
-		walker._depth = -1; 
+		walker._Depth = -1; 
 		 
 		Node arg_begin = *this; 
 		if (!walker.begin(arg_begin)) return false; 
@@ -4289,7 +4289,7 @@ namespace phys
 				 
 		if (cur) 
 		{ 
-			++walker._depth; 
+			++walker._Depth; 
  
 			do  
 			{ 
@@ -4299,7 +4299,7 @@ namespace phys
 						 
 				if (cur.GetFirstChild()) 
 				{ 
-					++walker._depth; 
+					++walker._Depth; 
 					cur = cur.GetFirstChild(); 
 				} 
 				else if (cur.GetNextSibling()) 
@@ -4309,7 +4309,7 @@ namespace phys
 					// Borland C++ workaround 
 					while (!cur.GetNextSibling() && cur != *this && (bool)cur.GetParent()) 
 					{ 
-						--walker._depth; 
+						--walker._Depth; 
 						cur = cur.GetParent(); 
 					} 
 						 
@@ -4320,7 +4320,7 @@ namespace phys
 			while (cur && cur != *this); 
 		} 
  
-		assert(walker._depth == -1); 
+		assert(walker._Depth == -1); 
  
 		Node arg_end = *this; 
 		return walker.end(arg_end); 
@@ -4336,28 +4336,28 @@ namespace phys
 		return _GetRoot; 
 	} 
  
-	void Node::print(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int depth) const 
+	void Node::Print(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const 
 	{ 
 		if (!_GetRoot) return; 
  
 		BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding); 
  
-		NodeOutput(buffered_WriterInstance, *this, indent, flags, depth); 
+		NodeOutput(buffered_WriterInstance, *this, indent, flags, Depth); 
 	} 
  
 #ifndef XML_NO_STL 
-	void Node::print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int depth) const 
+	void Node::Print(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding, unsigned int Depth) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		print(WriterInstance, indent, flags, DocumentEncoding, depth); 
+		Print(WriterInstance, indent, flags, DocumentEncoding, Depth); 
 	} 
  
-	void Node::print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int depth) const 
+	void Node::Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags, unsigned int Depth) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		print(WriterInstance, indent, flags, Encodingwchar_t, depth); 
+		Print(WriterInstance, indent, flags, Encodingwchar_t, Depth); 
 	} 
 #endif 
  
@@ -4572,15 +4572,15 @@ namespace phys
 		destroy(); 
 	} 
  
-	void Document::reset() 
+	void Document::ReSet() 
 	{ 
 		destroy(); 
 		create(); 
 	} 
  
-	void Document::reset(const Document& proto) 
+	void Document::ReSet(const Document& proto) 
 	{ 
-		reset(); 
+		ReSet(); 
  
 		for (Node cur = proto.GetFirstChild(); cur; cur = cur.GetNextSibling()) 
 			AppendCopy(cur); 
@@ -4642,22 +4642,22 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	ParseResult Document::load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		reset(); 
+		ReSet(); 
  
-		return load_stream_impl(*this, stream, options, DocumentEncoding); 
+		return LoadStreamImpl(*this, stream, options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options) 
+	ParseResult Document::Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options) 
 	{ 
-		reset(); 
+		ReSet(); 
  
-		return load_stream_impl(*this, stream, options, Encodingwchar_t); 
+		return LoadStreamImpl(*this, stream, options, Encodingwchar_t); 
 	} 
 #endif 
  
-	ParseResult Document::load(const char_t* contents, unsigned int options) 
+	ParseResult Document::Load(const char_t* contents, unsigned int options) 
 	{ 
 		// Force native DocumentEncoding (skip autodetection) 
 	#ifdef XML_WCHAR_MODE 
@@ -4666,36 +4666,36 @@ namespace phys
 		Encoding DocumentEncoding = EncodingUTF8; 
 	#endif 
  
-		return load_buffer(contents, strlength(contents) * sizeof(char_t), options, DocumentEncoding); 
+		return LoadBuffer(contents, strlength(contents) * sizeof(char_t), options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_file(const char* path, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadFile(const char* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		reset(); 
+		ReSet(); 
  
-		FILE* file = fopen(path, "rb"); 
+		FILE* file = fopen(Path, "rb"); 
  
-		return load_file_impl(*this, file, options, DocumentEncoding); 
+		return LoadFileImpl(*this, file, options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_file(const wchar_t* path, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadFile(const wchar_t* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		reset(); 
+		ReSet(); 
  
-		FILE* file = open_file_wide(path, L"rb"); 
+		FILE* file = open_file_wide(Path, L"rb"); 
  
-		return load_file_impl(*this, file, options, DocumentEncoding); 
+		return LoadFileImpl(*this, file, options, DocumentEncoding); 
 	} 
  
-	ParseResult Document::load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own) 
+	ParseResult Document::LoadBufferImpl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own) 
 	{ 
-		reset(); 
+		ReSet(); 
  
 		// check input buffer 
 		assert(contents || size == 0); 
  
 		// get actual DocumentEncoding 
-		Encoding buffer_DocumentEncoding = get_buffer_DocumentEncoding(DocumentEncoding, contents, size); 
+		Encoding buffer_DocumentEncoding = GetBuffer_DocumentEncoding(DocumentEncoding, contents, size); 
  
 		// get private buffer 
 		char_t* buffer = 0; 
@@ -4718,24 +4718,24 @@ namespace phys
 		return res; 
 	} 
  
-	ParseResult Document::load_buffer(const void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadBuffer(const void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		return load_buffer_impl(const_cast<void*>(contents), size, options, DocumentEncoding, false, false); 
+		return LoadBufferImpl(const_cast<void*>(contents), size, options, DocumentEncoding, false, false); 
 	} 
  
-	ParseResult Document::load_buffer_inplace(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadBufferInplace(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		return load_buffer_impl(contents, size, options, DocumentEncoding, true, false); 
+		return LoadBufferImpl(contents, size, options, DocumentEncoding, true, false); 
 	} 
 		 
-	ParseResult Document::load_buffer_inplace_own(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
+	ParseResult Document::LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		return load_buffer_impl(contents, size, options, DocumentEncoding, true, true); 
+		return LoadBufferImpl(contents, size, options, DocumentEncoding, true, true); 
 	} 
  
-	void Document::save(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	void Document::Save(Writer& WriterInstance, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		if (flags & FormatWriteBom) Write_bom(WriterInstance, get_Write_DocumentEncoding(DocumentEncoding)); 
+		if (flags & FormatWriteBom) Write_bom(WriterInstance, GetWrite_DocumentEncoding(DocumentEncoding)); 
  
 		BufferedWriter buffered_WriterInstance(WriterInstance, DocumentEncoding); 
  
@@ -4749,48 +4749,48 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	void Document::save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	void Document::Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		save(WriterInstance, indent, flags, DocumentEncoding); 
+		Save(WriterInstance, indent, flags, DocumentEncoding); 
 	} 
  
-	void Document::save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags) const 
+	void Document::Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent, unsigned int flags) const 
 	{ 
 		WriterStream WriterInstance(stream); 
  
-		save(WriterInstance, indent, flags, Encodingwchar_t); 
+		Save(WriterInstance, indent, flags, Encodingwchar_t); 
 	} 
 #endif 
  
-	bool Document::save_file(const char* path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	bool Document::SaveFile(const char* Path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		FILE* file = fopen(path, "wb"); 
+		FILE* file = fopen(Path, "wb"); 
 		if (!file) return false; 
  
 		WriterFile WriterInstance(file); 
-		save(WriterInstance, indent, flags, DocumentEncoding); 
+		Save(WriterInstance, indent, flags, DocumentEncoding); 
  
 		fclose(file); 
  
 		return true; 
 	} 
  
-	bool Document::save_file(const wchar_t* path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
+	bool Document::SaveFile(const wchar_t* Path, const char_t* indent, unsigned int flags, Encoding DocumentEncoding) const 
 	{ 
-		FILE* file = open_file_wide(path, L"wb"); 
+		FILE* file = open_file_wide(Path, L"wb"); 
 		if (!file) return false; 
  
 		WriterFile WriterInstance(file); 
-		save(WriterInstance, indent, flags, DocumentEncoding); 
+		Save(WriterInstance, indent, flags, DocumentEncoding); 
  
 		fclose(file); 
  
 		return true; 
 	} 
  
-	Node Document::document_element() const 
+	Node Document::DocumentElement() const 
 	{ 
 		for (NodeStruct* i = _GetRoot->GetFirstChild; i; i = i->GetNextSibling) 
 			if ((i->header & MemoryPage_type_mask) + 1 == NodeElement) 
@@ -4831,12 +4831,12 @@ namespace phys
 		global_deallocate = deallocate; 
 	} 
  
-	allocation_function PHYS_LIB get_memory_allocation_function() 
+	allocation_function PHYS_LIB GetMemory_allocation_function() 
 	{ 
 		return global_allocate; 
 	} 
  
-	deallocation_function PHYS_LIB get_memory_deallocation_function() 
+	deallocation_function PHYS_LIB GetMemory_deallocation_function() 
 	{ 
 		return global_deallocate; 
 	} 
@@ -5375,19 +5375,19 @@ namespace
 			else 
 			{ 
 				// need to make heap copy 
-				size_t target_length = strlength(_buffer); 
+				size_t tarGetLength = strlength(_buffer); 
 				size_t source_length = strlength(o._buffer); 
-				size_t length = target_length + source_length; 
+				size_t length = tarGetLength + source_length; 
  
 				// allocate new buffer 
-				char_t* result = static_cast<char_t*>(alloc->reallocate(_uses_heap ? const_cast<char_t*>(_buffer) : 0, (target_length + 1) * sizeof(char_t), (length + 1) * sizeof(char_t))); 
+				char_t* result = static_cast<char_t*>(alloc->reallocate(_uses_heap ? const_cast<char_t*>(_buffer) : 0, (tarGetLength + 1) * sizeof(char_t), (length + 1) * sizeof(char_t))); 
 				assert(result); 
  
 				// append first string to the new buffer in case there was no reallocation 
-				if (!_uses_heap) memcpy(result, _buffer, target_length * sizeof(char_t)); 
+				if (!_uses_heap) memcpy(result, _buffer, tarGetLength * sizeof(char_t)); 
  
 				// append second string to the new buffer 
-				memcpy(result + target_length, o._buffer, source_length * sizeof(char_t)); 
+				memcpy(result + tarGetLength, o._buffer, source_length * sizeof(char_t)); 
 				result[length] = 0; 
  
 				// finalize 
@@ -5847,7 +5847,7 @@ namespace
 		return XPathString(result, alloc); 
 	} 
 	 
-	bool check_string_to_number_format(const char_t* string) 
+	bool check_Stringo_number_format(const char_t* string) 
 	{ 
 		// parse leading whitespace 
 		while (IS_CHARTYPE(*string, ct_space)) ++string; 
@@ -5877,10 +5877,10 @@ namespace
 		return *string == 0; 
 	} 
  
-	double convert_string_to_number(const char_t* string) 
+	double convert_Stringo_number(const char_t* string) 
 	{ 
 		// check string format 
-		if (!check_string_to_number_format(string)) return gen_nan(); 
+		if (!check_Stringo_number_format(string)) return gen_nan(); 
  
 		// parse string 
 	#ifdef XML_WCHAR_MODE 
@@ -5890,7 +5890,7 @@ namespace
 	#endif 
 	} 
  
-	bool convert_string_to_number(const char_t* begin, const char_t* end, double* out_result) 
+	bool convert_Stringo_number(const char_t* begin, const char_t* end, double* out_result) 
 	{ 
 		char_t buffer[32]; 
  
@@ -5908,7 +5908,7 @@ namespace
 		memcpy(scratch, begin, length * sizeof(char_t)); 
 		scratch[length] = 0; 
  
-		*out_result = convert_string_to_number(scratch); 
+		*out_result = convert_Stringo_number(scratch); 
  
 		// free dummy buffer 
 		if (scratch != buffer) global_deallocate(scratch); 
@@ -6186,7 +6186,7 @@ namespace
 		} 
 	} 
  
-	XPathVariable* get_variable(XPathVariableSet* set, const char_t* begin, const char_t* end) 
+	XPathVariable* GetVariable(XPathVariableSet* set, const char_t* begin, const char_t* end) 
 	{ 
 		char_t buffer[32]; 
  
@@ -6204,7 +6204,7 @@ namespace
 		memcpy(scratch, begin, length * sizeof(char_t)); 
 		scratch[length] = 0; 
  
-		XPathVariable* result = set->get(scratch); 
+		XPathVariable* result = set->Get(scratch); 
  
 		// free dummy buffer 
 		if (scratch != buffer) global_deallocate(scratch); 
@@ -6451,7 +6451,7 @@ namespace
  
 			while (IS_CHARTYPE(*cur, ct_space)) ++cur; 
  
-			// save lexeme position for error reporting 
+			// Save lexeme position for error reporting 
 			_cur_lexeme_pos = cur; 
  
 			switch (*cur) 
@@ -6921,7 +6921,7 @@ namespace
 					{ 
 						XPathAllocatorCapture cri(stack.result); 
  
-						if (comp(l, convert_string_to_number(string_Value(*ri, stack.result).c_str()))) 
+						if (comp(l, convert_Stringo_number(string_Value(*ri, stack.result).c_str()))) 
 							return true; 
 					} 
  
@@ -6967,13 +6967,13 @@ namespace
 				{ 
 					XPathAllocatorCapture cri(stack.result); 
  
-					double l = convert_string_to_number(string_Value(*li, stack.result).c_str()); 
+					double l = convert_Stringo_number(string_Value(*li, stack.result).c_str()); 
  
 					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
 						XPathAllocatorCapture crii(stack.result); 
  
-						if (comp(l, convert_string_to_number(string_Value(*ri, stack.result).c_str()))) 
+						if (comp(l, convert_Stringo_number(string_Value(*ri, stack.result).c_str()))) 
 							return true; 
 					} 
 				} 
@@ -6991,7 +6991,7 @@ namespace
 				{ 
 					XPathAllocatorCapture cri(stack.result); 
  
-					if (comp(l, convert_string_to_number(string_Value(*ri, stack.result).c_str()))) 
+					if (comp(l, convert_Stringo_number(string_Value(*ri, stack.result).c_str()))) 
 						return true; 
 				} 
  
@@ -7008,7 +7008,7 @@ namespace
 				{ 
 					XPathAllocatorCapture cri(stack.result); 
  
-					if (comp(convert_string_to_number(string_Value(*li, stack.result).c_str()), r)) 
+					if (comp(convert_Stringo_number(string_Value(*li, stack.result).c_str()), r)) 
 						return true; 
 				} 
  
@@ -7569,7 +7569,7 @@ namespace
 				assert(_retType == _data.variable->Type()); 
  
 				if (_retType == XPathTypeBoolean) 
-					return _data.variable->get_boolean(); 
+					return _data.variable->GetBoolean(); 
  
 				// fallthrough to Type conversion 
 			} 
@@ -7659,7 +7659,7 @@ namespace
 			{ 
 				XPathAllocatorCapture cr(stack.result); 
  
-				return convert_string_to_number(string_Value(c.n, stack.result).c_str()); 
+				return convert_Stringo_number(string_Value(c.n, stack.result).c_str()); 
 			} 
 			 
 			case ast_func_number_1: 
@@ -7677,7 +7677,7 @@ namespace
 				{ 
 					XPathAllocatorCapture cri(stack.result); 
  
-					r += convert_string_to_number(string_Value(*it, stack.result).c_str()); 
+					r += convert_Stringo_number(string_Value(*it, stack.result).c_str()); 
 				} 
 			 
 				return r; 
@@ -7705,7 +7705,7 @@ namespace
 				assert(_retType == _data.variable->Type()); 
  
 				if (_retType == XPathTypeNumber) 
-					return _data.variable->get_number(); 
+					return _data.variable->GetNumber(); 
  
 				// fallthrough to Type conversion 
 			} 
@@ -7721,14 +7721,14 @@ namespace
 				{ 
 					XPathAllocatorCapture cr(stack.result); 
  
-					return convert_string_to_number(eval_string(c, stack).c_str()); 
+					return convert_Stringo_number(eval_string(c, stack).c_str()); 
 				} 
 					 
 				case XPathTypeNodeSet: 
 				{ 
 					XPathAllocatorCapture cr(stack.result); 
  
-					return convert_string_to_number(eval_string(c, stack).c_str()); 
+					return convert_Stringo_number(eval_string(c, stack).c_str()); 
 				} 
 					 
 				default: 
@@ -7974,7 +7974,7 @@ namespace
 				assert(_retType == _data.variable->Type()); 
  
 				if (_retType == XPathTypeString) 
-					return XPathStringConst(_data.variable->get_string()); 
+					return XPathStringConst(_data.variable->GetString()); 
  
 				// fallthrough to Type conversion 
 			} 
@@ -8111,7 +8111,7 @@ namespace
  
 				if (_retType == XPathTypeNodeSet) 
 				{ 
-					const XPathNodeSet& s = _data.variable->get_NodeSet(); 
+					const XPathNodeSet& s = _data.variable->GetNodeSet(); 
  
 					XPathNodeSet_raw ns; 
  
@@ -8456,7 +8456,7 @@ namespace
 				if (!_variables) 
 					throw_error("Unknown variable: variable set is not provided"); 
  
-				XPathVariable* var = get_variable(_variables, Name.begin, Name.end); 
+				XPathVariable* var = GetVariable(_variables, Name.begin, Name.end); 
  
 				if (!var) 
 					throw_error("Unknown variable: variable set does not contain the given Name"); 
@@ -8494,7 +8494,7 @@ namespace
 			{ 
 				double Value = 0; 
  
-				if (!convert_string_to_number(_lexer.contents().begin, _lexer.contents().end, &Value)) 
+				if (!convert_Stringo_number(_lexer.contents().begin, _lexer.contents().end, &Value)) 
 					throw_error_oom(); 
  
 				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_number_constant, XPathTypeNumber, Value); 
@@ -8724,7 +8724,7 @@ namespace
 		} 
 		 
 		// RelativeLocationPath ::= Step | RelativeLocationPath '/' Step | RelativeLocationPath '//' Step 
-		XPathAstNode* ParseRelativeLocation_path(XPathAstNode* set) 
+		XPathAstNode* ParseRelativeLocation_Path(XPathAstNode* set) 
 		{ 
 			XPathAstNode* n = ParseStep(set); 
 			 
@@ -8752,11 +8752,11 @@ namespace
 				 
 				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_step_GetRoot, XPathTypeNodeSet); 
  
-				// relative location path can start from axis_attribute, dot, double_dot, multiply and string lexemes; any other lexeme means standalone GetRoot path 
+				// relative location Path can start from axis_attribute, dot, double_dot, multiply and string lexemes; any other lexeme means standalone GetRoot Path 
 				lexeme_t l = _lexer.current(); 
  
 				if (l == lex_string || l == lex_axis_attribute || l == lex_dot || l == lex_double_dot || l == lex_multiply) 
-					return ParseRelativeLocation_path(n); 
+					return ParseRelativeLocation_Path(n); 
 				else 
 					return n; 
 			} 
@@ -8767,11 +8767,11 @@ namespace
 				XPathAstNode* n = new (alloc_node()) XPathAstNode(ast_step_GetRoot, XPathTypeNodeSet); 
 				n = new (alloc_node()) XPathAstNode(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 				 
-				return ParseRelativeLocation_path(n); 
+				return ParseRelativeLocation_Path(n); 
 			} 
  
 			// else clause moved outside of if because of bogus warning 'control may reach end of non-void function being inlined' in gcc 4.0.1 
-			return ParseRelativeLocation_path(0); 
+			return ParseRelativeLocation_Path(0); 
 		} 
 		 
 		// PathExpr ::= LocationPath 
@@ -8793,7 +8793,7 @@ namespace
 			{ 
 				if (_lexer.current() == lex_string) 
 				{ 
-					// This is either a function call, or not - if not, we shall proceed with location path 
+					// This is either a function call, or not - if not, we shall proceed with location Path 
 					const char_t* state = _lexer.state(); 
 					 
 					while (IS_CHARTYPE(*state, ct_space)) ++state; 
@@ -8818,8 +8818,8 @@ namespace
 						n = new (alloc_node()) XPathAstNode(ast_step, n, axis_descendant_or_self, nodetest_type_node, 0); 
 					} 
 	 
-					// select from location path 
-					return ParseRelativeLocation_path(n); 
+					// select from location Path 
+					return ParseRelativeLocation_Path(n); 
 				} 
  
 				return n; 
@@ -9301,28 +9301,28 @@ namespace phys
 		return _type; 
 	} 
  
-	bool XPathVariable::get_boolean() const 
+	bool XPathVariable::GetBoolean() const 
 	{ 
 		return (_type == XPathTypeBoolean) ? static_cast<const XPathVariableBoolean*>(this)->Value : false; 
 	} 
  
-	double XPathVariable::get_number() const 
+	double XPathVariable::GetNumber() const 
 	{ 
 		return (_type == XPathTypeNumber) ? static_cast<const XPathVariableNumber*>(this)->Value : gen_nan(); 
 	} 
  
-	const char_t* XPathVariable::get_string() const 
+	const char_t* XPathVariable::GetString() const 
 	{ 
 		const char_t* Value = (_type == XPathTypeString) ? static_cast<const XPathVariableString*>(this)->Value : 0; 
 		return Value ? Value : XML_TEXT(""); 
 	} 
  
-	const XPathNodeSet& XPathVariable::get_NodeSet() const 
+	const XPathNodeSet& XPathVariable::GetNodeSet() const 
 	{ 
 		return (_type == XPathTypeNodeSet) ? static_cast<const XPathVariableNodeSet*>(this)->Value : dummy_NodeSet; 
 	} 
  
-	bool XPathVariable::set(bool Value) 
+	bool XPathVariable::Set(bool Value) 
 	{ 
 		if (_type != XPathTypeBoolean) return false; 
  
@@ -9330,7 +9330,7 @@ namespace phys
 		return true; 
 	} 
  
-	bool XPathVariable::set(double Value) 
+	bool XPathVariable::Set(double Value) 
 	{ 
 		if (_type != XPathTypeNumber) return false; 
  
@@ -9338,7 +9338,7 @@ namespace phys
 		return true; 
 	} 
  
-	bool XPathVariable::set(const char_t* Value) 
+	bool XPathVariable::Set(const char_t* Value) 
 	{ 
 		if (_type != XPathTypeString) return false; 
  
@@ -9359,7 +9359,7 @@ namespace phys
 		return true; 
 	} 
  
-	bool XPathVariable::set(const XPathNodeSet& Value) 
+	bool XPathVariable::Set(const XPathNodeSet& Value) 
 	{ 
 		if (_type != XPathTypeNodeSet) return false; 
  
@@ -9402,7 +9402,7 @@ namespace phys
 		return 0; 
 	} 
  
-	XPathVariable* XPathVariableSet::add(const char_t* Name, XPathValueType Type) 
+	XPathVariable* XPathVariableSet::Add(const char_t* Name, XPathValueType Type) 
 	{ 
 		const size_t hash_size = sizeof(_data) / sizeof(_data[0]); 
 		size_t hash = hash_string(Name) % hash_size; 
@@ -9426,36 +9426,36 @@ namespace phys
 		return result; 
 	} 
  
-	bool XPathVariableSet::set(const char_t* Name, bool Value) 
+	bool XPathVariableSet::Set(const char_t* Name, bool Value) 
 	{ 
-		XPathVariable* var = add(Name, XPathTypeBoolean); 
-		return var ? var->set(Value) : false; 
+		XPathVariable* var = Add(Name, XPathTypeBoolean); 
+		return var ? var->Set(Value) : false; 
 	} 
  
-	bool XPathVariableSet::set(const char_t* Name, double Value) 
+	bool XPathVariableSet::Set(const char_t* Name, double Value) 
 	{ 
-		XPathVariable* var = add(Name, XPathTypeNumber); 
-		return var ? var->set(Value) : false; 
+		XPathVariable* var = Add(Name, XPathTypeNumber); 
+		return var ? var->Set(Value) : false; 
 	} 
  
-	bool XPathVariableSet::set(const char_t* Name, const char_t* Value) 
+	bool XPathVariableSet::Set(const char_t* Name, const char_t* Value) 
 	{ 
-		XPathVariable* var = add(Name, XPathTypeString); 
-		return var ? var->set(Value) : false; 
+		XPathVariable* var = Add(Name, XPathTypeString); 
+		return var ? var->Set(Value) : false; 
 	} 
  
-	bool XPathVariableSet::set(const char_t* Name, const XPathNodeSet& Value) 
+	bool XPathVariableSet::Set(const char_t* Name, const XPathNodeSet& Value) 
 	{ 
-		XPathVariable* var = add(Name, XPathTypeNodeSet); 
-		return var ? var->set(Value) : false; 
+		XPathVariable* var = Add(Name, XPathTypeNodeSet); 
+		return var ? var->Set(Value) : false; 
 	} 
  
-	XPathVariable* XPathVariableSet::get(const char_t* Name) 
+	XPathVariable* XPathVariableSet::Get(const char_t* Name) 
 	{ 
 		return find(Name); 
 	} 
  
-	const XPathVariable* XPathVariableSet::get(const char_t* Name) const 
+	const XPathVariable* XPathVariableSet::Get(const char_t* Name) const 
 	{ 
 		return find(Name); 
 	} 
@@ -9527,7 +9527,7 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	string_t XPathQuery::evaluate_string(const XPathNode& n) const 
+	String XPathQuery::evaluate_string(const XPathNode& n) const 
 	{ 
 		XPathStackData sd; 
  

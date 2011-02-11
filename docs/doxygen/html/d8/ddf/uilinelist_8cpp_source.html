@@ -85,7 +85,7 @@
 <a name="l00054"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a0de86be9d9ecbd6f903cc15e6f44e135">00054</a>         <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a0de86be9d9ecbd6f903cc15e6f44e135" title="Class constructor.">LineList::LineList</a>(<a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
 <a name="l00055"></a>00055             : Parent(Layer)
 <a name="l00056"></a>00056         {
-<a name="l00057"></a>00057             Manager = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ab7888bf9286df602490c30df6382fde9" title="This gets the UIManager from the manager list.">GetUIManager</a>();
+<a name="l00057"></a>00057             Manager = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ab7888bf9286df602490c30df6382fde9" title="This gets the UIManager from the manager list.">GetUIManager</a>();
 <a name="l00058"></a>00058 
 <a name="l00059"></a>00059             GLineList = Parent-&gt;<a class="code" href="../../da/d48/classphys_1_1UILayer.html#a0f1d04779794d4401714b0d8fa90cab5" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createLineList();
 <a name="l00060"></a>00060         }
@@ -190,7 +190,7 @@
 <a name="l00159"></a>00159 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:18 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:49 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -181,7 +181,7 @@ namespace phys
         return Results;
     }
 
-    /// @brief Converts whatever to an Real as long as the proper streaming operators are available for it
+    /// @brief Converts whatever to a Real as long as the proper streaming operators are available for it
     /// @param Datum The whatever to be converted
     /// @return A Real with the converted data
     template<class T> Real ToReal( const T& Datum )

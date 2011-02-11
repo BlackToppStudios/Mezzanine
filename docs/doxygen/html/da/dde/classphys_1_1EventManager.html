@@ -154,9 +154,9 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Default constructor. </p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000009">Todo:</a></b></dt><dd>TODO build a deconstructor that deletes all the events still in the queue </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000008">Todo:</a></b></dt><dd>TODO build a deconstructor that deletes all the events still in the queue </dd></dl>
 <p>This creates an empty PhysEventManger</p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000006">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000005">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00093">93</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
@@ -960,7 +960,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <p>Pulls Events from the all the subsystems for use in the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>. </p>
 <p>The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5" title="Pulls System and Window manager Events from the all the subsystems for use in the EventManager...">UpdateSystemEvents()</a> or <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a01a5a131ac26679eee5dcf5dd514045c" title="Pulls User Interface Events from the all the subsystems for use in the EventManager.">UpdateUserInputEvents()</a> </p>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000007">Todo:</a></b></dt><dd>There has got to be a more efficient way to do <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166" title="Pulls Events from the all the subsystems for use in the EventManager.">UpdateEvents()</a> </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000006">Todo:</a></b></dt><dd>There has got to be a more efficient way to do <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166" title="Pulls Events from the all the subsystems for use in the EventManager.">UpdateEvents()</a> </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00149">149</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
@@ -985,7 +985,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <p>Pulls System and Window manager Events from the all the subsystems for use in the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>. </p>
 <p>This adds events, like <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a> and Other Windows manager events. The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166" title="Pulls Events from the all the subsystems for use in the EventManager.">UpdateEvents()</a> and plans on using <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a01a5a131ac26679eee5dcf5dd514045c" title="Pulls User Interface Events from the all the subsystems for use in the EventManager.">UpdateUserInputEvents()</a> </p>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000008">Todo:</a></b></dt><dd>make Physevents for each of the events in SDL_WmEvents(and delete the SDL events) </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000007">Todo:</a></b></dt><dd>make Physevents for each of the events in SDL_WmEvents(and delete the SDL events) </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00156">156</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
@@ -1019,7 +1019,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <li><a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:22 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:54 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

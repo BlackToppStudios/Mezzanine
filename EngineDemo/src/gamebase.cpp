@@ -572,7 +572,7 @@ void LoadContent()
 
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         xml::Document TestDoc;
-        xml::ParseResult ParsedXML = TestDoc.load( *XMLptr );
+        xml::ParseResult ParsedXML = TestDoc.Load( *XMLptr );
 
         TheWorld->LogStream << "xml::StatusOk :" << xml::StatusOk << endl
                             << "xml::StatusFileNotFound :" << xml::StatusFileNotFound << endl

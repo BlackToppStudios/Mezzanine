@@ -44,56 +44,343 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::xml::XPathVariable" -->
+<p>A single XPath variable.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
+
 <p><a href="../../da/d55/classphys_1_1xml_1_1XPathVariable-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af51c0a3362e130e30df85068ab95de63"></a><!-- doxytag: member="phys::xml::XPathVariable::Name" ref="af51c0a3362e130e30df85068ab95de63" args="() const " -->
-const char_t *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Name</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c2986292fe674b79ea9dbf261c4a96f"></a><!-- doxytag: member="phys::xml::XPathVariable::Type" ref="a6c2986292fe674b79ea9dbf261c4a96f" args="() const " -->
-XPathValueType&nbsp;</td><td class="memItemRight" valign="bottom"><b>Type</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8e879dfdd22d4e4cd00f79580de98068"></a><!-- doxytag: member="phys::xml::XPathVariable::get_boolean" ref="a8e879dfdd22d4e4cd00f79580de98068" args="() const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_boolean</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d8ee4ea7868cbf76f2f926374ac5cab"></a><!-- doxytag: member="phys::xml::XPathVariable::get_number" ref="a8d8ee4ea7868cbf76f2f926374ac5cab" args="() const " -->
-double&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_number</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a045574b064274e4b74e16b1e9e555991"></a><!-- doxytag: member="phys::xml::XPathVariable::get_string" ref="a045574b064274e4b74e16b1e9e555991" args="() const " -->
-const char_t *&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_string</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a42aac5e1ef0d8231bc50dc6304738e62"></a><!-- doxytag: member="phys::xml::XPathVariable::get_NodeSet" ref="a42aac5e1ef0d8231bc50dc6304738e62" args="() const " -->
-const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>get_NodeSet</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abec0df58ae37f5b223e2bcb5a5016faf"></a><!-- doxytag: member="phys::xml::XPathVariable::set" ref="abec0df58ae37f5b223e2bcb5a5016faf" args="(bool Value)" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>set</b> (bool Value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6a7fb8a3f2028dc239ca1ed56b138df3"></a><!-- doxytag: member="phys::xml::XPathVariable::set" ref="a6a7fb8a3f2028dc239ca1ed56b138df3" args="(double Value)" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>set</b> (double Value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d85aaa75317bb933823454be708fcbc"></a><!-- doxytag: member="phys::xml::XPathVariable::set" ref="a4d85aaa75317bb933823454be708fcbc" args="(const char_t *Value)" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>set</b> (const char_t *Value)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a82db794d8380701c587d024501298a51"></a><!-- doxytag: member="phys::xml::XPathVariable::set" ref="a82db794d8380701c587d024501298a51" args="(const XPathNodeSet &amp;Value)" -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>set</b> (const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;Value)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char_t *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#af51c0a3362e130e30df85068ab95de63">Name</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve the name of this variable.  <a href="#af51c0a3362e130e30df85068ab95de63"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d">XPathValueType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a6c2986292fe674b79ea9dbf261c4a96f">Type</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the variable type.  <a href="#a6c2986292fe674b79ea9dbf261c4a96f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#ade5e5da86817afc6fafd64d4f9b21e9c">GetBoolean</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get this as a bool.  <a href="#ade5e5da86817afc6fafd64d4f9b21e9c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#ac3798fc142b781c48bd694f1cdd386c4">GetNumber</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get this as a double.  <a href="#ac3798fc142b781c48bd694f1cdd386c4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const char_t *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a5354bcb8e5c2ffa6ececcf259049338b">GetString</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get this as a c-string.  <a href="#a5354bcb8e5c2ffa6ececcf259049338b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a773036e3c3c3db0af26fa662782f7e56">GetNodeSet</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get this as a <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>.  <a href="#a773036e3c3c3db0af26fa662782f7e56"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3">Set</a> (bool Value)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set variable Value; no Type conversion is performed.  <a href="#aea78a6ac9a12a1be68db8a56fbffebc3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#abb5f6da9b731d770e1a34ee9981b22be">Set</a> (double Value)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set variable Value; no Type conversion is performed.  <a href="#abb5f6da9b731d770e1a34ee9981b22be"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#acf825ac8cd7dd20fc6f1c9fd7bb997fe">Set</a> (const char_t *Value)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set variable Value; no Type conversion is performed.  <a href="#acf825ac8cd7dd20fc6f1c9fd7bb997fe"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a121079abb73e70ade34f4e69181e5694">Set</a> (const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;Value)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Set variable Value; no Type conversion is performed.  <a href="#a121079abb73e70ade34f4e69181e5694"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8dd3bc4deb8cebad6796ffa10bbbcb21"></a><!-- doxytag: member="phys::xml::XPathVariable::XPathVariable" ref="a8dd3bc4deb8cebad6796ffa10bbbcb21" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a8dd3bc4deb8cebad6796ffa10bbbcb21">XPathVariable</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Protected Default constructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37a47c3f05c4509f83193c1fa1c355e5"></a><!-- doxytag: member="phys::xml::XPathVariable::XPathVariable" ref="a37a47c3f05c4509f83193c1fa1c355e5" args="(const XPathVariable &amp;)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>XPathVariable</b> (const <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> &amp;)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2cd8ec528ae06c55219ac32d0af78eee"></a><!-- doxytag: member="phys::xml::XPathVariable::operator=" ref="a2cd8ec528ae06c55219ac32d0af78eee" args="(const XPathVariable &amp;)" -->
-<a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> &amp;)</td></tr>
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a37a47c3f05c4509f83193c1fa1c355e5">XPathVariable</a> (const <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Protected Copy Constructor, used to force noncopyable semantics. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aa0d4555101b253e1864a5226dd098ad3">operator=</a> (const <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> &amp;)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Protected assignment operator, used to force noncopyable semantics.  <a href="#aa0d4555101b253e1864a5226dd098ad3"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a039fe72ced3d55be346498846eb29d85"></a><!-- doxytag: member="phys::xml::XPathVariable::_type" ref="a039fe72ced3d55be346498846eb29d85" args="" -->
-XPathValueType&nbsp;</td><td class="memItemRight" valign="bottom"><b>_type</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5425c11d82b053db83a70c0dcb84ea98"></a><!-- doxytag: member="phys::xml::XPathVariable::_next" ref="a5425c11d82b053db83a70c0dcb84ea98" args="" -->
-<a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>_next</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8841d47677912f4b88743928cf931eac"></a><!-- doxytag: member="phys::xml::XPathVariable::_type" ref="a8841d47677912f4b88743928cf931eac" args="" -->
+<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d">XPathValueType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a8841d47677912f4b88743928cf931eac">_type</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">What kind of data does this variable store. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe57b58f8b6d2622d5e1ae93bc5361a3"></a><!-- doxytag: member="phys::xml::XPathVariable::_next" ref="abe57b58f8b6d2622d5e1ae93bc5361a3" args="" -->
+<a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#abe57b58f8b6d2622d5e1ae93bc5361a3">_next</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The next variable in the variable set. I think, and I am not certain, that this is a circularly linked list. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d8e28205e67fa0164160dd3cb547fe6"></a><!-- doxytag: member="phys::xml::XPathVariable::XPathVariableSet" ref="a6d8e28205e67fa0164160dd3cb547fe6" args="" -->
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>XPathVariableSet</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>A single XPath variable. </p>
+<p>This is intended to be used as a single member of an <a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>, and for moving data into and out of XPathQueries. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01005">1005</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01049">1049</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ade5e5da86817afc6fafd64d4f9b21e9c"></a><!-- doxytag: member="phys::xml::XPathVariable::GetBoolean" ref="ade5e5da86817afc6fafd64d4f9b21e9c" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathVariable::GetBoolean </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get this as a bool. </p>
+<p>Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A This as a bool, without conversion. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09304">9304</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a773036e3c3c3db0af26fa662782f7e56"></a><!-- doxytag: member="phys::xml::XPathVariable::GetNodeSet" ref="a773036e3c3c3db0af26fa662782f7e56" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathVariable::GetNodeSet </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get this as a <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>. </p>
+<p>Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error </p>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09320">9320</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac3798fc142b781c48bd694f1cdd386c4"></a><!-- doxytag: member="phys::xml::XPathVariable::GetNumber" ref="ac3798fc142b781c48bd694f1cdd386c4" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathVariable::GetNumber </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get this as a double. </p>
+<p>Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error </p>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09309">9309</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5354bcb8e5c2ffa6ececcf259049338b"></a><!-- doxytag: member="phys::xml::XPathVariable::GetString" ref="a5354bcb8e5c2ffa6ececcf259049338b" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathVariable::GetString </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get this as a c-string. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A This as a double, without conversion.</dd></dl>
+<p>Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A This as a c-string of char_t, without conversion. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09314">9314</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af51c0a3362e130e30df85068ab95de63"></a><!-- doxytag: member="phys::xml::XPathVariable::Name" ref="af51c0a3362e130e30df85068ab95de63" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char_t * phys::xml::XPathVariable::Name </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Retrieve the name of this variable. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A const c-style string made of char_t, that contains the name of this variable </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09277">9277</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aa0d4555101b253e1864a5226dd098ad3"></a><!-- doxytag: member="phys::xml::XPathVariable::operator=" ref="aa0d4555101b253e1864a5226dd098ad3" args="(const XPathVariable &amp;)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathVariable::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html">XPathVariable</a> &amp;&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Protected assignment operator, used to force noncopyable semantics. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Shouldn't be used, not implemented. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a121079abb73e70ade34f4e69181e5694"></a><!-- doxytag: member="phys::xml::XPathVariable::Set" ref="a121079abb73e70ade34f4e69181e5694" args="(const XPathNodeSet &amp;Value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::xml::XPathVariable::Set </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Value</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set variable Value; no Type conversion is performed. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Value</em>&nbsp;</td><td>The value to attempt to put into this. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True is return, false is returned on Type mismatch error. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09362">9362</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="acf825ac8cd7dd20fc6f1c9fd7bb997fe"></a><!-- doxytag: member="phys::xml::XPathVariable::Set" ref="acf825ac8cd7dd20fc6f1c9fd7bb997fe" args="(const char_t *Value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::xml::XPathVariable::Set </td>
+          <td>(</td>
+          <td class="paramtype">const char_t *&nbsp;</td>
+          <td class="paramname"> <em>Value</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set variable Value; no Type conversion is performed. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Value</em>&nbsp;</td><td>The value as a char_t array to attempt to put into this. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True is return, false is returned on Type mismatch error. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09341">9341</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aea78a6ac9a12a1be68db8a56fbffebc3"></a><!-- doxytag: member="phys::xml::XPathVariable::Set" ref="aea78a6ac9a12a1be68db8a56fbffebc3" args="(bool Value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathVariable::Set </td>
+          <td>(</td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>Value</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set variable Value; no Type conversion is performed. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A This as an <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>, without conversion. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Value</em>&nbsp;</td><td>The value to attempt to put into this. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09325">9325</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abb5f6da9b731d770e1a34ee9981b22be"></a><!-- doxytag: member="phys::xml::XPathVariable::Set" ref="abb5f6da9b731d770e1a34ee9981b22be" args="(double Value)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::xml::XPathVariable::Set </td>
+          <td>(</td>
+          <td class="paramtype">double&nbsp;</td>
+          <td class="paramname"> <em>Value</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Set variable Value; no Type conversion is performed. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Value</em>&nbsp;</td><td>The value as a double to attempt to put into this. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True is return, false is returned on Type mismatch error. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09333">9333</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a6c2986292fe674b79ea9dbf261c4a96f"></a><!-- doxytag: member="phys::xml::XPathVariable::Type" ref="a6c2986292fe674b79ea9dbf261c4a96f" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d">XPathValueType</a> phys::xml::XPathVariable::Type </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the variable type. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>An XPathValueType specifying the kind of data stored in this variable. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09299">9299</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
+<li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:28 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:59 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

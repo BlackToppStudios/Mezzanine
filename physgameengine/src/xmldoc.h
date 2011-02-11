@@ -204,7 +204,7 @@ namespace phys
         /// @var NodeDeclaration
         /// @brief Document declaration, i.e. '<?xml version="1.0"?>'.
 
-        /// @var NodeDoctype
+        /// @var NodeDocType
         /// @brief Document type declaration, i.e. '<!DOCTYPE doc>'.
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -240,7 +240,7 @@ namespace phys
         /// @var ParseDeclaration
         /// @brief This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default.
 
-        /// @var ParseDoctype
+        /// @var ParseDocType
         /// @brief This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default.
 
         /// @var ParseDefault
@@ -254,8 +254,8 @@ namespace phys
         /// End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules.
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @typedef string_t
-        /// @brief A string class used internally to store data in the XML parser.
+        // @typedef string_t
+        // @brief A string class used internally to store data in the XML parser.
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @var FormatIndent
@@ -290,23 +290,15 @@ namespace phys
         /// @brief Construct a Writer from a FILE* object.
         /// @param file The FILE to be written to. The FILE can be a File handle as per stdio or the standard input, output or even error. The use of void* was intended to avoid a depedency on the stdio header, in the original PugiXML. After a review for compatibility this may change to promote better type safety.
 
-        // @fn WriterFile::Write
-        // @brief Writes data to a file.asdf
-		// @param data A pointer to the data.
-		// @param size The size of the data in bytes.
-
         ///////////////////////////////////////////////////////////////////////////////
         /// @class WriterStream
         /// @brief An implementation of @ref Writer intended for writing std::ostreams
-
-
 
 		/// @var WriterStream::narrow_stream
 		/// @internal
 
         /// @var WriterStream::wide_stream
 		/// @internal
-
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @def XML_DEPRECATED
@@ -492,7 +484,7 @@ namespace phys
 
 		// Get hash Value (unique for handles to the same object)
 		/// @fn Attribute::HashValue() const;
-		/// @brief Get a unique indentifying value for the Attribute this represents
+		/// @brief Get a unique identifying value for the Attribute this represents
 		/// @return A size_t that is unique per Attribute that an attribute could represent.
 
 		/// @fn Attribute::InternalObject() const;
@@ -513,11 +505,12 @@ namespace phys
         /// @return A bool that has the correct value for a || operation.
 
 
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Node
         /// @brief A light-weight handle for manipulating nodes in DOM tree
 
-        /// @var Node::_root
+        /// @var Node::_GetRoot
         /// @internal
         /// @brief Stores pointers to the Node data and some metadata.
 
@@ -734,7 +727,6 @@ namespace phys
         /// @param node The Node just after the desired place in the list of children to insert the copied node.
         /// @return The copied Node on success, an empty Node on failure.
 
-
 		/// @fn Node::RemoveAttribute(const Attribute& a);
 		/// @brief Remove specified Attribute.
 		/// @param a The Attribute to look for. If the given Attribute doesn't belong to this Node then this will fail
@@ -750,7 +742,497 @@ namespace phys
 		/// @param n The Node to look for. If the given Attribute doesn't belong to this Node then this will fail
 		/// @return True if the removal was successful, false otherwise
 
+        /// @fn Node::FindAttribute(Predicate pred) const
+        /// @brief Search for an Attribute using a function to check each Attribute individually.
+        /// @param Predicate a pointer to a function that accepts an Attribute, and returns bool.
+        /// @details This iterates through each Attribute on this node, from begining to end and calls the Predicate function passing
+        /// an Attribute to it. If the Predicate returns true the Node it was just passed is returned. If Precdicate never returns
+        /// true, it is called on every Node and a blank Node is returned. The Predicate is never called with a null value.
+        /// @return This returns the first Attribute that causes Predicate to return true.
 
+        /// @fn Node::FindChild(Predicate pred) const
+        /// @brief Search for an child ( only direct children ) Node using a function to check each Node individually.
+        /// @param Predicate a pointer to a function that accepts an Node, and returns bool.
+        /// @details This iterates through all immediate children of this Node and calls the Predicate function passing a Node to it. If
+        /// the Predicate returns true the Node it was just passed is returned. If Predicate never returns true, it is called
+        /// on every Node and a blank Node is returned. The Predicate is never called with a null value.
+        /// @return This returns the first Node that causes Predicate to return true.
+
+        /// @fn Node::FindNode(Predicate pred) const
+        /// @brief Search for any Node descended from this Node using a function to check each Node individually.
+        /// @param Predicate a pointer to a function that accepts an Node, and returns bool.
+        /// @details This iterates through all children of this Node, and their children ( and so on), and calls the Predicate function
+        /// passing each Node to it. This iterates through all Nodes using a depth first algorithm. If the Predicate returns true the
+        /// Node it was just passed is returned. If Predicate never returns true, it is called on every Node and a blank Node is
+        /// returned. The Predicate is never called with a null value.
+        /// @return This returns the first Node that causes Predicate to return true.
+
+        /// @fn Node::FindChildbyAttribute(const char_t* Name, const char_t* AttrName, const char_t* AttrValue) const;
+        /// @brief Find a Node by an Attribute it has.
+        /// @param Name The name of the matching Node.
+        /// @param AttrName The name of the matching Attribute.
+        /// @param AttrValue The value of the matching Attribute.
+        /// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
+
+		/// @fn Node::FindChildbyAttribute(const char_t* AttrName, const char_t* AttrValue) const;
+		/// @brief Find a Node by an Attribute it has.
+        /// @param AttrName The name of the matching Attribute.
+        /// @param AttrValue The value of the matching Attribute.
+        /// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
+
+        /// @fn Node::Path(char_t delimiter = '/') const;
+        /// @brief Get the absolute path to this Node
+        /// @param delimiter The character to use as a pathname separator, this defaults to '/'.
+        /// @return A String containing an path
+
+        /// @fn Node::FirstElementByPath(const char_t* Path, char_t delimiter = '/') const;
+        /// @brief Search for a node by Path consisting of node names and . or .. elements.
+        /// @todo Investigate this more deeply.
+        /// @param Path The path to search for.
+        /// @param delimiter The character to use as a pathname separator, this defaults to '/'.
+        /// @return The matching Node, of an empty Node on failure.
+
+        /// @fn Node::Traverse(TreeWalker& walker);
+        /// @brief Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree.
+        /// @param walker Any class that fully implement xml::Treewalker. This is where the algorithm to be run is located.
+        /// @return True if every descendant Node of this Node was iterated through, false if it didn't go through every Node.
+        /// @see xml::TreeWalker
+
+        /// @fn Node::FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const;
+        /// @brief Select single node by evaluating an XPath query. Returns first node from the resulting node set.
+        /// @param query The XPath query as a c-string to be evaluated.
+        /// @param XPathVariableSet undocumented.
+        /// @return XPathNode The first matching XPath node.
+
+        /// @fn Node::FindSingleNode(const XPathQuery& query) const;
+        /// @brief Select single node by evaluating an XPath query. Returns first node from the resulting node set.
+        /// @param query The XPath query XPathQuery class instance.
+        /// @return XPathNode The first matching XPath node.
+
+        /// @typedef Node::iterator
+        /// @brief An iterator for child Nodes
+
+        /// @fn Node::begin() const;
+        /// @brief Get a Child node iterator that references the first child Node.
+        /// @return A Node::Iterator that reference the first child Node.
+
+        /// @fn Node::end() const;
+        /// @brief Get a Child node iterator that references one past the last child Node.
+        /// @return A Node::Iterator that reference the last child Node.
+
+        /// @typedef Node::attribute_iterator
+        /// @brief An iterator for Attribute members on this Node
+
+        /// @fn Node::attributes_begin() const;
+        /// @brief Get an Attribute iterator that references the first Attribute on this Node.
+        /// @return A Node::Iterator that reference the first child node.
+
+        /// @fn Node::attributes_end() const;
+        /// @brief Get an Attribute iterator that references the one past the last Attribute on this Node.
+        /// @return A Node::Iterator that reference the last Attribute on this Node.
+
+		/// @fn Node::OffSetDebug() const;
+		/// @internal
+		/// @brief Get node Offset in parsed file/string (in char_t units) for debugging purposes
+        /// @return ptrdiff_t
+
+		/// @fn Node::HashValue() const;
+		/// @internal
+		/// @brief Get hash Value (unique for handles to the same object)
+		/// @return A size_t that uniquely identifies this node.
+
+		/// @fn Node::InternalObject() const;
+		/// @internal
+		/// @brief Get internal pointer
+		/// @return A NodeStruct* that points to the internal data of this Node
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class NodeStruct
+        /// @internal
+        /// @brief The internal data storage structure used in a Node.
+        /// @warning Not part of the API, subject to change without warning.
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class AttributeStruct
+        /// @internal
+        /// @brief The internal data storage structure used in an Attribute.
+        /// @warning Not part of the API, subject to change without warning.
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class NodeIterator
+        /// @brief Child node iterator (a bidirectional iterator over a collection of Node)
+        /// @details Node::begin() and Node::attributes_begin() return iterators that point to the first node/attribute, respectively; Node::end() and Node::attributes_end() return past-the-end iterator for node/attribute list, respectively - this iterator can't be dereferenced, but decrementing it results in an iterator pointing to the last element in the list (except for empty lists, where decrementing past-the-end iterator results in undefined behavior). Past-the-end iterator is commonly used as a termination value for iteration loops. If you want to get an iterator that points to an existing handle, you can construct the iterator with the handle as a single constructor argument, like so: xml_node_iterator(node). For xml_attribute_iterator, you'll have to provide both an attribute and its parent node.\n\n
+        /// Node::begin() and Node::end() return equal iterators if called on null Node; such iterators can't be dereferenced. Node::attributes_begin() and Node::attributes_end() behave the same way. For correct iterator usage this means that child node/attribute collections of null nodes appear to be empty.\n\n
+        /// Both types of iterators have bidirectional iterator semantics (i.e. they can be incremented and decremented, but efficient random access is not supported) and support all usual iterator operations - comparison, dereference, etc. The iterators are invalidated if the node/attribute objects they're pointing to are removed from the tree; adding nodes/attributes does not invalidate any iterators.
+
+		/// @typedef NodeIterator::difference_type;
+		/// @brief An Iterator trait
+
+		/// @typedef NodeIterator::value_type;
+		/// @brief An Iterator trait
+
+		/// @typedef NodeIterator::pointer;
+		/// @brief An Iterator trait
+
+		/// @typedef NodeIterator::reference;
+		/// @brief An Iterator trait
+
+		/// @typedef NodeIterator::iterator_category;
+		/// @brief An Iterator trait
+
+        /// @fn NodeIterator::NodeIterator();
+        /// @brief Default Constructor, makes a blank iterator
+
+        /// @fn NodeIterator::NodeIterator(const Node& node);
+        /// @brief Construct an iterator which points to the specified node
+        /// @param node A Node that this iterator will point to.
+
+        /// @fn NodeIterator::operator==(const NodeIterator& rhs) const;
+        /// @brief Compares this NodeIterator to another NodeIterator for equality
+        /// @param rhs The Right Hand Side NodeIterator
+        /// @return True if the internal data stored in Node this NodeIterator refers to is the same as the metadata in the other NodeIterator's Node, false otherwise.
+
+        /// @fn NodeIterator::operator!=(const NodeIterator& rhs) const;
+        /// @brief Compares this NodeIterator to another NodeIterator for inequality
+        /// @param rhs The Right Hand Side NodeIterator.
+        /// @return False if the internal data stored in Node this NodeIterator refers to is the same as the metadata in the other NodeIterator's Node, True otherwise.
+
+        /// @fn NodeIterator::operator*();
+        /// @brief Deferences this Iterator
+        /// @return a Node reference to the node pointed at by this NodeIterator.
+
+        /// @fn NodeIterator::operator->();
+        /// @brief Get the pointer the Node this points to.
+        /// @return A pointer to the Node this NodeIterator references.
+
+		/// @fn NodeIterator::operator++();
+		/// @brief Increment the iterator to the next member of the container.
+        /// @return Returns a const NodeIterator.
+
+		/// @fn NodeIterator::operator++(int);
+		/// @brief Increment the iterator to the next member of the container.
+        /// @return Returns a NodeIterator.
+
+		/// @fn NodeIterator::operator--();
+		/// @brief Decrement the iterator to the next member of the container.
+        /// @return Returns a const NodeIterator.
+
+		/// @fn NodeIterator::operator--(int);
+		/// @brief Decrement the iterator to the next member of the container.
+        /// @return Returns a NodeIterator.
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class AttributeIterator
+        /// @brief Attribute iterator (a bidirectional iterator over a collection of Attribute).
+        /// @see This behaves very similar to xml::NodeIterator
+
+		/// @typedef AttributeIterator::difference_type;
+		/// @brief An Iterator trait
+
+		/// @typedef AttributeIterator::value_type;
+		/// @brief An Iterator trait
+
+		/// @typedef AttributeIterator::pointer;
+		/// @brief An Iterator trait
+
+		/// @typedef AttributeIterator::reference;
+		/// @brief An Iterator trait
+
+		/// @typedef AttributeIterator::iterator_category;
+		/// @brief An Iterator trait
+
+        /// @fn AttributeIterator::AttributeIterator();
+        /// @brief Default Constructor, makes a blank iterator
+
+        /// @fn AttributeIterator::AttributeIterator(const Attribute& attr, const Node& GetParent);
+        /// @brief Construct an iterator which points to the specified node
+        /// @param GetParent A Node that contains the Attribute this iterator will point to.
+        /// @param attr The Attribute this iterator points to.
+
+        /// @fn AttributeIterator::operator==(const AttributeIterator& rhs) const;
+        /// @brief Compares this AttributeIterator to another AttributeIterator for equality
+        /// @param rhs The Right Hand Side AttributeIterator
+        /// @return True if the internal data stored in the Attribute this AttributeIterator refers to is the same as the metadata in the other AttributeIterator's Attribute, false otherwise.
+
+        /// @fn AttributeIterator::operator!=(const AttributeIterator& rhs) const;
+        /// @brief Compares this AttributeIterator to another AttributeIterator for inequality
+        /// @param rhs The Right Hand Side AttributeIterator.
+        /// @return False if the internal data stored in Node this AttributeIterator refers to is the same as the metadata in the other AttributeIterator's Attribute, True otherwise.
+
+        /// @fn AttributeIterator::operator*();
+        /// @brief Deferences this Iterator
+        /// @return a Attribute reference to the Attribute pointed at by this AttributeIterator.
+
+        /// @fn AttributeIterator::operator->();
+        /// @brief Get the pointer the Attribute this points to.
+        /// @return A pointer to the Attribute this AttributeIterator references.
+
+		/// @fn AttributeIterator::operator++();
+		/// @brief Increment the iterator to the next member of the container.
+        /// @return Returns a const AttributeIterator.
+
+		/// @fn AttributeIterator::operator++(int);
+		/// @brief Increment the iterator to the next member of the container.
+        /// @return Returns a AttributeIterator.
+
+		/// @fn AttributeIterator::operator--();
+		/// @brief Decrement the iterator to the next member of the container.
+        /// @return Returns a const AttributeIterator.
+
+		/// @fn AttributeIterator::operator--(int);
+		/// @brief Decrement the iterator to the next member of the container.
+        /// @return Returns a AttributeIterator.
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class TreeWalker
+        /// @brief Used to call a function for_each member of the subtree of nodes descended from a specific node.
+        /// @details If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some
+        /// equivalent method or use a TreeWalker. This provides a helper for depth-first traversal of a subtree. In order
+        /// to use it, you have to implement xml::TreeWalker interface and call xml::Node::Traverse() function. \n\n
+        ///  * First, TreeWalker::begin() is called with traversal root as its argument.\n
+        ///  * Then, TreeWalker::for_each() function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Each Node is passed as an argument.\n
+        ///  * Finally, TreeWalker::end() function is called with traversal root as its argument.\n\n
+        /// If TreeWalker::begin(), TreeWalker::end() or any of the TreeWalker::for_each() calls return false, the traversal
+        /// is terminated and false is returned as the traversal result; otherwise, the traversal results in true. Note that
+        /// you don't have to override begin or end functions; their default implementations return true.\n\n
+        /// You can get the node's depth relative to the traversal root at any point by calling TreeWalker::Depth() function.
+
+        /// @fn TreeWalker::Depth() const;
+        /// @brief How many descendants deep are we during traversal.
+        /// @return This returns -1 if called from TreeWalker::begin() or TreeWalker::end(), and returns 0-based depth if called from for_each - depth is 0 for all children of the traversal root, 1 for all grandchildren, 2 for great-grandchildren and so on.
+
+        /// @fn TreeWalker::TreeWalker();
+        /// @brief Default constructor, initializes depth, and can do little else without a fully implemented treewalker.
+
+        /// @fn TreeWalker::~TreeWalker();
+        /// @brief Virtual deconstructor. Tears down a TreeWalker
+
+        /// @fn TreeWalker::begin(Node& node);
+        /// @brief Called on the root Node of the xml subtree when traversal begins.
+        /// @detail By default this simply returns true, but is expected to be overridden with any desired behavior
+        /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
+
+        /// @fn TreeWalker::for_each(Node& node);
+        /// @brief A Pure Virtual function that is expected to be implemented to create the desired behavior.
+        /// @detail This is called on every Node that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches
+        /// of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching
+        /// many nodes.
+        /// @return if true Traversal is expected to continue, if false, then traversal ends and the Node::Traverse() that was called is expected to return false.
+
+        /// @fn TreeWalker::end(Node& node);
+        /// @brief Called on the root Node of the xml subtree when traversal ends.
+        /// @detail By default this simply returns true, but is expected to be overridden with any desired behavior
+        /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
+
+        //////////////////////////////////////////////////////////////////////////////
+        /// @class Document
+        /// @brief The root node of any xml hierarchy is a Document Node
+        /// @details This has all the same features as a Node and include a few features for saving, loading, streaming
+        /// and to a limited degree managing the document declaration.
+
+        /// @fn Document::Document();
+        /// @brief Creates an empty document with just a root Node
+
+        /// @fn Document::~Document()
+        /// @brief Tears down a document, and incidentally invalidates all Node and Attribute handles to this document.
+
+        /// @fn Document::Reset();
+        /// @brief Removes all nodes, leaving the empty document.
+
+        /// @fn Document::Reset(const Document& proto);
+        /// @brief Removes all nodes, then copies the entire contents of the specified document
+        /// @param proto The Document to copy.
+
+        /// @fn Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+        /// @brief Load XML from a stream.
+        /// @param stream An std::istream which has xml text in it.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+        /// @fn Document::Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault);
+        /// @brief Load XML from a wide stream.
+        /// @param stream An std::basic_istream which has xml wide character text in it.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+        /// @fn Document::Load(const char_t* contents, unsigned int options = ParseDefault);
+        /// @brief Load XML from a Character array.
+        /// @param contents A pointer to the Null terminated array of Characters.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+
+		/// @fn Document::LoadFile(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+		/// @brief Load document from file
+		/// @param Path An c-style char array that contains the path and filename of the xml document to load.
+		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+		/// @fn Document::LoadFile(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+		/// @brief Load document from file
+		/// @param Path An c-style wide char array that contains the path and filename of the xml document to load.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+		/// @fn Document::LoadBufferInplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
+		/// @details You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed.
+        /// @param contents A pointer to buffer containing the xml document to be parsed, that must remain for the lifecycle of the xml::Document.
+        /// @param size The size of the buffer.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+        /// @fn Document::LoadBuffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+        /// @brief Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns.
+        /// @param contents A pointer to buffer containing the xml document to be parsed, that will remain unchanged.
+        /// @param size The size of the buffer.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+		/// @fn Document::LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
+		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
+		/// @details You should allocate the buffer with pugixml allocation function; xml::Document will free the buffer when it is no longer needed (you can't use it anymore).
+        /// @param contents A pointer to buffer containing the xml document to be parsed.
+        /// @param size The size of the buffer.
+        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+        /// @return A ParseResult that stores the the outcome of attempting to load the document.
+
+        /// @fn Document::Save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+        /// @brief Save XML document to WriterInstance.
+		/// @param WriterInstance The Writer that will be used to output the xml text.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+
+		/// @fn Document::SaveFile(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+		/// @brief Save XML to file.
+		/// @param Path A c-style array of chars that contain the filename (and any path) of the file to be output.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+        /// @return False if the target file could not be opened for writing
+
+		/// @fn Document::SaveFile(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;
+		/// @brief Save XML to file.
+		/// @param Path A c-style array of wide chars that contain the filename (and any path) of the file to be output.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+        /// @return False if the target file could not be opened for writing
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @enum XPathValueType
+        /// @brief XPathQuery return type
+
+		/// @var XPathTypeNone
+		/// @brief Unknown Type (query failed to compile)
+
+		/// @var XPathTypeNodeSet
+		/// @brief Node set (XPathNodeSet)
+
+		/// @var XPathTypeNumber
+		/// @brief Number This corresponds to a double or Real.
+
+		/// @var XPathTypeString
+		/// @brief Corresponds to the String type.
+
+		/// @var XPathTypeBoolean
+		/// @brief A Boolean value.
+
+		///////////////////////////////////////////////////////////////////////////////
+        /// @struct XPathParseResult
+        /// @brief XPath parsing result
+
+        /// @var XPathParseResult::Offset
+        /// @brief Last parsed Offset (in Character units from string start)
+
+        /// @var XPathParseResult::error
+        /// @brief Error message (0 if no error).
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathVariable
+        /// @brief A single XPath variable
+        /// @details This is intended to be used as a single member of an XPathVariableSet, and for moving data into and out of XPathQueries.
+
+        /// @fn XPathVariable::XPathVariable();
+        /// @brief Protected Default constructor.
+
+        /// @var XPathVariable::_type
+        /// @brief What kind of data does this variable store
+
+        /// @var XPathVariable::_next
+        /// @brief The next variable in the variable set. I think, and I am not certain, that this is a circularly linked list.
+
+        /// @fn XPathVariable::XPathVariable(const XPathVariable&);
+        /// @brief Protected Copy Constructor, used to force noncopyable semantics
+
+        /// @fn XPathVariable::operator=(const XPathVariable&);
+        /// @brief Protected assignment operator, used to force noncopyable semantics
+        /// @return Shouldn't be used, not implemented.
+
+		/// @fn XPathVariable::GetBoolean() const;
+		/// @brief Get this as a bool.
+		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return A This as a bool, without conversion.
+
+		/// @fn XPathVariable::GetNumber() const;
+		/// @brief Get this as a double.
+		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+        /// @return A This as a double, without conversion.
+
+		/// @fn XPathVariable::GetString() const;
+		/// @brief Get this as a c-string.
+		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+		/// @return A This as a c-string of char_t, without conversion.
+
+		/// @fn XPathVariable::GetNodeSet() const;
+		/// @brief Get this as a XPathNodeSet.
+		/// @details Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error
+        /// @return A This as an XPathNodeSet, without conversion.
+
+        /// @fn XPathVariable::Set(bool Value);
+        /// @brief Set variable Value; no Type conversion is performed.
+        /// @param Value The value to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathVariableSet
+        /// @brief A set of XPath variables.
+
+        /// @fn XPathVariableSet::XPathVariableSet();
+        /// @brief Default Constructor, Blanks any XPathVariable it contains.
+
+        /// @fn XPathVariableSet::~XPathVariableSet();
+        /// @brief Default Deconstructor, Deletes any XPathVariable it contains.
+
+        /// @fn XPathVariableSet::Add(const char_t* Name, XPathValueType Type);
+        /// @brief Add a new variable or get the existing one, if the Types match
+        /// @return A pointer to the XPathVariable you referenced or just created.
+
+        /// @fn XPathVariableSet::Set(const char_t* Name, bool Value);
+        /// @brief Set contained variable Value; no Type conversion is performed.
+        /// @param Name The name of variable to change.
+        /// @param Value The value to attempt to put into the named variable.
+		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
+
+   		/// @fn XPathVariableSet::Get(const char_t* Name);
+   		/// @brief Get the named XPathVariable.
+   		/// @param Name The name of the XPathVariable you want.
+        /// @return A pointer to the specified XPathVariable.
+
+		/// @fn XPathVariableSet::Get(const char_t* Name) const;
+		/// @brief Get the named XPathVariable.
+   		/// @param Name The name of the XPathVariable you want.
+        /// @return A pointer to the specified XPathVariable.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathVariableSet
 
 
 

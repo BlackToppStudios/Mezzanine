@@ -169,23 +169,38 @@
 <a name="l00138"></a>00138 <span class="preprocessor"></span>        }
 <a name="l00139"></a>00139 
 <a name="l00140"></a>00140         <span class="keywordtype">void</span> <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a11ab7359564519dc966f997c98109f6e" title="Renders the current world contents to the screen.">RenderPhysWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TheWorld, Ogre::RenderWindow* TheOgreWindow)
-<a name="l00141"></a>00141         {<span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">            /// @todo Are seperate methods nessessary?</span>
-<a name="l00143"></a>00143 <span class="comment">            /// Simple investigation showed that the same update() method is called when rendering one frame, but for all targets.</span>
-<a name="l00144"></a>00144 <span class="comment"></span><span class="preprocessor">            #ifndef WINDOWS</span>
-<a name="l00145"></a>00145 <span class="preprocessor"></span>               TheOgreWindow-&gt;update(<span class="keyword">true</span>);
-<a name="l00146"></a>00146 <span class="preprocessor">            #else</span>
-<a name="l00147"></a>00147 <span class="preprocessor"></span>               Ogre::Root::getSingleton().renderOneFrame();
-<a name="l00148"></a>00148                SDL_GL_SwapBuffers();
-<a name="l00149"></a>00149 <span class="preprocessor">            #endif</span>
-<a name="l00150"></a>00150 <span class="preprocessor"></span>        }
-<a name="l00151"></a>00151     }
-<a name="l00152"></a>00152 }
-<a name="l00153"></a>00153 
-<a name="l00154"></a>00154 <span class="preprocessor">#endif</span>
+<a name="l00141"></a>00141         {
+<a name="l00142"></a>00142             TheWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Rendering the World.&quot;</span>);
+<a name="l00143"></a>00143 <span class="preprocessor">            #ifndef WINDOWS</span>
+<a name="l00144"></a>00144 <span class="preprocessor"></span>                Ogre::Root::getSingleton()._fireFrameStarted();
+<a name="l00145"></a>00145                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
+<a name="l00146"></a>00146                 TheOgreWindow-&gt;update(<span class="keyword">true</span>);
+<a name="l00147"></a>00147                 Ogre::Root::getSingleton()._fireFrameEnded();
+<a name="l00148"></a>00148                 <span class="keywordflow">if</span>( !TheOgreWindow-&gt;isVisible() )
+<a name="l00149"></a>00149                     Ogre::Root::getSingleton().clearEventTimes();
+<a name="l00150"></a>00150 <span class="preprocessor">            #else</span>
+<a name="l00151"></a>00151 <span class="preprocessor"></span>                <span class="keywordflow">if</span>(TheOgreWindow-&gt;isActive())
+<a name="l00152"></a>00152                 {
+<a name="l00153"></a>00153                     Ogre::Root::getSingleton().renderOneFrame();
+<a name="l00154"></a>00154                     SDL_GL_SwapBuffers();
+<a name="l00155"></a>00155                 }<span class="keywordflow">else</span> <span class="keywordflow">if</span>( !TheOgreWindow-&gt;isActive() &amp;&amp; TheOgreWindow-&gt;isVisible()){
+<a name="l00156"></a>00156                     TheOgreWindow-&gt;update(<span class="keyword">false</span>);
+<a name="l00157"></a>00157                     SDL_GL_SwapBuffers();
+<a name="l00158"></a>00158                 }<span class="keywordflow">else</span>{
+<a name="l00159"></a>00159                     TheWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Aborted Rendering, target is not active&quot;</span>);
+<a name="l00160"></a>00160                     <span class="comment">// clear timings to allow smooth alt-tabbing action.</span>
+<a name="l00161"></a>00161                     Ogre::Root::getSingleton().clearEventTimes();
+<a name="l00162"></a>00162                 }
+<a name="l00163"></a>00163 <span class="preprocessor">            #endif</span>
+<a name="l00164"></a>00164 <span class="preprocessor"></span>            TheWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Finished Rendering&quot;</span>);
+<a name="l00165"></a>00165         }
+<a name="l00166"></a>00166     }
+<a name="l00167"></a>00167 }
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:17 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:49 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

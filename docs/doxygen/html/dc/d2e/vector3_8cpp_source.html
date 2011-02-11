@@ -424,8 +424,8 @@
 <a name="l00393"></a>00393 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">phys::Vector3</a>&amp; x)
 <a name="l00394"></a>00394 {
 <a name="l00395"></a>00395 <span class="preprocessor">    #ifdef PHYSXML</span>
-<a name="l00396"></a>00396 <span class="preprocessor"></span>        <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html">phys::xml::Document</a> Doc;
-<a name="l00397"></a>00397         Doc.load(<span class="stringliteral">&quot;&quot;</span>);           <span class="comment">// This sets the encoding to UTF8 ?!</span>
+<a name="l00396"></a>00396 <span class="preprocessor"></span>        <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">phys::xml::Document</a> Doc;
+<a name="l00397"></a>00397         Doc.<a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9d4ddfd3b987fa3d31d41c06d06a001e" title="Load XML from a stream.">Load</a>(<span class="stringliteral">&quot;&quot;</span>);           <span class="comment">// This sets the encoding to UTF8 ?!</span>
 <a name="l00398"></a>00398         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a> VecNode = Doc.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4971850b72467fcdcf1b3beeb09f26cf" title="Creates a Node and makes it a child of this one.">AppendChild</a>(<span class="stringliteral">&quot;Vector3&quot;</span>);
 <a name="l00399"></a>00399 
 <a name="l00400"></a>00400         <span class="keywordflow">if</span> (VecNode)
@@ -440,16 +440,16 @@
 <a name="l00409"></a>00409                 {
 <a name="l00410"></a>00410                     <span class="comment">// It worked we don&#39;t need to do anything</span>
 <a name="l00411"></a>00411                 }<span class="keywordflow">else</span>{
-<a name="l00412"></a>00412                     <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Could not Stream Vector3 XML Attribute Values.&quot;</span>);
+<a name="l00412"></a>00412                     <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Could not Stream Vector3 XML Attribute Values.&quot;</span>);
 <a name="l00413"></a>00413                 }
 <a name="l00414"></a>00414             }<span class="keywordflow">else</span>{
-<a name="l00415"></a>00415                 <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Could not Stream Vector3 XML Attribute Names.&quot;</span>);
+<a name="l00415"></a>00415                 <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Could not Stream Vector3 XML Attribute Names.&quot;</span>);
 <a name="l00416"></a>00416             }
 <a name="l00417"></a>00417         }<span class="keywordflow">else</span>{
-<a name="l00418"></a>00418             <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Could not Stream Vector3 XML Anything.&quot;</span>);
+<a name="l00418"></a>00418             <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Could not Stream Vector3 XML Anything.&quot;</span>);
 <a name="l00419"></a>00419         }
 <a name="l00420"></a>00420 
-<a name="l00421"></a>00421         Doc.save(stream,<span class="stringliteral">&quot;\t&quot;</span>,<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#aee4ccb3535945d4808a0cf6abe4cb050" title="Omit default XML declaration even if there is no declaration in the document. This flag is off by def...">phys::xml::FormatNoDeclaration</a> | <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a6f6696cbdc48011817adad7978e83976" title="Use raw output mode (no indentation and no line breaks are written). This flag is off by default...">phys::xml::FormatRaw</a>);
+<a name="l00421"></a>00421         Doc.<a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a1e3761e11294b3d526ff13d76ee8be0d" title="Save XML document to WriterInstance.">Save</a>(stream,<span class="stringliteral">&quot;\t&quot;</span>,<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#aee4ccb3535945d4808a0cf6abe4cb050" title="Omit default XML declaration even if there is no declaration in the document. This flag is off by def...">phys::xml::FormatNoDeclaration</a> | <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a6f6696cbdc48011817adad7978e83976" title="Use raw output mode (no indentation and no line breaks are written). This flag is off by default...">phys::xml::FormatRaw</a>);
 <a name="l00422"></a>00422 
 <a name="l00423"></a>00423         <span class="comment">//stream &lt;&lt; &quot;&lt;Vector3 Version=\&quot;1\&quot; X=\&quot;&quot; &lt;&lt; x.X &lt;&lt; &quot;\&quot; Y=\&quot;&quot; &lt;&lt; x.Y &lt;&lt; &quot;\&quot; Z=\&quot;&quot; &lt;&lt; x.Z &lt;&lt; &quot;\&quot; /&gt;&quot;;</span>
 <a name="l00424"></a>00424 <span class="preprocessor">    #else</span>
@@ -473,9 +473,9 @@
 <a name="l00442"></a>00442 
 <a name="l00443"></a>00443     <span class="keywordflow">try</span>
 <a name="l00444"></a>00444     {
-<a name="l00445"></a>00445         <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html">phys::xml::Document</a> Doc;
-<a name="l00446"></a>00446         <span class="keywordflow">if</span>(!Doc.load(OneTag.c_str()))
-<a name="l00447"></a>00447             { <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Could not Deserialize XML Stream which should contain Vector3 xml.&quot;</span>); }
+<a name="l00445"></a>00445         <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">phys::xml::Document</a> Doc;
+<a name="l00446"></a>00446         <span class="keywordflow">if</span>(!Doc.<a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9d4ddfd3b987fa3d31d41c06d06a001e" title="Load XML from a stream.">Load</a>(OneTag.c_str()))
+<a name="l00447"></a>00447             { <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Could not Deserialize XML Stream which should contain Vector3 xml.&quot;</span>); }
 <a name="l00448"></a>00448 
 <a name="l00449"></a>00449         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a> VecNode = Doc.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>();
 <a name="l00450"></a>00450         <span class="keywordflow">if</span> (VecNode)
@@ -488,14 +488,14 @@
 <a name="l00457"></a>00457                     Vec.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a6c9bc2ab0995d5056dba8272c650e58e" title="Coordinate on the Y vector.">Y</a>=VecNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Y&quot;</span>).AsReal();
 <a name="l00458"></a>00458                     Vec.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a53c84fa4b38fb9c4a4d822b04c200b13" title="Coordinate on the Z vector.">Z</a>=VecNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Z&quot;</span>).AsReal();
 <a name="l00459"></a>00459                 }<span class="keywordflow">else</span>{
-<a name="l00460"></a>00460                     <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Vector3 incompatible serialized version.&quot;</span>);
+<a name="l00460"></a>00460                     <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Vector3 incompatible serialized version.&quot;</span>);
 <a name="l00461"></a>00461                 }
 <a name="l00462"></a>00462             }<span class="keywordflow">else</span>{
 <a name="l00463"></a>00463                 <span class="comment">//phys::World::GetWorldPointer()-&gt;Log(VecNode.Name());</span>
-<a name="l00464"></a>00464                 <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Vector3 not next item in stream, failed to serialize.&quot;</span>);
+<a name="l00464"></a>00464                 <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;Vector3 not next item in stream, failed to serialize.&quot;</span>);
 <a name="l00465"></a>00465             }
 <a name="l00466"></a>00466         }<span class="keywordflow">else</span>{
-<a name="l00467"></a>00467             <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="This is the core of the Ogre rendering system.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;No valid XML tag in stream, when attempting to deserialize Vector3.&quot;</span>);
+<a name="l00467"></a>00467             <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<span class="stringliteral">&quot;No valid XML tag in stream, when attempting to deserialize Vector3.&quot;</span>);
 <a name="l00468"></a>00468         }
 <a name="l00469"></a>00469 
 <a name="l00470"></a>00470         <span class="keywordflow">return</span> stream;
@@ -611,7 +611,7 @@
 <a name="l00580"></a>00580 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Thu Feb 3 2011 13:09:18 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:49 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
