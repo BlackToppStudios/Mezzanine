@@ -163,6 +163,19 @@ namespace phys
             #endif
             TheWorld->Log("Finished Rendering");
         }
+
+        String GetPlatform()
+        {
+            #ifdef LINUX
+                return "Linux";
+            #endif
+            #ifdef WINDOWS
+                return "Windows";
+            #endif
+			#ifdef MACOSX
+				return "MacOSX";
+			#endif
+        }
     }
 }
 

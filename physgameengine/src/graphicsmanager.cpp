@@ -46,6 +46,7 @@
 #include "actorcontainervector.h"
 #include "graphicsmanager.h"
 #include "cameramanager.h"
+#include "resourcemanager.h"
 #include "uimanager.h"
 #include "camera.h"
 
@@ -210,13 +211,16 @@ namespace phys
         //    (*cur)->InitEntity(true);
 
         Ogre::CompositorManager::getSingleton().reloadAll();
-        Ogre::GpuProgramManager::getSingleton().reloadAll();
-        Ogre::HighLevelGpuProgramManager::getSingleton().reloadAll();
+        //Ogre::GpuProgramManager::getSingleton().reloadAll();
+        //Ogre::HighLevelGpuProgramManager::getSingleton().reloadAll();
         //Ogre::FontManager::getSingleton().reloadAll();
-        Ogre::MaterialManager::getSingleton().reloadAll(false);
+        //Ogre::MaterialManager::getSingleton().reloadAll();
         Ogre::TextureManager::getSingleton().reloadAll();
+
+        //GameWorld->GetResourceManager()->ParseMaterialScripts();
+
         Ogre::MeshManager::getSingleton().reloadAll();
-        Ogre::SkeletonManager::getSingleton().reloadAll();
+        //Ogre::SkeletonManager::getSingleton().reloadAll();
 
         for( std::vector<ActorBase*>::iterator cur = ActorMan->begin() ; cur != ActorMan->end() ; cur++ )
             (*cur)->InitEntity(true);
@@ -334,6 +338,14 @@ namespace phys
     Real GraphicsManager::GetWorstFrameTime()
     {
         return OgreGameWindow->getWorstFrameTime();
+    }
+
+    String GraphicsManager::GetRenderSystemName()
+    {
+        String Renderer = Ogre::Root::getSingleton().getRenderSystem()->getName();
+        Whole EditPos = Renderer.find("Rendering");
+        Renderer.erase(EditPos - 1);
+        return Renderer;
     }
 
     //Inherited From ManagerBase

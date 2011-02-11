@@ -71,13 +71,16 @@ namespace phys{
 
     ActorBase::~ActorBase ()
     {
+        DetachFromGraphics();
         delete MotionState;
         if(!ShapeIsSaved)
         {
             delete Shape;
         }
-        delete node;
-        delete entity;
+        //delete entity;
+        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(entity);
+        //delete node;
+        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroySceneNode(node);
         if(CollisionObject)
         {
             delete CollisionObject;
@@ -651,6 +654,11 @@ namespace phys{
         }else{
             return false;
         }
+    }
+
+    Ogre::Entity* ActorBase::GetOgreObject()
+    {
+        return entity;
     }
 }// /phys
 

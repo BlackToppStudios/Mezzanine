@@ -108,6 +108,11 @@ namespace phys
         //TargetWorld->Physics->BulletDynamicsWorld->removeRigidBody(this->CollisionObject);
         this->DetachFromGraphics();
     }
+
+    btRigidBody* ActorTerrain::GetBulletObject()
+    {
+        return RigidBody;
+    }
 }
 
 #endif

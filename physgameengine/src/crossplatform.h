@@ -131,6 +131,10 @@ namespace phys
         /// @param TheWorld This is a pointer to the World to be rendered.
         /// @param TheWorld A pointer to the game window to be update to be rendered. This is considered an internal component
         void PHYS_LIB RenderPhysWorld(World *TheWorld, Ogre::RenderWindow* TheOgreWindow);
+
+        /// @brief Gets the platform currently being run on.
+        /// @return Returns a string based on the platform.  "Windows", "Linux", or "MacOSX".
+        String PHYS_LIB GetPlatform();
     }
 }
 #endif

@@ -76,6 +76,9 @@ namespace phys
             /// A list of Pointers to streams created to delete periodically.
             std::vector<ResourceInputStream*> DeleteList;
 
+            std::vector<String> ResourceGroups;
+            void AddResourceGroupName(String Name);
+
         public:
             /// @brief Class constructor.
             /// @details Standard manager constructor.
@@ -117,6 +120,9 @@ namespace phys
             /// take up memory and drop performance.
             /// @param Name Name of the resource group.
             void InitResourceGroup(const String& Name);
+
+            /// @brief Parses all Ogre Material scripts.
+            void ParseMaterialScripts();
 
             /// @brief Get a stream to read from the specified file
             /// @param FileName The name of the File you want to stream data from

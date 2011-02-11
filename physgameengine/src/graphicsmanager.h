@@ -196,6 +196,10 @@ namespace phys
             /// @return Returns a Real representing the worst time for rendering a frame.
             Real GetWorstFrameTime();
 
+            /// @brief Gets the name of the render system in current use.
+            /// @return Returns a string containing the name of the current render system.
+            String GetRenderSystemName();
+
         //Inherited from ManagerBase
             /// @brief Empty Initializor
             /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists

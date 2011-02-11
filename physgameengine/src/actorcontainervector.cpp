@@ -48,6 +48,13 @@ namespace phys
     ActorContainerVector::ActorContainerVector ()
         { this->Priority = -40; }
 
+    ActorContainerVector::~ActorContainerVector ()
+    {
+        for( std::vector<ActorBase*>::iterator it = this->begin() ; it != this->end() ; it++ )
+            delete (*it);
+        this->clear();
+    }
+
     void ActorContainerVector::AddActor(ActorBase* ActorToAdd)
     {
         this->RecentlyAdded = ActorToAdd;

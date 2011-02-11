@@ -67,6 +67,8 @@ namespace phys
             /// @brief Simple Constructor
             /// @details This creates and empty usable container based on std::vector.
             ActorContainerVector ();
+            /// @brief Class destructor
+            virtual ~ActorContainerVector();
 
             //Simply Inherited mmembers
             virtual void AddActor(ActorBase* ActorToAdd);

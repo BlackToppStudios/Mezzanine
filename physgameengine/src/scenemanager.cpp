@@ -74,19 +74,22 @@ namespace phys
 
     SceneManager::~SceneManager()
     {
-        Ogre::Root::getSingleton().destroySceneManager(OgreManager);
         for( unsigned int x=0 ; x < Lights.size() ; x++ )
         {
             delete Lights[x];
         }
+        Lights.clear();
         for( unsigned int x=0 ; x < Particles.size() ; x++ )
         {
             delete Particles[x];
         }
+        Particles.clear();
         for( unsigned int x=0 ; x < Nodes.size() ; x++ )
         {
             delete Nodes[x];
         }
+        Nodes.clear();
+        Ogre::Root::getSingleton().destroySceneManager(OgreManager);
     }
 
     void SceneManager::Initialize()

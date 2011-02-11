@@ -206,13 +206,14 @@ namespace phys
     //tears the world down
     World::~World()
     {
-        //All the pointers Ogre made should get taken care of by OGRE
-        Ogre::Root::getSingleton().shutdown();
-
         for(std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); iter!= ManagerList.end(); iter++)
         {
-            this->ManagerList.erase(iter);
+            delete (*iter);
         }
+        ManagerList.clear();
+
+        //All the pointers Ogre made should get taken care of by OGRE
+        Ogre::Root::getSingleton().shutdown();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -342,6 +343,7 @@ namespace phys
         }//End of main loop
 
         //Some after loop cleanup
+        Whole X = 0;
         //this->DestroyRenderWindow();
     }
 

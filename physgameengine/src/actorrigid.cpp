@@ -374,5 +374,10 @@ namespace phys{
         this->physrigidbody->forceActivationState(ACTIVE_TAG);
 		this->physrigidbody->setDeactivationTime( 0.f );
     }
+
+    btRigidBody* ActorRigid::GetBulletObject()
+    {
+        return physrigidbody;
+    }
 }
 #endif

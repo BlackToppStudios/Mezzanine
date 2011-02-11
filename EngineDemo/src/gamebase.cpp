@@ -83,6 +83,7 @@ int main(int argc, char **argv)
 	//Start the Main Loop
 	TheWorld->MainLoop();
 
+    //delete TheWorld;
 	return 0;
 }
 

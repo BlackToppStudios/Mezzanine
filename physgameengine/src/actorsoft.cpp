@@ -256,5 +256,10 @@ namespace phys{
         TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody);
         this->DetachFromGraphics();
     }
+
+    btSoftBody* ActorSoft::GetBulletObject()
+    {
+        return physsoftbody;
+    }
 }
 #endif

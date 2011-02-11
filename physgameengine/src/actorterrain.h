@@ -89,6 +89,8 @@ namespace phys
 
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);
+
+            virtual btRigidBody* GetBulletObject();
     };
 }
 

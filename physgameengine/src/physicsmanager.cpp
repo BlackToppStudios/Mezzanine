@@ -272,6 +272,16 @@ namespace phys
 
     PhysicsManager::~PhysicsManager()
     {
+        for( std::map< String, btCollisionShape* >::iterator it = PhysicsShapes.begin() ; it != PhysicsShapes.end() ; it++ )
+        {
+            delete (*it).second;
+        }
+        PhysicsShapes.clear();
+        for( std::vector< AreaEffect* >::iterator it2 = AreaEffects.begin() ; it2 != AreaEffects.end() ; it2++ )
+        {
+            delete (*it2);
+        }
+        AreaEffects.clear();
         //Destroy the physical world that we loved and cherished
         delete BulletDynamicsWorld;
         delete BulletDispatcher;
@@ -279,7 +289,6 @@ namespace phys
         delete BulletSolver;
         delete BulletBroadphase;
         delete BulletDrawer;
-
     }
 
     void PhysicsManager::Construct(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
