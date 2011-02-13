@@ -1238,10 +1238,78 @@ namespace phys
         /// - You can precompile expressions to query objects to save compilation time if it becomes an issue; \n
         /// - You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings; \n
         /// - You can get the type of expression value via query object. \n \n
-        /// Query objects correspond to xml::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to zml::XPathQuery in the container.
+        /// Query objects correspond to xml::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to xml::XPathQuery in the container. \n \n
+        /// To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, XPathQuery::EvaluateBoolean(), XPathQuery::EvaluateNumber() and XPathQuery::EvaluateString() always return a result, but EvaluateNodeSet results in an error if the return type is not node set.
 
-        /// @fn XPathQuery::~XPathQuery();
-		/// @brief Destructor
+        /// @fn XPathQuery::ReturnType() const;
+        /// @brief Get query expression return Type.
+        /// @return A XPathValueType.
+
+        /// @fn XPathQuery::EvaluateBoolean(const XPathNode& n) const;
+        /// @brief Evaluate expression as boolean value in the specified context; performs Type conversion if necessary.
+        /// @param n The XPathNode that will serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+		/// @return A bool result of evaluating the expression.
+
+        /// @fn XPathQuery::Result() const;
+        /// @brief Get parsing Result (used to get compilation errors when XML_NO_EXCEPTIONS is enabled)
+		/// @return A const reference to an XPathParseResult.
+
+        /// @fn XPathQuery::operator!() const;
+        /// @brief Logical not operator, used a workaround for borland compiler.
+        /// @return A bool that is the opposite of evaluatig this as a bool normally.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathException
+        /// @brief Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.
+
+		/// @fn XPathException::what() const throw();
+		/// @brief Get error message.
+		/// @return A description of the error message as a c-style string.
+
+		/// @fn XPathException::Result() const;
+		/// @brief Get parse Result.
+		/// @return The XPathParseResult used to create this exception.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathNode
+        /// @brief An XPath node which can store handles to a xml::Node or an xml::Attribute.
+        /// @details Because an XPath node can be either a xml::Node or an xml::Attribute, there is a special type, XPathNode,
+        /// which is a discriminated union of these types. A value of this type contains two node handles, one of xml::Node type,
+        /// and another one of xml::Attribute type; at most one of them can be non-null. The accessors to get these handles are
+        /// available: XPathNode::GetNode() an XPathNode::GetAttribute() . \n \n
+        /// XPath nodes can be null, in which case both accessors return null handles.
+
+        /// @fn XPathNode::XPathNode();
+		/// Default constructor; constructs empty XPath node
+
+        /// @fn XPathNode::XPathNode(const Node& node);
+        /// @brief Construct From a xml::Node.
+        /// @param node The xml::Node this handle should reference.
+
+		/// @fn XPathNode::GetNode() const;
+		/// @brief Get the xml::Node this is referencing
+		/// @return A valid xml::Node, or a null node if this doesn't reference a an xml::Node.
+
+		/// @fn XPathNode::GetAttribute() const;
+		/// @brief Get the xml::Attribute this is referencing
+        /// @return A valid xml::Attribute, or a null node if this doesn't reference a an xml::Attribute.
+
+		/// @fn XPathNode::GetParent() const;
+		/// @brief Get the parent of the xml::Node or xml::Attribute this refers to.
+        /// @return A valid xml::Node, or a null node if this doesn't reference a an xml::Node.
+
+        /// @fn XPathNode::operator!() const;
+        /// @brief Logical not operator, used a workaround for borland compiler.
+        /// @return A bool that is the opposite of evaluatig this as a bool normally.
+
+
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathNodeSet
+        /// @brief A collection of nodes that an XPathQuery can work on.
+
+
 
 
     }

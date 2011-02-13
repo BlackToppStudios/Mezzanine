@@ -354,7 +354,7 @@ namespace phys
 		explicit Attribute(AttributeStruct* attr); 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -477,7 +477,7 @@ namespace phys
 		explicit Node(NodeStruct* p); 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -1159,6 +1159,7 @@ namespace phys
 		explicit XPathQuery(const char_t* query, XPathVariableSet* variables = 0); 
  
 		// Destructor 
+		/// @brief Destructor
 		~XPathQuery(); 
  
 		// Get query expression return Type 
@@ -1170,11 +1171,19 @@ namespace phys
 		 
 		// Evaluate expression as double Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
+		/// @brief Evaluate expression as double value in the specified context; performs Type conversion if necessary.
+		/// @param n The XPathNode that will serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+		/// @return A result as a double from evaluating the expression.
 		double EvaluateNumber(const XPathNode& n) const; 
 		 
 	#ifndef XML_NO_STL 
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
+		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
+		/// @param n The XPathNode that will serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+		/// @return A result as a String from evaluating the expression.
 		String EvaluateString(const XPathNode& n) const; 
 	#endif 
 		 
@@ -1182,18 +1191,28 @@ namespace phys
 		// At most capacity characters are written to the destination buffer, full Result size is returned (includes terminating zero). 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty  set instead. 
+		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
+		/// @param buffer The place to store the c-style Character array
+		/// @param capacity At most capacity characters are written to the destination buffer.
+		/// @param n The XPathNode that with serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, this returns empty  set instead.
+		/// @return Full result size is returned (includes terminating zero).
 		size_t EvaluateString(char_t* buffer, size_t capacity, const XPathNode& n) const; 
  
 		// Evaluate expression as node set in the specified context. 
 		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on Type mismatch and std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty node set instead. 
+		/// @brief Evaluate expression as node set in the specified context.
+		/// @param n The XPathNode that with serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws throws XPathException on Type mismatch and std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, returns empty node set instead.
+		/// @return An XPathNodeSet.
 		XPathNodeSet EvaluateNodeSet(const XPathNode& n) const; 
  
 		// Get parsing Result (used to get compilation errors in XML_NO_EXCEPTIONS mode) 
 		const XPathParseResult& Result() const; 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -1209,6 +1228,7 @@ namespace phys
  
 	public: 
 		// Construct exception from parse Result 
+		/// @brief Construct exception from parse Result
 		explicit XPathException(const XPathParseResult& Result); 
  
 		// Get error message 
@@ -1234,25 +1254,35 @@ namespace phys
 		 
 		// Construct XPath node from XML node/GetAttribute 
 		XPathNode(const Node& node); 
-		XPathNode(const Attribute& GetAttribute, const Node& GetParent); 
+		/// @brief Construct From a xml::Attribute.
+		/// @param GetAttribute The xml::Attribute this handle should reference.
+		/// @param GetParent The xml::Node the xml::Attribute is on.
+		XPathNode(const Attribute& GetAttribute, const Node& GetParent);  
  
 		// Get node/GetAttribute, if any 
-		Node node() const; 
+		Node GetNode() const; 
 		Attribute GetAttribute() const; 
 		 
 		// Get GetParent of contained node/GetAttribute 
 		Node GetParent() const; 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
 		 
 		// Borland C++ workaround 
 		bool operator!() const; 
  
 		// Comparison operators 
-		bool operator==(const XPathNode& n) const; 
-		bool operator!=(const XPathNode& n) const; 
+		/// @brief Called when comparing two XPathNode instances for equality.
+		/// @param n The other xml::XPathNode to compare this Node against for equality.
+		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;
+		bool operator==(const XPathNode& n) const;  
+		
+		/// @brief Called when comparing two XPathNode instances for inequality.
+		/// @param n The other xml::XPathNode to compare this Node against for inequality.
+		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;
+		bool operator!=(const XPathNode& n) const;  
 	}; 
  
 #ifdef __BORLANDC__ 

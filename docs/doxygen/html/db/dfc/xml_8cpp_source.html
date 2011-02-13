@@ -5514,13 +5514,13 @@
 <a name="l05483"></a>05483                 <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">unsigned</span> <span class="keywordtype">int</span><span class="keyword">&gt;</span>(ch - <span class="charliteral">&#39;A&#39;</span>) &lt; 26 ? static_cast&lt;char_t&gt;(ch | <span class="charliteral">&#39; &#39;</span>) : ch; 
 <a name="l05484"></a>05484         } 
 <a name="l05485"></a>05485  
-<a name="l05486"></a>05486         XPathString string_Value(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; na, XPathAllocator* alloc) 
+<a name="l05486"></a>05486         XPathString string_Value(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; na, XPathAllocator* alloc) 
 <a name="l05487"></a>05487         { 
-<a name="l05488"></a>05488                 <span class="keywordflow">if</span> (na.GetAttribute()) 
-<a name="l05489"></a>05489                         <span class="keywordflow">return</span> XPathStringConst(na.GetAttribute().<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>()); 
+<a name="l05488"></a>05488                 <span class="keywordflow">if</span> (na.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>()) 
+<a name="l05489"></a>05489                         <span class="keywordflow">return</span> XPathStringConst(na.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>().<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a8a8099b39bca8894a8226ce0e82d3451" title="Get the Value of this Attribute.">Value</a>()); 
 <a name="l05490"></a>05490                 <span class="keywordflow">else</span> 
 <a name="l05491"></a>05491                 { 
-<a name="l05492"></a>05492                         <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; n = na.node(); 
+<a name="l05492"></a>05492                         <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; n = na.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>(); 
 <a name="l05493"></a>05493  
 <a name="l05494"></a>05494                         <span class="keywordflow">switch</span> (n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a33288f89218baf24d1061c6eeb08687f" title="Identify what kind of Node this is.">Type</a>()) 
 <a name="l05495"></a>05495                         { 
@@ -5611,9 +5611,9 @@
 <a name="l05580"></a>05580                 <span class="keywordflow">return</span> GetParent &amp;&amp; node == GetParent; 
 <a name="l05581"></a>05581         } 
 <a name="l05582"></a>05582  
-<a name="l05583"></a>05583         <span class="keyword">const</span> <span class="keywordtype">void</span>* document_order(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; xnode) 
+<a name="l05583"></a>05583         <span class="keyword">const</span> <span class="keywordtype">void</span>* document_order(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; xnode) 
 <a name="l05584"></a>05584         { 
-<a name="l05585"></a>05585                 <a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html" title="The internal data storage structure used in a Node.">NodeStruct</a>* node = xnode.node().<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0d2c64c909e7545d01b586fe9d0bd9d4" title="Get internal pointer.">InternalObject</a>(); 
+<a name="l05585"></a>05585                 <a class="code" href="../../d7/dd5/structphys_1_1xml_1_1NodeStruct.html" title="The internal data storage structure used in a Node.">NodeStruct</a>* node = xnode.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>().<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0d2c64c909e7545d01b586fe9d0bd9d4" title="Get internal pointer.">InternalObject</a>(); 
 <a name="l05586"></a>05586  
 <a name="l05587"></a>05587                 <span class="keywordflow">if</span> (node) 
 <a name="l05588"></a>05588                 { 
@@ -5622,7 +5622,7 @@
 <a name="l05591"></a>05591                         <span class="keywordflow">return</span> 0; 
 <a name="l05592"></a>05592                 } 
 <a name="l05593"></a>05593  
-<a name="l05594"></a>05594                 <a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html" title="The internal data storage structure used in an Attribute.">AttributeStruct</a>* attr = xnode.GetAttribute().<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a1354d5f93309a999651e11b1cd4c2f62" title="Retrieve a pointer to the internal data.">InternalObject</a>(); 
+<a name="l05594"></a>05594                 <a class="code" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html" title="The internal data storage structure used in an Attribute.">AttributeStruct</a>* attr = xnode.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>().<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a1354d5f93309a999651e11b1cd4c2f62" title="Retrieve a pointer to the internal data.">InternalObject</a>(); 
 <a name="l05595"></a>05595  
 <a name="l05596"></a>05596                 <span class="keywordflow">if</span> (attr) 
 <a name="l05597"></a>05597                 { 
@@ -5636,7 +5636,7 @@
 <a name="l05605"></a>05605          
 <a name="l05606"></a>05606         <span class="keyword">struct </span>document_order_comparator 
 <a name="l05607"></a>05607         { 
-<a name="l05608"></a>05608                 <span class="keywordtype">bool</span> operator()(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; rhs)<span class="keyword"> const </span>
+<a name="l05608"></a>05608                 <span class="keywordtype">bool</span> operator()(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; rhs)<span class="keyword"> const </span>
 <a name="l05609"></a>05609 <span class="keyword">                </span>{ 
 <a name="l05610"></a>05610                         <span class="comment">// optimized document order based check </span>
 <a name="l05611"></a>05611                         <span class="keyword">const</span> <span class="keywordtype">void</span>* lo = document_order(lhs); 
@@ -5645,39 +5645,39 @@
 <a name="l05614"></a>05614                         <span class="keywordflow">if</span> (lo &amp;&amp; ro) <span class="keywordflow">return</span> lo &lt; ro; 
 <a name="l05615"></a>05615  
 <a name="l05616"></a>05616                         <span class="comment">// slow comparison </span>
-<a name="l05617"></a>05617                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> ln = lhs.node(), rn = rhs.node(); 
+<a name="l05617"></a>05617                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> ln = lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>(), rn = rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>(); 
 <a name="l05618"></a>05618  
 <a name="l05619"></a>05619                         <span class="comment">// compare attributes </span>
-<a name="l05620"></a>05620                         <span class="keywordflow">if</span> (lhs.GetAttribute() &amp;&amp; rhs.GetAttribute()) 
+<a name="l05620"></a>05620                         <span class="keywordflow">if</span> (lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>() &amp;&amp; rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>()) 
 <a name="l05621"></a>05621                         { 
 <a name="l05622"></a>05622                                 <span class="comment">// shared GetParent </span>
-<a name="l05623"></a>05623                                 <span class="keywordflow">if</span> (lhs.GetParent() == rhs.GetParent()) 
+<a name="l05623"></a>05623                                 <span class="keywordflow">if</span> (lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">GetParent</a>() == rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">GetParent</a>()) 
 <a name="l05624"></a>05624                                 { 
 <a name="l05625"></a>05625                                         <span class="comment">// determine sibling order </span>
-<a name="l05626"></a>05626                                         <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = lhs.GetAttribute(); a; a = a.GetNextAttribute()) 
-<a name="l05627"></a>05627                                                 <span class="keywordflow">if</span> (a == rhs.GetAttribute()) 
+<a name="l05626"></a>05626                                         <span class="keywordflow">for</span> (<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>(); a; a = a.GetNextAttribute()) 
+<a name="l05627"></a>05627                                                 <span class="keywordflow">if</span> (a == rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>()) 
 <a name="l05628"></a>05628                                                         <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l05629"></a>05629                                          
 <a name="l05630"></a>05630                                         <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l05631"></a>05631                                 } 
 <a name="l05632"></a>05632                                  
 <a name="l05633"></a>05633                                 <span class="comment">// compare GetAttribute GetParents </span>
-<a name="l05634"></a>05634                                 ln = lhs.GetParent(); 
-<a name="l05635"></a>05635                                 rn = rhs.GetParent(); 
+<a name="l05634"></a>05634                                 ln = lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">GetParent</a>(); 
+<a name="l05635"></a>05635                                 rn = rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">GetParent</a>(); 
 <a name="l05636"></a>05636                         } 
-<a name="l05637"></a>05637                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (lhs.GetAttribute()) 
+<a name="l05637"></a>05637                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>()) 
 <a name="l05638"></a>05638                         { 
 <a name="l05639"></a>05639                                 <span class="comment">// attributes go after the GetParent element </span>
-<a name="l05640"></a>05640                                 <span class="keywordflow">if</span> (lhs.GetParent() == rhs.node()) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
+<a name="l05640"></a>05640                                 <span class="keywordflow">if</span> (lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">GetParent</a>() == rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>()) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l05641"></a>05641                                  
-<a name="l05642"></a>05642                                 ln = lhs.GetParent(); 
+<a name="l05642"></a>05642                                 ln = lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">GetParent</a>(); 
 <a name="l05643"></a>05643                         } 
-<a name="l05644"></a>05644                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (rhs.GetAttribute()) 
+<a name="l05644"></a>05644                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>()) 
 <a name="l05645"></a>05645                         { 
 <a name="l05646"></a>05646                                 <span class="comment">// attributes go after the GetParent element </span>
-<a name="l05647"></a>05647                                 <span class="keywordflow">if</span> (rhs.GetParent() == lhs.node()) <span class="keywordflow">return</span> <span class="keyword">true</span>; 
+<a name="l05647"></a>05647                                 <span class="keywordflow">if</span> (rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">GetParent</a>() == lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>()) <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l05648"></a>05648                                  
-<a name="l05649"></a>05649                                 rn = rhs.GetParent(); 
+<a name="l05649"></a>05649                                 rn = rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">GetParent</a>(); 
 <a name="l05650"></a>05650                         } 
 <a name="l05651"></a>05651  
 <a name="l05652"></a>05652                         <span class="keywordflow">if</span> (ln == rn) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
@@ -5691,10 +5691,10 @@
 <a name="l05660"></a>05660  
 <a name="l05661"></a>05661         <span class="keyword">struct </span>duplicate_comparator 
 <a name="l05662"></a>05662         { 
-<a name="l05663"></a>05663                 <span class="keywordtype">bool</span> operator()(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; rhs)<span class="keyword"> const </span>
+<a name="l05663"></a>05663                 <span class="keywordtype">bool</span> operator()(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; lhs, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; rhs)<span class="keyword"> const </span>
 <a name="l05664"></a>05664 <span class="keyword">                </span>{ 
-<a name="l05665"></a>05665                         <span class="keywordflow">if</span> (lhs.GetAttribute()) <span class="keywordflow">return</span> rhs.GetAttribute() ? lhs.GetAttribute() &lt; rhs.GetAttribute() : <span class="keyword">true</span>; 
-<a name="l05666"></a>05666                         <span class="keywordflow">else</span> <span class="keywordflow">return</span> rhs.GetAttribute() ? <span class="keyword">false</span> : lhs.node() &lt; rhs.node(); 
+<a name="l05665"></a>05665                         <span class="keywordflow">if</span> (lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>()) <span class="keywordflow">return</span> rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>() ? lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>() &lt; rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>() : <span class="keyword">true</span>; 
+<a name="l05666"></a>05666                         <span class="keywordflow">else</span> <span class="keywordflow">return</span> rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>() ? <span class="keyword">false</span> : lhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>() &lt; rhs.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>(); 
 <a name="l05667"></a>05667                 } 
 <a name="l05668"></a>05668         }; 
 <a name="l05669"></a>05669          
@@ -5959,12 +5959,12 @@
 <a name="l05928"></a>05928                 <span class="keywordflow">return</span> (Value &gt;= -0.5 &amp;&amp; Value &lt;= 0) ? ceil(Value) : floor(Value + 0.5); 
 <a name="l05929"></a>05929         } 
 <a name="l05930"></a>05930          
-<a name="l05931"></a>05931         <span class="keyword">const</span> char_t* qualified_Name(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; node) 
+<a name="l05931"></a>05931         <span class="keyword">const</span> char_t* qualified_Name(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; node) 
 <a name="l05932"></a>05932         { 
-<a name="l05933"></a>05933                 <span class="keywordflow">return</span> node.GetAttribute() ? node.GetAttribute().<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ab4c1186366d975d2086bf81df2ce1135" title="Get the name of this Attribute.">Name</a>() : node.node().<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>(); 
+<a name="l05933"></a>05933                 <span class="keywordflow">return</span> node.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>() ? node.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>().<a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ab4c1186366d975d2086bf81df2ce1135" title="Get the name of this Attribute.">Name</a>() : node.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>().<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53facd97d76240a3f3fffc86caacdc24" title="Get the name of this Node.">Name</a>(); 
 <a name="l05934"></a>05934         } 
 <a name="l05935"></a>05935          
-<a name="l05936"></a>05936         <span class="keyword">const</span> char_t* local_Name(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; node) 
+<a name="l05936"></a>05936         <span class="keyword">const</span> char_t* local_Name(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; node) 
 <a name="l05937"></a>05937         { 
 <a name="l05938"></a>05938                 <span class="keyword">const</span> char_t* Name = qualified_Name(node); 
 <a name="l05939"></a>05939                 <span class="keyword">const</span> char_t* p = FindChar(Name, <span class="charliteral">&#39;:&#39;</span>); 
@@ -6034,9 +6034,9 @@
 <a name="l06003"></a>06003                 <span class="keywordflow">return</span> <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l06004"></a>06004         } 
 <a name="l06005"></a>06005  
-<a name="l06006"></a>06006         <span class="keyword">const</span> char_t* namespace_uri(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; node) 
+<a name="l06006"></a>06006         <span class="keyword">const</span> char_t* namespace_uri(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; node) 
 <a name="l06007"></a>06007         { 
-<a name="l06008"></a>06008                 <span class="keywordflow">return</span> node.GetAttribute() ? namespace_uri(node.GetAttribute(), node.GetParent()) : namespace_uri(node.node()); 
+<a name="l06008"></a>06008                 <span class="keywordflow">return</span> node.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>() ? namespace_uri(node.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">GetAttribute</a>(), node.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">GetParent</a>()) : namespace_uri(node.<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">GetNode</a>()); 
 <a name="l06009"></a>06009         } 
 <a name="l06010"></a>06010  
 <a name="l06011"></a>06011         <span class="keywordtype">void</span> normalize_space(char_t* buffer) 
@@ -6124,11 +6124,11 @@
 <a name="l06093"></a>06093  
 <a name="l06094"></a>06094         <span class="keyword">struct </span>XPathVariableNodeSet: <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a> 
 <a name="l06095"></a>06095         { 
-<a name="l06096"></a>06096                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> Value; 
+<a name="l06096"></a>06096                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> Value; 
 <a name="l06097"></a>06097                 char_t Name[1]; 
 <a name="l06098"></a>06098         }; 
 <a name="l06099"></a>06099  
-<a name="l06100"></a>06100         <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> dummy_NodeSet; 
+<a name="l06100"></a>06100         <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> dummy_NodeSet; 
 <a name="l06101"></a>06101  
 <a name="l06102"></a>06102         <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> hash_string(<span class="keyword">const</span> char_t* str) 
 <a name="l06103"></a>06103         { 
@@ -6247,7 +6247,7 @@
 <a name="l06216"></a>06216 <span class="comment">// Internal node set class </span>
 <a name="l06217"></a>06217 <span class="keyword">namespace </span>
 <a name="l06218"></a>06218 { 
-<a name="l06219"></a>06219         XPathNodeSet::CollectionType XPathSort(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* begin, <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* end, XPathNodeSet::CollectionType Type, <span class="keywordtype">bool</span> rev) 
+<a name="l06219"></a>06219         XPathNodeSet::CollectionType XPathSort(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* begin, <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* end, XPathNodeSet::CollectionType Type, <span class="keywordtype">bool</span> rev) 
 <a name="l06220"></a>06220         { 
 <a name="l06221"></a>06221                 XPathNodeSet::CollectionType order = rev ? XPathNodeSet::TypeSorted_reverse : XPathNodeSet::TypeSorted; 
 <a name="l06222"></a>06222  
@@ -6263,9 +6263,9 @@
 <a name="l06232"></a>06232                 <span class="keywordflow">return</span> order; 
 <a name="l06233"></a>06233         } 
 <a name="l06234"></a>06234  
-<a name="l06235"></a>06235         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> XPathFirst(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* begin, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* end, XPathNodeSet::CollectionType Type) 
+<a name="l06235"></a>06235         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> XPathFirst(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* begin, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* end, XPathNodeSet::CollectionType Type) 
 <a name="l06236"></a>06236         { 
-<a name="l06237"></a>06237                 <span class="keywordflow">if</span> (begin == end) <span class="keywordflow">return</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>(); 
+<a name="l06237"></a>06237                 <span class="keywordflow">if</span> (begin == end) <span class="keywordflow">return</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>(); 
 <a name="l06238"></a>06238  
 <a name="l06239"></a>06239                 <span class="keywordflow">switch</span> (Type) 
 <a name="l06240"></a>06240                 { 
@@ -6280,28 +6280,28 @@
 <a name="l06249"></a>06249  
 <a name="l06250"></a>06250                 <span class="keywordflow">default</span>: 
 <a name="l06251"></a>06251                         assert(!<span class="stringliteral">&quot;Invalid node set Type&quot;</span>); 
-<a name="l06252"></a>06252                         <span class="keywordflow">return</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>(); 
+<a name="l06252"></a>06252                         <span class="keywordflow">return</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>(); 
 <a name="l06253"></a>06253                 } 
 <a name="l06254"></a>06254         } 
 <a name="l06255"></a>06255         <span class="keyword">class </span>XPathNodeSet_raw 
 <a name="l06256"></a>06256         { 
 <a name="l06257"></a>06257                 XPathNodeSet::CollectionType _type; 
 <a name="l06258"></a>06258  
-<a name="l06259"></a>06259                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* _begin; 
-<a name="l06260"></a>06260                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* _end; 
-<a name="l06261"></a>06261                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* _eos; 
+<a name="l06259"></a>06259                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* _begin; 
+<a name="l06260"></a>06260                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* _end; 
+<a name="l06261"></a>06261                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* _eos; 
 <a name="l06262"></a>06262  
 <a name="l06263"></a>06263         <span class="keyword">public</span>: 
-<a name="l06264"></a>06264                 XPathNodeSet_raw(): _type(<a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>::TypeUnsorted), _begin(0), _end(0), _eos(0) 
+<a name="l06264"></a>06264                 XPathNodeSet_raw(): _type(<a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>::TypeUnsorted), _begin(0), _end(0), _eos(0) 
 <a name="l06265"></a>06265                 { 
 <a name="l06266"></a>06266                 } 
 <a name="l06267"></a>06267  
-<a name="l06268"></a>06268                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* begin()<span class="keyword"> const </span>
+<a name="l06268"></a>06268                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* begin()<span class="keyword"> const </span>
 <a name="l06269"></a>06269 <span class="keyword">                </span>{ 
 <a name="l06270"></a>06270                         <span class="keywordflow">return</span> _begin; 
 <a name="l06271"></a>06271                 } 
 <a name="l06272"></a>06272  
-<a name="l06273"></a>06273                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* end()<span class="keyword"> const </span>
+<a name="l06273"></a>06273                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* end()<span class="keyword"> const </span>
 <a name="l06274"></a>06274 <span class="keyword">                </span>{ 
 <a name="l06275"></a>06275                         <span class="keywordflow">return</span> _end; 
 <a name="l06276"></a>06276                 } 
@@ -6316,12 +6316,12 @@
 <a name="l06285"></a>06285                         <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(_end - _begin); 
 <a name="l06286"></a>06286                 } 
 <a name="l06287"></a>06287  
-<a name="l06288"></a>06288                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> first()<span class="keyword"> const </span>
+<a name="l06288"></a>06288                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> first()<span class="keyword"> const </span>
 <a name="l06289"></a>06289 <span class="keyword">                </span>{ 
 <a name="l06290"></a>06290                         <span class="keywordflow">return</span> XPathFirst(_begin, _end, _type); 
 <a name="l06291"></a>06291                 } 
 <a name="l06292"></a>06292  
-<a name="l06293"></a>06293                 <span class="keywordtype">void</span> push_back(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; node, XPathAllocator* alloc) 
+<a name="l06293"></a>06293                 <span class="keywordtype">void</span> push_back(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; node, XPathAllocator* alloc) 
 <a name="l06294"></a>06294                 { 
 <a name="l06295"></a>06295                         <span class="keywordflow">if</span> (_end == _eos) 
 <a name="l06296"></a>06296                         { 
@@ -6331,7 +6331,7 @@
 <a name="l06300"></a>06300                                 <span class="keywordtype">size_t</span> new_capacity = capacity + capacity / 2 + 1; 
 <a name="l06301"></a>06301  
 <a name="l06302"></a>06302                                 <span class="comment">// reallocate the old array or allocate a new one </span>
-<a name="l06303"></a>06303                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* data = <span class="keyword">static_cast&lt;</span><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>*<span class="keyword">&gt;</span>(alloc-&gt;reallocate(_begin, capacity * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>), new_capacity * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>))); 
+<a name="l06303"></a>06303                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* data = <span class="keyword">static_cast&lt;</span><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>*<span class="keyword">&gt;</span>(alloc-&gt;reallocate(_begin, capacity * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>), new_capacity * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>))); 
 <a name="l06304"></a>06304                                 assert(data); 
 <a name="l06305"></a>06305  
 <a name="l06306"></a>06306                                 <span class="comment">// finalize </span>
@@ -6343,7 +6343,7 @@
 <a name="l06312"></a>06312                         *_end++ = node; 
 <a name="l06313"></a>06313                 } 
 <a name="l06314"></a>06314  
-<a name="l06315"></a>06315                 <span class="keywordtype">void</span> append(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* begin, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* end, XPathAllocator* alloc) 
+<a name="l06315"></a>06315                 <span class="keywordtype">void</span> append(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* begin, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* end, XPathAllocator* alloc) 
 <a name="l06316"></a>06316                 { 
 <a name="l06317"></a>06317                         <span class="keywordtype">size_t</span> size = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(_end - _begin); 
 <a name="l06318"></a>06318                         <span class="keywordtype">size_t</span> capacity = <span class="keyword">static_cast&lt;</span><span class="keywordtype">size_t</span><span class="keyword">&gt;</span>(_eos - _begin); 
@@ -6352,7 +6352,7 @@
 <a name="l06321"></a>06321                         <span class="keywordflow">if</span> (size + count &gt; capacity) 
 <a name="l06322"></a>06322                         { 
 <a name="l06323"></a>06323                                 <span class="comment">// reallocate the old array or allocate a new one </span>
-<a name="l06324"></a>06324                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* data = <span class="keyword">static_cast&lt;</span><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>*<span class="keyword">&gt;</span>(alloc-&gt;reallocate(_begin, capacity * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>), (size + count) * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>))); 
+<a name="l06324"></a>06324                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* data = <span class="keyword">static_cast&lt;</span><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>*<span class="keyword">&gt;</span>(alloc-&gt;reallocate(_begin, capacity * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>), (size + count) * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>))); 
 <a name="l06325"></a>06325                                 assert(data); 
 <a name="l06326"></a>06326  
 <a name="l06327"></a>06327                                 <span class="comment">// finalize </span>
@@ -6361,7 +6361,7 @@
 <a name="l06330"></a>06330                                 _eos = data + size + count; 
 <a name="l06331"></a>06331                         } 
 <a name="l06332"></a>06332  
-<a name="l06333"></a>06333                         memcpy(_end, begin, count * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>)); 
+<a name="l06333"></a>06333                         memcpy(_end, begin, count * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>)); 
 <a name="l06334"></a>06334                         _end += count; 
 <a name="l06335"></a>06335                 } 
 <a name="l06336"></a>06336  
@@ -6370,7 +6370,7 @@
 <a name="l06339"></a>06339                         _type = XPathSort(_begin, _end, _type, <span class="keyword">false</span>); 
 <a name="l06340"></a>06340                 } 
 <a name="l06341"></a>06341  
-<a name="l06342"></a>06342                 <span class="keywordtype">void</span> truncate(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* pos) 
+<a name="l06342"></a>06342                 <span class="keywordtype">void</span> truncate(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* pos) 
 <a name="l06343"></a>06343                 { 
 <a name="l06344"></a>06344                         assert(_begin &lt;= pos &amp;&amp; pos &lt;= _end); 
 <a name="l06345"></a>06345  
@@ -6401,10 +6401,10 @@
 <a name="l06370"></a>06370 { 
 <a name="l06371"></a>06371         <span class="keyword">struct </span>XPathContext 
 <a name="l06372"></a>06372         { 
-<a name="l06373"></a>06373                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> n; 
+<a name="l06373"></a>06373                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> n; 
 <a name="l06374"></a>06374                 <span class="keywordtype">size_t</span> position, size; 
 <a name="l06375"></a>06375  
-<a name="l06376"></a>06376                 XPathContext(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; n, <span class="keywordtype">size_t</span> position, <span class="keywordtype">size_t</span> size): n(n), position(position), size(size) 
+<a name="l06376"></a>06376                 XPathContext(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; n, <span class="keywordtype">size_t</span> position, <span class="keywordtype">size_t</span> size): n(n), position(position), size(size) 
 <a name="l06377"></a>06377                 { 
 <a name="l06378"></a>06378                 } 
 <a name="l06379"></a>06379         }; 
@@ -6920,8 +6920,8 @@
 <a name="l06889"></a>06889                                 XPathNodeSet_raw ls = lhs-&gt;eval_NodeSet(c, stack); 
 <a name="l06890"></a>06890                                 XPathNodeSet_raw rs = rhs-&gt;eval_NodeSet(c, stack); 
 <a name="l06891"></a>06891  
-<a name="l06892"></a>06892                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* li = ls.begin(); li != ls.end(); ++li) 
-<a name="l06893"></a>06893                                         <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
+<a name="l06892"></a>06892                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* li = ls.begin(); li != ls.end(); ++li) 
+<a name="l06893"></a>06893                                         <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
 <a name="l06894"></a>06894                                         { 
 <a name="l06895"></a>06895                                                 XPathAllocatorCapture cri(stack.Result); 
 <a name="l06896"></a>06896  
@@ -6948,7 +6948,7 @@
 <a name="l06917"></a>06917                                         <span class="keywordtype">double</span> l = lhs-&gt;eval_number(c, stack); 
 <a name="l06918"></a>06918                                         XPathNodeSet_raw rs = rhs-&gt;eval_NodeSet(c, stack); 
 <a name="l06919"></a>06919  
-<a name="l06920"></a>06920                                         <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
+<a name="l06920"></a>06920                                         <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
 <a name="l06921"></a>06921                                         { 
 <a name="l06922"></a>06922                                                 XPathAllocatorCapture cri(stack.Result); 
 <a name="l06923"></a>06923  
@@ -6965,7 +6965,7 @@
 <a name="l06934"></a>06934                                         XPathString l = lhs-&gt;eval_string(c, stack); 
 <a name="l06935"></a>06935                                         XPathNodeSet_raw rs = rhs-&gt;eval_NodeSet(c, stack); 
 <a name="l06936"></a>06936  
-<a name="l06937"></a>06937                                         <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
+<a name="l06937"></a>06937                                         <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
 <a name="l06938"></a>06938                                         { 
 <a name="l06939"></a>06939                                                 XPathAllocatorCapture cri(stack.Result); 
 <a name="l06940"></a>06940  
@@ -6994,13 +6994,13 @@
 <a name="l06963"></a>06963                                 XPathNodeSet_raw ls = lhs-&gt;eval_NodeSet(c, stack); 
 <a name="l06964"></a>06964                                 XPathNodeSet_raw rs = rhs-&gt;eval_NodeSet(c, stack); 
 <a name="l06965"></a>06965  
-<a name="l06966"></a>06966                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* li = ls.begin(); li != ls.end(); ++li) 
+<a name="l06966"></a>06966                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* li = ls.begin(); li != ls.end(); ++li) 
 <a name="l06967"></a>06967                                 { 
 <a name="l06968"></a>06968                                         XPathAllocatorCapture cri(stack.Result); 
 <a name="l06969"></a>06969  
 <a name="l06970"></a>06970                                         <span class="keywordtype">double</span> l = convert_Stringo_number(string_Value(*li, stack.Result).c_str()); 
 <a name="l06971"></a>06971  
-<a name="l06972"></a>06972                                         <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
+<a name="l06972"></a>06972                                         <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
 <a name="l06973"></a>06973                                         { 
 <a name="l06974"></a>06974                                                 XPathAllocatorCapture crii(stack.Result); 
 <a name="l06975"></a>06975  
@@ -7018,7 +7018,7 @@
 <a name="l06987"></a>06987                                 <span class="keywordtype">double</span> l = lhs-&gt;eval_number(c, stack); 
 <a name="l06988"></a>06988                                 XPathNodeSet_raw rs = rhs-&gt;eval_NodeSet(c, stack); 
 <a name="l06989"></a>06989  
-<a name="l06990"></a>06990                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
+<a name="l06990"></a>06990                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* ri = rs.begin(); ri != rs.end(); ++ri) 
 <a name="l06991"></a>06991                                 { 
 <a name="l06992"></a>06992                                         XPathAllocatorCapture cri(stack.Result); 
 <a name="l06993"></a>06993  
@@ -7035,7 +7035,7 @@
 <a name="l07004"></a>07004                                 XPathNodeSet_raw ls = lhs-&gt;eval_NodeSet(c, stack); 
 <a name="l07005"></a>07005                                 <span class="keywordtype">double</span> r = rhs-&gt;eval_number(c, stack); 
 <a name="l07006"></a>07006  
-<a name="l07007"></a>07007                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* li = ls.begin(); li != ls.end(); ++li) 
+<a name="l07007"></a>07007                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* li = ls.begin(); li != ls.end(); ++li) 
 <a name="l07008"></a>07008                                 { 
 <a name="l07009"></a>07009                                         XPathAllocatorCapture cri(stack.Result); 
 <a name="l07010"></a>07010  
@@ -7059,10 +7059,10 @@
 <a name="l07028"></a>07028                         <span class="keywordtype">size_t</span> i = 1; 
 <a name="l07029"></a>07029                         <span class="keywordtype">size_t</span> size = ns.size() - first; 
 <a name="l07030"></a>07030                                  
-<a name="l07031"></a>07031                         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* last = ns.begin() + first; 
+<a name="l07031"></a>07031                         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* last = ns.begin() + first; 
 <a name="l07032"></a>07032                                  
 <a name="l07033"></a>07033                         <span class="comment">// RemoveIf... or well, sort of </span>
-<a name="l07034"></a>07034                         <span class="keywordflow">for</span> (<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* it = last; it != ns.end(); ++it, ++i) 
+<a name="l07034"></a>07034                         <span class="keywordflow">for</span> (<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* it = last; it != ns.end(); ++it, ++i) 
 <a name="l07035"></a>07035                         { 
 <a name="l07036"></a>07036                                 XPathContext c(*it, i, size); 
 <a name="l07037"></a>07037                          
@@ -7101,17 +7101,17 @@
 <a name="l07070"></a>07070                         <span class="keywordflow">switch</span> (_test) 
 <a name="l07071"></a>07071                         { 
 <a name="l07072"></a>07072                         <span class="keywordflow">case</span> nodetest_Name: 
-<a name="l07073"></a>07073                                 <span class="keywordflow">if</span> (strequal(Name, _data.nodetest)) ns.push_back(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>(a, GetParent), alloc); 
+<a name="l07073"></a>07073                                 <span class="keywordflow">if</span> (strequal(Name, _data.nodetest)) ns.push_back(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>(a, GetParent), alloc); 
 <a name="l07074"></a>07074                                 <span class="keywordflow">break</span>; 
 <a name="l07075"></a>07075                                  
 <a name="l07076"></a>07076                         <span class="keywordflow">case</span> nodetest_type_node: 
 <a name="l07077"></a>07077                         <span class="keywordflow">case</span> nodetest_all: 
-<a name="l07078"></a>07078                                 ns.push_back(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>(a, GetParent), alloc); 
+<a name="l07078"></a>07078                                 ns.push_back(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>(a, GetParent), alloc); 
 <a name="l07079"></a>07079                                 <span class="keywordflow">break</span>; 
 <a name="l07080"></a>07080                                  
 <a name="l07081"></a>07081                         <span class="keywordflow">case</span> nodetest_all_in_namespace: 
 <a name="l07082"></a>07082                                 <span class="keywordflow">if</span> (starts_with(Name, _data.nodetest)) 
-<a name="l07083"></a>07083                                         ns.push_back(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>(a, GetParent), alloc); 
+<a name="l07083"></a>07083                                         ns.push_back(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>(a, GetParent), alloc); 
 <a name="l07084"></a>07084                                 <span class="keywordflow">break</span>; 
 <a name="l07085"></a>07085                          
 <a name="l07086"></a>07086                         <span class="keywordflow">default</span>: 
@@ -7429,15 +7429,15 @@
 <a name="l07398"></a>07398                                 <span class="comment">// self axis preserves the original order </span>
 <a name="l07399"></a>07399                                 <span class="keywordflow">if</span> (axis == axis_self) ns.SetType(s.Type()); 
 <a name="l07400"></a>07400  
-<a name="l07401"></a>07401                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* it = s.begin(); it != s.end(); ++it) 
+<a name="l07401"></a>07401                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* it = s.begin(); it != s.end(); ++it) 
 <a name="l07402"></a>07402                                 { 
 <a name="l07403"></a>07403                                         <span class="keywordtype">size_t</span> size = ns.size(); 
 <a name="l07404"></a>07404  
 <a name="l07405"></a>07405                                         <span class="comment">// in general, all axes generate elements in a particular order, but there is no order guarantee if axis is applied to two nodes </span>
 <a name="l07406"></a>07406                                         <span class="keywordflow">if</span> (axis != axis_self &amp;&amp; size != 0) ns.SetType(XPathNodeSet::TypeUnsorted); 
 <a name="l07407"></a>07407                                          
-<a name="l07408"></a>07408                                         <span class="keywordflow">if</span> (it-&gt;node()) 
-<a name="l07409"></a>07409                                                 step_fill(ns, it-&gt;node(), stack.Result, v); 
+<a name="l07408"></a>07408                                         <span class="keywordflow">if</span> (it-&gt;GetNode()) 
+<a name="l07409"></a>07409                                                 step_fill(ns, it-&gt;GetNode(), stack.Result, v); 
 <a name="l07410"></a>07410                                         <span class="keywordflow">else</span> <span class="keywordflow">if</span> (attributes) 
 <a name="l07411"></a>07411                                                 step_fill(ns, it-&gt;GetAttribute(), it-&gt;GetParent(), stack.Result, v); 
 <a name="l07412"></a>07412                                                  
@@ -7446,8 +7446,8 @@
 <a name="l07415"></a>07415                         } 
 <a name="l07416"></a>07416                         <span class="keywordflow">else</span> 
 <a name="l07417"></a>07417                         { 
-<a name="l07418"></a>07418                                 <span class="keywordflow">if</span> (c.n.node()) 
-<a name="l07419"></a>07419                                         step_fill(ns, c.n.node(), stack.Result, v); 
+<a name="l07418"></a>07418                                 <span class="keywordflow">if</span> (c.n.GetNode()) 
+<a name="l07419"></a>07419                                         step_fill(ns, c.n.GetNode(), stack.Result, v); 
 <a name="l07420"></a>07420                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (attributes) 
 <a name="l07421"></a>07421                                         step_fill(ns, c.n.GetAttribute(), c.n.GetParent(), stack.Result, v); 
 <a name="l07422"></a>07422                                  
@@ -7573,7 +7573,7 @@
 <a name="l07542"></a>07542  
 <a name="l07543"></a>07543                                 XPathString lang = _left-&gt;eval_string(c, stack); 
 <a name="l07544"></a>07544                                  
-<a name="l07545"></a>07545                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = c.n.node(); n; n = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>()) 
+<a name="l07545"></a>07545                                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> n = c.n.GetNode(); n; n = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>()) 
 <a name="l07546"></a>07546                                 { 
 <a name="l07547"></a>07547                                         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> a = n.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a338eeb27d2a0cf39823f228abb5d936c" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;xml:lang&quot;</span>)); 
 <a name="l07548"></a>07548                                          
@@ -7704,7 +7704,7 @@
 <a name="l07673"></a>07673                                  
 <a name="l07674"></a>07674                                 XPathNodeSet_raw ns = _left-&gt;eval_NodeSet(c, stack); 
 <a name="l07675"></a>07675                                  
-<a name="l07676"></a>07676                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* it = ns.begin(); it != ns.end(); ++it) 
+<a name="l07676"></a>07676                                 <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* it = ns.begin(); it != ns.end(); ++it) 
 <a name="l07677"></a>07677                                 { 
 <a name="l07678"></a>07678                                         XPathAllocatorCapture cri(stack.Result); 
 <a name="l07679"></a>07679  
@@ -7829,7 +7829,7 @@
 <a name="l07798"></a>07798                          
 <a name="l07799"></a>07799                         <span class="keywordflow">case</span> ast_func_local_Name_0: 
 <a name="l07800"></a>07800                         { 
-<a name="l07801"></a>07801                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> na = c.n; 
+<a name="l07801"></a>07801                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> na = c.n; 
 <a name="l07802"></a>07802                                  
 <a name="l07803"></a>07803                                 <span class="keywordflow">return</span> XPathStringConst(local_Name(na)); 
 <a name="l07804"></a>07804                         } 
@@ -7839,14 +7839,14 @@
 <a name="l07808"></a>07808                                 XPathAllocatorCapture cr(stack.Result); 
 <a name="l07809"></a>07809  
 <a name="l07810"></a>07810                                 XPathNodeSet_raw ns = _left-&gt;eval_NodeSet(c, stack); 
-<a name="l07811"></a>07811                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> na = ns.first(); 
+<a name="l07811"></a>07811                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> na = ns.first(); 
 <a name="l07812"></a>07812                                  
 <a name="l07813"></a>07813                                 <span class="keywordflow">return</span> XPathStringConst(local_Name(na)); 
 <a name="l07814"></a>07814                         } 
 <a name="l07815"></a>07815  
 <a name="l07816"></a>07816                         <span class="keywordflow">case</span> ast_func_Name_0: 
 <a name="l07817"></a>07817                         { 
-<a name="l07818"></a>07818                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> na = c.n; 
+<a name="l07818"></a>07818                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> na = c.n; 
 <a name="l07819"></a>07819                                  
 <a name="l07820"></a>07820                                 <span class="keywordflow">return</span> XPathStringConst(qualified_Name(na)); 
 <a name="l07821"></a>07821                         } 
@@ -7856,14 +7856,14 @@
 <a name="l07825"></a>07825                                 XPathAllocatorCapture cr(stack.Result); 
 <a name="l07826"></a>07826  
 <a name="l07827"></a>07827                                 XPathNodeSet_raw ns = _left-&gt;eval_NodeSet(c, stack); 
-<a name="l07828"></a>07828                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> na = ns.first(); 
+<a name="l07828"></a>07828                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> na = ns.first(); 
 <a name="l07829"></a>07829                                  
 <a name="l07830"></a>07830                                 <span class="keywordflow">return</span> XPathStringConst(qualified_Name(na)); 
 <a name="l07831"></a>07831                         } 
 <a name="l07832"></a>07832  
 <a name="l07833"></a>07833                         <span class="keywordflow">case</span> ast_func_namespace_uri_0: 
 <a name="l07834"></a>07834                         { 
-<a name="l07835"></a>07835                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> na = c.n; 
+<a name="l07835"></a>07835                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> na = c.n; 
 <a name="l07836"></a>07836                                  
 <a name="l07837"></a>07837                                 <span class="keywordflow">return</span> XPathStringConst(namespace_uri(na)); 
 <a name="l07838"></a>07838                         } 
@@ -7873,7 +7873,7 @@
 <a name="l07842"></a>07842                                 XPathAllocatorCapture cr(stack.Result); 
 <a name="l07843"></a>07843  
 <a name="l07844"></a>07844                                 XPathNodeSet_raw ns = _left-&gt;eval_NodeSet(c, stack); 
-<a name="l07845"></a>07845                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> na = ns.first(); 
+<a name="l07845"></a>07845                                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> na = ns.first(); 
 <a name="l07846"></a>07846                                  
 <a name="l07847"></a>07847                                 <span class="keywordflow">return</span> XPathStringConst(namespace_uri(na)); 
 <a name="l07848"></a>07848                         } 
@@ -8130,7 +8130,7 @@
 <a name="l08099"></a>08099  
 <a name="l08100"></a>08100                                 ns.SetType(XPathNodeSet::TypeSorted); 
 <a name="l08101"></a>08101  
-<a name="l08102"></a>08102                                 <span class="keywordflow">if</span> (c.n.node()) ns.push_back(c.n.node().GetRoot(), stack.Result); 
+<a name="l08102"></a>08102                                 <span class="keywordflow">if</span> (c.n.GetNode()) ns.push_back(c.n.GetNode().GetRoot(), stack.Result); 
 <a name="l08103"></a>08103                                 <span class="keywordflow">else</span> <span class="keywordflow">if</span> (c.n.GetAttribute()) ns.push_back(c.n.GetParent().GetRoot(), stack.Result); 
 <a name="l08104"></a>08104  
 <a name="l08105"></a>08105                                 <span class="keywordflow">return</span> ns; 
@@ -8142,7 +8142,7 @@
 <a name="l08111"></a>08111  
 <a name="l08112"></a>08112                                 <span class="keywordflow">if</span> (_retType == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba" title="Node set (XPathNodeSet).">XPathTypeNodeSet</a>) 
 <a name="l08113"></a>08113                                 { 
-<a name="l08114"></a>08114                                         <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; s = _data.variable-&gt;GetNodeSet(); 
+<a name="l08114"></a>08114                                         <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; s = _data.variable-&gt;GetNodeSet(); 
 <a name="l08115"></a>08115  
 <a name="l08116"></a>08116                                         XPathNodeSet_raw ns; 
 <a name="l08117"></a>08117  
@@ -8220,7 +8220,7 @@
 <a name="l08189"></a>08189 <span class="preprocessor">                #ifdef XML_NO_EXCEPTIONS </span>
 <a name="l08190"></a>08190 <span class="preprocessor"></span>                        longjmp(_error_handler, 1); 
 <a name="l08191"></a>08191 <span class="preprocessor">                #else </span>
-<a name="l08192"></a>08192 <span class="preprocessor"></span>                        <span class="keywordflow">throw</span> <a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html">XPathException</a>(*_Result); 
+<a name="l08192"></a>08192 <span class="preprocessor"></span>                        <span class="keywordflow">throw</span> <a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html" title="Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.">XPathException</a>(*_Result); 
 <a name="l08193"></a>08193 <span class="preprocessor">                #endif </span>
 <a name="l08194"></a>08194 <span class="preprocessor"></span>                } 
 <a name="l08195"></a>08195  
@@ -9082,7 +9082,7 @@
 <a name="l09051"></a>09051                 XPathMemoryBlock block; 
 <a name="l09052"></a>09052         }; 
 <a name="l09053"></a>09053  
-<a name="l09054"></a>09054         XPathString EvaluateString_impl(XPathQueryImpl* impl, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; n, XPathStackData&amp; sd) 
+<a name="l09054"></a>09054         XPathString EvaluateString_impl(XPathQueryImpl* impl, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; n, XPathStackData&amp; sd) 
 <a name="l09055"></a>09055         { 
 <a name="l09056"></a>09056                 <span class="keywordflow">if</span> (!impl) <span class="keywordflow">return</span> XPathString(); 
 <a name="l09057"></a>09057  
@@ -9101,17 +9101,17 @@
 <a name="l09070"></a>09070 { <span class="keyword">namespace </span>xml
 <a name="l09071"></a>09071 { 
 <a name="l09072"></a>09072 <span class="preprocessor">#ifndef XML_NO_EXCEPTIONS </span>
-<a name="l09073"></a>09073 <span class="preprocessor"></span>        XPathException::XPathException(<span class="keyword">const</span> <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>&amp; Result): _Result(Result) 
+<a name="l09073"></a><a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#a39d6511632945aa46b63e80f5364e959">09073</a> <span class="preprocessor"></span>        <a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#a39d6511632945aa46b63e80f5364e959" title="Construct exception from parse Result.">XPathException::XPathException</a>(<span class="keyword">const</span> <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>&amp; Result): _Result(Result) 
 <a name="l09074"></a>09074         { 
 <a name="l09075"></a>09075                 assert(Result.<a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html#a5e601cfd490fd3d1ed4bcdfb36d9d920" title="Error message (0 if no error).">error</a>); 
 <a name="l09076"></a>09076         } 
 <a name="l09077"></a>09077          
-<a name="l09078"></a>09078         <span class="keyword">const</span> <span class="keywordtype">char</span>* XPathException::what() <span class="keyword">const</span> throw() 
+<a name="l09078"></a><a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#ab16319369cd5f40990300b1b22b8f6cb">09078</a>         <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#ab16319369cd5f40990300b1b22b8f6cb" title="Get error message.">XPathException::what</a>() <span class="keyword">const</span> throw() 
 <a name="l09079"></a>09079         { 
 <a name="l09080"></a>09080                 <span class="keywordflow">return</span> _Result.<a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html#a5e601cfd490fd3d1ed4bcdfb36d9d920" title="Error message (0 if no error).">error</a>; 
 <a name="l09081"></a>09081         } 
 <a name="l09082"></a>09082  
-<a name="l09083"></a>09083         <span class="keyword">const</span> <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>&amp; XPathException::Result()<span class="keyword"> const </span>
+<a name="l09083"></a><a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#a5410a12f705cbbc006175c08872b5749">09083</a>         <span class="keyword">const</span> <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>&amp; <a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#a5410a12f705cbbc006175c08872b5749" title="Get parse Result.">XPathException::Result</a>()<span class="keyword"> const </span>
 <a name="l09084"></a>09084 <span class="keyword">        </span>{ 
 <a name="l09085"></a>09085                 <span class="keywordflow">return</span> _Result; 
 <a name="l09086"></a>09086         } 
@@ -9121,25 +9121,25 @@
 <a name="l09090"></a>09090         { 
 <a name="l09091"></a>09091         } 
 <a name="l09092"></a>09092                  
-<a name="l09093"></a>09093         XPathNode::XPathNode(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node): _node(node) 
+<a name="l09093"></a><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ab70dcfefef2107eca2d1932faada475e">09093</a>         XPathNode::XPathNode(<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; node): _node(node) 
 <a name="l09094"></a>09094         { 
 <a name="l09095"></a>09095         } 
 <a name="l09096"></a>09096                  
-<a name="l09097"></a>09097         XPathNode::XPathNode(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; GetAttribute, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; GetParent): _node(GetAttribute ? GetParent : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>()), _attribute(GetAttribute) 
+<a name="l09097"></a><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a3f9446596022b6e0ab77afc2748c98e0">09097</a>         XPathNode::XPathNode(<span class="keyword">const</span> <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>&amp; GetAttribute, <span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>&amp; GetParent): _node(GetAttribute ? GetParent : <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>()), _attribute(GetAttribute) 
 <a name="l09098"></a>09098         { 
 <a name="l09099"></a>09099         } 
 <a name="l09100"></a>09100  
-<a name="l09101"></a>09101         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> XPathNode::node()<span class="keyword"> const </span>
+<a name="l09101"></a><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35">09101</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">XPathNode::GetNode</a>()<span class="keyword"> const </span>
 <a name="l09102"></a>09102 <span class="keyword">        </span>{ 
 <a name="l09103"></a>09103                 <span class="keywordflow">return</span> _attribute ? <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>() : _node; 
 <a name="l09104"></a>09104         } 
 <a name="l09105"></a>09105                  
-<a name="l09106"></a>09106         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> XPathNode::GetAttribute()<span class="keyword"> const </span>
+<a name="l09106"></a><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c">09106</a>         <a class="code" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">XPathNode::GetAttribute</a>()<span class="keyword"> const </span>
 <a name="l09107"></a>09107 <span class="keyword">        </span>{ 
 <a name="l09108"></a>09108                 <span class="keywordflow">return</span> _attribute; 
 <a name="l09109"></a>09109         } 
 <a name="l09110"></a>09110          
-<a name="l09111"></a>09111         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> XPathNode::GetParent()<span class="keyword"> const </span>
+<a name="l09111"></a><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa">09111</a>         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa" title="Get the parent of the xml::Node or xml::Attribute this refers to.">XPathNode::GetParent</a>()<span class="keyword"> const </span>
 <a name="l09112"></a>09112 <span class="keyword">        </span>{ 
 <a name="l09113"></a>09113                 <span class="keywordflow">return</span> _attribute ? _node : _node.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a80f32b90ed88ef442f99dc7a5f29ca0d" title="Attempt to retrieve the parent of this Node.">GetParent</a>(); 
 <a name="l09114"></a>09114         } 
@@ -9149,28 +9149,28 @@
 <a name="l09118"></a>09118                 <span class="keywordflow">return</span> (_node || _attribute) ? &amp;XPathNode::_node : 0; 
 <a name="l09119"></a>09119         } 
 <a name="l09120"></a>09120          
-<a name="l09121"></a>09121         <span class="keywordtype">bool</span> XPathNode::operator!()<span class="keyword"> const </span>
+<a name="l09121"></a><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a3c596b9cacb6265df6acffb91b9a7484">09121</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a3c596b9cacb6265df6acffb91b9a7484" title="Logical not operator, used a workaround for borland compiler.">XPathNode::operator!</a>()<span class="keyword"> const </span>
 <a name="l09122"></a>09122 <span class="keyword">        </span>{ 
 <a name="l09123"></a>09123                 <span class="keywordflow">return</span> !(_node || _attribute); 
 <a name="l09124"></a>09124         } 
 <a name="l09125"></a>09125  
-<a name="l09126"></a>09126         <span class="keywordtype">bool</span> XPathNode::operator==(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; n)<span class="keyword"> const </span>
+<a name="l09126"></a><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ab13702ded8707602871596e4f34e8302">09126</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ab13702ded8707602871596e4f34e8302" title="Called when comparing two XPathNode instances for equality.">XPathNode::operator==</a>(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; n)<span class="keyword"> const </span>
 <a name="l09127"></a>09127 <span class="keyword">        </span>{ 
 <a name="l09128"></a>09128                 <span class="keywordflow">return</span> _node == n._node &amp;&amp; _attribute == n._attribute; 
 <a name="l09129"></a>09129         } 
 <a name="l09130"></a>09130          
-<a name="l09131"></a>09131         <span class="keywordtype">bool</span> XPathNode::operator!=(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; n)<span class="keyword"> const </span>
+<a name="l09131"></a><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a121ba0e04b6619f45c5392374f2dc98d">09131</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a121ba0e04b6619f45c5392374f2dc98d" title="Called when comparing two XPathNode instances for inequality.">XPathNode::operator!=</a>(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; n)<span class="keyword"> const </span>
 <a name="l09132"></a>09132 <span class="keyword">        </span>{ 
 <a name="l09133"></a>09133                 <span class="keywordflow">return</span> _node != n._node || _attribute != n._attribute; 
 <a name="l09134"></a>09134         } 
 <a name="l09135"></a>09135  
 <a name="l09136"></a>09136 <span class="preprocessor">#ifdef __BORLANDC__ </span>
-<a name="l09137"></a>09137 <span class="preprocessor"></span>        <span class="keywordtype">bool</span> operator&amp;&amp;(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; lhs, <span class="keywordtype">bool</span> rhs) 
+<a name="l09137"></a>09137 <span class="preprocessor"></span>        <span class="keywordtype">bool</span> operator&amp;&amp;(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; lhs, <span class="keywordtype">bool</span> rhs) 
 <a name="l09138"></a>09138         { 
 <a name="l09139"></a>09139                 <span class="keywordflow">return</span> (<span class="keywordtype">bool</span>)lhs &amp;&amp; rhs; 
 <a name="l09140"></a>09140         } 
 <a name="l09141"></a>09141  
-<a name="l09142"></a>09142         <span class="keywordtype">bool</span> operator||(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; lhs, <span class="keywordtype">bool</span> rhs) 
+<a name="l09142"></a>09142         <span class="keywordtype">bool</span> operator||(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; lhs, <span class="keywordtype">bool</span> rhs) 
 <a name="l09143"></a>09143         { 
 <a name="l09144"></a>09144                 <span class="keywordflow">return</span> (<span class="keywordtype">bool</span>)lhs || rhs; 
 <a name="l09145"></a>09145         } 
@@ -9196,7 +9196,7 @@
 <a name="l09165"></a>09165                 <span class="keywordflow">else</span> 
 <a name="l09166"></a>09166                 { 
 <a name="l09167"></a>09167                         <span class="comment">// make heap copy </span>
-<a name="l09168"></a>09168                         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>* storage = <span class="keyword">static_cast&lt;</span><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>*<span class="keyword">&gt;</span>(global_allocate(size * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>))); 
+<a name="l09168"></a>09168                         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* storage = <span class="keyword">static_cast&lt;</span><a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>*<span class="keyword">&gt;</span>(global_allocate(size * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>))); 
 <a name="l09169"></a>09169  
 <a name="l09170"></a>09170                         <span class="keywordflow">if</span> (!storage) 
 <a name="l09171"></a>09171                         { 
@@ -9207,7 +9207,7 @@
 <a name="l09176"></a>09176 <span class="preprocessor">                        #endif </span>
 <a name="l09177"></a>09177 <span class="preprocessor"></span>                        } 
 <a name="l09178"></a>09178  
-<a name="l09179"></a>09179                         memcpy(storage, begin, size * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>)); 
+<a name="l09179"></a>09179                         memcpy(storage, begin, size * <span class="keyword">sizeof</span>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>)); 
 <a name="l09180"></a>09180                          
 <a name="l09181"></a>09181                         <span class="comment">// deallocate old buffer </span>
 <a name="l09182"></a>09182                         <span class="keywordflow">if</span> (_begin != &amp;_storage) global_deallocate(_begin); 
@@ -9232,12 +9232,12 @@
 <a name="l09201"></a>09201                 <span class="keywordflow">if</span> (_begin != &amp;_storage) global_deallocate(_begin); 
 <a name="l09202"></a>09202         } 
 <a name="l09203"></a>09203                  
-<a name="l09204"></a>09204         XPathNodeSet::XPathNodeSet(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; ns): _type(ns._type), _begin(&amp;_storage), _end(&amp;_storage) 
+<a name="l09204"></a>09204         XPathNodeSet::XPathNodeSet(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; ns): _type(ns._type), _begin(&amp;_storage), _end(&amp;_storage) 
 <a name="l09205"></a>09205         { 
 <a name="l09206"></a>09206                 _assign(ns._begin, ns._end); 
 <a name="l09207"></a>09207         } 
 <a name="l09208"></a>09208          
-<a name="l09209"></a>09209         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; XPathNodeSet::operator=(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; ns) 
+<a name="l09209"></a>09209         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; XPathNodeSet::operator=(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; ns) 
 <a name="l09210"></a>09210         { 
 <a name="l09211"></a>09211                 <span class="keywordflow">if</span> (<span class="keyword">this</span> == &amp;ns) <span class="keywordflow">return</span> *<span class="keyword">this</span>; 
 <a name="l09212"></a>09212                  
@@ -9262,18 +9262,18 @@
 <a name="l09231"></a>09231                 <span class="keywordflow">return</span> _begin == _end; 
 <a name="l09232"></a>09232         } 
 <a name="l09233"></a>09233                  
-<a name="l09234"></a>09234         <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; XPathNodeSet::operator[](<span class="keywordtype">size_t</span> index)<span class="keyword"> const </span>
+<a name="l09234"></a>09234         <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; XPathNodeSet::operator[](<span class="keywordtype">size_t</span> index)<span class="keyword"> const </span>
 <a name="l09235"></a>09235 <span class="keyword">        </span>{ 
 <a name="l09236"></a>09236                 assert(index &lt; size()); 
 <a name="l09237"></a>09237                 <span class="keywordflow">return</span> _begin[index]; 
 <a name="l09238"></a>09238         } 
 <a name="l09239"></a>09239  
-<a name="l09240"></a>09240         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNodeSet::const_iterator</a> XPathNodeSet::begin()<span class="keyword"> const </span>
+<a name="l09240"></a>09240         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNodeSet::const_iterator</a> XPathNodeSet::begin()<span class="keyword"> const </span>
 <a name="l09241"></a>09241 <span class="keyword">        </span>{ 
 <a name="l09242"></a>09242                 <span class="keywordflow">return</span> _begin; 
 <a name="l09243"></a>09243         } 
 <a name="l09244"></a>09244                  
-<a name="l09245"></a>09245         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNodeSet::const_iterator</a> XPathNodeSet::end()<span class="keyword"> const </span>
+<a name="l09245"></a>09245         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNodeSet::const_iterator</a> XPathNodeSet::end()<span class="keyword"> const </span>
 <a name="l09246"></a>09246 <span class="keyword">        </span>{ 
 <a name="l09247"></a>09247                 <span class="keywordflow">return</span> _end; 
 <a name="l09248"></a>09248         } 
@@ -9283,7 +9283,7 @@
 <a name="l09252"></a>09252                 _type = XPathSort(_begin, _end, _type, reverse); 
 <a name="l09253"></a>09253         } 
 <a name="l09254"></a>09254  
-<a name="l09255"></a>09255         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> XPathNodeSet::first()<span class="keyword"> const </span>
+<a name="l09255"></a>09255         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> XPathNodeSet::first()<span class="keyword"> const </span>
 <a name="l09256"></a>09256 <span class="keyword">        </span>{ 
 <a name="l09257"></a>09257                 <span class="keywordflow">return</span> XPathFirst(_begin, _end, _type); 
 <a name="l09258"></a>09258         } 
@@ -9348,7 +9348,7 @@
 <a name="l09317"></a>09317                 <span class="keywordflow">return</span> Value ? Value : <a class="code" href="../../d0/d62/xml_8h.html#a98c5d1b3853d93a60bcc08bd92b1a71b" title="Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the c...">XML_TEXT</a>(<span class="stringliteral">&quot;&quot;</span>); 
 <a name="l09318"></a>09318         } 
 <a name="l09319"></a>09319  
-<a name="l09320"></a><a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a773036e3c3c3db0af26fa662782f7e56">09320</a>         <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a773036e3c3c3db0af26fa662782f7e56" title="Get this as a XPathNodeSet.">XPathVariable::GetNodeSet</a>()<span class="keyword"> const </span>
+<a name="l09320"></a><a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a773036e3c3c3db0af26fa662782f7e56">09320</a>         <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a773036e3c3c3db0af26fa662782f7e56" title="Get this as a XPathNodeSet.">XPathVariable::GetNodeSet</a>()<span class="keyword"> const </span>
 <a name="l09321"></a>09321 <span class="keyword">        </span>{ 
 <a name="l09322"></a>09322                 <span class="keywordflow">return</span> (<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a8841d47677912f4b88743928cf931eac" title="What kind of data does this variable store.">_type</a> == <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba" title="Node set (XPathNodeSet).">XPathTypeNodeSet</a>) ? <span class="keyword">static_cast&lt;</span><span class="keyword">const </span>XPathVariableNodeSet*<span class="keyword">&gt;</span>(<span class="keyword">this</span>)-&gt;Value : dummy_NodeSet; 
 <a name="l09323"></a>09323         } 
@@ -9390,7 +9390,7 @@
 <a name="l09359"></a>09359                 <span class="keywordflow">return</span> <span class="keyword">true</span>; 
 <a name="l09360"></a>09360         } 
 <a name="l09361"></a>09361  
-<a name="l09362"></a><a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a121079abb73e70ade34f4e69181e5694">09362</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">XPathVariable::Set</a>(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; Value) 
+<a name="l09362"></a><a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a121079abb73e70ade34f4e69181e5694">09362</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">XPathVariable::Set</a>(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; Value) 
 <a name="l09363"></a>09363         { 
 <a name="l09364"></a>09364                 <span class="keywordflow">if</span> (<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#a8841d47677912f4b88743928cf931eac" title="What kind of data does this variable store.">_type</a> != <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba" title="Node set (XPathNodeSet).">XPathTypeNodeSet</a>) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l09365"></a>09365  
@@ -9475,7 +9475,7 @@
 <a name="l09444"></a>09444                 <span class="keywordflow">return</span> var ? var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">Set</a>(Value) : <span class="keyword">false</span>; 
 <a name="l09445"></a>09445         } 
 <a name="l09446"></a>09446  
-<a name="l09447"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a61fe3aa60d13a4a224d301456a230a7c">09447</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a7095efef6fc3978479fb8b6f203c6f4c" title="Set contained variable Value; no Type conversion is performed.">XPathVariableSet::Set</a>(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>&amp; Value) 
+<a name="l09447"></a><a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a61fe3aa60d13a4a224d301456a230a7c">09447</a>         <span class="keywordtype">bool</span> <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a7095efef6fc3978479fb8b6f203c6f4c" title="Set contained variable Value; no Type conversion is performed.">XPathVariableSet::Set</a>(<span class="keyword">const</span> char_t* Name, <span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; Value) 
 <a name="l09448"></a>09448         { 
 <a name="l09449"></a>09449                 <a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html" title="A single XPath variable.">XPathVariable</a>* var = <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#a26c9bb8f7aa3aaedfcdcdca2e1822deb" title="Add a new variable or get the existing one, if the Types match.">Add</a>(Name, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba" title="Node set (XPathNodeSet).">XPathTypeNodeSet</a>); 
 <a name="l09450"></a>09450                 <span class="keywordflow">return</span> var ? var-&gt;<a class="code" href="../../df/dee/classphys_1_1xml_1_1XPathVariable.html#aea78a6ac9a12a1be68db8a56fbffebc3" title="Set variable Value; no Type conversion is performed.">Set</a>(Value) : <span class="keyword">false</span>; 
@@ -9517,19 +9517,19 @@
 <a name="l09486"></a>09486                 } 
 <a name="l09487"></a>09487         } 
 <a name="l09488"></a>09488  
-<a name="l09489"></a>09489         XPathQuery::~XPathQuery() 
+<a name="l09489"></a><a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#a063a1c4513d62695ae73c981f2050dc4">09489</a>         <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#a063a1c4513d62695ae73c981f2050dc4" title="Destructor.">XPathQuery::~XPathQuery</a>() 
 <a name="l09490"></a>09490         { 
 <a name="l09491"></a>09491                 XPathQueryImpl::destroy(_impl); 
 <a name="l09492"></a>09492         } 
 <a name="l09493"></a>09493  
-<a name="l09494"></a>09494         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d" title="XPathQuery return type.">XPathValueType</a> XPathQuery::ReturnType()<span class="keyword"> const </span>
+<a name="l09494"></a><a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#af4c6025009b1e09cdf56124a047ca4f0">09494</a>         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d" title="XPathQuery return type.">XPathValueType</a> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#af4c6025009b1e09cdf56124a047ca4f0" title="Get query expression return Type.">XPathQuery::ReturnType</a>()<span class="keyword"> const </span>
 <a name="l09495"></a>09495 <span class="keyword">        </span>{ 
 <a name="l09496"></a>09496                 <span class="keywordflow">if</span> (!_impl) <span class="keywordflow">return</span> XPathTypeNone; 
 <a name="l09497"></a>09497  
 <a name="l09498"></a>09498                 <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>XPathQueryImpl*<span class="keyword">&gt;</span>(_impl)-&gt;GetRoot-&gt;retType(); 
 <a name="l09499"></a>09499         } 
 <a name="l09500"></a>09500  
-<a name="l09501"></a>09501         <span class="keywordtype">bool</span> XPathQuery::EvaluateBoolean(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; n)<span class="keyword"> const </span>
+<a name="l09501"></a><a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#a44fed594a458aa4b6cf4f3d12d5089a8">09501</a>         <span class="keywordtype">bool</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#a44fed594a458aa4b6cf4f3d12d5089a8" title="Evaluate expression as boolean value in the specified context; performs Type conversion if necessary...">XPathQuery::EvaluateBoolean</a>(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; n)<span class="keyword"> const </span>
 <a name="l09502"></a>09502 <span class="keyword">        </span>{ 
 <a name="l09503"></a>09503                 <span class="keywordflow">if</span> (!_impl) <span class="keywordflow">return</span> <span class="keyword">false</span>; 
 <a name="l09504"></a>09504                  
@@ -9543,7 +9543,7 @@
 <a name="l09512"></a>09512                 <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>XPathQueryImpl*<span class="keyword">&gt;</span>(_impl)-&gt;GetRoot-&gt;eval_boolean(c, sd.stack); 
 <a name="l09513"></a>09513         } 
 <a name="l09514"></a>09514          
-<a name="l09515"></a>09515         <span class="keywordtype">double</span> XPathQuery::EvaluateNumber(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; n)<span class="keyword"> const </span>
+<a name="l09515"></a><a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#aacfcff30901ce20b92de56ec0e2d70e5">09515</a>         <span class="keywordtype">double</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#aacfcff30901ce20b92de56ec0e2d70e5" title="Evaluate expression as double value in the specified context; performs Type conversion if necessary...">XPathQuery::EvaluateNumber</a>(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; n)<span class="keyword"> const </span>
 <a name="l09516"></a>09516 <span class="keyword">        </span>{ 
 <a name="l09517"></a>09517                 <span class="keywordflow">if</span> (!_impl) <span class="keywordflow">return</span> gen_nan(); 
 <a name="l09518"></a>09518                  
@@ -9558,7 +9558,7 @@
 <a name="l09527"></a>09527         } 
 <a name="l09528"></a>09528  
 <a name="l09529"></a>09529 <span class="preprocessor">#ifndef XML_NO_STL </span>
-<a name="l09530"></a>09530 <span class="preprocessor"></span>        String XPathQuery::EvaluateString(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; n)<span class="keyword"> const </span>
+<a name="l09530"></a><a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#ab7084be2e608b38872167fe3321554b9">09530</a> <span class="preprocessor"></span>        String <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#ab7084be2e608b38872167fe3321554b9" title="Evaluate expression as string value in the specified context; performs Type conversion if necessary...">XPathQuery::EvaluateString</a>(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; n)<span class="keyword"> const </span>
 <a name="l09531"></a>09531 <span class="keyword">        </span>{ 
 <a name="l09532"></a>09532                 XPathStackData sd; 
 <a name="l09533"></a>09533  
@@ -9566,7 +9566,7 @@
 <a name="l09535"></a>09535         } 
 <a name="l09536"></a>09536 <span class="preprocessor">#endif </span>
 <a name="l09537"></a>09537 <span class="preprocessor"></span> 
-<a name="l09538"></a>09538         <span class="keywordtype">size_t</span> XPathQuery::EvaluateString(char_t* buffer, <span class="keywordtype">size_t</span> capacity, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; n)<span class="keyword"> const </span>
+<a name="l09538"></a><a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#ac9f4705c639cbd7f3aef8266fa683cc2">09538</a>         <span class="keywordtype">size_t</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#ab7084be2e608b38872167fe3321554b9" title="Evaluate expression as string value in the specified context; performs Type conversion if necessary...">XPathQuery::EvaluateString</a>(char_t* buffer, <span class="keywordtype">size_t</span> capacity, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; n)<span class="keyword"> const </span>
 <a name="l09539"></a>09539 <span class="keyword">        </span>{ 
 <a name="l09540"></a>09540                 XPathStackData sd; 
 <a name="l09541"></a>09541  
@@ -9586,21 +9586,21 @@
 <a name="l09555"></a>09555                 <span class="keywordflow">return</span> full_size; 
 <a name="l09556"></a>09556         } 
 <a name="l09557"></a>09557  
-<a name="l09558"></a>09558         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> XPathQuery::EvaluateNodeSet(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&amp; n)<span class="keyword"> const </span>
+<a name="l09558"></a><a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#af00ba3d0346ccc01f249274947191333">09558</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#af00ba3d0346ccc01f249274947191333" title="Evaluate expression as node set in the specified context.">XPathQuery::EvaluateNodeSet</a>(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; n)<span class="keyword"> const </span>
 <a name="l09559"></a>09559 <span class="keyword">        </span>{ 
-<a name="l09560"></a>09560                 <span class="keywordflow">if</span> (!_impl) <span class="keywordflow">return</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>(); 
+<a name="l09560"></a>09560                 <span class="keywordflow">if</span> (!_impl) <span class="keywordflow">return</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>(); 
 <a name="l09561"></a>09561  
 <a name="l09562"></a>09562                 XPathAstNode* GetRoot = <span class="keyword">static_cast&lt;</span>XPathQueryImpl*<span class="keyword">&gt;</span>(_impl)-&gt;GetRoot; 
 <a name="l09563"></a>09563  
 <a name="l09564"></a>09564                 <span class="keywordflow">if</span> (GetRoot-&gt;retType() != XPathTypeNodeSet) 
 <a name="l09565"></a>09565                 { 
 <a name="l09566"></a>09566 <span class="preprocessor">                #ifdef XML_NO_EXCEPTIONS </span>
-<a name="l09567"></a>09567 <span class="preprocessor"></span>                        <span class="keywordflow">return</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>(); 
+<a name="l09567"></a>09567 <span class="preprocessor"></span>                        <span class="keywordflow">return</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>(); 
 <a name="l09568"></a>09568 <span class="preprocessor">                #else </span>
 <a name="l09569"></a>09569 <span class="preprocessor"></span>                        <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a> Result; 
 <a name="l09570"></a>09570                         Result.<a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html#a5e601cfd490fd3d1ed4bcdfb36d9d920" title="Error message (0 if no error).">error</a> = <span class="stringliteral">&quot;Expression does not evaluate to node set&quot;</span>; 
 <a name="l09571"></a>09571  
-<a name="l09572"></a>09572                         <span class="keywordflow">throw</span> <a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html">XPathException</a>(Result); 
+<a name="l09572"></a>09572                         <span class="keywordflow">throw</span> <a class="code" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html" title="Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.">XPathException</a>(Result); 
 <a name="l09573"></a>09573 <span class="preprocessor">                #endif </span>
 <a name="l09574"></a>09574 <span class="preprocessor"></span>                } 
 <a name="l09575"></a>09575                  
@@ -9608,15 +9608,15 @@
 <a name="l09577"></a>09577                 XPathStackData sd; 
 <a name="l09578"></a>09578  
 <a name="l09579"></a>09579 <span class="preprocessor">        #ifdef XML_NO_EXCEPTIONS </span>
-<a name="l09580"></a>09580 <span class="preprocessor"></span>                <span class="keywordflow">if</span> (setjmp(sd.error_handler)) <span class="keywordflow">return</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>(); 
+<a name="l09580"></a>09580 <span class="preprocessor"></span>                <span class="keywordflow">if</span> (setjmp(sd.error_handler)) <span class="keywordflow">return</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>(); 
 <a name="l09581"></a>09581 <span class="preprocessor">        #endif </span>
 <a name="l09582"></a>09582 <span class="preprocessor"></span> 
 <a name="l09583"></a>09583                 XPathNodeSet_raw r = GetRoot-&gt;eval_NodeSet(c, sd.stack); 
 <a name="l09584"></a>09584  
-<a name="l09585"></a>09585                 <span class="keywordflow">return</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>(r.begin(), r.end(), r.Type()); 
+<a name="l09585"></a>09585                 <span class="keywordflow">return</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>(r.begin(), r.end(), r.Type()); 
 <a name="l09586"></a>09586         } 
 <a name="l09587"></a>09587  
-<a name="l09588"></a>09588         <span class="keyword">const</span> <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>&amp; XPathQuery::Result()<span class="keyword"> const </span>
+<a name="l09588"></a><a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#a83f2039e91105c9cd0dcc7d524359198">09588</a>         <span class="keyword">const</span> <a class="code" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a>&amp; <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#a83f2039e91105c9cd0dcc7d524359198" title="Get parsing Result (used to get compilation errors when XML_NO_EXCEPTIONS is enabled).">XPathQuery::Result</a>()<span class="keyword"> const </span>
 <a name="l09589"></a>09589 <span class="keyword">        </span>{ 
 <a name="l09590"></a>09590                 <span class="keywordflow">return</span> _Result; 
 <a name="l09591"></a>09591         } 
@@ -9626,32 +9626,32 @@
 <a name="l09595"></a>09595                 <span class="keywordflow">return</span> _impl ? &amp;XPathQuery::_impl : 0; 
 <a name="l09596"></a>09596         } 
 <a name="l09597"></a>09597  
-<a name="l09598"></a>09598         <span class="keywordtype">bool</span> XPathQuery::operator!()<span class="keyword"> const </span>
+<a name="l09598"></a><a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#afe0b62e0ab607855f5267b0690bda33b">09598</a>         <span class="keywordtype">bool</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#afe0b62e0ab607855f5267b0690bda33b" title="Logical not operator, used a workaround for borland compiler.">XPathQuery::operator!</a>()<span class="keyword"> const </span>
 <a name="l09599"></a>09599 <span class="keyword">        </span>{ 
 <a name="l09600"></a>09600                 <span class="keywordflow">return</span> !_impl; 
 <a name="l09601"></a>09601         } 
 <a name="l09602"></a>09602  
-<a name="l09603"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5">09603</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating an XPath query. Returns first node from the resulting node set...">Node::FindSingleNode</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
+<a name="l09603"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5">09603</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating an XPath query. Returns first node from the resulting node set...">Node::FindSingleNode</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
 <a name="l09604"></a>09604 <span class="keyword">        </span>{ 
 <a name="l09605"></a>09605                 <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a> q(query, variables); 
 <a name="l09606"></a>09606                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating an XPath query. Returns first node from the resulting node set...">FindSingleNode</a>(q); 
 <a name="l09607"></a>09607         } 
 <a name="l09608"></a>09608  
-<a name="l09609"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a13b958f663f9605061e5e47dfd8e1966">09609</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating an XPath query. Returns first node from the resulting node set...">Node::FindSingleNode</a>(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
+<a name="l09609"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a13b958f663f9605061e5e47dfd8e1966">09609</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating an XPath query. Returns first node from the resulting node set...">Node::FindSingleNode</a>(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
 <a name="l09610"></a>09610 <span class="keyword">        </span>{ 
-<a name="l09611"></a>09611                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> s = query.EvaluateNodeSet(*<span class="keyword">this</span>); 
-<a name="l09612"></a>09612                 <span class="keywordflow">return</span> s.Empty() ? <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>() : s.first(); 
+<a name="l09611"></a>09611                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> s = query.<a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#af00ba3d0346ccc01f249274947191333" title="Evaluate expression as node set in the specified context.">EvaluateNodeSet</a>(*<span class="keyword">this</span>); 
+<a name="l09612"></a>09612                 <span class="keywordflow">return</span> s.Empty() ? <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>() : s.first(); 
 <a name="l09613"></a>09613         } 
 <a name="l09614"></a>09614  
-<a name="l09615"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f">09615</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f" title="Select a group of nodes by evaluating an XPath query.">Node::FindNodes</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
+<a name="l09615"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f">09615</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f" title="Select a group of nodes by evaluating an XPath query.">Node::FindNodes</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
 <a name="l09616"></a>09616 <span class="keyword">        </span>{ 
 <a name="l09617"></a>09617                 <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a> q(query, variables); 
 <a name="l09618"></a>09618                 <span class="keywordflow">return</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f" title="Select a group of nodes by evaluating an XPath query.">FindNodes</a>(q); 
 <a name="l09619"></a>09619         } 
 <a name="l09620"></a>09620  
-<a name="l09621"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a466766bf750da2a04acd8a32d2b8a458">09621</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f" title="Select a group of nodes by evaluating an XPath query.">Node::FindNodes</a>(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
+<a name="l09621"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a466766bf750da2a04acd8a32d2b8a458">09621</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f" title="Select a group of nodes by evaluating an XPath query.">Node::FindNodes</a>(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
 <a name="l09622"></a>09622 <span class="keyword">        </span>{ 
-<a name="l09623"></a>09623                 <span class="keywordflow">return</span> query.EvaluateNodeSet(*<span class="keyword">this</span>); 
+<a name="l09623"></a>09623                 <span class="keywordflow">return</span> query.<a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#af00ba3d0346ccc01f249274947191333" title="Evaluate expression as node set in the specified context.">EvaluateNodeSet</a>(*<span class="keyword">this</span>); 
 <a name="l09624"></a>09624         } 
 <a name="l09625"></a>09625 } 
 <a name="l09626"></a>09626 } <span class="comment">// \phys</span>
@@ -9689,7 +9689,7 @@
 <a name="l09658"></a>09658 <span class="preprocessor">#endif // \PHYSXML </span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 13:19:22 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 15:54:06 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

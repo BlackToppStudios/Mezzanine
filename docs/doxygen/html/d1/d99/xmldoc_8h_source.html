@@ -1269,49 +1269,117 @@
 <a name="l01238"></a>01238 <span class="comment">        /// - You can precompile expressions to query objects to save compilation time if it becomes an issue; \n</span>
 <a name="l01239"></a>01239 <span class="comment">        /// - You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings; \n</span>
 <a name="l01240"></a>01240 <span class="comment">        /// - You can get the type of expression value via query object. \n \n</span>
-<a name="l01241"></a>01241 <span class="comment">        /// Query objects correspond to xml::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to zml::XPathQuery in the container.</span>
-<a name="l01242"></a>01242 <span class="comment"></span><span class="comment"></span>
-<a name="l01243"></a>01243 <span class="comment">        /// @fn XPathQuery::~XPathQuery();</span>
-<a name="l01244"></a>01244 <span class="comment">                /// @brief Destructor</span>
-<a name="l01245"></a>01245 <span class="comment"></span>
-<a name="l01246"></a>01246 
-<a name="l01247"></a>01247     }
-<a name="l01248"></a>01248 }
-<a name="l01249"></a>01249 <span class="preprocessor">#endif</span>
-<a name="l01250"></a>01250 <span class="preprocessor"></span>
-<a name="l01251"></a>01251 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l01252"></a>01252 <span class="preprocessor"></span>
-<a name="l01253"></a>01253 <span class="comment">/*</span>
-<a name="l01254"></a>01254 <span class="comment"> *</span>
-<a name="l01255"></a>01255 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l01256"></a>01256 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l01257"></a>01257 <span class="comment"> *</span>
-<a name="l01258"></a>01258 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l01259"></a>01259 <span class="comment"> *</span>
-<a name="l01260"></a>01260 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l01261"></a>01261 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l01262"></a>01262 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l01263"></a>01263 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l01264"></a>01264 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l01265"></a>01265 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l01266"></a>01266 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l01267"></a>01267 <span class="comment"> * conditions:</span>
-<a name="l01268"></a>01268 <span class="comment"> *</span>
-<a name="l01269"></a>01269 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l01270"></a>01270 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l01271"></a>01271 <span class="comment"> *</span>
-<a name="l01272"></a>01272 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l01273"></a>01273 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l01274"></a>01274 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l01275"></a>01275 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l01276"></a>01276 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l01277"></a>01277 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l01278"></a>01278 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l01279"></a>01279 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l01280"></a>01280 <span class="comment"> */</span>
+<a name="l01241"></a>01241 <span class="comment">        /// Query objects correspond to xml::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to xml::XPathQuery in the container. \n \n</span>
+<a name="l01242"></a>01242 <span class="comment">        /// To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, XPathQuery::EvaluateBoolean(), XPathQuery::EvaluateNumber() and XPathQuery::EvaluateString() always return a result, but EvaluateNodeSet results in an error if the return type is not node set.</span>
+<a name="l01243"></a>01243 <span class="comment"></span><span class="comment"></span>
+<a name="l01244"></a>01244 <span class="comment">        /// @fn XPathQuery::ReturnType() const;</span>
+<a name="l01245"></a>01245 <span class="comment">        /// @brief Get query expression return Type.</span>
+<a name="l01246"></a>01246 <span class="comment">        /// @return A XPathValueType.</span>
+<a name="l01247"></a>01247 <span class="comment"></span><span class="comment"></span>
+<a name="l01248"></a>01248 <span class="comment">        /// @fn XPathQuery::EvaluateBoolean(const XPathNode&amp; n) const;</span>
+<a name="l01249"></a>01249 <span class="comment">        /// @brief Evaluate expression as boolean value in the specified context; performs Type conversion if necessary.</span>
+<a name="l01250"></a>01250 <span class="comment">        /// @param n The XPathNode that will serve as the context for the query.</span>
+<a name="l01251"></a>01251 <span class="comment">                /// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.</span>
+<a name="l01252"></a>01252 <span class="comment">                /// @return A bool result of evaluating the expression.</span>
+<a name="l01253"></a>01253 <span class="comment"></span><span class="comment"></span>
+<a name="l01254"></a>01254 <span class="comment">        /// @fn XPathQuery::Result() const;</span>
+<a name="l01255"></a>01255 <span class="comment">        /// @brief Get parsing Result (used to get compilation errors when XML_NO_EXCEPTIONS is enabled)</span>
+<a name="l01256"></a>01256 <span class="comment">                /// @return A const reference to an XPathParseResult.</span>
+<a name="l01257"></a>01257 <span class="comment"></span><span class="comment"></span>
+<a name="l01258"></a>01258 <span class="comment">        /// @fn XPathQuery::operator!() const;</span>
+<a name="l01259"></a>01259 <span class="comment">        /// @brief Logical not operator, used a workaround for borland compiler.</span>
+<a name="l01260"></a>01260 <span class="comment">        /// @return A bool that is the opposite of evaluatig this as a bool normally.</span>
+<a name="l01261"></a>01261 <span class="comment"></span><span class="comment"></span>
+<a name="l01262"></a>01262 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01263"></a>01263 <span class="comment">        /// @class XPathException</span>
+<a name="l01264"></a>01264 <span class="comment">        /// @brief Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.</span>
+<a name="l01265"></a>01265 <span class="comment"></span><span class="comment"></span>
+<a name="l01266"></a>01266 <span class="comment">                /// @fn XPathException::what() const throw();</span>
+<a name="l01267"></a>01267 <span class="comment">                /// @brief Get error message.</span>
+<a name="l01268"></a>01268 <span class="comment">                /// @return A description of the error message as a c-style string.</span>
+<a name="l01269"></a>01269 <span class="comment"></span><span class="comment"></span>
+<a name="l01270"></a>01270 <span class="comment">                /// @fn XPathException::Result() const;</span>
+<a name="l01271"></a>01271 <span class="comment">                /// @brief Get parse Result.</span>
+<a name="l01272"></a>01272 <span class="comment">                /// @return The XPathParseResult used to create this exception.</span>
+<a name="l01273"></a>01273 <span class="comment"></span><span class="comment"></span>
+<a name="l01274"></a>01274 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01275"></a>01275 <span class="comment">        /// @class XPathNode</span>
+<a name="l01276"></a>01276 <span class="comment">        /// @brief An XPath node which can store handles to a xml::Node or an xml::Attribute.</span>
+<a name="l01277"></a>01277 <span class="comment">        /// @details Because an XPath node can be either a xml::Node or an xml::Attribute, there is a special type, XPathNode,</span>
+<a name="l01278"></a>01278 <span class="comment">        /// which is a discriminated union of these types. A value of this type contains two node handles, one of xml::Node type,</span>
+<a name="l01279"></a>01279 <span class="comment">        /// and another one of xml::Attribute type; at most one of them can be non-null. The accessors to get these handles are</span>
+<a name="l01280"></a>01280 <span class="comment">        /// available: XPathNode::GetNode() an XPathNode::GetAttribute() . \n \n</span>
+<a name="l01281"></a>01281 <span class="comment">        /// XPath nodes can be null, in which case both accessors return null handles.</span>
+<a name="l01282"></a>01282 <span class="comment"></span><span class="comment"></span>
+<a name="l01283"></a>01283 <span class="comment">        /// @fn XPathNode::XPathNode();</span>
+<a name="l01284"></a>01284 <span class="comment">                /// Default constructor; constructs empty XPath node</span>
+<a name="l01285"></a>01285 <span class="comment"></span><span class="comment"></span>
+<a name="l01286"></a>01286 <span class="comment">        /// @fn XPathNode::XPathNode(const Node&amp; node);</span>
+<a name="l01287"></a>01287 <span class="comment">        /// @brief Construct From a xml::Node.</span>
+<a name="l01288"></a>01288 <span class="comment">        /// @param node The xml::Node this handle should reference.</span>
+<a name="l01289"></a>01289 <span class="comment"></span><span class="comment"></span>
+<a name="l01290"></a>01290 <span class="comment">                /// @fn XPathNode::GetNode() const;</span>
+<a name="l01291"></a>01291 <span class="comment">                /// @brief Get the xml::Node this is referencing</span>
+<a name="l01292"></a>01292 <span class="comment">                /// @return A valid xml::Node, or a null node if this doesn&#39;t reference a an xml::Node.</span>
+<a name="l01293"></a>01293 <span class="comment"></span><span class="comment"></span>
+<a name="l01294"></a>01294 <span class="comment">                /// @fn XPathNode::GetAttribute() const;</span>
+<a name="l01295"></a>01295 <span class="comment">                /// @brief Get the xml::Attribute this is referencing</span>
+<a name="l01296"></a>01296 <span class="comment">        /// @return A valid xml::Attribute, or a null node if this doesn&#39;t reference a an xml::Attribute.</span>
+<a name="l01297"></a>01297 <span class="comment"></span><span class="comment"></span>
+<a name="l01298"></a>01298 <span class="comment">                /// @fn XPathNode::GetParent() const;</span>
+<a name="l01299"></a>01299 <span class="comment">                /// @brief Get the parent of the xml::Node or xml::Attribute this refers to.</span>
+<a name="l01300"></a>01300 <span class="comment">        /// @return A valid xml::Node, or a null node if this doesn&#39;t reference a an xml::Node.</span>
+<a name="l01301"></a>01301 <span class="comment"></span><span class="comment"></span>
+<a name="l01302"></a>01302 <span class="comment">        /// @fn XPathNode::operator!() const;</span>
+<a name="l01303"></a>01303 <span class="comment">        /// @brief Logical not operator, used a workaround for borland compiler.</span>
+<a name="l01304"></a>01304 <span class="comment">        /// @return A bool that is the opposite of evaluatig this as a bool normally.</span>
+<a name="l01305"></a>01305 <span class="comment"></span>
+<a name="l01306"></a>01306 
+<a name="l01307"></a>01307 <span class="comment"></span>
+<a name="l01308"></a>01308 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01309"></a>01309 <span class="comment">        /// @class XPathNodeSet</span>
+<a name="l01310"></a>01310 <span class="comment">        /// @brief A collection of nodes that an XPathQuery can work on.</span>
+<a name="l01311"></a>01311 <span class="comment"></span>
+<a name="l01312"></a>01312 
+<a name="l01313"></a>01313 
+<a name="l01314"></a>01314 
+<a name="l01315"></a>01315     }
+<a name="l01316"></a>01316 }
+<a name="l01317"></a>01317 <span class="preprocessor">#endif</span>
+<a name="l01318"></a>01318 <span class="preprocessor"></span>
+<a name="l01319"></a>01319 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l01320"></a>01320 <span class="preprocessor"></span>
+<a name="l01321"></a>01321 <span class="comment">/*</span>
+<a name="l01322"></a>01322 <span class="comment"> *</span>
+<a name="l01323"></a>01323 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l01324"></a>01324 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l01325"></a>01325 <span class="comment"> *</span>
+<a name="l01326"></a>01326 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l01327"></a>01327 <span class="comment"> *</span>
+<a name="l01328"></a>01328 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l01329"></a>01329 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l01330"></a>01330 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l01331"></a>01331 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l01332"></a>01332 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l01333"></a>01333 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l01334"></a>01334 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l01335"></a>01335 <span class="comment"> * conditions:</span>
+<a name="l01336"></a>01336 <span class="comment"> *</span>
+<a name="l01337"></a>01337 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l01338"></a>01338 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l01339"></a>01339 <span class="comment"> *</span>
+<a name="l01340"></a>01340 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l01341"></a>01341 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l01342"></a>01342 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l01343"></a>01343 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l01344"></a>01344 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l01345"></a>01345 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l01346"></a>01346 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l01347"></a>01347 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l01348"></a>01348 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 13:19:22 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 15:54:06 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

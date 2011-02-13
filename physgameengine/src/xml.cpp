@@ -5489,7 +5489,7 @@ namespace
 			return XPathStringConst(na.GetAttribute().Value()); 
 		else 
 		{ 
-			const Node& n = na.node(); 
+			const Node& n = na.GetNode(); 
  
 			switch (n.Type()) 
 			{ 
@@ -5582,7 +5582,7 @@ namespace
  
 	const void* document_order(const XPathNode& xnode) 
 	{ 
-		NodeStruct* node = xnode.node().InternalObject(); 
+		NodeStruct* node = xnode.GetNode().InternalObject(); 
  
 		if (node) 
 		{ 
@@ -5614,7 +5614,7 @@ namespace
 			if (lo && ro) return lo < ro; 
  
 			// slow comparison 
-			Node ln = lhs.node(), rn = rhs.node(); 
+			Node ln = lhs.GetNode(), rn = rhs.GetNode(); 
  
 			// compare attributes 
 			if (lhs.GetAttribute() && rhs.GetAttribute()) 
@@ -5637,14 +5637,14 @@ namespace
 			else if (lhs.GetAttribute()) 
 			{ 
 				// attributes go after the GetParent element 
-				if (lhs.GetParent() == rhs.node()) return false; 
+				if (lhs.GetParent() == rhs.GetNode()) return false; 
 				 
 				ln = lhs.GetParent(); 
 			} 
 			else if (rhs.GetAttribute()) 
 			{ 
 				// attributes go after the GetParent element 
-				if (rhs.GetParent() == lhs.node()) return true; 
+				if (rhs.GetParent() == lhs.GetNode()) return true; 
 				 
 				rn = rhs.GetParent(); 
 			} 
@@ -5663,7 +5663,7 @@ namespace
 		bool operator()(const XPathNode& lhs, const XPathNode& rhs) const 
 		{ 
 			if (lhs.GetAttribute()) return rhs.GetAttribute() ? lhs.GetAttribute() < rhs.GetAttribute() : true; 
-			else return rhs.GetAttribute() ? false : lhs.node() < rhs.node(); 
+			else return rhs.GetAttribute() ? false : lhs.GetNode() < rhs.GetNode(); 
 		} 
 	}; 
 	 
@@ -5930,7 +5930,7 @@ namespace
 	 
 	const char_t* qualified_Name(const XPathNode& node) 
 	{ 
-		return node.GetAttribute() ? node.GetAttribute().Name() : node.node().Name(); 
+		return node.GetAttribute() ? node.GetAttribute().Name() : node.GetNode().Name(); 
 	} 
 	 
 	const char_t* local_Name(const XPathNode& node) 
@@ -6005,7 +6005,7 @@ namespace
  
 	const char_t* namespace_uri(const XPathNode& node) 
 	{ 
-		return node.GetAttribute() ? namespace_uri(node.GetAttribute(), node.GetParent()) : namespace_uri(node.node()); 
+		return node.GetAttribute() ? namespace_uri(node.GetAttribute(), node.GetParent()) : namespace_uri(node.GetNode()); 
 	} 
  
 	void normalize_space(char_t* buffer) 
@@ -7405,8 +7405,8 @@ namespace
 					// in general, all axes generate elements in a particular order, but there is no order guarantee if axis is applied to two nodes 
 					if (axis != axis_self && size != 0) ns.SetType(XPathNodeSet::TypeUnsorted); 
 					 
-					if (it->node()) 
-						step_fill(ns, it->node(), stack.Result, v); 
+					if (it->GetNode()) 
+						step_fill(ns, it->GetNode(), stack.Result, v); 
 					else if (attributes) 
 						step_fill(ns, it->GetAttribute(), it->GetParent(), stack.Result, v); 
 						 
@@ -7415,8 +7415,8 @@ namespace
 			} 
 			else 
 			{ 
-				if (c.n.node()) 
-					step_fill(ns, c.n.node(), stack.Result, v); 
+				if (c.n.GetNode()) 
+					step_fill(ns, c.n.GetNode(), stack.Result, v); 
 				else if (attributes) 
 					step_fill(ns, c.n.GetAttribute(), c.n.GetParent(), stack.Result, v); 
 				 
@@ -7542,7 +7542,7 @@ namespace
  
 				XPathString lang = _left->eval_string(c, stack); 
 				 
-				for (Node n = c.n.node(); n; n = n.GetParent()) 
+				for (Node n = c.n.GetNode(); n; n = n.GetParent()) 
 				{ 
 					Attribute a = n.GetAttribute(XML_TEXT("xml:lang")); 
 					 
@@ -8099,7 +8099,7 @@ namespace
  
 				ns.SetType(XPathNodeSet::TypeSorted); 
  
-				if (c.n.node()) ns.push_back(c.n.node().GetRoot(), stack.Result); 
+				if (c.n.GetNode()) ns.push_back(c.n.GetNode().GetRoot(), stack.Result); 
 				else if (c.n.GetAttribute()) ns.push_back(c.n.GetParent().GetRoot(), stack.Result); 
  
 				return ns; 
@@ -9098,7 +9098,7 @@ namespace phys
 	{ 
 	} 
  
-	Node XPathNode::node() const 
+	Node XPathNode::GetNode() const 
 	{ 
 		return _attribute ? Node() : _node; 
 	} 
