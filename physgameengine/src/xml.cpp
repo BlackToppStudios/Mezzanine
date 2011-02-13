@@ -6218,7 +6218,7 @@ namespace
 { 
 	XPathNodeSet::CollectionType XPathSort(XPathNode* begin, XPathNode* end, XPathNodeSet::CollectionType Type, bool rev) 
 	{ 
-		XPathNodeSet::CollectionType order = rev ? XPathNodeSet::TypeSorted_reverse : XPathNodeSet::TypeSorted; 
+		XPathNodeSet::CollectionType order = rev ? XPathNodeSet::TypeSortedReverse : XPathNodeSet::TypeSorted; 
  
 		if (Type == XPathNodeSet::TypeUnsorted) 
 		{ 
@@ -6241,7 +6241,7 @@ namespace
 		case XPathNodeSet::TypeSorted: 
 			return *begin; 
  
-		case XPathNodeSet::TypeSorted_reverse: 
+		case XPathNodeSet::TypeSortedReverse: 
 			return *(end - 1); 
  
 		case XPathNodeSet::TypeUnsorted: 
@@ -7389,7 +7389,7 @@ namespace
 			bool attributes = (axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_descendant_or_self || axis == axis_following || axis == axis_GetParent || axis == axis_preceding || axis == axis_self); 
  
 			XPathNodeSet_raw ns; 
-			ns.SetType((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? XPathNodeSet::TypeSorted_reverse : XPathNodeSet::TypeSorted); 
+			ns.SetType((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? XPathNodeSet::TypeSortedReverse : XPathNodeSet::TypeSorted); 
  
 			if (_left) 
 			{ 

@@ -310,7 +310,6 @@ function FixNames
 
 	#XPathVariable
 	sed -i -e 's|get_\(.\)\([a-zA-Z]*\)|Get\U\1\L\2|g' $1
-
 	sed -i -e 's|\([^f]\)set(|\1Set(|g' $1
 
 	#XPathVariableSet
@@ -325,8 +324,8 @@ function FixNames
 
 	#XPathNodeSet
 	sed -i -e 's|Type_unsorted|TypeUnsorted|g' $1
-	sed -i -e 's|Type_sorted|TypeSorted|g' $1
 	sed -i -e 's|Type_sorted_reverse|TypeSortedReverse|g' $1
+	sed -i -e 's|Type_sorted|TypeSorted|g' $1
 	sed -i -e 's|Type_t|CollectionType|g' $1
 
 	#XPathNode
@@ -423,9 +422,14 @@ function FixNames
 	sed -i -e 's|bool operator==(const XPathNode& n) const;|/// @brief Called when comparing two XPathNode instances for equality.\n		/// @param n The other xml::XPathNode to compare this Node against for equality.\n		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;\n		bool operator==(const XPathNode\& n) const; |' $1
 	sed -i -e 's|bool operator!=(const XPathNode& n) const;|\n		/// @brief Called when comparing two XPathNode instances for inequality.\n		/// @param n The other xml::XPathNode to compare this Node against for inequality.\n		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;\n		bool operator!=(const XPathNode\& n) const; |' $1
 
+	#XPathNodeSet
+	sed -i -e 's|XPathNodeSet(const XPathNodeSet& ns); |/// @brief Copy constructor.\n		/// @param ns The XPathNodeSet to copy.\n		XPathNodeSet(const XPathNodeSet\& ns); |' $1
+sed -i -e 's|size_t size() const;|/// @brief Get collection size.\n		/// @return The number of XPathNode instances as a size_t in the set\n		size_t size() const; |' $1
 
-	#another clean line to copy/paste
-	#sed -i -e 's|||' $1
+
+
+
+
 }
 
 FixNames $NewHFile

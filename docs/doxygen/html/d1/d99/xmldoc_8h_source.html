@@ -1333,53 +1333,157 @@
 <a name="l01302"></a>01302 <span class="comment">        /// @fn XPathNode::operator!() const;</span>
 <a name="l01303"></a>01303 <span class="comment">        /// @brief Logical not operator, used a workaround for borland compiler.</span>
 <a name="l01304"></a>01304 <span class="comment">        /// @return A bool that is the opposite of evaluatig this as a bool normally.</span>
-<a name="l01305"></a>01305 <span class="comment"></span>
-<a name="l01306"></a>01306 
-<a name="l01307"></a>01307 <span class="comment"></span>
-<a name="l01308"></a>01308 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l01309"></a>01309 <span class="comment">        /// @class XPathNodeSet</span>
-<a name="l01310"></a>01310 <span class="comment">        /// @brief A collection of nodes that an XPathQuery can work on.</span>
-<a name="l01311"></a>01311 <span class="comment"></span>
-<a name="l01312"></a>01312 
-<a name="l01313"></a>01313 
-<a name="l01314"></a>01314 
-<a name="l01315"></a>01315     }
-<a name="l01316"></a>01316 }
-<a name="l01317"></a>01317 <span class="preprocessor">#endif</span>
-<a name="l01318"></a>01318 <span class="preprocessor"></span>
-<a name="l01319"></a>01319 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l01320"></a>01320 <span class="preprocessor"></span>
-<a name="l01321"></a>01321 <span class="comment">/*</span>
-<a name="l01322"></a>01322 <span class="comment"> *</span>
-<a name="l01323"></a>01323 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l01324"></a>01324 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l01325"></a>01325 <span class="comment"> *</span>
-<a name="l01326"></a>01326 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l01327"></a>01327 <span class="comment"> *</span>
-<a name="l01328"></a>01328 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l01329"></a>01329 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l01330"></a>01330 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l01331"></a>01331 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l01332"></a>01332 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l01333"></a>01333 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l01334"></a>01334 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l01335"></a>01335 <span class="comment"> * conditions:</span>
-<a name="l01336"></a>01336 <span class="comment"> *</span>
-<a name="l01337"></a>01337 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l01338"></a>01338 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l01339"></a>01339 <span class="comment"> *</span>
-<a name="l01340"></a>01340 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l01341"></a>01341 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l01342"></a>01342 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l01343"></a>01343 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l01344"></a>01344 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l01345"></a>01345 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l01346"></a>01346 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l01347"></a>01347 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l01348"></a>01348 <span class="comment"> */</span>
+<a name="l01305"></a>01305 <span class="comment"></span><span class="comment"></span>
+<a name="l01306"></a>01306 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01307"></a>01307 <span class="comment">        /// @class XPathNodeSet</span>
+<a name="l01308"></a>01308 <span class="comment">        /// @brief A collection of nodes that an XPathQuery can work on.</span>
+<a name="l01309"></a>01309 <span class="comment"></span><span class="comment"></span>
+<a name="l01310"></a>01310 <span class="comment">        /// @enum XPathNodeSet::CollectionType</span>
+<a name="l01311"></a>01311 <span class="comment">        /// @brief The different ways a collection may or may not be ordered.</span>
+<a name="l01312"></a>01312 <span class="comment"></span><span class="comment"></span>
+<a name="l01313"></a>01313 <span class="comment">        /// @var XPathNodeSet::TypeUnsorted</span>
+<a name="l01314"></a>01314 <span class="comment">        /// @brief Not Ordered.</span>
+<a name="l01315"></a>01315 <span class="comment"></span><span class="comment"></span>
+<a name="l01316"></a>01316 <span class="comment">        /// @var XPathNodeSet::TypeSorted</span>
+<a name="l01317"></a>01317 <span class="comment">        /// @brief In document Order.</span>
+<a name="l01318"></a>01318 <span class="comment"></span><span class="comment"></span>
+<a name="l01319"></a>01319 <span class="comment">        /// @var XPathNodeSet::TypeSortedReverse</span>
+<a name="l01320"></a>01320 <span class="comment">        /// @brief In reverse document Order.</span>
+<a name="l01321"></a>01321 <span class="comment"></span><span class="comment"></span>
+<a name="l01322"></a>01322 <span class="comment">        /// @typedef XPathNodeSet::const_iterator;</span>
+<a name="l01323"></a>01323 <span class="comment">        /// @brief An iterator trait. Const iterator for XPathNodes.</span>
+<a name="l01324"></a>01324 <span class="comment"></span><span class="comment"></span>
+<a name="l01325"></a>01325 <span class="comment">        /// @fn XPathNodeSet::XPathNodeSet();</span>
+<a name="l01326"></a>01326 <span class="comment">        /// @brief Default constructor. Constructs empty set.</span>
+<a name="l01327"></a>01327 <span class="comment"></span><span class="comment"></span>
+<a name="l01328"></a>01328 <span class="comment">        /// @fn XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type = TypeUnsorted);</span>
+<a name="l01329"></a>01329 <span class="comment">        /// @param begin A const XPathNode iterator at the beginning of the set of nodes.</span>
+<a name="l01330"></a>01330 <span class="comment">        /// @param end A const XPathNode iterator at the end of the set of nodes.</span>
+<a name="l01331"></a>01331 <span class="comment">        /// @param Type What XPathNodeSet::CollectionType is being used, this defaults to XPathNodeSet::TypeUnsorted</span>
+<a name="l01332"></a>01332 <span class="comment">        /// @brief Constructs a set from iterator range.</span>
+<a name="l01333"></a>01333 <span class="comment">        /// @details Data is not checked for duplicates and is not sorted according to provided Type, so be careful.</span>
+<a name="l01334"></a>01334 <span class="comment"></span><span class="comment"></span>
+<a name="l01335"></a>01335 <span class="comment">                /// @fn XPathNodeSet::operator=(const XPathNodeSet&amp; ns);</span>
+<a name="l01336"></a>01336 <span class="comment">                /// @brief Assignment Operator.</span>
+<a name="l01337"></a>01337 <span class="comment">                /// @param ns The XPathNodeSet to copy.</span>
+<a name="l01338"></a>01338 <span class="comment">        /// @return A reference to the freshly assigned XPathNodeSet.</span>
+<a name="l01339"></a>01339 <span class="comment"></span><span class="comment"></span>
+<a name="l01340"></a>01340 <span class="comment">                /// @fn XPathNodeSet::Type() const;</span>
+<a name="l01341"></a>01341 <span class="comment">                /// @brief Get collection Type.</span>
+<a name="l01342"></a>01342 <span class="comment">                /// @return CollectionType</span>
+<a name="l01343"></a>01343 <span class="comment"></span><span class="comment"></span>
+<a name="l01344"></a>01344 <span class="comment">        /// @fn XPathNodeSet::operator[](size_t index) const;</span>
+<a name="l01345"></a>01345 <span class="comment">        /// @brief Indexing operator.</span>
+<a name="l01346"></a>01346 <span class="comment">        /// @param index A size_t indicating which XPathNode you would like to retrieve</span>
+<a name="l01347"></a>01347 <span class="comment">        /// @return A const reference to the XPathNode you requested.</span>
+<a name="l01348"></a>01348 <span class="comment">        /// @warning Out of bounds errors are checked using assert. Exceptions will not be thrown, during debugging out of bounds access will abort the termination and in production code out of bounds accesses will cause undefined behavior.</span>
+<a name="l01349"></a>01349 <span class="comment"></span><span class="comment"></span>
+<a name="l01350"></a>01350 <span class="comment">                /// @fn XPathNodeSet::begin() const;</span>
+<a name="l01351"></a>01351 <span class="comment">                /// @brief Get Beginning iterator.</span>
+<a name="l01352"></a>01352 <span class="comment">                /// @return A XPathNodeSet::const_iterator to the beginning of the collection.</span>
+<a name="l01353"></a>01353 <span class="comment"></span><span class="comment"></span>
+<a name="l01354"></a>01354 <span class="comment">                /// @fn XPathNodeSet::end() const;</span>
+<a name="l01355"></a>01355 <span class="comment">                /// @brief Get Ending iterator.</span>
+<a name="l01356"></a>01356 <span class="comment">        /// @return A XPathNodeSet::const_iterator to the end of the collection.</span>
+<a name="l01357"></a>01357 <span class="comment"></span><span class="comment"></span>
+<a name="l01358"></a>01358 <span class="comment">        /// @fn XPathNodeSet::sort(bool reverse = false);</span>
+<a name="l01359"></a>01359 <span class="comment">        /// @brief Sort the collection in ascending/descending order by document order.</span>
+<a name="l01360"></a>01360 <span class="comment">        /// @param reverse If true this sorts the collection in the opposite of document order.</span>
+<a name="l01361"></a>01361 <span class="comment"></span><span class="comment"></span>
+<a name="l01362"></a>01362 <span class="comment">        /// @fn XPathNodeSet::first() const;</span>
+<a name="l01363"></a>01363 <span class="comment">        /// @brief Get first node in the collection by document order.</span>
+<a name="l01364"></a>01364 <span class="comment">        /// @return The first node of the, in document order as an XPathNode.</span>
+<a name="l01365"></a>01365 <span class="comment"></span><span class="comment"></span>
+<a name="l01366"></a>01366 <span class="comment">        /// @fn XPathNodeSet::Empty() const;</span>
+<a name="l01367"></a>01367 <span class="comment">        /// @brief Check if collection is empty.</span>
+<a name="l01368"></a>01368 <span class="comment">        /// @return True if the document is empty, false otherwise.</span>
+<a name="l01369"></a>01369 <span class="comment"></span><span class="comment"></span>
+<a name="l01370"></a>01370 <span class="comment">        ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l01371"></a>01371 <span class="comment"></span>        <span class="comment">// floaters</span>
+<a name="l01372"></a>01372 <span class="comment"></span>
+<a name="l01373"></a>01373 <span class="comment">        /// @internal</span>
+<a name="l01374"></a>01374 <span class="comment">        /// @fn AsUtf8(const wchar_t* str);</span>
+<a name="l01375"></a>01375 <span class="comment">        /// @brief Convert a c-style string of wchar_t to std::string containing UTF8.</span>
+<a name="l01376"></a>01376 <span class="comment">        /// @param str The string to convert</span>
+<a name="l01377"></a>01377 <span class="comment">        /// @return A std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; containing the converted data</span>
+<a name="l01378"></a>01378 <span class="comment"></span><span class="comment"></span>
+<a name="l01379"></a>01379 <span class="comment">        /// @internal</span>
+<a name="l01380"></a>01380 <span class="comment">        /// @fn AsUtf8(const std::basic_string&lt;wchar_t, std::char_traits&lt;wchar_t&gt;, std::allocator&lt;wchar_t&gt; &gt;&amp; str);</span>
+<a name="l01381"></a>01381 <span class="comment">        /// @brief Convert a std::wstring to a UTF8 std::string</span>
+<a name="l01382"></a>01382 <span class="comment">        /// @param str The string to convert.</span>
+<a name="l01383"></a>01383 <span class="comment">        /// @return A std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; containing the converted data</span>
+<a name="l01384"></a>01384 <span class="comment"></span><span class="comment"></span>
+<a name="l01385"></a>01385 <span class="comment">        /// @internal</span>
+<a name="l01386"></a>01386 <span class="comment">        /// @fn AsWide(const char* str);</span>
+<a name="l01387"></a>01387 <span class="comment">        /// @brief Convert a Convert a c-style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).</span>
+<a name="l01388"></a>01388 <span class="comment">        /// @param str The string to convert.</span>
+<a name="l01389"></a>01389 <span class="comment">        /// @return A std::basic_string&lt;wchar_t, std::char_traits&lt;wchar_t&gt;, std::allocator&lt;wchar_t&gt; &gt; containing the converted data</span>
+<a name="l01390"></a>01390 <span class="comment"></span><span class="comment"></span>
+<a name="l01391"></a>01391 <span class="comment">        /// @internal</span>
+<a name="l01392"></a>01392 <span class="comment">        /// @fn AsWide(const std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;&amp; str);</span>
+<a name="l01393"></a>01393 <span class="comment">        /// @brief Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).</span>
+<a name="l01394"></a>01394 <span class="comment">        /// @param str The string to convert.</span>
+<a name="l01395"></a>01395 <span class="comment">        /// @return A std::basic_string&lt;wchar_t, std::char_traits&lt;wchar_t&gt;, std::allocator&lt;wchar_t&gt; &gt; containing the converted data</span>
+<a name="l01396"></a>01396 <span class="comment"></span><span class="comment"></span>
+<a name="l01397"></a>01397 <span class="comment">        /// @typedef AllocationFunction</span>
+<a name="l01398"></a>01398 <span class="comment">        /// @brief Memory allocation function interface; returns pointer to allocated memory or NULL on failure</span>
+<a name="l01399"></a>01399 <span class="comment"></span><span class="comment"></span>
+<a name="l01400"></a>01400 <span class="comment">        /// @typedef deAllocationFunction</span>
+<a name="l01401"></a>01401 <span class="comment">        /// @brief Memory deallocation function interface</span>
+<a name="l01402"></a>01402 <span class="comment"></span><span class="comment"></span>
+<a name="l01403"></a>01403 <span class="comment">        /// @internal</span>
+<a name="l01404"></a>01404 <span class="comment">        /// @fn SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate);</span>
+<a name="l01405"></a>01405 <span class="comment">        /// @brief Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions.</span>
+<a name="l01406"></a>01406 <span class="comment">        /// @param allocate The new memory allocator</span>
+<a name="l01407"></a>01407 <span class="comment">        /// @param deallocate The new memory deallocator</span>
+<a name="l01408"></a>01408 <span class="comment"></span><span class="comment"></span>
+<a name="l01409"></a>01409 <span class="comment">        /// @internal</span>
+<a name="l01410"></a>01410 <span class="comment">        /// @fn GetMemoryAllocationFunction();</span>
+<a name="l01411"></a>01411 <span class="comment">        /// @brief Get the current allocation funciton</span>
+<a name="l01412"></a>01412 <span class="comment">        /// @return A function to the current allocation function</span>
+<a name="l01413"></a>01413 <span class="comment"></span><span class="comment"></span>
+<a name="l01414"></a>01414 <span class="comment">        /// @internal</span>
+<a name="l01415"></a>01415 <span class="comment">        /// @fn GetMemoryDeallocationFunction();</span>
+<a name="l01416"></a>01416 <span class="comment">        /// @brief Get the current allocation funciton</span>
+<a name="l01417"></a>01417 <span class="comment">        /// @return A function to the current allocation function</span>
+<a name="l01418"></a>01418 <span class="comment"></span>
+<a name="l01419"></a>01419     }
+<a name="l01420"></a>01420 }
+<a name="l01421"></a>01421 <span class="preprocessor">#endif</span>
+<a name="l01422"></a>01422 <span class="preprocessor"></span>
+<a name="l01423"></a>01423 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l01424"></a>01424 <span class="preprocessor"></span>
+<a name="l01425"></a>01425 <span class="comment">/*</span>
+<a name="l01426"></a>01426 <span class="comment"> *</span>
+<a name="l01427"></a>01427 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l01428"></a>01428 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l01429"></a>01429 <span class="comment"> *</span>
+<a name="l01430"></a>01430 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l01431"></a>01431 <span class="comment"> *</span>
+<a name="l01432"></a>01432 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l01433"></a>01433 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l01434"></a>01434 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l01435"></a>01435 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l01436"></a>01436 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l01437"></a>01437 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l01438"></a>01438 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l01439"></a>01439 <span class="comment"> * conditions:</span>
+<a name="l01440"></a>01440 <span class="comment"> *</span>
+<a name="l01441"></a>01441 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l01442"></a>01442 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l01443"></a>01443 <span class="comment"> *</span>
+<a name="l01444"></a>01444 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l01445"></a>01445 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l01446"></a>01446 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l01447"></a>01447 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l01448"></a>01448 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l01449"></a>01449 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l01450"></a>01450 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l01451"></a>01451 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l01452"></a>01452 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 15:54:06 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:49 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

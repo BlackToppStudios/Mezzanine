@@ -1300,7 +1300,7 @@ namespace phys
 		{ 
 			TypeUnsorted,			// Not ordered 
 			TypeSorted,			// Sorted by document order (ascending) 
-			TypeSorted_reverse		// Sorted by document order (descending) 
+			TypeSortedReverse		// Sorted by document order (descending) 
 		}; 
 		 
 		// Constant iterator Type 
@@ -1316,6 +1316,8 @@ namespace phys
 		~XPathNodeSet(); 
 		 
 		// Copy constructor/assignment operator 
+		/// @brief Copy constructor.
+		/// @param ns The XPathNodeSet to copy.
 		XPathNodeSet(const XPathNodeSet& ns); 
 		XPathNodeSet& operator=(const XPathNodeSet& ns); 
  
@@ -1323,7 +1325,9 @@ namespace phys
 		CollectionType Type() const; 
 		 
 		// Get collection size 
-		size_t size() const; 
+		/// @brief Get collection size.
+		/// @return The number of XPathNode instances as a size_t in the set
+		size_t size() const;  
  
 		// Indexing operator 
 		const XPathNode& operator[](size_t index) const; 

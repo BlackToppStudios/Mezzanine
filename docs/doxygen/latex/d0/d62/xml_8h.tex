@@ -88,16 +88,16 @@ typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR 
 \label{d9/d27/namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a07e4865c24e45f8e5831e4eebadb1353}{
-typedef void $\ast$($\ast$ {\bfseries phys::xml::AllocationFunction} )(size\_\-t size)}
-\label{d9/d27/namespacephys_1_1xml_a07e4865c24e45f8e5831e4eebadb1353}
+\hypertarget{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{
+typedef void $\ast$($\ast$ \hyperlink{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{phys::xml::AllocationFunction} )(size\_\-t size)}
+\label{d9/d27/namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a0006efe9740ffdcfff4e03cee525f1ff}{
-typedef void($\ast$ {\bfseries phys::xml::deAllocationFunction} )(void $\ast$ptr)}
-\label{d9/d27/namespacephys_1_1xml_a0006efe9740ffdcfff4e03cee525f1ff}
+\begin{DoxyCompactList}\small\item\em Memory allocation function interface; returns pointer to allocated memory or NULL on failure. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}{
+typedef void($\ast$ \hyperlink{namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}{phys::xml::deAllocationFunction} )(void $\ast$ptr)}
+\label{d9/d27/namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Memory deallocation function interface. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
@@ -162,41 +162,20 @@ enum \hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{phys::xm
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{namespacephys_1_1xml_a3adcb83b952ab6a714da13d20ab189d7}{
-std::string PHYS\_\-LIB {\bfseries phys::xml::AsUtf8} (const wchar\_\-t $\ast$str)}
-\label{d9/d27/namespacephys_1_1xml_a3adcb83b952ab6a714da13d20ab189d7}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a8721da4a57634acd3a3eb754d898fb88}{
-std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB {\bfseries phys::xml::AsUtf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)}
-\label{d9/d27/namespacephys_1_1xml_a8721da4a57634acd3a3eb754d898fb88}
-
-\item 
-\hypertarget{namespacephys_1_1xml_ac14c911adabeb58e973c36105b85abac}{
-std::wstring PHYS\_\-LIB {\bfseries phys::xml::AsWide} (const char $\ast$str)}
-\label{d9/d27/namespacephys_1_1xml_ac14c911adabeb58e973c36105b85abac}
-
-\item 
-\hypertarget{namespacephys_1_1xml_ad365a4575e9bdc674e7512a573f05c08}{
-std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB {\bfseries phys::xml::AsWide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)}
-\label{d9/d27/namespacephys_1_1xml_ad365a4575e9bdc674e7512a573f05c08}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a404bed92ebb56ab9b0fe7192cb365736}{
-void PHYS\_\-LIB {\bfseries phys::xml::SetMemory\_\-management\_\-functions} (AllocationFunction allocate, deAllocationFunction deallocate)}
-\label{d9/d27/namespacephys_1_1xml_a404bed92ebb56ab9b0fe7192cb365736}
-
-\item 
-\hypertarget{namespacephys_1_1xml_ac7c7807926da372d187c6560fa42c255}{
-AllocationFunction PHYS\_\-LIB {\bfseries phys::xml::GetMemoryAllocationFunction} ()}
-\label{d9/d27/namespacephys_1_1xml_ac7c7807926da372d187c6560fa42c255}
-
-\item 
-\hypertarget{namespacephys_1_1xml_afc978e9c1c6df7b57ce4d8bb7c3ba3e7}{
-deAllocationFunction PHYS\_\-LIB {\bfseries phys::xml::GetMemoryDeallocationFunction} ()}
-\label{d9/d27/namespacephys_1_1xml_afc978e9c1c6df7b57ce4d8bb7c3ba3e7}
-
-\end{DoxyCompactItemize}
+std::string PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2d4bf28045544dc7350827f568cad46f}{phys::xml::AsUtf8} (const wchar\_\-t $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a c-\/style string of wchar\_\-t to std::string containing UTF8. \item\end{DoxyCompactList}\item 
+std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_aa3d160a2965f60bc3b2f019be6c7d038}{phys::xml::AsUtf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)
+\begin{DoxyCompactList}\small\item\em Convert a std::wstring to a UTF8 std::string. \item\end{DoxyCompactList}\item 
+std::wstring PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a0a57ef612f499a03733ca18d0e4f0c4f}{phys::xml::AsWide} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a Convert a c-\/style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
+std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a7ca79461d40476ea4cde4f54dadffff4}{phys::xml::AsWide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)
+\begin{DoxyCompactList}\small\item\em Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
+void PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f983}{phys::xml::SetMemory\_\-management\_\-functions} (AllocationFunction allocate, deAllocationFunction deallocate)
+\begin{DoxyCompactList}\small\item\em Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. \item\end{DoxyCompactList}\item 
+AllocationFunction PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a0537fb34f1fa41afd138deead1455a5b}{phys::xml::GetMemoryAllocationFunction} ()
+\begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\item 
+deAllocationFunction PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a1a2ff3e010e4627424a65a2e584e441e}{phys::xml::GetMemoryDeallocationFunction} ()
+\begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 

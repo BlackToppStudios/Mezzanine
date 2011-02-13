@@ -95,10 +95,12 @@ typedef std::basic_string<br class="typebreak"/>
 &lt; XML_CHAR, std::char_traits<br class="typebreak"/>
 &lt; XML_CHAR &gt;, std::allocator<br class="typebreak"/>
 &lt; XML_CHAR &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>String</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a07e4865c24e45f8e5831e4eebadb1353"></a><!-- doxytag: member="phys::xml::AllocationFunction" ref="a07e4865c24e45f8e5831e4eebadb1353" args=")(size_t size)" -->
-typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>AllocationFunction</b> )(size_t size)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0006efe9740ffdcfff4e03cee525f1ff"></a><!-- doxytag: member="phys::xml::deAllocationFunction" ref="a0006efe9740ffdcfff4e03cee525f1ff" args=")(void *ptr)" -->
-typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>deAllocationFunction</b> )(void *ptr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d772c4cf52d017d4d6ad68ddcbd493f"></a><!-- doxytag: member="phys::xml::AllocationFunction" ref="a6d772c4cf52d017d4d6ad68ddcbd493f" args=")(size_t size)" -->
+typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a6d772c4cf52d017d4d6ad68ddcbd493f">AllocationFunction</a> )(size_t size)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Memory allocation function interface; returns pointer to allocated memory or NULL on failure. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af98b1cb6640aa712180aad89a1c776d8"></a><!-- doxytag: member="phys::xml::deAllocationFunction" ref="af98b1cb6640aa712180aad89a1c776d8" args=")(void *ptr)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#af98b1cb6640aa712180aad89a1c776d8">deAllocationFunction</a> )(void *ptr)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Memory deallocation function interface. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3">NodeType</a> { <br/>
@@ -169,30 +171,30 @@ Enumerations</h2></td></tr>
  <a href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3adcb83b952ab6a714da13d20ab189d7"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="a3adcb83b952ab6a714da13d20ab189d7" args="(const wchar_t *str)" -->
-std::string PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsUtf8</b> (const wchar_t *str)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a2d4bf28045544dc7350827f568cad46f">AsUtf8</a> (const wchar_t *str)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert a c-style string of wchar_t to std::string containing UTF8.  <a href="#a2d4bf28045544dc7350827f568cad46f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed8d86b7ea1735f88de53d7947740ddd"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="aed8d86b7ea1735f88de53d7947740ddd" args="(const std::wstring &amp;str)" -->
 std::string PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsUtf8</b> (const std::wstring &amp;str)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac14c911adabeb58e973c36105b85abac"></a><!-- doxytag: member="phys::xml::AsWide" ref="ac14c911adabeb58e973c36105b85abac" args="(const char *str)" -->
-std::wstring PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsWide</b> (const char *str)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::wstring PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a0a57ef612f499a03733ca18d0e4f0c4f">AsWide</a> (const char *str)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert a Convert a c-style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).  <a href="#a0a57ef612f499a03733ca18d0e4f0c4f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf80dd12469021a66d48a325484ba9f1"></a><!-- doxytag: member="phys::xml::AsWide" ref="acf80dd12469021a66d48a325484ba9f1" args="(const std::string &amp;str)" -->
 std::wstring PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsWide</b> (const std::string &amp;str)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a404bed92ebb56ab9b0fe7192cb365736"></a><!-- doxytag: member="phys::xml::SetMemory_management_functions" ref="a404bed92ebb56ab9b0fe7192cb365736" args="(AllocationFunction allocate, deAllocationFunction deallocate)" -->
-void PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetMemory_management_functions</b> (AllocationFunction allocate, deAllocationFunction deallocate)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac7c7807926da372d187c6560fa42c255"></a><!-- doxytag: member="phys::xml::GetMemoryAllocationFunction" ref="ac7c7807926da372d187c6560fa42c255" args="()" -->
-AllocationFunction PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMemoryAllocationFunction</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc978e9c1c6df7b57ce4d8bb7c3ba3e7"></a><!-- doxytag: member="phys::xml::GetMemoryDeallocationFunction" ref="afc978e9c1c6df7b57ce4d8bb7c3ba3e7" args="()" -->
-deAllocationFunction PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMemoryDeallocationFunction</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8721da4a57634acd3a3eb754d898fb88"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="a8721da4a57634acd3a3eb754d898fb88" args="(const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)" -->
-std::basic_string&lt; char, <br class="typebreak"/>
+<tr><td class="memItemLeft" align="right" valign="top">void PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a2ad88e4331ac29a86c99d5e40b31f983">SetMemory_management_functions</a> (<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a6d772c4cf52d017d4d6ad68ddcbd493f">AllocationFunction</a> allocate, <a class="el" href="../../d9/d27/namespacephys_1_1xml.html#af98b1cb6640aa712180aad89a1c776d8">deAllocationFunction</a> deallocate)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions.  <a href="#a2ad88e4331ac29a86c99d5e40b31f983"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a6d772c4cf52d017d4d6ad68ddcbd493f">AllocationFunction</a> PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a0537fb34f1fa41afd138deead1455a5b">GetMemoryAllocationFunction</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the current allocation funciton.  <a href="#a0537fb34f1fa41afd138deead1455a5b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#af98b1cb6640aa712180aad89a1c776d8">deAllocationFunction</a> PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a1a2ff3e010e4627424a65a2e584e441e">GetMemoryDeallocationFunction</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the current allocation funciton.  <a href="#a1a2ff3e010e4627424a65a2e584e441e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::basic_string&lt; char, <br class="typebreak"/>
 std::char_traits&lt; char &gt;<br class="typebreak"/>
 , std::allocator&lt; char &gt;<br class="typebreak"/>
- &gt; PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsUtf8</b> (const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad365a4575e9bdc674e7512a573f05c08"></a><!-- doxytag: member="phys::xml::AsWide" ref="ad365a4575e9bdc674e7512a573f05c08" args="(const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)" -->
-std::basic_string&lt; wchar_t, <br class="typebreak"/>
+ &gt; PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#aa3d160a2965f60bc3b2f019be6c7d038">AsUtf8</a> (const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert a std::wstring to a UTF8 std::string.  <a href="#aa3d160a2965f60bc3b2f019be6c7d038"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::basic_string&lt; wchar_t, <br class="typebreak"/>
 std::char_traits&lt; wchar_t &gt;<br class="typebreak"/>
 , std::allocator&lt; wchar_t &gt;<br class="typebreak"/>
- &gt; PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsWide</b> (const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)</td></tr>
+ &gt; PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a7ca79461d40476ea4cde4f54dadffff4">AsWide</a> (const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).  <a href="#a7ca79461d40476ea4cde4f54dadffff4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#ab660837afbc6aaab22425d8d23e8f2e4">ParseMinimal</a> = 0x0000</td></tr>
@@ -458,6 +460,198 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 
 </div>
 </div>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a2d4bf28045544dc7350827f568cad46f"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="a2d4bf28045544dc7350827f568cad46f" args="(const wchar_t *str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AsUtf8 </td>
+          <td>(</td>
+          <td class="paramtype">const wchar_t *&nbsp;</td>
+          <td class="paramname"> <em>str</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert a c-style string of wchar_t to std::string containing UTF8. </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>str</em>&nbsp;</td><td>The string to convert </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; containing the converted data </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa3d160a2965f60bc3b2f019be6c7d038"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="aa3d160a2965f60bc3b2f019be6c7d038" args="(const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AsUtf8 </td>
+          <td>(</td>
+          <td class="paramtype">const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>str</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert a std::wstring to a UTF8 std::string. </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>str</em>&nbsp;</td><td>The string to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; containing the converted data </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7ca79461d40476ea4cde4f54dadffff4"></a><!-- doxytag: member="phys::xml::AsWide" ref="a7ca79461d40476ea4cde4f54dadffff4" args="(const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AsWide </td>
+          <td>(</td>
+          <td class="paramtype">const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>str</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>str</em>&nbsp;</td><td>The string to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A std::basic_string&lt;wchar_t, std::char_traits&lt;wchar_t&gt;, std::allocator&lt;wchar_t&gt; &gt; containing the converted data </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0a57ef612f499a03733ca18d0e4f0c4f"></a><!-- doxytag: member="phys::xml::AsWide" ref="a0a57ef612f499a03733ca18d0e4f0c4f" args="(const char *str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AsWide </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>str</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert a Convert a c-style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>str</em>&nbsp;</td><td>The string to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A std::basic_string&lt;wchar_t, std::char_traits&lt;wchar_t&gt;, std::allocator&lt;wchar_t&gt; &gt; containing the converted data </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0537fb34f1fa41afd138deead1455a5b"></a><!-- doxytag: member="phys::xml::GetMemoryAllocationFunction" ref="a0537fb34f1fa41afd138deead1455a5b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::GetMemoryAllocationFunction </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the current allocation funciton. </p>
+<p><b>For internal use only.</b></p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A function to the current allocation function </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a2ff3e010e4627424a65a2e584e441e"></a><!-- doxytag: member="phys::xml::GetMemoryDeallocationFunction" ref="a1a2ff3e010e4627424a65a2e584e441e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::GetMemoryDeallocationFunction </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the current allocation funciton. </p>
+<p><b>For internal use only.</b></p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A function to the current allocation function </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2ad88e4331ac29a86c99d5e40b31f983"></a><!-- doxytag: member="phys::xml::SetMemory_management_functions" ref="a2ad88e4331ac29a86c99d5e40b31f983" args="(AllocationFunction allocate, deAllocationFunction deallocate)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::SetMemory_management_functions </td>
+          <td>(</td>
+          <td class="paramtype">AllocationFunction&nbsp;</td>
+          <td class="paramname"> <em>allocate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">deAllocationFunction&nbsp;</td>
+          <td class="paramname"> <em>deallocate</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>allocate</em>&nbsp;</td><td>The new memory allocator </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>deallocate</em>&nbsp;</td><td>The new memory deallocator </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <hr/><h2>Variable Documentation</h2>
 <a class="anchor" id="a08bf6aab51f79929d9097706a5e64408"></a><!-- doxytag: member="phys::xml::FormatDefault" ref="a08bf6aab51f79929d9097706a5e64408" args="" -->
 <div class="memitem">
@@ -550,7 +744,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 15:54:14 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -180,8 +180,8 @@
 <a name="l00149"></a>00149                 free(ptr); 
 <a name="l00150"></a>00150         } 
 <a name="l00151"></a>00151  
-<a name="l00152"></a>00152         AllocationFunction global_allocate = default_allocate; 
-<a name="l00153"></a>00153         deAllocationFunction global_deallocate = default_deallocate; 
+<a name="l00152"></a>00152         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a6d772c4cf52d017d4d6ad68ddcbd493f" title="Memory allocation function interface; returns pointer to allocated memory or NULL on failure...">AllocationFunction</a> global_allocate = default_allocate; 
+<a name="l00153"></a>00153         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#af98b1cb6640aa712180aad89a1c776d8" title="Memory deallocation function interface.">deAllocationFunction</a> global_deallocate = default_deallocate; 
 <a name="l00154"></a>00154 } 
 <a name="l00155"></a>00155  
 <a name="l00156"></a>00156 <span class="comment">// String utilities </span>
@@ -4831,43 +4831,43 @@
 <a name="l04800"></a>04800         } 
 <a name="l04801"></a>04801  
 <a name="l04802"></a>04802 <span class="preprocessor">#ifndef XML_NO_STL </span>
-<a name="l04803"></a>04803 <span class="preprocessor"></span>        std::string PHYS_LIB AsUtf8(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span>* str) 
+<a name="l04803"></a>04803 <span class="preprocessor"></span>        std::string PHYS_LIB <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a2d4bf28045544dc7350827f568cad46f" title="Convert a c-style string of wchar_t to std::string containing UTF8.">AsUtf8</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span>* str) 
 <a name="l04804"></a>04804         { 
 <a name="l04805"></a>04805                 assert(str); 
 <a name="l04806"></a>04806  
 <a name="l04807"></a>04807                 <span class="keywordflow">return</span> AsUtf8_impl(str, wcslen(str)); 
 <a name="l04808"></a>04808         } 
 <a name="l04809"></a>04809  
-<a name="l04810"></a>04810         std::string PHYS_LIB AsUtf8(<span class="keyword">const</span> std::wstring&amp; str) 
+<a name="l04810"></a>04810         std::string PHYS_LIB <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a2d4bf28045544dc7350827f568cad46f" title="Convert a c-style string of wchar_t to std::string containing UTF8.">AsUtf8</a>(<span class="keyword">const</span> std::wstring&amp; str) 
 <a name="l04811"></a>04811         { 
 <a name="l04812"></a>04812                 <span class="keywordflow">return</span> AsUtf8_impl(str.c_str(), str.size()); 
 <a name="l04813"></a>04813         } 
 <a name="l04814"></a>04814          
-<a name="l04815"></a>04815         std::wstring PHYS_LIB AsWide(<span class="keyword">const</span> <span class="keywordtype">char</span>* str) 
+<a name="l04815"></a>04815         std::wstring PHYS_LIB <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a0a57ef612f499a03733ca18d0e4f0c4f" title="Convert a Convert a c-style string to std::wstring containing native encoding (Usually UCS2 on window...">AsWide</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* str) 
 <a name="l04816"></a>04816         { 
 <a name="l04817"></a>04817                 assert(str); 
 <a name="l04818"></a>04818  
 <a name="l04819"></a>04819                 <span class="keywordflow">return</span> AsWide_impl(str, strlen(str)); 
 <a name="l04820"></a>04820         } 
 <a name="l04821"></a>04821          
-<a name="l04822"></a>04822         std::wstring PHYS_LIB AsWide(<span class="keyword">const</span> std::string&amp; str) 
+<a name="l04822"></a>04822         std::wstring PHYS_LIB <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a0a57ef612f499a03733ca18d0e4f0c4f" title="Convert a Convert a c-style string to std::wstring containing native encoding (Usually UCS2 on window...">AsWide</a>(<span class="keyword">const</span> std::string&amp; str) 
 <a name="l04823"></a>04823         { 
 <a name="l04824"></a>04824                 <span class="keywordflow">return</span> AsWide_impl(str.c_str(), str.size()); 
 <a name="l04825"></a>04825         } 
 <a name="l04826"></a>04826 <span class="preprocessor">#endif </span>
 <a name="l04827"></a>04827 <span class="preprocessor"></span> 
-<a name="l04828"></a>04828         <span class="keywordtype">void</span> PHYS_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate) 
+<a name="l04828"></a>04828         <span class="keywordtype">void</span> PHYS_LIB <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a2ad88e4331ac29a86c99d5e40b31f983" title="Override default memory management functions. All subsequent allocations/deallocations will be perfor...">SetMemory_management_functions</a>(<a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a6d772c4cf52d017d4d6ad68ddcbd493f" title="Memory allocation function interface; returns pointer to allocated memory or NULL on failure...">AllocationFunction</a> allocate, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#af98b1cb6640aa712180aad89a1c776d8" title="Memory deallocation function interface.">deAllocationFunction</a> deallocate) 
 <a name="l04829"></a>04829         { 
 <a name="l04830"></a>04830                 global_allocate = allocate; 
 <a name="l04831"></a>04831                 global_deallocate = deallocate; 
 <a name="l04832"></a>04832         } 
 <a name="l04833"></a>04833  
-<a name="l04834"></a>04834         AllocationFunction PHYS_LIB GetMemoryAllocationFunction() 
+<a name="l04834"></a>04834         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a6d772c4cf52d017d4d6ad68ddcbd493f" title="Memory allocation function interface; returns pointer to allocated memory or NULL on failure...">AllocationFunction</a> PHYS_LIB <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a0537fb34f1fa41afd138deead1455a5b" title="Get the current allocation funciton.">GetMemoryAllocationFunction</a>() 
 <a name="l04835"></a>04835         { 
 <a name="l04836"></a>04836                 <span class="keywordflow">return</span> global_allocate; 
 <a name="l04837"></a>04837         } 
 <a name="l04838"></a>04838  
-<a name="l04839"></a>04839         deAllocationFunction PHYS_LIB GetMemoryDeallocationFunction() 
+<a name="l04839"></a>04839         <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#af98b1cb6640aa712180aad89a1c776d8" title="Memory deallocation function interface.">deAllocationFunction</a> PHYS_LIB <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a1a2ff3e010e4627424a65a2e584e441e" title="Get the current allocation funciton.">GetMemoryDeallocationFunction</a>() 
 <a name="l04840"></a>04840         { 
 <a name="l04841"></a>04841                 <span class="keywordflow">return</span> global_deallocate; 
 <a name="l04842"></a>04842         } 
@@ -6247,9 +6247,9 @@
 <a name="l06216"></a>06216 <span class="comment">// Internal node set class </span>
 <a name="l06217"></a>06217 <span class="keyword">namespace </span>
 <a name="l06218"></a>06218 { 
-<a name="l06219"></a>06219         XPathNodeSet::CollectionType XPathSort(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* begin, <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* end, XPathNodeSet::CollectionType Type, <span class="keywordtype">bool</span> rev) 
+<a name="l06219"></a>06219         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> XPathSort(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* begin, <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* end, <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> Type, <span class="keywordtype">bool</span> rev) 
 <a name="l06220"></a>06220         { 
-<a name="l06221"></a>06221                 XPathNodeSet::CollectionType order = rev ? XPathNodeSet::TypeSorted_reverse : XPathNodeSet::TypeSorted; 
+<a name="l06221"></a>06221                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> order = rev ? XPathNodeSet::TypeSortedReverse : XPathNodeSet::TypeSorted; 
 <a name="l06222"></a>06222  
 <a name="l06223"></a>06223                 <span class="keywordflow">if</span> (Type == XPathNodeSet::TypeUnsorted) 
 <a name="l06224"></a>06224                 { 
@@ -6263,7 +6263,7 @@
 <a name="l06232"></a>06232                 <span class="keywordflow">return</span> order; 
 <a name="l06233"></a>06233         } 
 <a name="l06234"></a>06234  
-<a name="l06235"></a>06235         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> XPathFirst(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* begin, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* end, XPathNodeSet::CollectionType Type) 
+<a name="l06235"></a>06235         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> XPathFirst(<span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* begin, <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* end, <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> Type) 
 <a name="l06236"></a>06236         { 
 <a name="l06237"></a>06237                 <span class="keywordflow">if</span> (begin == end) <span class="keywordflow">return</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>(); 
 <a name="l06238"></a>06238  
@@ -6272,7 +6272,7 @@
 <a name="l06241"></a>06241                 <span class="keywordflow">case</span> XPathNodeSet::TypeSorted: 
 <a name="l06242"></a>06242                         <span class="keywordflow">return</span> *begin; 
 <a name="l06243"></a>06243  
-<a name="l06244"></a>06244                 <span class="keywordflow">case</span> XPathNodeSet::TypeSorted_reverse: 
+<a name="l06244"></a>06244                 <span class="keywordflow">case</span> XPathNodeSet::TypeSortedReverse: 
 <a name="l06245"></a>06245                         <span class="keywordflow">return</span> *(end - 1); 
 <a name="l06246"></a>06246  
 <a name="l06247"></a>06247                 <span class="keywordflow">case</span> XPathNodeSet::TypeUnsorted: 
@@ -6285,7 +6285,7 @@
 <a name="l06254"></a>06254         } 
 <a name="l06255"></a>06255         <span class="keyword">class </span>XPathNodeSet_raw 
 <a name="l06256"></a>06256         { 
-<a name="l06257"></a>06257                 XPathNodeSet::CollectionType _type; 
+<a name="l06257"></a>06257                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> _type; 
 <a name="l06258"></a>06258  
 <a name="l06259"></a>06259                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* _begin; 
 <a name="l06260"></a>06260                 <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>* _end; 
@@ -6385,12 +6385,12 @@
 <a name="l06354"></a>06354                         _end = unique(_begin, _end); 
 <a name="l06355"></a>06355                 } 
 <a name="l06356"></a>06356  
-<a name="l06357"></a>06357                 XPathNodeSet::CollectionType Type()<span class="keyword"> const </span>
+<a name="l06357"></a>06357                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> Type()<span class="keyword"> const </span>
 <a name="l06358"></a>06358 <span class="keyword">                </span>{ 
 <a name="l06359"></a>06359                         <span class="keywordflow">return</span> _type; 
 <a name="l06360"></a>06360                 } 
 <a name="l06361"></a>06361  
-<a name="l06362"></a>06362                 <span class="keywordtype">void</span> SetType(XPathNodeSet::CollectionType Type) 
+<a name="l06362"></a>06362                 <span class="keywordtype">void</span> SetType(<a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> Type) 
 <a name="l06363"></a>06363                 { 
 <a name="l06364"></a>06364                         _type = Type; 
 <a name="l06365"></a>06365                 } 
@@ -7420,7 +7420,7 @@
 <a name="l07389"></a>07389                         <span class="keywordtype">bool</span> attributes = (axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_descendant_or_self || axis == axis_following || axis == axis_GetParent || axis == axis_preceding || axis == axis_self); 
 <a name="l07390"></a>07390  
 <a name="l07391"></a>07391                         XPathNodeSet_raw ns; 
-<a name="l07392"></a>07392                         ns.SetType((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? XPathNodeSet::TypeSorted_reverse : XPathNodeSet::TypeSorted); 
+<a name="l07392"></a>07392                         ns.SetType((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? XPathNodeSet::TypeSortedReverse : XPathNodeSet::TypeSorted); 
 <a name="l07393"></a>07393  
 <a name="l07394"></a>07394                         <span class="keywordflow">if</span> (_left) 
 <a name="l07395"></a>07395                         { 
@@ -8146,8 +8146,8 @@
 <a name="l08115"></a>08115  
 <a name="l08116"></a>08116                                         XPathNodeSet_raw ns; 
 <a name="l08117"></a>08117  
-<a name="l08118"></a>08118                                         ns.SetType(s.Type()); 
-<a name="l08119"></a>08119                                         ns.append(s.begin(), s.end(), stack.Result); 
+<a name="l08118"></a>08118                                         ns.SetType(s.<a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a95c90708290e045ef04425a71b2ddf25" title="Get collection Type.">Type</a>()); 
+<a name="l08119"></a>08119                                         ns.append(s.<a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a887d84cf19f5d2155ab9153bc02e8d1e" title="Get Beginning iterator.">begin</a>(), s.<a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a1b5507aca9b87bbaa0c698f293ae8fd4" title="Get Ending iterator.">end</a>(), stack.Result); 
 <a name="l08120"></a>08120  
 <a name="l08121"></a>08121                                         <span class="keywordflow">return</span> ns; 
 <a name="l08122"></a>08122                                 } 
@@ -9218,11 +9218,11 @@
 <a name="l09187"></a>09187                 } 
 <a name="l09188"></a>09188         } 
 <a name="l09189"></a>09189  
-<a name="l09190"></a>09190         XPathNodeSet::XPathNodeSet(): _type(TypeUnsorted), _begin(&amp;_storage), _end(&amp;_storage) 
+<a name="l09190"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a24b0e325cd45548e3f63bd37557eab93">09190</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a24b0e325cd45548e3f63bd37557eab93" title="Default constructor. Constructs empty set.">XPathNodeSet::XPathNodeSet</a>(): _type(TypeUnsorted), _begin(&amp;_storage), _end(&amp;_storage) 
 <a name="l09191"></a>09191         { 
 <a name="l09192"></a>09192         } 
 <a name="l09193"></a>09193  
-<a name="l09194"></a>09194         XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type): _type(Type), _begin(&amp;_storage), _end(&amp;_storage) 
+<a name="l09194"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a4184ec067744749dd044f7740d2dc6e3">09194</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a24b0e325cd45548e3f63bd37557eab93" title="Default constructor. Constructs empty set.">XPathNodeSet::XPathNodeSet</a>(<a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">const_iterator</a> begin, <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">const_iterator</a> end, <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">CollectionType</a> Type): _type(Type), _begin(&amp;_storage), _end(&amp;_storage) 
 <a name="l09195"></a>09195         { 
 <a name="l09196"></a>09196                 _assign(begin, end); 
 <a name="l09197"></a>09197         } 
@@ -9232,12 +9232,12 @@
 <a name="l09201"></a>09201                 <span class="keywordflow">if</span> (_begin != &amp;_storage) global_deallocate(_begin); 
 <a name="l09202"></a>09202         } 
 <a name="l09203"></a>09203                  
-<a name="l09204"></a>09204         XPathNodeSet::XPathNodeSet(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; ns): _type(ns._type), _begin(&amp;_storage), _end(&amp;_storage) 
+<a name="l09204"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#af4ac7af973425828bd66dc278887695c">09204</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a24b0e325cd45548e3f63bd37557eab93" title="Default constructor. Constructs empty set.">XPathNodeSet::XPathNodeSet</a>(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; ns): _type(ns._type), _begin(&amp;_storage), _end(&amp;_storage) 
 <a name="l09205"></a>09205         { 
 <a name="l09206"></a>09206                 _assign(ns._begin, ns._end); 
 <a name="l09207"></a>09207         } 
 <a name="l09208"></a>09208          
-<a name="l09209"></a>09209         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; XPathNodeSet::operator=(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; ns) 
+<a name="l09209"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a10ab6b5b2188af5d7db6930473fa0190">09209</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a10ab6b5b2188af5d7db6930473fa0190" title="Assignment Operator.">XPathNodeSet::operator=</a>(<span class="keyword">const</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>&amp; ns) 
 <a name="l09210"></a>09210         { 
 <a name="l09211"></a>09211                 <span class="keywordflow">if</span> (<span class="keyword">this</span> == &amp;ns) <span class="keywordflow">return</span> *<span class="keyword">this</span>; 
 <a name="l09212"></a>09212                  
@@ -9247,43 +9247,43 @@
 <a name="l09216"></a>09216                 <span class="keywordflow">return</span> *<span class="keyword">this</span>; 
 <a name="l09217"></a>09217         } 
 <a name="l09218"></a>09218  
-<a name="l09219"></a>09219         XPathNodeSet::CollectionType XPathNodeSet::Type()<span class="keyword"> const </span>
+<a name="l09219"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a95c90708290e045ef04425a71b2ddf25">09219</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a95c90708290e045ef04425a71b2ddf25" title="Get collection Type.">XPathNodeSet::Type</a>()<span class="keyword"> const </span>
 <a name="l09220"></a>09220 <span class="keyword">        </span>{ 
 <a name="l09221"></a>09221                 <span class="keywordflow">return</span> _type; 
 <a name="l09222"></a>09222         } 
 <a name="l09223"></a>09223                  
-<a name="l09224"></a>09224         <span class="keywordtype">size_t</span> XPathNodeSet::size()<span class="keyword"> const </span>
+<a name="l09224"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a306178fdaf66f2d0ccefd617f7afc7f3">09224</a>         <span class="keywordtype">size_t</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a306178fdaf66f2d0ccefd617f7afc7f3" title="Get collection size.">XPathNodeSet::size</a>()<span class="keyword"> const </span>
 <a name="l09225"></a>09225 <span class="keyword">        </span>{ 
 <a name="l09226"></a>09226                 <span class="keywordflow">return</span> _end - _begin; 
 <a name="l09227"></a>09227         } 
 <a name="l09228"></a>09228                  
-<a name="l09229"></a>09229         <span class="keywordtype">bool</span> XPathNodeSet::Empty()<span class="keyword"> const </span>
+<a name="l09229"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a91fa85dbf474c51bc7a9df1baf38d43a">09229</a>         <span class="keywordtype">bool</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a91fa85dbf474c51bc7a9df1baf38d43a" title="Check if collection is empty.">XPathNodeSet::Empty</a>()<span class="keyword"> const </span>
 <a name="l09230"></a>09230 <span class="keyword">        </span>{ 
 <a name="l09231"></a>09231                 <span class="keywordflow">return</span> _begin == _end; 
 <a name="l09232"></a>09232         } 
 <a name="l09233"></a>09233                  
-<a name="l09234"></a>09234         <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; XPathNodeSet::operator[](<span class="keywordtype">size_t</span> index)<span class="keyword"> const </span>
+<a name="l09234"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ad620a6cd79b94ae644d10a10d0519029">09234</a>         <span class="keyword">const</span> <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>&amp; <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ad620a6cd79b94ae644d10a10d0519029" title="Indexing operator.">XPathNodeSet::operator[]</a>(<span class="keywordtype">size_t</span> index)<span class="keyword"> const </span>
 <a name="l09235"></a>09235 <span class="keyword">        </span>{ 
-<a name="l09236"></a>09236                 assert(index &lt; size()); 
+<a name="l09236"></a>09236                 assert(index &lt; <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a306178fdaf66f2d0ccefd617f7afc7f3" title="Get collection size.">size</a>()); 
 <a name="l09237"></a>09237                 <span class="keywordflow">return</span> _begin[index]; 
 <a name="l09238"></a>09238         } 
 <a name="l09239"></a>09239  
-<a name="l09240"></a>09240         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNodeSet::const_iterator</a> XPathNodeSet::begin()<span class="keyword"> const </span>
+<a name="l09240"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a887d84cf19f5d2155ab9153bc02e8d1e">09240</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNodeSet::const_iterator</a> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a887d84cf19f5d2155ab9153bc02e8d1e" title="Get Beginning iterator.">XPathNodeSet::begin</a>()<span class="keyword"> const </span>
 <a name="l09241"></a>09241 <span class="keyword">        </span>{ 
 <a name="l09242"></a>09242                 <span class="keywordflow">return</span> _begin; 
 <a name="l09243"></a>09243         } 
 <a name="l09244"></a>09244                  
-<a name="l09245"></a>09245         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNodeSet::const_iterator</a> XPathNodeSet::end()<span class="keyword"> const </span>
+<a name="l09245"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a1b5507aca9b87bbaa0c698f293ae8fd4">09245</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNodeSet::const_iterator</a> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a1b5507aca9b87bbaa0c698f293ae8fd4" title="Get Ending iterator.">XPathNodeSet::end</a>()<span class="keyword"> const </span>
 <a name="l09246"></a>09246 <span class="keyword">        </span>{ 
 <a name="l09247"></a>09247                 <span class="keywordflow">return</span> _end; 
 <a name="l09248"></a>09248         } 
 <a name="l09249"></a>09249          
-<a name="l09250"></a>09250         <span class="keywordtype">void</span> XPathNodeSet::sort(<span class="keywordtype">bool</span> reverse) 
+<a name="l09250"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a509bb7206dfc0fa79887c7ab7c5999db">09250</a>         <span class="keywordtype">void</span> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a509bb7206dfc0fa79887c7ab7c5999db" title="Sort the collection in ascending/descending order by document order.">XPathNodeSet::sort</a>(<span class="keywordtype">bool</span> reverse) 
 <a name="l09251"></a>09251         { 
 <a name="l09252"></a>09252                 _type = XPathSort(_begin, _end, _type, reverse); 
 <a name="l09253"></a>09253         } 
 <a name="l09254"></a>09254  
-<a name="l09255"></a>09255         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> XPathNodeSet::first()<span class="keyword"> const </span>
+<a name="l09255"></a><a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ae38baf21701ebbe42af3abfb6976d100">09255</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ae38baf21701ebbe42af3abfb6976d100" title="Get first node in the collection by document order.">XPathNodeSet::first</a>()<span class="keyword"> const </span>
 <a name="l09256"></a>09256 <span class="keyword">        </span>{ 
 <a name="l09257"></a>09257                 <span class="keywordflow">return</span> XPathFirst(_begin, _end, _type); 
 <a name="l09258"></a>09258         } 
@@ -9640,7 +9640,7 @@
 <a name="l09609"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a13b958f663f9605061e5e47dfd8e1966">09609</a>         <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a11966aa8afdfa586404393ebae9b07f5" title="Select single node by evaluating an XPath query. Returns first node from the resulting node set...">Node::FindSingleNode</a>(<span class="keyword">const</span> <a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a>&amp; query)<span class="keyword"> const </span>
 <a name="l09610"></a>09610 <span class="keyword">        </span>{ 
 <a name="l09611"></a>09611                 <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> s = query.<a class="code" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#af00ba3d0346ccc01f249274947191333" title="Evaluate expression as node set in the specified context.">EvaluateNodeSet</a>(*<span class="keyword">this</span>); 
-<a name="l09612"></a>09612                 <span class="keywordflow">return</span> s.Empty() ? <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>() : s.first(); 
+<a name="l09612"></a>09612                 <span class="keywordflow">return</span> s.<a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a91fa85dbf474c51bc7a9df1baf38d43a" title="Check if collection is empty.">Empty</a>() ? <a class="code" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>() : s.<a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ae38baf21701ebbe42af3abfb6976d100" title="Get first node in the collection by document order.">first</a>(); 
 <a name="l09613"></a>09613         } 
 <a name="l09614"></a>09614  
 <a name="l09615"></a><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f">09615</a>         <a class="code" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7390ba1c09b83544365abc7bf8ec5b8f" title="Select a group of nodes by evaluating an XPath query.">Node::FindNodes</a>(<span class="keyword">const</span> char_t* query, <a class="code" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html" title="A set of XPath variables.">XPathVariableSet</a>* variables)<span class="keyword"> const </span>
@@ -9689,7 +9689,7 @@
 <a name="l09658"></a>09658 <span class="preprocessor">#endif // \PHYSXML </span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 15:54:06 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:49 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
