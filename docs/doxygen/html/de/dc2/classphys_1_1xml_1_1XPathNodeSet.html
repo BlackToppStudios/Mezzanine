@@ -42,50 +42,370 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::xml::XPathNodeSet" -->
+<p>A collection of nodes that an <a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a> can work on.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
+
 <p><a href="../../d1/df2/classphys_1_1xml_1_1XPathNodeSet-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>Type_t</b> { <b>Type_unsorted</b>, 
-<b>Type_sorted</b>, 
-<b>Type_sorted_reverse</b>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c">CollectionType</a> { <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995ca8f4fe063043fb03da3c074b4c6c7879c">TypeUnsorted</a>, 
+<a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995ca1a79973b465ba264dfaae55836121be2">TypeSorted</a>, 
+<a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995caea04d0c99f11c8b4deeccb6316911420">TypeSortedReverse</a>
  }</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab893a3c9d60393ae5b3740196a5a6691"></a><!-- doxytag: member="phys::xml::XPathNodeSet::const_iterator" ref="ab893a3c9d60393ae5b3740196a5a6691" args="" -->
-typedef const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>const_iterator</b></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>The different ways a collection may or may not be ordered. </p>
+ <a href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c">More...</a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64ed5a3479ae329b0753354dcceba7d3"></a><!-- doxytag: member="phys::xml::XPathNodeSet::const_iterator" ref="a64ed5a3479ae329b0753354dcceba7d3" args="" -->
+typedef const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a64ed5a3479ae329b0753354dcceba7d3">const_iterator</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">An iterator trait. Const iterator for XPathNodes. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4cb1b2517f4365b87c87ed673e69b65c"></a><!-- doxytag: member="phys::xml::XPathNodeSet::XPathNodeSet" ref="a4cb1b2517f4365b87c87ed673e69b65c" args="(const_iterator begin, const_iterator end, Type_t Type=Type_unsorted)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>XPathNodeSet</b> (<a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a> begin, <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a> end, Type_t Type=Type_unsorted)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4ac7af973425828bd66dc278887695c"></a><!-- doxytag: member="phys::xml::XPathNodeSet::XPathNodeSet" ref="af4ac7af973425828bd66dc278887695c" args="(const XPathNodeSet &amp;ns)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>XPathNodeSet</b> (const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;ns)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2faeaf80e93a3576b10908354adface"></a><!-- doxytag: member="phys::xml::XPathNodeSet::operator=" ref="ad2faeaf80e93a3576b10908354adface" args="(const XPathNodeSet &amp;ns)" -->
-<a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator=</b> (const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;ns)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a025114cccc7621b3e16f33a16a84a43e"></a><!-- doxytag: member="phys::xml::XPathNodeSet::Type" ref="a025114cccc7621b3e16f33a16a84a43e" args="() const " -->
-Type_t&nbsp;</td><td class="memItemRight" valign="bottom"><b>Type</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a306178fdaf66f2d0ccefd617f7afc7f3"></a><!-- doxytag: member="phys::xml::XPathNodeSet::size" ref="a306178fdaf66f2d0ccefd617f7afc7f3" args="() const " -->
-size_t&nbsp;</td><td class="memItemRight" valign="bottom"><b>size</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aecd0282913579f27ed0f6de30053f081"></a><!-- doxytag: member="phys::xml::XPathNodeSet::operator[]" ref="aecd0282913579f27ed0f6de30053f081" args="(size_t index) const " -->
-const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator[]</b> (size_t index) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc59bc390d7ac19a1e6cd9d76599c0f6"></a><!-- doxytag: member="phys::xml::XPathNodeSet::begin" ref="abc59bc390d7ac19a1e6cd9d76599c0f6" args="() const " -->
-<a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>begin</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adc1ab904e2122928837cc02f1b0a54bf"></a><!-- doxytag: member="phys::xml::XPathNodeSet::end" ref="adc1ab904e2122928837cc02f1b0a54bf" args="() const " -->
-<a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>end</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad18d6b92f885ee9d862f5008af734559"></a><!-- doxytag: member="phys::xml::XPathNodeSet::sort" ref="ad18d6b92f885ee9d862f5008af734559" args="(bool reverse=false)" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>sort</b> (bool reverse=false)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d3c2d75f154b863a8e81d32e4662b78"></a><!-- doxytag: member="phys::xml::XPathNodeSet::first" ref="a7d3c2d75f154b863a8e81d32e4662b78" args="() const " -->
-<a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>first</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77e87e2a776cf28501d284532f60e74a"></a><!-- doxytag: member="phys::xml::XPathNodeSet::Empty" ref="a77e87e2a776cf28501d284532f60e74a" args="() const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>Empty</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a24b0e325cd45548e3f63bd37557eab93"></a><!-- doxytag: member="phys::xml::XPathNodeSet::XPathNodeSet" ref="a24b0e325cd45548e3f63bd37557eab93" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a24b0e325cd45548e3f63bd37557eab93">XPathNodeSet</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor. Constructs empty set. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a4184ec067744749dd044f7740d2dc6e3">XPathNodeSet</a> (<a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a> begin, <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a> end, <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c">CollectionType</a> Type=TypeUnsorted)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructs a set from iterator range.  <a href="#a4184ec067744749dd044f7740d2dc6e3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#af4ac7af973425828bd66dc278887695c">XPathNodeSet</a> (const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;ns)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy constructor.  <a href="#af4ac7af973425828bd66dc278887695c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a10ab6b5b2188af5d7db6930473fa0190">operator=</a> (const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;ns)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Assignment Operator.  <a href="#a10ab6b5b2188af5d7db6930473fa0190"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c">CollectionType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a95c90708290e045ef04425a71b2ddf25">Type</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get collection Type.  <a href="#a95c90708290e045ef04425a71b2ddf25"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">size_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a306178fdaf66f2d0ccefd617f7afc7f3">size</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get collection size.  <a href="#a306178fdaf66f2d0ccefd617f7afc7f3"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ad620a6cd79b94ae644d10a10d0519029">operator[]</a> (size_t index) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Indexing operator.  <a href="#ad620a6cd79b94ae644d10a10d0519029"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a887d84cf19f5d2155ab9153bc02e8d1e">begin</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get Beginning iterator.  <a href="#a887d84cf19f5d2155ab9153bc02e8d1e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b5507aca9b87bbaa0c698f293ae8fd4"></a><!-- doxytag: member="phys::xml::XPathNodeSet::end" ref="a1b5507aca9b87bbaa0c698f293ae8fd4" args="() const " -->
+<a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a1b5507aca9b87bbaa0c698f293ae8fd4">end</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get Ending iterator. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a509bb7206dfc0fa79887c7ab7c5999db">sort</a> (bool reverse=false)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sort the collection in ascending/descending order by document order.  <a href="#a509bb7206dfc0fa79887c7ab7c5999db"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ae38baf21701ebbe42af3abfb6976d100">first</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get first node in the collection by document order.  <a href="#ae38baf21701ebbe42af3abfb6976d100"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a91fa85dbf474c51bc7a9df1baf38d43a">Empty</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Check if collection is empty.  <a href="#a91fa85dbf474c51bc7a9df1baf38d43a"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>A collection of nodes that an <a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a> can work on. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01259">1259</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01295">1295</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Member Enumeration Documentation</h2>
+<a class="anchor" id="ab178d39e119369702541033c067a995c"></a><!-- doxytag: member="phys::xml::XPathNodeSet::CollectionType" ref="ab178d39e119369702541033c067a995c" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c">phys::xml::XPathNodeSet::CollectionType</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The different ways a collection may or may not be ordered. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="ab178d39e119369702541033c067a995ca8f4fe063043fb03da3c074b4c6c7879c"></a><!-- doxytag: member="TypeUnsorted" ref="ab178d39e119369702541033c067a995ca8f4fe063043fb03da3c074b4c6c7879c" args="" -->TypeUnsorted</em>&nbsp;</td><td>
+<p>Not Ordered. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ab178d39e119369702541033c067a995ca1a79973b465ba264dfaae55836121be2"></a><!-- doxytag: member="TypeSorted" ref="ab178d39e119369702541033c067a995ca1a79973b465ba264dfaae55836121be2" args="" -->TypeSorted</em>&nbsp;</td><td>
+<p>In document Order. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="ab178d39e119369702541033c067a995caea04d0c99f11c8b4deeccb6316911420"></a><!-- doxytag: member="TypeSortedReverse" ref="ab178d39e119369702541033c067a995caea04d0c99f11c8b4deeccb6316911420" args="" -->TypeSortedReverse</em>&nbsp;</td><td>
+<p>In reverse document Order. </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01299">1299</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a4184ec067744749dd044f7740d2dc6e3"></a><!-- doxytag: member="phys::xml::XPathNodeSet::XPathNodeSet" ref="a4184ec067744749dd044f7740d2dc6e3" args="(const_iterator begin, const_iterator end, CollectionType Type=TypeUnsorted)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNodeSet::XPathNodeSet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a>&nbsp;</td>
+          <td class="paramname"> <em>begin</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">const_iterator</a>&nbsp;</td>
+          <td class="paramname"> <em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c">CollectionType</a>&nbsp;</td>
+          <td class="paramname"> <em>Type</em> = <code>TypeUnsorted</code></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Constructs a set from iterator range. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>begin</em>&nbsp;</td><td>A const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> iterator at the beginning of the set of nodes. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>end</em>&nbsp;</td><td>A const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> iterator at the end of the set of nodes. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Type</em>&nbsp;</td><td>What <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995c" title="The different ways a collection may or may not be ordered.">XPathNodeSet::CollectionType</a> is being used, this defaults to <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#ab178d39e119369702541033c067a995ca8f4fe063043fb03da3c074b4c6c7879c" title="Not Ordered.">XPathNodeSet::TypeUnsorted</a></td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Data is not checked for duplicates and is not sorted according to provided Type, so be careful. </p>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09194">9194</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="af4ac7af973425828bd66dc278887695c"></a><!-- doxytag: member="phys::xml::XPathNodeSet::XPathNodeSet" ref="af4ac7af973425828bd66dc278887695c" args="(const XPathNodeSet &amp;ns)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNodeSet::XPathNodeSet </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>ns</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>ns</em>&nbsp;</td><td>The <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09204">9204</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a887d84cf19f5d2155ab9153bc02e8d1e"></a><!-- doxytag: member="phys::xml::XPathNodeSet::begin" ref="a887d84cf19f5d2155ab9153bc02e8d1e" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNodeSet::begin </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get Beginning iterator. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a64ed5a3479ae329b0753354dcceba7d3" title="An iterator trait. Const iterator for XPathNodes.">XPathNodeSet::const_iterator</a> to the beginning of the collection. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09240">9240</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a91fa85dbf474c51bc7a9df1baf38d43a"></a><!-- doxytag: member="phys::xml::XPathNodeSet::Empty" ref="a91fa85dbf474c51bc7a9df1baf38d43a" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNodeSet::Empty </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Check if collection is empty. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the document is empty, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09229">9229</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae38baf21701ebbe42af3abfb6976d100"></a><!-- doxytag: member="phys::xml::XPathNodeSet::first" ref="ae38baf21701ebbe42af3abfb6976d100" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNodeSet::first </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get first node in the collection by document order. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The first node of the, in document order as an <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09255">9255</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a10ab6b5b2188af5d7db6930473fa0190"></a><!-- doxytag: member="phys::xml::XPathNodeSet::operator=" ref="a10ab6b5b2188af5d7db6930473fa0190" args="(const XPathNodeSet &amp;ns)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNodeSet::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>ns</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Assignment Operator. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>ns</em>&nbsp;</td><td>The <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a> to copy. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09209">9209</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ad620a6cd79b94ae644d10a10d0519029"></a><!-- doxytag: member="phys::xml::XPathNodeSet::operator[]" ref="ad620a6cd79b94ae644d10a10d0519029" args="(size_t index) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNodeSet::operator[] </td>
+          <td>(</td>
+          <td class="paramtype">size_t&nbsp;</td>
+          <td class="paramname"> <em>index</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Indexing operator. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>index</em>&nbsp;</td><td>A size_t indicating which <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> you would like to retrieve </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A const reference to the <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> you requested. </dd></dl>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>Out of bounds errors are checked using assert. Exceptions will not be thrown, during debugging out of bounds access will abort the termination and in production code out of bounds accesses will cause undefined behavior. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09234">9234</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a306178fdaf66f2d0ccefd617f7afc7f3"></a><!-- doxytag: member="phys::xml::XPathNodeSet::size" ref="a306178fdaf66f2d0ccefd617f7afc7f3" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t phys::xml::XPathNodeSet::size </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get collection size. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The number of <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> instances as a size_t in the set </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09224">9224</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a509bb7206dfc0fa79887c7ab7c5999db"></a><!-- doxytag: member="phys::xml::XPathNodeSet::sort" ref="a509bb7206dfc0fa79887c7ab7c5999db" args="(bool reverse=false)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNodeSet::sort </td>
+          <td>(</td>
+          <td class="paramtype">bool&nbsp;</td>
+          <td class="paramname"> <em>reverse</em> = <code>false</code></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Sort the collection in ascending/descending order by document order. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#a64ed5a3479ae329b0753354dcceba7d3" title="An iterator trait. Const iterator for XPathNodes.">XPathNodeSet::const_iterator</a> to the end of the collection. </dd></dl>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>reverse</em>&nbsp;</td><td>If true this sorts the collection in the opposite of document order. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09250">9250</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a95c90708290e045ef04425a71b2ddf25"></a><!-- doxytag: member="phys::xml::XPathNodeSet::Type" ref="a95c90708290e045ef04425a71b2ddf25" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNodeSet::Type </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get collection Type. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A reference to the freshly assigned <a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>. </dd>
+<dd>
+CollectionType </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09219">9219</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
+<li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:59 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:59 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

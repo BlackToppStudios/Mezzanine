@@ -85,6 +85,7 @@
  
 #include "crossplatform.h" 
 #include "xmldoc.h" 
+#include "exception.h" 
  
 #ifndef XML_NO_STL 
 namespace std 
@@ -206,7 +207,7 @@ namespace phys
 	const unsigned int ParseCdata = 0x0004; 
  
 	// This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree. 
-	// This flag is off by default; turning it on usually results in slower parsing and more memory consumption. 
+	// This flag is off by default; turning it on usually Results in slower parsing and more memory consumption. 
 	const unsigned int ParseWsPcdata = 0x0008; 
  
 	// This flag determines if character and entity references are expanded during parsing. This flag is on by default. 
@@ -353,7 +354,7 @@ namespace phys
 		explicit Attribute(AttributeStruct* attr); 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -476,7 +477,7 @@ namespace phys
 		explicit Node(NodeStruct* p); 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -695,7 +696,7 @@ namespace phys
 		bool Traverse(TreeWalker& walker); 
 	 
 	#ifndef XML_NO_XPATH 
-		// Select single node by evaluating XPath query. Returns first node from the resulting node set. 
+		// Select single node by evaluating XPath query. Returns first node from the Resulting node set. 
 		XPathNode FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const; 
 		XPathNode FindSingleNode(const XPathQuery& query) const; 
  
@@ -907,7 +908,7 @@ namespace phys
 		StatusEndElementMismatch // There was a mismatch of start-end tags (closing tag had incorrect Name, some tag was not closed or there was an excessive closing tag) 
 	}; 
  
-	// Parsing result 
+	// Parsing Result 
 	struct PHYS_LIB ParseResult 
 	{ 
 		/// @brief Parsing status ( see @ref ParseStatus ) 
@@ -1024,7 +1025,7 @@ namespace phys
 		XPathTypeBoolean	// Boolean 
 	}; 
  
-	// XPath parsing result 
+	// XPath parsing Result 
 	struct PHYS_LIB XPathParseResult 
 	{ 
 		// Error message (0 if no error) 
@@ -1139,7 +1140,7 @@ namespace phys
 	{ 
 	private: 
 		void* _impl; 
-		XPathParseResult _result; 
+		XPathParseResult _Result; 
  
 		typedef void* XPathQuery::*unspecified_bool_type; 
  
@@ -1150,44 +1151,68 @@ namespace phys
 	public: 
 		// Construct a compiled object from XPath expression. 
 		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on compilation errors. 
+		
+		/// @brief Construct a compiled object from XPath expression.
+		/// @param query The query in the form of a c-string style char_t array.
+		/// @param variables Any extra data the query might need, passing a null pointer simply omits passing any arguments.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (which is the default), throws XPathException on compilation errors.
 		explicit XPathQuery(const char_t* query, XPathVariableSet* variables = 0); 
  
 		// Destructor 
+		/// @brief Destructor
 		~XPathQuery(); 
  
 		// Get query expression return Type 
-		XPathValueType return_type() const; 
+		XPathValueType ReturnType() const; 
 		 
 		// Evaluate expression as boolean Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
-		bool evaluate_boolean(const XPathNode& n) const; 
+		bool EvaluateBoolean(const XPathNode& n) const; 
 		 
 		// Evaluate expression as double Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
-		double evaluate_number(const XPathNode& n) const; 
+		/// @brief Evaluate expression as double value in the specified context; performs Type conversion if necessary.
+		/// @param n The XPathNode that will serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+		/// @return A result as a double from evaluating the expression.
+		double EvaluateNumber(const XPathNode& n) const; 
 		 
 	#ifndef XML_NO_STL 
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
-		String evaluate_string(const XPathNode& n) const; 
+		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
+		/// @param n The XPathNode that will serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+		/// @return A result as a String from evaluating the expression.
+		String EvaluateString(const XPathNode& n) const; 
 	#endif 
 		 
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary. 
-		// At most capacity characters are written to the destination buffer, full result size is returned (includes terminating zero). 
+		// At most capacity characters are written to the destination buffer, full Result size is returned (includes terminating zero). 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty  set instead. 
-		size_t evaluate_string(char_t* buffer, size_t capacity, const XPathNode& n) const; 
+		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
+		/// @param buffer The place to store the c-style Character array
+		/// @param capacity At most capacity characters are written to the destination buffer.
+		/// @param n The XPathNode that with serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, this returns empty  set instead.
+		/// @return Full result size is returned (includes terminating zero).
+		size_t EvaluateString(char_t* buffer, size_t capacity, const XPathNode& n) const; 
  
 		// Evaluate expression as node set in the specified context. 
 		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on Type mismatch and std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty node set instead. 
-		XPathNodeSet evaluate_NodeSet(const XPathNode& n) const; 
+		/// @brief Evaluate expression as node set in the specified context.
+		/// @param n The XPathNode that with serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws throws XPathException on Type mismatch and std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, returns empty node set instead.
+		/// @return An XPathNodeSet.
+		XPathNodeSet EvaluateNodeSet(const XPathNode& n) const; 
  
-		// Get parsing result (used to get compilation errors in XML_NO_EXCEPTIONS mode) 
-		const XPathParseResult& result() const; 
+		// Get parsing Result (used to get compilation errors in XML_NO_EXCEPTIONS mode) 
+		const XPathParseResult& Result() const; 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -1196,20 +1221,21 @@ namespace phys
 	 
 	#ifndef XML_NO_EXCEPTIONS 
 	// XPath exception class 
-	class PHYS_LIB XPathException: public std::exception 
+	class PHYS_LIB XPathException: public phys::Exception 
 	{ 
 	private: 
-		XPathParseResult _result; 
+		XPathParseResult _Result; 
  
 	public: 
-		// Construct exception from parse result 
-		explicit XPathException(const XPathParseResult& result); 
+		// Construct exception from parse Result 
+		/// @brief Construct exception from parse Result
+		explicit XPathException(const XPathParseResult& Result); 
  
 		// Get error message 
 		virtual const char* what() const throw(); 
  
-		// Get parse result 
-		const XPathParseResult& result() const; 
+		// Get parse Result 
+		const XPathParseResult& Result() const; 
 	}; 
 	#endif 
 	 
@@ -1228,25 +1254,35 @@ namespace phys
 		 
 		// Construct XPath node from XML node/GetAttribute 
 		XPathNode(const Node& node); 
-		XPathNode(const Attribute& GetAttribute, const Node& GetParent); 
+		/// @brief Construct From a xml::Attribute.
+		/// @param GetAttribute The xml::Attribute this handle should reference.
+		/// @param GetParent The xml::Node the xml::Attribute is on.
+		XPathNode(const Attribute& GetAttribute, const Node& GetParent);  
  
 		// Get node/GetAttribute, if any 
-		Node node() const; 
+		Node GetNode() const; 
 		Attribute GetAttribute() const; 
 		 
 		// Get GetParent of contained node/GetAttribute 
 		Node GetParent() const; 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
 		 
 		// Borland C++ workaround 
 		bool operator!() const; 
  
 		// Comparison operators 
-		bool operator==(const XPathNode& n) const; 
-		bool operator!=(const XPathNode& n) const; 
+		/// @brief Called when comparing two XPathNode instances for equality.
+		/// @param n The other xml::XPathNode to compare this Node against for equality.
+		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;
+		bool operator==(const XPathNode& n) const;  
+		
+		/// @brief Called when comparing two XPathNode instances for inequality.
+		/// @param n The other xml::XPathNode to compare this Node against for inequality.
+		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;
+		bool operator!=(const XPathNode& n) const;  
 	}; 
  
 #ifdef __BORLANDC__ 
@@ -1260,11 +1296,11 @@ namespace phys
 	{ 
 	public: 
 		// Collection Type 
-		enum Type_t 
+		enum CollectionType 
 		{ 
-			Type_unsorted,			// Not ordered 
-			Type_sorted,			// Sorted by document order (ascending) 
-			Type_sorted_reverse		// Sorted by document order (descending) 
+			TypeUnsorted,			// Not ordered 
+			TypeSorted,			// Sorted by document order (ascending) 
+			TypeSortedReverse		// Sorted by document order (descending) 
 		}; 
 		 
 		// Constant iterator Type 
@@ -1274,20 +1310,24 @@ namespace phys
 		XPathNodeSet(); 
  
 		// Constructs a set from iterator range; data is not checked for duplicates and is not sorted according to provided Type, so be careful 
-		XPathNodeSet(const_iterator begin, const_iterator end, Type_t Type = Type_unsorted); 
+		XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type = TypeUnsorted); 
  
 		// Destructor 
 		~XPathNodeSet(); 
 		 
 		// Copy constructor/assignment operator 
+		/// @brief Copy constructor.
+		/// @param ns The XPathNodeSet to copy.
 		XPathNodeSet(const XPathNodeSet& ns); 
 		XPathNodeSet& operator=(const XPathNodeSet& ns); 
  
 		// Get collection Type 
-		Type_t Type() const; 
+		CollectionType Type() const; 
 		 
 		// Get collection size 
-		size_t size() const; 
+		/// @brief Get collection size.
+		/// @return The number of XPathNode instances as a size_t in the set
+		size_t size() const;  
  
 		// Indexing operator 
 		const XPathNode& operator[](size_t index) const; 
@@ -1306,7 +1346,7 @@ namespace phys
 		bool Empty() const; 
 	 
 	private: 
-		Type_t _type; 
+		CollectionType _type; 
 		 
 		XPathNode _storage; 
 		 
@@ -1328,17 +1368,17 @@ namespace phys
 #endif 
  
 	// Memory allocation function interface; returns pointer to allocated memory or NULL on failure 
-	typedef void* (*allocation_function)(size_t size); 
+	typedef void* (*AllocationFunction)(size_t size); 
 	 
 	// Memory deallocation function interface 
-	typedef void (*deallocation_function)(void* ptr); 
+	typedef void (*deAllocationFunction)(void* ptr); 
  
 	// Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. 
-	void PHYS_LIB SetMemory_management_functions(allocation_function allocate, deallocation_function deallocate); 
+	void PHYS_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate); 
 	 
 	// Get current memory management functions 
-	allocation_function PHYS_LIB GetMemory_allocation_function(); 
-	deallocation_function PHYS_LIB GetMemory_deallocation_function(); 
+	AllocationFunction PHYS_LIB GetMemoryAllocationFunction(); 
+	deAllocationFunction PHYS_LIB GetMemoryDeallocationFunction(); 
 } 
 } // \phys
  
@@ -1346,8 +1386,8 @@ namespace phys
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier) 
-	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::NodeIterator&); 
-	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::AttributeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const phys::xml::NodeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const phys::xml::AttributeIterator&); 
 } 
 #endif 
  
@@ -1355,8 +1395,8 @@ namespace std
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection 
-	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::NodeIterator&); 
-	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::AttributeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const phys::xml::NodeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const phys::xml::AttributeIterator&); 
 } 
 #endif 
  

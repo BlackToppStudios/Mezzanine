@@ -79,9 +79,13 @@ Classes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">XPathVariableSet</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A set of XPath variables.  <a href="../../df/dd1/classphys_1_1xml_1_1XPathVariableSet.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A compiled XPath query object.  <a href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html">XPathException</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.  <a href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">An XPath node which can store handles to a <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> or an <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a>.  <a href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#_details">More...</a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">class &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A collection of nodes that an <a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a> can work on.  <a href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html#_details">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc87705cd1c2917d87b879715a2d8f6e"></a><!-- doxytag: member="phys::xml::char_t" ref="afc87705cd1c2917d87b879715a2d8f6e" args="" -->
@@ -91,10 +95,12 @@ typedef std::basic_string<br class="typebreak"/>
 &lt; XML_CHAR, std::char_traits<br class="typebreak"/>
 &lt; XML_CHAR &gt;, std::allocator<br class="typebreak"/>
 &lt; XML_CHAR &gt; &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>String</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3012ecdd41040d1471217fdac32c76ca"></a><!-- doxytag: member="phys::xml::allocation_function" ref="a3012ecdd41040d1471217fdac32c76ca" args=")(size_t size)" -->
-typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>allocation_function</b> )(size_t size)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a042e00af30d526d7d17bc4aaa3e7c592"></a><!-- doxytag: member="phys::xml::deallocation_function" ref="a042e00af30d526d7d17bc4aaa3e7c592" args=")(void *ptr)" -->
-typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><b>deallocation_function</b> )(void *ptr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d772c4cf52d017d4d6ad68ddcbd493f"></a><!-- doxytag: member="phys::xml::AllocationFunction" ref="a6d772c4cf52d017d4d6ad68ddcbd493f" args=")(size_t size)" -->
+typedef void *(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a6d772c4cf52d017d4d6ad68ddcbd493f">AllocationFunction</a> )(size_t size)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Memory allocation function interface; returns pointer to allocated memory or NULL on failure. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af98b1cb6640aa712180aad89a1c776d8"></a><!-- doxytag: member="phys::xml::deAllocationFunction" ref="af98b1cb6640aa712180aad89a1c776d8" args=")(void *ptr)" -->
+typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#af98b1cb6640aa712180aad89a1c776d8">deAllocationFunction</a> )(void *ptr)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Memory deallocation function interface. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a668b0cc666a9d49f7c7222a7552115d3">NodeType</a> { <br/>
@@ -165,30 +171,30 @@ Enumerations</h2></td></tr>
  <a href="../../d9/d27/namespacephys_1_1xml.html#a339b9eef674ba44100110e5524bc575d">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3adcb83b952ab6a714da13d20ab189d7"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="a3adcb83b952ab6a714da13d20ab189d7" args="(const wchar_t *str)" -->
-std::string PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsUtf8</b> (const wchar_t *str)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::string PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a2d4bf28045544dc7350827f568cad46f">AsUtf8</a> (const wchar_t *str)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert a c-style string of wchar_t to std::string containing UTF8.  <a href="#a2d4bf28045544dc7350827f568cad46f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aed8d86b7ea1735f88de53d7947740ddd"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="aed8d86b7ea1735f88de53d7947740ddd" args="(const std::wstring &amp;str)" -->
 std::string PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsUtf8</b> (const std::wstring &amp;str)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac14c911adabeb58e973c36105b85abac"></a><!-- doxytag: member="phys::xml::AsWide" ref="ac14c911adabeb58e973c36105b85abac" args="(const char *str)" -->
-std::wstring PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsWide</b> (const char *str)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::wstring PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a0a57ef612f499a03733ca18d0e4f0c4f">AsWide</a> (const char *str)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert a Convert a c-style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).  <a href="#a0a57ef612f499a03733ca18d0e4f0c4f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf80dd12469021a66d48a325484ba9f1"></a><!-- doxytag: member="phys::xml::AsWide" ref="acf80dd12469021a66d48a325484ba9f1" args="(const std::string &amp;str)" -->
 std::wstring PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsWide</b> (const std::string &amp;str)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af067dbcf4b0c314947f5f51e15df98dc"></a><!-- doxytag: member="phys::xml::SetMemory_management_functions" ref="af067dbcf4b0c314947f5f51e15df98dc" args="(allocation_function allocate, deallocation_function deallocate)" -->
-void PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>SetMemory_management_functions</b> (allocation_function allocate, deallocation_function deallocate)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9162661cef0fda9528d8bf6111da31af"></a><!-- doxytag: member="phys::xml::GetMemory_allocation_function" ref="a9162661cef0fda9528d8bf6111da31af" args="()" -->
-allocation_function PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMemory_allocation_function</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abe490393fe211a8ecc970625a3c4bb6c"></a><!-- doxytag: member="phys::xml::GetMemory_deallocation_function" ref="abe490393fe211a8ecc970625a3c4bb6c" args="()" -->
-deallocation_function PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetMemory_deallocation_function</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8721da4a57634acd3a3eb754d898fb88"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="a8721da4a57634acd3a3eb754d898fb88" args="(const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)" -->
-std::basic_string&lt; char, <br class="typebreak"/>
+<tr><td class="memItemLeft" align="right" valign="top">void PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a2ad88e4331ac29a86c99d5e40b31f983">SetMemory_management_functions</a> (<a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a6d772c4cf52d017d4d6ad68ddcbd493f">AllocationFunction</a> allocate, <a class="el" href="../../d9/d27/namespacephys_1_1xml.html#af98b1cb6640aa712180aad89a1c776d8">deAllocationFunction</a> deallocate)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions.  <a href="#a2ad88e4331ac29a86c99d5e40b31f983"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a6d772c4cf52d017d4d6ad68ddcbd493f">AllocationFunction</a> PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a0537fb34f1fa41afd138deead1455a5b">GetMemoryAllocationFunction</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the current allocation funciton.  <a href="#a0537fb34f1fa41afd138deead1455a5b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#af98b1cb6640aa712180aad89a1c776d8">deAllocationFunction</a> PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a1a2ff3e010e4627424a65a2e584e441e">GetMemoryDeallocationFunction</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the current allocation funciton.  <a href="#a1a2ff3e010e4627424a65a2e584e441e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::basic_string&lt; char, <br class="typebreak"/>
 std::char_traits&lt; char &gt;<br class="typebreak"/>
 , std::allocator&lt; char &gt;<br class="typebreak"/>
- &gt; PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsUtf8</b> (const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad365a4575e9bdc674e7512a573f05c08"></a><!-- doxytag: member="phys::xml::AsWide" ref="ad365a4575e9bdc674e7512a573f05c08" args="(const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)" -->
-std::basic_string&lt; wchar_t, <br class="typebreak"/>
+ &gt; PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#aa3d160a2965f60bc3b2f019be6c7d038">AsUtf8</a> (const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert a std::wstring to a UTF8 std::string.  <a href="#aa3d160a2965f60bc3b2f019be6c7d038"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::basic_string&lt; wchar_t, <br class="typebreak"/>
 std::char_traits&lt; wchar_t &gt;<br class="typebreak"/>
 , std::allocator&lt; wchar_t &gt;<br class="typebreak"/>
- &gt; PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><b>AsWide</b> (const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)</td></tr>
+ &gt; PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a7ca79461d40476ea4cde4f54dadffff4">AsWide</a> (const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).  <a href="#a7ca79461d40476ea4cde4f54dadffff4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#ab660837afbc6aaab22425d8d23e8f2e4">ParseMinimal</a> = 0x0000</td></tr>
@@ -293,7 +299,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00241">241</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00242">242</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -341,7 +347,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00180">180</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00181">181</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -407,7 +413,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00888">888</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00889">889</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -422,7 +428,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </div>
 <div class="memdoc">
 
-<p><a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html">XPathQuery</a> return type. </p>
+<p><a class="el" href="../../de/d52/classphys_1_1xml_1_1XPathQuery.html" title="A compiled XPath query object.">XPathQuery</a> return type. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>DocumentEncoding</em>&nbsp;</td><td>What kind of text is in the stream, this defaults to Encoding::EncodingAuto. </td></tr>
@@ -435,7 +441,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>Unknown Type (query failed to compile). </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba"></a><!-- doxytag: member="XPathTypeNodeSet" ref="a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba" args="" -->XPathTypeNodeSet</em>&nbsp;</td><td>
-<p><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> set (<a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html">XPathNodeSet</a>). </p>
+<p><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> set (<a class="el" href="../../de/dc2/classphys_1_1xml_1_1XPathNodeSet.html" title="A collection of nodes that an XPathQuery can work on.">XPathNodeSet</a>). </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a339b9eef674ba44100110e5524bc575da5503130cd89cdb7f6c9f0cc72091a06c"></a><!-- doxytag: member="XPathTypeNumber" ref="a339b9eef674ba44100110e5524bc575da5503130cd89cdb7f6c9f0cc72091a06c" args="" -->XPathTypeNumber</em>&nbsp;</td><td>
 <p>Number This corresponds to a double or Real. </p>
@@ -450,7 +456,199 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01018">1018</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01019">1019</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a2d4bf28045544dc7350827f568cad46f"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="a2d4bf28045544dc7350827f568cad46f" args="(const wchar_t *str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AsUtf8 </td>
+          <td>(</td>
+          <td class="paramtype">const wchar_t *&nbsp;</td>
+          <td class="paramname"> <em>str</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert a c-style string of wchar_t to std::string containing UTF8. </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>str</em>&nbsp;</td><td>The string to convert </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; containing the converted data </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa3d160a2965f60bc3b2f019be6c7d038"></a><!-- doxytag: member="phys::xml::AsUtf8" ref="aa3d160a2965f60bc3b2f019be6c7d038" args="(const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AsUtf8 </td>
+          <td>(</td>
+          <td class="paramtype">const std::basic_string&lt; wchar_t, std::char_traits&lt; wchar_t &gt;, std::allocator&lt; wchar_t &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>str</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert a std::wstring to a UTF8 std::string. </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>str</em>&nbsp;</td><td>The string to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt; containing the converted data </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7ca79461d40476ea4cde4f54dadffff4"></a><!-- doxytag: member="phys::xml::AsWide" ref="a7ca79461d40476ea4cde4f54dadffff4" args="(const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AsWide </td>
+          <td>(</td>
+          <td class="paramtype">const std::basic_string&lt; char, std::char_traits&lt; char &gt;, std::allocator&lt; char &gt; &gt; &amp;&nbsp;</td>
+          <td class="paramname"> <em>str</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>str</em>&nbsp;</td><td>The string to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A std::basic_string&lt;wchar_t, std::char_traits&lt;wchar_t&gt;, std::allocator&lt;wchar_t&gt; &gt; containing the converted data </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0a57ef612f499a03733ca18d0e4f0c4f"></a><!-- doxytag: member="phys::xml::AsWide" ref="a0a57ef612f499a03733ca18d0e4f0c4f" args="(const char *str)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AsWide </td>
+          <td>(</td>
+          <td class="paramtype">const char *&nbsp;</td>
+          <td class="paramname"> <em>str</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Convert a Convert a c-style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>str</em>&nbsp;</td><td>The string to convert. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A std::basic_string&lt;wchar_t, std::char_traits&lt;wchar_t&gt;, std::allocator&lt;wchar_t&gt; &gt; containing the converted data </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a0537fb34f1fa41afd138deead1455a5b"></a><!-- doxytag: member="phys::xml::GetMemoryAllocationFunction" ref="a0537fb34f1fa41afd138deead1455a5b" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::GetMemoryAllocationFunction </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the current allocation funciton. </p>
+<p><b>For internal use only.</b></p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A function to the current allocation function </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a2ff3e010e4627424a65a2e584e441e"></a><!-- doxytag: member="phys::xml::GetMemoryDeallocationFunction" ref="a1a2ff3e010e4627424a65a2e584e441e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::GetMemoryDeallocationFunction </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the current allocation funciton. </p>
+<p><b>For internal use only.</b></p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A function to the current allocation function </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2ad88e4331ac29a86c99d5e40b31f983"></a><!-- doxytag: member="phys::xml::SetMemory_management_functions" ref="a2ad88e4331ac29a86c99d5e40b31f983" args="(AllocationFunction allocate, deAllocationFunction deallocate)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::SetMemory_management_functions </td>
+          <td>(</td>
+          <td class="paramtype">AllocationFunction&nbsp;</td>
+          <td class="paramname"> <em>allocate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">deAllocationFunction&nbsp;</td>
+          <td class="paramname"> <em>deallocate</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>allocate</em>&nbsp;</td><td>The new memory allocator </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>deallocate</em>&nbsp;</td><td>The new memory deallocator </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -469,7 +667,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>The default set of formatting flags. </p>
 <p>Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00270">270</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00271">271</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -487,7 +685,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>The default parsing mode. </p>
 <p>Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00233">233</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00234">234</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -505,7 +703,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>The full parsing mode. </p>
 <p>Nodes of all types are added to the DOM tree, character/reference entities are expanded, End-of-Line characters are normalized, attribute values are normalized using CDATA normalization rules. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00238">238</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00239">239</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -523,7 +721,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>Minimal parsing mode (equivalent to turning all other flags off). </p>
 <p>Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00197">197</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00198">198</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -541,12 +739,12 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 <p>This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree. </p>
 <p>This flag is off by default; turning it on usually results in slower parsing and more memory consumption. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00210">210</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00211">211</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:58 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -21,7 +21,9 @@ void $\ast$ \hyperlink{namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b
 void \hyperlink{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}{WaitMilliseconds} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&WaitTime)
 \begin{DoxyCompactList}\small\item\em Pauses the program for a given period of time. \item\end{DoxyCompactList}\item 
 void \hyperlink{namespacephys_1_1crossplatform_a11ab7359564519dc966f997c98109f6e}{RenderPhysWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TheWorld, Ogre::RenderWindow $\ast$TheOgreWindow)
-\begin{DoxyCompactList}\small\item\em Renders the current world contents to the screen. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Renders the current world contents to the screen. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_1_1crossplatform_af34fd6dc13360417a87c579744932dce}{GetPlatform} ()
+\begin{DoxyCompactList}\small\item\em Gets the platform currently being run on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -47,6 +49,22 @@ Gets the Default Data Directory.
 
 The directory returned by this function can be used to easily graphics objects. In general the Graphics subsystem can easily open files in this location with just their filename \begin{DoxyReturn}{Returns}
 A string containing the path to the default Data Directory. 
+\end{DoxyReturn}
+\hypertarget{namespacephys_1_1crossplatform_af34fd6dc13360417a87c579744932dce}{
+\index{phys::crossplatform@{phys::crossplatform}!GetPlatform@{GetPlatform}}
+\index{GetPlatform@{GetPlatform}!phys::crossplatform@{phys::crossplatform}}
+\subsubsection[{GetPlatform}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} PHYS\_\-LIB phys::crossplatform::GetPlatform (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d59/namespacephys_1_1crossplatform_af34fd6dc13360417a87c579744932dce}
+
+
+Gets the platform currently being run on. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string based on the platform. \char`\"{}Windows\char`\"{}, \char`\"{}Linux\char`\"{}, or \char`\"{}MacOSX\char`\"{}. 
 \end{DoxyReturn}
 \hypertarget{namespacephys_1_1crossplatform_a8f7321f409f1f2a5fa07881ae22fcc2d}{
 \index{phys::crossplatform@{phys::crossplatform}!GetPluginsDotCFG@{GetPluginsDotCFG}}

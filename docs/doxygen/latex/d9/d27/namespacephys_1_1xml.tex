@@ -41,13 +41,13 @@ class \hyperlink{classphys_1_1xml_1_1XPathVariable}{XPathVariable}
 class \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet}
 \begin{DoxyCompactList}\small\item\em A set of XPath variables. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery}
-\item 
+\begin{DoxyCompactList}\small\item\em A compiled XPath query object. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathException}{XPathException}
-\item 
+\begin{DoxyCompactList}\small\item\em Thrown in a variety of XPath only situations, to indicate type mismatch or other issues. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode}
-\item 
+\begin{DoxyCompactList}\small\item\em An XPath node which can store handles to a \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} or an \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A collection of nodes that an \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} can work on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
@@ -61,16 +61,16 @@ typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR 
 \label{d9/d27/namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}{
-typedef void $\ast$($\ast$ {\bfseries allocation\_\-function} )(size\_\-t size)}
-\label{d9/d27/namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}
+\hypertarget{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{
+typedef void $\ast$($\ast$ \hyperlink{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{AllocationFunction} )(size\_\-t size)}
+\label{d9/d27/namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}{
-typedef void($\ast$ {\bfseries deallocation\_\-function} )(void $\ast$ptr)}
-\label{d9/d27/namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}
+\begin{DoxyCompactList}\small\item\em Memory allocation function interface; returns pointer to allocated memory or NULL on failure. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}{
+typedef void($\ast$ \hyperlink{namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}{deAllocationFunction} )(void $\ast$ptr)}
+\label{d9/d27/namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Memory deallocation function interface. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
@@ -135,51 +135,30 @@ enum \hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{XPathVal
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{namespacephys_1_1xml_a3adcb83b952ab6a714da13d20ab189d7}{
-std::string PHYS\_\-LIB {\bfseries AsUtf8} (const wchar\_\-t $\ast$str)}
-\label{d9/d27/namespacephys_1_1xml_a3adcb83b952ab6a714da13d20ab189d7}
-
-\item 
+std::string PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2d4bf28045544dc7350827f568cad46f}{AsUtf8} (const wchar\_\-t $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a c-\/style string of wchar\_\-t to std::string containing UTF8. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_aed8d86b7ea1735f88de53d7947740ddd}{
 std::string PHYS\_\-LIB {\bfseries AsUtf8} (const std::wstring \&str)}
 \label{d9/d27/namespacephys_1_1xml_aed8d86b7ea1735f88de53d7947740ddd}
 
 \item 
-\hypertarget{namespacephys_1_1xml_ac14c911adabeb58e973c36105b85abac}{
-std::wstring PHYS\_\-LIB {\bfseries AsWide} (const char $\ast$str)}
-\label{d9/d27/namespacephys_1_1xml_ac14c911adabeb58e973c36105b85abac}
-
-\item 
+std::wstring PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a0a57ef612f499a03733ca18d0e4f0c4f}{AsWide} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a Convert a c-\/style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_acf80dd12469021a66d48a325484ba9f1}{
 std::wstring PHYS\_\-LIB {\bfseries AsWide} (const std::string \&str)}
 \label{d9/d27/namespacephys_1_1xml_acf80dd12469021a66d48a325484ba9f1}
 
 \item 
-\hypertarget{namespacephys_1_1xml_af067dbcf4b0c314947f5f51e15df98dc}{
-void PHYS\_\-LIB {\bfseries SetMemory\_\-management\_\-functions} (allocation\_\-function allocate, deallocation\_\-function deallocate)}
-\label{d9/d27/namespacephys_1_1xml_af067dbcf4b0c314947f5f51e15df98dc}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a9162661cef0fda9528d8bf6111da31af}{
-allocation\_\-function PHYS\_\-LIB {\bfseries GetMemory\_\-allocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_a9162661cef0fda9528d8bf6111da31af}
-
-\item 
-\hypertarget{namespacephys_1_1xml_abe490393fe211a8ecc970625a3c4bb6c}{
-deallocation\_\-function PHYS\_\-LIB {\bfseries GetMemory\_\-deallocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_abe490393fe211a8ecc970625a3c4bb6c}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a8721da4a57634acd3a3eb754d898fb88}{
-std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB {\bfseries AsUtf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)}
-\label{d9/d27/namespacephys_1_1xml_a8721da4a57634acd3a3eb754d898fb88}
-
-\item 
-\hypertarget{namespacephys_1_1xml_ad365a4575e9bdc674e7512a573f05c08}{
-std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB {\bfseries AsWide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)}
-\label{d9/d27/namespacephys_1_1xml_ad365a4575e9bdc674e7512a573f05c08}
-
-\end{DoxyCompactItemize}
+void PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f983}{SetMemory\_\-management\_\-functions} (\hyperlink{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{AllocationFunction} allocate, \hyperlink{namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}{deAllocationFunction} deallocate)
+\begin{DoxyCompactList}\small\item\em Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{AllocationFunction} PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a0537fb34f1fa41afd138deead1455a5b}{GetMemoryAllocationFunction} ()
+\begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}{deAllocationFunction} PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a1a2ff3e010e4627424a65a2e584e441e}{GetMemoryDeallocationFunction} ()
+\begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\item 
+std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_aa3d160a2965f60bc3b2f019be6c7d038}{AsUtf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)
+\begin{DoxyCompactList}\small\item\em Convert a std::wstring to a UTF8 std::string. \item\end{DoxyCompactList}\item 
+std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a7ca79461d40476ea4cde4f54dadffff4}{AsWide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)
+\begin{DoxyCompactList}\small\item\em Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -321,7 +300,7 @@ Encodingwchar\_\-t}
 
 
 
-Definition at line 241 of file xml.h.
+Definition at line 242 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{
 \index{phys::xml@{phys::xml}!NodeType@{NodeType}}
@@ -376,7 +355,7 @@ NodeDocType}
 
 
 
-Definition at line 180 of file xml.h.
+Definition at line 181 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{
 \index{phys::xml@{phys::xml}!ParseStatus@{ParseStatus}}
@@ -455,7 +434,7 @@ StatusEndElementMismatch}
 
 
 
-Definition at line 888 of file xml.h.
+Definition at line 889 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{
 \index{phys::xml@{phys::xml}!XPathValueType@{XPathValueType}}
@@ -500,8 +479,150 @@ XPathTypeBoolean}
 
 
 
-Definition at line 1018 of file xml.h.
+Definition at line 1019 of file xml.h.
 
+
+
+\subsection{Function Documentation}
+\hypertarget{namespacephys_1_1xml_a2d4bf28045544dc7350827f568cad46f}{
+\index{phys::xml@{phys::xml}!AsUtf8@{AsUtf8}}
+\index{AsUtf8@{AsUtf8}!phys::xml@{phys::xml}}
+\subsubsection[{AsUtf8}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AsUtf8 (
+\begin{DoxyParamCaption}
+\item[{const wchar\_\-t $\ast$}]{ str}
+\end{DoxyParamCaption}
+)}}
+\label{d9/d27/namespacephys_1_1xml_a2d4bf28045544dc7350827f568cad46f}
+
+
+Convert a c-\/style string of wchar\_\-t to std::string containing UTF8. 
+
+\begin{DoxyInternal}{For internal use only.}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em str}]The string to convert \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A std::basic\_\-string$<$char, std::char\_\-traits$<$char$>$, std::allocator$<$char$>$ $>$ containing the converted data 
+\end{DoxyReturn}
+\end{DoxyInternal}
+\hypertarget{namespacephys_1_1xml_aa3d160a2965f60bc3b2f019be6c7d038}{
+\index{phys::xml@{phys::xml}!AsUtf8@{AsUtf8}}
+\index{AsUtf8@{AsUtf8}!phys::xml@{phys::xml}}
+\subsubsection[{AsUtf8}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AsUtf8 (
+\begin{DoxyParamCaption}
+\item[{const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&}]{ str}
+\end{DoxyParamCaption}
+)}}
+\label{d9/d27/namespacephys_1_1xml_aa3d160a2965f60bc3b2f019be6c7d038}
+
+
+Convert a std::wstring to a UTF8 std::string. 
+
+\begin{DoxyInternal}{For internal use only.}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em str}]The string to convert. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A std::basic\_\-string$<$char, std::char\_\-traits$<$char$>$, std::allocator$<$char$>$ $>$ containing the converted data 
+\end{DoxyReturn}
+\end{DoxyInternal}
+\hypertarget{namespacephys_1_1xml_a7ca79461d40476ea4cde4f54dadffff4}{
+\index{phys::xml@{phys::xml}!AsWide@{AsWide}}
+\index{AsWide@{AsWide}!phys::xml@{phys::xml}}
+\subsubsection[{AsWide}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AsWide (
+\begin{DoxyParamCaption}
+\item[{const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&}]{ str}
+\end{DoxyParamCaption}
+)}}
+\label{d9/d27/namespacephys_1_1xml_a7ca79461d40476ea4cde4f54dadffff4}
+
+
+Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). 
+
+\begin{DoxyInternal}{For internal use only.}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em str}]The string to convert. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A std::basic\_\-string$<$wchar\_\-t, std::char\_\-traits$<$wchar\_\-t$>$, std::allocator$<$wchar\_\-t$>$ $>$ containing the converted data 
+\end{DoxyReturn}
+\end{DoxyInternal}
+\hypertarget{namespacephys_1_1xml_a0a57ef612f499a03733ca18d0e4f0c4f}{
+\index{phys::xml@{phys::xml}!AsWide@{AsWide}}
+\index{AsWide@{AsWide}!phys::xml@{phys::xml}}
+\subsubsection[{AsWide}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AsWide (
+\begin{DoxyParamCaption}
+\item[{const char $\ast$}]{ str}
+\end{DoxyParamCaption}
+)}}
+\label{d9/d27/namespacephys_1_1xml_a0a57ef612f499a03733ca18d0e4f0c4f}
+
+
+Convert a Convert a c-\/style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). 
+
+\begin{DoxyInternal}{For internal use only.}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em str}]The string to convert. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A std::basic\_\-string$<$wchar\_\-t, std::char\_\-traits$<$wchar\_\-t$>$, std::allocator$<$wchar\_\-t$>$ $>$ containing the converted data 
+\end{DoxyReturn}
+\end{DoxyInternal}
+\hypertarget{namespacephys_1_1xml_a0537fb34f1fa41afd138deead1455a5b}{
+\index{phys::xml@{phys::xml}!GetMemoryAllocationFunction@{GetMemoryAllocationFunction}}
+\index{GetMemoryAllocationFunction@{GetMemoryAllocationFunction}!phys::xml@{phys::xml}}
+\subsubsection[{GetMemoryAllocationFunction}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::GetMemoryAllocationFunction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d9/d27/namespacephys_1_1xml_a0537fb34f1fa41afd138deead1455a5b}
+
+
+Get the current allocation funciton. 
+
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+A function to the current allocation function 
+\end{DoxyReturn}
+\end{DoxyInternal}
+\hypertarget{namespacephys_1_1xml_a1a2ff3e010e4627424a65a2e584e441e}{
+\index{phys::xml@{phys::xml}!GetMemoryDeallocationFunction@{GetMemoryDeallocationFunction}}
+\index{GetMemoryDeallocationFunction@{GetMemoryDeallocationFunction}!phys::xml@{phys::xml}}
+\subsubsection[{GetMemoryDeallocationFunction}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::GetMemoryDeallocationFunction (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d9/d27/namespacephys_1_1xml_a1a2ff3e010e4627424a65a2e584e441e}
+
+
+Get the current allocation funciton. 
+
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+A function to the current allocation function 
+\end{DoxyReturn}
+\end{DoxyInternal}
+\hypertarget{namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f983}{
+\index{phys::xml@{phys::xml}!SetMemory\_\-management\_\-functions@{SetMemory\_\-management\_\-functions}}
+\index{SetMemory\_\-management\_\-functions@{SetMemory\_\-management\_\-functions}!phys::xml@{phys::xml}}
+\subsubsection[{SetMemory\_\-management\_\-functions}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::SetMemory\_\-management\_\-functions (
+\begin{DoxyParamCaption}
+\item[{AllocationFunction}]{ allocate, }
+\item[{deAllocationFunction}]{ deallocate}
+\end{DoxyParamCaption}
+)}}
+\label{d9/d27/namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f983}
+
+
+Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. 
+
+\begin{DoxyInternal}{For internal use only.}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em allocate}]The new memory allocator \item[{\em deallocate}]The new memory deallocator \end{DoxyParams}
+\end{DoxyInternal}
 
 
 \subsection{Variable Documentation}
@@ -516,7 +637,7 @@ The default set of formatting flags.
 
 Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none. 
 
-Definition at line 270 of file xml.h.
+Definition at line 271 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{
 \index{phys::xml@{phys::xml}!ParseDefault@{ParseDefault}}
@@ -529,7 +650,7 @@ The default parsing mode.
 
 Elements, PCDATA and CDATA sections are added to the DOM tree, character/reference entities are expanded, End-\/of-\/Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
 
-Definition at line 233 of file xml.h.
+Definition at line 234 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{
 \index{phys::xml@{phys::xml}!ParseFull@{ParseFull}}
@@ -542,7 +663,7 @@ The full parsing mode.
 
 Nodes of all types are added to the DOM tree, character/reference entities are expanded, End-\/of-\/Line characters are normalized, attribute values are normalized using CDATA normalization rules. 
 
-Definition at line 238 of file xml.h.
+Definition at line 239 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_ab660837afbc6aaab22425d8d23e8f2e4}{
 \index{phys::xml@{phys::xml}!ParseMinimal@{ParseMinimal}}
@@ -555,7 +676,7 @@ Minimal parsing mode (equivalent to turning all other flags off).
 
 Only elements and PCDATA sections are added to the DOM tree, no text conversions are performed. 
 
-Definition at line 197 of file xml.h.
+Definition at line 198 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_a48c0da99d1ed62b1a4984293e64828c6}{
 \index{phys::xml@{phys::xml}!ParseWsPcdata@{ParseWsPcdata}}
@@ -568,5 +689,5 @@ This flag determines if plain character data (NodePcdata) that consist only of w
 
 This flag is off by default; turning it on usually results in slower parsing and more memory consumption. 
 
-Definition at line 210 of file xml.h.
+Definition at line 211 of file xml.h.
 

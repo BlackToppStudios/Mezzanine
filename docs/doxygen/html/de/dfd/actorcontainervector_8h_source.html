@@ -97,90 +97,92 @@
 <a name="l00066"></a>00066         <span class="keyword">public</span>:<span class="comment"></span>
 <a name="l00067"></a>00067 <span class="comment">            /// @brief Simple Constructor</span>
 <a name="l00068"></a>00068 <span class="comment">            /// @details This creates and empty usable container based on std::vector.</span>
-<a name="l00069"></a>00069 <span class="comment"></span>            <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a> ();
-<a name="l00070"></a>00070 
-<a name="l00071"></a>00071             <span class="comment">//Simply Inherited mmembers</span>
-<a name="l00072"></a>00072             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddActor(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToAdd);
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074             <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* LastActorAdded();
+<a name="l00069"></a>00069 <span class="comment"></span>            <a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a> ();<span class="comment"></span>
+<a name="l00070"></a>00070 <span class="comment">            /// @brief Class destructor</span>
+<a name="l00071"></a>00071 <span class="comment"></span>            <span class="keyword">virtual</span> ~<a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html" title="A simple Actor Container using a vector.">ActorContainerVector</a>();
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073             <span class="comment">//Simply Inherited mmembers</span>
+<a name="l00074"></a>00074             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddActor(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToAdd);
 <a name="l00075"></a>00075 
-<a name="l00076"></a>00076             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveActor(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToRemove);
+<a name="l00076"></a>00076             <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* LastActorAdded();
 <a name="l00077"></a>00077 
-<a name="l00078"></a>00078             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveActorAtCursor();
+<a name="l00078"></a>00078             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveActor(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* ActorToRemove);
 <a name="l00079"></a>00079 
-<a name="l00080"></a>00080             <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetActorCount() <span class="keyword">const</span>;
+<a name="l00080"></a>00080             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveActorAtCursor();
 <a name="l00081"></a>00081 
-<a name="l00082"></a>00082             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToFirst();
+<a name="l00082"></a>00082             <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetActorCount() <span class="keyword">const</span>;
 <a name="l00083"></a>00083 
-<a name="l00084"></a>00084             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToPrevious();
+<a name="l00084"></a>00084             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToFirst();
 <a name="l00085"></a>00085 
-<a name="l00086"></a>00086             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToNext();
+<a name="l00086"></a>00086             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToPrevious();
 <a name="l00087"></a>00087 
-<a name="l00088"></a>00088             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToLast();
+<a name="l00088"></a>00088             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToNext();
 <a name="l00089"></a>00089 
-<a name="l00090"></a>00090             <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetAtCursor() <span class="keyword">const</span>;
+<a name="l00090"></a>00090             <span class="keyword">virtual</span> <span class="keywordtype">void</span> CursorToLast();
 <a name="l00091"></a>00091 
-<a name="l00092"></a>00092             <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetFirst() <span class="keyword">const</span>;
+<a name="l00092"></a>00092             <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetAtCursor() <span class="keyword">const</span>;
 <a name="l00093"></a>00093 
-<a name="l00094"></a>00094             <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetLast() <span class="keyword">const</span>;
+<a name="l00094"></a>00094             <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetFirst() <span class="keyword">const</span>;
 <a name="l00095"></a>00095 
-<a name="l00096"></a>00096             <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> GetContainerType() <span class="keyword">const</span>;
+<a name="l00096"></a>00096             <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* GetLast() <span class="keyword">const</span>;
 <a name="l00097"></a>00097 
-<a name="l00098"></a>00098             <span class="keyword">virtual</span> <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GetGameWorld() <span class="keyword">const</span>;
-<a name="l00099"></a>00099 <span class="comment"></span>
-<a name="l00100"></a>00100 <span class="comment">            /// @brief This finds an actor by searching for a graphics subsystem nodes.</span>
-<a name="l00101"></a>00101 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.</span>
-<a name="l00102"></a>00102 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching node.</span>
-<a name="l00103"></a>00103 <span class="comment">            /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.</span>
-<a name="l00104"></a>00104 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(Ogre::Node* GraphicsNode);
-<a name="l00105"></a>00105 <span class="comment"></span>
-<a name="l00106"></a>00106 <span class="comment">            /// @brief This finds an actor by searching for a physics subsystem object.</span>
-<a name="l00107"></a>00107 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.</span>
-<a name="l00108"></a>00108 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a physics object.</span>
-<a name="l00109"></a>00109 <span class="comment">            /// @param PhysicsObject This is a pointer to a physics object that the Actor you want to find will have.</span>
-<a name="l00110"></a>00110 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(btCollisionObject* PhysicsObject);
-<a name="l00111"></a>00111 <span class="comment"></span>
-<a name="l00112"></a>00112 <span class="comment">            /// @brief This finds an actor based on its name.</span>
-<a name="l00113"></a>00113 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time.</span>
-<a name="l00114"></a>00114 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching name.</span>
-<a name="l00115"></a>00115 <span class="comment">            /// @param Name This is the name of the Actor you want to find.</span>
-<a name="l00116"></a>00116 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name);
-<a name="l00117"></a>00117 <span class="comment"></span>
-<a name="l00118"></a>00118 <span class="comment">            /// @brief This is used to store information about the cursor.</span>
-<a name="l00119"></a>00119 <span class="comment">            /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor</span>
-<a name="l00120"></a>00120 <span class="comment">            /// so feel free to use this instead.</span>
-<a name="l00121"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed">00121</a> <span class="comment"></span>            vector&lt;ActorBase*&gt;::iterator cursor;
-<a name="l00122"></a>00122 <span class="comment"></span>
-<a name="l00123"></a>00123 <span class="comment">            /// @brief This safely move all the Actors out of or into a phys::World</span>
-<a name="l00124"></a>00124 <span class="comment">            /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system</span>
-<a name="l00125"></a>00125 <span class="comment">            /// if a phys::World is present. Then this sets up all actors with the new World unless it is NULL</span>
-<a name="l00126"></a>00126 <span class="comment">            /// @param GameWorld_ This is a pointer to the new phys::World to work with.</span>
-<a name="l00127"></a>00127 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetGameWorld( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ );
-<a name="l00128"></a>00128 <span class="comment"></span>
-<a name="l00129"></a>00129 <span class="comment">            /// @brief Optionally move actors into or out of a physworld</span>
-<a name="l00130"></a>00130 <span class="comment">            /// @param GameWorld_ This is a pointer to the new phys::World to work with.</span>
-<a name="l00131"></a>00131 <span class="comment">            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add</span>
-<a name="l00132"></a>00132 <span class="comment">            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove</span>
-<a name="l00133"></a>00133 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetGameWorld( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ , <span class="keywordtype">bool</span> AddToWorld, <span class="keywordtype">bool</span> RemoveFromWorld);
-<a name="l00134"></a>00134 <span class="comment"></span>
-<a name="l00135"></a>00135 <span class="comment">            /// @brief Empty Initilizor</span>
-<a name="l00136"></a>00136 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing</span>
-<a name="l00137"></a>00137 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();
-<a name="l00138"></a>00138 <span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">            /// @brief Empty MainLoopItems</span>
-<a name="l00140"></a>00140 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing</span>
-<a name="l00141"></a>00141 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();
-<a name="l00142"></a>00142 
-<a name="l00143"></a>00143         <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00144"></a>00144 <span class="comment">            /// @brief This is used to implement LastActorAdded()</span>
-<a name="l00145"></a>00145 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* RecentlyAdded;
-<a name="l00146"></a>00146     };
-<a name="l00147"></a>00147 }
-<a name="l00148"></a>00148 
-<a name="l00149"></a>00149 <span class="preprocessor">#endif</span>
+<a name="l00098"></a>00098             <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> GetContainerType() <span class="keyword">const</span>;
+<a name="l00099"></a>00099 
+<a name="l00100"></a>00100             <span class="keyword">virtual</span> <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GetGameWorld() <span class="keyword">const</span>;
+<a name="l00101"></a>00101 <span class="comment"></span>
+<a name="l00102"></a>00102 <span class="comment">            /// @brief This finds an actor by searching for a graphics subsystem nodes.</span>
+<a name="l00103"></a>00103 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.</span>
+<a name="l00104"></a>00104 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching node.</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.</span>
+<a name="l00106"></a>00106 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(Ogre::Node* GraphicsNode);
+<a name="l00107"></a>00107 <span class="comment"></span>
+<a name="l00108"></a>00108 <span class="comment">            /// @brief This finds an actor by searching for a physics subsystem object.</span>
+<a name="l00109"></a>00109 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.</span>
+<a name="l00110"></a>00110 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a physics object.</span>
+<a name="l00111"></a>00111 <span class="comment">            /// @param PhysicsObject This is a pointer to a physics object that the Actor you want to find will have.</span>
+<a name="l00112"></a>00112 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(btCollisionObject* PhysicsObject);
+<a name="l00113"></a>00113 <span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">            /// @brief This finds an actor based on its name.</span>
+<a name="l00115"></a>00115 <span class="comment">            /// @details This will iterate through each Actor in the container until it finds one with a matching Name. This runs in linear time.</span>
+<a name="l00116"></a>00116 <span class="comment">            /// @return This returns a pointer to and ActorBase that has a matching name.</span>
+<a name="l00117"></a>00117 <span class="comment">            /// @param Name This is the name of the Actor you want to find.</span>
+<a name="l00118"></a>00118 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* FindActor(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name);
+<a name="l00119"></a>00119 <span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">            /// @brief This is used to store information about the cursor.</span>
+<a name="l00121"></a>00121 <span class="comment">            /// @details This implementation of ActorContainerBase will use this, and only this to access the cursor</span>
+<a name="l00122"></a>00122 <span class="comment">            /// so feel free to use this instead.</span>
+<a name="l00123"></a><a class="code" href="../../d3/d64/classphys_1_1ActorContainerVector.html#a08bdad9b15e265b5d44470f21766b6ed">00123</a> <span class="comment"></span>            vector&lt;ActorBase*&gt;::iterator cursor;
+<a name="l00124"></a>00124 <span class="comment"></span>
+<a name="l00125"></a>00125 <span class="comment">            /// @brief This safely move all the Actors out of or into a phys::World</span>
+<a name="l00126"></a>00126 <span class="comment">            /// @details This Removes all scene nodes from the Ogre the graphics subsystem, and removes all bodies from the physics system</span>
+<a name="l00127"></a>00127 <span class="comment">            /// if a phys::World is present. Then this sets up all actors with the new World unless it is NULL</span>
+<a name="l00128"></a>00128 <span class="comment">            /// @param GameWorld_ This is a pointer to the new phys::World to work with.</span>
+<a name="l00129"></a>00129 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetGameWorld( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ );
+<a name="l00130"></a>00130 <span class="comment"></span>
+<a name="l00131"></a>00131 <span class="comment">            /// @brief Optionally move actors into or out of a physworld</span>
+<a name="l00132"></a>00132 <span class="comment">            /// @param GameWorld_ This is a pointer to the new phys::World to work with.</span>
+<a name="l00133"></a>00133 <span class="comment">            /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add</span>
+<a name="l00134"></a>00134 <span class="comment">            /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove</span>
+<a name="l00135"></a>00135 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetGameWorld( <a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* GameWorld_ , <span class="keywordtype">bool</span> AddToWorld, <span class="keywordtype">bool</span> RemoveFromWorld);
+<a name="l00136"></a>00136 <span class="comment"></span>
+<a name="l00137"></a>00137 <span class="comment">            /// @brief Empty Initilizor</span>
+<a name="l00138"></a>00138 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing</span>
+<a name="l00139"></a>00139 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();
+<a name="l00140"></a>00140 <span class="comment"></span>
+<a name="l00141"></a>00141 <span class="comment">            /// @brief Empty MainLoopItems</span>
+<a name="l00142"></a>00142 <span class="comment">            /// @details This class implements this for the sake of entension and compatibility this function does nothing</span>
+<a name="l00143"></a>00143 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();
+<a name="l00144"></a>00144 
+<a name="l00145"></a>00145         <span class="keyword">private</span>:<span class="comment"></span>
+<a name="l00146"></a>00146 <span class="comment">            /// @brief This is used to implement LastActorAdded()</span>
+<a name="l00147"></a>00147 <span class="comment"></span>            <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* RecentlyAdded;
+<a name="l00148"></a>00148     };
+<a name="l00149"></a>00149 }
+<a name="l00150"></a>00150 
+<a name="l00151"></a>00151 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:48 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

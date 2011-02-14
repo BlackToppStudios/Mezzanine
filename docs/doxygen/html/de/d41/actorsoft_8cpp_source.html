@@ -287,11 +287,16 @@
 <a name="l00256"></a>00256         TargetWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a1b9eb6206ee15c2ef49665a07de3d83c" title="This gets the PhysicsManager from the manager list.">GetPhysicsManager</a>()-&gt;<a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;removeSoftBody(this-&gt;<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>);
 <a name="l00257"></a>00257         this-&gt;<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a568b070c746775b73a3aa8ab33d6cc58" title="Makes the actor invisable.">DetachFromGraphics</a>();
 <a name="l00258"></a>00258     }
-<a name="l00259"></a>00259 }
-<a name="l00260"></a>00260 <span class="preprocessor">#endif</span>
+<a name="l00259"></a>00259 
+<a name="l00260"></a>00260     btSoftBody* ActorSoft::GetBulletObject()
+<a name="l00261"></a>00261     {
+<a name="l00262"></a>00262         <span class="keywordflow">return</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>;
+<a name="l00263"></a>00263     }
+<a name="l00264"></a>00264 }
+<a name="l00265"></a>00265 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:48 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

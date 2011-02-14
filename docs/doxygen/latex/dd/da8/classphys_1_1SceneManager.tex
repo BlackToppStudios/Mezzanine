@@ -193,7 +193,7 @@ Returns a pointer to the light class which was created by this function.
 \end{DoxyReturn}
 
 
-Definition at line 136 of file scenemanager.cpp.
+Definition at line 139 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a8cbdbb737592fe10fb7f82e0eabf7085}{
 \index{phys::SceneManager@{phys::SceneManager}!CreateOrbitingNode@{CreateOrbitingNode}}
@@ -216,7 +216,7 @@ This will create 2 nodes in the scene, the first being the point in the world yo
 \item[{\em Target}]The location of the first node which you will be orbiting around. \item[{\em RelativeLoc}]The location of the node that will be in orbit relative to the first node. Assume the first node is at Origin (0,0,0). \end{DoxyParams}
 
 
-Definition at line 233 of file scenemanager.cpp.
+Definition at line 236 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a67a33ba38c8e8b198c52ca7bcf847751}{
 \index{phys::SceneManager@{phys::SceneManager}!CreateParticleEffect@{CreateParticleEffect}}
@@ -240,7 +240,7 @@ Returns a pointer to the particle effect class which was created by this functio
 \end{DoxyReturn}
 
 
-Definition at line 182 of file scenemanager.cpp.
+Definition at line 185 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a0adfdec14b8b3c19fd0ce95b0933dc99}{
 \index{phys::SceneManager@{phys::SceneManager}!CreateSkyBox@{CreateSkyBox}}
@@ -264,7 +264,7 @@ Like skyplanes, only one can exist per scene. Unlike skyplanes, skyboxes will be
 \item[{\em Material}]The name of the material to be applied to the skybox. Note: This is not referring to the filename, but the specific material script within the file. \item[{\em Group}]The resource group where the material can be found. \item[{\em Distance}]The distance from the camera where the skybox is found. This is in world units. \item[{\em DrawFirst}]Whether or not the skybox should be the first thing rendered in the scene. Usually you will want this to be true as it'll ensure all other objects are rendered on top of it. \item[{\em Orientation}]Optional quaternion to rotate the orientation of the skybox. \end{DoxyParams}
 
 
-Definition at line 110 of file scenemanager.cpp.
+Definition at line 113 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_abdcafee65bedf3c268759553b91a7c6b}{
 \index{phys::SceneManager@{phys::SceneManager}!CreateSkyDome@{CreateSkyDome}}
@@ -292,7 +292,7 @@ Like the other two types of sky's, their can be only one skydome per scene. Skyd
 \item[{\em Material}]The name of the material to be applied to the skydome. Note: This is not referring to the filename, but the specific material script within the file. \item[{\em Group}]The resource group where the material can be found. \item[{\em Distance}]The distance from the camera where the skydome is found. This is in world units. \item[{\em Curvature}]Curvature of the dome. Usually you want this value to be between 2 and 65. \item[{\em Tiling}]The number of times to tile the texture or textures listed in the material script across the skydome. \item[{\em DrawFirst}]Whether or not the skybox should be the first thing rendered in the scene. Usually you will want this to be true as it'll ensure all other objects are rendered on top of it. \item[{\em Orientation}]Optional quaternion to rotate the orientation of the skydome. \item[{\em XSegments}]The number of segments, or boxes, the skydome consists of on the dome's X axis. \item[{\em YSegments}]The number of segments, or boxes, the skydome consists of on the dome's Y axis. \end{DoxyParams}
 
 
-Definition at line 120 of file scenemanager.cpp.
+Definition at line 123 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_ab7defb48661e42614f097c9e654cb79a}{
 \index{phys::SceneManager@{phys::SceneManager}!CreateSkyPlane@{CreateSkyPlane}}
@@ -320,7 +320,7 @@ Only one skyplane can exist in a scene. Making a new one will remove the old one
 \item[{\em SkyPlane}]The plane that will become the sky. \item[{\em Material}]The name of the material to be applied to the skyplane. Note: This is not referring to the filename, but the specific material script within the file. \item[{\em Group}]The resource group where the material can be found. \item[{\em Scale}]The scaling to be applied to the skyplane. This may need to be tweaked based on how high you set the plane off the ground. \item[{\em Tiling}]The number of times to tile the texture or textures listed in the material script across the skyplane. \item[{\em DrawFirst}]Whether or not the skyplane should be the first thing rendered in the scene. Usually you will want this to be true as it'll ensure all other objects are rendered on top of it. \item[{\em Bow}]This will add curvature to the skyplane if set above zero. Note: Use small numbers. A bow of 1.5 should be noticable. \item[{\em XSegments}]The number of segments, or boxes, the skyplane consists of on the planes X axis. This is usful when giving the skyplane a bow. By default the skyplane is just one massive box. \item[{\em YSegments}]The number of segments, or boxes, the skyplane consists of on the planes Y axis. This is usful when giving the skyplane a bow. By default the skyplane is just one massive box. \end{DoxyParams}
 
 
-Definition at line 100 of file scenemanager.cpp.
+Definition at line 103 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a07f3ee064d412908e14a3fe577d6ac80}{
 \index{phys::SceneManager@{phys::SceneManager}!CreateStandNode@{CreateStandNode}}
@@ -342,7 +342,7 @@ This will create a node that doesn't move, and will look at one location that yo
 \item[{\em LookAt}]The location you want the node to look at. Automatically handles orientation. \item[{\em Location}]The location of the node itself. \end{DoxyParams}
 
 
-Definition at line 251 of file scenemanager.cpp.
+Definition at line 254 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a0f6ebec4e8a372b0fcc2b2205bac7725}{
 \index{phys::SceneManager@{phys::SceneManager}!DestroyLight@{DestroyLight}}
@@ -362,7 +362,7 @@ Deletes a light and removes all trace of it from the manager.
 \item[{\em light}]The light to be destroyed. \end{DoxyParams}
 
 
-Definition at line 167 of file scenemanager.cpp.
+Definition at line 170 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a4c26ed31f84b171101db2b5ef184d701}{
 \index{phys::SceneManager@{phys::SceneManager}!DestroyNode@{DestroyNode}}
@@ -382,7 +382,7 @@ Deletes a node and removes all trace of it from the manager.
 \item[{\em node}]The node to be destroyed. \end{DoxyParams}
 
 
-Definition at line 318 of file scenemanager.cpp.
+Definition at line 321 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_addce8f82a6758db345568dbd4a88f5b9}{
 \index{phys::SceneManager@{phys::SceneManager}!DestroyParticleEffect@{DestroyParticleEffect}}
@@ -402,7 +402,7 @@ Deletes a particle effect and removes all trace of it from the manager.
 \item[{\em particleeffect}]The particle effect to be destroyed. \end{DoxyParams}
 
 
-Definition at line 213 of file scenemanager.cpp.
+Definition at line 216 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_acb9c87d510955f028db24ce49944a97a}{
 \index{phys::SceneManager@{phys::SceneManager}!DisableSkyBox@{DisableSkyBox}}
@@ -419,7 +419,7 @@ Disables the currently active skybox.
 
 Using this function effectively deletes the skybox, so you will have to provide a new set of parameters if you wish to re-\/create the skybox. 
 
-Definition at line 115 of file scenemanager.cpp.
+Definition at line 118 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a11bf15ca8c7d758ee50e423ad03d2625}{
 \index{phys::SceneManager@{phys::SceneManager}!DisableSkyDome@{DisableSkyDome}}
@@ -436,7 +436,7 @@ Disables the currently active skydome.
 
 Using this function effectively deletes the skydome, so you will have to provide a new set of parameters if you wish to re-\/create the skydome. 
 
-Definition at line 126 of file scenemanager.cpp.
+Definition at line 129 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_af5763eedafdd11712b55ee33a11bd2b8}{
 \index{phys::SceneManager@{phys::SceneManager}!DisableSkyPlane@{DisableSkyPlane}}
@@ -453,7 +453,7 @@ Disables the currently active skyplane.
 
 Using this function effectively deletes the skyplane, so you will have to provide a new set of parameters if you wish to re-\/create the skyplane. 
 
-Definition at line 105 of file scenemanager.cpp.
+Definition at line 108 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_af3e5081f780b6527f075d1bb579f0601}{
 \index{phys::SceneManager@{phys::SceneManager}!GetGraphicsWorldPointer@{GetGraphicsWorldPointer}}
@@ -473,7 +473,7 @@ Returns a pointer to the ogre Scene Manager.
 \end{DoxyReturn}
 
 
-Definition at line 336 of file scenemanager.cpp.
+Definition at line 339 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a9cad3a29d1d3664ab42e99141142eb59}{
 \index{phys::SceneManager@{phys::SceneManager}!GetLight@{GetLight}}
@@ -493,7 +493,7 @@ Returns a pointer to the light of the specified name.
 \end{DoxyReturn}
 
 
-Definition at line 143 of file scenemanager.cpp.
+Definition at line 146 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a1bdec8167e4cb2d958272a25148409ab}{
 \index{phys::SceneManager@{phys::SceneManager}!GetLight@{GetLight}}
@@ -513,7 +513,7 @@ Returns a pointer to the light at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 157 of file scenemanager.cpp.
+Definition at line 160 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_ae63c31649eb018435087ce48307e2245}{
 \index{phys::SceneManager@{phys::SceneManager}!GetName@{GetName}}
@@ -533,7 +533,7 @@ Returns the name of this manager.
 \end{DoxyReturn}
 
 
-Definition at line 228 of file scenemanager.cpp.
+Definition at line 231 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_ae058104e2eebd36feb8cc84ff0e1d354}{
 \index{phys::SceneManager@{phys::SceneManager}!GetNode@{GetNode}}
@@ -553,7 +553,7 @@ Returns a pointer to the node of the specified name.
 \end{DoxyReturn}
 
 
-Definition at line 263 of file scenemanager.cpp.
+Definition at line 266 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a4b05a304bae8f187fa2474abe7b7f05f}{
 \index{phys::SceneManager@{phys::SceneManager}!GetNode@{GetNode}}
@@ -573,7 +573,7 @@ Returns a pointer to the node at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 278 of file scenemanager.cpp.
+Definition at line 281 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a41a5cddefca0c957fdeeb37f97cc6070}{
 \index{phys::SceneManager@{phys::SceneManager}!GetNumLights@{GetNumLights}}
@@ -593,7 +593,7 @@ Returns the number of lights this manager is storing.
 \end{DoxyReturn}
 
 
-Definition at line 162 of file scenemanager.cpp.
+Definition at line 165 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a9b236739b4b524a282f84b58b524efa6}{
 \index{phys::SceneManager@{phys::SceneManager}!GetNumNodes@{GetNumNodes}}
@@ -613,7 +613,7 @@ Returns the number of nodes this manager is storing.
 \end{DoxyReturn}
 
 
-Definition at line 283 of file scenemanager.cpp.
+Definition at line 286 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a5ad1eab41f98131cfdc359b5c2a73c72}{
 \index{phys::SceneManager@{phys::SceneManager}!GetNumOrbitNodes@{GetNumOrbitNodes}}
@@ -633,7 +633,7 @@ Returns the number of orbit type nodes this manager is storing.
 \end{DoxyReturn}
 
 
-Definition at line 303 of file scenemanager.cpp.
+Definition at line 306 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a1d3c320cf0578c2e09dc488f95ed88e2}{
 \index{phys::SceneManager@{phys::SceneManager}!GetNumParticleEffects@{GetNumParticleEffects}}
@@ -653,7 +653,7 @@ Returns the number of particle effects this manager is storing.
 \end{DoxyReturn}
 
 
-Definition at line 208 of file scenemanager.cpp.
+Definition at line 211 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_ae0cf3beb3e8419c3385b53a3bd7dab8f}{
 \index{phys::SceneManager@{phys::SceneManager}!GetNumStandNodes@{GetNumStandNodes}}
@@ -673,7 +673,7 @@ Returns the number of stand type nodes this manager is storing.
 \end{DoxyReturn}
 
 
-Definition at line 288 of file scenemanager.cpp.
+Definition at line 291 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_ab1afc8a739b5f9756b9d7f5a26f2913b}{
 \index{phys::SceneManager@{phys::SceneManager}!GetParticleEffect@{GetParticleEffect}}
@@ -693,7 +693,7 @@ Returns a pointer to the particle effect of the specified name.
 \end{DoxyReturn}
 
 
-Definition at line 189 of file scenemanager.cpp.
+Definition at line 192 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_ae8508d38b670e4d2d16ee1f5a95dc29b}{
 \index{phys::SceneManager@{phys::SceneManager}!GetParticleEffect@{GetParticleEffect}}
@@ -713,7 +713,7 @@ Returns a pointer to the particle effect at the specified index.
 \end{DoxyReturn}
 
 
-Definition at line 203 of file scenemanager.cpp.
+Definition at line 206 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_af2b4f6bc50d40ffe06f6172c3d1dd02d}{
 \index{phys::SceneManager@{phys::SceneManager}!GetType@{GetType}}
@@ -737,7 +737,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 333 of file scenemanager.cpp.
+Definition at line 336 of file scenemanager.cpp.
 
 \hypertarget{classphys_1_1SceneManager_a686b7199aff8db87af84f40ec933809a}{
 \index{phys::SceneManager@{phys::SceneManager}!SetAmbientLight@{SetAmbientLight}}
@@ -760,7 +760,7 @@ Not all scene's will need ambient light. Ambient light is light that hits all ob
 \item[{\em Red}]The value representing the amount of red color in the ambient light. \item[{\em Green}]The value representing the amount of green color in the ambient light. \item[{\em Blue}]The value representing the amount of blue color in the ambient light. \item[{\em Alpha}]The value representing the transparency of the color in the ambient light. \end{DoxyParams}
 
 
-Definition at line 131 of file scenemanager.cpp.
+Definition at line 134 of file scenemanager.cpp.
 
 
 

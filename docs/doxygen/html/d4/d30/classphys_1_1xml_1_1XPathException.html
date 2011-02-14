@@ -40,27 +40,89 @@
 <h1>phys::xml::XPathException Class Reference</h1>  </div>
 </div>
 <div class="contents">
-<!-- doxytag: class="phys::xml::XPathException" -->
+<!-- doxytag: class="phys::xml::XPathException" --><!-- doxytag: inherits="phys::Exception" -->
+<p>Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
+<div class="dynheader">
+Inheritance diagram for phys::xml::XPathException:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="../../d4/d30/classphys_1_1xml_1_1XPathException.png" usemap="#phys::xml::XPathException_map" alt=""/>
+  <map id="phys::xml::XPathException_map" name="phys::xml::XPathException_map">
+<area href="../../dc/d47/classphys_1_1Exception.html" alt="phys::Exception" shape="rect" coords="0,0,158,24"/>
+</map>
+</div>
+
 <p><a href="../../d5/db5/classphys_1_1xml_1_1XPathException-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c326bac98d78d0816310bfac6c3b68f"></a><!-- doxytag: member="phys::xml::XPathException::XPathException" ref="a2c326bac98d78d0816310bfac6c3b68f" args="(const XPathParseResult &amp;result)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>XPathException</b> (const <a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html">XPathParseResult</a> &amp;result)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a36e9d9daa5c8e2680057b2e1642ed225"></a><!-- doxytag: member="phys::xml::XPathException::what" ref="a36e9d9daa5c8e2680057b2e1642ed225" args="() const " -->
-virtual const char *&nbsp;</td><td class="memItemRight" valign="bottom"><b>what</b> () const   throw ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a37af29b6a83c06c8f2bf89eace7704fd"></a><!-- doxytag: member="phys::xml::XPathException::result" ref="a37af29b6a83c06c8f2bf89eace7704fd" args="() const " -->
-const <a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html">XPathParseResult</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>result</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39d6511632945aa46b63e80f5364e959"></a><!-- doxytag: member="phys::xml::XPathException::XPathException" ref="a39d6511632945aa46b63e80f5364e959" args="(const XPathParseResult &amp;Result)" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#a39d6511632945aa46b63e80f5364e959">XPathException</a> (const <a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html">XPathParseResult</a> &amp;Result)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct exception from parse Result. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual const char *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#ab16319369cd5f40990300b1b22b8f6cb">what</a> () const   throw ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get error message.  <a href="#ab16319369cd5f40990300b1b22b8f6cb"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html">XPathParseResult</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d30/classphys_1_1xml_1_1XPathException.html#a5410a12f705cbbc006175c08872b5749">Result</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get parse Result.  <a href="#a5410a12f705cbbc006175c08872b5749"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>Thrown in a variety of XPath only situations, to indicate type mismatch or other issues. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01199">1199</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01224">1224</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a5410a12f705cbbc006175c08872b5749"></a><!-- doxytag: member="phys::xml::XPathException::Result" ref="a5410a12f705cbbc006175c08872b5749" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathException::Result </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get parse Result. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The <a class="el" href="../../d8/d54/structphys_1_1xml_1_1XPathParseResult.html" title="XPath parsing result.">XPathParseResult</a> used to create this exception. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09083">9083</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab16319369cd5f40990300b1b22b8f6cb"></a><!-- doxytag: member="phys::xml::XPathException::what" ref="ab16319369cd5f40990300b1b22b8f6cb" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathException::what </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const  throw ()<code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get error message. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A description of the error message as a c-style string. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09078">9078</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
+<li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:59 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:59 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

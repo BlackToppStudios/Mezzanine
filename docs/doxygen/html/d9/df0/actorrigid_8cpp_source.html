@@ -405,11 +405,16 @@
 <a name="l00374"></a>00374         this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;forceActivationState(ACTIVE_TAG);
 <a name="l00375"></a>00375                 this-&gt;<a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>-&gt;setDeactivationTime( 0.f );
 <a name="l00376"></a>00376     }
-<a name="l00377"></a>00377 }
-<a name="l00378"></a>00378 <span class="preprocessor">#endif</span>
+<a name="l00377"></a>00377 
+<a name="l00378"></a>00378     btRigidBody* ActorRigid::GetBulletObject()
+<a name="l00379"></a>00379     {
+<a name="l00380"></a>00380         <span class="keywordflow">return</span> <a class="code" href="../../d8/d71/classphys_1_1ActorRigid.html#a690889f942e177644f4f8521f509c88d" title="Used to simulate the behavior of a btRigidBody.">physrigidbody</a>;
+<a name="l00381"></a>00381     }
+<a name="l00382"></a>00382 }
+<a name="l00383"></a>00383 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 11 2011 11:22:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:48 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -149,8 +149,8 @@ namespace
 		free(ptr); 
 	} 
  
-	allocation_function global_allocate = default_allocate; 
-	deallocation_function global_deallocate = default_deallocate; 
+	AllocationFunction global_allocate = default_allocate; 
+	deAllocationFunction global_deallocate = default_deallocate; 
 } 
  
 // String utilities 
@@ -220,9 +220,9 @@ namespace
  
 		void* release() 
 		{ 
-			void* result = data; 
+			void* Result = data; 
 			data = 0; 
-			return result; 
+			return Result; 
 		} 
 	}; 
 } 
@@ -246,16 +246,16 @@ namespace
 		{ 
 			if (!memory) return 0; //$ redundant, left for performance 
  
-			MemoryPage* result = static_cast<MemoryPage*>(memory); 
+			MemoryPage* Result = static_cast<MemoryPage*>(memory); 
  
-			result->allocator = 0; 
-			result->memory = 0; 
-			result->prev = 0; 
-			result->next = 0; 
-			result->busy_size = 0; 
-			result->freed_size = 0; 
+			Result->allocator = 0; 
+			Result->memory = 0; 
+			Result->prev = 0; 
+			Result->next = 0; 
+			Result->busy_size = 0; 
+			Result->freed_size = 0; 
  
-			return result; 
+			return Result; 
 		} 
  
 		Allocator* allocator; 
@@ -647,20 +647,20 @@ namespace
 	{ 
 		typedef size_t value_type; 
  
-		static value_type low(value_type result, uint32_t ch) 
+		static value_type low(value_type Result, uint32_t ch) 
 		{ 
 			// U+0000..U+007F 
-			if (ch < 0x80) return result + 1; 
+			if (ch < 0x80) return Result + 1; 
 			// U+0080..U+07FF 
-			else if (ch < 0x800) return result + 2; 
+			else if (ch < 0x800) return Result + 2; 
 			// U+0800..U+FFFF 
-			else return result + 3; 
+			else return Result + 3; 
 		} 
  
-		static value_type high(value_type result, uint32_t) 
+		static value_type high(value_type Result, uint32_t) 
 		{ 
 			// U+10000..U+10FFFF 
-			return result + 4; 
+			return Result + 4; 
 		} 
 	}; 
  
@@ -668,44 +668,44 @@ namespace
 	{ 
 		typedef uint8_t* value_type; 
  
-		static value_type low(value_type result, uint32_t ch) 
+		static value_type low(value_type Result, uint32_t ch) 
 		{ 
 			// U+0000..U+007F 
 			if (ch < 0x80) 
 			{ 
-				*result = static_cast<uint8_t>(ch); 
-				return result + 1; 
+				*Result = static_cast<uint8_t>(ch); 
+				return Result + 1; 
 			} 
 			// U+0080..U+07FF 
 			else if (ch < 0x800) 
 			{ 
-				result[0] = static_cast<uint8_t>(0xC0 | (ch >> 6)); 
-				result[1] = static_cast<uint8_t>(0x80 | (ch & 0x3F)); 
-				return result + 2; 
+				Result[0] = static_cast<uint8_t>(0xC0 | (ch >> 6)); 
+				Result[1] = static_cast<uint8_t>(0x80 | (ch & 0x3F)); 
+				return Result + 2; 
 			} 
 			// U+0800..U+FFFF 
 			else 
 			{ 
-				result[0] = static_cast<uint8_t>(0xE0 | (ch >> 12)); 
-				result[1] = static_cast<uint8_t>(0x80 | ((ch >> 6) & 0x3F)); 
-				result[2] = static_cast<uint8_t>(0x80 | (ch & 0x3F)); 
-				return result + 3; 
+				Result[0] = static_cast<uint8_t>(0xE0 | (ch >> 12)); 
+				Result[1] = static_cast<uint8_t>(0x80 | ((ch >> 6) & 0x3F)); 
+				Result[2] = static_cast<uint8_t>(0x80 | (ch & 0x3F)); 
+				return Result + 3; 
 			} 
 		} 
  
-		static value_type high(value_type result, uint32_t ch) 
+		static value_type high(value_type Result, uint32_t ch) 
 		{ 
 			// U+10000..U+10FFFF 
-			result[0] = static_cast<uint8_t>(0xF0 | (ch >> 18)); 
-			result[1] = static_cast<uint8_t>(0x80 | ((ch >> 12) & 0x3F)); 
-			result[2] = static_cast<uint8_t>(0x80 | ((ch >> 6) & 0x3F)); 
-			result[3] = static_cast<uint8_t>(0x80 | (ch & 0x3F)); 
-			return result + 4; 
+			Result[0] = static_cast<uint8_t>(0xF0 | (ch >> 18)); 
+			Result[1] = static_cast<uint8_t>(0x80 | ((ch >> 12) & 0x3F)); 
+			Result[2] = static_cast<uint8_t>(0x80 | ((ch >> 6) & 0x3F)); 
+			Result[3] = static_cast<uint8_t>(0x80 | (ch & 0x3F)); 
+			return Result + 4; 
 		} 
  
-		static value_type any(value_type result, uint32_t ch) 
+		static value_type any(value_type Result, uint32_t ch) 
 		{ 
-			return (ch < 0x10000) ? low(result, ch) : high(result, ch); 
+			return (ch < 0x10000) ? low(Result, ch) : high(Result, ch); 
 		} 
 	}; 
  
@@ -713,14 +713,14 @@ namespace
 	{ 
 		typedef size_t value_type; 
  
-		static value_type low(value_type result, uint32_t) 
+		static value_type low(value_type Result, uint32_t) 
 		{ 
-			return result + 1; 
+			return Result + 1; 
 		} 
  
-		static value_type high(value_type result, uint32_t) 
+		static value_type high(value_type Result, uint32_t) 
 		{ 
-			return result + 2; 
+			return Result + 2; 
 		} 
 	}; 
  
@@ -728,27 +728,27 @@ namespace
 	{ 
 		typedef uint16_t* value_type; 
  
-		static value_type low(value_type result, uint32_t ch) 
+		static value_type low(value_type Result, uint32_t ch) 
 		{ 
-			*result = static_cast<uint16_t>(ch); 
+			*Result = static_cast<uint16_t>(ch); 
  
-			return result + 1; 
+			return Result + 1; 
 		} 
  
-		static value_type high(value_type result, uint32_t ch) 
+		static value_type high(value_type Result, uint32_t ch) 
 		{ 
 			uint32_t msh = (uint32_t)(ch - 0x10000) >> 10; 
 			uint32_t lsh = (uint32_t)(ch - 0x10000) & 0x3ff; 
  
-			result[0] = static_cast<uint16_t>(0xD800 + msh); 
-			result[1] = static_cast<uint16_t>(0xDC00 + lsh); 
+			Result[0] = static_cast<uint16_t>(0xD800 + msh); 
+			Result[1] = static_cast<uint16_t>(0xDC00 + lsh); 
  
-			return result + 2; 
+			return Result + 2; 
 		} 
  
-		static value_type any(value_type result, uint32_t ch) 
+		static value_type any(value_type Result, uint32_t ch) 
 		{ 
-			return (ch < 0x10000) ? low(result, ch) : high(result, ch); 
+			return (ch < 0x10000) ? low(Result, ch) : high(Result, ch); 
 		} 
 	}; 
  
@@ -756,14 +756,14 @@ namespace
 	{ 
 		typedef size_t value_type; 
  
-		static value_type low(value_type result, uint32_t) 
+		static value_type low(value_type Result, uint32_t) 
 		{ 
-			return result + 1; 
+			return Result + 1; 
 		} 
  
-		static value_type high(value_type result, uint32_t) 
+		static value_type high(value_type Result, uint32_t) 
 		{ 
-			return result + 1; 
+			return Result + 1; 
 		} 
 	}; 
  
@@ -771,25 +771,25 @@ namespace
 	{ 
 		typedef uint32_t* value_type; 
  
-		static value_type low(value_type result, uint32_t ch) 
+		static value_type low(value_type Result, uint32_t ch) 
 		{ 
-			*result = ch; 
+			*Result = ch; 
  
-			return result + 1; 
+			return Result + 1; 
 		} 
  
-		static value_type high(value_type result, uint32_t ch) 
+		static value_type high(value_type Result, uint32_t ch) 
 		{ 
-			*result = ch; 
+			*Result = ch; 
  
-			return result + 1; 
+			return Result + 1; 
 		} 
  
-		static value_type any(value_type result, uint32_t ch) 
+		static value_type any(value_type Result, uint32_t ch) 
 		{ 
-			*result = ch; 
+			*Result = ch; 
  
-			return result + 1; 
+			return Result + 1; 
 		} 
 	}; 
  
@@ -814,7 +814,7 @@ namespace
  
 	template <typename Traits, typename opt_swap = opt_false> struct utf_decoder 
 	{ 
-		static inline typename Traits::value_type decode_utf8_block(const uint8_t* data, size_t size, typename Traits::value_type result) 
+		static inline typename Traits::value_type decode_utf8_block(const uint8_t* data, size_t size, typename Traits::value_type Result) 
 		{ 
 			const uint8_t utf8_byte_mask = 0x3f; 
  
@@ -825,7 +825,7 @@ namespace
 				// 0xxxxxxx -> U+0000..U+007F 
 				if (lead < 0x80) 
 				{ 
-					result = Traits::low(result, lead); 
+					Result = Traits::low(Result, lead); 
 					data += 1; 
 					size -= 1; 
  
@@ -834,10 +834,10 @@ namespace
 					{ 
 						while (size >= 4 && (*reinterpret_cast<const uint32_t*>(data) & 0x80808080) == 0) 
 						{ 
-							result = Traits::low(result, data[0]); 
-							result = Traits::low(result, data[1]); 
-							result = Traits::low(result, data[2]); 
-							result = Traits::low(result, data[3]); 
+							Result = Traits::low(Result, data[0]); 
+							Result = Traits::low(Result, data[1]); 
+							Result = Traits::low(Result, data[2]); 
+							Result = Traits::low(Result, data[3]); 
 							data += 4; 
 							size -= 4; 
 						} 
@@ -846,21 +846,21 @@ namespace
 				// 110xxxxx -> U+0080..U+07FF 
 				else if ((unsigned)(lead - 0xC0) < 0x20 && size >= 2 && (data[1] & 0xc0) == 0x80) 
 				{ 
-					result = Traits::low(result, ((lead & ~0xC0) << 6) | (data[1] & utf8_byte_mask)); 
+					Result = Traits::low(Result, ((lead & ~0xC0) << 6) | (data[1] & utf8_byte_mask)); 
 					data += 2; 
 					size -= 2; 
 				} 
 				// 1110xxxx -> U+0800-U+FFFF 
 				else if ((unsigned)(lead - 0xE0) < 0x10 && size >= 3 && (data[1] & 0xc0) == 0x80 && (data[2] & 0xc0) == 0x80) 
 				{ 
-					result = Traits::low(result, ((lead & ~0xE0) << 12) | ((data[1] & utf8_byte_mask) << 6) | (data[2] & utf8_byte_mask)); 
+					Result = Traits::low(Result, ((lead & ~0xE0) << 12) | ((data[1] & utf8_byte_mask) << 6) | (data[2] & utf8_byte_mask)); 
 					data += 3; 
 					size -= 3; 
 				} 
 				// 11110xxx -> U+10000..U+10FFFF 
 				else if ((unsigned)(lead - 0xF0) < 0x08 && size >= 4 && (data[1] & 0xc0) == 0x80 && (data[2] & 0xc0) == 0x80 && (data[3] & 0xc0) == 0x80) 
 				{ 
-					result = Traits::high(result, ((lead & ~0xF0) << 18) | ((data[1] & utf8_byte_mask) << 12) | ((data[2] & utf8_byte_mask) << 6) | (data[3] & utf8_byte_mask)); 
+					Result = Traits::high(Result, ((lead & ~0xF0) << 18) | ((data[1] & utf8_byte_mask) << 12) | ((data[2] & utf8_byte_mask) << 6) | (data[3] & utf8_byte_mask)); 
 					data += 4; 
 					size -= 4; 
 				} 
@@ -872,10 +872,10 @@ namespace
 				} 
 			} 
  
-			return result; 
+			return Result; 
 		} 
  
-		static inline typename Traits::value_type decode_utf16_block(const uint16_t* data, size_t size, typename Traits::value_type result) 
+		static inline typename Traits::value_type decode_utf16_block(const uint16_t* data, size_t size, typename Traits::value_type Result) 
 		{ 
 			const uint16_t* end = data + size; 
  
@@ -886,13 +886,13 @@ namespace
 				// U+0000..U+D7FF 
 				if (lead < 0xD800) 
 				{ 
-					result = Traits::low(result, lead); 
+					Result = Traits::low(Result, lead); 
 					data += 1; 
 				} 
 				// U+E000..U+FFFF 
 				else if ((unsigned)(lead - 0xE000) < 0x2000) 
 				{ 
-					result = Traits::low(result, lead); 
+					Result = Traits::low(Result, lead); 
 					data += 1; 
 				} 
 				// surrogate pair lead 
@@ -902,7 +902,7 @@ namespace
  
 					if ((unsigned)(next - 0xDC00) < 0x400) 
 					{ 
-						result = Traits::high(result, 0x10000 + ((lead & 0x3ff) << 10) + (next & 0x3ff)); 
+						Result = Traits::high(Result, 0x10000 + ((lead & 0x3ff) << 10) + (next & 0x3ff)); 
 						data += 2; 
 					} 
 					else 
@@ -916,10 +916,10 @@ namespace
 				} 
 			} 
  
-			return result; 
+			return Result; 
 		} 
  
-		static inline typename Traits::value_type decode_utf32_block(const uint32_t* data, size_t size, typename Traits::value_type result) 
+		static inline typename Traits::value_type decode_utf32_block(const uint32_t* data, size_t size, typename Traits::value_type Result) 
 		{ 
 			const uint32_t* end = data + size; 
  
@@ -930,35 +930,35 @@ namespace
 				// U+0000..U+FFFF 
 				if (lead < 0x10000) 
 				{ 
-					result = Traits::low(result, lead); 
+					Result = Traits::low(Result, lead); 
 					data += 1; 
 				} 
 				// U+10000..U+10FFFF 
 				else 
 				{ 
-					result = Traits::high(result, lead); 
+					Result = Traits::high(Result, lead); 
 					data += 1; 
 				} 
 			} 
  
-			return result; 
+			return Result; 
 		} 
 	}; 
  
-	template <typename T> inline void convert_utf_endian_swap(T* result, const T* data, size_t length) 
+	template <typename T> inline void convert_utf_endian_swap(T* Result, const T* data, size_t length) 
 	{ 
-		for (size_t i = 0; i < length; ++i) result[i] = endian_swap(data[i]); 
+		for (size_t i = 0; i < length; ++i) Result[i] = endian_swap(data[i]); 
 	} 
  
-	inline void convert_wchar_endian_swap(wchar_t* result, const wchar_t* data, size_t length) 
+	inline void convert_wchar_endian_swap(wchar_t* Result, const wchar_t* data, size_t length) 
 	{ 
-		for (size_t i = 0; i < length; ++i) result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_selector<sizeof(wchar_t)>::Type>(data[i]))); 
+		for (size_t i = 0; i < length; ++i) Result[i] = static_cast<wchar_t>(endian_swap(static_cast<wchar_selector<sizeof(wchar_t)>::Type>(data[i]))); 
 	} 
 } 
  
 namespace 
 {	 
-	enum charType_t 
+	enum charCollectionType 
 	{ 
 		ct_ParsePcdata = 1,	// \0, &, \r, < 
 		ct_ParseAttr = 2,		// \0, &, \r, ', " 
@@ -970,7 +970,7 @@ namespace
 		ct_start_symbol = 128	// Any symbol > 127, a-z, A-Z, _, : 
 	}; 
  
-	const unsigned char charType_table[256] = 
+	const unsigned char charCollectionTypeable[256] = 
 	{ 
 		55,  0,   0,   0,   0,   0,   0,   0,	  0,   12,  12,  0,   0,   63,  0,   0,   // 0-15 
 		0,   0,   0,   0,   0,   0,   0,   0,	  0,   0,   0,   0,   0,   0,   0,   0,   // 16-31 
@@ -1028,7 +1028,7 @@ namespace
 	#define IS_CHARTYPE_IMPL(c, ct, table) (table[static_cast<unsigned char>(c)] & (ct)) 
 #endif 
  
-	#define IS_CHARTYPE(c, ct) IS_CHARTYPE_IMPL(c, ct, charType_table) 
+	#define IS_CHARTYPE(c, ct) IS_CHARTYPE_IMPL(c, ct, charCollectionTypeable) 
 	#define IS_CHARTYPEX(c, ct) IS_CHARTYPE_IMPL(c, ct, charTypex_table) 
  
 	bool is_little_endian() 
@@ -1356,14 +1356,14 @@ namespace
 		// first pass: get length in utf8 characters 
 		size_t size = AsUtf8_begin(str, length); 
  
-		// allocate resulting string 
-		std::string result; 
-		result.resize(size); 
+		// allocate Resulting string 
+		std::string Result; 
+		Result.resize(size); 
  
 		// second pass: convert to utf8 
-		if (size > 0) AsUtf8_end(&result[0], size, str, length); 
+		if (size > 0) AsUtf8_end(&Result[0], size, str, length); 
  
-	  	return result; 
+	  	return Result; 
 	} 
  
 	std::wstring AsWide_impl(const char* str, size_t size) 
@@ -1373,21 +1373,21 @@ namespace
 		// first pass: get length in wchar_t units 
 		size_t length = utf_decoder<wchar_counter>::decode_utf8_block(data, size, 0); 
  
-		// allocate resulting string 
-		std::wstring result; 
-		result.resize(length); 
+		// allocate Resulting string 
+		std::wstring Result; 
+		Result.resize(length); 
  
 		// second pass: convert to wchar_t 
 		if (length > 0) 
 		{ 
-			wchar_WriterInstance::value_type begin = reinterpret_cast<wchar_WriterInstance::value_type>(&result[0]); 
+			wchar_WriterInstance::value_type begin = reinterpret_cast<wchar_WriterInstance::value_type>(&Result[0]); 
 			wchar_WriterInstance::value_type end = utf_decoder<wchar_WriterInstance>::decode_utf8_block(data, size, begin); 
  
 			assert(begin + length == end); 
 			(void)!end; 
 		} 
  
-		return result; 
+		return Result; 
 	} 
 #endif 
  
@@ -1915,11 +1915,11 @@ namespace
  
 	inline ParseResult make_ParseResult(ParseStatus Status, ptrdiff_t Offset = 0) 
 	{ 
-		ParseResult result; 
-		result.Status = Status; 
-		result.Offset = Offset; 
+		ParseResult Result; 
+		Result.Status = Status; 
+		Result.Offset = Offset; 
  
-		return result; 
+		return Result; 
 	} 
  
 	struct Parser 
@@ -2494,20 +2494,20 @@ namespace
 				parser.parse(buffer, xmldoc, optmsk, endch); 
 			} 
  
-			ParseResult result = make_ParseResult(static_cast<ParseStatus>(error), parser.error_Offset ? parser.error_Offset - buffer : 0); 
-			assert(result.Offset >= 0 && static_cast<size_t>(result.Offset) <= length); 
+			ParseResult Result = make_ParseResult(static_cast<ParseStatus>(error), parser.error_Offset ? parser.error_Offset - buffer : 0); 
+			assert(Result.Offset >= 0 && static_cast<size_t>(Result.Offset) <= length); 
  
 			// update allocator state 
 			*static_cast<Allocator*>(xmldoc) = parser.alloc; 
  
 			// since we removed last character, we have to handle the only possible false positive 
-			if (result && endch == '<') 
+			if (Result && endch == '<') 
 			{ 
 				// there's no possible well-formed document with < at the end 
 				return make_ParseResult(StatusUnrecognizedTag, length); 
 			} 
  
-			return result; 
+			return Result; 
 		} 
 	}; 
  
@@ -2548,12 +2548,12 @@ namespace
 		return (sizeof(wchar_t) == 2 && (unsigned)(static_cast<uint16_t>(data[length - 1]) - 0xD800) < 0x400) ? length - 1 : length; 
 	} 
  
-	size_t convert_buffer(char* result, const char_t* data, size_t length, Encoding DocumentEncoding) 
+	size_t convert_buffer(char* Result, const char_t* data, size_t length, Encoding DocumentEncoding) 
 	{ 
 		// only endian-swapping is required 
 		if (need_endian_swap_utf(DocumentEncoding, GetWchar_DocumentEncoding())) 
 		{ 
-			convert_wchar_endian_swap(reinterpret_cast<char_t*>(result), data, length); 
+			convert_wchar_endian_swap(reinterpret_cast<char_t*>(Result), data, length); 
  
 			return length * sizeof(char_t); 
 		} 
@@ -2561,7 +2561,7 @@ namespace
 		// convert to utf8 
 		if (DocumentEncoding == EncodingUTF8) 
 		{ 
-			uint8_t* dest = reinterpret_cast<uint8_t*>(result); 
+			uint8_t* dest = reinterpret_cast<uint8_t*>(Result); 
  
 			uint8_t* end = sizeof(wchar_t) == 2 ? 
 				utf_decoder<utf8_WriterInstance>::decode_utf16_block(reinterpret_cast<const uint16_t*>(data), length, dest) : 
@@ -2573,7 +2573,7 @@ namespace
 		// convert to utf16 
 		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE) 
 		{ 
-			uint16_t* dest = reinterpret_cast<uint16_t*>(result); 
+			uint16_t* dest = reinterpret_cast<uint16_t*>(Result); 
  
 			// convert to native utf16 
 			uint16_t* end = utf_decoder<utf16_WriterInstance>::decode_utf32_block(reinterpret_cast<const uint32_t*>(data), length, dest); 
@@ -2589,7 +2589,7 @@ namespace
 		// convert to utf32 
 		if (DocumentEncoding == EncodingUTF32BE || DocumentEncoding == EncodingUTF32LE) 
 		{ 
-			uint32_t* dest = reinterpret_cast<uint32_t*>(result); 
+			uint32_t* dest = reinterpret_cast<uint32_t*>(Result); 
  
 			// convert to native utf32 
 			uint32_t* end = utf_decoder<utf32_WriterInstance>::decode_utf16_block(reinterpret_cast<const uint16_t*>(data), length, dest); 
@@ -2622,11 +2622,11 @@ namespace
 		return length; 
 	} 
  
-	size_t convert_buffer(char* result, const char_t* data, size_t length, Encoding DocumentEncoding) 
+	size_t convert_buffer(char* Result, const char_t* data, size_t length, Encoding DocumentEncoding) 
 	{ 
 		if (DocumentEncoding == EncodingUTF16BE || DocumentEncoding == EncodingUTF16LE) 
 		{ 
-			uint16_t* dest = reinterpret_cast<uint16_t*>(result); 
+			uint16_t* dest = reinterpret_cast<uint16_t*>(Result); 
  
 			// convert to native utf16 
 			uint16_t* end = utf_decoder<utf16_WriterInstance>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
@@ -2641,7 +2641,7 @@ namespace
  
 		if (DocumentEncoding == EncodingUTF32BE || DocumentEncoding == EncodingUTF32LE) 
 		{ 
-			uint32_t* dest = reinterpret_cast<uint32_t*>(result); 
+			uint32_t* dest = reinterpret_cast<uint32_t*>(Result); 
  
 			// convert to native utf32 
 			uint32_t* end = utf_decoder<utf32_WriterInstance>::decode_utf8_block(reinterpret_cast<const uint8_t*>(data), length, dest); 
@@ -2690,11 +2690,11 @@ namespace
 			else 
 			{ 
 				// convert chunk 
-				size_t result = convert_buffer(scratch, data, size, DocumentEncoding); 
-				assert(result <= sizeof(scratch)); 
+				size_t Result = convert_buffer(scratch, data, size, DocumentEncoding); 
+				assert(Result <= sizeof(scratch)); 
  
 				// Write data 
-				WriterInstance.Write(scratch, result); 
+				WriterInstance.Write(scratch, Result); 
 			} 
 		} 
  
@@ -3133,7 +3133,7 @@ namespace
 	} 
  
 	// we need to get length of entire file to Load it in memory; the only (relatively) sane way to do it is via seek/tell trick 
-	ParseStatus GetFile_size(FILE* file, size_t& out_result) 
+	ParseStatus GetFile_size(FILE* file, size_t& out_Result) 
 	{ 
 	#if defined(_MSC_VER) && _MSC_VER >= 1400 
 		// there are 64-bit versions of fseek/ftell, let's use them 
@@ -3162,12 +3162,12 @@ namespace
 		if (length < 0) return StatusIOError; 
 		 
 		// check for overflow 
-		size_t result = static_cast<size_t>(length); 
+		size_t Result = static_cast<size_t>(length); 
  
-		if (static_cast<length_type>(result) != length) return StatusOutOfMemory; 
+		if (static_cast<length_type>(Result) != length) return StatusOutOfMemory; 
  
 		// finalize 
-		out_result = result; 
+		out_Result = Result; 
  
 		return StatusOk; 
 	} 
@@ -3176,7 +3176,7 @@ namespace
 	{ 
 		if (!file) return make_ParseResult(StatusFileNotFound); 
  
-		// get file size (can result in I/O errors) 
+		// get file size (can Result in I/O errors) 
 		size_t size = 0; 
 		ParseStatus size_Status = GetFile_size(file, size); 
  
@@ -3255,14 +3255,14 @@ namespace
 		size_t length = wcslen(str); 
 		size_t size = AsUtf8_begin(str, length); 
  
-		// allocate resulting string 
-		char* result = static_cast<char*>(global_allocate(size + 1)); 
-		if (!result) return 0; 
+		// allocate Resulting string 
+		char* Result = static_cast<char*>(global_allocate(size + 1)); 
+		if (!Result) return 0; 
  
 		// second pass: convert to utf8 
-		AsUtf8_end(result, size, str, length); 
+		AsUtf8_end(Result, size, str, length); 
  
-	  	return result; 
+	  	return Result; 
 	} 
  
 	FILE* open_file_wide(const wchar_t* Path, const wchar_t* mode) 
@@ -3276,12 +3276,12 @@ namespace
 		for (size_t i = 0; mode[i]; ++i) mode_ascii[i] = static_cast<char>(mode[i]); 
  
 		// try to open the utf8 Path 
-		FILE* result = fopen(Path_utf8, mode_ascii); 
+		FILE* Result = fopen(Path_utf8, mode_ascii); 
  
 		// free dummy buffer 
 		global_deallocate(Path_utf8); 
  
-		return result; 
+		return Result; 
 	} 
 #endif 
 } 
@@ -3940,40 +3940,40 @@ namespace phys
 	{ 
 		if (!proto) return Attribute(); 
  
-		Attribute result = AppendAttribute(proto.Name()); 
-		result.SetValue(proto.Value()); 
+		Attribute Result = AppendAttribute(proto.Name()); 
+		Result.SetValue(proto.Value()); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Attribute Node::PrependCopy(const Attribute& proto) 
 	{ 
 		if (!proto) return Attribute(); 
  
-		Attribute result = PrependAttribute(proto.Name()); 
-		result.SetValue(proto.Value()); 
+		Attribute Result = PrependAttribute(proto.Name()); 
+		Result.SetValue(proto.Value()); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Attribute Node::InsertCopyAfter(const Attribute& proto, const Attribute& attr) 
 	{ 
 		if (!proto) return Attribute(); 
  
-		Attribute result = InsertAttributeAfter(proto.Name(), attr); 
-		result.SetValue(proto.Value()); 
+		Attribute Result = InsertAttributeAfter(proto.Name(), attr); 
+		Result.SetValue(proto.Value()); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Attribute Node::InsertCopyBefore(const Attribute& proto, const Attribute& attr) 
 	{ 
 		if (!proto) return Attribute(); 
  
-		Attribute result = InsertAttributeBefore(proto.Name(), attr); 
-		result.SetValue(proto.Value()); 
+		Attribute Result = InsertAttributeBefore(proto.Name(), attr); 
+		Result.SetValue(proto.Value()); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Node Node::AppendChild(NodeType Type) 
@@ -4064,74 +4064,74 @@ namespace phys
  
 	Node Node::AppendChild(const char_t* Name) 
 	{ 
-		Node result = AppendChild(NodeElement); 
+		Node Result = AppendChild(NodeElement); 
  
-		result.SetName(Name); 
+		Result.SetName(Name); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Node Node::PrependChild(const char_t* Name) 
 	{ 
-		Node result = PrependChild(NodeElement); 
+		Node Result = PrependChild(NodeElement); 
  
-		result.SetName(Name); 
+		Result.SetName(Name); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Node Node::InsertChildAfter(const char_t* Name, const Node& node) 
 	{ 
-		Node result = InsertChildAfter(NodeElement, node); 
+		Node Result = InsertChildAfter(NodeElement, node); 
  
-		result.SetName(Name); 
+		Result.SetName(Name); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Node Node::InsertChildBefore(const char_t* Name, const Node& node) 
 	{ 
-		Node result = InsertChildBefore(NodeElement, node); 
+		Node Result = InsertChildBefore(NodeElement, node); 
  
-		result.SetName(Name); 
+		Result.SetName(Name); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Node Node::AppendCopy(const Node& proto) 
 	{ 
-		Node result = AppendChild(proto.Type()); 
+		Node Result = AppendChild(proto.Type()); 
  
-		if (result) recursive_copy_skip(result, proto, result); 
+		if (Result) recursive_copy_skip(Result, proto, Result); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Node Node::PrependCopy(const Node& proto) 
 	{ 
-		Node result = PrependChild(proto.Type()); 
+		Node Result = PrependChild(proto.Type()); 
  
-		if (result) recursive_copy_skip(result, proto, result); 
+		if (Result) recursive_copy_skip(Result, proto, Result); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Node Node::InsertCopyAfter(const Node& proto, const Node& node) 
 	{ 
-		Node result = InsertChildAfter(proto.Type(), node); 
+		Node Result = InsertChildAfter(proto.Type(), node); 
  
-		if (result) recursive_copy_skip(result, proto, result); 
+		if (Result) recursive_copy_skip(Result, proto, Result); 
  
-		return result; 
+		return Result; 
 	} 
  
 	Node Node::InsertCopyBefore(const Node& proto, const Node& node) 
 	{ 
-		Node result = InsertChildBefore(proto.Type(), node); 
+		Node Result = InsertChildBefore(proto.Type(), node); 
  
-		if (result) recursive_copy_skip(result, proto, result); 
+		if (Result) recursive_copy_skip(Result, proto, Result); 
  
-		return result; 
+		return Result; 
 	} 
  
 	bool Node::RemoveAttribute(const char_t* Name) 
@@ -4825,18 +4825,18 @@ namespace phys
 	} 
 #endif 
  
-	void PHYS_LIB SetMemory_management_functions(allocation_function allocate, deallocation_function deallocate) 
+	void PHYS_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate) 
 	{ 
 		global_allocate = allocate; 
 		global_deallocate = deallocate; 
 	} 
  
-	allocation_function PHYS_LIB GetMemory_allocation_function() 
+	AllocationFunction PHYS_LIB GetMemoryAllocationFunction() 
 	{ 
 		return global_allocate; 
 	} 
  
-	deallocation_function PHYS_LIB GetMemory_deallocation_function() 
+	deAllocationFunction PHYS_LIB GetMemoryDeallocationFunction() 
 	{ 
 		return global_deallocate; 
 	} 
@@ -4921,13 +4921,13 @@ namespace
  
 	template <typename I, typename Pred> I min_element(I begin, I end, const Pred& pred) 
 	{ 
-		I result = begin; 
+		I Result = begin; 
  
 		for (I it = begin + 1; it != end; ++it) 
-			if (pred(*it, *result)) 
-				result = it; 
+			if (pred(*it, *Result)) 
+				Result = it; 
  
-		return result; 
+		return Result; 
 	} 
  
 	template <typename I> void reverse(I begin, I end) 
@@ -5164,9 +5164,9 @@ namespace
  
 		void* allocate(size_t size) 
 		{ 
-			void* result = allocate_nothrow(size); 
+			void* Result = allocate_nothrow(size); 
  
-			if (!result) 
+			if (!Result) 
 			{ 
 			#ifdef XML_NO_EXCEPTIONS 
 				assert(error_handler); 
@@ -5176,7 +5176,7 @@ namespace
 			#endif 
 			} 
  
-			return result; 
+			return Result; 
 		} 
  
 		void* reallocate(void* ptr, size_t old_size, size_t new_size) 
@@ -5194,20 +5194,20 @@ namespace
 			if (ptr) _GetRoot_size -= old_size; 
  
 			// allocate a new version (this will obviously reuse the memory if possible) 
-			void* result = allocate(new_size); 
-			assert(result); 
+			void* Result = allocate(new_size); 
+			assert(Result); 
  
 			// we have a new block 
-			if (result != ptr && ptr) 
+			if (Result != ptr && ptr) 
 			{ 
 				// copy old data 
 				assert(new_size > old_size); 
-				memcpy(result, ptr, old_size); 
+				memcpy(Result, ptr, old_size); 
  
 				// free the previous page if it had no other objects 
 				if (only_object) 
 				{ 
-					assert(_GetRoot->data == result); 
+					assert(_GetRoot->data == Result); 
 					assert(_GetRoot->next); 
  
 					XPathMemoryBlock* next = _GetRoot->next->next; 
@@ -5221,7 +5221,7 @@ namespace
 				} 
 			} 
  
-			return result; 
+			return Result; 
 		} 
  
 		void revert(const XPathAllocator& state) 
@@ -5276,14 +5276,14 @@ namespace
  
 	struct XPathStack 
 	{ 
-		XPathAllocator* result; 
+		XPathAllocator* Result; 
 		XPathAllocator* temp; 
 	}; 
  
 	struct XPathStackData 
 	{ 
 		XPathMemoryBlock blocks[2]; 
-		XPathAllocator result; 
+		XPathAllocator Result; 
 		XPathAllocator temp; 
 		XPathStack stack; 
  
@@ -5291,21 +5291,21 @@ namespace
 		jmp_buf error_handler; 
 	#endif 
  
-		XPathStackData(): result(blocks + 0), temp(blocks + 1) 
+		XPathStackData(): Result(blocks + 0), temp(blocks + 1) 
 		{ 
 			blocks[0].next = blocks[1].next = 0; 
  
-			stack.result = &result; 
+			stack.Result = &Result; 
 			stack.temp = &temp; 
  
 		#ifdef XML_NO_EXCEPTIONS 
-			result.error_handler = temp.error_handler = &error_handler; 
+			Result.error_handler = temp.error_handler = &error_handler; 
 		#endif 
 		} 
  
 		~XPathStackData() 
 		{ 
-			result.release(); 
+			Result.release(); 
 			temp.release(); 
 		} 
 	}; 
@@ -5321,13 +5321,13 @@ namespace
  
 		static char_t* duplicate_string(const char_t* string, size_t length, XPathAllocator* alloc) 
 		{ 
-			char_t* result = static_cast<char_t*>(alloc->allocate((length + 1) * sizeof(char_t))); 
-			assert(result); 
+			char_t* Result = static_cast<char_t*>(alloc->allocate((length + 1) * sizeof(char_t))); 
+			assert(Result); 
  
-			memcpy(result, string, length * sizeof(char_t)); 
-			result[length] = 0; 
+			memcpy(Result, string, length * sizeof(char_t)); 
+			Result[length] = 0; 
  
-			return result; 
+			return Result; 
 		} 
  
 		static char_t* duplicate_string(const char_t* string, XPathAllocator* alloc) 
@@ -5380,18 +5380,18 @@ namespace
 				size_t length = tarGetLength + source_length; 
  
 				// allocate new buffer 
-				char_t* result = static_cast<char_t*>(alloc->reallocate(_uses_heap ? const_cast<char_t*>(_buffer) : 0, (tarGetLength + 1) * sizeof(char_t), (length + 1) * sizeof(char_t))); 
-				assert(result); 
+				char_t* Result = static_cast<char_t*>(alloc->reallocate(_uses_heap ? const_cast<char_t*>(_buffer) : 0, (tarGetLength + 1) * sizeof(char_t), (length + 1) * sizeof(char_t))); 
+				assert(Result); 
  
 				// append first string to the new buffer in case there was no reallocation 
-				if (!_uses_heap) memcpy(result, _buffer, tarGetLength * sizeof(char_t)); 
+				if (!_uses_heap) memcpy(Result, _buffer, tarGetLength * sizeof(char_t)); 
  
 				// append second string to the new buffer 
-				memcpy(result + tarGetLength, o._buffer, source_length * sizeof(char_t)); 
-				result[length] = 0; 
+				memcpy(Result + tarGetLength, o._buffer, source_length * sizeof(char_t)); 
+				Result[length] = 0; 
  
 				// finalize 
-				_buffer = result; 
+				_buffer = Result; 
 				_uses_heap = true; 
 			} 
 		} 
@@ -5489,7 +5489,7 @@ namespace
 			return XPathStringConst(na.GetAttribute().Value()); 
 		else 
 		{ 
-			const Node& n = na.node(); 
+			const Node& n = na.GetNode(); 
  
 			switch (n.Type()) 
 			{ 
@@ -5502,14 +5502,14 @@ namespace
 			case NodeDocument: 
 			case NodeElement: 
 			{ 
-				XPathString result; 
+				XPathString Result; 
  
 				Node cur = n.GetFirstChild(); 
 				 
 				while (cur && cur != n) 
 				{ 
 					if (cur.Type() == NodePcdata || cur.Type() == NodeCdata) 
-						result.append(XPathStringConst(cur.Value()), alloc); 
+						Result.append(XPathStringConst(cur.Value()), alloc); 
  
 					if (cur.GetFirstChild()) 
 						cur = cur.GetFirstChild(); 
@@ -5524,7 +5524,7 @@ namespace
 					} 
 				} 
 				 
-				return result; 
+				return Result; 
 			} 
 			 
 			default: 
@@ -5535,15 +5535,15 @@ namespace
 	 
 	unsigned int NodeHeight(Node n) 
 	{ 
-		unsigned int result = 0; 
+		unsigned int Result = 0; 
 		 
 		while (n) 
 		{ 
-			++result; 
+			++Result; 
 			n = n.GetParent(); 
 		} 
 		 
-		return result; 
+		return Result; 
 	} 
 	 
 	bool NodeIs_before(Node ln, unsigned int lh, Node rn, unsigned int rh) 
@@ -5582,7 +5582,7 @@ namespace
  
 	const void* document_order(const XPathNode& xnode) 
 	{ 
-		NodeStruct* node = xnode.node().InternalObject(); 
+		NodeStruct* node = xnode.GetNode().InternalObject(); 
  
 		if (node) 
 		{ 
@@ -5614,7 +5614,7 @@ namespace
 			if (lo && ro) return lo < ro; 
  
 			// slow comparison 
-			Node ln = lhs.node(), rn = rhs.node(); 
+			Node ln = lhs.GetNode(), rn = rhs.GetNode(); 
  
 			// compare attributes 
 			if (lhs.GetAttribute() && rhs.GetAttribute()) 
@@ -5637,14 +5637,14 @@ namespace
 			else if (lhs.GetAttribute()) 
 			{ 
 				// attributes go after the GetParent element 
-				if (lhs.GetParent() == rhs.node()) return false; 
+				if (lhs.GetParent() == rhs.GetNode()) return false; 
 				 
 				ln = lhs.GetParent(); 
 			} 
 			else if (rhs.GetAttribute()) 
 			{ 
 				// attributes go after the GetParent element 
-				if (rhs.GetParent() == lhs.node()) return true; 
+				if (rhs.GetParent() == lhs.GetNode()) return true; 
 				 
 				rn = rhs.GetParent(); 
 			} 
@@ -5663,7 +5663,7 @@ namespace
 		bool operator()(const XPathNode& lhs, const XPathNode& rhs) const 
 		{ 
 			if (lhs.GetAttribute()) return rhs.GetAttribute() ? lhs.GetAttribute() < rhs.GetAttribute() : true; 
-			else return rhs.GetAttribute() ? false : lhs.node() < rhs.node(); 
+			else return rhs.GetAttribute() ? false : lhs.GetNode() < rhs.GetNode(); 
 		} 
 	}; 
 	 
@@ -5748,7 +5748,7 @@ namespace
 		// truncate redundant zeros 
 		truncate_zeros(buffer, buffer + strlen(buffer)); 
  
-		// fill results 
+		// fill Results 
 		*out_mantissa = buffer; 
 		*out_exponent = exponent; 
 	} 
@@ -5778,7 +5778,7 @@ namespace
 		// remove extra mantissa digits and zero-terminate mantissa 
 		truncate_zeros(mantissa, exponent_string); 
  
-		// fill results 
+		// fill Results 
 		*out_mantissa = mantissa; 
 		*out_exponent = exponent; 
 	} 
@@ -5798,8 +5798,8 @@ namespace
 		convert_number_to_mantissa_exponent(Value, mantissa_buffer, sizeof(mantissa_buffer), &mantissa, &exponent); 
  
 		// make the number! 
-		char_t result[512]; 
-		char_t* s = result; 
+		char_t Result[512]; 
+		char_t* s = Result; 
  
 		// sign 
 		if (Value < 0) *s++ = '-'; 
@@ -5841,10 +5841,10 @@ namespace
 		} 
  
 		// zero-terminate 
-		assert(s < result + sizeof(result) / sizeof(result[0])); 
+		assert(s < Result + sizeof(Result) / sizeof(Result[0])); 
 		*s = 0; 
  
-		return XPathString(result, alloc); 
+		return XPathString(Result, alloc); 
 	} 
 	 
 	bool check_Stringo_number_format(const char_t* string) 
@@ -5890,7 +5890,7 @@ namespace
 	#endif 
 	} 
  
-	bool convert_Stringo_number(const char_t* begin, const char_t* end, double* out_result) 
+	bool convert_Stringo_number(const char_t* begin, const char_t* end, double* out_Result) 
 	{ 
 		char_t buffer[32]; 
  
@@ -5908,7 +5908,7 @@ namespace
 		memcpy(scratch, begin, length * sizeof(char_t)); 
 		scratch[length] = 0; 
  
-		*out_result = convert_Stringo_number(scratch); 
+		*out_Result = convert_Stringo_number(scratch); 
  
 		// free dummy buffer 
 		if (scratch != buffer) global_deallocate(scratch); 
@@ -5930,7 +5930,7 @@ namespace
 	 
 	const char_t* qualified_Name(const XPathNode& node) 
 	{ 
-		return node.GetAttribute() ? node.GetAttribute().Name() : node.node().Name(); 
+		return node.GetAttribute() ? node.GetAttribute().Name() : node.GetNode().Name(); 
 	} 
 	 
 	const char_t* local_Name(const XPathNode& node) 
@@ -6005,7 +6005,7 @@ namespace
  
 	const char_t* namespace_uri(const XPathNode& node) 
 	{ 
-		return node.GetAttribute() ? namespace_uri(node.GetAttribute(), node.GetParent()) : namespace_uri(node.node()); 
+		return node.GetAttribute() ? namespace_uri(node.GetAttribute(), node.GetParent()) : namespace_uri(node.GetNode()); 
 	} 
  
 	void normalize_space(char_t* buffer) 
@@ -6102,20 +6102,20 @@ namespace
 	unsigned int hash_string(const char_t* str) 
 	{ 
 		// Jenkins one-at-a-time hash (http://en.wikipedia.org/wiki/Jenkins_hash_function#one-at-a-time) 
-		unsigned int result = 0; 
+		unsigned int Result = 0; 
  
 		while (*str) 
 		{ 
-			result += static_cast<unsigned int>(*str++); 
-			result += result << 10; 
-			result ^= result >> 6; 
+			Result += static_cast<unsigned int>(*str++); 
+			Result += Result << 10; 
+			Result ^= Result >> 6; 
 		} 
 	 
-		result += result << 3; 
-		result ^= result >> 11; 
-		result += result << 15; 
+		Result += Result << 3; 
+		Result ^= Result >> 11; 
+		Result += Result << 15; 
 	 
-		return result; 
+		return Result; 
 	} 
  
 	template <typename T> T* new_XPathVariable(const char_t* Name) 
@@ -6127,11 +6127,11 @@ namespace
 		void* memory = global_allocate(sizeof(T) + length * sizeof(char_t)); 
 		if (!memory) return 0; 
  
-		T* result = new (memory) T(); 
+		T* Result = new (memory) T(); 
  
-		memcpy(result->Name, Name, (length + 1) * sizeof(char_t)); 
+		memcpy(Result->Name, Name, (length + 1) * sizeof(char_t)); 
  
-		return result; 
+		return Result; 
 	} 
  
 	XPathVariable* new_XPathVariable(XPathValueType Type, const char_t* Name) 
@@ -6204,27 +6204,27 @@ namespace
 		memcpy(scratch, begin, length * sizeof(char_t)); 
 		scratch[length] = 0; 
  
-		XPathVariable* result = set->Get(scratch); 
+		XPathVariable* Result = set->Get(scratch); 
  
 		// free dummy buffer 
 		if (scratch != buffer) global_deallocate(scratch); 
  
-		return result; 
+		return Result; 
 	} 
 } 
  
 // Internal node set class 
 namespace 
 { 
-	XPathNodeSet::Type_t XPathSort(XPathNode* begin, XPathNode* end, XPathNodeSet::Type_t Type, bool rev) 
+	XPathNodeSet::CollectionType XPathSort(XPathNode* begin, XPathNode* end, XPathNodeSet::CollectionType Type, bool rev) 
 	{ 
-		XPathNodeSet::Type_t order = rev ? XPathNodeSet::Type_sorted_reverse : XPathNodeSet::Type_sorted; 
+		XPathNodeSet::CollectionType order = rev ? XPathNodeSet::TypeSortedReverse : XPathNodeSet::TypeSorted; 
  
-		if (Type == XPathNodeSet::Type_unsorted) 
+		if (Type == XPathNodeSet::TypeUnsorted) 
 		{ 
 			sort(begin, end, document_order_comparator()); 
  
-			Type = XPathNodeSet::Type_sorted; 
+			Type = XPathNodeSet::TypeSorted; 
 		} 
 		 
 		if (Type != order) reverse(begin, end); 
@@ -6232,19 +6232,19 @@ namespace
 		return order; 
 	} 
  
-	XPathNode XPathFirst(const XPathNode* begin, const XPathNode* end, XPathNodeSet::Type_t Type) 
+	XPathNode XPathFirst(const XPathNode* begin, const XPathNode* end, XPathNodeSet::CollectionType Type) 
 	{ 
 		if (begin == end) return XPathNode(); 
  
 		switch (Type) 
 		{ 
-		case XPathNodeSet::Type_sorted: 
+		case XPathNodeSet::TypeSorted: 
 			return *begin; 
  
-		case XPathNodeSet::Type_sorted_reverse: 
+		case XPathNodeSet::TypeSortedReverse: 
 			return *(end - 1); 
  
-		case XPathNodeSet::Type_unsorted: 
+		case XPathNodeSet::TypeUnsorted: 
 			return *min_element(begin, end, document_order_comparator()); 
  
 		default: 
@@ -6254,14 +6254,14 @@ namespace
 	} 
 	class XPathNodeSet_raw 
 	{ 
-		XPathNodeSet::Type_t _type; 
+		XPathNodeSet::CollectionType _type; 
  
 		XPathNode* _begin; 
 		XPathNode* _end; 
 		XPathNode* _eos; 
  
 	public: 
-		XPathNodeSet_raw(): _type(XPathNodeSet::Type_unsorted), _begin(0), _end(0), _eos(0) 
+		XPathNodeSet_raw(): _type(XPathNodeSet::TypeUnsorted), _begin(0), _end(0), _eos(0) 
 		{ 
 		} 
  
@@ -6348,18 +6348,18 @@ namespace
  
 		void RemoveDuplicates() 
 		{ 
-			if (_type == XPathNodeSet::Type_unsorted) 
+			if (_type == XPathNodeSet::TypeUnsorted) 
 				sort(_begin, _end, duplicate_comparator()); 
 		 
 			_end = unique(_begin, _end); 
 		} 
  
-		XPathNodeSet::Type_t Type() const 
+		XPathNodeSet::CollectionType Type() const 
 		{ 
 			return _type; 
 		} 
  
-		void SetType(XPathNodeSet::Type_t Type) 
+		void SetType(XPathNodeSet::CollectionType Type) 
 		{ 
 			_type = Type; 
 		} 
@@ -6874,7 +6874,7 @@ namespace
 					return comp(lhs->eval_number(c, stack), rhs->eval_number(c, stack)); 
 				else if (lt == XPathTypeString || rt == XPathTypeString) 
 				{ 
-					XPathAllocatorCapture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.Result); 
  
 					XPathString ls = lhs->eval_string(c, stack); 
 					XPathString rs = rhs->eval_string(c, stack); 
@@ -6884,7 +6884,7 @@ namespace
 			} 
 			else if (lt == XPathTypeNodeSet && rt == XPathTypeNodeSet) 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				XPathNodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
 				XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
@@ -6892,9 +6892,9 @@ namespace
 				for (const XPathNode* li = ls.begin(); li != ls.end(); ++li) 
 					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
-						XPathAllocatorCapture cri(stack.result); 
+						XPathAllocatorCapture cri(stack.Result); 
  
-						if (comp(string_Value(*li, stack.result), string_Value(*ri, stack.result))) 
+						if (comp(string_Value(*li, stack.Result), string_Value(*ri, stack.Result))) 
 							return true; 
 					} 
  
@@ -6912,16 +6912,16 @@ namespace
 					return comp(lhs->eval_boolean(c, stack), rhs->eval_boolean(c, stack)); 
 				else if (lt == XPathTypeNumber) 
 				{ 
-					XPathAllocatorCapture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.Result); 
  
 					double l = lhs->eval_number(c, stack); 
 					XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
 					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
-						XPathAllocatorCapture cri(stack.result); 
+						XPathAllocatorCapture cri(stack.Result); 
  
-						if (comp(l, convert_Stringo_number(string_Value(*ri, stack.result).c_str()))) 
+						if (comp(l, convert_Stringo_number(string_Value(*ri, stack.Result).c_str()))) 
 							return true; 
 					} 
  
@@ -6929,16 +6929,16 @@ namespace
 				} 
 				else if (lt == XPathTypeString) 
 				{ 
-					XPathAllocatorCapture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.Result); 
  
 					XPathString l = lhs->eval_string(c, stack); 
 					XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
 					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
-						XPathAllocatorCapture cri(stack.result); 
+						XPathAllocatorCapture cri(stack.Result); 
  
-						if (comp(l, string_Value(*ri, stack.result))) 
+						if (comp(l, string_Value(*ri, stack.Result))) 
 							return true; 
 					} 
  
@@ -6958,22 +6958,22 @@ namespace
 				return comp(lhs->eval_number(c, stack), rhs->eval_number(c, stack)); 
 			else if (lt == XPathTypeNodeSet && rt == XPathTypeNodeSet) 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				XPathNodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
 				XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
 				for (const XPathNode* li = ls.begin(); li != ls.end(); ++li) 
 				{ 
-					XPathAllocatorCapture cri(stack.result); 
+					XPathAllocatorCapture cri(stack.Result); 
  
-					double l = convert_Stringo_number(string_Value(*li, stack.result).c_str()); 
+					double l = convert_Stringo_number(string_Value(*li, stack.Result).c_str()); 
  
 					for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 					{ 
-						XPathAllocatorCapture crii(stack.result); 
+						XPathAllocatorCapture crii(stack.Result); 
  
-						if (comp(l, convert_Stringo_number(string_Value(*ri, stack.result).c_str()))) 
+						if (comp(l, convert_Stringo_number(string_Value(*ri, stack.Result).c_str()))) 
 							return true; 
 					} 
 				} 
@@ -6982,16 +6982,16 @@ namespace
 			} 
 			else if (lt != XPathTypeNodeSet && rt == XPathTypeNodeSet) 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				double l = lhs->eval_number(c, stack); 
 				XPathNodeSet_raw rs = rhs->eval_NodeSet(c, stack); 
  
 				for (const XPathNode* ri = rs.begin(); ri != rs.end(); ++ri) 
 				{ 
-					XPathAllocatorCapture cri(stack.result); 
+					XPathAllocatorCapture cri(stack.Result); 
  
-					if (comp(l, convert_Stringo_number(string_Value(*ri, stack.result).c_str()))) 
+					if (comp(l, convert_Stringo_number(string_Value(*ri, stack.Result).c_str()))) 
 						return true; 
 				} 
  
@@ -6999,16 +6999,16 @@ namespace
 			} 
 			else if (lt == XPathTypeNodeSet && rt != XPathTypeNodeSet) 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				XPathNodeSet_raw ls = lhs->eval_NodeSet(c, stack); 
 				double r = rhs->eval_number(c, stack); 
  
 				for (const XPathNode* li = ls.begin(); li != ls.end(); ++li) 
 				{ 
-					XPathAllocatorCapture cri(stack.result); 
+					XPathAllocatorCapture cri(stack.Result); 
  
-					if (comp(convert_Stringo_number(string_Value(*li, stack.result).c_str()), r)) 
+					if (comp(convert_Stringo_number(string_Value(*li, stack.Result).c_str()), r)) 
 						return true; 
 				} 
  
@@ -7389,7 +7389,7 @@ namespace
 			bool attributes = (axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_descendant_or_self || axis == axis_following || axis == axis_GetParent || axis == axis_preceding || axis == axis_self); 
  
 			XPathNodeSet_raw ns; 
-			ns.SetType((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? XPathNodeSet::Type_sorted_reverse : XPathNodeSet::Type_sorted); 
+			ns.SetType((axis == axis_ancestor || axis == axis_ancestor_or_self || axis == axis_preceding || axis == axis_preceding_sibling) ? XPathNodeSet::TypeSortedReverse : XPathNodeSet::TypeSorted); 
  
 			if (_left) 
 			{ 
@@ -7403,29 +7403,29 @@ namespace
 					size_t size = ns.size(); 
  
 					// in general, all axes generate elements in a particular order, but there is no order guarantee if axis is applied to two nodes 
-					if (axis != axis_self && size != 0) ns.SetType(XPathNodeSet::Type_unsorted); 
+					if (axis != axis_self && size != 0) ns.SetType(XPathNodeSet::TypeUnsorted); 
 					 
-					if (it->node()) 
-						step_fill(ns, it->node(), stack.result, v); 
+					if (it->GetNode()) 
+						step_fill(ns, it->GetNode(), stack.Result, v); 
 					else if (attributes) 
-						step_fill(ns, it->GetAttribute(), it->GetParent(), stack.result, v); 
+						step_fill(ns, it->GetAttribute(), it->GetParent(), stack.Result, v); 
 						 
 					apply_predicates(ns, size, stack); 
 				} 
 			} 
 			else 
 			{ 
-				if (c.n.node()) 
-					step_fill(ns, c.n.node(), stack.result, v); 
+				if (c.n.GetNode()) 
+					step_fill(ns, c.n.GetNode(), stack.Result, v); 
 				else if (attributes) 
-					step_fill(ns, c.n.GetAttribute(), c.n.GetParent(), stack.result, v); 
+					step_fill(ns, c.n.GetAttribute(), c.n.GetParent(), stack.Result, v); 
 				 
 				apply_predicates(ns, 0, stack); 
 			} 
  
 			// GetChild, GetAttribute and self axes always generate unique set of nodes 
 			// for other axis, if the set stayed sorted, it stayed unique because the traversal algorithms do not visit the same node twice 
-			if (axis != axis_GetChild && axis != axis_attribute && axis != axis_self && ns.Type() == XPathNodeSet::Type_unsorted) 
+			if (axis != axis_GetChild && axis != axis_attribute && axis != axis_self && ns.Type() == XPathNodeSet::TypeUnsorted) 
 				ns.RemoveDuplicates(); 
  
 			return ns; 
@@ -7504,7 +7504,7 @@ namespace
  
 			case ast_func_starts_with: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				XPathString lr = _left->eval_string(c, stack); 
 				XPathString rr = _right->eval_string(c, stack); 
@@ -7514,7 +7514,7 @@ namespace
  
 			case ast_func_contains: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				XPathString lr = _left->eval_string(c, stack); 
 				XPathString rr = _right->eval_string(c, stack); 
@@ -7538,11 +7538,11 @@ namespace
 			{ 
 				if (c.n.GetAttribute()) return false; 
 				 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				XPathString lang = _left->eval_string(c, stack); 
 				 
-				for (Node n = c.n.node(); n; n = n.GetParent()) 
+				for (Node n = c.n.GetNode(); n; n = n.GetParent()) 
 				{ 
 					Attribute a = n.GetAttribute(XML_TEXT("xml:lang")); 
 					 
@@ -7583,14 +7583,14 @@ namespace
 					 
 				case XPathTypeString: 
 				{ 
-					XPathAllocatorCapture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.Result); 
  
 					return !eval_string(c, stack).Empty(); 
 				} 
 					 
 				case XPathTypeNodeSet:				 
 				{ 
-					XPathAllocatorCapture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.Result); 
  
 					return !eval_NodeSet(c, stack).Empty(); 
 				} 
@@ -7636,30 +7636,30 @@ namespace
  
 			case ast_func_count: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				return (double)_left->eval_NodeSet(c, stack).size(); 
 			} 
 			 
 			case ast_func_string_length_0: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
-				return (double)string_Value(c.n, stack.result).length(); 
+				return (double)string_Value(c.n, stack.Result).length(); 
 			} 
 			 
 			case ast_func_string_length_1: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				return (double)_left->eval_string(c, stack).length(); 
 			} 
 			 
 			case ast_func_number_0: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
-				return convert_Stringo_number(string_Value(c.n, stack.result).c_str()); 
+				return convert_Stringo_number(string_Value(c.n, stack.Result).c_str()); 
 			} 
 			 
 			case ast_func_number_1: 
@@ -7667,7 +7667,7 @@ namespace
  
 			case ast_func_sum: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				double r = 0; 
 				 
@@ -7675,9 +7675,9 @@ namespace
 				 
 				for (const XPathNode* it = ns.begin(); it != ns.end(); ++it) 
 				{ 
-					XPathAllocatorCapture cri(stack.result); 
+					XPathAllocatorCapture cri(stack.Result); 
  
-					r += convert_Stringo_number(string_Value(*it, stack.result).c_str()); 
+					r += convert_Stringo_number(string_Value(*it, stack.Result).c_str()); 
 				} 
 			 
 				return r; 
@@ -7719,14 +7719,14 @@ namespace
 					 
 				case XPathTypeString: 
 				{ 
-					XPathAllocatorCapture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.Result); 
  
 					return convert_Stringo_number(eval_string(c, stack).c_str()); 
 				} 
 					 
 				case XPathTypeNodeSet: 
 				{ 
-					XPathAllocatorCapture cr(stack.result); 
+					XPathAllocatorCapture cr(stack.Result); 
  
 					return convert_Stringo_number(eval_string(c, stack).c_str()); 
 				} 
@@ -7762,7 +7762,7 @@ namespace
 			} 
  
 			// evaluate all strings to temporary stack 
-			XPathStack swapped_stack = {stack.temp, stack.result}; 
+			XPathStack swapped_stack = {stack.temp, stack.Result}; 
  
 			buffer[0] = _left->eval_string(c, swapped_stack); 
  
@@ -7775,10 +7775,10 @@ namespace
 			for (size_t i = 0; i < count; ++i) length += buffer[i].length(); 
  
 			// create final string 
-			char_t* result = static_cast<char_t*>(stack.result->allocate((length + 1) * sizeof(char_t))); 
-			assert(result); 
+			char_t* Result = static_cast<char_t*>(stack.Result->allocate((length + 1) * sizeof(char_t))); 
+			assert(Result); 
  
-			char_t* ri = result; 
+			char_t* ri = Result; 
  
 			for (size_t j = 0; j < count; ++j) 
 				for (const char_t* bi = buffer[j].c_str(); *bi; ++bi) 
@@ -7786,7 +7786,7 @@ namespace
  
 			*ri = 0; 
  
-			return XPathString(result, true); 
+			return XPathString(Result, true); 
 		} 
  
 		XPathString eval_string(const XPathContext& c, const XPathStack& stack) 
@@ -7805,7 +7805,7 @@ namespace
  
 			case ast_func_local_Name_1: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				XPathNodeSet_raw ns = _left->eval_NodeSet(c, stack); 
 				XPathNode na = ns.first(); 
@@ -7822,7 +7822,7 @@ namespace
  
 			case ast_func_Name_1: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				XPathNodeSet_raw ns = _left->eval_NodeSet(c, stack); 
 				XPathNode na = ns.first(); 
@@ -7839,7 +7839,7 @@ namespace
  
 			case ast_func_namespace_uri_1: 
 			{ 
-				XPathAllocatorCapture cr(stack.result); 
+				XPathAllocatorCapture cr(stack.Result); 
  
 				XPathNodeSet_raw ns = _left->eval_NodeSet(c, stack); 
 				XPathNode na = ns.first(); 
@@ -7848,7 +7848,7 @@ namespace
 			} 
  
 			case ast_func_string_0: 
-				return string_Value(c.n, stack.result); 
+				return string_Value(c.n, stack.Result); 
  
 			case ast_func_string_1: 
 				return _left->eval_string(c, stack); 
@@ -7860,21 +7860,21 @@ namespace
 			{ 
 				XPathAllocatorCapture cr(stack.temp); 
  
-				XPathStack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.Result}; 
  
 				XPathString s = _left->eval_string(c, swapped_stack); 
 				XPathString p = _right->eval_string(c, swapped_stack); 
  
 				const char_t* pos = FindSubstring(s.c_str(), p.c_str()); 
 				 
-				return pos ? XPathString(s.c_str(), pos, stack.result) : XPathString(); 
+				return pos ? XPathString(s.c_str(), pos, stack.Result) : XPathString(); 
 			} 
 			 
 			case ast_func_substring_after: 
 			{ 
 				XPathAllocatorCapture cr(stack.temp); 
  
-				XPathStack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.Result}; 
  
 				XPathString s = _left->eval_string(c, swapped_stack); 
 				XPathString p = _right->eval_string(c, swapped_stack); 
@@ -7882,16 +7882,16 @@ namespace
 				const char_t* pos = FindSubstring(s.c_str(), p.c_str()); 
 				if (!pos) return XPathString(); 
  
-				const char_t* result = pos + p.length(); 
+				const char_t* Result = pos + p.length(); 
  
-				return s.uses_heap() ? XPathString(result, stack.result) : XPathStringConst(result); 
+				return s.uses_heap() ? XPathString(Result, stack.Result) : XPathStringConst(Result); 
 			} 
  
 			case ast_func_substring_2: 
 			{ 
 				XPathAllocatorCapture cr(stack.temp); 
  
-				XPathStack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.Result}; 
  
 				XPathString s = _left->eval_string(c, swapped_stack); 
 				size_t s_length = s.length(); 
@@ -7906,14 +7906,14 @@ namespace
  
 				const char_t* rbegin = s.c_str() + (pos - 1); 
 				 
-				return s.uses_heap() ? XPathString(rbegin, stack.result) : XPathStringConst(rbegin); 
+				return s.uses_heap() ? XPathString(rbegin, stack.Result) : XPathStringConst(rbegin); 
 			} 
 			 
 			case ast_func_substring_3: 
 			{ 
 				XPathAllocatorCapture cr(stack.temp); 
  
-				XPathStack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.Result}; 
  
 				XPathString s = _left->eval_string(c, swapped_stack); 
 				size_t s_length = s.length(); 
@@ -7933,14 +7933,14 @@ namespace
 				const char_t* rbegin = s.c_str() + (pos - 1); 
 				const char_t* rend = s.c_str() + (end - 1); 
  
-				return (end == s_length + 1 && !s.uses_heap()) ? XPathStringConst(rbegin) : XPathString(rbegin, rend, stack.result); 
+				return (end == s_length + 1 && !s.uses_heap()) ? XPathStringConst(rbegin) : XPathString(rbegin, rend, stack.Result); 
 			} 
  
 			case ast_func_normalize_space_0: 
 			{ 
-				XPathString s = string_Value(c.n, stack.result); 
+				XPathString s = string_Value(c.n, stack.Result); 
  
-				normalize_space(s.data(stack.result)); 
+				normalize_space(s.data(stack.Result)); 
  
 				return s; 
 			} 
@@ -7949,7 +7949,7 @@ namespace
 			{ 
 				XPathString s = _left->eval_string(c, stack); 
  
-				normalize_space(s.data(stack.result)); 
+				normalize_space(s.data(stack.Result)); 
 			 
 				return s; 
 			} 
@@ -7958,13 +7958,13 @@ namespace
 			{ 
 				XPathAllocatorCapture cr(stack.temp); 
  
-				XPathStack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.Result}; 
  
 				XPathString s = _left->eval_string(c, stack); 
 				XPathString from = _right->eval_string(c, swapped_stack); 
 				XPathString to = _right->_next->eval_string(c, swapped_stack); 
  
-				translate(s.data(stack.result), from.c_str(), to.c_str()); 
+				translate(s.data(stack.Result), from.c_str(), to.c_str()); 
  
 				return s; 
 			} 
@@ -7987,16 +7987,16 @@ namespace
 					return XPathStringConst(eval_boolean(c, stack) ? XML_TEXT("true") : XML_TEXT("false")); 
 					 
 				case XPathTypeNumber: 
-					return convert_number_to_string(eval_number(c, stack), stack.result); 
+					return convert_number_to_string(eval_number(c, stack), stack.Result); 
 					 
 				case XPathTypeNodeSet: 
 				{ 
 					XPathAllocatorCapture cr(stack.temp); 
  
-					XPathStack swapped_stack = {stack.temp, stack.result}; 
+					XPathStack swapped_stack = {stack.temp, stack.Result}; 
  
 					XPathNodeSet_raw ns = eval_NodeSet(c, swapped_stack); 
-					return ns.Empty() ? XPathString() : string_Value(ns.first(), stack.result); 
+					return ns.Empty() ? XPathString() : string_Value(ns.first(), stack.Result); 
 				} 
 				 
 				default: 
@@ -8015,15 +8015,15 @@ namespace
 			{ 
 				XPathAllocatorCapture cr(stack.temp); 
  
-				XPathStack swapped_stack = {stack.temp, stack.result}; 
+				XPathStack swapped_stack = {stack.temp, stack.Result}; 
  
 				XPathNodeSet_raw ls = _left->eval_NodeSet(c, swapped_stack); 
 				XPathNodeSet_raw rs = _right->eval_NodeSet(c, stack); 
 				 
 				// we can optimize merging two sorted sets, but this is a very rare operation, so don't bother 
-  				rs.SetType(XPathNodeSet::Type_unsorted); 
+  				rs.SetType(XPathNodeSet::TypeUnsorted); 
  
-				rs.append(ls.begin(), ls.end(), stack.result); 
+				rs.append(ls.begin(), ls.end(), stack.Result); 
 				rs.RemoveDuplicates(); 
 				 
 				return rs; 
@@ -8097,10 +8097,10 @@ namespace
  
 				XPathNodeSet_raw ns; 
  
-				ns.SetType(XPathNodeSet::Type_sorted); 
+				ns.SetType(XPathNodeSet::TypeSorted); 
  
-				if (c.n.node()) ns.push_back(c.n.node().GetRoot(), stack.result); 
-				else if (c.n.GetAttribute()) ns.push_back(c.n.GetParent().GetRoot(), stack.result); 
+				if (c.n.GetNode()) ns.push_back(c.n.GetNode().GetRoot(), stack.Result); 
+				else if (c.n.GetAttribute()) ns.push_back(c.n.GetParent().GetRoot(), stack.Result); 
  
 				return ns; 
 			} 
@@ -8116,7 +8116,7 @@ namespace
 					XPathNodeSet_raw ns; 
  
 					ns.SetType(s.Type()); 
-					ns.append(s.begin(), s.end(), stack.result); 
+					ns.append(s.begin(), s.end(), stack.Result); 
  
 					return ns; 
 				} 
@@ -8175,7 +8175,7 @@ namespace
 		const char_t* _query; 
 		XPathVariableSet* _variables; 
  
-		XPathParseResult* _result; 
+		XPathParseResult* _Result; 
  
 	#ifdef XML_NO_EXCEPTIONS 
 		jmp_buf _error_handler; 
@@ -8183,13 +8183,13 @@ namespace
  
 		void throw_error(const char* message) 
 		{ 
-			_result->error = message; 
-			_result->Offset = _lexer.current_pos() - _query; 
+			_Result->error = message; 
+			_Result->Offset = _lexer.current_pos() - _query; 
  
 		#ifdef XML_NO_EXCEPTIONS 
 			longjmp(_error_handler, 1); 
 		#else 
-			throw XPathException(*_result); 
+			throw XPathException(*_Result); 
 		#endif 
 		} 
  
@@ -8204,11 +8204,11 @@ namespace
  
 		void* alloc_node() 
 		{ 
-			void* result = _alloc->allocate_nothrow(sizeof(XPathAstNode)); 
+			void* Result = _alloc->allocate_nothrow(sizeof(XPathAstNode)); 
  
-			if (!result) throw_error_oom(); 
+			if (!Result) throw_error_oom(); 
  
-			return result; 
+			return Result; 
 		} 
  
 		const char_t* alloc_string(const XPathLexerString& Value) 
@@ -8990,13 +8990,13 @@ namespace
 			return ParseOrExpression(); 
 		} 
  
-		XPathParser(const char_t* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _result(result) 
+		XPathParser(const char_t* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* Result): _alloc(alloc), _lexer(query), _query(query), _variables(variables), _Result(Result) 
 		{ 
 		} 
  
 		XPathAstNode* parse() 
 		{ 
-			XPathAstNode* result = ParseExpression(); 
+			XPathAstNode* Result = ParseExpression(); 
 			 
 			if (_lexer.current() != lex_eof) 
 			{ 
@@ -9004,12 +9004,12 @@ namespace
 				throw_error("Incorrect query"); 
 			} 
 			 
-			return result; 
+			return Result; 
 		} 
  
-		static XPathAstNode* parse(const char_t* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* result) 
+		static XPathAstNode* parse(const char_t* query, XPathVariableSet* variables, XPathAllocator* alloc, XPathParseResult* Result) 
 		{ 
-			XPathParser parser(query, variables, alloc, result); 
+			XPathParser parser(query, variables, alloc, Result); 
  
 		#ifdef XML_NO_EXCEPTIONS 
 			int error = setjmp(parser._error_handler); 
@@ -9051,7 +9051,7 @@ namespace
 		XPathMemoryBlock block; 
 	}; 
  
-	XPathString evaluate_string_impl(XPathQueryImpl* impl, const XPathNode& n, XPathStackData& sd) 
+	XPathString EvaluateString_impl(XPathQueryImpl* impl, const XPathNode& n, XPathStackData& sd) 
 	{ 
 		if (!impl) return XPathString(); 
  
@@ -9070,19 +9070,19 @@ namespace phys
 { namespace xml
 { 
 #ifndef XML_NO_EXCEPTIONS 
-	XPathException::XPathException(const XPathParseResult& result): _result(result) 
+	XPathException::XPathException(const XPathParseResult& Result): _Result(Result) 
 	{ 
-		assert(result.error); 
+		assert(Result.error); 
 	} 
 	 
 	const char* XPathException::what() const throw() 
 	{ 
-		return _result.error; 
+		return _Result.error; 
 	} 
  
-	const XPathParseResult& XPathException::result() const 
+	const XPathParseResult& XPathException::Result() const 
 	{ 
-		return _result; 
+		return _Result; 
 	} 
 #endif 
 	 
@@ -9098,7 +9098,7 @@ namespace phys
 	{ 
 	} 
  
-	Node XPathNode::node() const 
+	Node XPathNode::GetNode() const 
 	{ 
 		return _attribute ? Node() : _node; 
 	} 
@@ -9187,11 +9187,11 @@ namespace phys
 		} 
 	} 
  
-	XPathNodeSet::XPathNodeSet(): _type(Type_unsorted), _begin(&_storage), _end(&_storage) 
+	XPathNodeSet::XPathNodeSet(): _type(TypeUnsorted), _begin(&_storage), _end(&_storage) 
 	{ 
 	} 
  
-	XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, Type_t Type): _type(Type), _begin(&_storage), _end(&_storage) 
+	XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type): _type(Type), _begin(&_storage), _end(&_storage) 
 	{ 
 		_assign(begin, end); 
 	} 
@@ -9216,7 +9216,7 @@ namespace phys
 		return *this; 
 	} 
  
-	XPathNodeSet::Type_t XPathNodeSet::Type() const 
+	XPathNodeSet::CollectionType XPathNodeSet::Type() const 
 	{ 
 		return _type; 
 	} 
@@ -9413,17 +9413,17 @@ namespace phys
 				return var->Type() == Type ? var : 0; 
  
 		// add new variable 
-		XPathVariable* result = new_XPathVariable(Type, Name); 
+		XPathVariable* Result = new_XPathVariable(Type, Name); 
  
-		if (result) 
+		if (Result) 
 		{ 
-			result->_type = Type; 
-			result->_next = _data[hash]; 
+			Result->_type = Type; 
+			Result->_next = _data[hash]; 
  
-			_data[hash] = result; 
+			_data[hash] = Result; 
 		} 
  
-		return result; 
+		return Result; 
 	} 
  
 	bool XPathVariableSet::Set(const char_t* Name, bool Value) 
@@ -9467,7 +9467,7 @@ namespace phys
 		if (!impl) 
 		{ 
 		#ifdef XML_NO_EXCEPTIONS 
-			_result.error = "Out of memory"; 
+			_Result.error = "Out of memory"; 
 		#else 
 			throw std::bad_alloc(); 
 		#endif 
@@ -9476,12 +9476,12 @@ namespace phys
 		{ 
 			buffer_holder impl_holder(impl, XPathQueryImpl::destroy); 
  
-			impl->GetRoot = XPathParser::parse(query, variables, &impl->alloc, &_result); 
+			impl->GetRoot = XPathParser::parse(query, variables, &impl->alloc, &_Result); 
  
 			if (impl->GetRoot) 
 			{ 
 				_impl = static_cast<XPathQueryImpl*>(impl_holder.release()); 
-				_result.error = 0; 
+				_Result.error = 0; 
 			} 
 		} 
 	} 
@@ -9491,14 +9491,14 @@ namespace phys
 		XPathQueryImpl::destroy(_impl); 
 	} 
  
-	XPathValueType XPathQuery::return_type() const 
+	XPathValueType XPathQuery::ReturnType() const 
 	{ 
 		if (!_impl) return XPathTypeNone; 
  
 		return static_cast<XPathQueryImpl*>(_impl)->GetRoot->retType(); 
 	} 
  
-	bool XPathQuery::evaluate_boolean(const XPathNode& n) const 
+	bool XPathQuery::EvaluateBoolean(const XPathNode& n) const 
 	{ 
 		if (!_impl) return false; 
 		 
@@ -9512,7 +9512,7 @@ namespace phys
 		return static_cast<XPathQueryImpl*>(_impl)->GetRoot->eval_boolean(c, sd.stack); 
 	} 
 	 
-	double XPathQuery::evaluate_number(const XPathNode& n) const 
+	double XPathQuery::EvaluateNumber(const XPathNode& n) const 
 	{ 
 		if (!_impl) return gen_nan(); 
 		 
@@ -9527,19 +9527,19 @@ namespace phys
 	} 
  
 #ifndef XML_NO_STL 
-	String XPathQuery::evaluate_string(const XPathNode& n) const 
+	String XPathQuery::EvaluateString(const XPathNode& n) const 
 	{ 
 		XPathStackData sd; 
  
-		return evaluate_string_impl(static_cast<XPathQueryImpl*>(_impl), n, sd).c_str(); 
+		return EvaluateString_impl(static_cast<XPathQueryImpl*>(_impl), n, sd).c_str(); 
 	} 
 #endif 
  
-	size_t XPathQuery::evaluate_string(char_t* buffer, size_t capacity, const XPathNode& n) const 
+	size_t XPathQuery::EvaluateString(char_t* buffer, size_t capacity, const XPathNode& n) const 
 	{ 
 		XPathStackData sd; 
  
-		XPathString r = evaluate_string_impl(static_cast<XPathQueryImpl*>(_impl), n, sd); 
+		XPathString r = EvaluateString_impl(static_cast<XPathQueryImpl*>(_impl), n, sd); 
  
 		size_t full_size = r.length() + 1; 
 		 
@@ -9555,7 +9555,7 @@ namespace phys
 		return full_size; 
 	} 
  
-	XPathNodeSet XPathQuery::evaluate_NodeSet(const XPathNode& n) const 
+	XPathNodeSet XPathQuery::EvaluateNodeSet(const XPathNode& n) const 
 	{ 
 		if (!_impl) return XPathNodeSet(); 
  
@@ -9566,10 +9566,10 @@ namespace phys
 		#ifdef XML_NO_EXCEPTIONS 
 			return XPathNodeSet(); 
 		#else 
-			XPathParseResult result; 
-			result.error = "Expression does not evaluate to node set"; 
+			XPathParseResult Result; 
+			Result.error = "Expression does not evaluate to node set"; 
  
-			throw XPathException(result); 
+			throw XPathException(Result); 
 		#endif 
 		} 
 		 
@@ -9585,9 +9585,9 @@ namespace phys
 		return XPathNodeSet(r.begin(), r.end(), r.Type()); 
 	} 
  
-	const XPathParseResult& XPathQuery::result() const 
+	const XPathParseResult& XPathQuery::Result() const 
 	{ 
-		return _result; 
+		return _Result; 
 	} 
  
 	XPathQuery::operator XPathQuery::unspecified_bool_type() const 
@@ -9608,7 +9608,7 @@ namespace phys
  
 	XPathNode Node::FindSingleNode(const XPathQuery& query) const 
 	{ 
-		XPathNodeSet s = query.evaluate_NodeSet(*this); 
+		XPathNodeSet s = query.EvaluateNodeSet(*this); 
 		return s.Empty() ? XPathNode() : s.first(); 
 	} 
  
@@ -9620,7 +9620,7 @@ namespace phys
  
 	XPathNodeSet Node::FindNodes(const XPathQuery& query) const 
 	{ 
-		return query.evaluate_NodeSet(*this); 
+		return query.EvaluateNodeSet(*this); 
 	} 
 } 
 } // \phys

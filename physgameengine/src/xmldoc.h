@@ -1232,9 +1232,189 @@ namespace phys
         /// @return A pointer to the specified XPathVariable.
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class XPathVariableSet
+        /// @class XPathQuery
+        /// @brief A compiled XPath query object
+        /// @details When you call select_nodes with an expression string as an argument, a query object is created behind the scenes. A query object represents a compiled XPath expression. Query objects can be needed in the following circumstances: \n
+        /// - You can precompile expressions to query objects to save compilation time if it becomes an issue; \n
+        /// - You can use query objects to evaluate XPath expressions which result in booleans, numbers or strings; \n
+        /// - You can get the type of expression value via query object. \n \n
+        /// Query objects correspond to xml::XPathQuery type. They are immutable and non-copyable: they are bound to the expression at creation time and can not be cloned. If you want to put query objects in a container, allocate them on heap via new operator and store pointers to xml::XPathQuery in the container. \n \n
+        /// To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, XPathQuery::EvaluateBoolean(), XPathQuery::EvaluateNumber() and XPathQuery::EvaluateString() always return a result, but EvaluateNodeSet results in an error if the return type is not node set.
 
+        /// @fn XPathQuery::ReturnType() const;
+        /// @brief Get query expression return Type.
+        /// @return A XPathValueType.
 
+        /// @fn XPathQuery::EvaluateBoolean(const XPathNode& n) const;
+        /// @brief Evaluate expression as boolean value in the specified context; performs Type conversion if necessary.
+        /// @param n The XPathNode that will serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+		/// @return A bool result of evaluating the expression.
+
+        /// @fn XPathQuery::Result() const;
+        /// @brief Get parsing Result (used to get compilation errors when XML_NO_EXCEPTIONS is enabled)
+		/// @return A const reference to an XPathParseResult.
+
+        /// @fn XPathQuery::operator!() const;
+        /// @brief Logical not operator, used a workaround for borland compiler.
+        /// @return A bool that is the opposite of evaluatig this as a bool normally.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathException
+        /// @brief Thrown in a variety of XPath only situations, to indicate type mismatch or other issues.
+
+		/// @fn XPathException::what() const throw();
+		/// @brief Get error message.
+		/// @return A description of the error message as a c-style string.
+
+		/// @fn XPathException::Result() const;
+		/// @brief Get parse Result.
+		/// @return The XPathParseResult used to create this exception.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathNode
+        /// @brief An XPath node which can store handles to a xml::Node or an xml::Attribute.
+        /// @details Because an XPath node can be either a xml::Node or an xml::Attribute, there is a special type, XPathNode,
+        /// which is a discriminated union of these types. A value of this type contains two node handles, one of xml::Node type,
+        /// and another one of xml::Attribute type; at most one of them can be non-null. The accessors to get these handles are
+        /// available: XPathNode::GetNode() an XPathNode::GetAttribute() . \n \n
+        /// XPath nodes can be null, in which case both accessors return null handles.
+
+        /// @fn XPathNode::XPathNode();
+		/// Default constructor; constructs empty XPath node
+
+        /// @fn XPathNode::XPathNode(const Node& node);
+        /// @brief Construct From a xml::Node.
+        /// @param node The xml::Node this handle should reference.
+
+		/// @fn XPathNode::GetNode() const;
+		/// @brief Get the xml::Node this is referencing
+		/// @return A valid xml::Node, or a null node if this doesn't reference a an xml::Node.
+
+		/// @fn XPathNode::GetAttribute() const;
+		/// @brief Get the xml::Attribute this is referencing
+        /// @return A valid xml::Attribute, or a null node if this doesn't reference a an xml::Attribute.
+
+		/// @fn XPathNode::GetParent() const;
+		/// @brief Get the parent of the xml::Node or xml::Attribute this refers to.
+        /// @return A valid xml::Node, or a null node if this doesn't reference a an xml::Node.
+
+        /// @fn XPathNode::operator!() const;
+        /// @brief Logical not operator, used a workaround for borland compiler.
+        /// @return A bool that is the opposite of evaluatig this as a bool normally.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class XPathNodeSet
+        /// @brief A collection of nodes that an XPathQuery can work on.
+
+        /// @enum XPathNodeSet::CollectionType
+        /// @brief The different ways a collection may or may not be ordered.
+
+        /// @var XPathNodeSet::TypeUnsorted
+        /// @brief Not Ordered.
+
+        /// @var XPathNodeSet::TypeSorted
+        /// @brief In document Order.
+
+        /// @var XPathNodeSet::TypeSortedReverse
+        /// @brief In reverse document Order.
+
+        /// @typedef XPathNodeSet::const_iterator;
+        /// @brief An iterator trait. Const iterator for XPathNodes.
+
+        /// @fn XPathNodeSet::XPathNodeSet();
+        /// @brief Default constructor. Constructs empty set.
+
+        /// @fn XPathNodeSet::XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type = TypeUnsorted);
+        /// @param begin A const XPathNode iterator at the beginning of the set of nodes.
+        /// @param end A const XPathNode iterator at the end of the set of nodes.
+        /// @param Type What XPathNodeSet::CollectionType is being used, this defaults to XPathNodeSet::TypeUnsorted
+        /// @brief Constructs a set from iterator range.
+        /// @details Data is not checked for duplicates and is not sorted according to provided Type, so be careful.
+
+		/// @fn XPathNodeSet::operator=(const XPathNodeSet& ns);
+		/// @brief Assignment Operator.
+		/// @param ns The XPathNodeSet to copy.
+        /// @return A reference to the freshly assigned XPathNodeSet.
+
+		/// @fn XPathNodeSet::Type() const;
+		/// @brief Get collection Type.
+		/// @return CollectionType
+
+        /// @fn XPathNodeSet::operator[](size_t index) const;
+        /// @brief Indexing operator.
+        /// @param index A size_t indicating which XPathNode you would like to retrieve
+        /// @return A const reference to the XPathNode you requested.
+        /// @warning Out of bounds errors are checked using assert. Exceptions will not be thrown, during debugging out of bounds access will abort the termination and in production code out of bounds accesses will cause undefined behavior.
+
+		/// @fn XPathNodeSet::begin() const;
+		/// @brief Get Beginning iterator.
+		/// @return A XPathNodeSet::const_iterator to the beginning of the collection.
+
+		/// @fn XPathNodeSet::end() const;
+		/// @brief Get Ending iterator.
+        /// @return A XPathNodeSet::const_iterator to the end of the collection.
+
+        /// @fn XPathNodeSet::sort(bool reverse = false);
+        /// @brief Sort the collection in ascending/descending order by document order.
+        /// @param reverse If true this sorts the collection in the opposite of document order.
+
+        /// @fn XPathNodeSet::first() const;
+        /// @brief Get first node in the collection by document order.
+        /// @return The first node of the, in document order as an XPathNode.
+
+        /// @fn XPathNodeSet::Empty() const;
+        /// @brief Check if collection is empty.
+        /// @return True if the document is empty, false otherwise.
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // floaters
+
+        /// @internal
+        /// @fn AsUtf8(const wchar_t* str);
+        /// @brief Convert a c-style string of wchar_t to std::string containing UTF8.
+        /// @param str The string to convert
+        /// @return A std::basic_string<char, std::char_traits<char>, std::allocator<char> > containing the converted data
+
+        /// @internal
+        /// @fn AsUtf8(const std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> >& str);
+        /// @brief Convert a std::wstring to a UTF8 std::string
+        /// @param str The string to convert.
+        /// @return A std::basic_string<char, std::char_traits<char>, std::allocator<char> > containing the converted data
+
+        /// @internal
+        /// @fn AsWide(const char* str);
+        /// @brief Convert a Convert a c-style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).
+        /// @param str The string to convert.
+        /// @return A std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > containing the converted data
+
+        /// @internal
+        /// @fn AsWide(const std::basic_string<char, std::char_traits<char>, std::allocator<char> >& str);
+        /// @brief Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).
+        /// @param str The string to convert.
+        /// @return A std::basic_string<wchar_t, std::char_traits<wchar_t>, std::allocator<wchar_t> > containing the converted data
+
+        /// @typedef AllocationFunction
+        /// @brief Memory allocation function interface; returns pointer to allocated memory or NULL on failure
+
+        /// @typedef deAllocationFunction
+        /// @brief Memory deallocation function interface
+
+        /// @internal
+        /// @fn SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate);
+        /// @brief Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions.
+        /// @param allocate The new memory allocator
+        /// @param deallocate The new memory deallocator
+
+        /// @internal
+        /// @fn GetMemoryAllocationFunction();
+        /// @brief Get the current allocation funciton
+        /// @return A function to the current allocation function
+
+        /// @internal
+        /// @fn GetMemoryDeallocationFunction();
+        /// @brief Get the current allocation funciton
+        /// @return A function to the current allocation function
 
     }
 }
