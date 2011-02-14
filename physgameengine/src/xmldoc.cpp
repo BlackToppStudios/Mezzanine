@@ -46,6 +46,7 @@
 #define _xmldoc_cpp
 
 #include "xml.h"
+#include "world.h"
 
 namespace phys
 {
@@ -59,6 +60,70 @@ namespace phys
         /// This is not condusive to good clean documentation and complicated code chucks and is why the doxygen documention
         /// for the XML parser exist here instead of xml.h.
         ///////////////////////////////////////
+
+        String GetOneTag(std::istream& stream )
+        {
+            Character ReadOne = 0;
+            Character PrevOne = 0;
+            Integer TagCount = 1;
+            bool HaveSlash = false;
+            bool InText = false;
+
+            String OneTag;
+            while (!stream.get(ReadOne).fail() && !stream.eof())        //Read one character and if you didn't fail continue the loop
+            {
+                OneTag.push_back(ReadOne);
+
+                if ( '"' == ReadOne && '\\' != PrevOne )                //If we find an unescaped " the we are either leaving or entering a quote
+                    { InText = !InText; }
+
+                if ( !InText && '/' == ReadOne )                        //If we are not In a quote then a / means the next > will end a tag
+                    { HaveSlash=true; }
+
+                if ( '>' == ReadOne )                                   // if are at a > then the amount of nested tags we are in changes
+                {
+                    if (HaveSlash)                                      // if have passed an unescaped slash then we  are ending a tage
+                    {
+                        --TagCount;
+                        if ( 0>=TagCount )                              // if we are ending the last tage then we are done
+                        {
+                            break;
+                        }
+                    }else{
+                        ++TagCount;                                     // if the tag does not have a slash then we are going one deeper
+                    }
+                    HaveSlash=false;
+                }
+
+                PrevOne=ReadOne;                                        //Store the Previous Character to check for escapes
+            }
+            return OneTag;
+        }
+
+        Document* PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag, Whole MinVersion)
+        {
+            Document* Doc = new Document();
+            if(!Doc->Load(OneTag.c_str()))
+                { World::GetWorldPointer()->LogAndThrow(Exception("Could not Deserialize XML Stream which should contain Vector3 xml.")); }
+
+            Node InputNode = Doc->GetFirstChild();
+            if (InputNode)
+            {
+                if( String(ClassName) == String(InputNode.Name()))
+                {
+                    if(InputNode.GetAttribute("Version").AsInt() >= 1)
+                    {
+                        return Doc;
+                    }else{
+                        World::GetWorldPointer()->LogAndThrow(Exception(StringCat(NameSpace, ClassName, " incompatible serialized version.")));
+                    }
+                }else{
+                    World::GetWorldPointer()->LogAndThrow(Exception(StringCat(NameSpace, ClassName, " not next item in stream, failed to serialize.")));
+                }
+            }else{
+                World::GetWorldPointer()->LogAndThrow(Exception(StringCat("No valid XML tag in stream, when attempting to deserialize", NameSpace, ClassName)));
+            }
+        }
 
 
 

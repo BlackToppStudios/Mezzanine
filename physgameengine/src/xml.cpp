@@ -4572,15 +4572,15 @@ namespace phys
 		destroy(); 
 	} 
  
-	void Document::ReSet() 
+	void Document::Reset() 
 	{ 
 		destroy(); 
 		create(); 
 	} 
  
-	void Document::ReSet(const Document& proto) 
+	void Document::Reset(const Document& proto) 
 	{ 
-		ReSet(); 
+		Reset(); 
  
 		for (Node cur = proto.GetFirstChild(); cur; cur = cur.GetNextSibling()) 
 			AppendCopy(cur); 
@@ -4644,14 +4644,14 @@ namespace phys
 #ifndef XML_NO_STL 
 	ParseResult Document::Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		ReSet(); 
+		Reset(); 
  
 		return LoadStreamImpl(*this, stream, options, DocumentEncoding); 
 	} 
  
 	ParseResult Document::Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options) 
 	{ 
-		ReSet(); 
+		Reset(); 
  
 		return LoadStreamImpl(*this, stream, options, Encodingwchar_t); 
 	} 
@@ -4671,7 +4671,7 @@ namespace phys
  
 	ParseResult Document::LoadFile(const char* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		ReSet(); 
+		Reset(); 
  
 		FILE* file = fopen(Path, "rb"); 
  
@@ -4680,7 +4680,7 @@ namespace phys
  
 	ParseResult Document::LoadFile(const wchar_t* Path, unsigned int options, Encoding DocumentEncoding) 
 	{ 
-		ReSet(); 
+		Reset(); 
  
 		FILE* file = open_file_wide(Path, L"rb"); 
  
@@ -4689,7 +4689,7 @@ namespace phys
  
 	ParseResult Document::LoadBufferImpl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own) 
 	{ 
-		ReSet(); 
+		Reset(); 
  
 		// check input buffer 
 		assert(contents || size == 0); 

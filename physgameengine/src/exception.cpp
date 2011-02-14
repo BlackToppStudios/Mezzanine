@@ -65,7 +65,10 @@ namespace phys
 
     }
 
-
+    void Exception::SetLogged()
+    {
+        this->Logged=true;
+    }
 } // \phys
 
 #endif // \exception_cpp

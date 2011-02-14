@@ -108,14 +108,21 @@ namespace phys
             /// @param Plane2 The Ogre::Plane to take data from.
             void operator=(const Ogre::Plane& Plane2);
     }; // /Plane
-
 }// /phys
 
+#ifdef PHYSXML
 /// @brief Streaming output operator
-/// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout
+/// @details This converts the data of the Plane into a snippet of xml Ideal for sending to a log or cout.
 /// @param stream This is the stream we send our data to.
 /// @return This returns an std::ostream which now contains our data.
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Plane& x);
+
+/// @brief Used to de-serialize from a stream.
+/// @details This reads XML input and attempts to Populate a plane.
+/// @param stream This is the stream we get our data from.
+/// @return This returns an std::ostream to allow operator chaining.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Plane& x);
+#endif // \PHYSXML
 
 
 #endif

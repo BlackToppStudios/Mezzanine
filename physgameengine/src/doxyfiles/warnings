@@ -1,6 +1,7 @@
 warning: source /home/dev/physgame/physgameengine/src/sed4WHn5D is not a readable file or directory... skipping.
 warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readable file or directory... skipping.
 warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readable file or directory... skipping.
+/home/dev/physgame/physgameengine/src/datatypes.cpp:50: warning: the name `datatype.cpp' supplied as the second argument in the \file statement is not an input file
 /home/dev/physgame/physgameengine/src/constraint.h:321: warning: Compound phys::Hinge2Constraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:230: warning: Compound phys::Generic6DofSpringConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:452: warning: Compound phys::UniversalConstraint is not documented.
@@ -15,25 +16,19 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/timer.h:66: warning: Documentation for undefined enum `The' found.
 /home/dev/physgame/physgameengine/src/actorragdoll.cpp:49: warning: documented function `phys::ActorRagDoll::ActorRagDoll' was not declared or defined.
 /home/dev/physgame/physgameengine/src/actorragdoll.cpp:53: warning: documented function `phys::ActorRagDoll::~ActorRagDoll' was not declared or defined.
-/home/dev/physgame/physgameengine/src/xmldoc.h:300: warning: member with no name found.
-/home/dev/physgame/physgameengine/src/xmldoc.h:495: warning: documented function `phys::xml::operator&&' was not declared or defined.
-/home/dev/physgame/physgameengine/src/xmldoc.h:501: warning: documented function `phys::xml::operator||' was not declared or defined.
-/home/dev/physgame/physgameengine/src/xmldoc.h:1039: warning: no uniquely matching class member found for 
-  phys::xml::Document::Reset()
-
-/home/dev/physgame/physgameengine/src/xmldoc.h:1042: warning: no uniquely matching class member found for 
-  phys::xml::Document::Reset(const Document &proto)
-
-/home/dev/physgame/physgameengine/src/xmldoc.h:1283: warning: member with no name found.
-/home/dev/physgame/physgameengine/src/xmldoc.h:190: warning: Unsupported xml/html tag <node> found
-/home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xmldoc.h:1012: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1024: warning: Found unknown command `\detail'
+/home/dev/physgame/physgameengine/src/xmldoc.h:305: warning: member with no name found.
+/home/dev/physgame/physgameengine/src/xmldoc.h:500: warning: documented function `phys::xml::operator&&' was not declared or defined.
+/home/dev/physgame/physgameengine/src/xmldoc.h:506: warning: documented function `phys::xml::operator||' was not declared or defined.
+/home/dev/physgame/physgameengine/src/xmldoc.h:1288: warning: member with no name found.
+/home/dev/physgame/physgameengine/src/xmldoc.h:195: warning: Unsupported xml/html tag <node> found
+/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xmldoc.h:1017: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
+/home/dev/physgame/physgameengine/src/xmldoc.h:1029: warning: Found unknown command `\detail'
+/home/dev/physgame/physgameengine/src/xmldoc.h:1022: warning: Found unknown command `\detail'
+/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xml.h:166: warning: Member char_t (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:170: warning: Member String (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
+/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/actorbase.h:311: warning: Member InitEntity(bool force) (function) of class phys::ActorBase is not documented.
 /home/dev/physgame/physgameengine/src/actorrigid.h:162: warning: Member GetBulletObject() (function) of class phys::ActorRigid is not documented.
 /home/dev/physgame/physgameengine/src/actorsoft.h:190: warning: Member GetBulletObject() (function) of class phys::ActorSoft is not documented.
@@ -312,6 +307,11 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/crossplatform.h:126: warning: The following parameters of phys::crossplatform::RenderPhysWorld(World *TheWorld, Ogre::RenderWindow *TheOgreWindow) are not documented:
   parameter 'TheOgreWindow'
 /home/dev/physgame/physgameengine/src/eventmanager.cpp:69: warning: Member PhysSDLFilter(const SDL_Event *event) (function) of namespace phys::internal is not documented.
+/home/dev/physgame/physgameengine/src/eventmanager.cpp:95: warning: Member EventQueue (variable) of class phys::internal::EventManagerInternalData is not documented.
+/home/dev/physgame/physgameengine/src/eventmanager.cpp:98: warning: Member WatchKeyboardKeys (variable) of class phys::internal::EventManagerInternalData is not documented.
+/home/dev/physgame/physgameengine/src/eventmanager.cpp:101: warning: Member WatchMouseKeys (variable) of class phys::internal::EventManagerInternalData is not documented.
+/home/dev/physgame/physgameengine/src/eventmanager.cpp:104: warning: Member PollMouseHor (variable) of class phys::internal::EventManagerInternalData is not documented.
+/home/dev/physgame/physgameengine/src/eventmanager.cpp:105: warning: Member PollMouseVert (variable) of class phys::internal::EventManagerInternalData is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:74: warning: Member GorillaRectangle (variable) of class phys::UI::Button is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:75: warning: Member Parent (variable) of class phys::UI::Button is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:76: warning: Member Manager (variable) of class phys::UI::Button is not documented.
@@ -463,12 +463,12 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/uiwindow.h:80: warning: Member Captions (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/uiwindow.h:81: warning: Member MarkupTexts (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/uiwindow.h:82: warning: Member Widgets (variable) of class phys::UI::Window is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
+/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xml.h:166: warning: Member char_t (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.h:170: warning: Member String (typedef) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:4811: warning: Member AsUtf8(const std::wstring &str) (function) of namespace phys::xml is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:4823: warning: Member AsWide(const std::string &str) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:190: warning: Unsupported xml/html tag <node> found
+/home/dev/physgame/physgameengine/src/xmldoc.h:195: warning: Unsupported xml/html tag <node> found
 /home/dev/physgame/physgameengine/src/xml.cpp:454: warning: Member AttributeStruct(MemoryPage *page) (function) of class phys::xml::AttributeStruct is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:457: warning: Member header (variable) of class phys::xml::AttributeStruct is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:459: warning: Member Name (variable) of class phys::xml::AttributeStruct is not documented.
@@ -484,61 +484,59 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/xml.cpp:484: warning: Member prev_sibling_c (variable) of class phys::xml::NodeStruct is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:485: warning: Member GetNextSibling (variable) of class phys::xml::NodeStruct is not documented.
 /home/dev/physgame/physgameengine/src/xml.cpp:487: warning: Member GetFirstAttribute (variable) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xmldoc.h:279: warning: unable to resolve reference to `Node::print' for \ref command
+/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
+/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
 /home/dev/physgame/physgameengine/src/xml.h:469: warning: Member unspecified_bool_type (typedef) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:694: warning: argument 'node' of command @param is not found in the argument list of phys::xml::Node::AppendChild(const char_t *Name)
-/home/dev/physgame/physgameengine/src/xmldoc.h:713: warning: unable to resolve reference to `Node::InsertChildBefore(NodeType, Node)' for \ref command
-/home/dev/physgame/physgameengine/src/xmldoc.h:745: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindAttribute(Predicate pred) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:745: warning: The following parameters of phys::xml::Node::FindAttribute(Predicate pred) const are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:699: warning: argument 'node' of command @param is not found in the argument list of phys::xml::Node::AppendChild(const char_t *Name)
+/home/dev/physgame/physgameengine/src/xmldoc.h:718: warning: unable to resolve reference to `Node::InsertChildBefore(NodeType, Node)' for \ref command
+/home/dev/physgame/physgameengine/src/xmldoc.h:750: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindAttribute(Predicate pred) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:750: warning: The following parameters of phys::xml::Node::FindAttribute(Predicate pred) const are not documented:
   parameter 'pred'
-/home/dev/physgame/physgameengine/src/xmldoc.h:753: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindChild(Predicate pred) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:753: warning: The following parameters of phys::xml::Node::FindChild(Predicate pred) const are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:758: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindChild(Predicate pred) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:758: warning: The following parameters of phys::xml::Node::FindChild(Predicate pred) const are not documented:
   parameter 'pred'
-/home/dev/physgame/physgameengine/src/xmldoc.h:761: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindNode(Predicate pred) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:761: warning: The following parameters of phys::xml::Node::FindNode(Predicate pred) const are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:766: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindNode(Predicate pred) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:766: warning: The following parameters of phys::xml::Node::FindNode(Predicate pred) const are not documented:
   parameter 'pred'
 /home/dev/physgame/physgameengine/src/xml.h:705: warning: argument 'XPathVariableSet' of command @param is not found in the argument list of phys::xml::Node::FindNodes(const char_t *query, XPathVariableSet *variables=0) const
 /home/dev/physgame/physgameengine/src/xml.h:705: warning: The following parameters of phys::xml::Node::FindNodes(const char_t *query, XPathVariableSet *variables=0) const are not documented:
   parameter 'variables'
-/home/dev/physgame/physgameengine/src/xmldoc.h:801: warning: argument 'XPathVariableSet' of command @param is not found in the argument list of phys::xml::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:801: warning: The following parameters of phys::xml::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:806: warning: argument 'XPathVariableSet' of command @param is not found in the argument list of phys::xml::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:806: warning: The following parameters of phys::xml::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const are not documented:
   parameter 'variables'
 /home/dev/physgame/physgameengine/src/xml.h:605: warning: argument 'Node' of command @param is not found in the argument list of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node)
 /home/dev/physgame/physgameengine/src/xml.h:609: warning: unable to resolve reference to `Node::InsertChildAfter(NodeType, Node)' for \ref command
 /home/dev/physgame/physgameengine/src/xml.h:605: warning: The following parameters of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node) are not documented:
   parameter 'node'
-/home/dev/physgame/physgameengine/src/xmldoc.h:687: warning: The following parameters of phys::xml::Node::InsertChildBefore(NodeType Type, const Node &node) are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:692: warning: The following parameters of phys::xml::Node::InsertChildBefore(NodeType Type, const Node &node) are not documented:
   parameter 'node'
-/home/dev/physgame/physgameengine/src/xmldoc.h:706: warning: argument 'Node' of command @param is not found in the argument list of phys::xml::Node::InsertChildBefore(const char_t *Name, const Node &node)
-/home/dev/physgame/physgameengine/src/xmldoc.h:706: warning: The following parameters of phys::xml::Node::InsertChildBefore(const char_t *Name, const Node &node) are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:711: warning: argument 'Node' of command @param is not found in the argument list of phys::xml::Node::InsertChildBefore(const char_t *Name, const Node &node)
+/home/dev/physgame/physgameengine/src/xmldoc.h:711: warning: The following parameters of phys::xml::Node::InsertChildBefore(const char_t *Name, const Node &node) are not documented:
   parameter 'node'
-/home/dev/physgame/physgameengine/src/xmldoc.h:718: warning: The following parameters of phys::xml::Node::InsertCopyAfter(const Node &proto, const Node &node) are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:723: warning: The following parameters of phys::xml::Node::InsertCopyAfter(const Node &proto, const Node &node) are not documented:
   parameter 'node'
-/home/dev/physgame/physgameengine/src/xmldoc.h:783: warning: argument 'AttrName' of command @param is not found in the argument list of phys::xml::Node::Path(char_t delimiter='/') const
-/home/dev/physgame/physgameengine/src/xmldoc.h:783: warning: argument 'AttrValue' of command @param is not found in the argument list of phys::xml::Node::Path(char_t delimiter='/') const
-/home/dev/physgame/physgameengine/src/xmldoc.h:730: warning: argument 'proto' of command @param is not found in the argument list of phys::xml::Node::RemoveAttribute(const Attribute &a)
-/home/dev/physgame/physgameengine/src/xmldoc.h:730: warning: argument 'node' of command @param is not found in the argument list of phys::xml::Node::RemoveAttribute(const Attribute &a)
-/home/dev/physgame/physgameengine/src/xmldoc.h:1012: warning: Found unknown command `\detail'
+/home/dev/physgame/physgameengine/src/xmldoc.h:788: warning: argument 'AttrName' of command @param is not found in the argument list of phys::xml::Node::Path(char_t delimiter='/') const
+/home/dev/physgame/physgameengine/src/xmldoc.h:788: warning: argument 'AttrValue' of command @param is not found in the argument list of phys::xml::Node::Path(char_t delimiter='/') const
+/home/dev/physgame/physgameengine/src/xmldoc.h:735: warning: argument 'proto' of command @param is not found in the argument list of phys::xml::Node::RemoveAttribute(const Attribute &a)
+/home/dev/physgame/physgameengine/src/xmldoc.h:735: warning: argument 'node' of command @param is not found in the argument list of phys::xml::Node::RemoveAttribute(const Attribute &a)
 /home/dev/physgame/physgameengine/src/xmldoc.h:1017: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1024: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1012: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1024: warning: Found unknown command `\detail'
+/home/dev/physgame/physgameengine/src/xmldoc.h:1022: warning: Found unknown command `\detail'
+/home/dev/physgame/physgameengine/src/xmldoc.h:1029: warning: Found unknown command `\detail'
 /home/dev/physgame/physgameengine/src/xmldoc.h:1017: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xml.h:960: warning: Member ReSet() (function) of class phys::xml::Document is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:963: warning: Member ReSet(const Document &proto) (function) of class phys::xml::Document is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:1080: warning: The following parameters of phys::xml::Document::LoadBufferInplace(void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:1029: warning: Found unknown command `\detail'
+/home/dev/physgame/physgameengine/src/xmldoc.h:1022: warning: Found unknown command `\detail'
+/home/dev/physgame/physgameengine/src/xmldoc.h:1085: warning: The following parameters of phys::xml::Document::LoadBufferInplace(void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
   parameter 'contents'
   parameter 'size'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1066: warning: The following parameters of phys::xml::Document::LoadFile(const char *Path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:1071: warning: The following parameters of phys::xml::Document::LoadFile(const char *Path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
   parameter 'DocumentEncoding'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1073: warning: The following parameters of phys::xml::Document::LoadFile(const wchar_t *Path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:1078: warning: The following parameters of phys::xml::Document::LoadFile(const wchar_t *Path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
   parameter 'options'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1106: warning: argument 'contents' of command @param is not found in the argument list of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:1106: warning: argument 'size' of command @param is not found in the argument list of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:1106: warning: argument 'options' of command @param is not found in the argument list of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:1106: warning: The following parameters of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const are not documented:
+/home/dev/physgame/physgameengine/src/xmldoc.h:1111: warning: argument 'contents' of command @param is not found in the argument list of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:1111: warning: argument 'size' of command @param is not found in the argument list of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:1111: warning: argument 'options' of command @param is not found in the argument list of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:1111: warning: The following parameters of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const are not documented:
   parameter 'WriterInstance'
   parameter 'indent'
   parameter 'flags'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1113: warning: argument 'WriterInstance' of command @param is not found in the argument list of phys::xml::Document::SaveFile(const char *Path, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
+/home/dev/physgame/physgameengine/src/xmldoc.h:1118: warning: argument 'WriterInstance' of command @param is not found in the argument list of phys::xml::Document::SaveFile(const char *Path, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const

@@ -340,6 +340,7 @@ function FixNames
 
 	#Common	
 	sed -i -e 's|Nodeset|NodeSet|g' $1
+	sed -i -e 's|ReSet|Reset|g' $1
 
 	###############################
 	#Documentation that was not put in xmldoc.h

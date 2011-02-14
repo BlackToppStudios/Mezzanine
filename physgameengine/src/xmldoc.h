@@ -57,6 +57,8 @@
 // To provide compilation option via cmake
 #ifdef PHYSXML
 
+#include "datatypes.h"
+
 #ifndef _xmldoc_h
 #define _xmldoc_h
 namespace phys
@@ -78,6 +80,9 @@ namespace phys
     ///////////////////////////////////////
     namespace xml
     {
+
+        class Document;
+
         ///////////////////////////////////////////////////////////////////////////////
         /// @file xmldoc.h
         /// @brief The Doxygen documentation and minor tools to assist with the XML system
@@ -1415,6 +1420,22 @@ namespace phys
         /// @fn GetMemoryDeallocationFunction();
         /// @brief Get the current allocation funciton
         /// @return A function to the current allocation function
+
+        /// @brief Gets the first tag out of the Stream and returns it as a String
+        /// @param stream An std::ostream that contains atleast one xml tag
+        /// @details This simply returns all the characters from the current point in the stream until the first '>' is reached.
+        /// @return This returns from the begining of the stream to the first xml tag.
+        String GetOneTag(std::istream& stream);
+
+        /// @internal
+        /// @brief Perform a basic series of checks for extracting meaning from a single xml tag.
+        /// @param NameSpace Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example "phys::"
+        /// @param ClassName This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages.
+        /// @param OneTag One XML tag/elements worth of text to deserialize.
+        /// @param MinVersion The minimum version of the xml for the given class that you plan of deserializing.
+        /// @return An pointer to xml::Document that you are now the owner of and must delete, that has the data parse and ready to access.
+        /// @throw This can throw
+        Document* PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag, Whole MinVersion);
 
     }
 }

@@ -40,7 +40,13 @@
 #ifndef _plane_cpp
 #define _plane_cpp
 
+#include <iostream>
+#include <sstream>
+
+#include "exception.h"
 #include "plane.h"
+#include "world.h"
+#include "xml.h"
 
 #include "Ogre.h"
 
@@ -82,11 +88,37 @@ namespace phys
         { this->ExtractOgrePlane(Plane2); }
 
 }
-
+#ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::Plane& x)
 {
-    stream << "[Normal:" << x.Normal << ",Distance: " << x.Distance << "]";
+    stream << "<Plane Version=\"1\" Distance=\"" << x.Distance << "\" >" << x.Normal << "</Plane>";
     return stream;
 }
+
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Plane& x)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    phys::xml::Document* Doc = phys::xml::PreParseClassFromSingleTag("phys::", "Plane", OneTag, 1);
+
+    x.Distance=Doc->GetFirstChild().GetAttribute("Distance").AsReal();
+
+    phys::xml::Node NormalNode = Doc->GetFirstChild().GetFirstChild();
+    if (NormalNode)
+    {
+        std::stringstream NodeText;
+        NormalNode.Print( NodeText);
+        phys::World::GetWorldPointer()->Log("NodeText.str():");
+        phys::World::GetWorldPointer()->Log(NodeText.str());
+        NodeText >> x.Normal;
+    }else{
+        phys::World::GetWorldPointer()->LogAndThrow(phys::Exception("Normal not found while parsing phys::Plane"));
+    }
+
+    delete Doc;
+    return stream;
+
+}
+#endif // \phys_xml
 
 #endif

@@ -64,6 +64,7 @@ namespace phys
             /// @internal
             /// @brief True if it has been logged, false other. The logging function on the world is expected to set this.
             bool Logged;
+
         public:
             /// @brief Simple Constructor.
             /// @param Message The Error you want stored in the exception.
@@ -78,10 +79,15 @@ namespace phys
             /// @return A bool storing true if it has and false if it has not.
             bool HasBeenLogged();
 
+            /// @brief Set the logged bit.
+            void SetLogged();
+
             ~Exception() throw();
-
-
     };// \Exception
+
+
+
+
 } // \phys
 
 #endif // \exception_cpp

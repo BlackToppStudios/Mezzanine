@@ -957,10 +957,10 @@ namespace phys
 		~Document(); 
  
 		// Removes all nodes, leaving the empty document 
-		void ReSet(); 
+		void Reset(); 
  
 		// Removes all nodes, then copies the entire contents of the specified document 
-		void ReSet(const Document& proto); 
+		void Reset(const Document& proto); 
  
 	#ifndef XML_NO_STL 
 		// Load document from stream. 

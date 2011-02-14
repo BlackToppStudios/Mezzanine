@@ -4603,17 +4603,17 @@
 <a name="l04572"></a>04572                 destroy(); 
 <a name="l04573"></a>04573         } 
 <a name="l04574"></a>04574  
-<a name="l04575"></a>04575         <span class="keywordtype">void</span> Document::ReSet() 
+<a name="l04575"></a><a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4">04575</a>         <span class="keywordtype">void</span> <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4" title="Removes all nodes, leaving the empty document.">Document::Reset</a>() 
 <a name="l04576"></a>04576         { 
 <a name="l04577"></a>04577                 destroy(); 
 <a name="l04578"></a>04578                 create(); 
 <a name="l04579"></a>04579         } 
 <a name="l04580"></a>04580  
-<a name="l04581"></a>04581         <span class="keywordtype">void</span> Document::ReSet(<span class="keyword">const</span> <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">Document</a>&amp; proto) 
+<a name="l04581"></a><a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#aba87e21330118fb43b2aab2c36486b03">04581</a>         <span class="keywordtype">void</span> <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4" title="Removes all nodes, leaving the empty document.">Document::Reset</a>(<span class="keyword">const</span> <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">Document</a>&amp; proto) 
 <a name="l04582"></a>04582         { 
-<a name="l04583"></a>04583                 ReSet(); 
+<a name="l04583"></a>04583                 <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4" title="Removes all nodes, leaving the empty document.">Reset</a>(); 
 <a name="l04584"></a>04584  
-<a name="l04585"></a>04585                 <span class="keywordflow">for</span> (<a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a> cur = proto.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); cur; cur = cur.GetNextSibling()) 
+<a name="l04585"></a>04585                 <span class="keywordflow">for</span> (<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> cur = proto.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>(); cur; cur = cur.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a079c3f9835d5ee05b827ba540764e8bb" title="Attempt to retrieve the next sibling of this Node.">GetNextSibling</a>()) 
 <a name="l04586"></a>04586                         <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a33de8cdb7ed8694acac79aedc81523c9" title="Copies an Attribute and puts the copy at the end of this Nodes attributes.">AppendCopy</a>(cur); 
 <a name="l04587"></a>04587         } 
 <a name="l04588"></a>04588  
@@ -4675,14 +4675,14 @@
 <a name="l04644"></a>04644 <span class="preprocessor">#ifndef XML_NO_STL </span>
 <a name="l04645"></a><a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9d4ddfd3b987fa3d31d41c06d06a001e">04645</a> <span class="preprocessor"></span>        <a class="code" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html" title="All the information needed to troubleshoot a Parsing error.">ParseResult</a> <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9d4ddfd3b987fa3d31d41c06d06a001e" title="Load XML from a stream.">Document::Load</a>(std::basic_istream&lt;<span class="keywordtype">char</span>, std::char_traits&lt;char&gt; &gt;&amp; stream, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> options, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding) 
 <a name="l04646"></a>04646         { 
-<a name="l04647"></a>04647                 ReSet(); 
+<a name="l04647"></a>04647                 <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4" title="Removes all nodes, leaving the empty document.">Reset</a>(); 
 <a name="l04648"></a>04648  
 <a name="l04649"></a>04649                 <span class="keywordflow">return</span> LoadStreamImpl(*<span class="keyword">this</span>, stream, options, DocumentEncoding); 
 <a name="l04650"></a>04650         } 
 <a name="l04651"></a>04651  
 <a name="l04652"></a><a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a5c31cda427eeeb61cd40932f7bec6376">04652</a>         <a class="code" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html" title="All the information needed to troubleshoot a Parsing error.">ParseResult</a> <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9d4ddfd3b987fa3d31d41c06d06a001e" title="Load XML from a stream.">Document::Load</a>(std::basic_istream&lt;<span class="keywordtype">wchar_t</span>, std::char_traits&lt;wchar_t&gt; &gt;&amp; stream, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> options) 
 <a name="l04653"></a>04653         { 
-<a name="l04654"></a>04654                 ReSet(); 
+<a name="l04654"></a>04654                 <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4" title="Removes all nodes, leaving the empty document.">Reset</a>(); 
 <a name="l04655"></a>04655  
 <a name="l04656"></a>04656                 <span class="keywordflow">return</span> LoadStreamImpl(*<span class="keyword">this</span>, stream, options, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef" title="The same document encoding wchar_t has (usually either UTF16 or UTF32).">Encodingwchar_t</a>); 
 <a name="l04657"></a>04657         } 
@@ -4702,7 +4702,7 @@
 <a name="l04671"></a>04671  
 <a name="l04672"></a><a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a2e832250addde2f928b8ef659dd7d50c">04672</a>         <a class="code" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html" title="All the information needed to troubleshoot a Parsing error.">ParseResult</a> <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a2e832250addde2f928b8ef659dd7d50c" title="Load document from file.">Document::LoadFile</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* Path, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> options, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding) 
 <a name="l04673"></a>04673         { 
-<a name="l04674"></a>04674                 ReSet(); 
+<a name="l04674"></a>04674                 <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4" title="Removes all nodes, leaving the empty document.">Reset</a>(); 
 <a name="l04675"></a>04675  
 <a name="l04676"></a>04676                 FILE* file = fopen(Path, <span class="stringliteral">&quot;rb&quot;</span>); 
 <a name="l04677"></a>04677  
@@ -4711,7 +4711,7 @@
 <a name="l04680"></a>04680  
 <a name="l04681"></a><a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#afbbadfa6c7ff3e2eeb5bcc962a29874e">04681</a>         <a class="code" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html" title="All the information needed to troubleshoot a Parsing error.">ParseResult</a> <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a2e832250addde2f928b8ef659dd7d50c" title="Load document from file.">Document::LoadFile</a>(<span class="keyword">const</span> <span class="keywordtype">wchar_t</span>* Path, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> options, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding) 
 <a name="l04682"></a>04682         { 
-<a name="l04683"></a>04683                 ReSet(); 
+<a name="l04683"></a>04683                 <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4" title="Removes all nodes, leaving the empty document.">Reset</a>(); 
 <a name="l04684"></a>04684  
 <a name="l04685"></a>04685                 FILE* file = open_file_wide(Path, L<span class="stringliteral">&quot;rb&quot;</span>); 
 <a name="l04686"></a>04686  
@@ -4720,7 +4720,7 @@
 <a name="l04689"></a>04689  
 <a name="l04690"></a>04690         <a class="code" href="../../d5/dea/structphys_1_1xml_1_1ParseResult.html" title="All the information needed to troubleshoot a Parsing error.">ParseResult</a> Document::LoadBufferImpl(<span class="keywordtype">void</span>* contents, <span class="keywordtype">size_t</span> size, <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> options, <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a420f5de782438f88160321385bea2015" title="These flags determine the encoding of input data for an XML document.">Encoding</a> DocumentEncoding, <span class="keywordtype">bool</span> is_mutable, <span class="keywordtype">bool</span> own) 
 <a name="l04691"></a>04691         { 
-<a name="l04692"></a>04692                 ReSet(); 
+<a name="l04692"></a>04692                 <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html#a9ab556271e4a1214ecb35ba6aef9e8e4" title="Removes all nodes, leaving the empty document.">Reset</a>(); 
 <a name="l04693"></a>04693  
 <a name="l04694"></a>04694                 <span class="comment">// check input buffer </span>
 <a name="l04695"></a>04695                 assert(contents || size == 0); 
@@ -9689,7 +9689,7 @@
 <a name="l09658"></a>09658 <span class="preprocessor">#endif // \PHYSXML </span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

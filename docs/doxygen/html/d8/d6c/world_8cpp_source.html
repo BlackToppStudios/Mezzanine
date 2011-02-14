@@ -220,14 +220,14 @@
 <a name="l00189"></a>00189         <a class="code" href="../../da/ddf/classphys_1_1World.html#a7dbf83226aaa109a09efab00ae682761" title="Force any outstanding logs to be commited to logs.">Log</a>(<span class="keyword">sizeof</span>(<span class="keywordtype">int</span>));
 <a name="l00190"></a>00190         <span class="keywordflow">if</span>(<span class="keyword">sizeof</span>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>) != <span class="keyword">sizeof</span>(SDLKey))
 <a name="l00191"></a>00191         {
-<a name="l00192"></a>00192             <a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;User input subsystem Event Sizes  Don&#39;t match, userinput subsystem will go down faster than &#39;that&#39; girl on prom night.&quot;</span>);
+<a name="l00192"></a>00192             <a class="code" href="../../da/ddf/classphys_1_1World.html#a372ee96d395d735531f755fc0a72de4a" title="This is the preferred way to throw an exception.">LogAndThrow</a>(<span class="stringliteral">&quot;User input subsystem Event Sizes  Don&#39;t match, userinput subsystem will go down faster than &#39;that&#39; girl on prom night.&quot;</span>);
 <a name="l00193"></a>00193         }<span class="keywordflow">else</span>{
 <a name="l00194"></a>00194             <a class="code" href="../../da/ddf/classphys_1_1World.html#a7dbf83226aaa109a09efab00ae682761" title="Force any outstanding logs to be commited to logs.">Log</a>(<span class="stringliteral">&quot;External User input subsystem Event Sizes match, the User Input subsystem won&#39;t crash instantly&quot;</span>);
 <a name="l00195"></a>00195         }
 <a name="l00196"></a>00196 
 <a name="l00197"></a>00197         <span class="keywordflow">if</span>(<span class="keyword">sizeof</span>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a>) != <span class="keyword">sizeof</span>(<span class="keywordtype">int</span>))
 <a name="l00198"></a>00198         {
-<a name="l00199"></a>00199             <a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;Internal User input subsystem Event Sizes Don&#39;t match, userinput subsystem cannot function.&quot;</span>);
+<a name="l00199"></a>00199             <a class="code" href="../../da/ddf/classphys_1_1World.html#a372ee96d395d735531f755fc0a72de4a" title="This is the preferred way to throw an exception.">LogAndThrow</a>(<span class="stringliteral">&quot;Internal User input subsystem Event Sizes Don&#39;t match, userinput subsystem cannot function.&quot;</span>);
 <a name="l00200"></a>00200         }<span class="keywordflow">else</span>{
 <a name="l00201"></a>00201             <a class="code" href="../../da/ddf/classphys_1_1World.html#a7dbf83226aaa109a09efab00ae682761" title="Force any outstanding logs to be commited to logs.">Log</a>(<span class="stringliteral">&quot;Internal User input subsystem Event Sizes match, the User Input subsystem won&#39;t crash instantly&quot;</span>);
 <a name="l00202"></a>00202         }
@@ -398,7 +398,7 @@
 <a name="l00367"></a>00367             <span class="comment">//if we can&#39;t do that then lets make new settings</span>
 <a name="l00368"></a>00368             <span class="keywordflow">if</span> (!this-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a15f968adb5d841da6c5eb51607a8f525" title="This gets the GraphicsManager from the manager list.">GetGraphicsManager</a>()-&gt;ShowGraphicsSettingDialog())
 <a name="l00369"></a>00369             {
-<a name="l00370"></a>00370                 this-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;Error: Could not setup Ogre.&quot;</span>);
+<a name="l00370"></a>00370                 this-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a372ee96d395d735531f755fc0a72de4a" title="This is the preferred way to throw an exception.">LogAndThrow</a>(<span class="stringliteral">&quot;Error: Could not setup Ogre.&quot;</span>);
 <a name="l00371"></a>00371             }
 <a name="l00372"></a>00372         }
 <a name="l00373"></a>00373     }
@@ -632,7 +632,7 @@
 <a name="l00601"></a>00601 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

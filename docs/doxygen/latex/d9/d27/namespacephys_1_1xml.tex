@@ -158,7 +158,11 @@ void PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f9
 std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_aa3d160a2965f60bc3b2f019be6c7d038}{AsUtf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)
 \begin{DoxyCompactList}\small\item\em Convert a std::wstring to a UTF8 std::string. \item\end{DoxyCompactList}\item 
 std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a7ca79461d40476ea4cde4f54dadffff4}{AsWide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)
-\begin{DoxyCompactList}\small\item\em Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
+String \hyperlink{namespacephys_1_1xml_a9d912900518f0d84d323d1514dfb93a2}{GetOneTag} (std::istream \&stream)
+\begin{DoxyCompactList}\small\item\em Gets the first tag out of the Stream and returns it as a String. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Document}{Document} $\ast$ \hyperlink{namespacephys_1_1xml_aa48ad222ba9a6fe46a76c2add6923028}{PreParseClassFromSingleTag} (const String \&NameSpace, const String \&ClassName, const String \&OneTag, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} MinVersion)
+\begin{DoxyCompactList}\small\item\em Perform a basic series of checks for extracting meaning from a single xml tag. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -603,6 +607,52 @@ Get the current allocation funciton.
 \begin{DoxyReturn}{Returns}
 A function to the current allocation function 
 \end{DoxyReturn}
+\end{DoxyInternal}
+\hypertarget{namespacephys_1_1xml_a9d912900518f0d84d323d1514dfb93a2}{
+\index{phys::xml@{phys::xml}!GetOneTag@{GetOneTag}}
+\index{GetOneTag@{GetOneTag}!phys::xml@{phys::xml}}
+\subsubsection[{GetOneTag}]{\setlength{\rightskip}{0pt plus 5cm}String phys::xml::GetOneTag (
+\begin{DoxyParamCaption}
+\item[{std::istream \&}]{ stream}
+\end{DoxyParamCaption}
+)}}
+\label{d9/d27/namespacephys_1_1xml_a9d912900518f0d84d323d1514dfb93a2}
+
+
+Gets the first tag out of the Stream and returns it as a String. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em stream}]An std::ostream that contains atleast one xml tag\end{DoxyParams}
+This simply returns all the characters from the current point in the stream until the first '$>$' is reached. \begin{DoxyReturn}{Returns}
+This returns from the begining of the stream to the first xml tag. 
+\end{DoxyReturn}
+\hypertarget{namespacephys_1_1xml_aa48ad222ba9a6fe46a76c2add6923028}{
+\index{phys::xml@{phys::xml}!PreParseClassFromSingleTag@{PreParseClassFromSingleTag}}
+\index{PreParseClassFromSingleTag@{PreParseClassFromSingleTag}!phys::xml@{phys::xml}}
+\subsubsection[{PreParseClassFromSingleTag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Document} $\ast$ phys::xml::PreParseClassFromSingleTag (
+\begin{DoxyParamCaption}
+\item[{const String \&}]{ NameSpace, }
+\item[{const String \&}]{ ClassName, }
+\item[{const String \&}]{ OneTag, }
+\item[{Whole}]{ MinVersion}
+\end{DoxyParamCaption}
+)}}
+\label{d9/d27/namespacephys_1_1xml_aa48ad222ba9a6fe46a76c2add6923028}
+
+
+Perform a basic series of checks for extracting meaning from a single xml tag. 
+
+\begin{DoxyInternal}{For internal use only.}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em NameSpace}]Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example \char`\"{}phys::\char`\"{} \item[{\em ClassName}]This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages. \item[{\em OneTag}]One XML tag/elements worth of text to deserialize. \item[{\em MinVersion}]The minimum version of the xml for the given class that you plan of deserializing. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An pointer to \hyperlink{classphys_1_1xml_1_1Document}{xml::Document} that you are now the owner of and must delete, that has the data parse and ready to access. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+\item[{\em This}]can throw \end{DoxyExceptions}
 \end{DoxyInternal}
 \hypertarget{namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f983}{
 \index{phys::xml@{phys::xml}!SetMemory\_\-management\_\-functions@{SetMemory\_\-management\_\-functions}}
