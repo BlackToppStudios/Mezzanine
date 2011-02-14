@@ -2002,3 +2002,11 @@ TimerLogo 222 912 49 48
 TimerDropLogo 222 856 49 48
 TimerArea 276 912 82 48
 WindowVertBack 1024 0 500 600
+WindowHoriBack 1388 1628 660 420
+MenuBack 528 624 310 345
+ExitButton 858 630 270 40
+ReturnButton 858 686 270 40
+SoundSetButton 858 742 270 40
+VideoSetButton 858 798 270 40
+BlankMenuButton 858 856 270 40
+BlankHUDButton 1144 618 350 94
