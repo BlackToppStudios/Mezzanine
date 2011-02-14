@@ -489,21 +489,24 @@ void MakeGUI()
 
     //Build the Menu Layer
     UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", Vector2(0.35, 0.27), Vector2(0.3, 0.45));
+    GameMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MenuBack");
     UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "Return", Vector2(0.37, 0.56), Vector2(0.26, 0.05));
-    ReturnButton->SetBackgroundColour(Black);
+    ReturnButton->SetBackgroundSprite("ReturnButton");
     UI::Button* ExitButton = GameMenu->GetRootWindow()->CreateButton( "Exit", Vector2(0.37, 0.64), Vector2(0.26, 0.05));
-    ExitButton->SetBackgroundColour(Black);
+    ExitButton->SetBackgroundSprite("ExitButton");
 
     UI::Button* VideoAccess = GameMenu->GetRootWindow()->CreateAccessorButton("VideoSettingsButton", Vector2(0.37, 0.32), Vector2(0.26, 0.05));
     UI::MenuWindow* VideoSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("VideoSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), VideoAccess);
-    VideoAccess->SetBackgroundColour(Black);
+    VideoSettings->GetWindowBack()->SetBackgroundSprite("WindowHoriBack");
+    VideoAccess->SetBackgroundSprite("VideoSetButton");
 
     UI::Button* VideoBack = VideoSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
     VideoBack->SetBackgroundColour(Black);
 
     UI::Button* SoundAccess = GameMenu->GetRootWindow()->CreateAccessorButton("SoundSettingsButton", Vector2(0.37, 0.40), Vector2(0.26, 0.05));
     UI::MenuWindow* SoundSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("SoundSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), SoundAccess);
-    SoundAccess->SetBackgroundColour(Black);
+    SoundSettings->GetWindowBack()->SetBackgroundSprite("WindowHoriBack");
+    SoundAccess->SetBackgroundSprite("SoundSetButton");
 
     UI::Button* SoundBack = SoundSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
     SoundBack->SetBackgroundColour(Black);
