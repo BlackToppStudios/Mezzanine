@@ -136,7 +136,8 @@ namespace phys
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
             /// This is automaticly called by the CreateShapeFromMesh function in child classes and shouldn't be called manually.
-            virtual btTriangleMesh* CreateTrimesh() const;
+            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
+            virtual btTriangleMesh* CreateTrimesh(bool UseAllSubmeshes = false) const;
 
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
@@ -381,8 +382,9 @@ namespace phys
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Dynamic objects.
-            /// @param accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent
-            virtual void CreateShapeFromMeshDynamic(short unsigned int accuracy ) = 0;
+            /// @param Accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent.
+            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
+            virtual void CreateShapeFromMeshDynamic(short unsigned int accuracy, bool UseAllSubmeshes = false) = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Working with the World

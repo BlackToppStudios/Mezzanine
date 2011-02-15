@@ -241,7 +241,7 @@ namespace phys{
         this->SetOgreOrientation(Rotation);
     }
 
-    void ActorSoft::CreateShapeFromMeshDynamic(short unsigned int accuracy)
+    void ActorSoft::CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes)
     {
     }
 
