@@ -42,6 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "vector3.h"
+#include "xml.h"
 
 namespace Ogre
 {
@@ -108,14 +109,31 @@ namespace phys
             /// @param Plane2 The Ogre::Plane to take data from.
             void operator=(const Ogre::Plane& Plane2);
     }; // /Plane
-
 }// /phys
 
+#ifdef PHYSXML
 /// @brief Streaming output operator
-/// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout
+/// @details This converts the data of the Plane into a snippet of xml Ideal for sending to a log or cout.
 /// @param stream This is the stream we send our data to.
 /// @return This returns an std::ostream which now contains our data.
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Plane& x);
+
+/// @brief Used to de-serialize from a stream.
+/// @details This reads XML input and attempts to Populate a plane.
+/// @param stream This is the stream we get our data from.
+/// @param x The phys::Plane to store the deserialized Plane in.
+/// @return This returns an std::ostream to allow operator chaining.
+/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Plane& x);
+
+/// @brief Converts an XML node into a phys::Plane
+/// @details TThis will convert an xml::Node will a valid serialized phys::Vector3 into a phys::Vector3
+/// @param OneNode This is the xml::Node we get our data from. It should contain a serialized phys::Plane.
+/// @param x The phys::Plane to store the deserialized Plane in.
+/// @return This returns an xml::Node refernce to allow operator chaining.
+/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::Plane& x);
+#endif // \PHYSXML
 
 
 #endif

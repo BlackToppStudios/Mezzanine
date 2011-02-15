@@ -25,7 +25,12 @@ Inheritance diagram for phys::Exception:\begin{figure}[H]
 virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1Exception_ac929f9b3929526eec6e6b581c9a9dd73}{what} ()  throw ()
 \begin{DoxyCompactList}\small\item\em Retrieves the error message. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1Exception_ab1399e25435c390db551855fda338951}{HasBeenLogged} ()
-\begin{DoxyCompactList}\small\item\em Has this exception been on a trip through the Logger? \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Has this exception been on a trip through the Logger? \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Exception_a48ea61816b826d9b10dd43b76b6c7143}{
+void \hyperlink{classphys_1_1Exception_a48ea61816b826d9b10dd43b76b6c7143}{SetLogged} ()}
+\label{dc/d47/classphys_1_1Exception_a48ea61816b826d9b10dd43b76b6c7143}
+
+\begin{DoxyCompactList}\small\item\em Set the logged bit. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -55,7 +60,7 @@ Simple Constructor.
 \item[{\em Message}]The Error you want stored in the exception. \item[{\em Logged\_\-}]Has this exception already been sent to tthe logger \end{DoxyParams}
 
 
-Definition at line 46 of file exception.cpp.
+Definition at line 48 of file exception.cpp.
 
 
 
@@ -78,7 +83,7 @@ A bool storing true if it has and false if it has not.
 \end{DoxyReturn}
 
 
-Definition at line 51 of file exception.cpp.
+Definition at line 53 of file exception.cpp.
 
 \hypertarget{classphys_1_1Exception_ac929f9b3929526eec6e6b581c9a9dd73}{
 \index{phys::Exception@{phys::Exception}!what@{what}}
@@ -98,7 +103,7 @@ This returns a string that is the stored error message.
 \end{DoxyReturn}
 
 
-Definition at line 56 of file exception.cpp.
+Definition at line 58 of file exception.cpp.
 
 
 

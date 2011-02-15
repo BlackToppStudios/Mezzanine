@@ -601,7 +601,7 @@ void LoadContent()
 
         TheWorld->Log("XML Streaming Test");
 
-        Vector3 ASinglePoint(1,2,3);
+        Vector2 ASinglePoint(1,2);
         TheWorld->Log("ASinglePoint:");
         TheWorld->Log(ASinglePoint);
 
@@ -610,7 +610,7 @@ void LoadContent()
         XMLStringStream << ASinglePoint;
         TheWorld->Log(XMLStringStream.str());
 
-        Vector3 ASecondPoint(0,0,0);
+        Vector2 ASecondPoint(0,0);
         TheWorld->Log("ASecondPoint:");
         TheWorld->Log(ASecondPoint);
 
@@ -618,6 +618,23 @@ void LoadContent()
         XMLStringStream >> ASecondPoint;
         TheWorld->Log(ASecondPoint);
 
+
+        Plane ASinglePlane(Vector3(1.34,23,1.004),4.5);
+        TheWorld->Log("ASinglePlane:");
+        TheWorld->Log(ASinglePlane);
+
+        TheWorld->Log("Streaming ASinglePlane to String Stream:");
+        stringstream XMLStringStream2;
+        XMLStringStream2 << ASinglePlane;
+        TheWorld->Log(XMLStringStream2.str());
+
+        Plane ASecondPlane(Vector3(0,0,0),0);
+        TheWorld->Log("ASecondPlane:");
+        TheWorld->Log(ASecondPlane);
+
+        TheWorld->Log("ReStreaming ASinglePlane from stringStream, to ASecondPlane:");
+        XMLStringStream2 >> ASecondPlane;
+        TheWorld->Log(ASecondPlane);
 
         #ifdef PHYSDEBUG
         TheWorld->Log("End of testing XML and Streaming test 3");

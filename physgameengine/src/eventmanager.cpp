@@ -61,7 +61,7 @@ namespace phys
     /// @internal
     /// @namespace phys::internal
     /// @brief This namespace is used for internal helper classes, and in general it should be ignored by game developers
-    /// @details This whole internal namespace is a dirty hack. This is where code goes that must implement classes or functions for the various subsytems the Physgame engine draws on.
+    /// @details This whole internal namespace is a home for dirty hacks and internal dependant code. This is where code goes that must implement classes or functions for the various subsytems the Physgame engine draws on.
     namespace internal
     {
         /// @internal
@@ -96,65 +96,98 @@ namespace phys
                 return 2;
             }
         }
+
+        /// @internal
+        /// @brief Used to increase encapsulation, just a bit.
+        struct EventManagerInternalData
+        {
+            //The Queue that all the events get stored in
+            std::list<EventBase*> EventQueue;
+
+            //a List of the Keyboard keys being watch
+            vector<MetaCode::InputCode> WatchKeyboardKeys;
+
+            // A list of the Mouse buttons being watched
+            vector<int> WatchMouseKeys;
+
+            //These are use to decide if mouse location should be polled.
+            bool PollMouseHor;
+            bool PollMouseVert;
+
+            // the cache of mouse buttons so that events can be thrown the entire time the mouse button is down
+            std::vector<std::pair<bool,bool> > MouseButtonCache;
+
+            //an internal queue of Window management events that happened during the frame that need to be converted into phys::Events
+            queue<RawEvent*> SDL_WmEvents;
+
+            // and internal queue of userinput events
+            queue<RawEvent*> SDL_UserInputEvents;
+
+            queue<RawEvent*> SDL_EventQ;
+        };
     } // /internal
 
     /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
     EventManager::EventManager()
     {
+        this->_Data = new internal::EventManagerInternalData;
         this->GameWorld = World::GetWorldPointer();
-        PollMouseHor = false;
-        PollMouseVert = false;
+        this->_Data->PollMouseHor = false;
+        this->_Data->PollMouseVert = false;
         this->Priority=-40;
-        MouseButtonCache.resize(16);
-        MouseButtonCache.insert(MouseButtonCache.begin(),16,std::pair<bool,bool>(false,false));
+        _Data->MouseButtonCache.resize(16);
+        _Data->MouseButtonCache.insert(_Data->MouseButtonCache.begin(),16,std::pair<bool,bool>(false,false));
     }
+
+    EventManager::~EventManager()
+    {
+        delete _Data;
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
+        {
+            delete *Iter;
+        }
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////////
     //These functions will give you the next event or help you manage the events
     ///////////////////////////////////////
-    unsigned int EventManager::GetRemainingEventCount()
+    size_t EventManager::GetRemainingEventCount()
     {
-        return EventQueue.size();
+        return _Data->EventQueue.size();
     }
 
     EventBase* EventManager::GetNextEvent()
     {
-        if(EventQueue.size()==0)
+        if(_Data->EventQueue.size()==0)
         {
                 return 0;
         }
-        EventBase* results = EventQueue.front();
+        EventBase* results = _Data->EventQueue.front();
         return results;
     }
 
     EventBase* EventManager::PopNextEvent()
     {
-        if(EventQueue.size()==0)
+        if(_Data->EventQueue.size()==0)
         {
                 return 0;
         }
-        EventBase* results = EventQueue.front();
-        EventQueue.pop_front();
+        EventBase* results = _Data->EventQueue.front();
+        _Data->EventQueue.pop_front();
         return results;
     }
 
     void EventManager::RemoveNextEvent()
     {
-        EventQueue.pop_front();
+        _Data->EventQueue.pop_front();
     }
 
     void EventManager::AddEvent(EventBase* EventToAdd)
     {
-        EventQueue.push_back(EventToAdd);
+        _Data->EventQueue.push_back(EventToAdd);
     }
-
-    const std::list<EventBase*>* EventManager::GetAllEvents() const
-    {
-        return &(this->EventQueue);
-    }
-
-
 
     void EventManager::UpdateEvents()
     {
@@ -165,29 +198,33 @@ namespace phys
 
     void EventManager::UpdateSystemEvents()
     {
+        #ifdef PHYSDEBUG
         this->PreProcessSDLEvents();
         this->GameWorld->Log("WM EventCount Pending:");
-        this->GameWorld->Log(SDL_WmEvents.size());
+        #endif
+        this->GameWorld->Log(_Data->SDL_WmEvents.size());
         /// @todo make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
     }
 
     void EventManager::UpdateUserInputEvents()
     {
         this->PreProcessSDLEvents();
+        #ifdef PHYSDEBUG
         this->GameWorld->Log("User Input EventCount Pending:");
         this->GameWorld->Log(SDL_UserInputEvents.size());
+        #endif
 
         EventUserInput* FromSDLEvent = new EventUserInput();
         EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
 
-        for(std::vector<std::pair<bool,bool> >::iterator it = MouseButtonCache.begin();it!=MouseButtonCache.end();it++)
+        for(std::vector<std::pair<bool,bool> >::iterator it = _Data->MouseButtonCache.begin();it!=_Data->MouseButtonCache.end();it++)
         {
             (*it).first = false;
         }
         //read through the pending user input events and add those codes
-        while( !SDL_UserInputEvents.empty() )
+        while( !_Data->SDL_UserInputEvents.empty() )
         {
-            RawEvent* CurrentRawEvent = SDL_UserInputEvents.front();
+            RawEvent* CurrentRawEvent = _Data->SDL_UserInputEvents.front();
 
             if(CurrentRawEvent->type == SDL_MOUSEBUTTONDOWN || CurrentRawEvent->type == SDL_MOUSEBUTTONUP)
             {
@@ -201,14 +238,14 @@ namespace phys
                 }else{
                     if(CurrentRawEvent->button.state==SDL_PRESSED /*&& !MouseButtonCache[CurrentRawEvent->button.button]*/){
                         FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
-                        MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
-                        MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
+                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
                     /*}else if(CurrentRawEvent->button.state==SDL_PRESSED && MouseButtonCache[CurrentRawEvent->button.button]){
                         FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);*/
                     }else if(CurrentRawEvent->button.state==SDL_RELEASED /*&& MouseButtonCache[CurrentRawEvent->button.button]*/){
                         FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
-                        MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
-                        MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
+                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
                     }
                 }
             }else{
@@ -216,12 +253,12 @@ namespace phys
             }
 
             delete CurrentRawEvent;
-            SDL_UserInputEvents.pop(); //NEXT!!!
+            _Data->SDL_UserInputEvents.pop(); //NEXT!!!
         }
 
         /// @todo This isn't pretty, should be replaced with a more elegant solution that'll work on keyboard events as well.
         unsigned int x=0;
-        for(std::vector<std::pair<bool,bool> >::iterator it = MouseButtonCache.begin();it!=MouseButtonCache.end();it++)
+        for(std::vector<std::pair<bool,bool> >::iterator it = _Data->MouseButtonCache.begin();it!=_Data->MouseButtonCache.end();it++)
         {
             if(!((*it).first) && (*it).second)
             {
@@ -256,7 +293,7 @@ namespace phys
     EventBase* EventManager::GetNextSpecificEvent(EventBase::EventType SpecificType)
     {
         EventBase* results = 0;
-        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
@@ -270,12 +307,12 @@ namespace phys
     EventBase* EventManager::PopNextSpecificEvent(EventBase::EventType SpecificType)
     {
         EventBase* results = 0;
-        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
                 results = (*Iter);
-                EventQueue.erase(Iter);
+                _Data->EventQueue.erase(Iter);
                 return results;
             }
         }
@@ -284,11 +321,11 @@ namespace phys
 
     void EventManager::RemoveNextSpecificEvent(EventBase::EventType SpecificType)
     {
-        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
-                EventQueue.erase(Iter);
+                _Data->EventQueue.erase(Iter);
             }
         }
     }
@@ -297,7 +334,7 @@ namespace phys
     {
         std::list<EventBase*>* TempList = new std::list<EventBase*>;
 
-        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
@@ -309,11 +346,11 @@ namespace phys
 
     void EventManager::RemoveAllSpecificEvents(EventBase::EventType SpecificType)
     {
-        for(std::list<EventBase*>::iterator Iter = EventQueue.begin(); Iter!=EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
-                this->EventQueue.remove(*Iter);
+                this->_Data->EventQueue.remove(*Iter);
             }
         }
     }
@@ -425,26 +462,26 @@ namespace phys
         //Check for keyboard code
         if ( MetaCode::KEY_LAST > InputToTryPolling.GetCode() && InputToTryPolling.GetCode() > MetaCode::KEY_FIRST)
         {
-            this->WatchKeyboardKeys.push_back(InputToTryPolling.GetCode());
+            this->_Data->WatchKeyboardKeys.push_back(InputToTryPolling.GetCode());
             ItFailed=false;
         }
 
         //if it is a specific mouse button, then
         if ( MetaCode::MOUSEBUTTON == InputToTryPolling.GetCode())
         {
-            this->WatchMouseKeys.push_back(InputToTryPolling.GetID());
+            this->_Data->WatchMouseKeys.push_back(InputToTryPolling.GetID());
             ItFailed=false;
         }
 
         //Mouse Movement
         if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToTryPolling.GetCode())
         {
-            PollMouseVert = true;
+            this->_Data->PollMouseVert = true;
             ItFailed=false;
         }
         if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == InputToTryPolling.GetCode())
         {
-            PollMouseHor = true;
+            this->_Data->PollMouseHor = true;
             ItFailed=false;
         }
 
@@ -463,11 +500,11 @@ namespace phys
             supported=true;
 
             vector<MetaCode::InputCode>::iterator KeyIter;
-            for(KeyIter = this->WatchKeyboardKeys.begin(); KeyIter!=this->WatchKeyboardKeys.end(); KeyIter++) //Check Each
+            for(KeyIter = this->_Data->WatchKeyboardKeys.begin(); KeyIter!=this->_Data->WatchKeyboardKeys.end(); KeyIter++) //Check Each
             {
                 if( *KeyIter == InputToStopPolling.GetCode())
                 {
-                    this->WatchKeyboardKeys.erase(KeyIter);
+                    this->_Data->WatchKeyboardKeys.erase(KeyIter);
                     ItFailed=false;
                 }
             }
@@ -479,11 +516,11 @@ namespace phys
             supported=true;
 
             vector<int>::iterator MouseIter;
-            for(MouseIter = this->WatchMouseKeys.begin(); MouseIter!=this->WatchMouseKeys.end(); MouseIter++) //Check Each
+            for(MouseIter = this->_Data->WatchMouseKeys.begin(); MouseIter!=this->_Data->WatchMouseKeys.end(); MouseIter++) //Check Each
             {
                 if( *MouseIter == InputToStopPolling.GetCode())
                 {
-                    this->WatchMouseKeys.erase(MouseIter);
+                    this->_Data->WatchMouseKeys.erase(MouseIter);
                     ItFailed=false;
                 }
             }
@@ -493,18 +530,18 @@ namespace phys
         if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToStopPolling.GetCode())
         {
             supported=true;
-            if(PollMouseVert == true)
+            if(this->_Data->PollMouseVert == true)
                 {ItFailed=false;}
-            PollMouseVert = false;
+            this->_Data->PollMouseVert = false;
 
         }
 
         if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == InputToStopPolling.GetCode())
         {
             supported=true;
-            if(PollMouseHor == true)
+            if(this->_Data->PollMouseHor == true)
                 {ItFailed=false;}
-            PollMouseHor = false;
+            this->_Data->PollMouseHor = false;
         }
 
         if (!supported)
@@ -530,13 +567,13 @@ namespace phys
     //Internal private Polling routine
     void EventManager::PollKeyboard(vector<MetaCode> &CodeBag)
     {
-        if(this->WatchKeyboardKeys.size()>0)
+        if(this->_Data->WatchKeyboardKeys.size()>0)
         {
             int* KeyCount = 0;
             Uint8* KeyboardSnapshot = SDL_GetKeyState(KeyCount);
 
             vector<MetaCode::InputCode>::iterator iter;
-            for(iter = this->WatchKeyboardKeys.begin(); iter != (this->WatchKeyboardKeys.end()) ; iter++)
+            for(iter = this->_Data->WatchKeyboardKeys.begin(); iter != (this->_Data->WatchKeyboardKeys.end()) ; iter++)
             {
                 if( *iter < MetaCode::KEY_LAST )//Is it a valid keycode
                 {
@@ -556,10 +593,10 @@ namespace phys
     //Internal private Polling routine
     void EventManager::PollMouseButtons(vector<MetaCode> &CodeBag)
     {
-        if(this->WatchMouseKeys.size()>0)
+        if(this->_Data->WatchMouseKeys.size()>0)
         {
             vector<int>::iterator iter;
-            for(iter = this->WatchMouseKeys.begin(); iter != (this->WatchMouseKeys.end()) ; iter++)
+            for(iter = this->_Data->WatchMouseKeys.begin(); iter != (this->_Data->WatchMouseKeys.end()) ; iter++)
             {
                 if(SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(*iter))
                 {
@@ -576,17 +613,17 @@ namespace phys
 
     void EventManager::PollMouseLocation(vector<MetaCode> &CodeBag)
     {
-        if( PollMouseHor || PollMouseVert )
+        if( this->_Data->PollMouseHor || this->_Data->PollMouseVert )
         {
             int Vert=0;
             int Hor=0;
             SDL_GetMouseState(&Hor, &Vert);
-            if( PollMouseVert )
+            if( this->_Data->PollMouseVert )
             {
                 MetaCode temp(Vert,0,MetaCode::MOUSEABSOLUTEVERTICAL);
                 CodeBag.push_back(temp);
             }
-            if( PollMouseHor )
+            if( this->_Data->PollMouseHor )
             {
                 MetaCode temp(Hor,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
                 CodeBag.push_back(temp);
@@ -615,7 +652,7 @@ namespace phys
                 case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
                 case SDL_QUIT:          //when SDL closes
                 case SDL_SYSWMEVENT:
-                    SDL_WmEvents.push(ScopeHolder);
+                    _Data->SDL_WmEvents.push(ScopeHolder);
                     break;
                 case SDL_KEYDOWN:
                 case SDL_KEYUP:
@@ -627,25 +664,26 @@ namespace phys
                 case SDL_JOYBUTTONUP:
                 case SDL_JOYBALLMOTION:
                 case SDL_JOYHATMOTION:
-                    SDL_UserInputEvents.push(ScopeHolder);
+                    _Data->SDL_UserInputEvents.push(ScopeHolder);
                     break;
                 case SDL_USEREVENT://Never thrown by SDL, but could be added by a user
                 default:
                     throw ("Unknown SDL Event Inserted");
                     break;
             }
+            _Data->SDL_EventQ.push(ScopeHolder);
         }
     }
 
     void EventManager::UpdateQuitEvents()
     {
-        if (NULL == SDL_GetEventFilter())           //Verify the Event filter is installed, if not, then install it.
+        if (NULL == SDL_GetEventFilter())                       //Verify the Event filter is installed, if not, then install it.
         {
             SDL_SetEventFilter( internal::PhysSDLFilter );
         }else{
-            if(4==internal::PhysSDLFilter(0))                 //Pass it a null pointer to get it to "Not Callback Mode"
+            if(4==internal::PhysSDLFilter(0))                   //Pass it a null pointer to get it to "Not Callback Mode"
             {
-                this->AddEvent(new EventQuit());    //We need to make a quit event
+                this->AddEvent(new EventQuit());                //We need to make a quit event
             }else{
                 //all clear
             }

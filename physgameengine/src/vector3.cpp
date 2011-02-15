@@ -393,7 +393,7 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 {
     #ifdef PHYSXML
-        phys::xml::Document Doc;
+        /*phys::xml::Document Doc;
         Doc.Load("");           // This sets the encoding to UTF8 ?!
         phys::xml::Node VecNode = Doc.AppendChild("Vector3");
 
@@ -419,8 +419,8 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
         }
 
         Doc.Save(stream,"\t",phys::xml::FormatNoDeclaration | phys::xml::FormatRaw);
-
-        //stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" />";
+        */
+        stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" />";
     #else
         stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
     #endif // \PHYSXML
@@ -430,55 +430,27 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 #ifdef PHYSXML
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
 {
-    char ReadOne = 0;
-    phys::String OneTag;
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Vector3", OneTag) );
 
-    while (!stream.get(ReadOne).fail() && !stream.eof())     //Read one character and if you didn't fail continue the loop
+    Doc->GetFirstChild() >> Vec;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
     {
-        OneTag.push_back(ReadOne);
-        if ( '>' == ReadOne )               //Assumes native Char enconding... This is a bad deal.
-            { break; }
-    }
-
-    try
-    {
-        phys::xml::Document Doc;
-        if(!Doc.Load(OneTag.c_str()))
-            { phys::World::GetWorldPointer()->LogAndThrow("Could not Deserialize XML Stream which should contain Vector3 xml."); }
-
-        phys::xml::Node VecNode = Doc.GetFirstChild();
-        if (VecNode)
-        {
-            if( phys::String("Vector3") == phys::String(VecNode.Name()))
-            {
-                if(VecNode.GetAttribute("Version").AsInt() >= 1)
-                {
-                    Vec.X=VecNode.GetAttribute("X").AsReal();
-                    Vec.Y=VecNode.GetAttribute("Y").AsReal();
-                    Vec.Z=VecNode.GetAttribute("Z").AsReal();
-                }else{
-                    phys::World::GetWorldPointer()->LogAndThrow("Vector3 incompatible serialized version.");
-                }
-            }else{
-                //phys::World::GetWorldPointer()->Log(VecNode.Name());
-                phys::World::GetWorldPointer()->LogAndThrow("Vector3 not next item in stream, failed to serialize.");
-            }
-        }else{
-            phys::World::GetWorldPointer()->LogAndThrow("No valid XML tag in stream, when attempting to deserialize Vector3.");
-        }
-
-        return stream;
-    } catch (phys::Exception e) {
-        if (stream.eof())           // if the stream is bad for reasons we can fix, unwind the stream before exiting. then rethrrow
-        {
-            stream.clear();
-            stream.seekg(-OneTag.length(),ios_base::cur);
-        }
-        throw e;
-
+        Vec.X=OneNode.GetAttribute("X").AsReal();
+        Vec.Y=OneNode.GetAttribute("Y").AsReal();
+        Vec.Z=OneNode.GetAttribute("Z").AsReal();
+    }else{
+        throw( phys::Exception("Incompatible XML Version for Vector3: Not Version 1"));
     }
 }
 #endif // \PHYSXML
+
 Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom)
 {
     VecTo.x=VecFrom.X;

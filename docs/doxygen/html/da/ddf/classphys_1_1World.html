@@ -66,9 +66,11 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7dbf83226aaa109a09efab00ae682761"></a><!-- doxytag: member="phys::World::Log" ref="a7dbf83226aaa109a09efab00ae682761" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a7dbf83226aaa109a09efab00ae682761">Log</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Force any outstanding logs to be commited to logs. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a372ee96d395d735531f755fc0a72de4a">LogAndThrow</a> (<a class="el" href="../../dc/d47/classphys_1_1Exception.html">Exception</a> Err)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the preferred way to throw an exception.  <a href="#a372ee96d395d735531f755fc0a72de4a"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top">void&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50">LogAndThrow</a> (T Message)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the preferred way to throw an exception. It streams any thrown object to the log.  <a href="#a88e6bdee6b972111b6804ca746738c50"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log.  <a href="#a88e6bdee6b972111b6804ca746738c50"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#abf6cb15d85be4e7dcb99db24f979319b">LogString</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;message)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Log String directly with no conversion.  <a href="#abf6cb15d85be4e7dcb99db24f979319b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1World.html#a1f0139bbc9561bcf18844be25e4adc73">GetWindowName</a> ()</td></tr>
@@ -140,7 +142,7 @@ Static Protected Attributes</h2></td></tr>
 <p>This is the main entry point for the entire library. </p>
 <p>The physworld coordinates and integrates all the underlying subsystems, Currently Ogre3d is used for 3d Graphics, Bullet is used for physics, and SDL is used for user input and window management. Games will need a container for all the playing pieces. It makes sense to tie all of this functionality into one world object. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00175">175</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00176">176</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a87775405d6e7c8f2926fe6e4cd12de10"></a><!-- doxytag: member="phys::World::World" ref="a87775405d6e7c8f2926fe6e4cd12de10" args="(const Vector3 &amp;GeographyLowerBounds_, const Vector3 &amp;GeographyUpperbounds_, SceneManager::SceneManagerType SceneType, const unsigned short int &amp;MaxPhysicsProxies_=1024, std::string LogFileName=&quot;Physgame.log&quot;)" -->
 <div class="memitem">
@@ -845,7 +847,35 @@ template&lt;class T &gt; </div>
 </dl>
 <p>This also commits any outstanding log messages that are waiting in the <a class="el" href="../../da/ddf/classphys_1_1World.html#a6d8b325a077afc924afb70c259ec0299" title="This is another way to put data in the log.">World::LogStream</a>, and any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the Only ones to produce meaningul log messages. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00277">277</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00278">278</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a372ee96d395d735531f755fc0a72de4a"></a><!-- doxytag: member="phys::World::LogAndThrow" ref="a372ee96d395d735531f755fc0a72de4a" args="(Exception Err)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::World::LogAndThrow </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../dc/d47/classphys_1_1Exception.html">Exception</a>&nbsp;</td>
+          <td class="paramname"> <em>Err</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This is the preferred way to throw an exception. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Err</em>&nbsp;</td><td>A <a class="el" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a> to be logged and thrown </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00293">293</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -867,7 +897,7 @@ template&lt;class T &gt; </div>
 </div>
 <div class="memdoc">
 
-<p>This is the preferred way to throw an exception. It streams any thrown object to the log. </p>
+<p>This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log. </p>
 <p>This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data types that overload the stream insertion operator ( &lt;&lt; ) </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -876,7 +906,7 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00294">294</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00304">304</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -928,6 +958,35 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="ae3be85997185935421bf5230651d8e37"></a><!-- doxytag: member="phys::World::RemoveManager" ref="ae3be85997185935421bf5230651d8e37" args="(ManagerBase *ManagerToRemove)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::World::RemoveManager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html">ManagerBase</a> *&nbsp;</td>
+          <td class="paramname"> <em>ManagerToRemove</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This removes a manager by finding the matching pointer. </p>
+<p>Currently this just iterates through the list looking for the matching pointer, at some future point this could replaced with more sophisticated algorithm, but for now assume this operates in linear time. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>ManagerToRemove</em>&nbsp;</td><td>A pointer to the manager to be removed </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00446">446</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ad885d1102ecdd13cc277ee3f7dfcb742"></a><!-- doxytag: member="phys::World::RemoveManager" ref="ad885d1102ecdd13cc277ee3f7dfcb742" args="(const ManagerBase::ManagerTypeName &amp;ManagersToRemoveType, short unsigned int WhichOne)" -->
 <div class="memitem">
 <div class="memproto">
@@ -964,35 +1023,6 @@ template&lt;class T &gt; </div>
 </dl>
 
 <p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00463">463</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ae3be85997185935421bf5230651d8e37"></a><!-- doxytag: member="phys::World::RemoveManager" ref="ae3be85997185935421bf5230651d8e37" args="(ManagerBase *ManagerToRemove)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::World::RemoveManager </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html">ManagerBase</a> *&nbsp;</td>
-          <td class="paramname"> <em>ManagerToRemove</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>This removes a manager by finding the matching pointer. </p>
-<p>Currently this just iterates through the list looking for the matching pointer, at some future point this could replaced with more sophisticated algorithm, but for now assume this operates in linear time. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>ManagerToRemove</em>&nbsp;</td><td>A pointer to the manager to be removed </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00446">446</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1111,10 +1141,32 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000035">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000034">Todo:</a></b></dt><dd>TODO Change the name of an application once it is running </dd></dl>
 </p>
 
 <p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00383">383</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ae807112b9494a94a6ff0d60df0a4d424"></a><!-- doxytag: member="phys::World::UpdateManagerOrder" ref="ae807112b9494a94a6ff0d60df0a4d424" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::World::UpdateManagerOrder </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This forces the list of managers to be resorted. </p>
+<p>This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers </p>
+
+<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00535">535</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
 
 </div>
 </div>
@@ -1157,28 +1209,6 @@ template&lt;class T &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ae807112b9494a94a6ff0d60df0a4d424"></a><!-- doxytag: member="phys::World::UpdateManagerOrder" ref="ae807112b9494a94a6ff0d60df0a4d424" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::World::UpdateManagerOrder </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>This forces the list of managers to be resorted. </p>
-<p>This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers </p>
-
-<p>Definition at line <a class="el" href="../../d8/d6c/world_8cpp_source.html#l00535">535</a> of file <a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a>.</p>
-
-</div>
-</div>
 <hr/><h2>Member Data Documentation</h2>
 <a class="anchor" id="a6d8b325a077afc924afb70c259ec0299"></a><!-- doxytag: member="phys::World::LogStream" ref="a6d8b325a077afc924afb70c259ec0299" args="" -->
 <div class="memitem">
@@ -1194,7 +1224,7 @@ template&lt;class T &gt; </div>
 <p>This is another way to put data in the log. </p>
 <p>The contents of this will be commited to the log once per frame, just before rendering, or whenever <a class="el" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60" title="Runtime event and message logging.">World::Log</a> is called. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00288">288</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00289">289</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1212,7 +1242,7 @@ template&lt;class T &gt; </div>
 <p>A pointer to the one and only world. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00216">216</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d97/world_8h_source.html#l00217">217</a> of file <a class="el" href="../../d0/d97/world_8h_source.html">world.h</a>.</p>
 
 </div>
 </div>
@@ -1221,7 +1251,7 @@ template&lt;class T &gt; </div>
 <li><a class="el" href="../../d8/d6c/world_8cpp_source.html">world.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Feb 13 2011 17:19:56 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:50 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

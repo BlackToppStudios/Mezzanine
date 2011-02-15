@@ -66,6 +66,11 @@ namespace phys
     class EventRenderTime;
     class EventUserInput;
     class EventQuit;
+
+    namespace internal {
+        class EventManagerInternalData;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class EventManager
     /// @headerfile eventmanager.h
@@ -92,24 +97,10 @@ namespace phys
     class PHYS_LIB EventManager: public ManagerBase
     {
         private:
-            //The Default Physics worlds that this Eventmanager is expected to interact with
-            //World* ParentWorld;
-
-            //The Queue that all the events get stored in
-            std::list<EventBase*> EventQueue;
+            internal::EventManagerInternalData* _Data;
 
             //Checks for quit messages and adds them to the queue
             void UpdateQuitEvents();
-
-            // A list of the Mouse buttons being watched
-            vector<int> WatchMouseKeys;
-
-            //a List of the Keyboard keys being watch
-            vector<MetaCode::InputCode> WatchKeyboardKeys;
-
-            //These are use to decide if mouse location should be polled.
-            bool PollMouseHor;
-            bool PollMouseVert;
 
             //These does the heavy lifting during the polling operation
             //All of these poll the input subsystem and add MetaCodes to the vector they are passed.
@@ -120,19 +111,19 @@ namespace phys
             //SDL event specific Items
             //This function will get all the events from SDL and Sort them into one of two Queues
             void PreProcessSDLEvents();
-            queue<RawEvent*> SDL_WmEvents;
-            queue<RawEvent*> SDL_UserInputEvents;
 
+            /// @todo remove this in a clean way
             Vector2 CurrentMouseCoords;
 
-            std::vector<std::pair<bool,bool> > MouseButtonCache;
-
         public:
-            /// @todo TODO build a deconstructor that deletes all the events still in the queue
-
             /// @brief Default constructor
             /// @details This creates an empty PhysEventManger
             EventManager();
+
+            /// @brief Default Deconstructor
+            /// @details This deletes everything still in the event manager and tears it down.
+            ~EventManager();
+
 
         ///////////////////////////////////////////////////////////////////////////////
         // Management functions - Work with all events
@@ -140,7 +131,7 @@ namespace phys
             /// @brief Gets a count of events
             /// @details This returns a total count of all events stored in this PhysEventManager.
             /// @return This returns an unsigned integer with the amount of of total events
-            unsigned int GetRemainingEventCount();
+            size_t GetRemainingEventCount();
 
             /// @brief Return a pointer to the Next event
             /// @details This returns a pointer to the next PhysEvent. It is advisable to use this for performance reasons
@@ -185,11 +176,6 @@ namespace phys
             /// and plans on using UpdateSystemEvents()
             void UpdateUserInputEvents();
 
-            /// @brief This returns a complete list of all events in the event manager
-            /// @details This simply returns a const pointer of the internal event queue.
-            /// @warning The pointers contained in this list must be used carefully. Do not delete them, this will cause errors.
-            /// @return This returns a const pointer the list<EventBase*> which is this classes event pointer list. Use this carefully, even though it is a const pointer it is still possible to mess around with internals in an innapropriate way. Treat this as if it were read only.
-            const std::list<EventBase*>* GetAllEvents() const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - RenderTime Events

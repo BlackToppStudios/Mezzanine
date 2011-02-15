@@ -179,10 +179,10 @@ namespace phys
 
     void ActorContainerVector::SetGameWorld( World* GameWorld_, bool AddToWorld, bool RemoveFromWorld)
     {
-        if (RemoveFromWorld && this->GameWorld != NULL)
+        if (RemoveFromWorld && World::GetWorldPointer() != NULL)
         {
             for( vector<ActorBase*>::iterator c=this->begin(); c!=this->end(); c++)
-                { (*c)->RemoveObjectFromWorld(this->GameWorld); }
+                { (*c)->RemoveObjectFromWorld(World::GetWorldPointer()); }
         }
 
         this->GameWorld = GameWorld_;

@@ -8,6 +8,7 @@ Minor tools and addition to assist with the XML system.
 
 
 {\ttfamily \#include \char`\"{}xml.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}world.h\char`\"{}}\par
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -23,6 +24,13 @@ namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
 \begin{DoxyCompactList}\small\item\em This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate. \item\end{DoxyCompactList}
 
 \end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+String \hyperlink{namespacephys_1_1xml_a9d912900518f0d84d323d1514dfb93a2}{phys::xml::GetOneTag} (std::istream \&stream)
+\begin{DoxyCompactList}\small\item\em Gets the first tag out of the Stream and returns it as a String. \item\end{DoxyCompactList}\item 
+Document $\ast$ \hyperlink{namespacephys_1_1xml_aa48ad222ba9a6fe46a76c2add6923028}{phys::xml::PreParseClassFromSingleTag} (const String \&NameSpace, const String \&ClassName, const String \&OneTag, Whole MinVersion)
+\begin{DoxyCompactList}\small\item\em Perform a basic series of checks for extracting meaning from a single xml tag. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}

@@ -40,7 +40,13 @@
 #ifndef _plane_cpp
 #define _plane_cpp
 
+#include <iostream>
+#include <memory>
+
+#include "exception.h"
 #include "plane.h"
+#include "world.h"
+#include "xml.h"
 
 #include "Ogre.h"
 
@@ -82,11 +88,40 @@ namespace phys
         { this->ExtractOgrePlane(Plane2); }
 
 }
-
+#ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::Plane& x)
 {
-    stream << "[Normal:" << x.Normal << ",Distance: " << x.Distance << "]";
+    stream << "<Plane Version=\"1\" Distance=\"" << x.Distance << "\" >" << x.Normal << "</Plane>";
     return stream;
 }
+
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Plane& x)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Plane", OneTag) );
+
+    Doc->GetFirstChild() >> x;
+
+    return stream;
+}
+
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::Plane& x)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        x.Distance=OneNode.GetAttribute("Distance").AsReal();
+        if(OneNode.GetFirstChild())
+        {
+            OneNode.GetFirstChild() >> x.Normal;
+        }else{
+            throw(phys::Exception("Normal not found while parsing phys::Plane"));
+        }
+    }else{
+        throw( phys::Exception("Incompatible XML Version for Vector3: Not Version 1"));
+    }
+}
+
+#endif // \phys_xml
 
 #endif
