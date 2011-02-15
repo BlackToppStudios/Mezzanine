@@ -42,6 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
+#include "xml.h"
 
 //Forward Declarations for wierd compatibility functions
 class btVector3;
@@ -331,7 +332,16 @@ std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Vector3& x
 /// @param Vec The phys::Vector3 that will accept the values from the xml
 /// @param stream The place to get the characters from, that define the phys::Vector3.
 /// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
+/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec);
+
+/// @brief Converts an XML node into a phys::Vector3
+/// @details If PHYSXML is enabled, this will convert an xml::Node will a valid serialized phys::Vector3 into a phys::Vector3
+/// @param OneNode An XML Node containing the the text of a Vector3
+/// @param Vec the phys::Vector3 to store the deserialized Vector3
+/// @return This returns a reference to the xml::Node for operator chaining or whatever.
+/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
+phys::xml::Node& PHYS_LIB  operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec);
 #endif // \PHYSXML
 
 /// @brief Conversion Assignment Operator to Ogre::Vector3.

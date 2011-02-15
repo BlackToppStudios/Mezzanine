@@ -113,6 +113,9 @@ namespace phys
             //These are use to decide if mouse location should be polled.
             bool PollMouseHor;
             bool PollMouseVert;
+
+            // the cache of mouse buttons so that events can be thrown the entire time the mouse button is down
+            std::vector<std::pair<bool,bool> > MouseButtonCache;
         };
     } // /internal
 

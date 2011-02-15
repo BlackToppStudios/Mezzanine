@@ -393,7 +393,7 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 {
     #ifdef PHYSXML
-        phys::xml::Document Doc;
+        /*phys::xml::Document Doc;
         Doc.Load("");           // This sets the encoding to UTF8 ?!
         phys::xml::Node VecNode = Doc.AppendChild("Vector3");
 
@@ -419,8 +419,8 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
         }
 
         Doc.Save(stream,"\t",phys::xml::FormatNoDeclaration | phys::xml::FormatRaw);
-
-        //stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" />";
+        */
+        stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" />";
     #else
         stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
     #endif // \PHYSXML
@@ -431,14 +431,23 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
 {
     phys::String OneTag( phys::xml::GetOneTag(stream) );
-    phys::xml::Document* Doc = phys::xml::PreParseClassFromSingleTag("phys::", "Vector3", OneTag, 1);
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Vector3", OneTag) );
 
-    Vec.X=Doc->GetFirstChild().GetAttribute("X").AsReal();
-    Vec.Y=Doc->GetFirstChild().GetAttribute("Y").AsReal();
-    Vec.Z=Doc->GetFirstChild().GetAttribute("Z").AsReal();
+    Doc->GetFirstChild() >> Vec;
 
-    delete Doc;
     return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        Vec.X=OneNode.GetAttribute("X").AsReal();
+        Vec.Y=OneNode.GetAttribute("Y").AsReal();
+        Vec.Z=OneNode.GetAttribute("Z").AsReal();
+    }else{
+        throw( phys::Exception("Incompatible XML Version for Vector3: Not Version 1"));
+    }
 }
 #endif // \PHYSXML
 

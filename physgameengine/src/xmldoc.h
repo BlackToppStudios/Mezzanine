@@ -1432,10 +1432,9 @@ namespace phys
         /// @param NameSpace Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example "phys::"
         /// @param ClassName This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages.
         /// @param OneTag One XML tag/elements worth of text to deserialize.
-        /// @param MinVersion The minimum version of the xml for the given class that you plan of deserializing.
         /// @return An pointer to xml::Document that you are now the owner of and must delete, that has the data parse and ready to access.
-        /// @throw This can throw
-        Document* PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag, Whole MinVersion);
+        /// @throw This can throw a phys::exception in the event that the xml cannot be parsed.
+        Document* PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag);
 
     }
 }

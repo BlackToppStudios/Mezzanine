@@ -42,6 +42,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <memory>
 
 #include "exception.h"
 #include "plane.h"
@@ -99,26 +100,29 @@ std::ostream& operator << (std::ostream& stream, const phys::Plane& x)
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Plane& x)
 {
     phys::String OneTag( phys::xml::GetOneTag(stream) );
-    phys::xml::Document* Doc = phys::xml::PreParseClassFromSingleTag("phys::", "Plane", OneTag, 1);
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Plane", OneTag) );
 
-    x.Distance=Doc->GetFirstChild().GetAttribute("Distance").AsReal();
+    Doc->GetFirstChild() >> x;
 
-    phys::xml::Node NormalNode = Doc->GetFirstChild().GetFirstChild();
-    if (NormalNode)
-    {
-        std::stringstream NodeText;
-        NormalNode.Print( NodeText);
-        phys::World::GetWorldPointer()->Log("NodeText.str():");
-        phys::World::GetWorldPointer()->Log(NodeText.str());
-        NodeText >> x.Normal;
-    }else{
-        phys::World::GetWorldPointer()->LogAndThrow(phys::Exception("Normal not found while parsing phys::Plane"));
-    }
-
-    delete Doc;
     return stream;
-
 }
+
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::Plane& x)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        x.Distance=OneNode.GetAttribute("Distance").AsReal();
+        if(OneNode.GetFirstChild())
+        {
+            OneNode.GetFirstChild() >> x.Normal;
+        }else{
+            throw(phys::Exception("Normal not found while parsing phys::Plane"));
+        }
+    }else{
+        throw( phys::Exception("Incompatible XML Version for Vector3: Not Version 1"));
+    }
+}
+
 #endif // \phys_xml
 
 #endif

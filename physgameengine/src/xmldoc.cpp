@@ -100,7 +100,7 @@ namespace phys
             return OneTag;
         }
 
-        Document* PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag, Whole MinVersion)
+        Document* PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag)
         {
             Document* Doc = new Document();
             if(!Doc->Load(OneTag.c_str()))
@@ -111,16 +111,13 @@ namespace phys
             {
                 if( String(ClassName) == String(InputNode.Name()))
                 {
-                    if(InputNode.GetAttribute("Version").AsInt() >= 1)
-                    {
-                        return Doc;
-                    }else{
-                        World::GetWorldPointer()->LogAndThrow(Exception(StringCat(NameSpace, ClassName, " incompatible serialized version.")));
-                    }
+                    return Doc;
                 }else{
+                    delete Doc;
                     World::GetWorldPointer()->LogAndThrow(Exception(StringCat(NameSpace, ClassName, " not next item in stream, failed to serialize.")));
                 }
             }else{
+                delete Doc;
                 World::GetWorldPointer()->LogAndThrow(Exception(StringCat("No valid XML tag in stream, when attempting to deserialize", NameSpace, ClassName)));
             }
         }
