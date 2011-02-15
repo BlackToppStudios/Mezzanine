@@ -601,7 +601,7 @@ void LoadContent()
 
         TheWorld->Log("XML Streaming Test");
 
-        Vector3 ASinglePoint(1,2,3);
+        Vector2 ASinglePoint(1,2);
         TheWorld->Log("ASinglePoint:");
         TheWorld->Log(ASinglePoint);
 
@@ -610,7 +610,7 @@ void LoadContent()
         XMLStringStream << ASinglePoint;
         TheWorld->Log(XMLStringStream.str());
 
-        Vector3 ASecondPoint(0,0,0);
+        Vector2 ASecondPoint(0,0);
         TheWorld->Log("ASecondPoint:");
         TheWorld->Log(ASecondPoint);
 
@@ -619,7 +619,7 @@ void LoadContent()
         TheWorld->Log(ASecondPoint);
 
 
-        Plane ASinglePlane(Vector3(1,2,3),4);
+        Plane ASinglePlane(Vector3(1.34,23,1.004),4.5);
         TheWorld->Log("ASinglePlane:");
         TheWorld->Log(ASinglePlane);
 

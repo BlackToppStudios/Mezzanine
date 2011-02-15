@@ -102,10 +102,6 @@ namespace phys
             //Checks for quit messages and adds them to the queue
             void UpdateQuitEvents();
 
-
-
-
-
             //These does the heavy lifting during the polling operation
             //All of these poll the input subsystem and add MetaCodes to the vector they are passed.
             void PollKeyboard(vector<MetaCode> &CodeBag);
@@ -115,12 +111,9 @@ namespace phys
             //SDL event specific Items
             //This function will get all the events from SDL and Sort them into one of two Queues
             void PreProcessSDLEvents();
-            queue<RawEvent*> SDL_WmEvents;
-            queue<RawEvent*> SDL_UserInputEvents;
 
+            /// @todo remove this in a clean way
             Vector2 CurrentMouseCoords;
-
-            std::vector<std::pair<bool,bool> > MouseButtonCache;
 
         public:
             /// @brief Default constructor

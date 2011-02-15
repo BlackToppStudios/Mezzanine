@@ -41,7 +41,6 @@
 #define _plane_cpp
 
 #include <iostream>
-#include <sstream>
 #include <memory>
 
 #include "exception.h"

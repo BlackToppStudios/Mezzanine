@@ -116,6 +116,14 @@ namespace phys
 
             // the cache of mouse buttons so that events can be thrown the entire time the mouse button is down
             std::vector<std::pair<bool,bool> > MouseButtonCache;
+
+            //an internal queue of Window management events that happened during the frame that need to be converted into phys::Events
+            queue<RawEvent*> SDL_WmEvents;
+
+            // and internal queue of userinput events
+            queue<RawEvent*> SDL_UserInputEvents;
+
+            queue<RawEvent*> SDL_EventQ;
         };
     } // /internal
 
@@ -128,12 +136,13 @@ namespace phys
         this->_Data->PollMouseHor = false;
         this->_Data->PollMouseVert = false;
         this->Priority=-40;
-        MouseButtonCache.resize(16);
-        MouseButtonCache.insert(MouseButtonCache.begin(),16,std::pair<bool,bool>(false,false));
+        _Data->MouseButtonCache.resize(16);
+        _Data->MouseButtonCache.insert(_Data->MouseButtonCache.begin(),16,std::pair<bool,bool>(false,false));
     }
 
     EventManager::~EventManager()
     {
+        delete _Data;
         for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
         {
             delete *Iter;
@@ -189,29 +198,33 @@ namespace phys
 
     void EventManager::UpdateSystemEvents()
     {
+        #ifdef PHYSDEBUG
         this->PreProcessSDLEvents();
         this->GameWorld->Log("WM EventCount Pending:");
-        this->GameWorld->Log(SDL_WmEvents.size());
+        #endif
+        this->GameWorld->Log(_Data->SDL_WmEvents.size());
         /// @todo make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
     }
 
     void EventManager::UpdateUserInputEvents()
     {
         this->PreProcessSDLEvents();
+        #ifdef PHYSDEBUG
         this->GameWorld->Log("User Input EventCount Pending:");
         this->GameWorld->Log(SDL_UserInputEvents.size());
+        #endif
 
         EventUserInput* FromSDLEvent = new EventUserInput();
         EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
 
-        for(std::vector<std::pair<bool,bool> >::iterator it = MouseButtonCache.begin();it!=MouseButtonCache.end();it++)
+        for(std::vector<std::pair<bool,bool> >::iterator it = _Data->MouseButtonCache.begin();it!=_Data->MouseButtonCache.end();it++)
         {
             (*it).first = false;
         }
         //read through the pending user input events and add those codes
-        while( !SDL_UserInputEvents.empty() )
+        while( !_Data->SDL_UserInputEvents.empty() )
         {
-            RawEvent* CurrentRawEvent = SDL_UserInputEvents.front();
+            RawEvent* CurrentRawEvent = _Data->SDL_UserInputEvents.front();
 
             if(CurrentRawEvent->type == SDL_MOUSEBUTTONDOWN || CurrentRawEvent->type == SDL_MOUSEBUTTONUP)
             {
@@ -225,14 +238,14 @@ namespace phys
                 }else{
                     if(CurrentRawEvent->button.state==SDL_PRESSED /*&& !MouseButtonCache[CurrentRawEvent->button.button]*/){
                         FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
-                        MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
-                        MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
+                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
                     /*}else if(CurrentRawEvent->button.state==SDL_PRESSED && MouseButtonCache[CurrentRawEvent->button.button]){
                         FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);*/
                     }else if(CurrentRawEvent->button.state==SDL_RELEASED /*&& MouseButtonCache[CurrentRawEvent->button.button]*/){
                         FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
-                        MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
-                        MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
+                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
                     }
                 }
             }else{
@@ -240,12 +253,12 @@ namespace phys
             }
 
             delete CurrentRawEvent;
-            SDL_UserInputEvents.pop(); //NEXT!!!
+            _Data->SDL_UserInputEvents.pop(); //NEXT!!!
         }
 
         /// @todo This isn't pretty, should be replaced with a more elegant solution that'll work on keyboard events as well.
         unsigned int x=0;
-        for(std::vector<std::pair<bool,bool> >::iterator it = MouseButtonCache.begin();it!=MouseButtonCache.end();it++)
+        for(std::vector<std::pair<bool,bool> >::iterator it = _Data->MouseButtonCache.begin();it!=_Data->MouseButtonCache.end();it++)
         {
             if(!((*it).first) && (*it).second)
             {
@@ -639,7 +652,7 @@ namespace phys
                 case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
                 case SDL_QUIT:          //when SDL closes
                 case SDL_SYSWMEVENT:
-                    SDL_WmEvents.push(ScopeHolder);
+                    _Data->SDL_WmEvents.push(ScopeHolder);
                     break;
                 case SDL_KEYDOWN:
                 case SDL_KEYUP:
@@ -651,25 +664,26 @@ namespace phys
                 case SDL_JOYBUTTONUP:
                 case SDL_JOYBALLMOTION:
                 case SDL_JOYHATMOTION:
-                    SDL_UserInputEvents.push(ScopeHolder);
+                    _Data->SDL_UserInputEvents.push(ScopeHolder);
                     break;
                 case SDL_USEREVENT://Never thrown by SDL, but could be added by a user
                 default:
                     throw ("Unknown SDL Event Inserted");
                     break;
             }
+            _Data->SDL_EventQ.push(ScopeHolder);
         }
     }
 
     void EventManager::UpdateQuitEvents()
     {
-        if (NULL == SDL_GetEventFilter())           //Verify the Event filter is installed, if not, then install it.
+        if (NULL == SDL_GetEventFilter())                       //Verify the Event filter is installed, if not, then install it.
         {
             SDL_SetEventFilter( internal::PhysSDLFilter );
         }else{
-            if(4==internal::PhysSDLFilter(0))                 //Pass it a null pointer to get it to "Not Callback Mode"
+            if(4==internal::PhysSDLFilter(0))                   //Pass it a null pointer to get it to "Not Callback Mode"
             {
-                this->AddEvent(new EventQuit());    //We need to make a quit event
+                this->AddEvent(new EventQuit());                //We need to make a quit event
             }else{
                 //all clear
             }

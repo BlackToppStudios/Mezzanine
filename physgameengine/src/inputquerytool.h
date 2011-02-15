@@ -133,7 +133,7 @@ namespace phys
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
             bool IsMouseButtonPushed(short unsigned int MouseButton);
 
-            /// @brief Returns whether a specific KEyboard button is pushed
+            /// @brief Returns whether a specific Keyboard button is pushed
             /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
             /// are considered pressed, and buttons that are being lifted are considered unpressed.
             /// @param KeyboardButton This is the button that is being checked.
