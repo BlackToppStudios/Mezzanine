@@ -228,22 +228,26 @@ namespace phys
 
             if(CurrentRawEvent->type == SDL_MOUSEBUTTONDOWN || CurrentRawEvent->type == SDL_MOUSEBUTTONUP)
             {
-                FromSDLEvent->AddCode(CurrentRawEvent->button.x,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
-                FromSDLEvent->AddCode(CurrentRawEvent->button.y,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+                FromSDLEvent->AddCode(CurrentRawEvent->button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL);
+                FromSDLEvent->AddCode(CurrentRawEvent->button.y, MetaCode::MOUSEABSOLUTEVERTICAL);
                 if ( SDL_BUTTON_WHEELUP==CurrentRawEvent->button.button)
                 {
-                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_UP,0,MetaCode::MOUSEWHEELVERTICAL);
+                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_UP,MetaCode::MOUSEWHEELVERTICAL);
                 }else if( SDL_BUTTON_WHEELDOWN==CurrentRawEvent->button.button ){
-                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_DOWN,0,MetaCode::MOUSEWHEELVERTICAL);
+                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_DOWN,MetaCode::MOUSEWHEELVERTICAL);
                 }else{
                     if(CurrentRawEvent->button.state==SDL_PRESSED /*&& !MouseButtonCache[CurrentRawEvent->button.button]*/){
-                        FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
+                        /// @todo verify this works after id removal from metacode.
+                        FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
+                        //FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
                         _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
                         _Data->MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
                     /*}else if(CurrentRawEvent->button.state==SDL_PRESSED && MouseButtonCache[CurrentRawEvent->button.button]){
                         FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);*/
                     }else if(CurrentRawEvent->button.state==SDL_RELEASED /*&& MouseButtonCache[CurrentRawEvent->button.button]*/){
-                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
+                        /// @todo verify this works after id removal from metacode.
+                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
+//                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
                         _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
                         _Data->MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
                     }
@@ -262,7 +266,7 @@ namespace phys
         {
             if(!((*it).first) && (*it).second)
             {
-                FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, x, MetaCode::MOUSEBUTTON);
+                FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(x));
             }
             x++;
         }
@@ -457,36 +461,39 @@ namespace phys
 
     void EventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
     {
-        bool ItFailed = true;
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log(InputToTryPolling);
+        #endif
+
 
         //Check for keyboard code
-        if ( MetaCode::KEY_LAST > InputToTryPolling.GetCode() && InputToTryPolling.GetCode() > MetaCode::KEY_FIRST)
+        if ( MetaCode::KEY_LAST >= InputToTryPolling.GetCode() && InputToTryPolling.GetCode() >= MetaCode::KEY_FIRST)
         {
             this->_Data->WatchKeyboardKeys.push_back(InputToTryPolling.GetCode());
-            ItFailed=false;
+            return;
         }
 
         //if it is a specific mouse button, then
-        if ( MetaCode::MOUSEBUTTON == InputToTryPolling.GetCode())
+        if ( MetaCode::MOUSEBUTTON_LAST >= InputToTryPolling.GetCode() && InputToTryPolling.GetCode() >= MetaCode::MOUSEBUTTON_FIRST )
         {
-            this->_Data->WatchMouseKeys.push_back(InputToTryPolling.GetID());
-            ItFailed=false;
+            this->_Data->WatchMouseKeys.push_back(InputToTryPolling.GetCode());
+            return;
         }
 
         //Mouse Movement
         if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToTryPolling.GetCode())
         {
             this->_Data->PollMouseVert = true;
-            ItFailed=false;
+            return;
         }
         if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == InputToTryPolling.GetCode())
         {
             this->_Data->PollMouseHor = true;
-            ItFailed=false;
+            return;
         }
 
-        if (ItFailed)
-            this->GameWorld->LogAndThrow("Unsupported Polling Check on this Platform");
+        // No polling check added
+        this->GameWorld->LogAndThrow("Unsupported Polling Check on this Platform");
     }
 
     void EventManager::RemovePollingCheck(const MetaCode &InputToStopPolling)
@@ -579,10 +586,10 @@ namespace phys
                 {
                     if(KeyboardSnapshot[*iter]) // is it up or down
                     {//down
-                        MetaCode temp(MetaCode::BUTTON_DOWN,0,*iter);
+                        MetaCode temp(MetaCode::BUTTON_DOWN, *iter);
                         CodeBag.push_back(temp);
                     }else{//up
-                        MetaCode temp(MetaCode::BUTTON_UP,0,*iter);
+                        MetaCode temp(MetaCode::BUTTON_UP, *iter);
                         CodeBag.push_back(temp);
                     }
                 }
@@ -598,12 +605,13 @@ namespace phys
             vector<int>::iterator iter;
             for(iter = this->_Data->WatchMouseKeys.begin(); iter != (this->_Data->WatchMouseKeys.end()) ; iter++)
             {
+                /// @todo verify/fix mouse event polling after removal of metacode ID
                 if(SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(*iter))
                 {
-                        MetaCode temp(MetaCode::BUTTON_DOWN,*iter,MetaCode::MOUSEBUTTON);
+                        MetaCode temp(MetaCode::BUTTON_DOWN,MetaCode::GetMouseButtonCode(*iter));
                         CodeBag.push_back(temp);
                 }else{
-                        MetaCode temp(MetaCode::BUTTON_UP,*iter,MetaCode::MOUSEBUTTON);
+                        MetaCode temp(MetaCode::BUTTON_UP,MetaCode::GetMouseButtonCode(*iter));
                         CodeBag.push_back(temp);
                 }
             }
@@ -620,12 +628,12 @@ namespace phys
             SDL_GetMouseState(&Hor, &Vert);
             if( this->_Data->PollMouseVert )
             {
-                MetaCode temp(Vert,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+                MetaCode temp(Vert,MetaCode::MOUSEABSOLUTEVERTICAL);
                 CodeBag.push_back(temp);
             }
             if( this->_Data->PollMouseHor )
             {
-                MetaCode temp(Hor,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
+                MetaCode temp(Hor,MetaCode::MOUSEABSOLUTEHORIZONTAL);
                 CodeBag.push_back(temp);
             }
         }

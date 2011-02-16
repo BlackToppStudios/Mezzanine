@@ -94,7 +94,8 @@ namespace phys
             /// @brief The InputCode enum defines all the posible types of inputs.
             /// @details It has one entry for each key on a most keyboards. Then it
             /// has an entry for most mouse and joystick input methods.
-            enum InputCode{
+            enum InputCode
+            {
                 KEY_UNKNOWN			= 0,    /**< KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */
                 KEY_FIRST			= 0,    /**< KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. */
                 KEY_BACKSPACE		= 8,
@@ -359,9 +360,42 @@ namespace phys
                 KEYMOD_MODE     	= 334,
                 KEYMOD_RESERVED     = 335,
 
-                KEY_LAST        = 379,  /// The last KeyCode, all Keys values will be less than this, and all Events will be larger than that
+                KEY_LAST            = 379,      /// The last KeyCode, all Keys values will be less than this, and all Events will be larger than that
 
-                INPUTEVENT_FIRST        = 380, /// The First non-event, all Keys values will be Less than this
+                MOUSEBUTTON_FIRST   = 380,      /// This is the lowest mouse button value, all mice values will be larger of equal to this
+                MOUSEBUTTON         = 380,      /// This is the generic Some mouse button code. You can add the number of the mouse button to this and you will get the approriate code. Example (MOUSEBUTTON_1 == MOUSEBUTTON + 1)
+                MOUSEBUTTON_1       = 381,      /// Most commonly left click.
+                MOUSEBUTTON_2       = 382,      /// Most Commonly Right click
+                MOUSEBUTTON_3       = 383,      /// Most commonly middle click
+                MOUSEBUTTON_4       = 384,
+                MOUSEBUTTON_5       = 385,
+                MOUSEBUTTON_6       = 386,
+                MOUSEBUTTON_7       = 387,
+                MOUSEBUTTON_8       = 388,
+                MOUSEBUTTON_9       = 389,
+                MOUSEBUTTON_10      = 390,
+                MOUSEBUTTON_11      = 391,
+                MOUSEBUTTON_12      = 392,
+                MOUSEBUTTON_13      = 393,
+                MOUSEBUTTON_14      = 394,
+                MOUSEBUTTON_15      = 395,
+                MOUSEBUTTON_16      = 396,
+                MOUSEBUTTON_17      = 397,
+                MOUSEBUTTON_18      = 398,
+                MOUSEBUTTON_19      = 399,
+                MOUSEBUTTON_20      = 400,
+                MOUSEBUTTON_LAST    = 400,      /// The Last mouse button event, all mouse button event will be lower or equal to this.
+                MOUSE_FIRST             = 401,  /// The First Mouse event, all Mouse Event values will be more than this
+                //MOUSEBUTTON             = 481,
+                MOUSEABSOLUTEVERTICAL   = 402,
+                MOUSEABSOLUTEHORIZONTAL = 403,
+                MOUSEVERTICAL           = 404,
+                MOUSEHORIZONTAL         = 405,
+                MOUSEWHEELVERTICAL      = 406,
+                MOUSEWHEELHORIZONTAL    = 407,
+                MOUSE_LAST              = 409,  /// The last MouseEvent Code, all Mouse events will be less than this
+
+                INPUTEVENT_FIRST        = 410,  /// The First non-button event, all button values will be Less than this
 
                 MOTION_FIRST            = 460,  /// The first Motion event
                 MOTION_LAST             = 469,  /// The last Motion event
@@ -373,16 +407,6 @@ namespace phys
                 MULTITOUCH_STRETCH      = 474,
                 MULTITOUCH_LAST         = 479,  /// The last Multi Touch event
 
-                MOUSE_FIRST             = 480,  /// The First Mouse event, all Mouse Event values will be more than this
-                MOUSEBUTTON             = 481,
-                MOUSEABSOLUTEVERTICAL   = 482,
-                MOUSEABSOLUTEHORIZONTAL = 483,
-                MOUSEVERTICAL           = 484,
-                MOUSEHORIZONTAL         = 485,
-                MOUSEWHEELVERTICAL      = 486,
-                MOUSEWHEELHORIZONTAL    = 489,
-                MOUSE_LAST              = 490,  /// The last MouseEvent Code, all Mouse events will be less than this
-
                 JOYSTICK_FIRST          = 499,  /// The First JoyStick event, all Joystick Event values will be more than this
                 JOYSTICKBUTTON          = 500,
                 JOYSTICKMOTIONAXIS      = 501,
@@ -391,7 +415,7 @@ namespace phys
                 JOYSTICKHATVERTICAL     = 504,
                 JOYSTICKHATHORIZONTAL   = 505,
                 JOYSTICK_LAST           = 506,  /// The last JoyStick Event Code, all JoyStick events will be less than this.
-                INPUTEVENT_LAST = 512           /// The last Event Code, all event codes will be less than this.
+                INPUTEVENT_LAST         = 512   /// The last Event Code, all event codes will be less than this.
             };
 
             /// @enum ButtonState
@@ -418,12 +442,12 @@ namespace phys
         private:
             //The three values that make a MetaCode Useful
             int MetaValue;
-            short unsigned int ID;
+            //short unsigned int ID;
             MetaCode::InputCode Code;
 
             //function that the constructors can call aid initial setup
             void Construct(const RawEvent &RawEvent_);
-            void Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_);
+            void Construct(const int &MetaValue_, const MetaCode::InputCode &Code_);
 
             //This assigns a value to Inputcode by doing an efficient low level copy of the correct portion of an SDL_event
             //If mishandled this function can corrupt the MetaCode, and it can throw any error memcpy could throw.
@@ -437,9 +461,9 @@ namespace phys
             /// @brief Descriptive Constructor
             /// @details This sets all values in the MetaCode, leaving it in completely ready state. This is the ideal constructor for simulating user input.
             /// @param MetaValue_ How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed.
-            /// @param ID_ Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item.
+            // /// @param ID_ Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item.
             /// @param Code_ Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support.
-            MetaCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_);
+            MetaCode(const int &MetaValue_, const MetaCode::InputCode &Code_);
 
             /// @brief The Heavy Lifting Constructor
             /// @details This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information
@@ -476,19 +500,24 @@ namespace phys
             /// @param MetaValue_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
             void SetMetaValue(const int &MetaValue_);      //For button presses a positive value is pushed and a zero means unpushed
 
-            /// @brief This Returns the Input ID
-            /// @details The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed.
-            /// On systems that support multiple keyboards this will even differentiate between those.
-            /// This value can be set with @ref SetID .
-            /// @return This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis,
-            /// JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this
-            /// can identify from unique input sources and InputCode.
-            short unsigned int GetID() const;             //Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.
+            /// @brief Accepts a int and returns the InputCode for the Corresponding Mouse button
+            /// @param ButtonerNumber The number of the button you wan the code for
+            /// @return When passed 0 this returns MetaCode::MOUSEBUTTON, otherwise this returns MetaCode::MOUSEBUTTON_X where X is the number that was passed in
+            static MetaCode::InputCode GetMouseButtonCode(int ButtonNumber);
 
-            /// @brief This Sets The input ID
-            /// @details See @ref GetID to see exactly what the input ID is. This will set the ID stored in this MetaCode. This value can be retrieved with @ref GetID .
-            /// @param ID_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
-            void SetID(const short unsigned int &ID_);
+            // /// @brief This Returns the Input ID
+            // /// @details The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed.
+            // /// On systems that support multiple keyboards this will even differentiate between those.
+            // /// This value can be set with @ref SetID .
+            // /// @return This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis,
+            // /// JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this
+            // /// can identify from unique input sources and InputCode.
+            // short unsigned int GetID() const;             //Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.
+
+            // /// @brief This Sets The input ID
+            // /// @details See @ref GetID to see exactly what the input ID is. This will set the ID stored in this MetaCode. This value can be retrieved with @ref GetID .
+            // /// @param ID_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
+            // void SetID(const short unsigned int &ID_);
 
             /// @brief Does this MetaCode Represent a state of a keyboard key
             /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.
