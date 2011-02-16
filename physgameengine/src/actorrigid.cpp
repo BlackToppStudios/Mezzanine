@@ -180,9 +180,9 @@ namespace phys{
         this->DetachFromGraphics();
     }
 
-    void ActorRigid::CreateShapeFromMeshDynamic(short unsigned int accuracy)
+    void ActorRigid::CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes)
     {
-        if(accuracy==1)
+        if(Accuracy==1)
         {
             if(!ShapeIsSaved)
             {
@@ -214,7 +214,7 @@ namespace phys{
             this->physrigidbody->updateInertiaTensor();
             return;
         }
-        if(accuracy==2)
+        if(Accuracy==2)
         {
             if(!ShapeIsSaved)
             {
@@ -234,7 +234,7 @@ namespace phys{
             this->physrigidbody->updateInertiaTensor();
             return;
         }
-        if(accuracy==3)
+        if(Accuracy==3)
         {
             if(!ShapeIsSaved)
             {
@@ -254,7 +254,7 @@ namespace phys{
             this->physrigidbody->updateInertiaTensor();
             return;
         }
-        if(accuracy==4)
+        if(Accuracy==4)
         {
             if(!ShapeIsSaved)
             {

@@ -44,6 +44,7 @@
 #include "uilayer.h"
 #include "uimanager.h"
 #include "eventmanager.h"
+#include "inputquerytool.h"
 #include "world.h"
 #include "internalGorilla.h.cpp"
 
@@ -113,7 +114,7 @@ namespace phys
         {
             if(!GorillaRectangle->IsVisible())
                 return false;
-            Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
+            Vector2 MouseLoc = Manager->GetInputQueryer()->GetMouseCoordinates();
             if(GorillaRectangle->intersects(MouseLoc.GetOgreVector2()))
             {
                 if(!MouseHover && HoveredSprite)

@@ -70,13 +70,13 @@ namespace phys
             /// @details Creates a rigid object to be placed in the physics world later. @n
             /// This is automaticly called by the Constructor and shouldn't be called manually.
             /// @param pmass "Real Mass" The mass of the object.
-            void CreateRigidObject (Real pmass);
+            virtual void CreateRigidObject (Real pmass);
 
             /// @brief This creates an estimation of the shape of a body using a number of simpler primitives
             /// @param depth How many times should we subdivide. Larger means more parts, each one smaller, more CPU time.
             /// @param cpercent How concave the resulting shapes will be, lower means more accurate with more pieces.
             /// @param ppercent Undocumented -  set to similar number to cpercent
-            void PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent);
+            virtual void PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent);
 
         public:
             /// @brief Descriptive constructor.
@@ -96,45 +96,45 @@ namespace phys
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Dynamic objects.
-            /// @param accuracy A value from 1 to 4. The higher the more accurate, but the more resource intensive
-            void CreateShapeFromMeshDynamic(short unsigned int accuracy=1);
+            /// @param Accuracy A value from 1 to 4. The higher the more accurate, but the more resource intensive
+            virtual void CreateShapeFromMeshDynamic(short unsigned int Accuracy = 1, bool UseAllSubmeshes = false);
 
             /// @brief Creates a sphere collision shape.
             /// @details Will dynamically create a sphere collision shape from the loaded mesh file.
-            void CreateSphereShapeFromMesh();
+            virtual void CreateSphereShapeFromMesh();
 
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Static objects.
-            void CreateShapeFromMeshStatic();
+            virtual void CreateShapeFromMeshStatic();
 
             /// @brief Sets the Damping for this object.
             /// @details Both of Linear Damping and Angular Damping default to zero.  This is usful if you wish to simulate
             /// something like air resistance.  Values can range from 0.0 to 1.0.
             /// @param LinDamping Real representing the amount of Linear Damping to be applied.
             /// @param AngDamping Real representing the amount of Angular Damping to be applied.
-            void SetDamping(Real LinDamping, Real AngDamping);
+            virtual void SetDamping(Real LinDamping, Real AngDamping);
 
             /// @brief Sets the Linear Velocity of this object.
             /// @param LinVel Vector3 representing the Linear Velocity to be set.
-            void SetLinearVelocity(Vector3 LinVel);
+            virtual void SetLinearVelocity(Vector3 LinVel);
 
             /// @brief Gets the Linear Velocity of this object.
             /// @return Returns the currently set Linear Velocity of this object.
-            Vector3 GetLinearVelocity();
+            virtual Vector3 GetLinearVelocity();
 
             /// @brief Sets the Angular Velocity of this object.
             /// @param AngVel Vector3 representing the Angular Velocity to be set.
-            void SetAngularVelocity(Vector3 AngVel);
+            virtual void SetAngularVelocity(Vector3 AngVel);
 
             /// @brief Gets the Angular Velocity of this object.
             /// @return Returns the currently set Angular Velocity of this object.
-            Vector3 GetAngularVelocity();
+            virtual Vector3 GetAngularVelocity();
 
             /// @brief Retrieves the name of the object.
             /// @details This function will retrieve the name of the object,
-            std::string GetName() const;
+            virtual std::string GetName() const;
 
             /// @brief Restricts movement on the axis or axies of your choice.
             /// @details This function will lock any and all axies you define you want to be locked.
@@ -145,15 +145,15 @@ namespace phys
             /// @param x Allow or Disallow use of the X axis for movement.
             /// @param y Allow or Disallow use of the Y axis for movement.
             /// @param z Allow or Disallow use of the Z axis for movement.
-            void LimitMovementOnAxis(bool x, bool y, bool z);
+            virtual void LimitMovementOnAxis(bool x, bool y, bool z);
 
             /// @brief Disables the deactivation of the physics body.
             /// @details This function is useful when using constraints to prevent it from locking in situations where it shouldn't.
-            void DisableDeactivation();
+            virtual void DisableDeactivation();
 
             /// @brief Restores the activation state of the physics body to normal.
             /// @details This function is useful when you are done applying a constraint to a body, or any other effect that would have you call DisableDeactivation().
-            void RestoreActivation();
+            virtual void RestoreActivation();
 
             // Inherited from ActorBase
             virtual void AddObjectToWorld (World *TargetWorld);

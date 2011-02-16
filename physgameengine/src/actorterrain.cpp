@@ -86,7 +86,7 @@ namespace phys
         this->RigidBody->updateInertiaTensor();
     }
 
-    void ActorTerrain::CreateShapeFromMeshDynamic(short unsigned int accuracy)
+    void ActorTerrain::CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes)
     {
     }
 
