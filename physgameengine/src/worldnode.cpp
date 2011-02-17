@@ -38,10 +38,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _node_cpp
-#define _node_cpp
+#ifndef _worldnode_cpp
+#define _worldnode_cpp
 
-#include "node.h"
+#include "worldnode.h"
 #include "scenemanager.h"
 #include "camera.h"
 #include "light.h"
@@ -52,31 +52,31 @@
 
 namespace phys
 {
-    Node::Node(const String& Name, SceneManager* manager)
+    WorldNode::WorldNode(const String& Name, SceneManager* manager)
     {
         Manager = manager;
         OgreNode = Manager->GetGraphicsWorldPointer()->createSceneNode(Name);
-        Type = Node::Free;
+        Type = WorldNode::Free;
     }
 
-    Node::Node(Ogre::SceneNode* snode, SceneManager* manager)
+    WorldNode::WorldNode(Ogre::SceneNode* snode, SceneManager* manager)
     {
         OgreNode = snode;
         Manager = manager;
-        Type = Node::Free;
+        Type = WorldNode::Free;
     }
 
-    Node::~Node()
+    WorldNode::~WorldNode()
     {
         Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
     }
 
-    ConstString& Node::GetName()
+    ConstString& WorldNode::GetName()
     {
         return OgreNode->getName();
     }
 
-    void Node::AttachElement(Attachable* Element)
+    void WorldNode::AttachElement(Attachable* Element)
     {
         Attachable::AttachableElement Type = Element->GetElementType();
         switch (Type)
@@ -107,7 +107,7 @@ namespace phys
         return;
     }
 
-    void Node::DetachElement(Attachable* Element)
+    void WorldNode::DetachElement(Attachable* Element)
     {
         Attachable::AttachableElement Type = Element->GetElementType();
         switch (Type)
@@ -144,74 +144,74 @@ namespace phys
         return;
     }
 
-    void Node::DetachAllElements()
+    void WorldNode::DetachAllElements()
     {
         OgreNode->detachAllObjects();
         Elements.clear();
     }
 
-    Whole Node::GetNumAttachedElements()
+    Whole WorldNode::GetNumAttachedElements()
     {
         return Elements.size();
     }
 
-    void Node::SetPosition(Vector3 Position)
+    void WorldNode::SetPosition(Vector3 Position)
     {
         OgreNode->setPosition(Position.GetOgreVector3());
     }
 
-    Vector3 Node::GetPosition()
+    Vector3 WorldNode::GetPosition()
     {
         Vector3 Pos(OgreNode->getPosition());
         return Pos;
     }
 
-    void Node::SetOrientation(Quaternion Orientation)
+    void WorldNode::SetOrientation(Quaternion Orientation)
     {
         OgreNode->setOrientation(Orientation.GetOgreQuaternion());
     }
 
-    Quaternion Node::GetOrientation()
+    Quaternion WorldNode::GetOrientation()
     {
         Quaternion Ori(OgreNode->getOrientation());
         return Ori;
     }
 
-    void Node::LookAt(Vector3 LookAt)
+    void WorldNode::LookAt(Vector3 LookAt)
     {
         OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
     }
 
-    void Node::SetAutoTracking(Node* node, Vector3 Offset)
+    void WorldNode::SetAutoTracking(WorldNode* node, Vector3 Offset)
     {
         OgreNode->setAutoTracking(true, node->OgreNode, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
     }
 
-    void Node::SetAutoTracking(ActorBase* Actor, Vector3 Offset)
+    void WorldNode::SetAutoTracking(ActorBase* Actor, Vector3 Offset)
     {
         OgreNode->setAutoTracking(true, Actor->node, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
     }
 
-    void Node::DisableAutoTracking()
+    void WorldNode::DisableAutoTracking()
     {
         OgreNode->setAutoTracking(false);
     }
 
-    void Node::IncrementOrbit(Real Radians)
+    void WorldNode::IncrementOrbit(Real Radians)
     {
-        if( Node::Orbit == this->Type )
+        if( WorldNode::Orbit == this->Type )
         {
             Ogre::Radian Rad(Radians);
             OgreNode->getParentSceneNode()->yaw(Rad);
         }
     }
 
-    void Node::SetType(Node::NodeType type)
+    void WorldNode::SetType(WorldNode::NodeType type)
     {
         Type = type;
     }
 
-    Node::NodeType Node::GetType()
+    WorldNode::NodeType WorldNode::GetType()
     {
         return Type;
     }

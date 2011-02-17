@@ -44,7 +44,7 @@
 #include "light.h"
 #include "plane.h"
 #include "particleeffect.h"
-#include "node.h"
+#include "worldnode.h"
 #include <Ogre.h>
 
 namespace phys
@@ -84,11 +84,11 @@ namespace phys
             delete Particles[x];
         }
         Particles.clear();
-        for( unsigned int x=0 ; x < Nodes.size() ; x++ )
+        for( unsigned int x=0 ; x < WorldNodes.size() ; x++ )
         {
-            delete Nodes[x];
+            delete WorldNodes[x];
         }
-        Nodes.clear();
+        WorldNodes.clear();
         Ogre::Root::getSingleton().destroySceneManager(OgreManager);
     }
 
@@ -233,7 +233,7 @@ namespace phys
         return this->OgreManager->getName();
     }
 
-    Node* SceneManager::CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack)
+    WorldNode* SceneManager::CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack)
     {
         Ogre::SceneNode* OgreCNode = OgreManager->createSceneNode(Name + "C");
         OgreManager->getRootSceneNode()->addChild(OgreCNode);
@@ -245,57 +245,57 @@ namespace phys
         {
             OgreONode->setAutoTracking(true, OgreCNode);
         }
-        Node* PhysONode = new Node(OgreONode, this);
-        PhysONode->SetType(Node::Orbit);
-        Nodes.push_back(PhysONode);
+        WorldNode* PhysONode = new WorldNode(OgreONode, this);
+        PhysONode->SetType(WorldNode::Orbit);
+        WorldNodes.push_back(PhysONode);
         return PhysONode;
     }
 
-    Node* SceneManager::CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location)
+    WorldNode* SceneManager::CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location)
     {
         Ogre::SceneNode* OgreNode = OgreManager->createSceneNode(Name);
         OgreManager->getRootSceneNode()->addChild(OgreNode);
         OgreNode->setPosition(Location.GetOgreVector3());
         OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
-        Node* PhysNode = new Node(OgreNode, this);
-        PhysNode->SetType(Node::Stand);
-        Nodes.push_back(PhysNode);
+        WorldNode* PhysNode = new WorldNode(OgreNode, this);
+        PhysNode->SetType(WorldNode::Stand);
+        WorldNodes.push_back(PhysNode);
         return PhysNode;
     }
 
-    Node* SceneManager::GetNode(const String& Name)
+    WorldNode* SceneManager::GetNode(const String& Name)
     {
-        if(Nodes.empty())
+        if(WorldNodes.empty())
             return 0;
-        for( std::vector<Node*>::iterator it = Nodes.begin() ; it != Nodes.end() ; it++ )
+        for( std::vector<WorldNode*>::iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
             if( Name == (*it)->GetName() )
             {
-                Node* node = (*it);
+                WorldNode* node = (*it);
                 return node;
             }
         }
         return 0;
     }
 
-    Node* SceneManager::GetNode(Whole Index)
+    WorldNode* SceneManager::GetNode(Whole Index)
     {
-        return Nodes[Index];
+        return WorldNodes[Index];
     }
 
     Whole SceneManager::GetNumNodes()
     {
-        return Nodes.size();
+        return WorldNodes.size();
     }
 
     Whole SceneManager::GetNumStandNodes()
     {
-        if(Nodes.empty())
+        if(WorldNodes.empty())
             return 0;
         Whole Num = 0;
-        for( std::vector<Node*>::iterator it = Nodes.begin() ; it != Nodes.end() ; it++ )
+        for( std::vector<WorldNode*>::iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
-            if( Node::Stand == (*it)->GetType() )
+            if( WorldNode::Stand == (*it)->GetType() )
             {
                 Num++;
             }
@@ -305,12 +305,12 @@ namespace phys
 
     Whole SceneManager::GetNumOrbitNodes()
     {
-        if(Nodes.empty())
+        if(WorldNodes.empty())
             return 0;
         Whole Num = 0;
-        for( std::vector<Node*>::iterator it = Nodes.begin() ; it != Nodes.end() ; it++ )
+        for( std::vector<WorldNode*>::iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
-            if( Node::Orbit == (*it)->GetType() )
+            if( WorldNode::Orbit == (*it)->GetType() )
             {
                 Num++;
             }
@@ -318,16 +318,16 @@ namespace phys
         return Num;
     }
 
-    void SceneManager::DestroyNode(Node* node)
+    void SceneManager::DestroyNode(WorldNode* node)
     {
-        if(Nodes.empty())
+        if(WorldNodes.empty())
             return;
-        for( std::vector<Node*>::iterator it = Nodes.begin() ; it != Nodes.end() ; it++ )
+        for( std::vector<WorldNode*>::iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
             if( node == (*it) )
             {
                 delete (*it);
-                Nodes.erase(it);
+                WorldNodes.erase(it);
                 return;
             }
         }

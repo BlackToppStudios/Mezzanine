@@ -47,6 +47,7 @@
 #include "actorrigid.h"
 #include "actorterrain.h"
 #include "actorsoft.h"
+#include "actorgraphicssettings.h"
 #include "world.h"
 #include "internalmotionstate.h.cpp"
 #include "internalmeshinfo.h.cpp"
@@ -62,6 +63,7 @@ namespace phys{
         //this->MotionState = new internal::PhysMotionState(this->node);
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
+        this->GraphicsSettings = new ActorGraphicsSettings(this,entity);
         MotionState = NULL;
         ActorSounds = NULL;
         Animation = NULL;
@@ -563,6 +565,11 @@ namespace phys{
             Animation->setEnabled(false);
             Animation = NULL;
         }
+    }
+
+    ActorGraphicsSettings* ActorBase::GetGraphicsSettings()
+    {
+        return GraphicsSettings;
     }
 
     void ActorBase::InitEntity(bool force)

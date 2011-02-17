@@ -57,7 +57,7 @@ namespace phys
     class Light;
     class Plane;
     class ParticleEffect;
-    class Node;
+    class WorldNode;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class SceneManager
     /// @headerfile scenemanager.h
@@ -80,7 +80,7 @@ namespace phys
             /// @brief Pointer for the Ogre Scenemanager, where this manager gets it's functionality.
             Ogre::SceneManager* OgreManager;
             /// @brief Vector storing all the nodes in use by this class.
-            std::vector< Node* > Nodes;
+            std::vector< WorldNode* > WorldNodes;
             /// @brief Vector storing all the lights in use by this class.
             std::vector< Light* > Lights;
             /// @brief Vector storing all the particle effects in use by this class.
@@ -208,19 +208,19 @@ namespace phys
             /// @param Target The location of the first node which you will be orbiting around.
             /// @param RelativeLoc The location of the node that will be in orbit relative to the first node.  Assume the
             /// first node is at Origin (0,0,0).
-            Node* CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack);
+            WorldNode* CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack);
             /// @brief Creates a stationary node that will look at a location.
             /// @details This will create a node that doesn't move, and will look at one location that you specify.  This
             /// node can then have lights, particle effects, or ribbon trails attached to it.
             /// @param LookAt The location you want the node to look at.  Automatically handles orientation.
             /// @param Location The location of the node itself.
-            Node* CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location);
+            WorldNode* CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location);
             /// @brief Gets an already created node by name.
             /// @return Returns a pointer to the node of the specified name.
-            Node* GetNode(const String& Name);
+            WorldNode* GetNode(const String& Name);
             /// @brief Gets an already created node by index.
             /// @return Returns a pointer to the node at the specified index.
-            Node* GetNode(Whole Index);
+            WorldNode* GetNode(Whole Index);
             /// @brief Gets the number of nodes created and stored in this manager.
             /// @return Returns the number of nodes this manager is storing.
             Whole GetNumNodes();
@@ -232,7 +232,7 @@ namespace phys
             Whole GetNumOrbitNodes();
             /// @brief Deletes a node and removes all trace of it from the manager.
             /// @param node The node to be destroyed.
-            void DestroyNode(Node* node);
+            void DestroyNode(WorldNode* node);
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.
             ConstString& GetName();

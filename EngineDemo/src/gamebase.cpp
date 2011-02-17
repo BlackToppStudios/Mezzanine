@@ -76,7 +76,7 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
     //Setup some camera tricks
-    Node* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
+    WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
     CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
 
 	//Start the Main Loop
@@ -648,7 +648,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << c;
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(3);
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(4);
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
     }
 

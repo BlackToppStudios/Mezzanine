@@ -41,7 +41,7 @@
 #define _physactorbase_h
 
 #include "crossplatformexport.h"
-#include "node.h"
+#include "worldnode.h"
 
 ///////////////////////////////////
 // Forward Declares
@@ -65,6 +65,7 @@ namespace phys
 {
     class ActorContainerBase;
     class World;
+    class ActorGraphicsSettings;
     namespace internal
     {
         class PhysMotionState;
@@ -84,7 +85,7 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB ActorBase {
         private:
-            friend class Node;
+            friend class WorldNode;
             friend class ActorContainerBase;
             friend class PhysicsManager;
             friend class ResourceManager;
@@ -126,6 +127,9 @@ namespace phys
 
             ///@brief This class encapsulates the functionality of the PhysMotionState using this
             internal::PhysMotionState* MotionState;
+
+            /// @brief This class encapsulates graphics specific configuration for this actor.
+            ActorGraphicsSettings* GraphicsSettings;
 
             /// @brief This variable stores the type of actor that this class is.
             ActorTypeName ActorType;
@@ -308,6 +312,10 @@ namespace phys
             /// @brief Unloads a loaded animation.
             /// @details This function will remove the existing set animation.
             virtual void RemoveSetAnimation();
+
+            /// @brief Gets the graphics settings class associated with this actor.
+            /// @return Returns a pointer to the graphics settings class in use by this actor.
+            virtual ActorGraphicsSettings* GetGraphicsSettings();
 
             void InitEntity(bool force);
 
