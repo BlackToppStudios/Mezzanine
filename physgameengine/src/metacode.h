@@ -68,6 +68,7 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
+#include "xml.h"
 
 using namespace std;
 
@@ -96,6 +97,7 @@ namespace phys
             /// has an entry for most mouse and joystick input methods.
             enum InputCode
             {
+                POLLABLE_FIRST		= 0,    /**< POLLABLE_FIRST All input metacodes that can be polled with come before this one*/
                 KEY_UNKNOWN			= 0,    /**< KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */
                 KEY_FIRST			= 0,    /**< KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. */
                 KEY_BACKSPACE		= 8,
@@ -359,11 +361,11 @@ namespace phys
                 KEYMOD_CAPS     	= 333,
                 KEYMOD_MODE     	= 334,
                 KEYMOD_RESERVED     = 335,
+                KEY_LAST            = 380,      /// The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that
 
-                KEY_LAST            = 379,      /// The last KeyCode, all Keys values will be less than this, and all Events will be larger than that
-
-                MOUSEBUTTON_FIRST   = 380,      /// This is the lowest mouse button value, all mice values will be larger of equal to this
+                MOUSE_FIRST         = 380,  /// The First Mouse event, all Mouse Event values will be more than this
                 MOUSEBUTTON         = 380,      /// This is the generic Some mouse button code. You can add the number of the mouse button to this and you will get the approriate code. Example (MOUSEBUTTON_1 == MOUSEBUTTON + 1)
+                MOUSEBUTTON_FIRST   = 381,      /// This is the lowest mouse button value, all mice values will be larger of equal to this
                 MOUSEBUTTON_1       = 381,      /// Most commonly left click.
                 MOUSEBUTTON_2       = 382,      /// Most Commonly Right click
                 MOUSEBUTTON_3       = 383,      /// Most commonly middle click
@@ -385,7 +387,7 @@ namespace phys
                 MOUSEBUTTON_19      = 399,
                 MOUSEBUTTON_20      = 400,
                 MOUSEBUTTON_LAST    = 400,      /// The Last mouse button event, all mouse button event will be lower or equal to this.
-                MOUSE_FIRST             = 401,  /// The First Mouse event, all Mouse Event values will be more than this
+
                 //MOUSEBUTTON             = 481,
                 MOUSEABSOLUTEVERTICAL   = 402,
                 MOUSEABSOLUTEHORIZONTAL = 403,
@@ -396,6 +398,8 @@ namespace phys
                 MOUSE_LAST              = 409,  /// The last MouseEvent Code, all Mouse events will be less than this
 
                 INPUTEVENT_FIRST        = 410,  /// The First non-button event, all button values will be Less than this
+
+                POLLABLE_LAST           = 430,  ///
 
                 MOTION_FIRST            = 460,  /// The first Motion event
                 MOTION_LAST             = 469,  /// The last Motion event
@@ -488,6 +492,14 @@ namespace phys
             /// @param Code_ The value you want the stored code to become.
             void SetCode(const MetaCode::InputCode &Code_);
 
+            /// @brief This Sets The InputCode using an int.
+            /// @details This will cast an int into an InputCode. Be careful, it is possible to put impossible or ridiculous values, in with
+            /// this. For example Accidentally stuffing in the result of MOUSEBUTTON + 22 looks like it would give you MOUSEBUTTON_22. But that
+            /// Doesn't exist, at the time of this writing you would get MOUSEABSOLUTEVERTICAL. Be careful, or skip this alltogether and use one of
+            /// the provided functions that do the math for you like
+            /// @param Code_ The value you want the stored code to become.
+            void SetCode(int Code_);
+
             /// @brief This Returns the MetaValue
             /// @details The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value.
             /// This value can be set with @ref SetMetaValue .
@@ -524,6 +536,11 @@ namespace phys
             /// @return This returns a bool which will be true if this is keyboard event.
             bool IsKeyboardButton() const;
 
+            /// @brief Does this MetaCode Represent a state of a Mouse button
+            /// @details Returns true if this MetaCode pertains to a mouse button being up, polled, down, pressed, or lifted.
+            /// @return This returns a bool which will be true if this is MOUSEBUTTON_X event.
+            bool IsMouseButton() const;
+
             /// @brief Compares two MetaCodes for equality
             /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.
             bool operator==(const MetaCode &other) const;
@@ -533,5 +550,23 @@ namespace phys
 /// @brief Allows for streaming of MetaCodes
 /// @details If it can be streamed, then it can be logged Holds true for the MetaCode.
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::MetaCode& x);
+
+#ifdef PHYSXML
+/// @brief Used to de-serialize an phys::MetaCode from a stream
+/// @details This reads in the xml and sets the target MetaCode according to values from the stream.
+/// @param x The phys::MetaCode that will accept the values from the xml
+/// @param stream The place to get the characters from, that define the phys::MetaCode.
+/// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
+/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::MetaCode& x);
+
+/// @brief Converts an XML node into a phys::MetaCode
+/// @details If PHYSXML is enabled, this will convert an xml::Node will a valid serialized phys::MetaCode into a phys::MetaCode
+/// @param OneNode An XML Node containing the the text of a MetaCode
+/// @param x the phys::MetaCode to store the deserialized MetaCode
+/// @return This returns a reference to the xml::Node for operator chaining or whatever.
+/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
+phys::xml::Node& PHYS_LIB  operator >> (const phys::xml::Node& OneNode, phys::MetaCode& x);
+#endif // \PHYSXML
 
 #endif

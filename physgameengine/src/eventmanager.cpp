@@ -108,7 +108,7 @@ namespace phys
             vector<MetaCode::InputCode> WatchKeyboardKeys;
 
             // A list of the Mouse buttons being watched
-            vector<int> WatchMouseKeys;
+            vector<MetaCode::InputCode> WatchMouseKeys;
 
             //These are use to decide if mouse location should be polled.
             bool PollMouseHor;
@@ -123,7 +123,17 @@ namespace phys
             // and internal queue of userinput events
             queue<RawEvent*> SDL_UserInputEvents;
 
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // New datastructures to replace old ones
+            // what events are coming from SDL
             queue<RawEvent*> SDL_EventQ;
+
+            //A unified polling and event repeater
+            // if true the item is to be removed when the key is lifted, if false it remains until the polling check is removed
+            // the Inputcode is the kind of event to check for each frame.
+            std::list < std::pair < bool, MetaCode::InputCode > > ManualCheck;
+
         };
     } // /internal
 
@@ -522,7 +532,7 @@ namespace phys
         {
             supported=true;
 
-            vector<int>::iterator MouseIter;
+            vector<MetaCode::InputCode>::iterator MouseIter;
             for(MouseIter = this->_Data->WatchMouseKeys.begin(); MouseIter!=this->_Data->WatchMouseKeys.end(); MouseIter++) //Check Each
             {
                 if( *MouseIter == InputToStopPolling.GetCode())
@@ -602,16 +612,16 @@ namespace phys
     {
         if(this->_Data->WatchMouseKeys.size()>0)
         {
-            vector<int>::iterator iter;
+            vector<MetaCode::InputCode>::iterator iter;
             for(iter = this->_Data->WatchMouseKeys.begin(); iter != (this->_Data->WatchMouseKeys.end()) ; iter++)
             {
                 /// @todo verify/fix mouse event polling after removal of metacode ID
                 if(SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(*iter))
                 {
-                        MetaCode temp(MetaCode::BUTTON_DOWN,MetaCode::GetMouseButtonCode(*iter));
+                        MetaCode temp(MetaCode::BUTTON_DOWN,*iter);
                         CodeBag.push_back(temp);
                 }else{
-                        MetaCode temp(MetaCode::BUTTON_UP,MetaCode::GetMouseButtonCode(*iter));
+                        MetaCode temp(MetaCode::BUTTON_UP,*iter);
                         CodeBag.push_back(temp);
                 }
             }

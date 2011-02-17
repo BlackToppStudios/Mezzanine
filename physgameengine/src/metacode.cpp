@@ -55,6 +55,7 @@
 
 #include <assert.h>
 #include <ostream>
+#include <memory>
 
 #include "SDL.h"
 
@@ -164,6 +165,11 @@ namespace phys
         this->Code=Code_;
     }
 
+    void MetaCode::SetCode(int Code_)
+    {
+        this->Code=(MetaCode::InputCode)Code_;
+    }
+
 /*    void MetaCode::SetID(const short unsigned int &ID_)
     {
         this->ID=ID_;
@@ -172,11 +178,13 @@ namespace phys
 
     MetaCode::InputCode MetaCode::GetMouseButtonCode(int ButtonNumber)
     {
-        /// @todo make this more efficient, no need for the switch, one of these two remarked out items should would
-        //return reinterpret_cast<int>(MetaCode::MOUSEBUTTON) + ButtonNumber;
-        //return MetaCode::MOUSEBUTTON + ButtonNumber;
+        MetaCode::InputCode Answer = (MetaCode::InputCode)(ButtonNumber + (int)MetaCode::MOUSEBUTTON);
+        if ( MetaCode::MOUSEBUTTON_FIRST > Answer && MetaCode::MOUSEBUTTON_LAST < Answer)
+            { throw (Exception("Unsupported mouse Button.")); }
+        return Answer;
 
-        switch(ButtonNumber)
+        // I will hang to this just incase we want the maximum in type safety.
+        /*switch(ButtonNumber)
         {
             case 0: return MetaCode::MOUSEBUTTON;
             case 1: return MetaCode::MOUSEBUTTON_1;
@@ -200,15 +208,19 @@ namespace phys
             case 19: return MetaCode::MOUSEBUTTON_19;
             case 20: return MetaCode::MOUSEBUTTON_20;
             default:
-                //throw (Exception("Unsupported mouse Button."));
+                throw (Exception("Unsupported mouse Button."));
                 return MetaCode::MOUSEBUTTON;
-
-        }
+        }*/
     }
 
     bool MetaCode::IsKeyboardButton() const
     {
         return (MetaCode::KEY_FIRST <= this->Code && this->Code <= MetaCode::KEY_LAST);
+    }
+
+    bool MetaCode::IsMouseButton() const
+    {
+        return (MetaCode::MOUSEBUTTON_FIRST <= this->Code && this->Code <= MetaCode::MOUSEBUTTON_LAST);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -228,10 +240,31 @@ namespace phys
 
 std::ostream& operator << (std::ostream& stream, const phys::MetaCode& x)
 {
-    stream << "<Metacode Version=\"1\" MetaValue=\"" << x.GetMetaValue() << "\"" << " Code=\"" << x.GetCode() <<  "\" / >";
+    stream << "<MetaCode Version=\"1\" MetaValue=\"" << x.GetMetaValue() << "\"" << " Code=\"" << x.GetCode() <<  "\" />";
     return stream;
 }
 
+#ifdef PHYSXML
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::MetaCode& x)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "MetaCode", OneTag) );
 
+    Doc->GetFirstChild() >> x;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::MetaCode& x)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        x.SetMetaValue(OneNode.GetAttribute("MetaValue").AsInt());
+        x.SetCode(OneNode.GetAttribute("Code").AsInt());
+    }else{
+        throw( phys::Exception("Incompatible XML Version for MetaCode: Not Version 1"));
+    }
+}
+#endif // \PHYSXML
 
 #endif
