@@ -64,7 +64,7 @@ namespace phys
     class PHYS_LIB ParticleEffect : public Attachable
     {
         protected:
-            friend class Node;
+            friend class WorldNode;
             /// @brief Pointer to the ogre ParticleSystem from which this class gets it's functionality.
             Ogre::ParticleSystem* OgreParticle;
             /// @brief Pointer to the ogre Scenenode to which this object is attached.

@@ -78,7 +78,7 @@ namespace phys
                 Spotlight
             };
         protected:
-            friend class Node;
+            friend class WorldNode;
             /// @brief The ogre light this class gets it's functionality from.
             Ogre::Light* OgreLight;
             /// @brief Pointer to the manager that created this class.

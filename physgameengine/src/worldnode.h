@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _node_h
-#define _node_h
+#ifndef _worldnode_h
+#define _worldnode_h
 
 #include "attachable.h"
 #include "crossplatformexport.h"
@@ -74,7 +74,7 @@ namespace phys
     /// Note:  There are no rules restricting the use of nodes anyway, this enum is here simply to help
     /// indicate the intended use upon creation.
     ///////////////////////////////////////
-    class PHYS_LIB Node
+    class PHYS_LIB WorldNode
     {
         public:
             enum NodeType
@@ -90,21 +90,21 @@ namespace phys
             /// @brief Pointer to the manager that created this class.
             SceneManager* Manager;
             /// @brief Enum value storing the type of node this class is.
-            Node::NodeType Type;
+            WorldNode::NodeType Type;
             /// @brief Vector storing all attached cameras.
             std::vector< Attachable* > Elements;
         public:
             /// @brief Standard initialization constructor.
             /// @param Name The name of this node.
             /// @param manager Pointer to the manager that this node is to be used in.
-            Node(const String& Name, SceneManager* manager);
+            WorldNode(const String& Name, SceneManager* manager);
             /// @brief Internal constructor.
             /// @details This constructor should not be called on manually.
             /// @param snode Pointer to the Ogre SceneNode this class is based on.
             /// @param manager Pointer to the manager that this node is to be used in.
-            Node(Ogre::SceneNode* snode, SceneManager* manager);
+            WorldNode(Ogre::SceneNode* snode, SceneManager* manager);
             /// @brief Class destructor.
-            ~Node();
+            ~WorldNode();
             /// @brief Gets the name of this node.
             /// @return Returns a string containing the name given to this node.
             ConstString& GetName();
@@ -139,7 +139,7 @@ namespace phys
             /// that it's always facing the target node.
             /// @param node The node to be tracked.
             /// @param Offset A vector3 representing the offset from the nodes location to be tracked.
-            void SetAutoTracking(Node* node, Vector3 Offset=Vector3());
+            void SetAutoTracking(WorldNode* node, Vector3 Offset=Vector3());
             /// @brief Makes this node autotrack an actor.
             /// @details This function will make this node update it's orientation every frame automatically so
             /// that it's always facing the target actor.
@@ -155,10 +155,10 @@ namespace phys
             /// @brief Sets the type of node that this is.
             /// @details This is intended for internal/expert use only.  Manually calling this could disrupt normal function.
             /// @param type The type of node this is to be set as.
-            void SetType(Node::NodeType type);
+            void SetType(WorldNode::NodeType type);
             /// @brief Gets the type of node that this is.
             /// @return Returns the type of node this is set as.
-            Node::NodeType GetType();
+            WorldNode::NodeType GetType();
     };//node
 }//phys
 
