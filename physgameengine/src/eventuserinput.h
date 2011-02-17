@@ -145,10 +145,10 @@ namespace phys
 
             /// @brief Adds a Created From Raw Values
             /// @param MetaValue_ The MetaValue that will be in the MetaCode
-            /// @param ID_ The ID that will be in the MetaCode
+            // /// @param ID_ The ID that will be in the MetaCode
             /// @param Code_ The InputCode that will be in the MetaCode
             /// @details This creates metacode a metacode and adds it to this event.
-            void AddCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_);
+            void AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_);
 
             /// @brief Adds a MetaCode created from a RawEvent
             /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode

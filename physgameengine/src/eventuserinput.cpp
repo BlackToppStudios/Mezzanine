@@ -105,9 +105,9 @@ namespace phys
         this->AddCode(CurrentMetaCode);
     }
 
-    void EventUserInput::AddCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
+    void EventUserInput::AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_)
     {
-        MetaCode CurrentMetaCode( MetaValue_, ID_, Code_ );
+        MetaCode CurrentMetaCode( MetaValue_, Code_ );
         this->AddCode(CurrentMetaCode);
     }
 
@@ -210,34 +210,34 @@ namespace phys
 
     void EventUserInput::AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_)
     {
-        this->AddCode(RawEvent_.motion.x,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
-        this->AddCode(RawEvent_.motion.y,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+        this->AddCode(RawEvent_.motion.x, MetaCode::MOUSEABSOLUTEHORIZONTAL);
+        this->AddCode(RawEvent_.motion.y, MetaCode::MOUSEABSOLUTEVERTICAL);
 
         if(0 != RawEvent_.motion.xrel)
-            {this->AddCode(RawEvent_.motion.xrel,0,MetaCode::MOUSEVERTICAL);}
+            {this->AddCode(RawEvent_.motion.xrel, MetaCode::MOUSEVERTICAL);}
 
         if(0 != RawEvent_.motion.yrel)
-            {this->AddCode(RawEvent_.motion.yrel,0,MetaCode::MOUSEHORIZONTAL);}
+            {this->AddCode(RawEvent_.motion.yrel, MetaCode::MOUSEHORIZONTAL);}
     }
 
     void EventUserInput::AddCodesFromSDLMouseButton(const RawEvent &RawEvent_)
     {
         //MetaCode::MetaCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
-        this->AddCode(RawEvent_.button.x,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
+        this->AddCode(RawEvent_.button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL);
 
-        this->AddCode(RawEvent_.button.y,0,MetaCode::MOUSEABSOLUTEVERTICAL);
+        this->AddCode(RawEvent_.button.y, MetaCode::MOUSEABSOLUTEVERTICAL);
 
         if ( SDL_BUTTON_WHEELUP==RawEvent_.button.button)
         {
-            this->AddCode(MetaCode::MOUSEWHEEL_UP,0,MetaCode::MOUSEWHEELVERTICAL);
+            this->AddCode(MetaCode::MOUSEWHEEL_UP, MetaCode::MOUSEWHEELVERTICAL);
         }else if( SDL_BUTTON_WHEELDOWN==RawEvent_.button.button ){
-            this->AddCode(MetaCode::MOUSEWHEEL_DOWN,0,MetaCode::MOUSEWHEELVERTICAL);
+            this->AddCode(MetaCode::MOUSEWHEEL_DOWN, MetaCode::MOUSEWHEELVERTICAL);
         }else{
             if(RawEvent_.button.state==SDL_PRESSED)
             {
-                this->AddCode(MetaCode::BUTTON_DOWN, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
+                this->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
             }else{
-                this->AddCode(MetaCode::BUTTON_UP, RawEvent_.button.button, MetaCode::MOUSEBUTTON);
+                this->AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
             }
         }
     }

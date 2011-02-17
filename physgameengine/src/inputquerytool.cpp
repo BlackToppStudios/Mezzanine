@@ -174,7 +174,7 @@ namespace phys
                 {
                     if(0 != (*Iter)->GetMetaCode(c).GetMetaValue()) //see MetaCode::ButtonState
                     {
-                        this->MouseButtonCache[(*Iter)->GetMetaCode(c).GetID()] = (*Iter)->GetMetaCode(c);
+                        this->MouseButtonCache[(*Iter)->GetMetaCode(c).GetCode()] = (*Iter)->GetMetaCode(c);
                     }
                     continue;
                 }

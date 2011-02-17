@@ -50,7 +50,7 @@
 // Includes
 ///////////////////////////////////////
 
-//#include "physdatatypes.h"
+#include "exception.h"
 #include "metacode.h"
 
 #include <assert.h>
@@ -71,9 +71,9 @@ namespace phys
     MetaCode::MetaCode()
     {}
 
-    MetaCode::MetaCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
+    MetaCode::MetaCode(const int &MetaValue_, const MetaCode::InputCode &Code_)
     {
-        Construct(MetaValue_, ID_, Code_);
+        Construct(MetaValue_, Code_);
     }
 
     MetaCode::MetaCode(const RawEvent &RawEvent_)
@@ -84,16 +84,16 @@ namespace phys
     void MetaCode::Construct(const RawEvent &RawEvent_)
     {
         //create a safe but gibberish default
-        Construct(BUTTON_UP, 0, KEY_FIRST);
+        Construct(BUTTON_UP, KEY_FIRST);
         /// @todo TODO: Actually process each event
         switch(RawEvent_.type)
         {
             case SDL_KEYDOWN:
                 //    Construct(MetaValue_, ID_, Code_);
-                Construct(BUTTON_PRESSING, 0, GetInputCodeFromSDL_KEY(RawEvent_));
+                Construct(BUTTON_PRESSING, GetInputCodeFromSDL_KEY(RawEvent_));
                 break;
             case SDL_KEYUP:
-                Construct(BUTTON_LIFTING, 0, GetInputCodeFromSDL_KEY(RawEvent_));
+                Construct(BUTTON_LIFTING, GetInputCodeFromSDL_KEY(RawEvent_));
                 break;
 
             case SDL_JOYAXISMOTION:/// @todo TODO determine if Joystick RawEvents will emit 1 or multiple Metacodes
@@ -119,10 +119,9 @@ namespace phys
         }
     }
 
-    void MetaCode::Construct(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
+    void MetaCode::Construct(const int &MetaValue_, const MetaCode::InputCode &Code_)
     {
         SetMetaValue(MetaValue_);
-        SetID(ID_);
         SetCode(Code_);
     }
 
@@ -133,7 +132,7 @@ namespace phys
     //This function assumes the RawEvent is a valid SDL Keyevent
     MetaCode::InputCode MetaCode::GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_)
     {
-        //This Whole thing will only work with SDL events. If we switch out event subsystems this is one of those that must change it.
+        //This Whole thing will only work with SDL Keyboard events. If we switch out event subsystems this is one of those that must change it.
         MetaCode::InputCode To;
 
         assert( sizeof(To)==sizeof(RawEvent_.key.keysym.sym) );
@@ -155,11 +154,6 @@ namespace phys
         return this->Code;
     }
 
-    short unsigned int MetaCode::GetID() const
-    {
-        return this->ID;
-    }
-
     void MetaCode::SetMetaValue(const int &MetaValue_)
     {
         this->MetaValue=MetaValue_;
@@ -170,9 +164,46 @@ namespace phys
         this->Code=Code_;
     }
 
-    void MetaCode::SetID(const short unsigned int &ID_)
+/*    void MetaCode::SetID(const short unsigned int &ID_)
     {
         this->ID=ID_;
+    }*/
+
+
+    MetaCode::InputCode MetaCode::GetMouseButtonCode(int ButtonNumber)
+    {
+        /// @todo make this more efficient, no need for the switch, one of these two remarked out items should would
+        //return reinterpret_cast<int>(MetaCode::MOUSEBUTTON) + ButtonNumber;
+        //return MetaCode::MOUSEBUTTON + ButtonNumber;
+
+        switch(ButtonNumber)
+        {
+            case 0: return MetaCode::MOUSEBUTTON;
+            case 1: return MetaCode::MOUSEBUTTON_1;
+            case 2: return MetaCode::MOUSEBUTTON_2;
+            case 3: return MetaCode::MOUSEBUTTON_3;
+            case 4: return MetaCode::MOUSEBUTTON_4;
+            case 5: return MetaCode::MOUSEBUTTON_5;
+            case 6: return MetaCode::MOUSEBUTTON_6;
+            case 7: return MetaCode::MOUSEBUTTON_7;
+            case 8: return MetaCode::MOUSEBUTTON_8;
+            case 9: return MetaCode::MOUSEBUTTON_9;
+            case 10: return MetaCode::MOUSEBUTTON_10;
+            case 11: return MetaCode::MOUSEBUTTON_11;
+            case 12: return MetaCode::MOUSEBUTTON_12;
+            case 13: return MetaCode::MOUSEBUTTON_13;
+            case 14: return MetaCode::MOUSEBUTTON_14;
+            case 15: return MetaCode::MOUSEBUTTON_15;
+            case 16: return MetaCode::MOUSEBUTTON_16;
+            case 17: return MetaCode::MOUSEBUTTON_17;
+            case 18: return MetaCode::MOUSEBUTTON_18;
+            case 19: return MetaCode::MOUSEBUTTON_19;
+            case 20: return MetaCode::MOUSEBUTTON_20;
+            default:
+                //throw (Exception("Unsupported mouse Button."));
+                return MetaCode::MOUSEBUTTON;
+
+        }
     }
 
     bool MetaCode::IsKeyboardButton() const
@@ -197,11 +228,10 @@ namespace phys
 
 std::ostream& operator << (std::ostream& stream, const phys::MetaCode& x)
 {
-    stream << "( MetaValue:" << x.GetMetaValue()
-           << ", ID:" << x.GetID()
-           << ", Code:" << x.GetCode()
-           <<  " )";
+    stream << "<Metacode Version=\"1\" MetaValue=\"" << x.GetMetaValue() << "\"" << " Code=\"" << x.GetCode() <<  "\" / >";
     return stream;
 }
+
+
 
 #endif
