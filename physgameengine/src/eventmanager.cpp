@@ -204,17 +204,13 @@ namespace phys
         _Data->EventQ.push_back(EventToAdd);
     }
 
-    size_t EventManager::ConvertRawEvents(const RawEvent& ToConvert, std::list<EventBase*>* ConvertedStorage)
-    {
-
-    }
-
     void EventManager::UpdateEvents()
     {
         UpdateQuitEvents(); //quit events skips the preprocessing step and goes straight into the the main Queue, becuase of how we need to get them from sdl
 
-        RawEvent FromSDLRaw;
-        EventUserInput* FromSDLEvent = new EventUserInput();
+        RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
+        EventUserInput* FromSDLEvent = new EventUserInput();    //Used to build up all of our userinput data into one event
+
         while(SDL_PollEvent(&FromSDLRaw))
         {
             switch(FromSDLRaw.type)
@@ -226,22 +222,14 @@ namespace phys
                 case SDL_SYSWMEVENT:
                 case SDL_USEREVENT:
                     /// @todo hande unhandled user system events
-                    //Process
+                    //_Data->EventQ.push_back(FromSDLEvent);
                     break;
-                case SDL_KEYDOWN:
-                case SDL_KEYUP:
-                case SDL_MOUSEBUTTONDOWN:
-                case SDL_MOUSEBUTTONUP:
+
+                case SDL_MOUSEBUTTONDOWN:   case SDL_MOUSEBUTTONUP:     case SDL_MOUSEMOTION:
+                case SDL_KEYDOWN:           case SDL_KEYUP:
+                case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
+                case SDL_JOYBUTTONDOWN:     case SDL_JOYBUTTONUP:
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
-                    break;
-                case SDL_MOUSEMOTION:
-                case SDL_JOYAXISMOTION:
-                case SDL_JOYBUTTONDOWN:
-                case SDL_JOYBUTTONUP:
-                case SDL_JOYBALLMOTION:
-                case SDL_JOYHATMOTION:
-                    //FromSDLEvent->AddCode(MetaCode(FromSDL));
-                    /// @todo hande unhandled user input events
                     break;
                 //Never thrown by SDL, but could be added by a user
                 default:
@@ -255,80 +243,82 @@ namespace phys
             delete FromSDLEvent;
         }else{
             _Data->EventQ.push_back(FromSDLEvent);
+            /// @todo for each user input event update the ManualCheck list
+            //
         }
-        //EventUserInput* FromSDLEvent = new EventUserInput();
-        EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
 
+        ////////
 
+//      EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
 
         //read through the pending user input events and add those codes
-        while( !_Data->SDL_UserInputEvents.empty() )
-        {
-            RawEvent* CurrentRawEvent = _Data->SDL_UserInputEvents.front();
+//        while( !_Data->SDL_UserInputEvents.empty() )
+//        {
+//            RawEvent* CurrentRawEvent = _Data->SDL_UserInputEvents.front();
+//
+//            if(CurrentRawEvent->type == SDL_MOUSEBUTTONDOWN || CurrentRawEvent->type == SDL_MOUSEBUTTONUP)
+//            {
+//                FromSDLEvent->AddCode(CurrentRawEvent->button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL);
+//                FromSDLEvent->AddCode(CurrentRawEvent->button.y, MetaCode::MOUSEABSOLUTEVERTICAL);
+//                if ( SDL_BUTTON_WHEELUP==CurrentRawEvent->button.button)
+//                {
+//                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_UP,MetaCode::MOUSEWHEELVERTICAL);
+//                }else if( SDL_BUTTON_WHEELDOWN==CurrentRawEvent->button.button ){
+//                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_DOWN,MetaCode::MOUSEWHEELVERTICAL);
+//                }else{
+//                    if(CurrentRawEvent->button.state==SDL_PRESSED /*&& !MouseButtonCache[CurrentRawEvent->button.button]*/){
+//                        /// @todo verify this works after id removal from metacode.
+//                        FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
+//                        //FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
+//                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+//                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
+//                    /*}else if(CurrentRawEvent->button.state==SDL_PRESSED && MouseButtonCache[CurrentRawEvent->button.button]){
+//                        FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);*/
+//                    }else if(CurrentRawEvent->button.state==SDL_RELEASED /*&& MouseButtonCache[CurrentRawEvent->button.button]*/){
+//                        /// @todo verify this works after id removal from metacode.
+//                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
+////                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
+//                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+//                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
+//                    }
+//                }
+//            }else{
+//                FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
+//            }
+//
+//            delete CurrentRawEvent;
+//            _Data->SDL_UserInputEvents.pop(); //NEXT!!!
+//        }
 
-            if(CurrentRawEvent->type == SDL_MOUSEBUTTONDOWN || CurrentRawEvent->type == SDL_MOUSEBUTTONUP)
-            {
-                FromSDLEvent->AddCode(CurrentRawEvent->button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL);
-                FromSDLEvent->AddCode(CurrentRawEvent->button.y, MetaCode::MOUSEABSOLUTEVERTICAL);
-                if ( SDL_BUTTON_WHEELUP==CurrentRawEvent->button.button)
-                {
-                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_UP,MetaCode::MOUSEWHEELVERTICAL);
-                }else if( SDL_BUTTON_WHEELDOWN==CurrentRawEvent->button.button ){
-                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_DOWN,MetaCode::MOUSEWHEELVERTICAL);
-                }else{
-                    if(CurrentRawEvent->button.state==SDL_PRESSED /*&& !MouseButtonCache[CurrentRawEvent->button.button]*/){
-                        /// @todo verify this works after id removal from metacode.
-                        FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
-                        //FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
-                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
-                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
-                    /*}else if(CurrentRawEvent->button.state==SDL_PRESSED && MouseButtonCache[CurrentRawEvent->button.button]){
-                        FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);*/
-                    }else if(CurrentRawEvent->button.state==SDL_RELEASED /*&& MouseButtonCache[CurrentRawEvent->button.button]*/){
-                        /// @todo verify this works after id removal from metacode.
-                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
-//                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
-                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
-                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
-                    }
-                }
-            }else{
-                FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
-            }
-
-            delete CurrentRawEvent;
-            _Data->SDL_UserInputEvents.pop(); //NEXT!!!
-        }
-
-        /// @todo This isn't pretty, should be replaced with a more elegant solution that'll work on keyboard events as well.
-        unsigned int x=0;
-        for(std::vector<std::pair<bool,bool> >::iterator it = _Data->MouseButtonCache.begin();it!=_Data->MouseButtonCache.end();it++)
-        {
-            if(!((*it).first) && (*it).second)
-            {
-                FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(x));
-            }
-            x++;
-        }
-
-        *FromSDLEvent += *FromSDLPolling;
-        delete FromSDLPolling;
-
-        //Did atleast one userinput get generates, or atleast one polling request
-        if (0 < FromSDLEvent->GetMetaCodeCount())
-        {
-            //check for mouse input before we send along it all to the event holding ground
-            for (Whole c=0;c<FromSDLEvent->GetMetaCodeCount();++c)
-            {
-                /*if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEHORIZONTAL)
-                    { this->CurrentMouseCoords.X = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
-                if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEVERTICAL)
-                    { this->CurrentMouseCoords.Y = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }*/
-            }
-            this->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
-        }else{
-            delete FromSDLEvent;
-        }
+//        /// @todo This isn't pretty, should be replaced with a more elegant solution that'll work on keyboard events as well.
+//        unsigned int x=0;
+//        for(std::vector<std::pair<bool,bool> >::iterator it = _Data->MouseButtonCache.begin();it!=_Data->MouseButtonCache.end();it++)
+//        {
+//            if(!((*it).first) && (*it).second)
+//            {
+//                FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(x));
+//            }
+//            x++;
+//        }
+//
+//        *FromSDLEvent += *FromSDLPolling;
+//        delete FromSDLPolling;
+//
+//        //Did atleast one userinput get generates, or atleast one polling request
+//        if (0 < FromSDLEvent->GetMetaCodeCount())
+//        {
+//            //check for mouse input before we send along it all to the event holding ground
+//            for (Whole c=0;c<FromSDLEvent->GetMetaCodeCount();++c)
+//            {
+//                /*if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEHORIZONTAL)
+//                    { this->CurrentMouseCoords.X = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
+//                if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEVERTICAL)
+//                    { this->CurrentMouseCoords.Y = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }*/
+//            }
+//            this->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
+//        }else{
+//            delete FromSDLEvent;
+//        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

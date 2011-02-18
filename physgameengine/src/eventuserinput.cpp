@@ -197,7 +197,7 @@ namespace phys
 
     EventUserInput& EventUserInput::operator += (const EventUserInput& Add)
     {
-        for(unsigned int c=0; Add.Code.size()>c ; c++)
+        for(unsigned int c=0; Add.Code.size()>c ; ++c)
         {
             Code.push_back(Add.Code.at(c));
         }

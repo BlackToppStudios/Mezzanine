@@ -114,7 +114,7 @@ namespace phys
 
             /// @internal
             /// @brief Convert any RawEvent into a list of Event pointers
-            static size_t ConvertRawEvents(const RawEvent& ToConvert, std::list<EventBase*>* ConvertedStorage);
+            size_t ConvertRawEventsToMultipleMetaCodes(const RawEvent& ToConvert, EventUserInput* ConvertedGoHere);
 
         public:
             /// @brief Default constructor
@@ -124,7 +124,6 @@ namespace phys
             /// @brief Default Deconstructor
             /// @details This deletes everything still in the event manager and tears it down.
             ~EventManager();
-
 
         ///////////////////////////////////////////////////////////////////////////////
         // Management functions - Work with all events
