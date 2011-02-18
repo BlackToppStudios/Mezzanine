@@ -648,7 +648,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << c;
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(4);
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
     }
 
@@ -657,8 +657,8 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        //TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(3);
-        TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+        //TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
     }
     //TheWorld->Resources->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "RobotDecomp3.bullet");
@@ -668,7 +668,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
     }
 
