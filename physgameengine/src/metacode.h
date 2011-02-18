@@ -97,9 +97,8 @@ namespace phys
             /// has an entry for most mouse and joystick input methods.
             enum InputCode
             {
-                POLLABLE_FIRST		= 0,    /**< POLLABLE_FIRST All input metacodes that can be polled with come before this one*/
-                KEY_UNKNOWN			= 0,    /**< KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */
                 KEY_FIRST			= 0,    /**< KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. */
+                KEY_UNKNOWN			= 0,    /**< KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */
                 KEY_BACKSPACE		= 8,
                 KEY_TAB				= 9,
                 KEY_CLEAR			= 12,
@@ -361,7 +360,7 @@ namespace phys
                 KEYMOD_CAPS     	= 333,
                 KEYMOD_MODE     	= 334,
                 KEYMOD_RESERVED     = 335,
-                KEY_LAST            = 380,      /// The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that
+                KEY_LAST            = 379,      /// The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that
 
                 MOUSE_FIRST         = 380,  /// The First Mouse event, all Mouse Event values will be more than this
                 MOUSEBUTTON         = 380,      /// This is the generic Some mouse button code. You can add the number of the mouse button to this and you will get the approriate code. Example (MOUSEBUTTON_1 == MOUSEBUTTON + 1)
@@ -388,18 +387,23 @@ namespace phys
                 MOUSEBUTTON_20      = 400,
                 MOUSEBUTTON_LAST    = 400,      /// The Last mouse button event, all mouse button event will be lower or equal to this.
 
-                //MOUSEBUTTON             = 481,
+                INPUTEVENT_FIRST        = 401,  /// The First non-button event, all Mouse and keyboard button values will be Less than this
                 MOUSEABSOLUTEVERTICAL   = 402,
                 MOUSEABSOLUTEHORIZONTAL = 403,
                 MOUSEVERTICAL           = 404,
                 MOUSEHORIZONTAL         = 405,
                 MOUSEWHEELVERTICAL      = 406,
                 MOUSEWHEELHORIZONTAL    = 407,
-                MOUSE_LAST              = 409,  /// The last MouseEvent Code, all Mouse events will be less than this
+                MOUSE_LAST              = 410,  /// The last MouseEvent Code, all Mouse events will be less than this
 
-                INPUTEVENT_FIRST        = 410,  /// The First non-button event, all button values will be Less than this
-
-                POLLABLE_LAST           = 430,  ///
+                JOYSTICK_FIRST          = 499,  /// The First JoyStick event, all Joystick Event values will be more than this
+                JOYSTICKBUTTON          = 500,
+                JOYSTICKMOTIONAXIS      = 501,
+                JOYSTICKBALLVERTICAL    = 502,
+                JOYSTICKBALLHORIZONTAL  = 503,
+                JOYSTICKHATVERTICAL     = 504,
+                JOYSTICKHATHORIZONTAL   = 505,
+                JOYSTICK_LAST           = 506,  /// The last JoyStick Event Code, all JoyStick events will be less than this.
 
                 MOTION_FIRST            = 460,  /// The first Motion event
                 MOTION_LAST             = 469,  /// The last Motion event
@@ -411,14 +415,6 @@ namespace phys
                 MULTITOUCH_STRETCH      = 474,
                 MULTITOUCH_LAST         = 479,  /// The last Multi Touch event
 
-                JOYSTICK_FIRST          = 499,  /// The First JoyStick event, all Joystick Event values will be more than this
-                JOYSTICKBUTTON          = 500,
-                JOYSTICKMOTIONAXIS      = 501,
-                JOYSTICKBALLVERTICAL    = 502,
-                JOYSTICKBALLHORIZONTAL  = 503,
-                JOYSTICKHATVERTICAL     = 504,
-                JOYSTICKHATHORIZONTAL   = 505,
-                JOYSTICK_LAST           = 506,  /// The last JoyStick Event Code, all JoyStick events will be less than this.
                 INPUTEVENT_LAST         = 512   /// The last Event Code, all event codes will be less than this.
             };
 
@@ -456,6 +452,7 @@ namespace phys
             //This assigns a value to Inputcode by doing an efficient low level copy of the correct portion of an SDL_event
             //If mishandled this function can corrupt the MetaCode, and it can throw any error memcpy could throw.
             static MetaCode::InputCode GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_);
+            static MetaCode::InputCode GetInputCodeFromSDL_MOUSE(const RawEvent &RawEvent_);
 
         public:
             /// @brief Default constructor
@@ -517,20 +514,6 @@ namespace phys
             /// @return When passed 0 this returns MetaCode::MOUSEBUTTON, otherwise this returns MetaCode::MOUSEBUTTON_X where X is the number that was passed in
             static MetaCode::InputCode GetMouseButtonCode(int ButtonNumber);
 
-            // /// @brief This Returns the Input ID
-            // /// @details The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed.
-            // /// On systems that support multiple keyboards this will even differentiate between those.
-            // /// This value can be set with @ref SetID .
-            // /// @return This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis,
-            // /// JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this
-            // /// can identify from unique input sources and InputCode.
-            // short unsigned int GetID() const;             //Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.
-
-            // /// @brief This Sets The input ID
-            // /// @details See @ref GetID to see exactly what the input ID is. This will set the ID stored in this MetaCode. This value can be retrieved with @ref GetID .
-            // /// @param ID_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
-            // void SetID(const short unsigned int &ID_);
-
             /// @brief Does this MetaCode Represent a state of a keyboard key
             /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.
             /// @return This returns a bool which will be true if this is keyboard event.
@@ -540,6 +523,16 @@ namespace phys
             /// @details Returns true if this MetaCode pertains to a mouse button being up, polled, down, pressed, or lifted.
             /// @return This returns a bool which will be true if this is MOUSEBUTTON_X event.
             bool IsMouseButton() const;
+
+            /// @brief Does this MetaCode Represent a state of a Joystick Event
+            /// @details Returns true if this MetaCode pertains to a joystick button being twisted, tilted, up, polled, down, pressed, or lifted, or whatever else you can do to a joystick.
+            /// @return This returns a bool which will be true if this is between JOYSTICK_FIRST and JOYSTICK_LAST.
+            bool IsJoyStickEvent() const;
+
+            /// @brief Does this MetaCode Represent some other (non-keyboard and non-mouse button)
+            /// @details Returns true if this MetaCode pertains to any being up, polled, down, pressed, or lifted.
+            /// @return This returns a bool which will be true if this is between INPUTEVENT_FIRST and INPUTEVENT_LAST.
+            bool IsOtherInputEvent() const;
 
             /// @brief Compares two MetaCodes for equality
             /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.

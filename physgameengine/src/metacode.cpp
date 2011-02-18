@@ -90,11 +90,16 @@ namespace phys
         switch(RawEvent_.type)
         {
             case SDL_KEYDOWN:
-                //    Construct(MetaValue_, ID_, Code_);
                 Construct(BUTTON_PRESSING, GetInputCodeFromSDL_KEY(RawEvent_));
                 break;
             case SDL_KEYUP:
                 Construct(BUTTON_LIFTING, GetInputCodeFromSDL_KEY(RawEvent_));
+                break;
+            case SDL_MOUSEBUTTONDOWN: //in some case will generate a mousewheel and a mouse button event
+                Construct(BUTTON_LIFTING, GetInputCodeFromSDL_MOUSE(RawEvent_));
+                break;
+            case SDL_MOUSEBUTTONUP: //in some case will generate a mousewheel and a mouse button event
+                Construct(BUTTON_LIFTING, GetInputCodeFromSDL_MOUSE(RawEvent_));
                 break;
 
             case SDL_JOYAXISMOTION:/// @todo TODO determine if Joystick RawEvents will emit 1 or multiple Metacodes
@@ -109,8 +114,6 @@ namespace phys
                 break;
 
             case SDL_MOUSEMOTION:
-            case SDL_MOUSEBUTTONDOWN:
-            case SDL_MOUSEBUTTONUP:
                 throw ("RawEvent which creates Multiple Metacodes inserted into Metacode");
                 break;
 
@@ -140,6 +143,18 @@ namespace phys
         memcpy( &To, &(RawEvent_.key.keysym.sym), sizeof(RawEvent_.key.keysym.sym));
 
         return To;
+    }
+
+    MetaCode::InputCode MetaCode::GetInputCodeFromSDL_MOUSE(const RawEvent &RawEvent_)
+    {
+        switch (RawEvent_.button.button )
+        {
+            case SDL_BUTTON_LEFT: return MetaCode::MOUSEBUTTON_1;
+            case SDL_BUTTON_RIGHT: return MetaCode::MOUSEBUTTON_2;
+            case SDL_BUTTON_MIDDLE: return MetaCode::MOUSEBUTTON_3;
+            case SDL_BUTTON_X1: return MetaCode::MOUSEBUTTON_4;
+            case SDL_BUTTON_X2: return MetaCode::MOUSEBUTTON_5;
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -221,6 +236,16 @@ namespace phys
     bool MetaCode::IsMouseButton() const
     {
         return (MetaCode::MOUSEBUTTON_FIRST <= this->Code && this->Code <= MetaCode::MOUSEBUTTON_LAST);
+    }
+
+    bool MetaCode::IsJoyStickEvent() const
+    {
+        return (MetaCode::JOYSTICK_FIRST <= this->Code && this->Code <= MetaCode::JOYSTICK_LAST);
+    }
+
+    bool MetaCode::IsOtherInputEvent() const
+    {
+        return (MetaCode::INPUTEVENT_FIRST <= this->Code && this->Code <= MetaCode::INPUTEVENT_LAST);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
