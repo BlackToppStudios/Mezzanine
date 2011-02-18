@@ -112,8 +112,9 @@ namespace phys
             //This function will get all the events from SDL and Sort them into one of two Queues
             void PreProcessSDLEvents();
 
-            /// @todo remove this in a clean way
-            Vector2 CurrentMouseCoords;
+            /// @internal
+            /// @brief Convert any RawEvent into a list of Event pointers
+            size_t ConvertRawEventsToMultipleMetaCodes(const RawEvent& ToConvert, EventUserInput* ConvertedGoHere);
 
         public:
             /// @brief Default constructor
@@ -123,7 +124,6 @@ namespace phys
             /// @brief Default Deconstructor
             /// @details This deletes everything still in the event manager and tears it down.
             ~EventManager();
-
 
         ///////////////////////////////////////////////////////////////////////////////
         // Management functions - Work with all events
@@ -136,7 +136,7 @@ namespace phys
             /// @brief Return a pointer to the Next event
             /// @details This returns a pointer to the next PhysEvent. It is advisable to use this for performance reasons
             /// because it runs in constant time. However it does not return a specific kind of event, and must be cast
-            /// in order to use the true content. This returns a pointer to 0 if there are no events in the que.
+            /// in order to use the true content. This returns a pointer to 0 if there are no events in the queue.
             /// @return A pointer to a PhysEvent, that still needs to be removed from the event manager and deleted.
             EventBase* GetNextEvent();
 
@@ -161,21 +161,9 @@ namespace phys
 
             /// @brief Pulls Events from the all the subsystems for use in the EventManager.
             /// @details The work this function does is already performed in the main loop. This only really needs to be used
-            /// If a game developer chooses to use his own main loop and does't use UpdateSystemEvents() or UpdateUserInputEvents()
+            /// If a game developer chooses to use his own main loop. This adds system events, like EventQuit and Other Windows manager events,
+            /// and if any user input event actions, this generates one EventUserInput that stores everythin that happened.
             void UpdateEvents();
-
-            /// @brief Pulls System and Window manager Events from the all the subsystems for use in the EventManager.
-            /// @details This adds events, like EventQuit and Other Windows manager events. The work this function does is already performed
-            /// in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use UpdateEvents()
-            /// and plans on using UpdateUserInputEvents()
-            void UpdateSystemEvents();
-
-            /// @brief Pulls User Interface Events from the all the subsystems for use in the EventManager.
-            /// @details This adds events, like EventUserInput to the eventmanager. The work this function does is already performed
-            /// in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use UpdateEvents()
-            /// and plans on using UpdateSystemEvents()
-            void UpdateUserInputEvents();
-
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - RenderTime Events
@@ -351,13 +339,6 @@ namespace phys
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::EventManager
             virtual ManagerTypeName GetType() const;
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Misc functions
-        ///////////////////////////////////////
-            /// @brief Get the Default Mouse coordinates
-            /// @return This returns a vector2 that stores the location of the default mouse.
-            Vector2 GetMouseCoords();
 
     };
 }

@@ -53,6 +53,8 @@
 #include "eventquit.h"
 #include "metacode.h"
 
+#include <set>
+
 #include "SDL.h"
 //#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
 
@@ -98,197 +100,225 @@ namespace phys
         }
 
         /// @internal
+        /// @brief used to store internally how what events need to be emitted.
+        typedef std::pair <MetaCode::InputCode, bool> BoolAndCode;
+
+        /// @internal
+        /// @brief used to compare BoolAndCodeObjects
+        struct BACcomp{
+            ///@brief the real magic of a comparator
+            bool operator() (const BoolAndCode& lhs, const BoolAndCode& rhs)
+                { return lhs.first<rhs.second; }
+        };
+
+        /// @internal
         /// @brief Used to increase encapsulation, just a bit.
         struct EventManagerInternalData
         {
-            //The Queue that all the events get stored in
-            std::list<EventBase*> EventQueue;
 
             //a List of the Keyboard keys being watch
             vector<MetaCode::InputCode> WatchKeyboardKeys;
-
             // A list of the Mouse buttons being watched
-            vector<int> WatchMouseKeys;
-
+            vector<MetaCode::InputCode> WatchMouseKeys;
             //These are use to decide if mouse location should be polled.
             bool PollMouseHor;
             bool PollMouseVert;
-
             // the cache of mouse buttons so that events can be thrown the entire time the mouse button is down
-            std::vector<std::pair<bool,bool> > MouseButtonCache;
-
+            std::vector< std::pair<bool,bool> > MouseButtonCache;
             //an internal queue of Window management events that happened during the frame that need to be converted into phys::Events
             queue<RawEvent*> SDL_WmEvents;
-
             // and internal queue of userinput events
             queue<RawEvent*> SDL_UserInputEvents;
+            // what events are coming from SDL
+            //std::list<RawEvent*> SDL_EventQ;
 
-            queue<RawEvent*> SDL_EventQ;
+            ///////////////////////////////////////////////////////////////////////////////
+            // New datastructures to replace old ones
+
+
+            //The Queue that all the events get stored in
+            std::list<EventBase*> EventQ;
+
+            // A unified polling and event repeater
+            // if true the item is to be removed when the key is lifted, if false it remains until the polling check is removed
+            // the Inputcode is the kind of event to check for each frame.
+            std::set<BoolAndCode, BACcomp> ManualCheck;
         };
+
     } // /internal
 
     /// @todo TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and
     /// and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock
     EventManager::EventManager()
     {
+        this->Priority=-40;
         this->_Data = new internal::EventManagerInternalData;
+
         this->GameWorld = World::GetWorldPointer();
+
         this->_Data->PollMouseHor = false;
         this->_Data->PollMouseVert = false;
-        this->Priority=-40;
         _Data->MouseButtonCache.resize(16);
         _Data->MouseButtonCache.insert(_Data->MouseButtonCache.begin(),16,std::pair<bool,bool>(false,false));
     }
 
     EventManager::~EventManager()
     {
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
+            { delete *Iter; }
         delete _Data;
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
-        {
-            delete *Iter;
-        }
     }
-
 
     ///////////////////////////////////////////////////////////////////////////////
     //These functions will give you the next event or help you manage the events
     ///////////////////////////////////////
     size_t EventManager::GetRemainingEventCount()
     {
-        return _Data->EventQueue.size();
+        return _Data->EventQ.size();
     }
 
     EventBase* EventManager::GetNextEvent()
     {
-        if(_Data->EventQueue.size()==0)
-        {
-                return 0;
-        }
-        EventBase* results = _Data->EventQueue.front();
+        if(_Data->EventQ.empty())
+            { return 0; }
+        EventBase* results = _Data->EventQ.front();
         return results;
     }
 
     EventBase* EventManager::PopNextEvent()
     {
-        if(_Data->EventQueue.size()==0)
-        {
-                return 0;
-        }
-        EventBase* results = _Data->EventQueue.front();
-        _Data->EventQueue.pop_front();
+        if(_Data->EventQ.empty())
+            { return 0; }
+        EventBase* results = _Data->EventQ.front();
+        _Data->EventQ.pop_front();
         return results;
     }
 
     void EventManager::RemoveNextEvent()
     {
-        _Data->EventQueue.pop_front();
+        _Data->EventQ.pop_front();
     }
 
     void EventManager::AddEvent(EventBase* EventToAdd)
     {
-        _Data->EventQueue.push_back(EventToAdd);
+        _Data->EventQ.push_back(EventToAdd);
     }
 
     void EventManager::UpdateEvents()
     {
-        /// @todo There has got to be a more efficient way to do UpdateEvents()
-        this->UpdateSystemEvents();
-        this->UpdateUserInputEvents();
-    }
+        UpdateQuitEvents(); //quit events skips the preprocessing step and goes straight into the the main Queue, becuase of how we need to get them from sdl
 
-    void EventManager::UpdateSystemEvents()
-    {
-        #ifdef PHYSDEBUG
-        this->PreProcessSDLEvents();
-        this->GameWorld->Log("WM EventCount Pending:");
-        #endif
-        this->GameWorld->Log(_Data->SDL_WmEvents.size());
-        /// @todo make Physevents for each of the events in SDL_WmEvents(and delete the SDL events)
-    }
+        RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
+        EventUserInput* FromSDLEvent = new EventUserInput();    //Used to build up all of our userinput data into one event
 
-    void EventManager::UpdateUserInputEvents()
-    {
-        this->PreProcessSDLEvents();
-        #ifdef PHYSDEBUG
-        this->GameWorld->Log("User Input EventCount Pending:");
-        this->GameWorld->Log(SDL_UserInputEvents.size());
-        #endif
-
-        EventUserInput* FromSDLEvent = new EventUserInput();
-        EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
-
-        for(std::vector<std::pair<bool,bool> >::iterator it = _Data->MouseButtonCache.begin();it!=_Data->MouseButtonCache.end();it++)
+        while(SDL_PollEvent(&FromSDLRaw))
         {
-            (*it).first = false;
-        }
-        //read through the pending user input events and add those codes
-        while( !_Data->SDL_UserInputEvents.empty() )
-        {
-            RawEvent* CurrentRawEvent = _Data->SDL_UserInputEvents.front();
-
-            if(CurrentRawEvent->type == SDL_MOUSEBUTTONDOWN || CurrentRawEvent->type == SDL_MOUSEBUTTONUP)
+            switch(FromSDLRaw.type)
             {
-                FromSDLEvent->AddCode(CurrentRawEvent->button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL);
-                FromSDLEvent->AddCode(CurrentRawEvent->button.y, MetaCode::MOUSEABSOLUTEVERTICAL);
-                if ( SDL_BUTTON_WHEELUP==CurrentRawEvent->button.button)
-                {
-                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_UP,MetaCode::MOUSEWHEELVERTICAL);
-                }else if( SDL_BUTTON_WHEELDOWN==CurrentRawEvent->button.button ){
-                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_DOWN,MetaCode::MOUSEWHEELVERTICAL);
-                }else{
-                    if(CurrentRawEvent->button.state==SDL_PRESSED /*&& !MouseButtonCache[CurrentRawEvent->button.button]*/){
-                        /// @todo verify this works after id removal from metacode.
-                        FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
-                        //FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
-                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
-                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
-                    /*}else if(CurrentRawEvent->button.state==SDL_PRESSED && MouseButtonCache[CurrentRawEvent->button.button]){
-                        FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);*/
-                    }else if(CurrentRawEvent->button.state==SDL_RELEASED /*&& MouseButtonCache[CurrentRawEvent->button.button]*/){
-                        /// @todo verify this works after id removal from metacode.
-                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
-//                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
-                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
-                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
-                    }
-                }
-            }else{
-                FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
-            }
+                case SDL_ACTIVEEVENT:   //when the window gains focus
+                case SDL_VIDEORESIZE:   //when the screen is resized
+                case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
+                case SDL_QUIT:          //when SDL closes
+                case SDL_SYSWMEVENT:
+                case SDL_USEREVENT:
+                    /// @todo hande unhandled user system events
+                    //_Data->EventQ.push_back(FromSDLEvent);
+                    break;
 
-            delete CurrentRawEvent;
-            _Data->SDL_UserInputEvents.pop(); //NEXT!!!
+                case SDL_MOUSEBUTTONDOWN:   case SDL_MOUSEBUTTONUP:     case SDL_MOUSEMOTION:
+                case SDL_KEYDOWN:           case SDL_KEYUP:
+                case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
+                case SDL_JOYBUTTONDOWN:     case SDL_JOYBUTTONUP:
+                    FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
+                    break;
+                //Never thrown by SDL, but could be added by a user
+                default:
+                    throw ("Unknown SDL Event Inserted");
+                    break;
+            }
         }
 
-        /// @todo This isn't pretty, should be replaced with a more elegant solution that'll work on keyboard events as well.
-        unsigned int x=0;
-        for(std::vector<std::pair<bool,bool> >::iterator it = _Data->MouseButtonCache.begin();it!=_Data->MouseButtonCache.end();it++)
+        if(FromSDLEvent->GetMetaCodeCount()==0)
         {
-            if(!((*it).first) && (*it).second)
-            {
-                FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(x));
-            }
-            x++;
-        }
-
-        *FromSDLEvent += *FromSDLPolling;
-        delete FromSDLPolling;
-
-        //Did atleast one userinput get generates, or atleast one polling request
-        if (0 < FromSDLEvent->GetMetaCodeCount())
-        {
-            //check for mouse input before we send along it all to the event holding ground
-            for (Whole c=0;c<FromSDLEvent->GetMetaCodeCount();++c)
-            {
-                if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEHORIZONTAL)
-                    { this->CurrentMouseCoords.X = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
-                if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEVERTICAL)
-                    { this->CurrentMouseCoords.Y = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
-            }
-            this->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
-        }else{
             delete FromSDLEvent;
+        }else{
+            _Data->EventQ.push_back(FromSDLEvent);
+            /// @todo for each user input event update the ManualCheck list
+            //
         }
+
+        ////////
+
+//      EventUserInput* FromSDLPolling = this->PollForUserInputEvents();
+
+        //read through the pending user input events and add those codes
+//        while( !_Data->SDL_UserInputEvents.empty() )
+//        {
+//            RawEvent* CurrentRawEvent = _Data->SDL_UserInputEvents.front();
+//
+//            if(CurrentRawEvent->type == SDL_MOUSEBUTTONDOWN || CurrentRawEvent->type == SDL_MOUSEBUTTONUP)
+//            {
+//                FromSDLEvent->AddCode(CurrentRawEvent->button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL);
+//                FromSDLEvent->AddCode(CurrentRawEvent->button.y, MetaCode::MOUSEABSOLUTEVERTICAL);
+//                if ( SDL_BUTTON_WHEELUP==CurrentRawEvent->button.button)
+//                {
+//                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_UP,MetaCode::MOUSEWHEELVERTICAL);
+//                }else if( SDL_BUTTON_WHEELDOWN==CurrentRawEvent->button.button ){
+//                    FromSDLEvent->AddCode(MetaCode::MOUSEWHEEL_DOWN,MetaCode::MOUSEWHEELVERTICAL);
+//                }else{
+//                    if(CurrentRawEvent->button.state==SDL_PRESSED /*&& !MouseButtonCache[CurrentRawEvent->button.button]*/){
+//                        /// @todo verify this works after id removal from metacode.
+//                        FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
+//                        //FromSDLEvent->AddCode(MetaCode::BUTTON_PRESSING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
+//                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+//                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = true;//is pressed
+//                    /*}else if(CurrentRawEvent->button.state==SDL_PRESSED && MouseButtonCache[CurrentRawEvent->button.button]){
+//                        FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);*/
+//                    }else if(CurrentRawEvent->button.state==SDL_RELEASED /*&& MouseButtonCache[CurrentRawEvent->button.button]*/){
+//                        /// @todo verify this works after id removal from metacode.
+//                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, MetaCode::GetMouseButtonCode(CurrentRawEvent->button.button));
+////                        FromSDLEvent->AddCode(MetaCode::BUTTON_LIFTING, CurrentRawEvent->button.button, MetaCode::MOUSEBUTTON);
+//                        _Data->MouseButtonCache[CurrentRawEvent->button.button].first = true; //changed this frame
+//                        _Data->MouseButtonCache[CurrentRawEvent->button.button].second = false;//is pressed
+//                    }
+//                }
+//            }else{
+//                FromSDLEvent->AddCodesFromRawEvent( *CurrentRawEvent );
+//            }
+//
+//            delete CurrentRawEvent;
+//            _Data->SDL_UserInputEvents.pop(); //NEXT!!!
+//        }
+
+//        /// @todo This isn't pretty, should be replaced with a more elegant solution that'll work on keyboard events as well.
+//        unsigned int x=0;
+//        for(std::vector<std::pair<bool,bool> >::iterator it = _Data->MouseButtonCache.begin();it!=_Data->MouseButtonCache.end();it++)
+//        {
+//            if(!((*it).first) && (*it).second)
+//            {
+//                FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(x));
+//            }
+//            x++;
+//        }
+//
+//        *FromSDLEvent += *FromSDLPolling;
+//        delete FromSDLPolling;
+//
+//        //Did atleast one userinput get generates, or atleast one polling request
+//        if (0 < FromSDLEvent->GetMetaCodeCount())
+//        {
+//            //check for mouse input before we send along it all to the event holding ground
+//            for (Whole c=0;c<FromSDLEvent->GetMetaCodeCount();++c)
+//            {
+//                /*if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEHORIZONTAL)
+//                    { this->CurrentMouseCoords.X = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }
+//                if(FromSDLEvent->GetMetaCode(c).GetCode() == MetaCode::MOUSEABSOLUTEVERTICAL)
+//                    { this->CurrentMouseCoords.Y = FromSDLEvent->GetMetaCode(c).GetMetaValue(); }*/
+//            }
+//            this->AddEvent(FromSDLEvent); //Now FromSDL is some else's responsibility
+//        }else{
+//            delete FromSDLEvent;
+//        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -297,7 +327,7 @@ namespace phys
     EventBase* EventManager::GetNextSpecificEvent(EventBase::EventType SpecificType)
     {
         EventBase* results = 0;
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
@@ -311,12 +341,12 @@ namespace phys
     EventBase* EventManager::PopNextSpecificEvent(EventBase::EventType SpecificType)
     {
         EventBase* results = 0;
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
                 results = (*Iter);
-                _Data->EventQueue.erase(Iter);
+                _Data->EventQ.erase(Iter);
                 return results;
             }
         }
@@ -325,11 +355,11 @@ namespace phys
 
     void EventManager::RemoveNextSpecificEvent(EventBase::EventType SpecificType)
     {
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
-                _Data->EventQueue.erase(Iter);
+                _Data->EventQ.erase(Iter);
             }
         }
     }
@@ -338,7 +368,7 @@ namespace phys
     {
         std::list<EventBase*>* TempList = new std::list<EventBase*>;
 
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
@@ -350,11 +380,11 @@ namespace phys
 
     void EventManager::RemoveAllSpecificEvents(EventBase::EventType SpecificType)
     {
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQueue.begin(); Iter!=_Data->EventQueue.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
         {
             if((*Iter)->GetType()==SpecificType)
             {
-                this->_Data->EventQueue.remove(*Iter);
+                this->_Data->EventQ.remove(*Iter);
             }
         }
     }
@@ -522,7 +552,7 @@ namespace phys
         {
             supported=true;
 
-            vector<int>::iterator MouseIter;
+            vector<MetaCode::InputCode>::iterator MouseIter;
             for(MouseIter = this->_Data->WatchMouseKeys.begin(); MouseIter!=this->_Data->WatchMouseKeys.end(); MouseIter++) //Check Each
             {
                 if( *MouseIter == InputToStopPolling.GetCode())
@@ -602,16 +632,16 @@ namespace phys
     {
         if(this->_Data->WatchMouseKeys.size()>0)
         {
-            vector<int>::iterator iter;
+            vector<MetaCode::InputCode>::iterator iter;
             for(iter = this->_Data->WatchMouseKeys.begin(); iter != (this->_Data->WatchMouseKeys.end()) ; iter++)
             {
                 /// @todo verify/fix mouse event polling after removal of metacode ID
                 if(SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(*iter))
                 {
-                        MetaCode temp(MetaCode::BUTTON_DOWN,MetaCode::GetMouseButtonCode(*iter));
+                        MetaCode temp(MetaCode::BUTTON_DOWN,*iter);
                         CodeBag.push_back(temp);
                 }else{
-                        MetaCode temp(MetaCode::BUTTON_UP,MetaCode::GetMouseButtonCode(*iter));
+                        MetaCode temp(MetaCode::BUTTON_UP,*iter);
                         CodeBag.push_back(temp);
                 }
             }
@@ -679,7 +709,7 @@ namespace phys
                     throw ("Unknown SDL Event Inserted");
                     break;
             }
-            _Data->SDL_EventQ.push(ScopeHolder);
+//            _Data->SDL_EventQ.push_back(ScopeHolder);
         }
     }
 
@@ -703,17 +733,10 @@ namespace phys
         {}
 
     void EventManager::DoMainLoopItems()
-    {
-        this->UpdateSystemEvents();
-        this->UpdateUserInputEvents();
-    }
+        { this->UpdateEvents(); }
 
     ManagerBase::ManagerTypeName EventManager::GetType() const
         { return ManagerBase::EventManager; }
-
-    // Misc functions
-    Vector2 EventManager::GetMouseCoords()
-        { return this->CurrentMouseCoords; }
 
 } // /phys
 

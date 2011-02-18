@@ -636,6 +636,25 @@ void LoadContent()
         XMLStringStream2 >> ASecondPlane;
         TheWorld->Log(ASecondPlane);
 
+
+        MetaCode ASingleCode(MetaCode(1,MetaCode::MOUSEBUTTON));
+        TheWorld->Log("ASingleCode:");
+        TheWorld->Log(ASingleCode);
+
+        TheWorld->Log("Streaming ASingleCode to String Stream:");
+        stringstream XMLStringStream3;
+        XMLStringStream3 << ASingleCode;
+        TheWorld->Log(XMLStringStream3.str());
+
+        MetaCode ASecondCode(MetaCode(0,MetaCode::KEY_FIRST));
+        TheWorld->Log("ASecondCode:");
+        TheWorld->Log(ASecondCode);
+
+        TheWorld->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
+        XMLStringStream3 >> ASecondCode;
+        TheWorld->Log(ASecondCode);
+
+
         #ifdef PHYSDEBUG
         TheWorld->Log("End of testing XML and Streaming test 3");
         #endif

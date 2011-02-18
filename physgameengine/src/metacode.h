@@ -68,6 +68,7 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
+#include "xml.h"
 
 using namespace std;
 
@@ -96,8 +97,8 @@ namespace phys
             /// has an entry for most mouse and joystick input methods.
             enum InputCode
             {
-                KEY_UNKNOWN			= 0,    /**< KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */
                 KEY_FIRST			= 0,    /**< KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. */
+                KEY_UNKNOWN			= 0,    /**< KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */
                 KEY_BACKSPACE		= 8,
                 KEY_TAB				= 9,
                 KEY_CLEAR			= 12,
@@ -359,11 +360,11 @@ namespace phys
                 KEYMOD_CAPS     	= 333,
                 KEYMOD_MODE     	= 334,
                 KEYMOD_RESERVED     = 335,
+                KEY_LAST            = 379,      /// The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that
 
-                KEY_LAST            = 379,      /// The last KeyCode, all Keys values will be less than this, and all Events will be larger than that
-
-                MOUSEBUTTON_FIRST   = 380,      /// This is the lowest mouse button value, all mice values will be larger of equal to this
+                MOUSE_FIRST         = 380,  /// The First Mouse event, all Mouse Event values will be more than this
                 MOUSEBUTTON         = 380,      /// This is the generic Some mouse button code. You can add the number of the mouse button to this and you will get the approriate code. Example (MOUSEBUTTON_1 == MOUSEBUTTON + 1)
+                MOUSEBUTTON_FIRST   = 381,      /// This is the lowest mouse button value, all mice values will be larger of equal to this
                 MOUSEBUTTON_1       = 381,      /// Most commonly left click.
                 MOUSEBUTTON_2       = 382,      /// Most Commonly Right click
                 MOUSEBUTTON_3       = 383,      /// Most commonly middle click
@@ -385,17 +386,24 @@ namespace phys
                 MOUSEBUTTON_19      = 399,
                 MOUSEBUTTON_20      = 400,
                 MOUSEBUTTON_LAST    = 400,      /// The Last mouse button event, all mouse button event will be lower or equal to this.
-                MOUSE_FIRST             = 401,  /// The First Mouse event, all Mouse Event values will be more than this
-                //MOUSEBUTTON             = 481,
+
+                INPUTEVENT_FIRST        = 401,  /// The First non-button event, all Mouse and keyboard button values will be Less than this
                 MOUSEABSOLUTEVERTICAL   = 402,
                 MOUSEABSOLUTEHORIZONTAL = 403,
                 MOUSEVERTICAL           = 404,
                 MOUSEHORIZONTAL         = 405,
                 MOUSEWHEELVERTICAL      = 406,
                 MOUSEWHEELHORIZONTAL    = 407,
-                MOUSE_LAST              = 409,  /// The last MouseEvent Code, all Mouse events will be less than this
+                MOUSE_LAST              = 410,  /// The last MouseEvent Code, all Mouse events will be less than this
 
-                INPUTEVENT_FIRST        = 410,  /// The First non-button event, all button values will be Less than this
+                JOYSTICK_FIRST          = 499,  /// The First JoyStick event, all Joystick Event values will be more than this
+                JOYSTICKBUTTON          = 500,
+                JOYSTICKMOTIONAXIS      = 501,
+                JOYSTICKBALLVERTICAL    = 502,
+                JOYSTICKBALLHORIZONTAL  = 503,
+                JOYSTICKHATVERTICAL     = 504,
+                JOYSTICKHATHORIZONTAL   = 505,
+                JOYSTICK_LAST           = 506,  /// The last JoyStick Event Code, all JoyStick events will be less than this.
 
                 MOTION_FIRST            = 460,  /// The first Motion event
                 MOTION_LAST             = 469,  /// The last Motion event
@@ -407,14 +415,6 @@ namespace phys
                 MULTITOUCH_STRETCH      = 474,
                 MULTITOUCH_LAST         = 479,  /// The last Multi Touch event
 
-                JOYSTICK_FIRST          = 499,  /// The First JoyStick event, all Joystick Event values will be more than this
-                JOYSTICKBUTTON          = 500,
-                JOYSTICKMOTIONAXIS      = 501,
-                JOYSTICKBALLVERTICAL    = 502,
-                JOYSTICKBALLHORIZONTAL  = 503,
-                JOYSTICKHATVERTICAL     = 504,
-                JOYSTICKHATHORIZONTAL   = 505,
-                JOYSTICK_LAST           = 506,  /// The last JoyStick Event Code, all JoyStick events will be less than this.
                 INPUTEVENT_LAST         = 512   /// The last Event Code, all event codes will be less than this.
             };
 
@@ -452,6 +452,7 @@ namespace phys
             //This assigns a value to Inputcode by doing an efficient low level copy of the correct portion of an SDL_event
             //If mishandled this function can corrupt the MetaCode, and it can throw any error memcpy could throw.
             static MetaCode::InputCode GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_);
+            static MetaCode::InputCode GetInputCodeFromSDL_MOUSE(const RawEvent &RawEvent_);
 
         public:
             /// @brief Default constructor
@@ -488,6 +489,14 @@ namespace phys
             /// @param Code_ The value you want the stored code to become.
             void SetCode(const MetaCode::InputCode &Code_);
 
+            /// @brief This Sets The InputCode using an int.
+            /// @details This will cast an int into an InputCode. Be careful, it is possible to put impossible or ridiculous values, in with
+            /// this. For example Accidentally stuffing in the result of MOUSEBUTTON + 22 looks like it would give you MOUSEBUTTON_22. But that
+            /// Doesn't exist, at the time of this writing you would get MOUSEABSOLUTEVERTICAL. Be careful, or skip this alltogether and use one of
+            /// the provided functions that do the math for you like
+            /// @param Code_ The value you want the stored code to become.
+            void SetCode(int Code_);
+
             /// @brief This Returns the MetaValue
             /// @details The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value.
             /// This value can be set with @ref SetMetaValue .
@@ -505,24 +514,25 @@ namespace phys
             /// @return When passed 0 this returns MetaCode::MOUSEBUTTON, otherwise this returns MetaCode::MOUSEBUTTON_X where X is the number that was passed in
             static MetaCode::InputCode GetMouseButtonCode(int ButtonNumber);
 
-            // /// @brief This Returns the Input ID
-            // /// @details The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed.
-            // /// On systems that support multiple keyboards this will even differentiate between those.
-            // /// This value can be set with @ref SetID .
-            // /// @return This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis,
-            // /// JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this
-            // /// can identify from unique input sources and InputCode.
-            // short unsigned int GetID() const;             //Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.
-
-            // /// @brief This Sets The input ID
-            // /// @details See @ref GetID to see exactly what the input ID is. This will set the ID stored in this MetaCode. This value can be retrieved with @ref GetID .
-            // /// @param ID_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
-            // void SetID(const short unsigned int &ID_);
-
             /// @brief Does this MetaCode Represent a state of a keyboard key
             /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.
             /// @return This returns a bool which will be true if this is keyboard event.
             bool IsKeyboardButton() const;
+
+            /// @brief Does this MetaCode Represent a state of a Mouse button
+            /// @details Returns true if this MetaCode pertains to a mouse button being up, polled, down, pressed, or lifted.
+            /// @return This returns a bool which will be true if this is MOUSEBUTTON_X event.
+            bool IsMouseButton() const;
+
+            /// @brief Does this MetaCode Represent a state of a Joystick Event
+            /// @details Returns true if this MetaCode pertains to a joystick button being twisted, tilted, up, polled, down, pressed, or lifted, or whatever else you can do to a joystick.
+            /// @return This returns a bool which will be true if this is between JOYSTICK_FIRST and JOYSTICK_LAST.
+            bool IsJoyStickEvent() const;
+
+            /// @brief Does this MetaCode Represent some other (non-keyboard and non-mouse button)
+            /// @details Returns true if this MetaCode pertains to any being up, polled, down, pressed, or lifted.
+            /// @return This returns a bool which will be true if this is between INPUTEVENT_FIRST and INPUTEVENT_LAST.
+            bool IsOtherInputEvent() const;
 
             /// @brief Compares two MetaCodes for equality
             /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.
@@ -533,5 +543,23 @@ namespace phys
 /// @brief Allows for streaming of MetaCodes
 /// @details If it can be streamed, then it can be logged Holds true for the MetaCode.
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::MetaCode& x);
+
+#ifdef PHYSXML
+/// @brief Used to de-serialize an phys::MetaCode from a stream
+/// @details This reads in the xml and sets the target MetaCode according to values from the stream.
+/// @param x The phys::MetaCode that will accept the values from the xml
+/// @param stream The place to get the characters from, that define the phys::MetaCode.
+/// @return Get an std::ostream that was read from, this allow chaining of the >> operators.
+/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::MetaCode& x);
+
+/// @brief Converts an XML node into a phys::MetaCode
+/// @details If PHYSXML is enabled, this will convert an xml::Node will a valid serialized phys::MetaCode into a phys::MetaCode
+/// @param OneNode An XML Node containing the the text of a MetaCode
+/// @param x the phys::MetaCode to store the deserialized MetaCode
+/// @return This returns a reference to the xml::Node for operator chaining or whatever.
+/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn't match.
+phys::xml::Node& PHYS_LIB  operator >> (const phys::xml::Node& OneNode, phys::MetaCode& x);
+#endif // \PHYSXML
 
 #endif

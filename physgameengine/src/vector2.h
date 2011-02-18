@@ -184,7 +184,7 @@ std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Vector2& x
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector2& Vec);
 
 /// @brief Converts an XML node into a phys::Vector2
-/// @details If PHYSXML is enabled, this will convert an xml::Node will a valid serialized phys::Vector3 into a phys::Vector3
+/// @details If PHYSXML is enabled, this will convert an xml::Node will a valid serialized phys::Vector2 into a phys::Vector2
 /// @param OneNode An XML Node containing the the text of a Vector2
 /// @param Vec the phys::Vector2 to store the deserialized Vector2
 /// @return This returns a reference to the xml::Node for operator chaining or whatever.

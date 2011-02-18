@@ -40,6 +40,7 @@
 #ifndef _uicaption_cpp
 #define _uicaption_cpp
 
+#include "inputquerytool.h"
 #include "uicaption.h"
 #include "uilayer.h"
 #include "uimanager.h"
@@ -103,7 +104,7 @@ namespace phys
         {
             if(!GorillaRectangle->IsVisible())
                 return false;
-            Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
+            Vector2 MouseLoc = Manager->GetInputQueryer()->GetMouseCoordinates();
             if(GorillaCaption->intersects(MouseLoc.GetOgreVector2()))
             {
                 MouseHover = true;
