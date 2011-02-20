@@ -53,7 +53,7 @@
 #include "eventquit.h"
 #include "metacode.h"
 
-#include <set>
+#include <map>
 
 #include "SDL.h"
 //#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
@@ -100,18 +100,6 @@ namespace phys
         }
 
         /// @internal
-        /// @brief used to store internally how what events need to be emitted.
-        typedef std::pair <MetaCode::InputCode, bool> BoolAndCode;
-
-        /// @internal
-        /// @brief used to compare BoolAndCodeObjects
-        struct BACcomp{
-            ///@brief the real magic of a comparator
-            bool operator() (const BoolAndCode& lhs, const BoolAndCode& rhs)
-                { return lhs.first<rhs.second; }
-        };
-
-        /// @internal
         /// @brief Used to increase encapsulation, just a bit.
         struct EventManagerInternalData
         {
@@ -139,10 +127,57 @@ namespace phys
             //The Queue that all the events get stored in
             std::list<EventBase*> EventQ;
 
+
+            enum PollingTypes{
+                Polling     =1,
+                Keypress    =2
+
+            };
+
             // A unified polling and event repeater
             // if true the item is to be removed when the key is lifted, if false it remains until the polling check is removed
             // the Inputcode is the kind of event to check for each frame.
-            std::set<BoolAndCode, BACcomp> ManualCheck;
+            std::map<MetaCode::InputCode, bool> ManualCheck;
+
+            /// @internal
+            typedef std::map<MetaCode::InputCode, bool>::iterator ManualCheckIterator;
+
+            /// @internal
+            /// @brief Used to insert Codes into the list of items to be manually checked
+            /// @param Transport A vector of every Meta that may need to be added to the list
+            /// @param IsPollingCheck If true it means that the items added should only be removed when they are manually removed as a polling check. Otherwise it is assumed to be a key being held down
+            void AddMetaCodesToManualCheck(vector<MetaCode> Transport, bool IsPollingCheck=false)
+            {
+                for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
+                {
+                    ManualCheckIterator Which = ManualCheck.find(Iter->GetCode());
+                    if(ManualCheck.end() == Which )
+                    {
+                        ManualCheck[Iter->GetCode()] = IsPollingCheck;
+                    }else{
+                        if (IsPollingCheck)           //if Is a polling check
+                            { Which->second=IsPollingCheck; }
+                    }
+                }
+            }
+
+            /// @internal
+            /// @brief Remove Items form the internal manual check list
+            /// @param Transport A vector of every MetaCode that may need to be removed to the list
+            /// @param IsPollingCheck If this is true, then this will only remove polling checks, Otherwise it will only remove Keypresses.
+            void RemoveMetaCodesToManualCheck(vector<MetaCode> Transport, bool IsPollingCheck=false)
+            {
+                for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
+                {
+                    ManualCheckIterator Which = ManualCheck.find(Iter->GetCode());
+                    if( ManualCheck.end() != Which )
+                    {
+                        if(Which->second == IsPollingCheck)
+                            { ManualCheck.erase(Which); }
+                    }
+                }
+            }
+
         };
 
     } // /internal
@@ -218,26 +253,36 @@ namespace phys
                 case SDL_ACTIVEEVENT:   //when the window gains focus
                 case SDL_VIDEORESIZE:   //when the screen is resized
                 case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
-                case SDL_QUIT:          //when SDL closes
                 case SDL_SYSWMEVENT:
                 case SDL_USEREVENT:
+                case SDL_QUIT:          //when SDL closes
                     /// @todo hande unhandled user system events
                     //_Data->EventQ.push_back(FromSDLEvent);
                     break;
 
-                case SDL_MOUSEBUTTONDOWN:   case SDL_MOUSEBUTTONUP:     case SDL_MOUSEMOTION:
-                case SDL_KEYDOWN:           case SDL_KEYUP:
-                case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
-                case SDL_JOYBUTTONDOWN:     case SDL_JOYBUTTONUP:
+                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
+                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw) );
+                    break;
+
+                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           case SDL_JOYBUTTONDOWN:
+                    _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw) );
+                    break;
+
+                case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
                     break;
+
                 //Never thrown by SDL, but could be added by a user
                 default:
                     throw ("Unknown SDL Event Inserted");
                     break;
+
             }
         }
 
+        // Here we need to iterate through manualcheck and make sure each item there actually is in FromSDLEvent
+
+        //Check to see if we should add a User i
         if(FromSDLEvent->GetMetaCodeCount()==0)
         {
             delete FromSDLEvent;
@@ -327,7 +372,7 @@ namespace phys
     EventBase* EventManager::GetNextSpecificEvent(EventBase::EventType SpecificType)
     {
         EventBase* results = 0;
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); ++Iter)
         {
             if((*Iter)->GetType()==SpecificType)
             {
@@ -341,7 +386,7 @@ namespace phys
     EventBase* EventManager::PopNextSpecificEvent(EventBase::EventType SpecificType)
     {
         EventBase* results = 0;
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); ++Iter)
         {
             if((*Iter)->GetType()==SpecificType)
             {
@@ -355,7 +400,7 @@ namespace phys
 
     void EventManager::RemoveNextSpecificEvent(EventBase::EventType SpecificType)
     {
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); ++Iter)
         {
             if((*Iter)->GetType()==SpecificType)
             {
@@ -368,7 +413,7 @@ namespace phys
     {
         std::list<EventBase*>* TempList = new std::list<EventBase*>;
 
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); ++Iter)
         {
             if((*Iter)->GetType()==SpecificType)
             {
@@ -380,7 +425,7 @@ namespace phys
 
     void EventManager::RemoveAllSpecificEvents(EventBase::EventType SpecificType)
     {
-        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
+        for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); ++Iter)
         {
             if((*Iter)->GetType()==SpecificType)
             {
@@ -516,6 +561,7 @@ namespace phys
             this->_Data->PollMouseVert = true;
             return;
         }
+
         if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == InputToTryPolling.GetCode())
         {
             this->_Data->PollMouseHor = true;
@@ -673,7 +719,7 @@ namespace phys
     // Standard interupt basd user input
 
     //This function will get all the events from SDL and Sort them into one of two Queues
-    void EventManager::PreProcessSDLEvents()
+   /* void EventManager::PreProcessSDLEvents()
     {
         UpdateQuitEvents(); //quit skips the preprocessing Queue and goes straight into the the main Queue
 
@@ -711,7 +757,7 @@ namespace phys
             }
 //            _Data->SDL_EventQ.push_back(ScopeHolder);
         }
-    }
+    }*/
 
     void EventManager::UpdateQuitEvents()
     {

@@ -108,14 +108,6 @@ namespace phys
             void PollMouseButtons(vector<MetaCode> &CodeBag);
             void PollMouseLocation(vector<MetaCode> &CodeBag);
 
-            //SDL event specific Items
-            //This function will get all the events from SDL and Sort them into one of two Queues
-            void PreProcessSDLEvents();
-
-            /// @internal
-            /// @brief Convert any RawEvent into a list of Event pointers
-            size_t ConvertRawEventsToMultipleMetaCodes(const RawEvent& ToConvert, EventUserInput* ConvertedGoHere);
-
         public:
             /// @brief Default constructor
             /// @details This creates an empty PhysEventManger

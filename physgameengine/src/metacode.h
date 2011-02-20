@@ -396,24 +396,24 @@ namespace phys
                 MOUSEWHEELHORIZONTAL    = 407,
                 MOUSE_LAST              = 410,  /// The last MouseEvent Code, all Mouse events will be less than this
 
-                JOYSTICK_FIRST          = 499,  /// The First JoyStick event, all Joystick Event values will be more than this
-                JOYSTICKBUTTON          = 500,
-                JOYSTICKMOTIONAXIS      = 501,
-                JOYSTICKBALLVERTICAL    = 502,
-                JOYSTICKBALLHORIZONTAL  = 503,
-                JOYSTICKHATVERTICAL     = 504,
-                JOYSTICKHATHORIZONTAL   = 505,
-                JOYSTICK_LAST           = 506,  /// The last JoyStick Event Code, all JoyStick events will be less than this.
+                MOTION_FIRST            = 420,  /// The first Motion event
+                MOTION_LAST             = 429,  /// The last Motion event
 
-                MOTION_FIRST            = 460,  /// The first Motion event
-                MOTION_LAST             = 469,  /// The last Motion event
+                MULTITOUCH_FIRST        = 440,  /// The first Multi Touch event
+                MULTITOUCH_ACTION       = 441,
+                MULTITOUCH_GESTURE      = 442,
+                MULTITOUCH_PINCH        = 443,
+                MULTITOUCH_STRETCH      = 444,
+                MULTITOUCH_LAST         = 449,  /// The last Multi Touch event
 
-                MULTITOUCH_FIRST        = 470,  /// The first Multi Touch event
-                MULTITOUCH_ACTION       = 471,
-                MULTITOUCH_GESTURE      = 472,
-                MULTITOUCH_PINCH        = 473,
-                MULTITOUCH_STRETCH      = 474,
-                MULTITOUCH_LAST         = 479,  /// The last Multi Touch event
+                JOYSTICK_FIRST          = 450,  /// The First JoyStick event, all Joystick Event values will be more than this
+                JOYSTICKBUTTON          = 451,
+                JOYSTICKMOTIONAXIS      = 452,
+                JOYSTICKBALLVERTICAL    = 453,
+                JOYSTICKBALLHORIZONTAL  = 454,
+                JOYSTICKHATVERTICAL     = 455,
+                JOYSTICKHATHORIZONTAL   = 456,
+                JOYSTICK_LAST           = 457,  /// The last JoyStick Event Code, all JoyStick events will be less than this.
 
                 INPUTEVENT_LAST         = 512   /// The last Event Code, all event codes will be less than this.
             };
