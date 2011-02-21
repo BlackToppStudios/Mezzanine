@@ -534,6 +534,10 @@ namespace phys
             /// @return This returns a bool which will be true if this is MOUSEBUTTON_X event.
             bool IsMouseButton() const;
 
+            /// @brief Is this metacode a pollable event
+            /// @return if this metacode stores a Keyboard button, Mouse Button or joystick button, then this is a pollable event
+            bool IsPollable() const;
+
             /// @brief Does this MetaCode Represent a state of a Joystick Event
             /// @details Returns true if this MetaCode pertains to a joystick button being twisted, tilted, up, polled, down, pressed, or lifted, or whatever else you can do to a joystick.
             /// @return This returns a bool which will be true if this is between JOYSTICK_FIRST and JOYSTICK_LAST.

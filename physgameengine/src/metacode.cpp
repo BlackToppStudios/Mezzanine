@@ -209,24 +209,19 @@ namespace phys
     }
 
     bool MetaCode::IsKeyboardButton() const
-    {
-        return (MetaCode::KEY_FIRST <= this->Code && this->Code <= MetaCode::KEY_LAST);
-    }
+        { return (MetaCode::KEY_FIRST <= this->Code && this->Code <= MetaCode::KEY_LAST); }
 
     bool MetaCode::IsMouseButton() const
-    {
-        return (MetaCode::MOUSEBUTTON_FIRST <= this->Code && this->Code <= MetaCode::MOUSEBUTTON_LAST);
-    }
+        { return (MetaCode::MOUSEBUTTON_FIRST <= this->Code && this->Code <= MetaCode::MOUSEBUTTON_LAST); }
+
+    bool MetaCode::IsPollable() const
+        { return ( IsKeyboardButton() || IsMouseButton() || this->Code==MetaCode::JOYSTICKBUTTON); }
 
     bool MetaCode::IsJoyStickEvent() const
-    {
-        return (MetaCode::JOYSTICK_FIRST <= this->Code && this->Code <= MetaCode::JOYSTICK_LAST);
-    }
+        { return (MetaCode::JOYSTICK_FIRST <= this->Code && this->Code <= MetaCode::JOYSTICK_LAST); }
 
     bool MetaCode::IsOtherInputEvent() const
-    {
-        return (MetaCode::INPUTEVENT_FIRST <= this->Code && this->Code <= MetaCode::INPUTEVENT_LAST);
-    }
+        { return (MetaCode::INPUTEVENT_FIRST <= this->Code && this->Code <= MetaCode::INPUTEVENT_LAST); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators

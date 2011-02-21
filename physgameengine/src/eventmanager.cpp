@@ -104,27 +104,6 @@ namespace phys
         /// @brief Used to increase encapsulation, just a bit.
         struct EventManagerInternalData
         {
-
-            //a List of the Keyboard keys being watch
-            vector<MetaCode::InputCode> WatchKeyboardKeys;
-            // A list of the Mouse buttons being watched
-            vector<MetaCode::InputCode> WatchMouseKeys;
-            //These are use to decide if mouse location should be polled.
-            bool PollMouseHor;
-            bool PollMouseVert;
-            // the cache of mouse buttons so that events can be thrown the entire time the mouse button is down
-            std::vector< std::pair<bool,bool> > MouseButtonCache;
-            //an internal queue of Window management events that happened during the frame that need to be converted into phys::Events
-            queue<RawEvent*> SDL_WmEvents;
-            // and internal queue of userinput events
-            queue<RawEvent*> SDL_UserInputEvents;
-            // what events are coming from SDL
-            //std::list<RawEvent*> SDL_EventQ;
-
-            ///////////////////////////////////////////////////////////////////////////////
-            // New datastructures to replace old ones
-
-
             //The Queue that all the events get stored in
             std::list<EventBase*> EventQ;
 
@@ -133,12 +112,11 @@ namespace phys
             enum PollingType{
                 Polling     =1,
                 Keypress    =2
-
             };
 
-            // A unified polling and event repeater
-            // if true the item is to be removed when the key is lifted, if false it remains until the polling check is removed
-            // the Inputcode is the kind of event to check for each frame.
+            /// @internal
+            /// @brief A unified polling and event repeater
+            /// the Inputcode is the kind of event to check for each frame. The PollingType is a bitfield used to control what can turn and of the pollingcheck check.
             std::map<MetaCode::InputCode, PollingType> ManualCheck;
 
             /// @internal
@@ -193,9 +171,7 @@ namespace phys
             void RemoveMetaCodesToManualCheck(vector<MetaCode> Transport, PollingType _PollingCheck)
             {
                 for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
-                {
-                    RemoveInputCodeToManualCheck(Iter->GetCode(), _PollingCheck);
-                }
+                    { RemoveInputCodeToManualCheck(Iter->GetCode(), _PollingCheck); }
             }
 
         };
@@ -209,12 +185,8 @@ namespace phys
         this->Priority=-40;
         this->_Data = new internal::EventManagerInternalData;
 
+        //Remove GameWorld Pointer From everything
         this->GameWorld = World::GetWorldPointer();
-
-        this->_Data->PollMouseHor = false;
-        this->_Data->PollMouseVert = false;
-        _Data->MouseButtonCache.resize(16);
-        _Data->MouseButtonCache.insert(_Data->MouseButtonCache.begin(),16,std::pair<bool,bool>(false,false));
     }
 
     EventManager::~EventManager()
@@ -228,9 +200,7 @@ namespace phys
     //These functions will give you the next event or help you manage the events
     ///////////////////////////////////////
     size_t EventManager::GetRemainingEventCount()
-    {
-        return _Data->EventQ.size();
-    }
+        { return _Data->EventQ.size(); }
 
     EventBase* EventManager::GetNextEvent()
     {
@@ -250,14 +220,10 @@ namespace phys
     }
 
     void EventManager::RemoveNextEvent()
-    {
-        _Data->EventQ.pop_front();
-    }
+        { _Data->EventQ.pop_front(); }
 
     void EventManager::AddEvent(EventBase* EventToAdd)
-    {
-        _Data->EventQ.push_back(EventToAdd);
-    }
+        { _Data->EventQ.push_back(EventToAdd); }
 
     void EventManager::UpdateEvents()
     {
@@ -300,9 +266,7 @@ namespace phys
             }
         }
 
-        // Here we need to iterate through manualcheck and make sure each item there actually is in FromSDLEvent
-        // There has to be a way to optimize this.
-
+        // Here we iterate through manual check to insert any requested polling checks and perpetuate mousedown events
         for(internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
         {
             //World::GetWorldPointer()->Log(Iter->first);
@@ -331,6 +295,21 @@ namespace phys
             delete FromSDLEvent;
         }else{
             _Data->EventQ.push_back(FromSDLEvent);
+        }
+    }
+
+    void EventManager::UpdateQuitEvents()
+    {
+        if (NULL == SDL_GetEventFilter())                       //Verify the Event filter is installed, if not, then install it.
+        {
+            SDL_SetEventFilter( internal::PhysSDLFilter );
+        }else{
+            if(4==internal::PhysSDLFilter(0))                   //Pass it a null pointer to get it to "Not Callback Mode"
+            {
+                this->AddEvent(new EventQuit());                //We need to make a quit event
+            }else{
+                //all clear
+            }
         }
     }
 
@@ -430,19 +409,7 @@ namespace phys
         { this->RemoveNextSpecificEvent(EventBase::UserInput); }
 
     std::list<EventUserInput*>* EventManager::GetAllUserInputEvents()
-    {
-        return (std::list<EventUserInput*>*)this->GetAllSpecificEvents(EventBase::UserInput);
-
-        /*std::list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::UserInput);
-        std::list<EventUserInput*>* Results= new std::list<EventUserInput*>;
-
-        for(std::list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
-        {
-            Results->push_back( dynamic_cast<EventUserInput*> (*Iter) );
-        }
-
-        return Results;*/
-    }
+        { return (std::list<EventUserInput*>*)this->GetAllSpecificEvents(EventBase::UserInput); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - Quit Event
@@ -458,216 +425,24 @@ namespace phys
         { this->RemoveNextSpecificEvent(EventBase::QuitMessage); }
 
     std::list<EventQuit*>* EventManager::GetAllQuitEvents()
-    {
-        return (std::list<EventQuit*>*)this->GetAllSpecificEvents(EventBase::QuitMessage);
-
-        /*std::list<EventBase*>* TempList = this->GetAllSpecificEvents(EventBase::QuitMessage);
-        std::list<EventQuit*>* Results= new std::list<EventQuit*>;
-
-        for(std::list<EventBase*>::iterator Iter = TempList->begin(); Iter!=TempList->end(); Iter++)
-        {
-            Results->push_back( dynamic_cast<EventQuit*> (*Iter) );
-        }
-
-        return Results;*/
-    }
+        { return (std::list<EventQuit*>*)this->GetAllSpecificEvents(EventBase::QuitMessage); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Polling Functions
     ///////////////////////////////////////
     void EventManager::AddPollingCheck(const MetaCode &InputToTryPolling)
     {
-        #ifdef PHYSDEBUG
-        World::GetWorldPointer()->Log(InputToTryPolling);
-        #endif
-
-        //Check for keyboard code
-        if ( MetaCode::KEY_LAST >= InputToTryPolling.GetCode() && InputToTryPolling.GetCode() >= MetaCode::KEY_FIRST)
+        if(InputToTryPolling.IsPollable())
         {
-            this->_Data->WatchKeyboardKeys.push_back(InputToTryPolling.GetCode());
-            return;
+            this->_Data->AddInputCodeToManualCheck(InputToTryPolling.GetCode(), internal::EventManagerInternalData::Polling);
+        }else{
+            World::GetWorldPointer()->LogAndThrow("Unsupported Polling Check on this Platform");
         }
-
-        //if it is a specific mouse button, then
-        if ( MetaCode::MOUSEBUTTON_LAST >= InputToTryPolling.GetCode() && InputToTryPolling.GetCode() >= MetaCode::MOUSEBUTTON_FIRST )
-        {
-            this->_Data->WatchMouseKeys.push_back(InputToTryPolling.GetCode());
-            return;
-        }
-
-        //Mouse Movement
-        if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToTryPolling.GetCode())
-        {
-            this->_Data->PollMouseVert = true;
-            return;
-        }
-
-        if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == InputToTryPolling.GetCode())
-        {
-            this->_Data->PollMouseHor = true;
-            return;
-        }
-
-        // No polling check added
-        this->GameWorld->LogAndThrow("Unsupported Polling Check on this Platform");
     }
 
     void EventManager::RemovePollingCheck(const MetaCode &InputToStopPolling)
     {
-        bool ItFailed = true; // who cares why it failed, it did, and should be reported
-        bool supported = false; //used to help determine if the metacode passed in was nonsense or could have been valid
-
-        //Check for keyboard code
-        if ( MetaCode::KEY_LAST > InputToStopPolling.GetCode() && InputToStopPolling.GetCode() > MetaCode::KEY_FIRST)
-        {
-            supported=true;
-
-            vector<MetaCode::InputCode>::iterator KeyIter;
-            for(KeyIter = this->_Data->WatchKeyboardKeys.begin(); KeyIter!=this->_Data->WatchKeyboardKeys.end(); KeyIter++) //Check Each
-            {
-                if( *KeyIter == InputToStopPolling.GetCode())
-                {
-                    this->_Data->WatchKeyboardKeys.erase(KeyIter);
-                    ItFailed=false;
-                }
-            }
-        }
-
-        //if it is a specific mouse button, then
-        if ( MetaCode::MOUSEBUTTON == InputToStopPolling.GetCode())
-        {
-            supported=true;
-
-            vector<MetaCode::InputCode>::iterator MouseIter;
-            for(MouseIter = this->_Data->WatchMouseKeys.begin(); MouseIter!=this->_Data->WatchMouseKeys.end(); MouseIter++) //Check Each
-            {
-                if( *MouseIter == InputToStopPolling.GetCode())
-                {
-                    this->_Data->WatchMouseKeys.erase(MouseIter);
-                    ItFailed=false;
-                }
-            }
-        }
-
-        //Mouse Movement
-        if ( MetaCode::MOUSEABSOLUTEVERTICAL == InputToStopPolling.GetCode())
-        {
-            supported=true;
-            if(this->_Data->PollMouseVert == true)
-                {ItFailed=false;}
-            this->_Data->PollMouseVert = false;
-
-        }
-
-        if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == InputToStopPolling.GetCode())
-        {
-            supported=true;
-            if(this->_Data->PollMouseHor == true)
-                {ItFailed=false;}
-            this->_Data->PollMouseHor = false;
-        }
-
-        if (!supported)
-            this->GameWorld->LogAndThrow("Unsupported Polling Check on this Platform, Cannot Remove");
-        if (ItFailed)
-            this->GameWorld->LogAndThrow("Polling Check did not exist, Cannot Remove");
-    }
-
-
-    EventUserInput* EventManager::PollForUserInputEvents()
-    {
-        vector<MetaCode> MetaBag;
-
-        //Call the private Polling routines
-        PollKeyboard(MetaBag);
-        PollMouseButtons(MetaBag);
-        PollMouseLocation(MetaBag);
-
-        EventUserInput* test = new EventUserInput(MetaBag);
-        return test;
-    }
-
-    //Internal private Polling routine
-    void EventManager::PollKeyboard(vector<MetaCode> &CodeBag)
-    {
-        if(this->_Data->WatchKeyboardKeys.size()>0)
-        {
-            int* KeyCount = 0;
-            Uint8* KeyboardSnapshot = SDL_GetKeyState(KeyCount);
-
-            vector<MetaCode::InputCode>::iterator iter;
-            for(iter = this->_Data->WatchKeyboardKeys.begin(); iter != (this->_Data->WatchKeyboardKeys.end()) ; iter++)
-            {
-                if( *iter < MetaCode::KEY_LAST )//Is it a valid keycode
-                {
-                    if(KeyboardSnapshot[*iter]) // is it up or down
-                    {//down
-                        MetaCode temp(MetaCode::BUTTON_DOWN, *iter);
-                        CodeBag.push_back(temp);
-                    }else{//up
-                        MetaCode temp(MetaCode::BUTTON_UP, *iter);
-                        CodeBag.push_back(temp);
-                    }
-                }
-            }
-        }
-    }
-
-    //Internal private Polling routine
-    void EventManager::PollMouseButtons(vector<MetaCode> &CodeBag)
-    {
-        if(this->_Data->WatchMouseKeys.size()>0)
-        {
-            vector<MetaCode::InputCode>::iterator iter;
-            for(iter = this->_Data->WatchMouseKeys.begin(); iter != (this->_Data->WatchMouseKeys.end()) ; iter++)
-            {
-                /// @todo verify/fix mouse event polling after removal of metacode ID
-                if(SDL_GetMouseState(NULL, NULL)&SDL_BUTTON(*iter))
-                {
-                        MetaCode temp(MetaCode::BUTTON_DOWN,*iter);
-                        CodeBag.push_back(temp);
-                }else{
-                        MetaCode temp(MetaCode::BUTTON_UP,*iter);
-                        CodeBag.push_back(temp);
-                }
-            }
-        }
-
-    }
-
-    void EventManager::PollMouseLocation(vector<MetaCode> &CodeBag)
-    {
-        if( this->_Data->PollMouseHor || this->_Data->PollMouseVert )
-        {
-            int Vert=0;
-            int Hor=0;
-            SDL_GetMouseState(&Hor, &Vert);
-            if( this->_Data->PollMouseVert )
-            {
-                MetaCode temp(Vert,MetaCode::MOUSEABSOLUTEVERTICAL);
-                CodeBag.push_back(temp);
-            }
-            if( this->_Data->PollMouseHor )
-            {
-                MetaCode temp(Hor,MetaCode::MOUSEABSOLUTEHORIZONTAL);
-                CodeBag.push_back(temp);
-            }
-        }
-    }
-
-    void EventManager::UpdateQuitEvents()
-    {
-        if (NULL == SDL_GetEventFilter())                       //Verify the Event filter is installed, if not, then install it.
-        {
-            SDL_SetEventFilter( internal::PhysSDLFilter );
-        }else{
-            if(4==internal::PhysSDLFilter(0))                   //Pass it a null pointer to get it to "Not Callback Mode"
-            {
-                this->AddEvent(new EventQuit());                //We need to make a quit event
-            }else{
-                //all clear
-            }
-        }
+        this->_Data->RemoveInputCodeToManualCheck(InputToStopPolling.GetCode(), internal::EventManagerInternalData::Polling);
     }
 
     //Inherited From ManagerBase
