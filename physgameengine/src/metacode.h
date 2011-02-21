@@ -504,6 +504,16 @@ namespace phys
             /// to represent how tilted a joystick or how much a mouse moved.
             int GetMetaValue() const;                     //How much is being done? How far has the mouse moved, how much is the throttle pushed.
 
+            /// @brief Get the MetaValue as a MetaCode::ButtonState
+            /// @return This returns the appropriate button state or throws an phys::Exception if an invalid button state is stored in the MetaValue
+            /// @throw This throws a phys::Exception if the MetaValue is less than BUTTON_LIFTING or greater than BUTTON_DOWN.
+            MetaCode::ButtonState GetMetaValueAsButtonState() const;
+
+            /// @brief Get the MetaValue as a MetaCode::
+            /// @return This returns the appropriate MouseWheel state or throws an phys::Exception if an invalid state is stored in the MetaValue
+            /// @throw This throws a phys::Exception if the MetaValue is less than MOUSEWHEEL_DOWN or greater than MOUSEWHEEL_UP.
+            MetaCode::MouseWheelState GetMetaValueAsMouseWheelState() const;
+
             /// @brief This Sets The MetaValue
             /// @details See @ref GetMetaValue to see exactly what the MetaValue is. This will set the MetaValue stored in this MetaCode. This value can be retrieved with @ref GetMetaValue .
             /// @param MetaValue_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
@@ -512,7 +522,7 @@ namespace phys
             /// @brief Accepts a int and returns the InputCode for the Corresponding Mouse button
             /// @param ButtonerNumber The number of the button you wan the code for
             /// @return When passed 0 this returns MetaCode::MOUSEBUTTON, otherwise this returns MetaCode::MOUSEBUTTON_X where X is the number that was passed in
-            static MetaCode::InputCode GetMouseButtonCode(int ButtonNumber);
+            static MetaCode::InputCode GetMouseButtonCode(short unsigned int ButtonNumber);
 
             /// @brief Does this MetaCode Represent a state of a keyboard key
             /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.

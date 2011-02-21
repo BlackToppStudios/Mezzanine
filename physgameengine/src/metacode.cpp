@@ -157,6 +157,25 @@ namespace phys
         }
     }
 
+    MetaCode::ButtonState MetaCode::GetMetaValueAsButtonState() const
+    {
+        if( MetaCode::BUTTON_LIFTING <= this->MetaValue && MetaCode::BUTTON_DOWN >= this->MetaValue)
+        {
+            return (MetaCode::ButtonState) this->MetaValue;
+        }else{
+            throw("Invalid ButtonState in MetaValue");
+        }
+    }
+
+    MetaCode::MouseWheelState MetaCode::GetMetaValueAsMouseWheelState() const
+    {
+        if( MetaCode::MOUSEWHEEL_DOWN <= this->MetaValue && MetaCode::MOUSEWHEEL_UP >= this->MetaValue)
+        {
+            return (MetaCode::MouseWheelState) this->MetaValue;
+        }else{
+            throw("Invalid MouseWheelState in MetaValue");
+        }
+    }
     ///////////////////////////////////////////////////////////////////////////////
     // Gets and Sets
     ///////////////////////////////////////
@@ -185,13 +204,8 @@ namespace phys
         this->Code=(MetaCode::InputCode)Code_;
     }
 
-/*    void MetaCode::SetID(const short unsigned int &ID_)
-    {
-        this->ID=ID_;
-    }*/
 
-
-    MetaCode::InputCode MetaCode::GetMouseButtonCode(int ButtonNumber)
+    MetaCode::InputCode MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber)
     {
         MetaCode::InputCode Answer = (MetaCode::InputCode)(ButtonNumber + (int)MetaCode::MOUSEBUTTON);
         if ( MetaCode::MOUSEBUTTON_FIRST > Answer && MetaCode::MOUSEBUTTON_LAST < Answer)

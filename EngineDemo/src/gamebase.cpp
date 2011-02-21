@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     {
         TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), SceneManager::Generic, 30);
     }catch( exception x){
-        cerr << "Could not create world:" << x.what();
+        cerr << "Could not create world: " << x.what();
         return 1;
         //could not create the perfect worldending program
     }
