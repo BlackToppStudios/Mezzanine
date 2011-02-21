@@ -83,9 +83,9 @@ namespace phys
     /// move, joystick tilt, wheel spin, etc...). If it is an analog representation
     /// it will also store how far or how it is pushed, pressed, rotated, or
     /// whatever. Several of these can be used in combination to represent button
-    /// combinations, or complex input combination (like portions of fighter game
+    /// combinations, or complex input combinations (like portions of fighter game
     /// moves).
-    /// The first 127 character line up with Ascii, Currently upper lase are
+    /// The first 127 character line up with Ascii, Currently upper case are
     /// omitted for brevity.
     ///////////////////////////////////////
     class PHYS_LIB MetaCode
