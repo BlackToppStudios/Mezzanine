@@ -87,13 +87,18 @@ namespace phys
     /// @brief This is a container for MetaCodes that is used in the physEventManager
     /// @details The EventUserInput is the container for information about how a
     /// user enters data and commands into a program. By Default one is inserted into
-    /// event manager the with all the user input from the last run of the main loop.
+    /// event manager the with all the user input from each run of the main loop.
     /// These can be manually inserted into the EventManager to simulate input from
     /// other sources. If setup properly this can allow computer controlled
     /// characters to use the same interface players, allowing for more realistic
-    /// response from them. This is not limited to the tricks discussed here.
+    /// response from them. \n \n
+    /// This is implemented by inheriting from std::vector. Any feature of std::vector
+    /// can be used to interact with the metacodes stored within. Using Iterators is
+    /// great way to quickly and easily get what you need from this. For the most part
+    /// any extra functions on this are for seamless interaction with the EventManager,
+    /// or to convert incoming data into a more usable form.
     ///////////////////////////////////////////////////////////////////////////////
-    class PHYS_LIB EventUserInput : public EventBase
+    class PHYS_LIB EventUserInput : public EventBase, public vector<MetaCode>
     {
         private:
             //Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if
@@ -102,9 +107,15 @@ namespace phys
             vector<MetaCode> AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
 
         protected:
-            /// @brief This stores the MetaCodes in this event.
-            /// @details This stores the MetaCodes in this event. This represents a snapshot of the user input for the moment.
-            vector<MetaCode> Code;
+            /// @brief Adds a MetaCode created from a RawEvent
+            /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode
+            /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is
+            /// recommended to not use this in game code.
+            /// @warning Do not use this without reading and fully understanding the warnings on MetaCode::MetaCode(const RawEvent &RawEvent_) . This function has all the same
+            /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, there is probably something wrong, but if it must it should use
+            /// EventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.
+            /// @return This returns a const reference to the MetaCode that was Added. This reference is valid for the lifetime of this EventUserInput.
+            const MetaCode& AddCode(const RawEvent &RawEvent_);
 
         public:
             /// @brief Default constructor
@@ -121,7 +132,6 @@ namespace phys
             /// @details This creates a ready to use EventUserInput which already contains all the metacodes included.
             EventUserInput(const vector<MetaCode> &Codes_);
 
-
             /// @brief Default desstructor
             /// @details This tears down the
             virtual ~EventUserInput();
@@ -135,8 +145,8 @@ namespace phys
 
             /// @brief Retrieves a count of the stored Metacodes
             /// @return The amount of codes stored in this physEventUserInput.
-            /// @details Retrieves a count of the stored Metacodes
-            unsigned int GetMetaCodeCount();
+            /// @details Retrieves a count of the stored Metacodes. Synonym for vector::size();
+            size_t GetMetaCodeCount();
 
             /// @brief Adds a MetaCode
             /// @param Code_ The User Input MetaCode tobe added
@@ -150,16 +160,6 @@ namespace phys
             /// @details This creates metacode a metacode and adds it to this event.
             /// @return This returns a const reference to the MetaCode that was Added. This reference is valid for the lifetime of this EventUserInput.
             const MetaCode& AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_);
-
-            /// @brief Adds a MetaCode created from a RawEvent
-            /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode
-            /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is
-            /// recommended to not use this in game code.
-            /// @warning Do not use this without reading and fully understanding the warnings on MetaCode::MetaCode(const RawEvent &RawEvent_) . This function has all the same
-            /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, there is probably something wrong, but if it must it should use
-            /// EventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.
-            /// @return This returns a const reference to the MetaCode that was Added. This reference is valid for the lifetime of this EventUserInput.
-            const MetaCode& AddCode(const RawEvent &RawEvent_);
 
             /// @brief Add Several MetaCodes from a vector
             /// @param Codes A vector of MetaCodes to be added to this event
@@ -187,16 +187,10 @@ namespace phys
             /// @details The MetaCode at and only at the given Index will be deleted.
             void EraseCode(const unsigned int &Index);
 
-            /// @brief Removes a specific code or Adds it if not present.
-            /// @param Code_ This will search for all matching copies of this.
-            /// @details All MetaCodes that are equal to Code_ will simply be erased.
-            void ToggleCode(const MetaCode &Code_);
-
             /// @brief Returns the type of this event
             /// @return Returns EventType::UserInput
             virtual EventType GetType() const;
     };
-
 }// /phys
 
 

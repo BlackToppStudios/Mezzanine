@@ -71,7 +71,7 @@ namespace phys
 
     EventUserInput::EventUserInput(const MetaCode &Code_)
     {
-        Code.push_back(Code_);
+        this->push_back(Code_);
     }
 
     EventUserInput::EventUserInput(const vector<MetaCode> &Code_)
@@ -86,17 +86,17 @@ namespace phys
 
     const MetaCode& EventUserInput::GetMetaCode(const unsigned int &Index)
     {
-        return Code.at(Index);
+        return this->at(Index);
     }
 
-    unsigned int EventUserInput::GetMetaCodeCount()
+    size_t EventUserInput::GetMetaCodeCount()
     {
-        return Code.size();
+        return this->size();
     }
 
     const MetaCode& EventUserInput::AddCode(const MetaCode &Code_)
     {
-        Code.push_back(Code_);
+        this->push_back(Code_);
         return Code_;
     }
 
@@ -115,7 +115,7 @@ namespace phys
     void EventUserInput::AddCodes(const vector<MetaCode> &Codes)
     {
         for(unsigned int c=0; Codes.size()>c ; c++)
-            { Code.push_back(Codes.at(c)); }
+            { this->push_back(Codes.at(c)); }
     }
 
 
@@ -123,37 +123,18 @@ namespace phys
     {
         vector<MetaCode>::iterator iter;
 
-        for(iter=Code.begin(); Code.end()!=iter ; iter++)
+        for(iter=this->begin(); this->end()!=iter ; iter++)
         {
             if(*iter == Code_)
             {
-                Code.erase(iter);
+                this->erase(iter);
             }
         }
     }
 
     void EventUserInput::EraseCode(const unsigned int &Index)
     {
-        Code.erase(Code.begin()+Index);
-    }
-
-    void EventUserInput::ToggleCode(const MetaCode &Code_)
-    {
-        vector<MetaCode>::iterator iter;
-
-        bool ErasedOne= false;
-
-        for(iter=Code.begin(); Code.end()!=iter ; iter++)
-        {
-            if(*iter == Code_)
-            {
-                Code.erase(iter);
-                ErasedOne=true;
-            }
-        }
-
-        if(!ErasedOne)
-            {Code.push_back(Code_);}
+        this->erase(this->begin()+Index);
     }
 
     EventBase::EventType EventUserInput::GetType() const

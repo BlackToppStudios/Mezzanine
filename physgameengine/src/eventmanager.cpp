@@ -52,6 +52,7 @@
 #include "eventuserinput.h"
 #include "eventquit.h"
 #include "metacode.h"
+#include "world.h"
 
 #include <map>
 
@@ -127,8 +128,9 @@ namespace phys
             //The Queue that all the events get stored in
             std::list<EventBase*> EventQ;
 
-
-            enum PollingTypes{
+            /// @internal
+            /// @brief The kinds of data that can be stored in Manual Check
+            enum PollingType{
                 Polling     =1,
                 Keypress    =2
 
@@ -137,44 +139,61 @@ namespace phys
             // A unified polling and event repeater
             // if true the item is to be removed when the key is lifted, if false it remains until the polling check is removed
             // the Inputcode is the kind of event to check for each frame.
-            std::map<MetaCode::InputCode, bool> ManualCheck;
+            std::map<MetaCode::InputCode, PollingType> ManualCheck;
 
             /// @internal
-            typedef std::map<MetaCode::InputCode, bool>::iterator ManualCheckIterator;
+            typedef std::map<MetaCode::InputCode, PollingType>::iterator ManualCheckIterator;
+
+            /// @internal
+            /// @brief Adds one type of polling check
+            /// @param OneCode The code that will be check for each frame, under the new condition
+            /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
+            void AddInputCodeToManualCheck(const MetaCode::InputCode& OneCode, PollingType _PollingCheck)
+            {
+                ManualCheckIterator Which = ManualCheck.find(OneCode);
+                if(ManualCheck.end() == Which )
+                {
+                    ManualCheck[OneCode] = _PollingCheck;
+                }else{
+                    Which->second = (PollingType)(Which->second | _PollingCheck); //An Item can be multiple kinds of polling checks
+                }
+            }
 
             /// @internal
             /// @brief Used to insert Codes into the list of items to be manually checked
             /// @param Transport A vector of every Meta that may need to be added to the list
-            /// @param IsPollingCheck If true it means that the items added should only be removed when they are manually removed as a polling check. Otherwise it is assumed to be a key being held down
-            void AddMetaCodesToManualCheck(vector<MetaCode> Transport, bool IsPollingCheck=false)
+            void AddMetaCodesToManualCheck(vector<MetaCode> Transport, PollingType _PollingCheck)
             {
                 for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                 {
-                    ManualCheckIterator Which = ManualCheck.find(Iter->GetCode());
-                    if(ManualCheck.end() == Which )
-                    {
-                        ManualCheck[Iter->GetCode()] = IsPollingCheck;
-                    }else{
-                        if (IsPollingCheck)           //if Is a polling check
-                            { Which->second=IsPollingCheck; }
-                    }
+                    AddInputCodeToManualCheck(Iter->GetCode(), _PollingCheck);
+                }
+            }
+
+            /// @internal
+            /// @brief Removes one type of polling check
+            /// @param OneCode The code that will no longer be checked each frame, under the given condition
+            /// @param _PollingCheck This is the polling into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
+            void RemoveInputCodeToManualCheck(const MetaCode::InputCode& OneCode, PollingType _PollingCheck)
+            {
+                ManualCheckIterator Which = ManualCheck.find(OneCode);
+                if( ManualCheck.end() != Which )
+                {
+                    if(Which->second == _PollingCheck)
+                        { ManualCheck.erase(Which); }                           // if they are are equal then this
+                    else
+                        { Which->second = (PollingType)(Which->second & (~_PollingCheck)); }
                 }
             }
 
             /// @internal
             /// @brief Remove Items form the internal manual check list
             /// @param Transport A vector of every MetaCode that may need to be removed to the list
-            /// @param IsPollingCheck If this is true, then this will only remove polling checks, Otherwise it will only remove Keypresses.
-            void RemoveMetaCodesToManualCheck(vector<MetaCode> Transport, bool IsPollingCheck=false)
+            void RemoveMetaCodesToManualCheck(vector<MetaCode> Transport, PollingType _PollingCheck)
             {
                 for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                 {
-                    ManualCheckIterator Which = ManualCheck.find(Iter->GetCode());
-                    if( ManualCheck.end() != Which )
-                    {
-                        if(Which->second == IsPollingCheck)
-                            { ManualCheck.erase(Which); }
-                    }
+                    RemoveInputCodeToManualCheck(Iter->GetCode(), _PollingCheck);
                 }
             }
 
@@ -255,32 +274,36 @@ namespace phys
                 case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
                 case SDL_SYSWMEVENT:
                 case SDL_USEREVENT:
-                case SDL_QUIT:          //when SDL closes
-                    /// @todo hande unhandled user system events
+                    /// @todo handle unhandled user system events
                     //_Data->EventQ.push_back(FromSDLEvent);
                     break;
 
                 case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
-                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw) );
+                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw),  internal::EventManagerInternalData::Keypress);
                     break;
 
                 case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           case SDL_JOYBUTTONDOWN:
-                    _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw) );
+                    _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
 
                 case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
                     break;
 
+                case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
+                    World::GetWorldPointer()->LogAndThrow("Unexpected Quit event in event manager.");
+                    break;
                 //Never thrown by SDL, but could be added by a user
                 default:
-                    throw ("Unknown SDL Event Inserted");
+                    World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
                     break;
 
             }
         }
 
         // Here we need to iterate through manualcheck and make sure each item there actually is in FromSDLEvent
+        //for()
+        World::GetWorldPointer()->Log("Temp");
 
         //Check to see if we should add a User i
         if(FromSDLEvent->GetMetaCodeCount()==0)
