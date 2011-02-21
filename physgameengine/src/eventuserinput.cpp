@@ -94,19 +94,19 @@ namespace phys
         return this->size();
     }
 
-    const MetaCode& EventUserInput::AddCode(const MetaCode &Code_)
+    MetaCode EventUserInput::AddCode(const MetaCode &Code_)
     {
         this->push_back(Code_);
         return Code_;
     }
 
-    const MetaCode& EventUserInput::AddCode(const RawEvent &RawEvent_)
+    MetaCode EventUserInput::AddCode(const RawEvent &RawEvent_)
     {
         MetaCode CurrentMetaCode( RawEvent_ );
         return this->AddCode(CurrentMetaCode);
     }
 
-    const MetaCode& EventUserInput::AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_)
+    MetaCode EventUserInput::AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_)
     {
         MetaCode CurrentMetaCode( MetaValue_, Code_ );
         return this->AddCode(CurrentMetaCode);
@@ -224,6 +224,5 @@ namespace phys
     }
 
 } // /phys
-
 
 #endif

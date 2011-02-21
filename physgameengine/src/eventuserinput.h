@@ -115,7 +115,7 @@ namespace phys
             /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, there is probably something wrong, but if it must it should use
             /// EventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.
             /// @return This returns a const reference to the MetaCode that was Added. This reference is valid for the lifetime of this EventUserInput.
-            const MetaCode& AddCode(const RawEvent &RawEvent_);
+            MetaCode AddCode(const RawEvent &RawEvent_);
 
         public:
             /// @brief Default constructor
@@ -152,14 +152,14 @@ namespace phys
             /// @param Code_ The User Input MetaCode tobe added
             /// @details This adds an existing metacode to this event.
             /// @return This returns a const reference to the MetaCode that was Added. This reference is valid for the lifetime of this EventUserInput.
-            const MetaCode& AddCode(const MetaCode &Code_);
+            MetaCode AddCode(const MetaCode &Code_);
 
             /// @brief Adds a MetaCode Created From Raw Values
             /// @param MetaValue_ The MetaValue that will be in the MetaCode
             /// @param Code_ The InputCode that will be in the MetaCode
             /// @details This creates metacode a metacode and adds it to this event.
             /// @return This returns a const reference to the MetaCode that was Added. This reference is valid for the lifetime of this EventUserInput.
-            const MetaCode& AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_);
+            MetaCode AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_);
 
             /// @brief Add Several MetaCodes from a vector
             /// @param Codes A vector of MetaCodes to be added to this event

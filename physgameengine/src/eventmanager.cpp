@@ -166,6 +166,7 @@ namespace phys
             {
                 for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                 {
+                    MetaCode::InputCode temp = Iter->GetCode();
                     AddInputCodeToManualCheck(Iter->GetCode(), _PollingCheck);
                 }
             }
@@ -279,7 +280,7 @@ namespace phys
                     break;
 
                 case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
-                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw),  internal::EventManagerInternalData::Keypress);
+                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
 
                 case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           case SDL_JOYBUTTONDOWN:
@@ -293,17 +294,37 @@ namespace phys
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
                     World::GetWorldPointer()->LogAndThrow("Unexpected Quit event in event manager.");
                     break;
-                //Never thrown by SDL, but could be added by a user
-                default:
+                default:                //Never thrown by SDL, but could be added by a user
                     World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
                     break;
-
             }
         }
 
         // Here we need to iterate through manualcheck and make sure each item there actually is in FromSDLEvent
-        //for()
-        World::GetWorldPointer()->Log("Temp");
+        // There has to be a way to optimize this.
+
+        for(internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
+        {
+            //World::GetWorldPointer()->Log(Iter->first);
+            MetaCode::InputCode temp = (*Iter).first;
+            bool found=false;
+            for(EventUserInput::iterator LIter=FromSDLEvent->begin(); FromSDLEvent->end()!=LIter; ++LIter)
+            {
+                if (Iter->first == LIter->GetCode())
+                {
+                    found=true;
+                    break;
+                }
+            }
+            if(!found)
+            {
+                if(internal::EventManagerInternalData::Keypress & Iter->second)     //if the keypress event is in there, then the key must be down
+                    { FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, Iter->first); }
+                else
+                    { FromSDLEvent->AddCode(MetaCode::BUTTON_UP, Iter->first); }    //It must be just a polling check
+            }
+        }
+
 
         //Check to see if we should add a User i
         if(FromSDLEvent->GetMetaCodeCount()==0)
