@@ -474,11 +474,12 @@ void MakeGUI()
     ScoreText->SetBackgroundSprite("ScoreText");
     //End of HUD Layer
 
+    UI::MarkupText* TestMarkup = HUD->CreateMarkupText("TestMarkup",Vector2(0.4,0.64),26,"TestingMarkup");
+    TestMarkup->SetTextScale(0.7);
+
     //Build the ItemShop Layer
     UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", Vector2(0.25, 0.11), Vector2(0.5, 0.78125));
     ItemShopWindow->GetWindowBack()->SetBackgroundSprite("WindowVertBack");
-
-    UI::MarkupText* TestMarkup = ItemShopWindow->CreateMarkupText("TestMarkup",Vector2(0.4,0.64),14,"Test1");
 
     UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.28,0.54),Vector2(0.44,0.32),0.02,UI::SB_Separate);
     ItemShopList->SetAutoHideScroll(false);

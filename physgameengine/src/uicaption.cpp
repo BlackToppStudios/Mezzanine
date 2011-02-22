@@ -134,6 +134,16 @@ namespace phys
             return GorillaCaption->text();
         }
 
+        void Caption::SetTextScale(Real Scale)
+        {
+            GorillaCaption->SetCharScaling(Scale);
+        }
+
+        Real Caption::GetTextScale()
+        {
+            return GorillaCaption->GetCharScaling();
+        }
+
         void Caption::SetTextColour(const ColourValue& TextColour)
         {
             GorillaCaption->colour(TextColour.GetOgreColourValue());
