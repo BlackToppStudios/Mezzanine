@@ -50,6 +50,7 @@ namespace Ogre
 }
 
 class SDL_Surface;
+class SDL_Window;
 
 namespace phys
 {
@@ -95,6 +96,7 @@ namespace phys
             Ogre::Timer *RenderTimer;
             Ogre::RenderWindow* OgreGameWindow;
             SDL_Surface* SDLscreen;
+            SDL_Window* SDLwindow;
 
             Whole FrameDelay;
             bool SDLBeenInitialized;

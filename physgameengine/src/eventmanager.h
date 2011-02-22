@@ -319,7 +319,6 @@ namespace phys
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::EventManager
             virtual ManagerTypeName GetType() const;
-
     };
 }
 #endif
