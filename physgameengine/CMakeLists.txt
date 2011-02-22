@@ -264,12 +264,6 @@ if(${UNIX})
 		message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
 		set(BuildPlatform linux)
 
-		set(SDL_INCLUDE_DIR /home/dev/physgame/physgameengine/libincludes/common/sdlsrc/SDL/include/)
-		set(SDL_LIBRARY /home/dev/physgame/physgameengine/data/linux/sdl/)
-
-		#include(FindSDL)
-		#message("SDL Headers and Library Found - ${SDL_FOUND}")
-
 		#Autobuild ogre could go here
 		set(OgreSoName libOgreMain.so.1.7.2)
 		file( COPY 
@@ -280,12 +274,11 @@ if(${UNIX})
 		)
 
 		include_directories(
-			"${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
 		)
-
-		link_directories( "${SDL_LIBRARY}" )
+		link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
 
 		add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
