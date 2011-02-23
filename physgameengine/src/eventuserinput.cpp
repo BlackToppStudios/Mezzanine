@@ -71,12 +71,12 @@ namespace phys
 
     EventUserInput::EventUserInput(const MetaCode &Code_)
     {
-        Code.push_back(Code_);
+        this->push_back(Code_);
     }
 
     EventUserInput::EventUserInput(const vector<MetaCode> &Code_)
     {
-        AddCode(Code_);
+        AddCodes(Code_);
     }
 
     EventUserInput::~EventUserInput()
@@ -86,37 +86,36 @@ namespace phys
 
     const MetaCode& EventUserInput::GetMetaCode(const unsigned int &Index)
     {
-        return Code.at(Index);
+        return this->at(Index);
     }
 
-    unsigned int EventUserInput::GetMetaCodeCount()
+    size_t EventUserInput::GetMetaCodeCount()
     {
-        return Code.size();
+        return this->size();
     }
 
-    void EventUserInput::AddCode(const MetaCode &Code_)
+    MetaCode EventUserInput::AddCode(const MetaCode &Code_)
     {
-        Code.push_back(Code_);
+        this->push_back(Code_);
+        return Code_;
     }
 
-    void EventUserInput::AddCode(const RawEvent &RawEvent_)
+    MetaCode EventUserInput::AddCode(const RawEvent &RawEvent_)
     {
         MetaCode CurrentMetaCode( RawEvent_ );
-        this->AddCode(CurrentMetaCode);
+        return this->AddCode(CurrentMetaCode);
     }
 
-    void EventUserInput::AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_)
+    MetaCode EventUserInput::AddCode(const int &MetaValue_, const MetaCode::InputCode &Code_)
     {
         MetaCode CurrentMetaCode( MetaValue_, Code_ );
-        this->AddCode(CurrentMetaCode);
+        return this->AddCode(CurrentMetaCode);
     }
 
-    void EventUserInput::AddCode(const vector<MetaCode> &Codes)
+    void EventUserInput::AddCodes(const vector<MetaCode> &Codes)
     {
         for(unsigned int c=0; Codes.size()>c ; c++)
-        {
-            Code.push_back(Codes.at(c));
-        }
+            { this->push_back(Codes.at(c)); }
     }
 
 
@@ -124,37 +123,18 @@ namespace phys
     {
         vector<MetaCode>::iterator iter;
 
-        for(iter=Code.begin(); Code.end()!=iter ; iter++)
+        for(iter=this->begin(); this->end()!=iter ; iter++)
         {
             if(*iter == Code_)
             {
-                Code.erase(iter);
+                this->erase(iter);
             }
         }
     }
 
     void EventUserInput::EraseCode(const unsigned int &Index)
     {
-        Code.erase(Code.begin()+Index);
-    }
-
-    void EventUserInput::ToggleCode(const MetaCode &Code_)
-    {
-        vector<MetaCode>::iterator iter;
-
-        bool ErasedOne= false;
-
-        for(iter=Code.begin(); Code.end()!=iter ; iter++)
-        {
-            if(*iter == Code_)
-            {
-                Code.erase(iter);
-                ErasedOne=true;
-            }
-        }
-
-        if(!ErasedOne)
-            {Code.push_back(Code_);}
+        this->erase(this->begin()+Index);
     }
 
     EventBase::EventType EventUserInput::GetType() const
@@ -162,22 +142,26 @@ namespace phys
         return UserInput;
     }
 
-    void EventUserInput::AddCodesFromRawEvent(const RawEvent &RawEvent_)
+    vector<MetaCode> EventUserInput::AddCodesFromRawEvent(const RawEvent &RawEvent_)
     {
+        vector<MetaCode> Results;
         switch(RawEvent_.type)
         {
             case SDL_KEYDOWN:   //Only contains one metacode
             case SDL_KEYUP:
-                this->AddCode(RawEvent_);
+                Results.push_back(this->AddCode(RawEvent_));
                 break;
 
-            case SDL_MOUSEMOTION:       //Can contain Multiple Metacodes
-                this->AddCodesFromSDLMouseMotion(RawEvent_);
-                break;
+            case SDL_MOUSEMOTION:{       //Can contain Multiple Metacodes
+                vector<MetaCode> Transport(this->AddCodesFromSDLMouseMotion(RawEvent_));
+                Results.insert(Results.end(), Transport.begin(),Transport.end());
+                break;}
+
             case SDL_MOUSEBUTTONDOWN:
-            case SDL_MOUSEBUTTONUP:
-                this->AddCodesFromSDLMouseButton(RawEvent_);
-                break;
+            case SDL_MOUSEBUTTONUP:{
+                vector<MetaCode> Transport(this->AddCodesFromSDLMouseButton(RawEvent_));
+                Results.insert(Results.end(), Transport.begin(),Transport.end());
+                break;}
 
             case SDL_JOYAXISMOTION: //Incomplete
                 break;
@@ -193,56 +177,52 @@ namespace phys
                 throw ("Unknown SDL Event Inserted");
                 break;
         }
-    }
 
-    EventUserInput& EventUserInput::operator += (const EventUserInput& Add)
-    {
-        for(unsigned int c=0; Add.Code.size()>c ; ++c)
-        {
-            Code.push_back(Add.Code.at(c));
-        }
-        return *this;
+        return Results;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // EventUserInput Private Methods
     ///////////////////////////////////////
 
-    void EventUserInput::AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_)
+    vector<MetaCode> EventUserInput::AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_)
     {
-        this->AddCode(RawEvent_.motion.x, MetaCode::MOUSEABSOLUTEHORIZONTAL);
-        this->AddCode(RawEvent_.motion.y, MetaCode::MOUSEABSOLUTEVERTICAL);
+        vector<MetaCode> Results;
+
+        Results.push_back(this->AddCode(RawEvent_.motion.x, MetaCode::MOUSEABSOLUTEHORIZONTAL));
+        Results.push_back(this->AddCode(RawEvent_.motion.y, MetaCode::MOUSEABSOLUTEVERTICAL));
 
         if(0 != RawEvent_.motion.xrel)
-            {this->AddCode(RawEvent_.motion.xrel, MetaCode::MOUSEVERTICAL);}
+            { Results.push_back(this->AddCode(RawEvent_.motion.xrel, MetaCode::MOUSEVERTICAL));}
 
         if(0 != RawEvent_.motion.yrel)
-            {this->AddCode(RawEvent_.motion.yrel, MetaCode::MOUSEHORIZONTAL);}
+            { Results.push_back(this->AddCode(RawEvent_.motion.yrel, MetaCode::MOUSEHORIZONTAL));}
+        return Results;
     }
 
-    void EventUserInput::AddCodesFromSDLMouseButton(const RawEvent &RawEvent_)
+    vector<MetaCode> EventUserInput::AddCodesFromSDLMouseButton(const RawEvent &RawEvent_)
     {
-        //MetaCode::MetaCode(const int &MetaValue_, const short unsigned int &ID_, const MetaCode::InputCode &Code_)
-        this->AddCode(RawEvent_.button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL);
+        vector<MetaCode> Results;
 
-        this->AddCode(RawEvent_.button.y, MetaCode::MOUSEABSOLUTEVERTICAL);
+        Results.push_back(this->AddCode(RawEvent_.button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL));
+        Results.push_back(this->AddCode(RawEvent_.button.y, MetaCode::MOUSEABSOLUTEVERTICAL));
 
         if ( SDL_BUTTON_WHEELUP==RawEvent_.button.button)
         {
-            this->AddCode(MetaCode::MOUSEWHEEL_UP, MetaCode::MOUSEWHEELVERTICAL);
+            Results.push_back(this->AddCode(MetaCode::MOUSEWHEEL_UP, MetaCode::MOUSEWHEELVERTICAL));
         }else if( SDL_BUTTON_WHEELDOWN==RawEvent_.button.button ){
-            this->AddCode(MetaCode::MOUSEWHEEL_DOWN, MetaCode::MOUSEWHEELVERTICAL);
+            Results.push_back(this->AddCode(MetaCode::MOUSEWHEEL_DOWN, MetaCode::MOUSEWHEELVERTICAL) );
         }else{
             if(RawEvent_.button.state==SDL_PRESSED)
             {
-                this->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
+                Results.push_back(this->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));
             }else{
-                this->AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
+                Results.push_back(this->AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));
             }
         }
+        return Results;
     }
 
 } // /phys
-
 
 #endif

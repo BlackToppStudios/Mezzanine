@@ -264,9 +264,7 @@ if(${UNIX})
 		message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
 		set(BuildPlatform linux)
 
-		include(FindSDL)
-		message("SDL Headers and Library Found - ${SDL_FOUND}")
-
+		#Autobuild ogre could go here
 		set(OgreSoName libOgreMain.so.1.7.2)
 		file( COPY 
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreSoName}"
@@ -276,12 +274,11 @@ if(${UNIX})
 		)
 
 		include_directories(
-			"${SDL_INCLUDE_DIR}"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
 		)
-
-		link_directories( "${SDL_LIBRARY}" )
+		link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
 
 		add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
@@ -290,7 +287,7 @@ if(${UNIX})
 endif(${UNIX})
 
 #######################################
-# Mac OS X and iPhone Build pecific Items
+# Mac OS X and iPhone Build specific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
 	set(BuildPlatform macosx)
@@ -323,7 +320,6 @@ if(${APPLE})
 		${OGRE_INCLUDE_DIRS}
 	        "${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogreSDK/boost_1_42"
 		"${OGG_INCLUDE_DIR}"
-
 	)
 
 	link_directories(
@@ -334,7 +330,6 @@ if(${APPLE})
 	)
 	findpkg_framework(OGRE)
 
-    
 	TARGET_LINK_LIBRARIES( /Library/Frameworks/Ogre.framework)
 
 	add_definitions( -DMACOSX)

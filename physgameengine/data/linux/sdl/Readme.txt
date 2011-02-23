@@ -1,0 +1,1 @@
+This is where the SDL libraries belong. If it they de not exist make sure that the dependencies are installed then you just Compile the project like normal and if SDL needs to be built then a copy will be built and installed into this folder.

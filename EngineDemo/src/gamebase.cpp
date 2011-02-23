@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     {
         TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), SceneManager::Generic, 30);
     }catch( exception x){
-        cerr << "Could not create world:" << x.what();
+        cerr << "Could not create world: " << x.what();
         return 1;
         //could not create the perfect worldending program
     }
@@ -63,7 +63,9 @@ int main(int argc, char **argv)
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
     TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::KEY_q) );
     TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );
+    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_1) );
+    TheWorld->GetEventManager()->RemovePollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
+    //TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );   //Not supported
 
     //Actually Load the game stuff
     LoadContent();
@@ -273,6 +275,7 @@ bool PostInput()
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
+        /// @todo determine whether this next snippt should be a function on the UIScreen
         UI::Button* MouseButton = NULL;
         UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
@@ -280,9 +283,7 @@ bool PostInput()
             UILayer* Layer = Screen->GetLayer(x);
             MouseButton = Layer->CheckButtonMouseIsOver();
             if(MouseButton)
-            {
-                break;
-            }
+            { break; }
         }
         if(MouseButton)
         {
@@ -383,7 +384,6 @@ bool PostInput()
             }
 
             // Here we cleanup everything we needed for the clicking/dragging
-
             delete DragTo;
             delete MouseRay;
         }

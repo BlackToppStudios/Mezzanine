@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     }
 
     // Set the Title
-    TheWorld->SetWindowName("Catch!... The Game!");
+    TheWorld->SetWindowName("Catch!");
     TheWorld->SetTargetFrameRate(60);
 
     //Give the world functions to run before and after input and physics
@@ -46,13 +46,6 @@ int main(int argc, char **argv)
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
 
-	TheWorld->SetWindowName( "Catch!" );
-
-    //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::KEY_q) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );
-
     //Actually Load the game stuff
     LoadContent();
 
@@ -60,8 +53,8 @@ int main(int argc, char **argv)
     MakeGUI();
 
     //Configure the wireframe Drawer
-    TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
-    TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
+    //TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(0);
+    //TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
     //Setup some light and configure the camera.
     //TheWorld->GetCameraManager()->GetDefaultCamera()->SetCameraType(Camera::Orthographic);

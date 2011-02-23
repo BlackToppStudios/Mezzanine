@@ -86,7 +86,9 @@ namespace phys
 
     void GraphicsManager::CreateRenderWindow()
     {
-        InitSDL();
+        //InitSDL();
+        SDL_Init(SDL_INIT_VIDEO);
+        //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
 
 		try
 		{
@@ -94,11 +96,13 @@ namespace phys
 			SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
 			if(Fullscreen)
 			{
+			    //this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RenderWidth, RenderHeight, SDL_OPENGL | SDL_FULLSCREEN);
 			    this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN );
 			}else{
+                //this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RenderWidth, RenderHeight, SDL_OPENGL);
                 this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
 			}
-			SDL_WM_SetCaption(GameWorld->GetWindowName().c_str(), NULL);
+			//SDL_WM_SetCaption(GameWorld->GetWindowName().c_str(), NULL);
 			#ifdef PHYSDEBUG
             GameWorld->Log("Successfully Setup SDL");
             #endif

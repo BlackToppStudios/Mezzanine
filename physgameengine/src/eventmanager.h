@@ -102,20 +102,6 @@ namespace phys
             //Checks for quit messages and adds them to the queue
             void UpdateQuitEvents();
 
-            //These does the heavy lifting during the polling operation
-            //All of these poll the input subsystem and add MetaCodes to the vector they are passed.
-            void PollKeyboard(vector<MetaCode> &CodeBag);
-            void PollMouseButtons(vector<MetaCode> &CodeBag);
-            void PollMouseLocation(vector<MetaCode> &CodeBag);
-
-            //SDL event specific Items
-            //This function will get all the events from SDL and Sort them into one of two Queues
-            void PreProcessSDLEvents();
-
-            /// @internal
-            /// @brief Convert any RawEvent into a list of Event pointers
-            size_t ConvertRawEventsToMultipleMetaCodes(const RawEvent& ToConvert, EventUserInput* ConvertedGoHere);
-
         public:
             /// @brief Default constructor
             /// @details This creates an empty PhysEventManger
@@ -317,12 +303,6 @@ namespace phys
             /// @exception "Polling check not present" Is thrown
             void RemovePollingCheck(const MetaCode &InputToStopPolling);
 
-            /// @brief This activates the polling routines of the user input subsystems
-            /// @details This checks the current state of user input devices that have been added by AddPollingCheck(const MetaCode &InputToTryPolling).
-            /// This is called automatically by main loop processing, but there is no harm in calling it several times.
-            /// @return This returns a pointer to a EventUserInput that contains the desired metacodes
-            EventUserInput* PollForUserInputEvents();
-
         ///////////////////////////////////////////////////////////////////////////////
         // Inherited From ManagerBase
         ///////////////////////////////////////
@@ -339,7 +319,6 @@ namespace phys
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::EventManager
             virtual ManagerTypeName GetType() const;
-
     };
 }
 #endif

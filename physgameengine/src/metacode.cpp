@@ -39,12 +39,6 @@
 */
 #ifndef METACODE_CPP
 #define METACODE_CPP
-///////////////////////////////////////////////////////////////////////////////
-// This will expose all keyboard and mouse, joystick and other userinput events
-// to developers, we are using the SDL keymap to get us started, large portions
-// are directly copy/pasta'd, so we included their license too
-///////////////////////////////////////
-
 
 ///////////////////////////////////////////////////////////////////////////////
 // Includes
@@ -84,8 +78,7 @@ namespace phys
 
     void MetaCode::Construct(const RawEvent &RawEvent_)
     {
-        //create a safe but gibberish default
-        Construct(BUTTON_UP, KEY_FIRST);
+        Construct(BUTTON_UP, KEY_FIRST);        //create a safe but gibberish default
         /// @todo TODO: Actually process each event
         switch(RawEvent_.type)
         {
@@ -158,6 +151,28 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Conversion and Casting Functions
+    ///////////////////////////////////////
+    MetaCode::ButtonState MetaCode::GetMetaValueAsButtonState() const
+    {
+        if( MetaCode::BUTTON_LIFTING <= this->MetaValue && MetaCode::BUTTON_DOWN >= this->MetaValue)
+        {
+            return (MetaCode::ButtonState) this->MetaValue;
+        }else{
+            throw("Invalid ButtonState in MetaValue");
+        }
+    }
+
+    MetaCode::MouseWheelState MetaCode::GetMetaValueAsMouseWheelState() const
+    {
+        if( MetaCode::MOUSEWHEEL_DOWN <= this->MetaValue && MetaCode::MOUSEWHEEL_UP >= this->MetaValue)
+        {
+            return (MetaCode::MouseWheelState) this->MetaValue;
+        }else{
+            throw("Invalid MouseWheelState in MetaValue");
+        }
+    }
+    ///////////////////////////////////////////////////////////////////////////////
     // Gets and Sets
     ///////////////////////////////////////
     int MetaCode::GetMetaValue() const
@@ -185,73 +200,32 @@ namespace phys
         this->Code=(MetaCode::InputCode)Code_;
     }
 
-/*    void MetaCode::SetID(const short unsigned int &ID_)
-    {
-        this->ID=ID_;
-    }*/
-
-
-    MetaCode::InputCode MetaCode::GetMouseButtonCode(int ButtonNumber)
+    MetaCode::InputCode MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber)
     {
         MetaCode::InputCode Answer = (MetaCode::InputCode)(ButtonNumber + (int)MetaCode::MOUSEBUTTON);
         if ( MetaCode::MOUSEBUTTON_FIRST > Answer && MetaCode::MOUSEBUTTON_LAST < Answer)
             { throw (Exception("Unsupported mouse Button.")); }
         return Answer;
-
-        // I will hang to this just incase we want the maximum in type safety.
-        /*switch(ButtonNumber)
-        {
-            case 0: return MetaCode::MOUSEBUTTON;
-            case 1: return MetaCode::MOUSEBUTTON_1;
-            case 2: return MetaCode::MOUSEBUTTON_2;
-            case 3: return MetaCode::MOUSEBUTTON_3;
-            case 4: return MetaCode::MOUSEBUTTON_4;
-            case 5: return MetaCode::MOUSEBUTTON_5;
-            case 6: return MetaCode::MOUSEBUTTON_6;
-            case 7: return MetaCode::MOUSEBUTTON_7;
-            case 8: return MetaCode::MOUSEBUTTON_8;
-            case 9: return MetaCode::MOUSEBUTTON_9;
-            case 10: return MetaCode::MOUSEBUTTON_10;
-            case 11: return MetaCode::MOUSEBUTTON_11;
-            case 12: return MetaCode::MOUSEBUTTON_12;
-            case 13: return MetaCode::MOUSEBUTTON_13;
-            case 14: return MetaCode::MOUSEBUTTON_14;
-            case 15: return MetaCode::MOUSEBUTTON_15;
-            case 16: return MetaCode::MOUSEBUTTON_16;
-            case 17: return MetaCode::MOUSEBUTTON_17;
-            case 18: return MetaCode::MOUSEBUTTON_18;
-            case 19: return MetaCode::MOUSEBUTTON_19;
-            case 20: return MetaCode::MOUSEBUTTON_20;
-            default:
-                throw (Exception("Unsupported mouse Button."));
-                return MetaCode::MOUSEBUTTON;
-        }*/
     }
 
     bool MetaCode::IsKeyboardButton() const
-    {
-        return (MetaCode::KEY_FIRST <= this->Code && this->Code <= MetaCode::KEY_LAST);
-    }
+        { return (MetaCode::KEY_FIRST <= this->Code && this->Code <= MetaCode::KEY_LAST); }
 
     bool MetaCode::IsMouseButton() const
-    {
-        return (MetaCode::MOUSEBUTTON_FIRST <= this->Code && this->Code <= MetaCode::MOUSEBUTTON_LAST);
-    }
+        { return (MetaCode::MOUSEBUTTON_FIRST <= this->Code && this->Code <= MetaCode::MOUSEBUTTON_LAST); }
+
+    bool MetaCode::IsPollable() const
+        { return ( IsKeyboardButton() || IsMouseButton() || this->Code==MetaCode::JOYSTICKBUTTON); }
 
     bool MetaCode::IsJoyStickEvent() const
-    {
-        return (MetaCode::JOYSTICK_FIRST <= this->Code && this->Code <= MetaCode::JOYSTICK_LAST);
-    }
+        { return (MetaCode::JOYSTICK_FIRST <= this->Code && this->Code <= MetaCode::JOYSTICK_LAST); }
 
     bool MetaCode::IsOtherInputEvent() const
-    {
-        return (MetaCode::INPUTEVENT_FIRST <= this->Code && this->Code <= MetaCode::INPUTEVENT_LAST);
-    }
+        { return (MetaCode::INPUTEVENT_FIRST <= this->Code && this->Code <= MetaCode::INPUTEVENT_LAST); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Operators
     ///////////////////////////////////////
-
     bool MetaCode::operator==(const MetaCode &other) const
     {
         if(this->Code == other.Code && this->MetaValue == other.MetaValue)

@@ -45,7 +45,7 @@
 #include "metacode.h"
 #include "vector2.h"
 
-#include <map>
+#include <vector>
 
 namespace phys
 {
@@ -60,40 +60,21 @@ namespace phys
     {
         protected:
             /// @internal
-            /// @brief This is gameworld we will be querying
-            World* GameWorld;
-
-            /// @internal
-            /// @brief This holds the Mouse X coordinate as of the last time Gather Events was called
-            Whole MouseXCache;
-
-            /// @internal
-            /// @brief This holds the Mouse Y coordinate as of the last time Gather Events was called
-            Whole MouseYCache;
-
-            /// @internal
             /// @brief This stores both mouse coordinates in a Vector2.
-            Vector2 MouseCoordinates;
+            //Vector2 MouseCoordinates;
 
             /// @internal
             /// @brief This stores the amount the mouse has moved since the previous frame.
-            Vector2 MousePrevFrameOffset;
+            //Vector2 MousePrevFrameOffset;
 
             /// @internal
             /// @brief This stores the current status of the mouse wheel.
-            MetaCode::MouseWheelState WheelState;
+            //MetaCode::MouseWheelState WheelState;
 
             /// @internal
-            /// @brief This is the mouse button limit of this class.
-            const static unsigned short int MouseButtonLimit = 16;
-
-            /// @internal
-            /// @brief A place to store which mouse buttons are pushed.
-            std::map<unsigned short int,MetaCode> MouseButtonCache;
-
-            /// @internal
-            /// @brief A place to store which keys are pressed or not.
-            std::map<unsigned int,MetaCode> KeyboardButtonCache;
+            /// @brief A place to store which keys and mouse buttons are pressed or not.
+            /// @details In the constructor we force the insertion INPUTEVENT_LAST
+            std::vector<int> CodeCache;
         public:
             /// @brief Basic Constructor.
             /// @details This creates a InputQueryTool ready to run queries on the input.
@@ -106,12 +87,12 @@ namespace phys
             /// @brief This gets the X coordinate of the mouse
             /// @details This gets the X location of this mouse. This runs in constant time.
             /// @return This returns a Whole number which represents the X coordinate of the mouse.
-            Whole GetMouseX();
+            int GetMouseX();
 
             /// @brief This gets the Y coordinate of the mouse
             /// @details This gets the Y location of this mouse. This runs in constant time.
             /// @return This returns a Whole number which represents the Y coordinate of the mouse.
-            Whole GetMouseY();
+            int GetMouseY();
 
             /// @brief This gets a vector2 containing both X and Y coordinates of the mouse.
             /// @details If precision is important then you should use the individual coordinate fetching
@@ -124,12 +105,15 @@ namespace phys
             /// @return This returns a vector2 that stores how the mouse has moved since the previous frame.
             Vector2 GetMousePrevFrameOffset();
 
+            /// @brief Get an unfiltered uninterpretted version of the value for an user input
+            /// @param AnyCode The InputCode to retrieve the value for
+            /// @return An int which may or may not correspond to a ButtonState, MouseWheelState, or some other Value.
+            int GetRawMetaValue(MetaCode::InputCode AnyCode);
+
             /// @brief Returns whether a specific Mouse button is pushed
             /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
-            /// are considered pressed, and buttons that are being lifted are considered unpressed. This only supports the first 16 mouse buttons
-            /// at this point (numbered 0 to 15)
+            /// are considered pressed, and buttons that are being lifted are considered unpressed.
             /// @param MouseButton This is the mouse button that is being checked
-            /// @exception "Unsupported mouse button access through InputQueryTool" This is thrown whenever a mouse button is requested that is beyond the limit that is supported. Currently this limit is 16
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
             bool IsMouseButtonPushed(short unsigned int MouseButton);
 
@@ -137,7 +121,6 @@ namespace phys
             /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
             /// are considered pressed, and buttons that are being lifted are considered unpressed.
             /// @param KeyboardButton This is the button that is being checked.
-            // This functionality has not yet been implemented @exception "Unsupported Keyboard button" This is thrown whenever a button is requested that is beyond the limit that is supported. See
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
             bool IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton);
 

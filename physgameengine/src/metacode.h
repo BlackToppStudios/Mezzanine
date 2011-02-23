@@ -83,9 +83,9 @@ namespace phys
     /// move, joystick tilt, wheel spin, etc...). If it is an analog representation
     /// it will also store how far or how it is pushed, pressed, rotated, or
     /// whatever. Several of these can be used in combination to represent button
-    /// combinations, or complex input combination (like portions of fighter game
+    /// combinations, or complex input combinations (like portions of fighter game
     /// moves).
-    /// The first 127 character line up with Ascii, Currently upper lase are
+    /// The first 127 character line up with Ascii, Currently upper case are
     /// omitted for brevity.
     ///////////////////////////////////////
     class PHYS_LIB MetaCode
@@ -396,24 +396,24 @@ namespace phys
                 MOUSEWHEELHORIZONTAL    = 407,
                 MOUSE_LAST              = 410,  /// The last MouseEvent Code, all Mouse events will be less than this
 
-                JOYSTICK_FIRST          = 499,  /// The First JoyStick event, all Joystick Event values will be more than this
-                JOYSTICKBUTTON          = 500,
-                JOYSTICKMOTIONAXIS      = 501,
-                JOYSTICKBALLVERTICAL    = 502,
-                JOYSTICKBALLHORIZONTAL  = 503,
-                JOYSTICKHATVERTICAL     = 504,
-                JOYSTICKHATHORIZONTAL   = 505,
-                JOYSTICK_LAST           = 506,  /// The last JoyStick Event Code, all JoyStick events will be less than this.
+                MOTION_FIRST            = 420,  /// The first Motion event
+                MOTION_LAST             = 429,  /// The last Motion event
 
-                MOTION_FIRST            = 460,  /// The first Motion event
-                MOTION_LAST             = 469,  /// The last Motion event
+                MULTITOUCH_FIRST        = 440,  /// The first Multi Touch event
+                MULTITOUCH_ACTION       = 441,
+                MULTITOUCH_GESTURE      = 442,
+                MULTITOUCH_PINCH        = 443,
+                MULTITOUCH_STRETCH      = 444,
+                MULTITOUCH_LAST         = 449,  /// The last Multi Touch event
 
-                MULTITOUCH_FIRST        = 470,  /// The first Multi Touch event
-                MULTITOUCH_ACTION       = 471,
-                MULTITOUCH_GESTURE      = 472,
-                MULTITOUCH_PINCH        = 473,
-                MULTITOUCH_STRETCH      = 474,
-                MULTITOUCH_LAST         = 479,  /// The last Multi Touch event
+                JOYSTICK_FIRST          = 450,  /// The First JoyStick event, all Joystick Event values will be more than this
+                JOYSTICKBUTTON          = 451,
+                JOYSTICKMOTIONAXIS      = 452,
+                JOYSTICKBALLVERTICAL    = 453,
+                JOYSTICKBALLHORIZONTAL  = 454,
+                JOYSTICKHATVERTICAL     = 455,
+                JOYSTICKHATHORIZONTAL   = 456,
+                JOYSTICK_LAST           = 457,  /// The last JoyStick Event Code, all JoyStick events will be less than this.
 
                 INPUTEVENT_LAST         = 512   /// The last Event Code, all event codes will be less than this.
             };
@@ -504,6 +504,16 @@ namespace phys
             /// to represent how tilted a joystick or how much a mouse moved.
             int GetMetaValue() const;                     //How much is being done? How far has the mouse moved, how much is the throttle pushed.
 
+            /// @brief Get the MetaValue as a MetaCode::ButtonState
+            /// @return This returns the appropriate button state or throws an phys::Exception if an invalid button state is stored in the MetaValue
+            /// @throw This throws a phys::Exception if the MetaValue is less than BUTTON_LIFTING or greater than BUTTON_DOWN.
+            MetaCode::ButtonState GetMetaValueAsButtonState() const;
+
+            /// @brief Get the MetaValue as a MetaCode::
+            /// @return This returns the appropriate MouseWheel state or throws an phys::Exception if an invalid state is stored in the MetaValue
+            /// @throw This throws a phys::Exception if the MetaValue is less than MOUSEWHEEL_DOWN or greater than MOUSEWHEEL_UP.
+            MetaCode::MouseWheelState GetMetaValueAsMouseWheelState() const;
+
             /// @brief This Sets The MetaValue
             /// @details See @ref GetMetaValue to see exactly what the MetaValue is. This will set the MetaValue stored in this MetaCode. This value can be retrieved with @ref GetMetaValue .
             /// @param MetaValue_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.
@@ -512,7 +522,7 @@ namespace phys
             /// @brief Accepts a int and returns the InputCode for the Corresponding Mouse button
             /// @param ButtonerNumber The number of the button you wan the code for
             /// @return When passed 0 this returns MetaCode::MOUSEBUTTON, otherwise this returns MetaCode::MOUSEBUTTON_X where X is the number that was passed in
-            static MetaCode::InputCode GetMouseButtonCode(int ButtonNumber);
+            static MetaCode::InputCode GetMouseButtonCode(short unsigned int ButtonNumber);
 
             /// @brief Does this MetaCode Represent a state of a keyboard key
             /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.
@@ -523,6 +533,10 @@ namespace phys
             /// @details Returns true if this MetaCode pertains to a mouse button being up, polled, down, pressed, or lifted.
             /// @return This returns a bool which will be true if this is MOUSEBUTTON_X event.
             bool IsMouseButton() const;
+
+            /// @brief Is this metacode a pollable event
+            /// @return if this metacode stores a Keyboard button, Mouse Button or joystick button, then this is a pollable event
+            bool IsPollable() const;
 
             /// @brief Does this MetaCode Represent a state of a Joystick Event
             /// @details Returns true if this MetaCode pertains to a joystick button being twisted, tilted, up, polled, down, pressed, or lifted, or whatever else you can do to a joystick.

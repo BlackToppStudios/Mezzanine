@@ -1,49 +1,34 @@
-The Physgame engine uses cmake to configure it's builds. It is pretty easy to use, the first thing you need to do to build the physgame engine is to make sure you have all the required software on your system. All systems will require the following software:
-	A Compiler (We used GCC 3.5 and 4.4 and MinGW 4.4, but most compilers should work)
-	Cmake version 2.8 or newer
+	
+	***** Physgame Engine Build Procedures *****
 
-For dependencies, which the Physgame engine has plenty, you will need to install a few extra packages or take a few extra steps to build.
-	For Windows,
-		Bullet Ticpp/TinyMXL, Oggvorbis and cAudio will be compiled with the engine whenever you compile. No extra steps should be required.
-	For Linux, 
+	*** Tools You Need ***
+	The Physgame engine uses cmake to configure it's builds. It is pretty easy to use, the first thing you need to do to build the physgame engine is to make sure you have all the required software on your system. All systems will require the following software:
+		* A Compiler (We used GCC 3.5 and 4.4 and MinGW 4.4,)
+		* Cmake version 2.8 or newer
+
+	There are a few gcc specific flags we used in our codeblocks configuration. Every use of AddDefinition used the "-D" switch ms visual studio and its's c++ compiler use"/d" (I think) so this would need to be changed, at a minumum to get this to build in visual studio.
+
+	*** 3rd Party libraries ***
+	For dependencies, which the Physgame engine has plenty, you may need to install a few extra packages or take a few extra steps to build. If you do not want to use the version of Ogre3d or SDL provided (or any library for that matter) you can remove our source directories and put you own in their place or you can put your compiled binaries in the appropriate "physgameengine/data" and the corresponding header files in the matching place in the "physgameengine/libincludes/" folder. 
+
+	** For Windows **
+		Bullet Ticpp/TinyMXL, Oggvorbis and cAudio will be compiled with the engine whenever you compile. No extra steps should be required. All dependencies are include in the source repository.
+
+	** For MasOS X **
+		To be determined
+
+	** For Linux **
 		The following development libraries or the equivalent need to be installed:
 			libboost-thread-dev libsdl1.2-dev libxaw7-dev zlib1g-dev libfreeimage-dev libzzip-dev libogg-dev
-			libwxgtk2.8-dev libxrandr-dev libopenal-dev libvorbis-dev libfreetype6-dev 
-		These are the names on Ubuntu. Similar libraries exist on most popular linux distros. After those are installed, Ogre3d needs to be compiled.
-			It is located in physgameengine/libincludes/linux/ogresrc/ogre
-			The ogre build distributed with physgame is configured to copy the minimum requred binaries from where ogre builds them and put them in physgameengine/data/linux/ogre
-			If they don't wind up there for any reason, or you want to use your own, you can copy or symlink the version you do want to use to these directories.
-			An easy way to compile ogre is to use (cmake -G"Unix Makefiles" && make -j8). 				The -j8 says to run make in 8 processes, put your amount of CPUs here so on a quadcore use (cmake -G"Unix Makefiles" && make -j4)
-				Here is a sample ogre build from a user named "dev" on a machine named "dev-laptop" who has their copy of the git repository in their home folder
-					dev@dev-laptop:~/physgame$ cd physgameengine/libincludes/linux/ogresrc/ogre/
-					dev@dev-laptop:~/physgame/physgameengine/libincludes/linux/ogresrc/ogre$ cmake -G"Unix Makefiles"
-					-- The C compiler identification is GNU
-					-- The CXX compiler identification is GNU
-					-- Check for working C compiler: /usr/bin/gcc
-					[SNIP]
-					-- Configuring done
-					-- Generating done
-					-- Build files have been written to: /home/dev/physgame/physgameengine/libincludes/linux/ogresrc/ogre
-					dev@dev-laptop:~/physgame/physgameengine/libincludes/linux/ogresrc/ogre$ make -j8
-					Scanning dependencies of target OgreMain
-					[  0%] [  0%] [  1%] [  1%] [  1%] [  1%] Building CXX object OgreMain/CMakeFiles/OgreMain.dir/src/OgreAlignedAllocator.cpp.o
-					Building CXX object OgreMain/CMakeFiles/OgreMain.dir/src/OgreAnimable.cpp.o
-					Building CXX object OgreMain/CMakeFiles/OgreMain.dir/src/OgreAnimation.cpp.o
-					[SNIP]
-					[ 98%] Building CXX object RenderSystems/GL/CMakeFiles/RenderSystem_GL.dir/src/GLX/OgreGLXContext.cpp.o
-					[100%] Building CXX object RenderSystems/GL/CMakeFiles/RenderSystem_GL.dir/src/GLX/OgreGLXGLSupport.cpp.o
-					[100%] Building CXX object RenderSystems/GL/CMakeFiles/RenderSystem_GL.dir/src/GLX/OgreGLXRenderTexture.cpp.o
-					[100%] Building CXX object RenderSystems/GL/CMakeFiles/RenderSystem_GL.dir/src/GLX/OgreGLXWindow.cpp.o
-					Linking CXX shared library ../../lib/RenderSystem_GL.so
-					[100%] Built target RenderSystem_GL
-					dev@dev-laptop:~/physgame/physgameengine/libincludes/linux/ogresrc/ogre$ cd ~/physgame
-					dev@dev-laptop:~/physgame$ 
-	For Mac OSX
-	
-	
-	After you have taken any platform specific build steps (such as building ogre or bullet), you can cmake to create your build files of choice for you platform. Which you will then use to compile the software. On windows currently there are a few items that will prevent this fromworking with any compiler other than mingw(or another gcc based compiler). These are all specific compile options passed to the compiler at build time.
+			libwxgtk2.8-dev libxrandr-dev libopenal-dev libvorbis-dev libfreetype6-dev libsdl-dev 
+		These are the names on Ubuntu. Similar libraries exist on most popular linux distros. After those are installed, Ogre3d and SDL need to be compiled. These are both include in the source distribution, and have a small script to make compiling them easier. There is a script called "BuildLinuxLibs" that can be run with "./BuildLinuxLibs" from the directory "physgame/physgameengine/libincludes/linux/". This script simply goes to the directories with the source and compiles the libraries using the supplied tools one library at a time.
+		To improve performance of this simple script, you may want to edit it to change every line that says "make" to say "make -j8" where 8 is the number of build processes you want to run. The -j8 says to run make in 8 processes, put your amount of CPUs here, so on a quadcore use (cmake -G"Unix Makefiles" && make -j4)
+		
+	*** Building Physgame Engine ***
+	After you have taken any platform specific build steps, you can use cmake to create your build files of choice for you platform. Which you will then use to compile the software. On windows currently there are a few items that will prevent this from working with any compiler other than mingw(or another gcc based compiler). These are list above in the "Tools You Need" section
+	You should be able to use cmake-gui, ccmake or cmake to prepare a set of build files. Here we are building unix make files on a linux machine, then compiling them with make.	The only commands actually run here are (cmake -G"Unix Makefiles") and (make -j8), Together these will create a full copy of the physgame engine and all required files and put it in "physgameengine/bin".
 
-	Here is a sample build done on a sample linux machine:
+	Sample build done on a sample linux machine:
 		dev@dev-laptop:~/physgame$ cmake -G"Unix Makefiles"
 		-- The C compiler identification is GNU
 		-- The CXX compiler identification is GNU
@@ -67,4 +52,5 @@ For dependencies, which the Physgame engine has plenty, you will need to install
 		Preparing Symlink: /home/dev/physgame/physgameengine/bin/libOgreMain.so.1.8.0
 		[100%] Built target physgame
 		dev@dev-laptop:~/physgame$
-	The only commands actually run here are (cmake -G"Unix Makefiles") and (make -j8), Together these will create a full copy of the physgame engine and all required files and put it in "physgameengine/bin".
+
+
