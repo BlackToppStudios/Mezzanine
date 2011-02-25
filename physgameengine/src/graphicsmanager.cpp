@@ -88,20 +88,24 @@ namespace phys
     {
         //InitSDL();
         SDL_Init(SDL_INIT_VIDEO);
+        size_t RC = 0;
         //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
 
 		try
 		{
 			//Setup the SDL render window
-			SDL_GL_SetAttribute( SDL_GL_DOUBLEBUFFER, 1 );
+			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
+            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 			if(Fullscreen)
 			{
-			    //this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RenderWidth, RenderHeight, SDL_OPENGL | SDL_FULLSCREEN);
-			    this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN );
+			    this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RenderWidth, RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_SHOWN );
+			    //this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN );
 			}else{
-                //this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RenderWidth, RenderHeight, SDL_OPENGL);
-                this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
+                this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RenderWidth, RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
+                //this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
 			}
+			RC = (size_t)SDL_GL_CreateContext(this->SDLwindow);
 			//SDL_WM_SetCaption(GameWorld->GetWindowName().c_str(), NULL);
 			#ifdef PHYSDEBUG
             GameWorld->Log("Successfully Setup SDL");
@@ -126,8 +130,8 @@ namespace phys
 
         //Configure Ogre to render to the SDL window
         Ogre::NameValuePairList *misc;
-        misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
-        OgreGameWindow = Ogre::Root::getSingleton().createRenderWindow(GameWorld->GetWindowName(), RenderHeight, RenderWidth, Fullscreen, misc);
+        misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLwindow,RC);
+        OgreGameWindow = Ogre::Root::getSingleton().createRenderWindow(GameWorld->GetWindowName(), RenderWidth, RenderHeight, Fullscreen, misc);
         #ifdef PHYSDEBUG
         GameWorld->Log("Bound Ogre to an SDL window");
         #endif
@@ -156,7 +160,9 @@ namespace phys
 
     void GraphicsManager::ShutdownSDL()
     {
-        SDL_FreeSurface(SDLscreen);
+        //SDL_DeleteContext();
+        SDL_DestroyWindow(SDLwindow);
+        //SDL_FreeSurface(SDLscreen);
         SDL_Quit();
     }
 
@@ -188,7 +194,7 @@ namespace phys
     void GraphicsManager::UpdateWindowStats()
     {
         GameWorld->Log("Updating Screen Mode. ");
-        OgreGameWindow->destroy();
+        //OgreGameWindow->destroy();
         if(Fullscreen)
         {
             GameWorld->Log("Setting SDL. ");
@@ -202,8 +208,8 @@ namespace phys
             //OgreGameWindow->setFullscreen(false,RenderWidth,RenderHeight);
         }
         Ogre::NameValuePairList *misc;
-        misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
-        OgreGameWindow->create(GameWorld->GetWindowName(), RenderHeight, RenderWidth, Fullscreen, misc);
+        //misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder();
+        //OgreGameWindow->create(GameWorld->GetWindowName(), RenderHeight, RenderWidth, Fullscreen, misc);
 
         GameWorld->Log("Updating Viewport. ");
         Ogre::Viewport* OgreViewport = GameWorld->GetCameraManager()->GetOgreViewport("Viewport1");
@@ -362,7 +368,7 @@ namespace phys
     void GraphicsManager::DoMainLoopItems()
     {
         Ogre::WindowEventUtilities::messagePump();
-        crossplatform::RenderPhysWorld(this->GameWorld, this->OgreGameWindow);
+        crossplatform::RenderPhysWorld(this->OgreGameWindow, this->SDLwindow);
 
         //Do Time Calculations to Determine Rendering Time
         this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );

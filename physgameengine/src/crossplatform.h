@@ -83,6 +83,8 @@ namespace Ogre
     class RenderWindow;
 }
 
+struct SDL_Window;
+
 namespace phys
 {
     //Forward Declarations should go here
@@ -116,7 +118,7 @@ namespace phys
         /// @details This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)
         /// This returns a named parameter list with valid settings to use Ogre rendering on a pre-existing SDL context
         /// @warning This is an engine internal, and shouldn't be used anywhere else. For all practical purposes is return gibberish
-        void* GetSDLOgreBinder();
+        void* GetSDLOgreBinder(SDL_Window* window, size_t& winGlContext);
 
         /// @brief Pauses the program for a given period of time.
         /// @details Pauses the program for a given period of time.
@@ -128,9 +130,8 @@ namespace phys
         /// Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop
         /// at the aproppriate times. Currently this references Ogre systems, that makes this internal
         /// Handles the actual cross platform swapping of graphics buffers.
-        /// @param TheWorld This is a pointer to the World to be rendered.
         /// @param TheWorld A pointer to the game window to be update to be rendered. This is considered an internal component
-        void PHYS_LIB RenderPhysWorld(World *TheWorld, Ogre::RenderWindow* TheOgreWindow);
+        void PHYS_LIB RenderPhysWorld(Ogre::RenderWindow* TheOgreWindow, SDL_Window* SDLWindow);
 
         /// @brief Gets the platform currently being run on.
         /// @return Returns a string based on the platform.  "Windows", "Linux", or "MacOSX".
