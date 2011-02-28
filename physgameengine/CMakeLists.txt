@@ -246,6 +246,7 @@ if(${WIN32})
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
 
 	link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
+	set(sdlname SDL)
 
 	include_directories(
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
@@ -273,12 +274,15 @@ if(${UNIX})
 			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
 		)
 
+		set(sdlname SDL)
+		link_directories(${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/ ) 
+
 		include_directories(
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
 		)
-		link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
+
 
 		add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
@@ -294,7 +298,8 @@ if(${APPLE})
         
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
-        
+	set(sdlname SDL)        
+
         include(FindOpenAL)
 	message("OpenAL Headers and Library Found - ${OPENAL_LIBRARY}")
 
@@ -380,7 +385,7 @@ set( Bullet_LibraryNames
 	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
 )
 
-target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio SDL )
+target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${sdlname} )
 
 ###############################################################################
 # Build Time File copying
