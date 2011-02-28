@@ -72,6 +72,15 @@ namespace phys
         bool Fullscreen;
         /// @brief This is the desired state of whether to enable VSync or not.
         bool VSync;
+        /// @brief Struct Constructor
+        GraphicsSettings() : RenderHeight(0),RenderWidth(0),Fullscreen(false),VSync(false) {}
+        GraphicsSettings& operator= (const GraphicsSettings &GS)
+        {
+            this->RenderHeight = GS.RenderHeight;
+            this->RenderWidth = GS.RenderWidth;
+            this->Fullscreen = GS.Fullscreen;
+            this->VSync = GS.VSync;
+        }
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -87,6 +96,9 @@ namespace phys
     {
         private:
             GraphicsSettings Settings;
+
+            std::vector<String> SupportedResolutions;
+            std::vector<String> SupportedDevices;
 
             /// @brief Adjust all Settings
             /// @param Width_ The desired width.
@@ -111,6 +123,7 @@ namespace phys
 
             Whole FrameDelay;
             bool SDLBeenInitialized;
+            bool GraphicsInitialized;
 
         public:
             /// @brief Basic constructor
@@ -209,6 +222,16 @@ namespace phys
             /// @brief Gets the name of the render system in current use.
             /// @return Returns a string containing the name of the current render system.
             String GetRenderSystemName();
+
+            /// @brief Gets a vector containing all the resolutions supported by this render system on the current hardware.
+            /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.
+            /// @return Returns a Const Pointer to the vector storing all the supported resolutions.
+            const std::vector<String>* GetSupportedResolutions();
+
+            /// @brief Gets a vector containing all the devices supported by this render system on the current hardware.
+            /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.
+            /// @return Returns a Const Pointer to the vector storing all the supported devices.
+            const std::vector<String>* GetSupportedDevices();
 
         //Inherited from ManagerBase
             /// @brief Empty Initializor

@@ -81,6 +81,11 @@ int main(int argc, char **argv)
     WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
     CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
 
+    TheWorld->Log("Printing Supported Resolutions:");
+    const std::vector<String>* ResList = TheWorld->GetGraphicsManager()->GetSupportedResolutions();
+    for( Whole Z = 0 ; Z < ResList->size() ; Z++ )
+        TheWorld->Log(ResList->at(Z));
+
 	//Start the Main Loop
 	TheWorld->MainLoop();
 

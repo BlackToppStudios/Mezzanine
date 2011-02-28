@@ -47,6 +47,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <map>
 
 /// @internal
 /// @brief Forward declaration for SDL compatibilty
