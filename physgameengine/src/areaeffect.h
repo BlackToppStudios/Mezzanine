@@ -55,6 +55,7 @@ namespace Ogre
 {
     class SceneNode;
     class Entity;
+    class MaterialPtr;
 }
 
 namespace phys{
@@ -73,8 +74,20 @@ namespace phys{
     {
         friend class PhysicsManager;
         protected:
+            enum AEShapeType
+            {
+                AE_Sphere,
+                AE_CylinderX,
+                AE_CylinderY,
+                AE_CylinderZ,
+                AE_Box,
+                AE_Custom,
+                AE_Unassigned
+            };
             /// @brief The name of the Area Effect.
             String Name;
+            /// @brief The type of physics shape in use by this AE field.
+            AEShapeType ShapeType;
             /// @brief Stores the shape of the AE field.
             btCollisionShape* Shape;
             /// @brief The object representing the AE field itself.
@@ -94,6 +107,8 @@ namespace phys{
             /// @brief Constructor Function.
             /// @param Location The location of the AE field.
             virtual void CreateGhostObject(const Vector3 Location);
+            /// @brief Creates a basic material in code using the provided colour.
+            virtual Ogre::MaterialPtr CreateColouredMaterial(const ColourValue& Colour);
             /// @brief Helper function for adding actors to relevant lists.
             virtual void AddActorToList(ActorBase* Actor);
             /// @brief Helper function for adding actors to relevant lists.
@@ -118,17 +133,26 @@ namespace phys{
             /// @brief Creates a Sphere shape for the field.
             /// @param Radius The radius of the sphere you want to create.
             void CreateSphereShape(const Real Radius);
-            /// @brief Creates a Cylinder shape for the field.
-            /// @details This function assumes the cylinder will be upright, meaning "up" will be on the positive Y axis.  @n
-            /// When making the vector to be passed in, remember the layout should be as such: (radius, height*0.5, radius), with the second radius
-            /// perpendicular to the first.
+            /// @brief Creates a Cylinder shape for the field that is alligned on the X axis.
+            /// @details When making the vector to be passed in, remember the layout should be as such: (width*0.5, radius, radius),
+            /// with the second radius perpendicular to the first.
             /// @param HalfExtents The vector representing the size of the shape.
-            void CreateCylinderShape(const Vector3 HalfExtents);
+            void CreateCylinderShapeX(const Vector3 HalfExtents);
+            /// @brief Creates a Cylinder shape for the field that is alligned on the Y axis.
+            /// @details When making the vector to be passed in, remember the layout should be as such: (radius, height*0.5, radius),
+            /// with the second radius perpendicular to the first.
+            /// @param HalfExtents The vector representing the size of the shape.
+            void CreateCylinderShapeY(const Vector3 HalfExtents);
+            /// @brief Creates a Cylinder shape for the field that is alligned on the Z axis.
+            /// @details When making the vector to be passed in, remember the layout should be as such: (radius, radius, length*0.5),
+            /// with the second radius perpendicular to the first.
+            /// @param HalfExtents The vector representing the size of the shape.
+            void CreateCylinderShapeZ(const Vector3 HalfExtents);
             /// @brief Creates a Box shape for the field.
             /// @details When making the vector to be passed in, remember to pass in only half values of what you want the actual
             /// size to be.
             /// @param HalfExtents The vector representing the size of the shape.
-            void CreateBoxShape(const Vector3 HalfExtents, const ColourValue Colour = ColourValue(0,0,0,0));
+            void CreateBoxShape(const Vector3 HalfExtents);
             /// @brief Creates a shape from a .mesh model for the field.
             /// @param Filename The name of the .mesh file to be used.
             /// @param Group The resource group where the mesh can be found.
@@ -153,6 +177,21 @@ namespace phys{
             /// @brief Gets the Area Effects name.
             /// @return Returns the name of the Area Effect.
             ConstString& GetName();
+            /// @brief Gets the current shape type in use by this class.
+            /// @return Returns an enum value representing the type of shape being used by this class.
+            AreaEffect::AEShapeType GetShapeType();
+            /// @brief Creates a sphere mesh based on the physics shape for this area effect.
+            virtual void CreateGraphicsSphere(const ColourValue& Colour, const Whole Rings, const Whole Segments);
+            /// @brief Creates a sphere mesh based on the physics shape for this area effect.
+            virtual void CreateGraphicsSphere(String& MaterialName, const Whole Rings, const Whole Segments);
+            /// @brief Creates a cylinder mesh based on the physics shape for this area effect.
+            virtual void CreateGraphicsCylinder(const ColourValue& Colour);
+            /// @brief Creates a cylinder mesh based on the physics shape for this area effect.
+            virtual void CreateGraphicsCylinder(String& MaterialName);
+            /// @brief Creates a cube mesh based on the physics shape for this area effect.
+            virtual void CreateGraphicsBox(const ColourValue& Colour);
+            /// @brief Creates a cube mesh based on the physics shape for this area effect.
+            virtual void CreateGraphicsBox(String& MaterialName);
             /// @brief Gets the list of actors within this field.
             /// @return Returns the list of actors contained within this field.
             std::list<ActorBase*>& GetOverlappingActors();

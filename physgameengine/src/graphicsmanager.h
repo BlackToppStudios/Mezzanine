@@ -80,6 +80,7 @@ namespace phys
             this->RenderWidth = GS.RenderWidth;
             this->Fullscreen = GS.Fullscreen;
             this->VSync = GS.VSync;
+            return *this;
         }
     };
 

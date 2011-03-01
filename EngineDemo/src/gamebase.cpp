@@ -703,7 +703,7 @@ void LoadContent()
     TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
     GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
-    Reverse->CreateCylinderShape(Vector3(100.0,200.0,100));
+    Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
     TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it
 
@@ -767,6 +767,7 @@ void LoadContent()
 
     AreaEffect* TestField = new TestAE("Tester", Vector3(0,0,150));
     TestField->CreateBoxShape(Vector3(500,80,80));
+    TestField->CreateGraphicsBox(ColourValue(0.5,0.9,0.5,0.2));
     TheWorld->GetPhysicsManager()->AddAreaEffect(TestField);
 
     Sound *sound1, *music1, *music2;
