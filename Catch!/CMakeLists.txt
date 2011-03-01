@@ -118,16 +118,15 @@ endif(${WIN32})
 
 # Linux File Copy Specific Items
 if(${UNIX})
-	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
+	message ( "${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process" )
 	#CopyDemoFilesDuringBuild( linux/EngineDemo EngineDemo )
 	#CopyFilesFromPhygameDuringBuild( libOgreMain.so )
-	CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( libphysgame.so )
 	CopyFilesFromPhygameDuringBuild( libOgreMain.so.1.7.2 )
-	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
+	message ( "${PROJECT_NAME} - End Unix/Linux Specific File Copy Process" )
 endif(${UNIX})
 
 # Mac File Copy pecific Items

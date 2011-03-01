@@ -5,5 +5,5 @@ cmake -G"CodeBlocks - Unix Makefiles"
 make 
 cd ../../../common/sdlsrc/SDL/
 ./autogen.sh
-./configure
+./configure LDFLAGS=-fPIC CFLAGS=-O2
 make
