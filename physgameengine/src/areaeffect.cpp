@@ -222,6 +222,11 @@ namespace phys{
             OgreManager->destroySceneNode(GraphicsNode);
             GraphicsNode = NULL;
         }
+        if(Shape)
+        {
+            delete Shape;
+            Shape = NULL;
+        }
 
         GraphicsObject = OgreManager->createEntity(Name, Filename, Group);
         Ogre::MeshPtr myMesh = GraphicsObject->getMesh();
@@ -331,12 +336,22 @@ namespace phys{
 
     void AreaEffect::CreateGraphicsSphere(const ColourValue& Colour, const Whole Rings, const Whole Segments)
     {
+        if(AreaEffect::AE_Sphere != ShapeType)
+        {
+            TheWorld->Log("Attempting to create sphere graphics shape when AreaEffect isn't a sphere is not supported.  Exiting Function.");
+            return;
+        }
         String MatName = (CreateColouredMaterial(Colour))->getName();
         CreateGraphicsSphere(MatName,Rings,Segments);
     }
 
     void AreaEffect::CreateGraphicsSphere(String& MaterialName, const Whole Rings, const Whole Segments)
     {
+        if(AreaEffect::AE_Sphere != ShapeType)
+        {
+            TheWorld->Log("Attempting to create sphere graphics shape when AreaEffect isn't a sphere is not supported.  Exiting Function.");
+            return;
+        }
         Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
         if(GraphicsObject)
         {
@@ -355,12 +370,22 @@ namespace phys{
 
     void AreaEffect::CreateGraphicsCylinder(const ColourValue& Colour)
     {
+        if(AreaEffect::AE_CylinderX != ShapeType && AreaEffect::AE_CylinderY != ShapeType && AreaEffect::AE_CylinderZ != ShapeType)
+        {
+            TheWorld->Log("Attempting to create cylinder graphics shape when AreaEffect isn't a cylinder is not supported.  Exiting Function.");
+            return;
+        }
         String MatName = (CreateColouredMaterial(Colour))->getName();
         CreateGraphicsCylinder(MatName);
     }
 
     void AreaEffect::CreateGraphicsCylinder(String& MaterialName)
     {
+        if(AreaEffect::AE_CylinderX != ShapeType && AreaEffect::AE_CylinderY != ShapeType && AreaEffect::AE_CylinderZ != ShapeType)
+        {
+            TheWorld->Log("Attempting to create cylinder graphics shape when AreaEffect isn't a cylinder is not supported.  Exiting Function.");
+            return;
+        }
         Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
         if(GraphicsObject)
         {
@@ -379,13 +404,23 @@ namespace phys{
 
     void AreaEffect::CreateGraphicsBox(const ColourValue& Colour)
     {
+        if(AreaEffect::AE_Box != ShapeType)
+        {
+            TheWorld->Log("Attempting to create box graphics shape when AreaEffect isn't a box is not supported.  Exiting Function.");
+            return;
+        }
         String MatName = (CreateColouredMaterial(Colour))->getName();
         CreateGraphicsBox(MatName);
     }
 
     void AreaEffect::CreateGraphicsBox(String& MaterialName)
     {
-        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        if(AreaEffect::AE_Box != ShapeType)
+        {
+            TheWorld->Log("Attempting to create box graphics shape when AreaEffect isn't a box is not supported.  Exiting Function.");
+            return;
+        }
+        Ogre::SceneManager* OgreManager = TheWorld->GetSceneManager()->GetGraphicsWorldPointer();
         if(GraphicsObject)
         {
             OgreManager->destroyEntity(GraphicsObject);

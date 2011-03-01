@@ -181,16 +181,33 @@ namespace phys{
             /// @return Returns an enum value representing the type of shape being used by this class.
             AreaEffect::AEShapeType GetShapeType();
             /// @brief Creates a sphere mesh based on the physics shape for this area effect.
+            /// @details This function will create a material script on the fly for you to use with your AR field.
+            /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
+            /// @param Rings The number of horizontal rings the sphere is to be comprised of.
+            /// This along with the segments parameter controls the overall resolution of the sphere.
+            /// @param Segments The number of horizontal sections there are to be between each ring.
+            /// This along with the rings parameter controls the overall resolution of the sphere.
             virtual void CreateGraphicsSphere(const ColourValue& Colour, const Whole Rings, const Whole Segments);
             /// @brief Creates a sphere mesh based on the physics shape for this area effect.
+            /// @param MaterialName The name of the material script to be applied to the graphics object that is created.  Must be valid.
+            /// @param Rings The number of horizontal rings the sphere is to be comprised of.
+            /// This along with the segments parameter controls the overall resolution of the sphere.
+            /// @param Segments The number of horizontal sections there are to be between each ring.
+            /// This along with the rings parameter controls the overall resolution of the sphere.
             virtual void CreateGraphicsSphere(String& MaterialName, const Whole Rings, const Whole Segments);
             /// @brief Creates a cylinder mesh based on the physics shape for this area effect.
+            /// @details This function will create a material script on the fly for you to use with your AR field.
+            /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
             virtual void CreateGraphicsCylinder(const ColourValue& Colour);
             /// @brief Creates a cylinder mesh based on the physics shape for this area effect.
+            /// @param MaterialName The name of the material script to be applied to the graphics object that is created.  Must be valid.
             virtual void CreateGraphicsCylinder(String& MaterialName);
-            /// @brief Creates a cube mesh based on the physics shape for this area effect.
+            /// @brief Creates a box mesh based on the physics shape for this area effect.
+            /// @details This function will create a material script on the fly for you to use with your AR field.
+            /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
             virtual void CreateGraphicsBox(const ColourValue& Colour);
-            /// @brief Creates a cube mesh based on the physics shape for this area effect.
+            /// @brief Creates a box mesh based on the physics shape for this area effect.
+            /// @param MaterialName The name of the material script to be applied to the graphics object that is created.  Must be valid.
             virtual void CreateGraphicsBox(String& MaterialName);
             /// @brief Gets the list of actors within this field.
             /// @return Returns the list of actors contained within this field.
