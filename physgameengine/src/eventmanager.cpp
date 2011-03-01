@@ -233,6 +233,49 @@ namespace phys
         RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
         EventUserInput* FromSDLEvent = new EventUserInput();    //Used to build up all of our userinput data into one event
 
+
+        /* Here is a list of SDL event which aren't coded yet.
+        //event types
+        SDL_FIRSTEVENT				unused (do not remove)		Application events
+        SDL_QUIT				user-requested quit		Window events
+        SDL_WINDOWEVENT				window state change
+        SDL_SYSWMEVENT				system specific event		Keyboard events
+        SDL_KEYDOWN				key pressed
+        SDL_KEYUP				key released
+        SDL_TEXTEDITING				keyboard text editing (composition)
+        SDL_TEXTINPUT				keyboard text input		Mouse events
+        SDL_MOUSEMOTION				mouse moved
+        SDL_MOUSEBUTTONDOWN				mouse button pressed
+        SDL_MOUSEBUTTONUP				mouse button released
+        SDL_MOUSEWHEEL				mouse wheel motion		Tablet or multiple mice input device events
+        SDL_INPUTMOTION				input moved
+        SDL_INPUTBUTTONDOWN				input button pressed
+        SDL_INPUTBUTTONUP				input button released
+        SDL_INPUTWHEEL				input wheel motion
+        SDL_INPUTPROXIMITYIN				input pen entered proximity
+        SDL_INPUTPROXIMITYOUT				input pen left proximity		Joystick events
+        SDL_JOYAXISMOTION				joystick axis motion
+        SDL_JOYBALLMOTION				joystick trackball motion
+        SDL_JOYHATMOTION				joystick hat position change
+        SDL_JOYBUTTONDOWN				joystick button pressed
+        SDL_JOYBUTTONUP				joystick button released		Touch events
+        SDL_FINGERDOWN
+        SDL_FINGERUP
+        SDL_FINGERMOTION
+        SDL_TOUCHBUTTONDOWN
+        SDL_TOUCHBUTTONUP				Gesture events
+        SDL_DOLLARGESTURE
+        SDL_DOLLARRECORD
+        SDL_MULTIGESTURE				Clipboard events
+        SDL_CLIPBOARDUPDATE				the clipboard changed		Obsolete events
+        SDL_EVENT_COMPAT1				SDL 1.2 events for compatibility
+        SDL_EVENT_COMPAT2				SDL 1.2 events for compatibility
+        SDL_EVENT_COMPAT3				SDL 1.2 events for compatibility		These are for your use, and should be allocated with
+        SDL_RegisterEvents()
+        SDL_USEREVENT				a user-specified event
+        SDL_LASTEVENT				only for bounding internal arrays
+        */
+
         while(SDL_PollEvent(&FromSDLRaw))
         {
             switch(FromSDLRaw.type)

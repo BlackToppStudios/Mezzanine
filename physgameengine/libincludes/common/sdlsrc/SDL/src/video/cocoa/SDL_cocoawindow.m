@@ -22,6 +22,7 @@
 #include "SDL_config.h"
 
 #include "SDL_syswm.h"
+#include "SDL_timer.h"  /* For SDL_GetTicks() */
 #include "../SDL_sysvideo.h"
 #include "../../events/SDL_keyboard_c.h"
 #include "../../events/SDL_mouse_c.h"
@@ -30,6 +31,9 @@
 #include "SDL_cocoavideo.h"
 #include "SDL_cocoashape.h"
 #include "SDL_cocoamouse.h"
+
+
+static Uint32 s_moveHack;
 
 static __inline__ void ConvertNSRect(NSRect *r)
 {
@@ -41,54 +45,60 @@ static __inline__ void ConvertNSRect(NSRect *r)
 - (void)listen:(SDL_WindowData *)data
 {
     NSNotificationCenter *center;
+    NSWindow *window = data->nswindow;
+    NSView *view = [window contentView];
 
     _data = data;
 
     center = [NSNotificationCenter defaultCenter];
 
-    [_data->nswindow setNextResponder:self];
-    if ([_data->nswindow delegate] != nil) {
-        [center addObserver:self selector:@selector(windowDisExpose:) name:NSWindowDidExposeNotification object:_data->nswindow];
-        [center addObserver:self selector:@selector(windowDidMove:) name:NSWindowDidMoveNotification object:_data->nswindow];
-        [center addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:_data->nswindow];
-        [center addObserver:self selector:@selector(windowDidMiniaturize:) name:NSWindowDidMiniaturizeNotification object:_data->nswindow];
-        [center addObserver:self selector:@selector(windowDidDeminiaturize:) name:NSWindowDidDeminiaturizeNotification object:_data->nswindow];
-        [center addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:_data->nswindow];
-        [center addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:_data->nswindow];
+    if ([window delegate] != nil) {
+        [center addObserver:self selector:@selector(windowDidExpose:) name:NSWindowDidExposeNotification object:window];
+        [center addObserver:self selector:@selector(windowDidMove:) name:NSWindowDidMoveNotification object:window];
+        [center addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:window];
+        [center addObserver:self selector:@selector(windowDidMiniaturize:) name:NSWindowDidMiniaturizeNotification object:window];
+        [center addObserver:self selector:@selector(windowDidDeminiaturize:) name:NSWindowDidDeminiaturizeNotification object:window];
+        [center addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:window];
+        [center addObserver:self selector:@selector(windowDidResignKey:) name:NSWindowDidResignKeyNotification object:window];
     } else {
-        [_data->nswindow setDelegate:self];
+        [window setDelegate:self];
     }
-// FIXME: Why doesn't this work?
-//    [center addObserver:self selector:@selector(rightMouseDown:) name:[NSString stringWithCString:"rightMouseDown" encoding:NSUTF8StringEncoding] object:[_data->nswindow contentView]];
-    [center addObserver:self selector:@selector(windowDidHide:) name:NSApplicationDidHideNotification object:NSApp];
-    [center addObserver:self selector:@selector(windowDidUnhide:) name:NSApplicationDidUnhideNotification object:NSApp];
 
-    [_data->nswindow setAcceptsMouseMovedEvents:YES];
+    [window setNextResponder:self];
+    [window setAcceptsMouseMovedEvents:YES];
+
+    [view setNextResponder:self];
 #if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
-    [[_data->nswindow contentView] setAcceptsTouchEvents:YES];
+    [view setAcceptsTouchEvents:YES];
 #endif
 }
 
 - (void)close
 {
     NSNotificationCenter *center;
+    NSWindow *window = _data->nswindow;
+    NSView *view = [window contentView];
 
     center = [NSNotificationCenter defaultCenter];
 
-    [_data->nswindow setNextResponder:nil];
-    if ([_data->nswindow delegate] != self) {
-        [center removeObserver:self name:NSWindowDidExposeNotification object:_data->nswindow];
-        [center removeObserver:self name:NSWindowDidMoveNotification object:_data->nswindow];
-        [center removeObserver:self name:NSWindowDidResizeNotification object:_data->nswindow];
-        [center removeObserver:self name:NSWindowDidMiniaturizeNotification object:_data->nswindow];
-        [center removeObserver:self name:NSWindowDidDeminiaturizeNotification object:_data->nswindow];
-        [center removeObserver:self name:NSWindowDidBecomeKeyNotification object:_data->nswindow];
-        [center removeObserver:self name:NSWindowDidResignKeyNotification object:_data->nswindow];
+    if ([window delegate] != self) {
+        [center removeObserver:self name:NSWindowDidExposeNotification object:window];
+        [center removeObserver:self name:NSWindowDidMoveNotification object:window];
+        [center removeObserver:self name:NSWindowDidResizeNotification object:window];
+        [center removeObserver:self name:NSWindowDidMiniaturizeNotification object:window];
+        [center removeObserver:self name:NSWindowDidDeminiaturizeNotification object:window];
+        [center removeObserver:self name:NSWindowDidBecomeKeyNotification object:window];
+        [center removeObserver:self name:NSWindowDidResignKeyNotification object:window];
     } else {
-        [_data->nswindow setDelegate:nil];
+        [window setDelegate:nil];
     }
-    [center removeObserver:self name:NSApplicationDidHideNotification object:NSApp];
-    [center removeObserver:self name:NSApplicationDidUnhideNotification object:NSApp];
+
+    if ([window nextResponder] == self) {
+        [window setNextResponder:nil];
+    }
+    if ([view nextResponder] == self) {
+        [view setNextResponder:nil];
+    }
 }
 
 - (BOOL)windowShouldClose:(id)sender
@@ -105,11 +115,29 @@ static __inline__ void ConvertNSRect(NSRect *r)
 - (void)windowDidMove:(NSNotification *)aNotification
 {
     int x, y;
-    NSRect rect = [_data->nswindow contentRectForFrameRect:[_data->nswindow frame]];
+    SDL_Window *window = _data->window;
+    NSWindow *nswindow = _data->nswindow;
+    NSRect rect = [nswindow contentRectForFrameRect:[nswindow frame]];
     ConvertNSRect(&rect);
+
+    if (s_moveHack) {
+        SDL_bool blockMove = ((SDL_GetTicks() - s_moveHack) < 500);
+
+        s_moveHack = 0;
+
+        if (blockMove) {
+            /* Cocoa is adjusting the window in response to a mode change */
+            rect.origin.x = window->x;
+            rect.origin.y = window->y;
+            ConvertNSRect(&rect);
+            [nswindow setFrameOrigin:rect.origin];
+            return;
+        }
+    }
+
     x = (int)rect.origin.x;
     y = (int)rect.origin.y;
-    SDL_SendWindowEvent(_data->window, SDL_WINDOWEVENT_MOVED, x, y);
+    SDL_SendWindowEvent(window, SDL_WINDOWEVENT_MOVED, x, y);
 }
 
 - (void)windowDidResize:(NSNotification *)aNotification
@@ -135,8 +163,27 @@ static __inline__ void ConvertNSRect(NSRect *r)
 
 - (void)windowDidBecomeKey:(NSNotification *)aNotification
 {
+    SDL_Window *window = _data->window;
+
     /* We're going to get keyboard events, since we're key. */
-    SDL_SetKeyboardFocus(_data->window);
+    SDL_SetKeyboardFocus(window);
+
+    /* If we just gained focus we need the updated mouse position */
+    {
+        NSPoint point;
+        int x, y;
+
+        point = [_data->nswindow mouseLocationOutsideOfEventStream];
+        x = (int)point.x;
+        y = (int)(window->h - point.y);
+
+        if (x >= 0 && x < window->w && y >= 0 && y < window->h) {
+            if (SDL_GetMouseFocus() != window) {
+                [self mouseEntered:nil];
+            }
+            SDL_SendMouseMotion(window, 0, x, y);
+        }
+    }
 
     /* Check to see if someone updated the clipboard */
     Cocoa_CheckClipboardUpdate(_data->videodata);
@@ -153,16 +200,6 @@ static __inline__ void ConvertNSRect(NSRect *r)
     if (SDL_GetKeyboardFocus() == _data->window) {
         SDL_SetKeyboardFocus(NULL);
     }
-}
-
-- (void)windowDidHide:(NSNotification *)aNotification
-{
-    SDL_SendWindowEvent(_data->window, SDL_WINDOWEVENT_HIDDEN, 0, 0);
-}
-
-- (void)windowDidUnhide:(NSNotification *)aNotification
-{
-    SDL_SendWindowEvent(_data->window, SDL_WINDOWEVENT_SHOWN, 0, 0);
 }
 
 - (void)mouseDown:(NSEvent *)theEvent
@@ -227,23 +264,66 @@ static __inline__ void ConvertNSRect(NSRect *r)
     [self mouseUp:theEvent];
 }
 
-- (void)mouseMoved:(NSEvent *)theEvent
+- (void)mouseEntered:(NSEvent *)theEvent
+{
+    SDL_Mouse *mouse = SDL_GetMouse();
+
+    SDL_SetMouseFocus(_data->window);
+
+    SDL_SetCursor(NULL);
+}
+
+- (void)mouseExited:(NSEvent *)theEvent
 {
     SDL_Window *window = _data->window;
-    NSPoint point;
 
-    if (window->flags & SDL_WINDOW_FULLSCREEN)
+    if (SDL_GetMouseFocus() == window) {
+        if (window->flags & SDL_WINDOW_INPUT_GRABBED) {
+            int x, y;
+            NSPoint point;
+            CGPoint cgpoint;
+
+            point = [theEvent locationInWindow];
+            point.y = window->h - point.y;
+
+            SDL_SendMouseMotion(window, 0, (int)point.x, (int)point.y);
+            SDL_GetMouseState(&x, &y);
+            cgpoint.x = window->x + x;
+            cgpoint.y = window->y + y;
+            CGDisplayMoveCursorToPoint(kCGDirectMainDisplay, cgpoint);
+        } else {
+            SDL_SetMouseFocus(NULL);
+
+            [[NSCursor arrowCursor] set];
+            [NSCursor unhide];
+        }
+    }
+}
+
+- (void)mouseMoved:(NSEvent *)theEvent
+{
+    SDL_Mouse *mouse = SDL_GetMouse();
+    SDL_Window *window = _data->window;
+    NSPoint point;
+    int x, y;
+
+    if (mouse->relative_mode) {
         return;
+    }
 
     point = [theEvent locationInWindow];
-    point.y = window->h - point.y;
-    if ( point.x < 0 || point.x >= window->w ||
-         point.y < 0 || point.y >= window->h ) {
+    x = (int)point.x;
+    y = (int)(window->h - point.y);
+
+    if (x < 0 || x >= window->w || y < 0 || y >= window->h) {
         if (SDL_GetMouseFocus() == window) {
-            SDL_SetMouseFocus(NULL);
+            [self mouseExited:theEvent];
         }
     } else {
-        SDL_SendMouseMotion(window, 0, (int)point.x, (int)point.y);
+        if (SDL_GetMouseFocus() != window) {
+            [self mouseEntered:theEvent];
+        }
+        SDL_SendMouseMotion(window, 0, x, y);
     }
 }
 
@@ -374,28 +454,16 @@ static __inline__ void ConvertNSRect(NSRect *r)
 }
 @end
 
-@interface SDLView : NSView {
-    Cocoa_WindowListener *listener;
-}
+@interface SDLView : NSView
+/* The default implementation doesn't pass rightMouseDown to responder chain */
+- (void)rightMouseDown:(NSEvent *)theEvent;
 @end
 
 @implementation SDLView
-
-- (id) initWithFrame: (NSRect) rect
-            listener: (Cocoa_WindowListener *) theListener
-{
-    if (self = [super initWithFrame:rect]) {
-        listener = theListener;
-    }
-
-    return self;
-}
-
 - (void)rightMouseDown:(NSEvent *)theEvent
 {
-    [listener mouseDown:theEvent];
+    [[self nextResponder] rightMouseDown:theEvent];
 }
-
 @end
 
 static unsigned int
@@ -440,16 +508,11 @@ SetupWindowData(_THIS, SDL_Window * window, NSWindow *nswindow, SDL_bool created
 
     /* Create an event listener for the window */
     data->listener = [[Cocoa_WindowListener alloc] init];
-    [data->listener listen:data];
 
     /* Fill in the SDL window with the window data */
     {
         NSRect rect = [nswindow contentRectForFrameRect:[nswindow frame]];
-        NSView *contentView = [[SDLView alloc] initWithFrame: rect
-                                                    listener: data->listener];
-#if MAC_OS_X_VERSION_MAX_ALLOWED >= MAC_OS_X_VERSION_10_6
-        [contentView setAcceptsTouchEvents:YES];
-#endif
+        NSView *contentView = [[SDLView alloc] initWithFrame:rect];
         [nswindow setContentView: contentView];
         [contentView release];
 
@@ -459,6 +522,10 @@ SetupWindowData(_THIS, SDL_Window * window, NSWindow *nswindow, SDL_bool created
         window->w = (int)rect.size.width;
         window->h = (int)rect.size.height;
     }
+
+    /* Set up the listener after we create the view */
+    [data->listener listen:data];
+
     if ([nswindow isVisible]) {
         window->flags |= SDL_WINDOW_SHOWN;
     } else {
@@ -467,7 +534,7 @@ SetupWindowData(_THIS, SDL_Window * window, NSWindow *nswindow, SDL_bool created
     {
         unsigned int style = [nswindow styleMask];
 
-        if ((style & ~NSResizableWindowMask) == NSBorderlessWindowMask) {
+        if (style == NSBorderlessWindowMask) {
             window->flags |= SDL_WINDOW_BORDERLESS;
         } else {
             window->flags &= ~SDL_WINDOW_BORDERLESS;
@@ -478,7 +545,8 @@ SetupWindowData(_THIS, SDL_Window * window, NSWindow *nswindow, SDL_bool created
             window->flags &= ~SDL_WINDOW_RESIZABLE;
         }
     }
-    if ([nswindow isZoomed]) {
+    /* isZoomed always returns true if the window is not resizable */
+    if ((window->flags & SDL_WINDOW_RESIZABLE) && [nswindow isZoomed]) {
         window->flags |= SDL_WINDOW_MAXIMIZED;
     } else {
         window->flags &= ~SDL_WINDOW_MAXIMIZED;
@@ -491,10 +559,6 @@ SetupWindowData(_THIS, SDL_Window * window, NSWindow *nswindow, SDL_bool created
     if ([nswindow isKeyWindow]) {
         window->flags |= SDL_WINDOW_INPUT_FOCUS;
         SDL_SetKeyboardFocus(data->window);
-
-        if (window->flags & SDL_WINDOW_INPUT_GRABBED) {
-            /* FIXME */
-        }
     }
 
     /* All done! */
@@ -514,20 +578,8 @@ Cocoa_CreateWindow(_THIS, SDL_Window * window)
     unsigned int style;
 
     Cocoa_GetDisplayBounds(_this, display, &bounds);
-    if (SDL_WINDOWPOS_ISCENTERED(window->x)) {
-        rect.origin.x = bounds.x + (bounds.w - window->w) / 2;
-    } else if (SDL_WINDOWPOS_ISUNDEFINED(window->x)) {
-        rect.origin.x = bounds.x;
-    } else {
-        rect.origin.x = window->x;
-    }
-    if (SDL_WINDOWPOS_ISCENTERED(window->y)) {
-        rect.origin.y = bounds.y + (bounds.h - window->h) / 2;
-    } else if (SDL_WINDOWPOS_ISUNDEFINED(window->y)) {
-        rect.origin.y = bounds.y;
-    } else {
-        rect.origin.y = window->y;
-    }
+    rect.origin.x = window->x;
+    rect.origin.y = window->y;
     rect.size.width = window->w;
     rect.size.height = window->h;
     ConvertNSRect(&rect);
@@ -551,7 +603,7 @@ Cocoa_CreateWindow(_THIS, SDL_Window * window)
             rect.origin.y -= screenRect.origin.y;
         }
     }
-    nswindow = [[SDLWindow alloc] initWithContentRect:rect styleMask:style backing:NSBackingStoreBuffered defer:FALSE screen:screen];
+    nswindow = [[SDLWindow alloc] initWithContentRect:rect styleMask:style backing:NSBackingStoreBuffered defer:YES screen:screen];
 
     [pool release];
 
@@ -596,6 +648,19 @@ Cocoa_SetWindowTitle(_THIS, SDL_Window * window)
     }
     [nswindow setTitle:string];
     [string release];
+
+    [pool release];
+}
+
+void
+Cocoa_SetWindowIcon(_THIS, SDL_Window * window, SDL_Surface * icon)
+{
+    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+    NSImage *nsimage = Cocoa_CreateImage(icon);
+
+    if (nsimage) {
+        [NSApp setApplicationIconImage:nsimage];
+    }
 
     [pool release];
 }
@@ -701,10 +766,28 @@ Cocoa_RestoreWindow(_THIS, SDL_Window * window)
 
     if ([nswindow isMiniaturized]) {
         [nswindow deminiaturize:nil];
-    } else if ([nswindow isZoomed]) {
+    } else if ((window->flags & SDL_WINDOW_RESIZABLE) && [nswindow isZoomed]) {
         [nswindow zoom:nil];
     }
     [pool release];
+}
+
+static NSWindow *
+Cocoa_RebuildWindow(SDL_WindowData * data, NSWindow * nswindow, unsigned style)
+{
+    if (!data->created) {
+        /* Don't mess with other people's windows... */
+        return nswindow;
+    }
+
+    [data->listener close];
+    data->nswindow = [[SDLWindow alloc] initWithContentRect:[[nswindow contentView] frame] styleMask:style backing:NSBackingStoreBuffered defer:YES screen:[nswindow screen]];
+    [data->nswindow setContentView:[nswindow contentView]];
+    [data->listener listen:data];
+
+    [nswindow close];
+
+    return data->nswindow;
 }
 
 void
@@ -725,14 +808,39 @@ Cocoa_SetWindowFullscreen(_THIS, SDL_Window * window, SDL_VideoDisplay * display
         rect.size.height = bounds.h;
         ConvertNSRect(&rect);
 
-        [nswindow setStyleMask:NSBorderlessWindowMask];
-        [nswindow setContentSize:rect.size];
-        [nswindow setFrameOrigin:rect.origin];
-    } else {
-        [nswindow setStyleMask:GetWindowStyle(window)];
+        /* Hack to fix origin on Mac OS X 10.4 */
+        NSRect screenRect = [[nswindow screen] frame];
+        if (screenRect.size.height >= 1.0f) {
+            rect.origin.y += (screenRect.size.height - rect.size.height);
+        }
 
-        // This doesn't seem to do anything...
-        //[nswindow setFrameOrigin:origin];
+        if ([nswindow respondsToSelector: @selector(setStyleMask:)]) {
+            [nswindow performSelector: @selector(setStyleMask:) withObject: (id)NSBorderlessWindowMask];
+        } else {
+            nswindow = Cocoa_RebuildWindow(data, nswindow, NSBorderlessWindowMask);
+        }
+    } else {
+        rect.origin.x = window->windowed.x;
+        rect.origin.y = window->windowed.y;
+        rect.size.width = window->windowed.w;
+        rect.size.height = window->windowed.h;
+        ConvertNSRect(&rect);
+
+        if ([nswindow respondsToSelector: @selector(setStyleMask:)]) {
+            [nswindow performSelector: @selector(setStyleMask:) withObject: (id)(uintptr_t)GetWindowStyle(window)];
+        } else {
+            nswindow = Cocoa_RebuildWindow(data, nswindow, GetWindowStyle(window));
+        }
+    }
+
+    s_moveHack = 0;
+    [nswindow setFrameOrigin:rect.origin];
+    [nswindow setContentSize:rect.size];
+    s_moveHack = SDL_GetTicks();
+
+    /* When the window style changes the title is cleared */
+    if (!fullscreen) {
+        Cocoa_SetWindowTitle(_this, window);
     }
 
 #ifdef FULLSCREEN_TOGGLEABLE
@@ -748,14 +856,20 @@ Cocoa_SetWindowFullscreen(_THIS, SDL_Window * window, SDL_VideoDisplay * display
     [pool release];
 }
 
+NSPoint origin;
 void
 Cocoa_SetWindowGrab(_THIS, SDL_Window * window)
 {
+    /* Move the cursor to the nearest point in the window */
     if ((window->flags & SDL_WINDOW_INPUT_GRABBED) &&
         (window->flags & SDL_WINDOW_INPUT_FOCUS)) {
-        /* FIXME: Grab mouse */
-    } else {
-        /* FIXME: Release mouse */
+        int x, y;
+        CGPoint cgpoint;
+
+        SDL_GetMouseState(&x, &y);
+        cgpoint.x = window->x + x;
+        cgpoint.y = window->y + y;
+        CGDisplayMoveCursorToPoint(kCGDirectMainDisplay, cgpoint);
     }
 }
 

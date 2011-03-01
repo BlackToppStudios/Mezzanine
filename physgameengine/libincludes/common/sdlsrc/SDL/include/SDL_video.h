@@ -97,13 +97,14 @@ typedef struct SDL_Window SDL_Window;
  */
 typedef enum
 {
-    SDL_WINDOW_FULLSCREEN = 0x00000001,         /**< fullscreen window, implies borderless */
+    SDL_WINDOW_FULLSCREEN = 0x00000001,         /**< fullscreen window */
     SDL_WINDOW_OPENGL = 0x00000002,             /**< window usable with OpenGL context */
     SDL_WINDOW_SHOWN = 0x00000004,              /**< window is visible */
-    SDL_WINDOW_BORDERLESS = 0x00000008,         /**< no window decoration */
-    SDL_WINDOW_RESIZABLE = 0x00000010,          /**< window can be resized */
-    SDL_WINDOW_MINIMIZED = 0x00000020,          /**< window is minimized */
-    SDL_WINDOW_MAXIMIZED = 0x00000040,          /**< window is maximized */
+    SDL_WINDOW_HIDDEN = 0x00000008,             /**< window is not visible */
+    SDL_WINDOW_BORDERLESS = 0x00000010,         /**< no window decoration */
+    SDL_WINDOW_RESIZABLE = 0x00000020,          /**< window can be resized */
+    SDL_WINDOW_MINIMIZED = 0x00000040,          /**< window is minimized */
+    SDL_WINDOW_MAXIMIZED = 0x00000080,          /**< window is maximized */
     SDL_WINDOW_INPUT_GRABBED = 0x00000100,      /**< window has grabbed input focus */
     SDL_WINDOW_INPUT_FOCUS = 0x00000200,        /**< window has input focus */
     SDL_WINDOW_MOUSE_FOCUS = 0x00000400,        /**< window has mouse focus */
@@ -587,21 +588,21 @@ extern DECLSPEC int SDLCALL SDL_UpdateWindowSurfaceRects(SDL_Window * window,
 /**
  *  \brief Set a window's input grab mode.
  *  
- *  \param mode This is 1 to grab input, and 0 to release input.
+ *  \param grabbed This is SDL_TRUE to grab input, and SDL_FALSE to release input.
  *  
  *  \sa SDL_GetWindowGrab()
  */
 extern DECLSPEC void SDLCALL SDL_SetWindowGrab(SDL_Window * window,
-                                               int mode);
+                                               SDL_bool grabbed);
 
 /**
  *  \brief Get a window's input grab mode.
  *  
- *  \return This returns 1 if input is grabbed, and 0 otherwise.
+ *  \return This returns SDL_TRUE if input is grabbed, and SDL_FALSE otherwise.
  *  
  *  \sa SDL_SetWindowGrab()
  */
-extern DECLSPEC int SDLCALL SDL_GetWindowGrab(SDL_Window * window);
+extern DECLSPEC SDL_bool SDLCALL SDL_GetWindowGrab(SDL_Window * window);
 
 /**
  *  \brief Destroy a window.

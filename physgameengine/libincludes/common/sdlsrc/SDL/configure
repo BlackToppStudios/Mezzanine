@@ -1514,8 +1514,10 @@ Optional Features:
   --enable-ssemath        Allow GCC to use SSE floating point math
                           [default=no]
   --enable-mmx            use MMX assembly routines [default=yes]
+  --enable-3dnow          use MMX assembly routines [default=yes]
   --enable-sse            use SSE assembly routines [default=yes]
   --enable-sse2           use SSE2 assembly routines [default=no]
+  --enable-altivec        use Altivec assembly routines [default=yes]
   --enable-oss            support the OSS audio API [default=yes]
   --enable-alsa           support the ALSA audio API [default=yes]
   --disable-alsatest      Do not try to compile and run a test Alsa program
@@ -1535,20 +1537,19 @@ Optional Features:
   --enable-dummyaudio     support the dummy audio driver [default=yes]
   --enable-video-x11      use X11 video driver [default=yes]
   --enable-x11-shared     dynamically load X11 support [default=maybe]
-  --enable-video-x11-vm   use X11 VM extension for fullscreen [default=yes]
-  --enable-video-x11-xv   use X11 XvImage extension for video [default=yes]
   --enable-video-x11-xinerama
                           enable X11 Xinerama support [default=yes]
-  --enable-video-x11-xshape
-                          enable X11 XShape support [default=yes]
-  --enable-video-x11-xrandr
-                          enable X11 Xrandr extension for fullscreen
-                          [default=yes]
   --enable-video-x11-xinput
                           enable X11 XInput extension for manymouse, tablets,
                           etc [default=yes]
+  --enable-video-x11-xrandr
+                          enable X11 Xrandr extension for fullscreen
+                          [default=yes]
   --enable-video-x11-scrnsaver
                           enable X11 screensaver extension [default=yes]
+  --enable-video-x11-xshape
+                          enable X11 XShape support [default=yes]
+  --enable-video-x11-vm   use X11 VM extension for fullscreen [default=yes]
   --enable-video-cocoa    use Cocoa video driver [default=yes]
   --enable-video-directfb use DirectFB video driver [default=no]
   --enable-directfb-shared
@@ -3768,13 +3769,13 @@ if test "${lt_cv_nm_interface+set}" = set; then
 else
   lt_cv_nm_interface="BSD nm"
   echo "int some_variable = 0;" > conftest.$ac_ext
-  (eval echo "\"\$as_me:3771: $ac_compile\"" >&5)
+  (eval echo "\"\$as_me:3772: $ac_compile\"" >&5)
   (eval "$ac_compile" 2>conftest.err)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:3774: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+  (eval echo "\"\$as_me:3775: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
   cat conftest.err >&5
-  (eval echo "\"\$as_me:3777: output\"" >&5)
+  (eval echo "\"\$as_me:3778: output\"" >&5)
   cat conftest.out >&5
   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
     lt_cv_nm_interface="MS dumpbin"
@@ -5001,7 +5002,7 @@ ia64-*-hpux*)
   ;;
 *-*-irix6*)
   # Find out which ABI we are using.
-  echo '#line 5004 "configure"' > conftest.$ac_ext
+  echo '#line 5005 "configure"' > conftest.$ac_ext
   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
   (eval $ac_compile) 2>&5
   ac_status=$?
@@ -7162,11 +7163,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7165: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7166: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7169: \$? = $ac_status" >&5
+   echo "$as_me:7170: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7501,11 +7502,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7504: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7505: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:7508: \$? = $ac_status" >&5
+   echo "$as_me:7509: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -7606,11 +7607,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7609: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7610: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:7613: \$? = $ac_status" >&5
+   echo "$as_me:7614: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -7661,11 +7662,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:7664: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:7665: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:7668: \$? = $ac_status" >&5
+   echo "$as_me:7669: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -10419,7 +10420,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 10422 "configure"
+#line 10423 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -10515,7 +10516,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 10518 "configure"
+#line 10519 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -14197,11 +14198,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14200: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14201: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>conftest.err)
    ac_status=$?
    cat conftest.err >&5
-   echo "$as_me:14204: \$? = $ac_status" >&5
+   echo "$as_me:14205: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s "$ac_outfile"; then
      # The compiler can only warn and ignore the option if not recognized
      # So say no if there are warnings other than the usual output.
@@ -14296,11 +14297,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14299: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14300: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:14303: \$? = $ac_status" >&5
+   echo "$as_me:14304: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -14348,11 +14349,11 @@ else
    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
    -e 's:$: $lt_compiler_flag:'`
-   (eval echo "\"\$as_me:14351: $lt_compile\"" >&5)
+   (eval echo "\"\$as_me:14352: $lt_compile\"" >&5)
    (eval "$lt_compile" 2>out/conftest.err)
    ac_status=$?
    cat out/conftest.err >&5
-   echo "$as_me:14355: \$? = $ac_status" >&5
+   echo "$as_me:14356: \$? = $ac_status" >&5
    if (exit $ac_status) && test -s out/conftest2.$ac_objext
    then
      # The compiler can only warn and ignore the option if not recognized
@@ -20693,6 +20694,79 @@ echo "${ECHO_T}$have_gcc_mmx" >&6; }
         fi
     fi
 
+    # Check whether --enable-3dnow was given.
+if test "${enable_3dnow+set}" = set; then
+  enableval=$enable_3dnow;
+else
+  enable_3dnow=yes
+fi
+
+    if test x$enable_3dnow = xyes; then
+        save_CFLAGS="$CFLAGS"
+        have_gcc_3dnow=no
+        { echo "$as_me:$LINENO: checking for GCC -m3dnow option" >&5
+echo $ECHO_N "checking for GCC -m3dnow option... $ECHO_C" >&6; }
+        amd3dnow_CFLAGS="-m3dnow"
+        CFLAGS="$save_CFLAGS $amd3dnow_CFLAGS"
+
+        cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+        #include <mm3dnow.h>
+        #ifndef __3dNOW__
+        #error Assembler CPP flag not enabled
+        #endif
+
+int
+main ()
+{
+
+
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+
+        have_gcc_3dnow=yes
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+        { echo "$as_me:$LINENO: result: $have_gcc_3dnow" >&5
+echo "${ECHO_T}$have_gcc_3dnow" >&6; }
+        CFLAGS="$save_CFLAGS"
+
+        if test x$have_gcc_3dnow = xyes; then
+            EXTRA_CFLAGS="$EXTRA_CFLAGS $amd3dnow_CFLAGS"
+        fi
+    fi
+
     # Check whether --enable-sse was given.
 if test "${enable_sse+set}" = set; then
   enableval=$enable_sse;
@@ -20854,6 +20928,260 @@ echo "${ECHO_T}$have_gcc_sse2" >&6; }
 
         if test x$have_gcc_sse2 = xyes; then
             EXTRA_CFLAGS="$EXTRA_CFLAGS $sse2_CFLAGS"
+        fi
+    fi
+
+    # Check whether --enable-altivec was given.
+if test "${enable_altivec+set}" = set; then
+  enableval=$enable_altivec;
+else
+  enable_altivec=yes
+fi
+
+    if test x$enable_altivec = xyes; then
+        save_CFLAGS="$CFLAGS"
+        have_gcc_altivec=no
+        have_altivec_h_hdr=no
+        altivec_CFLAGS="-maltivec"
+        CFLAGS="$save_CFLAGS $altivec_CFLAGS"
+
+        { echo "$as_me:$LINENO: checking for Altivec with GCC altivec.h and -maltivec option" >&5
+echo $ECHO_N "checking for Altivec with GCC altivec.h and -maltivec option... $ECHO_C" >&6; }
+        cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+        #include <altivec.h>
+        vector unsigned int vzero() {
+            return vec_splat_u32(0);
+        }
+
+int
+main ()
+{
+
+
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+
+        have_gcc_altivec=yes
+        have_altivec_h_hdr=yes
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+        { echo "$as_me:$LINENO: result: $have_gcc_altivec" >&5
+echo "${ECHO_T}$have_gcc_altivec" >&6; }
+
+        if test x$have_gcc_altivec = xno; then
+            { echo "$as_me:$LINENO: checking for Altivec with GCC -maltivec option" >&5
+echo $ECHO_N "checking for Altivec with GCC -maltivec option... $ECHO_C" >&6; }
+            cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+            vector unsigned int vzero() {
+                return vec_splat_u32(0);
+            }
+
+int
+main ()
+{
+
+
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+
+            have_gcc_altivec=yes
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+            { echo "$as_me:$LINENO: result: $have_gcc_altivec" >&5
+echo "${ECHO_T}$have_gcc_altivec" >&6; }
+        fi
+
+        if test x$have_gcc_altivec = xno; then
+            { echo "$as_me:$LINENO: checking for Altivec with GCC altivec.h and -faltivec option" >&5
+echo $ECHO_N "checking for Altivec with GCC altivec.h and -faltivec option... $ECHO_C" >&6; }
+            altivec_CFLAGS="-faltivec"
+            CFLAGS="$save_CFLAGS $altivec_CFLAGS"
+            cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+            #include <altivec.h>
+            vector unsigned int vzero() {
+                return vec_splat_u32(0);
+            }
+
+int
+main ()
+{
+
+
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+
+            have_gcc_altivec=yes
+            have_altivec_h_hdr=yes
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+            { echo "$as_me:$LINENO: result: $have_gcc_altivec" >&5
+echo "${ECHO_T}$have_gcc_altivec" >&6; }
+        fi
+
+        if test x$have_gcc_altivec = xno; then
+            { echo "$as_me:$LINENO: checking for Altivec with GCC -faltivec option" >&5
+echo $ECHO_N "checking for Altivec with GCC -faltivec option... $ECHO_C" >&6; }
+            cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+            vector unsigned int vzero() {
+                return vec_splat_u32(0);
+            }
+
+int
+main ()
+{
+
+
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+
+            have_gcc_altivec=yes
+
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+            { echo "$as_me:$LINENO: result: $have_gcc_altivec" >&5
+echo "${ECHO_T}$have_gcc_altivec" >&6; }
+        fi
+        CFLAGS="$save_CFLAGS"
+
+        if test x$have_gcc_altivec = xyes; then
+            cat >>confdefs.h <<\_ACEOF
+#define SDL_ALTIVEC_BLITTERS 1
+_ACEOF
+
+            if test x$have_altivec_h_hdr = xyes; then
+              cat >>confdefs.h <<\_ACEOF
+#define HAVE_ALTIVEC_H 1
+_ACEOF
+
+            fi
+            EXTRA_CFLAGS="$EXTRA_CFLAGS $altivec_CFLAGS"
         fi
     fi
 fi
@@ -21295,155 +21623,6 @@ _ACEOF
             else
                 EXTRA_LDFLAGS="$EXTRA_LDFLAGS $ALSA_LIBS"
             fi
-            have_audio=yes
-        fi
-    fi
-}
-
-CheckDMEDIA()
-{
-    if test x$enable_audio = xyes; then
-        { echo "$as_me:$LINENO: checking for dmedia audio support" >&5
-echo $ECHO_N "checking for dmedia audio support... $ECHO_C" >&6; }
-        have_dmedia=no
-        cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-          #include <dmedia/audio.h>
-
-int
-main ()
-{
-
-          ALport audio_port;
-
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext
-if { (ac_try="$ac_compile"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_compile") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } && {
-	 test -z "$ac_c_werror_flag" ||
-	 test ! -s conftest.err
-       } && test -s conftest.$ac_objext; then
-
-        have_dmedia=yes
-
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-
-fi
-
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-        { echo "$as_me:$LINENO: result: $have_dmedia" >&5
-echo "${ECHO_T}$have_dmedia" >&6; }
-        # Set up files for the audio library
-        if test x$have_dmedia = xyes; then
-            cat >>confdefs.h <<\_ACEOF
-#define SDL_AUDIO_DRIVER_DMEDIA 1
-_ACEOF
-
-            SOURCES="$SOURCES $srcdir/src/audio/dmedia/*.c"
-            EXTRA_LDFLAGS="$EXTRA_LDFLAGS -laudio"
-            have_audio=yes
-        fi
-    fi
-}
-
-CheckMME()
-{
-        case $ARCH in
-        osf)
-            ;;
-        *)
-            return
-            ;;
-    esac
-    if test x$enable_audio = xyes; then
-        { echo "$as_me:$LINENO: checking for MME audio support" >&5
-echo $ECHO_N "checking for MME audio support... $ECHO_C" >&6; }
-        MME_CFLAGS="-I/usr/include/mme"
-        MME_LIBS="-lmme"
-        have_mme=no
-        save_CFLAGS="$CFLAGS"
-        CFLAGS="$CFLAGS $MME_CFLAGS"
-        cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-
-          #include <mme_api.h>
-
-int
-main ()
-{
-
-          HWAVEOUT sound;
-
-  ;
-  return 0;
-}
-_ACEOF
-rm -f conftest.$ac_objext
-if { (ac_try="$ac_compile"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_compile") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } && {
-	 test -z "$ac_c_werror_flag" ||
-	 test ! -s conftest.err
-       } && test -s conftest.$ac_objext; then
-
-        have_mme=yes
-
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-
-fi
-
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-        CFLAGS="$save_CFLAGS"
-        { echo "$as_me:$LINENO: result: $have_mme" >&5
-echo "${ECHO_T}$have_mme" >&6; }
-        # Set up files for the audio library
-        if test x$have_mme = xyes; then
-            cat >>confdefs.h <<\_ACEOF
-#define SDL_AUDIO_DRIVER_MMEAUDIO 1
-_ACEOF
-
-            SOURCES="$SOURCES $srcdir/src/audio/mme/*.c"
-            EXTRA_CFLAGS="$EXTRA_CFLAGS $MME_CFLAGS"
-            EXTRA_LDFLAGS="$EXTRA_LDFLAGS $MME_LIBS"
             have_audio=yes
         fi
     fi
@@ -22254,10 +22433,6 @@ echo $ECHO_N "checking for NAS audio support... $ECHO_C" >&6; }
             NAS_CFLAGS="-I/usr/X11R6/include/"
             NAS_LIBS="-L/usr/X11R6/lib -laudio -lXt"
 
-
-        elif test -r /usr/freeware/include/nas/audiolib.h; then
-            have_nas=yes
-            NAS_LIBS="-lnas -lXt"
         fi
 
         { echo "$as_me:$LINENO: result: $have_nas" >&5
@@ -23757,30 +23932,22 @@ fi
                     x11_symbols_private=yes
                     x11_lib='/usr/X11R6/lib/libX11.6.dylib'
                     x11ext_lib='/usr/X11R6/lib/libXext.6.dylib'
-                    xrender_lib='/usr/X11R6/lib/libXrender.1.dylib'
-                    xrandr_lib='/usr/X11R6/lib/libXrandr.2.dylib'
+                    xinerama_lib='/usr/X11R6/lib/libXinerama.1.dylib'
                     xinput_lib='/usr/X11R6/lib/libXi.6.dylib'
-                    xss_lib='/usr/X11R6/lib/libXss.6.dylib'
-                    xdamage_lib='/usr/X11R6/lib/libXdamage.1.dylib'
-                    xfixes_lib='/usr/X11R6/lib/libXfixes.3.dylib'
-                    ;;
-                *-*-osf*)
-                    x11_lib='libX11.so'
-                    x11ext_lib='libXext.so'
-                    ;;
-                *-*-irix*) # IRIX 6.5 requires that we use /usr/lib32
-                    x11_lib='libX11.so'
-                    x11ext_lib='libXext.so'
+                    xrandr_lib='/usr/X11R6/lib/libXrandr.2.dylib'
+                    xrender_lib='/usr/X11R6/lib/libXrender.1.dylib'
+                    xss_lib='/usr/X11R6/lib/libXss.1.dylib'
+                    xvidmode_lib='/usr/X11R6/lib/libXxf86vm.1.dylib'
                     ;;
                 *)
                     x11_lib=`find_lib "libX11.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
                     x11ext_lib=`find_lib "libXext.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
-                    xrender_lib=`find_lib "libXrender.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
-                    xrandr_lib=`find_lib "libXrandr.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
+                    xinerama_lib=`find_lib "libXinerama.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
                     xinput_lib=`find_lib "libXi.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
+                    xrandr_lib=`find_lib "libXrandr.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
+                    xrender_lib=`find_lib "libXrender.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
                     xss_lib=`find_lib "libXss.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
-                    xdamage_lib=`find_lib "libXdamage.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
-                    xfixes_lib=`find_lib "libXfixes.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
+                    xvidmode_lib=`find_lib "libXxf86vm.so.*" "$X_LIBS -L/usr/X11/$base_libdir -L/usr/X11R6/$base_libdir" | sed 's/.*\/\(.*\)/\1/; q'`
                     ;;
             esac
 
@@ -23831,34 +23998,6 @@ _ACEOF
             fi
             have_video=yes
 
-            # Check whether --enable-video-x11-vm was given.
-if test "${enable_video_x11_vm+set}" = set; then
-  enableval=$enable_video_x11_vm;
-else
-  enable_video_x11_vm=yes
-fi
-
-            if test x$enable_video_x11_vm = xyes; then
-                cat >>confdefs.h <<\_ACEOF
-#define SDL_VIDEO_DRIVER_X11_VIDMODE 1
-_ACEOF
-
-                SOURCES="$SOURCES $srcdir/src/video/Xext/Xxf86vm/*.c"
-            fi
-            # Check whether --enable-video-x11-xv was given.
-if test "${enable_video_x11_xv+set}" = set; then
-  enableval=$enable_video_x11_xv;
-else
-  enable_video_x11_xv=yes
-fi
-
-            if test x$enable_video_x11_xv = xyes; then
-                cat >>confdefs.h <<\_ACEOF
-#define SDL_VIDEO_DRIVER_X11_XV 1
-_ACEOF
-
-                SOURCES="$SOURCES $srcdir/src/video/Xext/Xv/*.c"
-            fi
             # Check whether --enable-video-x11-xinerama was given.
 if test "${enable_video_x11_xinerama+set}" = set; then
   enableval=$enable_video_x11_xinerama;
@@ -23867,23 +24006,10 @@ else
 fi
 
             if test x$enable_video_x11_xinerama = xyes; then
-                cat >>confdefs.h <<\_ACEOF
-#define SDL_VIDEO_DRIVER_X11_XINERAMA 1
-_ACEOF
-
-                SOURCES="$SOURCES $srcdir/src/video/Xext/Xinerama/*.c"
-            fi
-            # Check whether --enable-video-x11-xshape was given.
-if test "${enable_video_x11_xshape+set}" = set; then
-  enableval=$enable_video_x11_xshape;
-else
-  enable_video_x11_xshape=yes
-fi
-
-            if test x$enable_video_x11_xshape = xyes; then
-                { echo "$as_me:$LINENO: checking for X11/extensions/shape.h" >&5
-echo $ECHO_N "checking for X11/extensions/shape.h... $ECHO_C" >&6; }
-if test "${ac_cv_header_X11_extensions_shape_h+set}" = set; then
+                definitely_enable_video_x11_xinerama=no
+                { echo "$as_me:$LINENO: checking for X11/extensions/Xinerama.h" >&5
+echo $ECHO_N "checking for X11/extensions/Xinerama.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_X11_extensions_Xinerama_h+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
   cat >conftest.$ac_ext <<_ACEOF
@@ -23895,7 +24021,7 @@ cat >>conftest.$ac_ext <<_ACEOF
 #include <X11/Xlib.h>
 
 
-#include <X11/extensions/shape.h>
+#include <X11/extensions/Xinerama.h>
 _ACEOF
 rm -f conftest.$ac_objext
 if { (ac_try="$ac_compile"
@@ -23914,109 +24040,41 @@ eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
 	 test -z "$ac_c_werror_flag" ||
 	 test ! -s conftest.err
        } && test -s conftest.$ac_objext; then
-  ac_cv_header_X11_extensions_shape_h=yes
+  ac_cv_header_X11_extensions_Xinerama_h=yes
 else
   echo "$as_me: failed program was:" >&5
 sed 's/^/| /' conftest.$ac_ext >&5
 
-	ac_cv_header_X11_extensions_shape_h=no
+	ac_cv_header_X11_extensions_Xinerama_h=no
 fi
 
 rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
 fi
-{ echo "$as_me:$LINENO: result: $ac_cv_header_X11_extensions_shape_h" >&5
-echo "${ECHO_T}$ac_cv_header_X11_extensions_shape_h" >&6; }
-if test $ac_cv_header_X11_extensions_shape_h = yes; then
-  have_shape_h_hdr=yes
+{ echo "$as_me:$LINENO: result: $ac_cv_header_X11_extensions_Xinerama_h" >&5
+echo "${ECHO_T}$ac_cv_header_X11_extensions_Xinerama_h" >&6; }
+if test $ac_cv_header_X11_extensions_Xinerama_h = yes; then
+  have_xinerama_h_hdr=yes
 else
-  have_shape_h_hdr=no
+  have_xinerama_h_hdr=no
 fi
 
 
-                if test x$have_shape_h_hdr = xyes; then
-                    cat >>confdefs.h <<\_ACEOF
-#define SDL_VIDEO_DRIVER_X11_XSHAPE 1
-_ACEOF
-
-                fi
-            fi
-            # Check whether --enable-video-x11-xrandr was given.
-if test "${enable_video_x11_xrandr+set}" = set; then
-  enableval=$enable_video_x11_xrandr;
-else
-  enable_video_x11_xrandr=yes
-fi
-
-            if test x$enable_video_x11_xrandr = xyes; then
-                definitely_enable_video_x11_xrandr=no
-                { echo "$as_me:$LINENO: checking for X11/extensions/Xrandr.h" >&5
-echo $ECHO_N "checking for X11/extensions/Xrandr.h... $ECHO_C" >&6; }
-if test "${ac_cv_header_X11_extensions_Xrandr_h+set}" = set; then
-  echo $ECHO_N "(cached) $ECHO_C" >&6
-else
-  cat >conftest.$ac_ext <<_ACEOF
-/* confdefs.h.  */
-_ACEOF
-cat confdefs.h >>conftest.$ac_ext
-cat >>conftest.$ac_ext <<_ACEOF
-/* end confdefs.h.  */
-#include <X11/Xlib.h>
-
-
-#include <X11/extensions/Xrandr.h>
-_ACEOF
-rm -f conftest.$ac_objext
-if { (ac_try="$ac_compile"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
-  (eval "$ac_compile") 2>conftest.er1
-  ac_status=$?
-  grep -v '^ *+' conftest.er1 >conftest.err
-  rm -f conftest.er1
-  cat conftest.err >&5
-  echo "$as_me:$LINENO: \$? = $ac_status" >&5
-  (exit $ac_status); } && {
-	 test -z "$ac_c_werror_flag" ||
-	 test ! -s conftest.err
-       } && test -s conftest.$ac_objext; then
-  ac_cv_header_X11_extensions_Xrandr_h=yes
-else
-  echo "$as_me: failed program was:" >&5
-sed 's/^/| /' conftest.$ac_ext >&5
-
-	ac_cv_header_X11_extensions_Xrandr_h=no
-fi
-
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-fi
-{ echo "$as_me:$LINENO: result: $ac_cv_header_X11_extensions_Xrandr_h" >&5
-echo "${ECHO_T}$ac_cv_header_X11_extensions_Xrandr_h" >&6; }
-if test $ac_cv_header_X11_extensions_Xrandr_h = yes; then
-  have_xrandr_h_hdr=yes
-else
-  have_xrandr_h_hdr=no
-fi
-
-
-                if test x$have_xrandr_h_hdr = xyes; then
-                    if test x$enable_x11_shared = xyes && test x$xrandr_lib != x ; then
-                        echo "-- dynamic libXrandr -> $xrandr_lib"
+                if test x$have_xinerama_h_hdr = xyes; then
+                    if test x$enable_x11_shared = xyes && test x$xinerama_lib != x ; then
+                        echo "-- dynamic libXinerama -> $xinerama_lib"
                         cat >>confdefs.h <<_ACEOF
-#define SDL_VIDEO_DRIVER_X11_DYNAMIC_XRANDR "$xrandr_lib"
+#define SDL_VIDEO_DRIVER_X11_DYNAMIC_XINERAMA "$xinerama_lib"
 _ACEOF
 
-                        definitely_enable_video_x11_xrandr=yes
+                        definitely_enable_video_x11_xinerama=yes
                     else
-                        { echo "$as_me:$LINENO: checking for XRRQueryExtension in -lXrandr" >&5
-echo $ECHO_N "checking for XRRQueryExtension in -lXrandr... $ECHO_C" >&6; }
-if test "${ac_cv_lib_Xrandr_XRRQueryExtension+set}" = set; then
+                        { echo "$as_me:$LINENO: checking for XineramaQueryExtension in -lXinerama" >&5
+echo $ECHO_N "checking for XineramaQueryExtension in -lXinerama... $ECHO_C" >&6; }
+if test "${ac_cv_lib_Xinerama_XineramaQueryExtension+set}" = set; then
   echo $ECHO_N "(cached) $ECHO_C" >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lXrandr  $LIBS"
+LIBS="-lXinerama  $LIBS"
 cat >conftest.$ac_ext <<_ACEOF
 /* confdefs.h.  */
 _ACEOF
@@ -24030,11 +24088,11 @@ cat >>conftest.$ac_ext <<_ACEOF
 #ifdef __cplusplus
 extern "C"
 #endif
-char XRRQueryExtension ();
+char XineramaQueryExtension ();
 int
 main ()
 {
-return XRRQueryExtension ();
+return XineramaQueryExtension ();
   ;
   return 0;
 }
@@ -24057,34 +24115,34 @@ eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
 	 test ! -s conftest.err
        } && test -s conftest$ac_exeext &&
        $as_test_x conftest$ac_exeext; then
-  ac_cv_lib_Xrandr_XRRQueryExtension=yes
+  ac_cv_lib_Xinerama_XineramaQueryExtension=yes
 else
   echo "$as_me: failed program was:" >&5
 sed 's/^/| /' conftest.$ac_ext >&5
 
-	ac_cv_lib_Xrandr_XRRQueryExtension=no
+	ac_cv_lib_Xinerama_XineramaQueryExtension=no
 fi
 
 rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
       conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ echo "$as_me:$LINENO: result: $ac_cv_lib_Xrandr_XRRQueryExtension" >&5
-echo "${ECHO_T}$ac_cv_lib_Xrandr_XRRQueryExtension" >&6; }
-if test $ac_cv_lib_Xrandr_XRRQueryExtension = yes; then
-  have_xrandr_lib=yes
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_Xinerama_XineramaQueryExtension" >&5
+echo "${ECHO_T}$ac_cv_lib_Xinerama_XineramaQueryExtension" >&6; }
+if test $ac_cv_lib_Xinerama_XineramaQueryExtension = yes; then
+  have_xinerama_lib=yes
 fi
 
-                        if test x$have_xrandr_lib = xyes ; then
-                            EXTRA_LDFLAGS="$EXTRA_LDFLAGS -lXrandr"
-                            definitely_enable_video_x11_xrandr=yes
+                        if test x$have_xinerama_lib = xyes ; then
+                            EXTRA_LDFLAGS="$EXTRA_LDFLAGS -lXinerama"
+                            definitely_enable_video_x11_xinerama=yes
                         fi
                     fi
                 fi
             fi
-            if test x$definitely_enable_video_x11_xrandr = xyes; then
+            if test x$definitely_enable_video_x11_xinerama = xyes; then
                 cat >>confdefs.h <<\_ACEOF
-#define SDL_VIDEO_DRIVER_X11_XRANDR 1
+#define SDL_VIDEO_DRIVER_X11_XINERAMA 1
 _ACEOF
 
             fi
@@ -24236,6 +24294,154 @@ fi
 _ACEOF
 
             fi
+            # Check whether --enable-video-x11-xrandr was given.
+if test "${enable_video_x11_xrandr+set}" = set; then
+  enableval=$enable_video_x11_xrandr;
+else
+  enable_video_x11_xrandr=yes
+fi
+
+            if test x$enable_video_x11_xrandr = xyes; then
+                definitely_enable_video_x11_xrandr=no
+                { echo "$as_me:$LINENO: checking for X11/extensions/Xrandr.h" >&5
+echo $ECHO_N "checking for X11/extensions/Xrandr.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_X11_extensions_Xrandr_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <X11/Xlib.h>
+
+
+#include <X11/extensions/Xrandr.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_cv_header_X11_extensions_Xrandr_h=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_header_X11_extensions_Xrandr_h=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_X11_extensions_Xrandr_h" >&5
+echo "${ECHO_T}$ac_cv_header_X11_extensions_Xrandr_h" >&6; }
+if test $ac_cv_header_X11_extensions_Xrandr_h = yes; then
+  have_xrandr_h_hdr=yes
+else
+  have_xrandr_h_hdr=no
+fi
+
+
+                if test x$have_xrandr_h_hdr = xyes; then
+                    if test x$enable_x11_shared = xyes && test x$xrandr_lib != x ; then
+                        echo "-- dynamic libXrandr -> $xrandr_lib"
+                        cat >>confdefs.h <<_ACEOF
+#define SDL_VIDEO_DRIVER_X11_DYNAMIC_XRANDR "$xrandr_lib"
+_ACEOF
+
+                        definitely_enable_video_x11_xrandr=yes
+                    else
+                        { echo "$as_me:$LINENO: checking for XRRQueryExtension in -lXrandr" >&5
+echo $ECHO_N "checking for XRRQueryExtension in -lXrandr... $ECHO_C" >&6; }
+if test "${ac_cv_lib_Xrandr_XRRQueryExtension+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lXrandr  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char XRRQueryExtension ();
+int
+main ()
+{
+return XRRQueryExtension ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  ac_cv_lib_Xrandr_XRRQueryExtension=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_Xrandr_XRRQueryExtension=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_Xrandr_XRRQueryExtension" >&5
+echo "${ECHO_T}$ac_cv_lib_Xrandr_XRRQueryExtension" >&6; }
+if test $ac_cv_lib_Xrandr_XRRQueryExtension = yes; then
+  have_xrandr_lib=yes
+fi
+
+                        if test x$have_xrandr_lib = xyes ; then
+                            EXTRA_LDFLAGS="$EXTRA_LDFLAGS -lXrandr"
+                            definitely_enable_video_x11_xrandr=yes
+                        fi
+                    fi
+                fi
+            fi
+            if test x$definitely_enable_video_x11_xrandr = xyes; then
+                cat >>confdefs.h <<\_ACEOF
+#define SDL_VIDEO_DRIVER_X11_XRANDR 1
+_ACEOF
+
+            fi
             # Check whether --enable-video-x11-scrnsaver was given.
 if test "${enable_video_x11_scrnsaver+set}" = set; then
   enableval=$enable_video_x11_scrnsaver;
@@ -24379,7 +24585,222 @@ fi
             fi
             if test x$definitely_enable_video_x11_scrnsaver = xyes; then
                 cat >>confdefs.h <<\_ACEOF
-#define SDL_VIDEO_DRIVER_X11_SCRNSAVER 1
+#define SDL_VIDEO_DRIVER_X11_XSCRNSAVER 1
+_ACEOF
+
+            fi
+            # Check whether --enable-video-x11-xshape was given.
+if test "${enable_video_x11_xshape+set}" = set; then
+  enableval=$enable_video_x11_xshape;
+else
+  enable_video_x11_xshape=yes
+fi
+
+            if test x$enable_video_x11_xshape = xyes; then
+                { echo "$as_me:$LINENO: checking for X11/extensions/shape.h" >&5
+echo $ECHO_N "checking for X11/extensions/shape.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_X11_extensions_shape_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <X11/Xlib.h>
+
+
+#include <X11/extensions/shape.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_cv_header_X11_extensions_shape_h=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_header_X11_extensions_shape_h=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_X11_extensions_shape_h" >&5
+echo "${ECHO_T}$ac_cv_header_X11_extensions_shape_h" >&6; }
+if test $ac_cv_header_X11_extensions_shape_h = yes; then
+  have_shape_h_hdr=yes
+else
+  have_shape_h_hdr=no
+fi
+
+
+                if test x$have_shape_h_hdr = xyes; then
+                    cat >>confdefs.h <<\_ACEOF
+#define SDL_VIDEO_DRIVER_X11_XSHAPE 1
+_ACEOF
+
+                fi
+            fi
+            # Check whether --enable-video-x11-vm was given.
+if test "${enable_video_x11_vm+set}" = set; then
+  enableval=$enable_video_x11_vm;
+else
+  enable_video_x11_vm=yes
+fi
+
+            if test x$enable_video_x11_vm = xyes; then
+                definitely_enable_video_x11_vm=no
+                { echo "$as_me:$LINENO: checking for X11/extensions/xf86vmode.h" >&5
+echo $ECHO_N "checking for X11/extensions/xf86vmode.h... $ECHO_C" >&6; }
+if test "${ac_cv_header_X11_extensions_xf86vmode_h+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+#include <X11/Xlib.h>
+
+
+#include <X11/extensions/xf86vmode.h>
+_ACEOF
+rm -f conftest.$ac_objext
+if { (ac_try="$ac_compile"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_compile") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest.$ac_objext; then
+  ac_cv_header_X11_extensions_xf86vmode_h=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_header_X11_extensions_xf86vmode_h=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_header_X11_extensions_xf86vmode_h" >&5
+echo "${ECHO_T}$ac_cv_header_X11_extensions_xf86vmode_h" >&6; }
+if test $ac_cv_header_X11_extensions_xf86vmode_h = yes; then
+  have_vm_h_hdr=yes
+else
+  have_vm_h_hdr=no
+fi
+
+
+                if test x$have_vm_h_hdr = xyes; then
+                    if test x$enable_x11_shared = xyes && test x$xvidmode_lib != x ; then
+                        echo "-- dynamic libXxf86vm -> $xvidmode_lib"
+                        cat >>confdefs.h <<_ACEOF
+#define SDL_VIDEO_DRIVER_X11_DYNAMIC_XVIDMODE "$xvidmode_lib"
+_ACEOF
+
+                        definitely_enable_video_x11_vm=yes
+                    else
+                        { echo "$as_me:$LINENO: checking for XF86VidModeQueryVersion in -lXxf86vm" >&5
+echo $ECHO_N "checking for XF86VidModeQueryVersion in -lXxf86vm... $ECHO_C" >&6; }
+if test "${ac_cv_lib_Xxf86vm_XF86VidModeQueryVersion+set}" = set; then
+  echo $ECHO_N "(cached) $ECHO_C" >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lXxf86vm  $LIBS"
+cat >conftest.$ac_ext <<_ACEOF
+/* confdefs.h.  */
+_ACEOF
+cat confdefs.h >>conftest.$ac_ext
+cat >>conftest.$ac_ext <<_ACEOF
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char XF86VidModeQueryVersion ();
+int
+main ()
+{
+return XF86VidModeQueryVersion ();
+  ;
+  return 0;
+}
+_ACEOF
+rm -f conftest.$ac_objext conftest$ac_exeext
+if { (ac_try="$ac_link"
+case "(($ac_try" in
+  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
+  *) ac_try_echo=$ac_try;;
+esac
+eval "echo \"\$as_me:$LINENO: $ac_try_echo\"") >&5
+  (eval "$ac_link") 2>conftest.er1
+  ac_status=$?
+  grep -v '^ *+' conftest.er1 >conftest.err
+  rm -f conftest.er1
+  cat conftest.err >&5
+  echo "$as_me:$LINENO: \$? = $ac_status" >&5
+  (exit $ac_status); } && {
+	 test -z "$ac_c_werror_flag" ||
+	 test ! -s conftest.err
+       } && test -s conftest$ac_exeext &&
+       $as_test_x conftest$ac_exeext; then
+  ac_cv_lib_Xxf86vm_XF86VidModeQueryVersion=yes
+else
+  echo "$as_me: failed program was:" >&5
+sed 's/^/| /' conftest.$ac_ext >&5
+
+	ac_cv_lib_Xxf86vm_XF86VidModeQueryVersion=no
+fi
+
+rm -f core conftest.err conftest.$ac_objext conftest_ipa8_conftest.oo \
+      conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ echo "$as_me:$LINENO: result: $ac_cv_lib_Xxf86vm_XF86VidModeQueryVersion" >&5
+echo "${ECHO_T}$ac_cv_lib_Xxf86vm_XF86VidModeQueryVersion" >&6; }
+if test $ac_cv_lib_Xxf86vm_XF86VidModeQueryVersion = yes; then
+  have_vm_lib=yes
+fi
+
+                        if test x$have_vm_lib = xyes ; then
+                            EXTRA_LDFLAGS="$EXTRA_LDFLAGS -lXxf86vm"
+                            definitely_enable_video_x11_vm=yes
+                        fi
+                    fi
+                fi
+            fi
+            if test x$definitely_enable_video_x11_vm = xyes; then
+                cat >>confdefs.h <<\_ACEOF
+#define SDL_VIDEO_DRIVER_X11_XVIDMODE 1
 _ACEOF
 
             fi
@@ -25252,10 +25673,6 @@ fi
             pthread_cflags="-D_REENTRANT -Kthread"
             pthread_lib=""
             ;;
-        *-*-irix*)
-            pthread_cflags="-D_SGI_MP_SOURCE"
-            pthread_lib="-lpthread"
-            ;;
         *-*-aix*)
             pthread_cflags="-D_REENTRANT -mthreads"
             pthread_lib="-lpthread"
@@ -25263,14 +25680,6 @@ fi
         *-*-hpux11*)
             pthread_cflags="-D_REENTRANT"
             pthread_lib="-L/usr/lib -lpthread"
-            ;;
-        *-*-osf*)
-            pthread_cflags="-D_REENTRANT"
-            if test x$ac_cv_c_compiler_gnu = xyes; then
-                pthread_lib="-lpthread -lrt"
-            else
-                pthread_lib="-lpthread -lexc -lrt"
-            fi
             ;;
         *)
             pthread_cflags="-D_REENTRANT"
@@ -27740,7 +28149,7 @@ fi
 }
 
 case "$host" in
-    *-*-linux*|*-*-uclinux*|*-*-gnu*|*-*-k*bsd*-gnu|*-*-bsdi*|*-*-freebsd*|*-*-dragonfly*|*-*-netbsd*|*-*-openbsd*|*-*-sysv5*|*-*-solaris*|*-*-hpux*|*-*-irix*|*-*-aix*|*-*-osf*|*-*-minix*)
+    *-*-linux*|*-*-uclinux*|*-*-gnu*|*-*-k*bsd*-gnu|*-*-bsdi*|*-*-freebsd*|*-*-dragonfly*|*-*-netbsd*|*-*-openbsd*|*-*-sysv5*|*-*-solaris*|*-*-hpux*|*-*-aix*|*-*-minix*)
         case "$host" in
             *-*-linux*)         ARCH=linux ;;
             *-*-uclinux*)       ARCH=linux ;;
@@ -27756,9 +28165,7 @@ case "$host" in
             *-*-sysv5*)         ARCH=sysv5 ;;
             *-*-solaris*)       ARCH=solaris ;;
             *-*-hpux*)          ARCH=hpux ;;
-            *-*-irix*)          ARCH=irix ;;
             *-*-aix*)           ARCH=aix ;;
-            *-*-osf*)           ARCH=osf ;;
             *-*-minix*)         ARCH=minix ;;
         esac
         CheckVisibilityHidden
@@ -27767,8 +28174,6 @@ case "$host" in
         CheckDummyAudio
         CheckDLOPEN
         CheckOSS
-        CheckDMEDIA
-        CheckMME
         CheckALSA
         CheckPulseAudio
         CheckARTSC
@@ -27854,17 +28259,6 @@ _ACEOF
                    have_power=yes
                ;;
              esac
-        fi
-        # Set up files for the thread library
-        if test x$enable_threads = xyes -a x$use_pthreads != xyes -a x$use_pth != xyes -a x$ARCH = xirix; then
-            cat >>confdefs.h <<\_ACEOF
-#define SDL_THREAD_SPROC 1
-_ACEOF
-
-            SOURCES="$SOURCES $srcdir/src/thread/irix/*.c"
-            SOURCES="$SOURCES $srcdir/src/thread/generic/SDL_sysmutex.c"
-            SOURCES="$SOURCES $srcdir/src/thread/generic/SDL_syscond.c"
-            have_threads=yes
         fi
         # Set up files for the timer library
         if test x$enable_timers = xyes; then
@@ -28350,7 +28744,6 @@ for EXT in asm cc m c S; do
 \\$(objects)/\\2.lo: \\1/\\2.$EXT\\\\
 	\\$(LIBTOOL) --mode=compile \\$(CC) \\$(CFLAGS) \\$(EXTRA_CFLAGS) $DEPENDENCY_TRACKING_OPTIONS -c \\$< -o \\$@,g"`
 done
-DEPENDS=`echo "$DEPENDS" | sed 's,\\$,\\\\$,g'`
 
 VERSION_OBJECTS=`echo $VERSION_SOURCES`
 VERSION_DEPENDS=`echo $VERSION_SOURCES`
@@ -28358,7 +28751,6 @@ VERSION_OBJECTS=`echo "$VERSION_OBJECTS" | sed 's,[^ ]*/\([^ ]*\)\.rc,$(objects)
 VERSION_DEPENDS=`echo "$VERSION_DEPENDS" | sed "s,\\([^ ]*\\)/\\([^ ]*\\)\\.rc,\\\\
 \\$(objects)/\\2.o: \\1/\\2.rc\\\\
 	\\$(WINDRES) \\$< \\$@,g"`
-VERSION_DEPENDS=`echo "$VERSION_DEPENDS" | sed 's,\\$,\\\\$,g'`
 
 SDLMAIN_OBJECTS=`echo $SDLMAIN_SOURCES`
 SDLMAIN_DEPENDS=`echo $SDLMAIN_SOURCES`
@@ -28366,12 +28758,11 @@ SDLMAIN_OBJECTS=`echo "$SDLMAIN_OBJECTS" | sed 's,[^ ]*/\([^ ]*\)\.c,$(objects)/
 SDLMAIN_DEPENDS=`echo "$SDLMAIN_DEPENDS" | sed "s,\\([^ ]*\\)/\\([^ ]*\\)\\.c,\\\\
 \\$(objects)/\\2.o: \\1/\\2.c\\\\
 	\\$(LIBTOOL) --mode=compile \\$(CC) \\$(CFLAGS) \\$(EXTRA_CFLAGS) $DEPENDENCY_TRACKING_OPTIONS -c \\$< -o \\$@,g"`
-SDLMAIN_DEPENDS=`echo "$SDLMAIN_DEPENDS" | sed 's,\\$,\\\\$,g'`
 
 # Set runtime shared library paths as needed
 
 if test "x$enable_rpath" = "xyes"; then
-  if test $ARCH = bsdi -o $ARCH = freebsd -o $ARCH = irix -o $ARCH = linux -o $ARCH = netbsd; then
+  if test $ARCH = bsdi -o $ARCH = freebsd -o $ARCH = linux -o $ARCH = netbsd; then
     SDL_RLD_FLAGS="-Wl,-rpath,\${libdir}"
   fi
   if test $ARCH = solaris; then
@@ -28425,9 +28816,19 @@ fi
 
 
 
-ac_config_files="$ac_config_files Makefile sdl-config SDL.spec sdl.pc"
+cat >Makefile.rules <<__EOF__
 
-ac_config_commands="$ac_config_commands default"
+# Build rules for objects
+-include \$(OBJECTS:.lo=.d)
+
+# Special dependency for SDL.c, since it depends on SDL_revision.h
+$srcdir/src/SDL.c: update-revision
+$DEPENDS
+$VERSION_DEPENDS
+$SDLMAIN_DEPENDS
+__EOF__
+
+ac_config_files="$ac_config_files Makefile:Makefile.in:Makefile.rules sdl-config SDL.spec sdl.pc"
 
 cat >confcache <<\_ACEOF
 # This file is a shell script that caches the results of configure
@@ -29334,11 +29735,6 @@ fi
 
 
 
-DEPENDS="$DEPENDS"
-VERSION_DEPENDS="$VERSION_DEPENDS"
-SDLMAIN_DEPENDS="$SDLMAIN_DEPENDS"
-
-
 _ACEOF
 
 cat >>$CONFIG_STATUS <<\_ACEOF
@@ -29349,11 +29745,10 @@ do
   case $ac_config_target in
     "include/SDL_config.h") CONFIG_HEADERS="$CONFIG_HEADERS include/SDL_config.h" ;;
     "libtool") CONFIG_COMMANDS="$CONFIG_COMMANDS libtool" ;;
-    "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+    "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile:Makefile.in:Makefile.rules" ;;
     "sdl-config") CONFIG_FILES="$CONFIG_FILES sdl-config" ;;
     "SDL.spec") CONFIG_FILES="$CONFIG_FILES SDL.spec" ;;
     "sdl.pc") CONFIG_FILES="$CONFIG_FILES sdl.pc" ;;
-    "default") CONFIG_COMMANDS="$CONFIG_COMMANDS default" ;;
 
   *) { { echo "$as_me:$LINENO: error: invalid argument: $ac_config_target" >&5
 echo "$as_me: error: invalid argument: $ac_config_target" >&2;}
@@ -30797,15 +31192,6 @@ compiler_lib_search_path=$lt_compiler_lib_search_path_CXX
 # ### END LIBTOOL TAG CONFIG: CXX
 _LT_EOF
 
- ;;
-    "default":C) cat >>Makefile <<__EOF__
-
-# Build rules for objects
--include \$(OBJECTS:.lo=.d)
-$DEPENDS
-$VERSION_DEPENDS
-$SDLMAIN_DEPENDS
-__EOF__
  ;;
 
   esac

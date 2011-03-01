@@ -33,7 +33,7 @@ typedef struct SDL_WindowData SDL_WindowData;
 @interface Cocoa_WindowListener : NSResponder <NSWindowDelegate> {
 #else
 @interface Cocoa_WindowListener : NSResponder {
-#endif		
+#endif
     SDL_WindowData *_data;
 }
 
@@ -49,8 +49,6 @@ typedef struct SDL_WindowData SDL_WindowData;
 -(void) windowDidDeminiaturize:(NSNotification *) aNotification;
 -(void) windowDidBecomeKey:(NSNotification *) aNotification;
 -(void) windowDidResignKey:(NSNotification *) aNotification;
--(void) windowDidHide:(NSNotification *) aNotification;
--(void) windowDidUnhide:(NSNotification *) aNotification;
 
 /* Window event handling */
 -(void) mouseDown:(NSEvent *) theEvent;
@@ -59,6 +57,8 @@ typedef struct SDL_WindowData SDL_WindowData;
 -(void) mouseUp:(NSEvent *) theEvent;
 -(void) rightMouseUp:(NSEvent *) theEvent;
 -(void) otherMouseUp:(NSEvent *) theEvent;
+-(void) mouseEntered:(NSEvent *)theEvent;
+-(void) mouseExited:(NSEvent *)theEvent;
 -(void) mouseMoved:(NSEvent *) theEvent;
 -(void) mouseDragged:(NSEvent *) theEvent;
 -(void) rightMouseDragged:(NSEvent *) theEvent;
@@ -94,6 +94,7 @@ extern int Cocoa_CreateWindow(_THIS, SDL_Window * window);
 extern int Cocoa_CreateWindowFrom(_THIS, SDL_Window * window,
                                   const void *data);
 extern void Cocoa_SetWindowTitle(_THIS, SDL_Window * window);
+extern void Cocoa_SetWindowIcon(_THIS, SDL_Window * window, SDL_Surface * icon);
 extern void Cocoa_SetWindowPosition(_THIS, SDL_Window * window);
 extern void Cocoa_SetWindowSize(_THIS, SDL_Window * window);
 extern void Cocoa_ShowWindow(_THIS, SDL_Window * window);

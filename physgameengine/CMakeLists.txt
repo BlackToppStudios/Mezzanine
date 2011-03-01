@@ -246,6 +246,7 @@ if(${WIN32})
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
 
 	link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
+	set(SDLName SDL)
 
 	include_directories(
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
@@ -264,7 +265,8 @@ if(${UNIX})
 		message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
 		set(BuildPlatform linux)
 
-		#Autobuild ogre could go here
+		#Autobuild SDL and ogre could go here
+	
 		set(OgreSoName libOgreMain.so.1.7.2)
 		file( COPY 
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreSoName}"
@@ -272,15 +274,22 @@ if(${UNIX})
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
 			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
 		)
-
 		include_directories(
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
 			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
 		)
-		link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
-
 		add_definitions( -DOGRE_GUI_GLX -DLINUX )
+
+		set(SDLName SDL)
+		set(SDLSoName libSDL.a)
+		file( COPY 
+				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/${SDLSoName}"
+			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/"
+		)
+		link_directories(${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/ ) 
+		include_directories(
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
+		)
 
 		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
 	endif(${APPLE})
@@ -294,7 +303,8 @@ if(${APPLE})
         
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
-        
+	set(SDLName SDL)        
+
         include(FindOpenAL)
 	message("OpenAL Headers and Library Found - ${OPENAL_LIBRARY}")
 
@@ -380,7 +390,7 @@ set( Bullet_LibraryNames
 	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
 )
 
-target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio SDL )
+target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDLName} )
 
 ###############################################################################
 # Build Time File copying
@@ -398,7 +408,6 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
 
 	#Copy System Dependant files during build time
-
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll )
@@ -418,7 +427,8 @@ if(${UNIX})
 		message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
 
 		#Copy System Dependant files during build time
-		CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so )
+		#CopyFilesDuringBuild( ${BuildPlatform}/sdl/${SDLSoName} ${SDLSoName})
+		CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so)
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
 		CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
 

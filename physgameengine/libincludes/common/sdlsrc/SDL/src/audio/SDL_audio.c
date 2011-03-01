@@ -51,7 +51,6 @@ extern AudioBootStrap ALSA_bootstrap;
 extern AudioBootStrap PULSEAUDIO_bootstrap;
 extern AudioBootStrap QSAAUDIO_bootstrap;
 extern AudioBootStrap SUNAUDIO_bootstrap;
-extern AudioBootStrap DMEDIA_bootstrap;
 extern AudioBootStrap ARTS_bootstrap;
 extern AudioBootStrap ESD_bootstrap;
 extern AudioBootStrap NAS_bootstrap;
@@ -65,7 +64,6 @@ extern AudioBootStrap SNDMGR_bootstrap;
 extern AudioBootStrap DISKAUD_bootstrap;
 extern AudioBootStrap DUMMYAUD_bootstrap;
 extern AudioBootStrap DCAUD_bootstrap;
-extern AudioBootStrap MMEAUDIO_bootstrap;
 extern AudioBootStrap DART_bootstrap;
 extern AudioBootStrap NDSAUD_bootstrap;
 extern AudioBootStrap FUSIONSOUND_bootstrap;
@@ -92,9 +90,6 @@ static const AudioBootStrap *const bootstrap[] = {
 #endif
 #if SDL_AUDIO_DRIVER_SUNAUDIO
     &SUNAUDIO_bootstrap,
-#endif
-#if SDL_AUDIO_DRIVER_DMEDIA
-    &DMEDIA_bootstrap,
 #endif
 #if SDL_AUDIO_DRIVER_ARTS
     &ARTS_bootstrap,
@@ -128,9 +123,6 @@ static const AudioBootStrap *const bootstrap[] = {
 #endif
 #if SDL_AUDIO_DRIVER_DUMMY
     &DUMMYAUD_bootstrap,
-#endif
-#if SDL_AUDIO_DRIVER_MMEAUDIO
-    &MMEAUDIO_bootstrap,
 #endif
 #if SDL_AUDIO_DRIVER_NDS
     &NDSAUD_bootstrap,
