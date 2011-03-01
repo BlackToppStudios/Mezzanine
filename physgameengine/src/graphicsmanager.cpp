@@ -256,7 +256,8 @@ namespace phys
         }
         /// @todo TODO: Need to attempt to switch to fullscreen here
         /// @todo TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games
-        if(SDL_SetWindowFullscreen(SDLwindow,Fullscreen_) > 0)
+
+        if(SDL_SetWindowFullscreen(SDLwindow, Fullscreen_?SDL_TRUE:SDL_FALSE ) > 0)
             Settings.Fullscreen = Fullscreen_;
     }
 
