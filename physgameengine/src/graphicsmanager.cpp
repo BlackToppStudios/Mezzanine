@@ -77,11 +77,11 @@ namespace phys
 
     void GraphicsManager::Construct(const Whole &Width_, const Whole &Height_, const bool &FullScreen_ )
     {
-        this->FrameDelay = 0;
-        this->Fullscreen = FullScreen_;
-        this->RenderHeight = Height_;
-        this->RenderWidth = Width_;
+        Settings.Fullscreen = FullScreen_;
+        Settings.RenderHeight = Height_;
+        Settings.RenderWidth = Width_;
         this->Priority = 0;
+        this->FrameDelay = 0;
     }
 
     void GraphicsManager::CreateRenderWindow()
@@ -97,12 +97,12 @@ namespace phys
 			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
             SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-			if(Fullscreen)
+			if(Settings.Fullscreen)
 			{
-			    this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RenderWidth, RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_SHOWN );
+			    this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_SHOWN );
 			    //this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN );
 			}else{
-                this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, RenderWidth, RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
+                this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
                 //this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
 			}
 			RC = (size_t)SDL_GL_CreateContext(this->SDLwindow);
@@ -131,7 +131,7 @@ namespace phys
         //Configure Ogre to render to the SDL window
         Ogre::NameValuePairList *misc;
         misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLwindow,RC);
-        OgreGameWindow = Ogre::Root::getSingleton().createRenderWindow(GameWorld->GetWindowName(), RenderWidth, RenderHeight, Fullscreen, misc);
+        OgreGameWindow = Ogre::Root::getSingleton().createRenderWindow(GameWorld->GetWindowName(), Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, misc);
         #ifdef PHYSDEBUG
         GameWorld->Log("Bound Ogre to an SDL window");
         #endif
@@ -195,15 +195,15 @@ namespace phys
     {
         GameWorld->Log("Updating Screen Mode. ");
         //OgreGameWindow->destroy();
-        if(Fullscreen)
+        if(Settings.Fullscreen)
         {
             GameWorld->Log("Setting SDL. ");
-            this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN);
+            this->SDLscreen = SDL_SetVideoMode( Settings.RenderWidth, Settings.RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN);
             GameWorld->Log("Setting Ogre. ");
             //OgreGameWindow->setFullscreen(true,RenderWidth,RenderHeight);
         }else{
             GameWorld->Log("Setting SDL. ");
-            this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
+            this->SDLscreen = SDL_SetVideoMode( Settings.RenderWidth, Settings.RenderHeight,0, SDL_OPENGL );
             GameWorld->Log("Setting Ogre. ");
             //OgreGameWindow->setFullscreen(false,RenderWidth,RenderHeight);
         }
@@ -243,16 +243,21 @@ namespace phys
     ///////////////////////////////////
     bool GraphicsManager::getFullscreen() const
     {
-        return this->Fullscreen;
+        return Settings.Fullscreen;
     }
 
     //returns: false if changes could not be made
     void GraphicsManager::setFullscreen(const bool &Fullscreen_)
     {
+        if(!GraphicsInitialized)
+        {
+            Settings.Fullscreen = Fullscreen_;
+            return;
+        }
         /// @todo TODO: Need to attempt to switch to fullscreen here
         /// @todo TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games
-        this->Fullscreen = Fullscreen_;
-        UpdateWindowStats();
+        if(SDL_SetWindowFullscreen(SDLwindow,Fullscreen_) > 0)
+            Settings.Fullscreen = Fullscreen_;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -260,42 +265,71 @@ namespace phys
     ///////////////////////////////////
     Whole GraphicsManager::getRenderHeight() const
     {
-        return this->RenderHeight;
+        return Settings.RenderHeight;
     }
 
     Whole GraphicsManager::getRenderWidth() const
     {
-        return this->RenderWidth;
+        return Settings.RenderWidth;
     }
 
     void GraphicsManager::setRenderHeight(const Whole &Height_)
     {
+        if(!GraphicsInitialized)
+        {
+            Settings.RenderHeight = Height_;
+            return;
+        }
         /// @todo TODO: Need to attempt to update resolution here
-        this->RenderHeight = Height_;
-        UpdateWindowStats();
+        setRenderResolution(Settings.RenderWidth,Height_);
     }
 
     void GraphicsManager::setRenderWidth(const Whole &Width_)
     {
+        if(!GraphicsInitialized)
+        {
+            Settings.RenderWidth = Width_;
+            return;
+        }
         /// @todo TODO: Need to attempt to update resolution here
-        this->RenderWidth = Width_;
-        UpdateWindowStats();
+        setRenderResolution(Width_,Settings.RenderHeight);
     }
 
     void GraphicsManager::setRenderResolution(const Whole &Width_, const Whole &Height_)
     {
+        if(!GraphicsInitialized)
+        {
+            Settings.RenderWidth = Width_;
+            Settings.RenderHeight = Height_;
+            return;
+        }
         /// @todo TODO: Need to attempt to update resolution here
-        this->RenderWidth = Width_;
-        this->RenderHeight = Height_;
-        UpdateWindowStats();
+        if(Settings.Fullscreen)
+        {
+            SDL_DisplayMode CurrentDisplay;
+            SDL_GetWindowDisplayMode(SDLwindow,&CurrentDisplay);
+            CurrentDisplay.w = Width_;
+            CurrentDisplay.h = Height_;
+            if(SDL_SetWindowDisplayMode(SDLwindow,&CurrentDisplay) > 0)
+            {
+                Settings.RenderWidth = Width_;
+                Settings.RenderHeight = Height_;
+                return;
+            }
+        }else{
+            SDL_SetWindowSize(SDLwindow,Settings.RenderWidth,Settings.RenderHeight);
+        }
     }
 
-    void GraphicsManager::setRenderOptions(const Whole &Width_, const Whole &Height_, const bool &Fullscreen_)
+    void GraphicsManager::setRenderOptions(const GraphicsSettings& NewSettings)
     {
-        this->RenderWidth = Width_;
-        this->RenderHeight = Height_;
-        this->Fullscreen = Fullscreen_;
-        UpdateWindowStats();
+        if(!GraphicsInitialized)
+        {
+            Settings = NewSettings;
+            return;
+        }
+        setFullscreen(NewSettings.Fullscreen);
+        setRenderResolution(NewSettings.RenderWidth,NewSettings.RenderHeight);
     }
 
     bool GraphicsManager::HasSDLBeenInitialized()
@@ -358,11 +392,41 @@ namespace phys
         return Renderer;
     }
 
+    const std::vector<String>* GraphicsManager::GetSupportedResolutions()
+    {
+        return &SupportedResolutions;
+    }
+
+    const std::vector<String>* GraphicsManager::GetSupportedDevices()
+    {
+        return &SupportedDevices;
+    }
+
     //Inherited From ManagerBase
     void GraphicsManager::Initialize()
     {
         CreateRenderWindow();
         this->RenderTimer = new Ogre::Timer();
+
+        Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
+        for( Ogre::ConfigOptionMap::iterator configItr = CurrentRendererOptions.begin() ;
+            configItr != CurrentRendererOptions.end() ; configItr++)
+        {
+            if( (configItr)->first == "Video Mode" )
+            {
+                for( Whole X = 0 ; X < (configItr)->second.possibleValues.size() ; X++ )
+                    SupportedResolutions.push_back((configItr)->second.possibleValues[X]);
+                continue;
+            }
+            if( (configItr)->first == "Rendering Device" )
+            {
+                for( Whole Y = 0 ; Y < (configItr)->second.possibleValues.size() ; Y++ )
+                    SupportedDevices.push_back((configItr)->second.possibleValues[Y]);
+                continue;
+            }
+        }
+
+        GraphicsInitialized = true;
     }
 
     void GraphicsManager::DoMainLoopItems()
