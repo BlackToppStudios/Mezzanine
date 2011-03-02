@@ -364,6 +364,17 @@ namespace phys{
         return AngVel;
     }
 
+    void ActorRigid::SetIndividualGravity(const Vector3& Gravity)
+    {
+        physrigidbody->setGravity(Gravity.GetBulletVector3());
+    }
+
+    Vector3 ActorRigid::GetIndividualGravity()
+    {
+        Vector3 Grav(physrigidbody->getGravity());
+        return Grav;
+    }
+
     void ActorRigid::DisableDeactivation()
     {
         this->physrigidbody->setActivationState(DISABLE_DEACTIVATION);

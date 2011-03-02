@@ -263,6 +263,12 @@ namespace phys
         /// @return At a vector3 that is the normal of this Vector3 or 0,0,0 if the current Vector is all 0s
         Vector3 GetNormal() const;
 
+        /// @brief This will get the direction between two points.
+        /// @details This returns the direction expressed as a vector between this vector and another provided vector.
+        /// The vector this is being calling from is assumed to be the origin.
+        /// @param Destination The point in space to determine the direction for.
+        Vector3 GetDirection(const Vector3& Destination) const;
+
         /// @brief This will inverse the reals in the vector.
         /// @details This function will inverse all the reals in the vector.
         void Inverse();

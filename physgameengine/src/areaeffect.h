@@ -184,17 +184,17 @@ namespace phys{
             /// @details This function will create a material script on the fly for you to use with your AR field.
             /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
             /// @param Rings The number of horizontal rings the sphere is to be comprised of.
-            /// This along with the segments parameter controls the overall resolution of the sphere.
-            /// @param Segments The number of horizontal sections there are to be between each ring.
-            /// This along with the rings parameter controls the overall resolution of the sphere.
-            virtual void CreateGraphicsSphere(const ColourValue& Colour, const Whole Rings, const Whole Segments);
+            /// This along with the segments parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
+            /// @param Segments The number of vertical rings the sphere is to be comprised of.
+            /// This along with the rings parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
+            virtual void CreateGraphicsSphere(const ColourValue& Colour, const Whole Rings = 16, const Whole Segments = 16);
             /// @brief Creates a sphere mesh based on the physics shape for this area effect.
             /// @param MaterialName The name of the material script to be applied to the graphics object that is created.  Must be valid.
             /// @param Rings The number of horizontal rings the sphere is to be comprised of.
-            /// This along with the segments parameter controls the overall resolution of the sphere.
-            /// @param Segments The number of horizontal sections there are to be between each ring.
-            /// This along with the rings parameter controls the overall resolution of the sphere.
-            virtual void CreateGraphicsSphere(String& MaterialName, const Whole Rings, const Whole Segments);
+            /// This along with the segments parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
+            /// @param Segments The number of vertical rings the sphere is to be comprised of.
+            /// This along with the rings parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
+            virtual void CreateGraphicsSphere(String& MaterialName, const Whole Rings = 16, const Whole Segments = 16);
             /// @brief Creates a cylinder mesh based on the physics shape for this area effect.
             /// @details This function will create a material script on the fly for you to use with your AR field.
             /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
@@ -274,6 +274,76 @@ namespace phys{
             /// @return Returns a vector3 representing the force and direction of gravity this field has.
             Vector3 GetFieldGravity();
     };//GravityField
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class GravityWell
+    /// @headerfile areaeffect.h
+    /// @brief This is a gravity well implementation of the AreaEffect class.
+    /// @details This class is not a gravity field, where gravity only pulls in one direction.  Instead this class will always
+    /// pull objects inside it towards the field center.  @n
+    /// This class works best with sphere's, but can be made to work with any shape.
+    ///////////////////////////////////////
+    class PHYS_LIB GravityWell : public AreaEffect
+    {
+        public:
+            /// @enum These values represent the kind of attenuation applied to the field strength
+            /// over a distance.  None is the default, where the force is constant in all area's of the
+            /// field.  Linear is where the force applied drops by the attenuation value times the distance
+            /// (strength - (attenuation amount * distance to AE center)).  Quadratic is where the force
+            /// applied drops by the attenuation value times the distance squared (strength -
+            /// (attenuation amount * distance to AE center * distance to AE center)).
+            enum AttenuationStyle
+            {
+                GW_Att_None,
+                GW_Att_Linear,
+                GW_Att_Quadratic
+            };
+        protected:
+            Real Strength;
+            bool AllowWorldGrav;
+            AttenuationStyle AttenStyle;
+            Real AttenAmount;
+        public:
+            /// @brief Constructor.
+            /// @details Basic initialization constructor.
+            /// @param name The name of the field.
+            /// @param Location The location of the AE field.
+            GravityWell(const String &name, Vector3 Location);
+            /// @brief Destructor.
+            /// @details Class destructor.
+            ~GravityWell();
+            /// @brief Applies the effect this field has to object inside.
+            /// @details This function defines the behavior for the class.
+            virtual void ApplyEffect();
+            /// @brief Sets the strenth of the field.
+            /// @details The direction of the field is based on the current position of the object in the field.
+            /// Once that direction is calculated it will be multiplied by this value to determine the force the field will apply to the object.
+            /// @param FieldStrength The strength the field will have when exerting force onto other objects.
+            virtual void SetFieldStrength(const Real FieldStrength);
+            /// @brief Gets the strength of the field.
+            /// @return Returns a Real representing the value that is being multiplied by the direction to determine force appied to objects.
+            virtual Real GetFieldStrength();
+            /// @brief Sets whether or not world gravity should be removed for objects in this field.
+            /// @remarks Changing this value while the field is in the world and active is not recommended.
+            /// @param WorldGravity If true, then forces exerted by this field will be added to the world gravity, otherwise
+            /// world gravity for objects inside will be set to zero.
+            virtual void SetAllowWorldGravity(bool WorldGravity);
+            /// @brief Gets whether or not world gravity is is removed for objects inside this field.
+            /// @return Returns a bool indicating whether objects inside are affected by world gravity.
+            virtual bool GetAllowWorldGravity();
+            /// @brief Sets the attenuation for this field.
+            /// @param Amount The amount of force that is dropped off per 1 unit of distance objects are from the AE center.
+            /// @param Style The style of attenuation to apply, see the AttenuationStyle enum for more details.
+            virtual void SetAttenuation(Real Amount, AttenuationStyle Style);
+            /// @brief Gets the Style of attenuation applied.
+            /// @details See the AttenuationStyle enum for more details.
+            /// @return Returns the style of attenuation currently being used by this field.
+            virtual AttenuationStyle GetAttenuationStyle();
+            /// @brief Gets the amount force is attenuated over distance.
+            /// @details See SetAttenuation() for more details.
+            /// @return Returns a Real value
+            virtual Real GetAttenuationAmount();
+    };//GravityWell
 }//phys
 
 #endif

@@ -43,6 +43,7 @@
 #include "areaeffect.h"
 #include "world.h"
 #include "actorbase.h"
+#include "actorrigid.h"
 #include "physicsmanager.h"
 
 #include <Ogre.h>
@@ -316,6 +317,8 @@ namespace phys{
     void AreaEffect::SetLocation(const Vector3 Location)
     {
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
+        if(GraphicsNode)
+            GraphicsNode->setPosition(Location.GetOgreVector3());
     }
 
     Vector3 AreaEffect::GetLocation()
@@ -363,9 +366,19 @@ namespace phys{
             OgreManager->destroySceneNode(GraphicsNode);
             GraphicsNode = NULL;
         }
+        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
+        String GroupName = TheMaterial->getGroup();
 
         Ogre::ManualObject* sphere = new Ogre::ManualObject("TempMan");
         sphere->begin(MaterialName);
+
+        sphere->end();
+        sphere->convertToMesh(Name + "Mesh", GroupName);
+
+        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
+        GraphicsNode = OgreManager->createSceneNode();
+        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
+        GraphicsNode->attachObject(GraphicsObject);
     }
 
     void AreaEffect::CreateGraphicsCylinder(const ColourValue& Colour)
@@ -397,9 +410,19 @@ namespace phys{
             OgreManager->destroySceneNode(GraphicsNode);
             GraphicsNode = NULL;
         }
+        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
+        String GroupName = TheMaterial->getGroup();
 
         Ogre::ManualObject* cylinder = new Ogre::ManualObject("TempMan");
         cylinder->begin(MaterialName);
+
+        cylinder->end();
+        cylinder->convertToMesh(Name + "Mesh", GroupName);
+
+        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
+        GraphicsNode = OgreManager->createSceneNode();
+        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
+        GraphicsNode->attachObject(GraphicsObject);
     }
 
     void AreaEffect::CreateGraphicsBox(const ColourValue& Colour)
@@ -513,37 +536,32 @@ namespace phys{
 
     void TestAE::ApplyEffect()
     {
-        std::vector<ActorBase*>* Added = &(GetAddedActors());
-        std::vector<ActorBase*>* Removed = &(GetRemovedActors());
-        std::list<ActorBase*>* Current = &(GetOverlappingActors());
-
         std::vector<ActorBase*>::iterator AaRIt;
         std::list<ActorBase*>::iterator CurrIt;
-
         ActorBase* Act = NULL;
 
-        if ( !(Added->empty()) )
+        if ( !AddedActors.empty() )
         {
             TheWorld->Log("Actors Added to field this frame:");
-            for ( AaRIt = Added->begin() ; AaRIt != Added->end() ; AaRIt++ )
+            for ( AaRIt = AddedActors.begin() ; AaRIt != AddedActors.end() ; AaRIt++ )
             {
                 Act = (*AaRIt);
                 TheWorld->Log(Act);
             }
         }
-        if ( !(Removed->empty()) )
+        if ( !RemovedActors.empty() )
         {
             TheWorld->Log("Actors Removed from field this frame:");
-            for ( AaRIt = Removed->begin() ; AaRIt != Removed->end() ; AaRIt++ )
+            for ( AaRIt = RemovedActors.begin() ; AaRIt != RemovedActors.end() ; AaRIt++ )
             {
                 Act = (*AaRIt);
                 TheWorld->Log(Act);
             }
         }
-        if ( !(Current->empty()) )
+        if ( !OverlappingActors.empty() )
         {
             TheWorld->Log("Actors Currently in field this frame:");
-            for ( CurrIt = Current->begin() ; CurrIt != Current->end() ; CurrIt++ )
+            for ( CurrIt = OverlappingActors.begin() ; CurrIt != OverlappingActors.end() ; CurrIt++ )
             {
                 Act = (*CurrIt);
                 TheWorld->Log(Act);
@@ -564,23 +582,21 @@ namespace phys{
 
     void GravityField::ApplyEffect()
     {
-        std::vector<ActorBase*>* Added = &(GetAddedActors());
-        std::vector<ActorBase*>* Removed = &(GetRemovedActors());
         std::vector<ActorBase*>::iterator It;
         PhysicsManager* Physics = TheWorld->GetPhysicsManager();
         ActorBase* Act = NULL;
 
-        if ( !(Added->empty()) )
+        if ( !AddedActors.empty() )
         {
-            for ( It = Added->begin() ; It != Added->end() ; It++ )
+            for ( It = AddedActors.begin() ; It != AddedActors.end() ; It++ )
             {
                 Act = (*It);
                 Physics->SetIndividualGravity(Act, Grav);
             }
         }
-        if ( !(Removed->empty()) )
+        if ( !RemovedActors.empty() )
         {
-            for ( It = Removed->begin() ; It != Removed->end() ; It++ )
+            for ( It = RemovedActors.begin() ; It != RemovedActors.end() ; It++ )
             {
                 Act = (*It);
                 Physics->SetIndividualGravity(Act, Physics->GetGravity());
@@ -596,6 +612,124 @@ namespace phys{
     Vector3 GravityField::GetFieldGravity()
     {
         return Grav;
+    }
+
+    ///////////////////////////////////
+    // GravityWell functions
+
+    GravityWell::GravityWell(const String &name, Vector3 Location)
+        : AreaEffect(name, Location),
+          AllowWorldGrav(true),
+          Strength(0),
+          AttenAmount(0),
+          AttenStyle(GW_Att_None)
+    {
+    }
+
+    GravityWell::~GravityWell()
+    {
+    }
+
+    void GravityWell::ApplyEffect()
+    {
+        if(0 == Strength)
+            return;
+        ActorBase* Act = NULL;
+        ActorRigid* ActRig = NULL;
+        if(!AllowWorldGrav && !AddedActors.empty())
+        {
+            for ( std::vector<ActorBase*>::iterator AA = AddedActors.begin() ; AA != AddedActors.end() ; AA++ )
+            {
+                if(ActorBase::Actorrigid != (*AA)->GetType())
+                    continue;
+                ActRig = dynamic_cast<ActorRigid*>(*AA);
+                ActRig->SetIndividualGravity(Vector3());
+            }
+        }
+        if(!OverlappingActors.empty())
+        {
+            Vector3 ActorLoc, Direction;
+            Real Distance, AppliedStrength;
+            Vector3 GhostLoc = this->GetLocation();
+            for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
+            {
+                if(ActorBase::Actorrigid != (*OA)->GetType())
+                    continue;
+                //Collect necessary data
+                ActorLoc = (*OA)->GetLocation();
+                Distance = ActorLoc.Distance(GhostLoc);
+                Direction = (GhostLoc - ActorLoc) / Distance;
+                switch(AttenStyle)
+                {
+                    case GW_Att_Linear:
+                        AppliedStrength = Strength - (AttenAmount * Distance);
+                        break;
+                    case GW_Att_Quadratic:
+                        AppliedStrength = Strength - (AttenAmount * (Distance * Distance));
+                        break;
+                    default:
+                        AppliedStrength = Strength;
+                        break;
+                }
+                if(0 > AppliedStrength)
+                    AppliedStrength = 0;
+                //Apply "Damping"
+                if(AppliedStrength > Distance)
+                {
+                    AppliedStrength = Distance;
+                }
+                //Apply the Force
+                ActRig = static_cast<ActorRigid*>(*OA);
+                ActRig->GetBulletObject()->applyCentralForce((Direction * AppliedStrength).GetBulletVector3());
+            }
+        }
+        if(!AllowWorldGrav && !RemovedActors.empty())
+        {
+            Vector3 WorldGrav = TheWorld->GetPhysicsManager()->GetGravity();
+            for ( std::vector<ActorBase*>::iterator RA = RemovedActors.begin() ; RA != RemovedActors.end() ; RA++ )
+            {
+                if(ActorBase::Actorrigid != (*RA)->GetType())
+                    continue;
+                ActRig = dynamic_cast<ActorRigid*>(*RA);
+                ActRig->SetIndividualGravity(WorldGrav);
+            }
+        }
+    }
+
+    void GravityWell::SetFieldStrength(const Real FieldStrength)
+    {
+        Strength = FieldStrength;
+    }
+
+    Real GravityWell::GetFieldStrength()
+    {
+        return Strength;
+    }
+
+    void GravityWell::SetAllowWorldGravity(bool WorldGravity)
+    {
+        AllowWorldGrav = WorldGravity;
+    }
+
+    bool GravityWell::GetAllowWorldGravity()
+    {
+        return AllowWorldGrav;
+    }
+
+    void GravityWell::SetAttenuation(Real Amount, AttenuationStyle Style)
+    {
+        AttenAmount = Amount;
+        AttenStyle = Style;
+    }
+
+    GravityWell::AttenuationStyle GravityWell::GetAttenuationStyle()
+    {
+        return AttenStyle;
+    }
+
+    Real GravityWell::GetAttenuationAmount()
+    {
+        return AttenAmount;
     }
 }
 

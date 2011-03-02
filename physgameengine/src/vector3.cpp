@@ -320,6 +320,13 @@ namespace phys
         }
     }
 
+    Vector3 Vector3::GetDirection(const Vector3& Destination) const
+    {
+        Vector3 Dir = Destination - *this;
+        Dir.Normalize();
+        return Dir;
+    }
+
     void Vector3::Inverse()
     {
         X=1/X;

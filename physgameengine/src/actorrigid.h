@@ -132,6 +132,17 @@ namespace phys
             /// @return Returns the currently set Angular Velocity of this object.
             virtual Vector3 GetAngularVelocity();
 
+            /// @brief Sets the gravity for only this object.
+            /// @details This value will override the world gravity.  Should be called after adding to the world.
+            /// When the object is added to the world the world gravity is applied to it.
+            /// @param Gravity Vector3 representing the direction and strength of gravity to be applied.
+            virtual void SetIndividualGravity(const Vector3& Gravity);
+
+            /// @brief Gets the gravity being applied to this object.
+            /// @details This is the gravity applied to this object, which may or may not be the same as the world gravity.
+            /// @return Returns a Vector3 representing the gravity currently being applied to this object.
+            virtual Vector3 GetIndividualGravity();
+
             /// @brief Retrieves the name of the object.
             /// @details This function will retrieve the name of the object,
             virtual std::string GetName() const;
