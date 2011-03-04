@@ -707,11 +707,12 @@ void LoadContent()
     Reverse->SetLocation(Vector3(200,50,-5.0));
     TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
-    GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,800.0,-300.0));
-    BlackHole->CreateSphereShape(1000.0);
+    GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    BlackHole->CreateSphereShape(200.0);
     BlackHole->SetAllowWorldGravity(false);
     BlackHole->SetFieldStrength(100000.0);
     BlackHole->SetAttenuation(85.0,GravityWell::GW_Att_Linear);
+    BlackHole->CreateGraphicsSphere(ColourValue(0.9,0.7,0.7,0.55));
     TheWorld->GetPhysicsManager()->AddAreaEffect(BlackHole);
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
