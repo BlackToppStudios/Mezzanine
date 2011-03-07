@@ -44,12 +44,10 @@
 <dt>Member <a class="el" href="../../de/d74/classphys_1_1ActorTerrain.html#a2403c40af6799e67c9aff1520b02dc0b">phys::ActorTerrain::CreateShapeFromMeshStatic</a> () </dt>
 <dd>- Check for thread safety </dd>
 </dl>
-<p><a class="anchor" id="_todo000008"></a> </p>
+<p><a class="anchor" id="_todo000005"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a018b36588bf2a2e90536e64be060d6fc">phys::EventManager::EventManager</a> () </dt>
-<dd><p class="startdd">TODO build a deconstructor that deletes all the events still in the queue </p>
-<p class="enddd">TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </p>
-</dd>
+<dd>TODO: Make the EventManager completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd>
 </dl>
 <p><a class="anchor" id="_todo000006"></a> </p>
 <dl>
@@ -60,6 +58,11 @@
 <dl>
 <dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5">phys::EventManager::UpdateSystemEvents</a> () </dt>
 <dd>make Physevents for each of the events in SDL_WmEvents(and delete the SDL events) </dd>
+</dl>
+<p><a class="anchor" id="_todo000008"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a01a5a131ac26679eee5dcf5dd514045c">phys::EventManager::UpdateUserInputEvents</a> () </dt>
+<dd>This isn't pretty, should be replaced with a more elegant solution that'll work on keyboard events as well. </dd>
 </dl>
 <p><a class="anchor" id="_todo000010"></a> </p>
 <dl>
@@ -200,10 +203,12 @@
 <dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#af669654308122897f98858563375bf4c">phys::xml::Attribute::SetName</a> (const char_t *rhs) </dt>
 <dd>update this to make the error return code redudant and use an exception instead. </dd>
 </dl>
-<p><a class="anchor" id="_todo000042"></a> </p>
+<p><a class="anchor" id="_todo000039"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#af9b12723a227b833d7f8986a524b0e48">phys::xml::Attribute::SetValue</a> (T rhs) </dt>
-<dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a289ac36b218f3912224fd904ccade1ed">phys::xml::Attribute::SetValue</a> (unsigned int rhs) </dt>
+<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
+<p class="enddd">Review for possiblity of buffer overflow. </p>
+</dd>
 </dl>
 <p><a class="anchor" id="_todo000037"></a> </p>
 <dl>
@@ -233,21 +238,19 @@
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000039"></a> </p>
+<p><a class="anchor" id="_todo000042"></a> </p>
 <dl>
-<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a289ac36b218f3912224fd904ccade1ed">phys::xml::Attribute::SetValue</a> (unsigned int rhs) </dt>
-<dd><p class="startdd">update this to make the error return code redundant and use an exception instead. </p>
-<p class="enddd">Review for possiblity of buffer overflow. </p>
-</dd>
-</dl>
-<p><a class="anchor" id="_todo000052"></a> </p>
-<dl>
-<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7e9b4518e4d12517bc5ff756054e7395">phys::xml::Node::AppendChild</a> (const char_t *Name) </dt>
-<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
+<dt>Member <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#af9b12723a227b833d7f8986a524b0e48">phys::xml::Attribute::SetValue</a> (T rhs) </dt>
+<dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd>
 </dl>
 <p><a class="anchor" id="_todo000049"></a> </p>
 <dl>
 <dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4971850b72467fcdcf1b3beeb09f26cf">phys::xml::Node::AppendChild</a> (NodeType Type=NodeElement) </dt>
+<dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
+</dl>
+<p><a class="anchor" id="_todo000052"></a> </p>
+<dl>
+<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a7e9b4518e4d12517bc5ff756054e7395">phys::xml::Node::AppendChild</a> (const char_t *Name) </dt>
 <dd>Not all nodes can be added to other nodes, we need to figure it out and put it here. </dd>
 </dl>
 <p><a class="anchor" id="_todo000053"></a> </p>
@@ -272,13 +275,8 @@
 <p class="enddd">Review for possiblity of buffer overflow. </p>
 </dd>
 </dl>
-<p><a class="anchor" id="_todo000054"></a> </p>
-<dl>
-<dt>Member <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9">phys::xml::Node::Traverse</a> (TreeWalker &amp;walker) </dt>
-<dd>document this once TreeWalker is documented. </dd>
-</dl>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:11 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:44 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -40,8 +40,29 @@
 #ifndef _datatypes_cpp
 #define _datatypes_cpp
 
+#include <sstream>
+
 #include "datatypes.h"
 
+namespace phys
+{
 
+    /// @file datatype.cpp
+    /// @brief Holds utilities for converting, concatenating, manipulating and working with simple datatypes
 
+    String StringCat(const String& Front, const String& Back)
+    {
+        std::stringstream Adder(Front);
+        Adder << Back;
+        return Adder.str();
+    }
+
+    String StringCat(const String& Front, const String& Middle, const String& Back)
+    {
+        std::stringstream Adder(Front);
+        Adder << Middle << Back;
+        return Adder.str();
+    }
+
+} // \phys
 #endif

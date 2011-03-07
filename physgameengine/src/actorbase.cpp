@@ -47,6 +47,7 @@
 #include "actorrigid.h"
 #include "actorterrain.h"
 #include "actorsoft.h"
+#include "actorgraphicssettings.h"
 #include "world.h"
 #include "internalmotionstate.h.cpp"
 #include "internalmeshinfo.h.cpp"
@@ -62,6 +63,7 @@ namespace phys{
         //this->MotionState = new internal::PhysMotionState(this->node);
         this->Shape = new btEmptyShape();
         this->CreateEntity(name, file, group);
+        this->GraphicsSettings = new ActorGraphicsSettings(this,entity);
         MotionState = NULL;
         ActorSounds = NULL;
         Animation = NULL;
@@ -71,13 +73,16 @@ namespace phys{
 
     ActorBase::~ActorBase ()
     {
+        DetachFromGraphics();
         delete MotionState;
         if(!ShapeIsSaved)
         {
             delete Shape;
         }
-        delete node;
-        delete entity;
+        //delete entity;
+        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(entity);
+        //delete node;
+        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroySceneNode(node);
         if(CollisionObject)
         {
             delete CollisionObject;
@@ -86,64 +91,83 @@ namespace phys{
 
     ///////////////////////////////////
     // ActorBase Private misc functions
-    btTriangleMesh* ActorBase::CreateTrimesh() const
+    btTriangleMesh* ActorBase::CreateTrimesh(bool UseAllSubmeshes) const
     {
         // Get the mesh from the entity
         Ogre::MeshPtr myMesh = entity->getMesh();
+        Ogre::SubMesh* subMesh = NULL;
+        Ogre::IndexData*  indexData = NULL;
+        Ogre::VertexData* vertexData = NULL;
+        bool use32bitindexes = false;
+        unsigned int triCount = 0;
+        std::vector<Ogre::Vector3> vertices;
+        std::vector<unsigned long> indices;
 
         // Get the submesh and associated data
-        Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-        Ogre::IndexData*  indexData = subMesh->indexData;
-        Ogre::VertexData* vertexData = subMesh->vertexData;
-
-        // Get the position element
-        const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
-
-        // Get a pointer to the vertex buffer
-        Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
-
-        // Get a pointer to the index buffer
-        Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
-
-        // Get the number of triangles
-        unsigned int triCount = indexData->indexCount/3;
-
-        // Allocate space for the vertices and indices
-        Ogre::Vector3* vertices = new Ogre::Vector3[vertexData->vertexCount];
-        unsigned long* indices  = new unsigned long[indexData->indexCount];
-
-        // Lock the vertex buffer (READ ONLY)
-        unsigned char* vertex =   static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        float* pReal = NULL;
-        for (size_t j = 0; j < vertexData->vertexCount; ++j, vertex += vBuffer->getVertexSize() )
+        for( unsigned short int SubMeshIndex = 0 ; SubMeshIndex < myMesh->getNumSubMeshes() ; SubMeshIndex++ )
         {
-            posElem->baseVertexPointerToElement(vertex, &pReal);
-            Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
-            vertices[j] = pt;
-        }
-        vBuffer->unlock();
-        size_t index_offset = 0;
-        bool use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+            if(!UseAllSubmeshes && (SubMeshIndex > 0))
+                break;
 
-        // Lock the index buffer (READ ONLY)
-        unsigned long* pLong = static_cast<unsigned long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
-        unsigned short* pShort = reinterpret_cast<unsigned short*>(pLong);
+            subMesh = myMesh->getSubMesh(SubMeshIndex);
+            indexData = subMesh->indexData;
+            vertexData = subMesh->vertexData;
 
-        if (use32bitindexes)
-        {
-            for (size_t k = 0; k < triCount*3; ++k)
+            // Get the position element
+            const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+
+            // Get a pointer to the vertex buffer
+            Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+
+            // Get a pointer to the index buffer
+            Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
+
+            // Get the number of triangles
+            triCount+=(indexData->indexCount/3);
+
+            // Allocate space for the vertices and indices
+            //Ogre::Vector3* vertices = new Ogre::Vector3[vertexData->vertexCount];
+            //unsigned long* indices  = new unsigned long[indexData->indexCount];
+            Whole VertPrevSize = vertices.size();
+            Whole IndiPrevSize = indices.size();
+            vertices.reserve(vertexData->vertexCount + VertPrevSize);
+            indices.reserve(indexData->indexCount + IndiPrevSize);
+
+            // Lock the vertex buffer (READ ONLY)
+            unsigned char* vertex =   static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+            float* pReal = NULL;
+            for (size_t j = 0; j < vertexData->vertexCount; ++j, vertex += vBuffer->getVertexSize() )
             {
-                indices[index_offset++] = pLong[k];
+                posElem->baseVertexPointerToElement(vertex, &pReal);
+                Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
+                vertices[j + VertPrevSize] = pt;
             }
-        }
-        else
-        {
-            for (size_t k = 0; k < triCount*3; ++k)
+            vBuffer->unlock();
+            size_t index_offset = 0;
+            use32bitindexes = (iBuffer->getType() == Ogre::HardwareIndexBuffer::IT_32BIT);
+
+            // Lock the index buffer (READ ONLY)
+            unsigned long* pLong = static_cast<unsigned long*>(iBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
+            unsigned short* pShort = reinterpret_cast<unsigned short*>(pLong);
+
+            if (use32bitindexes)
             {
-                indices[index_offset++] = static_cast<unsigned long>(pShort[k]);
+                for (size_t k = 0; k < triCount*3; ++k)
+                {
+                    indices[index_offset+IndiPrevSize] = pLong[k];
+                    index_offset++;
+                }
             }
+            else
+            {
+                for (size_t k = 0; k < triCount*3; ++k)
+                {
+                    indices[index_offset+IndiPrevSize] = static_cast<unsigned long>(pShort[k]);
+                    index_offset++;
+                }
+            }
+            iBuffer->unlock();
         }
-        iBuffer->unlock();
 
         // We now have vertices and indices ready to go
 
@@ -168,8 +192,10 @@ namespace phys{
             // Increase index count
             i+=3;
         }
-        delete[] vertices;
-        delete[] indices;
+        //delete[] vertices;
+        //delete[] indices;
+        vertices.clear();
+        indices.clear();
 
         return trimesh;
     }
@@ -319,7 +345,11 @@ namespace phys{
             AnimName = Animation->getAnimationName();
         }
 
+        String MatName = entity->getMesh()->getSubMesh(0)->getMaterialName();
+
         entity->_initialise(ForceReinitialize);
+
+        entity->getMesh()->getSubMesh(0)->setMaterialName(MatName);
 
         if(AnimSet)
         {
@@ -537,6 +567,11 @@ namespace phys{
         }
     }
 
+    ActorGraphicsSettings* ActorBase::GetGraphicsSettings()
+    {
+        return GraphicsSettings;
+    }
+
     void ActorBase::InitEntity(bool force)
     {
         InitializeEntity(force);
@@ -647,6 +682,11 @@ namespace phys{
         }else{
             return false;
         }
+    }
+
+    Ogre::Entity* ActorBase::GetOgreObject()
+    {
+        return entity;
     }
 }// /phys
 

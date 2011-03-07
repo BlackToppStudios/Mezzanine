@@ -117,18 +117,24 @@ if(${WIN32})
 endif(${WIN32})
 
 # Linux File Copy Specific Items
-if(${UNIX} AND NOT ${APPLE})
+
+if(${UNIX})
+	if(${APPLE})
+	else(${APPLE})
+
 	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
 	#CopyDemoFilesDuringBuild( linux/EngineDemo EngineDemo )
 	#CopyFilesFromPhygameDuringBuild( libOgreMain.so )
-	CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( libphysgame.so )
 	CopyFilesFromPhygameDuringBuild( libOgreMain.so.1.7.2 )
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
-endif(${UNIX} AND NOT ${APPLE})
+
+	endif(${APPLE})
+endif(${UNIX})
+
 
 # Mac File Copy pecific Items
 if(${APPLE})

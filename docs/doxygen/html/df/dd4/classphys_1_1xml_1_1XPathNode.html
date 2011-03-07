@@ -41,33 +41,155 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::xml::XPathNode" -->
+<p>An XPath node which can store handles to a <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> or an <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a>.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
+
 <p><a href="../../d9/de9/classphys_1_1xml_1_1XPathNode-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab70dcfefef2107eca2d1932faada475e"></a><!-- doxytag: member="phys::xml::XPathNode::XPathNode" ref="ab70dcfefef2107eca2d1932faada475e" args="(const Node &amp;node)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>XPathNode</b> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;node)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3f9446596022b6e0ab77afc2748c98e0"></a><!-- doxytag: member="phys::xml::XPathNode::XPathNode" ref="a3f9446596022b6e0ab77afc2748c98e0" args="(const Attribute &amp;GetAttribute, const Node &amp;GetParent)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>XPathNode</b> (const <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;GetAttribute, const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;GetParent)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae15b153a8362e1c236dbdc87421b92bd"></a><!-- doxytag: member="phys::xml::XPathNode::node" ref="ae15b153a8362e1c236dbdc87421b92bd" args="() const " -->
-<a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>node</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a62a924195aed039cc183240494a865c2"></a><!-- doxytag: member="phys::xml::XPathNode::GetAttribute" ref="a62a924195aed039cc183240494a865c2" args="() const " -->
-<a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetAttribute</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e5b97c9ce0e2bb6fd5b2dbb65494f0f"></a><!-- doxytag: member="phys::xml::XPathNode::GetParent" ref="a7e5b97c9ce0e2bb6fd5b2dbb65494f0f" args="() const " -->
-<a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetParent</b> () const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ab70dcfefef2107eca2d1932faada475e">XPathNode</a> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;node)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor; constructs empty XPath node.  <a href="#ab70dcfefef2107eca2d1932faada475e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a3f9446596022b6e0ab77afc2748c98e0">XPathNode</a> (const <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;GetAttribute, const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;GetParent)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct From a <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a>.  <a href="#a3f9446596022b6e0ab77afc2748c98e0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35">GetNode</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> this is referencing.  <a href="#ad34ea7db6cabdfe92656b7d033dbbf35"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a258785388868adf9fa53437cac7cd41c"></a><!-- doxytag: member="phys::xml::XPathNode::GetAttribute" ref="a258785388868adf9fa53437cac7cd41c" args="() const " -->
+<a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c">GetAttribute</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a> this is referencing. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a10d6dce64d14cf3d39bb952efd4ca8aa">GetParent</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the parent of the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> or <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a> this refers to.  <a href="#a10d6dce64d14cf3d39bb952efd4ca8aa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a0d11818941c2e31671c5d0cd8f1ce9f9">operator unspecified_bool_type</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to convert this to a boolean value in a safe way.  <a href="#a0d11818941c2e31671c5d0cd8f1ce9f9"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58aa93c54d484cc8ae4e4c05d2b62ffd"></a><!-- doxytag: member="phys::xml::XPathNode::operator!" ref="a58aa93c54d484cc8ae4e4c05d2b62ffd" args="() const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!</b> () const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab13702ded8707602871596e4f34e8302"></a><!-- doxytag: member="phys::xml::XPathNode::operator==" ref="ab13702ded8707602871596e4f34e8302" args="(const XPathNode &amp;n) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a121ba0e04b6619f45c5392374f2dc98d"></a><!-- doxytag: member="phys::xml::XPathNode::operator!=" ref="a121ba0e04b6619f45c5392374f2dc98d" args="(const XPathNode &amp;n) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a3c596b9cacb6265df6acffb91b9a7484">operator!</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Logical not operator, used a workaround for borland compiler.  <a href="#a3c596b9cacb6265df6acffb91b9a7484"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ab13702ded8707602871596e4f34e8302">operator==</a> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Called when comparing two <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> instances for equality.  <a href="#ab13702ded8707602871596e4f34e8302"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a121ba0e04b6619f45c5392374f2dc98d">operator!=</a> (const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;n) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Called when comparing two <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> instances for inequality.  <a href="#a121ba0e04b6619f45c5392374f2dc98d"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>An XPath node which can store handles to a <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> or an <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a>. </p>
+<p>Because an XPath node can be either a <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> or an <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a>, there is a special type, <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a>, which is a discriminated union of these types. A value of this type contains two node handles, one of <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> type, and another one of <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a> type; at most one of them can be non-null. The accessors to get these handles are available: <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#ad34ea7db6cabdfe92656b7d033dbbf35" title="Get the xml::Node this is referencing.">XPathNode::GetNode()</a> an <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html#a258785388868adf9fa53437cac7cd41c" title="Get the xml::Attribute this is referencing.">XPathNode::GetAttribute()</a> . <br/>
+ <br/>
+ XPath nodes can be null, in which case both accessors return null handles. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01150">1150</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l01243">1243</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="ab70dcfefef2107eca2d1932faada475e"></a><!-- doxytag: member="phys::xml::XPathNode::XPathNode" ref="ab70dcfefef2107eca2d1932faada475e" args="(const Node &amp;node)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNode::XPathNode </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>node</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Default constructor; constructs empty XPath node. </p>
+<p>Construct From a <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>node</em>&nbsp;</td><td>The <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> this handle should reference. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09093">9093</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3f9446596022b6e0ab77afc2748c98e0"></a><!-- doxytag: member="phys::xml::XPathNode::XPathNode" ref="a3f9446596022b6e0ab77afc2748c98e0" args="(const Attribute &amp;GetAttribute, const Node &amp;GetParent)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNode::XPathNode </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>GetAttribute</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>GetParent</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Construct From a <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>GetAttribute</em>&nbsp;</td><td>The <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a> this handle should reference. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>GetParent</em>&nbsp;</td><td>The <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a> is on. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09097">9097</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="ad34ea7db6cabdfe92656b7d033dbbf35"></a><!-- doxytag: member="phys::xml::XPathNode::GetNode" ref="ad34ea7db6cabdfe92656b7d033dbbf35" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNode::GetNode </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> this is referencing. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A valid <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>, or a null node if this doesn't reference a an <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09101">9101</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a10d6dce64d14cf3d39bb952efd4ca8aa"></a><!-- doxytag: member="phys::xml::XPathNode::GetParent" ref="a10d6dce64d14cf3d39bb952efd4ca8aa" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNode::GetParent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the parent of the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a> or <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a> this refers to. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A valid <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a>, or a null node if this doesn't reference a an <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">xml::Attribute</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09111">9111</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a0d11818941c2e31671c5d0cd8f1ce9f9"></a><!-- doxytag: member="phys::xml::XPathNode::operator unspecified_bool_type" ref="a0d11818941c2e31671c5d0cd8f1ce9f9" args="() const " -->
 <div class="memitem">
 <div class="memproto">
@@ -84,18 +206,101 @@ bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const
 <div class="memdoc">
 
 <p>Used to convert this to a boolean value in a safe way. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the internal data is set and false otherwise. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09116">9116</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3c596b9cacb6265df6acffb91b9a7484"></a><!-- doxytag: member="phys::xml::XPathNode::operator!" ref="a3c596b9cacb6265df6acffb91b9a7484" args="() const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::XPathNode::operator! </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Logical not operator, used a workaround for borland compiler. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A valid <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>, or a null node if this doesn't reference a an <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">xml::Node</a>. </dd>
+<dd>
+A bool that is the opposite of evaluatig this as a bool normally. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09121">9121</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a121ba0e04b6619f45c5392374f2dc98d"></a><!-- doxytag: member="phys::xml::XPathNode::operator!=" ref="a121ba0e04b6619f45c5392374f2dc98d" args="(const XPathNode &amp;n) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::xml::XPathNode::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>n</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Called when comparing two <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> instances for inequality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>n</em>&nbsp;</td><td>The other <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">xml::XPathNode</a> to compare this <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> against for inequality. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if this and the other <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">xml::XPathNode</a> are referencing the same item, false otherwise; </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09131">9131</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab13702ded8707602871596e4f34e8302"></a><!-- doxytag: member="phys::xml::XPathNode::operator==" ref="ab13702ded8707602871596e4f34e8302" args="(const XPathNode &amp;n) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::xml::XPathNode::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html">XPathNode</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>n</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Called when comparing two <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">XPathNode</a> instances for equality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>n</em>&nbsp;</td><td>The other <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">xml::XPathNode</a> to compare this <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> against for equality. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if this and the other <a class="el" href="../../df/dd4/classphys_1_1xml_1_1XPathNode.html" title="An XPath node which can store handles to a xml::Node or an xml::Attribute.">xml::XPathNode</a> are referencing the same item, false otherwise; </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l09126">9126</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
+<li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:20 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:53 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

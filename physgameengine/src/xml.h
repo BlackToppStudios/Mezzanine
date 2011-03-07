@@ -46,7 +46,7 @@
  * Pugixml parser - version 1.0 
  * -------------------------------------------------------- 
  * Copyright © 2006-2010, by Arseny Kapoulkine (arseny.kapoulkine@gmail.com) 
- * Report bugs and download new versions at http://pugixml.org/ 
+ * Report bugs and downLoad new versions at http://pugixml.org/ 
  * 
  * This library is distributed under the MIT License. See notice at the end 
  * of this file. 
@@ -85,6 +85,7 @@
  
 #include "crossplatform.h" 
 #include "xmldoc.h" 
+#include "exception.h" 
  
 #ifndef XML_NO_STL 
 namespace std 
@@ -206,7 +207,7 @@ namespace phys
 	const unsigned int ParseCdata = 0x0004; 
  
 	// This flag determines if plain character data (NodePcdata) that consist only of whitespace are added to the DOM tree. 
-	// This flag is off by default; turning it on usually results in slower parsing and more memory consumption. 
+	// This flag is off by default; turning it on usually Results in slower parsing and more memory consumption. 
 	const unsigned int ParseWsPcdata = 0x0008; 
  
 	// This flag determines if character and entity references are expanded during parsing. This flag is on by default. 
@@ -266,7 +267,7 @@ namespace phys
 	const unsigned int FormatNoDeclaration = 0x08; 
  
 	// The default set of formatting flags. 
-	// Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none. 
+	// Nodes are indented depending on their Depth in DOM tree, a default declaration is output if document has none. 
 	const unsigned int FormatDefault = FormatIndent; 
 		 
 	// Forward declarations 
@@ -287,7 +288,7 @@ namespace phys
 	class XPathVariableSet; 
 	#endif 
  
-	// Writer interface for node printing (see Node::print) 
+	// Writer interface for node Printing (see Node::Print) 
 	class PHYS_LIB Writer 
 	{ 
 	public: 
@@ -353,7 +354,7 @@ namespace phys
 		explicit Attribute(AttributeStruct* attr); 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -476,7 +477,7 @@ namespace phys
 		explicit Node(NodeStruct* p); 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -655,7 +656,7 @@ namespace phys
 			return Node(); 
 		} 
  
-		// Find node from subtree using predicate. Returns first node from subtree (depth-first), for which predicate returned true. 
+		// Find node from subtree using predicate. Returns first node from subtree (Depth-first), for which predicate returned true. 
 		template <typename Predicate> Node FindNode(Predicate pred) const 
 		{ 
 			if (!_GetRoot) return Node(); 
@@ -695,22 +696,55 @@ namespace phys
 		bool Traverse(TreeWalker& walker); 
 	 
 	#ifndef XML_NO_XPATH 
-		// Select single node by evaluating XPath query. Returns first node from the resulting node set. 
+		// Select single node by evaluating XPath query. Returns first node from the Resulting node set. 
 		XPathNode FindSingleNode(const char_t* query, XPathVariableSet* variables = 0) const; 
 		XPathNode FindSingleNode(const XPathQuery& query) const; 
  
 		// Select node set by evaluating XPath query 
-		XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const; 
-		XPathNodeSet FindNodes(const XPathQuery& query) const; 
+		
+		/// @brief Select a group of nodes by evaluating an XPath query.
+		/// @param query The XPath query as a c-string to be evaluated.
+		/// @param XPathVariableSet undocumented.
+		/// @return An XPathNodeSet with the Matchs of the XPath query.
+		XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;  
+		
+		/// @brief Select a group of nodes by evaluating an XPath query.
+		/// @param query The XPath query XPathQuery class instance.
+		/// @return An XPathNodeSet with the Matchs of the XPath query.
+		/// @param query The XPath query XPathQuery class instance.
+		XPathNodeSet FindNodes(const XPathQuery& query) const;  
 	#endif 
 		 
 		// Print subtree using a WriterInstance object 
-		void print(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
+		
+		/// @brief Output the XML document using a Writer.
+		/// @param WriterInstance The Writer that will be used to output the xml text.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param DocumentEncoding The xml::Encoding of the document, whichs defaults to EncodingAuto
+		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
+		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
+		void Print(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const; 
  
 	#ifndef XML_NO_STL 
 		// Print subtree to stream 
-		void print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int depth = 0) const; 
-		void print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, unsigned int depth = 0) const; 
+		
+		/// @brief Output the XML document using a Output Stream.
+		/// @param os An output stream to send xml text to.
+		/// @param indent The Character(s) used to represent a tab in the outpput, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault
+		/// @param DocumentEncoding The xml::Encoding of the document, whichs defaults to EncodingAuto
+		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
+		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
+		void Print(std::basic_ostream<char, std::char_traits<char> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto, unsigned int Depth = 0) const; 
+		
+		/// @brief Output the XML document using a Output Stream.
+		/// @param os An output stream to send xml text to.
+		/// @param indent The Character(s) used to represent a tab in the outpput, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault
+		/// @param Depth This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.
+		/// @details This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration.
+		void Print(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& os, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, unsigned int Depth = 0) const; 
 	#endif 
  
 		// Child nodes iterators 
@@ -755,7 +789,7 @@ namespace phys
 	public: 
 		// Iterator traits 
 		typedef ptrdiff_t difference_type; 
-		typedef Node Value_type; 
+		typedef Node value_type; 
 		typedef Node* pointer; 
 		typedef Node& reference; 
  
@@ -797,7 +831,7 @@ namespace phys
 	public: 
 		// Iterator traits 
 		typedef ptrdiff_t difference_type; 
-		typedef Attribute Value_type; 
+		typedef Attribute value_type; 
 		typedef Attribute* pointer; 
 		typedef Attribute& reference; 
  
@@ -831,11 +865,11 @@ namespace phys
 		friend class Node; 
  
 	private: 
-		int _depth; 
+		int _Depth; 
 	 
 	protected: 
-		// Get current traversal depth 
-		int depth() const; 
+		// Get current traversal Depth 
+		int Depth() const; 
 	 
 	public: 
 		TreeWalker(); 
@@ -856,7 +890,7 @@ namespace phys
 	{ 
 		StatusOk = 0,			  // No error 
  
-		StatusFileNotFound,	  // File was not found during load_file() 
+		StatusFileNotFound,	  // File was not found during LoadFile() 
 		StatusIOError,			// Error reading from file/stream 
 		StatusOutOfMemory,	   // Could not allocate memory 
 		StatusInternalError,	  // Internal error occurred 
@@ -874,7 +908,7 @@ namespace phys
 		StatusEndElementMismatch // There was a mismatch of start-end tags (closing tag had incorrect Name, some tag was not closed or there was an excessive closing tag) 
 	}; 
  
-	// Parsing result 
+	// Parsing Result 
 	struct PHYS_LIB ParseResult 
 	{ 
 		/// @brief Parsing status ( see @ref ParseStatus ) 
@@ -893,7 +927,7 @@ namespace phys
 		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. 
+		/// @brief Creates a text description of the error situation, if any exists.
 		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
@@ -913,7 +947,7 @@ namespace phys
 		void create(); 
 		void destroy(); 
  
-		ParseResult load_buffer_impl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own); 
+		ParseResult LoadBufferImpl(void* contents, size_t size, unsigned int options, Encoding DocumentEncoding, bool is_mutable, bool own); 
  
 	public: 
 		// Default constructor, makes empty document 
@@ -923,50 +957,61 @@ namespace phys
 		~Document(); 
  
 		// Removes all nodes, leaving the empty document 
-		void reset(); 
+		void Reset(); 
  
 		// Removes all nodes, then copies the entire contents of the specified document 
-		void reset(const Document& proto); 
+		void Reset(const Document& proto); 
  
 	#ifndef XML_NO_STL 
 		// Load document from stream. 
-		ParseResult load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
-		ParseResult load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault); 
+		ParseResult Load(std::basic_istream<char, std::char_traits<char> >& stream, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult Load(std::basic_istream<wchar_t, std::char_traits<wchar_t> >& stream, unsigned int options = ParseDefault); 
 	#endif 
  
 		// Load document from zero-terminated string. No DocumentEncoding conversions are applied. 
-		ParseResult load(const char_t* contents, unsigned int options = ParseDefault); 
+		ParseResult Load(const char_t* contents, unsigned int options = ParseDefault); 
  
 		// Load document from file 
-		ParseResult load_file(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
-		ParseResult load_file(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadFile(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadFile(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns. 
-		ParseResult load_buffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadBuffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed. 
-		ParseResult load_buffer_inplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadBufferInplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore). 
-		ParseResult load_buffer_inplace_own(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		ParseResult LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
-		// Save XML document to WriterInstance (semantics is slightly different from Node::print, see documentation for details). 
-		void save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		// Save XML document to WriterInstance (semantics is slightly different from Node::Print, see documentation for details). 
+		void Save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 	#ifndef XML_NO_STL 
-		// Save XML document to stream (semantics is slightly different from Node::print, see documentation for details). 
-		void save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
-		void save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault) const; 
+		// Save XML document to stream (semantics is slightly different from Node::Print, see documentation for details). 
+		/// @brief Save XML document to a stream.
+		/// @param stream The output stream to send the XML document to.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+		void Save(std::basic_ostream<char, std::char_traits<char> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const;  
+		/// @brief Save XML document to a stream of wide characters.
+		/// @param stream The output stream of wide characters to send the XML document to.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault) const;  
 	#endif 
  
 		// Save XML to file 
-		bool save_file(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
-		bool save_file(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		bool SaveFile(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		bool SaveFile(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 		// Get document element 
-		Node document_element() const; 
+		/// @brief Get document element
+		/// @return An xml::Node that is the root element of the xml Document
+		Node DocumentElement() const; 
 	}; 
  
 #ifndef XML_NO_XPATH 
@@ -980,7 +1025,7 @@ namespace phys
 		XPathTypeBoolean	// Boolean 
 	}; 
  
-	// XPath parsing result 
+	// XPath parsing Result 
 	struct PHYS_LIB XPathParseResult 
 	{ 
 		// Error message (0 if no error) 
@@ -996,7 +1041,7 @@ namespace phys
 		/// @return This returns true if the ParseResult::Status member is set to ParseStatus::StatusOk, otherwise this returns false. 
 		operator bool() const; 
  
-		/// @brief Uses the Status member to create a text description. 
+		/// @brief Creates a text description of the error situation, if any exists.
 		/// @return A const char* with a brief error description based on the ParseResult::Status 
 		const char* Description() const; 
 	}; 
@@ -1017,23 +1062,34 @@ namespace phys
 		XPathVariable& operator=(const XPathVariable&); 
 		 
 	public: 
-		// Get variable Name 
+		/// @brief Retrieve the name of this variable.
+		/// @return A const c-style string made of char_t, that contains the name of this variable 
 		const char_t* Name() const; 
  
-		// Get variable Type 
+		/// @brief Get the variable type.
+		/// @return An XPathValueType specifying the kind of data stored in this variable. 
 		XPathValueType Type() const; 
  
 		// Get variable Value; no Type conversion is performed, default Value (false, NaN, empty string, empty node set) is returned on Type mismatch error 
-		bool get_boolean() const; 
-		double get_number() const; 
-		const char_t* get_string() const; 
-		const XPathNodeSet& get_NodeSet() const; 
+		bool GetBoolean() const; 
+		double GetNumber() const; 
+		const char_t* GetString() const; 
+		const XPathNodeSet& GetNodeSet() const; 
  
 		// Set variable Value; no Type conversion is performed, false is returned on Type mismatch error 
-		bool set(bool Value); 
-		bool set(double Value); 
-		bool set(const char_t* Value); 
-		bool set(const XPathNodeSet& Value); 
+		bool Set(bool Value); 
+		/// @brief Set variable Value; no Type conversion is performed.
+		/// @param Value The value as a double to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+		bool Set(double Value);  
+		/// @brief Set variable Value; no Type conversion is performed.
+		/// @param Value The value as a char_t array to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+		bool Set(const char_t* Value);  
+		/// @brief Set variable Value; no Type conversion is performed.
+		/// @param Value The value to attempt to put into this.
+		/// @return True is return, false is returned on Type mismatch error.
+		bool Set(const XPathNodeSet& Value);  
 	}; 
  
 	// A set of XPath variables 
@@ -1054,17 +1110,29 @@ namespace phys
 		~XPathVariableSet(); 
  
 		// Add a new variable or get the existing one, if the Types match 
-		XPathVariable* add(const char_t* Name, XPathValueType Type); 
+		XPathVariable* Add(const char_t* Name, XPathValueType Type); 
  
 		// Set Value of an existing variable; no Type conversion is performed, false is returned if there is no such variable or if Types mismatch 
-		bool set(const char_t* Name, bool Value); 
-		bool set(const char_t* Name, double Value); 
-		bool set(const char_t* Name, const char_t* Value); 
-		bool set(const char_t* Name, const XPathNodeSet& Value); 
+		bool Set(const char_t* Name, bool Value); 
+		/// @brief Set contained variable Value; no Type conversion is performed.
+		/// @param Name The name of variable to change.
+		/// @param Value The value to attempt to put into the named variable.
+		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
+		bool Set(const char_t* Name, double Value); 
+		/// @brief Set contained variable Value; no Type conversion is performed.
+		/// @param Name The name of variable to change.
+		/// @param Value The value to attempt to put into the named variable.
+		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
+		bool Set(const char_t* Name, const char_t* Value); 
+		/// @brief Set contained variable Value; no Type conversion is performed.
+		/// @param Name The name of variable to change.
+		/// @param Value The value to attempt to put into the named variable.
+		/// @return True is return, false is returned if there is no such variable or on Type mismatch error.
+		bool Set(const char_t* Name, const XPathNodeSet& Value); 
  
 		// Get existing variable by Name 
-		XPathVariable* get(const char_t* Name); 
-		const XPathVariable* get(const char_t* Name) const; 
+		XPathVariable* Get(const char_t* Name); 
+		const XPathVariable* Get(const char_t* Name) const; 
 	}; 
  
 	// A compiled XPath query object 
@@ -1072,7 +1140,7 @@ namespace phys
 	{ 
 	private: 
 		void* _impl; 
-		XPathParseResult _result; 
+		XPathParseResult _Result; 
  
 		typedef void* XPathQuery::*unspecified_bool_type; 
  
@@ -1083,44 +1151,68 @@ namespace phys
 	public: 
 		// Construct a compiled object from XPath expression. 
 		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on compilation errors. 
+		
+		/// @brief Construct a compiled object from XPath expression.
+		/// @param query The query in the form of a c-string style char_t array.
+		/// @param variables Any extra data the query might need, passing a null pointer simply omits passing any arguments.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (which is the default), throws XPathException on compilation errors.
 		explicit XPathQuery(const char_t* query, XPathVariableSet* variables = 0); 
  
 		// Destructor 
+		/// @brief Destructor
 		~XPathQuery(); 
  
 		// Get query expression return Type 
-		XPathValueType return_type() const; 
+		XPathValueType ReturnType() const; 
 		 
 		// Evaluate expression as boolean Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
-		bool evaluate_boolean(const XPathNode& n) const; 
+		bool EvaluateBoolean(const XPathNode& n) const; 
 		 
 		// Evaluate expression as double Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
-		double evaluate_number(const XPathNode& n) const; 
+		/// @brief Evaluate expression as double value in the specified context; performs Type conversion if necessary.
+		/// @param n The XPathNode that will serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+		/// @return A result as a double from evaluating the expression.
+		double EvaluateNumber(const XPathNode& n) const; 
 		 
 	#ifndef XML_NO_STL 
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary. 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
-		String evaluate_string(const XPathNode& n) const; 
+		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
+		/// @param n The XPathNode that will serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors.
+		/// @return A result as a String from evaluating the expression.
+		String EvaluateString(const XPathNode& n) const; 
 	#endif 
 		 
 		// Evaluate expression as string Value in the specified context; performs Type conversion if necessary. 
-		// At most capacity characters are written to the destination buffer, full result size is returned (includes terminating zero). 
+		// At most capacity characters are written to the destination buffer, full Result size is returned (includes terminating zero). 
 		// If XML_NO_EXCEPTIONS is not defined, throws std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty  set instead. 
-		size_t evaluate_string(char_t* buffer, size_t capacity, const XPathNode& n) const; 
+		/// @brief Evaluate expression as string value in the specified context; performs Type conversion if necessary.
+		/// @param buffer The place to store the c-style Character array
+		/// @param capacity At most capacity characters are written to the destination buffer.
+		/// @param n The XPathNode that with serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, this returns empty  set instead.
+		/// @return Full result size is returned (includes terminating zero).
+		size_t EvaluateString(char_t* buffer, size_t capacity, const XPathNode& n) const; 
  
 		// Evaluate expression as node set in the specified context. 
 		// If XML_NO_EXCEPTIONS is not defined, throws XPathException on Type mismatch and std::bad_alloc on out of memory errors. 
 		// If XML_NO_EXCEPTIONS is defined, returns empty node set instead. 
-		XPathNodeSet evaluate_NodeSet(const XPathNode& n) const; 
+		/// @brief Evaluate expression as node set in the specified context.
+		/// @param n The XPathNode that with serve as the context for the query.
+		/// @throw If XML_NO_EXCEPTIONS is not defined (by default it is not defined), throws throws XPathException on Type mismatch and std::bad_alloc on out of memory errors. If XML_NO_EXCEPTIONS is defined, returns empty node set instead.
+		/// @return An XPathNodeSet.
+		XPathNodeSet EvaluateNodeSet(const XPathNode& n) const; 
  
-		// Get parsing result (used to get compilation errors in XML_NO_EXCEPTIONS mode) 
-		const XPathParseResult& result() const; 
+		// Get parsing Result (used to get compilation errors in XML_NO_EXCEPTIONS mode) 
+		const XPathParseResult& Result() const; 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
  
 		// Borland C++ workaround 
@@ -1129,20 +1221,21 @@ namespace phys
 	 
 	#ifndef XML_NO_EXCEPTIONS 
 	// XPath exception class 
-	class PHYS_LIB XPathException: public std::exception 
+	class PHYS_LIB XPathException: public phys::Exception 
 	{ 
 	private: 
-		XPathParseResult _result; 
+		XPathParseResult _Result; 
  
 	public: 
-		// Construct exception from parse result 
-		explicit XPathException(const XPathParseResult& result); 
+		// Construct exception from parse Result 
+		/// @brief Construct exception from parse Result
+		explicit XPathException(const XPathParseResult& Result); 
  
 		// Get error message 
 		virtual const char* what() const throw(); 
  
-		// Get parse result 
-		const XPathParseResult& result() const; 
+		// Get parse Result 
+		const XPathParseResult& Result() const; 
 	}; 
 	#endif 
 	 
@@ -1161,25 +1254,35 @@ namespace phys
 		 
 		// Construct XPath node from XML node/GetAttribute 
 		XPathNode(const Node& node); 
-		XPathNode(const Attribute& GetAttribute, const Node& GetParent); 
+		/// @brief Construct From a xml::Attribute.
+		/// @param GetAttribute The xml::Attribute this handle should reference.
+		/// @param GetParent The xml::Node the xml::Attribute is on.
+		XPathNode(const Attribute& GetAttribute, const Node& GetParent);  
  
 		// Get node/GetAttribute, if any 
-		Node node() const; 
+		Node GetNode() const; 
 		Attribute GetAttribute() const; 
 		 
 		// Get GetParent of contained node/GetAttribute 
 		Node GetParent() const; 
  
 		/// @brief Used to convert this to a boolean value in a safe way
-		/// @return Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+		/// @return Returns true if the internal data is set and false otherwise. 
 		operator unspecified_bool_type() const; 
 		 
 		// Borland C++ workaround 
 		bool operator!() const; 
  
 		// Comparison operators 
-		bool operator==(const XPathNode& n) const; 
-		bool operator!=(const XPathNode& n) const; 
+		/// @brief Called when comparing two XPathNode instances for equality.
+		/// @param n The other xml::XPathNode to compare this Node against for equality.
+		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;
+		bool operator==(const XPathNode& n) const;  
+		
+		/// @brief Called when comparing two XPathNode instances for inequality.
+		/// @param n The other xml::XPathNode to compare this Node against for inequality.
+		/// @return True if this and the other xml::XPathNode are referencing the same item, false otherwise;
+		bool operator!=(const XPathNode& n) const;  
 	}; 
  
 #ifdef __BORLANDC__ 
@@ -1193,11 +1296,11 @@ namespace phys
 	{ 
 	public: 
 		// Collection Type 
-		enum Type_t 
+		enum CollectionType 
 		{ 
-			Type_unsorted,			// Not ordered 
-			Type_sorted,			// Sorted by document order (ascending) 
-			Type_sorted_reverse		// Sorted by document order (descending) 
+			TypeUnsorted,			// Not ordered 
+			TypeSorted,			// Sorted by document order (ascending) 
+			TypeSortedReverse		// Sorted by document order (descending) 
 		}; 
 		 
 		// Constant iterator Type 
@@ -1207,20 +1310,24 @@ namespace phys
 		XPathNodeSet(); 
  
 		// Constructs a set from iterator range; data is not checked for duplicates and is not sorted according to provided Type, so be careful 
-		XPathNodeSet(const_iterator begin, const_iterator end, Type_t Type = Type_unsorted); 
+		XPathNodeSet(const_iterator begin, const_iterator end, CollectionType Type = TypeUnsorted); 
  
 		// Destructor 
 		~XPathNodeSet(); 
 		 
 		// Copy constructor/assignment operator 
+		/// @brief Copy constructor.
+		/// @param ns The XPathNodeSet to copy.
 		XPathNodeSet(const XPathNodeSet& ns); 
 		XPathNodeSet& operator=(const XPathNodeSet& ns); 
  
 		// Get collection Type 
-		Type_t Type() const; 
+		CollectionType Type() const; 
 		 
 		// Get collection size 
-		size_t size() const; 
+		/// @brief Get collection size.
+		/// @return The number of XPathNode instances as a size_t in the set
+		size_t size() const;  
  
 		// Indexing operator 
 		const XPathNode& operator[](size_t index) const; 
@@ -1239,7 +1346,7 @@ namespace phys
 		bool Empty() const; 
 	 
 	private: 
-		Type_t _type; 
+		CollectionType _type; 
 		 
 		XPathNode _storage; 
 		 
@@ -1261,17 +1368,17 @@ namespace phys
 #endif 
  
 	// Memory allocation function interface; returns pointer to allocated memory or NULL on failure 
-	typedef void* (*allocation_function)(size_t size); 
+	typedef void* (*AllocationFunction)(size_t size); 
 	 
 	// Memory deallocation function interface 
-	typedef void (*deallocation_function)(void* ptr); 
+	typedef void (*deAllocationFunction)(void* ptr); 
  
 	// Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. 
-	void PHYS_LIB SetMemory_management_functions(allocation_function allocate, deallocation_function deallocate); 
+	void PHYS_LIB SetMemory_management_functions(AllocationFunction allocate, deAllocationFunction deallocate); 
 	 
 	// Get current memory management functions 
-	allocation_function PHYS_LIB get_memory_allocation_function(); 
-	deallocation_function PHYS_LIB get_memory_deallocation_function(); 
+	AllocationFunction PHYS_LIB GetMemoryAllocationFunction(); 
+	deAllocationFunction PHYS_LIB GetMemoryDeallocationFunction(); 
 } 
 } // \phys
  
@@ -1279,8 +1386,8 @@ namespace phys
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection for older versions (MSVC7/IC8 and earlier) 
-	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::NodeIterator&); 
-	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const pugi::AttributeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const phys::xml::NodeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB _Iter_cat(const phys::xml::AttributeIterator&); 
 } 
 #endif 
  
@@ -1288,8 +1395,8 @@ namespace std
 namespace std 
 { 
 	// Workarounds for (non-standard) iterator category detection 
-	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::NodeIterator&); 
-	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const pugi::AttributeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const phys::xml::NodeIterator&); 
+	std::bidirectional_iterator_tag PHYS_LIB __iterator_category(const phys::xml::AttributeIterator&); 
 } 
 #endif 
  

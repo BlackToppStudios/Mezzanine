@@ -36,6 +36,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainerbase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainervector.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/actorgraphicssettings.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorragdoll.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorrigid.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorsoft.h"
@@ -69,7 +70,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/linegroup.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/managerbase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/metacode.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/node.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffect.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/physgame.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/physicsmanager.h"
@@ -108,6 +108,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector3wactor.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/world.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/worldnode.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.h"
@@ -118,6 +119,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainerbase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainervector.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/actorgraphicssettings.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorragdoll.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorrigid.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorsoft.cpp"
@@ -149,7 +151,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/linegroup.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/managerbase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/metacode.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/node.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffect.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/physicsmanager.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/plane.cpp"
@@ -185,6 +186,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector3.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector3wactor.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/world.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/worldnode.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.cpp"
@@ -243,6 +245,7 @@ if(${WIN32})
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
 
 	link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
+	set(SDLName SDL)
 
 	include_directories(
 		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
@@ -255,29 +258,87 @@ endif(${WIN32})
 
 #######################################
 # Linux Build Specific Items
-if(${UNIX} AND NOT ${APPLE})
-	message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
-	set(BuildPlatform linux)
 
+if(${UNIX})
+	if(${APPLE}) 	#if(${UNIX} AND NOT ${APPLE}) #does not appear to work as expected.
+	else(${APPLE})
+		message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
+		set(BuildPlatform linux)
+
+		#Autobuild SDL and ogre could go here
+	
+		set(OgreSoName libOgreMain.so.1.7.2)
+		file( COPY 
+				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreSoName}"
+				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
+				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
+			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
+		)
+		include_directories(
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
+		)
+		add_definitions( -DOGRE_GUI_GLX -DLINUX )
+
+		set(SDLName SDL)
+		set(SDLSoName libSDL.a)
+		file( COPY 
+				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/${SDLSoName}"
+			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/"
+		)
+		link_directories(${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/ ) 
+		include_directories(
+			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
+		)
+
+		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
+	endif(${APPLE})
+endif(${UNIX})
+
+#######################################
+# Mac OS X and iPhone Build specific Items
+if(${APPLE})
+	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
+	set(BuildPlatform macosx)
+        
 	include(FindSDL)
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
+	set(SDLName SDL)        
 
-	file( COPY
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so.1.8.0"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
-		DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
-	)
+       include(FindOpenAL)
+	message("OpenAL Headers and Library Found - ${OPENAL_LIBRARY}")
 
+	include(FindOgg)
+	message("Ogg Headers and Library Found - ${OGG_FOUND}")
+
+	include(FindVorbis)
+	message("Vorbis Headers and Library Found - ${Vorbis_FOUND}")
+
+	include(FindOgre)
+	message("Ogre Headers And library Found -	${OGRE_INCLUDE_DIRS}")
+
+	include(/Library/Frameworks/Ogre.framework)
+
+	include(FindBoost)
+	message("Boost Headers And library Found - ${BOOST_INCLUDE_DIRS}")
+	
+	find_package(OGRE REQUIRED)
+        
 	include_directories(
 		"${SDL_INCLUDE_DIR}"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include"
+		"${OPENAL_INCLUDE_DIR}"
+		${OGRE_INCLUDE_DIRS}
+	        "${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogreSDK/boost_1_42"
+		"${OGG_INCLUDE_DIR}"
 	)
 
-	link_directories( "${SDL_LIBRARY}" )
-
-	add_definitions( -DOGRE_GUI_GLX -DLINUX )
+	link_directories(
+	 ${SDL_LIBRARY}
+	 ${OPENAL_LIBRARY} 
+	 /Library/Frameworks/Ogre.framework
+	 ${OGG_LIBRARY}
+	)
+	findpkg_framework(OGRE)
 
 	message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
 endif(${UNIX} AND NOT ${APPLE})
@@ -331,8 +392,9 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	link_directories("${OGRE_LIB_DIR}")
 
 	findpkg_framework(OGRE)
-
+	set(SDLName  ${SDL_LIBRARY})
     
+
 	add_definitions( -DMACOSX)
 	message ("${PROJECT_NAME} - End Apple Specific Build Process")
 
@@ -388,16 +450,20 @@ set( Bullet_LibraryNames
 	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
 )
 
-target_link_libraries(
-    ${PROJECT_NAME}
-    "${OGRE_LIBRARIES}"
-    ${Bullet_LibraryNames}
-    "${OPENAL_LIBRARY}" 
-    ${SDL_LIBRARY}
-  #  "${OGG_LIBRARY}"
-	/Users/hydrowolfy/Downloads/cAudio2.1.0-OSX/bin/Osx/libcAudio.dylib
-)
 
+if(${APPLE}){
+	target_link_libraries(
+	    ${PROJECT_NAME}
+	    "${OGRE_LIBRARIES}"
+	    ${Bullet_LibraryNames}
+	    "${OPENAL_LIBRARY}" 
+	    ${SDL_LIBRARY}
+	  #  "${OGG_LIBRARY}"
+		/Users/hydrowolfy/Downloads/cAudio2.1.0-OSX/bin/Osx/libcAudio.dylib
+)
+else(${APPLE})
+	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDLName} )
+endif(${APPLE})
 
 ###############################################################################
 # Build Time File copying
@@ -415,7 +481,6 @@ if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
 
 	#Copy System Dependant files during build time
-
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll )
@@ -429,16 +494,20 @@ endif(${WIN32})
 
 #######################################
 # Linux File Copy Specific Items
-if(${UNIX} AND NOT ${APPLE})
-	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
+if(${UNIX})
+	if(${APPLE})
+	else(${APPLE})
+		message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
 
-	#Copy System Dependant files during build time
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so )
-	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libOgreMain.so.1.8.0 libOgreMain.so.1.8.0 )
-	CreateSymlinkDuringBuild( libOgreMain.so.1.8.0 libOgreMain.so )
+		#Copy System Dependant files during build time
+		#CopyFilesDuringBuild( ${BuildPlatform}/sdl/${SDLSoName} ${SDLSoName})
+		CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so)
+		CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
+		CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
 
-	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
-endif(${UNIX} AND NOT ${APPLE})
+		message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
+	endif(${APPLE})
+endif(${UNIX})
 
 #######################################
 # Mac File Copy pecific Items
@@ -448,7 +517,6 @@ if(${APPLE})
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
 #	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
 	
-
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 

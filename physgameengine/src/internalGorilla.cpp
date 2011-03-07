@@ -2010,6 +2010,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   mVerticalAlign  = VerticalAlign_Top;
   mPriority       = Gorilla::RP_Medium;
   mCursorOffset   = 0.0f;
+  mCharScaling    = 1.0f;
  }
 
  void Caption::_calculateDrawSize(Ogre::Vector2& retSize)
@@ -2047,7 +2048,10 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    if (kerning == 0)
     kerning = mGlyphData->mLetterSpacing;
 
-   cursor  += glyph->glyphAdvance + kerning;
+   if(mCharScaling == 1.0f)
+    cursor += glyph->glyphAdvance + kerning;
+   else
+    cursor += (glyph->glyphAdvance + kerning) * mCharScaling;
    lastChar = thisChar;
 
   } // for
@@ -2119,6 +2123,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   {
    _calculateDrawSize(knownSize);
    cursorX = mLeft + mWidth - (knownSize.x + mCursorOffset);
+
    if (mWidth)
    {
     clipLeft = true;
@@ -2129,9 +2134,9 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   if (mVerticalAlign == VerticalAlign_Top)
    cursorY = mTop;
   else if (mVerticalAlign == VerticalAlign_Middle)
-   cursorY = mTop + (mHeight * 0.5) - (mGlyphData->mLineHeight * 0.5);
+   cursorY = mTop + (mHeight * 0.5) - ((mGlyphData->mLineHeight * mCharScaling) * 0.5);
   else if (mVerticalAlign == VerticalAlign_Bottom)
-   cursorY = mTop +  mHeight - mGlyphData->mLineHeight;
+   cursorY = mTop +  mHeight - (mGlyphData->mLineHeight * mCharScaling);
 
   unsigned char thisChar = 0, lastChar = 0;
   Vertex temp;
@@ -2148,7 +2153,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    if (thisChar == ' ')
    {
     lastChar = thisChar;
-    cursorX += mGlyphData->mSpaceLength;
+    cursorX += mGlyphData->mSpaceLength * mCharScaling;
     continue;
    }
 
@@ -2167,8 +2172,8 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
    left = cursorX - texelOffsetX;
    top = cursorY - texelOffsetY;
-   right = left + glyph->glyphWidth + texelOffsetX;
-   bottom = top + glyph->glyphHeight + texelOffsetY;
+   right = left + (glyph->glyphWidth * mCharScaling) + texelOffsetX;
+   bottom = top + (glyph->glyphHeight * mCharScaling) + texelOffsetY;
 
    if (clipLeft)
    {
@@ -2176,7 +2181,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
     {
      if (mClippedLeftIndex == std::string::npos)
        mClippedLeftIndex = i;
-     cursorX  += glyph->glyphAdvance + kerning;
+     cursorX  += (glyph->glyphAdvance + kerning) * mCharScaling;
      lastChar = thisChar;
      continue;
     }
@@ -2188,7 +2193,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
     {
      if (mClippedRightIndex == std::string::npos)
        mClippedRightIndex = i;
-     cursorX  += glyph->glyphAdvance + kerning;
+     cursorX  += (glyph->glyphAdvance + kerning) * mCharScaling;
      lastChar = thisChar;
      continue;
     }
@@ -2205,7 +2210,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    PUSH_VERTEX(mVertices, temp, right, top, glyph->texCoords[TopRight], mColour);    // Right/Top    1
 
 
-   cursorX  += glyph->glyphAdvance + kerning;
+   cursorX  += (glyph->glyphAdvance + kerning) * mCharScaling;
    lastChar = thisChar;
 
   } // for
@@ -2241,8 +2246,8 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   mHeight         = 0.0f;
   mText           = text;
   mBackground.a   = 0.0f;
-  mPriority    = Gorilla::RP_Medium;
-
+  mPriority       = Gorilla::RP_Medium;
+  mCharScaling    = 1.0f;
  }
 
  void MarkupText::_calculateCharacters()
@@ -2271,7 +2276,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    if (thisChar == ' ')
    {
     lastChar = thisChar;
-    cursorX += glyphData->mSpaceLength;
+    cursorX += (glyphData->mSpaceLength * mCharScaling);
     continue;
    }
 
@@ -2279,7 +2284,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    {
     lastChar = thisChar;
     cursorX = mLeft;
-    cursorY += lineHeight;
+    cursorY += (lineHeight * mCharScaling);
     lineHeight = glyphData->mLineHeight;
     continue;
    }
@@ -2370,8 +2375,8 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
       left = cursorX - texelOffsetX;
       top = cursorY - texelOffsetY;
-      right = left + sprite->spriteWidth + texelOffsetX;
-      bottom = top + sprite->spriteHeight + texelOffsetY;
+      right = left + (sprite->spriteWidth * mCharScaling) + texelOffsetX;
+      bottom = top + (sprite->spriteHeight * mCharScaling) + texelOffsetY;
 
       Character c;
       c.mIndex = i;
@@ -2391,7 +2396,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
       mCharacters.push_back(c);
 
-      cursorX  += sprite->spriteWidth;
+      cursorX  += (sprite->spriteWidth * mCharScaling);
 
       lineHeight = std::max(lineHeight, sprite->spriteHeight);
 
@@ -2413,8 +2418,8 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
      kerning = glyphData->mLetterSpacing;
    }
 
-   right = cursorX + glyph->glyphWidth + texelOffsetX;
-   bottom = cursorY + glyph->glyphHeight + texelOffsetY;
+   right = cursorX + (glyph->glyphWidth * mCharScaling) + texelOffsetX;
+   bottom = cursorY + (glyph->glyphHeight * mCharScaling) + texelOffsetY;
 
    Character c;
    c.mIndex = i;
@@ -2435,9 +2440,9 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    mCharacters.push_back(c);
 
    if (fixedWidth)
-     cursorX  += glyphData->mMonoWidth;
+     cursorX += glyphData->mMonoWidth;
    else
-     cursorX  += glyph->glyphAdvance + kerning;
+     cursorX += (glyph->glyphAdvance + kerning) * mCharScaling;
 
    lastChar = thisChar;
   }

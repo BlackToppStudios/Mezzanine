@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     {
         TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), SceneManager::Generic, 30);
     }catch( exception x){
-        cerr << "Could not create world:" << x.what();
+        cerr << "Could not create world: " << x.what();
         return 1;
         //could not create the perfect worldending program
     }
@@ -43,7 +43,6 @@ int main(int argc, char **argv)
     #ifdef PHYSDEBUG
     TheWorld->Log("Framerate and Title set");
     #endif
-
 
     //Give the world functions to run before and after input and physics
     TheWorld->GetEventManager()->SetPreMainLoopItems(&PreInput);
@@ -62,9 +61,11 @@ int main(int argc, char **argv)
     #endif
 
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, 1, MetaCode::KEY_q) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, 3, MetaCode::MOUSEBUTTON) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, 0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );
+    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::KEY_q) );
+    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
+    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_1) );
+    TheWorld->GetEventManager()->RemovePollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
+    //TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );   //Not supported
 
     //Actually Load the game stuff
     LoadContent();
@@ -77,12 +78,18 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
     //Setup some camera tricks
-    Node* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
+    WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
     CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
+
+    TheWorld->Log("Printing Supported Resolutions:");
+    const std::vector<String>* ResList = TheWorld->GetGraphicsManager()->GetSupportedResolutions();
+    for( Whole Z = 0 ; Z < ResList->size() ; Z++ )
+        TheWorld->Log(ResList->at(Z));
 
 	//Start the Main Loop
 	TheWorld->MainLoop();
 
+    //delete TheWorld;
 	return 0;
 }
 
@@ -273,6 +280,7 @@ bool PostInput()
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
+        /// @todo determine whether this next snippt should be a function on the UIScreen
         UI::Button* MouseButton = NULL;
         UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
@@ -280,9 +288,7 @@ bool PostInput()
             UILayer* Layer = Screen->GetLayer(x);
             MouseButton = Layer->CheckButtonMouseIsOver();
             if(MouseButton)
-            {
-                break;
-            }
+            { break; }
         }
         if(MouseButton)
         {
@@ -383,7 +389,6 @@ bool PostInput()
             }
 
             // Here we cleanup everything we needed for the clicking/dragging
-
             delete DragTo;
             delete MouseRay;
         }
@@ -571,7 +576,7 @@ void LoadContent()
 
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         xml::Document TestDoc;
-        xml::ParseResult ParsedXML = TestDoc.load( *XMLptr );
+        xml::ParseResult ParsedXML = TestDoc.Load( *XMLptr );
 
         TheWorld->LogStream << "xml::StatusOk :" << xml::StatusOk << endl
                             << "xml::StatusFileNotFound :" << xml::StatusFileNotFound << endl
@@ -601,7 +606,7 @@ void LoadContent()
 
         TheWorld->Log("XML Streaming Test");
 
-        Vector3 ASinglePoint(1,2,3);
+        Vector2 ASinglePoint(1,2);
         TheWorld->Log("ASinglePoint:");
         TheWorld->Log(ASinglePoint);
 
@@ -610,13 +615,49 @@ void LoadContent()
         XMLStringStream << ASinglePoint;
         TheWorld->Log(XMLStringStream.str());
 
-        Vector3 ASecondPoint(0,0,0);
+        Vector2 ASecondPoint(0,0);
         TheWorld->Log("ASecondPoint:");
         TheWorld->Log(ASecondPoint);
 
         TheWorld->Log("ReStreaming ASinglePoint from stringStream, to ASecondPoint:");
         XMLStringStream >> ASecondPoint;
         TheWorld->Log(ASecondPoint);
+
+
+        Plane ASinglePlane(Vector3(1.34,23,1.004),4.5);
+        TheWorld->Log("ASinglePlane:");
+        TheWorld->Log(ASinglePlane);
+
+        TheWorld->Log("Streaming ASinglePlane to String Stream:");
+        stringstream XMLStringStream2;
+        XMLStringStream2 << ASinglePlane;
+        TheWorld->Log(XMLStringStream2.str());
+
+        Plane ASecondPlane(Vector3(0,0,0),0);
+        TheWorld->Log("ASecondPlane:");
+        TheWorld->Log(ASecondPlane);
+
+        TheWorld->Log("ReStreaming ASinglePlane from stringStream, to ASecondPlane:");
+        XMLStringStream2 >> ASecondPlane;
+        TheWorld->Log(ASecondPlane);
+
+
+        MetaCode ASingleCode(MetaCode(1,MetaCode::MOUSEBUTTON));
+        TheWorld->Log("ASingleCode:");
+        TheWorld->Log(ASingleCode);
+
+        TheWorld->Log("Streaming ASingleCode to String Stream:");
+        stringstream XMLStringStream3;
+        XMLStringStream3 << ASingleCode;
+        TheWorld->Log(XMLStringStream3.str());
+
+        MetaCode ASecondCode(MetaCode(0,MetaCode::KEY_FIRST));
+        TheWorld->Log("ASecondCode:");
+        TheWorld->Log(ASecondCode);
+
+        TheWorld->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
+        XMLStringStream3 >> ASecondCode;
+        TheWorld->Log(ASecondCode);
 
 
         #ifdef PHYSDEBUG
@@ -631,7 +672,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << c;
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(4);
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
     }
 
@@ -640,8 +681,8 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        //TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(3);
-        TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+        //TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
     }
     //TheWorld->Resources->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "RobotDecomp3.bullet");
@@ -651,7 +692,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
     }
 
@@ -661,10 +702,18 @@ void LoadContent()
     TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
     TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
-    GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
-    Reverse->CreateCylinderShape(Vector3(100.0,200.0,100));
+    /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
+    Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
     Reverse->SetLocation(Vector3(200,50,-5.0));
-    TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it
+    TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
+
+    GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    BlackHole->CreateSphereShape(200.0);
+    BlackHole->SetAllowWorldGravity(false);
+    BlackHole->SetFieldStrength(100000.0);
+    BlackHole->SetAttenuation(85.0,GravityWell::GW_Att_Linear);
+    BlackHole->CreateGraphicsSphere(ColourValue(0.9,0.7,0.7,0.55));
+    TheWorld->GetPhysicsManager()->AddAreaEffect(BlackHole);
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
     //TheWorld->Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname) );
@@ -698,7 +747,7 @@ void LoadContent()
     object3->SetInitLocation(Vector3(150.0,1800.0,-1300.0));
 
     object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname);
-    object4->CreateShapeFromMeshDynamic(4);
+    object4->CreateShapeFromMeshDynamic(3);
     object4->SetInitLocation(Vector3(-400,10, 100));
     object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->SetAnimation("Idle", true);
@@ -726,6 +775,7 @@ void LoadContent()
 
     AreaEffect* TestField = new TestAE("Tester", Vector3(0,0,150));
     TestField->CreateBoxShape(Vector3(500,80,80));
+    TestField->CreateGraphicsBox(ColourValue(0.5,0.9,0.6,0.15));
     TheWorld->GetPhysicsManager()->AddAreaEffect(TestField);
 
     Sound *sound1, *music1, *music2;

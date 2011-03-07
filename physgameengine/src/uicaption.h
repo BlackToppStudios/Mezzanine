@@ -119,6 +119,12 @@ namespace phys
                 /// @brief Gets the text displayed within the caption.
                 /// @return Returns the text being displayed.
                 virtual String GetText();
+                /// @brief Sets the scaling to be applied to the text being rendered.
+                /// @param Scale A Real value representing the scale to be applied.  <1.0 means smaller, >1.0 means larger.
+                virtual void SetTextScale(Real Scale);
+                /// @brief Gets the scaling currently being applied to the rendered text.
+                /// @return Returns a Real value representing the scale applied to the text in this caption.  <1.0 means smaller, >1.0 means larger.
+                virtual Real GetTextScale();
                 /// @brief Sets the colour for the text in this caption.
                 /// @param TextColour A colourvalue representing the desired colour.
                 virtual void SetTextColour(const ColourValue& TextColour);

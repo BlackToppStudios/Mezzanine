@@ -20,16 +20,16 @@ Inheritance diagram for phys::xml::Node:\begin{figure}[H]
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1xml_1_1Node_a0da067636c89829a111dd51037cea6b3}{
-typedef \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator} {\bfseries iterator}}
-\label{d7/d0a/classphys_1_1xml_1_1Node_a0da067636c89829a111dd51037cea6b3}
+\hypertarget{classphys_1_1xml_1_1Node_a1b84d9f01a7c786aae85bf365aa5fd7a}{
+typedef \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator} \hyperlink{classphys_1_1xml_1_1Node_a1b84d9f01a7c786aae85bf365aa5fd7a}{iterator}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a1b84d9f01a7c786aae85bf365aa5fd7a}
 
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a3b37ee9a716fc3a6cd92733ccf28f26a}{
-typedef \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} {\bfseries attribute\_\-iterator}}
-\label{d7/d0a/classphys_1_1xml_1_1Node_a3b37ee9a716fc3a6cd92733ccf28f26a}
+\begin{DoxyCompactList}\small\item\em An iterator for child Nodes. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1Node_a80e590c48449971c999e50a371a3b504}{
+typedef \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \hyperlink{classphys_1_1xml_1_1Node_a80e590c48449971c999e50a371a3b504}{attribute\_\-iterator}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a80e590c48449971c999e50a371a3b504}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em An iterator for \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} members on this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -162,71 +162,35 @@ String \hyperlink{classphys_1_1xml_1_1Node_a0bf85dc0820ba204e7c9498c6651aec8}{Pa
 \hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_af2a9ac5c4e3252dca0e17720de093a9a}{FirstElementByPath} (const char\_\-t $\ast$Path, char\_\-t delimiter= '/') const 
 \begin{DoxyCompactList}\small\item\em Search for a node by Path consisting of node names and . or .. elements. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{Traverse} (\hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker} \&walker)
-\begin{DoxyCompactList}\small\item\em undocumented \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \hyperlink{classphys_1_1xml_1_1Node_a11966aa8afdfa586404393ebae9b07f5}{FindSingleNode} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const 
-\begin{DoxyCompactList}\small\item\em Select single node by evaluating XPath query. Returns first node from the resulting node set. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Select single node by evaluating an XPath query. Returns first node from the resulting node set. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \hyperlink{classphys_1_1xml_1_1Node_a13b958f663f9605061e5e47dfd8e1966}{FindSingleNode} (const \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} \&query) const 
-\begin{DoxyCompactList}\small\item\em Select single node by evaluating XPath query. Returns first node from the resulting node set. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1Node_a7390ba1c09b83544365abc7bf8ec5b8f}{
-\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} {\bfseries FindNodes} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a7390ba1c09b83544365abc7bf8ec5b8f}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a466766bf750da2a04acd8a32d2b8a458}{
-\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} {\bfseries FindNodes} (const \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} \&query) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a466766bf750da2a04acd8a32d2b8a458}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a526817671e39653b0dca70c2ba8daa55}{
-void {\bfseries print} (\hyperlink{classphys_1_1xml_1_1Writer}{Writer} \&WriterInstance, const char\_\-t $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int depth=0) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a526817671e39653b0dca70c2ba8daa55}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a99158a08970f0497a3925dddf8227b87}{
-void {\bfseries print} (std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&os, const char\_\-t $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int depth=0) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a99158a08970f0497a3925dddf8227b87}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a27b7869e5208547e06b6164bbc68ca0e}{
-void {\bfseries print} (std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&os, const char\_\-t $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, unsigned int depth=0) const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a27b7869e5208547e06b6164bbc68ca0e}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a78c82f35dcf7b2c37f1f5ff37d526329}{
-\hyperlink{classphys_1_1xml_1_1NodeIterator}{iterator} {\bfseries begin} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a78c82f35dcf7b2c37f1f5ff37d526329}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_ae69ca8be6e9eb53a4faf8bb50a2996d6}{
-\hyperlink{classphys_1_1xml_1_1NodeIterator}{iterator} {\bfseries end} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_ae69ca8be6e9eb53a4faf8bb50a2996d6}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a601285bed116eb5d63cea9a8d117e5b7}{
-\hyperlink{classphys_1_1xml_1_1AttributeIterator}{attribute\_\-iterator} {\bfseries attributes\_\-begin} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a601285bed116eb5d63cea9a8d117e5b7}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a9af9e0bff5b8ed06bc40861dccb6b4ec}{
-\hyperlink{classphys_1_1xml_1_1AttributeIterator}{attribute\_\-iterator} {\bfseries attributes\_\-end} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a9af9e0bff5b8ed06bc40861dccb6b4ec}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a3c29eb5ecbe37642f29ccdd0be3efbe3}{
-ptrdiff\_\-t {\bfseries OffSetDebug} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a3c29eb5ecbe37642f29ccdd0be3efbe3}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a935f818f5266d68c9d01eab52590f119}{
-size\_\-t {\bfseries HashValue} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a935f818f5266d68c9d01eab52590f119}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1Node_a403f76627bf3bd70b78833ab90340cf6}{
-\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$ {\bfseries InternalObject} () const }
-\label{d7/d0a/classphys_1_1xml_1_1Node_a403f76627bf3bd70b78833ab90340cf6}
-
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Select single node by evaluating an XPath query. Returns first node from the resulting node set. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \hyperlink{classphys_1_1xml_1_1Node_a7390ba1c09b83544365abc7bf8ec5b8f}{FindNodes} (const char\_\-t $\ast$query, \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet} $\ast$variables=0) const 
+\begin{DoxyCompactList}\small\item\em Select a group of nodes by evaluating an XPath query. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \hyperlink{classphys_1_1xml_1_1Node_a466766bf750da2a04acd8a32d2b8a458}{FindNodes} (const \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} \&query) const 
+\begin{DoxyCompactList}\small\item\em Select a group of nodes by evaluating an XPath query. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}{Print} (\hyperlink{classphys_1_1xml_1_1Writer}{Writer} \&WriterInstance, const char\_\-t $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int Depth=0) const 
+\begin{DoxyCompactList}\small\item\em Output the XML document using a \hyperlink{classphys_1_1xml_1_1Writer}{Writer}. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1xml_1_1Node_aa4076d6ea0db2e5f5c720770bf02349e}{Print} (std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&os, const char\_\-t $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto, unsigned int Depth=0) const 
+\begin{DoxyCompactList}\small\item\em Output the XML document using a Output Stream. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1xml_1_1Node_ac705b62114dbc65a204ed2197891322c}{Print} (std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&os, const char\_\-t $\ast$indent=XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{}), unsigned int flags=\hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault}, unsigned int Depth=0) const 
+\begin{DoxyCompactList}\small\item\em Output the XML document using a Output Stream. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1NodeIterator}{iterator} \hyperlink{classphys_1_1xml_1_1Node_a39a71c0c078f648de0e716ed59a0446a}{begin} () const 
+\begin{DoxyCompactList}\small\item\em Get a Child node iterator that references the first child \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1NodeIterator}{iterator} \hyperlink{classphys_1_1xml_1_1Node_a1f083209c52d7af4a354db2b3f198cf8}{end} () const 
+\begin{DoxyCompactList}\small\item\em Get a Child node iterator that references one past the last child \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1AttributeIterator}{attribute\_\-iterator} \hyperlink{classphys_1_1xml_1_1Node_a9ede8da51d334d31167a6740e233c103}{attributes\_\-begin} () const 
+\begin{DoxyCompactList}\small\item\em Get an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} iterator that references the first \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1AttributeIterator}{attribute\_\-iterator} \hyperlink{classphys_1_1xml_1_1Node_ac2535dd3ebc22454993f09fb66ace134}{attributes\_\-end} () const 
+\begin{DoxyCompactList}\small\item\em Get an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} iterator that references the one past the last \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
+ptrdiff\_\-t \hyperlink{classphys_1_1xml_1_1Node_add5c56d3e9bef050c774b9aa97240e98}{OffSetDebug} () const 
+\begin{DoxyCompactList}\small\item\em Get node Offset in parsed file/string (in char\_\-t units) for debugging purposes. \item\end{DoxyCompactList}\item 
+size\_\-t \hyperlink{classphys_1_1xml_1_1Node_a830a1833c4b4b012f1b4481e91ccb1ca}{HashValue} () const 
+\begin{DoxyCompactList}\small\item\em Get hash Value (unique for handles to the same object). \item\end{DoxyCompactList}\item 
+\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$ \hyperlink{classphys_1_1xml_1_1Node_a0d2c64c909e7545d01b586fe9d0bd9d4}{InternalObject} () const 
+\begin{DoxyCompactList}\small\item\em Get internal pointer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Types}
 \begin{DoxyCompactItemize}
 \item 
@@ -238,11 +202,8 @@ typedef \hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$Node::$\as
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1xml_1_1Node_a709eb0cd1c82c1d8e50831dec6c96419}{
-\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$ {\bfseries \_\-GetRoot}}
-\label{d7/d0a/classphys_1_1xml_1_1Node_a709eb0cd1c82c1d8e50831dec6c96419}
-
-\end{DoxyCompactItemize}
+\hyperlink{structphys_1_1xml_1_1NodeStruct}{NodeStruct} $\ast$ \hyperlink{classphys_1_1xml_1_1Node_acfef549b712d4599e579ed5495037acd}{\_\-GetRoot}
+\begin{DoxyCompactList}\small\item\em Stores pointers to the \hyperlink{classphys_1_1xml_1_1Node}{Node} data and some metadata. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
@@ -261,7 +222,7 @@ class {\bfseries NodeIterator}}
 \subsection{Detailed Description}
 A light-\/weight handle for manipulating nodes in DOM tree. 
 
-Definition at line 460 of file xml.h.
+Definition at line 461 of file xml.h.
 
 
 
@@ -411,6 +372,66 @@ The desired \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyp
 
 Definition at line 4101 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Node_a9ede8da51d334d31167a6740e233c103}{
+\index{phys::xml::Node@{phys::xml::Node}!attributes\_\-begin@{attributes\_\-begin}}
+\index{attributes\_\-begin@{attributes\_\-begin}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{attributes\_\-begin}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::attributes\_\-begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a9ede8da51d334d31167a6740e233c103}
+
+
+Get an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} iterator that references the first \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A Node::Iterator that reference the first child node. 
+\end{DoxyReturn}
+
+
+Definition at line 3647 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_ac2535dd3ebc22454993f09fb66ace134}{
+\index{phys::xml::Node@{phys::xml::Node}!attributes\_\-end@{attributes\_\-end}}
+\index{attributes\_\-end@{attributes\_\-end}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{attributes\_\-end}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::attributes\_\-end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_ac2535dd3ebc22454993f09fb66ace134}
+
+
+Get an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} iterator that references the one past the last \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A Node::Iterator that reference the last \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+
+
+Definition at line 3652 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a39a71c0c078f648de0e716ed59a0446a}{
+\index{phys::xml::Node@{phys::xml::Node}!begin@{begin}}
+\index{begin@{begin}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{begin}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::begin (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a39a71c0c078f648de0e716ed59a0446a}
+
+
+Get a Child node iterator that references the first child \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A Node::Iterator that reference the first child \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+
+
+Definition at line 3637 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_a97363b63a1963e28bf7503c32b0702e5}{
 \index{phys::xml::Node@{phys::xml::Node}!ChildValue@{ChildValue}}
 \index{ChildValue@{ChildValue}!phys::xml::Node@{phys::xml::Node}}
@@ -474,6 +495,26 @@ Returns True if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is storing nothi
 
 Definition at line 3687 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Node_a1f083209c52d7af4a354db2b3f198cf8}{
+\index{phys::xml::Node@{phys::xml::Node}!end@{end}}
+\index{end@{end}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{end}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::end (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a1f083209c52d7af4a354db2b3f198cf8}
+
+
+Get a Child node iterator that references one past the last child \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+
+\begin{DoxyReturn}{Returns}
+A Node::Iterator that reference the last child \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
+\end{DoxyReturn}
+
+
+Definition at line 3642 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_af6cf25d1823ccf0f9f123825ef8537bd}{
 \index{phys::xml::Node@{phys::xml::Node}!FindAttribute@{FindAttribute}}
 \index{FindAttribute@{FindAttribute}!phys::xml::Node@{phys::xml::Node}}
@@ -495,7 +536,7 @@ This returns the first \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that
 \end{DoxyReturn}
 
 
-Definition at line 635 of file xml.h.
+Definition at line 636 of file xml.h.
 
 \hypertarget{classphys_1_1xml_1_1Node_aba9be6b2bab1e5ca9ca7a201e887bd48}{
 \index{phys::xml::Node@{phys::xml::Node}!FindChild@{FindChild}}
@@ -518,7 +559,7 @@ This returns the first \hyperlink{classphys_1_1xml_1_1Node}{Node} that causes Pr
 \end{DoxyReturn}
 
 
-Definition at line 647 of file xml.h.
+Definition at line 648 of file xml.h.
 
 \hypertarget{classphys_1_1xml_1_1Node_a8a362455b50e54454f145f9109a85e49}{
 \index{phys::xml::Node@{phys::xml::Node}!FindChildbyAttribute@{FindChildbyAttribute}}
@@ -563,7 +604,57 @@ This returns the first \hyperlink{classphys_1_1xml_1_1Node}{Node} that causes Pr
 \end{DoxyReturn}
 
 
-Definition at line 659 of file xml.h.
+Definition at line 660 of file xml.h.
+
+\hypertarget{classphys_1_1xml_1_1Node_a466766bf750da2a04acd8a32d2b8a458}{
+\index{phys::xml::Node@{phys::xml::Node}!FindNodes@{FindNodes}}
+\index{FindNodes@{FindNodes}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FindNodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf XPathNodeSet} phys::xml::Node::FindNodes (
+\begin{DoxyParamCaption}
+\item[{const {\bf XPathQuery} \&}]{ query}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a466766bf750da2a04acd8a32d2b8a458}
+
+
+Select a group of nodes by evaluating an XPath query. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em query}]The XPath query \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} with the Matchs of the XPath query. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em query}]The XPath query \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \end{DoxyParams}
+
+
+Definition at line 9621 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_a7390ba1c09b83544365abc7bf8ec5b8f}{
+\index{phys::xml::Node@{phys::xml::Node}!FindNodes@{FindNodes}}
+\index{FindNodes@{FindNodes}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{FindNodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf XPathNodeSet} phys::xml::Node::FindNodes (
+\begin{DoxyParamCaption}
+\item[{const char\_\-t $\ast$}]{ query, }
+\item[{{\bf XPathVariableSet} $\ast$}]{ variables = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a7390ba1c09b83544365abc7bf8ec5b8f}
+
+
+Select a group of nodes by evaluating an XPath query. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em query}]The XPath query as a c-\/string to be evaluated. \item[{\em \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{XPathVariableSet}}]undocumented. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} with the Matchs of the XPath query. 
+\end{DoxyReturn}
+
+
+Definition at line 9615 of file xml.cpp.
 
 \hypertarget{classphys_1_1xml_1_1Node_a13b958f663f9605061e5e47dfd8e1966}{
 \index{phys::xml::Node@{phys::xml::Node}!FindSingleNode@{FindSingleNode}}
@@ -576,7 +667,7 @@ Definition at line 659 of file xml.h.
 \label{d7/d0a/classphys_1_1xml_1_1Node_a13b958f663f9605061e5e47dfd8e1966}
 
 
-Select single node by evaluating XPath query. Returns first node from the resulting node set. 
+Select single node by evaluating an XPath query. Returns first node from the resulting node set. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -600,7 +691,7 @@ Definition at line 9609 of file xml.cpp.
 \label{d7/d0a/classphys_1_1xml_1_1Node_a11966aa8afdfa586404393ebae9b07f5}
 
 
-Select single node by evaluating XPath query. Returns first node from the resulting node set. 
+Select single node by evaluating an XPath query. Returns first node from the resulting node set. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -890,6 +981,31 @@ A \hyperlink{classphys_1_1xml_1_1Node}{Node} that represents the root of the XML
 
 Definition at line 3769 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Node_a830a1833c4b4b012f1b4481e91ccb1ca}{
+\index{phys::xml::Node@{phys::xml::Node}!HashValue@{HashValue}}
+\index{HashValue@{HashValue}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{HashValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::HashValue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a830a1833c4b4b012f1b4481e91ccb1ca}
+
+
+Get hash Value (unique for handles to the same object). 
+
+\begin{DoxyReturn}{Returns}
+ptrdiff\_\-t 
+\end{DoxyReturn}
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+A size\_\-t that uniquely identifies this node. 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 4329 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_a8444ca5b7b7411fb9fc4c002ea7beb9e}{
 \index{phys::xml::Node@{phys::xml::Node}!InsertAttributeAfter@{InsertAttributeAfter}}
 \index{InsertAttributeAfter@{InsertAttributeAfter}!phys::xml::Node@{phys::xml::Node}}
@@ -1131,6 +1247,28 @@ The copied \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hype
 
 Definition at line 4128 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Node_a0d2c64c909e7545d01b586fe9d0bd9d4}{
+\index{phys::xml::Node@{phys::xml::Node}!InternalObject@{InternalObject}}
+\index{InternalObject@{InternalObject}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{InternalObject}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::InternalObject (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0d2c64c909e7545d01b586fe9d0bd9d4}
+
+
+Get internal pointer. 
+
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+A NodeStruct$\ast$ that points to the internal data of this \hyperlink{classphys_1_1xml_1_1Node}{Node} 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 4334 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_a53facd97d76240a3f3fffc86caacdc24}{
 \index{phys::xml::Node@{phys::xml::Node}!Name@{Name}}
 \index{Name@{Name}!phys::xml::Node@{phys::xml::Node}}
@@ -1154,6 +1292,25 @@ returns \char`\"{}\char`\"{} if \hyperlink{classphys_1_1xml_1_1Node}{Node} is em
 
 Definition at line 3692 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Node_add5c56d3e9bef050c774b9aa97240e98}{
+\index{phys::xml::Node@{phys::xml::Node}!OffSetDebug@{OffSetDebug}}
+\index{OffSetDebug@{OffSetDebug}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{OffSetDebug}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::OffSetDebug (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_add5c56d3e9bef050c774b9aa97240e98}
+
+
+Get node Offset in parsed file/string (in char\_\-t units) for debugging purposes. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 4364 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_a1a3af56736ef4dd39596bb71607ebbc7}{
 \index{phys::xml::Node@{phys::xml::Node}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
 \index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!phys::xml::Node@{phys::xml::Node}}
@@ -1168,7 +1325,7 @@ Definition at line 3692 of file xml.cpp.
 Used to convert this to a boolean value in a safe way. 
 
 \begin{DoxyReturn}{Returns}
-Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+Returns true if the internal data is set and false otherwise. 
 \end{DoxyReturn}
 
 
@@ -1470,6 +1627,77 @@ The copied \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hype
 
 Definition at line 4110 of file xml.cpp.
 
+\hypertarget{classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}{
+\index{phys::xml::Node@{phys::xml::Node}!Print@{Print}}
+\index{Print@{Print}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Node::Print (
+\begin{DoxyParamCaption}
+\item[{{\bf Writer} \&}]{ WriterInstance, }
+\item[{const char\_\-t $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}, }
+\item[{unsigned int}]{ Depth = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}
+
+
+Output the XML document using a \hyperlink{classphys_1_1xml_1_1Writer}{Writer}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em WriterInstance}]The \hyperlink{classphys_1_1xml_1_1Writer}{Writer} that will be used to output the xml text. \item[{\em indent}]The Character(s) used to represent a tab in the output, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \item[{\em DocumentEncoding}]The \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{xml::Encoding} of the document, whichs defaults to EncodingAuto \item[{\em Depth}]This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\end{DoxyParams}
+This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration. 
+
+Definition at line 4339 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_ac705b62114dbc65a204ed2197891322c}{
+\index{phys::xml::Node@{phys::xml::Node}!Print@{Print}}
+\index{Print@{Print}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Node::Print (
+\begin{DoxyParamCaption}
+\item[{std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{ os, }
+\item[{const char\_\-t $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{unsigned int}]{ Depth = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_ac705b62114dbc65a204ed2197891322c}
+
+
+Output the XML document using a Output Stream. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em os}]An output stream to send xml text to. \item[{\em indent}]The Character(s) used to represent a tab in the outpput, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault} \item[{\em Depth}]This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\end{DoxyParams}
+This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration. 
+
+Definition at line 4356 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1Node_aa4076d6ea0db2e5f5c720770bf02349e}{
+\index{phys::xml::Node@{phys::xml::Node}!Print@{Print}}
+\index{Print@{Print}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Node::Print (
+\begin{DoxyParamCaption}
+\item[{std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{ os, }
+\item[{const char\_\-t $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}, }
+\item[{unsigned int}]{ Depth = {\ttfamily 0}}
+\end{DoxyParamCaption}
+) const}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_aa4076d6ea0db2e5f5c720770bf02349e}
+
+
+Output the XML document using a Output Stream. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em os}]An output stream to send xml text to. \item[{\em indent}]The Character(s) used to represent a tab in the outpput, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault} \item[{\em DocumentEncoding}]The \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{xml::Encoding} of the document, whichs defaults to EncodingAuto \item[{\em Depth}]This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\end{DoxyParams}
+This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration. 
+
+Definition at line 4349 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1Node_ab166876c5dd5a43a16eb0a4c110be7ca}{
 \index{phys::xml::Node@{phys::xml::Node}!RemoveAttribute@{RemoveAttribute}}
 \index{RemoveAttribute@{RemoveAttribute}!phys::xml::Node@{phys::xml::Node}}
@@ -1629,16 +1857,17 @@ Definition at line 3832 of file xml.cpp.
 \label{d7/d0a/classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}
 
 
-undocumented 
+Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em walker}]a Treewalker \end{DoxyParams}
-\begin{Desc}
-\item[\hyperlink{todo__todo000054}{Todo}]document this once \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker} is documented. \end{Desc}
+\item[{\em walker}]Any class that fully implement xml::Treewalker. This is where the algorithm to be run is located. \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-A bool 
+True if every descendant \hyperlink{classphys_1_1xml_1_1Node}{Node} of this \hyperlink{classphys_1_1xml_1_1Node}{Node} was iterated through, false if it didn't go through every \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
 \end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classphys_1_1xml_1_1TreeWalker}{xml::TreeWalker} 
+\end{DoxySeeAlso}
 
 
 Definition at line 4281 of file xml.cpp.
@@ -1685,6 +1914,24 @@ returns \char`\"{}\char`\"{} if \hyperlink{classphys_1_1xml_1_1Node}{Node} is em
 
 
 Definition at line 3702 of file xml.cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classphys_1_1xml_1_1Node_acfef549b712d4599e579ed5495037acd}{
+\index{phys::xml::Node@{phys::xml::Node}!\_\-GetRoot@{\_\-GetRoot}}
+\index{\_\-GetRoot@{\_\-GetRoot}!phys::xml::Node@{phys::xml::Node}}
+\subsubsection[{\_\-GetRoot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::Node::\_\-GetRoot}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_acfef549b712d4599e579ed5495037acd}
+
+
+Stores pointers to the \hyperlink{classphys_1_1xml_1_1Node}{Node} data and some metadata. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 467 of file xml.h.
 
 
 

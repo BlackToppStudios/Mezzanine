@@ -27,7 +27,8 @@
 </div>
 <div class="header">
   <div class="summary">
-<a href="#namespaces">Namespaces</a>  </div>
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <h1>xmldoc.h File Reference</h1>  </div>
 </div>
@@ -35,6 +36,7 @@
 
 <p>The Doxygen documentation and minor tools to assist with the XML system.  
 <a href="#_details">More...</a></p>
+<code>#include &quot;datatypes.h&quot;</code><br/>
 
 <p><a href="../../d1/d99/xmldoc_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -50,6 +52,12 @@ Namespaces</h2></td></tr>
 <p><tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate. </p>
 <br/></td></tr>
 </p>
+<tr><td colspan="2"><h2><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a9d912900518f0d84d323d1514dfb93a2">phys::xml::GetOneTag</a> (std::istream &amp;stream)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the first tag out of the Stream and returns it as a String.  <a href="#a9d912900518f0d84d323d1514dfb93a2"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">Document *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#aa48ad222ba9a6fe46a76c2add6923028">phys::xml::PreParseClassFromSingleTag</a> (const String &amp;NameSpace, const String &amp;ClassName, const String &amp;OneTag, Whole MinVersion)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Perform a basic series of checks for extracting meaning from a single xml tag.  <a href="#aa48ad222ba9a6fe46a76c2add6923028"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>The Doxygen documentation and minor tools to assist with the XML system. </p>
@@ -57,7 +65,7 @@ Namespaces</h2></td></tr>
 
 <p>Definition in file <a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>.</p>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:11 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:44 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

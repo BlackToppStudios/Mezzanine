@@ -87,7 +87,7 @@
 <a name="l00056"></a>00056         <span class="comment">// create the ray scene query object</span>
 <a name="l00057"></a>00057         this-&gt;RayQuery = this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a86a86a78851845837ccc43da8b3a3019" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
 <a name="l00058"></a>00058         <span class="keywordflow">if</span> (NULL == this-&gt;RayQuery)
-<a name="l00059"></a>00059             {this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;Failed to create RaySceneQuery instance in WorldQueryTool&quot;</span>); }
+<a name="l00059"></a>00059             {this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a372ee96d395d735531f755fc0a72de4a" title="This is the preferred way to throw an exception.">LogAndThrow</a>(<span class="stringliteral">&quot;Failed to create RaySceneQuery instance in WorldQueryTool&quot;</span>); }
 <a name="l00060"></a>00060         this-&gt;RayQuery-&gt;setSortByDistance(<span class="keyword">true</span>);
 <a name="l00061"></a>00061     }
 <a name="l00062"></a>00062 
@@ -110,7 +110,7 @@
 <a name="l00079"></a>00079                 <span class="keywordflow">return</span> NULL;
 <a name="l00080"></a>00080             }
 <a name="l00081"></a>00081         }<span class="keywordflow">else</span>{                          <span class="comment">//Whoopsie something Failed</span>
-<a name="l00082"></a>00082             this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;Attempting to run a query on Null RaySceneQuery&quot;</span>);
+<a name="l00082"></a>00082             this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a372ee96d395d735531f755fc0a72de4a" title="This is the preferred way to throw an exception.">LogAndThrow</a>(<span class="stringliteral">&quot;Attempting to run a query on Null RaySceneQuery&quot;</span>);
 <a name="l00083"></a>00083         }
 <a name="l00084"></a>00084 
 <a name="l00085"></a>00085         <span class="comment">// at this point we have raycast to a series of different objects bounding boxes.</span>
@@ -195,7 +195,7 @@
 <a name="l00164"></a>00164                 <span class="keywordflow">return</span> NULL;
 <a name="l00165"></a>00165             }
 <a name="l00166"></a>00166         }<span class="keywordflow">else</span>{                          <span class="comment">//Whoopsie something Failed</span>
-<a name="l00167"></a>00167             this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;Attempting to run a query on Null RaySceneQuery&quot;</span>);
+<a name="l00167"></a>00167             this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a372ee96d395d735531f755fc0a72de4a" title="This is the preferred way to throw an exception.">LogAndThrow</a>(<span class="stringliteral">&quot;Attempting to run a query on Null RaySceneQuery&quot;</span>);
 <a name="l00168"></a>00168         }
 <a name="l00169"></a>00169 
 <a name="l00170"></a>00170         Ogre::RaySceneQueryResult &amp;query_result = this-&gt;RayQuery-&gt;getLastResults();
@@ -481,7 +481,7 @@
 <a name="l00450"></a>00450 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:11 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

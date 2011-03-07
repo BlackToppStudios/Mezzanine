@@ -175,4 +175,39 @@ namespace phys
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+std::ostream& operator << (std::ostream& stream, const phys::Vector2& x)
+{
+    #ifdef PHYSXML
+        stream << "<Vector2 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" />";
+    #else
+        stream << "[" << x.X << "," << x.Y << "]";
+    #endif // \PHYSXML
+    return stream;
+}
+
+#ifdef PHYSXML
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector2& Vec)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Vector2", OneTag) );
+
+    Doc->GetFirstChild() >> Vec;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector2& Vec)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        Vec.X=OneNode.GetAttribute("X").AsReal();
+        Vec.Y=OneNode.GetAttribute("Y").AsReal();
+    }else{
+        throw( phys::Exception("Incompatible XML Version for Vector2: Not Version 1"));
+    }
+}
+#endif // \PHYSXML
+
 #endif

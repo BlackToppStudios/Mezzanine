@@ -126,7 +126,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ae1c2320961faca954e7e34acc166f8d0">GetPreviousAttribute</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the previous attribute.  <a href="#ae1c2320961faca954e7e34acc166f8d0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">size_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#ac0c27e07b705c41670a0903f4fe18378">HashValue</a> () const </td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get a unique indentifying value for the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this represents.  <a href="#ac0c27e07b705c41670a0903f4fe18378"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get a unique identifying value for the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this represents.  <a href="#ac0c27e07b705c41670a0903f4fe18378"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html#a1354d5f93309a999651e11b1cd4c2f62">InternalObject</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Retrieve a pointer to the internal data.  <a href="#a1354d5f93309a999651e11b1cd4c2f62"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
@@ -139,7 +139,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>A light-weight handle for manipulating attributes in DOM tree. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00338">338</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00339">339</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a6786df9d66c675c5a55761a7d3d512a5"></a><!-- doxytag: member="phys::xml::Attribute::Attribute" ref="a6786df9d66c675c5a55761a7d3d512a5" args="(AttributeStruct *attr)" -->
 <div class="memitem">
@@ -160,7 +160,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <p>Constructs attribute from internal pointer. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>attr</em>&nbsp;</td><td>An internal <a class="el" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a> pointer containing all the data to create an attribute. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>attr</em>&nbsp;</td><td>An internal <a class="el" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html" title="The internal data storage structure used in an Attribute.">AttributeStruct</a> pointer containing all the data to create an attribute. </td></tr>
   </table>
   </dd>
 </dl>
@@ -483,7 +483,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 </div>
 <div class="memdoc">
 
-<p>Get a unique indentifying value for the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this represents. </p>
+<p>Get a unique identifying value for the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this represents. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A size_t that is unique per <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> that an attribute could represent. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03503">3503</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
@@ -552,7 +552,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <div class="memdoc">
 
 <p>Used to convert this to a boolean value in a safe way. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns true if the internal data is set and false otherwise. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03359">3359</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
@@ -575,7 +575,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 
 <p>Used to convert this attribute the opposite of it's normal boolean value. </p>
 <p>This is described in the PugiXML source a a workaround for a borland c++ issue. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns false if the internal pointer <a class="el" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html">AttributeStruct</a> is set and true otherwise. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns false if the internal pointer <a class="el" href="../../dd/dfe/structphys_1_1xml_1_1AttributeStruct.html" title="The internal data storage structure used in an Attribute.">AttributeStruct</a> is set and true otherwise. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03364">3364</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
@@ -965,7 +965,7 @@ template&lt;class T &gt; </div>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>You should not pass classes that stream/serialize to xml into this function, the result will be invalid XML. If you must, find a way to strip out the "&gt;" character, then you can reinsert it later </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000042">Todo:</a></b></dt><dd>Strip "&gt;" automatically and provide a method to reconsitute it. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00430">430</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00431">431</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 
 </div>
 </div>
@@ -1158,7 +1158,7 @@ template&lt;class T &gt; </div>
 <li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:20 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:53 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

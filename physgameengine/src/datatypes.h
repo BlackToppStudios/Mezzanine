@@ -47,6 +47,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <map>
 
 /// @internal
 /// @brief Forward declaration for SDL compatibilty
@@ -219,6 +220,20 @@ namespace phys
         Converter >> Results;
         return Results;
     }
+
+    /// @brief Concatenates 2 Strings
+    /// @param Front The first String
+    /// @param Back The last String
+    /// @return A string containing the other Strings passed attached end to end
+    String StringCat(const String& Front, const String& Back);
+
+    /// @brief Concatenates 3 Strings
+    /// @param Front The first String
+    /// @param Middle The
+    /// @param Back The last String
+    /// @return A string containing the other Strings passed attached end to end
+    String StringCat(const String& Front, const String& Middle, const String& Back);
+
 
 } // \phys
 

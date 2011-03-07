@@ -40,6 +40,7 @@
 #ifndef _uirectangle_cpp
 #define _uirectangle_cpp
 
+#include "inputquerytool.h"
 #include "uirectangle.h"
 #include "uimanager.h"
 #include "uilayer.h"
@@ -93,7 +94,7 @@ namespace phys
         {
             if(!GRectangle->IsVisible())
                 return false;
-            Vector2 MouseLoc = Manager->GetGameWorld()->GetEventManager()->GetMouseCoords();
+            Vector2 MouseLoc = Manager->GetInputQueryer()->GetMouseCoordinates();
             if(GRectangle->intersects(MouseLoc.GetOgreVector2()))
             {
                 MouseHover = true;

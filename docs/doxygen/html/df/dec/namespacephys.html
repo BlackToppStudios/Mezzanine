@@ -199,6 +199,10 @@ Typedefs</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This is a vector that stores sounds.  <a href="#ab780c3162da5699fe421f3739ba03fc4"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#a7b6390aedd6532260accd12e829bf654">StringCat</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Front, const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Back)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Concatenates 2 Strings.  <a href="#a7b6390aedd6532260accd12e829bf654"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#a2acc1c7ec01ac009cfe227d418da4b8b">StringCat</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Front, const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Middle, const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Back)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Concatenates 3 Strings.  <a href="#a2acc1c7ec01ac009cfe227d418da4b8b"></a><br/></td></tr>
 <tr><td class="memTemplParams" colspan="2">template&lt;class T &gt; </td></tr>
 <tr><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../df/dec/namespacephys.html#ae81e34843c6c569026b9a7d9d54c4f04">ToString</a> (const T &amp;Datum)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts whatever to a String as long as a streaming operator is available for it.  <a href="#ae81e34843c6c569026b9a7d9d54c4f04"></a><br/></td></tr>
@@ -374,6 +378,87 @@ Functions</h2></td></tr>
 </div>
 </div>
 <hr/><h2>Function Documentation</h2>
+<a class="anchor" id="a7b6390aedd6532260accd12e829bf654"></a><!-- doxytag: member="phys::StringCat" ref="a7b6390aedd6532260accd12e829bf654" args="(const String &amp;Front, const String &amp;Back)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::StringCat </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&nbsp;</td>
+          <td class="paramname"> <em>Front</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;&nbsp;</td>
+          <td class="paramname"> <em>Back</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Concatenates 2 Strings. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Front</em>&nbsp;</td><td>The first String </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Back</em>&nbsp;</td><td>The last String </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing the other Strings passed attached end to end </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2acc1c7ec01ac009cfe227d418da4b8b"></a><!-- doxytag: member="phys::StringCat" ref="a2acc1c7ec01ac009cfe227d418da4b8b" args="(const String &amp;Front, const String &amp;Middle, const String &amp;Back)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> phys::StringCat </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;&nbsp;</td>
+          <td class="paramname"> <em>Front</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;&nbsp;</td>
+          <td class="paramname"> <em>Middle</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;&nbsp;</td>
+          <td class="paramname"> <em>Back</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Concatenates 3 Strings. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Front</em>&nbsp;</td><td>The first String </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Middle</em>&nbsp;</td><td>The </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Back</em>&nbsp;</td><td>The last String </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A string containing the other Strings passed attached end to end </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="aa89192e0bb495fdf141649f5abd88963"></a><!-- doxytag: member="phys::Todouble" ref="aa89192e0bb495fdf141649f5abd88963" args="(const T &amp;Datum)" -->
 <div class="memitem">
 <div class="memproto">
@@ -627,7 +712,7 @@ template&lt;class T &gt; </div>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:11 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:44 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

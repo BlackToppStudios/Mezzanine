@@ -52,6 +52,8 @@
 
 #include <queue>
 
+#include <Ogre.h>
+
 #include <btBulletDynamicsCommon.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 #include <BulletSoftBody/btSoftBodyRigidBodyCollisionConfiguration.h>
@@ -272,6 +274,16 @@ namespace phys
 
     PhysicsManager::~PhysicsManager()
     {
+        for( std::map< String, btCollisionShape* >::iterator it = PhysicsShapes.begin() ; it != PhysicsShapes.end() ; it++ )
+        {
+            delete (*it).second;
+        }
+        PhysicsShapes.clear();
+        for( std::vector< AreaEffect* >::iterator it2 = AreaEffects.begin() ; it2 != AreaEffects.end() ; it2++ )
+        {
+            delete (*it2);
+        }
+        AreaEffects.clear();
         //Destroy the physical world that we loved and cherished
         delete BulletDynamicsWorld;
         delete BulletDispatcher;
@@ -279,7 +291,6 @@ namespace phys
         delete BulletSolver;
         delete BulletBroadphase;
         delete BulletDrawer;
-
     }
 
     void PhysicsManager::Construct(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
@@ -293,10 +304,11 @@ namespace phys
         this->GeographyUpperBounds = GeographyUpperbounds_;
         this->MaxPhysicsProxies = MaxPhysicsProxies_;
 
-        this->BulletBroadphase = new btAxisSweep3(  GeographyLowerBounds.GetBulletVector3(),
+        /*this->BulletBroadphase = new btAxisSweep3(  GeographyLowerBounds.GetBulletVector3(),
                                                     GeographyUpperBounds.GetBulletVector3(),
                                                     MaxPhysicsProxies
-                                                 );
+                                                 );*/
+        this->BulletBroadphase = new btDbvtBroadphase();
 
         this->GhostCallback = new btGhostPairCallback();
         this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(GhostCallback);
@@ -339,7 +351,11 @@ namespace phys
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
+        static Ogre::Timer* Profiler = new Ogre::Timer();
+        Profiler->reset();
         ProcessAllEffects();
+        GameWorld->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->Log();
 
         Real FloatTime = TimeElapsed;
         FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
@@ -349,18 +365,28 @@ namespace phys
 
         //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
         int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe
+        Profiler->reset();
         this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
+        GameWorld->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->Log();
 
+        // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
+        this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
+
+        Profiler->reset();
         if( this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
         {
             this->BulletDrawer->PrepareForRendering();
             this->BulletDynamicsWorld->debugDrawWorld();
         }
+        GameWorld->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->Log();
 
         #ifdef PHYSDEBUG
         this->GameWorld->Log("Checking for Collisions.");
         #endif
 
+        Profiler->reset();
         int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
         for (int i=0;i<numManifolds;i++)
         {
@@ -386,6 +412,8 @@ namespace phys
                 }
             }
         }
+        GameWorld->LogStream << "Contact Manifold Iteration took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->Log();
     }
 
     void PhysicsManager::SetGravity(Vector3 pgrav)

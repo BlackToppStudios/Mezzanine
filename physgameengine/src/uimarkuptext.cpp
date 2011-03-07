@@ -103,6 +103,16 @@ namespace phys
             return GMarkup->text();
         }
 
+        void MarkupText::SetTextScale(Real Scale)
+        {
+            GMarkup->SetCharScaling(Scale);
+        }
+
+        Real MarkupText::GetTextScale()
+        {
+            return GMarkup->GetCharScaling();
+        }
+
         void MarkupText::SetDefaultGlyphIndex(const Whole DefaultGlyphIndex)
         {
             Glyphs = DefaultGlyphIndex;

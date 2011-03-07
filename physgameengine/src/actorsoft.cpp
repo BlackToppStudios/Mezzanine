@@ -241,7 +241,7 @@ namespace phys{
         this->SetOgreOrientation(Rotation);
     }
 
-    void ActorSoft::CreateShapeFromMeshDynamic(short unsigned int accuracy)
+    void ActorSoft::CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes)
     {
     }
 
@@ -255,6 +255,11 @@ namespace phys{
     {
         TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeSoftBody(this->physsoftbody);
         this->DetachFromGraphics();
+    }
+
+    btSoftBody* ActorSoft::GetBulletObject()
+    {
+        return physsoftbody;
     }
 }
 #endif

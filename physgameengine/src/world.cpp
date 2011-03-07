@@ -146,7 +146,7 @@ namespace phys
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
-        Ogre::Root* OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),"Physgame.log");
+        Ogre::Root* OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName);
 
         assert(0==World::TheRealWorld);
         World::TheRealWorld = this;
@@ -206,13 +206,14 @@ namespace phys
     //tears the world down
     World::~World()
     {
-        //All the pointers Ogre made should get taken care of by OGRE
-        Ogre::Root::getSingleton().shutdown();
-
         for(std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); iter!= ManagerList.end(); iter++)
         {
-            this->ManagerList.erase(iter);
+            delete (*iter);
         }
+        ManagerList.clear();
+
+        //All the pointers Ogre made should get taken care of by OGRE
+        Ogre::Root::getSingleton().shutdown();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -342,6 +343,7 @@ namespace phys
         }//End of main loop
 
         //Some after loop cleanup
+        Whole X = 0;
         //this->DestroyRenderWindow();
     }
 

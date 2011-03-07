@@ -79,7 +79,7 @@ namespace phys
             void Construct(Ogre::Camera* Camera, CameraManager* Manager);
 
         protected:
-            friend class Node;
+            friend class WorldNode;
             friend class CameraManager;
             /// @internal
             /// @brief This is the Camera used by the graphics Subsystem, that this class wraps

@@ -50,9 +50,40 @@ namespace Ogre
 }
 
 class SDL_Surface;
+class SDL_Window;
 
 namespace phys
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class GraphicsSettings
+    /// @headerfile graphicsmanager.h
+    /// @brief This stores all the possible configuration options the graphics manager supports.
+    /// @details The graphics manager stores one of these for all of it's configuration options,
+    /// additionally one can be created and passed into the manager to set all the configuration
+    /// options at once.
+    ///////////////////////////////////////
+    struct GraphicsSettings
+    {
+        /// @brief This stores the Height of the renderwindow
+        Whole RenderHeight;
+        /// @brief This stores the Width of the renderwindow
+        Whole RenderWidth;
+        /// @brief This is the desired state of whether the window is fullscreen or not.
+        bool Fullscreen;
+        /// @brief This is the desired state of whether to enable VSync or not.
+        bool VSync;
+        /// @brief Struct Constructor
+        GraphicsSettings() : RenderHeight(0),RenderWidth(0),Fullscreen(false),VSync(false) {}
+        GraphicsSettings& operator= (const GraphicsSettings &GS)
+        {
+            this->RenderHeight = GS.RenderHeight;
+            this->RenderWidth = GS.RenderWidth;
+            this->Fullscreen = GS.Fullscreen;
+            this->VSync = GS.VSync;
+            return *this;
+        }
+    };
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class GraphicsManager
     /// @headerfile graphicsmanager.h
@@ -61,20 +92,14 @@ namespace phys
     /// settings. This is intended to make it easy for developers to pass/move around
     /// complex graphics settings. We hope to eventually include other items like
     /// shader settings, rendering API, and maybe other settings too.
+    ///////////////////////////////////////
     class PHYS_LIB GraphicsManager: public ManagerBase
     {
         private:
-            /// @internal
-            /// @brief This is the desired state of whether the window is fullscreen or not.
-            bool Fullscreen;
+            GraphicsSettings Settings;
 
-            /// @internal
-            /// @brief This stores the Height of the renderwindow
-            Whole RenderHeight;
-
-            /// @internal
-            /// @brief This stores the Width of the renderwindow
-            Whole RenderWidth;
+            std::vector<String> SupportedResolutions;
+            std::vector<String> SupportedDevices;
 
             /// @brief Adjust all Settings
             /// @param Width_ The desired width.
@@ -95,9 +120,11 @@ namespace phys
             Ogre::Timer *RenderTimer;
             Ogre::RenderWindow* OgreGameWindow;
             SDL_Surface* SDLscreen;
+            SDL_Window* SDLwindow;
 
             Whole FrameDelay;
             bool SDLBeenInitialized;
+            bool GraphicsInitialized;
 
         public:
             /// @brief Basic constructor
@@ -154,10 +181,7 @@ namespace phys
 
             /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
             /// @details This should be useful in situations where it is not possible to update all of the options separately.
-            /// @param Width_ The new desired Width for the rendering area as a whole number
-            /// @param Height_ The new desired Width for the rendering area as a whole number
-            /// @param Fullscreen_ This accepts a bool. True for fullscreen, false for windowed
-            void setRenderOptions(const Whole &Width_, const Whole &Height_, const bool &Fullscreen_);
+            void setRenderOptions(const GraphicsSettings& NewSettings);
 
             /// @brief Gets whether or not SDL has been started.
             /// @return Returns a bool indicating whether or not SDL has been initialized yet.
@@ -195,6 +219,20 @@ namespace phys
             /// @brief Gets the longest amount of time it's taken to render a frame.
             /// @return Returns a Real representing the worst time for rendering a frame.
             Real GetWorstFrameTime();
+
+            /// @brief Gets the name of the render system in current use.
+            /// @return Returns a string containing the name of the current render system.
+            String GetRenderSystemName();
+
+            /// @brief Gets a vector containing all the resolutions supported by this render system on the current hardware.
+            /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.
+            /// @return Returns a Const Pointer to the vector storing all the supported resolutions.
+            const std::vector<String>* GetSupportedResolutions();
+
+            /// @brief Gets a vector containing all the devices supported by this render system on the current hardware.
+            /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.
+            /// @return Returns a Const Pointer to the vector storing all the supported devices.
+            const std::vector<String>* GetSupportedDevices();
 
         //Inherited from ManagerBase
             /// @brief Empty Initializor

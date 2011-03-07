@@ -73,6 +73,9 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Prepares the resource for use.  <a href="#a6ac7835a02dff32e60a73320f9c9dabb"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#aa2f44129dfc3dc0b0ee332a2bba6078d">InitResourceGroup</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Name)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Makes a resource group ready to use.  <a href="#aa2f44129dfc3dc0b0ee332a2bba6078d"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a348f333ffd9638decd144bf9d65ca05d"></a><!-- doxytag: member="phys::ResourceManager::ParseMaterialScripts" ref="a348f333ffd9638decd144bf9d65ca05d" args="()" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a348f333ffd9638decd144bf9d65ca05d">ParseMaterialScripts</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Parses all Ogre Material scripts. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dc/d52/classphys_1_1ResourceInputStream.html">ResourceInputStream</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a13f0aef080b9a353fe6c910c2781de50">GetResourceStream</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;FileName)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get a stream to read from the specified file.  <a href="#a13f0aef080b9a353fe6c910c2781de50"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a9be3250f1f1153c9e079f82736eb00a8">Initialize</a> ()</td></tr>
@@ -86,6 +89,8 @@ Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1823d2d08fc3b6052ed893896eef6291"></a><!-- doxytag: member="phys::ResourceManager::ApplyShapeToActor" ref="a1823d2d08fc3b6052ed893896eef6291" args="(ActorBase *Actor, btCollisionShape *ColShape)" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a1823d2d08fc3b6052ed893896eef6291">ApplyShapeToActor</a> (<a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html">ActorBase</a> *Actor, btCollisionShape *ColShape)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Applies a saved shape to an Actor. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7c84034fc45e64fc3a07f736230afd38"></a><!-- doxytag: member="phys::ResourceManager::AddResourceGroupName" ref="a7c84034fc45e64fc3a07f736230afd38" args="(String Name)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>AddResourceGroupName</b> (<a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> Name)</td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af19bf0549a0896cf84696a39f4ca817d"></a><!-- doxytag: member="phys::ResourceManager::OgreResource" ref="af19bf0549a0896cf84696a39f4ca817d" args="" -->
@@ -95,6 +100,8 @@ Ogre::ResourceGroupManager *&nbsp;</td><td class="memItemRight" valign="bottom">
 std::vector<br class="typebreak"/>
 &lt; <a class="el" href="../../dc/d52/classphys_1_1ResourceInputStream.html">ResourceInputStream</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/d35/classphys_1_1ResourceManager.html#a03a283e02f3639f5c1f2de915ed798ae">DeleteList</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A list of Pointers to streams created to delete periodically. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a284bc8b042fffbb607355f7874692b54"></a><!-- doxytag: member="phys::ResourceManager::ResourceGroups" ref="a284bc8b042fffbb607355f7874692b54" args="" -->
+std::vector&lt; <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>ResourceGroups</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is the manager responsible for the loading and unloading of files. </p>
@@ -195,7 +202,7 @@ std::vector<br class="typebreak"/>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00168">168</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -242,7 +249,7 @@ std::vector<br class="typebreak"/>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00163">163</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00174">174</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -266,7 +273,7 @@ std::vector<br class="typebreak"/>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aa9e13a3f7c398b708f0f242610b5abf7">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00191">191</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00215">215</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -304,7 +311,7 @@ std::vector<br class="typebreak"/>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00096">96</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00106">106</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -334,7 +341,7 @@ std::vector<br class="typebreak"/>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An derivative of std::istream a <a class="el" href="../../dc/d52/classphys_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> that will pull it's data from the desired resource</dd></dl>
 <p>The returned <a class="el" href="../../dc/d52/classphys_1_1ResourceInputStream.html" title="A stream from a file, can read from zip files as well.">ResourceInputStream</a> is the Caller's responsibility to deal with. If it is not deleted it is a memory leak. </p>
 
-<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00197">197</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -358,7 +365,7 @@ std::vector<br class="typebreak"/>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00195">195</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00219">219</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -396,7 +403,7 @@ std::vector<br class="typebreak"/>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00116">116</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00126">126</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -421,7 +428,7 @@ std::vector<br class="typebreak"/>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00187">187</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00211">211</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -450,7 +457,7 @@ std::vector<br class="typebreak"/>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00168">168</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html#l00179">179</a> of file <a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -459,7 +466,7 @@ std::vector<br class="typebreak"/>
 <li><a class="el" href="../../d6/d69/resourcemanager_8cpp_source.html">resourcemanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:17 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:49 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -1,0 +1,9 @@
+#!/bin/bash
+#this will build ogre and SDL and make sure their files wind up were CMake Expects them to be
+cd ogresrc/ogre
+cmake -G"CodeBlocks - Unix Makefiles"
+make 
+cd ../../../common/sdlsrc/SDL/
+./autogen.sh
+./configure LDFLAGS=-fPIC CFLAGS=-O2
+make

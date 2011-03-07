@@ -84,20 +84,6 @@ namespace phys
             /// @brief Default Constructor
             ManagerBase();
 
-            /*/// @brief Default Constructor
-            /// @details This creates a default manager without a valid reference to the game world. The
-            /// lack of such a reference could cause issues or change behavior of a Manager class. A Manager
-            /// Must be given the pointer to the world it is suppposed to work with prior to the calling
-            /// of ManagerBase::Initialize(). This will most likely be the constructor used when creating
-            /// a Manager to pass into the constructor of a new phys::World.
-            ManagerBase();
-
-            /// @brief Simple Constructor
-            /// @details This is the prefered constructor. This is used to "Attach" a manager to a phys::world. This is expected to
-            /// configure everything that this manager will need except for items requiring integration with other managers.
-            /// @param GameWorld_ This is the phys::World this Manager is expected to work with.
-            ManagerBase(World* GameWorld_);*/
-
             /// @brief Deconstructor
             /// @details This is actuall
             virtual ~ManagerBase();

@@ -41,7 +41,7 @@
 #define _physactorbase_h
 
 #include "crossplatformexport.h"
-#include "node.h"
+#include "worldnode.h"
 
 ///////////////////////////////////
 // Forward Declares
@@ -65,6 +65,7 @@ namespace phys
 {
     class ActorContainerBase;
     class World;
+    class ActorGraphicsSettings;
     namespace internal
     {
         class PhysMotionState;
@@ -84,7 +85,7 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB ActorBase {
         private:
-            friend class Node;
+            friend class WorldNode;
             friend class ActorContainerBase;
             friend class PhysicsManager;
             friend class ResourceManager;
@@ -127,6 +128,9 @@ namespace phys
             ///@brief This class encapsulates the functionality of the PhysMotionState using this
             internal::PhysMotionState* MotionState;
 
+            /// @brief This class encapsulates graphics specific configuration for this actor.
+            ActorGraphicsSettings* GraphicsSettings;
+
             /// @brief This variable stores the type of actor that this class is.
             ActorTypeName ActorType;
 
@@ -136,7 +140,8 @@ namespace phys
             /// @brief Creates a trimesh shape from the mesh file.
             /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
             /// This is automaticly called by the CreateShapeFromMesh function in child classes and shouldn't be called manually.
-            btTriangleMesh* CreateTrimesh() const;
+            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
+            virtual btTriangleMesh* CreateTrimesh(bool UseAllSubmeshes = false) const;
 
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
@@ -144,32 +149,32 @@ namespace phys
             /// @brief Gets the ogre resource manager pointer.
             /// @details This function is needed for the ActorSoft implementation.
             /// @return Returns a pointer to the ogre resource group manager.
-            Ogre::ResourceGroupManager* GetOgreResourceManager();
+            virtual Ogre::ResourceGroupManager* GetOgreResourceManager();
 
             /// @brief Gets the verticy information of the mesh this soft body is based on.
             /// @details This function will read the mesh provided and gather the verticies inside it for re-use.
             /// @param TheMesh The struct to populate with the information gathered.
-            void GetMeshVerticies (internal::MeshInfo &TheMesh);
+            virtual void GetMeshVerticies (internal::MeshInfo &TheMesh);
 
             /// @brief Gets the indicy information of the mesh this soft body is based on.
             /// @details This function will read the mesh provided and gather the indicies inside it for re-use.
             /// @param TheMesh The struct to populate with the information gathered.
-            void GetMeshIndicies (internal::MeshInfo &TheMesh);
+            virtual void GetMeshIndicies (internal::MeshInfo &TheMesh);
 
             /// @brief Gets the normals information of the mesh this soft body is based on.
             /// @details This function will read the mesh provided and gather the normals of each verticy inside it for re-use.
             /// @param TheMesh The struct to populate with the information gathered.
-            void GetMeshNormals (internal::MeshInfo &TheMesh);
+            virtual void GetMeshNormals (internal::MeshInfo &TheMesh);
 
             /// @brief Gets the texture coordinates information of the mesh this soft body is based on.
             /// @details This function will read the mesh provided and gather the texture coordinates inside it for re-use.
             /// @param TheMesh The struct to populate with the information gathered.
-            void GetMeshTextures (internal::MeshInfo &TheMesh);
+            virtual void GetMeshTextures (internal::MeshInfo &TheMesh);
 
             /// @brief Gets other information not related to the verticies from the mesh.
             /// @details This function will get the Render Operation, Material Name, and Entity Name from the entity for re-use.
             /// @param TheMesh The struct to populate with the information gathered.
-            void GetOtherMeshInfo (internal::MeshInfo &TheMesh);
+            virtual void GetOtherMeshInfo (internal::MeshInfo &TheMesh);
 
             /// @brief Creates an entity for the mesh file to be placed on a scene node.
             /// @details Creates an entity in the scene manager from the mesh file provided to be attached to a node in the graphical world. @n
@@ -177,36 +182,36 @@ namespace phys
             /// @param name Name of the actor.
             /// @param file File name of the graphical mesh to be used.
             /// @param group Resource group where the graphical mesh can be found.
-            void CreateEntity(String name, String file, String group);
+            virtual void CreateEntity(String name, String file, String group);
 
             /// @brief Creates a node for the entity in the graphical world.
             /// @details Creates a node in the scene manager to attach the actor's entity to within the graphical world. @n
             /// This function is called on by the Constructor, and shouldn't be called manually.
-            void CreateSceneNode();
+            virtual void CreateSceneNode();
 
             /// @brief Initializes the entity so it is ready to use.
             /// @details Usually Ogre will do this for you and you won't need to call on this.  But in some edge cases when you tamper
             /// with the internal structures of entities, or the context being rendered to you may need to rebuild those structures.
             /// @param ForceReinitialize If true, it will destroy the extisting structures(if any) and rebuild them.  If false this will
             /// only have an effect if the structures aren't yet built.
-            void InitializeEntity(bool ForceReinitialize);
+            virtual void InitializeEntity(bool ForceReinitialize);
 
             /// @brief Sets the location of the graphical body.
             /// @details This will take a Vector3 and set the location of the actor within the graphical world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
             /// @param Place The Vector3 representing the location.
-            void SetOgreLocation(Vector3 Place);
+            virtual void SetOgreLocation(Vector3 Place);
 
             /// @brief Retrieves the location of the graphical body.
             /// @details This function will retrieve the location of the object within the graphical world. This should always match the physics world.
             /// @return This returns a phys::Vector3 with the location of the graphics.
-            Vector3 GetOgreLocation() const;
+            virtual Vector3 GetOgreLocation() const;
 
             /// @brief Sets the orientation of the graphical body.
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n
             /// This function is called on by the SetOrientation function, and shouldn't be called manually.
             /// @param Rotation The quaternion representing the rotation of the actor.
-            void SetOgreOrientation (Quaternion Rotation);
+            virtual void SetOgreOrientation (Quaternion Rotation);
 
             /// @brief Makes the actor visable.
             /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n
@@ -267,7 +272,7 @@ namespace phys
             /// @brief Gets whether this actors current shape has been saved or not.
             /// @details This function will tell you if it's current physics shape has been saved for later use or not.
             /// @return Returns whether or not the shape of this actor has been saved.
-            const bool GetShapeIsSaved();
+            virtual const bool GetShapeIsSaved();
 
             /// @brief Sets the basic parameters for more realistic collision behavior.
             /// @details This function will set the Friction and Resititution of the actor, which will enable it to collide
@@ -278,7 +283,7 @@ namespace phys
             /// @param Restitution The coefficient of restitution determines how much energy is left after a collision with an object.
             /// Range is from 0.0 to 1.0.  Behavior in this regard is determined by the restitution of both colliding bodies.
             /// @n Default: 0.0
-            void SetBasicCollisionParams(Real Friction, Real Restitution);
+            virtual void SetBasicCollisionParams(Real Friction, Real Restitution);
 
             /// @brief Sets the animation for this object.
             /// @details This function will get the specified animation for this object stored in the mesh file, and will loop the
@@ -286,27 +291,31 @@ namespace phys
             /// @param AnimationName Name of the stored animation to be loaded.
             /// @param Loop Whether or not you want the animation to loop.  For example, you would want an idle animation to loop,
             /// but not a death animation.
-            void SetAnimation(ConstString &AnimationName, bool Loop);
+            virtual void SetAnimation(ConstString &AnimationName, bool Loop);
 
             /// @brief Enables the animation if one is set.
             /// @details This function will enable the animation if passed true, making the object animate.  If passed false will
             /// disable the animation.
             /// @param Enable True to enable the animation or false to disable the animation.
-            void EnableAnimation(bool Enable);
+            virtual void EnableAnimation(bool Enable);
 
             /// @brief Tells whether this actor is animated or not.
             /// @details This function will return true if the actor has an animation set and it is enabled.
             /// @return Returns true if an animation is set and enabled.
-            bool IsAnimated();
+            virtual bool IsAnimated();
 
             /// @brief Advances the animation, making it animate.
             /// @details You need to call this every frame while the actor is to be animated, otherwise even with the animation
             /// enabled you will see no change in the animation.
-            void AdvanceAnimation(Real Time);
+            virtual void AdvanceAnimation(Real Time);
 
             /// @brief Unloads a loaded animation.
             /// @details This function will remove the existing set animation.
-            void RemoveSetAnimation();
+            virtual void RemoveSetAnimation();
+
+            /// @brief Gets the graphics settings class associated with this actor.
+            /// @return Returns a pointer to the graphics settings class in use by this actor.
+            virtual ActorGraphicsSettings* GetGraphicsSettings();
 
             void InitEntity(bool force);
 
@@ -375,14 +384,15 @@ namespace phys
             /// @brief Sets the scale of the actor.
             /// @details This function will alter the scaling/size of the actor with the given vector3.
             /// @param scale The vector3 by which to apply the scale.  Will scale each axis' accordingly.
-            void SetActorScaling(Vector3 scale);
+            virtual void SetActorScaling(Vector3 scale);
 
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Dynamic objects.
-            /// @param accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent
-            virtual void CreateShapeFromMeshDynamic(short unsigned int accuracy ) = 0;
+            /// @param Accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent.
+            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
+            virtual void CreateShapeFromMeshDynamic(short unsigned int accuracy, bool UseAllSubmeshes = false) = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Working with the World
@@ -405,29 +415,42 @@ namespace phys
             /// @brief Sets the state of the object to Kinematic.
             /// @details This function will set the object to a Kinematic Object. @n
             /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.
-            void SetKinematic();
+            virtual void SetKinematic();
 
             /// @brief Sets the state of the object to Static.
             /// @details This function will set the object to a Static Object. @n
             /// Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects.
-            void SetStatic();
+            virtual void SetStatic();
 
             /// @brief Checks of the actor is static or kinematic.
             /// @details Checks of the actor is static or kinematic, returns true if it is either.
             /// @return Returns true if the actor is static or kinematic.
-            bool IsStaticOrKinematic();
+            virtual bool IsStaticOrKinematic();
 
             /// @brief Sets the actor to be able to collide with other objects in the world.
             /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
-            void EnableCollisionResponse();
+            virtual void EnableCollisionResponse();
 
             /// @brief Sets the actor to be unable to collide with other objects in the world.
             /// @details By default collision response is enabled.  Be sure to reactivate collision response if you want your objects to collide again.
-            void DisableCollisionResponse();
+            virtual void DisableCollisionResponse();
 
             /// @brief Checks if the object is active in the simulation.
             /// @return Returns true if the object is active, false if it's deactivated(at rest).
-            bool CheckActivation();
+            virtual bool CheckActivation();
+
+///////////////////////////////////////////////////////////////////////////////
+// Internal Object Access functions
+///////////////////////////////////////
+            /// @internal
+            /// @brief Gets the internal physics object this actor is based on.
+            /// @return Returns a pointer to the internal Bullet object.
+            //virtual btCollisionObject* GetBulletObject() = 0;
+
+            /// @internal
+            /// @brief Gets the internal graphics object this actor is based on.
+            /// @return Returns a pointer to the internal graphics object.
+            virtual Ogre::Entity* GetOgreObject();
     };
 
 } // /phys

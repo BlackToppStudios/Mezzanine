@@ -50,6 +50,7 @@ class btDynamicsWorld;
 class btCollisionShape;
 class btSoftBodyRigidBodyCollisionConfiguration;
 class btGhostPairCallback;
+class btBroadphaseInterface;
 
 #include <map>
 #include <vector>
@@ -90,7 +91,7 @@ namespace phys
 
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
-            btAxisSweep3* BulletBroadphase;
+            btBroadphaseInterface* BulletBroadphase;
             //btDefaultCollisionConfiguration* BulletCollisionConfiguration;
             btSoftBodyRigidBodyCollisionConfiguration* BulletCollisionConfiguration;
             btCollisionDispatcher* BulletDispatcher;

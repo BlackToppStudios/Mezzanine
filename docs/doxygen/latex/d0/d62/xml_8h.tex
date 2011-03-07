@@ -9,6 +9,7 @@ This is where bulk of the XML subsystem is declare, there are numerous class tha
 
 {\ttfamily \#include \char`\"{}crossplatform.h\char`\"{}}\par
 {\ttfamily \#include \char`\"{}xmldoc.h\char`\"{}}\par
+{\ttfamily \#include \char`\"{}exception.h\char`\"{}}\par
 {\ttfamily \#include $<$exception$>$}\par
 {\ttfamily \#include $<$stddef.h$>$}\par
 \subsection*{Classes}
@@ -25,29 +26,29 @@ class \hyperlink{classphys_1_1xml_1_1Attribute}{phys::xml::Attribute}
 class \hyperlink{classphys_1_1xml_1_1Node}{phys::xml::Node}
 \begin{DoxyCompactList}\small\item\em A light-\/weight handle for manipulating nodes in DOM tree. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1NodeIterator}{phys::xml::NodeIterator}
-\item 
+\begin{DoxyCompactList}\small\item\em Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node}). \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1AttributeIterator}{phys::xml::AttributeIterator}
-\item 
+\begin{DoxyCompactList}\small\item\em \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}). \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1TreeWalker}{phys::xml::TreeWalker}
-\item 
+\begin{DoxyCompactList}\small\item\em Used to call a function for\_\-each member of the subtree of nodes descended from a specific node. \item\end{DoxyCompactList}\item 
 struct \hyperlink{structphys_1_1xml_1_1ParseResult}{phys::xml::ParseResult}
 \begin{DoxyCompactList}\small\item\em All the information needed to troubleshoot a Parsing error. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1Document}{phys::xml::Document}
-\item 
+\begin{DoxyCompactList}\small\item\em The root node of any xml hierarchy is a \hyperlink{classphys_1_1xml_1_1Document}{Document} \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
 struct \hyperlink{structphys_1_1xml_1_1XPathParseResult}{phys::xml::XPathParseResult}
-\item 
+\begin{DoxyCompactList}\small\item\em XPath parsing result. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathVariable}{phys::xml::XPathVariable}
-\item 
+\begin{DoxyCompactList}\small\item\em A single XPath variable. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathVariableSet}{phys::xml::XPathVariableSet}
-\item 
+\begin{DoxyCompactList}\small\item\em A set of XPath variables. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathQuery}{phys::xml::XPathQuery}
-\item 
+\begin{DoxyCompactList}\small\item\em A compiled XPath query object. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathException}{phys::xml::XPathException}
-\item 
+\begin{DoxyCompactList}\small\item\em Thrown in a variety of XPath only situations, to indicate type mismatch or other issues. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathNode}{phys::xml::XPathNode}
-\item 
+\begin{DoxyCompactList}\small\item\em An XPath node which can store handles to a \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} or an \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{phys::xml::XPathNodeSet}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A collection of nodes that an \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} can work on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Namespaces}
 \begin{DoxyCompactItemize}
 \item 
@@ -87,16 +88,16 @@ typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR 
 \label{d9/d27/namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}
 
 \item 
-\hypertarget{namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}{
-typedef void $\ast$($\ast$ {\bfseries phys::xml::allocation\_\-function} )(size\_\-t size)}
-\label{d9/d27/namespacephys_1_1xml_a3012ecdd41040d1471217fdac32c76ca}
+\hypertarget{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{
+typedef void $\ast$($\ast$ \hyperlink{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{phys::xml::AllocationFunction} )(size\_\-t size)}
+\label{d9/d27/namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}
 
-\item 
-\hypertarget{namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}{
-typedef void($\ast$ {\bfseries phys::xml::deallocation\_\-function} )(void $\ast$ptr)}
-\label{d9/d27/namespacephys_1_1xml_a042e00af30d526d7d17bc4aaa3e7c592}
+\begin{DoxyCompactList}\small\item\em Memory allocation function interface; returns pointer to allocated memory or NULL on failure. \item\end{DoxyCompactList}\item 
+\hypertarget{namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}{
+typedef void($\ast$ \hyperlink{namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}{phys::xml::deAllocationFunction} )(void $\ast$ptr)}
+\label{d9/d27/namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Memory deallocation function interface. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Enumerations}
 \begin{DoxyCompactItemize}
 \item 
@@ -111,7 +112,7 @@ enum \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3}{phys::xm
 \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a3c09d11be0cea840f23f55e084cf72fa}{phys::xml::NodePi}, 
 \hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3a1e3789aa995b7bf563ca8c43553ac035}{phys::xml::NodeDeclaration}, 
 \par
-{\bfseries NodeDocType}
+\hyperlink{namespacephys_1_1xml_a668b0cc666a9d49f7c7222a7552115d3aca750034b7e4a34d53cfd3399b2bcd99}{phys::xml::NodeDocType}
  \}
 \begin{DoxyCompactList}\small\item\em The types of nodes. \item\end{DoxyCompactList}\item 
 enum \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{phys::xml::Encoding} \{ \par
@@ -149,53 +150,32 @@ enum \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917f}{phys::xm
 \hyperlink{namespacephys_1_1xml_ae7aabb879b21c73d8183a54470f8917fa6b8d817142e0898ad9b1c61cfa54b8ea}{phys::xml::StatusEndElementMismatch}
  \}
 \begin{DoxyCompactList}\small\item\em These statuses are used to help determine what issues, if any the parser had. the XML parser had. \item\end{DoxyCompactList}\item 
-enum {\bfseries XPathValueType} \{ \par
-{\bfseries XPathTypeNone}, 
-{\bfseries XPathTypeNodeSet}, 
-{\bfseries XPathTypeNumber}, 
-{\bfseries XPathTypeString}, 
+enum \hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{phys::xml::XPathValueType} \{ \par
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575dabf243ef424b79e9da4f5e52fca25bbe5}{phys::xml::XPathTypeNone}, 
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba}{phys::xml::XPathTypeNodeSet}, 
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575da5503130cd89cdb7f6c9f0cc72091a06c}{phys::xml::XPathTypeNumber}, 
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575da1201c2db15249e26d46d828213e1e88b}{phys::xml::XPathTypeString}, 
 \par
-{\bfseries XPathTypeBoolean}
+\hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575da7d21654ec17f33027de173dd47aa9092}{phys::xml::XPathTypeBoolean}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em XPathQuery return type. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{namespacephys_1_1xml_a3adcb83b952ab6a714da13d20ab189d7}{
-std::string PHYS\_\-LIB {\bfseries phys::xml::AsUtf8} (const wchar\_\-t $\ast$str)}
-\label{d9/d27/namespacephys_1_1xml_a3adcb83b952ab6a714da13d20ab189d7}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a8721da4a57634acd3a3eb754d898fb88}{
-std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB {\bfseries phys::xml::AsUtf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)}
-\label{d9/d27/namespacephys_1_1xml_a8721da4a57634acd3a3eb754d898fb88}
-
-\item 
-\hypertarget{namespacephys_1_1xml_ac14c911adabeb58e973c36105b85abac}{
-std::wstring PHYS\_\-LIB {\bfseries phys::xml::AsWide} (const char $\ast$str)}
-\label{d9/d27/namespacephys_1_1xml_ac14c911adabeb58e973c36105b85abac}
-
-\item 
-\hypertarget{namespacephys_1_1xml_ad365a4575e9bdc674e7512a573f05c08}{
-std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB {\bfseries phys::xml::AsWide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)}
-\label{d9/d27/namespacephys_1_1xml_ad365a4575e9bdc674e7512a573f05c08}
-
-\item 
-\hypertarget{namespacephys_1_1xml_af067dbcf4b0c314947f5f51e15df98dc}{
-void PHYS\_\-LIB {\bfseries phys::xml::SetMemory\_\-management\_\-functions} (allocation\_\-function allocate, deallocation\_\-function deallocate)}
-\label{d9/d27/namespacephys_1_1xml_af067dbcf4b0c314947f5f51e15df98dc}
-
-\item 
-\hypertarget{namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}{
-allocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::get\_\-memory\_\-allocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_ab410aa42cb0ed412ad7b6f573ae21cf4}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}{
-deallocation\_\-function PHYS\_\-LIB {\bfseries phys::xml::get\_\-memory\_\-deallocation\_\-function} ()}
-\label{d9/d27/namespacephys_1_1xml_a00bf38e865e9cd95e3624b3b8b9d7bc9}
-
-\end{DoxyCompactItemize}
+std::string PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2d4bf28045544dc7350827f568cad46f}{phys::xml::AsUtf8} (const wchar\_\-t $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a c-\/style string of wchar\_\-t to std::string containing UTF8. \item\end{DoxyCompactList}\item 
+std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_aa3d160a2965f60bc3b2f019be6c7d038}{phys::xml::AsUtf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)
+\begin{DoxyCompactList}\small\item\em Convert a std::wstring to a UTF8 std::string. \item\end{DoxyCompactList}\item 
+std::wstring PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a0a57ef612f499a03733ca18d0e4f0c4f}{phys::xml::AsWide} (const char $\ast$str)
+\begin{DoxyCompactList}\small\item\em Convert a Convert a c-\/style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
+std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a7ca79461d40476ea4cde4f54dadffff4}{phys::xml::AsWide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)
+\begin{DoxyCompactList}\small\item\em Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
+void PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f983}{phys::xml::SetMemory\_\-management\_\-functions} (AllocationFunction allocate, deAllocationFunction deallocate)
+\begin{DoxyCompactList}\small\item\em Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. \item\end{DoxyCompactList}\item 
+AllocationFunction PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a0537fb34f1fa41afd138deead1455a5b}{phys::xml::GetMemoryAllocationFunction} ()
+\begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\item 
+deAllocationFunction PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a1a2ff3e010e4627424a65a2e584e441e}{phys::xml::GetMemoryDeallocationFunction} ()
+\begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -243,11 +223,11 @@ const unsigned int \hyperlink{namespacephys_1_1xml_a463f15fc43d69ab835c8598826f6
 \label{d9/d27/namespacephys_1_1xml_a463f15fc43d69ab835c8598826f65646}
 
 \begin{DoxyCompactList}\small\item\em This flag determines if document declaration (NodeDeclaration) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
-\hypertarget{namespacephys_1_1xml_a37851039450a5fa38ef6b8c717b2e0e6}{
-const unsigned int {\bfseries phys::xml::ParseDocType} = 0x0200}
-\label{d9/d27/namespacephys_1_1xml_a37851039450a5fa38ef6b8c717b2e0e6}
+\hypertarget{namespacephys_1_1xml_adf5ee79dc4c200ad85b64a8308b0c805}{
+const unsigned int \hyperlink{namespacephys_1_1xml_adf5ee79dc4c200ad85b64a8308b0c805}{phys::xml::ParseDocType} = 0x0200}
+\label{d9/d27/namespacephys_1_1xml_adf5ee79dc4c200ad85b64a8308b0c805}
 
-\item 
+\begin{DoxyCompactList}\small\item\em This flag determines if document type declaration (NodeDoctype) is added to the DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
 const unsigned int \hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{phys::xml::ParseDefault} = ParseCdata $|$ ParseEscapes $|$ ParseWconvAttribute $|$ ParseEol
 \begin{DoxyCompactList}\small\item\em The default parsing mode. \item\end{DoxyCompactList}\item 
 const unsigned int \hyperlink{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a5241c63}{phys::xml::ParseFull} = ParseDefault $|$ ParsePi $|$ ParseComments $|$ ParseDeclaration $|$ ParseDocType

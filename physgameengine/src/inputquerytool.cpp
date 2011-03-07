@@ -48,155 +48,49 @@
 namespace phys
 {
     InputQueryTool::InputQueryTool()
-        : MouseXCache(0),
-          MouseYCache(0)
-    {
-        this->GameWorld = World::GetWorldPointer();
-    }
+        { CodeCache.insert(CodeCache.end(), MetaCode::INPUTEVENT_LAST, 0); }
 
     InputQueryTool::~InputQueryTool()
-    {
-    }
+        {}
 
-    Whole InputQueryTool::GetMouseX()
-    { return MouseXCache; }
-
-    Whole InputQueryTool::GetMouseY()
-    { return MouseYCache; }
+    int InputQueryTool::GetMouseX()
+        { return CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL] ;}
+    int InputQueryTool::GetMouseY()
+        { return CodeCache[MetaCode::MOUSEABSOLUTEVERTICAL] ;}
 
     Vector2 InputQueryTool::GetMouseCoordinates()
-    { return MouseCoordinates; }
-
+        { return Vector2(CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL],CodeCache[MetaCode::MOUSEABSOLUTEVERTICAL]); }
     Vector2 InputQueryTool::GetMousePrevFrameOffset()
-    { return MousePrevFrameOffset; }
+        { return Vector2(CodeCache[MetaCode::MOUSEHORIZONTAL],CodeCache[MetaCode::MOUSEVERTICAL]); }
+
+    int InputQueryTool::GetRawMetaValue(MetaCode::InputCode AnyCode)
+        { return CodeCache[AnyCode]; }
 
     bool InputQueryTool::IsMouseButtonPushed(short unsigned int MouseButton)
-    {
-        if(MouseButton >= this->MouseButtonLimit)
-            {this->GameWorld->LogAndThrow("Unsupported mouse button access through WorldQueryTool");}
-        return MouseButtonCache.count(MouseButton);
-    }
-
+        { return MetaCode::BUTTON_UP < CodeCache[MetaCode::GetMouseButtonCode(MouseButton)]; }
     bool InputQueryTool::IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton)
-    {
-        return KeyboardButtonCache.count(KeyboardButton);
-    }
+        { return MetaCode::BUTTON_UP < CodeCache[KeyboardButton]; }
 
     MetaCode::ButtonState InputQueryTool::GetMouseButtonState(short unsigned int MouseButton)
-    {
-        std::map<short unsigned int,MetaCode>::iterator it = MouseButtonCache.find(MouseButton);
-        if(it != MouseButtonCache.end())
-        {
-            int Code = (*it).second.GetMetaValue();
-            switch (Code)
-            {
-                case -1:
-                    return MetaCode::BUTTON_LIFTING;
-                    break;
-                case 1:
-                    return MetaCode::BUTTON_PRESSING;
-                    break;
-                case 2:
-                    return MetaCode::BUTTON_DOWN;
-                    break;
-                default:
-                    break;
-            }
-        }
-        return MetaCode::BUTTON_UP;
-    }
-
+        { return (MetaCode::ButtonState)CodeCache[MetaCode::GetMouseButtonCode(MouseButton)]; }
     MetaCode::ButtonState InputQueryTool::GetKeyboardButtonState(MetaCode::InputCode KeyboardButton)
-    {
-        std::map<unsigned int,MetaCode>::iterator it = KeyboardButtonCache.find(KeyboardButton);
-        if(it != KeyboardButtonCache.end())
-        {
-            int Code = (*it).second.GetMetaValue();
-            switch (Code)
-            {
-                case -1:
-                    return MetaCode::BUTTON_LIFTING;
-                    break;
-                case 1:
-                    return MetaCode::BUTTON_PRESSING;
-                    break;
-                case 2:
-                    return MetaCode::BUTTON_DOWN;
-                    break;
-                default:
-                    break;
-            }
-        }
-        return MetaCode::BUTTON_UP;
-    }
+        { return (MetaCode::ButtonState)CodeCache[KeyboardButton]; }
 
     MetaCode::MouseWheelState InputQueryTool::GetMouseWheelState()
-    {
-        return WheelState;
-    }
+        { return (MetaCode::MouseWheelState)CodeCache[MetaCode::MOUSEWHEELVERTICAL]; }
 
     void InputQueryTool::GatherEvents(bool ClearEventsFromEventMgr)
     {
-        KeyboardButtonCache.clear();
-        MouseButtonCache.clear();
-        WheelState = MetaCode::MOUSEWHEEL_UNCHANGED;
-        Vector2 PrevPos((Real)MouseXCache,(Real)MouseYCache);
-        std::list<EventUserInput*>* UserInput = this->GameWorld->GetEventManager()->GetAllUserInputEvents();   // Get the updated list of events
+        std::list<EventUserInput*>* UserInput = World::GetWorldPointer()->GetEventManager()->GetAllUserInputEvents();   // Get the updated list of events
+
         if( ClearEventsFromEventMgr )
-            { this->GameWorld->GetEventManager()->RemoveAllSpecificEvents(EventBase::UserInput); }
+            { World::GetWorldPointer()->GetEventManager()->RemoveAllSpecificEvents(EventBase::UserInput); }
 
         for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); Iter!=UserInput->end(); Iter++) //for each event
         {
             for(unsigned int c = 0; c<(*Iter)->GetMetaCodeCount(); c++) //For each metacode in the event
-            {                                                           //Newer Items should take precedence of older ones, so only store the oldest ones
-                if( (*Iter)->GetMetaCode(c).IsKeyboardButton() ) //is it a Key
-                {
-                    if(0 != (*Iter)->GetMetaCode(c).GetMetaValue()) //see MetaCode::ButtonState
-                    {
-                        this->KeyboardButtonCache[(*Iter)->GetMetaCode(c).GetCode()] = (*Iter)->GetMetaCode(c);
-                    }
-                    continue;
-                }
-
-                if ( MetaCode::MOUSEABSOLUTEHORIZONTAL == (*Iter)->GetMetaCode(c).GetCode() )
-                {
-                    this->MouseXCache = (*Iter)->GetMetaCode(c).GetMetaValue();
-                    continue;
-                }
-
-                if ( MetaCode::MOUSEABSOLUTEVERTICAL == (*Iter)->GetMetaCode(c).GetCode() )
-                {
-                    this->MouseYCache = (*Iter)->GetMetaCode(c).GetMetaValue();
-                    continue;
-                }
-
-                if ( MetaCode::MOUSEBUTTON == (*Iter)->GetMetaCode(c).GetCode() )
-                {
-                    if(0 != (*Iter)->GetMetaCode(c).GetMetaValue()) //see MetaCode::ButtonState
-                    {
-                        this->MouseButtonCache[(*Iter)->GetMetaCode(c).GetID()] = (*Iter)->GetMetaCode(c);
-                    }
-                    continue;
-                }
-
-                if ( MetaCode::MOUSEWHEELVERTICAL == (*Iter)->GetMetaCode(c).GetCode() )
-                {
-                    int code = (*Iter)->GetMetaCode(c).GetMetaValue();
-                    if(-1 == code)
-                    {
-                        this->WheelState = MetaCode::MOUSEWHEEL_DOWN;
-                    }
-                    else if(1 == code)
-                    {
-                        this->WheelState = MetaCode::MOUSEWHEEL_UP;
-                    }
-                    continue;
-                }
-                /// @todo Add support for joysticks events to InputQueryTool
-            }
+                { CodeCache[(*Iter)->GetMetaCode(c).GetCode()] = (*Iter)->GetMetaCode(c).GetMetaValue(); }
         }
-        MouseCoordinates = Vector2((Real)MouseXCache,(Real)MouseYCache);
-        MousePrevFrameOffset = MouseCoordinates - PrevPos;
 
         if( ClearEventsFromEventMgr )//Erase everything if we were asked to.
         {
@@ -207,6 +101,7 @@ namespace phys
             }
         }
     }
+
 }
 
 #endif

@@ -54,9 +54,9 @@ namespace phys
     WorldQueryTool::WorldQueryTool()
     {
         // create the ray scene query object
-        this->RayQuery = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+        this->RayQuery = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
         if (NULL == this->RayQuery)
-            {this->GameWorld->LogAndThrow("Failed to create RaySceneQuery instance in WorldQueryTool"); }
+            {World::GetWorldPointer()->LogAndThrow("Failed to create RaySceneQuery instance in WorldQueryTool"); }
         this->RayQuery->setSortByDistance(true);
     }
 
@@ -79,7 +79,7 @@ namespace phys
                 return NULL;
             }
         }else{                          //Whoopsie something Failed
-            this->GameWorld->LogAndThrow("Attempting to run a query on Null RaySceneQuery");
+            World::GetWorldPointer()->LogAndThrow("Attempting to run a query on Null RaySceneQuery");
         }
 
         // at this point we have raycast to a series of different objects bounding boxes.
@@ -138,7 +138,7 @@ namespace phys
                 if (new_closest_found)
                 {
                     closest_result = Ooray.getPoint(closest_distance);
-                    ClosestActor->Actor = this->GameWorld->GetActorManager()->FindActor( pentity->getParentNode() );
+                    ClosestActor->Actor = World::GetWorldPointer()->GetActorManager()->FindActor( pentity->getParentNode() );
                 }
             } // \if entity
         } // \if qr_idx
@@ -152,7 +152,7 @@ namespace phys
     Vector3WActor* WorldQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay)
     {
         #ifdef PHYSDEBUG
-        this->GameWorld->Log("WorldQueryTool::GetFirstActorOnRayByAABB:");
+        World::GetWorldPointer()->Log("WorldQueryTool::GetFirstActorOnRayByAABB:");
         #endif
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
@@ -164,7 +164,7 @@ namespace phys
                 return NULL;
             }
         }else{                          //Whoopsie something Failed
-            this->GameWorld->LogAndThrow("Attempting to run a query on Null RaySceneQuery");
+            World::GetWorldPointer()->LogAndThrow("Attempting to run a query on Null RaySceneQuery");
         }
 
         Ogre::RaySceneQueryResult &query_result = this->RayQuery->getLastResults();
@@ -173,7 +173,7 @@ namespace phys
         {
             Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[0].movable);
             Vector3WActor* ClosestActor = new Vector3WActor();
-            ClosestActor->Actor = this->GameWorld->GetActorManager()->FindActor( pentity->getParentNode() );
+            ClosestActor->Actor = World::GetWorldPointer()->GetActorManager()->FindActor( pentity->getParentNode() );
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
             return ClosestActor;
@@ -201,9 +201,9 @@ namespace phys
 
     Vector3* WorldQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
-        #define PHYSDEBUG
+        //#define PHYSDEBUG
         #ifdef PHYSDEBUG
-        this->GameWorld->LogStream << "WorldQueryTool::RayPlaneIntersection("<< QueryRay << ", " << QueryPlane << ")" << endl;
+        World::GetWorldPointer()->LogStream << "WorldQueryTool::RayPlaneIntersection("<< QueryRay << ", " << QueryPlane << ")" << endl;
         #endif
         try{
             Vector3 u = QueryRay.To - QueryRay.From;
@@ -212,7 +212,7 @@ namespace phys
             if(QueryPlane.Normal.X == 0 && QueryPlane.Normal.Y == 0 && QueryPlane.Normal.Z == 0)
             {
                 #ifdef PHYSDEBUG
-                this->GameWorld->Log("WorldQueryTool Error:Invalid Plane. Plane contains no points.");
+                World::GetWorldPointer()->Log("WorldQueryTool Error:Invalid Plane. Plane contains no points.");
                 #endif
                 return 0;
             }
@@ -251,7 +251,7 @@ namespace phys
                 else
                 {
                     #ifdef PHYSDEBUG
-                    this->GameWorld->Log("WorldQueryTool Error: num<SMALL_NUM: Ray casted with no intersection point.");
+                    World::GetWorldPointer()->Log("WorldQueryTool Error: num<SMALL_NUM: Ray casted with no intersection point.");
                     #endif
                     return 0;
                 }
@@ -262,7 +262,7 @@ namespace phys
             if(sI < 0 || sI > 1) //checks if the ray is too long
             {
                 #ifdef PHYSDEBUG
-                this->GameWorld->Log("WorldQueryTool Error:(si<0 || si > 1: Ray casted with no intersection point.");
+                World::GetWorldPointer()->Log("WorldQueryTool Error:(si<0 || si > 1: Ray casted with no intersection point.");
                 #endif
                 return 0;
             }
@@ -270,7 +270,7 @@ namespace phys
             Vector3 test =  Vector3(QueryRay.From + (u * sI));
 
             #ifdef PHYSDEBUG
-            this->GameWorld->LogStream << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z << endl;
+            World::GetWorldPointer()->LogStream << "WorldQueryTool: RayPlane Intersection RESULTS   X:" << test.X << " Y:" << test.Y << " Z:" << test.Z << endl;
             #endif
 
             Vector3* return_vector = new Vector3(QueryRay.From + (u * sI));
@@ -280,29 +280,29 @@ namespace phys
             if(distance > QueryRay.From.Distance(QueryRay.To))
             {
                 #ifdef PHYSDEBUG
-                this->GameWorld->Log("WorldQueryTool Error:Ray casted hits plane but is not long enough.");
+                World::GetWorldPointer()->Log("WorldQueryTool Error:Ray casted hits plane but is not long enough.");
                 #endif
                 return 0;
             }
 
             #ifdef PHYSDEBUG
-            this->GameWorld->LogStream << "Distance:" << distance << endl;
+            World::GetWorldPointer()->LogStream << "Distance:" << distance << endl;
             #endif
 
             return return_vector;
         } catch(exception e) {
             //In case we divide b
-            this->GameWorld->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
-            this->GameWorld->Log(e.what());
+            World::GetWorldPointer()->Log("WorldQueryTool Error:Failed while calculating Ray/Plane Intersection, Assuming no valid intersection. Error follows:");
+            World::GetWorldPointer()->Log(e.what());
             return 0;
         }
     }
 
     Ray* WorldQueryTool::GetMouseRay(Real Length)
     {
-        Ray* MouseRay = new Ray( this->GameWorld->GetCameraManager()->GetDefaultCamera()->GetCameraToViewportRay(
-                float(this->GetMouseX()) / float( this->GameWorld->GetGraphicsManager()->getRenderWidth() ) ,
-                float(this->GetMouseY()) / float( this->GameWorld->GetGraphicsManager()->getRenderHeight() )
+        Ray* MouseRay = new Ray( World::GetWorldPointer()->GetCameraManager()->GetDefaultCamera()->GetCameraToViewportRay(
+                float(this->GetMouseX()) / float( World::GetWorldPointer()->GetGraphicsManager()->getRenderWidth() ) ,
+                float(this->GetMouseY()) / float( World::GetWorldPointer()->GetGraphicsManager()->getRenderHeight() )
             ) );
 
         (*MouseRay) *= Length;

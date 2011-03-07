@@ -81,7 +81,7 @@ namespace phys
             /// @brief Compatability function.
             /// @details This function does nothing, as this class isn't dynamic.  This is simply here to
             /// allow the engine to compile.
-            void CreateShapeFromMeshDynamic(short unsigned int accuracy);
+            void CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes = false);
 
             /// @brief Retrieves the name of the object.
             /// @details This function will retrieve the name of the object,
@@ -89,6 +89,8 @@ namespace phys
 
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);
+
+            virtual btRigidBody* GetBulletObject();
     };
 }
 

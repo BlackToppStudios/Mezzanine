@@ -105,6 +105,12 @@ namespace phys
                 /// @brief Gets the text displayed within the markup text.
                 /// @return Returns the text being displayed.
                 virtual String GetText();
+                /// @brief Sets the scaling to be applied to the text being rendered.
+                /// @param Scale A Real value representing the scale to be applied.  <1.0 means smaller, >1.0 means larger.
+                virtual void SetTextScale(Real Scale);
+                /// @brief Gets the scaling currently being applied to the rendered text.
+                /// @return Returns a Real value representing the scale applied to the text in this caption.  <1.0 means smaller, >1.0 means larger.
+                virtual Real GetTextScale();
                 /// @brief Sets the Default glyph index to be used with this markup text.
                 /// @details The glyph index is defined in your gorilla file.  This class can change which
                 /// glyph is uses with it's markup language.  This simply defines which to use when one isn't

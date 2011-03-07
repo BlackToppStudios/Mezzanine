@@ -67,14 +67,12 @@ namespace phys
 
     void ActorContainerBase::AddActor(ActorBase* ActorToAdd)
     {
-        if(this->GameWorld != NULL)
-            { ActorToAdd->AddObjectToWorld(this->GameWorld); }
+        ActorToAdd->AddObjectToWorld(World::GetWorldPointer());
     }
 
     void ActorContainerBase::RemoveActor(ActorBase* ActorToAdd)
     {
-        if(this->GameWorld != NULL)
-            { ActorToAdd->RemoveObjectFromWorld(this->GameWorld); }
+        ActorToAdd->RemoveObjectFromWorld(World::GetWorldPointer());
     }
 
 

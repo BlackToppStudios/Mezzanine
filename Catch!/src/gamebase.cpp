@@ -31,7 +31,7 @@ int main(int argc, char **argv)
     }
 
     // Set the Title
-    TheWorld->SetWindowName("Catch!... The Game!");
+    TheWorld->SetWindowName("Catch!");
     TheWorld->SetTargetFrameRate(60);
 
     //Give the world functions to run before and after input and physics
@@ -46,13 +46,6 @@ int main(int argc, char **argv)
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
 
-	TheWorld->SetWindowName( "Catch!" );
-
-    //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, 1, MetaCode::KEY_q) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, 3, MetaCode::MOUSEBUTTON) );
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, 0, MetaCode::MOUSEABSOLUTEHORIZONTAL) );
-
     //Actually Load the game stuff
     LoadContent();
 
@@ -60,14 +53,14 @@ int main(int argc, char **argv)
     MakeGUI();
 
     //Configure the wireframe Drawer
-    TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(2);
-    TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
+    //TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(0);
+    //TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
     //Setup some light and configure the camera.
     //TheWorld->GetCameraManager()->GetDefaultCamera()->SetCameraType(Camera::Orthographic);
     TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
 
-    Node* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,0.0,-250.0), true );
+    WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,0.0,-250.0), true );
     CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
     CameraNode->LookAt(Vector3(0,0,0));
 
@@ -474,11 +467,12 @@ void MakeGUI()
     ScoreText->SetBackgroundSprite("ScoreText");
     //End of HUD Layer
 
+    UI::MarkupText* TestMarkup = HUD->CreateMarkupText("TestMarkup",Vector2(0.4,0.64),26,"TestingMarkup");
+    TestMarkup->SetTextScale(0.7);
+
     //Build the ItemShop Layer
     UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", Vector2(0.25, 0.11), Vector2(0.5, 0.78125));
     ItemShopWindow->GetWindowBack()->SetBackgroundSprite("WindowVertBack");
-
-    UI::MarkupText* TestMarkup = ItemShopWindow->CreateMarkupText("TestMarkup",Vector2(0.4,0.64),14,"Test1");
 
     UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.28,0.54),Vector2(0.44,0.32),0.02,UI::SB_Separate);
     ItemShopList->SetAutoHideScroll(false);
@@ -489,21 +483,24 @@ void MakeGUI()
 
     //Build the Menu Layer
     UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", Vector2(0.35, 0.27), Vector2(0.3, 0.45));
+    GameMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MenuBack");
     UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "Return", Vector2(0.37, 0.56), Vector2(0.26, 0.05));
-    ReturnButton->SetBackgroundColour(Black);
+    ReturnButton->SetBackgroundSprite("ReturnButton");
     UI::Button* ExitButton = GameMenu->GetRootWindow()->CreateButton( "Exit", Vector2(0.37, 0.64), Vector2(0.26, 0.05));
-    ExitButton->SetBackgroundColour(Black);
+    ExitButton->SetBackgroundSprite("ExitButton");
 
     UI::Button* VideoAccess = GameMenu->GetRootWindow()->CreateAccessorButton("VideoSettingsButton", Vector2(0.37, 0.32), Vector2(0.26, 0.05));
     UI::MenuWindow* VideoSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("VideoSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), VideoAccess);
-    VideoAccess->SetBackgroundColour(Black);
+    VideoSettings->GetWindowBack()->SetBackgroundSprite("WindowHoriBack");
+    VideoAccess->SetBackgroundSprite("VideoSetButton");
 
     UI::Button* VideoBack = VideoSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
     VideoBack->SetBackgroundColour(Black);
 
     UI::Button* SoundAccess = GameMenu->GetRootWindow()->CreateAccessorButton("SoundSettingsButton", Vector2(0.37, 0.40), Vector2(0.26, 0.05));
     UI::MenuWindow* SoundSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("SoundSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), SoundAccess);
-    SoundAccess->SetBackgroundColour(Black);
+    SoundSettings->GetWindowBack()->SetBackgroundSprite("WindowHoriBack");
+    SoundAccess->SetBackgroundSprite("SoundSetButton");
 
     UI::Button* SoundBack = SoundSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
     SoundBack->SetBackgroundColour(Black);

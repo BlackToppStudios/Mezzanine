@@ -43,55 +43,283 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::xml::AttributeIterator" -->
+<p><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> iterator (a bidirectional iterator over a collection of <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>).  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a>&gt;</code></p>
+
 <p><a href="../../d3/d0a/classphys_1_1xml_1_1AttributeIterator-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04d891c0ff2a2122b8122dd872e4237e"></a><!-- doxytag: member="phys::xml::AttributeIterator::difference_type" ref="a04d891c0ff2a2122b8122dd872e4237e" args="" -->
-typedef ptrdiff_t&nbsp;</td><td class="memItemRight" valign="bottom"><b>difference_type</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab54a7992c134267b580edbcf78e481d8"></a><!-- doxytag: member="phys::xml::AttributeIterator::Value_type" ref="ab54a7992c134267b580edbcf78e481d8" args="" -->
-typedef <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>Value_type</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab145be8859ba19f330b0e784343499e8"></a><!-- doxytag: member="phys::xml::AttributeIterator::pointer" ref="ab145be8859ba19f330b0e784343499e8" args="" -->
-typedef <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>pointer</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9227aa824303a24a85124db7af006511"></a><!-- doxytag: member="phys::xml::AttributeIterator::reference" ref="a9227aa824303a24a85124db7af006511" args="" -->
-typedef <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>reference</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa34a1f322d8b952c25b52722db453d34"></a><!-- doxytag: member="phys::xml::AttributeIterator::iterator_category" ref="aa34a1f322d8b952c25b52722db453d34" args="" -->
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ce268d2fe4a507c7a9b3f687cbc7dbf"></a><!-- doxytag: member="phys::xml::AttributeIterator::difference_type" ref="a9ce268d2fe4a507c7a9b3f687cbc7dbf" args="" -->
+typedef ptrdiff_t&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a9ce268d2fe4a507c7a9b3f687cbc7dbf">difference_type</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">An Iterator trait. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2802171caa10acb5b47bca7576f346f7"></a><!-- doxytag: member="phys::xml::AttributeIterator::value_type" ref="a2802171caa10acb5b47bca7576f346f7" args="" -->
+typedef <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a2802171caa10acb5b47bca7576f346f7">value_type</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">An Iterator trait. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a87ea5bf9f43a66eca8675625486376ab"></a><!-- doxytag: member="phys::xml::AttributeIterator::pointer" ref="a87ea5bf9f43a66eca8675625486376ab" args="" -->
+typedef <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a87ea5bf9f43a66eca8675625486376ab">pointer</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">An Iterator trait. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55e06f521ba2e8a78bd77f447c172a3f"></a><!-- doxytag: member="phys::xml::AttributeIterator::reference" ref="a55e06f521ba2e8a78bd77f447c172a3f" args="" -->
+typedef <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a55e06f521ba2e8a78bd77f447c172a3f">reference</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">An Iterator trait. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab731cb4734fb2f2d6e1f3e106ac97ee3"></a><!-- doxytag: member="phys::xml::AttributeIterator::iterator_category" ref="ab731cb4734fb2f2d6e1f3e106ac97ee3" args="" -->
 typedef <br class="typebreak"/>
-std::bidirectional_iterator_tag&nbsp;</td><td class="memItemRight" valign="bottom"><b>iterator_category</b></td></tr>
+std::bidirectional_iterator_tag&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#ab731cb4734fb2f2d6e1f3e106ac97ee3">iterator_category</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">An Iterator trait. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a175551035493cea0c9a56e36adcbac23"></a><!-- doxytag: member="phys::xml::AttributeIterator::AttributeIterator" ref="a175551035493cea0c9a56e36adcbac23" args="(const Attribute &amp;attr, const Node &amp;GetParent)" -->
-&nbsp;</td><td class="memItemRight" valign="bottom"><b>AttributeIterator</b> (const <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;attr, const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;GetParent)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5310ea26bd19cb1c32e962c03ea0dc62"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator==" ref="a5310ea26bd19cb1c32e962c03ea0dc62" args="(const AttributeIterator &amp;rhs) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6b80c4c5317f97921511e25597a3403f"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator!=" ref="a6b80c4c5317f97921511e25597a3403f" args="(const AttributeIterator &amp;rhs) const " -->
-bool&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;rhs) const </td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28e8472f82ffc6f8eb2750c0c7e60e69"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator*" ref="a28e8472f82ffc6f8eb2750c0c7e60e69" args="()" -->
-<a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator*</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7db7ffe3eebe1e4d5d9cb2623fc2d019"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator&#45;&gt;" ref="a7db7ffe3eebe1e4d5d9cb2623fc2d019" args="()" -->
-<a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator-&gt;</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a471aae245b01fe34589c15df6afbcc0e"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator++" ref="a471aae245b01fe34589c15df6afbcc0e" args="()" -->
-const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator++</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9925e89424ac0d02453df60b4a8f21a7"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator++" ref="a9925e89424ac0d02453df60b4a8f21a7" args="(int)" -->
-<a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator++</b> (int)</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa26f070fa194c529285bb094e23215de"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator&#45;&#45;" ref="aa26f070fa194c529285bb094e23215de" args="()" -->
-const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator--</b> ()</td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae46ebed7b404ae085c47984f615a7597"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator&#45;&#45;" ref="ae46ebed7b404ae085c47984f615a7597" args="(int)" -->
-<a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>operator--</b> (int)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2804899f79a9982466acf69b5dd0cab"></a><!-- doxytag: member="phys::xml::AttributeIterator::AttributeIterator" ref="af2804899f79a9982466acf69b5dd0cab" args="()" -->
+&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#af2804899f79a9982466acf69b5dd0cab">AttributeIterator</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default Constructor, makes a blank iterator. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a175551035493cea0c9a56e36adcbac23">AttributeIterator</a> (const <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;attr, const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;GetParent)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Construct an iterator which points to the specified node.  <a href="#a175551035493cea0c9a56e36adcbac23"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a0eb472612438f4541ad27390ce74f6f4">operator==</a> (const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;rhs) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares this <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> to another <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> for equality.  <a href="#a0eb472612438f4541ad27390ce74f6f4"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a600802085aa88e41bcb2611f8044af59">operator!=</a> (const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;rhs) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Compares this <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> to another <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> for inequality.  <a href="#a600802085aa88e41bcb2611f8044af59"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#afe43d9e4a66adadf8eedc3fbcb883bcd">operator*</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deferences this Iterator.  <a href="#afe43d9e4a66adadf8eedc3fbcb883bcd"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a77fb7dfd9b834d6663201870e8550217">operator-&gt;</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the pointer the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this points to.  <a href="#a77fb7dfd9b834d6663201870e8550217"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad09623beef0359e64bc6b5a2635cd34a"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator++" ref="ad09623beef0359e64bc6b5a2635cd34a" args="()" -->
+const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#ad09623beef0359e64bc6b5a2635cd34a">operator++</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Increment the iterator to the next member of the container. <br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a2109817056f299a9f2b132ade6901800">operator++</a> (int)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Increment the iterator to the next member of the container.  <a href="#a2109817056f299a9f2b132ade6901800"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#a76a060aab7cc7666cd5016035de714b0">operator--</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Decrement the iterator to the next member of the container.  <a href="#a76a060aab7cc7666cd5016035de714b0"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html#ab8b0d4867b14816c80cf74ac7a0a1561">operator--</a> (int)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Decrement the iterator to the next member of the container.  <a href="#ab8b0d4867b14816c80cf74ac7a0a1561"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6db9d28bd448a131448276ee03de1e6d"></a><!-- doxytag: member="phys::xml::AttributeIterator::Node" ref="a6db9d28bd448a131448276ee03de1e6d" args="" -->
 class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p><a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> iterator (a bidirectional iterator over a collection of <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>). </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html" title="Child node iterator (a bidirectional iterator over a collection of Node).">NodeIterator</a>.</dd></dl>
+<dl class="see"><dt><b>See also:</b></dt><dd>This behaves very similar to <a class="el" href="../../da/d4f/classphys_1_1xml_1_1NodeIterator.html" title="Child node iterator (a bidirectional iterator over a collection of Node).">xml::NodeIterator</a> </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00787">787</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00821">821</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a175551035493cea0c9a56e36adcbac23"></a><!-- doxytag: member="phys::xml::AttributeIterator::AttributeIterator" ref="a175551035493cea0c9a56e36adcbac23" args="(const Attribute &amp;attr, const Node &amp;GetParent)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AttributeIterator::AttributeIterator </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html">Attribute</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>attr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">Node</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>GetParent</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Construct an iterator which points to the specified node. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>GetParent</em>&nbsp;</td><td>A <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> that contains the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this iterator will point to. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>attr</em>&nbsp;</td><td>The <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this iterator points to. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04472">4472</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Function Documentation</h2>
+<a class="anchor" id="a600802085aa88e41bcb2611f8044af59"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator!=" ref="a600802085aa88e41bcb2611f8044af59" args="(const AttributeIterator &amp;rhs) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AttributeIterator::operator!= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>rhs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compares this <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> to another <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> for inequality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The Right Hand Side <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a>. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>False if the internal data stored in <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> this <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> refers to is the same as the metadata in the other AttributeIterator's <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>, True otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04485">4485</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afe43d9e4a66adadf8eedc3fbcb883bcd"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator*" ref="afe43d9e4a66adadf8eedc3fbcb883bcd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AttributeIterator::operator* </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Deferences this Iterator. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>a <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> reference to the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> pointed at by this <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04490">4490</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2109817056f299a9f2b132ade6901800"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator++" ref="a2109817056f299a9f2b132ade6901800" args="(int)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AttributeIterator::operator++ </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Increment the iterator to the next member of the container. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04509">4509</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a76a060aab7cc7666cd5016035de714b0"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator&#45;&#45;" ref="a76a060aab7cc7666cd5016035de714b0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AttributeIterator::operator-- </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Decrement the iterator to the next member of the container. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04516">4516</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ab8b0d4867b14816c80cf74ac7a0a1561"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator&#45;&#45;" ref="ab8b0d4867b14816c80cf74ac7a0a1561" args="(int)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AttributeIterator::operator-- </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Decrement the iterator to the next member of the container. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a>. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04522">4522</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a77fb7dfd9b834d6663201870e8550217"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator&#45;&gt;" ref="a77fb7dfd9b834d6663201870e8550217" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AttributeIterator::operator-&gt; </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the pointer the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this points to. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> references. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04496">4496</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0eb472612438f4541ad27390ce74f6f4"></a><!-- doxytag: member="phys::xml::AttributeIterator::operator==" ref="a0eb472612438f4541ad27390ce74f6f4" args="(const AttributeIterator &amp;rhs) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::xml::AttributeIterator::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html">AttributeIterator</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>rhs</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Compares this <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> to another <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> for equality. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>rhs</em>&nbsp;</td><td>The Right Hand Side <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the internal data stored in the <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a> this <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a> refers to is the same as the metadata in the other AttributeIterator's <a class="el" href="../../da/ddf/classphys_1_1xml_1_1Attribute.html" title="A light-weight handle for manipulating attributes in DOM tree.">Attribute</a>, false otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l04480">4480</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
 <li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
+<li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:20 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:53 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

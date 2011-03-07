@@ -2,61 +2,135 @@
 \section{phys::xml::XPathNode Class Reference}
 \label{df/dd4/classphys_1_1xml_1_1XPathNode}\index{phys::xml::XPathNode@{phys::xml::XPathNode}}
 }
+
+
+An XPath node which can store handles to a \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} or an \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classphys_1_1xml_1_1XPathNode_ab70dcfefef2107eca2d1932faada475e}{
-{\bfseries XPathNode} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)}
-\label{df/dd4/classphys_1_1xml_1_1XPathNode_ab70dcfefef2107eca2d1932faada475e}
+\hyperlink{classphys_1_1xml_1_1XPathNode_ab70dcfefef2107eca2d1932faada475e}{XPathNode} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
+\begin{DoxyCompactList}\small\item\em Default constructor; constructs empty XPath node. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1XPathNode_a3f9446596022b6e0ab77afc2748c98e0}{XPathNode} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&GetAttribute, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&GetParent)
+\begin{DoxyCompactList}\small\item\em Construct From a \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1XPathNode_ad34ea7db6cabdfe92656b7d033dbbf35}{GetNode} () const 
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} this is referencing. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1xml_1_1XPathNode_a258785388868adf9fa53437cac7cd41c}{
+\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \hyperlink{classphys_1_1xml_1_1XPathNode_a258785388868adf9fa53437cac7cd41c}{GetAttribute} () const }
+\label{df/dd4/classphys_1_1xml_1_1XPathNode_a258785388868adf9fa53437cac7cd41c}
 
-\item 
-\hypertarget{classphys_1_1xml_1_1XPathNode_a3f9446596022b6e0ab77afc2748c98e0}{
-{\bfseries XPathNode} (const \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} \&GetAttribute, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&GetParent)}
-\label{df/dd4/classphys_1_1xml_1_1XPathNode_a3f9446596022b6e0ab77afc2748c98e0}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1XPathNode_ae15b153a8362e1c236dbdc87421b92bd}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries node} () const }
-\label{df/dd4/classphys_1_1xml_1_1XPathNode_ae15b153a8362e1c236dbdc87421b92bd}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1XPathNode_a62a924195aed039cc183240494a865c2}{
-\hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} {\bfseries GetAttribute} () const }
-\label{df/dd4/classphys_1_1xml_1_1XPathNode_a62a924195aed039cc183240494a865c2}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1XPathNode_a7e5b97c9ce0e2bb6fd5b2dbb65494f0f}{
-\hyperlink{classphys_1_1xml_1_1Node}{Node} {\bfseries GetParent} () const }
-\label{df/dd4/classphys_1_1xml_1_1XPathNode_a7e5b97c9ce0e2bb6fd5b2dbb65494f0f}
-
-\item 
+\begin{DoxyCompactList}\small\item\em Get the \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} this is referencing. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1XPathNode_a10d6dce64d14cf3d39bb952efd4ca8aa}{GetParent} () const 
+\begin{DoxyCompactList}\small\item\em Get the parent of the \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} or \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} this refers to. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1XPathNode_a0d11818941c2e31671c5d0cd8f1ce9f9}{operator unspecified\_\-bool\_\-type} () const 
 \begin{DoxyCompactList}\small\item\em Used to convert this to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1xml_1_1XPathNode_a58aa93c54d484cc8ae4e4c05d2b62ffd}{
-bool {\bfseries operator!} () const }
-\label{df/dd4/classphys_1_1xml_1_1XPathNode_a58aa93c54d484cc8ae4e4c05d2b62ffd}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1XPathNode_ab13702ded8707602871596e4f34e8302}{
-bool {\bfseries operator==} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
-\label{df/dd4/classphys_1_1xml_1_1XPathNode_ab13702ded8707602871596e4f34e8302}
-
-\item 
-\hypertarget{classphys_1_1xml_1_1XPathNode_a121ba0e04b6619f45c5392374f2dc98d}{
-bool {\bfseries operator!=} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const }
-\label{df/dd4/classphys_1_1xml_1_1XPathNode_a121ba0e04b6619f45c5392374f2dc98d}
-
-\end{DoxyCompactItemize}
+bool \hyperlink{classphys_1_1xml_1_1XPathNode_a3c596b9cacb6265df6acffb91b9a7484}{operator!} () const 
+\begin{DoxyCompactList}\small\item\em Logical not operator, used a workaround for borland compiler. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1XPathNode_ab13702ded8707602871596e4f34e8302}{operator==} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
+\begin{DoxyCompactList}\small\item\em Called when comparing two \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} instances for equality. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1xml_1_1XPathNode_a121ba0e04b6619f45c5392374f2dc98d}{operator!=} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
+\begin{DoxyCompactList}\small\item\em Called when comparing two \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} instances for inequality. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
+An XPath node which can store handles to a \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} or an \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}. Because an XPath node can be either a \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} or an \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}, there is a special type, \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode}, which is a discriminated union of these types. A value of this type contains two node handles, one of \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} type, and another one of \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} type; at most one of them can be non-\/null. The accessors to get these handles are available: \hyperlink{classphys_1_1xml_1_1XPathNode_ad34ea7db6cabdfe92656b7d033dbbf35}{XPathNode::GetNode()} an \hyperlink{classphys_1_1xml_1_1XPathNode_a258785388868adf9fa53437cac7cd41c}{XPathNode::GetAttribute()} . \par
+ \par
+ XPath nodes can be null, in which case both accessors return null handles. 
+
+Definition at line 1243 of file xml.h.
 
 
-Definition at line 1150 of file xml.h.
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1xml_1_1XPathNode_ab70dcfefef2107eca2d1932faada475e}{
+\index{phys::xml::XPathNode@{phys::xml::XPathNode}!XPathNode@{XPathNode}}
+\index{XPathNode@{XPathNode}!phys::xml::XPathNode@{phys::xml::XPathNode}}
+\subsubsection[{XPathNode}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathNode::XPathNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf Node} \&}]{ node}
+\end{DoxyParamCaption}
+)}}
+\label{df/dd4/classphys_1_1xml_1_1XPathNode_ab70dcfefef2107eca2d1932faada475e}
+
+
+Default constructor; constructs empty XPath node. 
+
+Construct From a \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}. 
+\begin{DoxyParams}{Parameters}
+\item[{\em node}]The \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} this handle should reference. \end{DoxyParams}
+
+
+Definition at line 9093 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1XPathNode_a3f9446596022b6e0ab77afc2748c98e0}{
+\index{phys::xml::XPathNode@{phys::xml::XPathNode}!XPathNode@{XPathNode}}
+\index{XPathNode@{XPathNode}!phys::xml::XPathNode@{phys::xml::XPathNode}}
+\subsubsection[{XPathNode}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathNode::XPathNode (
+\begin{DoxyParamCaption}
+\item[{const {\bf Attribute} \&}]{ GetAttribute, }
+\item[{const {\bf Node} \&}]{ GetParent}
+\end{DoxyParamCaption}
+)}}
+\label{df/dd4/classphys_1_1xml_1_1XPathNode_a3f9446596022b6e0ab77afc2748c98e0}
+
+
+Construct From a \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em GetAttribute}]The \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} this handle should reference. \item[{\em GetParent}]The \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} the \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} is on. \end{DoxyParams}
+
+
+Definition at line 9097 of file xml.cpp.
 
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1XPathNode_ad34ea7db6cabdfe92656b7d033dbbf35}{
+\index{phys::xml::XPathNode@{phys::xml::XPathNode}!GetNode@{GetNode}}
+\index{GetNode@{GetNode}!phys::xml::XPathNode@{phys::xml::XPathNode}}
+\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathNode::GetNode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{df/dd4/classphys_1_1xml_1_1XPathNode_ad34ea7db6cabdfe92656b7d033dbbf35}
+
+
+Get the \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} this is referencing. 
+
+\begin{DoxyReturn}{Returns}
+A valid \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}, or a null node if this doesn't reference a an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}. 
+\end{DoxyReturn}
+
+
+Definition at line 9101 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1XPathNode_a10d6dce64d14cf3d39bb952efd4ca8aa}{
+\index{phys::xml::XPathNode@{phys::xml::XPathNode}!GetParent@{GetParent}}
+\index{GetParent@{GetParent}!phys::xml::XPathNode@{phys::xml::XPathNode}}
+\subsubsection[{GetParent}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathNode::GetParent (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{df/dd4/classphys_1_1xml_1_1XPathNode_a10d6dce64d14cf3d39bb952efd4ca8aa}
+
+
+Get the parent of the \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} or \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} this refers to. 
+
+\begin{DoxyReturn}{Returns}
+A valid \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}, or a null node if this doesn't reference a an \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}. 
+\end{DoxyReturn}
+
+
+Definition at line 9111 of file xml.cpp.
+
 \hypertarget{classphys_1_1xml_1_1XPathNode_a0d11818941c2e31671c5d0cd8f1ce9f9}{
 \index{phys::xml::XPathNode@{phys::xml::XPathNode}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
 \index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!phys::xml::XPathNode@{phys::xml::XPathNode}}
@@ -71,15 +145,84 @@ Definition at line 1150 of file xml.h.
 Used to convert this to a boolean value in a safe way. 
 
 \begin{DoxyReturn}{Returns}
-Returns true if the internal pointer is set and false otherwise, can be used to test validity of this class. 
+Returns true if the internal data is set and false otherwise. 
 \end{DoxyReturn}
 
 
 Definition at line 9116 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1XPathNode_a3c596b9cacb6265df6acffb91b9a7484}{
+\index{phys::xml::XPathNode@{phys::xml::XPathNode}!operator!@{operator!}}
+\index{operator!@{operator!}!phys::xml::XPathNode@{phys::xml::XPathNode}}
+\subsubsection[{operator!}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathNode::operator! (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{df/dd4/classphys_1_1xml_1_1XPathNode_a3c596b9cacb6265df6acffb91b9a7484}
+
+
+Logical not operator, used a workaround for borland compiler. 
+
+\begin{DoxyReturn}{Returns}
+A valid \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}, or a null node if this doesn't reference a an \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}. 
+
+A bool that is the opposite of evaluatig this as a bool normally. 
+\end{DoxyReturn}
+
+
+Definition at line 9121 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1XPathNode_a121ba0e04b6619f45c5392374f2dc98d}{
+\index{phys::xml::XPathNode@{phys::xml::XPathNode}!operator!=@{operator!=}}
+\index{operator!=@{operator!=}!phys::xml::XPathNode@{phys::xml::XPathNode}}
+\subsubsection[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::XPathNode::operator!= (
+\begin{DoxyParamCaption}
+\item[{const {\bf XPathNode} \&}]{ n}
+\end{DoxyParamCaption}
+) const}}
+\label{df/dd4/classphys_1_1xml_1_1XPathNode_a121ba0e04b6619f45c5392374f2dc98d}
+
+
+Called when comparing two \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} instances for inequality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em n}]The other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} to compare this \hyperlink{classphys_1_1xml_1_1Node}{Node} against for inequality. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this and the other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} are referencing the same item, false otherwise; 
+\end{DoxyReturn}
+
+
+Definition at line 9131 of file xml.cpp.
+
+\hypertarget{classphys_1_1xml_1_1XPathNode_ab13702ded8707602871596e4f34e8302}{
+\index{phys::xml::XPathNode@{phys::xml::XPathNode}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::xml::XPathNode@{phys::xml::XPathNode}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::XPathNode::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf XPathNode} \&}]{ n}
+\end{DoxyParamCaption}
+) const}}
+\label{df/dd4/classphys_1_1xml_1_1XPathNode_ab13702ded8707602871596e4f34e8302}
+
+
+Called when comparing two \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} instances for equality. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em n}]The other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} to compare this \hyperlink{classphys_1_1xml_1_1Node}{Node} against for equality. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if this and the other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} are referencing the same item, false otherwise; 
+\end{DoxyReturn}
+
+
+Definition at line 9126 of file xml.cpp.
 
 
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
 \item 
 \hyperlink{xml_8h}{xml.h}\item 
-xml.cpp\end{DoxyCompactItemize}
+xml.cpp\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

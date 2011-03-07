@@ -104,7 +104,7 @@
 <a name="l00073"></a>00073     <span class="keywordtype">bool</span> <a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#aab9a7be4d95289d828378f7f3d5fc065" title="Returns whether a specific Mouse button is pushed.">InputQueryTool::IsMouseButtonPushed</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> MouseButton)
 <a name="l00074"></a>00074     {
 <a name="l00075"></a><a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#a6f210acb5f4e2fe052b0c3c7c3ec9418">00075</a>         <span class="keywordflow">if</span>(MouseButton &gt;= this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#af5d261bc351f43222db511aacf572409" title="This is the mouse button limit of this class.">MouseButtonLimit</a>)
-<a name="l00076"></a>00076             {this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50" title="This is the preferred way to throw an exception. It streams any thrown object to the log...">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported mouse button access through WorldQueryTool&quot;</span>);}
+<a name="l00076"></a>00076             {this-&gt;<a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#ab24a64fc316eefb7e88c1ed75ecee7ea" title="This is gameworld we will be querying.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a372ee96d395d735531f755fc0a72de4a" title="This is the preferred way to throw an exception.">LogAndThrow</a>(<span class="stringliteral">&quot;Unsupported mouse button access through WorldQueryTool&quot;</span>);}
 <a name="l00077"></a>00077         <span class="keywordflow">return</span> <a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html#a2fddedc3d3ac61a195289b55b0aec972" title="A place to store which mouse buttons are pushed.">MouseButtonCache</a>.count(MouseButton);
 <a name="l00078"></a>00078     }
 <a name="l00079"></a>00079 
@@ -243,7 +243,7 @@
 <a name="l00212"></a>00212 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:10 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:42 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -24,18 +24,18 @@
   
   <PlaneOfPlay>
     <!-- The plane must have some presence on the Z plane. Using -.5 or .5 for Z is a very bad idea. -->
-    <Plane x="0" y="0" z="1" normal="5" />
+    <Plane Version="1" Distance="5" ><Vector3 Version="1" x="2" y="1" z="-5" /></plane>
     <!-- Two Different ways to define planes, use only one or the other. The plane tag stores the amount of rotation on the x,y and z and then the distance from the origin. Alternatively, and 3 points will rest on only one plane as long as none of the points overlap. The plane must still have some Z presence. -->
-    <Point x="2" y="1" z="-5" />
-    <Point x="1" y="2" z="-5" />
-    <Point x="1" y="1" z="-5" />
+    <Vector3 Version="1" x="2" y="1" z="-5" />
+    <Vector3 Version="1" x="1" y="2" z="-5" />
+    <Vector3 Version="1" x="1" y="1" z="-5" />
   </PlaneOfPlay>
 
   <!-- PlayArea This needs to be large enough to include every object and extend slightly past the screen boundaries -->
   <PlayArea x="1" y="1" z="-5" width="20" height="20" depth="10"/>
 
   <!-- Gravity Is a default force pulling items in certain directions -->
-  <Gravity x="0" y="-9.8" z="0" />
+  <Gravity><Vector3 Version="1" x="0" y="-9.8" z="0" ></gravity>
 
   <!-- There are several ways to define a starting areas. For each method of creating a Starting all the attributes shown are required. -->
   <StartingArea name="somename" type="mesh" x="1" y="1" Model="SomeMeshShape.mesh" />
@@ -48,7 +48,10 @@
   <EndingArea name="somename2" type="ball" x="1" y="10" radius="10" />
 
   <!-- Define the location and the position to look at in world coordinates.  The orientation needed to look at that point will be automatically calculated.  Optionally, you can also set the camera to orthographic view.  Orthographic view makes things appear without perspective. -->
-  <camera x="1" y="1" z="-5" looksatx="1" looksaty="1" looksatz="-5" ortho="true" />
+  <camera looksatx="1" looksaty="1" looksatz="-5" ortho="true">
+  	<location><Vector3 Version="1" x="1" y="1" z="-5"/></location>
+  	<looksat><Vector3 Version="1" x="1" y="1" z="-5"/></looksat>
+  </camera>
 
   <!--  Actors are used to build the level they have the following attributes:
   type:	"Moveable" For an object that can move and interact with physics. By default this is throwable.

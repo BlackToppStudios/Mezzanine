@@ -43,6 +43,7 @@
 #include "areaeffect.h"
 #include "world.h"
 #include "actorbase.h"
+#include "actorrigid.h"
 #include "physicsmanager.h"
 
 #include <Ogre.h>
@@ -55,7 +56,10 @@ namespace phys{
 
     AreaEffect::AreaEffect(const String &name, const Vector3 Location)
         : Name (name),
-          Shape (NULL)
+          Shape (NULL),
+          GraphicsNode(NULL),
+          GraphicsObject(NULL),
+          ShapeType(AE_Unassigned)
     {
         TheWorld = World::GetWorldPointer();
         CreateGhostObject(Location);
@@ -74,6 +78,22 @@ namespace phys{
         Ghost->setCollisionFlags(Ghost->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
         Ghost->setUserPointer(this);
+    }
+
+    Ogre::MaterialPtr AreaEffect::CreateColouredMaterial(const ColourValue& Colour)
+    {
+        Ogre::MaterialPtr AEMaterial = Ogre::MaterialManager::getSingletonPtr()->create(Name+"Material", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+        AEMaterial->setReceiveShadows(false);
+        Ogre::Pass* pass = AEMaterial->getTechnique(0)->getPass(0);
+        pass->setCullingMode(Ogre::CULL_NONE);
+        pass->setDepthCheckEnabled(true);
+        pass->setDepthWriteEnabled(false);
+        pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
+        pass->setAmbient(Colour.GetOgreColourValue());
+        pass->setDiffuse(Colour.GetOgreColourValue());
+        AEMaterial->prepare();
+        AEMaterial->load();
+        return AEMaterial;
     }
 
     void AreaEffect::AddActorToList(ActorBase* Actor)
@@ -101,7 +121,7 @@ namespace phys{
         if ( !(RemovedActors.empty()) )
             RemovedActors.clear();
         btSoftRigidDynamicsWorld* PhysWorld = TheWorld->GetPhysicsManager()->GetPhysicsWorldPointer();
-        PhysWorld->getDispatcher()->dispatchAllCollisionPairs(Ghost->getOverlappingPairCache(), PhysWorld->getDispatchInfo(), PhysWorld->getDispatcher());
+        //PhysWorld->getDispatcher()->dispatchAllCollisionPairs(Ghost->getOverlappingPairCache(), PhysWorld->getDispatchInfo(), PhysWorld->getDispatcher());
 
         int OverlappingPairs = Ghost->getOverlappingPairCache()->getNumOverlappingPairs();
         btBroadphasePair* Pair = Ghost->getOverlappingPairCache()->getOverlappingPairArrayPtr();
@@ -159,28 +179,56 @@ namespace phys{
     {
         Shape = new btSphereShape(Radius);
         Ghost->setCollisionShape(Shape);
+        ShapeType = AE_Sphere;
     }
 
-    void AreaEffect::CreateCylinderShape(const Vector3 HalfExtents)
+    void AreaEffect::CreateCylinderShapeX(const Vector3 HalfExtents)
+    {
+        Shape = new btCylinderShapeX(HalfExtents.GetBulletVector3());
+        Ghost->setCollisionShape(Shape);
+        ShapeType = AE_CylinderX;
+    }
+
+    void AreaEffect::CreateCylinderShapeY(const Vector3 HalfExtents)
     {
         Shape = new btCylinderShape(HalfExtents.GetBulletVector3());
         Ghost->setCollisionShape(Shape);
+        ShapeType = AE_CylinderY;
     }
 
-    void AreaEffect::CreateBoxShape(const Vector3 HalfExtents, const ColourValue Colour)
+    void AreaEffect::CreateCylinderShapeZ(const Vector3 HalfExtents)
+    {
+        Shape = new btCylinderShapeZ(HalfExtents.GetBulletVector3());
+        Ghost->setCollisionShape(Shape);
+        ShapeType = AE_CylinderZ;
+    }
+
+    void AreaEffect::CreateBoxShape(const Vector3 HalfExtents)
     {
         Shape = new btBoxShape(HalfExtents.GetBulletVector3());
         Ghost->setCollisionShape(Shape);
-
-        if(0 != Colour.Alpha)
-        {
-
-        }
+        ShapeType = AE_Box;
     }
 
     void AreaEffect::CreateShapeFromMesh(String Filename, String Group, bool MakeVisible)
     {
         Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        if(GraphicsObject)
+        {
+            OgreManager->destroyEntity(GraphicsObject);
+            GraphicsObject = NULL;
+        }
+        if(GraphicsNode)
+        {
+            OgreManager->destroySceneNode(GraphicsNode);
+            GraphicsNode = NULL;
+        }
+        if(Shape)
+        {
+            delete Shape;
+            Shape = NULL;
+        }
+
         GraphicsObject = OgreManager->createEntity(Name, Filename, Group);
         Ogre::MeshPtr myMesh = GraphicsObject->getMesh();
         Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
@@ -243,6 +291,7 @@ namespace phys{
         if(MakeVisible)
         {
             GraphicsNode = OgreManager->createSceneNode();
+            OgreManager->getRootSceneNode()->addChild(GraphicsNode);
             GraphicsNode->attachObject(GraphicsObject);
         }else{
             OgreManager->destroyEntity(GraphicsObject);
@@ -251,6 +300,7 @@ namespace phys{
 
         Shape = new btGImpactMeshShape(trimesh);
         Ghost->setCollisionShape(Shape);
+        ShapeType = AE_Custom;
     }
 
     void AreaEffect::ScaleFieldShape(const Vector3 Scale)
@@ -267,6 +317,8 @@ namespace phys{
     void AreaEffect::SetLocation(const Vector3 Location)
     {
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
+        if(GraphicsNode)
+            GraphicsNode->setPosition(Location.GetOgreVector3());
     }
 
     Vector3 AreaEffect::GetLocation()
@@ -278,6 +330,221 @@ namespace phys{
     ConstString& AreaEffect::GetName()
     {
         return Name;
+    }
+
+    AreaEffect::AEShapeType AreaEffect::GetShapeType()
+    {
+        return ShapeType;
+    }
+
+    void AreaEffect::CreateGraphicsSphere(const ColourValue& Colour, const Whole Rings, const Whole Segments)
+    {
+        if(AreaEffect::AE_Sphere != ShapeType)
+        {
+            TheWorld->Log("Attempting to create sphere graphics shape when AreaEffect isn't a sphere is not supported.  Exiting Function.");
+            return;
+        }
+        String MatName = (CreateColouredMaterial(Colour))->getName();
+        CreateGraphicsSphere(MatName,Rings,Segments);
+    }
+
+    void AreaEffect::CreateGraphicsSphere(String& MaterialName, const Whole Rings, const Whole Segments)
+    {
+        if(AreaEffect::AE_Sphere != ShapeType)
+        {
+            TheWorld->Log("Attempting to create sphere graphics shape when AreaEffect isn't a sphere is not supported.  Exiting Function.");
+            return;
+        }
+        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        if(GraphicsObject)
+        {
+            OgreManager->destroyEntity(GraphicsObject);
+            GraphicsObject = NULL;
+        }
+        if(GraphicsNode)
+        {
+            OgreManager->destroySceneNode(GraphicsNode);
+            GraphicsNode = NULL;
+        }
+        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
+        String GroupName = TheMaterial->getGroup();
+
+        Real Radius = (static_cast<btSphereShape*>(Shape))->getRadius();
+        Real RingAngle = (Ogre::Math::PI / Rings);
+        Real SegAngle = (2 * Ogre::Math::PI / Segments);
+        Whole VertIndex = 0;
+
+        Ogre::ManualObject* sphere = new Ogre::ManualObject("TempMan");
+        sphere->begin(MaterialName);
+
+        for( Whole ring = 0 ; ring <= Rings ; ring++ ) {
+        Real r0 = Radius * sinf (ring * RingAngle);
+        Real y0 = Radius * cosf (ring * RingAngle);
+
+            // Generate the group of segments for the current ring
+            for( Whole seg = 0 ; seg <= Segments ; seg++ ) {
+                Real x0 = r0 * sinf(seg * SegAngle);
+                Real z0 = r0 * cosf(seg * SegAngle);
+
+                // Add one vertex to the strip which makes up the sphere
+                sphere->position( x0, y0, z0);
+                sphere->normal(Ogre::Vector3(x0, y0, z0).normalisedCopy());
+                sphere->textureCoord((Real) seg / (Real) Segments, (Real) ring / (Real) Rings);
+
+                if (ring != Rings) {
+                    // each vertex (except the last) has six indicies pointing to it
+                    sphere->index(VertIndex + Segments + 1);
+                    sphere->index(VertIndex);
+                    sphere->index(VertIndex + Segments);
+                    sphere->index(VertIndex + Segments + 1);
+                    sphere->index(VertIndex + 1);
+                    sphere->index(VertIndex);
+                    VertIndex++;
+                }
+            }
+        }
+
+        sphere->end();
+        sphere->convertToMesh(Name + "Mesh", GroupName);
+
+        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
+        GraphicsNode = OgreManager->createSceneNode();
+        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
+        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
+        GraphicsNode->attachObject(GraphicsObject);
+    }
+
+    void AreaEffect::CreateGraphicsCylinder(const ColourValue& Colour)
+    {
+        if(AreaEffect::AE_CylinderX != ShapeType && AreaEffect::AE_CylinderY != ShapeType && AreaEffect::AE_CylinderZ != ShapeType)
+        {
+            TheWorld->Log("Attempting to create cylinder graphics shape when AreaEffect isn't a cylinder is not supported.  Exiting Function.");
+            return;
+        }
+        String MatName = (CreateColouredMaterial(Colour))->getName();
+        CreateGraphicsCylinder(MatName);
+    }
+
+    void AreaEffect::CreateGraphicsCylinder(String& MaterialName)
+    {
+        if(AreaEffect::AE_CylinderX != ShapeType && AreaEffect::AE_CylinderY != ShapeType && AreaEffect::AE_CylinderZ != ShapeType)
+        {
+            TheWorld->Log("Attempting to create cylinder graphics shape when AreaEffect isn't a cylinder is not supported.  Exiting Function.");
+            return;
+        }
+        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        if(GraphicsObject)
+        {
+            OgreManager->destroyEntity(GraphicsObject);
+            GraphicsObject = NULL;
+        }
+        if(GraphicsNode)
+        {
+            OgreManager->destroySceneNode(GraphicsNode);
+            GraphicsNode = NULL;
+        }
+        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
+        String GroupName = TheMaterial->getGroup();
+
+        Ogre::ManualObject* cylinder = new Ogre::ManualObject("TempMan");
+        cylinder->begin(MaterialName);
+
+        cylinder->end();
+        cylinder->convertToMesh(Name + "Mesh", GroupName);
+
+        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
+        GraphicsNode = OgreManager->createSceneNode();
+        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
+        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
+        GraphicsNode->attachObject(GraphicsObject);
+    }
+
+    void AreaEffect::CreateGraphicsBox(const ColourValue& Colour)
+    {
+        if(AreaEffect::AE_Box != ShapeType)
+        {
+            TheWorld->Log("Attempting to create box graphics shape when AreaEffect isn't a box is not supported.  Exiting Function.");
+            return;
+        }
+        String MatName = (CreateColouredMaterial(Colour))->getName();
+        CreateGraphicsBox(MatName);
+    }
+
+    void AreaEffect::CreateGraphicsBox(String& MaterialName)
+    {
+        if(AreaEffect::AE_Box != ShapeType)
+        {
+            TheWorld->Log("Attempting to create box graphics shape when AreaEffect isn't a box is not supported.  Exiting Function.");
+            return;
+        }
+        Ogre::SceneManager* OgreManager = TheWorld->GetSceneManager()->GetGraphicsWorldPointer();
+        if(GraphicsObject)
+        {
+            OgreManager->destroyEntity(GraphicsObject);
+            GraphicsObject = NULL;
+        }
+        if(GraphicsNode)
+        {
+            OgreManager->destroySceneNode(GraphicsNode);
+            GraphicsNode = NULL;
+        }
+        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
+        String GroupName = TheMaterial->getGroup();
+        /// @todo The HalfExtents returned here includes scaling, should account for that so weird scaling sync issues don't occur.
+        Vector3 Half((static_cast<btBoxShape*>(Shape))->getHalfExtentsWithoutMargin());
+
+        Ogre::ManualObject* box = new Ogre::ManualObject("TempMan");
+        box->begin(MaterialName);
+        //Front
+        box->position(-Half.X,-Half.Y,Half.Z);  box->normal(0,0,1);  box->textureCoord(0,1);
+        box->position(Half.X,-Half.Y,Half.Z);   box->normal(0,0,1);  box->textureCoord(1,1);
+        box->position(Half.X,Half.Y,Half.Z);    box->normal(0,0,1);  box->textureCoord(1,0);
+        box->position(-Half.X,Half.Y,Half.Z);   box->normal(0,0,1);  box->textureCoord(0,0);
+        //Back
+        box->position(Half.X,-Half.Y,-Half.Z);  box->normal(0,0,-1); box->textureCoord(0,1);
+        box->position(-Half.X,-Half.Y,-Half.Z); box->normal(0,0,-1); box->textureCoord(1,1);
+        box->position(-Half.X,Half.Y,-Half.Z);  box->normal(0,0,-1); box->textureCoord(1,0);
+        box->position(Half.X,Half.Y,-Half.Z);   box->normal(0,0,-1); box->textureCoord(0,0);
+        //Left
+        box->position(-Half.X,-Half.Y,-Half.Z); box->normal(-1,0,0); box->textureCoord(0,1);
+        box->position(-Half.X,-Half.Y,Half.Z);  box->normal(-1,0,0); box->textureCoord(1,1);
+        box->position(-Half.X,Half.Y,Half.Z);   box->normal(-1,0,0); box->textureCoord(1,0);
+        box->position(-Half.X,Half.Y,-Half.Z);  box->normal(-1,0,0); box->textureCoord(0,0);
+        //Right
+        box->position(Half.X,-Half.Y,Half.Z);   box->normal(1,0,0);  box->textureCoord(0,1);
+        box->position(Half.X,-Half.Y,-Half.Z);  box->normal(1,0,0);  box->textureCoord(1,1);
+        box->position(Half.X,Half.Y,-Half.Z);   box->normal(1,0,0);  box->textureCoord(1,0);
+        box->position(Half.X,Half.Y,Half.Z);    box->normal(1,0,0);  box->textureCoord(0,0);
+        //Top
+        box->position(-Half.X,Half.Y,Half.Z);   box->normal(0,1,0);  box->textureCoord(0,1);
+        box->position(Half.X,Half.Y,Half.Z);    box->normal(0,1,0);  box->textureCoord(1,1);
+        box->position(Half.X,Half.Y,-Half.Z);   box->normal(0,1,0);  box->textureCoord(1,0);
+        box->position(-Half.X,Half.Y,-Half.Z);  box->normal(0,1,0);  box->textureCoord(0,0);
+        //Bottom
+        box->position(-Half.X,-Half.Y,-Half.Z); box->normal(0,-1,0); box->textureCoord(0,1);
+        box->position(Half.X,-Half.Y,-Half.Z);  box->normal(0,-1,0); box->textureCoord(1,1);
+        box->position(Half.X,-Half.Y,Half.Z);   box->normal(0,-1,0); box->textureCoord(1,0);
+        box->position(-Half.X,-Half.Y,Half.Z);  box->normal(0,-1,0); box->textureCoord(0,0);
+
+        box->triangle(0,1,2);    box->triangle(0,2,3);    //Front
+        box->triangle(4,5,6);    box->triangle(4,6,7);    //Back
+        box->triangle(8,9,10);   box->triangle(8,10,11);  //Left
+        box->triangle(12,13,14); box->triangle(12,14,15); //Right
+        box->triangle(16,17,18); box->triangle(16,18,19); //Top
+        box->triangle(20,21,22); box->triangle(20,22,23); //Bottom
+
+        box->end();
+        Ogre::MeshPtr boxmesh = box->convertToMesh(Name + "Mesh", GroupName);
+        boxmesh->_setBounds(Ogre::AxisAlignedBox(-Half.X,-Half.Y,-Half.Z,Half.X,Half.Y,Half.Z));
+        Real RunnerUp = Half.X > Half.Y ? Half.X : Half.Y;
+        Real Largest = RunnerUp > Half.Z ? RunnerUp : Half.Z;
+        boxmesh->_setBoundingSphereRadius(Ogre::Math::Sqrt(3*Largest*Largest));
+
+        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
+        GraphicsNode = OgreManager->createSceneNode();
+        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
+        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
+        GraphicsNode->attachObject(GraphicsObject);
     }
 
     std::list<ActorBase*>& AreaEffect::GetOverlappingActors()
@@ -308,37 +575,32 @@ namespace phys{
 
     void TestAE::ApplyEffect()
     {
-        std::vector<ActorBase*>* Added = &(GetAddedActors());
-        std::vector<ActorBase*>* Removed = &(GetRemovedActors());
-        std::list<ActorBase*>* Current = &(GetOverlappingActors());
-
         std::vector<ActorBase*>::iterator AaRIt;
         std::list<ActorBase*>::iterator CurrIt;
-
         ActorBase* Act = NULL;
 
-        if ( !(Added->empty()) )
+        if ( !AddedActors.empty() )
         {
             TheWorld->Log("Actors Added to field this frame:");
-            for ( AaRIt = Added->begin() ; AaRIt != Added->end() ; AaRIt++ )
+            for ( AaRIt = AddedActors.begin() ; AaRIt != AddedActors.end() ; AaRIt++ )
             {
                 Act = (*AaRIt);
                 TheWorld->Log(Act);
             }
         }
-        if ( !(Removed->empty()) )
+        if ( !RemovedActors.empty() )
         {
             TheWorld->Log("Actors Removed from field this frame:");
-            for ( AaRIt = Removed->begin() ; AaRIt != Removed->end() ; AaRIt++ )
+            for ( AaRIt = RemovedActors.begin() ; AaRIt != RemovedActors.end() ; AaRIt++ )
             {
                 Act = (*AaRIt);
                 TheWorld->Log(Act);
             }
         }
-        if ( !(Current->empty()) )
+        if ( !OverlappingActors.empty() )
         {
             TheWorld->Log("Actors Currently in field this frame:");
-            for ( CurrIt = Current->begin() ; CurrIt != Current->end() ; CurrIt++ )
+            for ( CurrIt = OverlappingActors.begin() ; CurrIt != OverlappingActors.end() ; CurrIt++ )
             {
                 Act = (*CurrIt);
                 TheWorld->Log(Act);
@@ -359,23 +621,21 @@ namespace phys{
 
     void GravityField::ApplyEffect()
     {
-        std::vector<ActorBase*>* Added = &(GetAddedActors());
-        std::vector<ActorBase*>* Removed = &(GetRemovedActors());
         std::vector<ActorBase*>::iterator It;
         PhysicsManager* Physics = TheWorld->GetPhysicsManager();
         ActorBase* Act = NULL;
 
-        if ( !(Added->empty()) )
+        if ( !AddedActors.empty() )
         {
-            for ( It = Added->begin() ; It != Added->end() ; It++ )
+            for ( It = AddedActors.begin() ; It != AddedActors.end() ; It++ )
             {
                 Act = (*It);
                 Physics->SetIndividualGravity(Act, Grav);
             }
         }
-        if ( !(Removed->empty()) )
+        if ( !RemovedActors.empty() )
         {
-            for ( It = Removed->begin() ; It != Removed->end() ; It++ )
+            for ( It = RemovedActors.begin() ; It != RemovedActors.end() ; It++ )
             {
                 Act = (*It);
                 Physics->SetIndividualGravity(Act, Physics->GetGravity());
@@ -391,6 +651,124 @@ namespace phys{
     Vector3 GravityField::GetFieldGravity()
     {
         return Grav;
+    }
+
+    ///////////////////////////////////
+    // GravityWell functions
+
+    GravityWell::GravityWell(const String &name, Vector3 Location)
+        : AreaEffect(name, Location),
+          AllowWorldGrav(true),
+          Strength(0),
+          AttenAmount(0),
+          AttenStyle(GW_Att_None)
+    {
+    }
+
+    GravityWell::~GravityWell()
+    {
+    }
+
+    void GravityWell::ApplyEffect()
+    {
+        if(0 == Strength)
+            return;
+        ActorBase* Act = NULL;
+        ActorRigid* ActRig = NULL;
+        if(!AllowWorldGrav && !AddedActors.empty())
+        {
+            for ( std::vector<ActorBase*>::iterator AA = AddedActors.begin() ; AA != AddedActors.end() ; AA++ )
+            {
+                if(ActorBase::Actorrigid != (*AA)->GetType())
+                    continue;
+                ActRig = dynamic_cast<ActorRigid*>(*AA);
+                ActRig->SetIndividualGravity(Vector3());
+            }
+        }
+        if(!OverlappingActors.empty())
+        {
+            Vector3 ActorLoc, Direction;
+            Real Distance, AppliedStrength, InvMass;
+            Vector3 GhostLoc = this->GetLocation();
+            for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
+            {
+                if(ActorBase::Actorrigid != (*OA)->GetType())
+                    continue;
+                //Collect necessary data
+                ActorLoc = (*OA)->GetLocation();
+                Distance = ActorLoc.Distance(GhostLoc);
+                Direction = (GhostLoc - ActorLoc) / Distance;
+                switch(AttenStyle)
+                {
+                    case GW_Att_Linear:
+                        AppliedStrength = Strength - (AttenAmount * Distance);
+                        break;
+                    case GW_Att_Quadratic:
+                        AppliedStrength = Strength - (AttenAmount * (Distance * Distance));
+                        break;
+                    default:
+                        AppliedStrength = Strength;
+                        break;
+                }
+                ActRig = static_cast<ActorRigid*>(*OA);
+                InvMass = ActRig->GetBulletObject()->getInvMass();
+                if(0 != InvMass)
+                    AppliedStrength *= (1 / ActRig->GetBulletObject()->getInvMass());
+                else
+                    AppliedStrength = 0;
+                if(0 > AppliedStrength)
+                    AppliedStrength = 0;
+                //Apply the Force
+                ActRig->GetBulletObject()->applyCentralForce((Direction * AppliedStrength).GetBulletVector3());
+            }
+        }
+        if(!AllowWorldGrav && !RemovedActors.empty())
+        {
+            Vector3 WorldGrav = TheWorld->GetPhysicsManager()->GetGravity();
+            for ( std::vector<ActorBase*>::iterator RA = RemovedActors.begin() ; RA != RemovedActors.end() ; RA++ )
+            {
+                if(ActorBase::Actorrigid != (*RA)->GetType())
+                    continue;
+                ActRig = dynamic_cast<ActorRigid*>(*RA);
+                ActRig->SetIndividualGravity(WorldGrav);
+            }
+        }
+    }
+
+    void GravityWell::SetFieldStrength(const Real FieldStrength)
+    {
+        Strength = FieldStrength;
+    }
+
+    Real GravityWell::GetFieldStrength()
+    {
+        return Strength;
+    }
+
+    void GravityWell::SetAllowWorldGravity(bool WorldGravity)
+    {
+        AllowWorldGrav = WorldGravity;
+    }
+
+    bool GravityWell::GetAllowWorldGravity()
+    {
+        return AllowWorldGrav;
+    }
+
+    void GravityWell::SetAttenuation(Real Amount, AttenuationStyle Style)
+    {
+        AttenAmount = Amount;
+        AttenStyle = Style;
+    }
+
+    GravityWell::AttenuationStyle GravityWell::GetAttenuationStyle()
+    {
+        return AttenStyle;
+    }
+
+    Real GravityWell::GetAttenuationAmount()
+    {
+        return AttenAmount;
     }
 }
 

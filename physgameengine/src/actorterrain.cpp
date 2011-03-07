@@ -86,7 +86,7 @@ namespace phys
         this->RigidBody->updateInertiaTensor();
     }
 
-    void ActorTerrain::CreateShapeFromMeshDynamic(short unsigned int accuracy)
+    void ActorTerrain::CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes)
     {
     }
 
@@ -107,6 +107,11 @@ namespace phys
         TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeCollisionObject(this->CollisionObject);
         //TargetWorld->Physics->BulletDynamicsWorld->removeRigidBody(this->CollisionObject);
         this->DetachFromGraphics();
+    }
+
+    btRigidBody* ActorTerrain::GetBulletObject()
+    {
+        return RigidBody;
     }
 }
 

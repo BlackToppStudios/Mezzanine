@@ -108,6 +108,7 @@
 
 #include "crossplatform.h"
 #include "eventbase.h"
+#include "exception.h"
 #include "datatypes.h"
 #include "vector3.h"
 #include "scenemanager.h"
@@ -287,7 +288,16 @@ namespace phys
             /// and gameworld recreations.
             std::stringstream LogStream;
 
-            /// @brief This is the preferred way to throw an exception. It streams any thrown object to the log.
+            /// @brief This is the preferred way to throw an exception.
+            /// @param Err A phys::Exception to be logged and thrown
+            void LogAndThrow(Exception Err)
+            {
+                this->Log(Err.what());
+                Err.SetLogged();
+                throw(Err);
+            }
+
+            /// @brief This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log.
             /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
             /// types that overload the stream insertion operator ( << )
             /// @param Message This will be streamed to the log, then used in a thrown exception.

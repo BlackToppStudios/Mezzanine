@@ -107,20 +107,23 @@ namespace phys
         //This returns a named parameter list with valid settings to use Ogre rendering
         //on a pre-existing SDL context
         //void* is always an ogre NameValuePairList
-        void* GetSDLOgreBinder()
+        void* GetSDLOgreBinder(SDL_Window* window, size_t& winGlContext)
         {
             Ogre::NameValuePairList *misc = new Ogre::NameValuePairList();
             #ifdef WINDOWS
                 SDL_SysWMinfo wmInfo;
                 SDL_VERSION(&wmInfo.version);
-                SDL_GetWMInfo(&wmInfo);
+                if(SDL_GetWindowWMInfo(window,&wmInfo))
+                {
+                    size_t winHandle = reinterpret_cast<size_t>(wmInfo.info.win.window);
+                    //size_t winGlContext = reinterpret_cast<size_t>(wmInfo.hglrc);
 
-                size_t winHandle = reinterpret_cast<size_t>(wmInfo.window);
-                size_t winGlContext = reinterpret_cast<size_t>(wmInfo.hglrc);
-
-                (*misc)["externalWindowHandle"] = Ogre::StringConverter::toString(winHandle);
-                (*misc)["externalGLContext"] = Ogre::StringConverter::toString(winGlContext);
-                (*misc)["externalGLControl"] = Ogre::String("True");
+                    (*misc)["externalWindowHandle"] = Ogre::StringConverter::toString(winHandle);
+                    (*misc)["externalGLContext"] = Ogre::StringConverter::toString(winGlContext);
+                    (*misc)["externalGLControl"] = Ogre::String("True");
+                }else{
+                    World::GetWorldPointer()->LogAndThrow("Failed to create SDL Binder.");
+                }
             #else
                 (*misc)["currentGLContext"] = Ogre::String("True");
             #endif
@@ -137,8 +140,9 @@ namespace phys
             #endif
         }
 
-        void RenderPhysWorld(World *TheWorld, Ogre::RenderWindow* TheOgreWindow)
+        void RenderPhysWorld(Ogre::RenderWindow* TheOgreWindow, SDL_Window* SDLWindow)
         {
+            World* TheWorld = World::GetWorldPointer();
             TheWorld->Log("Rendering the World.");
             #ifndef WINDOWS
                 Ogre::Root::getSingleton()._fireFrameStarted();
@@ -151,10 +155,10 @@ namespace phys
                 if(TheOgreWindow->isActive())
                 {
                     Ogre::Root::getSingleton().renderOneFrame();
-                    SDL_GL_SwapBuffers();
+                    SDL_GL_SwapWindow(SDLWindow);
                 }else if( !TheOgreWindow->isActive() && TheOgreWindow->isVisible()){
                     TheOgreWindow->update(false);
-                    SDL_GL_SwapBuffers();
+                    SDL_GL_SwapWindow(SDLWindow);
                 }else{
                     TheWorld->Log("Aborted Rendering, target is not active");
                     // clear timings to allow smooth alt-tabbing action.
@@ -162,6 +166,19 @@ namespace phys
                 }
             #endif
             TheWorld->Log("Finished Rendering");
+        }
+
+        String GetPlatform()
+        {
+            #ifdef LINUX
+                return "Linux";
+            #endif
+            #ifdef WINDOWS
+                return "Windows";
+            #endif
+			#ifdef MACOSX
+				return "MacOSX";
+			#endif
         }
     }
 }

@@ -139,20 +139,27 @@
 <a name="l00108"></a>00108 <span class="comment">            /// @param Plane2 The Ogre::Plane to take data from.</span>
 <a name="l00109"></a>00109 <span class="comment"></span>            <span class="keywordtype">void</span> operator=(<span class="keyword">const</span> Ogre::Plane&amp; Plane2);
 <a name="l00110"></a>00110     }; <span class="comment">// /Plane</span>
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112 }<span class="comment">// /phys</span>
-<a name="l00113"></a>00113 <span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">/// @brief Streaming output operator</span>
-<a name="l00115"></a>00115 <span class="comment">/// @details This converts the data of the Ray into a stream Ideal for sending to a log or cout</span>
-<a name="l00116"></a>00116 <span class="comment">/// @param stream This is the stream we send our data to.</span>
-<a name="l00117"></a>00117 <span class="comment">/// @return This returns an std::ostream which now contains our data.</span>
+<a name="l00111"></a>00111 }<span class="comment">// /phys</span>
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113 <span class="preprocessor">#ifdef PHYSXML</span>
+<a name="l00114"></a>00114 <span class="preprocessor"></span><span class="comment">/// @brief Streaming output operator</span>
+<a name="l00115"></a>00115 <span class="comment"></span><span class="comment">/// @details This converts the data of the Plane into a snippet of xml Ideal for sending to a log or cout.</span>
+<a name="l00116"></a>00116 <span class="comment"></span><span class="comment">/// @param stream This is the stream we send our data to.</span>
+<a name="l00117"></a>00117 <span class="comment"></span><span class="comment">/// @return This returns an std::ostream which now contains our data.</span>
 <a name="l00118"></a>00118 <span class="comment"></span>std::ostream&amp; PHYS_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d1/d0c/classphys_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">phys::Plane</a>&amp; x);
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 <span class="preprocessor">#endif</span>
+<a name="l00119"></a>00119 <span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">/// @brief Used to de-serialize from a stream.</span>
+<a name="l00121"></a>00121 <span class="comment">/// @details This reads XML input and attempts to Populate a plane.</span>
+<a name="l00122"></a>00122 <span class="comment">/// @param stream This is the stream we get our data from.</span>
+<a name="l00123"></a>00123 <span class="comment">/// @return This returns an std::ostream to allow operator chaining.</span>
+<a name="l00124"></a>00124 <span class="comment"></span>std::istream&amp; PHYS_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="../../d1/d0c/classphys_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">phys::Plane</a>&amp; x);
+<a name="l00125"></a>00125 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l00126"></a>00126 <span class="preprocessor"></span>
+<a name="l00127"></a>00127 
+<a name="l00128"></a>00128 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Fri Feb 4 2011 13:22:10 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

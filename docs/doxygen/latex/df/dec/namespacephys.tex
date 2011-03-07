@@ -183,6 +183,10 @@ typedef std::vector$<$ \hyperlink{classphys_1_1Sound}{Sound} $\ast$ $>$ \hyperli
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_a7b6390aedd6532260accd12e829bf654}{StringCat} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Front, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Back)
+\begin{DoxyCompactList}\small\item\em Concatenates 2 Strings. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_a2acc1c7ec01ac009cfe227d418da4b8b}{StringCat} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Front, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Middle, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Back)
+\begin{DoxyCompactList}\small\item\em Concatenates 3 Strings. \item\end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_ae81e34843c6c569026b9a7d9d54c4f04}{ToString} (const T \&Datum)
 \begin{DoxyCompactList}\small\item\em Converts whatever to a String as long as a streaming operator is available for it. \item\end{DoxyCompactList}\item 
 {\footnotesize template$<$class T $>$ }\\\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{namespacephys_a53d44a46cab542ef86a541af5f1a7b62}{ToWhole} (const T \&Datum)
@@ -314,6 +318,47 @@ Definition at line 78 of file datatypes.h.
 
 
 \subsection{Function Documentation}
+\hypertarget{namespacephys_a7b6390aedd6532260accd12e829bf654}{
+\index{phys@{phys}!StringCat@{StringCat}}
+\index{StringCat@{StringCat}!phys@{phys}}
+\subsubsection[{StringCat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::StringCat (
+\begin{DoxyParamCaption}
+\item[{const String \&}]{ Front, }
+\item[{const String \&}]{ Back}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_a7b6390aedd6532260accd12e829bf654}
+
+
+Concatenates 2 Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Front}]The first String \item[{\em Back}]The last String \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string containing the other Strings passed attached end to end 
+\end{DoxyReturn}
+\hypertarget{namespacephys_a2acc1c7ec01ac009cfe227d418da4b8b}{
+\index{phys@{phys}!StringCat@{StringCat}}
+\index{StringCat@{StringCat}!phys@{phys}}
+\subsubsection[{StringCat}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::StringCat (
+\begin{DoxyParamCaption}
+\item[{const String \&}]{ Front, }
+\item[{const String \&}]{ Middle, }
+\item[{const String \&}]{ Back}
+\end{DoxyParamCaption}
+)}}
+\label{df/dec/namespacephys_a2acc1c7ec01ac009cfe227d418da4b8b}
+
+
+Concatenates 3 Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Front}]The first String \item[{\em Middle}]The \item[{\em Back}]The last String \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A string containing the other Strings passed attached end to end 
+\end{DoxyReturn}
 \hypertarget{namespacephys_aa89192e0bb495fdf141649f5abd88963}{
 \index{phys@{phys}!Todouble@{Todouble}}
 \index{Todouble@{Todouble}!phys@{phys}}

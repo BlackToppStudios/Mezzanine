@@ -71,6 +71,16 @@ namespace phys {
             { delete *Iter; }
     }
 
+    void ResourceManager::AddResourceGroupName(String Name)
+    {
+        for( Whole X = 0 ; X < ResourceGroups.size() ; X++ )
+        {
+            if(Name == ResourceGroups[X])
+                return;
+        }
+        ResourceGroups.push_back(Name);
+    }
+
     void ResourceManager::ApplyShapeToActor(ActorBase* Actor, btCollisionShape* ColShape)
     {
         if(ActorBase::Actorrigid == Actor->GetType())
@@ -158,6 +168,7 @@ namespace phys {
     void ResourceManager::AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive)
     {
         this->OgreResource->addResourceLocation(Location, Type, Group, recursive);
+        AddResourceGroupName(Group);
     }
 
     void ResourceManager::DeclareResource(const String& Name, const String& Type, const String& Group)
@@ -168,6 +179,19 @@ namespace phys {
     void ResourceManager::InitResourceGroup(const String& Group)
     {
         this->OgreResource->initialiseResourceGroup(Group);
+    }
+
+    void ResourceManager::ParseMaterialScripts()
+    {
+        Ogre::MaterialManager* OgreMatMan = Ogre::MaterialManager::getSingletonPtr();
+        for( Whole X = 0 ; X < ResourceGroups.size() ; X++ )
+        {
+            Ogre::DataStreamListPtr MatFiles = OgreResource->openResources("*.material",ResourceGroups[X]);
+            for( std::list<Ogre::DataStreamPtr>::iterator it = MatFiles->begin() ; it != MatFiles->end() ; it++ )
+            {
+                OgreMatMan->parseScript((*it),ResourceGroups[X]);
+            }
+        }
     }
 
     ResourceInputStream* ResourceManager::GetResourceStream(const String& FileName)
