@@ -190,6 +190,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.cpp"
 )
 
 ###############################################################################
@@ -281,9 +282,9 @@ if(${UNIX})
 		add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
 		set(SDLName SDL)
-		set(SDLSoName libSDL.a)
+		set(SDLLibName libSDL.a)
 		file( COPY 
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/${SDLSoName}"
+				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/${SDLLibName}"
 			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/"
 		)
 		link_directories(${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/ ) 
@@ -451,16 +452,16 @@ set( Bullet_LibraryNames
 )
 
 
-if(${APPLE}){
+if(${APPLE})
 	target_link_libraries(
-	    ${PROJECT_NAME}
-	    "${OGRE_LIBRARIES}"
-	    ${Bullet_LibraryNames}
-	    "${OPENAL_LIBRARY}" 
-	    ${SDL_LIBRARY}
-	  #  "${OGG_LIBRARY}"
+		${PROJECT_NAME}
+		"${OGRE_LIBRARIES}"
+		${Bullet_LibraryNames}
+		"${OPENAL_LIBRARY}" 
+		${SDL_LIBRARY}
+		#  "${OGG_LIBRARY}"
 		/Users/hydrowolfy/Downloads/cAudio2.1.0-OSX/bin/Osx/libcAudio.dylib
-)
+	)
 else(${APPLE})
 	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDLName} )
 endif(${APPLE})
@@ -500,7 +501,7 @@ if(${UNIX})
 		message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
 
 		#Copy System Dependant files during build time
-		#CopyFilesDuringBuild( ${BuildPlatform}/sdl/${SDLSoName} ${SDLSoName})
+		#CopyFilesDuringBuild( ${BuildPlatform}/sdl/${SDLLibName} ${SDLLibName})
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so)
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
 		CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )

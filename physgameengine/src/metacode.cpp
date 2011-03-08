@@ -40,6 +40,8 @@
 #ifndef METACODE_CPP
 #define METACODE_CPP
 
+#include "world.h" //only used for logging
+
 ///////////////////////////////////////////////////////////////////////////////
 // Includes
 ///////////////////////////////////////
@@ -129,6 +131,9 @@ namespace phys
     //This function assumes the RawEvent is a valid SDL Keyevent
     MetaCode::InputCode MetaCode::GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_)
     {
+
+        phys::World::GetWorldPointer()->LogStream << "SDLK_ESCAPE:" << SDLK_ESCAPE;
+
         //This Whole thing will only work with SDL Keyboard events. If we switch out event subsystems this is one of those that must change it.
         MetaCode::InputCode To;
 
