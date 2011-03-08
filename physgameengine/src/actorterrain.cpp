@@ -48,6 +48,7 @@
 #include "world.h"
 #include "physicsmanager.h"
 #include "internalmotionstate.h.cpp"
+#include "internalmeshtools.h.cpp"
 
 namespace phys
 {
@@ -71,14 +72,14 @@ namespace phys
         ActorType = ActorBase::Actorterrain;
     }
 
-    void ActorTerrain::CreateShapeFromMeshStatic()
+    void ActorTerrain::CreateShapeFromMeshStatic(bool UseAllSubmeshes)
     {
         if(!ShapeIsSaved)
         {
             delete Shape;
         }
         /// @todo - Check for thread safety
-        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(this->CreateTrimesh(),true);
+        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(entity,UseAllSubmeshes),true);
         this->Shape=tmpshape;
         ShapeIsSaved = false;
         this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));

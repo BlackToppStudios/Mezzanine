@@ -137,12 +137,6 @@ namespace phys
             /// @brief Stores whether or not the current physics shape has been saved in the manager.
             bool ShapeIsSaved;
 
-            /// @brief Creates a trimesh shape from the mesh file.
-            /// @details Makes a trimesh to be used as a collision shape in the physics world from a mesh file. @n
-            /// This is automaticly called by the CreateShapeFromMesh function in child classes and shouldn't be called manually.
-            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
-            virtual btTriangleMesh* CreateTrimesh(bool UseAllSubmeshes = false) const;
-
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
 ///////////////////////////////////////
@@ -150,31 +144,6 @@ namespace phys
             /// @details This function is needed for the ActorSoft implementation.
             /// @return Returns a pointer to the ogre resource group manager.
             virtual Ogre::ResourceGroupManager* GetOgreResourceManager();
-
-            /// @brief Gets the verticy information of the mesh this soft body is based on.
-            /// @details This function will read the mesh provided and gather the verticies inside it for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            virtual void GetMeshVerticies (internal::MeshInfo &TheMesh);
-
-            /// @brief Gets the indicy information of the mesh this soft body is based on.
-            /// @details This function will read the mesh provided and gather the indicies inside it for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            virtual void GetMeshIndicies (internal::MeshInfo &TheMesh);
-
-            /// @brief Gets the normals information of the mesh this soft body is based on.
-            /// @details This function will read the mesh provided and gather the normals of each verticy inside it for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            virtual void GetMeshNormals (internal::MeshInfo &TheMesh);
-
-            /// @brief Gets the texture coordinates information of the mesh this soft body is based on.
-            /// @details This function will read the mesh provided and gather the texture coordinates inside it for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            virtual void GetMeshTextures (internal::MeshInfo &TheMesh);
-
-            /// @brief Gets other information not related to the verticies from the mesh.
-            /// @details This function will get the Render Operation, Material Name, and Entity Name from the entity for re-use.
-            /// @param TheMesh The struct to populate with the information gathered.
-            virtual void GetOtherMeshInfo (internal::MeshInfo &TheMesh);
 
             /// @brief Creates an entity for the mesh file to be placed on a scene node.
             /// @details Creates an entity in the scene manager from the mesh file provided to be attached to a node in the graphical world. @n

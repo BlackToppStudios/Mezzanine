@@ -403,6 +403,11 @@ namespace phys
         return &SupportedDevices;
     }
 
+    void GraphicsManager::ResetRenderTimer()
+    {
+        this->RenderTimer->reset();
+    }
+
     //Inherited From ManagerBase
     void GraphicsManager::Initialize()
     {

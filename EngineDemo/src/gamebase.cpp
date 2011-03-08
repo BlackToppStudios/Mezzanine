@@ -672,7 +672,8 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << c;
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
+        //TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
     }
 
@@ -681,7 +682,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
         //TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
     }
@@ -708,7 +709,7 @@ void LoadContent()
     TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
     GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
-    BlackHole->CreateSphereShape(200.0);
+    BlackHole->CreateSphereShape(750.0);
     BlackHole->SetAllowWorldGravity(false);
     BlackHole->SetFieldStrength(100000.0);
     BlackHole->SetAttenuation(85.0,GravityWell::GW_Att_Linear);
@@ -747,7 +748,7 @@ void LoadContent()
     object3->SetInitLocation(Vector3(150.0,1800.0,-1300.0));
 
     object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname);
-    object4->CreateShapeFromMeshDynamic(3);
+    object4->CreateShapeFromMeshDynamic(2);
     object4->SetInitLocation(Vector3(-400,10, 100));
     object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->SetAnimation("Idle", true);

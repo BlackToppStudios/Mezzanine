@@ -72,11 +72,12 @@ namespace phys
             /// @param pmass "Real Mass" The mass of the object.
             virtual void CreateRigidObject (Real pmass);
 
-            /// @brief This creates an estimation of the shape of a body using a number of simpler primitives
+            /// @brief This creates an estimation of the shape of a body using a number of simpler primitives.
             /// @param depth How many times should we subdivide. Larger means more parts, each one smaller, more CPU time.
             /// @param cpercent How concave the resulting shapes will be, lower means more accurate with more pieces.
-            /// @param ppercent Undocumented -  set to similar number to cpercent
-            virtual void PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent);
+            /// @param ppercent Undocumented -  set to similar number to cpercent.
+            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
+            virtual void PerformConvexDecomposition(unsigned int depth, float cpercent, float ppercent, bool UseAllSubmeshes = false);
 
         public:
             /// @brief Descriptive constructor.
@@ -107,7 +108,8 @@ namespace phys
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Static objects.
-            virtual void CreateShapeFromMeshStatic();
+            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
+            virtual void CreateShapeFromMeshStatic(bool UseAllSubmeshes = false);
 
             /// @brief Sets the Damping for this object.
             /// @details Both of Linear Damping and Angular Damping default to zero.  This is usful if you wish to simulate

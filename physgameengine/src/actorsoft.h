@@ -79,8 +79,6 @@ namespace phys
         protected:
             ///@brief Used to simulate the functionality of a btSoftBody for use with the physics subsystem.
             btSoftBody* physsoftbody;
-            ///@brief Used to simulate the rendering portion of a softbody.
-            Ogre::ManualObject* ManualEntity;
             /// @brief Creates a soft object for the actor.
             /// @details Creates a soft object to be placed in the physics world later. @n
             /// This is automatically called by the Constructor and shouldn't be called manually.

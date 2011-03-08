@@ -117,7 +117,7 @@ namespace phys
             void InitViewportAndCamera();
             void UpdateWindowStats();
 
-            Ogre::Timer *RenderTimer;
+            Ogre::Timer* RenderTimer;
             Ogre::RenderWindow* OgreGameWindow;
             SDL_Surface* SDLscreen;
             SDL_Window* SDLwindow;
@@ -233,6 +233,11 @@ namespace phys
             /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.
             /// @return Returns a Const Pointer to the vector storing all the supported devices.
             const std::vector<String>* GetSupportedDevices();
+
+            /// @brief Resets the Render timer.
+            /// @details This function should not be called unless you know exactly what you are doing.
+            /// This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop.
+            virtual void ResetRenderTimer();
 
         //Inherited from ManagerBase
             /// @brief Empty Initializor

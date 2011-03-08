@@ -405,13 +405,16 @@ namespace phys{
         }
 
         sphere->end();
-        sphere->convertToMesh(Name + "Mesh", GroupName);
+        Ogre::MeshPtr spheremesh = sphere->convertToMesh(Name + "Mesh", GroupName);
+        spheremesh->_setBounds(Ogre::AxisAlignedBox(-Radius,-Radius,-Radius,Radius,Radius,Radius));
+        spheremesh->_setBoundingSphereRadius(Radius);
 
         GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
         GraphicsNode = OgreManager->createSceneNode();
         OgreManager->getRootSceneNode()->addChild(GraphicsNode);
         GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
         GraphicsNode->attachObject(GraphicsObject);
+        delete sphere;
     }
 
     void AreaEffect::CreateGraphicsCylinder(const ColourValue& Colour)
@@ -457,6 +460,7 @@ namespace phys{
         OgreManager->getRootSceneNode()->addChild(GraphicsNode);
         GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
         GraphicsNode->attachObject(GraphicsObject);
+        delete cylinder;
     }
 
     void AreaEffect::CreateGraphicsBox(const ColourValue& Colour)
@@ -545,6 +549,7 @@ namespace phys{
         OgreManager->getRootSceneNode()->addChild(GraphicsNode);
         GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
         GraphicsNode->attachObject(GraphicsObject);
+        delete box;
     }
 
     std::list<ActorBase*>& AreaEffect::GetOverlappingActors()

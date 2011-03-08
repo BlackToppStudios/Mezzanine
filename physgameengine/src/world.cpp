@@ -202,6 +202,11 @@ namespace phys
         }
     }
 
+    void World::OneTimeMainLoopInit()
+    {
+        this->GetGraphicsManager()->ResetRenderTimer();
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     //tears the world down
     World::~World()
@@ -315,6 +320,7 @@ namespace phys
         */
 
         Ogre::Timer* LoopTimer = new Ogre::Timer();
+        this->OneTimeMainLoopInit();
         //As long as all the CallBacks return true the game continues
         bool DoNotBreak=true;
         while (DoNotBreak)
