@@ -237,16 +237,16 @@ namespace phys
         /* Here is a list of SDL event which aren't coded yet.
         //event types
         SDL_FIRSTEVENT				unused (do not remove)		Application events
-        SDL_QUIT				user-requested quit		Window events
-        SDL_WINDOWEVENT				window state change
-        SDL_SYSWMEVENT				system specific event		Keyboard events
-        SDL_KEYDOWN				key pressed
+            SDL_QUIT				user-requested quit		Window events
+            SDL_WINDOWEVENT				window state change
+            SDL_SYSWMEVENT				system specific event		Keyboard events
+            SDL_KEYDOWN				key pressed
         SDL_KEYUP				key released
         SDL_TEXTEDITING				keyboard text editing (composition)
         SDL_TEXTINPUT				keyboard text input		Mouse events
         SDL_MOUSEMOTION				mouse moved
         SDL_MOUSEBUTTONDOWN				mouse button pressed
-        SDL_MOUSEBUTTONUP				mouse button released
+            SDL_MOUSEBUTTONUP				mouse button released
         SDL_MOUSEWHEEL				mouse wheel motion		Tablet or multiple mice input device events
         SDL_INPUTMOTION				input moved
         SDL_INPUTBUTTONDOWN				input button pressed
@@ -258,7 +258,7 @@ namespace phys
         SDL_JOYBALLMOTION				joystick trackball motion
         SDL_JOYHATMOTION				joystick hat position change
         SDL_JOYBUTTONDOWN				joystick button pressed
-        SDL_JOYBUTTONUP				joystick button released		Touch events
+            SDL_JOYBUTTONUP				joystick button released		Touch events
         SDL_FINGERDOWN
         SDL_FINGERUP
         SDL_FINGERMOTION
@@ -280,7 +280,7 @@ namespace phys
         {
             switch(FromSDLRaw.type)
             {
-                case SDL_ACTIVEEVENT:   //when the window gains focus
+            /*    case SDL_ACTIVEEVENT:   //when the window gains focus
                 case SDL_VIDEORESIZE:   //when the screen is resized
                 case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
                 case SDL_SYSWMEVENT:
@@ -288,7 +288,7 @@ namespace phys
                     /// @todo handle unhandled user system events
                     //_Data->EventQ.push_back(FromSDLEvent);
                     break;
-
+            */
                 case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
                     _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
@@ -296,16 +296,27 @@ namespace phys
                 case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           case SDL_JOYBUTTONDOWN:
                     _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
-
+/*
                 case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
+                    break;
+*/              case SDL_FIRSTEVENT:  //capture and ignore
+                    break;
+
+                case SDL_WINDOWEVENT:
+                    break;
+
+                case SDL_SYSWMEVENT:
+                        // call a function with ifdefs here
                     break;
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
                     World::GetWorldPointer()->LogAndThrow("Unexpected Quit event in event manager.");
                     break;
+
                 default:                //Never thrown by SDL, but could be added by a user
-                    World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
+                    //World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
+                    World::GetWorldPointer()->Log("Unknown SDL Event Inserted. Likely an unfandles SDL 1.3 event");
                     break;
             }
         }
