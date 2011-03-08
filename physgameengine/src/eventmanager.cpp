@@ -280,7 +280,7 @@ namespace phys
         {
             switch(FromSDLRaw.type)
             {
-                case SDL_ACTIVEEVENT:   //when the window gains focus
+            /*    case SDL_ACTIVEEVENT:   //when the window gains focus
                 case SDL_VIDEORESIZE:   //when the screen is resized
                 case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
                 case SDL_SYSWMEVENT:
@@ -304,8 +304,10 @@ namespace phys
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
                     World::GetWorldPointer()->LogAndThrow("Unexpected Quit event in event manager.");
                     break;
+            */
                 default:                //Never thrown by SDL, but could be added by a user
-                    World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
+                    //World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
+                    World::GetWorldPointer()->Log("Unknown SDL Event Inserted. Likely an unfandles SDL 1.3 event");
                     break;
             }
         }
