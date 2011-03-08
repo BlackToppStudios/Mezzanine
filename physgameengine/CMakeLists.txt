@@ -190,7 +190,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.cpp"
 )
 
 ###############################################################################
@@ -259,6 +258,7 @@ endif(${WIN32})
 
 #######################################
 # Linux Build Specific Items
+
 if(${UNIX})
 	if(${APPLE}) 	#if(${UNIX} AND NOT ${APPLE}) #does not appear to work as expected.
 	else(${APPLE})
@@ -305,7 +305,7 @@ if(${APPLE})
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
 	set(SDLName SDL)        
 
-        include(FindOpenAL)
+       include(FindOpenAL)
 	message("OpenAL Headers and Library Found - ${OPENAL_LIBRARY}")
 
 	include(FindOgg)
@@ -340,11 +340,71 @@ if(${APPLE})
 	)
 	findpkg_framework(OGRE)
 
-	TARGET_LINK_LIBRARIES( /Library/Frameworks/Ogre.framework)
+	message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
+endif(${UNIX} AND NOT ${APPLE})
+
+#######################################
+# Mac OS X and iPhone Build pecific Items
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
+	set(BuildPlatform macosx)
+	set(CMAKE_OSX_ARCHITECTURES i386 CACHE STRING "do not build for 64-bit" FORCE)
+	set(ARCH i386)
+	
+        
+	include(FindSDL)
+	message("SDL Headers and Library Found - ${SDL_FOUND}")
+        
+        include(FindOpenAL)
+	message("OpenAL Headers and Library Found - ${OPENAL_INCLUDE_DIR}")
+
+	include(FindOgg)
+	message("Ogg Headers and Library Found - ${OGG_FOUND}")
+
+	include(FindVorbis)
+	message("Vorbis Headers and Library Found - ${Vorbis_FOUND}")
+
+	include(FindOgre)
+	message("Ogre Headers And library Found -	"${OGRE_INCLUDE_DIR}"")
+
+	include(/Library/Frameworks/Ogre.framework)
+
+	include(FindBoost)
+	message("Boost Headers And library Found - ${BOOST_INCLUDE_DIR}")
+	
+	find_package(OGRE REQUIRED)
+        
+	include_directories(
+		"${SDL_INCLUDE_DIR}"
+		"${OPENAL_INCLUDE_DIR}"
+		"${OGRE_INCLUDE_DIR}"
+	#	/Library/Frameworks/Ogre.framework/Headers;/Library/Frameworks/Ogre.framework	
+
+		#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/frameworks/Ogre.framwork/headers"
+		#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/include/OGRE"
+		/Users/hydrowolfy/Documents/newphysgame/physgame/physgameengine/libincludes/macosx/ogresrc/boost_1_42
+		"${OGG_INCLUDE_DIR}"
+
+		#"/opt/local/include"
+	)
+#	FIND_LIBRARY(OGRE_LIBRARY Ogre)
+
+	link_directories("${OGRE_LIB_DIR}")
+
+	findpkg_framework(OGRE)
+	set(SDLName  ${SDL_LIBRARY})
+    
 
 	add_definitions( -DMACOSX)
 	message ("${PROJECT_NAME} - End Apple Specific Build Process")
-endif(${APPLE})
+
+INSTALL(CODE "
+   include(BundleUtilities)
+   fixup_bundle(\"${APPS}\"   \"\"   \"${DIRS}\")
+   " COMPONENT Runtime)
+
+
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
 #Common Library Configuration items
@@ -390,7 +450,20 @@ set( Bullet_LibraryNames
 	"BulletSoftBody" "BulletDynamics" "BulletCollision"  "LinearMath"
 )
 
-target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDLName} )
+
+if(${APPLE}){
+	target_link_libraries(
+	    ${PROJECT_NAME}
+	    "${OGRE_LIBRARIES}"
+	    ${Bullet_LibraryNames}
+	    "${OPENAL_LIBRARY}" 
+	    ${SDL_LIBRARY}
+	  #  "${OGG_LIBRARY}"
+		/Users/hydrowolfy/Downloads/cAudio2.1.0-OSX/bin/Osx/libcAudio.dylib
+)
+else(${APPLE})
+	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDLName} )
+endif(${APPLE})
 
 ###############################################################################
 # Build Time File copying
@@ -440,7 +513,10 @@ endif(${UNIX})
 # Mac File Copy pecific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-	#Todo copy required files here
+	
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
+#	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
+	
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})
 
