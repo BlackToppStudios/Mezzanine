@@ -308,7 +308,7 @@ if(${APPLE})
 	message("SDL Headers and Library Found - ${SDL_FOUND}")
 	set(SDLName SDL)        
 
-       include(FindOpenAL)
+       	include(FindOpenAL)
 	message("OpenAL Headers and Library Found - ${OPENAL_LIBRARY}")
 
 	include(FindOgg)
@@ -344,7 +344,7 @@ if(${APPLE})
 	findpkg_framework(OGRE)
 
 	message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
-endif(${UNIX} AND NOT ${APPLE})
+endif(${APPLE})
 
 #######################################
 # Mac OS X and iPhone Build pecific Items
