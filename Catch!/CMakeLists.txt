@@ -36,6 +36,8 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}areaofplay.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}areaofplay.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}callbacks.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}callbacks.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}catchapp.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}catchapp.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.cpp"
