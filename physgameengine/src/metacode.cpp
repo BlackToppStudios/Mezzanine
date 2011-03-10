@@ -131,14 +131,11 @@ namespace phys
     //This function assumes the RawEvent is a valid SDL Keyevent
     MetaCode::InputCode MetaCode::GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_)
     {
-
-        phys::World::GetWorldPointer()->LogStream << "SDLK_ESCAPE:" << SDLK_ESCAPE;
-
         //This Whole thing will only work with SDL Keyboard events. If we switch out event subsystems this is one of those that must change it.
         MetaCode::InputCode To;
 
         assert( sizeof(To)==sizeof(RawEvent_.key.keysym.sym) );
-        memcpy( &To, &(RawEvent_.key.keysym.sym), sizeof(RawEvent_.key.keysym.sym));
+        memcpy( &To, &(RawEvent_.key.keysym.scancode), sizeof(RawEvent_.key.keysym.scancode));
 
         return To;
     }
@@ -215,6 +212,18 @@ namespace phys
 
     bool MetaCode::IsKeyboardButton() const
         { return (MetaCode::KEY_FIRST <= this->Code && this->Code <= MetaCode::KEY_LAST); }
+
+    bool MetaCode::IsAltKey() const
+        { return (MetaCode::KEY_LALT == this->Code || this->Code <= MetaCode::KEY_RALT); }
+
+    bool MetaCode::IsCtrlKey() const
+        { return (MetaCode::KEY_LCTRL == this->Code || this->Code <= MetaCode::KEY_RCTRL); }
+
+    bool MetaCode::IsShiftKey() const
+        { return (MetaCode::KEY_LSHIFT == this->Code || this->Code <= MetaCode::KEY_RSHIFT); }
+
+    bool MetaCode::IsSuperKey() const
+        { return (MetaCode::KEY_LSUPER == this->Code || this->Code <= MetaCode::KEY_RSUPER); }
 
     bool MetaCode::IsMouseButton() const
         { return (MetaCode::MOUSEBUTTON_FIRST <= this->Code && this->Code <= MetaCode::MOUSEBUTTON_LAST); }

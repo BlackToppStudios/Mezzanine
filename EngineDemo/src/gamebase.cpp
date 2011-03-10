@@ -61,7 +61,7 @@ int main(int argc, char **argv)
     #endif
 
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::KEY_q) );
+    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::KEY_Q) );
     TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
     TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_1) );
     TheWorld->GetEventManager()->RemovePollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
@@ -236,7 +236,7 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom(); }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_M) )
     {
         Sound* Theme = TheWorld->GetSoundManager()->GetSoundByName("Theme2");
         if(!Theme->IsPlaying())
@@ -247,7 +247,7 @@ bool PostInput()
 
     //Resize the window
     static bool videobuttonpushed = false;
-    if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_f) && !videobuttonpushed )
+    if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
     {
         videobuttonpushed = true;
         //TheWorld->GetGraphicsManager()->setRenderOptions(1366,768,true);
@@ -255,17 +255,17 @@ bool PostInput()
         TheWorld->GetGraphicsManager()->setFullscreen(true);
         //TheWorld->GetGraphicsManager()->setFullscreen(false);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_g)  && !videobuttonpushed )
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->setFullscreen(false);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_r)  && !videobuttonpushed )
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->setRenderResolution(1280,1024);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_t)  && !videobuttonpushed )
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->setRenderResolution(800,600);

@@ -60,21 +60,10 @@ namespace phys
     {
         protected:
             /// @internal
-            /// @brief This stores both mouse coordinates in a Vector2.
-            //Vector2 MouseCoordinates;
-
-            /// @internal
-            /// @brief This stores the amount the mouse has moved since the previous frame.
-            //Vector2 MousePrevFrameOffset;
-
-            /// @internal
-            /// @brief This stores the current status of the mouse wheel.
-            //MetaCode::MouseWheelState WheelState;
-
-            /// @internal
             /// @brief A place to store which keys and mouse buttons are pressed or not.
             /// @details In the constructor we force the insertion INPUTEVENT_LAST
             std::vector<int> CodeCache;
+
         public:
             /// @brief Basic Constructor.
             /// @details This creates a InputQueryTool ready to run queries on the input.

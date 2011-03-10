@@ -72,7 +72,7 @@ namespace phys
         /// @details This is used used to filter out SQL_quit messages, and generate appropriate messages for the game developer to use.
         /// This will always drop quit events, and store that information for later use.
         /// @param event This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages
-        /// @param userdata Nothing, a dummy argument that could be used by by SDL
+        /// @param userdata Nothing, a dummy argument that could be used by SDL
         /// @warning Do not use this. It can only cause problems. This is for SDL, the user input subsystem, to filter certain events.
         /// @return This will always return either 0 or 1 to SDL. 0 if it should drop the event, which it does to all SDL_quit events, 1 if the event should be allowed, which it does to all events which are not SDL_quit events. If a null pointer was passed, then this will return 4 if it dropped an SDL_Quit, and 2 if it has not droppped an SDL_quit.
         //int PhysSDLFilter(void *userdata, const SDL_Event *event,  );
@@ -316,7 +316,7 @@ namespace phys
 
                 default:                //Never thrown by SDL, but could be added by a user
                     //World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
-                    World::GetWorldPointer()->Log("Unknown SDL Event Inserted. Likely an unfandles SDL 1.3 event");
+                    World::GetWorldPointer()->Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
                     break;
             }
         }
