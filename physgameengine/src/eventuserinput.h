@@ -103,7 +103,7 @@ namespace phys
         private:
             //Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if
             //passed any other kind of data.
-            vector<MetaCode> AddCodesFromSDLMouseButton(const RawEvent &RawEvent_);
+            MetaCode AddCodeFromSDLMouseButton(const RawEvent &RawEvent_);
             vector<MetaCode> AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
 
         protected:

@@ -434,7 +434,7 @@ namespace phys{
         OgreManager->getRootSceneNode()->addChild(GraphicsNode);
         GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
         GraphicsNode->attachObject(GraphicsObject);
-        delete cylinder;
+        //delete cylinder;
     }
 
     void AreaEffect::CreateGraphicsBox(const ColourValue& Colour)

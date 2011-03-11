@@ -289,18 +289,20 @@ namespace phys
                     //_Data->EventQ.push_back(FromSDLEvent);
                     break;
             */
-                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
+                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             //case SDL_JOYBUTTONUP:
                     _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
 
-                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           case SDL_JOYBUTTONDOWN:
+                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           //case SDL_JOYBUTTONDOWN:
                     _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
-/*
-                case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
+
+                case SDL_MOUSEMOTION:       //case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
                     break;
-*/              case SDL_FIRSTEVENT:  //capture and ignore
+
+
+                case SDL_FIRSTEVENT:  //capture and ignore
                     break;
 
                 case SDL_WINDOWEVENT:
@@ -324,7 +326,6 @@ namespace phys
         // Here we iterate through manual check to insert any requested polling checks and perpetuate mousedown events
         for(internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
         {
-            //World::GetWorldPointer()->Log(Iter->first);
             MetaCode::InputCode temp = (*Iter).first;
             bool found=false;
             for(EventUserInput::iterator LIter=FromSDLEvent->begin(); FromSDLEvent->end()!=LIter; ++LIter)
@@ -344,7 +345,7 @@ namespace phys
             }
         }
 
-        //Check to see if we should add a User i
+        //Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
         if(FromSDLEvent->GetMetaCodeCount()==0)
         {
             delete FromSDLEvent;
