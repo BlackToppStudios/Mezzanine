@@ -41,6 +41,7 @@
 #define _uimanager_cpp
 
 #include "uimanager.h"
+#include "inputquerytool.h"
 #include "internalGorilla.h.cpp"
 #include "world.h"
 #include "cameramanager.h"
@@ -49,8 +50,6 @@
 #include "uibutton.h"
 #include "uilayer.h"
 #include "uiwidget.h"
-
-#include "inputquerytool.h"
 
 #include <Ogre.h>
 

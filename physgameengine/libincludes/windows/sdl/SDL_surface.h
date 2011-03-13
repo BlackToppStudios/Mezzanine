@@ -1,6 +1,6 @@
 /*
     SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2010 Sam Lantinga
+    Copyright (C) 1997-2011 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -54,6 +54,7 @@ extern "C" {
 /*@{*/
 #define SDL_PREALLOC        0x00000001  /**< Surface uses preallocated memory */
 #define SDL_RLEACCEL        0x00000002  /**< Surface is RLE encoded */
+#define SDL_DONTFREE        0x00000004  /**< Surface is referenced internally */
 /*@}*//*Surface flags*/
 
 /**
@@ -87,9 +88,6 @@ typedef struct SDL_Surface
 
     /** info for fast blit mapping to other surfaces */
     struct SDL_BlitMap *map;    /**< Private */
-
-    /** format version, bumped at every change to invalidate blit maps */
-    int format_version;         /**< Private */
 
     /** Reference count -- used when freeing surface */
     int refcount;               /**< Read-mostly */
@@ -353,6 +351,8 @@ extern DECLSPEC void SDLCALL SDL_GetClipRect(SDL_Surface * surface,
  */
 extern DECLSPEC SDL_Surface *SDLCALL SDL_ConvertSurface
     (SDL_Surface * src, SDL_PixelFormat * fmt, Uint32 flags);
+extern DECLSPEC SDL_Surface *SDLCALL SDL_ConvertSurfaceFormat
+    (SDL_Surface * src, Uint32 pixel_format, Uint32 flags);
 
 /**
  * \brief Copy a block of pixels of one format to another format
@@ -376,7 +376,7 @@ extern DECLSPEC int SDLCALL SDL_ConvertPixels(int width, int height,
 extern DECLSPEC int SDLCALL SDL_FillRect
     (SDL_Surface * dst, const SDL_Rect * rect, Uint32 color);
 extern DECLSPEC int SDLCALL SDL_FillRects
-    (SDL_Surface * dst, const SDL_Rect ** rects, int count, Uint32 color);
+    (SDL_Surface * dst, const SDL_Rect * rects, int count, Uint32 color);
 
 /**
  *  Performs a fast blit from the source surface to the destination surface.
@@ -465,6 +465,17 @@ extern DECLSPEC int SDLCALL SDL_SoftStretch(SDL_Surface * src,
                                             const SDL_Rect * srcrect,
                                             SDL_Surface * dst,
                                             const SDL_Rect * dstrect);
+
+/**
+ *  \brief Perform a fast, low quality, stretch blit between two surfaces of the
+ *         different pixel formats.
+ *  
+ *  \note This function calls SDL_SoftStretch or SDL_LowerBlit.
+ */
+extern DECLSPEC int SDLCALL SDL_BlitScaled
+    (SDL_Surface * src, const SDL_Rect * srcrect,
+    SDL_Surface * dst, const SDL_Rect * dstrect);
+
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

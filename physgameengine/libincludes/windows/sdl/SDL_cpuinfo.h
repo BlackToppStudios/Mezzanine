@@ -1,6 +1,6 @@
 /*
     SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2010 Sam Lantinga
+    Copyright (C) 1997-2011 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -30,6 +30,39 @@
 #define _SDL_cpuinfo_h
 
 #include "SDL_stdinc.h"
+
+/* Need to do this here because intrin.h has C++ code in it */
+/* Visual Studio 2005 has a bug where intrin.h conflicts with winnt.h */
+#if defined(_MSC_VER) && (_MSC_VER >= 1500) && !defined(_WIN32_WCE)
+#include <intrin.h>
+#ifndef _WIN64
+#define __MMX__
+#define __3dNOW__
+#endif
+#define __SSE__
+#define __SSE2__
+#elif defined(__MINGW64_VERSION_MAJOR)
+#include <intrin.h>
+#else
+#ifdef __ALTIVEC__
+#if HAVE_ALTIVEC_H && !defined(__APPLE_ALTIVEC__)
+#include <altivec.h>
+#undef pixel
+#endif
+#endif
+#ifdef __MMX__
+#include <mmintrin.h>
+#endif
+#ifdef __3dNOW__
+#include <mm3dnow.h>
+#endif
+#ifdef __SSE__
+#include <xmmintrin.h>
+#endif
+#ifdef __SSE2__
+#include <emmintrin.h>
+#endif
+#endif
 
 #include "begin_code.h"
 /* Set up for C function definitions, even when using C++ */
@@ -65,24 +98,19 @@ extern DECLSPEC int SDLCALL SDL_GetCPUCacheLineSize(void);
 extern DECLSPEC SDL_bool SDLCALL SDL_HasRDTSC(void);
 
 /**
+ *  This function returns true if the CPU has AltiVec features.
+ */
+extern DECLSPEC SDL_bool SDLCALL SDL_HasAltiVec(void);
+
+/**
  *  This function returns true if the CPU has MMX features.
  */
 extern DECLSPEC SDL_bool SDLCALL SDL_HasMMX(void);
 
 /**
- *  This function returns true if the CPU has MMX Ext.\ features.
- */
-extern DECLSPEC SDL_bool SDLCALL SDL_HasMMXExt(void);
-
-/**
- *  This function returns true if the CPU has 3DNow!\ features.
+ *  This function returns true if the CPU has 3DNow! features.
  */
 extern DECLSPEC SDL_bool SDLCALL SDL_Has3DNow(void);
-
-/**
- *  This function returns true if the CPU has 3DNow!\ Ext.\ features.
- */
-extern DECLSPEC SDL_bool SDLCALL SDL_Has3DNowExt(void);
 
 /**
  *  This function returns true if the CPU has SSE features.
@@ -95,9 +123,20 @@ extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE(void);
 extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE2(void);
 
 /**
- *  This function returns true if the CPU has AltiVec features.
+ *  This function returns true if the CPU has SSE3 features.
  */
-extern DECLSPEC SDL_bool SDLCALL SDL_HasAltiVec(void);
+extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE3(void);
+
+/**
+ *  This function returns true if the CPU has SSE4.1 features.
+ */
+extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE41(void);
+
+/**
+ *  This function returns true if the CPU has SSE4.2 features.
+ */
+extern DECLSPEC SDL_bool SDLCALL SDL_HasSSE42(void);
+
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

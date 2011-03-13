@@ -250,10 +250,13 @@ bool PostInput()
     if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        //TheWorld->GetGraphicsManager()->setRenderOptions(1366,768,true);
-        //TheWorld->GetGraphicsManager()->setRenderOptions(1280,1024,true);
-        TheWorld->GetGraphicsManager()->setFullscreen(true);
-        //TheWorld->GetGraphicsManager()->setFullscreen(false);
+        //TheWorld->GetGraphicsManager()->setFullscreen(true);
+        GraphicsSettings NewSet;
+        NewSet.RenderWidth = 1280;
+        NewSet.RenderHeight = 1024;
+        NewSet.Fullscreen = true;
+        NewSet.VSync = false;
+        TheWorld->GetGraphicsManager()->setRenderOptions(NewSet);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
@@ -263,7 +266,7 @@ bool PostInput()
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setRenderResolution(1280,1024);
+        TheWorld->GetGraphicsManager()->setRenderResolution(1024,768);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
     {
