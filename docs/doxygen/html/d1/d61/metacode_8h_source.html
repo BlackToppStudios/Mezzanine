@@ -77,7 +77,7 @@
 <a name="l00046"></a>00046 <span class="comment">//From SDL</span>
 <a name="l00047"></a>00047 <span class="comment">/*</span>
 <a name="l00048"></a>00048 <span class="comment">    SDL - Simple DirectMedia Layer</span>
-<a name="l00049"></a>00049 <span class="comment">    Copyright (C) 1997-2009 Sam Lantinga</span>
+<a name="l00049"></a>00049 <span class="comment">    Copyright (C) 1997-2011 Sam Lantinga</span>
 <a name="l00050"></a>00050 <span class="comment"></span>
 <a name="l00051"></a>00051 <span class="comment">    This library is free software; you can redistribute it and/or</span>
 <a name="l00052"></a>00052 <span class="comment">    modify it under the terms of the GNU Lesser General Public</span>
@@ -99,447 +99,614 @@
 <a name="l00068"></a>00068 
 <a name="l00069"></a>00069 <span class="preprocessor">#include &quot;<a class="code" href="../../d5/d4d/crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s...">crossplatformexport.h</a>&quot;</span>
 <a name="l00070"></a>00070 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
-<a name="l00071"></a>00071 
-<a name="l00072"></a>00072 <span class="keyword">using namespace </span>std;
-<a name="l00073"></a>00073 
-<a name="l00074"></a>00074 <span class="keyword">namespace </span>phys
-<a name="l00075"></a>00075 {<span class="comment"></span>
-<a name="l00076"></a>00076 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00077"></a>00077 <span class="comment">    /// @class MetaCode</span>
-<a name="l00078"></a>00078 <span class="comment">    /// @headerfile metacode.h</span>
-<a name="l00079"></a>00079 <span class="comment">    /// @brief This Determines the kind of user input.</span>
-<a name="l00080"></a>00080 <span class="comment">    /// @details A Metacode contains the data that is passed around with an input</span>
-<a name="l00081"></a>00081 <span class="comment">    /// event. It stores one type of button press or analog representation (Mouse</span>
-<a name="l00082"></a>00082 <span class="comment">    /// move, joystick tilt, wheel spin, etc...). If it is an analog representation</span>
-<a name="l00083"></a>00083 <span class="comment">    /// it will also store how far or how it is pushed, pressed, rotated, or</span>
-<a name="l00084"></a>00084 <span class="comment">    /// whatever. Several of these can be used in combination to represent button</span>
-<a name="l00085"></a>00085 <span class="comment">    /// combinations, or complex input combination (like portions of fighter game</span>
-<a name="l00086"></a>00086 <span class="comment">    /// moves).</span>
-<a name="l00087"></a>00087 <span class="comment">    /// The first 127 character line up with Ascii, Currently upper lase are</span>
-<a name="l00088"></a>00088 <span class="comment">    /// omitted for brevity.</span>
-<a name="l00089"></a>00089 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00090"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html">00090</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>
-<a name="l00091"></a>00091     {
-<a name="l00092"></a>00092         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00071"></a>00071 <span class="preprocessor">#include &quot;<a class="code" href="../../d0/d62/xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a>&quot;</span>
+<a name="l00072"></a>00072 
+<a name="l00073"></a>00073 <span class="keyword">using namespace </span>std;
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 <span class="keyword">namespace </span>phys
+<a name="l00076"></a>00076 {<span class="comment"></span>
+<a name="l00077"></a>00077 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00078"></a>00078 <span class="comment">    /// @class MetaCode</span>
+<a name="l00079"></a>00079 <span class="comment">    /// @headerfile metacode.h</span>
+<a name="l00080"></a>00080 <span class="comment">    /// @brief This Determines the kind of user input.</span>
+<a name="l00081"></a>00081 <span class="comment">    /// @details A Metacode contains the data that is passed around with an input</span>
+<a name="l00082"></a>00082 <span class="comment">    /// event. It stores one type of button press or analog representation (Mouse</span>
+<a name="l00083"></a>00083 <span class="comment">    /// move, joystick tilt, wheel spin, etc...). If it is an analog representation</span>
+<a name="l00084"></a>00084 <span class="comment">    /// it will also store how far or how it is pushed, pressed, rotated, or</span>
+<a name="l00085"></a>00085 <span class="comment">    /// whatever. Several of these can be used in combination to represent button</span>
+<a name="l00086"></a>00086 <span class="comment">    /// combinations, or complex input combinations (like portions of fighter game</span>
+<a name="l00087"></a>00087 <span class="comment">    /// moves).</span>
+<a name="l00088"></a>00088 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00089"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html">00089</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>
+<a name="l00090"></a>00090     {
+<a name="l00091"></a>00091         <span class="keyword">public</span>:
+<a name="l00092"></a>00092 <span class="comment"></span>
 <a name="l00093"></a>00093 <span class="comment">            /// @enum InputCode</span>
 <a name="l00094"></a>00094 <span class="comment">            /// @brief The InputCode enum defines all the posible types of inputs.</span>
 <a name="l00095"></a>00095 <span class="comment">            /// @details It has one entry for each key on a most keyboards. Then it</span>
 <a name="l00096"></a>00096 <span class="comment">            /// has an entry for most mouse and joystick input methods.</span>
-<a name="l00097"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">00097</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">InputCode</a>{
-<a name="l00098"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f">00098</a>                 KEY_UNKNOWN                     = 0,    <span class="comment">/**&lt; KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */</span>
-<a name="l00099"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5">00099</a>                 KEY_FIRST                       = 0,    <span class="comment">/**&lt; KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. */</span>
-<a name="l00100"></a>00100                 KEY_BACKSPACE           = 8,
-<a name="l00101"></a>00101                 KEY_TAB                         = 9,
-<a name="l00102"></a>00102                 KEY_CLEAR                       = 12,
-<a name="l00103"></a>00103                 KEY_RETURN                      = 13,
-<a name="l00104"></a>00104                 KEY_PAUSE                       = 19,
-<a name="l00105"></a>00105                 KEY_ESCAPE                      = 27,
-<a name="l00106"></a>00106                 KEY_SPACE                       = 32,
-<a name="l00107"></a>00107                 KEY_EXCLAIM                     = 33,
-<a name="l00108"></a>00108                 KEY_QUOTEDBL            = 34,
-<a name="l00109"></a>00109                 KEY_HASH                        = 35,
-<a name="l00110"></a>00110                 KEY_DOLLAR                      = 36,
-<a name="l00111"></a>00111                 KEY_AMPERSAND           = 38,
-<a name="l00112"></a>00112                 KEY_QUOTE                       = 39,
-<a name="l00113"></a>00113                 KEY_LEFTPAREN           = 40,
-<a name="l00114"></a>00114                 KEY_RIGHTPAREN          = 41,
-<a name="l00115"></a>00115                 KEY_ASTERISK            = 42,
-<a name="l00116"></a>00116                 KEY_PLUS                        = 43,
-<a name="l00117"></a>00117                 KEY_COMMA                       = 44,
-<a name="l00118"></a>00118                 KEY_MINUS                       = 45,
-<a name="l00119"></a>00119                 KEY_PERIOD                      = 46,
-<a name="l00120"></a>00120                 KEY_SLASH                       = 47,
-<a name="l00121"></a>00121                 KEY_0                           = 48,
-<a name="l00122"></a>00122                 KEY_1                           = 49,
-<a name="l00123"></a>00123                 KEY_2                           = 50,
-<a name="l00124"></a>00124                 KEY_3                           = 51,
-<a name="l00125"></a>00125                 KEY_4                           = 52,
-<a name="l00126"></a>00126                 KEY_5                           = 53,
-<a name="l00127"></a>00127                 KEY_6                           = 54,
-<a name="l00128"></a>00128                 KEY_7                           = 55,
-<a name="l00129"></a>00129                 KEY_8                           = 56,
-<a name="l00130"></a>00130                 KEY_9                           = 57,
-<a name="l00131"></a>00131                 KEY_COLON                       = 58,
-<a name="l00132"></a>00132                 KEY_SEMICOLON           = 59,
-<a name="l00133"></a>00133                 KEY_LESS                        = 60,
-<a name="l00134"></a>00134                 KEY_EQUALS                      = 61,
-<a name="l00135"></a>00135                 KEY_GREATER                     = 62,
-<a name="l00136"></a>00136                 KEY_QUESTION            = 63,
-<a name="l00137"></a>00137                 KEY_AT                          = 64,
-<a name="l00138"></a>00138                 <span class="comment">/*</span>
-<a name="l00139"></a>00139 <span class="comment">                   Skip uppercase letters</span>
-<a name="l00140"></a>00140 <span class="comment">                 */</span>
-<a name="l00141"></a>00141                 KEY_LEFTBRACKET         = 91,
-<a name="l00142"></a>00142                 KEY_BACKSLASH           = 92,
-<a name="l00143"></a>00143                 KEY_RIGHTBRACKET        = 93,
-<a name="l00144"></a>00144                 KEY_CARET                       = 94,
-<a name="l00145"></a>00145                 KEY_UNDERSCORE          = 95,
-<a name="l00146"></a>00146                 KEY_BACKQUOTE           = 96,
-<a name="l00147"></a>00147                 KEY_a                           = 97,
-<a name="l00148"></a>00148                 KEY_b                           = 98,
-<a name="l00149"></a>00149                 KEY_c                           = 99,
-<a name="l00150"></a>00150                 KEY_d                           = 100,
-<a name="l00151"></a>00151                 KEY_e                           = 101,
-<a name="l00152"></a>00152                 KEY_f                           = 102,
-<a name="l00153"></a>00153                 KEY_g                           = 103,
-<a name="l00154"></a>00154                 KEY_h                           = 104,
-<a name="l00155"></a>00155                 KEY_i                           = 105,
-<a name="l00156"></a>00156                 KEY_j                           = 106,
-<a name="l00157"></a>00157                 KEY_k                           = 107,
-<a name="l00158"></a>00158                 KEY_l                           = 108,
-<a name="l00159"></a>00159                 KEY_m                           = 109,
-<a name="l00160"></a>00160                 KEY_n                           = 110,
-<a name="l00161"></a>00161                 KEY_o                           = 111,
-<a name="l00162"></a>00162                 KEY_p                           = 112,
-<a name="l00163"></a>00163                 KEY_q                           = 113,
-<a name="l00164"></a>00164                 KEY_r                           = 114,
-<a name="l00165"></a>00165                 KEY_s                           = 115,
-<a name="l00166"></a>00166                 KEY_t                           = 116,
-<a name="l00167"></a>00167                 KEY_u                           = 117,
-<a name="l00168"></a>00168                 KEY_v                           = 118,
-<a name="l00169"></a>00169                 KEY_w                           = 119,
-<a name="l00170"></a>00170                 KEY_x                           = 120,
-<a name="l00171"></a>00171                 KEY_y                           = 121,
-<a name="l00172"></a>00172                 KEY_z                           = 122,
-<a name="l00173"></a>00173                 KEY_DELETE                      = 127,
-<a name="l00174"></a>00174                 <span class="comment">/* End of ASCII mapped keysyms */</span>
-<a name="l00175"></a>00175                 <span class="comment">/* International keyboard syms */</span>
-<a name="l00176"></a>00176                 KEY_WORLD_0                     = 160,          <span class="comment">/* 0xA0 */</span>
-<a name="l00177"></a>00177                 KEY_WORLD_1                     = 161,
-<a name="l00178"></a>00178                 KEY_WORLD_2                     = 162,
-<a name="l00179"></a>00179                 KEY_WORLD_3                     = 163,
-<a name="l00180"></a>00180                 KEY_WORLD_4                     = 164,
-<a name="l00181"></a>00181                 KEY_WORLD_5                     = 165,
-<a name="l00182"></a>00182                 KEY_WORLD_6                     = 166,
-<a name="l00183"></a>00183                 KEY_WORLD_7                     = 167,
-<a name="l00184"></a>00184                 KEY_WORLD_8                     = 168,
-<a name="l00185"></a>00185                 KEY_WORLD_9                     = 169,
-<a name="l00186"></a>00186                 KEY_WORLD_10            = 170,
-<a name="l00187"></a>00187                 KEY_WORLD_11            = 171,
-<a name="l00188"></a>00188                 KEY_WORLD_12            = 172,
-<a name="l00189"></a>00189                 KEY_WORLD_13            = 173,
-<a name="l00190"></a>00190                 KEY_WORLD_14            = 174,
-<a name="l00191"></a>00191                 KEY_WORLD_15            = 175,
-<a name="l00192"></a>00192                 KEY_WORLD_16            = 176,
-<a name="l00193"></a>00193                 KEY_WORLD_17            = 177,
-<a name="l00194"></a>00194                 KEY_WORLD_18            = 178,
-<a name="l00195"></a>00195                 KEY_WORLD_19            = 179,
-<a name="l00196"></a>00196                 KEY_WORLD_20            = 180,
-<a name="l00197"></a>00197                 KEY_WORLD_21            = 181,
-<a name="l00198"></a>00198                 KEY_WORLD_22            = 182,
-<a name="l00199"></a>00199                 KEY_WORLD_23            = 183,
-<a name="l00200"></a>00200                 KEY_WORLD_24            = 184,
-<a name="l00201"></a>00201                 KEY_WORLD_25            = 185,
-<a name="l00202"></a>00202                 KEY_WORLD_26            = 186,
-<a name="l00203"></a>00203                 KEY_WORLD_27            = 187,
-<a name="l00204"></a>00204                 KEY_WORLD_28            = 188,
-<a name="l00205"></a>00205                 KEY_WORLD_29            = 189,
-<a name="l00206"></a>00206                 KEY_WORLD_30            = 190,
-<a name="l00207"></a>00207                 KEY_WORLD_31            = 191,
-<a name="l00208"></a>00208                 KEY_WORLD_32            = 192,
-<a name="l00209"></a>00209                 KEY_WORLD_33            = 193,
-<a name="l00210"></a>00210                 KEY_WORLD_34            = 194,
-<a name="l00211"></a>00211                 KEY_WORLD_35            = 195,
-<a name="l00212"></a>00212                 KEY_WORLD_36            = 196,
-<a name="l00213"></a>00213                 KEY_WORLD_37            = 197,
-<a name="l00214"></a>00214                 KEY_WORLD_38            = 198,
-<a name="l00215"></a>00215                 KEY_WORLD_39            = 199,
-<a name="l00216"></a>00216                 KEY_WORLD_40            = 200,
-<a name="l00217"></a>00217                 KEY_WORLD_41            = 201,
-<a name="l00218"></a>00218                 KEY_WORLD_42            = 202,
-<a name="l00219"></a>00219                 KEY_WORLD_43            = 203,
-<a name="l00220"></a>00220                 KEY_WORLD_44            = 204,
-<a name="l00221"></a>00221                 KEY_WORLD_45            = 205,
-<a name="l00222"></a>00222                 KEY_WORLD_46            = 206,
-<a name="l00223"></a>00223                 KEY_WORLD_47            = 207,
-<a name="l00224"></a>00224                 KEY_WORLD_48            = 208,
-<a name="l00225"></a>00225                 KEY_WORLD_49            = 209,
-<a name="l00226"></a>00226                 KEY_WORLD_50            = 210,
-<a name="l00227"></a>00227                 KEY_WORLD_51            = 211,
-<a name="l00228"></a>00228                 KEY_WORLD_52            = 212,
-<a name="l00229"></a>00229                 KEY_WORLD_53            = 213,
-<a name="l00230"></a>00230                 KEY_WORLD_54            = 214,
-<a name="l00231"></a>00231                 KEY_WORLD_55            = 215,
-<a name="l00232"></a>00232                 KEY_WORLD_56            = 216,
-<a name="l00233"></a>00233                 KEY_WORLD_57            = 217,
-<a name="l00234"></a>00234                 KEY_WORLD_58            = 218,
-<a name="l00235"></a>00235                 KEY_WORLD_59            = 219,
-<a name="l00236"></a>00236                 KEY_WORLD_60            = 220,
-<a name="l00237"></a>00237                 KEY_WORLD_61            = 221,
-<a name="l00238"></a>00238                 KEY_WORLD_62            = 222,
-<a name="l00239"></a>00239                 KEY_WORLD_63            = 223,
-<a name="l00240"></a>00240                 KEY_WORLD_64            = 224,
-<a name="l00241"></a>00241                 KEY_WORLD_65            = 225,
-<a name="l00242"></a>00242                 KEY_WORLD_66            = 226,
-<a name="l00243"></a>00243                 KEY_WORLD_67            = 227,
-<a name="l00244"></a>00244                 KEY_WORLD_68            = 228,
-<a name="l00245"></a>00245                 KEY_WORLD_69            = 229,
-<a name="l00246"></a>00246                 KEY_WORLD_70            = 230,
-<a name="l00247"></a>00247                 KEY_WORLD_71            = 231,
-<a name="l00248"></a>00248                 KEY_WORLD_72            = 232,
-<a name="l00249"></a>00249                 KEY_WORLD_73            = 233,
-<a name="l00250"></a>00250                 KEY_WORLD_74            = 234,
-<a name="l00251"></a>00251                 KEY_WORLD_75            = 235,
-<a name="l00252"></a>00252                 KEY_WORLD_76            = 236,
-<a name="l00253"></a>00253                 KEY_WORLD_77            = 237,
-<a name="l00254"></a>00254                 KEY_WORLD_78            = 238,
-<a name="l00255"></a>00255                 KEY_WORLD_79            = 239,
-<a name="l00256"></a>00256                 KEY_WORLD_80            = 240,
-<a name="l00257"></a>00257                 KEY_WORLD_81            = 241,
-<a name="l00258"></a>00258                 KEY_WORLD_82            = 242,
-<a name="l00259"></a>00259                 KEY_WORLD_83            = 243,
-<a name="l00260"></a>00260                 KEY_WORLD_84            = 244,
-<a name="l00261"></a>00261                 KEY_WORLD_85            = 245,
-<a name="l00262"></a>00262                 KEY_WORLD_86            = 246,
-<a name="l00263"></a>00263                 KEY_WORLD_87            = 247,
-<a name="l00264"></a>00264                 KEY_WORLD_88            = 248,
-<a name="l00265"></a>00265                 KEY_WORLD_89            = 249,
-<a name="l00266"></a>00266                 KEY_WORLD_90            = 250,
-<a name="l00267"></a>00267                 KEY_WORLD_91            = 251,
-<a name="l00268"></a>00268                 KEY_WORLD_92            = 252,
-<a name="l00269"></a>00269                 KEY_WORLD_93            = 253,
-<a name="l00270"></a>00270                 KEY_WORLD_94            = 254,
-<a name="l00271"></a>00271                 KEY_WORLD_95            = 255,          <span class="comment">/* 0xFF */</span>
-<a name="l00272"></a>00272 
-<a name="l00273"></a>00273                 <span class="comment">/* @name Numeric keypad */</span>
-<a name="l00274"></a>00274                 KEY_KP0                         = 256,
-<a name="l00275"></a>00275                 KEY_KP1                         = 257,
-<a name="l00276"></a>00276                 KEY_KP2                         = 258,
-<a name="l00277"></a>00277                 KEY_KP3                         = 259,
-<a name="l00278"></a>00278                 KEY_KP4                         = 260,
-<a name="l00279"></a>00279                 KEY_KP5                         = 261,
-<a name="l00280"></a>00280                 KEY_KP6                         = 262,
-<a name="l00281"></a>00281                 KEY_KP7                         = 263,
-<a name="l00282"></a>00282                 KEY_KP8                         = 264,
-<a name="l00283"></a>00283                 KEY_KP9                         = 265,
-<a name="l00284"></a>00284                 KEY_KP_PERIOD           = 266,
-<a name="l00285"></a>00285                 KEY_KP_DIVIDE           = 267,
-<a name="l00286"></a>00286                 KEY_KP_MULTIPLY         = 268,
-<a name="l00287"></a>00287                 KEY_KP_MINUS            = 269,
-<a name="l00288"></a>00288                 KEY_KP_PLUS                     = 270,
-<a name="l00289"></a>00289                 KEY_KP_ENTER            = 271,
-<a name="l00290"></a>00290                 KEY_KP_EQUALS           = 272,
-<a name="l00291"></a>00291 
-<a name="l00292"></a>00292                 <span class="comment">/* @name Arrows + Home/End pad */</span>
-<a name="l00293"></a>00293                 KEY_UP                          = 273,
-<a name="l00294"></a>00294                 KEY_DOWN                        = 274,
-<a name="l00295"></a>00295                 KEY_RIGHT                       = 275,
-<a name="l00296"></a>00296                 KEY_LEFT                        = 276,
-<a name="l00297"></a>00297                 KEY_INSERT                      = 277,
-<a name="l00298"></a>00298                 KEY_HOME                        = 278,
-<a name="l00299"></a>00299                 KEY_END                         = 279,
-<a name="l00300"></a>00300                 KEY_PAGEUP                      = 280,
-<a name="l00301"></a>00301                 KEY_PAGEDOWN            = 281,
-<a name="l00302"></a>00302 
-<a name="l00303"></a>00303                 <span class="comment">/* Function keys */</span>
-<a name="l00304"></a>00304                 KEY_F1                          = 282,
-<a name="l00305"></a>00305                 KEY_F2                          = 283,
-<a name="l00306"></a>00306                 KEY_F3                          = 284,
-<a name="l00307"></a>00307                 KEY_F4                          = 285,
-<a name="l00308"></a>00308                 KEY_F5                          = 286,
-<a name="l00309"></a>00309                 KEY_F6                          = 287,
-<a name="l00310"></a>00310                 KEY_F7                          = 288,
-<a name="l00311"></a>00311                 KEY_F8                          = 289,
-<a name="l00312"></a>00312                 KEY_F9                          = 290,
-<a name="l00313"></a>00313                 KEY_F10                         = 291,
-<a name="l00314"></a>00314                 KEY_F11                         = 292,
-<a name="l00315"></a>00315                 KEY_F12                         = 293,
-<a name="l00316"></a>00316                 KEY_F13                         = 294,
-<a name="l00317"></a>00317                 KEY_F14                         = 295,
-<a name="l00318"></a>00318                 KEY_F15                         = 296,
-<a name="l00319"></a>00319 
-<a name="l00320"></a>00320                 <span class="comment">/* Key state modifier keys */</span>
-<a name="l00321"></a>00321                 KEY_NUMLOCK                     = 300,
-<a name="l00322"></a>00322                 KEY_CAPSLOCK            = 301,
-<a name="l00323"></a>00323                 KEY_SCROLLOCK           = 302,
-<a name="l00324"></a>00324                 KEY_RSHIFT                      = 303,
-<a name="l00325"></a>00325                 KEY_LSHIFT                      = 304,
-<a name="l00326"></a>00326                 KEY_RCTRL                       = 305,
-<a name="l00327"></a>00327                 KEY_LCTRL                       = 306,
-<a name="l00328"></a>00328                 KEY_RALT                        = 307,
-<a name="l00329"></a>00329                 KEY_LALT                        = 308,
-<a name="l00330"></a>00330                 KEY_RMETA                       = 309,
-<a name="l00331"></a>00331                 KEY_LMETA                       = 310,
-<a name="l00332"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8aab77afaba4fc97faa9b9fe40d3a9ebbb">00332</a>                 KEY_LSUPER                      = 311,          <span class="comment">/**&lt; Left &quot;Windows&quot; key */</span>
-<a name="l00333"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a84e2235ece031f83821867486ff52149">00333</a>                 KEY_RSUPER                      = 312,          <span class="comment">/**&lt; Right &quot;Windows&quot; key */</span>
-<a name="l00334"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9e26ea2006e876ccaa80fe4ae441da46">00334</a>                 KEY_MODE                        = 313,          <span class="comment">/**&lt; &quot;Alt Gr&quot; key */</span>
-<a name="l00335"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8aae92d5418d0273c8b43cb11f5e251a20">00335</a>                 KEY_COMPOSE                     = 314,          <span class="comment">/**&lt; Multi-key compose key */</span>
-<a name="l00336"></a>00336 
-<a name="l00337"></a>00337                 <span class="comment">/* Miscellaneous function keys */</span>
-<a name="l00338"></a>00338                 KEY_HELP                        = 315,
-<a name="l00339"></a>00339                 KEY_PRINT                       = 316,
-<a name="l00340"></a>00340                 KEY_SYSREQ                      = 317,
-<a name="l00341"></a>00341                 KEY_BREAK                       = 318,
-<a name="l00342"></a>00342                 KEY_MENU                        = 319,
-<a name="l00343"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a08a2d04e3a40d746b81913e92a25a038">00343</a>                 KEY_POWER                       = 320,          <span class="comment">/**&lt; Power Macintosh power key */</span>
-<a name="l00344"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8aee70075958d1650a7b48ba507103ec0c">00344</a>                 KEY_EURO                        = 321,          <span class="comment">/**&lt; Some European keyboards */</span>
-<a name="l00345"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a15aabd8c4e36284ec057fafbda0d120a">00345</a>                 KEY_UNDO                        = 322,          <span class="comment">/**&lt; Atari keyboard has Undo */</span>
-<a name="l00346"></a>00346 
-<a name="l00347"></a>00347                 <span class="comment">//From here down they do not match directly anymore</span>
-<a name="l00348"></a>00348                 KEYMOD_NONE             = 323,
-<a name="l00349"></a>00349                 KEYMOD_LSHIFT           = 324,
-<a name="l00350"></a>00350                 KEYMOD_RSHIFT           = 325,
-<a name="l00351"></a>00351                 KEYMOD_LCTRL        = 326,
-<a name="l00352"></a>00352                 KEYMOD_RCTRL            = 327,
-<a name="l00353"></a>00353                 KEYMOD_LALT             = 328,
-<a name="l00354"></a>00354                 KEYMOD_RALT             = 329,
-<a name="l00355"></a>00355                 KEYMOD_LMETA            = 330,
-<a name="l00356"></a>00356                 KEYMOD_RMETA            = 331,
-<a name="l00357"></a>00357                 KEYMOD_NUM              = 332,
-<a name="l00358"></a>00358                 KEYMOD_CAPS             = 333,
-<a name="l00359"></a>00359                 KEYMOD_MODE             = 334,
-<a name="l00360"></a>00360                 KEYMOD_RESERVED     = 335,
-<a name="l00361"></a>00361 
-<a name="l00362"></a>00362                 KEY_LAST        = 379,  <span class="comment">/// The last KeyCode, all Keys values will be less than this, and all Events will be larger than that</span>
-<a name="l00363"></a>00363 <span class="comment"></span>
-<a name="l00364"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a87685f9ca9462b329f2b86a17514f136">00364</a>                 INPUTEVENT_FIRST        = 380, <span class="comment">/// The First non-event, all Keys values will be Less than this</span>
-<a name="l00365"></a>00365 <span class="comment"></span>
-<a name="l00366"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a355649b334e903ada2496ad39dcd5f9d">00366</a>                 MOTION_FIRST            = 460,  <span class="comment">/// The first Motion event</span>
-<a name="l00367"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a59cc92f5b2f42f7a138f8ea22e92d626">00367</a> <span class="comment"></span>                MOTION_LAST             = 469,  <span class="comment">/// The last Motion event</span>
-<a name="l00368"></a>00368 <span class="comment"></span>
-<a name="l00369"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8acdb03d23d93022d5962db5026475b9c7">00369</a>                 MULTITOUCH_FIRST        = 470,  <span class="comment">/// The first Multi Touch event</span>
-<a name="l00370"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a94d804dc2330be620a8009252b5d5d22">00370</a> <span class="comment"></span>                MULTITOUCH_ACTION       = 471,
-<a name="l00371"></a>00371                 MULTITOUCH_GESTURE      = 472,
-<a name="l00372"></a>00372                 MULTITOUCH_PINCH        = 473,
-<a name="l00373"></a>00373                 MULTITOUCH_STRETCH      = 474,
-<a name="l00374"></a>00374                 MULTITOUCH_LAST         = 479,  <span class="comment">/// The last Multi Touch event</span>
-<a name="l00375"></a>00375 <span class="comment"></span>
-<a name="l00376"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a1bb7f008c7d430e886141a3b8b697129">00376</a>                 MOUSE_FIRST             = 480,  <span class="comment">/// The First Mouse event, all Mouse Event values will be more than this</span>
-<a name="l00377"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a">00377</a> <span class="comment"></span>                MOUSEBUTTON             = 481,
-<a name="l00378"></a>00378                 MOUSEABSOLUTEVERTICAL   = 482,
-<a name="l00379"></a>00379                 MOUSEABSOLUTEHORIZONTAL = 483,
-<a name="l00380"></a>00380                 MOUSEVERTICAL           = 484,
-<a name="l00381"></a>00381                 MOUSEHORIZONTAL         = 485,
-<a name="l00382"></a>00382                 MOUSEWHEELVERTICAL      = 486,
-<a name="l00383"></a>00383                 MOUSEWHEELHORIZONTAL    = 489,
-<a name="l00384"></a>00384                 MOUSE_LAST              = 490,  <span class="comment">/// The last MouseEvent Code, all Mouse events will be less than this</span>
-<a name="l00385"></a>00385 <span class="comment"></span>
-<a name="l00386"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a666e564cae666de739b9b3cf047ec578">00386</a>                 JOYSTICK_FIRST          = 499,  <span class="comment">/// The First JoyStick event, all Joystick Event values will be more than this</span>
-<a name="l00387"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8aaaa2af6a60a9cd7403aa4786ef1ea389">00387</a> <span class="comment"></span>                JOYSTICKBUTTON          = 500,
-<a name="l00388"></a>00388                 JOYSTICKMOTIONAXIS      = 501,
-<a name="l00389"></a>00389                 JOYSTICKBALLVERTICAL    = 502,
-<a name="l00390"></a>00390                 JOYSTICKBALLHORIZONTAL  = 503,
-<a name="l00391"></a>00391                 JOYSTICKHATVERTICAL     = 504,
-<a name="l00392"></a>00392                 JOYSTICKHATHORIZONTAL   = 505,
-<a name="l00393"></a>00393                 JOYSTICK_LAST           = 506,  <span class="comment">/// The last JoyStick Event Code, all JoyStick events will be less than this.</span>
-<a name="l00394"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8adc78bfd04a85c4bbe39718f9acacbbe3">00394</a> <span class="comment"></span>                INPUTEVENT_LAST = 512           <span class="comment">/// The last Event Code, all event codes will be less than this.</span>
-<a name="l00395"></a>00395 <span class="comment"></span>            };
-<a name="l00396"></a>00396 <span class="comment"></span>
-<a name="l00397"></a>00397 <span class="comment">            /// @enum ButtonState</span>
-<a name="l00398"></a>00398 <span class="comment">            /// @brief An Optional listing of value that can be used in a metacode to represent the information of a button press</span>
-<a name="l00399"></a>00399 <span class="comment">            /// @details This is optional set of values that can make working with buttons easier. The values the engine pass</span>
-<a name="l00400"></a>00400 <span class="comment">            /// via the the event manager will all use these whereever appropriate.</span>
-<a name="l00401"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2">00401</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">ButtonState</a>{
-<a name="l00402"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a6b5564408703517f36debd8c423e2dee">00402</a>                 BUTTON_LIFTING = -1,    <span class="comment">/**&lt; Used when the key stops being pressed. */</span>
-<a name="l00403"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">00403</a>                 BUTTON_UP = 0,          <span class="comment">/**&lt; The default state of a key. */</span>
-<a name="l00404"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d">00404</a>                 BUTTON_PRESSING = 1,    <span class="comment">/**&lt; This is used at the exact point in time that a key goes from unpressed to pressed. */</span>
-<a name="l00405"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">00405</a>                 BUTTON_DOWN = 2         <span class="comment">/**&lt; This is used the entire time a key is down.  */</span>
-<a name="l00406"></a>00406             };
-<a name="l00407"></a>00407 <span class="comment"></span>
-<a name="l00408"></a>00408 <span class="comment">            /// @enum MouseWheelState</span>
-<a name="l00409"></a>00409 <span class="comment">            /// @brief An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel</span>
-<a name="l00410"></a>00410 <span class="comment">            /// @details This is optional set of values that can make working with the MouseWheel easier. The values the engine pass</span>
-<a name="l00411"></a>00411 <span class="comment">            /// via the the event manager will all use these whereever appropriate.</span>
-<a name="l00412"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6">00412</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6" title="An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel...">MouseWheelState</a>{
-<a name="l00413"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6a15542262fc8fe9a3d6746f2b84ecde11">00413</a>                 MOUSEWHEEL_UP = 1,          <span class="comment">/**&lt; Optionally Used when the MouseWheel is spun up as a Meta Code */</span>
-<a name="l00414"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6aa3d86fe74d1c191d7c57f886c0b8d99a">00414</a>                 MOUSEWHEEL_UNCHANGED = 0,   <span class="comment">/**&lt; This really isn&#39;t used in normal situations, but if a mousewheel event is ever needed when the MouseWheel is unspun */</span>
-<a name="l00415"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6ab6edd0886d2ec2d2917bbad96ce3d510">00415</a>                 MOUSEWHEEL_DOWN = -1        <span class="comment">/**&lt; Optionally Used when the MouseWheel is spun Down as a Meta Code */</span>
-<a name="l00416"></a>00416             };
-<a name="l00417"></a>00417 
-<a name="l00418"></a>00418         <span class="keyword">private</span>:
-<a name="l00419"></a>00419             <span class="comment">//The three values that make a MetaCode Useful</span>
-<a name="l00420"></a>00420             <span class="keywordtype">int</span> MetaValue;
-<a name="l00421"></a>00421             <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ID;
-<a name="l00422"></a>00422             <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> Code;
-<a name="l00423"></a>00423 
-<a name="l00424"></a>00424             <span class="comment">//function that the constructors can call aid initial setup</span>
-<a name="l00425"></a>00425             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
-<a name="l00426"></a>00426             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;ID_, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
-<a name="l00427"></a>00427 
-<a name="l00428"></a>00428             <span class="comment">//This assigns a value to Inputcode by doing an efficient low level copy of the correct portion of an SDL_event</span>
-<a name="l00429"></a>00429             <span class="comment">//If mishandled this function can corrupt the MetaCode, and it can throw any error memcpy could throw.</span>
-<a name="l00430"></a>00430             <span class="keyword">static</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetInputCodeFromSDL_KEY(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
-<a name="l00431"></a>00431 
-<a name="l00432"></a>00432         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00433"></a>00433 <span class="comment">            /// @brief Default constructor</span>
-<a name="l00434"></a>00434 <span class="comment">            /// @details This sets nothing on the MetaCode and leaves it completely unassigned. Accessing a data member could cause problems</span>
-<a name="l00435"></a>00435 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>();
-<a name="l00436"></a>00436 <span class="comment"></span>
-<a name="l00437"></a>00437 <span class="comment">            /// @brief Descriptive Constructor</span>
-<a name="l00438"></a>00438 <span class="comment">            /// @details This sets all values in the MetaCode, leaving it in completely ready state. This is the ideal constructor for simulating user input.</span>
-<a name="l00439"></a>00439 <span class="comment">            /// @param MetaValue_ How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed.</span>
-<a name="l00440"></a>00440 <span class="comment">            /// @param ID_ Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item.</span>
-<a name="l00441"></a>00441 <span class="comment">            /// @param Code_ Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support.</span>
-<a name="l00442"></a>00442 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;ID_, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
-<a name="l00443"></a>00443 <span class="comment"></span>
-<a name="l00444"></a>00444 <span class="comment">            /// @brief The Heavy Lifting Constructor</span>
-<a name="l00445"></a>00445 <span class="comment">            /// @details This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information</span>
-<a name="l00446"></a>00446 <span class="comment">            /// from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \n</span>
-<a name="l00447"></a>00447 <span class="comment">            /// This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the</span>
-<a name="l00448"></a>00448 <span class="comment">            /// User input subsystem, this could be all RawEvents, or even just some RawEvents.</span>
-<a name="l00449"></a>00449 <span class="comment">            /// @exception &quot;RawEvent which creates Multiple Metacodes inserted into Metacode&quot; - Thrown when passed a certain (system dependant) incorrect type of RawEvent.</span>
-<a name="l00450"></a>00450 <span class="comment">            /// @exception &quot;Unknown User Input Inserted into Metacode&quot; - Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent.</span>
-<a name="l00451"></a>00451 <span class="comment">            /// @warning We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In</span>
-<a name="l00452"></a>00452 <span class="comment">            /// that event you would have to recompile your application to get it working with a new version of physgame. Using this function in Game code removes any gaurantees of Game Code</span>
-<a name="l00453"></a>00453 <span class="comment">            /// Portability.</span>
-<a name="l00454"></a>00454 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
-<a name="l00455"></a>00455 <span class="comment"></span>
-<a name="l00456"></a>00456 <span class="comment">            /// @brief This Returns the Inputcode</span>
-<a name="l00457"></a>00457 <span class="comment">            /// @details This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred.</span>
-<a name="l00458"></a>00458 <span class="comment">            /// This value can be set with @ref SetCode .</span>
-<a name="l00459"></a>00459 <span class="comment">            /// @return This returns the input code for this MetaCode</span>
-<a name="l00460"></a>00460 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetCode() <span class="keyword">const</span>;
-<a name="l00461"></a>00461 <span class="comment"></span>
-<a name="l00462"></a>00462 <span class="comment">            /// @brief This Sets The InputCode</span>
-<a name="l00463"></a>00463 <span class="comment">            /// @details See @ref GetCode to see exactly what the Code is. This will Set the code stored in this MetaCode. This value can be retrieved with @ref GetCode .</span>
-<a name="l00464"></a>00464 <span class="comment">            /// @param Code_ The value you want the stored code to become.</span>
-<a name="l00465"></a>00465 <span class="comment"></span>            <span class="keywordtype">void</span> SetCode(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
-<a name="l00466"></a>00466 <span class="comment"></span>
-<a name="l00467"></a>00467 <span class="comment">            /// @brief This Returns the MetaValue</span>
-<a name="l00468"></a>00468 <span class="comment">            /// @details The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value.</span>
-<a name="l00469"></a>00469 <span class="comment">            /// This value can be set with @ref SetMetaValue .</span>
-<a name="l00470"></a>00470 <span class="comment">            /// @return This returns the input code for this MetaCode. This could return any number inside a range (depending on hardware and configuration)</span>
-<a name="l00471"></a>00471 <span class="comment">            /// to represent how tilted a joystick or how much a mouse moved.</span>
-<a name="l00472"></a>00472 <span class="comment"></span>            <span class="keywordtype">int</span> GetMetaValue() <span class="keyword">const</span>;                     <span class="comment">//How much is being done? How far has the mouse moved, how much is the throttle pushed.</span>
-<a name="l00473"></a>00473 <span class="comment"></span>
-<a name="l00474"></a>00474 <span class="comment">            /// @brief This Sets The MetaValue</span>
-<a name="l00475"></a>00475 <span class="comment">            /// @details See @ref GetMetaValue to see exactly what the MetaValue is. This will set the MetaValue stored in this MetaCode. This value can be retrieved with @ref GetMetaValue .</span>
-<a name="l00476"></a>00476 <span class="comment">            /// @param MetaValue_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.</span>
-<a name="l00477"></a>00477 <span class="comment"></span>            <span class="keywordtype">void</span> SetMetaValue(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_);      <span class="comment">//For button presses a positive value is pushed and a zero means unpushed</span>
-<a name="l00478"></a>00478 <span class="comment"></span>
-<a name="l00479"></a>00479 <span class="comment">            /// @brief This Returns the Input ID</span>
-<a name="l00480"></a>00480 <span class="comment">            /// @details The Input ID can be used to differentiate between which Joystick axis is being manipulated, or which mouse button is being pushed.</span>
-<a name="l00481"></a>00481 <span class="comment">            /// On systems that support multiple keyboards this will even differentiate between those.</span>
-<a name="l00482"></a>00482 <span class="comment">            /// This value can be set with @ref SetID .</span>
-<a name="l00483"></a>00483 <span class="comment">            /// @return This returns the input ID, which (on a normal system) can help Identify which Mouse Button, Joystick Button, Joystick Axis,</span>
-<a name="l00484"></a>00484 <span class="comment">            /// JoystickBall (Horizontal and Vertical), Joystick Hat Axis (those little joysticks on your joystick), but if the system can handle it this</span>
-<a name="l00485"></a>00485 <span class="comment">            /// can identify from unique input sources and InputCode.</span>
-<a name="l00486"></a>00486 <span class="comment"></span>            <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> GetID() <span class="keyword">const</span>;             <span class="comment">//Which input is doing it? If this the input was one of may, like which mouse button, which joystick axis.</span>
-<a name="l00487"></a>00487 <span class="comment"></span>
-<a name="l00488"></a>00488 <span class="comment">            /// @brief This Sets The input ID</span>
-<a name="l00489"></a>00489 <span class="comment">            /// @details See @ref GetID to see exactly what the input ID is. This will set the ID stored in this MetaCode. This value can be retrieved with @ref GetID .</span>
-<a name="l00490"></a>00490 <span class="comment">            /// @param ID_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.</span>
-<a name="l00491"></a>00491 <span class="comment"></span>            <span class="keywordtype">void</span> SetID(<span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;ID_);
-<a name="l00492"></a>00492 <span class="comment"></span>
-<a name="l00493"></a>00493 <span class="comment">            /// @brief Does this MetaCode Represent a state of a keyboard key</span>
-<a name="l00494"></a>00494 <span class="comment">            /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.</span>
-<a name="l00495"></a>00495 <span class="comment">            /// @return This returns a bool which will be true if this is keyboard event.</span>
-<a name="l00496"></a>00496 <span class="comment"></span>            <span class="keywordtype">bool</span> IsKeyboardButton() <span class="keyword">const</span>;
-<a name="l00497"></a>00497 <span class="comment"></span>
-<a name="l00498"></a>00498 <span class="comment">            /// @brief Compares two MetaCodes for equality</span>
-<a name="l00499"></a>00499 <span class="comment">            /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.</span>
-<a name="l00500"></a>00500 <span class="comment"></span>            <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;other) <span class="keyword">const</span>;
-<a name="l00501"></a>00501     };
-<a name="l00502"></a>00502 }
-<a name="l00503"></a>00503 <span class="comment"></span>
-<a name="l00504"></a>00504 <span class="comment">/// @brief Allows for streaming of MetaCodes</span>
-<a name="l00505"></a>00505 <span class="comment">/// @details If it can be streamed, then it can be logged Holds true for the MetaCode.</span>
-<a name="l00506"></a>00506 <span class="comment"></span>std::ostream&amp; PHYS_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">phys::MetaCode</a>&amp; x);
-<a name="l00507"></a>00507 
-<a name="l00508"></a>00508 <span class="preprocessor">#endif</span>
+<a name="l00097"></a>00097 <span class="comment">            /// @warning Once upon a time, this partially matched with ascii. It doesn&#39;t anymore.</span>
+<a name="l00098"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">00098</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">InputCode</a>
+<a name="l00099"></a>00099             {
+<a name="l00100"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a45d7f3824a440f5bea5e616a6d6ea0b5">00100</a>                 KEY_FIRST                       = 0,    <span class="comment">/**&lt; KEY_FIRST Same Value as KEY_UNKOWN, is Guaranteed to be the lowest value of any key. */</span>
+<a name="l00101"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a061a36c9b5d9661314fd9d276b33042f">00101</a>                 KEY_UNKNOWN                     = 0,    <span class="comment">/**&lt; KEY_UNKNOWN This is used for unsupported keys or keys that are not in Unicode. */</span>
+<a name="l00102"></a>00102 
+<a name="l00103"></a>00103                 KEY_A = 4,
+<a name="l00104"></a>00104                 KEY_B = 5,
+<a name="l00105"></a>00105                 KEY_C = 6,
+<a name="l00106"></a>00106                 KEY_D = 7,
+<a name="l00107"></a>00107                 KEY_E = 8,
+<a name="l00108"></a>00108                 KEY_F = 9,
+<a name="l00109"></a>00109                 KEY_G = 10,
+<a name="l00110"></a>00110                 KEY_H = 11,
+<a name="l00111"></a>00111                 KEY_I = 12,
+<a name="l00112"></a>00112                 KEY_J = 13,
+<a name="l00113"></a>00113                 KEY_K = 14,
+<a name="l00114"></a>00114                 KEY_L = 15,
+<a name="l00115"></a>00115                 KEY_M = 16,
+<a name="l00116"></a>00116                 KEY_N = 17,
+<a name="l00117"></a>00117                 KEY_O = 18,
+<a name="l00118"></a>00118                 KEY_P = 19,
+<a name="l00119"></a>00119                 KEY_Q = 20,
+<a name="l00120"></a>00120                 KEY_R = 21,
+<a name="l00121"></a>00121                 KEY_S = 22,
+<a name="l00122"></a>00122                 KEY_T = 23,
+<a name="l00123"></a>00123                 KEY_U = 24,
+<a name="l00124"></a>00124                 KEY_V = 25,
+<a name="l00125"></a>00125                 KEY_W = 26,
+<a name="l00126"></a>00126                 KEY_X = 27,
+<a name="l00127"></a>00127                 KEY_Y = 28,
+<a name="l00128"></a>00128                 KEY_Z = 29,
+<a name="l00129"></a>00129 
+<a name="l00130"></a>00130                 KEY_1 = 30,
+<a name="l00131"></a>00131                 KEY_2 = 31,
+<a name="l00132"></a>00132                 KEY_3 = 32,
+<a name="l00133"></a>00133                 KEY_4 = 33,
+<a name="l00134"></a>00134                 KEY_5 = 34,
+<a name="l00135"></a>00135                 KEY_6 = 35,
+<a name="l00136"></a>00136                 KEY_7 = 36,
+<a name="l00137"></a>00137                 KEY_8 = 37,
+<a name="l00138"></a>00138                 KEY_9 = 38,
+<a name="l00139"></a>00139                 KEY_0 = 39,
+<a name="l00140"></a>00140 
+<a name="l00141"></a>00141                 KEY_RETURN = 40,
+<a name="l00142"></a>00142                 KEY_ESCAPE = 41,
+<a name="l00143"></a>00143                 KEY_BACKSPACE = 42,
+<a name="l00144"></a>00144                 KEY_TAB = 43,
+<a name="l00145"></a>00145                 KEY_SPACE = 44,
+<a name="l00146"></a>00146 
+<a name="l00147"></a>00147                 KEY_MINUS = 45,
+<a name="l00148"></a>00148                 KEY_EQUALS = 46,
+<a name="l00149"></a>00149                 KEY_LEFTBRACKET = 47,
+<a name="l00150"></a>00150                 KEY_RIGHTBRACKET = 48,
+<a name="l00151"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8acab0c272975d1667521cd5ae918e9b8e">00151</a>                 KEY_BACKSLASH = 49, <span class="comment">/**&lt; Located at the lower left of the return</span>
+<a name="l00152"></a>00152 <span class="comment">                                              *   key on ISO keyboards and at the right end</span>
+<a name="l00153"></a>00153 <span class="comment">                                              *   of the QWERTY row on ANSI keyboards.</span>
+<a name="l00154"></a>00154 <span class="comment">                                              *   Produces REVERSE SOLIDUS (backslash) and</span>
+<a name="l00155"></a>00155 <span class="comment">                                              *   VERTICAL LINE in a US layout, REVERSE</span>
+<a name="l00156"></a>00156 <span class="comment">                                              *   SOLIDUS and VERTICAL LINE in a UK Mac</span>
+<a name="l00157"></a>00157 <span class="comment">                                              *   layout, NUMBER SIGN and TILDE in a UK</span>
+<a name="l00158"></a>00158 <span class="comment">                                              *   Windows layout, DOLLAR SIGN and POUND SIGN</span>
+<a name="l00159"></a>00159 <span class="comment">                                              *   in a Swiss German layout, NUMBER SIGN and</span>
+<a name="l00160"></a>00160 <span class="comment">                                              *   APOSTROPHE in a German layout, GRAVE</span>
+<a name="l00161"></a>00161 <span class="comment">                                              *   ACCENT and POUND SIGN in a French Mac</span>
+<a name="l00162"></a>00162 <span class="comment">                                              *   layout, and ASTERISK and MICRO SIGN in a</span>
+<a name="l00163"></a>00163 <span class="comment">                                              *   French Windows layout.</span>
+<a name="l00164"></a>00164 <span class="comment">                                              */</span>
+<a name="l00165"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8afd23349e045ee52f42e1c5c25ee3cec3">00165</a>                 KEY_NONUSHASH = 50, <span class="comment">/**&lt; ISO USB keyboards actually use this code</span>
+<a name="l00166"></a>00166 <span class="comment">                                              *   instead of 49 for the same key, but all</span>
+<a name="l00167"></a>00167 <span class="comment">                                              *   OSes I&#39;ve seen treat the two codes</span>
+<a name="l00168"></a>00168 <span class="comment">                                              *   identically. So, as an implementor, unless</span>
+<a name="l00169"></a>00169 <span class="comment">                                              *   your keyboard generates both of those</span>
+<a name="l00170"></a>00170 <span class="comment">                                              *   codes and your OS treats them differently,</span>
+<a name="l00171"></a>00171 <span class="comment">                                              *   you should generate KEY_BACKSLASH</span>
+<a name="l00172"></a>00172 <span class="comment">                                              *   instead of this code. As a user, you</span>
+<a name="l00173"></a>00173 <span class="comment">                                              *   should not rely on this code because SDL</span>
+<a name="l00174"></a>00174 <span class="comment">                                              *   will never generate it with most (all?)</span>
+<a name="l00175"></a>00175 <span class="comment">                                              *   keyboards.</span>
+<a name="l00176"></a>00176 <span class="comment">                                              */</span>
+<a name="l00177"></a>00177                 KEY_SEMICOLON = 51,
+<a name="l00178"></a>00178                 KEY_APOSTROPHE = 52,
+<a name="l00179"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a1961eccca163bf3ceb9e6dea3c23375c">00179</a>                 KEY_GRAVE = 53, <span class="comment">/**&lt; Located in the top left corner (on both ANSI</span>
+<a name="l00180"></a>00180 <span class="comment">                                          *   and ISO keyboards). Produces GRAVE ACCENT and</span>
+<a name="l00181"></a>00181 <span class="comment">                                          *   TILDE in a US Windows layout and in US and UK</span>
+<a name="l00182"></a>00182 <span class="comment">                                          *   Mac layouts on ANSI keyboards, GRAVE ACCENT</span>
+<a name="l00183"></a>00183 <span class="comment">                                          *   and NOT SIGN in a UK Windows layout, SECTION</span>
+<a name="l00184"></a>00184 <span class="comment">                                          *   SIGN and PLUS-MINUS SIGN in US and UK Mac</span>
+<a name="l00185"></a>00185 <span class="comment">                                          *   layouts on ISO keyboards, SECTION SIGN and</span>
+<a name="l00186"></a>00186 <span class="comment">                                          *   DEGREE SIGN in a Swiss German layout (Mac:</span>
+<a name="l00187"></a>00187 <span class="comment">                                          *   only on ISO keyboards), CIRCUMFLEX ACCENT and</span>
+<a name="l00188"></a>00188 <span class="comment">                                          *   DEGREE SIGN in a German layout (Mac: only on</span>
+<a name="l00189"></a>00189 <span class="comment">                                          *   ISO keyboards), SUPERSCRIPT TWO and TILDE in a</span>
+<a name="l00190"></a>00190 <span class="comment">                                          *   French Windows layout, COMMERCIAL AT and</span>
+<a name="l00191"></a>00191 <span class="comment">                                          *   NUMBER SIGN in a French Mac layout on ISO</span>
+<a name="l00192"></a>00192 <span class="comment">                                          *   keyboards, and LESS-THAN SIGN and GREATER-THAN</span>
+<a name="l00193"></a>00193 <span class="comment">                                          *   SIGN in a Swiss German, German, or French Mac</span>
+<a name="l00194"></a>00194 <span class="comment">                                          *   layout on ANSI keyboards.</span>
+<a name="l00195"></a>00195 <span class="comment">                                          */</span>
+<a name="l00196"></a>00196                 KEY_COMMA = 54,
+<a name="l00197"></a>00197                 KEY_PERIOD = 55,
+<a name="l00198"></a>00198                 KEY_SLASH = 56,
+<a name="l00199"></a>00199 
+<a name="l00200"></a>00200                 KEY_CAPSLOCK = 57,
+<a name="l00201"></a>00201 
+<a name="l00202"></a>00202                 KEY_F1 = 58,
+<a name="l00203"></a>00203                 KEY_F2 = 59,
+<a name="l00204"></a>00204                 KEY_F3 = 60,
+<a name="l00205"></a>00205                 KEY_F4 = 61,
+<a name="l00206"></a>00206                 KEY_F5 = 62,
+<a name="l00207"></a>00207                 KEY_F6 = 63,
+<a name="l00208"></a>00208                 KEY_F7 = 64,
+<a name="l00209"></a>00209                 KEY_F8 = 65,
+<a name="l00210"></a>00210                 KEY_F9 = 66,
+<a name="l00211"></a>00211                 KEY_F10 = 67,
+<a name="l00212"></a>00212                 KEY_F11 = 68,
+<a name="l00213"></a>00213                 KEY_F12 = 69,
+<a name="l00214"></a>00214 
+<a name="l00215"></a>00215                 KEY_PRINTSCREEN = 70,
+<a name="l00216"></a>00216                 KEY_SCROLLLOCK = 71,
+<a name="l00217"></a>00217                 KEY_PAUSE = 72,
+<a name="l00218"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a708ea6204b1cc2ed7756989b8d850ce6">00218</a>                 KEY_INSERT = 73, <span class="comment">/**&lt; insert on PC, help on some Mac keyboards (but</span>
+<a name="l00219"></a>00219 <span class="comment">                                               does send code 73, not 117) */</span>
+<a name="l00220"></a>00220                 KEY_HOME = 74,
+<a name="l00221"></a>00221                 KEY_PAGEUP = 75,
+<a name="l00222"></a>00222                 KEY_DELETE = 76,
+<a name="l00223"></a>00223                 KEY_END = 77,
+<a name="l00224"></a>00224                 KEY_PAGEDOWN = 78,
+<a name="l00225"></a>00225                 KEY_RIGHT = 79,
+<a name="l00226"></a>00226                 KEY_LEFT = 80,
+<a name="l00227"></a>00227                 KEY_DOWN = 81,
+<a name="l00228"></a>00228                 KEY_UP = 82,
+<a name="l00229"></a>00229 
+<a name="l00230"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a7cd4a721f5b2be2cc13856a46199508a">00230</a>                 KEY_NUMLOCKCLEAR = 83, <span class="comment">/**&lt; num lock on PC, clear on Mac keyboards</span>
+<a name="l00231"></a>00231 <span class="comment">                                                 */</span>
+<a name="l00232"></a>00232                 KEY_KP_DIVIDE = 84,
+<a name="l00233"></a>00233                 KEY_KP_MULTIPLY = 85,
+<a name="l00234"></a>00234                 KEY_KP_MINUS = 86,
+<a name="l00235"></a>00235                 KEY_KP_PLUS = 87,
+<a name="l00236"></a>00236                 KEY_KP_ENTER = 88,
+<a name="l00237"></a>00237                 KEY_KP_1 = 89,
+<a name="l00238"></a>00238                 KEY_KP_2 = 90,
+<a name="l00239"></a>00239                 KEY_KP_3 = 91,
+<a name="l00240"></a>00240                 KEY_KP_4 = 92,
+<a name="l00241"></a>00241                 KEY_KP_5 = 93,
+<a name="l00242"></a>00242                 KEY_KP_6 = 94,
+<a name="l00243"></a>00243                 KEY_KP_7 = 95,
+<a name="l00244"></a>00244                 KEY_KP_8 = 96,
+<a name="l00245"></a>00245                 KEY_KP_9 = 97,
+<a name="l00246"></a>00246                 KEY_KP_0 = 98,
+<a name="l00247"></a>00247                 KEY_KP_PERIOD = 99,
+<a name="l00248"></a>00248 
+<a name="l00249"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a858a1c9e3bd7b047e05220da9b0a3966">00249</a>                 KEY_NONUSBACKSLASH = 100, <span class="comment">/**&lt; This is the additional key that ISO</span>
+<a name="l00250"></a>00250 <span class="comment">                                                    *   keyboards have over ANSI ones,</span>
+<a name="l00251"></a>00251 <span class="comment">                                                    *   located between left shift and Y.</span>
+<a name="l00252"></a>00252 <span class="comment">                                                    *   Produces GRAVE ACCENT and TILDE in a</span>
+<a name="l00253"></a>00253 <span class="comment">                                                    *   US or UK Mac layout, REVERSE SOLIDUS</span>
+<a name="l00254"></a>00254 <span class="comment">                                                    *   (backslash) and VERTICAL LINE in a</span>
+<a name="l00255"></a>00255 <span class="comment">                                                    *   US or UK Windows layout, and</span>
+<a name="l00256"></a>00256 <span class="comment">                                                    *   LESS-THAN SIGN and GREATER-THAN SIGN</span>
+<a name="l00257"></a>00257 <span class="comment">                                                    *   in a Swiss German, German, or French</span>
+<a name="l00258"></a>00258 <span class="comment">                                                    *   layout. */</span>
+<a name="l00259"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a2e2aa499dcbb30b92204e9895049ad91">00259</a>                 KEY_APPLICATION = 101, <span class="comment">/**&lt; windows contextual menu, compose */</span>
+<a name="l00260"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a08a2d04e3a40d746b81913e92a25a038">00260</a>                 KEY_POWER = 102, <span class="comment">/**&lt; The USB document says this is a status flag,</span>
+<a name="l00261"></a>00261 <span class="comment">                                           *   not a physical key - but some Mac keyboards</span>
+<a name="l00262"></a>00262 <span class="comment">                                           *   do have a power key. */</span>
+<a name="l00263"></a>00263                 KEY_KP_EQUALS = 103,
+<a name="l00264"></a>00264                 KEY_F13 = 104,
+<a name="l00265"></a>00265                 KEY_F14 = 105,
+<a name="l00266"></a>00266                 KEY_F15 = 106,
+<a name="l00267"></a>00267                 KEY_F16 = 107,
+<a name="l00268"></a>00268                 KEY_F17 = 108,
+<a name="l00269"></a>00269                 KEY_F18 = 109,
+<a name="l00270"></a>00270                 KEY_F19 = 110,
+<a name="l00271"></a>00271                 KEY_F20 = 111,
+<a name="l00272"></a>00272                 KEY_F21 = 112,
+<a name="l00273"></a>00273                 KEY_F22 = 113,
+<a name="l00274"></a>00274                 KEY_F23 = 114,
+<a name="l00275"></a>00275                 KEY_F24 = 115,
+<a name="l00276"></a>00276                 KEY_EXECUTE = 116,
+<a name="l00277"></a>00277                 KEY_HELP = 117,
+<a name="l00278"></a>00278                 KEY_MENU = 118,
+<a name="l00279"></a>00279                 KEY_SELECT = 119,
+<a name="l00280"></a>00280                 KEY_STOP = 120,
+<a name="l00281"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a7e4a4d24f9b7d3cb3695c9419c5aed4a">00281</a>                 KEY_AGAIN = 121,   <span class="comment">/**&lt; redo */</span>
+<a name="l00282"></a>00282                 KEY_UNDO = 122,
+<a name="l00283"></a>00283                 KEY_CUT = 123,
+<a name="l00284"></a>00284                 KEY_COPY = 124,
+<a name="l00285"></a>00285                 KEY_PASTE = 125,
+<a name="l00286"></a>00286                 KEY_FIND = 126,
+<a name="l00287"></a>00287                 KEY_MUTE = 127,
+<a name="l00288"></a>00288                 KEY_VOLUMEUP = 128,
+<a name="l00289"></a>00289                 KEY_VOLUMEDOWN = 129,
+<a name="l00290"></a>00290             <span class="comment">/* not sure whether there&#39;s a reason to enable these */</span>
+<a name="l00291"></a>00291             <span class="comment">/*     KEY_LOCKINGCAPSLOCK = 130,  */</span>
+<a name="l00292"></a>00292             <span class="comment">/*     KEY_LOCKINGNUMLOCK = 131, */</span>
+<a name="l00293"></a>00293             <span class="comment">/*     KEY_LOCKINGSCROLLLOCK = 132, */</span>
+<a name="l00294"></a>00294                 KEY_KP_COMMA = 133,
+<a name="l00295"></a>00295                 KEY_KP_EQUALSAS400 = 134,
+<a name="l00296"></a>00296 
+<a name="l00297"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a47fe3fc087358b7166c1f1ce71effdc9">00297</a>                 KEY_INTERNATIONAL1 = 135, <span class="comment">/**&lt; used on Asian keyboards, see</span>
+<a name="l00298"></a>00298 <span class="comment">                                                        footnotes in USB doc */</span>
+<a name="l00299"></a>00299                 KEY_INTERNATIONAL2 = 136,
+<a name="l00300"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a1dce5180d021f3ef331d8c2ed6fd164c">00300</a>                 KEY_INTERNATIONAL3 = 137, <span class="comment">/**&lt; Yen */</span>
+<a name="l00301"></a>00301                 KEY_INTERNATIONAL4 = 138,
+<a name="l00302"></a>00302                 KEY_INTERNATIONAL5 = 139,
+<a name="l00303"></a>00303                 KEY_INTERNATIONAL6 = 140,
+<a name="l00304"></a>00304                 KEY_INTERNATIONAL7 = 141,
+<a name="l00305"></a>00305                 KEY_INTERNATIONAL8 = 142,
+<a name="l00306"></a>00306                 KEY_INTERNATIONAL9 = 143,
+<a name="l00307"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a1df9a42e248457bd4d1db9a71e2a3373">00307</a>                 KEY_LANG1 = 144, <span class="comment">/**&lt; Hangul/English toggle */</span>
+<a name="l00308"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8ae506391384523e15a1a046f8d180b628">00308</a>                 KEY_LANG2 = 145, <span class="comment">/**&lt; Hanja conversion */</span>
+<a name="l00309"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a61885d98887d71cb6efeace8e2a635b8">00309</a>                 KEY_LANG3 = 146, <span class="comment">/**&lt; Katakana */</span>
+<a name="l00310"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a97d692fa1be298b30c6e338020eca59c">00310</a>                 KEY_LANG4 = 147, <span class="comment">/**&lt; Hiragana */</span>
+<a name="l00311"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a2cc895ea487f902ad676c0ae358ce38f">00311</a>                 KEY_LANG5 = 148, <span class="comment">/**&lt; Zenkaku/Hankaku */</span>
+<a name="l00312"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a379a876207b4223398f3f89629ccd8fd">00312</a>                 KEY_LANG6 = 149, <span class="comment">/**&lt; reserved */</span>
+<a name="l00313"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a7c94e225ee1f3b6e3518a455070c78f8">00313</a>                 KEY_LANG7 = 150, <span class="comment">/**&lt; reserved */</span>
+<a name="l00314"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a750888e8ab0ea97e8daa1dabe90cd3e4">00314</a>                 KEY_LANG8 = 151, <span class="comment">/**&lt; reserved */</span>
+<a name="l00315"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a64d57026c86f63ddd54c3d08a72cde01">00315</a>                 KEY_LANG9 = 152, <span class="comment">/**&lt; reserved */</span>
+<a name="l00316"></a>00316 
+<a name="l00317"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a49842de0ed4c70353663e255b327284b">00317</a>                 KEY_ALTERASE = 153, <span class="comment">/**&lt; Erase-Eaze */</span>
+<a name="l00318"></a>00318                 KEY_SYSREQ = 154,
+<a name="l00319"></a>00319                 KEY_CANCEL = 155,
+<a name="l00320"></a>00320                 KEY_CLEAR = 156,
+<a name="l00321"></a>00321                 KEY_PRIOR = 157,
+<a name="l00322"></a>00322                 KEY_RETURN2 = 158,
+<a name="l00323"></a>00323                 KEY_SEPARATOR = 159,
+<a name="l00324"></a>00324                 KEY_OUT = 160,
+<a name="l00325"></a>00325                 KEY_OPER = 161,
+<a name="l00326"></a>00326                 KEY_CLEARAGAIN = 162,
+<a name="l00327"></a>00327                 KEY_CRSEL = 163,
+<a name="l00328"></a>00328                 KEY_EXSEL = 164,
+<a name="l00329"></a>00329 
+<a name="l00330"></a>00330                 KEY_KP_00 = 176,
+<a name="l00331"></a>00331                 KEY_KP_000 = 177,
+<a name="l00332"></a>00332                 KEY_THOUSANDSSEPARATOR = 178,
+<a name="l00333"></a>00333                 KEY_DECIMALSEPARATOR = 179,
+<a name="l00334"></a>00334                 KEY_CURRENCYUNIT = 180,
+<a name="l00335"></a>00335                 KEY_CURRENCYSUBUNIT = 181,
+<a name="l00336"></a>00336                 KEY_KP_LEFTPAREN = 182,
+<a name="l00337"></a>00337                 KEY_KP_RIGHTPAREN = 183,
+<a name="l00338"></a>00338                 KEY_KP_LEFTBRACE = 184,
+<a name="l00339"></a>00339                 KEY_KP_RIGHTBRACE = 185,
+<a name="l00340"></a>00340                 KEY_KP_TAB = 186,
+<a name="l00341"></a>00341                 KEY_KP_BACKSPACE = 187,
+<a name="l00342"></a>00342                 KEY_KP_A = 188,
+<a name="l00343"></a>00343                 KEY_KP_B = 189,
+<a name="l00344"></a>00344                 KEY_KP_C = 190,
+<a name="l00345"></a>00345                 KEY_KP_D = 191,
+<a name="l00346"></a>00346                 KEY_KP_E = 192,
+<a name="l00347"></a>00347                 KEY_KP_F = 193,
+<a name="l00348"></a>00348                 KEY_KP_XOR = 194,
+<a name="l00349"></a>00349                 KEY_KP_POWER = 195,
+<a name="l00350"></a>00350                 KEY_KP_PERCENT = 196,
+<a name="l00351"></a>00351                 KEY_KP_LESS = 197,
+<a name="l00352"></a>00352                 KEY_KP_GREATER = 198,
+<a name="l00353"></a>00353                 KEY_KP_AMPERSAND = 199,
+<a name="l00354"></a>00354                 KEY_KP_DBLAMPERSAND = 200,
+<a name="l00355"></a>00355                 KEY_KP_VERTICALBAR = 201,
+<a name="l00356"></a>00356                 KEY_KP_DBLVERTICALBAR = 202,
+<a name="l00357"></a>00357                 KEY_KP_COLON = 203,
+<a name="l00358"></a>00358                 KEY_KP_HASH = 204,
+<a name="l00359"></a>00359                 KEY_KP_SPACE = 205,
+<a name="l00360"></a>00360                 KEY_KP_AT = 206,
+<a name="l00361"></a>00361                 KEY_KP_EXCLAM = 207,
+<a name="l00362"></a>00362                 KEY_KP_MEMSTORE = 208,
+<a name="l00363"></a>00363                 KEY_KP_MEMRECALL = 209,
+<a name="l00364"></a>00364                 KEY_KP_MEMCLEAR = 210,
+<a name="l00365"></a>00365                 KEY_KP_MEMADD = 211,
+<a name="l00366"></a>00366                 KEY_KP_MEMSUBTRACT = 212,
+<a name="l00367"></a>00367                 KEY_KP_MEMMULTIPLY = 213,
+<a name="l00368"></a>00368                 KEY_KP_MEMDIVIDE = 214,
+<a name="l00369"></a>00369                 KEY_KP_PLUSMINUS = 215,
+<a name="l00370"></a>00370                 KEY_KP_CLEAR = 216,
+<a name="l00371"></a>00371                 KEY_KP_CLEARENTRY = 217,
+<a name="l00372"></a>00372                 KEY_KP_BINARY = 218,
+<a name="l00373"></a>00373                 KEY_KP_OCTAL = 219,
+<a name="l00374"></a>00374                 KEY_KP_DECIMAL = 220,
+<a name="l00375"></a>00375                 KEY_KP_HEXADECIMAL = 221,
+<a name="l00376"></a>00376 
+<a name="l00377"></a>00377                 KEY_LCTRL = 224,
+<a name="l00378"></a>00378                 KEY_LSHIFT = 225,
+<a name="l00379"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a2454f5b9aa3d9f34db185fe659f3e751">00379</a>                 KEY_LALT = 226, <span class="comment">/**&lt; alt, option */</span>
+<a name="l00380"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8aab77afaba4fc97faa9b9fe40d3a9ebbb">00380</a>                 KEY_LSUPER = 227, <span class="comment">/**&lt; windows, command (apple), meta */</span>
+<a name="l00381"></a>00381                 KEY_RCTRL = 228,
+<a name="l00382"></a>00382                 KEY_RSHIFT = 229,
+<a name="l00383"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8aee151fcf77cce58411d19d9cb679875e">00383</a>                 KEY_RALT = 230, <span class="comment">/**&lt; alt gr, option */</span>
+<a name="l00384"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a84e2235ece031f83821867486ff52149">00384</a>                 KEY_RSUPER = 231, <span class="comment">/**&lt; windows, command (apple), meta */</span>
+<a name="l00385"></a>00385 
+<a name="l00386"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9e26ea2006e876ccaa80fe4ae441da46">00386</a>                 KEY_MODE = 257,    <span class="comment">/**&lt; I&#39;m not sure if this is really not covered</span>
+<a name="l00387"></a>00387 <span class="comment">                                             *   by any of the above, but since there&#39;s a</span>
+<a name="l00388"></a>00388 <span class="comment">                                             *   special KMOD_MODE for it I&#39;m adding it here</span>
+<a name="l00389"></a>00389 <span class="comment">                                             */</span>
+<a name="l00390"></a>00390 <span class="comment"></span>
+<a name="l00391"></a>00391 <span class="comment">                /*@}*/</span><span class="comment">/*Usage page 0x07*/</span>
+<a name="l00392"></a>00392 <span class="comment"></span>
+<a name="l00393"></a>00393 <span class="comment">                /**</span>
+<a name="l00394"></a>00394 <span class="comment">                 *  \name Usage page 0x0C</span>
+<a name="l00395"></a>00395 <span class="comment">                 *</span>
+<a name="l00396"></a>00396 <span class="comment">                 *  These values are mapped from usage page 0x0C (USB consumer page).</span>
+<a name="l00397"></a>00397 <span class="comment">                 */</span><span class="comment"></span>
+<a name="l00398"></a>00398 <span class="comment">                /*@{*/</span>
+<a name="l00399"></a>00399 
+<a name="l00400"></a>00400                 KEY_AUDIONEXT = 258,
+<a name="l00401"></a>00401                 KEY_AUDIOPREV = 259,
+<a name="l00402"></a>00402                 KEY_AUDIOSTOP = 260,
+<a name="l00403"></a>00403                 KEY_AUDIOPLAY = 261,
+<a name="l00404"></a>00404                 KEY_AUDIOMUTE = 262,
+<a name="l00405"></a>00405                 KEY_MEDIASELECT = 263,
+<a name="l00406"></a>00406                 KEY_WWW = 264,
+<a name="l00407"></a>00407                 KEY_MAIL = 265,
+<a name="l00408"></a>00408                 KEY_CALCULATOR = 266,
+<a name="l00409"></a>00409                 KEY_COMPUTER = 267,
+<a name="l00410"></a>00410                 KEY_AC_SEARCH = 268,
+<a name="l00411"></a>00411                 KEY_AC_HOME = 269,
+<a name="l00412"></a>00412                 KEY_AC_BACK = 270,
+<a name="l00413"></a>00413                 KEY_AC_FORWARD = 271,
+<a name="l00414"></a>00414                 KEY_AC_STOP = 272,
+<a name="l00415"></a>00415                 KEY_AC_REFRESH = 273,
+<a name="l00416"></a>00416                 KEY_AC_BOOKMARKS = 274,
+<a name="l00417"></a>00417 <span class="comment"></span>
+<a name="l00418"></a>00418 <span class="comment">                /*@}*/</span><span class="comment">/*Usage page 0x0C*/</span>
+<a name="l00419"></a>00419 <span class="comment"></span>
+<a name="l00420"></a>00420 <span class="comment">                /**</span>
+<a name="l00421"></a>00421 <span class="comment">                 *  \name Walther keys</span>
+<a name="l00422"></a>00422 <span class="comment">                 *</span>
+<a name="l00423"></a>00423 <span class="comment">                 *  These are values that Christian Walther added (for mac keyboard?).</span>
+<a name="l00424"></a>00424 <span class="comment">                 */</span><span class="comment"></span>
+<a name="l00425"></a>00425 <span class="comment">                /*@{*/</span>
+<a name="l00426"></a>00426 
+<a name="l00427"></a>00427                 KEY_BRIGHTNESSDOWN = 275,
+<a name="l00428"></a>00428                 KEY_BRIGHTNESSUP = 276,
+<a name="l00429"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8aadc4c974c86930fa73a693b7db4f7755">00429</a>                 KEY_DISPLAYSWITCH = 277, <span class="comment">/**&lt; display mirroring/dual display</span>
+<a name="l00430"></a>00430 <span class="comment">                                                       switch, video mode switch */</span>
+<a name="l00431"></a>00431                 KEY_KBDILLUMTOGGLE = 278,
+<a name="l00432"></a>00432                 KEY_KBDILLUMDOWN = 279,
+<a name="l00433"></a>00433                 KEY_KBDILLUMUP = 280,
+<a name="l00434"></a>00434                 KEY_EJECT = 281,
+<a name="l00435"></a>00435                 KEY_SLEEP = 282,
+<a name="l00436"></a>00436                     <span class="comment">//Copying from SDL ends here</span>
+<a name="l00437"></a>00437 
+<a name="l00438"></a>00438                 KEY_LAST            = 379,      <span class="comment">/// The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that</span>
+<a name="l00439"></a>00439 <span class="comment"></span>
+<a name="l00440"></a>00440 
+<a name="l00441"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a1bb7f008c7d430e886141a3b8b697129">00441</a>                 MOUSE_FIRST         = 380,      <span class="comment">/// The First Mouse event, all Mouse Event values will be more than this</span>
+<a name="l00442"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a">00442</a> <span class="comment"></span>                MOUSEBUTTON         = 380,      <span class="comment">/// This is the generic Some mouse button code. You can add the number of the mouse button to this and you will get the approriate code. Example (MOUSEBUTTON_1 == MOUSEBUTTON + 1)</span>
+<a name="l00443"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a92ee5571be5e198a62eda83f27b27ab8">00443</a> <span class="comment"></span>                MOUSEBUTTON_FIRST   = 381,      <span class="comment">/// This is the lowest mouse button value, all mice values will be larger of equal to this</span>
+<a name="l00444"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8ab9dca2791ddf9838ec7ef94d03392279">00444</a> <span class="comment"></span>                MOUSEBUTTON_1       = 381,      <span class="comment">/// Most commonly left click.</span>
+<a name="l00445"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9b823314bfb9f39a069a909cf8075c48">00445</a> <span class="comment"></span>                MOUSEBUTTON_2       = 382,      <span class="comment">/// Most Commonly Right click</span>
+<a name="l00446"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a0ae247793a772d53d3dd6b4c84fef69d">00446</a> <span class="comment"></span>                MOUSEBUTTON_3       = 383,      <span class="comment">/// Most commonly middle click</span>
+<a name="l00447"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a381661a06de4ddc52f127d08e8fa2172">00447</a> <span class="comment"></span>                MOUSEBUTTON_4       = 384,
+<a name="l00448"></a>00448                 MOUSEBUTTON_5       = 385,
+<a name="l00449"></a>00449                 MOUSEBUTTON_6       = 386,
+<a name="l00450"></a>00450                 MOUSEBUTTON_7       = 387,
+<a name="l00451"></a>00451                 MOUSEBUTTON_8       = 388,
+<a name="l00452"></a>00452                 MOUSEBUTTON_9       = 389,
+<a name="l00453"></a>00453                 MOUSEBUTTON_10      = 390,
+<a name="l00454"></a>00454                 MOUSEBUTTON_11      = 391,
+<a name="l00455"></a>00455                 MOUSEBUTTON_12      = 392,
+<a name="l00456"></a>00456                 MOUSEBUTTON_13      = 393,
+<a name="l00457"></a>00457                 MOUSEBUTTON_14      = 394,
+<a name="l00458"></a>00458                 MOUSEBUTTON_15      = 395,
+<a name="l00459"></a>00459                 MOUSEBUTTON_16      = 396,
+<a name="l00460"></a>00460                 MOUSEBUTTON_17      = 397,
+<a name="l00461"></a>00461                 MOUSEBUTTON_18      = 398,
+<a name="l00462"></a>00462                 MOUSEBUTTON_19      = 399,
+<a name="l00463"></a>00463                 MOUSEBUTTON_20      = 400,
+<a name="l00464"></a>00464                 MOUSEBUTTON_LAST    = 400,      <span class="comment">/// The Last mouse button event, all mouse button event will be lower or equal to this.</span>
+<a name="l00465"></a>00465 <span class="comment"></span>
+<a name="l00466"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a87685f9ca9462b329f2b86a17514f136">00466</a>                 INPUTEVENT_FIRST        = 401,  <span class="comment">/// The First non-button event, all Mouse and keyboard button values will be Less than this</span>
+<a name="l00467"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8ac65e76437da2f60b775aed6acf84a42a">00467</a> <span class="comment"></span>                MOUSEABSOLUTEVERTICAL   = 402,
+<a name="l00468"></a>00468                 MOUSEABSOLUTEHORIZONTAL = 403,
+<a name="l00469"></a>00469                 MOUSEVERTICAL           = 404,
+<a name="l00470"></a>00470                 MOUSEHORIZONTAL         = 405,
+<a name="l00471"></a>00471                 MOUSEWHEELVERTICAL      = 406,
+<a name="l00472"></a>00472                 MOUSEWHEELHORIZONTAL    = 407,
+<a name="l00473"></a>00473                 MOUSE_LAST              = 410,  <span class="comment">/// The last MouseEvent Code, all Mouse events will be less than this</span>
+<a name="l00474"></a>00474 <span class="comment"></span>
+<a name="l00475"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a355649b334e903ada2496ad39dcd5f9d">00475</a>                 MOTION_FIRST            = 420,  <span class="comment">/// The first Motion event</span>
+<a name="l00476"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a59cc92f5b2f42f7a138f8ea22e92d626">00476</a> <span class="comment"></span>                MOTION_LAST             = 429,  <span class="comment">/// The last Motion event</span>
+<a name="l00477"></a>00477 <span class="comment"></span>
+<a name="l00478"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8acdb03d23d93022d5962db5026475b9c7">00478</a>                 MULTITOUCH_FIRST        = 440,  <span class="comment">/// The first Multi Touch event</span>
+<a name="l00479"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a94d804dc2330be620a8009252b5d5d22">00479</a> <span class="comment"></span>                MULTITOUCH_ACTION       = 441,
+<a name="l00480"></a>00480                 MULTITOUCH_GESTURE      = 442,
+<a name="l00481"></a>00481                 MULTITOUCH_PINCH        = 443,
+<a name="l00482"></a>00482                 MULTITOUCH_STRETCH      = 444,
+<a name="l00483"></a>00483                 MULTITOUCH_LAST         = 449,  <span class="comment">/// The last Multi Touch event</span>
+<a name="l00484"></a>00484 <span class="comment"></span>
+<a name="l00485"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a666e564cae666de739b9b3cf047ec578">00485</a>                 JOYSTICK_FIRST          = 450,  <span class="comment">/// The First JoyStick event, all Joystick Event values will be more than this</span>
+<a name="l00486"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8aaaa2af6a60a9cd7403aa4786ef1ea389">00486</a> <span class="comment"></span>                JOYSTICKBUTTON          = 451,
+<a name="l00487"></a>00487                 JOYSTICKMOTIONAXIS      = 452,
+<a name="l00488"></a>00488                 JOYSTICKBALLVERTICAL    = 453,
+<a name="l00489"></a>00489                 JOYSTICKBALLHORIZONTAL  = 454,
+<a name="l00490"></a>00490                 JOYSTICKHATVERTICAL     = 455,
+<a name="l00491"></a>00491                 JOYSTICKHATHORIZONTAL   = 456,
+<a name="l00492"></a>00492                 JOYSTICK_LAST           = 457,  <span class="comment">/// The last JoyStick Input Code, all JoyStick events will be less than this.</span>
+<a name="l00493"></a>00493 <span class="comment"></span>
+<a name="l00494"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8adc78bfd04a85c4bbe39718f9acacbbe3">00494</a>                 INPUTEVENT_LAST         = 1024   <span class="comment">/// The last Input Code, all event codes will be less than this.</span>
+<a name="l00495"></a>00495 <span class="comment"></span>            };
+<a name="l00496"></a>00496 <span class="comment"></span>
+<a name="l00497"></a>00497 <span class="comment">            /// @enum ButtonState</span>
+<a name="l00498"></a>00498 <span class="comment">            /// @brief An Optional listing of value that can be used in a metacode to represent the information of a button press</span>
+<a name="l00499"></a>00499 <span class="comment">            /// @details This is optional set of values that can make working with buttons easier. The values the engine pass</span>
+<a name="l00500"></a>00500 <span class="comment">            /// via the the event manager will all use these whereever appropriate.</span>
+<a name="l00501"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2">00501</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">ButtonState</a>{
+<a name="l00502"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a6b5564408703517f36debd8c423e2dee">00502</a>                 BUTTON_LIFTING = -1,    <span class="comment">/**&lt; Used when the key stops being pressed. */</span>
+<a name="l00503"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">00503</a>                 BUTTON_UP = 0,          <span class="comment">/**&lt; The default state of a key. */</span>
+<a name="l00504"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a33669b2b9ca814664296da55702e412d">00504</a>                 BUTTON_PRESSING = 1,    <span class="comment">/**&lt; This is used at the exact point in time that a key goes from unpressed to pressed. */</span>
+<a name="l00505"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">00505</a>                 BUTTON_DOWN = 2         <span class="comment">/**&lt; This is used the entire time a key is down.  */</span>
+<a name="l00506"></a>00506             };
+<a name="l00507"></a>00507 <span class="comment"></span>
+<a name="l00508"></a>00508 <span class="comment">            /// @enum MouseWheelState</span>
+<a name="l00509"></a>00509 <span class="comment">            /// @brief An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel</span>
+<a name="l00510"></a>00510 <span class="comment">            /// @details This is optional set of values that can make working with the MouseWheel easier. The values the engine pass</span>
+<a name="l00511"></a>00511 <span class="comment">            /// via the the event manager will all use these whereever appropriate.</span>
+<a name="l00512"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6">00512</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6" title="An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel...">MouseWheelState</a>{
+<a name="l00513"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6a15542262fc8fe9a3d6746f2b84ecde11">00513</a>                 MOUSEWHEEL_UP = 1,          <span class="comment">/**&lt; Optionally Used when the MouseWheel is spun up as a Meta Code */</span>
+<a name="l00514"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6aa3d86fe74d1c191d7c57f886c0b8d99a">00514</a>                 MOUSEWHEEL_UNCHANGED = 0,   <span class="comment">/**&lt; This really isn&#39;t used in normal situations, but if a mousewheel event is ever needed when the MouseWheel is unspun */</span>
+<a name="l00515"></a><a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6ab6edd0886d2ec2d2917bbad96ce3d510">00515</a>                 MOUSEWHEEL_DOWN = -1        <span class="comment">/**&lt; Optionally Used when the MouseWheel is spun Down as a Meta Code */</span>
+<a name="l00516"></a>00516             };
+<a name="l00517"></a>00517 
+<a name="l00518"></a>00518         <span class="keyword">private</span>:
+<a name="l00519"></a>00519             <span class="comment">//The three values that make a MetaCode Useful</span>
+<a name="l00520"></a>00520             <span class="keywordtype">int</span> MetaValue;
+<a name="l00521"></a>00521             <span class="comment">//short unsigned int ID;</span>
+<a name="l00522"></a>00522             <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> Code;
+<a name="l00523"></a>00523 
+<a name="l00524"></a>00524             <span class="comment">//function that the constructors can call aid initial setup</span>
+<a name="l00525"></a>00525             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
+<a name="l00526"></a>00526             <span class="keywordtype">void</span> Construct(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
+<a name="l00527"></a>00527 
+<a name="l00528"></a>00528             <span class="comment">//This assigns a value to Inputcode by doing an efficient low level copy of the correct portion of an SDL_event</span>
+<a name="l00529"></a>00529             <span class="comment">//If mishandled this function can corrupt the MetaCode, and it can throw any error memcpy could throw.</span>
+<a name="l00530"></a>00530             <span class="keyword">static</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetInputCodeFromSDL_KEY(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
+<a name="l00531"></a>00531             <span class="keyword">static</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetInputCodeFromSDL_MOUSE(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
+<a name="l00532"></a>00532 
+<a name="l00533"></a>00533         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00534"></a>00534 <span class="comment">            /// @brief Default constructor</span>
+<a name="l00535"></a>00535 <span class="comment">            /// @details This sets nothing on the MetaCode and leaves it completely unassigned. Accessing a data member could cause problems</span>
+<a name="l00536"></a>00536 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>();
+<a name="l00537"></a>00537 <span class="comment"></span>
+<a name="l00538"></a>00538 <span class="comment">            /// @brief Descriptive Constructor</span>
+<a name="l00539"></a>00539 <span class="comment">            /// @details This sets all values in the MetaCode, leaving it in completely ready state. This is the ideal constructor for simulating user input.</span>
+<a name="l00540"></a>00540 <span class="comment">            /// @param MetaValue_ How much is something moving, tilting, rotating or whatever. For buttons a positive value is pushed, and a negative value is becoming unpressed, and 0 is unpressed.</span>
+<a name="l00541"></a>00541 <span class="comment"></span>            <span class="comment">// /// @param ID_ Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item.</span><span class="comment"></span>
+<a name="l00542"></a>00542 <span class="comment">            /// @param Code_ Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support.</span>
+<a name="l00543"></a>00543 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
+<a name="l00544"></a>00544 <span class="comment"></span>
+<a name="l00545"></a>00545 <span class="comment">            /// @brief The Heavy Lifting Constructor</span>
+<a name="l00546"></a>00546 <span class="comment">            /// @details This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information</span>
+<a name="l00547"></a>00547 <span class="comment">            /// from the lower level format and store what is needed in the event that is created. This is used heavily by engine internals. \n</span>
+<a name="l00548"></a>00548 <span class="comment">            /// This constructor expects to receive a type of RawEvent that can be converted into exactly one kind of Metacode. Depending on the</span>
+<a name="l00549"></a>00549 <span class="comment">            /// User input subsystem, this could be all RawEvents, or even just some RawEvents.</span>
+<a name="l00550"></a>00550 <span class="comment">            /// @exception &quot;RawEvent which creates Multiple Metacodes inserted into Metacode&quot; - Thrown when passed a certain (system dependant) incorrect type of RawEvent.</span>
+<a name="l00551"></a>00551 <span class="comment">            /// @exception &quot;Unknown User Input Inserted into Metacode&quot; - Thrown when receiving either a corrupt, improperly handle, or unsupported RawEvent.</span>
+<a name="l00552"></a>00552 <span class="comment">            /// @warning We recomend against using this Constructor, because the binary format of RawEvent could change if the input event SubSystem Changes. In</span>
+<a name="l00553"></a>00553 <span class="comment">            /// that event you would have to recompile your application to get it working with a new version of physgame. Using this function in Game code removes any gaurantees of Game Code</span>
+<a name="l00554"></a>00554 <span class="comment">            /// Portability.</span>
+<a name="l00555"></a>00555 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_);
+<a name="l00556"></a>00556 <span class="comment"></span>
+<a name="l00557"></a>00557 <span class="comment">            /// @brief This Returns the Inputcode</span>
+<a name="l00558"></a>00558 <span class="comment">            /// @details This Value can be use to determine what keyboard button has been pressed, or what specific kind of Joystick or mouse event has occurred.</span>
+<a name="l00559"></a>00559 <span class="comment">            /// This value can be set with @ref SetCode .</span>
+<a name="l00560"></a>00560 <span class="comment">            /// @return This returns the input code for this MetaCode</span>
+<a name="l00561"></a>00561 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetCode() <span class="keyword">const</span>;
+<a name="l00562"></a>00562 <span class="comment"></span>
+<a name="l00563"></a>00563 <span class="comment">            /// @brief This Sets The InputCode</span>
+<a name="l00564"></a>00564 <span class="comment">            /// @details See @ref GetCode to see exactly what the Code is. This will Set the code stored in this MetaCode. This value can be retrieved with @ref GetCode .</span>
+<a name="l00565"></a>00565 <span class="comment">            /// @param Code_ The value you want the stored code to become.</span>
+<a name="l00566"></a>00566 <span class="comment"></span>            <span class="keywordtype">void</span> SetCode(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_);
+<a name="l00567"></a>00567 <span class="comment"></span>
+<a name="l00568"></a>00568 <span class="comment">            /// @brief This Sets The InputCode using an int.</span>
+<a name="l00569"></a>00569 <span class="comment">            /// @details This will cast an int into an InputCode. Be careful, it is possible to put impossible or ridiculous values, in with</span>
+<a name="l00570"></a>00570 <span class="comment">            /// this. For example Accidentally stuffing in the result of MOUSEBUTTON + 22 looks like it would give you MOUSEBUTTON_22. But that</span>
+<a name="l00571"></a>00571 <span class="comment">            /// Doesn&#39;t exist, at the time of this writing you would get MOUSEABSOLUTEVERTICAL. Be careful, or skip this alltogether and use one of</span>
+<a name="l00572"></a>00572 <span class="comment">            /// the provided functions that do the math for you like</span>
+<a name="l00573"></a>00573 <span class="comment">            /// @param Code_ The value you want the stored code to become.</span>
+<a name="l00574"></a>00574 <span class="comment"></span>            <span class="keywordtype">void</span> SetCode(<span class="keywordtype">int</span> Code_);
+<a name="l00575"></a>00575 <span class="comment"></span>
+<a name="l00576"></a>00576 <span class="comment">            /// @brief This Returns the MetaValue</span>
+<a name="l00577"></a>00577 <span class="comment">            /// @details The MetaValue can be use to determine how far something is tilted, pushed, rotated, or other analog value.</span>
+<a name="l00578"></a>00578 <span class="comment">            /// This value can be set with @ref SetMetaValue .</span>
+<a name="l00579"></a>00579 <span class="comment">            /// @return This returns the input code for this MetaCode. This could return any number inside a range (depending on hardware and configuration)</span>
+<a name="l00580"></a>00580 <span class="comment">            /// to represent how tilted a joystick or how much a mouse moved.</span>
+<a name="l00581"></a>00581 <span class="comment"></span>            <span class="keywordtype">int</span> GetMetaValue() <span class="keyword">const</span>;                     <span class="comment">//How much is being done? How far has the mouse moved, how much is the throttle pushed.</span>
+<a name="l00582"></a>00582 <span class="comment"></span>
+<a name="l00583"></a>00583 <span class="comment">            /// @brief Get the MetaValue as a MetaCode::ButtonState</span>
+<a name="l00584"></a>00584 <span class="comment">            /// @return This returns the appropriate button state or throws an phys::Exception if an invalid button state is stored in the MetaValue</span>
+<a name="l00585"></a>00585 <span class="comment">            /// @throw This throws a phys::Exception if the MetaValue is less than BUTTON_LIFTING or greater than BUTTON_DOWN.</span>
+<a name="l00586"></a>00586 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2" title="An Optional listing of value that can be used in a metacode to represent the information of a button ...">MetaCode::ButtonState</a> GetMetaValueAsButtonState() <span class="keyword">const</span>;
+<a name="l00587"></a>00587 <span class="comment"></span>
+<a name="l00588"></a>00588 <span class="comment">            /// @brief Get the MetaValue as a MetaCode::</span>
+<a name="l00589"></a>00589 <span class="comment">            /// @return This returns the appropriate MouseWheel state or throws an phys::Exception if an invalid state is stored in the MetaValue</span>
+<a name="l00590"></a>00590 <span class="comment">            /// @throw This throws a phys::Exception if the MetaValue is less than MOUSEWHEEL_DOWN or greater than MOUSEWHEEL_UP.</span>
+<a name="l00591"></a>00591 <span class="comment"></span>            <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6" title="An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel...">MetaCode::MouseWheelState</a> GetMetaValueAsMouseWheelState() <span class="keyword">const</span>;
+<a name="l00592"></a>00592 <span class="comment"></span>
+<a name="l00593"></a>00593 <span class="comment">            /// @brief This Sets The MetaValue</span>
+<a name="l00594"></a>00594 <span class="comment">            /// @details See @ref GetMetaValue to see exactly what the MetaValue is. This will set the MetaValue stored in this MetaCode. This value can be retrieved with @ref GetMetaValue .</span>
+<a name="l00595"></a>00595 <span class="comment">            /// @param MetaValue_ The value you want the stored MetaValue to become. No bounds checking will be done. You can supply a completely invalid value if you choose to.</span>
+<a name="l00596"></a>00596 <span class="comment"></span>            <span class="keywordtype">void</span> SetMetaValue(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_);      <span class="comment">//For button presses a positive value is pushed and a zero means unpushed</span>
+<a name="l00597"></a>00597 <span class="comment"></span>
+<a name="l00598"></a>00598 <span class="comment">            /// @brief Accepts a int and returns the InputCode for the Corresponding Mouse button</span>
+<a name="l00599"></a>00599 <span class="comment">            /// @param ButtonerNumber The number of the button you wan the code for</span>
+<a name="l00600"></a>00600 <span class="comment">            /// @return When passed 0 this returns MetaCode::MOUSEBUTTON, otherwise this returns MetaCode::MOUSEBUTTON_X where X is the number that was passed in</span>
+<a name="l00601"></a>00601 <span class="comment"></span>            <span class="keyword">static</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> GetMouseButtonCode(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> ButtonNumber);
+<a name="l00602"></a>00602 <span class="comment"></span>
+<a name="l00603"></a>00603 <span class="comment">            /// @brief Does this MetaCode Represent a state of a keyboard key</span>
+<a name="l00604"></a>00604 <span class="comment">            /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.</span>
+<a name="l00605"></a>00605 <span class="comment">            /// @return This returns a bool which will be true if this is keyboard event.</span>
+<a name="l00606"></a>00606 <span class="comment"></span>            <span class="keywordtype">bool</span> IsKeyboardButton() <span class="keyword">const</span>;
+<a name="l00607"></a>00607 <span class="comment"></span>
+<a name="l00608"></a>00608 <span class="comment">            /// @brief Is this a left or right Alt key</span>
+<a name="l00609"></a>00609 <span class="comment">            /// @details Returns true if this MetaCode pertains to a either keyboard Alt key.</span>
+<a name="l00610"></a>00610 <span class="comment">            /// @return This returns a bool which will be true if this is a left or right Alt key.</span>
+<a name="l00611"></a>00611 <span class="comment"></span>            <span class="keywordtype">bool</span> IsAltKey() <span class="keyword">const</span>;
+<a name="l00612"></a>00612 <span class="comment"></span>
+<a name="l00613"></a>00613 <span class="comment">            /// @brief Is this a left or right Ctrl key</span>
+<a name="l00614"></a>00614 <span class="comment">            /// @details Returns true if this MetaCode pertains to a either keyboard Ctrl key.</span>
+<a name="l00615"></a>00615 <span class="comment">            /// @return This returns a bool which will be true if this is a left or right Ctrl key.</span>
+<a name="l00616"></a>00616 <span class="comment"></span>            <span class="keywordtype">bool</span> IsCtrlKey() <span class="keyword">const</span>;
+<a name="l00617"></a>00617 <span class="comment"></span>
+<a name="l00618"></a>00618 <span class="comment">            /// @brief Is this a left or right Shift key</span>
+<a name="l00619"></a>00619 <span class="comment">            /// @details Returns true if this MetaCode pertains to a either keyboard Shift key.</span>
+<a name="l00620"></a>00620 <span class="comment">            /// @return This returns a bool which will be true if this is a left or right Shift key.</span>
+<a name="l00621"></a>00621 <span class="comment"></span>            <span class="keywordtype">bool</span> IsShiftKey() <span class="keyword">const</span>;
+<a name="l00622"></a>00622 <span class="comment"></span>
+<a name="l00623"></a>00623 <span class="comment">            /// @brief Is this a left or right Super key (Windows logo key, Apple logo key, etc...)</span>
+<a name="l00624"></a>00624 <span class="comment">            /// @details Returns true if this MetaCode pertains to a either keyboard Super key.</span>
+<a name="l00625"></a>00625 <span class="comment">            /// @return This returns a bool which will be true if this is a left or right Super key.</span>
+<a name="l00626"></a>00626 <span class="comment"></span>            <span class="keywordtype">bool</span> IsSuperKey() <span class="keyword">const</span>;
+<a name="l00627"></a>00627 <span class="comment"></span>
+<a name="l00628"></a>00628 <span class="comment">            /// @brief Does this MetaCode Represent a state of a Mouse button</span>
+<a name="l00629"></a>00629 <span class="comment">            /// @details Returns true if this MetaCode pertains to a mouse button being up, polled, down, pressed, or lifted.</span>
+<a name="l00630"></a>00630 <span class="comment">            /// @return This returns a bool which will be true if this is MOUSEBUTTON_X event.</span>
+<a name="l00631"></a>00631 <span class="comment"></span>            <span class="keywordtype">bool</span> IsMouseButton() <span class="keyword">const</span>;
+<a name="l00632"></a>00632 <span class="comment"></span>
+<a name="l00633"></a>00633 <span class="comment">            /// @brief Is this metacode a pollable event</span>
+<a name="l00634"></a>00634 <span class="comment">            /// @return if this metacode stores a Keyboard button, Mouse Button or joystick button, then this is a pollable event</span>
+<a name="l00635"></a>00635 <span class="comment"></span>            <span class="keywordtype">bool</span> IsPollable() <span class="keyword">const</span>;
+<a name="l00636"></a>00636 <span class="comment"></span>
+<a name="l00637"></a>00637 <span class="comment">            /// @brief Does this MetaCode Represent a state of a Joystick Event</span>
+<a name="l00638"></a>00638 <span class="comment">            /// @details Returns true if this MetaCode pertains to a joystick button being twisted, tilted, up, polled, down, pressed, or lifted, or whatever else you can do to a joystick.</span>
+<a name="l00639"></a>00639 <span class="comment">            /// @return This returns a bool which will be true if this is between JOYSTICK_FIRST and JOYSTICK_LAST.</span>
+<a name="l00640"></a>00640 <span class="comment"></span>            <span class="keywordtype">bool</span> IsJoyStickEvent() <span class="keyword">const</span>;
+<a name="l00641"></a>00641 <span class="comment"></span>
+<a name="l00642"></a>00642 <span class="comment">            /// @brief Does this MetaCode Represent some other (non-keyboard and non-mouse button)</span>
+<a name="l00643"></a>00643 <span class="comment">            /// @details Returns true if this MetaCode pertains to any being up, polled, down, pressed, or lifted.</span>
+<a name="l00644"></a>00644 <span class="comment">            /// @return This returns a bool which will be true if this is between INPUTEVENT_FIRST and INPUTEVENT_LAST.</span>
+<a name="l00645"></a>00645 <span class="comment"></span>            <span class="keywordtype">bool</span> IsOtherInputEvent() <span class="keyword">const</span>;
+<a name="l00646"></a>00646 <span class="comment"></span>
+<a name="l00647"></a>00647 <span class="comment">            /// @brief Compares two MetaCodes for equality</span>
+<a name="l00648"></a>00648 <span class="comment">            /// @details This returns true if the MetaValue and Code are the Same, this ignores ID.</span>
+<a name="l00649"></a>00649 <span class="comment"></span>            <span class="keywordtype">bool</span> operator==(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;other) <span class="keyword">const</span>;
+<a name="l00650"></a>00650     };
+<a name="l00651"></a>00651 }
+<a name="l00652"></a>00652 <span class="comment"></span>
+<a name="l00653"></a>00653 <span class="comment">/// @brief Allows for streaming of MetaCodes</span>
+<a name="l00654"></a>00654 <span class="comment">/// @details If it can be streamed, then it can be logged Holds true for the MetaCode.</span>
+<a name="l00655"></a>00655 <span class="comment"></span>std::ostream&amp; PHYS_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">phys::MetaCode</a>&amp; x);
+<a name="l00656"></a>00656 
+<a name="l00657"></a>00657 <span class="preprocessor">#ifdef PHYSXML</span>
+<a name="l00658"></a>00658 <span class="preprocessor"></span><span class="comment">/// @brief Used to de-serialize an phys::MetaCode from a stream</span>
+<a name="l00659"></a>00659 <span class="comment"></span><span class="comment">/// @details This reads in the xml and sets the target MetaCode according to values from the stream.</span>
+<a name="l00660"></a>00660 <span class="comment"></span><span class="comment">/// @param x The phys::MetaCode that will accept the values from the xml</span>
+<a name="l00661"></a>00661 <span class="comment"></span><span class="comment">/// @param stream The place to get the characters from, that define the phys::MetaCode.</span>
+<a name="l00662"></a>00662 <span class="comment"></span><span class="comment">/// @return Get an std::ostream that was read from, this allow chaining of the &gt;&gt; operators.</span>
+<a name="l00663"></a>00663 <span class="comment"></span><span class="comment">/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn&#39;t match.</span>
+<a name="l00664"></a>00664 <span class="comment"></span>std::istream&amp; PHYS_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">phys::MetaCode</a>&amp; x);
+<a name="l00665"></a>00665 <span class="comment"></span>
+<a name="l00666"></a>00666 <span class="comment">/// @brief Converts an XML node into a phys::MetaCode</span>
+<a name="l00667"></a>00667 <span class="comment">/// @details If PHYSXML is enabled, this will convert an xml::Node will a valid serialized phys::MetaCode into a phys::MetaCode</span>
+<a name="l00668"></a>00668 <span class="comment">/// @param OneNode An XML Node containing the the text of a MetaCode</span>
+<a name="l00669"></a>00669 <span class="comment">/// @param x the phys::MetaCode to store the deserialized MetaCode</span>
+<a name="l00670"></a>00670 <span class="comment">/// @return This returns a reference to the xml::Node for operator chaining or whatever.</span>
+<a name="l00671"></a>00671 <span class="comment">/// @throw Can throw any exception that any function in the phys::xml namespace could throw in addition to a phys::Exception if the serialization version doesn&#39;t match.</span>
+<a name="l00672"></a>00672 <span class="comment"></span><a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; PHYS_LIB  operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">phys::MetaCode</a>&amp; x);
+<a name="l00673"></a>00673 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l00674"></a>00674 <span class="preprocessor"></span>
+<a name="l00675"></a>00675 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 15:22:13 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -78,7 +78,7 @@
 <a name="l00047"></a>00047 <span class="comment">//#include &quot;BulletCollision/CollisionShapes/btShapeHull.h&quot;</span>
 <a name="l00048"></a>00048 <span class="comment">//#include &quot;BulletCollision/Gimpact/btGImpactShape.h&quot;</span>
 <a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;internalmeshinfo.h.cpp&quot;</span>
+<a name="l00050"></a>00050 <span class="preprocessor">#include &quot;internalmeshtools.h.cpp&quot;</span>
 <a name="l00051"></a>00051 <span class="preprocessor">#include &quot;world.h&quot;</span>
 <a name="l00052"></a>00052 <span class="preprocessor">#include &quot;physicsmanager.h&quot;</span>
 <a name="l00053"></a>00053 <span class="preprocessor">#include &quot;actorsoft.h&quot;</span>
@@ -95,59 +95,59 @@
 <a name="l00064"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a636c145f1e468fd45adc8da2a1708fbe">00064</a>     <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a636c145f1e468fd45adc8da2a1708fbe" title="Destructor.">ActorSoft::~ActorSoft</a> ()
 <a name="l00065"></a>00065     {
 <a name="l00066"></a>00066         <span class="keyword">delete</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>;
-<a name="l00067"></a>00067         <span class="keyword">delete</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>;
-<a name="l00068"></a>00068     }
-<a name="l00069"></a>00069 
-<a name="l00070"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#acc0ff92e2dcc0e5d99ca62f07bc9174d">00070</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#acc0ff92e2dcc0e5d99ca62f07bc9174d" title="Creates a soft object for the actor.">ActorSoft::CreateSoftObject</a> (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> mass)
-<a name="l00071"></a>00071     {
-<a name="l00072"></a>00072         <span class="comment">//this-&gt;entity-&gt;getMesh()-&gt;getSubMesh(0)-&gt;useSharedVertices = false;</span>
-<a name="l00073"></a>00073         internal::MeshInfo CurMesh;
-<a name="l00074"></a>00074         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a795d9d132ed55fa114f15039dcad9055" title="Gets the verticy information of the mesh this soft body is based on.">GetMeshVerticies</a>(CurMesh);
-<a name="l00075"></a>00075         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc1e51ff56ec8c9320bcbd4c3cec3f34" title="Gets the indicy information of the mesh this soft body is based on.">GetMeshIndicies</a>(CurMesh);
-<a name="l00076"></a>00076         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a6f6c1ede5fdf787bcc3f34feddacebff" title="Gets the normals information of the mesh this soft body is based on.">GetMeshNormals</a>(CurMesh);
-<a name="l00077"></a>00077         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a91c1bd400e1cf0e35682a506aebb7f38" title="Gets the texture coordinates information of the mesh this soft body is based on.">GetMeshTextures</a>(CurMesh);
-<a name="l00078"></a>00078         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a1ca4a67351c3d7375a62223d12729776" title="Gets other information not related to the verticies from the mesh.">GetOtherMeshInfo</a>(CurMesh);
-<a name="l00079"></a>00079 
-<a name="l00080"></a>00080         <span class="comment">//delete entity;</span>
-<a name="l00081"></a>00081         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ffbb74296ac96db26c890274df794a2" title="A pointer to the World the actor will reside.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a86a86a78851845837ccc43da8b3a3019" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;destroyEntity(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
-<a name="l00082"></a>00082         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a> = NULL;
-<a name="l00083"></a>00083         this-&gt;<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a> = btSoftBodyHelpers::CreateFromTriMesh (this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ffbb74296ac96db26c890274df794a2" title="A pointer to the World the actor will reside.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a1b9eb6206ee15c2ef49665a07de3d83c" title="This gets the PhysicsManager from the manager list.">GetPhysicsManager</a>()-&gt;<a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;getWorldInfo(), &amp;CurMesh.Verticies[0].x, &amp;CurMesh.Indicies[0], CurMesh.ICount/3);
-<a name="l00084"></a>00084         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>=<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>;
-<a name="l00085"></a>00085         CollisionObject-&gt;setUserPointer(<span class="keyword">this</span>);
-<a name="l00086"></a>00086         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a> = <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;getCollisionShape();
-<a name="l00087"></a>00087         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;setTotalMass(mass, <span class="keyword">true</span>);
-<a name="l00088"></a>00088         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;m_cfg.collisions = btSoftBody::fCollision::CL_SS + btSoftBody::fCollision::CL_RS;
-<a name="l00089"></a>00089         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;m_cfg.piterations = 5;
-<a name="l00090"></a>00090         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;generateBendingConstraints(2);
-<a name="l00091"></a>00091         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;generateClusters(20);
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a341d9124acd59a4597745c3eff06dfc8" title="Creates and configures a manual object for rendering.">CreateManualMesh</a>(CurMesh);
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4" title="Creates an entity for the mesh file to be placed on a scene node.">CreateEntity</a>(CurMesh.Name, CurMesh.Name + <span class="stringliteral">&quot;M&quot;</span>, CurMesh.Group);
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097         <span class="comment">//this-&gt;physsoftbody-&gt;m_clusters[0]-&gt;m_collide = true;</span>
-<a name="l00098"></a>00098     }
-<a name="l00099"></a>00099 
-<a name="l00100"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a341d9124acd59a4597745c3eff06dfc8">00100</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a341d9124acd59a4597745c3eff06dfc8" title="Creates and configures a manual object for rendering.">ActorSoft::CreateManualMesh</a> (internal::MeshInfo &amp;TheMesh)
-<a name="l00101"></a>00101     {
-<a name="l00102"></a>00102         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a> = <span class="keyword">new</span> Ogre::ManualObject(TheMesh.Name);
-<a name="l00103"></a>00103         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;setDynamic(<span class="keyword">true</span>);
-<a name="l00104"></a>00104         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;estimateVertexCount(TheMesh.VCount);
-<a name="l00105"></a>00105         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;estimateIndexCount(TheMesh.ICount);
-<a name="l00106"></a>00106 
-<a name="l00107"></a>00107         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;begin(TheMesh.Material, TheMesh.RendOp, TheMesh.Group);
-<a name="l00108"></a>00108         <span class="keywordflow">for</span>( <span class="keywordtype">int</span> x=0 ; x &lt; TheMesh.VCount ; x++ )
-<a name="l00109"></a>00109         {
-<a name="l00110"></a>00110             <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;position(TheMesh.Verticies[x]);
-<a name="l00111"></a>00111             <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;normal(TheMesh.Normals[x]);
-<a name="l00112"></a>00112             <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;textureCoord(TheMesh.Textures[x]);
-<a name="l00113"></a>00113         }
-<a name="l00114"></a>00114         <span class="keywordflow">for</span>( <span class="keywordtype">int</span> y=0 ; y &lt; TheMesh.ICount ; y++ )
-<a name="l00115"></a>00115         {
-<a name="l00116"></a>00116             <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;index(TheMesh.Indicies[y]);
-<a name="l00117"></a>00117         }
-<a name="l00118"></a>00118         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;end();
-<a name="l00119"></a>00119         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#abe0900674a3a46883a7d52d9d7a8070f" title="Used to simulate the rendering portion of a softbody.">ManualEntity</a>-&gt;convertToMesh(TheMesh.Name + <span class="stringliteral">&quot;M&quot;</span>, TheMesh.Group);
+<a name="l00067"></a>00067     }
+<a name="l00068"></a>00068 
+<a name="l00069"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#acc0ff92e2dcc0e5d99ca62f07bc9174d">00069</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#acc0ff92e2dcc0e5d99ca62f07bc9174d" title="Creates a soft object for the actor.">ActorSoft::CreateSoftObject</a> (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> mass)
+<a name="l00070"></a>00070     {
+<a name="l00071"></a>00071         <span class="comment">//this-&gt;entity-&gt;getMesh()-&gt;getSubMesh(0)-&gt;useSharedVertices = false;</span>
+<a name="l00072"></a>00072         internal::MeshInfo CurMesh;
+<a name="l00073"></a>00073         internal::MeshTools::GetMeshVerticies(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>,CurMesh);
+<a name="l00074"></a>00074         internal::MeshTools::GetMeshIndicies(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>,CurMesh);
+<a name="l00075"></a>00075         internal::MeshTools::GetMeshNormals(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>,CurMesh);
+<a name="l00076"></a>00076         internal::MeshTools::GetMeshTextures(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>,CurMesh);
+<a name="l00077"></a>00077         internal::MeshTools::GetOtherMeshInfo(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>,CurMesh);
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079         <span class="comment">//delete entity;</span>
+<a name="l00080"></a>00080         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ffbb74296ac96db26c890274df794a2" title="A pointer to the World the actor will reside.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a86a86a78851845837ccc43da8b3a3019" title="This gets the SceneManager from the manager list.">GetSceneManager</a>()-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;destroyEntity(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>);
+<a name="l00081"></a>00081         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a> = NULL;
+<a name="l00082"></a>00082         this-&gt;<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a> = btSoftBodyHelpers::CreateFromTriMesh(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a0ffbb74296ac96db26c890274df794a2" title="A pointer to the World the actor will reside.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a1b9eb6206ee15c2ef49665a07de3d83c" title="This gets the PhysicsManager from the manager list.">GetPhysicsManager</a>()-&gt;<a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;getWorldInfo(), &amp;CurMesh.Verticies[0].x, &amp;CurMesh.Indicies[0], CurMesh.ICount/3);
+<a name="l00083"></a>00083         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>=<a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>;
+<a name="l00084"></a>00084         CollisionObject-&gt;setUserPointer(<span class="keyword">this</span>);
+<a name="l00085"></a>00085         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a> = <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;getCollisionShape();
+<a name="l00086"></a>00086         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;setTotalMass(mass, <span class="keyword">true</span>);
+<a name="l00087"></a>00087         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;m_cfg.collisions = btSoftBody::fCollision::CL_SS + btSoftBody::fCollision::CL_RS;
+<a name="l00088"></a>00088         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;m_cfg.piterations = 5;
+<a name="l00089"></a>00089         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;generateBendingConstraints(2);
+<a name="l00090"></a>00090         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#ab3b2c8e1f94dff3e3244a5024595afef" title="Used to simulate the functionality of a btSoftBody for use with the physics subsystem.">physsoftbody</a>-&gt;generateClusters(20);
+<a name="l00091"></a>00091 
+<a name="l00092"></a>00092         <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a341d9124acd59a4597745c3eff06dfc8" title="Creates and configures a manual object for rendering.">CreateManualMesh</a>(CurMesh);
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#aff7dbb190fb982a43123bee3066501c4" title="Creates an entity for the mesh file to be placed on a scene node.">CreateEntity</a>(CurMesh.Name, CurMesh.Name + <span class="stringliteral">&quot;M&quot;</span>, CurMesh.Group);
+<a name="l00095"></a>00095 
+<a name="l00096"></a>00096         <span class="comment">//this-&gt;physsoftbody-&gt;m_clusters[0]-&gt;m_collide = true;</span>
+<a name="l00097"></a>00097     }
+<a name="l00098"></a>00098 
+<a name="l00099"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a341d9124acd59a4597745c3eff06dfc8">00099</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a341d9124acd59a4597745c3eff06dfc8" title="Creates and configures a manual object for rendering.">ActorSoft::CreateManualMesh</a> (internal::MeshInfo &amp;TheMesh)
+<a name="l00100"></a>00100     {
+<a name="l00101"></a>00101         Ogre::ManualObject* ManualEntity = <span class="keyword">new</span> Ogre::ManualObject(TheMesh.Name);
+<a name="l00102"></a>00102         ManualEntity-&gt;setDynamic(<span class="keyword">true</span>);
+<a name="l00103"></a>00103         ManualEntity-&gt;estimateVertexCount(TheMesh.VCount);
+<a name="l00104"></a>00104         ManualEntity-&gt;estimateIndexCount(TheMesh.ICount);
+<a name="l00105"></a>00105 
+<a name="l00106"></a>00106         ManualEntity-&gt;begin(TheMesh.Material, TheMesh.RendOp, TheMesh.Group);
+<a name="l00107"></a>00107         <span class="keywordflow">for</span>( <span class="keywordtype">int</span> x=0 ; x &lt; TheMesh.VCount ; x++ )
+<a name="l00108"></a>00108         {
+<a name="l00109"></a>00109             ManualEntity-&gt;position(TheMesh.Verticies[x]);
+<a name="l00110"></a>00110             ManualEntity-&gt;normal(TheMesh.Normals[x]);
+<a name="l00111"></a>00111             ManualEntity-&gt;textureCoord(TheMesh.Textures[x]);
+<a name="l00112"></a>00112         }
+<a name="l00113"></a>00113         <span class="keywordflow">for</span>( <span class="keywordtype">int</span> y=0 ; y &lt; TheMesh.ICount ; y++ )
+<a name="l00114"></a>00114         {
+<a name="l00115"></a>00115             ManualEntity-&gt;index(TheMesh.Indicies[y]);
+<a name="l00116"></a>00116         }
+<a name="l00117"></a>00117         ManualEntity-&gt;end();
+<a name="l00118"></a>00118         ManualEntity-&gt;convertToMesh(TheMesh.Name + <span class="stringliteral">&quot;M&quot;</span>, TheMesh.Group);
+<a name="l00119"></a>00119         <span class="keyword">delete</span> ManualEntity;
 <a name="l00120"></a>00120     }
 <a name="l00121"></a>00121 
 <a name="l00122"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a37b3bf631e8f73b3f19c3bb043d011c3">00122</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a37b3bf631e8f73b3f19c3bb043d011c3" title="Makes the actor visable.">ActorSoft::AttachToGraphics</a> ()
@@ -272,7 +272,7 @@
 <a name="l00241"></a>00241         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a7b2d13cb1e8bba60eeae782a53fd5e49" title="Sets the orientation of the graphical body.">SetOgreOrientation</a>(Rotation);
 <a name="l00242"></a>00242     }
 <a name="l00243"></a>00243 
-<a name="l00244"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#aaa8bb89969831c8bc727d7aba230d862">00244</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#aaa8bb89969831c8bc727d7aba230d862" title="Inherited from Actorbase.">ActorSoft::CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> accuracy)
+<a name="l00244"></a><a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a65e5590d1fe4c11e2214d5e6a3d1fc96">00244</a>     <span class="keywordtype">void</span> <a class="code" href="../../d4/d23/classphys_1_1ActorSoft.html#a65e5590d1fe4c11e2214d5e6a3d1fc96" title="Inherited from Actorbase.">ActorSoft::CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Accuracy, <span class="keywordtype">bool</span> UseAllSubmeshes)
 <a name="l00245"></a>00245     {
 <a name="l00246"></a>00246     }
 <a name="l00247"></a>00247 
@@ -296,7 +296,7 @@
 <a name="l00265"></a>00265 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:42 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 15:22:13 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

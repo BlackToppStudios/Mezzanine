@@ -43,6 +43,8 @@ class \hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase}
 \begin{DoxyCompactList}\small\item\em A base class to unify the interface for different kinds of containers for holding actors. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ActorContainerVector}{ActorContainerVector}
 \begin{DoxyCompactList}\small\item\em A simple Actor Container using a vector. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1ActorGraphicsSettings}{ActorGraphicsSettings}
+\begin{DoxyCompactList}\small\item\em This is a helper class for configuring graphics settings of an actor. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ActorRigid}{ActorRigid}
 \begin{DoxyCompactList}\small\item\em This is the actor class for Rigid Objects. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ActorSoft}{ActorSoft}
@@ -55,6 +57,8 @@ class \hyperlink{classphys_1_1TestAE}{TestAE}
 \begin{DoxyCompactList}\small\item\em This is a dummy class to test if the AE field works. Details will be output to the log. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1GravityField}{GravityField}
 \begin{DoxyCompactList}\small\item\em This is a gravity field implementation of the \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1GravityWell}{GravityWell}
+\begin{DoxyCompactList}\small\item\em This is a gravity well implementation of the \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1Attachable}{Attachable}
 \begin{DoxyCompactList}\small\item\em This is just a base class to be used by elements that are attachable to nodes. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1Camera}{Camera}
@@ -85,6 +89,10 @@ class \hyperlink{classphys_1_1EventBase}{EventBase}
 \begin{DoxyCompactList}\small\item\em The base class for all events. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1EventCollision}{EventCollision}
 \begin{DoxyCompactList}\small\item\em This is an event class used to track collsions in the physics world. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData}
+\begin{DoxyCompactList}\small\item\em used to keep private in one place that is actually private. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow}
+\begin{DoxyCompactList}\small\item\em This is intended to convey the message that quitting needs to happen. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1EventManager}{EventManager}
 \begin{DoxyCompactList}\small\item\em This is a container for Events and facilitates the transfer of data. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1EventQuit}{EventQuit}
@@ -99,6 +107,8 @@ struct \hyperlink{structphys_1_1Time}{Time}
 \begin{DoxyCompactList}\small\item\em A container for the metrics of time relevant for the timer class. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ExtendedTimer}{ExtendedTimer}
 \begin{DoxyCompactList}\small\item\em An enhanced timer class that can store and track many units of time. \item\end{DoxyCompactList}\item 
+class \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings}
+\begin{DoxyCompactList}\small\item\em This stores all the possible configuration options the graphics manager supports. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1GraphicsManager}{GraphicsManager}
 \begin{DoxyCompactList}\small\item\em This is intended to store basic graphics setting for the user. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1InputQueryTool}{InputQueryTool}
@@ -109,10 +119,10 @@ class \hyperlink{classphys_1_1LineGroup}{LineGroup}
 \begin{DoxyCompactList}\small\item\em This is a group of consectutive line segments to be rendered together. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ManagerBase}{ManagerBase}
 \begin{DoxyCompactList}\small\item\em This is the base class from which all the \hyperlink{classphys_1_1World}{World} Managers inherit. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1MeshGenerator}{MeshGenerator}
+\begin{DoxyCompactList}\small\item\em This class allows the creation of graphical meshes from code. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1MetaCode}{MetaCode}
 \begin{DoxyCompactList}\small\item\em This Determines the kind of user input. \item\end{DoxyCompactList}\item 
-class \hyperlink{classphys_1_1Node}{Node}
-\begin{DoxyCompactList}\small\item\em This is a helper class which non-\/physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1ParticleEffect}{ParticleEffect}
 \begin{DoxyCompactList}\small\item\em This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager}
@@ -159,6 +169,8 @@ class \hyperlink{classphys_1_1World}{World}
 \begin{DoxyCompactList}\small\item\em This is the main entry point for the entire library. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1WorldGetSet}{WorldGetSet}
 \begin{DoxyCompactList}\small\item\em A simple set of function to manage a pointer to the gameworld. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1WorldNode}{WorldNode}
+\item 
 class \hyperlink{classphys_1_1WorldQueryTool}{WorldQueryTool}
 \begin{DoxyCompactList}\small\item\em This provides a number of optional tools for working with a \hyperlink{classphys_1_1World}{phys::World}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Typedefs}
@@ -220,7 +232,7 @@ A datatype to represent one character.
 
 This should be a char if String is an std::string. The XML parser expects this to be either char or wchar\_\-t and has not be test with external types. The XML Parser expects XML\_\-WCHAR\_\-MODE to be defined if wchar\_\-t is used. A remarked definition of this exists near the Character typedef in \hyperlink{datatypes_8h_source}{datatypes.h} 
 
-Definition at line 102 of file datatypes.h.
+Definition at line 103 of file datatypes.h.
 
 \hypertarget{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{
 \index{phys@{phys}!ConstString@{ConstString}}
@@ -233,7 +245,7 @@ A Datatype used to a series of imutable characters.
 
 This is a typedef to const String, but could change. 
 
-Definition at line 95 of file datatypes.h.
+Definition at line 96 of file datatypes.h.
 
 \hypertarget{namespacephys_a7f09bf5585b2bb97613cd9aad4273a81}{
 \index{phys@{phys}!Integer@{Integer}}
@@ -246,7 +258,7 @@ A datatype use to represent any integer close to.
 
 This is a typedef to int, but could int16 or smaller to improve performance in some situtations handheld platforms 
 
-Definition at line 84 of file datatypes.h.
+Definition at line 85 of file datatypes.h.
 
 \hypertarget{namespacephys_a8126d26e4507e66d09876988bb941fd4}{
 \index{phys@{phys}!RawEvent@{RawEvent}}
@@ -261,7 +273,7 @@ This is an internal datatype use to communicate with the User input Subsystem.
 This is a typedef to SDL\_\-Event. See the SDL Documentation for more details \end{DoxyInternal}
 
 
-Definition at line 110 of file datatypes.h.
+Definition at line 111 of file datatypes.h.
 
 \hypertarget{namespacephys_af7eb897198d265b8e868f45240230d5f}{
 \index{phys@{phys}!Real@{Real}}
@@ -274,7 +286,7 @@ A Datatype used to represent a real floating point number.
 
 This Datatype is currently a typedef to a float, This is to match our compilations of Ogre (rendering subsystem ogre::Real), and Bullet (physics subsystem, btScalar). With a recompilation of all the subsystems and this there is no theoretical reason why this could not be changed to a double, or even something more extreme like a GMP datatype. Most likely this switch would require atleast some troubleshooting. 
 
-Definition at line 73 of file datatypes.h.
+Definition at line 74 of file datatypes.h.
 
 \hypertarget{namespacephys_ab780c3162da5699fe421f3739ba03fc4}{
 \index{phys@{phys}!SoundSet@{SoundSet}}
@@ -287,7 +299,7 @@ This is a vector that stores sounds.
 
 This is a vector and can be use to store sounds that can be grouped together for similiar purposes or similiar content for easy tracking. 
 
-Definition at line 116 of file datatypes.h.
+Definition at line 117 of file datatypes.h.
 
 \hypertarget{namespacephys_aa03900411993de7fbfec4789bc1d392e}{
 \index{phys@{phys}!String@{String}}
@@ -300,7 +312,7 @@ A Datatype used to a series of characters.
 
 This is a typedef to std::string, but could change particularly if UTF16 or UTF32 support is desired. If this is changed, The Character typedef should be adjusted accordingly. 
 
-Definition at line 90 of file datatypes.h.
+Definition at line 91 of file datatypes.h.
 
 \hypertarget{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{
 \index{phys@{phys}!Whole@{Whole}}
@@ -313,7 +325,7 @@ A Datatype used to represent an postive integer numbers.
 
 This is a typedef to unsigned Long. but could be smaller in some situations 
 
-Definition at line 78 of file datatypes.h.
+Definition at line 79 of file datatypes.h.
 
 
 
@@ -380,7 +392,7 @@ A double with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Typedefs could break things 
 
-Definition at line 214 of file datatypes.h.
+Definition at line 215 of file datatypes.h.
 
 \hypertarget{namespacephys_a8f892c12296033f70cc95c43f5c7e85c}{
 \index{phys@{phys}!Tofloat@{Tofloat}}
@@ -403,7 +415,7 @@ A float with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Real Typedef could break things 
 
-Definition at line 201 of file datatypes.h.
+Definition at line 202 of file datatypes.h.
 
 \hypertarget{namespacephys_af0a6dfb0aa9e9292b96a0273e1f49d3a}{
 \index{phys@{phys}!Toint@{Toint}}
@@ -426,7 +438,7 @@ An int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 161 of file datatypes.h.
+Definition at line 162 of file datatypes.h.
 
 \hypertarget{namespacephys_a7fe8a4cf645e000483652f26ef8d6e47}{
 \index{phys@{phys}!ToInteger@{ToInteger}}
@@ -449,7 +461,7 @@ An Integer with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 147 of file datatypes.h.
+Definition at line 148 of file datatypes.h.
 
 \hypertarget{namespacephys_ac5ff9d58be770f2fe8c4928eb160c88a}{
 \index{phys@{phys}!ToReal@{ToReal}}
@@ -472,7 +484,7 @@ A Real with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 187 of file datatypes.h.
+Definition at line 188 of file datatypes.h.
 
 \hypertarget{namespacephys_ae81e34843c6c569026b9a7d9d54c4f04}{
 \index{phys@{phys}!ToString@{ToString}}
@@ -495,7 +507,7 @@ A String with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 125 of file datatypes.h.
+Definition at line 126 of file datatypes.h.
 
 \hypertarget{namespacephys_a16ab66903d5e438a04f4e859c8aa47a7}{
 \index{phys@{phys}!Tounsignedint@{Tounsignedint}}
@@ -518,7 +530,7 @@ An unsigned int with the converted data
 \end{DoxyReturn}
 This exists for interacting with other libraies, in situations where changing the Integer Typedef could break things 
 
-Definition at line 175 of file datatypes.h.
+Definition at line 176 of file datatypes.h.
 
 \hypertarget{namespacephys_a53d44a46cab542ef86a541af5f1a7b62}{
 \index{phys@{phys}!ToWhole@{ToWhole}}
@@ -541,5 +553,5 @@ A Whole with the converted data
 \end{DoxyReturn}
 
 
-Definition at line 135 of file datatypes.h.
+Definition at line 136 of file datatypes.h.
 

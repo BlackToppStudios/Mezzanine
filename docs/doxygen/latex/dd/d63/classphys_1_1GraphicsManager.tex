@@ -43,7 +43,7 @@ void \hyperlink{classphys_1_1GraphicsManager_aea5fb5808a23fa29c8522c396ac0d6b5}{
 \begin{DoxyCompactList}\small\item\em Sets the Width. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1GraphicsManager_ac6feb044d9ab394f3e65d51026a899a6}{setRenderResolution} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width\_\-, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height\_\-)
 \begin{DoxyCompactList}\small\item\em Changes the X and Y Resolution at the same time. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GraphicsManager_ab3eff6a622e84cc1e567ca3887248010}{setRenderOptions} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width\_\-, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height\_\-, const bool \&Fullscreen\_\-)
+void \hyperlink{classphys_1_1GraphicsManager_aeeca7f0fc3c3b31abc153031fa4ccbf2}{setRenderOptions} (const \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} \&NewSettings)
 \begin{DoxyCompactList}\small\item\em Changes the X Resolution, Y Resolution, and fullscreen at the same time. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1GraphicsManager_ad07600281c765e22bc413a1a9df1a22c}{HasSDLBeenInitialized} ()
 \begin{DoxyCompactList}\small\item\em Gets whether or not SDL has been started. \item\end{DoxyCompactList}\item 
@@ -63,6 +63,12 @@ bool \hyperlink{classphys_1_1GraphicsManager_adcded385b6442aa5da6097f1edd5471a}{
 \begin{DoxyCompactList}\small\item\em Gets the longest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1GraphicsManager_a9138c2f79ff9b711494089802724615e}{GetRenderSystemName} ()
 \begin{DoxyCompactList}\small\item\em Gets the name of the render system in current use. \item\end{DoxyCompactList}\item 
+const std::vector$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} $>$ $\ast$ \hyperlink{classphys_1_1GraphicsManager_a4bfa1c07f2c2305ec892e603a71c6341}{GetSupportedResolutions} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector containing all the resolutions supported by this render system on the current hardware. \item\end{DoxyCompactList}\item 
+const std::vector$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} $>$ $\ast$ \hyperlink{classphys_1_1GraphicsManager_a7d1cce1c63d5678266337323da1e8ff5}{GetSupportedDevices} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector containing all the devices supported by this render system on the current hardware. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1GraphicsManager_ac4b864de93827447bf8f47487da3bf32}{ResetRenderTimer} ()
+\begin{DoxyCompactList}\small\item\em Resets the Render timer. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{Initialize} ()
 \begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{DoMainLoopItems} ()
@@ -80,7 +86,7 @@ Ogre::RenderWindow $\ast$ \hyperlink{classphys_1_1GraphicsManager_a56d2f5d2ad9fb
 \subsection{Detailed Description}
 This is intended to store basic graphics setting for the user. This stores x/y resolution, fullscreen and in the future other settings. This is intended to make it easy for developers to pass/move around complex graphics settings. We hope to eventually include other items like shader settings, rendering API, and maybe other settings too. 
 
-Definition at line 64 of file graphicsmanager.h.
+Definition at line 96 of file graphicsmanager.h.
 
 
 
@@ -146,7 +152,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7
 
 
 
-Definition at line 352 of file graphicsmanager.cpp.
+Definition at line 432 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_aaa43222ecf0a25841435651139539a94}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetAverageFPS@{GetAverageFPS}}
@@ -166,7 +172,7 @@ Returns a Real representing the average framerate.
 \end{DoxyReturn}
 
 
-Definition at line 312 of file graphicsmanager.cpp.
+Definition at line 357 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a6b644d683013467e1df4e115c4347be2}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetBestFPS@{GetBestFPS}}
@@ -186,7 +192,7 @@ Returns a Real representing the best framerate.
 \end{DoxyReturn}
 
 
-Definition at line 317 of file graphicsmanager.cpp.
+Definition at line 362 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ab24bb81be1005487b2aab49af89c759c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetBestFrameTime@{GetBestFrameTime}}
@@ -206,7 +212,7 @@ Returns a Real representing the best time for rendering a frame.
 \end{DoxyReturn}
 
 
-Definition at line 327 of file graphicsmanager.cpp.
+Definition at line 372 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ad126eedb81e3f0304731ddd33b617593}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!getFullscreen@{getFullscreen}}
@@ -226,7 +232,7 @@ This returns a bool, true if fullscreen is set, false otherwise
 \end{DoxyReturn}
 
 
-Definition at line 228 of file graphicsmanager.cpp.
+Definition at line 238 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ac1b8450e3cb7d83d0414322fcf403421}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetLastFPS@{GetLastFPS}}
@@ -246,7 +252,7 @@ Returns a Real representing the framerate.
 \end{DoxyReturn}
 
 
-Definition at line 307 of file graphicsmanager.cpp.
+Definition at line 352 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a56d2f5d2ad9fb277723facd7f54034ec}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetOgreWindowPointer@{GetOgreWindowPointer}}
@@ -268,7 +274,7 @@ Returns a pointer to the Ogre RenderWindow class in use.
 \end{DoxyInternal}
 
 
-Definition at line 387 of file graphicsmanager.cpp.
+Definition at line 467 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a38ee0f8a8a7d8ba861b1c6cfe579443e}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!getRenderHeight@{getRenderHeight}}
@@ -288,7 +294,7 @@ This returns the Height of the Rendering Area
 \end{DoxyReturn}
 
 
-Definition at line 245 of file graphicsmanager.cpp.
+Definition at line 261 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a9138c2f79ff9b711494089802724615e}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetRenderSystemName@{GetRenderSystemName}}
@@ -308,7 +314,7 @@ Returns a string containing the name of the current render system.
 \end{DoxyReturn}
 
 
-Definition at line 337 of file graphicsmanager.cpp.
+Definition at line 382 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a9e1ce1f9f8bcff7712fd5beaf7cf2337}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!getRenderWidth@{getRenderWidth}}
@@ -328,7 +334,47 @@ This returns the Width of the Rendering Area
 \end{DoxyReturn}
 
 
-Definition at line 250 of file graphicsmanager.cpp.
+Definition at line 266 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_a7d1cce1c63d5678266337323da1e8ff5}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!GetSupportedDevices@{GetSupportedDevices}}
+\index{GetSupportedDevices@{GetSupportedDevices}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{GetSupportedDevices}]{\setlength{\rightskip}{0pt plus 5cm}const std::vector$<$ {\bf String} $>$ $\ast$ phys::GraphicsManager::GetSupportedDevices (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{dd/d63/classphys_1_1GraphicsManager_a7d1cce1c63d5678266337323da1e8ff5}
+
+
+Gets a vector containing all the devices supported by this render system on the current hardware. 
+
+This vector is populated when the manager gets initialized. Calling on it before then will give you an empty vector. \begin{DoxyReturn}{Returns}
+Returns a Const Pointer to the vector storing all the supported devices. 
+\end{DoxyReturn}
+
+
+Definition at line 395 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_a4bfa1c07f2c2305ec892e603a71c6341}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!GetSupportedResolutions@{GetSupportedResolutions}}
+\index{GetSupportedResolutions@{GetSupportedResolutions}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{GetSupportedResolutions}]{\setlength{\rightskip}{0pt plus 5cm}const std::vector$<$ {\bf String} $>$ $\ast$ phys::GraphicsManager::GetSupportedResolutions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{dd/d63/classphys_1_1GraphicsManager_a4bfa1c07f2c2305ec892e603a71c6341}
+
+
+Gets a vector containing all the resolutions supported by this render system on the current hardware. 
+
+This vector is populated when the manager gets initialized. Calling on it before then will give you an empty vector. \begin{DoxyReturn}{Returns}
+Returns a Const Pointer to the vector storing all the supported resolutions. 
+\end{DoxyReturn}
+
+
+Definition at line 390 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetType@{GetType}}
@@ -352,7 +398,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 373 of file graphicsmanager.cpp.
+Definition at line 453 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a52d675b375be04a02d6d91f27fb714a8}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetWorstFPS@{GetWorstFPS}}
@@ -372,7 +418,7 @@ Returns a Real representing the worst framerate.
 \end{DoxyReturn}
 
 
-Definition at line 322 of file graphicsmanager.cpp.
+Definition at line 367 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a96e6324466a121df5977446f019cee57}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetWorstFrameTime@{GetWorstFrameTime}}
@@ -392,7 +438,7 @@ Returns a Real representing the worst time for rendering a frame.
 \end{DoxyReturn}
 
 
-Definition at line 332 of file graphicsmanager.cpp.
+Definition at line 377 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ad07600281c765e22bc413a1a9df1a22c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!HasSDLBeenInitialized@{HasSDLBeenInitialized}}
@@ -412,7 +458,7 @@ Returns a bool indicating whether or not SDL has been initialized yet.
 \end{DoxyReturn}
 
 
-Definition at line 285 of file graphicsmanager.cpp.
+Definition at line 330 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!Initialize@{Initialize}}
@@ -433,7 +479,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed
 
 
 
-Definition at line 346 of file graphicsmanager.cpp.
+Definition at line 406 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ae2330172be150cd4d12aa2ed62b0474c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!PostMainLoopItems@{PostMainLoopItems}}
@@ -457,7 +503,24 @@ Reimplemented from \hyperlink{classphys_1_1ManagerBase_afc3572602f96bdeb8215c386
 
 
 
-Definition at line 376 of file graphicsmanager.cpp.
+Definition at line 456 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_ac4b864de93827447bf8f47487da3bf32}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!ResetRenderTimer@{ResetRenderTimer}}
+\index{ResetRenderTimer@{ResetRenderTimer}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{ResetRenderTimer}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::ResetRenderTimer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{dd/d63/classphys_1_1GraphicsManager_ac4b864de93827447bf8f47487da3bf32}
+
+
+Resets the Render timer. 
+
+This function should not be called unless you know exactly what you are doing. This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop. 
+
+Definition at line 400 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_aafcf1824190e44d42a9bfbea9cfbe1b2}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!setFullscreen@{setFullscreen}}
@@ -485,7 +548,7 @@ Set the Fullscreen Setting
 
 
 
-Definition at line 234 of file graphicsmanager.cpp.
+Definition at line 244 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ae08ff0d9f16d7b9bc35d2399c1389e6a}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!SetOgreWindowPointer@{SetOgreWindowPointer}}
@@ -507,7 +570,7 @@ This function is called on once when constructing the world, should not be calle
 \end{DoxyInternal}
 
 
-Definition at line 382 of file graphicsmanager.cpp.
+Definition at line 462 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a8d59e9a8aa2ae7f520d388a4c70f0623}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderHeight@{setRenderHeight}}
@@ -533,29 +596,24 @@ Set the Render Height inside the window in windowed mode, set the resolution of 
 
 
 
-Definition at line 255 of file graphicsmanager.cpp.
+Definition at line 271 of file graphicsmanager.cpp.
 
-\hypertarget{classphys_1_1GraphicsManager_ab3eff6a622e84cc1e567ca3887248010}{
+\hypertarget{classphys_1_1GraphicsManager_aeeca7f0fc3c3b31abc153031fa4ccbf2}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderOptions@{setRenderOptions}}
 \index{setRenderOptions@{setRenderOptions}!phys::GraphicsManager@{phys::GraphicsManager}}
 \subsubsection[{setRenderOptions}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setRenderOptions (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Width\_\-, }
-\item[{const {\bf Whole} \&}]{ Height\_\-, }
-\item[{const bool \&}]{ Fullscreen\_\-}
+\item[{const {\bf GraphicsSettings} \&}]{ NewSettings}
 \end{DoxyParamCaption}
 )}}
-\label{dd/d63/classphys_1_1GraphicsManager_ab3eff6a622e84cc1e567ca3887248010}
+\label{dd/d63/classphys_1_1GraphicsManager_aeeca7f0fc3c3b31abc153031fa4ccbf2}
 
 
 Changes the X Resolution, Y Resolution, and fullscreen at the same time. 
 
 This should be useful in situations where it is not possible to update all of the options separately. 
-\begin{DoxyParams}{Parameters}
-\item[{\em Width\_\-}]The new desired Width for the rendering area as a whole number \item[{\em Height\_\-}]The new desired Width for the rendering area as a whole number \item[{\em Fullscreen\_\-}]This accepts a bool. True for fullscreen, false for windowed \end{DoxyParams}
 
-
-Definition at line 277 of file graphicsmanager.cpp.
+Definition at line 319 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ac6feb044d9ab394f3e65d51026a899a6}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderResolution@{setRenderResolution}}
@@ -582,7 +640,7 @@ This should be useful in situations where it is not possible to update the width
 
 
 
-Definition at line 269 of file graphicsmanager.cpp.
+Definition at line 293 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_aea5fb5808a23fa29c8522c396ac0d6b5}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderWidth@{setRenderWidth}}
@@ -608,7 +666,7 @@ Set the Render Width inside the window in windowed mode, set the resolution of t
 
 
 
-Definition at line 262 of file graphicsmanager.cpp.
+Definition at line 282 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_adcded385b6442aa5da6097f1edd5471a}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!ShowGraphicsSettingDialog@{ShowGraphicsSettingDialog}}
@@ -625,7 +683,7 @@ This Shows an Engine Generated Configuration Screen.
 
 This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. 
 
-Definition at line 293 of file graphicsmanager.cpp.
+Definition at line 338 of file graphicsmanager.cpp.
 
 
 

@@ -50,12 +50,12 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a string with a path/filename to the default Graphics Subsytem settings file.  <a href="#a2d43f3aa5a485564c3f375b36a08152f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">string&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ae7b1d4b6dac634392c6224f26ab85001">GetDataDirectory</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the Default Data Directory.  <a href="#ae7b1d4b6dac634392c6224f26ab85001"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a596ed780d507e681d9261d26b64a8ed9">GetSDLOgreBinder</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem).  <a href="#a596ed780d507e681d9261d26b64a8ed9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ae7aee515262e81cb9c1cfad652c86044">GetSDLOgreBinder</a> (SDL_Window *window, size_t &amp;winGlContext)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem).  <a href="#ae7aee515262e81cb9c1cfad652c86044"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab525e3abf3625b83954e2d55a5869d18">WaitMilliseconds</a> (const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;WaitTime)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pauses the program for a given period of time.  <a href="#ab525e3abf3625b83954e2d55a5869d18"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a11ab7359564519dc966f997c98109f6e">RenderPhysWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *TheWorld, Ogre::RenderWindow *TheOgreWindow)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Renders the current world contents to the screen.  <a href="#a11ab7359564519dc966f997c98109f6e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#a858c6c4155c4315d6eafb18cc30ce434">RenderPhysWorld</a> (Ogre::RenderWindow *TheOgreWindow, SDL_Window *SDLWindow)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Renders the current world contents to the screen.  <a href="#a858c6c4155c4315d6eafb18cc30ce434"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#af34fd6dc13360417a87c579744932dce">GetPlatform</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the platform currently being run on.  <a href="#af34fd6dc13360417a87c579744932dce"></a><br/></td></tr>
 </table>
@@ -130,16 +130,26 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a596ed780d507e681d9261d26b64a8ed9"></a><!-- doxytag: member="phys::crossplatform::GetSDLOgreBinder" ref="a596ed780d507e681d9261d26b64a8ed9" args="()" -->
+<a class="anchor" id="ae7aee515262e81cb9c1cfad652c86044"></a><!-- doxytag: member="phys::crossplatform::GetSDLOgreBinder" ref="ae7aee515262e81cb9c1cfad652c86044" args="(SDL_Window *window, size_t &amp;winGlContext)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void * phys::crossplatform::GetSDLOgreBinder </td>
           <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
+          <td class="paramtype">SDL_Window *&nbsp;</td>
+          <td class="paramname"> <em>window</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">size_t &amp;&nbsp;</td>
+          <td class="paramname"> <em>winGlContext</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
@@ -174,21 +184,21 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a11ab7359564519dc966f997c98109f6e"></a><!-- doxytag: member="phys::crossplatform::RenderPhysWorld" ref="a11ab7359564519dc966f997c98109f6e" args="(World *TheWorld, Ogre::RenderWindow *TheOgreWindow)" -->
+<a class="anchor" id="a858c6c4155c4315d6eafb18cc30ce434"></a><!-- doxytag: member="phys::crossplatform::RenderPhysWorld" ref="a858c6c4155c4315d6eafb18cc30ce434" args="(Ogre::RenderWindow *TheOgreWindow, SDL_Window *SDLWindow)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void PHYS_LIB phys::crossplatform::RenderPhysWorld </td>
           <td>(</td>
-          <td class="paramtype">World *&nbsp;</td>
-          <td class="paramname"> <em>TheWorld</em>, </td>
+          <td class="paramtype">Ogre::RenderWindow *&nbsp;</td>
+          <td class="paramname"> <em>TheOgreWindow</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Ogre::RenderWindow *&nbsp;</td>
-          <td class="paramname"> <em>TheOgreWindow</em></td><td>&nbsp;</td>
+          <td class="paramtype">SDL_Window *&nbsp;</td>
+          <td class="paramname"> <em>SDLWindow</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -203,7 +213,6 @@ Functions</h2></td></tr>
 <p>This makes use of <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Currently this references Ogre systems, that makes this internal Handles the actual cross platform swapping of graphics buffers. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>TheWorld</em>&nbsp;</td><td>This is a pointer to the <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> to be rendered. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>TheWorld</em>&nbsp;</td><td>A pointer to the game window to be update to be rendered. This is considered an internal component </td></tr>
   </table>
   </dd>
@@ -239,7 +248,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:50 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 15:22:23 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

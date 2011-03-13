@@ -197,8 +197,8 @@ std::char_traits&lt; wchar_t &gt;<br class="typebreak"/>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac).  <a href="#a7ca79461d40476ea4cde4f54dadffff4"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">String&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a9d912900518f0d84d323d1514dfb93a2">GetOneTag</a> (std::istream &amp;stream)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the first tag out of the Stream and returns it as a String.  <a href="#a9d912900518f0d84d323d1514dfb93a2"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html">Document</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#aa48ad222ba9a6fe46a76c2add6923028">PreParseClassFromSingleTag</a> (const String &amp;NameSpace, const String &amp;ClassName, const String &amp;OneTag, <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> MinVersion)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Perform a basic series of checks for extracting meaning from a single xml tag.  <a href="#aa48ad222ba9a6fe46a76c2add6923028"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html">Document</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#a2d57f26ba476d7f9ea154290d07dc038">PreParseClassFromSingleTag</a> (const String &amp;NameSpace, const String &amp;ClassName, const String &amp;OneTag)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Perform a basic series of checks for extracting meaning from a single xml tag.  <a href="#a2d57f26ba476d7f9ea154290d07dc038"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d27/namespacephys_1_1xml.html#ab660837afbc6aaab22425d8d23e8f2e4">ParseMinimal</a> = 0x0000</td></tr>
@@ -647,7 +647,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 
 </div>
 </div>
-<a class="anchor" id="aa48ad222ba9a6fe46a76c2add6923028"></a><!-- doxytag: member="phys::xml::PreParseClassFromSingleTag" ref="aa48ad222ba9a6fe46a76c2add6923028" args="(const String &amp;NameSpace, const String &amp;ClassName, const String &amp;OneTag, Whole MinVersion)" -->
+<a class="anchor" id="a2d57f26ba476d7f9ea154290d07dc038"></a><!-- doxytag: member="phys::xml::PreParseClassFromSingleTag" ref="a2d57f26ba476d7f9ea154290d07dc038" args="(const String &amp;NameSpace, const String &amp;ClassName, const String &amp;OneTag)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -667,13 +667,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">const String &amp;&nbsp;</td>
-          <td class="paramname"> <em>OneTag</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Whole&nbsp;</td>
-          <td class="paramname"> <em>MinVersion</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>OneTag</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -691,14 +685,13 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
     <tr><td valign="top"></td><td valign="top"><em>NameSpace</em>&nbsp;</td><td>Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example "phys::" </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>ClassName</em>&nbsp;</td><td>This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>OneTag</em>&nbsp;</td><td>One XML tag/elements worth of text to deserialize. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>MinVersion</em>&nbsp;</td><td>The minimum version of the xml for the given class that you plan of deserializing. </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An pointer to <a class="el" href="../../dd/d44/classphys_1_1xml_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">xml::Document</a> that you are now the owner of and must delete, that has the data parse and ready to access. </dd></dl>
 <dl><dt><b>Exceptions:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw a phys::exception in the event that the xml cannot be parsed. </td></tr>
   </table>
   </dd>
 </dl>
@@ -834,7 +827,7 @@ const unsigned int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:52 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 15:22:24 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

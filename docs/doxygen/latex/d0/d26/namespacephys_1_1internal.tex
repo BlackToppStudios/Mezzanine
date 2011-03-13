@@ -17,13 +17,8 @@ class \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{namespacephys_1_1internal_aae2a1133a05c67ac3062038c0c5dad4a}{PhysSDLFilter} (const \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent} $\ast$event)
-\begin{DoxyCompactList}\small\item\em SDL uses this to filter events it presents to applications. \item\end{DoxyCompactList}\item 
-\hypertarget{namespacephys_1_1internal_a83a2949f3de29e91e9fc8d74dc2e7b6a}{
-int {\bfseries PhysSDLFilter} (const SDL\_\-Event $\ast$event)}
-\label{d0/d26/namespacephys_1_1internal_a83a2949f3de29e91e9fc8d74dc2e7b6a}
-
-\end{DoxyCompactItemize}
+int \hyperlink{namespacephys_1_1internal_acd8a05884c6de30dc6db8573d55d1af0}{PhysSDLFilter} (void $\ast$userdata, SDL\_\-Event $\ast$event)
+\begin{DoxyCompactList}\small\item\em SDL uses this to filter events it presents to applications. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -32,15 +27,16 @@ This whole internal namespace is a home for dirty hacks and internal dependant c
 
 
 \subsection{Function Documentation}
-\hypertarget{namespacephys_1_1internal_aae2a1133a05c67ac3062038c0c5dad4a}{
+\hypertarget{namespacephys_1_1internal_acd8a05884c6de30dc6db8573d55d1af0}{
 \index{phys::internal@{phys::internal}!PhysSDLFilter@{PhysSDLFilter}}
 \index{PhysSDLFilter@{PhysSDLFilter}!phys::internal@{phys::internal}}
 \subsubsection[{PhysSDLFilter}]{\setlength{\rightskip}{0pt plus 5cm}int phys::internal::PhysSDLFilter (
 \begin{DoxyParamCaption}
-\item[{const RawEvent $\ast$}]{ event}
+\item[{void $\ast$}]{ userdata, }
+\item[{SDL\_\-Event $\ast$}]{ event}
 \end{DoxyParamCaption}
 )}}
-\label{d0/d26/namespacephys_1_1internal_aae2a1133a05c67ac3062038c0c5dad4a}
+\label{d0/d26/namespacephys_1_1internal_acd8a05884c6de30dc6db8573d55d1af0}
 
 
 SDL uses this to filter events it presents to applications. 
@@ -48,7 +44,7 @@ SDL uses this to filter events it presents to applications.
 \begin{DoxyInternal}{For internal use only.}
 This is used used to filter out SQL\_\-quit messages, and generate appropriate messages for the game developer to use. This will always drop quit events, and store that information for later use. 
 \begin{DoxyParams}{Parameters}
-\item[{\em event}]This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages \end{DoxyParams}
+\item[{\em event}]This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages \item[{\em userdata}]Nothing, a dummy argument that could be used by SDL \end{DoxyParams}
 \begin{DoxyWarning}{Warning}
 Do not use this. It can only cause problems. This is for SDL, the user input subsystem, to filter certain events. 
 \end{DoxyWarning}
@@ -56,3 +52,7 @@ Do not use this. It can only cause problems. This is for SDL, the user input sub
 This will always return either 0 or 1 to SDL. 0 if it should drop the event, which it does to all SDL\_\-quit events, 1 if the event should be allowed, which it does to all events which are not SDL\_\-quit events. If a null pointer was passed, then this will return 4 if it dropped an SDL\_\-Quit, and 2 if it has not droppped an SDL\_\-quit. 
 \end{DoxyReturn}
 \end{DoxyInternal}
+
+
+Definition at line 68 of file eventmanager.cpp.
+

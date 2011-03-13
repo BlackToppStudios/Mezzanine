@@ -107,28 +107,29 @@
 <a name="l00076"></a>00076 <span class="comment">            /// @details This function will read the location of every verticy in the mesh file and use that to</span>
 <a name="l00077"></a>00077 <span class="comment">            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld</span>
 <a name="l00078"></a>00078 <span class="comment">            /// be used with only with Static objects.</span>
-<a name="l00079"></a>00079 <span class="comment"></span>            <span class="keywordtype">void</span> CreateShapeFromMeshStatic();
-<a name="l00080"></a>00080 <span class="comment"></span>
-<a name="l00081"></a>00081 <span class="comment">            /// @brief Compatability function.</span>
-<a name="l00082"></a>00082 <span class="comment">            /// @details This function does nothing, as this class isn&#39;t dynamic.  This is simply here to</span>
-<a name="l00083"></a>00083 <span class="comment">            /// allow the engine to compile.</span>
-<a name="l00084"></a>00084 <span class="comment"></span>            <span class="keywordtype">void</span> CreateShapeFromMeshDynamic(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> accuracy);
-<a name="l00085"></a>00085 <span class="comment"></span>
-<a name="l00086"></a>00086 <span class="comment">            /// @brief Retrieves the name of the object.</span>
-<a name="l00087"></a>00087 <span class="comment">            /// @details This function will retrieve the name of the object,</span>
-<a name="l00088"></a>00088 <span class="comment"></span>            std::string GetName() <span class="keyword">const</span>;
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddObjectToWorld (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld);
-<a name="l00091"></a>00091             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveObjectFromWorld(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld);
-<a name="l00092"></a>00092 
-<a name="l00093"></a>00093             <span class="keyword">virtual</span> btRigidBody* GetBulletObject();
-<a name="l00094"></a>00094     };
-<a name="l00095"></a>00095 }
-<a name="l00096"></a>00096 
-<a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
+<a name="l00079"></a>00079 <span class="comment">            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it&#39;ll only use the first submesh.</span>
+<a name="l00080"></a>00080 <span class="comment"></span>            <span class="keywordtype">void</span> CreateShapeFromMeshStatic(<span class="keywordtype">bool</span> UseAllSubmeshes = <span class="keyword">false</span>);
+<a name="l00081"></a>00081 <span class="comment"></span>
+<a name="l00082"></a>00082 <span class="comment">            /// @brief Compatability function.</span>
+<a name="l00083"></a>00083 <span class="comment">            /// @details This function does nothing, as this class isn&#39;t dynamic.  This is simply here to</span>
+<a name="l00084"></a>00084 <span class="comment">            /// allow the engine to compile.</span>
+<a name="l00085"></a>00085 <span class="comment"></span>            <span class="keywordtype">void</span> CreateShapeFromMeshDynamic(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Accuracy, <span class="keywordtype">bool</span> UseAllSubmeshes = <span class="keyword">false</span>);
+<a name="l00086"></a>00086 <span class="comment"></span>
+<a name="l00087"></a>00087 <span class="comment">            /// @brief Retrieves the name of the object.</span>
+<a name="l00088"></a>00088 <span class="comment">            /// @details This function will retrieve the name of the object,</span>
+<a name="l00089"></a>00089 <span class="comment"></span>            std::string GetName() <span class="keyword">const</span>;
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddObjectToWorld (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld);
+<a name="l00092"></a>00092             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveObjectFromWorld(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld);
+<a name="l00093"></a>00093 
+<a name="l00094"></a>00094             <span class="keyword">virtual</span> btRigidBody* GetBulletObject();
+<a name="l00095"></a>00095     };
+<a name="l00096"></a>00096 }
+<a name="l00097"></a>00097 
+<a name="l00098"></a>00098 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:42 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 15:22:13 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

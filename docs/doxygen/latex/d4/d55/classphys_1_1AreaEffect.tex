@@ -30,9 +30,13 @@ virtual void \hyperlink{classphys_1_1AreaEffect_a0a0e6dfc6353d19b19e7bea03717207
 \begin{DoxyCompactList}\small\item\em Updates the actors listed as within the field. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1AreaEffect_a57399254f84ac288f74033ab609d8ffc}{CreateSphereShape} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Radius)
 \begin{DoxyCompactList}\small\item\em Creates a Sphere shape for the field. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1AreaEffect_a5bd39788f8d5eb04cd24becfa5153a6a}{CreateCylinderShape} (const \hyperlink{classphys_1_1Vector3}{Vector3} HalfExtents)
-\begin{DoxyCompactList}\small\item\em Creates a Cylinder shape for the field. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1AreaEffect_a00ea72b91a4b70bc1e85f262332afb9a}{CreateBoxShape} (const \hyperlink{classphys_1_1Vector3}{Vector3} HalfExtents, const \hyperlink{classphys_1_1ColourValue}{ColourValue} Colour=\hyperlink{classphys_1_1ColourValue}{ColourValue}(0, 0, 0, 0))
+void \hyperlink{classphys_1_1AreaEffect_af84235ffcec937574c389787eccdcc6f}{CreateCylinderShapeX} (const \hyperlink{classphys_1_1Vector3}{Vector3} HalfExtents)
+\begin{DoxyCompactList}\small\item\em Creates a Cylinder shape for the field that is alligned on the X axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1AreaEffect_ad1aece61b9e2c468923d969eb7c17509}{CreateCylinderShapeY} (const \hyperlink{classphys_1_1Vector3}{Vector3} HalfExtents)
+\begin{DoxyCompactList}\small\item\em Creates a Cylinder shape for the field that is alligned on the Y axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1AreaEffect_a64202e31ec319d43c95e8ea1880bc08f}{CreateCylinderShapeZ} (const \hyperlink{classphys_1_1Vector3}{Vector3} HalfExtents)
+\begin{DoxyCompactList}\small\item\em Creates a Cylinder shape for the field that is alligned on the Z axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1AreaEffect_aad0830b45f8348905d4b323860b37b37}{CreateBoxShape} (const \hyperlink{classphys_1_1Vector3}{Vector3} HalfExtents)
 \begin{DoxyCompactList}\small\item\em Creates a Box shape for the field. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1AreaEffect_a129cfe777f13ea62727f684761778bcb}{CreateShapeFromMesh} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Filename, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Group, bool MakeVisible)
 \begin{DoxyCompactList}\small\item\em Creates a shape from a .mesh model for the field. \item\end{DoxyCompactList}\item 
@@ -46,17 +50,50 @@ void \hyperlink{classphys_1_1AreaEffect_a9332d4f1c5d1eaa23c6db5e9b95d746e}{SetLo
 \begin{DoxyCompactList}\small\item\em Gets the origin for the area effect. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1AreaEffect_a6395eeec0a3aec2385027cca35cf15cb}{GetName} ()
 \begin{DoxyCompactList}\small\item\em Gets the Area Effects name. \item\end{DoxyCompactList}\item 
+AreaEffect::AEShapeType \hyperlink{classphys_1_1AreaEffect_a13b613426c282222fec2b93dbbd9e7a8}{GetShapeType} ()
+\begin{DoxyCompactList}\small\item\em Gets the current shape type in use by this class. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a6d1e8ddcea39fa441f02010af1970a16}{CreateGraphicsSphere} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Rings=16, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Segments=16)
+\begin{DoxyCompactList}\small\item\em Creates a sphere mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_ae2640c1eb9e05e4db0c4544d31aa2c0c}{CreateGraphicsSphere} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Rings=16, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Segments=16)
+\begin{DoxyCompactList}\small\item\em Creates a sphere mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_af9a44284ceb691fdd21e4fc01811f04d}{CreateGraphicsCylinder} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Creates a cylinder mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_ae954c00e62d7ee883148f1990d0d0a48}{CreateGraphicsCylinder} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName)
+\begin{DoxyCompactList}\small\item\em Creates a cylinder mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_a12655c60d5461ef6053c8bdd5cc9afea}{CreateGraphicsBox} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+\begin{DoxyCompactList}\small\item\em Creates a box mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1AreaEffect_afa5456c457c8fa61bd3ea5d83f3296a4}{CreateGraphicsBox} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName)
+\begin{DoxyCompactList}\small\item\em Creates a box mesh based on the physics shape for this area effect. \item\end{DoxyCompactList}\item 
 std::list$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classphys_1_1AreaEffect_ab995fec11d9e5fbae1851109067958db}{GetOverlappingActors} ()
 \begin{DoxyCompactList}\small\item\em Gets the list of actors within this field. \item\end{DoxyCompactList}\item 
 std::vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classphys_1_1AreaEffect_a72a9673c926ce876df630c4aecfc09f6}{GetAddedActors} ()
 \begin{DoxyCompactList}\small\item\em Gets the list of actors that have been added to the list since the last simulation step. \item\end{DoxyCompactList}\item 
 std::vector$<$ \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ $>$ \& \hyperlink{classphys_1_1AreaEffect_a021763db69e977a3a19ad7cc39df073b}{GetRemovedActors} ()
 \begin{DoxyCompactList}\small\item\em Gets the list of actors that have been removed from the list since the last simulation step. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries AEShapeType} \{ \par
+{\bfseries AE\_\-Sphere}, 
+{\bfseries AE\_\-CylinderX}, 
+{\bfseries AE\_\-CylinderY}, 
+{\bfseries AE\_\-CylinderZ}, 
+\par
+{\bfseries AE\_\-Box}, 
+{\bfseries AE\_\-Custom}, 
+{\bfseries AE\_\-Unassigned}
+ \}
+\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 virtual void \hyperlink{classphys_1_1AreaEffect_afe30d4ffa4e16dfb151446960dad61ac}{CreateGhostObject} (const \hyperlink{classphys_1_1Vector3}{Vector3} Location)
 \begin{DoxyCompactList}\small\item\em Constructor Function. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1AreaEffect_aef2925aaa94dffb2b4d3755cfe41cb7d}{
+virtual Ogre::MaterialPtr \hyperlink{classphys_1_1AreaEffect_aef2925aaa94dffb2b4d3755cfe41cb7d}{CreateColouredMaterial} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)}
+\label{d4/d55/classphys_1_1AreaEffect_aef2925aaa94dffb2b4d3755cfe41cb7d}
+
+\begin{DoxyCompactList}\small\item\em Creates a basic material in code using the provided colour. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1AreaEffect_a7af039b84f8d55e2c1c2d5a1b57afd8a}{
 virtual void \hyperlink{classphys_1_1AreaEffect_a7af039b84f8d55e2c1c2d5a1b57afd8a}{AddActorToList} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor)}
 \label{d4/d55/classphys_1_1AreaEffect_a7af039b84f8d55e2c1c2d5a1b57afd8a}
@@ -75,6 +112,11 @@ virtual void \hyperlink{classphys_1_1AreaEffect_a98bf156da3c7f8bb98d5ce9d37b6aa0
 \label{d4/d55/classphys_1_1AreaEffect_a1cf5a878eb22b30a166f5b065944a986}
 
 \begin{DoxyCompactList}\small\item\em The name of the Area Effect. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1AreaEffect_a1465c564cc8e32b8a530881c5db70b88}{
+AEShapeType \hyperlink{classphys_1_1AreaEffect_a1465c564cc8e32b8a530881c5db70b88}{ShapeType}}
+\label{d4/d55/classphys_1_1AreaEffect_a1465c564cc8e32b8a530881c5db70b88}
+
+\begin{DoxyCompactList}\small\item\em The type of physics shape in use by this AE field. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1AreaEffect_af8189f9e8dc4bf04f44550918e0ee117}{
 btCollisionShape $\ast$ \hyperlink{classphys_1_1AreaEffect_af8189f9e8dc4bf04f44550918e0ee117}{Shape}}
 \label{d4/d55/classphys_1_1AreaEffect_af8189f9e8dc4bf04f44550918e0ee117}
@@ -129,7 +171,7 @@ class {\bfseries PhysicsManager}}
 This class is used to define area's in the world that have unique effects. Common uses for this class are for gravity fields, and explosions. But can be made to do more. \par
  Note: This is a base class intended to be derived from. This class cannot be created itself. To make an \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class that does what you want it to, simple inherit from this class with an AE class of your own, and define the \hyperlink{classphys_1_1AreaEffect_a3b285ecfcf9c9200662d510e48dd222a}{ApplyEffect()} function to do what you want your effect to do. 
 
-Definition at line 72 of file areaeffect.h.
+Definition at line 73 of file areaeffect.h.
 
 
 
@@ -153,7 +195,7 @@ Basic initialization constructor.
 \item[{\em name}]The name of the field. \item[{\em Location}]The location of the AE field. \end{DoxyParams}
 
 
-Definition at line 46 of file areaeffect.cpp.
+Definition at line 51 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_aa9e6d721d337c32aa47357060d319924}{
 \index{phys::AreaEffect@{phys::AreaEffect}!$\sim$AreaEffect@{$\sim$AreaEffect}}
@@ -170,7 +212,7 @@ Destructor.
 
 Class destructor. 
 
-Definition at line 54 of file areaeffect.cpp.
+Definition at line 62 of file areaeffect.cpp.
 
 
 
@@ -191,18 +233,17 @@ Defines and applies the effect of the field.
 When inheriting this class, this function is what defines the effect the field has. \par
  This function will be called on by the physics manager and shouldn't be called manually. 
 
-Implemented in \hyperlink{classphys_1_1TestAE_a191c60dbfa277e850ea392d9ab774c42}{phys::TestAE}, and \hyperlink{classphys_1_1GravityField_a0322cb1635bbcb951493d9e17cc9acb1}{phys::GravityField}.
+Implemented in \hyperlink{classphys_1_1TestAE_a191c60dbfa277e850ea392d9ab774c42}{phys::TestAE}, \hyperlink{classphys_1_1GravityField_a0322cb1635bbcb951493d9e17cc9acb1}{phys::GravityField}, and \hyperlink{classphys_1_1GravityWell_a944817d495baf9f71b6d33a420eccfde}{phys::GravityWell}.
 
-\hypertarget{classphys_1_1AreaEffect_a00ea72b91a4b70bc1e85f262332afb9a}{
+\hypertarget{classphys_1_1AreaEffect_aad0830b45f8348905d4b323860b37b37}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateBoxShape@{CreateBoxShape}}
 \index{CreateBoxShape@{CreateBoxShape}!phys::AreaEffect@{phys::AreaEffect}}
 \subsubsection[{CreateBoxShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateBoxShape (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector3}}]{ HalfExtents, }
-\item[{const {\bf ColourValue}}]{ Colour = {\ttfamily {\bf ColourValue}(0,0,0,0)}}
+\item[{const {\bf Vector3}}]{ HalfExtents}
 \end{DoxyParamCaption}
 )}}
-\label{d4/d55/classphys_1_1AreaEffect_a00ea72b91a4b70bc1e85f262332afb9a}
+\label{d4/d55/classphys_1_1AreaEffect_aad0830b45f8348905d4b323860b37b37}
 
 
 Creates a Box shape for the field. 
@@ -212,28 +253,67 @@ When making the vector to be passed in, remember to pass in only half values of 
 \item[{\em HalfExtents}]The vector representing the size of the shape. \end{DoxyParams}
 
 
-Definition at line 160 of file areaeffect.cpp.
+Definition at line 200 of file areaeffect.cpp.
 
-\hypertarget{classphys_1_1AreaEffect_a5bd39788f8d5eb04cd24becfa5153a6a}{
-\index{phys::AreaEffect@{phys::AreaEffect}!CreateCylinderShape@{CreateCylinderShape}}
-\index{CreateCylinderShape@{CreateCylinderShape}!phys::AreaEffect@{phys::AreaEffect}}
-\subsubsection[{CreateCylinderShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateCylinderShape (
+\hypertarget{classphys_1_1AreaEffect_af84235ffcec937574c389787eccdcc6f}{
+\index{phys::AreaEffect@{phys::AreaEffect}!CreateCylinderShapeX@{CreateCylinderShapeX}}
+\index{CreateCylinderShapeX@{CreateCylinderShapeX}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{CreateCylinderShapeX}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateCylinderShapeX (
 \begin{DoxyParamCaption}
 \item[{const {\bf Vector3}}]{ HalfExtents}
 \end{DoxyParamCaption}
 )}}
-\label{d4/d55/classphys_1_1AreaEffect_a5bd39788f8d5eb04cd24becfa5153a6a}
+\label{d4/d55/classphys_1_1AreaEffect_af84235ffcec937574c389787eccdcc6f}
 
 
-Creates a Cylinder shape for the field. 
+Creates a Cylinder shape for the field that is alligned on the X axis. 
 
-This function assumes the cylinder will be upright, meaning \char`\"{}up\char`\"{} will be on the positive Y axis. \par
- When making the vector to be passed in, remember the layout should be as such: (radius, height$\ast$0.5, radius), with the second radius perpendicular to the first. 
+When making the vector to be passed in, remember the layout should be as such: (width$\ast$0.5, radius, radius), with the second radius perpendicular to the first. 
 \begin{DoxyParams}{Parameters}
 \item[{\em HalfExtents}]The vector representing the size of the shape. \end{DoxyParams}
 
 
-Definition at line 154 of file areaeffect.cpp.
+Definition at line 179 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_ad1aece61b9e2c468923d969eb7c17509}{
+\index{phys::AreaEffect@{phys::AreaEffect}!CreateCylinderShapeY@{CreateCylinderShapeY}}
+\index{CreateCylinderShapeY@{CreateCylinderShapeY}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{CreateCylinderShapeY}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateCylinderShapeY (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3}}]{ HalfExtents}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d55/classphys_1_1AreaEffect_ad1aece61b9e2c468923d969eb7c17509}
+
+
+Creates a Cylinder shape for the field that is alligned on the Y axis. 
+
+When making the vector to be passed in, remember the layout should be as such: (radius, height$\ast$0.5, radius), with the second radius perpendicular to the first. 
+\begin{DoxyParams}{Parameters}
+\item[{\em HalfExtents}]The vector representing the size of the shape. \end{DoxyParams}
+
+
+Definition at line 186 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_a64202e31ec319d43c95e8ea1880bc08f}{
+\index{phys::AreaEffect@{phys::AreaEffect}!CreateCylinderShapeZ@{CreateCylinderShapeZ}}
+\index{CreateCylinderShapeZ@{CreateCylinderShapeZ}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{CreateCylinderShapeZ}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateCylinderShapeZ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3}}]{ HalfExtents}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d55/classphys_1_1AreaEffect_a64202e31ec319d43c95e8ea1880bc08f}
+
+
+Creates a Cylinder shape for the field that is alligned on the Z axis. 
+
+When making the vector to be passed in, remember the layout should be as such: (radius, radius, length$\ast$0.5), with the second radius perpendicular to the first. 
+\begin{DoxyParams}{Parameters}
+\item[{\em HalfExtents}]The vector representing the size of the shape. \end{DoxyParams}
+
+
+Definition at line 193 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_afe30d4ffa4e16dfb151446960dad61ac}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateGhostObject@{CreateGhostObject}}
@@ -253,7 +333,137 @@ Constructor Function.
 \item[{\em Location}]The location of the AE field. \end{DoxyParams}
 
 
-Definition at line 61 of file areaeffect.cpp.
+Definition at line 69 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_a12655c60d5461ef6053c8bdd5cc9afea}{
+\index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsBox@{CreateGraphicsBox}}
+\index{CreateGraphicsBox@{CreateGraphicsBox}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{CreateGraphicsBox}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateGraphicsBox (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ Colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d55/classphys_1_1AreaEffect_a12655c60d5461ef6053c8bdd5cc9afea}
+
+
+Creates a box mesh based on the physics shape for this area effect. 
+
+This function will create a material script on the fly for you to use with your AR field. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Colour}]The colour to put into the custom created material script. This will be the final colour of the graphics object. \end{DoxyParams}
+
+
+Definition at line 433 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_afa5456c457c8fa61bd3ea5d83f3296a4}{
+\index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsBox@{CreateGraphicsBox}}
+\index{CreateGraphicsBox@{CreateGraphicsBox}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{CreateGraphicsBox}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateGraphicsBox (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ MaterialName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d55/classphys_1_1AreaEffect_afa5456c457c8fa61bd3ea5d83f3296a4}
+
+
+Creates a box mesh based on the physics shape for this area effect. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em MaterialName}]The name of the material script to be applied to the graphics object that is created. Must be valid. \end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000004}{Todo}]The HalfExtents returned here includes scaling, should account for that so weird scaling sync issues don't occur. \end{Desc}
+
+
+
+
+Definition at line 444 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_af9a44284ceb691fdd21e4fc01811f04d}{
+\index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsCylinder@{CreateGraphicsCylinder}}
+\index{CreateGraphicsCylinder@{CreateGraphicsCylinder}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{CreateGraphicsCylinder}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateGraphicsCylinder (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ Colour}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d55/classphys_1_1AreaEffect_af9a44284ceb691fdd21e4fc01811f04d}
+
+
+Creates a cylinder mesh based on the physics shape for this area effect. 
+
+This function will create a material script on the fly for you to use with your AR field. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Colour}]The colour to put into the custom created material script. This will be the final colour of the graphics object. \end{DoxyParams}
+
+
+Definition at line 377 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_ae954c00e62d7ee883148f1990d0d0a48}{
+\index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsCylinder@{CreateGraphicsCylinder}}
+\index{CreateGraphicsCylinder@{CreateGraphicsCylinder}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{CreateGraphicsCylinder}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateGraphicsCylinder (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ MaterialName}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d55/classphys_1_1AreaEffect_ae954c00e62d7ee883148f1990d0d0a48}
+
+
+Creates a cylinder mesh based on the physics shape for this area effect. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em MaterialName}]The name of the material script to be applied to the graphics object that is created. Must be valid. \end{DoxyParams}
+
+
+Definition at line 388 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_a6d1e8ddcea39fa441f02010af1970a16}{
+\index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsSphere@{CreateGraphicsSphere}}
+\index{CreateGraphicsSphere@{CreateGraphicsSphere}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{CreateGraphicsSphere}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateGraphicsSphere (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ Colour, }
+\item[{const {\bf Whole}}]{ Rings = {\ttfamily 16}, }
+\item[{const {\bf Whole}}]{ Segments = {\ttfamily 16}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d55/classphys_1_1AreaEffect_a6d1e8ddcea39fa441f02010af1970a16}
+
+
+Creates a sphere mesh based on the physics shape for this area effect. 
+
+This function will create a material script on the fly for you to use with your AR field. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Colour}]The colour to put into the custom created material script. This will be the final colour of the graphics object. \item[{\em Rings}]The number of horizontal rings the sphere is to be comprised of. This along with the segments parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \item[{\em Segments}]The number of vertical rings the sphere is to be comprised of. This along with the rings parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \end{DoxyParams}
+
+
+Definition at line 334 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_ae2640c1eb9e05e4db0c4544d31aa2c0c}{
+\index{phys::AreaEffect@{phys::AreaEffect}!CreateGraphicsSphere@{CreateGraphicsSphere}}
+\index{CreateGraphicsSphere@{CreateGraphicsSphere}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{CreateGraphicsSphere}]{\setlength{\rightskip}{0pt plus 5cm}void phys::AreaEffect::CreateGraphicsSphere (
+\begin{DoxyParamCaption}
+\item[{{\bf String} \&}]{ MaterialName, }
+\item[{const {\bf Whole}}]{ Rings = {\ttfamily 16}, }
+\item[{const {\bf Whole}}]{ Segments = {\ttfamily 16}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d55/classphys_1_1AreaEffect_ae2640c1eb9e05e4db0c4544d31aa2c0c}
+
+
+Creates a sphere mesh based on the physics shape for this area effect. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em MaterialName}]The name of the material script to be applied to the graphics object that is created. Must be valid. \item[{\em Rings}]The number of horizontal rings the sphere is to be comprised of. This along with the segments parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \item[{\em Segments}]The number of vertical rings the sphere is to be comprised of. This along with the rings parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \end{DoxyParams}
+
+
+Definition at line 345 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a129cfe777f13ea62727f684761778bcb}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateShapeFromMesh@{CreateShapeFromMesh}}
@@ -275,7 +485,7 @@ Creates a shape from a .mesh model for the field.
 \item[{\em Filename}]The name of the .mesh file to be used. \item[{\em Group}]The resource group where the mesh can be found. \item[{\em MakeVisible}]If true, this function will create a visual representation from the same mesh provided. \end{DoxyParams}
 
 
-Definition at line 171 of file areaeffect.cpp.
+Definition at line 207 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a57399254f84ac288f74033ab609d8ffc}{
 \index{phys::AreaEffect@{phys::AreaEffect}!CreateSphereShape@{CreateSphereShape}}
@@ -295,7 +505,7 @@ Creates a Sphere shape for the field.
 \item[{\em Radius}]The radius of the sphere you want to create. \end{DoxyParams}
 
 
-Definition at line 148 of file areaeffect.cpp.
+Definition at line 172 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a72a9673c926ce876df630c4aecfc09f6}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetAddedActors@{GetAddedActors}}
@@ -315,7 +525,7 @@ Returns the vector storing all the actors that have been added to the list since
 \end{DoxyReturn}
 
 
-Definition at line 278 of file areaeffect.cpp.
+Definition at line 481 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a251d82e373c6ada5b80c023434e513f6}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetFieldShapeScale@{GetFieldShapeScale}}
@@ -335,7 +545,7 @@ Returns the current scale applied to the fields shape.
 \end{DoxyReturn}
 
 
-Definition at line 251 of file areaeffect.cpp.
+Definition at line 305 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a76040dd90ff314ea6973dccf4e90ba37}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetLocation@{GetLocation}}
@@ -355,7 +565,7 @@ Returns the vector3 representing the location of the area effect.
 \end{DoxyReturn}
 
 
-Definition at line 262 of file areaeffect.cpp.
+Definition at line 318 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a6395eeec0a3aec2385027cca35cf15cb}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetName@{GetName}}
@@ -375,7 +585,7 @@ Returns the name of the Area Effect.
 \end{DoxyReturn}
 
 
-Definition at line 268 of file areaeffect.cpp.
+Definition at line 324 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_ab995fec11d9e5fbae1851109067958db}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetOverlappingActors@{GetOverlappingActors}}
@@ -395,7 +605,7 @@ Returns the list of actors contained within this field.
 \end{DoxyReturn}
 
 
-Definition at line 273 of file areaeffect.cpp.
+Definition at line 476 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a021763db69e977a3a19ad7cc39df073b}{
 \index{phys::AreaEffect@{phys::AreaEffect}!GetRemovedActors@{GetRemovedActors}}
@@ -415,7 +625,27 @@ Returns the vector storing all the actors that have been removed from the list s
 \end{DoxyReturn}
 
 
-Definition at line 283 of file areaeffect.cpp.
+Definition at line 486 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1AreaEffect_a13b613426c282222fec2b93dbbd9e7a8}{
+\index{phys::AreaEffect@{phys::AreaEffect}!GetShapeType@{GetShapeType}}
+\index{GetShapeType@{GetShapeType}!phys::AreaEffect@{phys::AreaEffect}}
+\subsubsection[{GetShapeType}]{\setlength{\rightskip}{0pt plus 5cm}AreaEffect::AEShapeType phys::AreaEffect::GetShapeType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d55/classphys_1_1AreaEffect_a13b613426c282222fec2b93dbbd9e7a8}
+
+
+Gets the current shape type in use by this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the type of shape being used by this class. 
+\end{DoxyReturn}
+
+
+Definition at line 329 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a9407bf7416a804757d52127a3efae747}{
 \index{phys::AreaEffect@{phys::AreaEffect}!ScaleFieldShape@{ScaleFieldShape}}
@@ -435,7 +665,7 @@ The default scale is 1.0.
 \item[{\em Scale}]The vector3 representing the scale you wish to apply to each axis of the field shape. \end{DoxyParams}
 
 
-Definition at line 246 of file areaeffect.cpp.
+Definition at line 300 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a9332d4f1c5d1eaa23c6db5e9b95d746e}{
 \index{phys::AreaEffect@{phys::AreaEffect}!SetLocation@{SetLocation}}
@@ -455,7 +685,7 @@ In most cases you won't want to call this, with the exception of when you want a
 \item[{\em Location}]The updated location of the origin for the field. \end{DoxyParams}
 
 
-Definition at line 257 of file areaeffect.cpp.
+Definition at line 311 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1AreaEffect_a0a0e6dfc6353d19b19e7bea037172072}{
 \index{phys::AreaEffect@{phys::AreaEffect}!UpdateActorList@{UpdateActorList}}
@@ -472,7 +702,7 @@ Updates the actors listed as within the field.
 
 This function is automatically called once every simulation step. This shouldn't be called manually unless your usage of this class requires more then one update per step. 
 
-Definition at line 87 of file areaeffect.cpp.
+Definition at line 111 of file areaeffect.cpp.
 
 
 
