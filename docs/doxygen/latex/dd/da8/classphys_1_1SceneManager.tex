@@ -77,13 +77,13 @@ void \hyperlink{classphys_1_1SceneManager_a0f6ebec4e8a372b0fcc2b2205bac7725}{Des
 \begin{DoxyCompactList}\small\item\em Gets the number of particle effects created and stored in this manager. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1SceneManager_addce8f82a6758db345568dbd4a88f5b9}{DestroyParticleEffect} (\hyperlink{classphys_1_1ParticleEffect}{ParticleEffect} $\ast$particleeffect)
 \begin{DoxyCompactList}\small\item\em Deletes a particle effect and removes all trace of it from the manager. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Node}{Node} $\ast$ \hyperlink{classphys_1_1SceneManager_a8cbdbb737592fe10fb7f82e0eabf7085}{CreateOrbitingNode} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector3}{Vector3} Target, \hyperlink{classphys_1_1Vector3}{Vector3} RelativeLoc, bool AutoTrack)
+\hyperlink{classphys_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classphys_1_1SceneManager_ad86be1c140e04c7579af80c1e33150fd}{CreateOrbitingNode} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector3}{Vector3} Target, \hyperlink{classphys_1_1Vector3}{Vector3} RelativeLoc, bool AutoTrack)
 \begin{DoxyCompactList}\small\item\em Creates a node that will orbit around a point. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Node}{Node} $\ast$ \hyperlink{classphys_1_1SceneManager_a07f3ee064d412908e14a3fe577d6ac80}{CreateStandNode} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector3}{Vector3} LookAt, \hyperlink{classphys_1_1Vector3}{Vector3} Location)
+\hyperlink{classphys_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classphys_1_1SceneManager_afb93b25cdd669066481e7bc81c33674a}{CreateStandNode} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Vector3}{Vector3} LookAt, \hyperlink{classphys_1_1Vector3}{Vector3} Location)
 \begin{DoxyCompactList}\small\item\em Creates a stationary node that will look at a location. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Node}{Node} $\ast$ \hyperlink{classphys_1_1SceneManager_ae058104e2eebd36feb8cc84ff0e1d354}{GetNode} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\hyperlink{classphys_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classphys_1_1SceneManager_a23428c683adddabf9ab6650d8e95ac3c}{GetNode} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Gets an already created node by name. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1Node}{Node} $\ast$ \hyperlink{classphys_1_1SceneManager_a4b05a304bae8f187fa2474abe7b7f05f}{GetNode} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\hyperlink{classphys_1_1WorldNode}{WorldNode} $\ast$ \hyperlink{classphys_1_1SceneManager_aa30beb1565c4a62f547495f6639e6ad5}{GetNode} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created node by index. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SceneManager_a9b236739b4b524a282f84b58b524efa6}{GetNumNodes} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of nodes created and stored in this manager. \item\end{DoxyCompactList}\item 
@@ -91,7 +91,7 @@ void \hyperlink{classphys_1_1SceneManager_addce8f82a6758db345568dbd4a88f5b9}{Des
 \begin{DoxyCompactList}\small\item\em Gets the number of stand type nodes created and stored in this manager. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SceneManager_a5ad1eab41f98131cfdc359b5c2a73c72}{GetNumOrbitNodes} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of orbit type nodes created and stored in this manager. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1SceneManager_a4c26ed31f84b171101db2b5ef184d701}{DestroyNode} (\hyperlink{classphys_1_1Node}{Node} $\ast$node)
+void \hyperlink{classphys_1_1SceneManager_a5a2d68ab38308f9c6ac4b659cae36dee}{DestroyNode} (\hyperlink{classphys_1_1WorldNode}{WorldNode} $\ast$node)
 \begin{DoxyCompactList}\small\item\em Deletes a node and removes all trace of it from the manager. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1SceneManager_ae63c31649eb018435087ce48307e2245}{GetName} ()
 \begin{DoxyCompactList}\small\item\em Gets the name of this manager. \item\end{DoxyCompactList}\item 
@@ -107,9 +107,9 @@ Ogre::SceneManager $\ast$ \hyperlink{classphys_1_1SceneManager_ab9980c42506a8757
 \label{dd/da8/classphys_1_1SceneManager_ab9980c42506a8757cab12feb210f056a}
 
 \begin{DoxyCompactList}\small\item\em Pointer for the Ogre Scenemanager, where this manager gets it's functionality. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1SceneManager_aac556e9a9ee9c8c348259e86018d1df6}{
-std::vector$<$ \hyperlink{classphys_1_1Node}{Node} $\ast$ $>$ \hyperlink{classphys_1_1SceneManager_aac556e9a9ee9c8c348259e86018d1df6}{Nodes}}
-\label{dd/da8/classphys_1_1SceneManager_aac556e9a9ee9c8c348259e86018d1df6}
+\hypertarget{classphys_1_1SceneManager_a51a391281cc074801792599ae38638b0}{
+std::vector$<$ \hyperlink{classphys_1_1WorldNode}{WorldNode} $\ast$ $>$ \hyperlink{classphys_1_1SceneManager_a51a391281cc074801792599ae38638b0}{WorldNodes}}
+\label{dd/da8/classphys_1_1SceneManager_a51a391281cc074801792599ae38638b0}
 
 \begin{DoxyCompactList}\small\item\em Vector storing all the nodes in use by this class. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1SceneManager_a196c70361e8db0d5861cfb7b35f1bbf3}{
@@ -195,10 +195,10 @@ Returns a pointer to the light class which was created by this function.
 
 Definition at line 139 of file scenemanager.cpp.
 
-\hypertarget{classphys_1_1SceneManager_a8cbdbb737592fe10fb7f82e0eabf7085}{
+\hypertarget{classphys_1_1SceneManager_ad86be1c140e04c7579af80c1e33150fd}{
 \index{phys::SceneManager@{phys::SceneManager}!CreateOrbitingNode@{CreateOrbitingNode}}
 \index{CreateOrbitingNode@{CreateOrbitingNode}!phys::SceneManager@{phys::SceneManager}}
-\subsubsection[{CreateOrbitingNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ phys::SceneManager::CreateOrbitingNode (
+\subsubsection[{CreateOrbitingNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ phys::SceneManager::CreateOrbitingNode (
 \begin{DoxyParamCaption}
 \item[{const {\bf String} \&}]{ Name, }
 \item[{{\bf Vector3}}]{ Target, }
@@ -206,7 +206,7 @@ Definition at line 139 of file scenemanager.cpp.
 \item[{bool}]{ AutoTrack}
 \end{DoxyParamCaption}
 )}}
-\label{dd/da8/classphys_1_1SceneManager_a8cbdbb737592fe10fb7f82e0eabf7085}
+\label{dd/da8/classphys_1_1SceneManager_ad86be1c140e04c7579af80c1e33150fd}
 
 
 Creates a node that will orbit around a point. 
@@ -322,17 +322,17 @@ Only one skyplane can exist in a scene. Making a new one will remove the old one
 
 Definition at line 103 of file scenemanager.cpp.
 
-\hypertarget{classphys_1_1SceneManager_a07f3ee064d412908e14a3fe577d6ac80}{
+\hypertarget{classphys_1_1SceneManager_afb93b25cdd669066481e7bc81c33674a}{
 \index{phys::SceneManager@{phys::SceneManager}!CreateStandNode@{CreateStandNode}}
 \index{CreateStandNode@{CreateStandNode}!phys::SceneManager@{phys::SceneManager}}
-\subsubsection[{CreateStandNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ phys::SceneManager::CreateStandNode (
+\subsubsection[{CreateStandNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ phys::SceneManager::CreateStandNode (
 \begin{DoxyParamCaption}
 \item[{const {\bf String} \&}]{ Name, }
 \item[{{\bf Vector3}}]{ LookAt, }
 \item[{{\bf Vector3}}]{ Location}
 \end{DoxyParamCaption}
 )}}
-\label{dd/da8/classphys_1_1SceneManager_a07f3ee064d412908e14a3fe577d6ac80}
+\label{dd/da8/classphys_1_1SceneManager_afb93b25cdd669066481e7bc81c33674a}
 
 
 Creates a stationary node that will look at a location. 
@@ -364,15 +364,15 @@ Deletes a light and removes all trace of it from the manager.
 
 Definition at line 170 of file scenemanager.cpp.
 
-\hypertarget{classphys_1_1SceneManager_a4c26ed31f84b171101db2b5ef184d701}{
+\hypertarget{classphys_1_1SceneManager_a5a2d68ab38308f9c6ac4b659cae36dee}{
 \index{phys::SceneManager@{phys::SceneManager}!DestroyNode@{DestroyNode}}
 \index{DestroyNode@{DestroyNode}!phys::SceneManager@{phys::SceneManager}}
 \subsubsection[{DestroyNode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SceneManager::DestroyNode (
 \begin{DoxyParamCaption}
-\item[{{\bf Node} $\ast$}]{ node}
+\item[{{\bf WorldNode} $\ast$}]{ node}
 \end{DoxyParamCaption}
 )}}
-\label{dd/da8/classphys_1_1SceneManager_a4c26ed31f84b171101db2b5ef184d701}
+\label{dd/da8/classphys_1_1SceneManager_a5a2d68ab38308f9c6ac4b659cae36dee}
 
 
 Deletes a node and removes all trace of it from the manager. 
@@ -535,15 +535,15 @@ Returns the name of this manager.
 
 Definition at line 231 of file scenemanager.cpp.
 
-\hypertarget{classphys_1_1SceneManager_ae058104e2eebd36feb8cc84ff0e1d354}{
+\hypertarget{classphys_1_1SceneManager_a23428c683adddabf9ab6650d8e95ac3c}{
 \index{phys::SceneManager@{phys::SceneManager}!GetNode@{GetNode}}
 \index{GetNode@{GetNode}!phys::SceneManager@{phys::SceneManager}}
-\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ phys::SceneManager::GetNode (
+\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ phys::SceneManager::GetNode (
 \begin{DoxyParamCaption}
 \item[{const {\bf String} \&}]{ Name}
 \end{DoxyParamCaption}
 )}}
-\label{dd/da8/classphys_1_1SceneManager_ae058104e2eebd36feb8cc84ff0e1d354}
+\label{dd/da8/classphys_1_1SceneManager_a23428c683adddabf9ab6650d8e95ac3c}
 
 
 Gets an already created node by name. 
@@ -555,15 +555,15 @@ Returns a pointer to the node of the specified name.
 
 Definition at line 266 of file scenemanager.cpp.
 
-\hypertarget{classphys_1_1SceneManager_a4b05a304bae8f187fa2474abe7b7f05f}{
+\hypertarget{classphys_1_1SceneManager_aa30beb1565c4a62f547495f6639e6ad5}{
 \index{phys::SceneManager@{phys::SceneManager}!GetNode@{GetNode}}
 \index{GetNode@{GetNode}!phys::SceneManager@{phys::SceneManager}}
-\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} $\ast$ phys::SceneManager::GetNode (
+\subsubsection[{GetNode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode} $\ast$ phys::SceneManager::GetNode (
 \begin{DoxyParamCaption}
 \item[{{\bf Whole}}]{ Index}
 \end{DoxyParamCaption}
 )}}
-\label{dd/da8/classphys_1_1SceneManager_a4b05a304bae8f187fa2474abe7b7f05f}
+\label{dd/da8/classphys_1_1SceneManager_aa30beb1565c4a62f547495f6639e6ad5}
 
 
 Gets an already created node by index. 

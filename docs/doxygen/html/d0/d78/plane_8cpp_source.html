@@ -72,7 +72,7 @@
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define _plane_cpp</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &lt;iostream&gt;</span>
-<a name="l00044"></a>00044 <span class="preprocessor">#include &lt;sstream&gt;</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &lt;memory&gt;</span>
 <a name="l00045"></a>00045 
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;exception.h&quot;</span>
 <a name="l00047"></a>00047 <span class="preprocessor">#include &quot;plane.h&quot;</span>
@@ -130,31 +130,35 @@
 <a name="l00099"></a>00099 std::istream&amp; PHYS_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="../../d1/d0c/classphys_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">phys::Plane</a>&amp; x)
 <a name="l00100"></a>00100 {
 <a name="l00101"></a>00101     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a> OneTag( <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a9d912900518f0d84d323d1514dfb93a2" title="Gets the first tag out of the Stream and returns it as a String.">phys::xml::GetOneTag</a>(stream) );
-<a name="l00102"></a>00102     <a class="code" href="../../dd/d44/classphys_1_1xml_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">phys::xml::Document</a>* Doc = <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#aa48ad222ba9a6fe46a76c2add6923028" title="Perform a basic series of checks for extracting meaning from a single xml tag.">phys::xml::PreParseClassFromSingleTag</a>(<span class="stringliteral">&quot;phys::&quot;</span>, <span class="stringliteral">&quot;Plane&quot;</span>, OneTag, 1);
+<a name="l00102"></a>00102     std::auto_ptr&lt;phys::xml::Document&gt; Doc( <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a2d57f26ba476d7f9ea154290d07dc038" title="Perform a basic series of checks for extracting meaning from a single xml tag.">phys::xml::PreParseClassFromSingleTag</a>(<span class="stringliteral">&quot;phys::&quot;</span>, <span class="stringliteral">&quot;Plane&quot;</span>, OneTag) );
 <a name="l00103"></a>00103 
-<a name="l00104"></a>00104     x.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a>=Doc-&gt;<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>().GetAttribute(<span class="stringliteral">&quot;Distance&quot;</span>).AsReal();
+<a name="l00104"></a>00104     Doc-&gt;GetFirstChild() &gt;&gt; x;
 <a name="l00105"></a>00105 
-<a name="l00106"></a>00106     <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a> NormalNode = Doc-&gt;<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a70a568eff666114c28cba812ff202cb6" title="Get the first child Node of this Node.">GetFirstChild</a>().GetFirstChild();
-<a name="l00107"></a>00107     <span class="keywordflow">if</span> (NormalNode)
-<a name="l00108"></a>00108     {
-<a name="l00109"></a>00109         std::stringstream NodeText;
-<a name="l00110"></a>00110         NormalNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#adbe10968a804a94552e1dc8223744406" title="Output the XML document using a Writer.">Print</a>( NodeText);
-<a name="l00111"></a>00111         <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;Log(NodeText.str());
-<a name="l00112"></a>00112         NodeText &gt;&gt; x.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a>;
-<a name="l00113"></a>00113     }<span class="keywordflow">else</span>{
-<a name="l00114"></a>00114         <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">phys::World::GetWorldPointer</a>()-&gt;LogAndThrow(<a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<span class="stringliteral">&quot;Normal not found while parsing phys::Plane&quot;</span>));
-<a name="l00115"></a>00115     }
-<a name="l00116"></a>00116 
-<a name="l00117"></a>00117     <span class="keyword">delete</span> Doc;
-<a name="l00118"></a>00118     <span class="keywordflow">return</span> stream;
-<a name="l00119"></a>00119 
-<a name="l00120"></a>00120 }
-<a name="l00121"></a>00121 <span class="preprocessor">#endif // \phys_xml</span>
-<a name="l00122"></a>00122 <span class="preprocessor"></span>
-<a name="l00123"></a>00123 <span class="preprocessor">#endif</span>
+<a name="l00106"></a>00106     <span class="keywordflow">return</span> stream;
+<a name="l00107"></a>00107 }
+<a name="l00108"></a>00108 
+<a name="l00109"></a>00109 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; PHYS_LIB operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="../../d1/d0c/classphys_1_1Plane.html" title="This is used to represent a flat infinite slice of the game world.">phys::Plane</a>&amp; x)
+<a name="l00110"></a>00110 {
+<a name="l00111"></a>00111     <span class="keywordflow">if</span>(OneNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a30582671aa3619f436ece1207130a303" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
+<a name="l00112"></a>00112     {
+<a name="l00113"></a>00113         x.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac352595324c4df7f8385c3ad7014e65c" title="How from from the origin the plane is.">Distance</a>=OneNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a30582671aa3619f436ece1207130a303" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Distance&quot;</span>).AsReal();
+<a name="l00114"></a>00114         <span class="keywordflow">if</span>(OneNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4022a9b6fccc1ab8e365624305e1eb71" title="Get the first child Node of this Node.">GetFirstChild</a>())
+<a name="l00115"></a>00115         {
+<a name="l00116"></a>00116             OneNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a4022a9b6fccc1ab8e365624305e1eb71" title="Get the first child Node of this Node.">GetFirstChild</a>() &gt;&gt; x.<a class="code" href="../../d1/d0c/classphys_1_1Plane.html#ac54624aabcdede3d45e06dd869419c9f" title="The rotation of the plane.">Normal</a>;
+<a name="l00117"></a>00117         }<span class="keywordflow">else</span>{
+<a name="l00118"></a>00118             <span class="keywordflow">throw</span>(<a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<span class="stringliteral">&quot;Normal not found while parsing phys::Plane&quot;</span>));
+<a name="l00119"></a>00119         }
+<a name="l00120"></a>00120     }<span class="keywordflow">else</span>{
+<a name="l00121"></a>00121         <span class="keywordflow">throw</span>( <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<span class="stringliteral">&quot;Incompatible XML Version for Vector3: Not Version 1&quot;</span>));
+<a name="l00122"></a>00122     }
+<a name="l00123"></a>00123 }
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 <span class="preprocessor">#endif // \phys_xml</span>
+<a name="l00126"></a>00126 <span class="preprocessor"></span>
+<a name="l00127"></a>00127 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 15:22:13 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

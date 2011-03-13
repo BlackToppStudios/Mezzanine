@@ -3,6 +3,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:\be
 \item\contentsline{section}{\hyperlink{classphys_1_1ActorBase}{phys::ActorBase} (This is the base class from which all the actors inherit )}{\pageref{d8/d0f/classphys_1_1ActorBase}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1ActorContainerBase}{phys::ActorContainerBase} (A base class to unify the interface for different kinds of containers for holding actors )}{\pageref{d1/d00/classphys_1_1ActorContainerBase}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1ActorContainerVector}{phys::ActorContainerVector} (A simple Actor Container using a vector )}{\pageref{d3/d64/classphys_1_1ActorContainerVector}}{}
+\item\contentsline{section}{\hyperlink{classphys_1_1ActorGraphicsSettings}{phys::ActorGraphicsSettings} (This is a helper class for configuring graphics settings of an actor )}{\pageref{dd/dd6/classphys_1_1ActorGraphicsSettings}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1ActorRigid}{phys::ActorRigid} (This is the actor class for Rigid Objects )}{\pageref{d8/d71/classphys_1_1ActorRigid}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1ActorSoft}{phys::ActorSoft} (This is the actor class for Soft Objects )}{\pageref{d4/d23/classphys_1_1ActorSoft}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1ActorTerrain}{phys::ActorTerrain} (This is actor class for terrain )}{\pageref{de/d74/classphys_1_1ActorTerrain}}{}
@@ -23,6 +24,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:\be
 \item\contentsline{section}{\hyperlink{classphys_1_1xml_1_1Document}{phys::xml::Document} (The root node of any xml hierarchy is a \hyperlink{classphys_1_1xml_1_1Document}{Document} \hyperlink{classphys_1_1xml_1_1Node}{Node} )}{\pageref{dd/d44/classphys_1_1xml_1_1Document}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1EventBase}{phys::EventBase} (The base class for all events )}{\pageref{dd/d80/classphys_1_1EventBase}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1EventCollision}{phys::EventCollision} (This is an event class used to track collsions in the physics world )}{\pageref{dd/de9/classphys_1_1EventCollision}}{}
+\item\contentsline{section}{\hyperlink{classphys_1_1EventGameWindow}{phys::EventGameWindow} (This is intended to convey the message that quitting needs to happen )}{\pageref{d4/d0f/classphys_1_1EventGameWindow}}{}
+\item\contentsline{section}{\hyperlink{classphys_1_1EventGameWindowData}{phys::EventGameWindowData} (Used to keep private in one place that is actually private )}{\pageref{d1/d45/classphys_1_1EventGameWindowData}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1EventManager}{phys::EventManager} (This is a container for Events and facilitates the transfer of data )}{\pageref{da/dde/classphys_1_1EventManager}}{}
 \item\contentsline{section}{\hyperlink{structphys_1_1internal_1_1EventManagerInternalData}{phys::internal::EventManagerInternalData} (Used to increase encapsulation, just a bit )}{\pageref{d6/d3a/structphys_1_1internal_1_1EventManagerInternalData}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1EventQuit}{phys::EventQuit} (This is intended to convey the message that quitting needs to happen )}{\pageref{dd/dea/classphys_1_1EventQuit}}{}
@@ -33,7 +36,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:\be
 \item\contentsline{section}{\hyperlink{classphys_1_1Generic6DofConstraint}{phys::Generic6DofConstraint} }{\pageref{de/d2a/classphys_1_1Generic6DofConstraint}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1Generic6DofSpringConstraint}{phys::Generic6DofSpringConstraint} }{\pageref{d1/dc7/classphys_1_1Generic6DofSpringConstraint}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1GraphicsManager}{phys::GraphicsManager} (This is intended to store basic graphics setting for the user )}{\pageref{dd/d63/classphys_1_1GraphicsManager}}{}
+\item\contentsline{section}{\hyperlink{structphys_1_1GraphicsSettings}{phys::GraphicsSettings} (This stores all the possible configuration options the graphics manager supports )}{\pageref{d0/dd0/structphys_1_1GraphicsSettings}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1GravityField}{phys::GravityField} (This is a gravity field implementation of the \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class )}{\pageref{d4/d8a/classphys_1_1GravityField}}{}
+\item\contentsline{section}{\hyperlink{classphys_1_1GravityWell}{phys::GravityWell} (This is a gravity well implementation of the \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class )}{\pageref{d6/d21/classphys_1_1GravityWell}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1Hinge2Constraint}{phys::Hinge2Constraint} }{\pageref{d2/d16/classphys_1_1Hinge2Constraint}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1HingeConstraint}{phys::HingeConstraint} }{\pageref{d3/d0d/classphys_1_1HingeConstraint}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1InputQueryTool}{phys::InputQueryTool} (This provides a number of utilities for getting input information )}{\pageref{da/d96/classphys_1_1InputQueryTool}}{}
@@ -41,15 +46,16 @@ Here are the classes, structs, unions and interfaces with brief descriptions:\be
 \item\contentsline{section}{\hyperlink{classphys_1_1Light}{phys::Light} (This class is the class used for dynamic lighting within the scene )}{\pageref{dc/df1/classphys_1_1Light}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1internal_1_1Line3D}{phys::internal::Line3D} (Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys::LineGroup} performs )}{\pageref{d4/db5/classphys_1_1internal_1_1Line3D}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1LineGroup}{phys::LineGroup} (This is a group of consectutive line segments to be rendered together )}{\pageref{db/ddb/classphys_1_1LineGroup}}{}
-\item\contentsline{section}{\hyperlink{classphys_1_1UI_1_1Linelist}{phys::UI::Linelist} (This is an object comprised of a series of lines )}{\pageref{da/da3/classphys_1_1UI_1_1Linelist}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1UI_1_1LineList}{phys::UI::LineList} }{\pageref{d7/de8/classphys_1_1UI_1_1LineList}}{}
+\item\contentsline{section}{\hyperlink{classphys_1_1UI_1_1Linelist}{phys::UI::Linelist} (This is an object comprised of a series of lines )}{\pageref{da/da3/classphys_1_1UI_1_1Linelist}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1UI_1_1ListBox}{phys::UI::ListBox} (This is a widget for displaying a list of captions in a box )}{\pageref{d0/d28/classphys_1_1UI_1_1ListBox}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1ManagerBase}{phys::ManagerBase} (This is the base class from which all the \hyperlink{classphys_1_1World}{World} Managers inherit )}{\pageref{d2/de3/classphys_1_1ManagerBase}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1UI_1_1MarkupText}{phys::UI::MarkupText} (This is a helper class for use with specialized text display )}{\pageref{d7/d23/classphys_1_1UI_1_1MarkupText}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1UI_1_1Menu}{phys::UI::Menu} (This class is a control mechanism for multiple windows in a heirarchy )}{\pageref{d6/dd3/classphys_1_1UI_1_1Menu}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1UI_1_1MenuWindow}{phys::UI::MenuWindow} (This class is an extended version of the window class for use exclusively with the menu widget )}{\pageref{d4/d07/classphys_1_1UI_1_1MenuWindow}}{}
+\item\contentsline{section}{\hyperlink{classphys_1_1MeshGenerator}{phys::MeshGenerator} (This class allows the creation of graphical meshes from code )}{\pageref{df/d6e/classphys_1_1MeshGenerator}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1MetaCode}{phys::MetaCode} (This Determines the kind of user input )}{\pageref{da/dc9/classphys_1_1MetaCode}}{}
-\item\contentsline{section}{\hyperlink{classphys_1_1Node}{phys::Node} (This is a helper class which non-\/physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects )}{\pageref{d0/ddc/classphys_1_1Node}}{}
+\item\contentsline{section}{\hyperlink{classNode}{Node} (This is a helper class which non-\/physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects )}{\pageref{df/dd0/classNode}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1xml_1_1Node}{phys::xml::Node} (A light-\/weight handle for manipulating nodes in DOM tree )}{\pageref{d7/d0a/classphys_1_1xml_1_1Node}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1xml_1_1NodeIterator}{phys::xml::NodeIterator} (Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node}) )}{\pageref{da/d4f/classphys_1_1xml_1_1NodeIterator}}{}
 \item\contentsline{section}{\hyperlink{structphys_1_1xml_1_1NodeStruct}{phys::xml::NodeStruct} (The internal data storage structure used in a \hyperlink{classphys_1_1xml_1_1Node}{Node} )}{\pageref{d7/dd5/structphys_1_1xml_1_1NodeStruct}}{}
@@ -90,6 +96,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:\be
 \item\contentsline{section}{\hyperlink{classphys_1_1UI_1_1Window}{phys::UI::Window} (This is a container widget capable of holding any other widget )}{\pageref{d4/d86/classphys_1_1UI_1_1Window}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1World}{phys::World} (This is the main entry point for the entire library )}{\pageref{da/ddf/classphys_1_1World}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1WorldGetSet}{phys::WorldGetSet} (A simple set of function to manage a pointer to the gameworld )}{\pageref{dc/d4f/classphys_1_1WorldGetSet}}{}
+\item\contentsline{section}{\hyperlink{classphys_1_1WorldNode}{phys::WorldNode} }{\pageref{d2/d3e/classphys_1_1WorldNode}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1WorldQueryTool}{phys::WorldQueryTool} (This provides a number of optional tools for working with a \hyperlink{classphys_1_1World}{phys::World} )}{\pageref{d8/d69/classphys_1_1WorldQueryTool}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1xml_1_1Writer}{phys::xml::Writer} (Interface for node printing (see Node::print) )}{\pageref{d2/d28/classphys_1_1xml_1_1Writer}}{}
 \item\contentsline{section}{\hyperlink{classphys_1_1xml_1_1WriterFile}{phys::xml::WriterFile} (An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing to FILEs as defined in stdio )}{\pageref{dc/d53/classphys_1_1xml_1_1WriterFile}}{}

@@ -35,6 +35,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="d8/d0f/classphys_1_1ActorBase.html">phys::ActorBase</a></td><td class="indexvalue">This is the base class from which all the actors inherit </td></tr>
   <tr><td class="indexkey"><a class="el" href="d1/d00/classphys_1_1ActorContainerBase.html">phys::ActorContainerBase</a></td><td class="indexvalue">A base class to unify the interface for different kinds of containers for holding actors </td></tr>
   <tr><td class="indexkey"><a class="el" href="d3/d64/classphys_1_1ActorContainerVector.html">phys::ActorContainerVector</a></td><td class="indexvalue">A simple Actor Container using a vector </td></tr>
+  <tr><td class="indexkey"><a class="el" href="dd/dd6/classphys_1_1ActorGraphicsSettings.html">phys::ActorGraphicsSettings</a></td><td class="indexvalue">This is a helper class for configuring graphics settings of an actor </td></tr>
   <tr><td class="indexkey"><a class="el" href="d8/d71/classphys_1_1ActorRigid.html">phys::ActorRigid</a></td><td class="indexvalue">This is the actor class for Rigid Objects </td></tr>
   <tr><td class="indexkey"><a class="el" href="d4/d23/classphys_1_1ActorSoft.html">phys::ActorSoft</a></td><td class="indexvalue">This is the actor class for Soft Objects </td></tr>
   <tr><td class="indexkey"><a class="el" href="de/d74/classphys_1_1ActorTerrain.html">phys::ActorTerrain</a></td><td class="indexvalue">This is actor class for terrain </td></tr>
@@ -55,6 +56,8 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="dd/d44/classphys_1_1xml_1_1Document.html">phys::xml::Document</a></td><td class="indexvalue">The root node of any xml hierarchy is a <a class="el" href="dd/d44/classphys_1_1xml_1_1Document.html" title="The root node of any xml hierarchy is a Document Node.">Document</a> <a class="el" href="d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> </td></tr>
   <tr><td class="indexkey"><a class="el" href="dd/d80/classphys_1_1EventBase.html">phys::EventBase</a></td><td class="indexvalue">The base class for all events </td></tr>
   <tr><td class="indexkey"><a class="el" href="dd/de9/classphys_1_1EventCollision.html">phys::EventCollision</a></td><td class="indexvalue">This is an event class used to track collsions in the physics world </td></tr>
+  <tr><td class="indexkey"><a class="el" href="d4/d0f/classphys_1_1EventGameWindow.html">phys::EventGameWindow</a></td><td class="indexvalue">This is intended to convey the message that quitting needs to happen </td></tr>
+  <tr><td class="indexkey"><a class="el" href="d1/d45/classphys_1_1EventGameWindowData.html">phys::EventGameWindowData</a></td><td class="indexvalue">Used to keep private in one place that is actually private </td></tr>
   <tr><td class="indexkey"><a class="el" href="da/dde/classphys_1_1EventManager.html">phys::EventManager</a></td><td class="indexvalue">This is a container for Events and facilitates the transfer of data </td></tr>
   <tr><td class="indexkey"><a class="el" href="d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html">phys::internal::EventManagerInternalData</a></td><td class="indexvalue">Used to increase encapsulation, just a bit </td></tr>
   <tr><td class="indexkey"><a class="el" href="dd/dea/classphys_1_1EventQuit.html">phys::EventQuit</a></td><td class="indexvalue">This is intended to convey the message that quitting needs to happen </td></tr>
@@ -65,7 +68,9 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="de/d2a/classphys_1_1Generic6DofConstraint.html">phys::Generic6DofConstraint</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="d1/dc7/classphys_1_1Generic6DofSpringConstraint.html">phys::Generic6DofSpringConstraint</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="dd/d63/classphys_1_1GraphicsManager.html">phys::GraphicsManager</a></td><td class="indexvalue">This is intended to store basic graphics setting for the user </td></tr>
+  <tr><td class="indexkey"><a class="el" href="d0/dd0/structphys_1_1GraphicsSettings.html">phys::GraphicsSettings</a></td><td class="indexvalue">This stores all the possible configuration options the graphics manager supports </td></tr>
   <tr><td class="indexkey"><a class="el" href="d4/d8a/classphys_1_1GravityField.html">phys::GravityField</a></td><td class="indexvalue">This is a gravity field implementation of the <a class="el" href="d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a> class </td></tr>
+  <tr><td class="indexkey"><a class="el" href="d6/d21/classphys_1_1GravityWell.html">phys::GravityWell</a></td><td class="indexvalue">This is a gravity well implementation of the <a class="el" href="d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a> class </td></tr>
   <tr><td class="indexkey"><a class="el" href="d2/d16/classphys_1_1Hinge2Constraint.html">phys::Hinge2Constraint</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="d3/d0d/classphys_1_1HingeConstraint.html">phys::HingeConstraint</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="da/d96/classphys_1_1InputQueryTool.html">phys::InputQueryTool</a></td><td class="indexvalue">This provides a number of utilities for getting input information </td></tr>
@@ -73,15 +78,16 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="dc/df1/classphys_1_1Light.html">phys::Light</a></td><td class="indexvalue">This class is the class used for dynamic lighting within the scene </td></tr>
   <tr><td class="indexkey"><a class="el" href="d4/db5/classphys_1_1internal_1_1Line3D.html">phys::internal::Line3D</a></td><td class="indexvalue">Does the bulk of the work that that the <a class="el" href="db/ddb/classphys_1_1LineGroup.html" title="This is a group of consectutive line segments to be rendered together.">phys::LineGroup</a> performs </td></tr>
   <tr><td class="indexkey"><a class="el" href="db/ddb/classphys_1_1LineGroup.html">phys::LineGroup</a></td><td class="indexvalue">This is a group of consectutive line segments to be rendered together </td></tr>
-  <tr><td class="indexkey"><a class="el" href="da/da3/classphys_1_1UI_1_1Linelist.html">phys::UI::Linelist</a></td><td class="indexvalue">This is an object comprised of a series of lines </td></tr>
   <tr><td class="indexkey"><a class="el" href="d7/de8/classphys_1_1UI_1_1LineList.html">phys::UI::LineList</a></td><td class="indexvalue"></td></tr>
+  <tr><td class="indexkey"><a class="el" href="da/da3/classphys_1_1UI_1_1Linelist.html">phys::UI::Linelist</a></td><td class="indexvalue">This is an object comprised of a series of lines </td></tr>
   <tr><td class="indexkey"><a class="el" href="d0/d28/classphys_1_1UI_1_1ListBox.html">phys::UI::ListBox</a></td><td class="indexvalue">This is a widget for displaying a list of captions in a box </td></tr>
   <tr><td class="indexkey"><a class="el" href="d2/de3/classphys_1_1ManagerBase.html">phys::ManagerBase</a></td><td class="indexvalue">This is the base class from which all the <a class="el" href="da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> Managers inherit </td></tr>
   <tr><td class="indexkey"><a class="el" href="d7/d23/classphys_1_1UI_1_1MarkupText.html">phys::UI::MarkupText</a></td><td class="indexvalue">This is a helper class for use with specialized text display </td></tr>
   <tr><td class="indexkey"><a class="el" href="d6/dd3/classphys_1_1UI_1_1Menu.html">phys::UI::Menu</a></td><td class="indexvalue">This class is a control mechanism for multiple windows in a heirarchy </td></tr>
   <tr><td class="indexkey"><a class="el" href="d4/d07/classphys_1_1UI_1_1MenuWindow.html">phys::UI::MenuWindow</a></td><td class="indexvalue">This class is an extended version of the window class for use exclusively with the menu widget </td></tr>
+  <tr><td class="indexkey"><a class="el" href="df/d6e/classphys_1_1MeshGenerator.html">phys::MeshGenerator</a></td><td class="indexvalue">This class allows the creation of graphical meshes from code </td></tr>
   <tr><td class="indexkey"><a class="el" href="da/dc9/classphys_1_1MetaCode.html">phys::MetaCode</a></td><td class="indexvalue">This Determines the kind of user input </td></tr>
-  <tr><td class="indexkey"><a class="el" href="d0/ddc/classphys_1_1Node.html">phys::Node</a></td><td class="indexvalue">This is a helper class which non-physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects </td></tr>
+  <tr><td class="indexkey"><a class="el" href="df/dd0/classNode.html">Node</a></td><td class="indexvalue">This is a helper class which non-physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects </td></tr>
   <tr><td class="indexkey"><a class="el" href="d7/d0a/classphys_1_1xml_1_1Node.html">phys::xml::Node</a></td><td class="indexvalue">A light-weight handle for manipulating nodes in DOM tree </td></tr>
   <tr><td class="indexkey"><a class="el" href="da/d4f/classphys_1_1xml_1_1NodeIterator.html">phys::xml::NodeIterator</a></td><td class="indexvalue">Child node iterator (a bidirectional iterator over a collection of <a class="el" href="d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a>) </td></tr>
   <tr><td class="indexkey"><a class="el" href="d7/dd5/structphys_1_1xml_1_1NodeStruct.html">phys::xml::NodeStruct</a></td><td class="indexvalue">The internal data storage structure used in a <a class="el" href="d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> </td></tr>
@@ -122,6 +128,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="d4/d86/classphys_1_1UI_1_1Window.html">phys::UI::Window</a></td><td class="indexvalue">This is a container widget capable of holding any other widget </td></tr>
   <tr><td class="indexkey"><a class="el" href="da/ddf/classphys_1_1World.html">phys::World</a></td><td class="indexvalue">This is the main entry point for the entire library </td></tr>
   <tr><td class="indexkey"><a class="el" href="dc/d4f/classphys_1_1WorldGetSet.html">phys::WorldGetSet</a></td><td class="indexvalue">A simple set of function to manage a pointer to the gameworld </td></tr>
+  <tr><td class="indexkey"><a class="el" href="d2/d3e/classphys_1_1WorldNode.html">phys::WorldNode</a></td><td class="indexvalue"></td></tr>
   <tr><td class="indexkey"><a class="el" href="d8/d69/classphys_1_1WorldQueryTool.html">phys::WorldQueryTool</a></td><td class="indexvalue">This provides a number of optional tools for working with a <a class="el" href="da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">phys::World</a> </td></tr>
   <tr><td class="indexkey"><a class="el" href="d2/d28/classphys_1_1xml_1_1Writer.html">phys::xml::Writer</a></td><td class="indexvalue">Interface for node printing (see Node::print) </td></tr>
   <tr><td class="indexkey"><a class="el" href="dc/d53/classphys_1_1xml_1_1WriterFile.html">phys::xml::WriterFile</a></td><td class="indexvalue">An implementation of <a class="el" href="d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> intended for writing to FILEs as defined in stdio </td></tr>
@@ -135,7 +142,7 @@ Here are the classes, structs, unions and interfaces with brief descriptions:<ta
   <tr><td class="indexkey"><a class="el" href="df/dd1/classphys_1_1xml_1_1XPathVariableSet.html">phys::xml::XPathVariableSet</a></td><td class="indexvalue">A set of XPath variables </td></tr>
 </table>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:44 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 15:22:14 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

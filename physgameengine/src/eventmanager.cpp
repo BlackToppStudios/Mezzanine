@@ -48,6 +48,7 @@
 #include "world.h"
 #include "eventmanager.h"
 #include "eventbase.h"
+#include "eventgamewindow.h"
 #include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "eventquit.h"
@@ -236,16 +237,16 @@ namespace phys
 
         /* Here is a list of SDL event which aren't coded yet.
         //event types
-        SDL_FIRSTEVENT				unused (do not remove)		Application events
+            SDL_FIRSTEVENT				unused (do not remove)		Application events
             SDL_QUIT				user-requested quit		Window events
-            SDL_WINDOWEVENT				window state change
-            SDL_SYSWMEVENT				system specific event		Keyboard events
+         SDL_WINDOWEVENT				window state change
+         SDL_SYSWMEVENT				system specific event		Keyboard events
             SDL_KEYDOWN				key pressed
-        SDL_KEYUP				key released
+            SDL_KEYUP				key released
         SDL_TEXTEDITING				keyboard text editing (composition)
         SDL_TEXTINPUT				keyboard text input		Mouse events
-        SDL_MOUSEMOTION				mouse moved
-        SDL_MOUSEBUTTONDOWN				mouse button pressed
+            SDL_MOUSEMOTION				mouse moved
+            SDL_MOUSEBUTTONDOWN				mouse button pressed
             SDL_MOUSEBUTTONUP				mouse button released
         SDL_MOUSEWHEEL				mouse wheel motion		Tablet or multiple mice input device events
         SDL_INPUTMOTION				input moved
@@ -258,7 +259,7 @@ namespace phys
         SDL_JOYBALLMOTION				joystick trackball motion
         SDL_JOYHATMOTION				joystick hat position change
         SDL_JOYBUTTONDOWN				joystick button pressed
-            SDL_JOYBUTTONUP				joystick button released		Touch events
+        SDL_JOYBUTTONUP				joystick button released		Touch events
         SDL_FINGERDOWN
         SDL_FINGERUP
         SDL_FINGERMOTION
@@ -289,21 +290,24 @@ namespace phys
                     //_Data->EventQ.push_back(FromSDLEvent);
                     break;
             */
-                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
+                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             //case SDL_JOYBUTTONUP:
                     _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
 
-                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           case SDL_JOYBUTTONDOWN:
+                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           //case SDL_JOYBUTTONDOWN:
                     _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
-/*
-                case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
+
+                case SDL_MOUSEMOTION:       //case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
                     break;
-*/              case SDL_FIRSTEVENT:  //capture and ignore
+
+
+                case SDL_FIRSTEVENT:  //capture and ignore
                     break;
 
                 case SDL_WINDOWEVENT:
+                    this->AddEvent(new EventGameWindow(FromSDLRaw));
                     break;
 
                 case SDL_SYSWMEVENT:
@@ -324,7 +328,6 @@ namespace phys
         // Here we iterate through manual check to insert any requested polling checks and perpetuate mousedown events
         for(internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
         {
-            //World::GetWorldPointer()->Log(Iter->first);
             MetaCode::InputCode temp = (*Iter).first;
             bool found=false;
             for(EventUserInput::iterator LIter=FromSDLEvent->begin(); FromSDLEvent->end()!=LIter; ++LIter)
@@ -344,7 +347,7 @@ namespace phys
             }
         }
 
-        //Check to see if we should add a User i
+        //Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
         if(FromSDLEvent->GetMetaCodeCount()==0)
         {
             delete FromSDLEvent;
@@ -434,6 +437,22 @@ namespace phys
             }
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - GameWindow Events
+    ///////////////////////////////////////
+    EventGameWindow* EventManager::GetNextGameWindowEvent()
+        { return dynamic_cast<EventGameWindow*> (this->GetNextSpecificEvent(EventBase::GameWindow)); }
+
+    EventGameWindow* EventManager::PopNextGameWindowEvent()
+        { return dynamic_cast<EventGameWindow*> (this->PopNextSpecificEvent(EventBase::GameWindow)); }
+
+    void EventManager::RemoveNextGameWindowEvent()
+        { this->RemoveNextSpecificEvent(EventBase::GameWindow); }
+
+    std::list<EventGameWindow*>* EventManager::GetAllGameWindowEvents()
+        { return (std::list<EventGameWindow*>*)this->GetAllSpecificEvents(EventBase::GameWindow); }
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - RenderTime Events

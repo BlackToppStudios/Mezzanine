@@ -1,0 +1,120 @@
+\hypertarget{classphys_1_1MeshGenerator}{
+\section{phys::MeshGenerator Class Reference}
+\label{df/d6e/classphys_1_1MeshGenerator}\index{phys::MeshGenerator@{phys::MeshGenerator}}
+}
+
+
+This class allows the creation of graphical meshes from code.  
+
+
+
+
+{\ttfamily \#include $<$meshgenerator.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1MeshGenerator_a70b6d0b67c6e8c833ee2bd85b3265aa7}{
+\hyperlink{classphys_1_1MeshGenerator_a70b6d0b67c6e8c833ee2bd85b3265aa7}{MeshGenerator} ()}
+\label{df/d6e/classphys_1_1MeshGenerator_a70b6d0b67c6e8c833ee2bd85b3265aa7}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1MeshGenerator_a5108974e947a2f0e51d632fd502d0ba0}{
+\hyperlink{classphys_1_1MeshGenerator_a5108974e947a2f0e51d632fd502d0ba0}{$\sim$MeshGenerator} ()}
+\label{df/d6e/classphys_1_1MeshGenerator_a5108974e947a2f0e51d632fd502d0ba0}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \hyperlink{classphys_1_1MeshGenerator_a1710315174186367ce566125feb3df6d}{CreateBoxMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents)
+\begin{DoxyCompactList}\small\item\em Creates a box graphical mesh which can be used for actors. \item\end{DoxyCompactList}\item 
+static void \hyperlink{classphys_1_1MeshGenerator_aa550d6113302665acc1c566ca50ad82d}{CreateCylinderMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, const \hyperlink{classphys_1_1Vector3}{Vector3} \&HalfExtents, const \hyperlink{classphys_1_1Vector3}{Vector3} \&AxisOrientation)
+\begin{DoxyCompactList}\small\item\em Creates a cylinder graphical mesh which can be used for actors. \item\end{DoxyCompactList}\item 
+static void \hyperlink{classphys_1_1MeshGenerator_a2d1dfdfe8fae04773de67118a4513f5d}{CreateSphereMesh} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MeshName, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&MaterialName, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Radius, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Rings=16, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Segments=16)
+\begin{DoxyCompactList}\small\item\em Creates a sphere graphical mesh which can be used for actors. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class allows the creation of graphical meshes from code. All meshes created by this class aren't retured, but are instead added to the list of meshes which can be referenced and used. Simply use the same Mesh Name used to create the mesh when creating an actor or having to specify a mesh. 
+
+Definition at line 55 of file meshgenerator.h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1MeshGenerator_a1710315174186367ce566125feb3df6d}{
+\index{phys::MeshGenerator@{phys::MeshGenerator}!CreateBoxMesh@{CreateBoxMesh}}
+\index{CreateBoxMesh@{CreateBoxMesh}!phys::MeshGenerator@{phys::MeshGenerator}}
+\subsubsection[{CreateBoxMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MeshGenerator::CreateBoxMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ MeshName, }
+\item[{const {\bf String} \&}]{ MaterialName, }
+\item[{const {\bf Vector3} \&}]{ HalfExtents}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{df/d6e/classphys_1_1MeshGenerator_a1710315174186367ce566125feb3df6d}
+
+
+Creates a box graphical mesh which can be used for actors. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em MeshName}]The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \item[{\em MaterialName}]The name of the material script which will be applied to this mesh. \item[{\em HalfExtents}]Half of the full dimentions of the final object in world units. This allows the objects origin to be it's center. \end{DoxyParams}
+
+
+Definition at line 56 of file meshgenerator.cpp.
+
+\hypertarget{classphys_1_1MeshGenerator_aa550d6113302665acc1c566ca50ad82d}{
+\index{phys::MeshGenerator@{phys::MeshGenerator}!CreateCylinderMesh@{CreateCylinderMesh}}
+\index{CreateCylinderMesh@{CreateCylinderMesh}!phys::MeshGenerator@{phys::MeshGenerator}}
+\subsubsection[{CreateCylinderMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MeshGenerator::CreateCylinderMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ MeshName, }
+\item[{const {\bf String} \&}]{ MaterialName, }
+\item[{const {\bf Vector3} \&}]{ HalfExtents, }
+\item[{const {\bf Vector3} \&}]{ AxisOrientation}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{df/d6e/classphys_1_1MeshGenerator_aa550d6113302665acc1c566ca50ad82d}
+
+
+Creates a cylinder graphical mesh which can be used for actors. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em MeshName}]The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \item[{\em MaterialName}]The name of the material script which will be applied to this mesh. \item[{\em HalfExtents}]Half of the full dimentions of the final object in world units. This allows the objects origin to be it's center. \item[{\em AxisOrientation}]\hyperlink{classphys_1_1Vector3}{Vector3} representing which axis the cylinder should be aligned on. Should be one of the three: (1,0,0), (0,1,0), (0,0,1). \end{DoxyParams}
+
+
+Definition at line 111 of file meshgenerator.cpp.
+
+\hypertarget{classphys_1_1MeshGenerator_a2d1dfdfe8fae04773de67118a4513f5d}{
+\index{phys::MeshGenerator@{phys::MeshGenerator}!CreateSphereMesh@{CreateSphereMesh}}
+\index{CreateSphereMesh@{CreateSphereMesh}!phys::MeshGenerator@{phys::MeshGenerator}}
+\subsubsection[{CreateSphereMesh}]{\setlength{\rightskip}{0pt plus 5cm}void phys::MeshGenerator::CreateSphereMesh (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ MeshName, }
+\item[{const {\bf String} \&}]{ MaterialName, }
+\item[{const {\bf Real} \&}]{ Radius, }
+\item[{const {\bf Real} \&}]{ Rings = {\ttfamily 16}, }
+\item[{const {\bf Real} \&}]{ Segments = {\ttfamily 16}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{df/d6e/classphys_1_1MeshGenerator_a2d1dfdfe8fae04773de67118a4513f5d}
+
+
+Creates a sphere graphical mesh which can be used for actors. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em MeshName}]The name for the mesh which will be created. Use this to reference the mesh when creating other objects that need a mesh. \item[{\em MaterialName}]The name of the material script which will be applied to this mesh. \item[{\em Radius}]The radius to generate the sphere with in world units. \item[{\em Rings}]The number of horizontal rings the sphere is to be comprised of. This along with the segments parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \item[{\em Segments}]The number of vertical rings the sphere is to be comprised of. This along with the rings parameter controls the overall resolution of the sphere. Less then 16 is not recommended. \end{DoxyParams}
+
+
+Definition at line 116 of file meshgenerator.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+meshgenerator.h\item 
+meshgenerator.cpp\end{DoxyCompactItemize}

@@ -11,7 +11,7 @@ bool PreUI();
 bool PostUI();
 
 //Functions that protocatch uses
-bool CheckForEsc();
+bool CheckForStuff();
 void LoadContent();
 void MakeGUI();
 
