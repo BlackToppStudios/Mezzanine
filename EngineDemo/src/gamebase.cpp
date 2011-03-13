@@ -405,14 +405,14 @@ bool PostInput()
     }
 
     // using the Raw Event Manager, and deleting the events
-    if( !CheckForEsc() )
+    if( !CheckForStuff() )
         return false;
     return true;
 }
 
 ///////////////////
 //Non-Callbacks
-bool CheckForEsc()
+bool CheckForStuff()
 {
     //this will either set the pointer to 0 or return a valid pointer to work with.
     EventUserInput* OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
@@ -421,14 +421,16 @@ bool CheckForEsc()
     while(0 != OneInput)
     {
         #ifdef PHYSDEBUG
-        TheWorld->Log("Input Events Processed");
+        TheWorld->LogStream << "Input Events Processed" << endl << "Escape is: " << MetaCode::KEY_ESCAPE << endl;
         #endif
 
+        if(OneInput->GetType()!=EventBase::UserInput)
+            { TheWorld->LogAndThrow("Trying to process a non-EventUserInput as an EventUserInput."); }
         //we check each MetaCode in each Event
         for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
             #ifdef PHYSDEBUG
-            TheWorld->LogStream << "Metacode (" << c << ")" << OneInput->GetMetaCode(c) << endl << "Escape is: " << MetaCode::KEY_ESCAPE << endl;
+            TheWorld->LogStream << "Metacode (" << c << ")" << OneInput->GetMetaCode(c) << endl ;
             #endif
 
             //Is the key we just pushed ESCAPE
@@ -439,6 +441,36 @@ bool CheckForEsc()
         delete OneInput;
         OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
     }
+
+    EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+    while(0 != OneWindowEvent)
+    {
+        if(OneWindowEvent->GetType()!=EventBase::GameWindow)
+            { TheWorld->LogAndThrow("Trying to process a non-EventGameWindow as an EventGameWindow."); }
+
+        if(!OneWindowEvent->IsEventIDValid())
+        {
+            TheWorld->Log("Invalid EventID on GameWindow Event");
+            TheWorld->LogAndThrow(OneWindowEvent->GetEventID());
+        }
+
+        //TheWorld->Log(*OneWindowEvent);
+        TheWorld->Log(EventGameWindow::GameWindowEventIDToString(OneWindowEvent->GetEventID()));
+
+        if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
+        {
+            Sound* Welcome = NULL;
+            Welcome = TheWorld->GetSoundManager()->GetSoundByName("Welcome");
+            if(Welcome)
+            {
+                Welcome->Play2d(false);
+            }
+        }
+
+        delete OneWindowEvent;
+        OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+    }
+
 
     return true;
 }

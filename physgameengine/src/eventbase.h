@@ -66,11 +66,12 @@ namespace phys
             /// @details A listing of values that can be used to identify Events.
             enum EventType
             {
+                Collision,      /**< Indicates the Event is a Physics Collision Event */
+                GameWindow,     /**< Indicates the Event is a Game Window Management Event */
+                QuitMessage,    /**< Indicates the Event is a phys::EventQuit */
                 RenderTime,     /**< Indicates the Event is a PhysEventRenderTime */
                 UserInput,      /**< Indicates the Event is a EventUserInput */
-                QuitMessage,    /**< Indicates the Event is a phys::EventQuit */
-                SystemMessage,  /**< Indicates the Event has not been coded yet */
-                Collision,      /**< Indicates the Event is a Physics Collision Event */
+                //SystemMessage,  /**< Indicates the Event has not been coded yet */
                 Other
             };
 

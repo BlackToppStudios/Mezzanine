@@ -48,6 +48,7 @@
 #include "world.h"
 #include "eventmanager.h"
 #include "eventbase.h"
+#include "eventgamewindow.h"
 #include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "eventquit.h"
@@ -236,16 +237,16 @@ namespace phys
 
         /* Here is a list of SDL event which aren't coded yet.
         //event types
-        SDL_FIRSTEVENT				unused (do not remove)		Application events
+            SDL_FIRSTEVENT				unused (do not remove)		Application events
             SDL_QUIT				user-requested quit		Window events
-            SDL_WINDOWEVENT				window state change
-            SDL_SYSWMEVENT				system specific event		Keyboard events
+         SDL_WINDOWEVENT				window state change
+         SDL_SYSWMEVENT				system specific event		Keyboard events
             SDL_KEYDOWN				key pressed
-        SDL_KEYUP				key released
+            SDL_KEYUP				key released
         SDL_TEXTEDITING				keyboard text editing (composition)
         SDL_TEXTINPUT				keyboard text input		Mouse events
-        SDL_MOUSEMOTION				mouse moved
-        SDL_MOUSEBUTTONDOWN				mouse button pressed
+            SDL_MOUSEMOTION				mouse moved
+            SDL_MOUSEBUTTONDOWN				mouse button pressed
             SDL_MOUSEBUTTONUP				mouse button released
         SDL_MOUSEWHEEL				mouse wheel motion		Tablet or multiple mice input device events
         SDL_INPUTMOTION				input moved
@@ -258,7 +259,7 @@ namespace phys
         SDL_JOYBALLMOTION				joystick trackball motion
         SDL_JOYHATMOTION				joystick hat position change
         SDL_JOYBUTTONDOWN				joystick button pressed
-            SDL_JOYBUTTONUP				joystick button released		Touch events
+        SDL_JOYBUTTONUP				joystick button released		Touch events
         SDL_FINGERDOWN
         SDL_FINGERUP
         SDL_FINGERMOTION
@@ -306,6 +307,7 @@ namespace phys
                     break;
 
                 case SDL_WINDOWEVENT:
+                    this->AddEvent(new EventGameWindow(FromSDLRaw));
                     break;
 
                 case SDL_SYSWMEVENT:
@@ -435,6 +437,22 @@ namespace phys
             }
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - GameWindow Events
+    ///////////////////////////////////////
+    EventGameWindow* EventManager::GetNextGameWindowEvent()
+        { return dynamic_cast<EventGameWindow*> (this->GetNextSpecificEvent(EventBase::GameWindow)); }
+
+    EventGameWindow* EventManager::PopNextGameWindowEvent()
+        { return dynamic_cast<EventGameWindow*> (this->PopNextSpecificEvent(EventBase::GameWindow)); }
+
+    void EventManager::RemoveNextGameWindowEvent()
+        { this->RemoveNextSpecificEvent(EventBase::GameWindow); }
+
+    std::list<EventGameWindow*>* EventManager::GetAllGameWindowEvents()
+        { return (std::list<EventGameWindow*>*)this->GetAllSpecificEvents(EventBase::GameWindow); }
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - RenderTime Events
