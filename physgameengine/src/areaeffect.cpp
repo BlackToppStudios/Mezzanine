@@ -45,9 +45,10 @@
 #include "actorbase.h"
 #include "actorrigid.h"
 #include "physicsmanager.h"
+#include "meshgenerator.h"
+#include "objectreference.h"
+#include "internalmeshtools.h.cpp"
 
-#include <Ogre.h>
-#include <btBulletDynamicsCommon.h>
 #include <BulletCollision/CollisionDispatch/btGhostObject.h>
 #include <BulletCollision/Gimpact/btGImpactShape.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
@@ -77,7 +78,8 @@ namespace phys{
         Ghost = new btPairCachingGhostObject();
         Ghost->setCollisionFlags(Ghost->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
-        Ghost->setUserPointer(this);
+        ObjectReference* ActorRef = new ObjectReference(phys::WOT_AreaEffect,this);
+        Ghost->setUserPointer(ActorRef);
     }
 
     Ogre::MaterialPtr AreaEffect::CreateColouredMaterial(const ColourValue& Colour)
@@ -94,6 +96,34 @@ namespace phys{
         AEMaterial->prepare();
         AEMaterial->load();
         return AEMaterial;
+    }
+
+    void AreaEffect::PreGraphicsMeshCreate()
+    {
+        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        if(GraphicsObject)
+        {
+            OgreManager->destroyEntity(GraphicsObject);
+            GraphicsObject = NULL;
+        }
+        if(GraphicsNode)
+        {
+            OgreManager->destroySceneNode(GraphicsNode);
+            GraphicsNode = NULL;
+        }
+    }
+
+    void AreaEffect::PostGraphicsMeshCreate(String& GroupName)
+    {
+        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
+        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
+        GraphicsNode = OgreManager->createSceneNode();
+        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
+        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
+        GraphicsNode->attachObject(GraphicsObject);
+        ObjectReference* AERef = (ObjectReference*)Ghost->getUserPointer();
+        Ogre::Any OgreRef(AERef);
+        GraphicsObject->setUserAny(OgreRef);
     }
 
     void AreaEffect::AddActorToList(ActorBase* Actor)
@@ -213,16 +243,7 @@ namespace phys{
     void AreaEffect::CreateShapeFromMesh(String Filename, String Group, bool MakeVisible)
     {
         Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
-        if(GraphicsObject)
-        {
-            OgreManager->destroyEntity(GraphicsObject);
-            GraphicsObject = NULL;
-        }
-        if(GraphicsNode)
-        {
-            OgreManager->destroySceneNode(GraphicsNode);
-            GraphicsNode = NULL;
-        }
+        PreGraphicsMeshCreate();
         if(Shape)
         {
             delete Shape;
@@ -356,62 +377,12 @@ namespace phys{
             return;
         }
         Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
-        if(GraphicsObject)
-        {
-            OgreManager->destroyEntity(GraphicsObject);
-            GraphicsObject = NULL;
-        }
-        if(GraphicsNode)
-        {
-            OgreManager->destroySceneNode(GraphicsNode);
-            GraphicsNode = NULL;
-        }
+        PreGraphicsMeshCreate();
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
         String GroupName = TheMaterial->getGroup();
-
         Real Radius = (static_cast<btSphereShape*>(Shape))->getRadius();
-        Real RingAngle = (Ogre::Math::PI / Rings);
-        Real SegAngle = (2 * Ogre::Math::PI / Segments);
-        Whole VertIndex = 0;
-
-        Ogre::ManualObject* sphere = new Ogre::ManualObject("TempMan");
-        sphere->begin(MaterialName);
-
-        for( Whole ring = 0 ; ring <= Rings ; ring++ ) {
-        Real r0 = Radius * sinf (ring * RingAngle);
-        Real y0 = Radius * cosf (ring * RingAngle);
-
-            // Generate the group of segments for the current ring
-            for( Whole seg = 0 ; seg <= Segments ; seg++ ) {
-                Real x0 = r0 * sinf(seg * SegAngle);
-                Real z0 = r0 * cosf(seg * SegAngle);
-
-                // Add one vertex to the strip which makes up the sphere
-                sphere->position( x0, y0, z0);
-                sphere->normal(Ogre::Vector3(x0, y0, z0).normalisedCopy());
-                sphere->textureCoord((Real) seg / (Real) Segments, (Real) ring / (Real) Rings);
-
-                if (ring != Rings) {
-                    // each vertex (except the last) has six indicies pointing to it
-                    sphere->index(VertIndex + Segments + 1);
-                    sphere->index(VertIndex);
-                    sphere->index(VertIndex + Segments);
-                    sphere->index(VertIndex + Segments + 1);
-                    sphere->index(VertIndex + 1);
-                    sphere->index(VertIndex);
-                    VertIndex++;
-                }
-            }
-        }
-
-        sphere->end();
-        sphere->convertToMesh(Name + "Mesh", GroupName);
-
-        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
-        GraphicsNode = OgreManager->createSceneNode();
-        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
-        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
-        GraphicsNode->attachObject(GraphicsObject);
+        MeshGenerator::CreateSphereMesh(Name + "Mesh",MaterialName,Radius,Rings,Segments);
+        PostGraphicsMeshCreate(GroupName);
     }
 
     void AreaEffect::CreateGraphicsCylinder(const ColourValue& Colour)
@@ -433,30 +404,25 @@ namespace phys{
             return;
         }
         Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
-        if(GraphicsObject)
-        {
-            OgreManager->destroyEntity(GraphicsObject);
-            GraphicsObject = NULL;
-        }
-        if(GraphicsNode)
-        {
-            OgreManager->destroySceneNode(GraphicsNode);
-            GraphicsNode = NULL;
-        }
+        PreGraphicsMeshCreate();
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
         String GroupName = TheMaterial->getGroup();
-
-        Ogre::ManualObject* cylinder = new Ogre::ManualObject("TempMan");
-        cylinder->begin(MaterialName);
-
-        cylinder->end();
-        cylinder->convertToMesh(Name + "Mesh", GroupName);
-
-        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
-        GraphicsNode = OgreManager->createSceneNode();
-        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
-        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
-        GraphicsNode->attachObject(GraphicsObject);
+        Vector3 Half((static_cast<btCylinderShape*>(Shape))->getHalfExtentsWithoutMargin());
+        switch(ShapeType)
+        {
+            case AreaEffect::AE_CylinderX:
+                MeshGenerator::CreateCylinderMesh(Name + "Mesh",MaterialName,Half,Vector3(1,0,0));
+                break;
+            case AreaEffect::AE_CylinderY:
+                MeshGenerator::CreateCylinderMesh(Name + "Mesh",MaterialName,Half,Vector3(0,1,0));
+                break;
+            case AreaEffect::AE_CylinderZ:
+                MeshGenerator::CreateCylinderMesh(Name + "Mesh",MaterialName,Half,Vector3(0,0,1));
+                break;
+            default:
+                return;
+        }
+        PostGraphicsMeshCreate(GroupName);
     }
 
     void AreaEffect::CreateGraphicsBox(const ColourValue& Colour)
@@ -478,73 +444,13 @@ namespace phys{
             return;
         }
         Ogre::SceneManager* OgreManager = TheWorld->GetSceneManager()->GetGraphicsWorldPointer();
-        if(GraphicsObject)
-        {
-            OgreManager->destroyEntity(GraphicsObject);
-            GraphicsObject = NULL;
-        }
-        if(GraphicsNode)
-        {
-            OgreManager->destroySceneNode(GraphicsNode);
-            GraphicsNode = NULL;
-        }
+        PreGraphicsMeshCreate();
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
         String GroupName = TheMaterial->getGroup();
         /// @todo The HalfExtents returned here includes scaling, should account for that so weird scaling sync issues don't occur.
         Vector3 Half((static_cast<btBoxShape*>(Shape))->getHalfExtentsWithoutMargin());
-
-        Ogre::ManualObject* box = new Ogre::ManualObject("TempMan");
-        box->begin(MaterialName);
-        //Front
-        box->position(-Half.X,-Half.Y,Half.Z);  box->normal(0,0,1);  box->textureCoord(0,1);
-        box->position(Half.X,-Half.Y,Half.Z);   box->normal(0,0,1);  box->textureCoord(1,1);
-        box->position(Half.X,Half.Y,Half.Z);    box->normal(0,0,1);  box->textureCoord(1,0);
-        box->position(-Half.X,Half.Y,Half.Z);   box->normal(0,0,1);  box->textureCoord(0,0);
-        //Back
-        box->position(Half.X,-Half.Y,-Half.Z);  box->normal(0,0,-1); box->textureCoord(0,1);
-        box->position(-Half.X,-Half.Y,-Half.Z); box->normal(0,0,-1); box->textureCoord(1,1);
-        box->position(-Half.X,Half.Y,-Half.Z);  box->normal(0,0,-1); box->textureCoord(1,0);
-        box->position(Half.X,Half.Y,-Half.Z);   box->normal(0,0,-1); box->textureCoord(0,0);
-        //Left
-        box->position(-Half.X,-Half.Y,-Half.Z); box->normal(-1,0,0); box->textureCoord(0,1);
-        box->position(-Half.X,-Half.Y,Half.Z);  box->normal(-1,0,0); box->textureCoord(1,1);
-        box->position(-Half.X,Half.Y,Half.Z);   box->normal(-1,0,0); box->textureCoord(1,0);
-        box->position(-Half.X,Half.Y,-Half.Z);  box->normal(-1,0,0); box->textureCoord(0,0);
-        //Right
-        box->position(Half.X,-Half.Y,Half.Z);   box->normal(1,0,0);  box->textureCoord(0,1);
-        box->position(Half.X,-Half.Y,-Half.Z);  box->normal(1,0,0);  box->textureCoord(1,1);
-        box->position(Half.X,Half.Y,-Half.Z);   box->normal(1,0,0);  box->textureCoord(1,0);
-        box->position(Half.X,Half.Y,Half.Z);    box->normal(1,0,0);  box->textureCoord(0,0);
-        //Top
-        box->position(-Half.X,Half.Y,Half.Z);   box->normal(0,1,0);  box->textureCoord(0,1);
-        box->position(Half.X,Half.Y,Half.Z);    box->normal(0,1,0);  box->textureCoord(1,1);
-        box->position(Half.X,Half.Y,-Half.Z);   box->normal(0,1,0);  box->textureCoord(1,0);
-        box->position(-Half.X,Half.Y,-Half.Z);  box->normal(0,1,0);  box->textureCoord(0,0);
-        //Bottom
-        box->position(-Half.X,-Half.Y,-Half.Z); box->normal(0,-1,0); box->textureCoord(0,1);
-        box->position(Half.X,-Half.Y,-Half.Z);  box->normal(0,-1,0); box->textureCoord(1,1);
-        box->position(Half.X,-Half.Y,Half.Z);   box->normal(0,-1,0); box->textureCoord(1,0);
-        box->position(-Half.X,-Half.Y,Half.Z);  box->normal(0,-1,0); box->textureCoord(0,0);
-
-        box->triangle(0,1,2);    box->triangle(0,2,3);    //Front
-        box->triangle(4,5,6);    box->triangle(4,6,7);    //Back
-        box->triangle(8,9,10);   box->triangle(8,10,11);  //Left
-        box->triangle(12,13,14); box->triangle(12,14,15); //Right
-        box->triangle(16,17,18); box->triangle(16,18,19); //Top
-        box->triangle(20,21,22); box->triangle(20,22,23); //Bottom
-
-        box->end();
-        Ogre::MeshPtr boxmesh = box->convertToMesh(Name + "Mesh", GroupName);
-        boxmesh->_setBounds(Ogre::AxisAlignedBox(-Half.X,-Half.Y,-Half.Z,Half.X,Half.Y,Half.Z));
-        Real RunnerUp = Half.X > Half.Y ? Half.X : Half.Y;
-        Real Largest = RunnerUp > Half.Z ? RunnerUp : Half.Z;
-        boxmesh->_setBoundingSphereRadius(Ogre::Math::Sqrt(3*Largest*Largest));
-
-        GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
-        GraphicsNode = OgreManager->createSceneNode();
-        OgreManager->getRootSceneNode()->addChild(GraphicsNode);
-        GraphicsNode->setPosition((GetLocation()).GetOgreVector3());
-        GraphicsNode->attachObject(GraphicsObject);
+        MeshGenerator::CreateBoxMesh(Name + "Mesh",MaterialName,Half);
+        PostGraphicsMeshCreate(GroupName);
     }
 
     std::list<ActorBase*>& AreaEffect::GetOverlappingActors()

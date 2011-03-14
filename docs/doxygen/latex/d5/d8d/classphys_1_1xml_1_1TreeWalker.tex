@@ -39,7 +39,7 @@ int \hyperlink{classphys_1_1xml_1_1TreeWalker_a90fdd705ae4d5e8e3b931bb8896e4397}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1xml_1_1TreeWalker_a6db9d28bd448a131448276ee03de1e6d}{
-class {\bfseries Node}}
+class \hyperlink{classphys_1_1xml_1_1TreeWalker_a6db9d28bd448a131448276ee03de1e6d}{Node}}
 \label{d5/d8d/classphys_1_1xml_1_1TreeWalker_a6db9d28bd448a131448276ee03de1e6d}
 
 \end{DoxyCompactItemize}
@@ -49,7 +49,7 @@ class {\bfseries Node}}
 Used to call a function for\_\-each member of the subtree of nodes descended from a specific node. \begin{DoxyReturn}{Returns}
 Returns a \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator}.
 \end{DoxyReturn}
-If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some equivalent method or use a \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker}. This provides a helper for depth-\/first traversal of a subtree. In order to use it, you have to implement \hyperlink{classphys_1_1xml_1_1TreeWalker}{xml::TreeWalker} interface and call \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{xml::Node::Traverse()} function. \par
+If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some equivalent method or use a \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker}. This provides a helper for depth-\/first traversal of a subtree. In order to use it, you have to implement \hyperlink{classphys_1_1xml_1_1TreeWalker}{xml::TreeWalker} interface and call \hyperlink{classphys_1_1xml_1_1Node_a53d7718081d6d0835dde64f7cc2763bc}{xml::Node::Traverse()} function. \par
 \par
  First, \hyperlink{classphys_1_1xml_1_1TreeWalker_a649d9e5a06542be0282d3d20994a62fc}{TreeWalker::begin()} is called with traversal root as its argument.\par
  Then, \hyperlink{classphys_1_1xml_1_1TreeWalker_a03267e73acac44809f16739fd00a536d}{TreeWalker::for\_\-each()} function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Each \hyperlink{classphys_1_1xml_1_1Node}{Node} is passed as an argument.\par
@@ -78,7 +78,7 @@ Definition at line 863 of file xml.h.
 Called on the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal begins.  By default this simply returns true, but is expected to be overridden with any desired behavior. 
 
 \begin{DoxyReturn}{Returns}
-True by default. If it returns false, then traversal ends and the \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{Node::Traverse()} that was called is expected to return false. 
+True by default. If it returns false, then traversal ends and the \hyperlink{classphys_1_1xml_1_1Node_a53d7718081d6d0835dde64f7cc2763bc}{Node::Traverse()} that was called is expected to return false. 
 \end{DoxyReturn}
 
 
@@ -118,7 +118,7 @@ Definition at line 3336 of file xml.cpp.
 Called on the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal ends.  By default this simply returns true, but is expected to be overridden with any desired behavior. 
 
 \begin{DoxyReturn}{Returns}
-True by default. If it returns false, then traversal ends and the \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{Node::Traverse()} that was called is expected to return false. 
+True by default. If it returns false, then traversal ends and the \hyperlink{classphys_1_1xml_1_1Node_a53d7718081d6d0835dde64f7cc2763bc}{Node::Traverse()} that was called is expected to return false. 
 \end{DoxyReturn}
 
 
@@ -138,7 +138,7 @@ Definition at line 3346 of file xml.cpp.
 A Pure Virtual function that is expected to be implemented to create the desired behavior.  This is called on every \hyperlink{classphys_1_1xml_1_1Node}{Node} that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching many nodes. 
 
 \begin{DoxyReturn}{Returns}
-if true Traversal is expected to continue, if false, then traversal ends and the \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{Node::Traverse()} that was called is expected to return false. 
+if true Traversal is expected to continue, if false, then traversal ends and the \hyperlink{classphys_1_1xml_1_1Node_a53d7718081d6d0835dde64f7cc2763bc}{Node::Traverse()} that was called is expected to return false. 
 \end{DoxyReturn}
 
 

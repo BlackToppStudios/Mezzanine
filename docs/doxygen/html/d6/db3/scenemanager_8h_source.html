@@ -88,7 +88,7 @@
 <a name="l00057"></a>00057     <span class="keyword">class </span>Light;
 <a name="l00058"></a>00058     <span class="keyword">class </span>Plane;
 <a name="l00059"></a>00059     <span class="keyword">class </span>ParticleEffect;
-<a name="l00060"></a>00060     <span class="keyword">class </span>Node;<span class="comment"></span>
+<a name="l00060"></a>00060     <span class="keyword">class </span>WorldNode;<span class="comment"></span>
 <a name="l00061"></a>00061 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00062"></a>00062 <span class="comment">    /// @class SceneManager</span>
 <a name="l00063"></a>00063 <span class="comment">    /// @headerfile scenemanager.h</span>
@@ -111,7 +111,7 @@
 <a name="l00080"></a>00080 <span class="comment">            /// @brief Pointer for the Ogre Scenemanager, where this manager gets it&#39;s functionality.</span>
 <a name="l00081"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ab9980c42506a8757cab12feb210f056a">00081</a> <span class="comment"></span>            Ogre::SceneManager* OgreManager;<span class="comment"></span>
 <a name="l00082"></a>00082 <span class="comment">            /// @brief Vector storing all the nodes in use by this class.</span>
-<a name="l00083"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6">00083</a> <span class="comment"></span>            std::vector&lt; Node* &gt; Nodes;<span class="comment"></span>
+<a name="l00083"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0">00083</a> <span class="comment"></span>            std::vector&lt; WorldNode* &gt; WorldNodes;<span class="comment"></span>
 <a name="l00084"></a>00084 <span class="comment">            /// @brief Vector storing all the lights in use by this class.</span>
 <a name="l00085"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a196c70361e8db0d5861cfb7b35f1bbf3">00085</a> <span class="comment"></span>            std::vector&lt; Light* &gt; Lights;<span class="comment"></span>
 <a name="l00086"></a>00086 <span class="comment">            /// @brief Vector storing all the particle effects in use by this class.</span>
@@ -239,19 +239,19 @@
 <a name="l00208"></a>00208 <span class="comment">            /// @param Target The location of the first node which you will be orbiting around.</span>
 <a name="l00209"></a>00209 <span class="comment">            /// @param RelativeLoc The location of the node that will be in orbit relative to the first node.  Assume the</span>
 <a name="l00210"></a>00210 <span class="comment">            /// first node is at Origin (0,0,0).</span>
-<a name="l00211"></a>00211 <span class="comment"></span>            <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* CreateOrbitingNode(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Target, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> RelativeLoc, <span class="keywordtype">bool</span> AutoTrack);<span class="comment"></span>
+<a name="l00211"></a>00211 <span class="comment"></span>            <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* CreateOrbitingNode(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Target, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> RelativeLoc, <span class="keywordtype">bool</span> AutoTrack);<span class="comment"></span>
 <a name="l00212"></a>00212 <span class="comment">            /// @brief Creates a stationary node that will look at a location.</span>
 <a name="l00213"></a>00213 <span class="comment">            /// @details This will create a node that doesn&#39;t move, and will look at one location that you specify.  This</span>
 <a name="l00214"></a>00214 <span class="comment">            /// node can then have lights, particle effects, or ribbon trails attached to it.</span>
 <a name="l00215"></a>00215 <span class="comment">            /// @param LookAt The location you want the node to look at.  Automatically handles orientation.</span>
 <a name="l00216"></a>00216 <span class="comment">            /// @param Location The location of the node itself.</span>
-<a name="l00217"></a>00217 <span class="comment"></span>            <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* CreateStandNode(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> LookAt, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Location);<span class="comment"></span>
+<a name="l00217"></a>00217 <span class="comment"></span>            <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* CreateStandNode(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> LookAt, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Location);<span class="comment"></span>
 <a name="l00218"></a>00218 <span class="comment">            /// @brief Gets an already created node by name.</span>
 <a name="l00219"></a>00219 <span class="comment">            /// @return Returns a pointer to the node of the specified name.</span>
-<a name="l00220"></a>00220 <span class="comment"></span>            <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* GetNode(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
+<a name="l00220"></a>00220 <span class="comment"></span>            <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* GetNode(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
 <a name="l00221"></a>00221 <span class="comment">            /// @brief Gets an already created node by index.</span>
 <a name="l00222"></a>00222 <span class="comment">            /// @return Returns a pointer to the node at the specified index.</span>
-<a name="l00223"></a>00223 <span class="comment"></span>            <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* GetNode(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index);<span class="comment"></span>
+<a name="l00223"></a>00223 <span class="comment"></span>            <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* GetNode(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index);<span class="comment"></span>
 <a name="l00224"></a>00224 <span class="comment">            /// @brief Gets the number of nodes created and stored in this manager.</span>
 <a name="l00225"></a>00225 <span class="comment">            /// @return Returns the number of nodes this manager is storing.</span>
 <a name="l00226"></a>00226 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetNumNodes();<span class="comment"></span>
@@ -263,7 +263,7 @@
 <a name="l00232"></a>00232 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetNumOrbitNodes();<span class="comment"></span>
 <a name="l00233"></a>00233 <span class="comment">            /// @brief Deletes a node and removes all trace of it from the manager.</span>
 <a name="l00234"></a>00234 <span class="comment">            /// @param node The node to be destroyed.</span>
-<a name="l00235"></a>00235 <span class="comment"></span>            <span class="keywordtype">void</span> DestroyNode(<a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* node);<span class="comment"></span>
+<a name="l00235"></a>00235 <span class="comment"></span>            <span class="keywordtype">void</span> DestroyNode(<a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* node);<span class="comment"></span>
 <a name="l00236"></a>00236 <span class="comment">            /// @brief Gets the name of this manager.</span>
 <a name="l00237"></a>00237 <span class="comment">            /// @return Returns the name of this manager.</span>
 <a name="l00238"></a>00238 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; GetName();<span class="comment"></span>
@@ -279,7 +279,7 @@
 <a name="l00248"></a>00248 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:34 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

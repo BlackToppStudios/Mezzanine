@@ -51,10 +51,11 @@ Inheritance diagram for phys::EventBase:</div>
  <div class="center">
   <img src="../../dd/d80/classphys_1_1EventBase.png" usemap="#phys::EventBase_map" alt=""/>
   <map id="phys::EventBase_map" name="phys::EventBase_map">
-<area href="../../dd/de9/classphys_1_1EventCollision.html" alt="phys::EventCollision" shape="rect" coords="0,56,144,80"/>
-<area href="../../dd/dea/classphys_1_1EventQuit.html" alt="phys::EventQuit" shape="rect" coords="154,56,298,80"/>
-<area href="../../d3/d8b/classphys_1_1EventRenderTime.html" alt="phys::EventRenderTime" shape="rect" coords="308,56,452,80"/>
-<area href="../../d7/df5/classphys_1_1EventUserInput.html" alt="phys::EventUserInput" shape="rect" coords="462,56,606,80"/>
+<area href="../../dd/de9/classphys_1_1EventCollision.html" alt="phys::EventCollision" shape="rect" coords="0,56,153,80"/>
+<area href="../../d4/d0f/classphys_1_1EventGameWindow.html" alt="phys::EventGameWindow" shape="rect" coords="163,56,316,80"/>
+<area href="../../dd/dea/classphys_1_1EventQuit.html" alt="phys::EventQuit" shape="rect" coords="326,56,479,80"/>
+<area href="../../d3/d8b/classphys_1_1EventRenderTime.html" alt="phys::EventRenderTime" shape="rect" coords="489,56,642,80"/>
+<area href="../../d7/df5/classphys_1_1EventUserInput.html" alt="phys::EventUserInput" shape="rect" coords="652,56,805,80"/>
 </map>
 </div>
 
@@ -63,12 +64,12 @@ Inheritance diagram for phys::EventBase:</div>
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a> { <br/>
-&nbsp;&nbsp;<a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5">RenderTime</a>, 
-<a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">UserInput</a>, 
-<a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9">QuitMessage</a>, 
-<a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08">SystemMessage</a>, 
-<br/>
 &nbsp;&nbsp;<a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5">Collision</a>, 
+<a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923ad094ddaa5cafeb0880c838e58b84693e">GameWindow</a>, 
+<a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9">QuitMessage</a>, 
+<a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5">RenderTime</a>, 
+<br/>
+&nbsp;&nbsp;<a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">UserInput</a>, 
 <b>Other</b>
 <br/>
  }</td></tr>
@@ -95,20 +96,20 @@ Public Member Functions</h2></td></tr>
 <div class="memdoc">
 <p>A listing of values that can be used to identify Events. </p>
 <dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5"></a><!-- doxytag: member="Collision" ref="a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5" args="" -->Collision</em>&nbsp;</td><td>
+<p>Indicates the Event is a Physics Collision Event </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a5e6a8564e127f654123f0bf6a2751923ad094ddaa5cafeb0880c838e58b84693e"></a><!-- doxytag: member="GameWindow" ref="a5e6a8564e127f654123f0bf6a2751923ad094ddaa5cafeb0880c838e58b84693e" args="" -->GameWindow</em>&nbsp;</td><td>
+<p>Indicates the Event is a Game Window Management Event </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9"></a><!-- doxytag: member="QuitMessage" ref="a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9" args="" -->QuitMessage</em>&nbsp;</td><td>
+<p>Indicates the Event is a <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">phys::EventQuit</a> </p>
+</td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5"></a><!-- doxytag: member="RenderTime" ref="a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5" args="" -->RenderTime</em>&nbsp;</td><td>
 <p>Indicates the Event is a PhysEventRenderTime </p>
 </td></tr>
 <tr><td valign="top"><em><a class="anchor" id="a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef"></a><!-- doxytag: member="UserInput" ref="a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef" args="" -->UserInput</em>&nbsp;</td><td>
 <p>Indicates the Event is a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> </p>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9"></a><!-- doxytag: member="QuitMessage" ref="a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9" args="" -->QuitMessage</em>&nbsp;</td><td>
-<p>Indicates the Event is a <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">phys::EventQuit</a> </p>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08"></a><!-- doxytag: member="SystemMessage" ref="a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08" args="" -->SystemMessage</em>&nbsp;</td><td>
-<p>Indicates the Event has not been coded yet </p>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5"></a><!-- doxytag: member="Collision" ref="a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5" args="" -->Collision</em>&nbsp;</td><td>
-<p>Indicates the Event is a Physics Collision Event </p>
 </td></tr>
 </table>
 </dd>
@@ -138,7 +139,7 @@ Public Member Functions</h2></td></tr>
 <p>All Classes derived form this calls will return an Event::EventType that correspond the the data/class type they actually are. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns an eventype that will correspend with the actual event type. This can be used on all Phys game provided class to safely cast a pointer to the correct event type. </dd></dl>
 
-<p>Implemented in <a class="el" href="../../dd/de9/classphys_1_1EventCollision.html#a96c2809f1bbab78b9f2758cea15a9a36">phys::EventCollision</a>, <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html#a3bfca875349e73dbda47c3c62a253e3b">phys::EventQuit</a>, <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html#a160ca55bf9e5a2ae80dab82eab88baf5">phys::EventRenderTime</a>, and <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html#a3e803a8d9bcc1576fe04d2245a86ec80">phys::EventUserInput</a>.</p>
+<p>Implemented in <a class="el" href="../../dd/de9/classphys_1_1EventCollision.html#a96c2809f1bbab78b9f2758cea15a9a36">phys::EventCollision</a>, <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#ab43a924a6c347823b0af51145974e297">phys::EventGameWindow</a>, <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html#a3bfca875349e73dbda47c3c62a253e3b">phys::EventQuit</a>, <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html#a160ca55bf9e5a2ae80dab82eab88baf5">phys::EventRenderTime</a>, and <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html#a3e803a8d9bcc1576fe04d2245a86ec80">phys::EventUserInput</a>.</p>
 
 </div>
 </div>
@@ -146,7 +147,7 @@ Public Member Functions</h2></td></tr>
 <li><a class="el" href="../../db/d87/eventbase_8h_source.html">eventbase.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:47 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:39 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -1,0 +1,248 @@
+\hypertarget{classphys_1_1ActorGraphicsSettings}{
+\section{phys::ActorGraphicsSettings Class Reference}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings}\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+}
+
+
+This is a helper class for configuring graphics settings of an actor.  
+
+
+
+
+{\ttfamily \#include $<$actorgraphicssettings.h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ActorGraphicsSettings_a33472d07ddaaf630e4e7b8c94190df0a}{ActorGraphicsSettings} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, Ogre::Entity $\ast$GraphicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorGraphicsSettings_a3c6f9f1dd5bcceda2db65f1514313e14}{
+\hyperlink{classphys_1_1ActorGraphicsSettings_a3c6f9f1dd5bcceda2db65f1514313e14}{$\sim$ActorGraphicsSettings} ()}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_a3c6f9f1dd5bcceda2db65f1514313e14}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorGraphicsSettings_a8954153fe516ddf4e0107348c3af5abc}{SetMaterial} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} MatName, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the material of the specified submesh. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1ActorGraphicsSettings_ab0c7beb46db48e20f42d50516b826a86}{GetMaterialName} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Gets the material name of the specified submesh. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ActorGraphicsSettings_a7b1948300461014e30e8a295917ae886}{HasMaterialSet} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Gets whether or not the specified submesh has a material script assigned to it. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorGraphicsSettings_af959c11c0de5b62d217201731163ee8d}{GetNumSubmeshes} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of submeshes in the mesh of the graphics ohject. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorGraphicsSettings_a93d1c9b229b51b98702b29b8bb5ec4d0}{SetMaterialAmbient} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Ambient, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the Ambient colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorGraphicsSettings_a51bfae72380679093595c1805b1d940b}{SetMaterialSpecular} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Specular, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the Specular colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ActorGraphicsSettings_a135bebcafc6a2386aaec61bce7a5e548}{SetMaterialDiffuse} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Diffuse, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Submesh=0)
+\begin{DoxyCompactList}\small\item\em Sets the Diffuse colour value of the material belonging to the specified submesh. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ActorGraphicsSettings_ade1b760cc01187e9ffdeed8871533066}{
+Ogre::MaterialPtr {\bfseries GetMaterial} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Submesh=0)}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_ade1b760cc01187e9ffdeed8871533066}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ActorGraphicsSettings_a256f2b713dbfe39007708600e58bf2f7}{
+Ogre::Entity $\ast$ {\bfseries ActorEnt}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_a256f2b713dbfe39007708600e58bf2f7}
+
+\item 
+\hypertarget{classphys_1_1ActorGraphicsSettings_a52f1d57929101944767bf23b003f0975}{
+\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ {\bfseries Parent}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_a52f1d57929101944767bf23b003f0975}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is a helper class for configuring graphics settings of an actor. This class contains functions for the configuring of graphics specific settings of an actor. This class can only configure the actors graphics. For configuring actor physics, see ActorPhysicsSettings. 
+
+Definition at line 62 of file actorgraphicssettings.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ActorGraphicsSettings_a33472d07ddaaf630e4e7b8c94190df0a}{
+\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!ActorGraphicsSettings@{ActorGraphicsSettings}}
+\index{ActorGraphicsSettings@{ActorGraphicsSettings}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+\subsubsection[{ActorGraphicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorGraphicsSettings::ActorGraphicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{ Actor, }
+\item[{Ogre::Entity $\ast$}]{ GraphicsObject}
+\end{DoxyParamCaption}
+)}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_a33472d07ddaaf630e4e7b8c94190df0a}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Actor}]The actor this settings class configures. \item[{\em GraphicsObject}]The graphics object belonging to the actor this class configures. \end{DoxyParams}
+
+
+Definition at line 50 of file actorgraphicssettings.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1ActorGraphicsSettings_ab0c7beb46db48e20f42d50516b826a86}{
+\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!GetMaterialName@{GetMaterialName}}
+\index{GetMaterialName@{GetMaterialName}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+\subsubsection[{GetMaterialName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& phys::ActorGraphicsSettings::GetMaterialName (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_ab0c7beb46db48e20f42d50516b826a86}
+
+
+Gets the material name of the specified submesh. 
+
+Note the returned name isn't of the .material file, but the material script. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Submesh}]The submesh you want to get the material name from. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a String containing the name of the material script in use. 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file actorgraphicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorGraphicsSettings_af959c11c0de5b62d217201731163ee8d}{
+\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!GetNumSubmeshes@{GetNumSubmeshes}}
+\index{GetNumSubmeshes@{GetNumSubmeshes}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+\subsubsection[{GetNumSubmeshes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::ActorGraphicsSettings::GetNumSubmeshes (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_af959c11c0de5b62d217201731163ee8d}
+
+
+Gets the number of submeshes in the mesh of the graphics ohject. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the number of submeshes in this objects mesh. 
+\end{DoxyReturn}
+
+
+Definition at line 80 of file actorgraphicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorGraphicsSettings_a7b1948300461014e30e8a295917ae886}{
+\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!HasMaterialSet@{HasMaterialSet}}
+\index{HasMaterialSet@{HasMaterialSet}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+\subsubsection[{HasMaterialSet}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ActorGraphicsSettings::HasMaterialSet (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_a7b1948300461014e30e8a295917ae886}
+
+
+Gets whether or not the specified submesh has a material script assigned to it. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Submesh}]The submesh to check. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether there is a material assigned to the specified submesh. 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file actorgraphicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorGraphicsSettings_a8954153fe516ddf4e0107348c3af5abc}{
+\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!SetMaterial@{SetMaterial}}
+\index{SetMaterial@{SetMaterial}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+\subsubsection[{SetMaterial}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorGraphicsSettings::SetMaterial (
+\begin{DoxyParamCaption}
+\item[{{\bf String}}]{ MatName, }
+\item[{{\bf Whole}}]{ Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_a8954153fe516ddf4e0107348c3af5abc}
+
+
+Sets the material of the specified submesh. 
+
+The name of the material isn't the same as the name of the .material file. As a single material file can contain several material scripts. The name this function expects is the name of the material script inside a .material file. 
+\begin{DoxyParams}{Parameters}
+\item[{\em MatName}]The name of the material to be applied. \item[{\em Submesh}]The submesh to apply the material to. \end{DoxyParams}
+
+
+Definition at line 65 of file actorgraphicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorGraphicsSettings_a93d1c9b229b51b98702b29b8bb5ec4d0}{
+\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!SetMaterialAmbient@{SetMaterialAmbient}}
+\index{SetMaterialAmbient@{SetMaterialAmbient}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+\subsubsection[{SetMaterialAmbient}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorGraphicsSettings::SetMaterialAmbient (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ Ambient, }
+\item[{{\bf Whole}}]{ Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_a93d1c9b229b51b98702b29b8bb5ec4d0}
+
+
+Sets the Ambient colour value of the material belonging to the specified submesh. 
+
+The set value is applied to every technique of every pass in the material. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Ambient}]The colour you wish to set as the material Ambient. \item[{\em Submesh}]The submesh you want to alter the material of. \end{DoxyParams}
+
+
+Definition at line 85 of file actorgraphicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorGraphicsSettings_a135bebcafc6a2386aaec61bce7a5e548}{
+\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!SetMaterialDiffuse@{SetMaterialDiffuse}}
+\index{SetMaterialDiffuse@{SetMaterialDiffuse}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+\subsubsection[{SetMaterialDiffuse}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorGraphicsSettings::SetMaterialDiffuse (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ Diffuse, }
+\item[{{\bf Whole}}]{ Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_a135bebcafc6a2386aaec61bce7a5e548}
+
+
+Sets the Diffuse colour value of the material belonging to the specified submesh. 
+
+The set value is applied to every technique of every pass in the material. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Diffuse}]The colour you wish to set as the material Diffuse. \item[{\em Submesh}]The submesh you want to alter the material of. \end{DoxyParams}
+
+
+Definition at line 95 of file actorgraphicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorGraphicsSettings_a51bfae72380679093595c1805b1d940b}{
+\index{phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}!SetMaterialSpecular@{SetMaterialSpecular}}
+\index{SetMaterialSpecular@{SetMaterialSpecular}!phys::ActorGraphicsSettings@{phys::ActorGraphicsSettings}}
+\subsubsection[{SetMaterialSpecular}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorGraphicsSettings::SetMaterialSpecular (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ Specular, }
+\item[{{\bf Whole}}]{ Submesh = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}
+\label{dd/dd6/classphys_1_1ActorGraphicsSettings_a51bfae72380679093595c1805b1d940b}
+
+
+Sets the Specular colour value of the material belonging to the specified submesh. 
+
+The set value is applied to every technique of every pass in the material. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Specular}]The colour you wish to set as the material Specular. \item[{\em Submesh}]The submesh you want to alter the material of. \end{DoxyParams}
+
+
+Definition at line 90 of file actorgraphicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorgraphicssettings.h\item 
+actorgraphicssettings.cpp\end{DoxyCompactItemize}

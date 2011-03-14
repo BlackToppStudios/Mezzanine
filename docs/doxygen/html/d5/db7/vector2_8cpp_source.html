@@ -205,11 +205,46 @@
 <a name="l00174"></a>00174         <span class="keywordflow">return</span> Temp;
 <a name="l00175"></a>00175     }
 <a name="l00176"></a>00176 }
-<a name="l00177"></a>00177 
-<a name="l00178"></a>00178 <span class="preprocessor">#endif</span>
+<a name="l00177"></a>00177 <span class="comment"></span>
+<a name="l00178"></a>00178 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00179"></a>00179 <span class="comment"></span><span class="comment">// Class External &lt;&lt; Operators for streaming or assignment</span>
+<a name="l00180"></a>00180 std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a>&amp; x)
+<a name="l00181"></a>00181 {
+<a name="l00182"></a>00182 <span class="preprocessor">    #ifdef PHYSXML</span>
+<a name="l00183"></a>00183 <span class="preprocessor"></span>        stream &lt;&lt; <span class="stringliteral">&quot;&lt;Vector2 Version=\&quot;1\&quot; X=\&quot;&quot;</span> &lt;&lt; x.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> &lt;&lt; <span class="stringliteral">&quot;\&quot; Y=\&quot;&quot;</span> &lt;&lt; x.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> &lt;&lt; <span class="stringliteral">&quot;\&quot; /&gt;&quot;</span>;
+<a name="l00184"></a>00184 <span class="preprocessor">    #else</span>
+<a name="l00185"></a>00185 <span class="preprocessor"></span>        stream &lt;&lt; <span class="stringliteral">&quot;[&quot;</span> &lt;&lt; x.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a> &lt;&lt; <span class="stringliteral">&quot;,&quot;</span> &lt;&lt; x.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a> &lt;&lt; <span class="stringliteral">&quot;]&quot;</span>;
+<a name="l00186"></a>00186 <span class="preprocessor">    #endif // \PHYSXML</span>
+<a name="l00187"></a>00187 <span class="preprocessor"></span>    <span class="keywordflow">return</span> stream;
+<a name="l00188"></a>00188 }
+<a name="l00189"></a>00189 
+<a name="l00190"></a>00190 <span class="preprocessor">#ifdef PHYSXML</span>
+<a name="l00191"></a>00191 <span class="preprocessor"></span>std::istream&amp; PHYS_LIB operator &gt;&gt; (std::istream&amp; stream, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a>&amp; Vec)
+<a name="l00192"></a>00192 {
+<a name="l00193"></a>00193     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a> OneTag( <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a9d912900518f0d84d323d1514dfb93a2" title="Gets the first tag out of the Stream and returns it as a String.">phys::xml::GetOneTag</a>(stream) );
+<a name="l00194"></a>00194     std::auto_ptr&lt;phys::xml::Document&gt; Doc( <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a2d57f26ba476d7f9ea154290d07dc038" title="Perform a basic series of checks for extracting meaning from a single xml tag.">phys::xml::PreParseClassFromSingleTag</a>(<span class="stringliteral">&quot;phys::&quot;</span>, <span class="stringliteral">&quot;Vector2&quot;</span>, OneTag) );
+<a name="l00195"></a>00195 
+<a name="l00196"></a>00196     Doc-&gt;GetFirstChild() &gt;&gt; Vec;
+<a name="l00197"></a>00197 
+<a name="l00198"></a>00198     <span class="keywordflow">return</span> stream;
+<a name="l00199"></a>00199 }
+<a name="l00200"></a>00200 
+<a name="l00201"></a>00201 <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; operator &gt;&gt; (<span class="keyword">const</span> <a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">phys::xml::Node</a>&amp; OneNode, <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">phys::Vector2</a>&amp; Vec)
+<a name="l00202"></a>00202 {
+<a name="l00203"></a>00203     <span class="keywordflow">if</span>(OneNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a30582671aa3619f436ece1207130a303" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() == 1)
+<a name="l00204"></a>00204     {
+<a name="l00205"></a>00205         Vec.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#a68e65741d34a298e420657180bf03d75" title="Coordinate on the X vector.">X</a>=OneNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a30582671aa3619f436ece1207130a303" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;X&quot;</span>).AsReal();
+<a name="l00206"></a>00206         Vec.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#ad1d77a1b2bf6c0040ecbd2b88b8a1ba4" title="Coordinate on the Y vector.">Y</a>=OneNode.<a class="code" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a30582671aa3619f436ece1207130a303" title="Attempt to get an Attribute on this Node with a given name.">GetAttribute</a>(<span class="stringliteral">&quot;Y&quot;</span>).AsReal();
+<a name="l00207"></a>00207     }<span class="keywordflow">else</span>{
+<a name="l00208"></a>00208         <span class="keywordflow">throw</span>( <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a>(<span class="stringliteral">&quot;Incompatible XML Version for Vector2: Not Version 1&quot;</span>));
+<a name="l00209"></a>00209     }
+<a name="l00210"></a>00210 }
+<a name="l00211"></a>00211 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l00212"></a>00212 <span class="preprocessor"></span>
+<a name="l00213"></a>00213 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:34 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

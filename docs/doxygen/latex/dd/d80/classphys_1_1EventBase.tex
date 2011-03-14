@@ -14,19 +14,19 @@ The base class for all events.
 Inheritance diagram for phys::EventBase:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=1.842105cm]{dd/d80/classphys_1_1EventBase}
+\includegraphics[height=1.391304cm]{dd/d80/classphys_1_1EventBase}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
 enum \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \{ \par
-\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5}{RenderTime}, 
-\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef}{UserInput}, 
-\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9}{QuitMessage}, 
-\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08}{SystemMessage}, 
-\par
 \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5}{Collision}, 
+\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923ad094ddaa5cafeb0880c838e58b84693e}{GameWindow}, 
+\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9}{QuitMessage}, 
+\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5}{RenderTime}, 
+\par
+\hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef}{UserInput}, 
 {\bfseries Other}
  \}
 \end{DoxyCompactItemize}
@@ -53,7 +53,19 @@ Definition at line 61 of file eventbase.h.
 A listing of values that can be used to identify Events. \begin{Desc}
 \item[Enumerator: ]\par
 \begin{description}
-\index{RenderTime@{RenderTime}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!RenderTime@{RenderTime}}\item[{\em 
+\index{Collision@{Collision}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!Collision@{Collision}}\item[{\em 
+\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5}{
+Collision}
+\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5}
+}]Indicates the Event is a Physics Collision Event \index{GameWindow@{GameWindow}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!GameWindow@{GameWindow}}\item[{\em 
+\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923ad094ddaa5cafeb0880c838e58b84693e}{
+GameWindow}
+\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923ad094ddaa5cafeb0880c838e58b84693e}
+}]Indicates the Event is a Game Window Management Event \index{QuitMessage@{QuitMessage}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!QuitMessage@{QuitMessage}}\item[{\em 
+\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9}{
+QuitMessage}
+\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9}
+}]Indicates the Event is a \hyperlink{classphys_1_1EventQuit}{phys::EventQuit} \index{RenderTime@{RenderTime}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!RenderTime@{RenderTime}}\item[{\em 
 \hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5}{
 RenderTime}
 \label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5}
@@ -61,19 +73,7 @@ RenderTime}
 \hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef}{
 UserInput}
 \label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef}
-}]Indicates the Event is a \hyperlink{classphys_1_1EventUserInput}{EventUserInput} \index{QuitMessage@{QuitMessage}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!QuitMessage@{QuitMessage}}\item[{\em 
-\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9}{
-QuitMessage}
-\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9}
-}]Indicates the Event is a \hyperlink{classphys_1_1EventQuit}{phys::EventQuit} \index{SystemMessage@{SystemMessage}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!SystemMessage@{SystemMessage}}\item[{\em 
-\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08}{
-SystemMessage}
-\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08}
-}]Indicates the Event has not been coded yet \index{Collision@{Collision}!phys::EventBase@{phys::EventBase}}\index{phys::EventBase@{phys::EventBase}!Collision@{Collision}}\item[{\em 
-\hypertarget{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5}{
-Collision}
-\label{dd/d80/classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5}
-}]Indicates the Event is a Physics Collision Event \end{description}
+}]Indicates the Event is a \hyperlink{classphys_1_1EventUserInput}{EventUserInput} \end{description}
 \end{Desc}
 
 
@@ -101,7 +101,7 @@ This returns an eventype that will correspend with the actual event type. This c
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1EventCollision_a96c2809f1bbab78b9f2758cea15a9a36}{phys::EventCollision}, \hyperlink{classphys_1_1EventQuit_a3bfca875349e73dbda47c3c62a253e3b}{phys::EventQuit}, \hyperlink{classphys_1_1EventRenderTime_a160ca55bf9e5a2ae80dab82eab88baf5}{phys::EventRenderTime}, and \hyperlink{classphys_1_1EventUserInput_a3e803a8d9bcc1576fe04d2245a86ec80}{phys::EventUserInput}.
+Implemented in \hyperlink{classphys_1_1EventCollision_a96c2809f1bbab78b9f2758cea15a9a36}{phys::EventCollision}, \hyperlink{classphys_1_1EventGameWindow_ab43a924a6c347823b0af51145974e297}{phys::EventGameWindow}, \hyperlink{classphys_1_1EventQuit_a3bfca875349e73dbda47c3c62a253e3b}{phys::EventQuit}, \hyperlink{classphys_1_1EventRenderTime_a160ca55bf9e5a2ae80dab82eab88baf5}{phys::EventRenderTime}, and \hyperlink{classphys_1_1EventUserInput_a3e803a8d9bcc1576fe04d2245a86ec80}{phys::EventUserInput}.
 
 
 

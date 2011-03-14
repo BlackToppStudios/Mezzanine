@@ -51,6 +51,7 @@
 ///////////////////////////////////////
 #include "eventuserinput.h"
 #include "eventbase.h"
+#include "world.h"
 
 #include <vector>
 
@@ -159,8 +160,9 @@ namespace phys
 
             case SDL_MOUSEBUTTONDOWN:
             case SDL_MOUSEBUTTONUP:{
-                vector<MetaCode> Transport(this->AddCodesFromSDLMouseButton(RawEvent_));
-                Results.insert(Results.end(), Transport.begin(),Transport.end());
+                //vector<MetaCode> Transport(this->AddCodesFromSDLMouseButton(RawEvent_));
+                //Results.insert(Results.end(), Transport.begin(),Transport.end());
+                Results.push_back(this->AddCodeFromSDLMouseButton(RawEvent_));
                 break;}
 
             case SDL_JOYAXISMOTION: //Incomplete
@@ -200,27 +202,14 @@ namespace phys
         return Results;
     }
 
-    vector<MetaCode> EventUserInput::AddCodesFromSDLMouseButton(const RawEvent &RawEvent_)
+    MetaCode EventUserInput::AddCodeFromSDLMouseButton(const RawEvent &RawEvent_)
     {
-        vector<MetaCode> Results;
-
-        Results.push_back(this->AddCode(RawEvent_.button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL));
-        Results.push_back(this->AddCode(RawEvent_.button.y, MetaCode::MOUSEABSOLUTEVERTICAL));
-
-        if ( SDL_BUTTON_WHEELUP==RawEvent_.button.button)
+        if(RawEvent_.button.state==SDL_PRESSED)
         {
-            Results.push_back(this->AddCode(MetaCode::MOUSEWHEEL_UP, MetaCode::MOUSEWHEELVERTICAL));
-        }else if( SDL_BUTTON_WHEELDOWN==RawEvent_.button.button ){
-            Results.push_back(this->AddCode(MetaCode::MOUSEWHEEL_DOWN, MetaCode::MOUSEWHEELVERTICAL) );
+            return this->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
         }else{
-            if(RawEvent_.button.state==SDL_PRESSED)
-            {
-                Results.push_back(this->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));
-            }else{
-                Results.push_back(this->AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));
-            }
+            return this->AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
         }
-        return Results;
     }
 
 } // /phys

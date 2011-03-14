@@ -98,12 +98,12 @@ namespace phys
             void SetMaterialAmbient(const ColourValue& Ambient, Whole Submesh = 0);
             /// @brief Sets the Specular colour value of the material belonging to the specified submesh.
             /// @details The set value is applied to every technique of every pass in the material.
-            /// @param Ambient The colour you wish to set as the material Specular.
+            /// @param Specular The colour you wish to set as the material Specular.
             /// @param Submesh The submesh you want to alter the material of.
             void SetMaterialSpecular(const ColourValue& Specular, Whole Submesh = 0);
             /// @brief Sets the Diffuse colour value of the material belonging to the specified submesh.
             /// @details The set value is applied to every technique of every pass in the material.
-            /// @param Ambient The colour you wish to set as the material Diffuse.
+            /// @param Diffuse The colour you wish to set as the material Diffuse.
             /// @param Submesh The submesh you want to alter the material of.
             void SetMaterialDiffuse(const ColourValue& Diffuse, Whole Submesh = 0);
     };

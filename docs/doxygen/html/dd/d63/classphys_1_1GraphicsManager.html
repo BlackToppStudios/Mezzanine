@@ -79,8 +79,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the Width.  <a href="#aea5fb5808a23fa29c8522c396ac0d6b5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac6feb044d9ab394f3e65d51026a899a6">setRenderResolution</a> (const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;Width_, const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;Height_)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Changes the X and Y Resolution at the same time.  <a href="#ac6feb044d9ab394f3e65d51026a899a6"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#ab3eff6a622e84cc1e567ca3887248010">setRenderOptions</a> (const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;Width_, const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;Height_, const bool &amp;Fullscreen_)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Changes the X Resolution, Y Resolution, and fullscreen at the same time.  <a href="#ab3eff6a622e84cc1e567ca3887248010"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#aeeca7f0fc3c3b31abc153031fa4ccbf2">setRenderOptions</a> (const <a class="el" href="../../d0/dd0/structphys_1_1GraphicsSettings.html">GraphicsSettings</a> &amp;NewSettings)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Changes the X Resolution, Y Resolution, and fullscreen at the same time.  <a href="#aeeca7f0fc3c3b31abc153031fa4ccbf2"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad07600281c765e22bc413a1a9df1a22c">HasSDLBeenInitialized</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets whether or not SDL has been started.  <a href="#ad07600281c765e22bc413a1a9df1a22c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#adcded385b6442aa5da6097f1edd5471a">ShowGraphicsSettingDialog</a> ()</td></tr>
@@ -99,6 +99,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the longest amount of time it's taken to render a frame.  <a href="#a96e6324466a121df5977446f019cee57"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9138c2f79ff9b711494089802724615e">GetRenderSystemName</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the name of the render system in current use.  <a href="#a9138c2f79ff9b711494089802724615e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a4bfa1c07f2c2305ec892e603a71c6341">GetSupportedResolutions</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets a vector containing all the resolutions supported by this render system on the current hardware.  <a href="#a4bfa1c07f2c2305ec892e603a71c6341"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a7d1cce1c63d5678266337323da1e8ff5">GetSupportedDevices</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets a vector containing all the devices supported by this render system on the current hardware.  <a href="#a7d1cce1c63d5678266337323da1e8ff5"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac4b864de93827447bf8f47487da3bf32">ResetRenderTimer</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Resets the Render timer.  <a href="#ac4b864de93827447bf8f47487da3bf32"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">Initialize</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Empty Initializor.  <a href="#a554572de5d1cdce37aa1760d6e6e039c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">DoMainLoopItems</a> ()</td></tr>
@@ -116,7 +122,7 @@ Public Member Functions</h2></td></tr>
 <p>This is intended to store basic graphics setting for the user. </p>
 <p>This stores x/y resolution, fullscreen and in the future other settings. This is intended to make it easy for developers to pass/move around complex graphics settings. We hope to eventually include other items like shader settings, rendering API, and maybe other settings too. </p>
 
-<p>Definition at line <a class="el" href="../../d9/d94/graphicsmanager_8h_source.html#l00064">64</a> of file <a class="el" href="../../d9/d94/graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d94/graphicsmanager_8h_source.html#l00096">96</a> of file <a class="el" href="../../d9/d94/graphicsmanager_8h_source.html">graphicsmanager.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aceab258136ec2f29c8f163bf270f62c1"></a><!-- doxytag: member="phys::GraphicsManager::GraphicsManager" ref="aceab258136ec2f29c8f163bf270f62c1" args="()" -->
 <div class="memitem">
@@ -207,7 +213,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aa9e13a3f7c398b708f0f242610b5abf7">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00352">352</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00432">432</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -229,7 +235,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the Average FPS. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the average framerate. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00312">312</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00357">357</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -251,7 +257,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the Best FPS. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the best framerate. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00317">317</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00362">362</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -273,7 +279,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the shortest amount of time it's taken to render a frame. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the best time for rendering a frame. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00327">327</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00372">372</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -296,7 +302,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the Fullscreen Setting </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a bool, true if fullscreen is set, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00228">228</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00238">238</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -319,7 +325,7 @@ Public Member Functions</h2></td></tr>
 <p>This essentially determines how many frames could be rendered if all frames within a second rendered at the same speed. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the framerate. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00307">307</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00352">352</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -342,7 +348,7 @@ Public Member Functions</h2></td></tr>
 <p><b>For internal use only.</b></p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the Ogre RenderWindow class in use. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00387">387</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00467">467</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -365,7 +371,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the Height of the Rendering Area </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns the Height of the Rendering Area </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00245">245</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -387,7 +393,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the name of the render system in current use. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of the current render system. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00337">337</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00382">382</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -410,7 +416,53 @@ Public Member Functions</h2></td></tr>
 <p>Gets the Width of the Rendering Area </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns the Width of the Rendering Area </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00250">250</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00266">266</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7d1cce1c63d5678266337323da1e8ff5"></a><!-- doxytag: member="phys::GraphicsManager::GetSupportedDevices" ref="a7d1cce1c63d5678266337323da1e8ff5" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &gt; * phys::GraphicsManager::GetSupportedDevices </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets a vector containing all the devices supported by this render system on the current hardware. </p>
+<p>This vector is populated when the manager gets initialized. Calling on it before then will give you an empty vector. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Const Pointer to the vector storing all the supported devices. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00395">395</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4bfa1c07f2c2305ec892e603a71c6341"></a><!-- doxytag: member="phys::GraphicsManager::GetSupportedResolutions" ref="a4bfa1c07f2c2305ec892e603a71c6341" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt; <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &gt; * phys::GraphicsManager::GetSupportedResolutions </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets a vector containing all the resolutions supported by this render system on the current hardware. </p>
+<p>This vector is populated when the manager gets initialized. Calling on it before then will give you an empty vector. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Const Pointer to the vector storing all the supported resolutions. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00390">390</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -434,7 +486,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00373">373</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00453">453</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -456,7 +508,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the Worst FPS. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the worst framerate. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00322">322</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00367">367</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -478,7 +530,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the longest amount of time it's taken to render a frame. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a Real representing the worst time for rendering a frame. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00332">332</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00377">377</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -500,7 +552,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets whether or not SDL has been started. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool indicating whether or not SDL has been initialized yet. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00285">285</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00330">330</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -524,7 +576,7 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00346">346</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00406">406</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -548,7 +600,29 @@ Public Member Functions</h2></td></tr>
 
 <p>Reimplemented from <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#afc3572602f96bdeb8215c386ff870820">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00376">376</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00456">456</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac4b864de93827447bf8f47487da3bf32"></a><!-- doxytag: member="phys::GraphicsManager::ResetRenderTimer" ref="ac4b864de93827447bf8f47487da3bf32" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::GraphicsManager::ResetRenderTimer </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Resets the Render timer. </p>
+<p>This function should not be called unless you know exactly what you are doing. This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop. </p>
+
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00400">400</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -581,7 +655,7 @@ Public Member Functions</h2></td></tr>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000011">Todo:</a></b></dt><dd>TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00234">234</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00244">244</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -611,7 +685,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00382">382</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00462">462</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -643,36 +717,21 @@ Public Member Functions</h2></td></tr>
 <p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000012">Todo:</a></b></dt><dd>TODO: Need to attempt to update resolution here </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00255">255</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00271">271</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ab3eff6a622e84cc1e567ca3887248010"></a><!-- doxytag: member="phys::GraphicsManager::setRenderOptions" ref="ab3eff6a622e84cc1e567ca3887248010" args="(const Whole &amp;Width_, const Whole &amp;Height_, const bool &amp;Fullscreen_)" -->
+<a class="anchor" id="aeeca7f0fc3c3b31abc153031fa4ccbf2"></a><!-- doxytag: member="phys::GraphicsManager::setRenderOptions" ref="aeeca7f0fc3c3b31abc153031fa4ccbf2" args="(const GraphicsSettings &amp;NewSettings)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void phys::GraphicsManager::setRenderOptions </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>Width_</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const <a class="el" href="../../d0/dd0/structphys_1_1GraphicsSettings.html">GraphicsSettings</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>NewSettings</em></td>
+          <td>&nbsp;)&nbsp;</td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>Height_</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const bool &amp;&nbsp;</td>
-          <td class="paramname"> <em>Fullscreen_</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td></td>
         </tr>
       </table>
 </div>
@@ -680,16 +739,8 @@ Public Member Functions</h2></td></tr>
 
 <p>Changes the X Resolution, Y Resolution, and fullscreen at the same time. </p>
 <p>This should be useful in situations where it is not possible to update all of the options separately. </p>
-<dl><dt><b>Parameters:</b></dt><dd>
-  <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Width_</em>&nbsp;</td><td>The new desired Width for the rendering area as a whole number </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Height_</em>&nbsp;</td><td>The new desired Width for the rendering area as a whole number </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Fullscreen_</em>&nbsp;</td><td>This accepts a bool. True for fullscreen, false for windowed </td></tr>
-  </table>
-  </dd>
-</dl>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00277">277</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00319">319</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -731,7 +782,7 @@ Public Member Functions</h2></td></tr>
 <p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000014">Todo:</a></b></dt><dd>TODO: Need to attempt to update resolution here </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00269">269</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00293">293</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -763,7 +814,7 @@ Public Member Functions</h2></td></tr>
 <p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000013">Todo:</a></b></dt><dd>TODO: Need to attempt to update resolution here </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00262">262</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00282">282</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -785,7 +836,7 @@ Public Member Functions</h2></td></tr>
 <p>This Shows an Engine Generated Configuration Screen. </p>
 <p>This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. </p>
 
-<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00293">293</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html#l00338">338</a> of file <a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -794,7 +845,7 @@ Public Member Functions</h2></td></tr>
 <li><a class="el" href="../../d9/d35/graphicsmanager_8cpp_source.html">graphicsmanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:48 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:41 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

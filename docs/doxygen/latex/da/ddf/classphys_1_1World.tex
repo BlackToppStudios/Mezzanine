@@ -202,7 +202,7 @@ Deconstructor.
 
 This Tears down all the items created by the physworld, and safely frees any graphical resources, we will also delete any Objects passed into the Physworld by pointer. We will not delete any pointers we pass out (like from the Events from the Event manager) 
 
-Definition at line 207 of file world.cpp.
+Definition at line 212 of file world.cpp.
 
 
 
@@ -225,7 +225,7 @@ Internally the world had a list of managers that is sorted by the \hyperlink{cla
 \item[{\em ManagerToAdd}]The pointer to the manager to be added \end{DoxyParams}
 
 
-Definition at line 421 of file world.cpp.
+Definition at line 427 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a1461e6c9d16214aa2cc310035b149378}{
 \index{phys::World@{phys::World}!DoMainLoopLogging@{DoMainLoopLogging}}
@@ -242,7 +242,7 @@ This commits the log stream to the log.
 
 This is called automatically during the main loop just before rendering. 
 
-Definition at line 350 of file world.cpp.
+Definition at line 356 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a21cc36be08a61f40619584d4c438936b}{
 \index{phys::World@{phys::World}!GameInit@{GameInit}}
@@ -262,7 +262,7 @@ This creates the game window and starts the game.
 \item[{\em CallMainLoop}]should the main loop be called\end{DoxyParams}
 Prior to this all of the physics and graphical object containers should have been loaded and prepared for use. There should be minimal delay from the time you call this and the game actually begins. This will automatically call the Main Loop unless passed false. 
 
-Definition at line 250 of file world.cpp.
+Definition at line 255 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a8173d8959802e923f4972822435e43b6}{
 \index{phys::World@{phys::World}!GetActorManager@{GetActorManager}}
@@ -285,7 +285,7 @@ This returns a pointer to a ActorManager, or a NULL pointer if no matching manag
 \end{DoxyReturn}
 
 
-Definition at line 550 of file world.cpp.
+Definition at line 556 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a33ab68866da54b7f8f766d5d29171fb7}{
 \index{phys::World@{phys::World}!GetCameraManager@{GetCameraManager}}
@@ -308,7 +308,7 @@ This returns a pointer to a \hyperlink{classphys_1_1CameraManager}{CameraManager
 \end{DoxyReturn}
 
 
-Definition at line 555 of file world.cpp.
+Definition at line 561 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ac20a304413b4d47f9ae657983e903a67}{
 \index{phys::World@{phys::World}!GetEventManager@{GetEventManager}}
@@ -331,7 +331,7 @@ This returns a pointer to a \hyperlink{classphys_1_1EventManager}{EventManager},
 \end{DoxyReturn}
 
 
-Definition at line 560 of file world.cpp.
+Definition at line 566 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a348cebf8f15202a9916ac1b2400c63b1}{
 \index{phys::World@{phys::World}!GetFrameTime@{GetFrameTime}}
@@ -351,7 +351,7 @@ This returns a whole number which can be used to aid in the timimg of various al
 \end{DoxyReturn}
 
 
-Definition at line 408 of file world.cpp.
+Definition at line 414 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a15f968adb5d841da6c5eb51607a8f525}{
 \index{phys::World@{phys::World}!GetGraphicsManager@{GetGraphicsManager}}
@@ -374,7 +374,7 @@ This returns a pointer to a \hyperlink{classphys_1_1GraphicsManager}{GraphicsMan
 \end{DoxyReturn}
 
 
-Definition at line 565 of file world.cpp.
+Definition at line 571 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a910befc904c0d0e73b913dedd08e9d98}{
 \index{phys::World@{phys::World}!GetManager@{GetManager}}
@@ -398,7 +398,7 @@ This returns a pointer to a \hyperlink{classphys_1_1ManagerBase}{ManagerBase}, o
 \end{DoxyReturn}
 
 
-Definition at line 484 of file world.cpp.
+Definition at line 490 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a1b9eb6206ee15c2ef49665a07de3d83c}{
 \index{phys::World@{phys::World}!GetPhysicsManager@{GetPhysicsManager}}
@@ -421,7 +421,7 @@ This returns a pointer to a \hyperlink{classphys_1_1PhysicsManager}{PhysicsManag
 \end{DoxyReturn}
 
 
-Definition at line 570 of file world.cpp.
+Definition at line 576 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a8a5381637922598411a4369be6904228}{
 \index{phys::World@{phys::World}!GetResourceManager@{GetResourceManager}}
@@ -444,7 +444,7 @@ This returns a pointer to a \hyperlink{classphys_1_1ResourceManager}{ResourceMan
 \end{DoxyReturn}
 
 
-Definition at line 585 of file world.cpp.
+Definition at line 591 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a86a86a78851845837ccc43da8b3a3019}{
 \index{phys::World@{phys::World}!GetSceneManager@{GetSceneManager}}
@@ -467,7 +467,7 @@ This returns a pointer to a \hyperlink{classphys_1_1SceneManager}{SceneManager},
 \end{DoxyReturn}
 
 
-Definition at line 575 of file world.cpp.
+Definition at line 581 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ac662bf5d5737a99cd3bc3ff45e7d79b8}{
 \index{phys::World@{phys::World}!GetSoundManager@{GetSoundManager}}
@@ -490,7 +490,7 @@ This returns a pointer to a \hyperlink{classphys_1_1SoundManager}{SoundManager},
 \end{DoxyReturn}
 
 
-Definition at line 580 of file world.cpp.
+Definition at line 586 of file world.cpp.
 
 \hypertarget{classphys_1_1World_aa063ace52be484c7b03ec5859453f48b}{
 \index{phys::World@{phys::World}!GetTargetFrameTime@{GetTargetFrameTime}}
@@ -510,7 +510,7 @@ This returns a Whole with the current Value
 \end{DoxyReturn}
 
 
-Definition at line 393 of file world.cpp.
+Definition at line 399 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a8e25bc6da5864d303b246224901af852}{
 \index{phys::World@{phys::World}!GetTimerManager@{GetTimerManager}}
@@ -533,7 +533,7 @@ This returns a pointer to a \hyperlink{classphys_1_1TimerManager}{TimerManager},
 \end{DoxyReturn}
 
 
-Definition at line 590 of file world.cpp.
+Definition at line 596 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ab7888bf9286df602490c30df6382fde9}{
 \index{phys::World@{phys::World}!GetUIManager@{GetUIManager}}
@@ -556,7 +556,7 @@ This returns a pointer to a \hyperlink{classphys_1_1UIManager}{UIManager}, or a 
 \end{DoxyReturn}
 
 
-Definition at line 595 of file world.cpp.
+Definition at line 601 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a1f0139bbc9561bcf18844be25e4adc73}{
 \index{phys::World@{phys::World}!GetWindowName@{GetWindowName}}
@@ -576,7 +576,7 @@ This returns a String Containing the Window Title
 \end{DoxyReturn}
 
 
-Definition at line 378 of file world.cpp.
+Definition at line 384 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ac7b8470a75353497bf8f85a8d3cd24e4}{
 \index{phys::World@{phys::World}!GetWorldPointer@{GetWorldPointer}}
@@ -616,7 +616,7 @@ Runtime event and message logging.
 \item[{\em Message}]This is what will be streamed to the log\end{DoxyParams}
 This also commits any outstanding log messages that are waiting in the \hyperlink{classphys_1_1World_a6d8b325a077afc924afb70c259ec0299}{World::LogStream}, and any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the Only ones to produce meaningul log messages. 
 
-Definition at line 278 of file world.h.
+Definition at line 279 of file world.h.
 
 \hypertarget{classphys_1_1World_a372ee96d395d735531f755fc0a72de4a}{
 \index{phys::World@{phys::World}!LogAndThrow@{LogAndThrow}}
@@ -636,7 +636,7 @@ This is the preferred way to throw an exception.
 \item[{\em Err}]A \hyperlink{classphys_1_1Exception}{phys::Exception} to be logged and thrown \end{DoxyParams}
 
 
-Definition at line 293 of file world.h.
+Definition at line 294 of file world.h.
 
 \hypertarget{classphys_1_1World_a88e6bdee6b972111b6804ca746738c50}{
 \index{phys::World@{phys::World}!LogAndThrow@{LogAndThrow}}
@@ -656,7 +656,7 @@ This will log the Message, and will throw an exception with the Message included
 \item[{\em Message}]This will be streamed to the log, then used in a thrown exception. \end{DoxyParams}
 
 
-Definition at line 304 of file world.h.
+Definition at line 305 of file world.h.
 
 \hypertarget{classphys_1_1World_abf6cb15d85be4e7dcb99db24f979319b}{
 \index{phys::World@{phys::World}!LogString@{LogString}}
@@ -676,7 +676,7 @@ Log String directly with no conversion.
 \item[{\em message}]The string to log \end{DoxyParams}
 
 
-Definition at line 221 of file world.cpp.
+Definition at line 226 of file world.cpp.
 
 \hypertarget{classphys_1_1World_af1d9e36d43f5e50543fa2351a32c8362}{
 \index{phys::World@{phys::World}!MainLoop@{MainLoop}}
@@ -709,7 +709,7 @@ Currently this just iterates through the list looking for the matching pointer, 
 \item[{\em ManagerToRemove}]A pointer to the manager to be removed \end{DoxyParams}
 
 
-Definition at line 446 of file world.cpp.
+Definition at line 452 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ad885d1102ecdd13cc277ee3f7dfcb742}{
 \index{phys::World@{phys::World}!RemoveManager@{RemoveManager}}
@@ -730,7 +730,7 @@ This starts at the beginning (should be the lowest priority)of the list and iter
 \item[{\em ManagersToRemoveType}]The \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerBase::ManagerTypeName} of the manager to remove. \item[{\em WhichOne}]If not removing the first/only manager of the given type, which one by count are you erasing. \end{DoxyParams}
 
 
-Definition at line 463 of file world.cpp.
+Definition at line 469 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a0168122baeb30d4b90ddecdda46c8fea}{
 \index{phys::World@{phys::World}!SetFrameTime@{SetFrameTime}}
@@ -752,7 +752,7 @@ Sets the amount of time since the last time Rendering began.
 This sets, in milliseconds the amount of time since the frame started (since the last rendering began). Don't set this carelessely can screw up a lot of stuff, for the most part this should be by the rendering manager during the rendering process. \end{DoxyInternal}
 
 
-Definition at line 413 of file world.cpp.
+Definition at line 419 of file world.cpp.
 
 \hypertarget{classphys_1_1World_a76dfcde35392291aafd6eb1a64b3c95c}{
 \index{phys::World@{phys::World}!SetTargetFrameRate@{SetTargetFrameRate}}
@@ -775,7 +775,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 403 of file world.cpp.
+Definition at line 409 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ad95b5a5ad73e0a05826b5bd834876333}{
 \index{phys::World@{phys::World}!SetTargetFrameTime@{SetTargetFrameTime}}
@@ -798,7 +798,7 @@ Setting vary low or very High values could cause unknown errors, This is on our 
 \end{DoxyWarning}
 
 
-Definition at line 398 of file world.cpp.
+Definition at line 404 of file world.cpp.
 
 \hypertarget{classphys_1_1World_acd0dff342c08fe3008226488b7c53d97}{
 \index{phys::World@{phys::World}!SetWindowName@{SetWindowName}}
@@ -819,12 +819,12 @@ This changes the text in the bar at the top of the game window in windowed mode.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000034}{Todo}]TODO Change the name of an application once it is running \end{Desc}
+\item[\hyperlink{todo__todo000033}{Todo}]TODO Change the name of an application once it is running \end{Desc}
 
 
 
 
-Definition at line 383 of file world.cpp.
+Definition at line 389 of file world.cpp.
 
 \hypertarget{classphys_1_1World_ae807112b9494a94a6ff0d60df0a4d424}{
 \index{phys::World@{phys::World}!UpdateManagerOrder@{UpdateManagerOrder}}
@@ -841,7 +841,7 @@ This forces the list of managers to be resorted.
 
 This should only need to be called if the Priority attribute of a manager in the list has changed. This sorts the list of managers 
 
-Definition at line 535 of file world.cpp.
+Definition at line 541 of file world.cpp.
 
 \hypertarget{classphys_1_1World_abbe8ceecc6bdbd542a250fd721c05276}{
 \index{phys::World@{phys::World}!UpdateManagerOrder@{UpdateManagerOrder}}
@@ -862,7 +862,7 @@ Searches through the Manager list and removes any previous entries to the changi
 \item[{\em ManagerToChange}]A pointer to the manager that needs to be changed \item[{\em Priority\_\-}]the new desire priority/execution order of the Manager \end{DoxyParams}
 
 
-Definition at line 515 of file world.cpp.
+Definition at line 521 of file world.cpp.
 
 
 
@@ -878,7 +878,7 @@ This is another way to put data in the log.
 
 The contents of this will be commited to the log once per frame, just before rendering, or whenever \hyperlink{classphys_1_1World_a05267a20e8d5518771d0848190b33d60}{World::Log} is called. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. 
 
-Definition at line 289 of file world.h.
+Definition at line 290 of file world.h.
 
 \hypertarget{classphys_1_1World_a78f9e764aa85ac44d6f7fa7158377757}{
 \index{phys::World@{phys::World}!TheRealWorld@{TheRealWorld}}
@@ -893,7 +893,7 @@ A pointer to the one and only world.
 \end{DoxyInternal}
 
 
-Definition at line 217 of file world.h.
+Definition at line 218 of file world.h.
 
 
 

@@ -201,6 +201,7 @@ namespace phys
                             std::vector < ManagerBase* > ManagerToBeAdded);
 
             void SanityChecks();
+            void OneTimeMainLoopInit();
 
             //Settings for Engine Functionality
             string WindowName;

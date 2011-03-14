@@ -1,0 +1,471 @@
+\hypertarget{classphys_1_1EventGameWindow}{
+\section{phys::EventGameWindow Class Reference}
+\label{d4/d0f/classphys_1_1EventGameWindow}\index{phys::EventGameWindow@{phys::EventGameWindow}}
+}
+
+
+This is intended to convey the message that quitting needs to happen.  
+
+
+
+
+{\ttfamily \#include $<$eventgamewindow.h$>$}
+
+Inheritance diagram for phys::EventGameWindow:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d4/d0f/classphys_1_1EventGameWindow}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09}{GameWindowEventID} \{ \par
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ae2a7610e7a32d53ee92bf5fe2764935c}{GAME\_\-WINDOW\_\-NONE} = 0, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a9109b7fb1835941a0519f37a5dc2f938}{GAME\_\-WINDOW\_\-FIRST} =  GAME\_\-WINDOW\_\-NONE, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a2f86504eb791b0181b499bdcb2250d1d}{GAME\_\-WINDOW\_\-SHOWN}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09aa567edb744271aacd02f22f596c46d8d}{GAME\_\-WINDOW\_\-HIDDEN}, 
+\par
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ada7c1c23c6da30aee3debba363379be4}{GAME\_\-WINDOW\_\-EXPOSED}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a20f2c7da3eb4d22b4c2f92788daabfef}{GAME\_\-WINDOW\_\-MOVED}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a03d9f1f081bbca89a4de1f13f1c150e9}{GAME\_\-WINDOW\_\-RESIZED}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ae85ae9b84cd785e0eafdb3e4ade17b7e}{GAME\_\-WINDOW\_\-SIZE\_\-CHANGED}, 
+\par
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a96e49680f8a4dc93d34056d03882a691}{GAME\_\-WINDOW\_\-MINIMIZED}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a8d43573619988df44708ed9f6cbfe737}{GAME\_\-WINDOW\_\-MAXIMIZED}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a948c8fd4eb2791edbc1d1db03a7d831d}{GAME\_\-WINDOW\_\-RESTORED}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a277538cd68003ba6910fa502223b1211}{GAME\_\-WINDOW\_\-ENTER}, 
+\par
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ac8fa0e63e6a667cec270ef1f6d22637f}{GAME\_\-WINDOW\_\-LEAVE}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09af1af852f11ba0c2f11b7a2b8131e3bb3}{GAME\_\-WINDOW\_\-FOCUS\_\-GAINED}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a0badc0a56b136f063cd0ae3cca06e77a}{GAME\_\-WINDOW\_\-FOCUS\_\-LOST}, 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a7dc01efd74badd9247854967433953d7}{GAME\_\-WINDOW\_\-CLOSE}, 
+\par
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ad6a39df788ee97efda258b46a776d61a}{GAME\_\-WINDOW\_\-LAST} =  GAME\_\-WINDOW\_\-CLOSE
+ \}
+\begin{DoxyCompactList}\small\item\em Used to identify the kind of change that has happened to the game window. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1EventGameWindow_aca917d4cf8ee17dd5253c294aac75bb8}{EventGameWindow} (\hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}{RawEvent} Raw\_\-)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} from a Rawevent. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventGameWindow_a7ee9c85879de43a995e6ce966b8a940c}{EventGameWindow} (\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09}{GameWindowEventID} GWEventID, int First=0, int Second=0)
+\begin{DoxyCompactList}\small\item\em Creates an \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} from manually assigned values. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventGameWindow_a4011621e2c6fc55a9c89a489f90dc1c8}{EventGameWindow} (const \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} \&Other)
+\begin{DoxyCompactList}\small\item\em Copy constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1EventGameWindow_aa6e0b4f13327caaaab3e4656e6a9fa13}{
+\hyperlink{classphys_1_1EventGameWindow_aa6e0b4f13327caaaab3e4656e6a9fa13}{$\sim$EventGameWindow} ()}
+\label{d4/d0f/classphys_1_1EventGameWindow_aa6e0b4f13327caaaab3e4656e6a9fa13}
+
+\begin{DoxyCompactList}\small\item\em Deconstructs this \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow}. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \hyperlink{classphys_1_1EventGameWindow_ab43a924a6c347823b0af51145974e297}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns EventType::GameWindow. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09}{GameWindowEventID} \hyperlink{classphys_1_1EventGameWindow_a9454b837e1f09e3927d3666dc8b5d88b}{GetEventID} () const 
+\begin{DoxyCompactList}\small\item\em What just happened, what kind of event was it. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1EventGameWindow_a28f0c0e000107bcce2b118c8d1657492}{GetFirstEventData} () const 
+\begin{DoxyCompactList}\small\item\em Where or how much happened, Get the first event dependent data. \item\end{DoxyCompactList}\item 
+int \hyperlink{classphys_1_1EventGameWindow_a477ef27390df3efa13cc37499e841f06}{GetSecondEventData} () const 
+\begin{DoxyCompactList}\small\item\em Where or how much happened, Get the second event dependent data. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1EventGameWindow_a9717be3e8429e0477be014ac57aa3679}{IsEventIDValid} () const 
+\begin{DoxyCompactList}\small\item\em Used to help determine if this Event is valid by checking the contents of the GameWindowEventID. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1EventGameWindow_a730e2b5fd13cc23cdc56351880895f04}{operator=} (const \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} \&Other)
+\begin{DoxyCompactList}\small\item\em Assignment of a this \hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData}. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1EventGameWindow_a5b73127941980949fe3be1ded2a4cd34}{operator==} (const \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Equality comparison of two \hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData}. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1EventGameWindow_abd3028a9c35ca2f5fd24e6b901054f24}{operator==} (const \hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09}{GameWindowEventID} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Equality comparison of this \hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData} and a GameWindowEventID. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1EventGameWindow_a643c70f9137ea6812e53fa0993cd783a}{GameWindowEventIDToString} (\hyperlink{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09}{EventGameWindow::GameWindowEventID} GWEventID)
+\begin{DoxyCompactList}\small\item\em Converts GameWindowEventID To Strings. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData} $\ast$ \hyperlink{classphys_1_1EventGameWindow_aa5ceefae0b4ef7a017425cbd3ee08600}{Data}
+\begin{DoxyCompactList}\small\item\em Holds all internal data. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This is intended to convey the message that quitting needs to happen. 
+
+Definition at line 61 of file eventgamewindow.h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!GameWindowEventID@{GameWindowEventID}}
+\index{GameWindowEventID@{GameWindowEventID}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{GameWindowEventID}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::EventGameWindow::GameWindowEventID}}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09}
+
+
+Used to identify the kind of change that has happened to the game window. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{GAME\_\-WINDOW\_\-NONE@{GAME\_\-WINDOW\_\-NONE}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-NONE@{GAME\_\-WINDOW\_\-NONE}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ae2a7610e7a32d53ee92bf5fe2764935c}{
+GAME\_\-WINDOW\_\-NONE}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ae2a7610e7a32d53ee92bf5fe2764935c}
+}]Never used \index{GAME\_\-WINDOW\_\-FIRST@{GAME\_\-WINDOW\_\-FIRST}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-FIRST@{GAME\_\-WINDOW\_\-FIRST}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a9109b7fb1835941a0519f37a5dc2f938}{
+GAME\_\-WINDOW\_\-FIRST}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a9109b7fb1835941a0519f37a5dc2f938}
+}]Used only as the lower bounds of this enumeration \index{GAME\_\-WINDOW\_\-SHOWN@{GAME\_\-WINDOW\_\-SHOWN}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-SHOWN@{GAME\_\-WINDOW\_\-SHOWN}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a2f86504eb791b0181b499bdcb2250d1d}{
+GAME\_\-WINDOW\_\-SHOWN}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a2f86504eb791b0181b499bdcb2250d1d}
+}]Window has been shown \index{GAME\_\-WINDOW\_\-HIDDEN@{GAME\_\-WINDOW\_\-HIDDEN}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-HIDDEN@{GAME\_\-WINDOW\_\-HIDDEN}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09aa567edb744271aacd02f22f596c46d8d}{
+GAME\_\-WINDOW\_\-HIDDEN}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09aa567edb744271aacd02f22f596c46d8d}
+}]Window has been hidden \index{GAME\_\-WINDOW\_\-EXPOSED@{GAME\_\-WINDOW\_\-EXPOSED}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-EXPOSED@{GAME\_\-WINDOW\_\-EXPOSED}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ada7c1c23c6da30aee3debba363379be4}{
+GAME\_\-WINDOW\_\-EXPOSED}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ada7c1c23c6da30aee3debba363379be4}
+}]Window has been exposed and should be redrawn \index{GAME\_\-WINDOW\_\-MOVED@{GAME\_\-WINDOW\_\-MOVED}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-MOVED@{GAME\_\-WINDOW\_\-MOVED}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a20f2c7da3eb4d22b4c2f92788daabfef}{
+GAME\_\-WINDOW\_\-MOVED}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a20f2c7da3eb4d22b4c2f92788daabfef}
+}]Window has been moved to data1, data2 \index{GAME\_\-WINDOW\_\-RESIZED@{GAME\_\-WINDOW\_\-RESIZED}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-RESIZED@{GAME\_\-WINDOW\_\-RESIZED}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a03d9f1f081bbca89a4de1f13f1c150e9}{
+GAME\_\-WINDOW\_\-RESIZED}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a03d9f1f081bbca89a4de1f13f1c150e9}
+}]Window has been resized to data1xdata2 \index{GAME\_\-WINDOW\_\-SIZE\_\-CHANGED@{GAME\_\-WINDOW\_\-SIZE\_\-CHANGED}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-SIZE\_\-CHANGED@{GAME\_\-WINDOW\_\-SIZE\_\-CHANGED}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ae85ae9b84cd785e0eafdb3e4ade17b7e}{
+GAME\_\-WINDOW\_\-SIZE\_\-CHANGED}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ae85ae9b84cd785e0eafdb3e4ade17b7e}
+}]The window size has changed, either as a result of an API call or through the system or user changing the window size. \index{GAME\_\-WINDOW\_\-MINIMIZED@{GAME\_\-WINDOW\_\-MINIMIZED}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-MINIMIZED@{GAME\_\-WINDOW\_\-MINIMIZED}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a96e49680f8a4dc93d34056d03882a691}{
+GAME\_\-WINDOW\_\-MINIMIZED}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a96e49680f8a4dc93d34056d03882a691}
+}]Window has been minimized \index{GAME\_\-WINDOW\_\-MAXIMIZED@{GAME\_\-WINDOW\_\-MAXIMIZED}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-MAXIMIZED@{GAME\_\-WINDOW\_\-MAXIMIZED}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a8d43573619988df44708ed9f6cbfe737}{
+GAME\_\-WINDOW\_\-MAXIMIZED}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a8d43573619988df44708ed9f6cbfe737}
+}]Window has been maximized \index{GAME\_\-WINDOW\_\-RESTORED@{GAME\_\-WINDOW\_\-RESTORED}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-RESTORED@{GAME\_\-WINDOW\_\-RESTORED}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a948c8fd4eb2791edbc1d1db03a7d831d}{
+GAME\_\-WINDOW\_\-RESTORED}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a948c8fd4eb2791edbc1d1db03a7d831d}
+}]Window has been restored to normal size and position \index{GAME\_\-WINDOW\_\-ENTER@{GAME\_\-WINDOW\_\-ENTER}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-ENTER@{GAME\_\-WINDOW\_\-ENTER}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a277538cd68003ba6910fa502223b1211}{
+GAME\_\-WINDOW\_\-ENTER}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a277538cd68003ba6910fa502223b1211}
+}]Window has gained mouse focus \index{GAME\_\-WINDOW\_\-LEAVE@{GAME\_\-WINDOW\_\-LEAVE}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-LEAVE@{GAME\_\-WINDOW\_\-LEAVE}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ac8fa0e63e6a667cec270ef1f6d22637f}{
+GAME\_\-WINDOW\_\-LEAVE}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ac8fa0e63e6a667cec270ef1f6d22637f}
+}]Window has lost mouse focus \index{GAME\_\-WINDOW\_\-FOCUS\_\-GAINED@{GAME\_\-WINDOW\_\-FOCUS\_\-GAINED}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-FOCUS\_\-GAINED@{GAME\_\-WINDOW\_\-FOCUS\_\-GAINED}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09af1af852f11ba0c2f11b7a2b8131e3bb3}{
+GAME\_\-WINDOW\_\-FOCUS\_\-GAINED}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09af1af852f11ba0c2f11b7a2b8131e3bb3}
+}]Window has gained keyboard focus \index{GAME\_\-WINDOW\_\-FOCUS\_\-LOST@{GAME\_\-WINDOW\_\-FOCUS\_\-LOST}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-FOCUS\_\-LOST@{GAME\_\-WINDOW\_\-FOCUS\_\-LOST}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a0badc0a56b136f063cd0ae3cca06e77a}{
+GAME\_\-WINDOW\_\-FOCUS\_\-LOST}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a0badc0a56b136f063cd0ae3cca06e77a}
+}]Window has lost keyboard focus \index{GAME\_\-WINDOW\_\-CLOSE@{GAME\_\-WINDOW\_\-CLOSE}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-CLOSE@{GAME\_\-WINDOW\_\-CLOSE}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a7dc01efd74badd9247854967433953d7}{
+GAME\_\-WINDOW\_\-CLOSE}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09a7dc01efd74badd9247854967433953d7}
+}]The window manager requests that the window be closed \index{GAME\_\-WINDOW\_\-LAST@{GAME\_\-WINDOW\_\-LAST}!phys::EventGameWindow@{phys::EventGameWindow}}\index{phys::EventGameWindow@{phys::EventGameWindow}!GAME\_\-WINDOW\_\-LAST@{GAME\_\-WINDOW\_\-LAST}}\item[{\em 
+\hypertarget{classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ad6a39df788ee97efda258b46a776d61a}{
+GAME\_\-WINDOW\_\-LAST}
+\label{d4/d0f/classphys_1_1EventGameWindow_a45225255070513d3cff88cdfea25cc09ad6a39df788ee97efda258b46a776d61a}
+}]Used only as the Upper bounds of this enumeration \end{description}
+\end{Desc}
+
+
+
+Definition at line 65 of file eventgamewindow.h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1EventGameWindow_aca917d4cf8ee17dd5253c294aac75bb8}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!EventGameWindow@{EventGameWindow}}
+\index{EventGameWindow@{EventGameWindow}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{EventGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventGameWindow::EventGameWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf RawEvent}}]{ Raw\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
+\label{d4/d0f/classphys_1_1EventGameWindow_aca917d4cf8ee17dd5253c294aac75bb8}
+
+
+Creates an \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} from a Rawevent. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Raw\_\-}]The RawEvent to decompose to use for the values of this \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} \end{DoxyParams}
+
+
+Definition at line 62 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_a7ee9c85879de43a995e6ce966b8a940c}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!EventGameWindow@{EventGameWindow}}
+\index{EventGameWindow@{EventGameWindow}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{EventGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventGameWindow::EventGameWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf EventGameWindow::GameWindowEventID}}]{ GWEventID, }
+\item[{int}]{ First = {\ttfamily 0}, }
+\item[{int}]{ Second = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a7ee9c85879de43a995e6ce966b8a940c}
+
+
+Creates an \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} from manually assigned values. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em GWEventID}]What kind of change happened \item[{\em First}]A parameter that is dependant on the kind of change to the game window \item[{\em Second}]A parameter that is dependant on the kind of change to the game window \end{DoxyParams}
+
+
+Definition at line 65 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_a4011621e2c6fc55a9c89a489f90dc1c8}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!EventGameWindow@{EventGameWindow}}
+\index{EventGameWindow@{EventGameWindow}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{EventGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventGameWindow::EventGameWindow (
+\begin{DoxyParamCaption}
+\item[{const {\bf EventGameWindow} \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a4011621e2c6fc55a9c89a489f90dc1c8}
+
+
+Copy constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The Other \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} to use in the creation on this \end{DoxyParams}
+
+
+Definition at line 68 of file eventgamewindow.cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classphys_1_1EventGameWindow_a643c70f9137ea6812e53fa0993cd783a}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!GameWindowEventIDToString@{GameWindowEventIDToString}}
+\index{GameWindowEventIDToString@{GameWindowEventIDToString}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{GameWindowEventIDToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::EventGameWindow::GameWindowEventIDToString (
+\begin{DoxyParamCaption}
+\item[{{\bf EventGameWindow::GameWindowEventID}}]{ GWEventID}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a643c70f9137ea6812e53fa0993cd783a}
+
+
+Converts GameWindowEventID To Strings. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em GWEventID}]the GameWindowEventID to get as a string \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a string containg the GameWindowEventID in a string as a developer would have typed it. 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_a9454b837e1f09e3927d3666dc8b5d88b}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!GetEventID@{GetEventID}}
+\index{GetEventID@{GetEventID}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{GetEventID}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventGameWindow::GameWindowEventID} phys::EventGameWindow::GetEventID (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a9454b837e1f09e3927d3666dc8b5d88b}
+
+
+What just happened, what kind of event was it. 
+
+\begin{DoxyReturn}{Returns}
+A GameWindowEventID indicating what happened. 
+\end{DoxyReturn}
+
+
+Definition at line 86 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_a28f0c0e000107bcce2b118c8d1657492}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!GetFirstEventData@{GetFirstEventData}}
+\index{GetFirstEventData@{GetFirstEventData}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{GetFirstEventData}]{\setlength{\rightskip}{0pt plus 5cm}int phys::EventGameWindow::GetFirstEventData (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a28f0c0e000107bcce2b118c8d1657492}
+
+
+Where or how much happened, Get the first event dependent data. 
+
+\begin{DoxyReturn}{Returns}
+An int with some details about the the event that happened. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000006}{Todo}]document GetFirstEventData further. \end{Desc}
+
+
+Definition at line 92 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_a477ef27390df3efa13cc37499e841f06}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!GetSecondEventData@{GetSecondEventData}}
+\index{GetSecondEventData@{GetSecondEventData}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{GetSecondEventData}]{\setlength{\rightskip}{0pt plus 5cm}int phys::EventGameWindow::GetSecondEventData (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a477ef27390df3efa13cc37499e841f06}
+
+
+Where or how much happened, Get the second event dependent data. 
+
+\begin{DoxyReturn}{Returns}
+An int with some details about the the event that happened. 
+\end{DoxyReturn}
+\begin{Desc}
+\item[\hyperlink{todo__todo000007}{Todo}]document GetSecondEventData further. \end{Desc}
+
+
+Definition at line 98 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_ab43a924a6c347823b0af51145974e297}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventBase::EventType} phys::EventGameWindow::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d0f/classphys_1_1EventGameWindow_ab43a924a6c347823b0af51145974e297}
+
+
+This returns EventType::GameWindow. 
+
+This returns the kind of message this is, specifcally EventType::GameWindow . If this functions returns EventType::GameWindow, then and event pointer can safely be cast to \hyperlink{classphys_1_1EventGameWindow}{phys::EventGameWindow} . This method is inherited from phys::Event . 
+
+Implements \hyperlink{classphys_1_1EventBase_a1b3d29b6ecf30f18cc3e1825a515c508}{phys::EventBase}.
+
+
+
+Definition at line 75 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_a9717be3e8429e0477be014ac57aa3679}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!IsEventIDValid@{IsEventIDValid}}
+\index{IsEventIDValid@{IsEventIDValid}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{IsEventIDValid}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::EventGameWindow::IsEventIDValid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a9717be3e8429e0477be014ac57aa3679}
+
+
+Used to help determine if this Event is valid by checking the contents of the GameWindowEventID. 
+
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+True if the event if is between GAME\_\-WINDOW\_\-FIRST and GAME\_\-WINDOW\_\-LAST, false otherwise 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 143 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_a730e2b5fd13cc23cdc56351880895f04}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventGameWindow::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf EventGameWindow} \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a730e2b5fd13cc23cdc56351880895f04}
+
+
+Assignment of a this \hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]the other \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} to overwite this one. \end{DoxyParams}
+
+
+Definition at line 146 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_abd3028a9c35ca2f5fd24e6b901054f24}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::EventGameWindow::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf GameWindowEventID} \&}]{ Other}
+\end{DoxyParamCaption}
+) const}}
+\label{d4/d0f/classphys_1_1EventGameWindow_abd3028a9c35ca2f5fd24e6b901054f24}
+
+
+Equality comparison of this \hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData} and a GameWindowEventID. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]the other GameWindowEventID to compare to the one stored in this. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the GameWindowEventID in this event matches the Other, false if otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 161 of file eventgamewindow.cpp.
+
+\hypertarget{classphys_1_1EventGameWindow_a5b73127941980949fe3be1ded2a4cd34}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!operator==@{operator==}}
+\index{operator==@{operator==}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::EventGameWindow::operator== (
+\begin{DoxyParamCaption}
+\item[{const {\bf EventGameWindow} \&}]{ Other}
+\end{DoxyParamCaption}
+) const}}
+\label{d4/d0f/classphys_1_1EventGameWindow_a5b73127941980949fe3be1ded2a4cd34}
+
+
+Equality comparison of two \hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]the other \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} to compare to this one \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if identical, false if otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 155 of file eventgamewindow.cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classphys_1_1EventGameWindow_aa5ceefae0b4ef7a017425cbd3ee08600}{
+\index{phys::EventGameWindow@{phys::EventGameWindow}!Data@{Data}}
+\index{Data@{Data}!phys::EventGameWindow@{phys::EventGameWindow}}
+\subsubsection[{Data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventGameWindowData}$\ast$ {\bf phys::EventGameWindow::Data}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}}
+\label{d4/d0f/classphys_1_1EventGameWindow_aa5ceefae0b4ef7a017425cbd3ee08600}
+
+
+Holds all internal data. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 155 of file eventgamewindow.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+eventgamewindow.h\item 
+eventgamewindow.cpp\end{DoxyCompactItemize}

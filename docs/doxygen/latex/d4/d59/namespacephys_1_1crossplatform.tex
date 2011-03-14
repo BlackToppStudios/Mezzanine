@@ -16,11 +16,11 @@ string \hyperlink{namespacephys_1_1crossplatform_a2d43f3aa5a485564c3f375b36a0815
 \begin{DoxyCompactList}\small\item\em Returns a string with a path/filename to the default Graphics Subsytem settings file. \item\end{DoxyCompactList}\item 
 string \hyperlink{namespacephys_1_1crossplatform_ae7b1d4b6dac634392c6224f26ab85001}{GetDataDirectory} ()
 \begin{DoxyCompactList}\small\item\em Gets the Default Data Directory. \item\end{DoxyCompactList}\item 
-void $\ast$ \hyperlink{namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}{GetSDLOgreBinder} ()
+void $\ast$ \hyperlink{namespacephys_1_1crossplatform_ae7aee515262e81cb9c1cfad652c86044}{GetSDLOgreBinder} (SDL\_\-Window $\ast$window, size\_\-t \&winGlContext)
 \begin{DoxyCompactList}\small\item\em This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). \item\end{DoxyCompactList}\item 
 void \hyperlink{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}{WaitMilliseconds} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&WaitTime)
 \begin{DoxyCompactList}\small\item\em Pauses the program for a given period of time. \item\end{DoxyCompactList}\item 
-void \hyperlink{namespacephys_1_1crossplatform_a11ab7359564519dc966f997c98109f6e}{RenderPhysWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TheWorld, Ogre::RenderWindow $\ast$TheOgreWindow)
+void \hyperlink{namespacephys_1_1crossplatform_a858c6c4155c4315d6eafb18cc30ce434}{RenderPhysWorld} (Ogre::RenderWindow $\ast$TheOgreWindow, SDL\_\-Window $\ast$SDLWindow)
 \begin{DoxyCompactList}\small\item\em Renders the current world contents to the screen. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_1_1crossplatform_af34fd6dc13360417a87c579744932dce}{GetPlatform} ()
 \begin{DoxyCompactList}\small\item\em Gets the platform currently being run on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -84,15 +84,16 @@ Plugins.cfg is the file that determines which graphics plugins are loaded. This 
 A string which contains the path and filename of the plugins file 
 \end{DoxyReturn}
 \end{DoxyInternal}
-\hypertarget{namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}{
+\hypertarget{namespacephys_1_1crossplatform_ae7aee515262e81cb9c1cfad652c86044}{
 \index{phys::crossplatform@{phys::crossplatform}!GetSDLOgreBinder@{GetSDLOgreBinder}}
 \index{GetSDLOgreBinder@{GetSDLOgreBinder}!phys::crossplatform@{phys::crossplatform}}
 \subsubsection[{GetSDLOgreBinder}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ phys::crossplatform::GetSDLOgreBinder (
 \begin{DoxyParamCaption}
-{}
+\item[{SDL\_\-Window $\ast$}]{ window, }
+\item[{size\_\-t \&}]{ winGlContext}
 \end{DoxyParamCaption}
 )}}
-\label{d4/d59/namespacephys_1_1crossplatform_a596ed780d507e681d9261d26b64a8ed9}
+\label{d4/d59/namespacephys_1_1crossplatform_ae7aee515262e81cb9c1cfad652c86044}
 
 
 This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem). 
@@ -120,23 +121,23 @@ Settings.cfg is the file that determines how graphics settings are configured by
 A string which contains the path and filename of the graphics setts file 
 \end{DoxyReturn}
 \end{DoxyInternal}
-\hypertarget{namespacephys_1_1crossplatform_a11ab7359564519dc966f997c98109f6e}{
+\hypertarget{namespacephys_1_1crossplatform_a858c6c4155c4315d6eafb18cc30ce434}{
 \index{phys::crossplatform@{phys::crossplatform}!RenderPhysWorld@{RenderPhysWorld}}
 \index{RenderPhysWorld@{RenderPhysWorld}!phys::crossplatform@{phys::crossplatform}}
 \subsubsection[{RenderPhysWorld}]{\setlength{\rightskip}{0pt plus 5cm}void PHYS\_\-LIB phys::crossplatform::RenderPhysWorld (
 \begin{DoxyParamCaption}
-\item[{World $\ast$}]{ TheWorld, }
-\item[{Ogre::RenderWindow $\ast$}]{ TheOgreWindow}
+\item[{Ogre::RenderWindow $\ast$}]{ TheOgreWindow, }
+\item[{SDL\_\-Window $\ast$}]{ SDLWindow}
 \end{DoxyParamCaption}
 )}}
-\label{d4/d59/namespacephys_1_1crossplatform_a11ab7359564519dc966f997c98109f6e}
+\label{d4/d59/namespacephys_1_1crossplatform_a858c6c4155c4315d6eafb18cc30ce434}
 
 
 Renders the current world contents to the screen. 
 
 This makes use of \hyperlink{classphys_1_1World}{World} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Currently this references Ogre systems, that makes this internal Handles the actual cross platform swapping of graphics buffers. 
 \begin{DoxyParams}{Parameters}
-\item[{\em TheWorld}]This is a pointer to the \hyperlink{classphys_1_1World}{World} to be rendered. \item[{\em TheWorld}]A pointer to the game window to be update to be rendered. This is considered an internal component \end{DoxyParams}
+\item[{\em TheWorld}]A pointer to the game window to be update to be rendered. This is considered an internal component \end{DoxyParams}
 \hypertarget{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}{
 \index{phys::crossplatform@{phys::crossplatform}!WaitMilliseconds@{WaitMilliseconds}}
 \index{WaitMilliseconds@{WaitMilliseconds}!phys::crossplatform@{phys::crossplatform}}

@@ -48,6 +48,7 @@
 #include "world.h"
 #include "eventmanager.h"
 #include "eventbase.h"
+#include "eventgamewindow.h"
 #include "eventrendertime.h"
 #include "eventuserinput.h"
 #include "eventquit.h"
@@ -72,7 +73,7 @@ namespace phys
         /// @details This is used used to filter out SQL_quit messages, and generate appropriate messages for the game developer to use.
         /// This will always drop quit events, and store that information for later use.
         /// @param event This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages
-        /// @param userdata Nothing, a dummy argument that could be used by by SDL
+        /// @param userdata Nothing, a dummy argument that could be used by SDL
         /// @warning Do not use this. It can only cause problems. This is for SDL, the user input subsystem, to filter certain events.
         /// @return This will always return either 0 or 1 to SDL. 0 if it should drop the event, which it does to all SDL_quit events, 1 if the event should be allowed, which it does to all events which are not SDL_quit events. If a null pointer was passed, then this will return 4 if it dropped an SDL_Quit, and 2 if it has not droppped an SDL_quit.
         //int PhysSDLFilter(void *userdata, const SDL_Event *event,  );
@@ -236,17 +237,17 @@ namespace phys
 
         /* Here is a list of SDL event which aren't coded yet.
         //event types
-        SDL_FIRSTEVENT				unused (do not remove)		Application events
-        SDL_QUIT				user-requested quit		Window events
-        SDL_WINDOWEVENT				window state change
-        SDL_SYSWMEVENT				system specific event		Keyboard events
-        SDL_KEYDOWN				key pressed
-        SDL_KEYUP				key released
+            SDL_FIRSTEVENT				unused (do not remove)		Application events
+            SDL_QUIT				user-requested quit		Window events
+         SDL_WINDOWEVENT				window state change
+         SDL_SYSWMEVENT				system specific event		Keyboard events
+            SDL_KEYDOWN				key pressed
+            SDL_KEYUP				key released
         SDL_TEXTEDITING				keyboard text editing (composition)
         SDL_TEXTINPUT				keyboard text input		Mouse events
-        SDL_MOUSEMOTION				mouse moved
-        SDL_MOUSEBUTTONDOWN				mouse button pressed
-        SDL_MOUSEBUTTONUP				mouse button released
+            SDL_MOUSEMOTION				mouse moved
+            SDL_MOUSEBUTTONDOWN				mouse button pressed
+            SDL_MOUSEBUTTONUP				mouse button released
         SDL_MOUSEWHEEL				mouse wheel motion		Tablet or multiple mice input device events
         SDL_INPUTMOTION				input moved
         SDL_INPUTBUTTONDOWN				input button pressed
@@ -280,7 +281,7 @@ namespace phys
         {
             switch(FromSDLRaw.type)
             {
-                case SDL_ACTIVEEVENT:   //when the window gains focus
+            /*    case SDL_ACTIVEEVENT:   //when the window gains focus
                 case SDL_VIDEORESIZE:   //when the screen is resized
                 case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
                 case SDL_SYSWMEVENT:
@@ -288,24 +289,38 @@ namespace phys
                     /// @todo handle unhandled user system events
                     //_Data->EventQ.push_back(FromSDLEvent);
                     break;
-
-                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
+            */
+                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             //case SDL_JOYBUTTONUP:
                     _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
 
-                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           case SDL_JOYBUTTONDOWN:
+                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           //case SDL_JOYBUTTONDOWN:
                     _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
 
-                case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
+                case SDL_MOUSEMOTION:       //case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
+                    break;
+
+
+                case SDL_FIRSTEVENT:  //capture and ignore
+                    break;
+
+                case SDL_WINDOWEVENT:
+                    this->AddEvent(new EventGameWindow(FromSDLRaw));
+                    break;
+
+                case SDL_SYSWMEVENT:
+                        // call a function with ifdefs here
                     break;
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
                     World::GetWorldPointer()->LogAndThrow("Unexpected Quit event in event manager.");
                     break;
+
                 default:                //Never thrown by SDL, but could be added by a user
-                    World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
+                    //World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted.");
+                    World::GetWorldPointer()->Log("Unknown SDL Event Inserted. Likely an unhandled SDL 1.3 event");
                     break;
             }
         }
@@ -313,7 +328,6 @@ namespace phys
         // Here we iterate through manual check to insert any requested polling checks and perpetuate mousedown events
         for(internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
         {
-            //World::GetWorldPointer()->Log(Iter->first);
             MetaCode::InputCode temp = (*Iter).first;
             bool found=false;
             for(EventUserInput::iterator LIter=FromSDLEvent->begin(); FromSDLEvent->end()!=LIter; ++LIter)
@@ -333,7 +347,7 @@ namespace phys
             }
         }
 
-        //Check to see if we should add a User i
+        //Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
         if(FromSDLEvent->GetMetaCodeCount()==0)
         {
             delete FromSDLEvent;
@@ -423,6 +437,22 @@ namespace phys
             }
         }
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - GameWindow Events
+    ///////////////////////////////////////
+    EventGameWindow* EventManager::GetNextGameWindowEvent()
+        { return dynamic_cast<EventGameWindow*> (this->GetNextSpecificEvent(EventBase::GameWindow)); }
+
+    EventGameWindow* EventManager::PopNextGameWindowEvent()
+        { return dynamic_cast<EventGameWindow*> (this->PopNextSpecificEvent(EventBase::GameWindow)); }
+
+    void EventManager::RemoveNextGameWindowEvent()
+        { this->RemoveNextSpecificEvent(EventBase::GameWindow); }
+
+    std::list<EventGameWindow*>* EventManager::GetAllGameWindowEvents()
+        { return (std::list<EventGameWindow*>*)this->GetAllSpecificEvents(EventBase::GameWindow); }
+
 
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - RenderTime Events

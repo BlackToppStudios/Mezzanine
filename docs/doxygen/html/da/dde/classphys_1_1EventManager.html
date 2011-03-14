@@ -74,10 +74,14 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds an event of any kind to the end of the Event Queue.  <a href="#abada23d83ef38e59a38eb91a88a07404"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166">UpdateEvents</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pulls Events from the all the subsystems for use in the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>.  <a href="#a63cf23dc9fe0ced3e2c60ca61c97b166"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5">UpdateSystemEvents</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pulls System and Window manager Events from the all the subsystems for use in the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>.  <a href="#a0cf574c55def063d66d7db46a4d3e8a5"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a01a5a131ac26679eee5dcf5dd514045c">UpdateUserInputEvents</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pulls User Interface Events from the all the subsystems for use in the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>.  <a href="#a01a5a131ac26679eee5dcf5dd514045c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#aead881349edba3f0bcca34eaae41a8ee">GetNextGameWindowEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next GameWindow event.  <a href="#aead881349edba3f0bcca34eaae41a8ee"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#abc62c29549957c314a8784eac4fb16ad">PopNextGameWindowEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next GameWindow event and removes it from the Que.  <a href="#abc62c29549957c314a8784eac4fb16ad"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a8172d685143bf18d0e48810fac25860e">RemoveNextGameWindowEvent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes the First GameWindow Event From the que without looking at it.  <a href="#a8172d685143bf18d0e48810fac25860e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> * &gt; *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#aacdd185f6334f1258d0d7022bae3932d">GetAllGameWindowEvents</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns a complete list of all the Render <a class="el" href="../../de/db1/structphys_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a> events.  <a href="#aacdd185f6334f1258d0d7022bae3932d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html">EventRenderTime</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#ae8730b039a280449af052d75f2e60b06">GetNextRenderTimeEvent</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns a pointer to the Next Rendertime event.  <a href="#ae8730b039a280449af052d75f2e60b06"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html">EventRenderTime</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#aa7e800d34ad8b9295ac87dfa822a2a03">PopNextRenderTimeEvent</a> ()</td></tr>
@@ -116,16 +120,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Generates extra events each iteration of the main loop, based on user input polling.  <a href="#a6ff66883358344908afd11204f79f196"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#adaf7d5346932506ed43f893eb071fd39">RemovePollingCheck</a> (const <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html">MetaCode</a> &amp;InputToStopPolling)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes Events from the list(s) of what needs to be polled.  <a href="#adaf7d5346932506ed43f893eb071fd39"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a983bc9f1933466491e6bf025b26a9023">PollForUserInputEvents</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This activates the polling routines of the user input subsystems.  <a href="#a983bc9f1933466491e6bf025b26a9023"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a51afdd83f44f461dfac5c9eca5883ea0">Initialize</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Empty Initializor.  <a href="#a51afdd83f44f461dfac5c9eca5883ea0"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Empty Initializer.  <a href="#a51afdd83f44f461dfac5c9eca5883ea0"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#aca8fb3d285484dcdb943824bf11f3596">DoMainLoopItems</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Empty MainLoopItems.  <a href="#aca8fb3d285484dcdb943824bf11f3596"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5">ManagerTypeName</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a194890f7f8be5d45aa98623481482696">GetType</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns the type of this manager.  <a href="#a194890f7f8be5d45aa98623481482696"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d2c/classphys_1_1Vector2.html">Vector2</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#af7eb6f0fda18c5f10ab9fb79b8c9ab49">GetMouseCoords</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the Default Mouse coordinates.  <a href="#af7eb6f0fda18c5f10ab9fb79b8c9ab49"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is a container for Events and facilitates the transfer of data. </p>
@@ -136,7 +136,7 @@ Public Member Functions</h2></td></tr>
 <dd>
 Currently this is not thread safe, even though it should be. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d2/ddb/eventmanager_8h_source.html#l00097">97</a> of file <a class="el" href="../../d2/ddb/eventmanager_8h_source.html">eventmanager.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/ddb/eventmanager_8h_source.html#l00098">98</a> of file <a class="el" href="../../d2/ddb/eventmanager_8h_source.html">eventmanager.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a018b36588bf2a2e90536e64be060d6fc"></a><!-- doxytag: member="phys::EventManager::EventManager" ref="a018b36588bf2a2e90536e64be060d6fc" args="()" -->
 <div class="memitem">
@@ -155,9 +155,9 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 <p>Default constructor. </p>
 <p>This creates an empty PhysEventManger</p>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000005">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000008">Todo:</a></b></dt><dd>TODO: Make the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a> completely thread safe. IF this is completely thread safe, we can spawn numerous individual thread each accessing this and and the performance gain would almost scale directly with cpu core count increases. Look at boost scoped_lock </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00111">111</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00171">171</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -179,7 +179,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <p>Default Deconstructor. </p>
 <p>This deletes everything still in the event manager and tears it down. </p>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00122">122</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00180">180</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -209,7 +209,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 </dl>
 <p>This adds the existing event to the Queue. Be careful this is not delete, and does not go out of scope. Deleting the Event is now the responsibilty of the code that pulls it out of Event Manager. </p>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00165">165</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00213">213</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -244,7 +244,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00432">432</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00494">494</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -268,7 +268,30 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aa9e13a3f7c398b708f0f242610b5abf7">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00670">670</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00513">513</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aacdd185f6334f1258d0d7022bae3932d"></a><!-- doxytag: member="phys::EventManager::GetAllGameWindowEvents" ref="aacdd185f6334f1258d0d7022bae3932d" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::list&lt; <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> * &gt; * phys::EventManager::GetAllGameWindowEvents </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This returns a complete list of all the Render <a class="el" href="../../de/db1/structphys_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a> events. </p>
+<p>This finds all the <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a list&lt;EventGameWindow*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. This list pointer must be deleted, but not the events in it. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00439">439</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -292,7 +315,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>Something is wrong if you have more than a few quit events. These should be checked for in each iteration of the main loop. </dd></dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a std::list&lt;EventQuit*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00415">415</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00488">488</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -312,10 +335,10 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>This returns a complete list of all the Render <a class="el" href="../../de/db1/structphys_1_1Time.html" title="A container for the metrics of time relevant for the timer class.">Time</a> events. </p>
-<p>This finds all the <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. </p>
+<p>This finds all the <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a> Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a list&lt;EventRenderTime*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00350">350</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00455">455</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -340,7 +363,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>The pointers contained in this list must be used carefully. Do not delete them, this will cause errors. </dd></dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a std::list&lt;EventBase*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00307">307</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00402">402</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -363,29 +386,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <p>This finds all the <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> Events then creates a new list and returns that. This runs in linear time relative to the amounts of events. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a std::list&lt;EventUserInput*&gt; pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00383">383</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="af7eb6f0fda18c5f10ab9fb79b8c9ab49"></a><!-- doxytag: member="phys::EventManager::GetMouseCoords" ref="af7eb6f0fda18c5f10ab9fb79b8c9ab49" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d0/d2c/classphys_1_1Vector2.html">Vector2</a> phys::EventManager::GetMouseCoords </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Get the Default Mouse coordinates. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a vector2 that stores the location of the default mouse. </dd></dl>
-
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00680">680</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00472">472</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -405,10 +406,33 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Return a pointer to the Next event. </p>
-<p>This returns a pointer to the next PhysEvent. It is advisable to use this for performance reasons because it runs in constant time. However it does not return a specific kind of event, and must be cast in order to use the true content. This returns a pointer to 0 if there are no events in the que. </p>
+<p>This returns a pointer to the next PhysEvent. It is advisable to use this for performance reasons because it runs in constant time. However it does not return a specific kind of event, and must be cast in order to use the true content. This returns a pointer to 0 if there are no events in the queue. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a PhysEvent, that still needs to be removed from the event manager and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00139">139</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00193">193</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aead881349edba3f0bcca34eaae41a8ee"></a><!-- doxytag: member="phys::EventManager::GetNextGameWindowEvent" ref="aead881349edba3f0bcca34eaae41a8ee" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> * phys::EventManager::GetNextGameWindowEvent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns a pointer to the Next GameWindow event. </p>
+<p>This Filtered event management function returns a pointer to the next GameWindow event. It is inadvisable to use this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no GameWindow events in the que. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">EventGameWindow</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00430">430</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -428,10 +452,10 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Returns a pointer to the Next <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a>. </p>
-<p>This Filtered event management function returns a pointer to the next <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a>. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a> events in the que. </p>
+<p>This Filtered event management function returns a pointer to the next <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a>. It is inadvisable to use this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a> events in the que. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00400">400</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00479">479</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -451,10 +475,10 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Returns a pointer to the Next Rendertime event. </p>
-<p>This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime events in the que. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted. </dd></dl>
+<p>This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a> events in the que. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00335">335</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00446">446</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -482,10 +506,10 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </dd>
 </dl>
 <p>This and the other NextSpecificEvent functions are the core of the Event Filtering System. In general the other filtering functions call one of these and does very little work on their own. <br/>
- This performs a linear search starting with the oldest (first entered Events) and simply checks if it the of the correct type. Then this returns a pointer to the next event of the specified type, or returns a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. </p>
+ This performs a linear search starting with the oldest (first entered Events) and simply checks if it the of the correct type. Then this returns a pointer to the next event of the specified type, or returns a pointer to 0 if there are none of the correct pointers in the Que. It is inadvisable to use this for performance reasons because it runs in linear time relative to the amount of events. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00267">267</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00364">364</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -505,10 +529,10 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Returns a pointer to the Next User Input event. </p>
-<p>This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. </p>
+<p>This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00368">368</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00463">463</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -531,7 +555,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <p>This returns a total count of all events stored in this PhysEventManager. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns an unsigned integer with the amount of of total events </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00134">134</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00190">190</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -555,7 +579,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#aff400b6599db635e24796d8221e9a0e3">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00676">676</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00516">516</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -574,35 +598,12 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 </div>
 <div class="memdoc">
 
-<p>Empty Initializor. </p>
+<p>Empty Initializer. </p>
 <p>This specific initializor is unneeded, but we implement it for compatibility. It also exists in case a derived class wants to override it for some reason </p>
 
 <p>Implements <a class="el" href="../../d2/de3/classphys_1_1ManagerBase.html#a57dd8e54e767427d5bdcc86dc66d73ed">phys::ManagerBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00667">667</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a983bc9f1933466491e6bf025b26a9023"></a><!-- doxytag: member="phys::EventManager::PollForUserInputEvents" ref="a983bc9f1933466491e6bf025b26a9023" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html">EventUserInput</a> * phys::EventManager::PollForUserInputEvents </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>This activates the polling routines of the user input subsystems. </p>
-<p>This checks the current state of user input devices that have been added by <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a6ff66883358344908afd11204f79f196" title="Generates extra events each iteration of the main loop, based on user input polling.">AddPollingCheck(const MetaCode &amp;InputToTryPolling)</a>. This is called automatically by main loop processing, but there is no harm in calling it several times. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>This returns a pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> that contains the desired metacodes </dd></dl>
-
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00528">528</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00510">510</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -625,7 +626,30 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <p>This functions just like GetNextEvent , except that it also removes the item from the internal storage of the PhysEventManager. This returns a pointer to 0 if there are no events in the que. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a PhysEvent, that will need to be deleted once it has been used. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00149">149</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00201">201</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abc62c29549957c314a8784eac4fb16ad"></a><!-- doxytag: member="phys::EventManager::PopNextGameWindowEvent" ref="abc62c29549957c314a8784eac4fb16ad" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> * phys::EventManager::PopNextGameWindowEvent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Returns a pointer to the Next GameWindow event and removes it from the Que. </p>
+<p>This Filtered event management function returns a pointer to the next GameWindow event. It is inadvisable to use this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no GameWindow events in the que. This also removes the returned pointer form the Que. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00433">433</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -645,10 +669,10 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Returns a pointer to the Next <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a> and removes it from the Que. </p>
-<p>This Filtered event management function returns a pointer to the next <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a>. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a> events in the que. This also removes the returned pointer form the Que. </p>
+<p>This Filtered event management function returns a pointer to the next <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a>. It is inadvisable to use this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a> events in the que. This also removes the returned pointer form the Que. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00405">405</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00482">482</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -668,10 +692,10 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Returns a pointer to the Next Rendertime event and removes it from the Que. </p>
-<p>This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime events in the que. This also removes the returned pointer form the Que. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted. </dd></dl>
+<p>This Filtered event management function returns a pointer to the next Rendertime event. It is inadvisable to use this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no rendertime events in the que. This also removes the returned pointer form the Que. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00340">340</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00449">449</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -701,7 +725,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <p>This is just like GetNextSpecificEvent(PhysEvent::EventType SpecificType) but it also removes the item from the Que. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00281">281</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00378">378</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -721,10 +745,10 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Returns a pointer to the Next User Input event and removes it from the Que. </p>
-<p>This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons becuase it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. This also removes the returned pointer form the Que. </p>
+<p>This Filtered event management function returns a pointer to the next User Input event. It is inadvisable to use this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no User Input events in the que. This also removes the returned pointer form the Que. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A pointer to a <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>, that still needs to be removed from the event manager and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00373">373</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00466">466</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -748,7 +772,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <p>This finds all the events that are of the specified type in the event manager, then removes them. </p>
 <dl class="warning"><dt><b>Warning:</b></dt><dd>This does not delete the events. This is a memory leak unless used with GetAllSpecificEvents so that the events can be tracked indeendantly, and deleted. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00321">321</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00416">416</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -777,7 +801,36 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00160">160</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00210">210</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a8172d685143bf18d0e48810fac25860e"></a><!-- doxytag: member="phys::EventManager::RemoveNextGameWindowEvent" ref="a8172d685143bf18d0e48810fac25860e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::EventManager::RemoveNextGameWindowEvent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Removes the First GameWindow Event From the que without looking at it. </p>
+<p>This together with <a class="el" href="../../da/dde/classphys_1_1EventManager.html#aead881349edba3f0bcca34eaae41a8ee" title="Returns a pointer to the Next GameWindow event.">GetNextGameWindowEvent()</a> are the pretty much same as call <a class="el" href="../../da/dde/classphys_1_1EventManager.html#abc62c29549957c314a8784eac4fb16ad" title="Returns a pointer to the Next GameWindow event and removes it from the Que.">PopNextGameWindowEvent()</a>. </p>
+<dl class="warning"><dt><b>Warning:</b></dt><dd>If you did not call <a class="el" href="../../da/dde/classphys_1_1EventManager.html#aead881349edba3f0bcca34eaae41a8ee" title="Returns a pointer to the Next GameWindow event.">GetNextGameWindowEvent()</a> and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak. Don't use this unless you are certain you have taken care of the pointer appropriately </dd></dl>
+<dl><dt><b>Exceptions:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>This</em>&nbsp;</td><td>can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00436">436</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -806,7 +859,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00410">410</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00485">485</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -835,7 +888,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00345">345</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00452">452</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -871,7 +924,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00296">296</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00393">393</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -900,7 +953,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00378">378</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00469">469</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -935,7 +988,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00466">466</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00504">504</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -955,62 +1008,9 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <div class="memdoc">
 
 <p>Pulls Events from the all the subsystems for use in the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>. </p>
-<p>The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5" title="Pulls System and Window manager Events from the all the subsystems for use in the EventManager...">UpdateSystemEvents()</a> or <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a01a5a131ac26679eee5dcf5dd514045c" title="Pulls User Interface Events from the all the subsystems for use in the EventManager.">UpdateUserInputEvents()</a> </p>
+<p>The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop. This adds system events, like <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a> and Other Windows manager events, and if any user input event actions, this generates one <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> that stores everythin that happened. </p>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000006">Todo:</a></b></dt><dd>There has got to be a more efficient way to do <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166" title="Pulls Events from the all the subsystems for use in the EventManager.">UpdateEvents()</a> </dd></dl>
-</p>
-
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00170">170</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a0cf574c55def063d66d7db46a4d3e8a5"></a><!-- doxytag: member="phys::EventManager::UpdateSystemEvents" ref="a0cf574c55def063d66d7db46a4d3e8a5" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::EventManager::UpdateSystemEvents </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Pulls System and Window manager Events from the all the subsystems for use in the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>. </p>
-<p>This adds events, like <a class="el" href="../../dd/dea/classphys_1_1EventQuit.html" title="This is intended to convey the message that quitting needs to happen.">EventQuit</a> and Other Windows manager events. The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166" title="Pulls Events from the all the subsystems for use in the EventManager.">UpdateEvents()</a> and plans on using <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a01a5a131ac26679eee5dcf5dd514045c" title="Pulls User Interface Events from the all the subsystems for use in the EventManager.">UpdateUserInputEvents()</a> </p>
-
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000007">Todo:</a></b></dt><dd>make Physevents for each of the events in SDL_WmEvents(and delete the SDL events) </dd></dl>
-</p>
-
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00177">177</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a01a5a131ac26679eee5dcf5dd514045c"></a><!-- doxytag: member="phys::EventManager::UpdateUserInputEvents" ref="a01a5a131ac26679eee5dcf5dd514045c" args="()" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void phys::EventManager::UpdateUserInputEvents </td>
-          <td>(</td>
-          <td class="paramname"></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Pulls User Interface Events from the all the subsystems for use in the <a class="el" href="../../da/dde/classphys_1_1EventManager.html" title="This is a container for Events and facilitates the transfer of data.">EventManager</a>. </p>
-<p>This adds events, like <a class="el" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a> to the eventmanager. The work this function does is already performed in the main loop. This only really needs to be used If a game developer chooses to use his own main loop and does't use <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a63cf23dc9fe0ced3e2c60ca61c97b166" title="Pulls Events from the all the subsystems for use in the EventManager.">UpdateEvents()</a> and plans on using <a class="el" href="../../da/dde/classphys_1_1EventManager.html#a0cf574c55def063d66d7db46a4d3e8a5" title="Pulls System and Window manager Events from the all the subsystems for use in the EventManager...">UpdateSystemEvents()</a> </p>
-
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000008">Todo:</a></b></dt><dd>This isn't pretty, should be replaced with a more elegant solution that'll work on keyboard events as well. </dd></dl>
-</p>
-
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00185">185</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00216">216</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -1019,7 +1019,7 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 <li><a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:47 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:40 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -40,6 +40,8 @@
 #ifndef METACODE_CPP
 #define METACODE_CPP
 
+#include "world.h" //only used for logging
+
 ///////////////////////////////////////////////////////////////////////////////
 // Includes
 ///////////////////////////////////////
@@ -133,7 +135,7 @@ namespace phys
         MetaCode::InputCode To;
 
         assert( sizeof(To)==sizeof(RawEvent_.key.keysym.sym) );
-        memcpy( &To, &(RawEvent_.key.keysym.sym), sizeof(RawEvent_.key.keysym.sym));
+        memcpy( &To, &(RawEvent_.key.keysym.scancode), sizeof(RawEvent_.key.keysym.scancode));
 
         return To;
     }
@@ -210,6 +212,18 @@ namespace phys
 
     bool MetaCode::IsKeyboardButton() const
         { return (MetaCode::KEY_FIRST <= this->Code && this->Code <= MetaCode::KEY_LAST); }
+
+    bool MetaCode::IsAltKey() const
+        { return (MetaCode::KEY_LALT == this->Code || this->Code <= MetaCode::KEY_RALT); }
+
+    bool MetaCode::IsCtrlKey() const
+        { return (MetaCode::KEY_LCTRL == this->Code || this->Code <= MetaCode::KEY_RCTRL); }
+
+    bool MetaCode::IsShiftKey() const
+        { return (MetaCode::KEY_LSHIFT == this->Code || this->Code <= MetaCode::KEY_RSHIFT); }
+
+    bool MetaCode::IsSuperKey() const
+        { return (MetaCode::KEY_LSUPER == this->Code || this->Code <= MetaCode::KEY_RSUPER); }
 
     bool MetaCode::IsMouseButton() const
         { return (MetaCode::MOUSEBUTTON_FIRST <= this->Code && this->Code <= MetaCode::MOUSEBUTTON_LAST); }

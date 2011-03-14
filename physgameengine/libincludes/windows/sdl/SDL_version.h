@@ -1,6 +1,6 @@
 /*
     SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2010 Sam Lantinga
+    Copyright (C) 1997-2011 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -30,7 +30,6 @@
 #define _SDL_version_h
 
 #include "SDL_stdinc.h"
-#include "SDL_revision.h"
 
 #include "begin_code.h"
 /* Set up for C function definitions, even when using C++ */
@@ -144,6 +143,16 @@ extern DECLSPEC void SDLCALL SDL_GetVersion(SDL_version * ver);
  *  against other revisions. It is NOT an incrementing number.
  */
 extern DECLSPEC const char *SDLCALL SDL_GetRevision(void);
+
+/**
+ *  \brief Get the revision number of SDL that is linked against your program.
+ *
+ *  Returns a number uniquely identifying the exact revision of the SDL
+ *  library in use. It is an incrementing number based on commits to
+ *  hg.libsdl.org.
+ */
+extern DECLSPEC int SDLCALL SDL_GetRevisionNumber(void);
+
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

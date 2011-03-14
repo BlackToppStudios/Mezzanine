@@ -1,6 +1,6 @@
 /*
     SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2010 Sam Lantinga
+    Copyright (C) 1997-2011 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -328,6 +328,12 @@ extern DECLSPEC int SDLCALL SDL_DisplayYUVOverlay(SDL_Overlay * overlay,
                                                   SDL_Rect * dstrect);
 extern DECLSPEC void SDLCALL SDL_FreeYUVOverlay(SDL_Overlay * overlay);
 extern DECLSPEC void SDLCALL SDL_GL_SwapBuffers(void);
+extern DECLSPEC int SDLCALL SDL_SetGamma(float red, float green, float blue);
+extern DECLSPEC int SDLCALL SDL_SetGammaRamp(const Uint16 * red,
+                                             const Uint16 * green,
+                                             const Uint16 * blue);
+extern DECLSPEC int SDLCALL SDL_GetGammaRamp(Uint16 * red, Uint16 * green,
+                                             Uint16 * blue);
 extern DECLSPEC int SDLCALL SDL_EnableKeyRepeat(int delay, int interval);
 extern DECLSPEC void SDLCALL SDL_GetKeyRepeat(int *delay, int *interval);
 extern DECLSPEC int SDLCALL SDL_EnableUNICODE(int enable);

@@ -136,6 +136,11 @@ namespace phys
         /// @brief Gets the platform currently being run on.
         /// @return Returns a string based on the platform.  "Windows", "Linux", or "MacOSX".
         String PHYS_LIB GetPlatform();
+
+        /// @brief Gets cleaned dimensions for a game window.
+        /// @param Width The width of the client area.
+        /// @param Height The Height of the client area.
+        void PHYS_LIB SanitizeWindowedRes(Real& Width, Real& Height);
     }
 }
 #endif

@@ -79,77 +79,78 @@
 <a name="l00048"></a>00048 <span class="preprocessor">#include &quot;world.h&quot;</span>
 <a name="l00049"></a>00049 <span class="preprocessor">#include &quot;physicsmanager.h&quot;</span>
 <a name="l00050"></a>00050 <span class="preprocessor">#include &quot;internalmotionstate.h.cpp&quot;</span>
-<a name="l00051"></a>00051 
-<a name="l00052"></a>00052 <span class="keyword">namespace </span>phys
-<a name="l00053"></a>00053 {
-<a name="l00054"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#af0d3b88d5ee409c5451bb13a20254176">00054</a>     <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#af0d3b88d5ee409c5451bb13a20254176" title="Class constructor.">ActorTerrain::ActorTerrain</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> InitPosition, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group) : <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>(name, file, group)
-<a name="l00055"></a>00055     {
-<a name="l00056"></a>00056         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a23e6edcd5c18b89c40abf02feba6bc11" title="Creates a motion state for use with syncronizing physics and graphics.">CreateMotionState</a>(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>, InitPosition);
-<a name="l00057"></a>00057         CreateCollisionTerrain();
-<a name="l00058"></a>00058     }
-<a name="l00059"></a>00059 
-<a name="l00060"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#af6ef2e3694b7afe0b59cfa0909c0490c">00060</a>     <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#af6ef2e3694b7afe0b59cfa0909c0490c" title="Class destructor.">ActorTerrain::~ActorTerrain</a>()
-<a name="l00061"></a>00061     {
-<a name="l00062"></a>00062     }
-<a name="l00063"></a>00063 
-<a name="l00064"></a>00064     <span class="keywordtype">void</span> ActorTerrain::CreateCollisionTerrain()
-<a name="l00065"></a>00065     {
-<a name="l00066"></a>00066         <span class="comment">//CollisionObject = new btCollisionObject();</span>
-<a name="l00067"></a>00067         btScalar mass = 0.f;
-<a name="l00068"></a>00068         RigidBody = <span class="keyword">new</span> btRigidBody(mass, this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ab776527aa927b8787313c50530cc24ba" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>, this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
-<a name="l00069"></a>00069         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a> = RigidBody;
-<a name="l00070"></a>00070         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setUserPointer(<span class="keyword">this</span>);
-<a name="l00071"></a>00071         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a42baa3657656300eeefe3ed48f526a00" title="This variable stores the type of actor that this class is.">ActorType</a> = ActorBase::Actorterrain;
-<a name="l00072"></a>00072     }
-<a name="l00073"></a>00073 
-<a name="l00074"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a2403c40af6799e67c9aff1520b02dc0b">00074</a>     <span class="keywordtype">void</span> <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a2403c40af6799e67c9aff1520b02dc0b" title="Creates a collision shape from mesh file.">ActorTerrain::CreateShapeFromMeshStatic</a>()
-<a name="l00075"></a>00075     {
-<a name="l00076"></a>00076         <span class="keywordflow">if</span>(!<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a22c0ab01bdc3e1e5c656fb0f201f6929" title="Stores whether or not the current physics shape has been saved in the manager.">ShapeIsSaved</a>)
-<a name="l00077"></a>00077         {
-<a name="l00078"></a>00078             <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;
-<a name="l00079"></a>00079         }<span class="comment"></span>
-<a name="l00080"></a>00080 <span class="comment">        /// @todo - Check for thread safety</span>
-<a name="l00081"></a>00081 <span class="comment"></span>        btBvhTriangleMeshShape *tmpshape = <span class="keyword">new</span> btBvhTriangleMeshShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#af869b78fcac01ee153d495953daab382" title="Creates a trimesh shape from the mesh file.">CreateTrimesh</a>(),<span class="keyword">true</span>);
-<a name="l00082"></a>00082         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>=tmpshape;
-<a name="l00083"></a>00083         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a22c0ab01bdc3e1e5c656fb0f201f6929" title="Stores whether or not the current physics shape has been saved in the manager.">ShapeIsSaved</a> = <span class="keyword">false</span>;
-<a name="l00084"></a>00084         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>-&gt;setLocalScaling(btVector3(1.0,1.0,1.0));
-<a name="l00085"></a>00085         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
-<a name="l00086"></a>00086         this-&gt;RigidBody-&gt;updateInertiaTensor();
-<a name="l00087"></a>00087     }
-<a name="l00088"></a>00088 
-<a name="l00089"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#aa5f545a73da45ab219121c4b2cd0ded9">00089</a>     <span class="keywordtype">void</span> <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#aa5f545a73da45ab219121c4b2cd0ded9" title="Compatability function.">ActorTerrain::CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> accuracy)
-<a name="l00090"></a>00090     {
-<a name="l00091"></a>00091     }
-<a name="l00092"></a>00092 
-<a name="l00093"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a08f306ae189e55d780dcaa2c43d7b6eb">00093</a>     std::string <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a08f306ae189e55d780dcaa2c43d7b6eb" title="Retrieves the name of the object.">ActorTerrain::GetName</a> ()<span class="keyword"> const</span>
-<a name="l00094"></a>00094 <span class="keyword">    </span>{
-<a name="l00095"></a>00095         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>-&gt;getName();
-<a name="l00096"></a>00096     }
-<a name="l00097"></a>00097 
-<a name="l00098"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a890ee6f67fda30381bce9c949ae36566">00098</a>     <span class="keywordtype">void</span> <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a890ee6f67fda30381bce9c949ae36566" title="Adds the actor to the physics world.">ActorTerrain::AddObjectToWorld</a> (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld)
-<a name="l00099"></a>00099     {
-<a name="l00100"></a>00100         TargetWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a1b9eb6206ee15c2ef49665a07de3d83c" title="This gets the PhysicsManager from the manager list.">GetPhysicsManager</a>()-&gt;<a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;addCollisionObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>);
-<a name="l00101"></a>00101         <span class="comment">//TargetWorld-&gt;Physics-&gt;BulletDynamicsWorld-&gt;addRigidBody(this-&gt;CollisionObject);</span>
-<a name="l00102"></a>00102         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a45f190cb9b647bb3385d1298f9dab589" title="Makes the actor visable.">AttachToGraphics</a>();
-<a name="l00103"></a>00103     }
-<a name="l00104"></a>00104 
-<a name="l00105"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#aeded1fdabfc4dd407f81fcc5b97c1f77">00105</a>     <span class="keywordtype">void</span> <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#aeded1fdabfc4dd407f81fcc5b97c1f77" title="Removes the actor from the physics world.">ActorTerrain::RemoveObjectFromWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld)
-<a name="l00106"></a>00106     {
-<a name="l00107"></a>00107         TargetWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a1b9eb6206ee15c2ef49665a07de3d83c" title="This gets the PhysicsManager from the manager list.">GetPhysicsManager</a>()-&gt;<a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;removeCollisionObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>);
-<a name="l00108"></a>00108         <span class="comment">//TargetWorld-&gt;Physics-&gt;BulletDynamicsWorld-&gt;removeRigidBody(this-&gt;CollisionObject);</span>
-<a name="l00109"></a>00109         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec" title="Makes the actor invisable.">DetachFromGraphics</a>();
-<a name="l00110"></a>00110     }
-<a name="l00111"></a>00111 
-<a name="l00112"></a>00112     btRigidBody* ActorTerrain::GetBulletObject()
-<a name="l00113"></a>00113     {
-<a name="l00114"></a>00114         <span class="keywordflow">return</span> RigidBody;
-<a name="l00115"></a>00115     }
-<a name="l00116"></a>00116 }
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118 <span class="preprocessor">#endif</span>
+<a name="l00051"></a>00051 <span class="preprocessor">#include &quot;internalmeshtools.h.cpp&quot;</span>
+<a name="l00052"></a>00052 
+<a name="l00053"></a>00053 <span class="keyword">namespace </span>phys
+<a name="l00054"></a>00054 {
+<a name="l00055"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#af0d3b88d5ee409c5451bb13a20254176">00055</a>     <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#af0d3b88d5ee409c5451bb13a20254176" title="Class constructor.">ActorTerrain::ActorTerrain</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> InitPosition, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group) : <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>(name, file, group)
+<a name="l00056"></a>00056     {
+<a name="l00057"></a>00057         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a23e6edcd5c18b89c40abf02feba6bc11" title="Creates a motion state for use with syncronizing physics and graphics.">CreateMotionState</a>(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>, InitPosition);
+<a name="l00058"></a>00058         CreateCollisionTerrain();
+<a name="l00059"></a>00059     }
+<a name="l00060"></a>00060 
+<a name="l00061"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#af6ef2e3694b7afe0b59cfa0909c0490c">00061</a>     <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#af6ef2e3694b7afe0b59cfa0909c0490c" title="Class destructor.">ActorTerrain::~ActorTerrain</a>()
+<a name="l00062"></a>00062     {
+<a name="l00063"></a>00063     }
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065     <span class="keywordtype">void</span> ActorTerrain::CreateCollisionTerrain()
+<a name="l00066"></a>00066     {
+<a name="l00067"></a>00067         <span class="comment">//CollisionObject = new btCollisionObject();</span>
+<a name="l00068"></a>00068         btScalar mass = 0.f;
+<a name="l00069"></a>00069         RigidBody = <span class="keyword">new</span> btRigidBody(mass, this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ab776527aa927b8787313c50530cc24ba" title="This class encapsulates the functionality of the PhysMotionState using this.">MotionState</a>, this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
+<a name="l00070"></a>00070         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a> = RigidBody;
+<a name="l00071"></a>00071         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setUserPointer(<span class="keyword">this</span>);
+<a name="l00072"></a>00072         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a42baa3657656300eeefe3ed48f526a00" title="This variable stores the type of actor that this class is.">ActorType</a> = ActorBase::Actorterrain;
+<a name="l00073"></a>00073     }
+<a name="l00074"></a>00074 
+<a name="l00075"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#aaed245d7af66230aaabb02a84e891bb0">00075</a>     <span class="keywordtype">void</span> <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#aaed245d7af66230aaabb02a84e891bb0" title="Creates a collision shape from mesh file.">ActorTerrain::CreateShapeFromMeshStatic</a>(<span class="keywordtype">bool</span> UseAllSubmeshes)
+<a name="l00076"></a>00076     {
+<a name="l00077"></a>00077         <span class="keywordflow">if</span>(!<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a22c0ab01bdc3e1e5c656fb0f201f6929" title="Stores whether or not the current physics shape has been saved in the manager.">ShapeIsSaved</a>)
+<a name="l00078"></a>00078         {
+<a name="l00079"></a>00079             <span class="keyword">delete</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>;
+<a name="l00080"></a>00080         }<span class="comment"></span>
+<a name="l00081"></a>00081 <span class="comment">        /// @todo - Check for thread safety</span>
+<a name="l00082"></a>00082 <span class="comment"></span>        btBvhTriangleMeshShape *tmpshape = <span class="keyword">new</span> btBvhTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>,UseAllSubmeshes),<span class="keyword">true</span>);
+<a name="l00083"></a>00083         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>=tmpshape;
+<a name="l00084"></a>00084         <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a22c0ab01bdc3e1e5c656fb0f201f6929" title="Stores whether or not the current physics shape has been saved in the manager.">ShapeIsSaved</a> = <span class="keyword">false</span>;
+<a name="l00085"></a>00085         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>-&gt;setLocalScaling(btVector3(1.0,1.0,1.0));
+<a name="l00086"></a>00086         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>-&gt;setCollisionShape(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a643613ce7abb4b6d4352bab036b7cf69" title="This class encapsulates the functionality of the btCollisionShape using this.">Shape</a>);
+<a name="l00087"></a>00087         this-&gt;RigidBody-&gt;updateInertiaTensor();
+<a name="l00088"></a>00088     }
+<a name="l00089"></a>00089 
+<a name="l00090"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a9fed38501411c0cf7a1e9f4f36af6ac7">00090</a>     <span class="keywordtype">void</span> <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a9fed38501411c0cf7a1e9f4f36af6ac7" title="Compatability function.">ActorTerrain::CreateShapeFromMeshDynamic</a>(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Accuracy, <span class="keywordtype">bool</span> UseAllSubmeshes)
+<a name="l00091"></a>00091     {
+<a name="l00092"></a>00092     }
+<a name="l00093"></a>00093 
+<a name="l00094"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a08f306ae189e55d780dcaa2c43d7b6eb">00094</a>     std::string <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a08f306ae189e55d780dcaa2c43d7b6eb" title="Retrieves the name of the object.">ActorTerrain::GetName</a> ()<span class="keyword"> const</span>
+<a name="l00095"></a>00095 <span class="keyword">    </span>{
+<a name="l00096"></a>00096         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#ae44969ba242ca5c13a608b7467be0674" title="This class encapsulates the functionality of the Ogre::Entity using this.">entity</a>-&gt;getName();
+<a name="l00097"></a>00097     }
+<a name="l00098"></a>00098 
+<a name="l00099"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a890ee6f67fda30381bce9c949ae36566">00099</a>     <span class="keywordtype">void</span> <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a890ee6f67fda30381bce9c949ae36566" title="Adds the actor to the physics world.">ActorTerrain::AddObjectToWorld</a> (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld)
+<a name="l00100"></a>00100     {
+<a name="l00101"></a>00101         TargetWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a1b9eb6206ee15c2ef49665a07de3d83c" title="This gets the PhysicsManager from the manager list.">GetPhysicsManager</a>()-&gt;<a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;addCollisionObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>);
+<a name="l00102"></a>00102         <span class="comment">//TargetWorld-&gt;Physics-&gt;BulletDynamicsWorld-&gt;addRigidBody(this-&gt;CollisionObject);</span>
+<a name="l00103"></a>00103         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a45f190cb9b647bb3385d1298f9dab589" title="Makes the actor visable.">AttachToGraphics</a>();
+<a name="l00104"></a>00104     }
+<a name="l00105"></a>00105 
+<a name="l00106"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#aeded1fdabfc4dd407f81fcc5b97c1f77">00106</a>     <span class="keywordtype">void</span> <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#aeded1fdabfc4dd407f81fcc5b97c1f77" title="Removes the actor from the physics world.">ActorTerrain::RemoveObjectFromWorld</a>(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld)
+<a name="l00107"></a>00107     {
+<a name="l00108"></a>00108         TargetWorld-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a1b9eb6206ee15c2ef49665a07de3d83c" title="This gets the PhysicsManager from the manager list.">GetPhysicsManager</a>()-&gt;<a class="code" href="../../d3/dcc/classphys_1_1PhysicsManager.html#a4b4f8a23259a94a50c81649f39256d7f" title="This returns a pointer to the bullet physics world. This is for internal use only.">GetPhysicsWorldPointer</a>()-&gt;removeCollisionObject(this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>);
+<a name="l00109"></a>00109         <span class="comment">//TargetWorld-&gt;Physics-&gt;BulletDynamicsWorld-&gt;removeRigidBody(this-&gt;CollisionObject);</span>
+<a name="l00110"></a>00110         this-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#acc352d14b6d7f15694ea108ec1c281ec" title="Makes the actor invisable.">DetachFromGraphics</a>();
+<a name="l00111"></a>00111     }
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113     btRigidBody* ActorTerrain::GetBulletObject()
+<a name="l00114"></a>00114     {
+<a name="l00115"></a>00115         <span class="keywordflow">return</span> RigidBody;
+<a name="l00116"></a>00116     }
+<a name="l00117"></a>00117 }
+<a name="l00118"></a>00118 
+<a name="l00119"></a>00119 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:42 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:33 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

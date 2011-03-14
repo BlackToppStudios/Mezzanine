@@ -75,7 +75,7 @@
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;light.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;plane.h&quot;</span>
 <a name="l00046"></a>00046 <span class="preprocessor">#include &quot;particleeffect.h&quot;</span>
-<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;node.h&quot;</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;worldnode.h&quot;</span>
 <a name="l00048"></a>00048 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
 <a name="l00049"></a>00049 
 <a name="l00050"></a>00050 <span class="keyword">namespace </span>phys
@@ -115,11 +115,11 @@
 <a name="l00084"></a>00084             <span class="keyword">delete</span> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a45f2d2029642d668c1e15a914eac7d1b" title="Vector storing all the particle effects in use by this class.">Particles</a>[x];
 <a name="l00085"></a>00085         }
 <a name="l00086"></a>00086         <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a45f2d2029642d668c1e15a914eac7d1b" title="Vector storing all the particle effects in use by this class.">Particles</a>.clear();
-<a name="l00087"></a>00087         <span class="keywordflow">for</span>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x=0 ; x &lt; <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.size() ; x++ )
+<a name="l00087"></a>00087         <span class="keywordflow">for</span>( <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> x=0 ; x &lt; <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.size() ; x++ )
 <a name="l00088"></a>00088         {
-<a name="l00089"></a>00089             <span class="keyword">delete</span> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>[x];
+<a name="l00089"></a>00089             <span class="keyword">delete</span> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>[x];
 <a name="l00090"></a>00090         }
-<a name="l00091"></a>00091         <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.clear();
+<a name="l00091"></a>00091         <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.clear();
 <a name="l00092"></a>00092         Ogre::Root::getSingleton().destroySceneManager(<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ab9980c42506a8757cab12feb210f056a" title="Pointer for the Ogre Scenemanager, where this manager gets it&amp;#39;s functionality.">OgreManager</a>);
 <a name="l00093"></a>00093     }
 <a name="l00094"></a>00094 
@@ -264,7 +264,7 @@
 <a name="l00233"></a>00233         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ab9980c42506a8757cab12feb210f056a" title="Pointer for the Ogre Scenemanager, where this manager gets it&amp;#39;s functionality.">OgreManager</a>-&gt;getName();
 <a name="l00234"></a>00234     }
 <a name="l00235"></a>00235 
-<a name="l00236"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a8cbdbb737592fe10fb7f82e0eabf7085">00236</a>     <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a8cbdbb737592fe10fb7f82e0eabf7085" title="Creates a node that will orbit around a point.">SceneManager::CreateOrbitingNode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Target, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> RelativeLoc, <span class="keywordtype">bool</span> AutoTrack)
+<a name="l00236"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ad86be1c140e04c7579af80c1e33150fd">00236</a>     <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ad86be1c140e04c7579af80c1e33150fd" title="Creates a node that will orbit around a point.">SceneManager::CreateOrbitingNode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Target, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> RelativeLoc, <span class="keywordtype">bool</span> AutoTrack)
 <a name="l00237"></a>00237     {
 <a name="l00238"></a>00238         Ogre::SceneNode* OgreCNode = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ab9980c42506a8757cab12feb210f056a" title="Pointer for the Ogre Scenemanager, where this manager gets it&amp;#39;s functionality.">OgreManager</a>-&gt;createSceneNode(Name + <span class="stringliteral">&quot;C&quot;</span>);
 <a name="l00239"></a>00239         <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ab9980c42506a8757cab12feb210f056a" title="Pointer for the Ogre Scenemanager, where this manager gets it&amp;#39;s functionality.">OgreManager</a>-&gt;getRootSceneNode()-&gt;addChild(OgreCNode);
@@ -276,57 +276,57 @@
 <a name="l00245"></a>00245         {
 <a name="l00246"></a>00246             OgreONode-&gt;setAutoTracking(<span class="keyword">true</span>, OgreCNode);
 <a name="l00247"></a>00247         }
-<a name="l00248"></a>00248         <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* PhysONode = <span class="keyword">new</span> <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>(OgreONode, <span class="keyword">this</span>);
-<a name="l00249"></a>00249         PhysONode-&gt;<a class="code" href="../../d0/ddc/classphys_1_1Node.html#afbc58e8c751f617c89a2246c397c679e" title="Sets the type of node that this is.">SetType</a>(Node::Orbit);
-<a name="l00250"></a>00250         <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.push_back(PhysONode);
+<a name="l00248"></a>00248         <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* PhysONode = <span class="keyword">new</span> <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>(OgreONode, <span class="keyword">this</span>);
+<a name="l00249"></a>00249         PhysONode-&gt;<a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html#abc4cf216177c0a3f4397c83fe3b58e75" title="Sets the type of node that this is.">SetType</a>(WorldNode::Orbit);
+<a name="l00250"></a>00250         <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.push_back(PhysONode);
 <a name="l00251"></a>00251         <span class="keywordflow">return</span> PhysONode;
 <a name="l00252"></a>00252     }
 <a name="l00253"></a>00253 
-<a name="l00254"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a07f3ee064d412908e14a3fe577d6ac80">00254</a>     <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a07f3ee064d412908e14a3fe577d6ac80" title="Creates a stationary node that will look at a location.">SceneManager::CreateStandNode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> LookAt, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Location)
+<a name="l00254"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#afb93b25cdd669066481e7bc81c33674a">00254</a>     <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#afb93b25cdd669066481e7bc81c33674a" title="Creates a stationary node that will look at a location.">SceneManager::CreateStandNode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> LookAt, <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Location)
 <a name="l00255"></a>00255     {
 <a name="l00256"></a>00256         Ogre::SceneNode* OgreNode = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ab9980c42506a8757cab12feb210f056a" title="Pointer for the Ogre Scenemanager, where this manager gets it&amp;#39;s functionality.">OgreManager</a>-&gt;createSceneNode(Name);
 <a name="l00257"></a>00257         <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ab9980c42506a8757cab12feb210f056a" title="Pointer for the Ogre Scenemanager, where this manager gets it&amp;#39;s functionality.">OgreManager</a>-&gt;getRootSceneNode()-&gt;addChild(OgreNode);
 <a name="l00258"></a>00258         OgreNode-&gt;setPosition(Location.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>());
 <a name="l00259"></a>00259         OgreNode-&gt;lookAt(LookAt.<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html#a17265d86a74139398d310b56ba7e89b8" title="Gets a Ogre vector3.">GetOgreVector3</a>(), Ogre::Node::TS_WORLD);
-<a name="l00260"></a>00260         <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* PhysNode = <span class="keyword">new</span> <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>(OgreNode, <span class="keyword">this</span>);
-<a name="l00261"></a>00261         PhysNode-&gt;<a class="code" href="../../d0/ddc/classphys_1_1Node.html#afbc58e8c751f617c89a2246c397c679e" title="Sets the type of node that this is.">SetType</a>(Node::Stand);
-<a name="l00262"></a>00262         <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.push_back(PhysNode);
+<a name="l00260"></a>00260         <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* PhysNode = <span class="keyword">new</span> <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>(OgreNode, <span class="keyword">this</span>);
+<a name="l00261"></a>00261         PhysNode-&gt;<a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html#abc4cf216177c0a3f4397c83fe3b58e75" title="Sets the type of node that this is.">SetType</a>(WorldNode::Stand);
+<a name="l00262"></a>00262         <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.push_back(PhysNode);
 <a name="l00263"></a>00263         <span class="keywordflow">return</span> PhysNode;
 <a name="l00264"></a>00264     }
 <a name="l00265"></a>00265 
-<a name="l00266"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ae058104e2eebd36feb8cc84ff0e1d354">00266</a>     <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ae058104e2eebd36feb8cc84ff0e1d354" title="Gets an already created node by name.">SceneManager::GetNode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
+<a name="l00266"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a23428c683adddabf9ab6650d8e95ac3c">00266</a>     <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a23428c683adddabf9ab6650d8e95ac3c" title="Gets an already created node by name.">SceneManager::GetNode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
 <a name="l00267"></a>00267     {
-<a name="l00268"></a>00268         <span class="keywordflow">if</span>(<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.empty())
+<a name="l00268"></a>00268         <span class="keywordflow">if</span>(<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.empty())
 <a name="l00269"></a>00269             <span class="keywordflow">return</span> 0;
-<a name="l00270"></a>00270         <span class="keywordflow">for</span>( std::vector&lt;Node*&gt;::iterator it = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.begin() ; it != <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.end() ; it++ )
+<a name="l00270"></a>00270         <span class="keywordflow">for</span>( std::vector&lt;WorldNode*&gt;::iterator it = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.begin() ; it != <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.end() ; it++ )
 <a name="l00271"></a>00271         {
 <a name="l00272"></a>00272             <span class="keywordflow">if</span>( Name == (*it)-&gt;GetName() )
 <a name="l00273"></a>00273             {
-<a name="l00274"></a>00274                 <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* node = (*it);
+<a name="l00274"></a>00274                 <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* node = (*it);
 <a name="l00275"></a>00275                 <span class="keywordflow">return</span> node;
 <a name="l00276"></a>00276             }
 <a name="l00277"></a>00277         }
 <a name="l00278"></a>00278         <span class="keywordflow">return</span> 0;
 <a name="l00279"></a>00279     }
 <a name="l00280"></a>00280 
-<a name="l00281"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a4b05a304bae8f187fa2474abe7b7f05f">00281</a>     <a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ae058104e2eebd36feb8cc84ff0e1d354" title="Gets an already created node by name.">SceneManager::GetNode</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00281"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aa30beb1565c4a62f547495f6639e6ad5">00281</a>     <a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a23428c683adddabf9ab6650d8e95ac3c" title="Gets an already created node by name.">SceneManager::GetNode</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
 <a name="l00282"></a>00282     {
-<a name="l00283"></a>00283         <span class="keywordflow">return</span> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>[Index];
+<a name="l00283"></a>00283         <span class="keywordflow">return</span> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>[Index];
 <a name="l00284"></a>00284     }
 <a name="l00285"></a>00285 
 <a name="l00286"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a9b236739b4b524a282f84b58b524efa6">00286</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a9b236739b4b524a282f84b58b524efa6" title="Gets the number of nodes created and stored in this manager.">SceneManager::GetNumNodes</a>()
 <a name="l00287"></a>00287     {
-<a name="l00288"></a>00288         <span class="keywordflow">return</span> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.size();
+<a name="l00288"></a>00288         <span class="keywordflow">return</span> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.size();
 <a name="l00289"></a>00289     }
 <a name="l00290"></a>00290 
 <a name="l00291"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ae0cf3beb3e8419c3385b53a3bd7dab8f">00291</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#ae0cf3beb3e8419c3385b53a3bd7dab8f" title="Gets the number of stand type nodes created and stored in this manager.">SceneManager::GetNumStandNodes</a>()
 <a name="l00292"></a>00292     {
-<a name="l00293"></a>00293         <span class="keywordflow">if</span>(<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.empty())
+<a name="l00293"></a>00293         <span class="keywordflow">if</span>(<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.empty())
 <a name="l00294"></a>00294             <span class="keywordflow">return</span> 0;
 <a name="l00295"></a>00295         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Num = 0;
-<a name="l00296"></a>00296         <span class="keywordflow">for</span>( std::vector&lt;Node*&gt;::iterator it = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.begin() ; it != <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.end() ; it++ )
+<a name="l00296"></a>00296         <span class="keywordflow">for</span>( std::vector&lt;WorldNode*&gt;::iterator it = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.begin() ; it != <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.end() ; it++ )
 <a name="l00297"></a>00297         {
-<a name="l00298"></a>00298             <span class="keywordflow">if</span>( Node::Stand == (*it)-&gt;GetType() )
+<a name="l00298"></a>00298             <span class="keywordflow">if</span>( WorldNode::Stand == (*it)-&gt;GetType() )
 <a name="l00299"></a>00299             {
 <a name="l00300"></a>00300                 Num++;
 <a name="l00301"></a>00301             }
@@ -336,12 +336,12 @@
 <a name="l00305"></a>00305 
 <a name="l00306"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a5ad1eab41f98131cfdc359b5c2a73c72">00306</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a5ad1eab41f98131cfdc359b5c2a73c72" title="Gets the number of orbit type nodes created and stored in this manager.">SceneManager::GetNumOrbitNodes</a>()
 <a name="l00307"></a>00307     {
-<a name="l00308"></a>00308         <span class="keywordflow">if</span>(<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.empty())
+<a name="l00308"></a>00308         <span class="keywordflow">if</span>(<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.empty())
 <a name="l00309"></a>00309             <span class="keywordflow">return</span> 0;
 <a name="l00310"></a>00310         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Num = 0;
-<a name="l00311"></a>00311         <span class="keywordflow">for</span>( std::vector&lt;Node*&gt;::iterator it = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.begin() ; it != <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.end() ; it++ )
+<a name="l00311"></a>00311         <span class="keywordflow">for</span>( std::vector&lt;WorldNode*&gt;::iterator it = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.begin() ; it != <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.end() ; it++ )
 <a name="l00312"></a>00312         {
-<a name="l00313"></a>00313             <span class="keywordflow">if</span>( Node::Orbit == (*it)-&gt;GetType() )
+<a name="l00313"></a>00313             <span class="keywordflow">if</span>( WorldNode::Orbit == (*it)-&gt;GetType() )
 <a name="l00314"></a>00314             {
 <a name="l00315"></a>00315                 Num++;
 <a name="l00316"></a>00316             }
@@ -349,16 +349,16 @@
 <a name="l00318"></a>00318         <span class="keywordflow">return</span> Num;
 <a name="l00319"></a>00319     }
 <a name="l00320"></a>00320 
-<a name="l00321"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a4c26ed31f84b171101db2b5ef184d701">00321</a>     <span class="keywordtype">void</span> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a4c26ed31f84b171101db2b5ef184d701" title="Deletes a node and removes all trace of it from the manager.">SceneManager::DestroyNode</a>(<a class="code" href="../../d0/ddc/classphys_1_1Node.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>* node)
+<a name="l00321"></a><a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a5a2d68ab38308f9c6ac4b659cae36dee">00321</a>     <span class="keywordtype">void</span> <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a5a2d68ab38308f9c6ac4b659cae36dee" title="Deletes a node and removes all trace of it from the manager.">SceneManager::DestroyNode</a>(<a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>* node)
 <a name="l00322"></a>00322     {
-<a name="l00323"></a>00323         <span class="keywordflow">if</span>(<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.empty())
+<a name="l00323"></a>00323         <span class="keywordflow">if</span>(<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.empty())
 <a name="l00324"></a>00324             <span class="keywordflow">return</span>;
-<a name="l00325"></a>00325         <span class="keywordflow">for</span>( std::vector&lt;Node*&gt;::iterator it = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.begin() ; it != <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.end() ; it++ )
+<a name="l00325"></a>00325         <span class="keywordflow">for</span>( std::vector&lt;WorldNode*&gt;::iterator it = <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.begin() ; it != <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.end() ; it++ )
 <a name="l00326"></a>00326         {
 <a name="l00327"></a>00327             <span class="keywordflow">if</span>( node == (*it) )
 <a name="l00328"></a>00328             {
 <a name="l00329"></a>00329                 <span class="keyword">delete</span> (*it);
-<a name="l00330"></a>00330                 <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aac556e9a9ee9c8c348259e86018d1df6" title="Vector storing all the nodes in use by this class.">Nodes</a>.erase(it);
+<a name="l00330"></a>00330                 <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#a51a391281cc074801792599ae38638b0" title="Vector storing all the nodes in use by this class.">WorldNodes</a>.erase(it);
 <a name="l00331"></a>00331                 <span class="keywordflow">return</span>;
 <a name="l00332"></a>00332             }
 <a name="l00333"></a>00333         }
@@ -376,7 +376,7 @@
 <a name="l00345"></a>00345 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:34 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

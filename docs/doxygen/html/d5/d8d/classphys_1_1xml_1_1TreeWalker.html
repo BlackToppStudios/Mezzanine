@@ -71,12 +71,12 @@ Protected Member Functions</h2></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6db9d28bd448a131448276ee03de1e6d"></a><!-- doxytag: member="phys::xml::TreeWalker::Node" ref="a6db9d28bd448a131448276ee03de1e6d" args="" -->
-class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
+class&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a6db9d28bd448a131448276ee03de1e6d">Node</a></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Used to call a function for_each member of the subtree of nodes descended from a specific node. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="../../de/d78/classphys_1_1xml_1_1AttributeIterator.html" title="Attribute iterator (a bidirectional iterator over a collection of Attribute).">AttributeIterator</a>.</dd></dl>
-<p>If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some equivalent method or use a <a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html" title="Used to call a function for_each member of the subtree of nodes descended from a specific node...">TreeWalker</a>. This provides a helper for depth-first traversal of a subtree. In order to use it, you have to implement <a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html" title="Used to call a function for_each member of the subtree of nodes descended from a specific node...">xml::TreeWalker</a> interface and call <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">xml::Node::Traverse()</a> function. <br/>
+<p>If you want to do a deep tree traversal, you'll either have to do it via a recursive function or some equivalent method or use a <a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html" title="Used to call a function for_each member of the subtree of nodes descended from a specific node...">TreeWalker</a>. This provides a helper for depth-first traversal of a subtree. In order to use it, you have to implement <a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html" title="Used to call a function for_each member of the subtree of nodes descended from a specific node...">xml::TreeWalker</a> interface and call <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53d7718081d6d0835dde64f7cc2763bc" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">xml::Node::Traverse()</a> function. <br/>
 <br/>
  First, <a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a649d9e5a06542be0282d3d20994a62fc" title="Called on the root Node of the xml subtree when traversal begins.  By default this simply returns tru...">TreeWalker::begin()</a> is called with traversal root as its argument.<br/>
  Then, <a class="el" href="../../d5/d8d/classphys_1_1xml_1_1TreeWalker.html#a03267e73acac44809f16739fd00a536d" title="A Pure Virtual function that is expected to be implemented to create the desired behavior.  This is called on every Node that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching many nodes.">TreeWalker::for_each()</a> function is called for all nodes in the traversal subtree in depth first order, excluding the traversal root. Each <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> is passed as an argument.<br/>
@@ -105,7 +105,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <div class="memdoc">
 
 <p>Called on the root <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal begins.  By default this simply returns true, but is expected to be overridden with any desired behavior. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True by default. If it returns false, then traversal ends and the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True by default. If it returns false, then traversal ends and the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53d7718081d6d0835dde64f7cc2763bc" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03341">3341</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
@@ -150,7 +150,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <div class="memdoc">
 
 <p>Called on the root <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> of the xml subtree when traversal ends.  By default this simply returns true, but is expected to be overridden with any desired behavior. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>True by default. If it returns false, then traversal ends and the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True by default. If it returns false, then traversal ends and the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53d7718081d6d0835dde64f7cc2763bc" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03346">3346</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
@@ -173,7 +173,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <div class="memdoc">
 
 <p>A Pure Virtual function that is expected to be implemented to create the desired behavior.  This is called on every <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html" title="A light-weight handle for manipulating nodes in DOM tree.">Node</a> that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching many nodes. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>if true Traversal is expected to continue, if false, then traversal ends and the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a0029d08d3689c36d882ada0c0c9cf6e9" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>if true Traversal is expected to continue, if false, then traversal ends and the <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html#a53d7718081d6d0835dde64f7cc2763bc" title="Perform sophisticated (or whatever) algorithms on this and all descendant Nodes in the XML tree...">Node::Traverse()</a> that was called is expected to return false. </dd></dl>
 
 </div>
 </div>
@@ -183,7 +183,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>Node</b></td></tr>
 <li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:53 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:45 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -1463,48 +1463,47 @@
 <a name="l01432"></a>01432 <span class="comment">        /// @param NameSpace Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example &quot;phys::&quot;</span>
 <a name="l01433"></a>01433 <span class="comment">        /// @param ClassName This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages.</span>
 <a name="l01434"></a>01434 <span class="comment">        /// @param OneTag One XML tag/elements worth of text to deserialize.</span>
-<a name="l01435"></a>01435 <span class="comment">        /// @param MinVersion The minimum version of the xml for the given class that you plan of deserializing.</span>
-<a name="l01436"></a>01436 <span class="comment">        /// @return An pointer to xml::Document that you are now the owner of and must delete, that has the data parse and ready to access.</span>
-<a name="l01437"></a>01437 <span class="comment">        /// @throw This can throw</span>
-<a name="l01438"></a>01438 <span class="comment"></span>        Document* <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#aa48ad222ba9a6fe46a76c2add6923028" title="Perform a basic series of checks for extracting meaning from a single xml tag.">PreParseClassFromSingleTag</a>(<span class="keyword">const</span> String&amp; NameSpace, <span class="keyword">const</span> String&amp; ClassName, <span class="keyword">const</span> String&amp; OneTag, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> MinVersion);
-<a name="l01439"></a>01439 
-<a name="l01440"></a>01440     }
-<a name="l01441"></a>01441 }
-<a name="l01442"></a>01442 <span class="preprocessor">#endif</span>
-<a name="l01443"></a>01443 <span class="preprocessor"></span>
-<a name="l01444"></a>01444 <span class="preprocessor">#endif // \PHYSXML</span>
-<a name="l01445"></a>01445 <span class="preprocessor"></span>
-<a name="l01446"></a>01446 <span class="comment">/*</span>
-<a name="l01447"></a>01447 <span class="comment"> *</span>
-<a name="l01448"></a>01448 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
-<a name="l01449"></a>01449 <span class="comment"> * to the contents of this file and associated documentation.</span>
-<a name="l01450"></a>01450 <span class="comment"> *</span>
-<a name="l01451"></a>01451 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
-<a name="l01452"></a>01452 <span class="comment"> *</span>
-<a name="l01453"></a>01453 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
-<a name="l01454"></a>01454 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
-<a name="l01455"></a>01455 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
-<a name="l01456"></a>01456 <span class="comment"> * restriction, including without limitation the rights to use,</span>
-<a name="l01457"></a>01457 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
-<a name="l01458"></a>01458 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
-<a name="l01459"></a>01459 <span class="comment"> * Software is furnished to do so, subject to the following</span>
-<a name="l01460"></a>01460 <span class="comment"> * conditions:</span>
-<a name="l01461"></a>01461 <span class="comment"> *</span>
-<a name="l01462"></a>01462 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
-<a name="l01463"></a>01463 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
-<a name="l01464"></a>01464 <span class="comment"> *</span>
-<a name="l01465"></a>01465 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
-<a name="l01466"></a>01466 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
-<a name="l01467"></a>01467 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
-<a name="l01468"></a>01468 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
-<a name="l01469"></a>01469 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
-<a name="l01470"></a>01470 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
-<a name="l01471"></a>01471 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
-<a name="l01472"></a>01472 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
-<a name="l01473"></a>01473 <span class="comment"> */</span>
+<a name="l01435"></a>01435 <span class="comment">        /// @return An pointer to xml::Document that you are now the owner of and must delete, that has the data parse and ready to access.</span>
+<a name="l01436"></a>01436 <span class="comment">        /// @throw This can throw a phys::exception in the event that the xml cannot be parsed.</span>
+<a name="l01437"></a>01437 <span class="comment"></span>        Document* <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a2d57f26ba476d7f9ea154290d07dc038" title="Perform a basic series of checks for extracting meaning from a single xml tag.">PreParseClassFromSingleTag</a>(<span class="keyword">const</span> String&amp; NameSpace, <span class="keyword">const</span> String&amp; ClassName, <span class="keyword">const</span> String&amp; OneTag);
+<a name="l01438"></a>01438 
+<a name="l01439"></a>01439     }
+<a name="l01440"></a>01440 }
+<a name="l01441"></a>01441 <span class="preprocessor">#endif</span>
+<a name="l01442"></a>01442 <span class="preprocessor"></span>
+<a name="l01443"></a>01443 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l01444"></a>01444 <span class="preprocessor"></span>
+<a name="l01445"></a>01445 <span class="comment">/*</span>
+<a name="l01446"></a>01446 <span class="comment"> *</span>
+<a name="l01447"></a>01447 <span class="comment"> * Software, Files, Libraries and all other items referenced in this clause refers only</span>
+<a name="l01448"></a>01448 <span class="comment"> * to the contents of this file and associated documentation.</span>
+<a name="l01449"></a>01449 <span class="comment"> *</span>
+<a name="l01450"></a>01450 <span class="comment"> * Copyright © 2006-2010 Arseny Kapoulkine</span>
+<a name="l01451"></a>01451 <span class="comment"> *</span>
+<a name="l01452"></a>01452 <span class="comment"> * Permission is hereby granted, free of charge, to any person</span>
+<a name="l01453"></a>01453 <span class="comment"> * obtaining a copy of this software and associated documentation</span>
+<a name="l01454"></a>01454 <span class="comment"> * files (the &quot;Software&quot;), to deal in the Software without</span>
+<a name="l01455"></a>01455 <span class="comment"> * restriction, including without limitation the rights to use,</span>
+<a name="l01456"></a>01456 <span class="comment"> * copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<a name="l01457"></a>01457 <span class="comment"> * copies of the Software, and to permit persons to whom the</span>
+<a name="l01458"></a>01458 <span class="comment"> * Software is furnished to do so, subject to the following</span>
+<a name="l01459"></a>01459 <span class="comment"> * conditions:</span>
+<a name="l01460"></a>01460 <span class="comment"> *</span>
+<a name="l01461"></a>01461 <span class="comment"> * The above copyright notice and this permission notice shall be</span>
+<a name="l01462"></a>01462 <span class="comment"> * included in all copies or substantial portions of the Software.</span>
+<a name="l01463"></a>01463 <span class="comment"> *</span>
+<a name="l01464"></a>01464 <span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND,</span>
+<a name="l01465"></a>01465 <span class="comment"> * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES</span>
+<a name="l01466"></a>01466 <span class="comment"> * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND</span>
+<a name="l01467"></a>01467 <span class="comment"> * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT</span>
+<a name="l01468"></a>01468 <span class="comment"> * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,</span>
+<a name="l01469"></a>01469 <span class="comment"> * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span>
+<a name="l01470"></a>01470 <span class="comment"> * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR</span>
+<a name="l01471"></a>01471 <span class="comment"> * OTHER DEALINGS IN THE SOFTWARE.</span>
+<a name="l01472"></a>01472 <span class="comment"> */</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:35 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

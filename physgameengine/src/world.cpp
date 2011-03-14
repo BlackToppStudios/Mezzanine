@@ -185,11 +185,11 @@ namespace phys
         //Perform a Test that only needs to be done once for the SDL/Physuserinputevent system.`
         Log("Verifying size of userinput events:");
         Log(sizeof(MetaCode::InputCode));
-        Log(sizeof(SDLKey));
+        Log(sizeof(SDL_Scancode));
         Log(sizeof(int));
-        if(sizeof(MetaCode::InputCode) != sizeof(SDLKey))
+        if(sizeof(MetaCode::InputCode) != sizeof(SDL_Scancode))
         {
-            LogAndThrow("User input subsystem Event Sizes  Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");
+            LogAndThrow("User input subsystem Event Sizes Don't match, userinput subsystem will go down faster than 'that' girl on prom night.");
         }else{
             Log("External User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
@@ -200,6 +200,11 @@ namespace phys
         }else{
             Log("Internal User input subsystem Event Sizes match, the User Input subsystem won't crash instantly");
         }
+    }
+
+    void World::OneTimeMainLoopInit()
+    {
+        this->GetGraphicsManager()->ResetRenderTimer();
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -315,6 +320,7 @@ namespace phys
         */
 
         Ogre::Timer* LoopTimer = new Ogre::Timer();
+        this->OneTimeMainLoopInit();
         //As long as all the CallBacks return true the game continues
         bool DoNotBreak=true;
         while (DoNotBreak)

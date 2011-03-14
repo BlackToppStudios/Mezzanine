@@ -47,7 +47,8 @@
 //#include "BulletCollision/CollisionShapes/btShapeHull.h"
 //#include "BulletCollision/Gimpact/btGImpactShape.h"
 
-#include "internalmeshinfo.h.cpp"
+#include "internalmeshtools.h.cpp"
+#include "objectreference.h"
 #include "world.h"
 #include "physicsmanager.h"
 #include "actorsoft.h"
@@ -64,25 +65,27 @@ namespace phys{
     ActorSoft::~ActorSoft ()
     {
         delete physsoftbody;
-        delete ManualEntity;
     }
 
     void ActorSoft::CreateSoftObject (Real mass)
     {
         //this->entity->getMesh()->getSubMesh(0)->useSharedVertices = false;
         internal::MeshInfo CurMesh;
-        GetMeshVerticies(CurMesh);
-        GetMeshIndicies(CurMesh);
-        GetMeshNormals(CurMesh);
-        GetMeshTextures(CurMesh);
-        GetOtherMeshInfo(CurMesh);
+        internal::MeshTools::GetMeshVerticies(entity,CurMesh);
+        internal::MeshTools::GetMeshIndicies(entity,CurMesh);
+        internal::MeshTools::GetMeshNormals(entity,CurMesh);
+        internal::MeshTools::GetMeshTextures(entity,CurMesh);
+        internal::MeshTools::GetOtherMeshInfo(entity,CurMesh);
 
         //delete entity;
         GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(entity);
         entity = NULL;
-        this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh (this->GameWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
+        this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh(this->GameWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         CollisionObject=physsoftbody;
-        CollisionObject->setUserPointer(this);
+        ObjectReference* ActorRef = new ObjectReference(phys::WOT_ActorSoft,this);
+        Ogre::Any OgreRef(ActorRef);
+        entity->setUserAny(OgreRef);
+        CollisionObject->setUserPointer(ActorRef);
         Shape = physsoftbody->getCollisionShape();
         physsoftbody->setTotalMass(mass, true);
         physsoftbody->m_cfg.collisions = btSoftBody::fCollision::CL_SS + btSoftBody::fCollision::CL_RS;
@@ -99,7 +102,7 @@ namespace phys{
 
     void ActorSoft::CreateManualMesh (internal::MeshInfo &TheMesh)
     {
-        ManualEntity = new Ogre::ManualObject(TheMesh.Name);
+        Ogre::ManualObject* ManualEntity = new Ogre::ManualObject(TheMesh.Name);
         ManualEntity->setDynamic(true);
         ManualEntity->estimateVertexCount(TheMesh.VCount);
         ManualEntity->estimateIndexCount(TheMesh.ICount);
@@ -117,6 +120,7 @@ namespace phys{
         }
         ManualEntity->end();
         ManualEntity->convertToMesh(TheMesh.Name + "M", TheMesh.Group);
+        delete ManualEntity;
     }
 
     void ActorSoft::AttachToGraphics ()

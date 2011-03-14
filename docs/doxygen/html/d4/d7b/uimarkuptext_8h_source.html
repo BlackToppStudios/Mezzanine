@@ -136,61 +136,67 @@
 <a name="l00105"></a>00105 <span class="comment">                /// @brief Gets the text displayed within the markup text.</span>
 <a name="l00106"></a>00106 <span class="comment">                /// @return Returns the text being displayed.</span>
 <a name="l00107"></a>00107 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> GetText();<span class="comment"></span>
-<a name="l00108"></a>00108 <span class="comment">                /// @brief Sets the Default glyph index to be used with this markup text.</span>
-<a name="l00109"></a>00109 <span class="comment">                /// @details The glyph index is defined in your gorilla file.  This class can change which</span>
-<a name="l00110"></a>00110 <span class="comment">                /// glyph is uses with it&#39;s markup language.  This simply defines which to use when one isn&#39;t</span>
-<a name="l00111"></a>00111 <span class="comment">                /// specified.</span>
-<a name="l00112"></a>00112 <span class="comment">                /// @param DefaultGlyphIndex The index of the glyph to use with this markup text.</span>
-<a name="l00113"></a>00113 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetDefaultGlyphIndex(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> DefaultGlyphIndex);<span class="comment"></span>
-<a name="l00114"></a>00114 <span class="comment">                /// @brief Gets the Default glyph index in use by this markup text.</span>
-<a name="l00115"></a>00115 <span class="comment">                /// @details The glyph index is defined in your gorilla file.</span>
-<a name="l00116"></a>00116 <span class="comment">                /// @return Returns a Whole representing the index of the glyph in use by this markup text.</span>
-<a name="l00117"></a>00117 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetDefaultGlyphIndex();
-<a name="l00118"></a>00118                 <span class="comment">/*/// @brief Aligns the text of the markup text.</span><span class="comment"></span>
-<a name="l00119"></a>00119 <span class="comment">                /// @param Align The enum value representing the horizontal alignment to be set.</span>
-<a name="l00120"></a>00120 <span class="comment"></span>                void HorizontallyAlign(UI::TextHorizontalAlign Align);<span class="comment"></span>
-<a name="l00121"></a>00121 <span class="comment">                /// @brief Aligns the text of the markup text.</span>
-<a name="l00122"></a>00122 <span class="comment">                /// @param Align The enum value representing the vertical alignment to be set.</span>
-<a name="l00123"></a>00123 <span class="comment"></span>                void VerticallyAlign(UI::TextVerticalAlign Align);*/<span class="comment"></span>
-<a name="l00124"></a>00124 <span class="comment">                /// @brief Sets the relative top left position of this markup text.</span>
-<a name="l00125"></a>00125 <span class="comment">                /// @param Position A Vector2 representing the location of this markup text.</span>
-<a name="l00126"></a>00126 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPosition(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
-<a name="l00127"></a>00127 <span class="comment">                /// @brief Gets the relative top left position of this markup text.</span>
-<a name="l00128"></a>00128 <span class="comment">                /// @return Returns a Vector2 representing the location of this markup text.</span>
-<a name="l00129"></a>00129 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetPosition();<span class="comment"></span>
-<a name="l00130"></a>00130 <span class="comment">                /// @brief Sets the top left position of this markup text in pixels.</span>
+<a name="l00108"></a>00108 <span class="comment">                /// @brief Sets the scaling to be applied to the text being rendered.</span>
+<a name="l00109"></a>00109 <span class="comment">                /// @param Scale A Real value representing the scale to be applied.  &lt;1.0 means smaller, &gt;1.0 means larger.</span>
+<a name="l00110"></a>00110 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetTextScale(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Scale);<span class="comment"></span>
+<a name="l00111"></a>00111 <span class="comment">                /// @brief Gets the scaling currently being applied to the rendered text.</span>
+<a name="l00112"></a>00112 <span class="comment">                /// @return Returns a Real value representing the scale applied to the text in this caption.  &lt;1.0 means smaller, &gt;1.0 means larger.</span>
+<a name="l00113"></a>00113 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetTextScale();<span class="comment"></span>
+<a name="l00114"></a>00114 <span class="comment">                /// @brief Sets the Default glyph index to be used with this markup text.</span>
+<a name="l00115"></a>00115 <span class="comment">                /// @details The glyph index is defined in your gorilla file.  This class can change which</span>
+<a name="l00116"></a>00116 <span class="comment">                /// glyph is uses with it&#39;s markup language.  This simply defines which to use when one isn&#39;t</span>
+<a name="l00117"></a>00117 <span class="comment">                /// specified.</span>
+<a name="l00118"></a>00118 <span class="comment">                /// @param DefaultGlyphIndex The index of the glyph to use with this markup text.</span>
+<a name="l00119"></a>00119 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetDefaultGlyphIndex(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> DefaultGlyphIndex);<span class="comment"></span>
+<a name="l00120"></a>00120 <span class="comment">                /// @brief Gets the Default glyph index in use by this markup text.</span>
+<a name="l00121"></a>00121 <span class="comment">                /// @details The glyph index is defined in your gorilla file.</span>
+<a name="l00122"></a>00122 <span class="comment">                /// @return Returns a Whole representing the index of the glyph in use by this markup text.</span>
+<a name="l00123"></a>00123 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetDefaultGlyphIndex();
+<a name="l00124"></a>00124                 <span class="comment">/*/// @brief Aligns the text of the markup text.</span><span class="comment"></span>
+<a name="l00125"></a>00125 <span class="comment">                /// @param Align The enum value representing the horizontal alignment to be set.</span>
+<a name="l00126"></a>00126 <span class="comment"></span>                void HorizontallyAlign(UI::TextHorizontalAlign Align);<span class="comment"></span>
+<a name="l00127"></a>00127 <span class="comment">                /// @brief Aligns the text of the markup text.</span>
+<a name="l00128"></a>00128 <span class="comment">                /// @param Align The enum value representing the vertical alignment to be set.</span>
+<a name="l00129"></a>00129 <span class="comment"></span>                void VerticallyAlign(UI::TextVerticalAlign Align);*/<span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">                /// @brief Sets the relative top left position of this markup text.</span>
 <a name="l00131"></a>00131 <span class="comment">                /// @param Position A Vector2 representing the location of this markup text.</span>
-<a name="l00132"></a>00132 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualPosition(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
-<a name="l00133"></a>00133 <span class="comment">                /// @brief Gets the top left position of this markup text in pixels.</span>
+<a name="l00132"></a>00132 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetPosition(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
+<a name="l00133"></a>00133 <span class="comment">                /// @brief Gets the relative top left position of this markup text.</span>
 <a name="l00134"></a>00134 <span class="comment">                /// @return Returns a Vector2 representing the location of this markup text.</span>
-<a name="l00135"></a>00135 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualPosition();<span class="comment"></span>
-<a name="l00136"></a>00136 <span class="comment">                /// @brief Sets the maximum relative size of this markup text.</span>
-<a name="l00137"></a>00137 <span class="comment">                /// @param Size A vector2 representing the maximum size of this markup text.</span>
-<a name="l00138"></a>00138 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMaxSize(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">                /// @brief Gets the maximum relative size of this markup text.</span>
-<a name="l00140"></a>00140 <span class="comment">                /// @return Returns a vector2 representing the maximum size of this markup text.</span>
-<a name="l00141"></a>00141 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetMaxSize();<span class="comment"></span>
-<a name="l00142"></a>00142 <span class="comment">                /// @brief Sets the maximum size of this markup text in pixels.</span>
+<a name="l00135"></a>00135 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetPosition();<span class="comment"></span>
+<a name="l00136"></a>00136 <span class="comment">                /// @brief Sets the top left position of this markup text in pixels.</span>
+<a name="l00137"></a>00137 <span class="comment">                /// @param Position A Vector2 representing the location of this markup text.</span>
+<a name="l00138"></a>00138 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetActualPosition(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position);<span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment">                /// @brief Gets the top left position of this markup text in pixels.</span>
+<a name="l00140"></a>00140 <span class="comment">                /// @return Returns a Vector2 representing the location of this markup text.</span>
+<a name="l00141"></a>00141 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetActualPosition();<span class="comment"></span>
+<a name="l00142"></a>00142 <span class="comment">                /// @brief Sets the maximum relative size of this markup text.</span>
 <a name="l00143"></a>00143 <span class="comment">                /// @param Size A vector2 representing the maximum size of this markup text.</span>
-<a name="l00144"></a>00144 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMaxActualSize(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
-<a name="l00145"></a>00145 <span class="comment">                /// @brief Gets the maximum size of this markup text in pixels.</span>
+<a name="l00144"></a>00144 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMaxSize(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
+<a name="l00145"></a>00145 <span class="comment">                /// @brief Gets the maximum relative size of this markup text.</span>
 <a name="l00146"></a>00146 <span class="comment">                /// @return Returns a vector2 representing the maximum size of this markup text.</span>
-<a name="l00147"></a>00147 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetMaxActualSize();<span class="comment"></span>
-<a name="l00148"></a>00148 <span class="comment">                /// @brief Sets the priority this markup text should be rendered with.</span>
-<a name="l00149"></a>00149 <span class="comment">                /// @details The default value for this is Medium.</span>
-<a name="l00150"></a>00150 <span class="comment">                /// @param Priority The priority level to be used when rendering this markup text.</span>
-<a name="l00151"></a>00151 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetRenderPriority(UI::RenderPriority Priority);<span class="comment"></span>
-<a name="l00152"></a>00152 <span class="comment">                /// @brief Gets the priority this markup text should be rendered with.</span>
-<a name="l00153"></a>00153 <span class="comment">                /// @return Returns an enum value representing this markup text&#39;s priority level.</span>
-<a name="l00154"></a>00154 <span class="comment"></span>                <span class="keyword">virtual</span> UI::RenderPriority GetRenderPriority();
-<a name="l00155"></a>00155         };
-<a name="l00156"></a>00156     }<span class="comment">//UI</span>
-<a name="l00157"></a>00157 }<span class="comment">//phys</span>
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 <span class="preprocessor">#endif</span>
+<a name="l00147"></a>00147 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetMaxSize();<span class="comment"></span>
+<a name="l00148"></a>00148 <span class="comment">                /// @brief Sets the maximum size of this markup text in pixels.</span>
+<a name="l00149"></a>00149 <span class="comment">                /// @param Size A vector2 representing the maximum size of this markup text.</span>
+<a name="l00150"></a>00150 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetMaxActualSize(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Size);<span class="comment"></span>
+<a name="l00151"></a>00151 <span class="comment">                /// @brief Gets the maximum size of this markup text in pixels.</span>
+<a name="l00152"></a>00152 <span class="comment">                /// @return Returns a vector2 representing the maximum size of this markup text.</span>
+<a name="l00153"></a>00153 <span class="comment"></span>                <span class="keyword">virtual</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetMaxActualSize();<span class="comment"></span>
+<a name="l00154"></a>00154 <span class="comment">                /// @brief Sets the priority this markup text should be rendered with.</span>
+<a name="l00155"></a>00155 <span class="comment">                /// @details The default value for this is Medium.</span>
+<a name="l00156"></a>00156 <span class="comment">                /// @param Priority The priority level to be used when rendering this markup text.</span>
+<a name="l00157"></a>00157 <span class="comment"></span>                <span class="keyword">virtual</span> <span class="keywordtype">void</span> SetRenderPriority(UI::RenderPriority Priority);<span class="comment"></span>
+<a name="l00158"></a>00158 <span class="comment">                /// @brief Gets the priority this markup text should be rendered with.</span>
+<a name="l00159"></a>00159 <span class="comment">                /// @return Returns an enum value representing this markup text&#39;s priority level.</span>
+<a name="l00160"></a>00160 <span class="comment"></span>                <span class="keyword">virtual</span> UI::RenderPriority GetRenderPriority();
+<a name="l00161"></a>00161         };
+<a name="l00162"></a>00162     }<span class="comment">//UI</span>
+<a name="l00163"></a>00163 }<span class="comment">//phys</span>
+<a name="l00164"></a>00164 
+<a name="l00165"></a>00165 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:34 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

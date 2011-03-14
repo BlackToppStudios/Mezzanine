@@ -76,7 +76,8 @@ namespace phys
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Static objects.
-            void CreateShapeFromMeshStatic();
+            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
+            void CreateShapeFromMeshStatic(bool UseAllSubmeshes = false);
 
             /// @brief Compatability function.
             /// @details This function does nothing, as this class isn't dynamic.  This is simply here to

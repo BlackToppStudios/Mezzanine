@@ -81,189 +81,228 @@
 <a name="l00050"></a>00050 }
 <a name="l00051"></a>00051 
 <a name="l00052"></a>00052 <span class="keyword">class </span>SDL_Surface;
-<a name="l00053"></a>00053 
-<a name="l00054"></a>00054 <span class="keyword">namespace </span>phys
-<a name="l00055"></a>00055 {<span class="comment"></span>
-<a name="l00056"></a>00056 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00057"></a>00057 <span class="comment">    /// @class GraphicsManager</span>
-<a name="l00058"></a>00058 <span class="comment">    /// @headerfile graphicsmanager.h</span>
-<a name="l00059"></a>00059 <span class="comment">    /// @brief This is intended to store basic graphics setting for the user.</span>
-<a name="l00060"></a>00060 <span class="comment">    /// @details This stores x/y resolution, fullscreen and in the future other</span>
-<a name="l00061"></a>00061 <span class="comment">    /// settings. This is intended to make it easy for developers to pass/move around</span>
-<a name="l00062"></a>00062 <span class="comment">    /// complex graphics settings. We hope to eventually include other items like</span>
-<a name="l00063"></a>00063 <span class="comment">    /// shader settings, rendering API, and maybe other settings too.</span>
-<a name="l00064"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html">00064</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>: <span class="keyword">public</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>
-<a name="l00065"></a>00065     {
-<a name="l00066"></a>00066         <span class="keyword">private</span>:<span class="comment"></span>
-<a name="l00067"></a>00067 <span class="comment">            /// @internal</span>
-<a name="l00068"></a>00068 <span class="comment">            /// @brief This is the desired state of whether the window is fullscreen or not.</span>
-<a name="l00069"></a>00069 <span class="comment"></span>            <span class="keywordtype">bool</span> Fullscreen;
-<a name="l00070"></a>00070 <span class="comment"></span>
-<a name="l00071"></a>00071 <span class="comment">            /// @internal</span>
-<a name="l00072"></a>00072 <span class="comment">            /// @brief This stores the Height of the renderwindow</span>
-<a name="l00073"></a>00073 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> RenderHeight;
-<a name="l00074"></a>00074 <span class="comment"></span>
-<a name="l00075"></a>00075 <span class="comment">            /// @internal</span>
-<a name="l00076"></a>00076 <span class="comment">            /// @brief This stores the Width of the renderwindow</span>
-<a name="l00077"></a>00077 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> RenderWidth;
-<a name="l00078"></a>00078 <span class="comment"></span>
-<a name="l00079"></a>00079 <span class="comment">            /// @brief Adjust all Settings</span>
-<a name="l00080"></a>00080 <span class="comment">            /// @param Width_ The desired width.</span>
-<a name="l00081"></a>00081 <span class="comment">            /// @param Height_ The desired height.</span>
-<a name="l00082"></a>00082 <span class="comment">            /// @param FullScreen_ True if fullscreen, false if not.</span>
-<a name="l00083"></a>00083 <span class="comment">            /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be</span>
-<a name="l00084"></a>00084 <span class="comment">            /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens</span>
-<a name="l00085"></a>00085 <span class="comment">            /// do not support arbitrary resolutions in fullscreen mode.</span>
-<a name="l00086"></a>00086 <span class="comment"></span>            <span class="keywordtype">void</span> Construct( <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_);
-<a name="l00087"></a>00087 
-<a name="l00088"></a>00088             <span class="keywordtype">void</span> CreateRenderWindow();
-<a name="l00089"></a>00089             <span class="keywordtype">void</span> DestroyRenderWindow();
-<a name="l00090"></a>00090             <span class="keywordtype">void</span> InitSDL();
-<a name="l00091"></a>00091             <span class="keywordtype">void</span> ShutdownSDL();
-<a name="l00092"></a>00092             <span class="keywordtype">void</span> InitViewportAndCamera();
-<a name="l00093"></a>00093             <span class="keywordtype">void</span> UpdateWindowStats();
-<a name="l00094"></a>00094 
-<a name="l00095"></a>00095             Ogre::Timer *RenderTimer;
-<a name="l00096"></a>00096             Ogre::RenderWindow* OgreGameWindow;
-<a name="l00097"></a>00097             SDL_Surface* SDLscreen;
-<a name="l00098"></a>00098 
-<a name="l00099"></a>00099             <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> FrameDelay;
-<a name="l00100"></a>00100             <span class="keywordtype">bool</span> SDLBeenInitialized;
-<a name="l00101"></a>00101 
-<a name="l00102"></a>00102         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00103"></a>00103 <span class="comment">            /// @brief Basic constructor</span>
-<a name="l00104"></a>00104 <span class="comment">            /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false</span>
-<a name="l00105"></a>00105 <span class="comment"></span>            <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>();
-<a name="l00106"></a>00106 <span class="comment"></span>
-<a name="l00107"></a>00107 <span class="comment">            /// @brief Versatile Constructor</span>
-<a name="l00108"></a>00108 <span class="comment">            /// @param Width_ The desired width.</span>
-<a name="l00109"></a>00109 <span class="comment">            /// @param Height_ The desired height.</span>
-<a name="l00110"></a>00110 <span class="comment">            /// @param FullScreen_ True if fullscreen, false if not.</span>
-<a name="l00111"></a>00111 <span class="comment">            /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the</span>
-<a name="l00112"></a>00112 <span class="comment">            /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support</span>
-<a name="l00113"></a>00113 <span class="comment">            /// arbitrary resolutions in fullscreen mode.</span>
-<a name="l00114"></a>00114 <span class="comment"></span>            <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_);
-<a name="l00115"></a>00115 <span class="comment"></span>
-<a name="l00116"></a>00116 <span class="comment">            /// @brief Class Destructor.</span>
-<a name="l00117"></a>00117 <span class="comment"></span>            ~<a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>();
-<a name="l00118"></a>00118 <span class="comment"></span>
-<a name="l00119"></a>00119 <span class="comment">            /// @brief Gets the Fullscreen Setting</span>
-<a name="l00120"></a>00120 <span class="comment">            /// @details Gets the Fullscreen Setting</span>
-<a name="l00121"></a>00121 <span class="comment">            /// @return This returns a bool, true if fullscreen is set, false otherwise</span>
-<a name="l00122"></a>00122 <span class="comment"></span>            <span class="keywordtype">bool</span> getFullscreen() <span class="keyword">const</span>;
-<a name="l00123"></a>00123 <span class="comment"></span>
-<a name="l00124"></a>00124 <span class="comment">            /// @brief Set the Fullscreen Setting</span>
-<a name="l00125"></a>00125 <span class="comment">            /// @details Set the Fullscreen Setting</span>
-<a name="l00126"></a>00126 <span class="comment">            /// @param Fullscreen_ This accepts a bool. True for fullscreen, false for windowed</span>
-<a name="l00127"></a>00127 <span class="comment"></span>            <span class="keywordtype">void</span> setFullscreen(<span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;Fullscreen_);
-<a name="l00128"></a>00128 <span class="comment"></span>
-<a name="l00129"></a>00129 <span class="comment">            /// @brief Gets the Height of the Rendering Area</span>
-<a name="l00130"></a>00130 <span class="comment">            /// @details Gets the Height of the Rendering Area</span>
-<a name="l00131"></a>00131 <span class="comment">            /// @return This returns the Height of the Rendering Area</span>
-<a name="l00132"></a>00132 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> getRenderHeight() <span class="keyword">const</span>;
+<a name="l00053"></a>00053 <span class="keyword">class </span>SDL_Window;
+<a name="l00054"></a>00054 
+<a name="l00055"></a>00055 <span class="keyword">namespace </span>phys
+<a name="l00056"></a>00056 {<span class="comment"></span>
+<a name="l00057"></a>00057 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00058"></a>00058 <span class="comment">    /// @class GraphicsSettings</span>
+<a name="l00059"></a>00059 <span class="comment">    /// @headerfile graphicsmanager.h</span>
+<a name="l00060"></a>00060 <span class="comment">    /// @brief This stores all the possible configuration options the graphics manager supports.</span>
+<a name="l00061"></a>00061 <span class="comment">    /// @details The graphics manager stores one of these for all of it&#39;s configuration options,</span>
+<a name="l00062"></a>00062 <span class="comment">    /// additionally one can be created and passed into the manager to set all the configuration</span>
+<a name="l00063"></a>00063 <span class="comment">    /// options at once.</span>
+<a name="l00064"></a>00064 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00065"></a><a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html">00065</a> <span class="comment"></span>    <span class="keyword">struct </span><a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a>
+<a name="l00066"></a>00066     {<span class="comment"></span>
+<a name="l00067"></a>00067 <span class="comment">        /// @brief This stores the Height of the renderwindow</span>
+<a name="l00068"></a><a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265">00068</a> <span class="comment"></span>        <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a>;<span class="comment"></span>
+<a name="l00069"></a>00069 <span class="comment">        /// @brief This stores the Width of the renderwindow</span>
+<a name="l00070"></a><a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239">00070</a> <span class="comment"></span>        <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a>;<span class="comment"></span>
+<a name="l00071"></a>00071 <span class="comment">        /// @brief This is the desired state of whether the window is fullscreen or not.</span>
+<a name="l00072"></a><a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e">00072</a> <span class="comment"></span>        <span class="keywordtype">bool</span> <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a>;<span class="comment"></span>
+<a name="l00073"></a>00073 <span class="comment">        /// @brief This is the desired state of whether to enable VSync or not.</span>
+<a name="l00074"></a><a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#ade8df051b7da492f0b48014edfca532a">00074</a> <span class="comment"></span>        <span class="keywordtype">bool</span> <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#ade8df051b7da492f0b48014edfca532a" title="This is the desired state of whether to enable VSync or not.">VSync</a>;<span class="comment"></span>
+<a name="l00075"></a>00075 <span class="comment">        /// @brief Struct Constructor</span>
+<a name="l00076"></a><a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#aceaaf53585413067adbf271e2c1e48fa">00076</a> <span class="comment"></span>        <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#aceaaf53585413067adbf271e2c1e48fa" title="Struct Constructor.">GraphicsSettings</a>() : <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a>(0),<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a>(0),<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a>(false),<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#ade8df051b7da492f0b48014edfca532a" title="This is the desired state of whether to enable VSync or not.">VSync</a>(false) {}
+<a name="l00077"></a>00077         <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a>&amp; operator= (<span class="keyword">const</span> <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a> &amp;GS)
+<a name="l00078"></a>00078         {
+<a name="l00079"></a>00079             this-&gt;<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a> = GS.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a>;
+<a name="l00080"></a>00080             this-&gt;<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a> = GS.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a>;
+<a name="l00081"></a>00081             this-&gt;<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a> = GS.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a>;
+<a name="l00082"></a>00082             this-&gt;<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#ade8df051b7da492f0b48014edfca532a" title="This is the desired state of whether to enable VSync or not.">VSync</a> = GS.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#ade8df051b7da492f0b48014edfca532a" title="This is the desired state of whether to enable VSync or not.">VSync</a>;
+<a name="l00083"></a>00083             <span class="keywordflow">return</span> *<span class="keyword">this</span>;
+<a name="l00084"></a>00084         }
+<a name="l00085"></a>00085     };
+<a name="l00086"></a>00086 <span class="comment"></span>
+<a name="l00087"></a>00087 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00088"></a>00088 <span class="comment">    /// @class GraphicsManager</span>
+<a name="l00089"></a>00089 <span class="comment">    /// @headerfile graphicsmanager.h</span>
+<a name="l00090"></a>00090 <span class="comment">    /// @brief This is intended to store basic graphics setting for the user.</span>
+<a name="l00091"></a>00091 <span class="comment">    /// @details This stores x/y resolution, fullscreen and in the future other</span>
+<a name="l00092"></a>00092 <span class="comment">    /// settings. This is intended to make it easy for developers to pass/move around</span>
+<a name="l00093"></a>00093 <span class="comment">    /// complex graphics settings. We hope to eventually include other items like</span>
+<a name="l00094"></a>00094 <span class="comment">    /// shader settings, rendering API, and maybe other settings too.</span>
+<a name="l00095"></a>00095 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00096"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html">00096</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>: <span class="keyword">public</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>
+<a name="l00097"></a>00097     {
+<a name="l00098"></a>00098         <span class="keyword">private</span>:
+<a name="l00099"></a>00099             <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a> Settings;
+<a name="l00100"></a>00100 
+<a name="l00101"></a>00101             std::vector&lt;String&gt; SupportedResolutions;
+<a name="l00102"></a>00102             std::vector&lt;String&gt; SupportedDevices;
+<a name="l00103"></a>00103 <span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">            /// @brief Adjust all Settings</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @param Width_ The desired width.</span>
+<a name="l00106"></a>00106 <span class="comment">            /// @param Height_ The desired height.</span>
+<a name="l00107"></a>00107 <span class="comment">            /// @param FullScreen_ True if fullscreen, false if not.</span>
+<a name="l00108"></a>00108 <span class="comment">            /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be</span>
+<a name="l00109"></a>00109 <span class="comment">            /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens</span>
+<a name="l00110"></a>00110 <span class="comment">            /// do not support arbitrary resolutions in fullscreen mode.</span>
+<a name="l00111"></a>00111 <span class="comment"></span>            <span class="keywordtype">void</span> Construct( <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_);
+<a name="l00112"></a>00112 
+<a name="l00113"></a>00113             <span class="keywordtype">void</span> CreateRenderWindow();
+<a name="l00114"></a>00114             <span class="keywordtype">void</span> DestroyRenderWindow();
+<a name="l00115"></a>00115             <span class="keywordtype">void</span> InitSDL();
+<a name="l00116"></a>00116             <span class="keywordtype">void</span> ShutdownSDL();
+<a name="l00117"></a>00117             <span class="keywordtype">void</span> InitViewportAndCamera();
+<a name="l00118"></a>00118             <span class="keywordtype">void</span> UpdateWindowStats();
+<a name="l00119"></a>00119 
+<a name="l00120"></a>00120             Ogre::Timer* RenderTimer;
+<a name="l00121"></a>00121             Ogre::RenderWindow* OgreGameWindow;
+<a name="l00122"></a>00122             SDL_Surface* SDLscreen;
+<a name="l00123"></a>00123             SDL_Window* SDLwindow;
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125             <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> FrameDelay;
+<a name="l00126"></a>00126             <span class="keywordtype">bool</span> SDLBeenInitialized;
+<a name="l00127"></a>00127             <span class="keywordtype">bool</span> GraphicsInitialized;
+<a name="l00128"></a>00128 
+<a name="l00129"></a>00129         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">            /// @brief Basic constructor</span>
+<a name="l00131"></a>00131 <span class="comment">            /// @details This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false</span>
+<a name="l00132"></a>00132 <span class="comment"></span>            <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>();
 <a name="l00133"></a>00133 <span class="comment"></span>
-<a name="l00134"></a>00134 <span class="comment">            /// @brief Sets the Height.</span>
-<a name="l00135"></a>00135 <span class="comment">            /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen</span>
-<a name="l00136"></a>00136 <span class="comment">            /// @param Height_ This accepts a Whole.</span>
-<a name="l00137"></a>00137 <span class="comment"></span>            <span class="keywordtype">void</span> setRenderHeight(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_);
-<a name="l00138"></a>00138 <span class="comment"></span>
-<a name="l00139"></a>00139 <span class="comment">            /// @brief Gets the Width of the Rendering Area</span>
-<a name="l00140"></a>00140 <span class="comment">            /// @details Gets the Width of the Rendering Area</span>
-<a name="l00141"></a>00141 <span class="comment">            /// @return This returns the Width of the Rendering Area</span>
-<a name="l00142"></a>00142 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> getRenderWidth() <span class="keyword">const</span>;
-<a name="l00143"></a>00143 <span class="comment"></span>
-<a name="l00144"></a>00144 <span class="comment">            /// @brief Sets the Width.</span>
-<a name="l00145"></a>00145 <span class="comment">            /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen</span>
-<a name="l00146"></a>00146 <span class="comment">            /// @param Width_ This accepts a Whole.</span>
-<a name="l00147"></a>00147 <span class="comment"></span>            <span class="keywordtype">void</span> setRenderWidth(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_);
-<a name="l00148"></a>00148 <span class="comment"></span>
-<a name="l00149"></a>00149 <span class="comment">            /// @brief Changes the X and Y Resolution at the same time</span>
-<a name="l00150"></a>00150 <span class="comment">            /// @details This should be useful in situations where it is not possible to update the width and height separately.</span>
-<a name="l00151"></a>00151 <span class="comment">            /// @param Width_ The new desired Width for the rendering area as a whole number</span>
-<a name="l00152"></a>00152 <span class="comment">            /// @param Height_ The new desired Width for the rendering area as a whole number</span>
-<a name="l00153"></a>00153 <span class="comment"></span>            <span class="keywordtype">void</span> setRenderResolution(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_);
-<a name="l00154"></a>00154 <span class="comment"></span>
-<a name="l00155"></a>00155 <span class="comment">            /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time</span>
-<a name="l00156"></a>00156 <span class="comment">            /// @details This should be useful in situations where it is not possible to update all of the options separately.</span>
-<a name="l00157"></a>00157 <span class="comment">            /// @param Width_ The new desired Width for the rendering area as a whole number</span>
-<a name="l00158"></a>00158 <span class="comment">            /// @param Height_ The new desired Width for the rendering area as a whole number</span>
-<a name="l00159"></a>00159 <span class="comment">            /// @param Fullscreen_ This accepts a bool. True for fullscreen, false for windowed</span>
-<a name="l00160"></a>00160 <span class="comment"></span>            <span class="keywordtype">void</span> setRenderOptions(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;Fullscreen_);
-<a name="l00161"></a>00161 <span class="comment"></span>
-<a name="l00162"></a>00162 <span class="comment">            /// @brief Gets whether or not SDL has been started.</span>
-<a name="l00163"></a>00163 <span class="comment">            /// @return Returns a bool indicating whether or not SDL has been initialized yet.</span>
-<a name="l00164"></a>00164 <span class="comment"></span>            <span class="keywordtype">bool</span> HasSDLBeenInitialized();
+<a name="l00134"></a>00134 <span class="comment">            /// @brief Versatile Constructor</span>
+<a name="l00135"></a>00135 <span class="comment">            /// @param Width_ The desired width.</span>
+<a name="l00136"></a>00136 <span class="comment">            /// @param Height_ The desired height.</span>
+<a name="l00137"></a>00137 <span class="comment">            /// @param FullScreen_ True if fullscreen, false if not.</span>
+<a name="l00138"></a>00138 <span class="comment">            /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the</span>
+<a name="l00139"></a>00139 <span class="comment">            /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support</span>
+<a name="l00140"></a>00140 <span class="comment">            /// arbitrary resolutions in fullscreen mode.</span>
+<a name="l00141"></a>00141 <span class="comment"></span>            <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen_);
+<a name="l00142"></a>00142 <span class="comment"></span>
+<a name="l00143"></a>00143 <span class="comment">            /// @brief Class Destructor.</span>
+<a name="l00144"></a>00144 <span class="comment"></span>            ~<a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html" title="This is intended to store basic graphics setting for the user.">GraphicsManager</a>();
+<a name="l00145"></a>00145 <span class="comment"></span>
+<a name="l00146"></a>00146 <span class="comment">            /// @brief Gets the Fullscreen Setting</span>
+<a name="l00147"></a>00147 <span class="comment">            /// @details Gets the Fullscreen Setting</span>
+<a name="l00148"></a>00148 <span class="comment">            /// @return This returns a bool, true if fullscreen is set, false otherwise</span>
+<a name="l00149"></a>00149 <span class="comment"></span>            <span class="keywordtype">bool</span> getFullscreen() <span class="keyword">const</span>;
+<a name="l00150"></a>00150 <span class="comment"></span>
+<a name="l00151"></a>00151 <span class="comment">            /// @brief Set the Fullscreen Setting</span>
+<a name="l00152"></a>00152 <span class="comment">            /// @details Set the Fullscreen Setting</span>
+<a name="l00153"></a>00153 <span class="comment">            /// @param Fullscreen_ This accepts a bool. True for fullscreen, false for windowed</span>
+<a name="l00154"></a>00154 <span class="comment"></span>            <span class="keywordtype">void</span> setFullscreen(<span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;Fullscreen_);
+<a name="l00155"></a>00155 <span class="comment"></span>
+<a name="l00156"></a>00156 <span class="comment">            /// @brief Gets the Height of the Rendering Area</span>
+<a name="l00157"></a>00157 <span class="comment">            /// @details Gets the Height of the Rendering Area</span>
+<a name="l00158"></a>00158 <span class="comment">            /// @return This returns the Height of the Rendering Area</span>
+<a name="l00159"></a>00159 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> getRenderHeight() <span class="keyword">const</span>;
+<a name="l00160"></a>00160 <span class="comment"></span>
+<a name="l00161"></a>00161 <span class="comment">            /// @brief Sets the Height.</span>
+<a name="l00162"></a>00162 <span class="comment">            /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen</span>
+<a name="l00163"></a>00163 <span class="comment">            /// @param Height_ This accepts a Whole.</span>
+<a name="l00164"></a>00164 <span class="comment"></span>            <span class="keywordtype">void</span> setRenderHeight(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_);
 <a name="l00165"></a>00165 <span class="comment"></span>
-<a name="l00166"></a>00166 <span class="comment">            /// @brief This Shows an Engine Generated Configuration Screen</span>
-<a name="l00167"></a>00167 <span class="comment">            /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration</span>
-<a name="l00168"></a>00168 <span class="comment">            /// options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps</span>
-<a name="l00169"></a>00169 <span class="comment">            /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage</span>
-<a name="l00170"></a>00170 <span class="comment">            /// user settings.</span>
-<a name="l00171"></a>00171 <span class="comment"></span>            <span class="keywordtype">bool</span> ShowGraphicsSettingDialog();
-<a name="l00172"></a>00172 <span class="comment"></span>
-<a name="l00173"></a>00173 <span class="comment">            /// @brief Gets the FPS based on the last frame rendered.</span>
-<a name="l00174"></a>00174 <span class="comment">            /// @details This essentially determines how many frames could be rendered if all</span>
-<a name="l00175"></a>00175 <span class="comment">            /// frames within a second rendered at the same speed.</span>
-<a name="l00176"></a>00176 <span class="comment">            /// @return Returns a Real representing the framerate.</span>
-<a name="l00177"></a>00177 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetLastFPS();
-<a name="l00178"></a>00178 <span class="comment"></span>
-<a name="l00179"></a>00179 <span class="comment">            /// @brief Gets the Average FPS.</span>
-<a name="l00180"></a>00180 <span class="comment">            /// @return Returns a Real representing the average framerate.</span>
-<a name="l00181"></a>00181 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetAverageFPS();
-<a name="l00182"></a>00182 <span class="comment"></span>
-<a name="l00183"></a>00183 <span class="comment">            /// @brief Gets the Best FPS.</span>
-<a name="l00184"></a>00184 <span class="comment">            /// @return Returns a Real representing the best framerate.</span>
-<a name="l00185"></a>00185 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetBestFPS();
-<a name="l00186"></a>00186 <span class="comment"></span>
-<a name="l00187"></a>00187 <span class="comment">            /// @brief Gets the Worst FPS.</span>
-<a name="l00188"></a>00188 <span class="comment">            /// @return Returns a Real representing the worst framerate.</span>
-<a name="l00189"></a>00189 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetWorstFPS();
-<a name="l00190"></a>00190 <span class="comment"></span>
-<a name="l00191"></a>00191 <span class="comment">            /// @brief Gets the shortest amount of time it&#39;s taken to render a frame.</span>
-<a name="l00192"></a>00192 <span class="comment">            /// @return Returns a Real representing the best time for rendering a frame.</span>
-<a name="l00193"></a>00193 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetBestFrameTime();
-<a name="l00194"></a>00194 <span class="comment"></span>
-<a name="l00195"></a>00195 <span class="comment">            /// @brief Gets the longest amount of time it&#39;s taken to render a frame.</span>
-<a name="l00196"></a>00196 <span class="comment">            /// @return Returns a Real representing the worst time for rendering a frame.</span>
-<a name="l00197"></a>00197 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetWorstFrameTime();
-<a name="l00198"></a>00198 <span class="comment"></span>
-<a name="l00199"></a>00199 <span class="comment">            /// @brief Gets the name of the render system in current use.</span>
-<a name="l00200"></a>00200 <span class="comment">            /// @return Returns a string containing the name of the current render system.</span>
-<a name="l00201"></a>00201 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> GetRenderSystemName();
-<a name="l00202"></a>00202 
-<a name="l00203"></a>00203         <span class="comment">//Inherited from ManagerBase</span><span class="comment"></span>
-<a name="l00204"></a>00204 <span class="comment">            /// @brief Empty Initializor</span>
-<a name="l00205"></a>00205 <span class="comment">            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists</span>
-<a name="l00206"></a>00206 <span class="comment">            /// in case a derived class wants to override it for some reason</span>
-<a name="l00207"></a>00207 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();
-<a name="l00208"></a>00208 <span class="comment"></span>
-<a name="l00209"></a>00209 <span class="comment">            /// @brief This is where the rendering takes place.</span>
-<a name="l00210"></a>00210 <span class="comment">            /// @details This does the rendering for the game using all the actors in the actormanager.</span>
-<a name="l00211"></a>00211 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();
-<a name="l00212"></a>00212 <span class="comment"></span>
-<a name="l00213"></a>00213 <span class="comment">            /// @brief This returns the type of this manager.</span>
-<a name="l00214"></a>00214 <span class="comment">            /// @return This returns ManagerTypeName::GraphicsManager</span>
-<a name="l00215"></a>00215 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerTypeName</a> GetType() <span class="keyword">const</span>;
-<a name="l00216"></a>00216 <span class="comment"></span>
-<a name="l00217"></a>00217 <span class="comment">            /// @brief This is derived from and uses the ManagerBase to perform the the post main loop callbacks</span>
-<a name="l00218"></a>00218 <span class="comment">            /// @return This returns a true or false depending on what the callback returns</span>
-<a name="l00219"></a>00219 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> PostMainLoopItems();
-<a name="l00220"></a>00220         <span class="comment">//Internal access functions</span><span class="comment"></span>
-<a name="l00221"></a>00221 <span class="comment">            /// @internal</span>
-<a name="l00222"></a>00222 <span class="comment">            /// @brief This will set the stored pointer to the ogre render window.</span>
-<a name="l00223"></a>00223 <span class="comment">            /// @details This function is called on once when constructing the world, should not be called otherwise.</span>
-<a name="l00224"></a>00224 <span class="comment">            /// @param OgreWindow A pointer to the created Ogre RenderWindow class.</span>
-<a name="l00225"></a>00225 <span class="comment"></span>            <span class="keywordtype">void</span> SetOgreWindowPointer(Ogre::RenderWindow* OgreWindow);<span class="comment"></span>
-<a name="l00226"></a>00226 <span class="comment">            /// @internal</span>
-<a name="l00227"></a>00227 <span class="comment">            /// @brief This will get a pointer to the RenderWindow class in use by the world.</span>
-<a name="l00228"></a>00228 <span class="comment">            /// @return Returns a pointer to the Ogre RenderWindow class in use.</span>
-<a name="l00229"></a>00229 <span class="comment"></span>            Ogre::RenderWindow* GetOgreWindowPointer();
-<a name="l00230"></a>00230     };
-<a name="l00231"></a>00231 }
-<a name="l00232"></a>00232 <span class="preprocessor">#endif</span>
+<a name="l00166"></a>00166 <span class="comment">            /// @brief Gets the Width of the Rendering Area</span>
+<a name="l00167"></a>00167 <span class="comment">            /// @details Gets the Width of the Rendering Area</span>
+<a name="l00168"></a>00168 <span class="comment">            /// @return This returns the Width of the Rendering Area</span>
+<a name="l00169"></a>00169 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> getRenderWidth() <span class="keyword">const</span>;
+<a name="l00170"></a>00170 <span class="comment"></span>
+<a name="l00171"></a>00171 <span class="comment">            /// @brief Sets the Width.</span>
+<a name="l00172"></a>00172 <span class="comment">            /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen</span>
+<a name="l00173"></a>00173 <span class="comment">            /// @param Width_ This accepts a Whole.</span>
+<a name="l00174"></a>00174 <span class="comment"></span>            <span class="keywordtype">void</span> setRenderWidth(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_);
+<a name="l00175"></a>00175 <span class="comment"></span>
+<a name="l00176"></a>00176 <span class="comment">            /// @brief Changes the X and Y Resolution at the same time</span>
+<a name="l00177"></a>00177 <span class="comment">            /// @details This should be useful in situations where it is not possible to update the width and height separately.</span>
+<a name="l00178"></a>00178 <span class="comment">            /// @param Width_ The new desired Width for the rendering area as a whole number</span>
+<a name="l00179"></a>00179 <span class="comment">            /// @param Height_ The new desired Width for the rendering area as a whole number</span>
+<a name="l00180"></a>00180 <span class="comment"></span>            <span class="keywordtype">void</span> setRenderResolution(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width_, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height_);
+<a name="l00181"></a>00181 <span class="comment"></span>
+<a name="l00182"></a>00182 <span class="comment">            /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time</span>
+<a name="l00183"></a>00183 <span class="comment">            /// @details This should be useful in situations where it is not possible to update all of the options separately.</span>
+<a name="l00184"></a>00184 <span class="comment"></span>            <span class="keywordtype">void</span> setRenderOptions(<span class="keyword">const</span> <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a>&amp; NewSettings);
+<a name="l00185"></a>00185 <span class="comment"></span>
+<a name="l00186"></a>00186 <span class="comment">            /// @brief Gets whether or not SDL has been started.</span>
+<a name="l00187"></a>00187 <span class="comment">            /// @return Returns a bool indicating whether or not SDL has been initialized yet.</span>
+<a name="l00188"></a>00188 <span class="comment"></span>            <span class="keywordtype">bool</span> HasSDLBeenInitialized();
+<a name="l00189"></a>00189 <span class="comment"></span>
+<a name="l00190"></a>00190 <span class="comment">            /// @brief This Shows an Engine Generated Configuration Screen</span>
+<a name="l00191"></a>00191 <span class="comment">            /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration</span>
+<a name="l00192"></a>00192 <span class="comment">            /// options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps</span>
+<a name="l00193"></a>00193 <span class="comment">            /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage</span>
+<a name="l00194"></a>00194 <span class="comment">            /// user settings.</span>
+<a name="l00195"></a>00195 <span class="comment"></span>            <span class="keywordtype">bool</span> ShowGraphicsSettingDialog();
+<a name="l00196"></a>00196 <span class="comment"></span>
+<a name="l00197"></a>00197 <span class="comment">            /// @brief Gets the FPS based on the last frame rendered.</span>
+<a name="l00198"></a>00198 <span class="comment">            /// @details This essentially determines how many frames could be rendered if all</span>
+<a name="l00199"></a>00199 <span class="comment">            /// frames within a second rendered at the same speed.</span>
+<a name="l00200"></a>00200 <span class="comment">            /// @return Returns a Real representing the framerate.</span>
+<a name="l00201"></a>00201 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetLastFPS();
+<a name="l00202"></a>00202 <span class="comment"></span>
+<a name="l00203"></a>00203 <span class="comment">            /// @brief Gets the Average FPS.</span>
+<a name="l00204"></a>00204 <span class="comment">            /// @return Returns a Real representing the average framerate.</span>
+<a name="l00205"></a>00205 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetAverageFPS();
+<a name="l00206"></a>00206 <span class="comment"></span>
+<a name="l00207"></a>00207 <span class="comment">            /// @brief Gets the Best FPS.</span>
+<a name="l00208"></a>00208 <span class="comment">            /// @return Returns a Real representing the best framerate.</span>
+<a name="l00209"></a>00209 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetBestFPS();
+<a name="l00210"></a>00210 <span class="comment"></span>
+<a name="l00211"></a>00211 <span class="comment">            /// @brief Gets the Worst FPS.</span>
+<a name="l00212"></a>00212 <span class="comment">            /// @return Returns a Real representing the worst framerate.</span>
+<a name="l00213"></a>00213 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetWorstFPS();
+<a name="l00214"></a>00214 <span class="comment"></span>
+<a name="l00215"></a>00215 <span class="comment">            /// @brief Gets the shortest amount of time it&#39;s taken to render a frame.</span>
+<a name="l00216"></a>00216 <span class="comment">            /// @return Returns a Real representing the best time for rendering a frame.</span>
+<a name="l00217"></a>00217 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetBestFrameTime();
+<a name="l00218"></a>00218 <span class="comment"></span>
+<a name="l00219"></a>00219 <span class="comment">            /// @brief Gets the longest amount of time it&#39;s taken to render a frame.</span>
+<a name="l00220"></a>00220 <span class="comment">            /// @return Returns a Real representing the worst time for rendering a frame.</span>
+<a name="l00221"></a>00221 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> GetWorstFrameTime();
+<a name="l00222"></a>00222 <span class="comment"></span>
+<a name="l00223"></a>00223 <span class="comment">            /// @brief Gets the name of the render system in current use.</span>
+<a name="l00224"></a>00224 <span class="comment">            /// @return Returns a string containing the name of the current render system.</span>
+<a name="l00225"></a>00225 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> GetRenderSystemName();
+<a name="l00226"></a>00226 <span class="comment"></span>
+<a name="l00227"></a>00227 <span class="comment">            /// @brief Gets a vector containing all the resolutions supported by this render system on the current hardware.</span>
+<a name="l00228"></a>00228 <span class="comment">            /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.</span>
+<a name="l00229"></a>00229 <span class="comment">            /// @return Returns a Const Pointer to the vector storing all the supported resolutions.</span>
+<a name="l00230"></a>00230 <span class="comment"></span>            <span class="keyword">const</span> std::vector&lt;String&gt;* GetSupportedResolutions();
+<a name="l00231"></a>00231 <span class="comment"></span>
+<a name="l00232"></a>00232 <span class="comment">            /// @brief Gets a vector containing all the devices supported by this render system on the current hardware.</span>
+<a name="l00233"></a>00233 <span class="comment">            /// @details This vector is populated when the manager gets initialized.  Calling on it before then will give you an empty vector.</span>
+<a name="l00234"></a>00234 <span class="comment">            /// @return Returns a Const Pointer to the vector storing all the supported devices.</span>
+<a name="l00235"></a>00235 <span class="comment"></span>            <span class="keyword">const</span> std::vector&lt;String&gt;* GetSupportedDevices();
+<a name="l00236"></a>00236 <span class="comment"></span>
+<a name="l00237"></a>00237 <span class="comment">            /// @brief Resets the Render timer.</span>
+<a name="l00238"></a>00238 <span class="comment">            /// @details This function should not be called unless you know exactly what you are doing.</span>
+<a name="l00239"></a>00239 <span class="comment">            /// This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop.</span>
+<a name="l00240"></a>00240 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> ResetRenderTimer();
+<a name="l00241"></a>00241 
+<a name="l00242"></a>00242         <span class="comment">//Inherited from ManagerBase</span><span class="comment"></span>
+<a name="l00243"></a>00243 <span class="comment">            /// @brief Empty Initializor</span>
+<a name="l00244"></a>00244 <span class="comment">            /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists</span>
+<a name="l00245"></a>00245 <span class="comment">            /// in case a derived class wants to override it for some reason</span>
+<a name="l00246"></a>00246 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> Initialize();
+<a name="l00247"></a>00247 <span class="comment"></span>
+<a name="l00248"></a>00248 <span class="comment">            /// @brief This is where the rendering takes place.</span>
+<a name="l00249"></a>00249 <span class="comment">            /// @details This does the rendering for the game using all the actors in the actormanager.</span>
+<a name="l00250"></a>00250 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">void</span> DoMainLoopItems();
+<a name="l00251"></a>00251 <span class="comment"></span>
+<a name="l00252"></a>00252 <span class="comment">            /// @brief This returns the type of this manager.</span>
+<a name="l00253"></a>00253 <span class="comment">            /// @return This returns ManagerTypeName::GraphicsManager</span>
+<a name="l00254"></a>00254 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerTypeName</a> GetType() <span class="keyword">const</span>;
+<a name="l00255"></a>00255 <span class="comment"></span>
+<a name="l00256"></a>00256 <span class="comment">            /// @brief This is derived from and uses the ManagerBase to perform the the post main loop callbacks</span>
+<a name="l00257"></a>00257 <span class="comment">            /// @return This returns a true or false depending on what the callback returns</span>
+<a name="l00258"></a>00258 <span class="comment"></span>            <span class="keyword">virtual</span> <span class="keywordtype">bool</span> PostMainLoopItems();
+<a name="l00259"></a>00259         <span class="comment">//Internal access functions</span><span class="comment"></span>
+<a name="l00260"></a>00260 <span class="comment">            /// @internal</span>
+<a name="l00261"></a>00261 <span class="comment">            /// @brief This will set the stored pointer to the ogre render window.</span>
+<a name="l00262"></a>00262 <span class="comment">            /// @details This function is called on once when constructing the world, should not be called otherwise.</span>
+<a name="l00263"></a>00263 <span class="comment">            /// @param OgreWindow A pointer to the created Ogre RenderWindow class.</span>
+<a name="l00264"></a>00264 <span class="comment"></span>            <span class="keywordtype">void</span> SetOgreWindowPointer(Ogre::RenderWindow* OgreWindow);<span class="comment"></span>
+<a name="l00265"></a>00265 <span class="comment">            /// @internal</span>
+<a name="l00266"></a>00266 <span class="comment">            /// @brief This will get a pointer to the RenderWindow class in use by the world.</span>
+<a name="l00267"></a>00267 <span class="comment">            /// @return Returns a pointer to the Ogre RenderWindow class in use.</span>
+<a name="l00268"></a>00268 <span class="comment"></span>            Ogre::RenderWindow* GetOgreWindowPointer();
+<a name="l00269"></a>00269     };
+<a name="l00270"></a>00270 }
+<a name="l00271"></a>00271 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:42 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:33 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

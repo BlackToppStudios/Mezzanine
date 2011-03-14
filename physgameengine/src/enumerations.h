@@ -45,6 +45,29 @@
 
 namespace phys
 {
+    /// @enum WorldObjectType
+    /// @brief Used by various classes to help identify what class an object is.
+    /// @details This is mostly used internally for casting void pointers.
+    enum WorldObjectType
+    {
+        // Actors
+        WOT_ActorBase,
+        WOT_ActorRigid,
+        WOT_ActorSoft,
+        WOT_ActorRagdoll,
+        WOT_ActorTerrain,
+
+        // AE Fields
+        WOT_AreaEffect,
+        WOT_GravityField,
+        WOT_GravityWell,
+
+        // Scene Objects
+        WOT_Light,
+        WOT_ParticleEffect,
+        WOT_Camera
+    };
+
     namespace UI
     {
         /// @enum RenderPriority

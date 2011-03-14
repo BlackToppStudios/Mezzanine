@@ -116,7 +116,7 @@
 <a name="l00085"></a>00085                     <span class="keywordflow">if</span> (HaveSlash)                                      <span class="comment">// if have passed an unescaped slash then we  are ending a tage</span>
 <a name="l00086"></a>00086                     {
 <a name="l00087"></a>00087                         --TagCount;
-<a name="l00088"></a>00088                         <span class="keywordflow">if</span> ( 0&lt;=TagCount )                              <span class="comment">// if we are ending the last tage then we are done</span>
+<a name="l00088"></a>00088                         <span class="keywordflow">if</span> ( 0&gt;=TagCount )                              <span class="comment">// if we are ending the last tage then we are done</span>
 <a name="l00089"></a>00089                         {
 <a name="l00090"></a>00090                             <span class="keywordflow">break</span>;
 <a name="l00091"></a>00091                         }
@@ -131,42 +131,39 @@
 <a name="l00100"></a>00100             <span class="keywordflow">return</span> OneTag;
 <a name="l00101"></a>00101         }
 <a name="l00102"></a>00102 
-<a name="l00103"></a>00103         Document* <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#aa48ad222ba9a6fe46a76c2add6923028" title="Perform a basic series of checks for extracting meaning from a single xml tag.">PreParseClassFromSingleTag</a>(<span class="keyword">const</span> String&amp; NameSpace, <span class="keyword">const</span> String&amp; ClassName, <span class="keyword">const</span> String&amp; OneTag, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> MinVersion)
+<a name="l00103"></a>00103         Document* <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a2d57f26ba476d7f9ea154290d07dc038" title="Perform a basic series of checks for extracting meaning from a single xml tag.">PreParseClassFromSingleTag</a>(<span class="keyword">const</span> String&amp; NameSpace, <span class="keyword">const</span> String&amp; ClassName, <span class="keyword">const</span> String&amp; OneTag)
 <a name="l00104"></a>00104         {
 <a name="l00105"></a>00105             Document* Doc = <span class="keyword">new</span> Document();
 <a name="l00106"></a>00106             <span class="keywordflow">if</span>(!Doc-&gt;Load(OneTag.c_str()))
 <a name="l00107"></a>00107                 { <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;LogAndThrow(Exception(<span class="stringliteral">&quot;Could not Deserialize XML Stream which should contain Vector3 xml.&quot;</span>)); }
 <a name="l00108"></a>00108 
-<a name="l00109"></a>00109             Node InputNode = Doc-&gt;GetFirstChild();
+<a name="l00109"></a>00109             <a class="code" href="../../df/dd0/classNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a> InputNode = Doc-&gt;GetFirstChild();
 <a name="l00110"></a>00110             <span class="keywordflow">if</span> (InputNode)
 <a name="l00111"></a>00111             {
 <a name="l00112"></a>00112                 <span class="keywordflow">if</span>( <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>(ClassName) == <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>(InputNode.Name()))
 <a name="l00113"></a>00113                 {
-<a name="l00114"></a>00114                     <span class="keywordflow">if</span>(InputNode.GetAttribute(<span class="stringliteral">&quot;Version&quot;</span>).AsInt() &gt;= 1)
-<a name="l00115"></a>00115                     {
-<a name="l00116"></a>00116                         <span class="keywordflow">return</span> Doc;
-<a name="l00117"></a>00117                     }<span class="keywordflow">else</span>{
-<a name="l00118"></a>00118                         <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;LogAndThrow(Exception(<a class="code" href="../../df/dec/namespacephys.html#a7b6390aedd6532260accd12e829bf654" title="Concatenates 2 Strings.">StringCat</a>(NameSpace, ClassName, <span class="stringliteral">&quot; incompatible serialized version.&quot;</span>)));
-<a name="l00119"></a>00119                     }
-<a name="l00120"></a>00120                 }<span class="keywordflow">else</span>{
-<a name="l00121"></a>00121                     <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;LogAndThrow(Exception(<a class="code" href="../../df/dec/namespacephys.html#a7b6390aedd6532260accd12e829bf654" title="Concatenates 2 Strings.">StringCat</a>(NameSpace, ClassName, <span class="stringliteral">&quot; not next item in stream, failed to serialize.&quot;</span>)));
-<a name="l00122"></a>00122                 }
-<a name="l00123"></a>00123             }<span class="keywordflow">else</span>{
-<a name="l00124"></a>00124                 <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;LogAndThrow(Exception(<a class="code" href="../../df/dec/namespacephys.html#a7b6390aedd6532260accd12e829bf654" title="Concatenates 2 Strings.">StringCat</a>(<span class="stringliteral">&quot;No valid XML tag in stream, when attempting to deserialize&quot;</span>, NameSpace, ClassName)));
-<a name="l00125"></a>00125             }
-<a name="l00126"></a>00126         }
-<a name="l00127"></a>00127 
-<a name="l00128"></a>00128 
+<a name="l00114"></a>00114                     <span class="keywordflow">return</span> Doc;
+<a name="l00115"></a>00115                 }<span class="keywordflow">else</span>{
+<a name="l00116"></a>00116                     <span class="keyword">delete</span> Doc;
+<a name="l00117"></a>00117                     <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;LogAndThrow(Exception(<a class="code" href="../../df/dec/namespacephys.html#a7b6390aedd6532260accd12e829bf654" title="Concatenates 2 Strings.">StringCat</a>(NameSpace, ClassName, <span class="stringliteral">&quot; not next item in stream, failed to serialize.&quot;</span>)));
+<a name="l00118"></a>00118                 }
+<a name="l00119"></a>00119             }<span class="keywordflow">else</span>{
+<a name="l00120"></a>00120                 <span class="keyword">delete</span> Doc;
+<a name="l00121"></a>00121                 <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;LogAndThrow(Exception(<a class="code" href="../../df/dec/namespacephys.html#a7b6390aedd6532260accd12e829bf654" title="Concatenates 2 Strings.">StringCat</a>(<span class="stringliteral">&quot;No valid XML tag in stream, when attempting to deserialize&quot;</span>, NameSpace, ClassName)));
+<a name="l00122"></a>00122             }
+<a name="l00123"></a>00123         }
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125 
+<a name="l00126"></a>00126 
+<a name="l00127"></a>00127     } <span class="comment">// \xml</span>
+<a name="l00128"></a>00128 }   <span class="comment">// \phys</span>
 <a name="l00129"></a>00129 
-<a name="l00130"></a>00130     } <span class="comment">// \xml</span>
-<a name="l00131"></a>00131 }   <span class="comment">// \phys</span>
-<a name="l00132"></a>00132 
-<a name="l00133"></a>00133 <span class="preprocessor">#endif</span>
-<a name="l00134"></a>00134 <span class="preprocessor"></span>
-<a name="l00135"></a>00135 <span class="preprocessor">#endif // \PHYSXML</span>
+<a name="l00130"></a>00130 <span class="preprocessor">#endif</span>
+<a name="l00131"></a>00131 <span class="preprocessor"></span>
+<a name="l00132"></a>00132 <span class="preprocessor">#endif // \PHYSXML</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:43 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:35 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

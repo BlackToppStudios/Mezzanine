@@ -2041,470 +2041,475 @@
 <a name="l02010"></a>02010   mVerticalAlign  = VerticalAlign_Top;
 <a name="l02011"></a>02011   mPriority       = Gorilla::RP_Medium;
 <a name="l02012"></a>02012   mCursorOffset   = 0.0f;
-<a name="l02013"></a>02013  }
-<a name="l02014"></a>02014 
-<a name="l02015"></a>02015  <span class="keywordtype">void</span> Caption::_calculateDrawSize(Ogre::Vector2&amp; retSize)
-<a name="l02016"></a>02016  {
-<a name="l02017"></a>02017 
-<a name="l02018"></a>02018   Ogre::Real cursor = 0,
-<a name="l02019"></a>02019              kerning = 0;
-<a name="l02020"></a>02020 
-<a name="l02021"></a>02021   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> thisChar = 0, lastChar = 0;
-<a name="l02022"></a>02022   Glyph* glyph = 0;
-<a name="l02023"></a>02023   retSize.x = 0;
-<a name="l02024"></a>02024   retSize.y = mGlyphData-&gt;mLineHeight;
-<a name="l02025"></a>02025 
-<a name="l02026"></a>02026   <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i=0;i &lt; mText.length();i++)
-<a name="l02027"></a>02027   {
-<a name="l02028"></a>02028    thisChar = mText[i];
-<a name="l02029"></a>02029 
-<a name="l02030"></a>02030    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39; &#39;</span>)
-<a name="l02031"></a>02031    {
-<a name="l02032"></a>02032     lastChar = thisChar;
-<a name="l02033"></a>02033     cursor += mGlyphData-&gt;mSpaceLength;
-<a name="l02034"></a>02034     <span class="keywordflow">continue</span>;
-<a name="l02035"></a>02035    }
-<a name="l02036"></a>02036 
-<a name="l02037"></a>02037    <span class="keywordflow">if</span> (  thisChar &lt; mGlyphData-&gt;mRangeBegin || thisChar &gt; mGlyphData-&gt;mRangeEnd  )
-<a name="l02038"></a>02038    {
-<a name="l02039"></a>02039     lastChar = 0;
-<a name="l02040"></a>02040     <span class="keywordflow">continue</span>;
-<a name="l02041"></a>02041    }
-<a name="l02042"></a>02042 
-<a name="l02043"></a>02043    glyph = mGlyphData-&gt;getGlyph(thisChar);
-<a name="l02044"></a>02044    <span class="keywordflow">if</span> (glyph == 0)
-<a name="l02045"></a>02045     <span class="keywordflow">continue</span>;
-<a name="l02046"></a>02046    kerning = glyph-&gt;getKerning(lastChar);
-<a name="l02047"></a>02047    <span class="keywordflow">if</span> (kerning == 0)
-<a name="l02048"></a>02048     kerning = mGlyphData-&gt;mLetterSpacing;
-<a name="l02049"></a>02049 
-<a name="l02050"></a>02050    cursor  += glyph-&gt;glyphAdvance + kerning;
-<a name="l02051"></a>02051    lastChar = thisChar;
-<a name="l02052"></a>02052 
-<a name="l02053"></a>02053   } <span class="comment">// for</span>
-<a name="l02054"></a>02054 
-<a name="l02055"></a>02055   retSize.x = cursor - kerning;
-<a name="l02056"></a>02056  }
-<a name="l02057"></a>02057 
-<a name="l02058"></a>02058  <span class="keywordtype">void</span> Caption::_redraw()
-<a name="l02059"></a>02059  {
-<a name="l02060"></a>02060 
-<a name="l02061"></a>02061   <span class="keywordflow">if</span> (mDirty == <span class="keyword">false</span>)
-<a name="l02062"></a>02062    <span class="keywordflow">return</span>;
-<a name="l02063"></a>02063 
-<a name="l02064"></a>02064   mVertices.remove_all();
-<a name="l02065"></a>02065 
-<a name="l02066"></a>02066   <span class="keywordflow">if</span>(!mVisible)
-<a name="l02067"></a>02067   {
-<a name="l02068"></a>02068       mDirty = <span class="keyword">false</span>;
-<a name="l02069"></a>02069       <span class="keywordflow">return</span>;
-<a name="l02070"></a>02070   }
-<a name="l02071"></a>02071 
-<a name="l02072"></a>02072   Ogre::Vector2 uv = mLayer-&gt;_getSolidUV();
-<a name="l02073"></a>02073 
-<a name="l02074"></a>02074   <span class="keywordflow">if</span> (mBackground.a &gt; 0)
-<a name="l02075"></a>02075   {
-<a name="l02076"></a>02076    Ogre::Vector2  a, b, c, d;
-<a name="l02077"></a>02077    a.x = mLeft;  a.y = mTop;
-<a name="l02078"></a>02078    b.x = mLeft + mWidth; b.y = mTop;
-<a name="l02079"></a>02079    c.x = mLeft;  c.y = mTop + mHeight;
-<a name="l02080"></a>02080    d.x = mLeft + mWidth; d.y = c.y = mTop + mHeight;
-<a name="l02081"></a>02081    Vertex temp;
-<a name="l02082"></a>02082    PUSH_TRIANGLE(mVertices, temp, c, b, a, uv, mBackground);
-<a name="l02083"></a>02083    PUSH_TRIANGLE(mVertices, temp, c, d, b, uv, mBackground);
-<a name="l02084"></a>02084   }
-<a name="l02085"></a>02085 
-<a name="l02086"></a>02086   Ogre::Real left = 0, top = 0, right = 0, bottom = 0, cursorX = 0, cursorY = 0, kerning = 0, texelOffsetX = mLayer-&gt;_getTexelX(), texelOffsetY = mLayer-&gt;_getTexelY();
-<a name="l02087"></a>02087   Ogre::Vector2 knownSize;
-<a name="l02088"></a>02088   Glyph* glyph = 0;
+<a name="l02013"></a>02013   mCharScaling    = 1.0f;
+<a name="l02014"></a>02014  }
+<a name="l02015"></a>02015 
+<a name="l02016"></a>02016  <span class="keywordtype">void</span> Caption::_calculateDrawSize(Ogre::Vector2&amp; retSize)
+<a name="l02017"></a>02017  {
+<a name="l02018"></a>02018 
+<a name="l02019"></a>02019   Ogre::Real cursor = 0,
+<a name="l02020"></a>02020              kerning = 0;
+<a name="l02021"></a>02021 
+<a name="l02022"></a>02022   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> thisChar = 0, lastChar = 0;
+<a name="l02023"></a>02023   Glyph* glyph = 0;
+<a name="l02024"></a>02024   retSize.x = 0;
+<a name="l02025"></a>02025   retSize.y = mGlyphData-&gt;mLineHeight;
+<a name="l02026"></a>02026 
+<a name="l02027"></a>02027   <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i=0;i &lt; mText.length();i++)
+<a name="l02028"></a>02028   {
+<a name="l02029"></a>02029    thisChar = mText[i];
+<a name="l02030"></a>02030 
+<a name="l02031"></a>02031    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39; &#39;</span>)
+<a name="l02032"></a>02032    {
+<a name="l02033"></a>02033     lastChar = thisChar;
+<a name="l02034"></a>02034     cursor += mGlyphData-&gt;mSpaceLength;
+<a name="l02035"></a>02035     <span class="keywordflow">continue</span>;
+<a name="l02036"></a>02036    }
+<a name="l02037"></a>02037 
+<a name="l02038"></a>02038    <span class="keywordflow">if</span> (  thisChar &lt; mGlyphData-&gt;mRangeBegin || thisChar &gt; mGlyphData-&gt;mRangeEnd  )
+<a name="l02039"></a>02039    {
+<a name="l02040"></a>02040     lastChar = 0;
+<a name="l02041"></a>02041     <span class="keywordflow">continue</span>;
+<a name="l02042"></a>02042    }
+<a name="l02043"></a>02043 
+<a name="l02044"></a>02044    glyph = mGlyphData-&gt;getGlyph(thisChar);
+<a name="l02045"></a>02045    <span class="keywordflow">if</span> (glyph == 0)
+<a name="l02046"></a>02046     <span class="keywordflow">continue</span>;
+<a name="l02047"></a>02047    kerning = glyph-&gt;getKerning(lastChar);
+<a name="l02048"></a>02048    <span class="keywordflow">if</span> (kerning == 0)
+<a name="l02049"></a>02049     kerning = mGlyphData-&gt;mLetterSpacing;
+<a name="l02050"></a>02050 
+<a name="l02051"></a>02051    <span class="keywordflow">if</span>(mCharScaling == 1.0f)
+<a name="l02052"></a>02052     cursor += glyph-&gt;glyphAdvance + kerning;
+<a name="l02053"></a>02053    <span class="keywordflow">else</span>
+<a name="l02054"></a>02054     cursor += (glyph-&gt;glyphAdvance + kerning) * mCharScaling;
+<a name="l02055"></a>02055    lastChar = thisChar;
+<a name="l02056"></a>02056 
+<a name="l02057"></a>02057   } <span class="comment">// for</span>
+<a name="l02058"></a>02058 
+<a name="l02059"></a>02059   retSize.x = cursor - kerning;
+<a name="l02060"></a>02060  }
+<a name="l02061"></a>02061 
+<a name="l02062"></a>02062  <span class="keywordtype">void</span> Caption::_redraw()
+<a name="l02063"></a>02063  {
+<a name="l02064"></a>02064 
+<a name="l02065"></a>02065   <span class="keywordflow">if</span> (mDirty == <span class="keyword">false</span>)
+<a name="l02066"></a>02066    <span class="keywordflow">return</span>;
+<a name="l02067"></a>02067 
+<a name="l02068"></a>02068   mVertices.remove_all();
+<a name="l02069"></a>02069 
+<a name="l02070"></a>02070   <span class="keywordflow">if</span>(!mVisible)
+<a name="l02071"></a>02071   {
+<a name="l02072"></a>02072       mDirty = <span class="keyword">false</span>;
+<a name="l02073"></a>02073       <span class="keywordflow">return</span>;
+<a name="l02074"></a>02074   }
+<a name="l02075"></a>02075 
+<a name="l02076"></a>02076   Ogre::Vector2 uv = mLayer-&gt;_getSolidUV();
+<a name="l02077"></a>02077 
+<a name="l02078"></a>02078   <span class="keywordflow">if</span> (mBackground.a &gt; 0)
+<a name="l02079"></a>02079   {
+<a name="l02080"></a>02080    Ogre::Vector2  a, b, c, d;
+<a name="l02081"></a>02081    a.x = mLeft;  a.y = mTop;
+<a name="l02082"></a>02082    b.x = mLeft + mWidth; b.y = mTop;
+<a name="l02083"></a>02083    c.x = mLeft;  c.y = mTop + mHeight;
+<a name="l02084"></a>02084    d.x = mLeft + mWidth; d.y = c.y = mTop + mHeight;
+<a name="l02085"></a>02085    Vertex temp;
+<a name="l02086"></a>02086    PUSH_TRIANGLE(mVertices, temp, c, b, a, uv, mBackground);
+<a name="l02087"></a>02087    PUSH_TRIANGLE(mVertices, temp, c, d, b, uv, mBackground);
+<a name="l02088"></a>02088   }
 <a name="l02089"></a>02089 
-<a name="l02090"></a>02090   <span class="keywordtype">bool</span> clipLeft = <span class="keyword">false</span>, clipRight = <span class="keyword">false</span>;
-<a name="l02091"></a>02091   Ogre::Real clipLeftPos = 0, clipRightPos = 0;
-<a name="l02092"></a>02092 
-<a name="l02093"></a>02093   <span class="keywordflow">if</span> (mAlignment == TextAlign_Left)
-<a name="l02094"></a>02094   {
-<a name="l02095"></a>02095    cursorX = mLeft + mCursorOffset;
+<a name="l02090"></a>02090   Ogre::Real left = 0, top = 0, right = 0, bottom = 0, cursorX = 0, cursorY = 0, kerning = 0, texelOffsetX = mLayer-&gt;_getTexelX(), texelOffsetY = mLayer-&gt;_getTexelY();
+<a name="l02091"></a>02091   Ogre::Vector2 knownSize;
+<a name="l02092"></a>02092   Glyph* glyph = 0;
+<a name="l02093"></a>02093 
+<a name="l02094"></a>02094   <span class="keywordtype">bool</span> clipLeft = <span class="keyword">false</span>, clipRight = <span class="keyword">false</span>;
+<a name="l02095"></a>02095   Ogre::Real clipLeftPos = 0, clipRightPos = 0;
 <a name="l02096"></a>02096 
-<a name="l02097"></a>02097    <span class="keywordflow">if</span> (mWidth)
-<a name="l02098"></a>02098    {
-<a name="l02099"></a>02099     clipRight = <span class="keyword">true</span>;
-<a name="l02100"></a>02100     clipRightPos = mLeft + mWidth;
-<a name="l02101"></a>02101    }
-<a name="l02102"></a>02102 
-<a name="l02103"></a>02103   }
-<a name="l02104"></a>02104   <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mAlignment == TextAlign_Centre)
-<a name="l02105"></a>02105   {
-<a name="l02106"></a>02106    _calculateDrawSize(knownSize);
-<a name="l02107"></a>02107    cursorX = mLeft + (mWidth * 0.5f) - (knownSize.x * 0.5f);
-<a name="l02108"></a>02108 
-<a name="l02109"></a>02109    <span class="keywordflow">if</span> (mWidth)
-<a name="l02110"></a>02110    {
-<a name="l02111"></a>02111     clipLeft = <span class="keyword">true</span>;
-<a name="l02112"></a>02112     clipLeftPos = mLeft;
-<a name="l02113"></a>02113     clipRight = <span class="keyword">true</span>;
-<a name="l02114"></a>02114     clipRightPos = mLeft + mWidth;
-<a name="l02115"></a>02115    }
-<a name="l02116"></a>02116 
-<a name="l02117"></a>02117   }
-<a name="l02118"></a>02118   <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mAlignment == TextAlign_Right)
-<a name="l02119"></a>02119   {
-<a name="l02120"></a>02120    _calculateDrawSize(knownSize);
-<a name="l02121"></a>02121    cursorX = mLeft + mWidth - (knownSize.x + mCursorOffset);
-<a name="l02122"></a>02122    <span class="keywordflow">if</span> (mWidth)
-<a name="l02123"></a>02123    {
-<a name="l02124"></a>02124     clipLeft = <span class="keyword">true</span>;
-<a name="l02125"></a>02125     clipLeftPos = mLeft;
-<a name="l02126"></a>02126    }
-<a name="l02127"></a>02127   }
-<a name="l02128"></a>02128 
-<a name="l02129"></a>02129   <span class="keywordflow">if</span> (mVerticalAlign == VerticalAlign_Top)
-<a name="l02130"></a>02130    cursorY = mTop;
-<a name="l02131"></a>02131   <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mVerticalAlign == VerticalAlign_Middle)
-<a name="l02132"></a>02132    cursorY = mTop + (mHeight * 0.5) - (mGlyphData-&gt;mLineHeight * 0.5);
-<a name="l02133"></a>02133   <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mVerticalAlign == VerticalAlign_Bottom)
-<a name="l02134"></a>02134    cursorY = mTop +  mHeight - mGlyphData-&gt;mLineHeight;
-<a name="l02135"></a>02135 
-<a name="l02136"></a>02136   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> thisChar = 0, lastChar = 0;
-<a name="l02137"></a>02137   Vertex temp;
-<a name="l02138"></a>02138   mClippedLeftIndex = std::string::npos;
-<a name="l02139"></a>02139   mClippedRightIndex = std::string::npos;
+<a name="l02097"></a>02097   <span class="keywordflow">if</span> (mAlignment == TextAlign_Left)
+<a name="l02098"></a>02098   {
+<a name="l02099"></a>02099    cursorX = mLeft + mCursorOffset;
+<a name="l02100"></a>02100 
+<a name="l02101"></a>02101    <span class="keywordflow">if</span> (mWidth)
+<a name="l02102"></a>02102    {
+<a name="l02103"></a>02103     clipRight = <span class="keyword">true</span>;
+<a name="l02104"></a>02104     clipRightPos = mLeft + mWidth;
+<a name="l02105"></a>02105    }
+<a name="l02106"></a>02106 
+<a name="l02107"></a>02107   }
+<a name="l02108"></a>02108   <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mAlignment == TextAlign_Centre)
+<a name="l02109"></a>02109   {
+<a name="l02110"></a>02110    _calculateDrawSize(knownSize);
+<a name="l02111"></a>02111    cursorX = mLeft + (mWidth * 0.5f) - (knownSize.x * 0.5f);
+<a name="l02112"></a>02112 
+<a name="l02113"></a>02113    <span class="keywordflow">if</span> (mWidth)
+<a name="l02114"></a>02114    {
+<a name="l02115"></a>02115     clipLeft = <span class="keyword">true</span>;
+<a name="l02116"></a>02116     clipLeftPos = mLeft;
+<a name="l02117"></a>02117     clipRight = <span class="keyword">true</span>;
+<a name="l02118"></a>02118     clipRightPos = mLeft + mWidth;
+<a name="l02119"></a>02119    }
+<a name="l02120"></a>02120 
+<a name="l02121"></a>02121   }
+<a name="l02122"></a>02122   <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mAlignment == TextAlign_Right)
+<a name="l02123"></a>02123   {
+<a name="l02124"></a>02124    _calculateDrawSize(knownSize);
+<a name="l02125"></a>02125    cursorX = mLeft + mWidth - (knownSize.x + mCursorOffset);
+<a name="l02126"></a>02126 
+<a name="l02127"></a>02127    <span class="keywordflow">if</span> (mWidth)
+<a name="l02128"></a>02128    {
+<a name="l02129"></a>02129     clipLeft = <span class="keyword">true</span>;
+<a name="l02130"></a>02130     clipLeftPos = mLeft;
+<a name="l02131"></a>02131    }
+<a name="l02132"></a>02132   }
+<a name="l02133"></a>02133 
+<a name="l02134"></a>02134   <span class="keywordflow">if</span> (mVerticalAlign == VerticalAlign_Top)
+<a name="l02135"></a>02135    cursorY = mTop;
+<a name="l02136"></a>02136   <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mVerticalAlign == VerticalAlign_Middle)
+<a name="l02137"></a>02137    cursorY = mTop + (mHeight * 0.5) - ((mGlyphData-&gt;mLineHeight * mCharScaling) * 0.5);
+<a name="l02138"></a>02138   <span class="keywordflow">else</span> <span class="keywordflow">if</span> (mVerticalAlign == VerticalAlign_Bottom)
+<a name="l02139"></a>02139    cursorY = mTop +  mHeight - (mGlyphData-&gt;mLineHeight * mCharScaling);
 <a name="l02140"></a>02140 
-<a name="l02141"></a>02141   cursorX = Ogre::Math::Floor( cursorX );
-<a name="l02142"></a>02142   cursorY = Ogre::Math::Floor( cursorY );
-<a name="l02143"></a>02143 
-<a name="l02144"></a>02144   <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i=0;i &lt; mText.size();i++)
-<a name="l02145"></a>02145   {
-<a name="l02146"></a>02146    thisChar = mText[i];
-<a name="l02147"></a>02147 
-<a name="l02148"></a>02148    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39; &#39;</span>)
-<a name="l02149"></a>02149    {
-<a name="l02150"></a>02150     lastChar = thisChar;
-<a name="l02151"></a>02151     cursorX += mGlyphData-&gt;mSpaceLength;
-<a name="l02152"></a>02152     <span class="keywordflow">continue</span>;
-<a name="l02153"></a>02153    }
-<a name="l02154"></a>02154 
-<a name="l02155"></a>02155    <span class="keywordflow">if</span> (  thisChar &lt; mGlyphData-&gt;mRangeBegin || thisChar &gt; mGlyphData-&gt;mRangeEnd  )
-<a name="l02156"></a>02156    {
-<a name="l02157"></a>02157     lastChar = 0;
-<a name="l02158"></a>02158     <span class="keywordflow">continue</span>;
-<a name="l02159"></a>02159    }
-<a name="l02160"></a>02160 
-<a name="l02161"></a>02161    glyph = mGlyphData-&gt;getGlyph(thisChar);
-<a name="l02162"></a>02162    <span class="keywordflow">if</span> (glyph == 0)
+<a name="l02141"></a>02141   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> thisChar = 0, lastChar = 0;
+<a name="l02142"></a>02142   Vertex temp;
+<a name="l02143"></a>02143   mClippedLeftIndex = std::string::npos;
+<a name="l02144"></a>02144   mClippedRightIndex = std::string::npos;
+<a name="l02145"></a>02145 
+<a name="l02146"></a>02146   cursorX = Ogre::Math::Floor( cursorX );
+<a name="l02147"></a>02147   cursorY = Ogre::Math::Floor( cursorY );
+<a name="l02148"></a>02148 
+<a name="l02149"></a>02149   <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i=0;i &lt; mText.size();i++)
+<a name="l02150"></a>02150   {
+<a name="l02151"></a>02151    thisChar = mText[i];
+<a name="l02152"></a>02152 
+<a name="l02153"></a>02153    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39; &#39;</span>)
+<a name="l02154"></a>02154    {
+<a name="l02155"></a>02155     lastChar = thisChar;
+<a name="l02156"></a>02156     cursorX += mGlyphData-&gt;mSpaceLength * mCharScaling;
+<a name="l02157"></a>02157     <span class="keywordflow">continue</span>;
+<a name="l02158"></a>02158    }
+<a name="l02159"></a>02159 
+<a name="l02160"></a>02160    <span class="keywordflow">if</span> (  thisChar &lt; mGlyphData-&gt;mRangeBegin || thisChar &gt; mGlyphData-&gt;mRangeEnd  )
+<a name="l02161"></a>02161    {
+<a name="l02162"></a>02162     lastChar = 0;
 <a name="l02163"></a>02163     <span class="keywordflow">continue</span>;
-<a name="l02164"></a>02164    kerning = glyph-&gt;getKerning(lastChar);
-<a name="l02165"></a>02165    <span class="keywordflow">if</span> (kerning == 0)
-<a name="l02166"></a>02166     kerning = mGlyphData-&gt;mLetterSpacing;
-<a name="l02167"></a>02167 
-<a name="l02168"></a>02168    left = cursorX - texelOffsetX;
-<a name="l02169"></a>02169    top = cursorY - texelOffsetY;
-<a name="l02170"></a>02170    right = left + glyph-&gt;glyphWidth + texelOffsetX;
-<a name="l02171"></a>02171    bottom = top + glyph-&gt;glyphHeight + texelOffsetY;
+<a name="l02164"></a>02164    }
+<a name="l02165"></a>02165 
+<a name="l02166"></a>02166    glyph = mGlyphData-&gt;getGlyph(thisChar);
+<a name="l02167"></a>02167    <span class="keywordflow">if</span> (glyph == 0)
+<a name="l02168"></a>02168     <span class="keywordflow">continue</span>;
+<a name="l02169"></a>02169    kerning = glyph-&gt;getKerning(lastChar);
+<a name="l02170"></a>02170    <span class="keywordflow">if</span> (kerning == 0)
+<a name="l02171"></a>02171     kerning = mGlyphData-&gt;mLetterSpacing;
 <a name="l02172"></a>02172 
-<a name="l02173"></a>02173    <span class="keywordflow">if</span> (clipLeft)
-<a name="l02174"></a>02174    {
-<a name="l02175"></a>02175     <span class="keywordflow">if</span> (left &lt; clipLeftPos)
-<a name="l02176"></a>02176     {
-<a name="l02177"></a>02177      <span class="keywordflow">if</span> (mClippedLeftIndex == std::string::npos)
-<a name="l02178"></a>02178        mClippedLeftIndex = i;
-<a name="l02179"></a>02179      cursorX  += glyph-&gt;glyphAdvance + kerning;
-<a name="l02180"></a>02180      lastChar = thisChar;
-<a name="l02181"></a>02181      <span class="keywordflow">continue</span>;
-<a name="l02182"></a>02182     }
-<a name="l02183"></a>02183    }
-<a name="l02184"></a>02184 
-<a name="l02185"></a>02185    <span class="keywordflow">if</span> (clipRight)
-<a name="l02186"></a>02186    {
-<a name="l02187"></a>02187     <span class="keywordflow">if</span> (right &gt; clipRightPos)
-<a name="l02188"></a>02188     {
-<a name="l02189"></a>02189      <span class="keywordflow">if</span> (mClippedRightIndex == std::string::npos)
-<a name="l02190"></a>02190        mClippedRightIndex = i;
-<a name="l02191"></a>02191      cursorX  += glyph-&gt;glyphAdvance + kerning;
-<a name="l02192"></a>02192      lastChar = thisChar;
-<a name="l02193"></a>02193      <span class="keywordflow">continue</span>;
-<a name="l02194"></a>02194     }
-<a name="l02195"></a>02195    }
-<a name="l02196"></a>02196 
-<a name="l02197"></a>02197    <span class="comment">// Triangle A</span>
-<a name="l02198"></a>02198    PUSH_VERTEX(mVertices, temp, left, bottom, glyph-&gt;texCoords[BottomLeft], mColour);  <span class="comment">// Left/Bottom  3</span>
-<a name="l02199"></a>02199    PUSH_VERTEX(mVertices, temp, right, top, glyph-&gt;texCoords[TopRight], mColour);    <span class="comment">// Right/Top    1</span>
-<a name="l02200"></a>02200    PUSH_VERTEX(mVertices, temp, left, top, glyph-&gt;texCoords[TopLeft], mColour);     <span class="comment">// Left/Top     0</span>
+<a name="l02173"></a>02173    left = cursorX - texelOffsetX;
+<a name="l02174"></a>02174    top = cursorY - texelOffsetY;
+<a name="l02175"></a>02175    right = left + (glyph-&gt;glyphWidth * mCharScaling) + texelOffsetX;
+<a name="l02176"></a>02176    bottom = top + (glyph-&gt;glyphHeight * mCharScaling) + texelOffsetY;
+<a name="l02177"></a>02177 
+<a name="l02178"></a>02178    <span class="keywordflow">if</span> (clipLeft)
+<a name="l02179"></a>02179    {
+<a name="l02180"></a>02180     <span class="keywordflow">if</span> (left &lt; clipLeftPos)
+<a name="l02181"></a>02181     {
+<a name="l02182"></a>02182      <span class="keywordflow">if</span> (mClippedLeftIndex == std::string::npos)
+<a name="l02183"></a>02183        mClippedLeftIndex = i;
+<a name="l02184"></a>02184      cursorX  += (glyph-&gt;glyphAdvance + kerning) * mCharScaling;
+<a name="l02185"></a>02185      lastChar = thisChar;
+<a name="l02186"></a>02186      <span class="keywordflow">continue</span>;
+<a name="l02187"></a>02187     }
+<a name="l02188"></a>02188    }
+<a name="l02189"></a>02189 
+<a name="l02190"></a>02190    <span class="keywordflow">if</span> (clipRight)
+<a name="l02191"></a>02191    {
+<a name="l02192"></a>02192     <span class="keywordflow">if</span> (right &gt; clipRightPos)
+<a name="l02193"></a>02193     {
+<a name="l02194"></a>02194      <span class="keywordflow">if</span> (mClippedRightIndex == std::string::npos)
+<a name="l02195"></a>02195        mClippedRightIndex = i;
+<a name="l02196"></a>02196      cursorX  += (glyph-&gt;glyphAdvance + kerning) * mCharScaling;
+<a name="l02197"></a>02197      lastChar = thisChar;
+<a name="l02198"></a>02198      <span class="keywordflow">continue</span>;
+<a name="l02199"></a>02199     }
+<a name="l02200"></a>02200    }
 <a name="l02201"></a>02201 
-<a name="l02202"></a>02202    <span class="comment">// Triangle B</span>
+<a name="l02202"></a>02202    <span class="comment">// Triangle A</span>
 <a name="l02203"></a>02203    PUSH_VERTEX(mVertices, temp, left, bottom, glyph-&gt;texCoords[BottomLeft], mColour);  <span class="comment">// Left/Bottom  3</span>
-<a name="l02204"></a>02204    PUSH_VERTEX(mVertices, temp, right, bottom, glyph-&gt;texCoords[BottomRight], mColour); <span class="comment">// Right/Bottom 2</span>
-<a name="l02205"></a>02205    PUSH_VERTEX(mVertices, temp, right, top, glyph-&gt;texCoords[TopRight], mColour);    <span class="comment">// Right/Top    1</span>
+<a name="l02204"></a>02204    PUSH_VERTEX(mVertices, temp, right, top, glyph-&gt;texCoords[TopRight], mColour);    <span class="comment">// Right/Top    1</span>
+<a name="l02205"></a>02205    PUSH_VERTEX(mVertices, temp, left, top, glyph-&gt;texCoords[TopLeft], mColour);     <span class="comment">// Left/Top     0</span>
 <a name="l02206"></a>02206 
-<a name="l02207"></a>02207 
-<a name="l02208"></a>02208    cursorX  += glyph-&gt;glyphAdvance + kerning;
-<a name="l02209"></a>02209    lastChar = thisChar;
-<a name="l02210"></a>02210 
-<a name="l02211"></a>02211   } <span class="comment">// for</span>
+<a name="l02207"></a>02207    <span class="comment">// Triangle B</span>
+<a name="l02208"></a>02208    PUSH_VERTEX(mVertices, temp, left, bottom, glyph-&gt;texCoords[BottomLeft], mColour);  <span class="comment">// Left/Bottom  3</span>
+<a name="l02209"></a>02209    PUSH_VERTEX(mVertices, temp, right, bottom, glyph-&gt;texCoords[BottomRight], mColour); <span class="comment">// Right/Bottom 2</span>
+<a name="l02210"></a>02210    PUSH_VERTEX(mVertices, temp, right, top, glyph-&gt;texCoords[TopRight], mColour);    <span class="comment">// Right/Top    1</span>
+<a name="l02211"></a>02211 
 <a name="l02212"></a>02212 
-<a name="l02213"></a>02213 
-<a name="l02214"></a>02214   mDirty = <span class="keyword">false</span>;
-<a name="l02215"></a>02215  }
-<a name="l02216"></a>02216 
+<a name="l02213"></a>02213    cursorX  += (glyph-&gt;glyphAdvance + kerning) * mCharScaling;
+<a name="l02214"></a>02214    lastChar = thisChar;
+<a name="l02215"></a>02215 
+<a name="l02216"></a>02216   } <span class="comment">// for</span>
 <a name="l02217"></a>02217 
-<a name="l02218"></a>02218  MarkupText::MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> Ogre::String&amp; text, Layer* parent)
-<a name="l02219"></a>02219  : mLayer(parent)
-<a name="l02220"></a>02220  {
-<a name="l02221"></a>02221   mDefaultGlyphData = mLayer-&gt;_getGlyphData(defaultGlyphIndex);
+<a name="l02218"></a>02218 
+<a name="l02219"></a>02219   mDirty = <span class="keyword">false</span>;
+<a name="l02220"></a>02220  }
+<a name="l02221"></a>02221 
 <a name="l02222"></a>02222 
-<a name="l02223"></a>02223   <span class="keywordflow">if</span> (mDefaultGlyphData == 0)
-<a name="l02224"></a>02224   {
-<a name="l02225"></a>02225    mDirty          = <span class="keyword">false</span>;
-<a name="l02226"></a>02226    mTextDirty      = <span class="keyword">false</span>;
-<a name="l02227"></a>02227 <span class="preprocessor">#if GORILLA_USES_EXCEPTIONS == 1</span>
-<a name="l02228"></a>02228 <span class="preprocessor"></span>    OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, <span class="stringliteral">&quot;Glyph data not found&quot;</span>, __FUNC__ );
-<a name="l02229"></a>02229 <span class="preprocessor">#else</span>
-<a name="l02230"></a>02230 <span class="preprocessor"></span>    <span class="keywordflow">return</span>;
-<a name="l02231"></a>02231 <span class="preprocessor">#endif</span>
-<a name="l02232"></a>02232 <span class="preprocessor"></span>  }
-<a name="l02233"></a>02233 
-<a name="l02234"></a>02234   mDirty          = <span class="keyword">true</span>;
-<a name="l02235"></a>02235   mTextDirty      = <span class="keyword">true</span>;
-<a name="l02236"></a>02236   mVisible        = <span class="keyword">true</span>;
-<a name="l02237"></a>02237   mLayer-&gt;_markDirty();
-<a name="l02238"></a>02238   mLeft           = left;
-<a name="l02239"></a>02239   mTop            = top;
-<a name="l02240"></a>02240   mWidth          = 0.0f;
-<a name="l02241"></a>02241   mHeight         = 0.0f;
-<a name="l02242"></a>02242   mText           = text;
-<a name="l02243"></a>02243   mBackground.a   = 0.0f;
-<a name="l02244"></a>02244   mPriority    = Gorilla::RP_Medium;
-<a name="l02245"></a>02245 
-<a name="l02246"></a>02246  }
-<a name="l02247"></a>02247 
-<a name="l02248"></a>02248  <span class="keywordtype">void</span> MarkupText::_calculateCharacters()
-<a name="l02249"></a>02249  {
-<a name="l02250"></a>02250   <span class="keywordflow">if</span> (mTextDirty == <span class="keyword">false</span>)
-<a name="l02251"></a>02251    <span class="keywordflow">return</span>;
+<a name="l02223"></a>02223  MarkupText::MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> Ogre::String&amp; text, Layer* parent)
+<a name="l02224"></a>02224  : mLayer(parent)
+<a name="l02225"></a>02225  {
+<a name="l02226"></a>02226   mDefaultGlyphData = mLayer-&gt;_getGlyphData(defaultGlyphIndex);
+<a name="l02227"></a>02227 
+<a name="l02228"></a>02228   <span class="keywordflow">if</span> (mDefaultGlyphData == 0)
+<a name="l02229"></a>02229   {
+<a name="l02230"></a>02230    mDirty          = <span class="keyword">false</span>;
+<a name="l02231"></a>02231    mTextDirty      = <span class="keyword">false</span>;
+<a name="l02232"></a>02232 <span class="preprocessor">#if GORILLA_USES_EXCEPTIONS == 1</span>
+<a name="l02233"></a>02233 <span class="preprocessor"></span>    OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, <span class="stringliteral">&quot;Glyph data not found&quot;</span>, __FUNC__ );
+<a name="l02234"></a>02234 <span class="preprocessor">#else</span>
+<a name="l02235"></a>02235 <span class="preprocessor"></span>    <span class="keywordflow">return</span>;
+<a name="l02236"></a>02236 <span class="preprocessor">#endif</span>
+<a name="l02237"></a>02237 <span class="preprocessor"></span>  }
+<a name="l02238"></a>02238 
+<a name="l02239"></a>02239   mDirty          = <span class="keyword">true</span>;
+<a name="l02240"></a>02240   mTextDirty      = <span class="keyword">true</span>;
+<a name="l02241"></a>02241   mVisible        = <span class="keyword">true</span>;
+<a name="l02242"></a>02242   mLayer-&gt;_markDirty();
+<a name="l02243"></a>02243   mLeft           = left;
+<a name="l02244"></a>02244   mTop            = top;
+<a name="l02245"></a>02245   mWidth          = 0.0f;
+<a name="l02246"></a>02246   mHeight         = 0.0f;
+<a name="l02247"></a>02247   mText           = text;
+<a name="l02248"></a>02248   mBackground.a   = 0.0f;
+<a name="l02249"></a>02249   mPriority       = Gorilla::RP_Medium;
+<a name="l02250"></a>02250   mCharScaling    = 1.0f;
+<a name="l02251"></a>02251  }
 <a name="l02252"></a>02252 
-<a name="l02253"></a>02253   Ogre::Real cursorX = mLeft, cursorY = mTop, kerning = 0, texelOffsetX = mLayer-&gt;_getTexelX(), texelOffsetY = mLayer-&gt;_getTexelY(), right = 0, bottom = 0, left = 0, top = 0;
-<a name="l02254"></a>02254   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> thisChar = 0, lastChar = 0;
-<a name="l02255"></a>02255   Glyph* glyph = 0;
-<a name="l02256"></a>02256 
-<a name="l02257"></a>02257   mCharacters.remove_all();
-<a name="l02258"></a>02258 
-<a name="l02259"></a>02259   <span class="keywordtype">bool</span> markupMode = <span class="keyword">false</span>;
-<a name="l02260"></a>02260   Ogre::ColourValue colour = mLayer-&gt;_getMarkupColour(0);
-<a name="l02261"></a>02261   <span class="keywordtype">bool</span> fixedWidth = <span class="keyword">false</span>;
-<a name="l02262"></a>02262 
-<a name="l02263"></a>02263   GlyphData* glyphData = mDefaultGlyphData;
-<a name="l02264"></a>02264   Ogre::Real lineHeight = glyphData-&gt;mLineHeight;
-<a name="l02265"></a>02265 
-<a name="l02266"></a>02266   <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i=0;i &lt; mText.length();i++)
-<a name="l02267"></a>02267   {
-<a name="l02268"></a>02268 
-<a name="l02269"></a>02269    thisChar = mText[i];
+<a name="l02253"></a>02253  <span class="keywordtype">void</span> MarkupText::_calculateCharacters()
+<a name="l02254"></a>02254  {
+<a name="l02255"></a>02255   <span class="keywordflow">if</span> (mTextDirty == <span class="keyword">false</span>)
+<a name="l02256"></a>02256    <span class="keywordflow">return</span>;
+<a name="l02257"></a>02257 
+<a name="l02258"></a>02258   Ogre::Real cursorX = mLeft, cursorY = mTop, kerning = 0, texelOffsetX = mLayer-&gt;_getTexelX(), texelOffsetY = mLayer-&gt;_getTexelY(), right = 0, bottom = 0, left = 0, top = 0;
+<a name="l02259"></a>02259   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> thisChar = 0, lastChar = 0;
+<a name="l02260"></a>02260   Glyph* glyph = 0;
+<a name="l02261"></a>02261 
+<a name="l02262"></a>02262   mCharacters.remove_all();
+<a name="l02263"></a>02263 
+<a name="l02264"></a>02264   <span class="keywordtype">bool</span> markupMode = <span class="keyword">false</span>;
+<a name="l02265"></a>02265   Ogre::ColourValue colour = mLayer-&gt;_getMarkupColour(0);
+<a name="l02266"></a>02266   <span class="keywordtype">bool</span> fixedWidth = <span class="keyword">false</span>;
+<a name="l02267"></a>02267 
+<a name="l02268"></a>02268   GlyphData* glyphData = mDefaultGlyphData;
+<a name="l02269"></a>02269   Ogre::Real lineHeight = glyphData-&gt;mLineHeight;
 <a name="l02270"></a>02270 
-<a name="l02271"></a>02271    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39; &#39;</span>)
-<a name="l02272"></a>02272    {
-<a name="l02273"></a>02273     lastChar = thisChar;
-<a name="l02274"></a>02274     cursorX += glyphData-&gt;mSpaceLength;
-<a name="l02275"></a>02275     <span class="keywordflow">continue</span>;
-<a name="l02276"></a>02276    }
-<a name="l02277"></a>02277 
-<a name="l02278"></a>02278    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;\n&#39;</span>)
-<a name="l02279"></a>02279    {
-<a name="l02280"></a>02280     lastChar = thisChar;
-<a name="l02281"></a>02281     cursorX = mLeft;
-<a name="l02282"></a>02282     cursorY += lineHeight;
-<a name="l02283"></a>02283     lineHeight = glyphData-&gt;mLineHeight;
-<a name="l02284"></a>02284     <span class="keywordflow">continue</span>;
-<a name="l02285"></a>02285    }
-<a name="l02286"></a>02286 
-<a name="l02287"></a>02287    <span class="keywordflow">if</span> (  thisChar &lt; glyphData-&gt;mRangeBegin || thisChar &gt; glyphData-&gt;mRangeEnd  )
-<a name="l02288"></a>02288    {
-<a name="l02289"></a>02289     lastChar = 0;
-<a name="l02290"></a>02290     <span class="keywordflow">continue</span>;
-<a name="l02291"></a>02291    }
-<a name="l02292"></a>02292 
-<a name="l02293"></a>02293    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;%&#39;</span> &amp;&amp; markupMode == <span class="keyword">false</span>)
-<a name="l02294"></a>02294    {
-<a name="l02295"></a>02295     markupMode = <span class="keyword">true</span>;
-<a name="l02296"></a>02296     <span class="keywordflow">continue</span>;
-<a name="l02297"></a>02297    }
-<a name="l02298"></a>02298 
-<a name="l02299"></a>02299    <span class="keywordflow">if</span> (markupMode == <span class="keyword">true</span>)
-<a name="l02300"></a>02300    {
-<a name="l02301"></a>02301     <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;%&#39;</span>)
-<a name="l02302"></a>02302     {
-<a name="l02303"></a>02303      <span class="comment">// Escape Character.</span>
-<a name="l02304"></a>02304     }
-<a name="l02305"></a>02305     <span class="keywordflow">else</span>
-<a name="l02306"></a>02306     {
-<a name="l02307"></a>02307      markupMode = <span class="keyword">false</span>;
-<a name="l02308"></a>02308 
-<a name="l02309"></a>02309      <span class="keywordflow">if</span> (thisChar &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; thisChar &lt;= <span class="charliteral">&#39;9&#39;</span>)
-<a name="l02310"></a>02310      {
-<a name="l02311"></a>02311       colour = mLayer-&gt;_getMarkupColour(thisChar - 48);
-<a name="l02312"></a>02312      }
-<a name="l02313"></a>02313      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;R&#39;</span> || thisChar == <span class="charliteral">&#39;r&#39;</span>)
-<a name="l02314"></a>02314      {
-<a name="l02315"></a>02315       colour = mLayer-&gt;_getMarkupColour(0);
-<a name="l02316"></a>02316      }
-<a name="l02317"></a>02317      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;M&#39;</span> || thisChar == <span class="charliteral">&#39;m&#39;</span>)
-<a name="l02318"></a>02318      {
-<a name="l02319"></a>02319       fixedWidth = !fixedWidth;
-<a name="l02320"></a>02320      }
-<a name="l02321"></a>02321      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;@&#39;</span>)
-<a name="l02322"></a>02322      {
-<a name="l02323"></a>02323       markupMode = <span class="keyword">false</span>;
-<a name="l02324"></a>02324       <span class="keywordtype">bool</span> foundIt = <span class="keyword">false</span>;
-<a name="l02325"></a>02325       <span class="keywordtype">size_t</span> begin = i;
-<a name="l02326"></a>02326       <span class="keywordflow">while</span>(i &lt; mText.size())
-<a name="l02327"></a>02327       {
-<a name="l02328"></a>02328        <span class="keywordflow">if</span> (mText[i] == <span class="charliteral">&#39;%&#39;</span>)
-<a name="l02329"></a>02329        {
-<a name="l02330"></a>02330         foundIt = <span class="keyword">true</span>;
-<a name="l02331"></a>02331         <span class="keywordflow">break</span>;
-<a name="l02332"></a>02332        }
-<a name="l02333"></a>02333        i++;
-<a name="l02334"></a>02334       }
-<a name="l02335"></a>02335 
-<a name="l02336"></a>02336       <span class="keywordflow">if</span> (foundIt == <span class="keyword">false</span>)
-<a name="l02337"></a>02337        <span class="keywordflow">return</span>;
-<a name="l02338"></a>02338 
-<a name="l02339"></a>02339       Ogre::uint index = Ogre::StringConverter::parseUnsignedInt(mText.substr(begin+1, i - begin - 1));
-<a name="l02340"></a>02340       glyphData = mLayer-&gt;_getGlyphData(index);
-<a name="l02341"></a>02341       <span class="keywordflow">if</span> (glyphData == 0)
+<a name="l02271"></a>02271   <span class="keywordflow">for</span>(<span class="keywordtype">size_t</span> i=0;i &lt; mText.length();i++)
+<a name="l02272"></a>02272   {
+<a name="l02273"></a>02273 
+<a name="l02274"></a>02274    thisChar = mText[i];
+<a name="l02275"></a>02275 
+<a name="l02276"></a>02276    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39; &#39;</span>)
+<a name="l02277"></a>02277    {
+<a name="l02278"></a>02278     lastChar = thisChar;
+<a name="l02279"></a>02279     cursorX += (glyphData-&gt;mSpaceLength * mCharScaling);
+<a name="l02280"></a>02280     <span class="keywordflow">continue</span>;
+<a name="l02281"></a>02281    }
+<a name="l02282"></a>02282 
+<a name="l02283"></a>02283    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;\n&#39;</span>)
+<a name="l02284"></a>02284    {
+<a name="l02285"></a>02285     lastChar = thisChar;
+<a name="l02286"></a>02286     cursorX = mLeft;
+<a name="l02287"></a>02287     cursorY += (lineHeight * mCharScaling);
+<a name="l02288"></a>02288     lineHeight = glyphData-&gt;mLineHeight;
+<a name="l02289"></a>02289     <span class="keywordflow">continue</span>;
+<a name="l02290"></a>02290    }
+<a name="l02291"></a>02291 
+<a name="l02292"></a>02292    <span class="keywordflow">if</span> (  thisChar &lt; glyphData-&gt;mRangeBegin || thisChar &gt; glyphData-&gt;mRangeEnd  )
+<a name="l02293"></a>02293    {
+<a name="l02294"></a>02294     lastChar = 0;
+<a name="l02295"></a>02295     <span class="keywordflow">continue</span>;
+<a name="l02296"></a>02296    }
+<a name="l02297"></a>02297 
+<a name="l02298"></a>02298    <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;%&#39;</span> &amp;&amp; markupMode == <span class="keyword">false</span>)
+<a name="l02299"></a>02299    {
+<a name="l02300"></a>02300     markupMode = <span class="keyword">true</span>;
+<a name="l02301"></a>02301     <span class="keywordflow">continue</span>;
+<a name="l02302"></a>02302    }
+<a name="l02303"></a>02303 
+<a name="l02304"></a>02304    <span class="keywordflow">if</span> (markupMode == <span class="keyword">true</span>)
+<a name="l02305"></a>02305    {
+<a name="l02306"></a>02306     <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;%&#39;</span>)
+<a name="l02307"></a>02307     {
+<a name="l02308"></a>02308      <span class="comment">// Escape Character.</span>
+<a name="l02309"></a>02309     }
+<a name="l02310"></a>02310     <span class="keywordflow">else</span>
+<a name="l02311"></a>02311     {
+<a name="l02312"></a>02312      markupMode = <span class="keyword">false</span>;
+<a name="l02313"></a>02313 
+<a name="l02314"></a>02314      <span class="keywordflow">if</span> (thisChar &gt;= <span class="charliteral">&#39;0&#39;</span> &amp;&amp; thisChar &lt;= <span class="charliteral">&#39;9&#39;</span>)
+<a name="l02315"></a>02315      {
+<a name="l02316"></a>02316       colour = mLayer-&gt;_getMarkupColour(thisChar - 48);
+<a name="l02317"></a>02317      }
+<a name="l02318"></a>02318      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;R&#39;</span> || thisChar == <span class="charliteral">&#39;r&#39;</span>)
+<a name="l02319"></a>02319      {
+<a name="l02320"></a>02320       colour = mLayer-&gt;_getMarkupColour(0);
+<a name="l02321"></a>02321      }
+<a name="l02322"></a>02322      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;M&#39;</span> || thisChar == <span class="charliteral">&#39;m&#39;</span>)
+<a name="l02323"></a>02323      {
+<a name="l02324"></a>02324       fixedWidth = !fixedWidth;
+<a name="l02325"></a>02325      }
+<a name="l02326"></a>02326      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;@&#39;</span>)
+<a name="l02327"></a>02327      {
+<a name="l02328"></a>02328       markupMode = <span class="keyword">false</span>;
+<a name="l02329"></a>02329       <span class="keywordtype">bool</span> foundIt = <span class="keyword">false</span>;
+<a name="l02330"></a>02330       <span class="keywordtype">size_t</span> begin = i;
+<a name="l02331"></a>02331       <span class="keywordflow">while</span>(i &lt; mText.size())
+<a name="l02332"></a>02332       {
+<a name="l02333"></a>02333        <span class="keywordflow">if</span> (mText[i] == <span class="charliteral">&#39;%&#39;</span>)
+<a name="l02334"></a>02334        {
+<a name="l02335"></a>02335         foundIt = <span class="keyword">true</span>;
+<a name="l02336"></a>02336         <span class="keywordflow">break</span>;
+<a name="l02337"></a>02337        }
+<a name="l02338"></a>02338        i++;
+<a name="l02339"></a>02339       }
+<a name="l02340"></a>02340 
+<a name="l02341"></a>02341       <span class="keywordflow">if</span> (foundIt == <span class="keyword">false</span>)
 <a name="l02342"></a>02342        <span class="keywordflow">return</span>;
-<a name="l02343"></a>02343       <span class="comment">// TODO: Check against line height?</span>
-<a name="l02344"></a>02344       lineHeight = std::max(lineHeight, glyphData-&gt;mLineHeight);
-<a name="l02345"></a>02345       <span class="keywordflow">continue</span>;
-<a name="l02346"></a>02346      }
-<a name="l02347"></a>02347      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;:&#39;</span>)
-<a name="l02348"></a>02348      {
-<a name="l02349"></a>02349       markupMode = <span class="keyword">false</span>;
-<a name="l02350"></a>02350       <span class="keywordtype">bool</span> foundIt = <span class="keyword">false</span>;
-<a name="l02351"></a>02351       <span class="keywordtype">size_t</span> begin = i;
-<a name="l02352"></a>02352       <span class="keywordflow">while</span>(i &lt; mText.size())
-<a name="l02353"></a>02353       {
-<a name="l02354"></a>02354        <span class="keywordflow">if</span> (mText[i] == <span class="charliteral">&#39;%&#39;</span>)
-<a name="l02355"></a>02355        {
-<a name="l02356"></a>02356         foundIt = <span class="keyword">true</span>;
-<a name="l02357"></a>02357         <span class="keywordflow">break</span>;
-<a name="l02358"></a>02358        }
-<a name="l02359"></a>02359        i++;
-<a name="l02360"></a>02360       }
-<a name="l02361"></a>02361 
-<a name="l02362"></a>02362       <span class="keywordflow">if</span> (foundIt == <span class="keyword">false</span>)
-<a name="l02363"></a>02363        <span class="keywordflow">return</span>;
-<a name="l02364"></a>02364 
-<a name="l02365"></a>02365       Ogre::String sprite_name = mText.substr(begin+1, i - begin - 1);
+<a name="l02343"></a>02343 
+<a name="l02344"></a>02344       Ogre::uint index = Ogre::StringConverter::parseUnsignedInt(mText.substr(begin+1, i - begin - 1));
+<a name="l02345"></a>02345       glyphData = mLayer-&gt;_getGlyphData(index);
+<a name="l02346"></a>02346       <span class="keywordflow">if</span> (glyphData == 0)
+<a name="l02347"></a>02347        <span class="keywordflow">return</span>;
+<a name="l02348"></a>02348       <span class="comment">// TODO: Check against line height?</span>
+<a name="l02349"></a>02349       lineHeight = std::max(lineHeight, glyphData-&gt;mLineHeight);
+<a name="l02350"></a>02350       <span class="keywordflow">continue</span>;
+<a name="l02351"></a>02351      }
+<a name="l02352"></a>02352      <span class="keywordflow">else</span> <span class="keywordflow">if</span> (thisChar == <span class="charliteral">&#39;:&#39;</span>)
+<a name="l02353"></a>02353      {
+<a name="l02354"></a>02354       markupMode = <span class="keyword">false</span>;
+<a name="l02355"></a>02355       <span class="keywordtype">bool</span> foundIt = <span class="keyword">false</span>;
+<a name="l02356"></a>02356       <span class="keywordtype">size_t</span> begin = i;
+<a name="l02357"></a>02357       <span class="keywordflow">while</span>(i &lt; mText.size())
+<a name="l02358"></a>02358       {
+<a name="l02359"></a>02359        <span class="keywordflow">if</span> (mText[i] == <span class="charliteral">&#39;%&#39;</span>)
+<a name="l02360"></a>02360        {
+<a name="l02361"></a>02361         foundIt = <span class="keyword">true</span>;
+<a name="l02362"></a>02362         <span class="keywordflow">break</span>;
+<a name="l02363"></a>02363        }
+<a name="l02364"></a>02364        i++;
+<a name="l02365"></a>02365       }
 <a name="l02366"></a>02366 
-<a name="l02367"></a>02367       Sprite* sprite = mLayer-&gt;_getSprite(sprite_name);
-<a name="l02368"></a>02368       <span class="keywordflow">if</span> (sprite == 0)
-<a name="l02369"></a>02369        <span class="keywordflow">continue</span>;
-<a name="l02370"></a>02370 
-<a name="l02371"></a>02371       left = cursorX - texelOffsetX;
-<a name="l02372"></a>02372       top = cursorY - texelOffsetY;
-<a name="l02373"></a>02373       right = left + sprite-&gt;spriteWidth + texelOffsetX;
-<a name="l02374"></a>02374       bottom = top + sprite-&gt;spriteHeight + texelOffsetY;
+<a name="l02367"></a>02367       <span class="keywordflow">if</span> (foundIt == <span class="keyword">false</span>)
+<a name="l02368"></a>02368        <span class="keywordflow">return</span>;
+<a name="l02369"></a>02369 
+<a name="l02370"></a>02370       Ogre::String sprite_name = mText.substr(begin+1, i - begin - 1);
+<a name="l02371"></a>02371 
+<a name="l02372"></a>02372       Sprite* sprite = mLayer-&gt;_getSprite(sprite_name);
+<a name="l02373"></a>02373       <span class="keywordflow">if</span> (sprite == 0)
+<a name="l02374"></a>02374        <span class="keywordflow">continue</span>;
 <a name="l02375"></a>02375 
-<a name="l02376"></a>02376       <a class="code" href="../../df/dec/namespacephys.html#a3098bae5b0a3cd16eec331f766cc562b" title="A datatype to represent one character.">Character</a> c;
-<a name="l02377"></a>02377       c.mIndex = i;
-<a name="l02378"></a>02378       c.mPosition[TopLeft].x = left;
-<a name="l02379"></a>02379       c.mPosition[TopLeft].y = top;
-<a name="l02380"></a>02380       c.mPosition[TopRight].x = right;
-<a name="l02381"></a>02381       c.mPosition[TopRight].y = top;
-<a name="l02382"></a>02382       c.mPosition[BottomLeft].x = left;
-<a name="l02383"></a>02383       c.mPosition[BottomLeft].y = bottom;
-<a name="l02384"></a>02384       c.mPosition[BottomRight].x = right;
-<a name="l02385"></a>02385       c.mPosition[BottomRight].y = bottom;
-<a name="l02386"></a>02386       c.mUV[0] = sprite-&gt;texCoords[0];
-<a name="l02387"></a>02387       c.mUV[1] = sprite-&gt;texCoords[1];
-<a name="l02388"></a>02388       c.mUV[2] = sprite-&gt;texCoords[2];
-<a name="l02389"></a>02389       c.mUV[3] = sprite-&gt;texCoords[3];
-<a name="l02390"></a>02390       c.mColour = colour;
-<a name="l02391"></a>02391 
-<a name="l02392"></a>02392       mCharacters.push_back(c);
-<a name="l02393"></a>02393 
-<a name="l02394"></a>02394       cursorX  += sprite-&gt;spriteWidth;
-<a name="l02395"></a>02395 
-<a name="l02396"></a>02396       lineHeight = std::max(lineHeight, sprite-&gt;spriteHeight);
-<a name="l02397"></a>02397 
-<a name="l02398"></a>02398       <span class="keywordflow">continue</span>;
-<a name="l02399"></a>02399      }
+<a name="l02376"></a>02376       left = cursorX - texelOffsetX;
+<a name="l02377"></a>02377       top = cursorY - texelOffsetY;
+<a name="l02378"></a>02378       right = left + (sprite-&gt;spriteWidth * mCharScaling) + texelOffsetX;
+<a name="l02379"></a>02379       bottom = top + (sprite-&gt;spriteHeight * mCharScaling) + texelOffsetY;
+<a name="l02380"></a>02380 
+<a name="l02381"></a>02381       <a class="code" href="../../df/dec/namespacephys.html#a3098bae5b0a3cd16eec331f766cc562b" title="A datatype to represent one character.">Character</a> c;
+<a name="l02382"></a>02382       c.mIndex = i;
+<a name="l02383"></a>02383       c.mPosition[TopLeft].x = left;
+<a name="l02384"></a>02384       c.mPosition[TopLeft].y = top;
+<a name="l02385"></a>02385       c.mPosition[TopRight].x = right;
+<a name="l02386"></a>02386       c.mPosition[TopRight].y = top;
+<a name="l02387"></a>02387       c.mPosition[BottomLeft].x = left;
+<a name="l02388"></a>02388       c.mPosition[BottomLeft].y = bottom;
+<a name="l02389"></a>02389       c.mPosition[BottomRight].x = right;
+<a name="l02390"></a>02390       c.mPosition[BottomRight].y = bottom;
+<a name="l02391"></a>02391       c.mUV[0] = sprite-&gt;texCoords[0];
+<a name="l02392"></a>02392       c.mUV[1] = sprite-&gt;texCoords[1];
+<a name="l02393"></a>02393       c.mUV[2] = sprite-&gt;texCoords[2];
+<a name="l02394"></a>02394       c.mUV[3] = sprite-&gt;texCoords[3];
+<a name="l02395"></a>02395       c.mColour = colour;
+<a name="l02396"></a>02396 
+<a name="l02397"></a>02397       mCharacters.push_back(c);
+<a name="l02398"></a>02398 
+<a name="l02399"></a>02399       cursorX  += (sprite-&gt;spriteWidth * mCharScaling);
 <a name="l02400"></a>02400 
-<a name="l02401"></a>02401 
-<a name="l02402"></a>02402      <span class="keywordflow">continue</span>;
-<a name="l02403"></a>02403     }
-<a name="l02404"></a>02404     markupMode = <span class="keyword">false</span>;
-<a name="l02405"></a>02405    }
+<a name="l02401"></a>02401       lineHeight = std::max(lineHeight, sprite-&gt;spriteHeight);
+<a name="l02402"></a>02402 
+<a name="l02403"></a>02403       <span class="keywordflow">continue</span>;
+<a name="l02404"></a>02404      }
+<a name="l02405"></a>02405 
 <a name="l02406"></a>02406 
-<a name="l02407"></a>02407    glyph = glyphData-&gt;getGlyph(thisChar);
-<a name="l02408"></a>02408 
-<a name="l02409"></a>02409    <span class="keywordflow">if</span> (!fixedWidth)
-<a name="l02410"></a>02410    {
-<a name="l02411"></a>02411     kerning = glyph-&gt;getKerning(lastChar);
-<a name="l02412"></a>02412     <span class="keywordflow">if</span> (kerning == 0)
-<a name="l02413"></a>02413      kerning = glyphData-&gt;mLetterSpacing;
-<a name="l02414"></a>02414    }
-<a name="l02415"></a>02415 
-<a name="l02416"></a>02416    right = cursorX + glyph-&gt;glyphWidth + texelOffsetX;
-<a name="l02417"></a>02417    bottom = cursorY + glyph-&gt;glyphHeight + texelOffsetY;
-<a name="l02418"></a>02418 
-<a name="l02419"></a>02419    <a class="code" href="../../df/dec/namespacephys.html#a3098bae5b0a3cd16eec331f766cc562b" title="A datatype to represent one character.">Character</a> c;
-<a name="l02420"></a>02420    c.mIndex = i;
-<a name="l02421"></a>02421    c.mPosition[TopLeft].x = cursorX;
-<a name="l02422"></a>02422    c.mPosition[TopLeft].y = cursorY;
-<a name="l02423"></a>02423    c.mPosition[TopRight].x = right;
-<a name="l02424"></a>02424    c.mPosition[TopRight].y = cursorY;
-<a name="l02425"></a>02425    c.mPosition[BottomLeft].x = cursorX;
-<a name="l02426"></a>02426    c.mPosition[BottomLeft].y = bottom;
-<a name="l02427"></a>02427    c.mPosition[BottomRight].x = right;
-<a name="l02428"></a>02428    c.mPosition[BottomRight].y = bottom;
-<a name="l02429"></a>02429    c.mUV[0] = glyph-&gt;texCoords[0];
-<a name="l02430"></a>02430    c.mUV[1] = glyph-&gt;texCoords[1];
-<a name="l02431"></a>02431    c.mUV[2] = glyph-&gt;texCoords[2];
-<a name="l02432"></a>02432    c.mUV[3] = glyph-&gt;texCoords[3];
-<a name="l02433"></a>02433    c.mColour = colour;
-<a name="l02434"></a>02434 
-<a name="l02435"></a>02435    mCharacters.push_back(c);
-<a name="l02436"></a>02436 
-<a name="l02437"></a>02437    <span class="keywordflow">if</span> (fixedWidth)
-<a name="l02438"></a>02438      cursorX  += glyphData-&gt;mMonoWidth;
-<a name="l02439"></a>02439    <span class="keywordflow">else</span>
-<a name="l02440"></a>02440      cursorX  += glyph-&gt;glyphAdvance + kerning;
+<a name="l02407"></a>02407      <span class="keywordflow">continue</span>;
+<a name="l02408"></a>02408     }
+<a name="l02409"></a>02409     markupMode = <span class="keyword">false</span>;
+<a name="l02410"></a>02410    }
+<a name="l02411"></a>02411 
+<a name="l02412"></a>02412    glyph = glyphData-&gt;getGlyph(thisChar);
+<a name="l02413"></a>02413 
+<a name="l02414"></a>02414    <span class="keywordflow">if</span> (!fixedWidth)
+<a name="l02415"></a>02415    {
+<a name="l02416"></a>02416     kerning = glyph-&gt;getKerning(lastChar);
+<a name="l02417"></a>02417     <span class="keywordflow">if</span> (kerning == 0)
+<a name="l02418"></a>02418      kerning = glyphData-&gt;mLetterSpacing;
+<a name="l02419"></a>02419    }
+<a name="l02420"></a>02420 
+<a name="l02421"></a>02421    right = cursorX + (glyph-&gt;glyphWidth * mCharScaling) + texelOffsetX;
+<a name="l02422"></a>02422    bottom = cursorY + (glyph-&gt;glyphHeight * mCharScaling) + texelOffsetY;
+<a name="l02423"></a>02423 
+<a name="l02424"></a>02424    <a class="code" href="../../df/dec/namespacephys.html#a3098bae5b0a3cd16eec331f766cc562b" title="A datatype to represent one character.">Character</a> c;
+<a name="l02425"></a>02425    c.mIndex = i;
+<a name="l02426"></a>02426    c.mPosition[TopLeft].x = cursorX;
+<a name="l02427"></a>02427    c.mPosition[TopLeft].y = cursorY;
+<a name="l02428"></a>02428    c.mPosition[TopRight].x = right;
+<a name="l02429"></a>02429    c.mPosition[TopRight].y = cursorY;
+<a name="l02430"></a>02430    c.mPosition[BottomLeft].x = cursorX;
+<a name="l02431"></a>02431    c.mPosition[BottomLeft].y = bottom;
+<a name="l02432"></a>02432    c.mPosition[BottomRight].x = right;
+<a name="l02433"></a>02433    c.mPosition[BottomRight].y = bottom;
+<a name="l02434"></a>02434    c.mUV[0] = glyph-&gt;texCoords[0];
+<a name="l02435"></a>02435    c.mUV[1] = glyph-&gt;texCoords[1];
+<a name="l02436"></a>02436    c.mUV[2] = glyph-&gt;texCoords[2];
+<a name="l02437"></a>02437    c.mUV[3] = glyph-&gt;texCoords[3];
+<a name="l02438"></a>02438    c.mColour = colour;
+<a name="l02439"></a>02439 
+<a name="l02440"></a>02440    mCharacters.push_back(c);
 <a name="l02441"></a>02441 
-<a name="l02442"></a>02442    lastChar = thisChar;
-<a name="l02443"></a>02443   }
-<a name="l02444"></a>02444 
-<a name="l02445"></a>02445   mTextDirty = <span class="keyword">false</span>;
-<a name="l02446"></a>02446  }
-<a name="l02447"></a>02447 
-<a name="l02448"></a>02448  <span class="keywordtype">void</span>  MarkupText::_redraw()
-<a name="l02449"></a>02449  {
-<a name="l02450"></a>02450 
-<a name="l02451"></a>02451   <span class="keywordflow">if</span> (mDirty == <span class="keyword">false</span>)
-<a name="l02452"></a>02452    <span class="keywordflow">return</span>;
-<a name="l02453"></a>02453 
-<a name="l02454"></a>02454   mVertices.remove_all();
+<a name="l02442"></a>02442    <span class="keywordflow">if</span> (fixedWidth)
+<a name="l02443"></a>02443      cursorX += glyphData-&gt;mMonoWidth;
+<a name="l02444"></a>02444    <span class="keywordflow">else</span>
+<a name="l02445"></a>02445      cursorX += (glyph-&gt;glyphAdvance + kerning) * mCharScaling;
+<a name="l02446"></a>02446 
+<a name="l02447"></a>02447    lastChar = thisChar;
+<a name="l02448"></a>02448   }
+<a name="l02449"></a>02449 
+<a name="l02450"></a>02450   mTextDirty = <span class="keyword">false</span>;
+<a name="l02451"></a>02451  }
+<a name="l02452"></a>02452 
+<a name="l02453"></a>02453  <span class="keywordtype">void</span>  MarkupText::_redraw()
+<a name="l02454"></a>02454  {
 <a name="l02455"></a>02455 
-<a name="l02456"></a>02456   <span class="keywordflow">if</span>(!mVisible)
-<a name="l02457"></a>02457   {
-<a name="l02458"></a>02458       mDirty = <span class="keyword">false</span>;
-<a name="l02459"></a>02459       <span class="keywordflow">return</span>;
-<a name="l02460"></a>02460   }
-<a name="l02461"></a>02461 
-<a name="l02462"></a>02462   Vertex temp;
-<a name="l02463"></a>02463   <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i=0; i &lt; mCharacters.size();i++)
-<a name="l02464"></a>02464   {
-<a name="l02465"></a>02465    PUSH_QUAD2(mVertices, temp, mCharacters[i].mPosition, mCharacters[i].mColour, mCharacters[i].mUV);
-<a name="l02466"></a>02466   }
-<a name="l02467"></a>02467 
-<a name="l02468"></a>02468   mDirty = <span class="keyword">false</span>;
-<a name="l02469"></a>02469  }
-<a name="l02470"></a>02470 
-<a name="l02471"></a>02471 } <span class="comment">// namespace Gorilla</span>
-<a name="l02472"></a>02472 <span class="comment"></span>
-<a name="l02473"></a>02473 <span class="comment">/// @endcond</span>
+<a name="l02456"></a>02456   <span class="keywordflow">if</span> (mDirty == <span class="keyword">false</span>)
+<a name="l02457"></a>02457    <span class="keywordflow">return</span>;
+<a name="l02458"></a>02458 
+<a name="l02459"></a>02459   mVertices.remove_all();
+<a name="l02460"></a>02460 
+<a name="l02461"></a>02461   <span class="keywordflow">if</span>(!mVisible)
+<a name="l02462"></a>02462   {
+<a name="l02463"></a>02463       mDirty = <span class="keyword">false</span>;
+<a name="l02464"></a>02464       <span class="keywordflow">return</span>;
+<a name="l02465"></a>02465   }
+<a name="l02466"></a>02466 
+<a name="l02467"></a>02467   Vertex temp;
+<a name="l02468"></a>02468   <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i=0; i &lt; mCharacters.size();i++)
+<a name="l02469"></a>02469   {
+<a name="l02470"></a>02470    PUSH_QUAD2(mVertices, temp, mCharacters[i].mPosition, mCharacters[i].mColour, mCharacters[i].mUV);
+<a name="l02471"></a>02471   }
+<a name="l02472"></a>02472 
+<a name="l02473"></a>02473   mDirty = <span class="keyword">false</span>;
+<a name="l02474"></a>02474  }
+<a name="l02475"></a>02475 
+<a name="l02476"></a>02476 } <span class="comment">// namespace Gorilla</span>
+<a name="l02477"></a>02477 <span class="comment"></span>
+<a name="l02478"></a>02478 <span class="comment">/// @endcond</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:42 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:33 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

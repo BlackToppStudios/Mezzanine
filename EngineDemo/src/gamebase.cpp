@@ -61,7 +61,7 @@ int main(int argc, char **argv)
     #endif
 
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
-    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::KEY_q) );
+    TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::KEY_Q) );
     TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
     TheWorld->GetEventManager()->AddPollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_1) );
     TheWorld->GetEventManager()->RemovePollingCheck( MetaCode(0, MetaCode::MOUSEBUTTON_3) );
@@ -236,7 +236,7 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom(); }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_m) )
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_M) )
     {
         Sound* Theme = TheWorld->GetSoundManager()->GetSoundByName("Theme2");
         if(!Theme->IsPlaying())
@@ -247,25 +247,28 @@ bool PostInput()
 
     //Resize the window
     static bool videobuttonpushed = false;
-    if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_f) && !videobuttonpushed )
+    if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        //TheWorld->GetGraphicsManager()->setRenderOptions(1366,768,true);
-        //TheWorld->GetGraphicsManager()->setRenderOptions(1280,1024,true);
-        TheWorld->GetGraphicsManager()->setFullscreen(true);
-        //TheWorld->GetGraphicsManager()->setFullscreen(false);
+        //TheWorld->GetGraphicsManager()->setFullscreen(true);
+        GraphicsSettings NewSet;
+        NewSet.RenderWidth = 1280;
+        NewSet.RenderHeight = 1024;
+        NewSet.Fullscreen = true;
+        NewSet.VSync = false;
+        TheWorld->GetGraphicsManager()->setRenderOptions(NewSet);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_g)  && !videobuttonpushed )
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->setFullscreen(false);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_r)  && !videobuttonpushed )
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setRenderResolution(1280,1024);
+        TheWorld->GetGraphicsManager()->setRenderResolution(1024,768);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_t)  && !videobuttonpushed )
+    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->setRenderResolution(800,600);
@@ -405,14 +408,14 @@ bool PostInput()
     }
 
     // using the Raw Event Manager, and deleting the events
-    if( !CheckForEsc() )
+    if( !CheckForStuff() )
         return false;
     return true;
 }
 
 ///////////////////
 //Non-Callbacks
-bool CheckForEsc()
+bool CheckForStuff()
 {
     //this will either set the pointer to 0 or return a valid pointer to work with.
     EventUserInput* OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
@@ -421,16 +424,18 @@ bool CheckForEsc()
     while(0 != OneInput)
     {
         #ifdef PHYSDEBUG
-        TheWorld->Log("Input Events Processed");
+        TheWorld->LogStream << "Input Events Processed" << endl << "Escape is: " << MetaCode::KEY_ESCAPE << endl;
         #endif
 
+        if(OneInput->GetType()!=EventBase::UserInput)
+            { TheWorld->LogAndThrow("Trying to process a non-EventUserInput as an EventUserInput."); }
         //we check each MetaCode in each Event
         for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
             #ifdef PHYSDEBUG
-            TheWorld->LogStream << "Metacode (" << c << ")" << OneInput->GetMetaCode(c) << endl << "Escape is: " << MetaCode::KEY_ESCAPE << endl;
-
+            TheWorld->LogStream << "Metacode (" << c << ")" << OneInput->GetMetaCode(c) << endl ;
             #endif
+
             //Is the key we just pushed ESCAPE
             if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && MetaCode::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
                 { return false; }
@@ -439,6 +444,50 @@ bool CheckForEsc()
         delete OneInput;
         OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
     }
+
+    EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+    while(0 != OneWindowEvent)
+    {
+        int t = OneWindowEvent->GetType();
+        if(OneWindowEvent->GetType()!=EventBase::GameWindow)
+            { TheWorld->LogAndThrow("Trying to process a non-EventGameWindow as an EventGameWindow."); }
+
+        if(!OneWindowEvent->IsEventIDValid())
+        {
+            TheWorld->Log("Invalid EventID on GameWindow Event");
+            TheWorld->LogAndThrow(OneWindowEvent->GetEventID());
+        }
+    t = OneWindowEvent->GetEventID();
+
+        TheWorld->Log(*OneWindowEvent);
+    t = OneWindowEvent->GetEventID();
+        TheWorld->Log(EventGameWindow::GameWindowEventIDToString((EventGameWindow::GameWindowEventID)t));
+    t = OneWindowEvent->GetEventID();
+
+        stringstream eventxml;
+        eventxml << *OneWindowEvent;    // Test XML conversion and reconstruction
+    t = OneWindowEvent->GetEventID();
+        EventGameWindow AnotherWindowEvent(EventGameWindow::GAME_WINDOW_NONE,0,0);
+    t = OneWindowEvent->GetEventID();
+        eventxml >> AnotherWindowEvent;
+    t = OneWindowEvent->GetEventID();
+        TheWorld->Log(AnotherWindowEvent);
+
+        if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
+        {
+            Sound* Welcome = NULL;
+            Welcome = TheWorld->GetSoundManager()->GetSoundByName("Welcome");
+            if(Welcome)
+            {
+                Welcome->Play2d(false);
+            }
+        }
+
+        t = OneWindowEvent->GetEventID();
+        delete OneWindowEvent;
+        OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+    }
+
 
     return true;
 }
@@ -672,7 +721,8 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << c;
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
+        //TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
     }
 
@@ -681,7 +731,7 @@ void LoadContent()
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
+        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
         //TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
     }
@@ -707,13 +757,13 @@ void LoadContent()
     Reverse->SetLocation(Vector3(200,50,-5.0));
     TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
-    GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
-    BlackHole->CreateSphereShape(200.0);
+    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    BlackHole->CreateSphereShape(750.0);
     BlackHole->SetAllowWorldGravity(false);
     BlackHole->SetFieldStrength(100000.0);
     BlackHole->SetAttenuation(85.0,GravityWell::GW_Att_Linear);
     BlackHole->CreateGraphicsSphere(ColourValue(0.9,0.7,0.7,0.55));
-    TheWorld->GetPhysicsManager()->AddAreaEffect(BlackHole);
+    TheWorld->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
     //TheWorld->Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname) );
@@ -747,7 +797,7 @@ void LoadContent()
     object3->SetInitLocation(Vector3(150.0,1800.0,-1300.0));
 
     object4 = new ActorRigid (mass,"RobotWayUpFrontLeft",filerobot,groupname);
-    object4->CreateShapeFromMeshDynamic(3);
+    object4->CreateShapeFromMeshDynamic(2);
     object4->SetInitLocation(Vector3(-400,10, 100));
     object4->SetInitOrientation(Quaternion(0.5, 0.5, 0.0, 0.9));
     object4->SetAnimation("Idle", true);

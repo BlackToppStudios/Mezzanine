@@ -82,72 +82,72 @@
 <a name="l00051"></a>00051 <span class="comment">///////////////////////////////////////</span>
 <a name="l00052"></a>00052 <span class="comment"></span><span class="preprocessor">#include &quot;eventuserinput.h&quot;</span>
 <a name="l00053"></a>00053 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
-<a name="l00054"></a>00054 
-<a name="l00055"></a>00055 <span class="preprocessor">#include &lt;vector&gt;</span>
-<a name="l00056"></a>00056 
-<a name="l00057"></a>00057 <span class="preprocessor">#include &quot;SDL.h&quot;</span>
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059 <span class="keyword">using namespace </span>std;
-<a name="l00060"></a>00060 
+<a name="l00054"></a>00054 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00055"></a>00055 
+<a name="l00056"></a>00056 <span class="preprocessor">#include &lt;vector&gt;</span>
+<a name="l00057"></a>00057 
+<a name="l00058"></a>00058 <span class="preprocessor">#include &quot;SDL.h&quot;</span>
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060 <span class="keyword">using namespace </span>std;
 <a name="l00061"></a>00061 
-<a name="l00062"></a>00062 <span class="keyword">namespace </span>phys
-<a name="l00063"></a>00063 {<span class="comment"></span>
-<a name="l00064"></a>00064 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00065"></a>00065 <span class="comment"></span>    <span class="comment">// EventUserInput</span><span class="comment"></span>
-<a name="l00066"></a>00066 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00067"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#ae7358d184021306da8979000c225845e">00067</a> <span class="comment"></span>    EventUserInput::EventUserInput()
-<a name="l00068"></a>00068     {
-<a name="l00069"></a>00069 
-<a name="l00070"></a>00070     }
-<a name="l00071"></a>00071 
-<a name="l00072"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#af54d4604d18b25a2dc99a4a3090b9f1d">00072</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#ae7358d184021306da8979000c225845e" title="Default constructor.">EventUserInput::EventUserInput</a>(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_)
-<a name="l00073"></a>00073     {
-<a name="l00074"></a>00074         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.push_back(Code_);
-<a name="l00075"></a>00075     }
-<a name="l00076"></a>00076 
-<a name="l00077"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a56ca671dd5d28396cab0d7036e08a1f1">00077</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#ae7358d184021306da8979000c225845e" title="Default constructor.">EventUserInput::EventUserInput</a>(<span class="keyword">const</span> vector&lt;MetaCode&gt; &amp;Code_)
-<a name="l00078"></a>00078     {
-<a name="l00079"></a>00079         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(Code_);
-<a name="l00080"></a>00080     }
-<a name="l00081"></a>00081 
-<a name="l00082"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a5c4bb6a5016dad4cb32f51cc1d88eac3">00082</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a5c4bb6a5016dad4cb32f51cc1d88eac3" title="Default desstructor.">EventUserInput::~EventUserInput</a>()
-<a name="l00083"></a>00083     {
-<a name="l00084"></a>00084 
-<a name="l00085"></a>00085     }
-<a name="l00086"></a>00086 
-<a name="l00087"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a5f67c5ad4aa4edcce629955fd7d869ac">00087</a>     <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>&amp; <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a5f67c5ad4aa4edcce629955fd7d869ac" title="Single Data Point constructor.">EventUserInput::GetMetaCode</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index)
-<a name="l00088"></a>00088     {
-<a name="l00089"></a>00089         <span class="keywordflow">return</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.at(Index);
-<a name="l00090"></a>00090     }
-<a name="l00091"></a>00091 
-<a name="l00092"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a17aa65dcf0ef8689affa50232eec4ccb">00092</a>     <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a17aa65dcf0ef8689affa50232eec4ccb" title="Retrieves a count of the stored Metacodes.">EventUserInput::GetMetaCodeCount</a>()
-<a name="l00093"></a>00093     {
-<a name="l00094"></a>00094         <span class="keywordflow">return</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.size();
-<a name="l00095"></a>00095     }
-<a name="l00096"></a>00096 
-<a name="l00097"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181">00097</a>     <span class="keywordtype">void</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">EventUserInput::AddCode</a>(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_)
-<a name="l00098"></a>00098     {
-<a name="l00099"></a>00099         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.push_back(Code_);
-<a name="l00100"></a>00100     }
-<a name="l00101"></a>00101 
-<a name="l00102"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a9b0787db5ed6e326c4932fd83798e118">00102</a>     <span class="keywordtype">void</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">EventUserInput::AddCode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_)
-<a name="l00103"></a>00103     {
-<a name="l00104"></a>00104         <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> CurrentMetaCode( RawEvent_ );
-<a name="l00105"></a>00105         this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(CurrentMetaCode);
-<a name="l00106"></a>00106     }
-<a name="l00107"></a>00107 
-<a name="l00108"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#ac9d4d8372fad7d91a5508d9e612a10e9">00108</a>     <span class="keywordtype">void</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">EventUserInput::AddCode</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;ID_, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_)
-<a name="l00109"></a>00109     {
-<a name="l00110"></a>00110         <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> CurrentMetaCode( MetaValue_, ID_, Code_ );
-<a name="l00111"></a>00111         this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(CurrentMetaCode);
-<a name="l00112"></a>00112     }
-<a name="l00113"></a>00113 
-<a name="l00114"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a6b6071496574fbb719ba4a5d97e74b52">00114</a>     <span class="keywordtype">void</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">EventUserInput::AddCode</a>(<span class="keyword">const</span> vector&lt;MetaCode&gt; &amp;Codes)
-<a name="l00115"></a>00115     {
-<a name="l00116"></a>00116         <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> c=0; Codes.size()&gt;c ; c++)
-<a name="l00117"></a>00117         {
-<a name="l00118"></a>00118             <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.push_back(Codes.at(c));
-<a name="l00119"></a>00119         }
+<a name="l00062"></a>00062 
+<a name="l00063"></a>00063 <span class="keyword">namespace </span>phys
+<a name="l00064"></a>00064 {<span class="comment"></span>
+<a name="l00065"></a>00065 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00066"></a>00066 <span class="comment"></span>    <span class="comment">// EventUserInput</span><span class="comment"></span>
+<a name="l00067"></a>00067 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00068"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#ae7358d184021306da8979000c225845e">00068</a> <span class="comment"></span>    EventUserInput::EventUserInput()
+<a name="l00069"></a>00069     {
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071     }
+<a name="l00072"></a>00072 
+<a name="l00073"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#af54d4604d18b25a2dc99a4a3090b9f1d">00073</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#ae7358d184021306da8979000c225845e" title="Default constructor.">EventUserInput::EventUserInput</a>(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_)
+<a name="l00074"></a>00074     {
+<a name="l00075"></a>00075         this-&gt;push_back(Code_);
+<a name="l00076"></a>00076     }
+<a name="l00077"></a>00077 
+<a name="l00078"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a56ca671dd5d28396cab0d7036e08a1f1">00078</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#ae7358d184021306da8979000c225845e" title="Default constructor.">EventUserInput::EventUserInput</a>(<span class="keyword">const</span> vector&lt;MetaCode&gt; &amp;Code_)
+<a name="l00079"></a>00079     {
+<a name="l00080"></a>00080         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1da1fcba3c00346e00c1d4477cc3dbe9" title="Add Several MetaCodes from a vector.">AddCodes</a>(Code_);
+<a name="l00081"></a>00081     }
+<a name="l00082"></a>00082 
+<a name="l00083"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a5c4bb6a5016dad4cb32f51cc1d88eac3">00083</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a5c4bb6a5016dad4cb32f51cc1d88eac3" title="Default desstructor.">EventUserInput::~EventUserInput</a>()
+<a name="l00084"></a>00084     {
+<a name="l00085"></a>00085 
+<a name="l00086"></a>00086     }
+<a name="l00087"></a>00087 
+<a name="l00088"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a5f67c5ad4aa4edcce629955fd7d869ac">00088</a>     <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a>&amp; <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a5f67c5ad4aa4edcce629955fd7d869ac" title="Single Data Point constructor.">EventUserInput::GetMetaCode</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index)
+<a name="l00089"></a>00089     {
+<a name="l00090"></a>00090         <span class="keywordflow">return</span> this-&gt;at(Index);
+<a name="l00091"></a>00091     }
+<a name="l00092"></a>00092 
+<a name="l00093"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#ae7964b1ac3a474415d6f6cf6c26a2f7b">00093</a>     <span class="keywordtype">size_t</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#ae7964b1ac3a474415d6f6cf6c26a2f7b" title="Retrieves a count of the stored Metacodes.">EventUserInput::GetMetaCodeCount</a>()
+<a name="l00094"></a>00094     {
+<a name="l00095"></a>00095         <span class="keywordflow">return</span> this-&gt;size();
+<a name="l00096"></a>00096     }
+<a name="l00097"></a>00097 
+<a name="l00098"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aa244b6b8a4b7dc930e25ef8b24af84f4">00098</a>     <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">EventUserInput::AddCode</a>(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_)
+<a name="l00099"></a>00099     {
+<a name="l00100"></a>00100         this-&gt;push_back(Code_);
+<a name="l00101"></a>00101         <span class="keywordflow">return</span> Code_;
+<a name="l00102"></a>00102     }
+<a name="l00103"></a>00103 
+<a name="l00104"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c">00104</a>     <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">EventUserInput::AddCode</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_)
+<a name="l00105"></a>00105     {
+<a name="l00106"></a>00106         <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> CurrentMetaCode( RawEvent_ );
+<a name="l00107"></a>00107         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(CurrentMetaCode);
+<a name="l00108"></a>00108     }
+<a name="l00109"></a>00109 
+<a name="l00110"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a9f87a9e6b57f8958945d4955922ebacd">00110</a>     <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">EventUserInput::AddCode</a>(<span class="keyword">const</span> <span class="keywordtype">int</span> &amp;MetaValue_, <span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8" title="The InputCode enum defines all the posible types of inputs.">MetaCode::InputCode</a> &amp;Code_)
+<a name="l00111"></a>00111     {
+<a name="l00112"></a>00112         <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> CurrentMetaCode( MetaValue_, Code_ );
+<a name="l00113"></a>00113         <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(CurrentMetaCode);
+<a name="l00114"></a>00114     }
+<a name="l00115"></a>00115 
+<a name="l00116"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1da1fcba3c00346e00c1d4477cc3dbe9">00116</a>     <span class="keywordtype">void</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1da1fcba3c00346e00c1d4477cc3dbe9" title="Add Several MetaCodes from a vector.">EventUserInput::AddCodes</a>(<span class="keyword">const</span> vector&lt;MetaCode&gt; &amp;Codes)
+<a name="l00117"></a>00117     {
+<a name="l00118"></a>00118         <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> c=0; Codes.size()&gt;c ; c++)
+<a name="l00119"></a>00119             { this-&gt;push_back(Codes.at(c)); }
 <a name="l00120"></a>00120     }
 <a name="l00121"></a>00121 
 <a name="l00122"></a>00122 
@@ -155,131 +155,100 @@
 <a name="l00124"></a>00124     {
 <a name="l00125"></a>00125         vector&lt;MetaCode&gt;::iterator iter;
 <a name="l00126"></a>00126 
-<a name="l00127"></a>00127         <span class="keywordflow">for</span>(iter=<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.begin(); <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.end()!=iter ; iter++)
+<a name="l00127"></a>00127         <span class="keywordflow">for</span>(iter=this-&gt;begin(); this-&gt;end()!=iter ; iter++)
 <a name="l00128"></a>00128         {
 <a name="l00129"></a>00129             <span class="keywordflow">if</span>(*iter == Code_)
 <a name="l00130"></a>00130             {
-<a name="l00131"></a>00131                 <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.erase(iter);
+<a name="l00131"></a>00131                 this-&gt;erase(iter);
 <a name="l00132"></a>00132             }
 <a name="l00133"></a>00133         }
 <a name="l00134"></a>00134     }
 <a name="l00135"></a>00135 
 <a name="l00136"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a583084578443019d6e286b8f0e02ce58">00136</a>     <span class="keywordtype">void</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a34c05a76a790435799441da75a83fa9c" title="Removes a specific code from storage.">EventUserInput::EraseCode</a>(<span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> &amp;Index)
 <a name="l00137"></a>00137     {
-<a name="l00138"></a>00138         <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.erase(<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.begin()+Index);
+<a name="l00138"></a>00138         this-&gt;erase(this-&gt;begin()+Index);
 <a name="l00139"></a>00139     }
 <a name="l00140"></a>00140 
-<a name="l00141"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#adf603505c43162cf9331a486d5832f75">00141</a>     <span class="keywordtype">void</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#adf603505c43162cf9331a486d5832f75" title="Removes a specific code or Adds it if not present.">EventUserInput::ToggleCode</a>(<span class="keyword">const</span> <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> &amp;Code_)
-<a name="l00142"></a>00142     {
-<a name="l00143"></a>00143         vector&lt;MetaCode&gt;::iterator iter;
-<a name="l00144"></a>00144 
-<a name="l00145"></a>00145         <span class="keywordtype">bool</span> ErasedOne= <span class="keyword">false</span>;
-<a name="l00146"></a>00146 
-<a name="l00147"></a>00147         <span class="keywordflow">for</span>(iter=<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.begin(); <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.end()!=iter ; iter++)
-<a name="l00148"></a>00148         {
-<a name="l00149"></a>00149             <span class="keywordflow">if</span>(*iter == Code_)
-<a name="l00150"></a>00150             {
-<a name="l00151"></a>00151                 <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.erase(iter);
-<a name="l00152"></a>00152                 ErasedOne=<span class="keyword">true</span>;
-<a name="l00153"></a>00153             }
-<a name="l00154"></a>00154         }
+<a name="l00141"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a3e803a8d9bcc1576fe04d2245a86ec80">00141</a>     <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a3e803a8d9bcc1576fe04d2245a86ec80" title="Returns the type of this event.">EventUserInput::GetType</a>()<span class="keyword"> const</span>
+<a name="l00142"></a>00142 <span class="keyword">    </span>{
+<a name="l00143"></a>00143         <span class="keywordflow">return</span> UserInput;
+<a name="l00144"></a>00144     }
+<a name="l00145"></a>00145 
+<a name="l00146"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aa83cb95f719dbdceae282f0dc545aeb0">00146</a>     vector&lt;MetaCode&gt; <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aa83cb95f719dbdceae282f0dc545aeb0" title="Adds all possible MetaCodes that can be created from the given RawEvent.">EventUserInput::AddCodesFromRawEvent</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_)
+<a name="l00147"></a>00147     {
+<a name="l00148"></a>00148         vector&lt;MetaCode&gt; Results;
+<a name="l00149"></a>00149         <span class="keywordflow">switch</span>(RawEvent_.type)
+<a name="l00150"></a>00150         {
+<a name="l00151"></a>00151             <span class="keywordflow">case</span> SDL_KEYDOWN:   <span class="comment">//Only contains one metacode</span>
+<a name="l00152"></a>00152             <span class="keywordflow">case</span> SDL_KEYUP:
+<a name="l00153"></a>00153                 Results.push_back(this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(RawEvent_));
+<a name="l00154"></a>00154                 <span class="keywordflow">break</span>;
 <a name="l00155"></a>00155 
-<a name="l00156"></a>00156         <span class="keywordflow">if</span>(!ErasedOne)
-<a name="l00157"></a>00157             {<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.push_back(Code_);}
-<a name="l00158"></a>00158     }
-<a name="l00159"></a>00159 
-<a name="l00160"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a3e803a8d9bcc1576fe04d2245a86ec80">00160</a>     <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a3e803a8d9bcc1576fe04d2245a86ec80" title="Returns the type of this event.">EventUserInput::GetType</a>()<span class="keyword"> const</span>
-<a name="l00161"></a>00161 <span class="keyword">    </span>{
-<a name="l00162"></a>00162         <span class="keywordflow">return</span> UserInput;
-<a name="l00163"></a>00163     }
-<a name="l00164"></a>00164 
-<a name="l00165"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a26a39a23deab9e54c140cc0a1cbbe6a9">00165</a>     <span class="keywordtype">void</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a26a39a23deab9e54c140cc0a1cbbe6a9" title="Adds all possible MetaCodes that can be created from the given RawEvent.">EventUserInput::AddCodesFromRawEvent</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_)
-<a name="l00166"></a>00166     {
-<a name="l00167"></a>00167         <span class="keywordflow">switch</span>(RawEvent_.type)
-<a name="l00168"></a>00168         {
-<a name="l00169"></a>00169             <span class="keywordflow">case</span> SDL_KEYDOWN:   <span class="comment">//Only contains one metacode</span>
-<a name="l00170"></a>00170             <span class="keywordflow">case</span> SDL_KEYUP:
-<a name="l00171"></a>00171                 this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(RawEvent_);
-<a name="l00172"></a>00172                 <span class="keywordflow">break</span>;
-<a name="l00173"></a>00173 
-<a name="l00174"></a>00174             <span class="keywordflow">case</span> SDL_MOUSEMOTION:       <span class="comment">//Can contain Multiple Metacodes</span>
-<a name="l00175"></a>00175                 this-&gt;AddCodesFromSDLMouseMotion(RawEvent_);
-<a name="l00176"></a>00176                 <span class="keywordflow">break</span>;
-<a name="l00177"></a>00177             <span class="keywordflow">case</span> SDL_MOUSEBUTTONDOWN:
-<a name="l00178"></a>00178             <span class="keywordflow">case</span> SDL_MOUSEBUTTONUP:
-<a name="l00179"></a>00179                 this-&gt;AddCodesFromSDLMouseButton(RawEvent_);
+<a name="l00156"></a>00156             <span class="keywordflow">case</span> SDL_MOUSEMOTION:{       <span class="comment">//Can contain Multiple Metacodes</span>
+<a name="l00157"></a>00157                 vector&lt;MetaCode&gt; Transport(this-&gt;AddCodesFromSDLMouseMotion(RawEvent_));
+<a name="l00158"></a>00158                 Results.insert(Results.end(), Transport.begin(),Transport.end());
+<a name="l00159"></a>00159                 <span class="keywordflow">break</span>;}
+<a name="l00160"></a>00160 
+<a name="l00161"></a>00161             <span class="keywordflow">case</span> SDL_MOUSEBUTTONDOWN:
+<a name="l00162"></a>00162             <span class="keywordflow">case</span> SDL_MOUSEBUTTONUP:{
+<a name="l00163"></a>00163                 <span class="comment">//vector&lt;MetaCode&gt; Transport(this-&gt;AddCodesFromSDLMouseButton(RawEvent_));</span>
+<a name="l00164"></a>00164                 <span class="comment">//Results.insert(Results.end(), Transport.begin(),Transport.end());</span>
+<a name="l00165"></a>00165                 Results.push_back(this-&gt;AddCodeFromSDLMouseButton(RawEvent_));
+<a name="l00166"></a>00166                 <span class="keywordflow">break</span>;}
+<a name="l00167"></a>00167 
+<a name="l00168"></a>00168             <span class="keywordflow">case</span> SDL_JOYAXISMOTION: <span class="comment">//Incomplete</span>
+<a name="l00169"></a>00169                 <span class="keywordflow">break</span>;
+<a name="l00170"></a>00170             <span class="keywordflow">case</span> SDL_JOYBUTTONDOWN:
+<a name="l00171"></a>00171                 <span class="keywordflow">break</span>;
+<a name="l00172"></a>00172             <span class="keywordflow">case</span> SDL_JOYBUTTONUP:
+<a name="l00173"></a>00173                 <span class="keywordflow">break</span>;
+<a name="l00174"></a>00174             <span class="keywordflow">case</span> SDL_JOYBALLMOTION:
+<a name="l00175"></a>00175                 <span class="keywordflow">break</span>;
+<a name="l00176"></a>00176             <span class="keywordflow">case</span> SDL_JOYHATMOTION:
+<a name="l00177"></a>00177                 <span class="keywordflow">break</span>;
+<a name="l00178"></a>00178             <span class="keywordflow">default</span>:
+<a name="l00179"></a>00179                 <span class="keywordflow">throw</span> (<span class="stringliteral">&quot;Unknown SDL Event Inserted&quot;</span>);
 <a name="l00180"></a>00180                 <span class="keywordflow">break</span>;
-<a name="l00181"></a>00181 
-<a name="l00182"></a>00182             <span class="keywordflow">case</span> SDL_JOYAXISMOTION: <span class="comment">//Incomplete</span>
-<a name="l00183"></a>00183                 <span class="keywordflow">break</span>;
-<a name="l00184"></a>00184             <span class="keywordflow">case</span> SDL_JOYBUTTONDOWN:
-<a name="l00185"></a>00185                 <span class="keywordflow">break</span>;
-<a name="l00186"></a>00186             <span class="keywordflow">case</span> SDL_JOYBUTTONUP:
-<a name="l00187"></a>00187                 <span class="keywordflow">break</span>;
-<a name="l00188"></a>00188             <span class="keywordflow">case</span> SDL_JOYBALLMOTION:
-<a name="l00189"></a>00189                 <span class="keywordflow">break</span>;
-<a name="l00190"></a>00190             <span class="keywordflow">case</span> SDL_JOYHATMOTION:
-<a name="l00191"></a>00191                 <span class="keywordflow">break</span>;
-<a name="l00192"></a>00192             <span class="keywordflow">default</span>:
-<a name="l00193"></a>00193                 <span class="keywordflow">throw</span> (<span class="stringliteral">&quot;Unknown SDL Event Inserted&quot;</span>);
-<a name="l00194"></a>00194                 <span class="keywordflow">break</span>;
-<a name="l00195"></a>00195         }
-<a name="l00196"></a>00196     }
-<a name="l00197"></a>00197 
-<a name="l00198"></a><a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1d6895e1b3814c1a63f5605b88ba85e5">00198</a>     <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>&amp; <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1d6895e1b3814c1a63f5605b88ba85e5" title="This add all of one EventUserInput to another.">EventUserInput::operator += </a>(<span class="keyword">const</span> <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html" title="This is a container for MetaCodes that is used in the physEventManager.">EventUserInput</a>&amp; Add)
-<a name="l00199"></a>00199     {
-<a name="l00200"></a>00200         <span class="keywordflow">for</span>(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> c=0; Add.<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.size()&gt;c ; c++)
-<a name="l00201"></a>00201         {
-<a name="l00202"></a>00202             <a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.push_back(Add.<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#aee3dc1d8cac82482651487c48c6c60c9" title="This stores the MetaCodes in this event.">Code</a>.at(c));
-<a name="l00203"></a>00203         }
-<a name="l00204"></a>00204         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
-<a name="l00205"></a>00205     }
-<a name="l00206"></a>00206 <span class="comment"></span>
-<a name="l00207"></a>00207 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00208"></a>00208 <span class="comment"></span>    <span class="comment">// EventUserInput Private Methods</span><span class="comment"></span>
-<a name="l00209"></a>00209 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00210"></a>00210 <span class="comment"></span>
-<a name="l00211"></a>00211     <span class="keywordtype">void</span> EventUserInput::AddCodesFromSDLMouseMotion(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_)
-<a name="l00212"></a>00212     {
-<a name="l00213"></a>00213         this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(RawEvent_.motion.x,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
-<a name="l00214"></a>00214         this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(RawEvent_.motion.y,0,MetaCode::MOUSEABSOLUTEVERTICAL);
-<a name="l00215"></a>00215 
-<a name="l00216"></a>00216         <span class="keywordflow">if</span>(0 != RawEvent_.motion.xrel)
-<a name="l00217"></a>00217             {this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(RawEvent_.motion.xrel,0,MetaCode::MOUSEVERTICAL);}
-<a name="l00218"></a>00218 
-<a name="l00219"></a>00219         <span class="keywordflow">if</span>(0 != RawEvent_.motion.yrel)
-<a name="l00220"></a>00220             {this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(RawEvent_.motion.yrel,0,MetaCode::MOUSEHORIZONTAL);}
-<a name="l00221"></a>00221     }
-<a name="l00222"></a>00222 
-<a name="l00223"></a>00223     <span class="keywordtype">void</span> EventUserInput::AddCodesFromSDLMouseButton(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_)
-<a name="l00224"></a>00224     {
-<a name="l00225"></a>00225         <span class="comment">//MetaCode::MetaCode(const int &amp;MetaValue_, const short unsigned int &amp;ID_, const MetaCode::InputCode &amp;Code_)</span>
-<a name="l00226"></a>00226         this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(RawEvent_.button.x,0,MetaCode::MOUSEABSOLUTEHORIZONTAL);
-<a name="l00227"></a>00227 
-<a name="l00228"></a>00228         this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(RawEvent_.button.y,0,MetaCode::MOUSEABSOLUTEVERTICAL);
-<a name="l00229"></a>00229 
-<a name="l00230"></a>00230         <span class="keywordflow">if</span> ( SDL_BUTTON_WHEELUP==RawEvent_.button.button)
-<a name="l00231"></a>00231         {
-<a name="l00232"></a>00232             this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6a15542262fc8fe9a3d6746f2b84ecde11">MetaCode::MOUSEWHEEL_UP</a>,0,MetaCode::MOUSEWHEELVERTICAL);
-<a name="l00233"></a>00233         }<span class="keywordflow">else</span> <span class="keywordflow">if</span>( SDL_BUTTON_WHEELDOWN==RawEvent_.button.button ){
-<a name="l00234"></a>00234             this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#af9ba277d1ef071be8861e35c2b7d82d6ab6edd0886d2ec2d2917bbad96ce3d510">MetaCode::MOUSEWHEEL_DOWN</a>,0,MetaCode::MOUSEWHEELVERTICAL);
-<a name="l00235"></a>00235         }<span class="keywordflow">else</span>{
-<a name="l00236"></a>00236             <span class="keywordflow">if</span>(RawEvent_.button.state==SDL_PRESSED)
-<a name="l00237"></a>00237             {
-<a name="l00238"></a>00238                 this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a>, RawEvent_.button.button, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a" title="The First Mouse event, all Mouse Event values will be more than this.">MetaCode::MOUSEBUTTON</a>);
-<a name="l00239"></a>00239             }<span class="keywordflow">else</span>{
-<a name="l00240"></a>00240                 this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a648f820aea2b6bca23eaa3c1e1f54181" title="Adds a MetaCode.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">MetaCode::BUTTON_UP</a>, RawEvent_.button.button, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8a9cc80a2db206fb540fbb92a8ff64268a" title="The First Mouse event, all Mouse Event values will be more than this.">MetaCode::MOUSEBUTTON</a>);
-<a name="l00241"></a>00241             }
-<a name="l00242"></a>00242         }
-<a name="l00243"></a>00243     }
-<a name="l00244"></a>00244 
-<a name="l00245"></a>00245 } <span class="comment">// /phys</span>
-<a name="l00246"></a>00246 
-<a name="l00247"></a>00247 
-<a name="l00248"></a>00248 <span class="preprocessor">#endif</span>
+<a name="l00181"></a>00181         }
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183         <span class="keywordflow">return</span> Results;
+<a name="l00184"></a>00184     }
+<a name="l00185"></a>00185 <span class="comment"></span>
+<a name="l00186"></a>00186 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00187"></a>00187 <span class="comment"></span>    <span class="comment">// EventUserInput Private Methods</span><span class="comment"></span>
+<a name="l00188"></a>00188 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00189"></a>00189 <span class="comment"></span>
+<a name="l00190"></a>00190     vector&lt;MetaCode&gt; EventUserInput::AddCodesFromSDLMouseMotion(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_)
+<a name="l00191"></a>00191     {
+<a name="l00192"></a>00192         vector&lt;MetaCode&gt; Results;
+<a name="l00193"></a>00193 
+<a name="l00194"></a>00194         Results.push_back(this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(RawEvent_.motion.x, MetaCode::MOUSEABSOLUTEHORIZONTAL));
+<a name="l00195"></a>00195         Results.push_back(this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(RawEvent_.motion.y, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8ac65e76437da2f60b775aed6acf84a42a" title="The First non-button event, all Mouse and keyboard button values will be Less than this...">MetaCode::MOUSEABSOLUTEVERTICAL</a>));
+<a name="l00196"></a>00196 
+<a name="l00197"></a>00197         <span class="keywordflow">if</span>(0 != RawEvent_.motion.xrel)
+<a name="l00198"></a>00198             { Results.push_back(this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(RawEvent_.motion.xrel, MetaCode::MOUSEVERTICAL));}
+<a name="l00199"></a>00199 
+<a name="l00200"></a>00200         <span class="keywordflow">if</span>(0 != RawEvent_.motion.yrel)
+<a name="l00201"></a>00201             { Results.push_back(this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(RawEvent_.motion.yrel, MetaCode::MOUSEHORIZONTAL));}
+<a name="l00202"></a>00202         <span class="keywordflow">return</span> Results;
+<a name="l00203"></a>00203     }
+<a name="l00204"></a>00204 
+<a name="l00205"></a>00205     MetaCode EventUserInput::AddCodeFromSDLMouseButton(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_)
+<a name="l00206"></a>00206     {
+<a name="l00207"></a>00207         <span class="keywordflow">if</span>(RawEvent_.button.state==SDL_PRESSED)
+<a name="l00208"></a>00208         {
+<a name="l00209"></a>00209             <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a>, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a4c5475be837b3ea5cc66223d53ca3e1a" title="Accepts a int and returns the InputCode for the Corresponding Mouse button.">MetaCode::GetMouseButtonCode</a>(RawEvent_.button.button));
+<a name="l00210"></a>00210         }<span class="keywordflow">else</span>{
+<a name="l00211"></a>00211             <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">MetaCode::BUTTON_UP</a>, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a4c5475be837b3ea5cc66223d53ca3e1a" title="Accepts a int and returns the InputCode for the Corresponding Mouse button.">MetaCode::GetMouseButtonCode</a>(RawEvent_.button.button));
+<a name="l00212"></a>00212         }
+<a name="l00213"></a>00213     }
+<a name="l00214"></a>00214 
+<a name="l00215"></a>00215 } <span class="comment">// /phys</span>
+<a name="l00216"></a>00216 
+<a name="l00217"></a>00217 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:42 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:33 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

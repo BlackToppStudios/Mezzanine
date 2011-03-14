@@ -81,6 +81,21 @@ namespace phys
     {
         return ActorEnt->getMesh()->getNumSubMeshes();
     }
+
+    void ActorGraphicsSettings::SetMaterialAmbient(const ColourValue& Ambient, Whole Submesh)
+    {
+        GetMaterial(Submesh)->setAmbient(Ambient.GetOgreColourValue());
+    }
+
+    void ActorGraphicsSettings::SetMaterialSpecular(const ColourValue& Specular, Whole Submesh)
+    {
+        GetMaterial(Submesh)->setSpecular(Specular.GetOgreColourValue());
+    }
+
+    void ActorGraphicsSettings::SetMaterialDiffuse(const ColourValue& Diffuse, Whole Submesh)
+    {
+        GetMaterial(Submesh)->setDiffuse(Diffuse.GetOgreColourValue());
+    }
 }
 
 #endif

@@ -97,31 +97,32 @@
 <a name="l00066"></a>00066 <span class="comment">            /// @details A listing of values that can be used to identify Events.</span>
 <a name="l00067"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">00067</a> <span class="comment"></span>            <span class="keyword">enum</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventType</a>
 <a name="l00068"></a>00068             {
-<a name="l00069"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5">00069</a>                 RenderTime,     <span class="comment">/**&lt; Indicates the Event is a PhysEventRenderTime */</span>
-<a name="l00070"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">00070</a>                 UserInput,      <span class="comment">/**&lt; Indicates the Event is a EventUserInput */</span>
+<a name="l00069"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5">00069</a>                 Collision,      <span class="comment">/**&lt; Indicates the Event is a Physics Collision Event */</span>
+<a name="l00070"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923ad094ddaa5cafeb0880c838e58b84693e">00070</a>                 GameWindow,     <span class="comment">/**&lt; Indicates the Event is a Game Window Management Event */</span>
 <a name="l00071"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9">00071</a>                 QuitMessage,    <span class="comment">/**&lt; Indicates the Event is a phys::EventQuit */</span>
-<a name="l00072"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a18594400c60af959158e9f5cc2cd5d08">00072</a>                 SystemMessage,  <span class="comment">/**&lt; Indicates the Event has not been coded yet */</span>
-<a name="l00073"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5">00073</a>                 Collision,      <span class="comment">/**&lt; Indicates the Event is a Physics Collision Event */</span>
-<a name="l00074"></a>00074                 Other
-<a name="l00075"></a>00075             };
-<a name="l00076"></a>00076 <span class="comment"></span>
-<a name="l00077"></a>00077 <span class="comment">            /// @brief This will aid in identifying all classes that inherit from this class.</span>
-<a name="l00078"></a>00078 <span class="comment">            /// @details All Classes derived form this calls will return an Event::EventType that correspond the</span>
-<a name="l00079"></a>00079 <span class="comment">            /// the data/class type they actually are.</span>
-<a name="l00080"></a>00080 <span class="comment">            /// @return This returns an eventype that will correspend with the actual event type. This can be used on all</span>
-<a name="l00081"></a>00081 <span class="comment">            /// Phys game provided class to safely cast a pointer to the correct event type.</span>
-<a name="l00082"></a>00082 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> GetType() <span class="keyword">const</span> = 0;
-<a name="l00083"></a>00083 
-<a name="l00084"></a>00084     };
-<a name="l00085"></a>00085 }
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087 <span class="comment">// Allow the PhysEvent to be sent to a stream, and there sent directly to the log</span>
-<a name="l00088"></a>00088 <span class="comment">//std::ostream&amp; operator&lt;&lt;(std::ostream&amp; stream, const PhysEvent&amp; x);</span>
-<a name="l00089"></a>00089 
-<a name="l00090"></a>00090 <span class="preprocessor">#endif</span>
+<a name="l00072"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5">00072</a>                 RenderTime,     <span class="comment">/**&lt; Indicates the Event is a PhysEventRenderTime */</span>
+<a name="l00073"></a><a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">00073</a>                 UserInput,      <span class="comment">/**&lt; Indicates the Event is a EventUserInput */</span>
+<a name="l00074"></a>00074                 <span class="comment">//SystemMessage,  /**&lt; Indicates the Event has not been coded yet */</span>
+<a name="l00075"></a>00075                 Other
+<a name="l00076"></a>00076             };
+<a name="l00077"></a>00077 <span class="comment"></span>
+<a name="l00078"></a>00078 <span class="comment">            /// @brief This will aid in identifying all classes that inherit from this class.</span>
+<a name="l00079"></a>00079 <span class="comment">            /// @details All Classes derived form this calls will return an Event::EventType that correspond the</span>
+<a name="l00080"></a>00080 <span class="comment">            /// the data/class type they actually are.</span>
+<a name="l00081"></a>00081 <span class="comment">            /// @return This returns an eventype that will correspend with the actual event type. This can be used on all</span>
+<a name="l00082"></a>00082 <span class="comment">            /// Phys game provided class to safely cast a pointer to the correct event type.</span>
+<a name="l00083"></a>00083 <span class="comment"></span>            <span class="keyword">virtual</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923">EventBase::EventType</a> GetType() <span class="keyword">const</span> = 0;
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085     };
+<a name="l00086"></a>00086 }
+<a name="l00087"></a>00087 
+<a name="l00088"></a>00088 <span class="comment">// Allow the PhysEvent to be sent to a stream, and there sent directly to the log</span>
+<a name="l00089"></a>00089 <span class="comment">//std::ostream&amp; operator&lt;&lt;(std::ostream&amp; stream, const PhysEvent&amp; x);</span>
+<a name="l00090"></a>00090 
+<a name="l00091"></a>00091 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Feb 14 2011 04:15:42 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:33 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

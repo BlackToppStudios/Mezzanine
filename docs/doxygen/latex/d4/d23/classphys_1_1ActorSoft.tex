@@ -44,9 +44,9 @@ virtual void \hyperlink{classphys_1_1ActorSoft_a84541e8ebf7b54c91d2353d5f84381bb
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorSoft_ad57b502da0658de31a4b3a9bb9be7900}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Rotation)
 \begin{DoxyCompactList}\small\item\em Sets the orientation of the actor. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ActorSoft_aaa8bb89969831c8bc727d7aba230d862}{
-virtual void \hyperlink{classphys_1_1ActorSoft_aaa8bb89969831c8bc727d7aba230d862}{CreateShapeFromMeshDynamic} (short unsigned int accuracy)}
-\label{d4/d23/classphys_1_1ActorSoft_aaa8bb89969831c8bc727d7aba230d862}
+\hypertarget{classphys_1_1ActorSoft_a65e5590d1fe4c11e2214d5e6a3d1fc96}{
+virtual void \hyperlink{classphys_1_1ActorSoft_a65e5590d1fe4c11e2214d5e6a3d1fc96}{CreateShapeFromMeshDynamic} (short unsigned int Accuracy, bool UseAllSubmeshes=false)}
+\label{d4/d23/classphys_1_1ActorSoft_a65e5590d1fe4c11e2214d5e6a3d1fc96}
 
 \begin{DoxyCompactList}\small\item\em Inherited from Actorbase. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorSoft_a5f97915d1cda0d048853718714a26d93}{AddObjectToWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
@@ -82,12 +82,7 @@ virtual void \hyperlink{classphys_1_1ActorSoft_a4a1119b6e42ff11784673657e7d62c1f
 btSoftBody $\ast$ \hyperlink{classphys_1_1ActorSoft_ab3b2c8e1f94dff3e3244a5024595afef}{physsoftbody}}
 \label{d4/d23/classphys_1_1ActorSoft_ab3b2c8e1f94dff3e3244a5024595afef}
 
-\begin{DoxyCompactList}\small\item\em Used to simulate the functionality of a btSoftBody for use with the physics subsystem. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ActorSoft_abe0900674a3a46883a7d52d9d7a8070f}{
-Ogre::ManualObject $\ast$ \hyperlink{classphys_1_1ActorSoft_abe0900674a3a46883a7d52d9d7a8070f}{ManualEntity}}
-\label{d4/d23/classphys_1_1ActorSoft_abe0900674a3a46883a7d52d9d7a8070f}
-
-\begin{DoxyCompactList}\small\item\em Used to simulate the rendering portion of a softbody. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Used to simulate the functionality of a btSoftBody for use with the physics subsystem. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -209,7 +204,7 @@ This function will create and configure an Ogre manual object based on the mesh 
 \item[{\em TheMesh}]The struct with all the appropriate mesh information to base the manual object on. \end{DoxyParams}
 
 
-Definition at line 100 of file actorsoft.cpp.
+Definition at line 99 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_acc0ff92e2dcc0e5d99ca62f07bc9174d}{
 \index{phys::ActorSoft@{phys::ActorSoft}!CreateSoftObject@{CreateSoftObject}}
@@ -230,7 +225,7 @@ Creates a soft object to be placed in the physics world later. \par
 \item[{\em mass}]The desired total mass of the soft object. \end{DoxyParams}
 
 
-Definition at line 70 of file actorsoft.cpp.
+Definition at line 69 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a568b070c746775b73a3aa8ab33d6cc58}{
 \index{phys::ActorSoft@{phys::ActorSoft}!DetachFromGraphics@{DetachFromGraphics}}
