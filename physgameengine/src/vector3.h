@@ -92,17 +92,17 @@ namespace phys
         /// @brief Ogre Value Constructor.
         /// @details Constructor that sets all values to match the Ogre vector.
         /// @param Vec The vector to be copied to make this vector.
-        Vector3(Ogre::Vector3 Vec);
+        explicit Vector3(Ogre::Vector3 Vec);
 
         /// @brief Bullet Value Constructor.
         /// @details Constructor that sets all values to match the Bullet vector.
         /// @param Vec The vector to be copied to make this vector.
-        Vector3(btVector3 Vec);
+        explicit Vector3(btVector3 Vec);
 
         /// @brief cAudio Value Constructor.
         /// @details Constructor that sets all values to match the cAudio vector.
         /// @param Vec The vector to be copied to make this vector.
-        Vector3(cAudio::cVector3 Vec);
+        explicit Vector3(cAudio::cVector3 Vec);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Assignment Operators

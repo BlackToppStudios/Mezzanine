@@ -68,6 +68,7 @@
 #include "enumerations.h"
 #include "eventbase.h"
 #include "eventmanager.h"
+#include "eventgamewindow.h"
 #include "eventquit.h"
 #include "eventrendertime.h"
 #include "eventuserinput.h"

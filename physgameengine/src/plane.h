@@ -83,7 +83,7 @@ namespace phys
             /// @brief Compatibily constructor
             /// @details This accepts an Ogre Plane, (graphics subsystem) to make this Plane
             /// @param Plane_ This is the Ogre::Plane
-            Plane(Ogre::Plane Plane_);
+            explicit Plane(Ogre::Plane Plane_);
 
             /// @brief Triangle constructor
             /// @details This determines the plane the triangle this resides on and uses that plane here

@@ -235,42 +235,20 @@
 <a name="l00204"></a>00204 
 <a name="l00205"></a>00205     MetaCode EventUserInput::AddCodeFromSDLMouseButton(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4" title="This is an internal datatype use to communicate with the User input Subsystem.">RawEvent</a> &amp;RawEvent_)
 <a name="l00206"></a>00206     {
-<a name="l00207"></a>00207         <span class="comment">//vector&lt;MetaCode&gt; Results;</span>
-<a name="l00208"></a>00208 
-<a name="l00209"></a>00209         <span class="comment">//Results.push_back(this-&gt;AddCode(RawEvent_.button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL));</span>
-<a name="l00210"></a>00210         <span class="comment">//Results.push_back(this-&gt;AddCode(RawEvent_.button.y, MetaCode::MOUSEABSOLUTEVERTICAL));</span>
-<a name="l00211"></a>00211 
-<a name="l00212"></a>00212         <span class="keywordflow">if</span>(RawEvent_.button.state==SDL_PRESSED)
-<a name="l00213"></a>00213         {
-<a name="l00214"></a>00214             <span class="comment">//Results.push_back(this-&gt;AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));</span>
-<a name="l00215"></a>00215             <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a>, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a4c5475be837b3ea5cc66223d53ca3e1a" title="Accepts a int and returns the InputCode for the Corresponding Mouse button.">MetaCode::GetMouseButtonCode</a>(RawEvent_.button.button));
-<a name="l00216"></a>00216         }<span class="keywordflow">else</span>{
-<a name="l00217"></a>00217             <span class="comment">//Results.push_back(this-&gt;AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));</span>
-<a name="l00218"></a>00218             <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">MetaCode::BUTTON_UP</a>, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a4c5475be837b3ea5cc66223d53ca3e1a" title="Accepts a int and returns the InputCode for the Corresponding Mouse button.">MetaCode::GetMouseButtonCode</a>(RawEvent_.button.button));
-<a name="l00219"></a>00219         }
-<a name="l00220"></a>00220 
-<a name="l00221"></a>00221         <span class="comment">/*if ( SDL_BUTTON_WHEELUP==RawEvent_.button.button)</span>
-<a name="l00222"></a>00222 <span class="comment">        {</span>
-<a name="l00223"></a>00223 <span class="comment">            Results.push_back(this-&gt;AddCode(MetaCode::MOUSEWHEEL_UP, MetaCode::MOUSEWHEELVERTICAL));</span>
-<a name="l00224"></a>00224 <span class="comment">        }else if( SDL_BUTTON_WHEELDOWN==RawEvent_.button.button ){</span>
-<a name="l00225"></a>00225 <span class="comment">            Results.push_back(this-&gt;AddCode(MetaCode::MOUSEWHEEL_DOWN, MetaCode::MOUSEWHEELVERTICAL) );</span>
-<a name="l00226"></a>00226 <span class="comment">        }else{</span>
-<a name="l00227"></a>00227 <span class="comment">            if(RawEvent_.button.state==SDL_PRESSED)</span>
-<a name="l00228"></a>00228 <span class="comment">            {</span>
-<a name="l00229"></a>00229 <span class="comment">                Results.push_back(this-&gt;AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));</span>
-<a name="l00230"></a>00230 <span class="comment">            }else{</span>
-<a name="l00231"></a>00231 <span class="comment">                Results.push_back(this-&gt;AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));</span>
-<a name="l00232"></a>00232 <span class="comment">            }</span>
-<a name="l00233"></a>00233 <span class="comment">        }</span>
-<a name="l00234"></a>00234 <span class="comment">        return Results;*/</span>
-<a name="l00235"></a>00235     }
-<a name="l00236"></a>00236 
-<a name="l00237"></a>00237 } <span class="comment">// /phys</span>
-<a name="l00238"></a>00238 
-<a name="l00239"></a>00239 <span class="preprocessor">#endif</span>
+<a name="l00207"></a>00207         <span class="keywordflow">if</span>(RawEvent_.button.state==SDL_PRESSED)
+<a name="l00208"></a>00208         {
+<a name="l00209"></a>00209             <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2a5b52ee1db94dbc2db23f3b4c267b5438">MetaCode::BUTTON_DOWN</a>, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a4c5475be837b3ea5cc66223d53ca3e1a" title="Accepts a int and returns the InputCode for the Corresponding Mouse button.">MetaCode::GetMouseButtonCode</a>(RawEvent_.button.button));
+<a name="l00210"></a>00210         }<span class="keywordflow">else</span>{
+<a name="l00211"></a>00211             <span class="keywordflow">return</span> this-&gt;<a class="code" href="../../d7/df5/classphys_1_1EventUserInput.html#a1dd4a5a8021fd0e36fa394d0132e8f2c" title="Adds a MetaCode created from a RawEvent.">AddCode</a>(<a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a2fdfb26b3e50ceb0ccc60bfc4c3d6ac2ae275c52779b0f6ec37533af256a70cc3">MetaCode::BUTTON_UP</a>, <a class="code" href="../../da/dc9/classphys_1_1MetaCode.html#a4c5475be837b3ea5cc66223d53ca3e1a" title="Accepts a int and returns the InputCode for the Corresponding Mouse button.">MetaCode::GetMouseButtonCode</a>(RawEvent_.button.button));
+<a name="l00212"></a>00212         }
+<a name="l00213"></a>00213     }
+<a name="l00214"></a>00214 
+<a name="l00215"></a>00215 } <span class="comment">// /phys</span>
+<a name="l00216"></a>00216 
+<a name="l00217"></a>00217 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 15:22:13 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:33 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

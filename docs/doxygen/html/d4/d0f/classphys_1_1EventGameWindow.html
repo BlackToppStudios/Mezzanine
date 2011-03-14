@@ -36,7 +36,8 @@
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a>  </div>
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a>  </div>
   <div class="headertitle">
 <h1>phys::EventGameWindow Class Reference</h1>  </div>
 </div>
@@ -61,7 +62,7 @@ Inheritance diagram for phys::EventGameWindow:</div>
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09">GameWindowEventID</a> { <br/>
-&nbsp;&nbsp;<a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09ae2a7610e7a32d53ee92bf5fe2764935c">GAME_WINDOW_NONE</a>, 
+&nbsp;&nbsp;<a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09ae2a7610e7a32d53ee92bf5fe2764935c">GAME_WINDOW_NONE</a> = 0, 
 <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09a9109b7fb1835941a0519f37a5dc2f938">GAME_WINDOW_FIRST</a> =  GAME_WINDOW_NONE, 
 <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09a2f86504eb791b0181b499bdcb2250d1d">GAME_WINDOW_SHOWN</a>, 
 <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09aa567edb744271aacd02f22f596c46d8d">GAME_WINDOW_HIDDEN</a>, 
@@ -92,6 +93,8 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates an <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">EventGameWindow</a> from a Rawevent.  <a href="#aca917d4cf8ee17dd5253c294aac75bb8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a7ee9c85879de43a995e6ce966b8a940c">EventGameWindow</a> (<a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09">GameWindowEventID</a> GWEventID, int First=0, int Second=0)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates an <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">EventGameWindow</a> from manually assigned values.  <a href="#a7ee9c85879de43a995e6ce966b8a940c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a4011621e2c6fc55a9c89a489f90dc1c8">EventGameWindow</a> (const <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> &amp;Other)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Copy constructor.  <a href="#a4011621e2c6fc55a9c89a489f90dc1c8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6e0b4f13327caaaab3e4656e6a9fa13"></a><!-- doxytag: member="phys::EventGameWindow::~EventGameWindow" ref="aa6e0b4f13327caaaab3e4656e6a9fa13" args="()" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#aa6e0b4f13327caaaab3e4656e6a9fa13">~EventGameWindow</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Deconstructs this <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">EventGameWindow</a>. <br/></td></tr>
@@ -105,10 +108,20 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Where or how much happened, Get the second event dependent data.  <a href="#a477ef27390df3efa13cc37499e841f06"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a9717be3e8429e0477be014ac57aa3679">IsEventIDValid</a> () const </td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to help determine if this Event is valid by checking the contents of the GameWindowEventID.  <a href="#a9717be3e8429e0477be014ac57aa3679"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a730e2b5fd13cc23cdc56351880895f04">operator=</a> (const <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> &amp;Other)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Assignment of a this <a class="el" href="../../d1/d45/classphys_1_1EventGameWindowData.html" title="used to keep private in one place that is actually private.">EventGameWindowData</a>.  <a href="#a730e2b5fd13cc23cdc56351880895f04"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a5b73127941980949fe3be1ded2a4cd34">operator==</a> (const <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> &amp;Other) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Equality comparison of two <a class="el" href="../../d1/d45/classphys_1_1EventGameWindowData.html" title="used to keep private in one place that is actually private.">EventGameWindowData</a>.  <a href="#a5b73127941980949fe3be1ded2a4cd34"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#abd3028a9c35ca2f5fd24e6b901054f24">operator==</a> (const <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09">GameWindowEventID</a> &amp;Other) const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Equality comparison of this <a class="el" href="../../d1/d45/classphys_1_1EventGameWindowData.html" title="used to keep private in one place that is actually private.">EventGameWindowData</a> and a GameWindowEventID.  <a href="#abd3028a9c35ca2f5fd24e6b901054f24"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">static <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a643c70f9137ea6812e53fa0993cd783a">GameWindowEventIDToString</a> (<a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09">EventGameWindow::GameWindowEventID</a> GWEventID)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">converts GameWindowEventID To Strings  <a href="#a643c70f9137ea6812e53fa0993cd783a"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Converts GameWindowEventID To Strings.  <a href="#a643c70f9137ea6812e53fa0993cd783a"></a><br/></td></tr>
+<tr><td colspan="2"><h2><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d45/classphys_1_1EventGameWindowData.html">EventGameWindowData</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#aa5ceefae0b4ef7a017425cbd3ee08600">Data</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Holds all internal data.  <a href="#aa5ceefae0b4ef7a017425cbd3ee08600"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is intended to convey the message that quitting needs to happen. </p>
@@ -183,7 +196,7 @@ Static Public Member Functions</h2></td></tr>
 </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../de/d05/eventgamewindow_8h_source.html#l00066">66</a> of file <a class="el" href="../../de/d05/eventgamewindow_8h_source.html">eventgamewindow.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d05/eventgamewindow_8h_source.html#l00065">65</a> of file <a class="el" href="../../de/d05/eventgamewindow_8h_source.html">eventgamewindow.h</a>.</p>
 
 </div>
 </div>
@@ -198,7 +211,7 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#a8126d26e4507e66d09876988bb941fd4">RawEvent</a>&nbsp;</td>
           <td class="paramname"> <em>Raw_</em></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td><code> [explicit]</code></td>
         </tr>
       </table>
 </div>
@@ -241,7 +254,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td></td><td></td>
+          <td></td><td></td><td><code> [explicit]</code></td>
         </tr>
       </table>
 </div>
@@ -258,6 +271,34 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a4011621e2c6fc55a9c89a489f90dc1c8"></a><!-- doxytag: member="phys::EventGameWindow::EventGameWindow" ref="a4011621e2c6fc55a9c89a489f90dc1c8" args="(const EventGameWindow &amp;Other)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::EventGameWindow::EventGameWindow </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Other</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Copy constructor. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Other</em>&nbsp;</td><td>The Other <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">EventGameWindow</a> to use in the creation on this </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
 
 </div>
 </div>
@@ -278,7 +319,7 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <div class="memdoc">
 
-<p>converts GameWindowEventID To Strings </p>
+<p>Converts GameWindowEventID To Strings. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>GWEventID</em>&nbsp;</td><td>the GameWindowEventID to get as a string </td></tr>
@@ -287,7 +328,7 @@ Static Public Member Functions</h2></td></tr>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>This returns a string containg the GameWindowEventID in a string as a developer would have typed it. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00092">92</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00104">104</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
 
 </div>
 </div>
@@ -309,7 +350,7 @@ Static Public Member Functions</h2></td></tr>
 <p>What just happened, what kind of event was it. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>A GameWindowEventID indicating what happened. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00086">86</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
 
 </div>
 </div>
@@ -332,7 +373,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An int with some details about the the event that happened. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000006">Todo:</a></b></dt><dd>document GetFirstEventData further. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00092">92</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
 
 </div>
 </div>
@@ -355,7 +396,7 @@ Static Public Member Functions</h2></td></tr>
 <dl class="return"><dt><b>Returns:</b></dt><dd>An int with some details about the the event that happened. </dd></dl>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000007">Todo:</a></b></dt><dd>document GetSecondEventData further. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00086">86</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00098">98</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
 
 </div>
 </div>
@@ -379,7 +420,7 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../dd/d80/classphys_1_1EventBase.html#a1b3d29b6ecf30f18cc3e1825a515c508">phys::EventBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00068">68</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00075">75</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
 
 </div>
 </div>
@@ -402,7 +443,112 @@ Static Public Member Functions</h2></td></tr>
 <p><b>For internal use only.</b></p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>True if the event if is between GAME_WINDOW_FIRST and GAME_WINDOW_LAST, false otherwise </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00143">143</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a730e2b5fd13cc23cdc56351880895f04"></a><!-- doxytag: member="phys::EventGameWindow::operator=" ref="a730e2b5fd13cc23cdc56351880895f04" args="(const EventGameWindow &amp;Other)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::EventGameWindow::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Other</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Assignment of a this <a class="el" href="../../d1/d45/classphys_1_1EventGameWindowData.html" title="used to keep private in one place that is actually private.">EventGameWindowData</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Other</em>&nbsp;</td><td>the other <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">EventGameWindow</a> to overwite this one. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00146">146</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="abd3028a9c35ca2f5fd24e6b901054f24"></a><!-- doxytag: member="phys::EventGameWindow::operator==" ref="abd3028a9c35ca2f5fd24e6b901054f24" args="(const GameWindowEventID &amp;Other) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::EventGameWindow::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#a45225255070513d3cff88cdfea25cc09">GameWindowEventID</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Other</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Equality comparison of this <a class="el" href="../../d1/d45/classphys_1_1EventGameWindowData.html" title="used to keep private in one place that is actually private.">EventGameWindowData</a> and a GameWindowEventID. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Other</em>&nbsp;</td><td>the other GameWindowEventID to compare to the one stored in this. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if the GameWindowEventID in this event matches the Other, false if otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00161">161</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a5b73127941980949fe3be1ded2a4cd34"></a><!-- doxytag: member="phys::EventGameWindow::operator==" ref="a5b73127941980949fe3be1ded2a4cd34" args="(const EventGameWindow &amp;Other) const " -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool phys::EventGameWindow::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html">EventGameWindow</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Other</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Equality comparison of two <a class="el" href="../../d1/d45/classphys_1_1EventGameWindowData.html" title="used to keep private in one place that is actually private.">EventGameWindowData</a>. </p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>Other</em>&nbsp;</td><td>the other <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">EventGameWindow</a> to compare to this one </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>True if identical, false if otherwise. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html#l00155">155</a> of file <a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="aa5ceefae0b4ef7a017425cbd3ee08600"></a><!-- doxytag: member="phys::EventGameWindow::Data" ref="aa5ceefae0b4ef7a017425cbd3ee08600" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d45/classphys_1_1EventGameWindowData.html">EventGameWindowData</a>* <a class="el" href="../../d4/d0f/classphys_1_1EventGameWindow.html#aa5ceefae0b4ef7a017425cbd3ee08600">phys::EventGameWindow::Data</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Holds all internal data. </p>
+<p><b>For internal use only.</b></p>
+
+<p>Definition at line <a class="el" href="../../de/d05/eventgamewindow_8h_source.html#l00155">155</a> of file <a class="el" href="../../de/d05/eventgamewindow_8h_source.html">eventgamewindow.h</a>.</p>
 
 </div>
 </div>
@@ -411,7 +557,7 @@ Static Public Member Functions</h2></td></tr>
 <li><a class="el" href="../../de/d67/eventgamewindow_8cpp_source.html">eventgamewindow.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 15:22:19 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:40 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

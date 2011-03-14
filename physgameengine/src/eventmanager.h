@@ -340,7 +340,7 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         // Inherited From ManagerBase
         ///////////////////////////////////////
-            /// @brief Empty Initializor
+            /// @brief Empty Initializer
             /// @details This specific initializor is unneeded, but we implement it for compatibility. It also exists
             /// in case a derived class wants to override it for some reason
             virtual void Initialize();

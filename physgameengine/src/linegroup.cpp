@@ -311,7 +311,7 @@ namespace phys
 
     void LineGroup::addPoint(const Vector3 &p)
     {
-        this->LineData->addPoint( p.GetOgreVector3());
+        this->LineData->addPoint( p);
     }
 
     const Vector3 LineGroup::getPoint(Whole index) const
@@ -327,7 +327,7 @@ namespace phys
 
     void LineGroup::updatePoint(Whole index, const Vector3 &value)
     {
-        return this->LineData->updatePoint(index, value.GetOgreVector3());
+        return this->LineData->updatePoint(index, value);
     }
 
     void LineGroup::drawLine(const Vector3 &start, const Vector3 &end)

@@ -43,9 +43,9 @@
 // This will store the amount of time since rendering events that occured recently
 ///////////////////////////////////////
 
-#include "datatypes.h"
 #include "crossplatformexport.h"
 #include "eventbase.h"
+#include "xml.h"
 
 using namespace std;
 
@@ -61,11 +61,10 @@ namespace phys
     class PHYS_LIB EventGameWindow : public EventBase
     {
         public:
-
             /// @brief Used to identify the kind of change that has happened to the game window.
             typedef enum
             {
-                GAME_WINDOW_NONE,                       /**< Never used */
+                GAME_WINDOW_NONE=0,                     /**< Never used */
                 GAME_WINDOW_FIRST = GAME_WINDOW_NONE,   /**< Used only as the lower bounds of this enumeration*/
 
                 GAME_WINDOW_SHOWN,                      /**< Window has been shown */
@@ -91,13 +90,17 @@ namespace phys
 
             /// @brief Creates an EventGameWindow from a Rawevent
             /// @param Raw_ The RawEvent to decompose to use for the values of this EventGameWindow
-            EventGameWindow(RawEvent Raw_);
+            explicit EventGameWindow(RawEvent Raw_);
 
             /// @brief Creates an EventGameWindow from manually assigned values
             /// @param GWEventID What kind of change happened
             /// @param First A parameter that is dependant on the kind of change to the game window
             /// @param Second A parameter that is dependant on the kind of change to the game window
-            EventGameWindow(GameWindowEventID GWEventID, int First=0, int Second=0);
+            explicit EventGameWindow(GameWindowEventID GWEventID, int First=0, int Second=0);
+
+            /// @brief Copy constructor
+            /// @param Other The Other EventGameWindow to use in the creation on this
+            EventGameWindow( const EventGameWindow& Other);
 
             /// @brief Deconstructs this EventGameWindow
             ~EventGameWindow();
@@ -122,7 +125,7 @@ namespace phys
             /// @todo document GetSecondEventData further.
             int GetSecondEventData() const;
 
-            /// @brief converts GameWindowEventID To Strings
+            /// @brief Converts GameWindowEventID To Strings
             /// @param GWEventID the GameWindowEventID to get as a string
             /// @return This returns a string containg the GameWindowEventID in a string as a developer would have typed it.
             static String GameWindowEventIDToString(EventGameWindow::GameWindowEventID GWEventID);
@@ -132,12 +135,26 @@ namespace phys
             /// @return True if the event if is between GAME_WINDOW_FIRST and GAME_WINDOW_LAST, false otherwise
             bool IsEventIDValid() const;
 
-        private:
+            /// @brief Assignment of a this EventGameWindowData
+            /// @param Other the other EventGameWindow to overwite this one.
+            void operator=(const EventGameWindow& Other);
 
+            /// @brief Equality comparison of two EventGameWindowData
+            /// @param Other the other EventGameWindow to compare to this one
+            /// @return True if identical, false if otherwise.
+            bool operator==(const EventGameWindow& Other) const;
+
+            /// @brief Equality comparison of this EventGameWindowData and a GameWindowEventID
+            /// @param Other the other GameWindowEventID to compare to the one stored in this.
+            /// @return True if the GameWindowEventID in this event matches the Other, false if otherwise.
+            bool operator==(const GameWindowEventID& Other) const;
+
+        protected:
             /// @internal
             /// @brief Holds all internal data
             EventGameWindowData* Data;
 
+        private:
             /// @internal
             /// @brief Sets the internal values.
             /// @param Raw_ The RawEvent to decompose to use for the values of this EventGameWindow
@@ -151,6 +168,30 @@ namespace phys
             void construct(GameWindowEventID GWEventID, int First, int Second);
     };
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::EventGameWindow to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::EventGameWindow to be serialized
+/// @return this retruns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventGameWindow& Ev);
+
+/// @brief Deserialize a phys::EventGameWindow
+/// @param stream The istream to get the xml from to (re)make the phys::EventGameWindow.
+/// @param Ev the phys::EventGameWindow to be deserialized.
+/// @return this returns the ostream, advanced past the phys::EventGameWindow that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventGameWindow& Ev);
+
+/// @brief Set all values of a phys::EventGameWindow from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::EventGameWindow.
+/// @param Ev the phys::EventGameWindow to be reset.
+/// @return This returns thexml::Node that was passed in.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::EventGameWindow& Ev);
+
+#endif // \PHYSXML
 
 #endif
 

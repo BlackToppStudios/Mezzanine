@@ -42,7 +42,12 @@
 
 #include "eventgamewindow.h"
 
+#ifdef PHYSDEBUG
+#include "world.h"
+#endif
+
 #include <cassert>
+#include <memory>
 
 #include "SDL.h"
 
@@ -66,16 +71,28 @@ namespace phys
     };
 
     EventGameWindow::EventGameWindow(RawEvent Raw_)
-        { construct(Raw_); }
+        { Data=0; construct(Raw_); }
 
     EventGameWindow::EventGameWindow(EventGameWindow::GameWindowEventID GWEventID, int First, int Second)
-        { construct(GWEventID, First, Second); }
+        { Data=0; construct(GWEventID, First, Second); }
+
+    EventGameWindow::EventGameWindow( const EventGameWindow& Other)
+    {
+        Data=0;
+        assert(Other.Data);
+        construct(Other.Data->EventID, Other.Data->First, Other.Data->Second);
+    }
 
     EventBase::EventType EventGameWindow::GetType() const
         { return EventBase::GameWindow; }
 
     EventGameWindow::~EventGameWindow()
-        { delete this->Data; }
+    {
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("De-Constructing internal data for EventGameWindow");
+        #endif
+        delete this->Data;
+    }
 
     EventGameWindow::GameWindowEventID EventGameWindow::GetEventID() const
     {
@@ -130,12 +147,30 @@ namespace phys
             case GAME_WINDOW_CLOSE:
                 return "GAME_WINDOW_CLOSE";
             default:
-                break;//throw("Unhandled EventGameWindow::GameWindowEventID reached during eventid to String conversion.");
+                throw("Unhandled EventGameWindow::GameWindowEventID reached during eventid to String conversion.");
         }
     }
 
     bool EventGameWindow::IsEventIDValid() const
         { return ( GAME_WINDOW_FIRST <= this->GetEventID() && this->GetEventID() <= GAME_WINDOW_LAST ); }
+
+    void EventGameWindow::operator=(const EventGameWindow& Other)
+    {
+        if(this->Data==Other.Data)
+            { return; }
+        this->Data->EventID=Other.Data->EventID;
+        this->Data->First=Other.Data->First;
+        this->Data->Second=Other.Data->Second;
+    }
+
+    bool EventGameWindow::operator==(const EventGameWindow& Other) const
+    {
+        assert(this->Data);
+        return ( this->Data->EventID==Other.Data->EventID && this->Data->First==Other.Data->First && this->Data->Second==Other.Data->Second );
+    }
+
+    bool EventGameWindow::operator==(const GameWindowEventID& Other) const
+        { return GetEventID()==Other; }
 
     void EventGameWindow::construct(RawEvent Raw_)
     {
@@ -182,8 +217,44 @@ namespace phys
 
     void EventGameWindow::construct(EventGameWindow::GameWindowEventID GWEventID, int First, int Second)
     {
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Constructing internal data for EventGameWindow");
+        #endif
         this->Data=new EventGameWindowData(GWEventID,First, Second);
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::EventGameWindow& Ev)
+{
+    stream << "<EventGameWindow Version=\"1\" EventID=\"" << Ev.GetEventID() << "\" First=\"" << Ev.GetFirstEventData() << "\" Second=\"" << Ev.GetSecondEventData() << "\" />";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventGameWindow& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "EventGameWindow", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventGameWindow& Ev)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        Ev = phys::EventGameWindow( (phys::EventGameWindow::GameWindowEventID)OneNode.GetAttribute("EventID").AsInt(),
+                                    OneNode.GetAttribute("First").AsInt(),
+                                    OneNode.GetAttribute("Second").AsInt() );
+    }else{
+        throw( phys::Exception("Incompatible XML Version for EventGameWindow: Not Version 1"));
+    }
+}
+#endif // \PHYSXML
+
 #endif
 

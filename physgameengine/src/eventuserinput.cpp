@@ -204,34 +204,12 @@ namespace phys
 
     MetaCode EventUserInput::AddCodeFromSDLMouseButton(const RawEvent &RawEvent_)
     {
-        //vector<MetaCode> Results;
-
-        //Results.push_back(this->AddCode(RawEvent_.button.x, MetaCode::MOUSEABSOLUTEHORIZONTAL));
-        //Results.push_back(this->AddCode(RawEvent_.button.y, MetaCode::MOUSEABSOLUTEVERTICAL));
-
         if(RawEvent_.button.state==SDL_PRESSED)
         {
-            //Results.push_back(this->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));
             return this->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
         }else{
-            //Results.push_back(this->AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));
             return this->AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
         }
-
-        /*if ( SDL_BUTTON_WHEELUP==RawEvent_.button.button)
-        {
-            Results.push_back(this->AddCode(MetaCode::MOUSEWHEEL_UP, MetaCode::MOUSEWHEELVERTICAL));
-        }else if( SDL_BUTTON_WHEELDOWN==RawEvent_.button.button ){
-            Results.push_back(this->AddCode(MetaCode::MOUSEWHEEL_DOWN, MetaCode::MOUSEWHEELVERTICAL) );
-        }else{
-            if(RawEvent_.button.state==SDL_PRESSED)
-            {
-                Results.push_back(this->AddCode(MetaCode::BUTTON_DOWN, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));
-            }else{
-                Results.push_back(this->AddCode(MetaCode::BUTTON_UP, MetaCode::GetMouseButtonCode(RawEvent_.button.button)));
-            }
-        }
-        return Results;*/
     }
 
 } // /phys
