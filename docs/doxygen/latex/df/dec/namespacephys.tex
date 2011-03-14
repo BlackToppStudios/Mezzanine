@@ -123,6 +123,8 @@ class \hyperlink{classphys_1_1MeshGenerator}{MeshGenerator}
 \begin{DoxyCompactList}\small\item\em This class allows the creation of graphical meshes from code. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1MetaCode}{MetaCode}
 \begin{DoxyCompactList}\small\item\em This Determines the kind of user input. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1ObjectReference}{ObjectReference}
+\item 
 class \hyperlink{classphys_1_1ParticleEffect}{ParticleEffect}
 \begin{DoxyCompactList}\small\item\em This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1PhysicsManager}{PhysicsManager}
@@ -192,6 +194,25 @@ typedef SDL\_\-Event \hyperlink{namespacephys_a8126d26e4507e66d09876988bb941fd4}
 \begin{DoxyCompactList}\small\item\em This is an internal datatype use to communicate with the User input Subsystem. \item\end{DoxyCompactList}\item 
 typedef std::vector$<$ \hyperlink{classphys_1_1Sound}{Sound} $\ast$ $>$ \hyperlink{namespacephys_ab780c3162da5699fe421f3739ba03fc4}{SoundSet}
 \begin{DoxyCompactList}\small\item\em This is a vector that stores sounds. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespacephys_a56410935e1c614a932dbc91ee7330df1}{WorldObjectType} \{ \par
+{\bfseries WOT\_\-ActorBase}, 
+{\bfseries WOT\_\-ActorRigid}, 
+{\bfseries WOT\_\-ActorSoft}, 
+{\bfseries WOT\_\-ActorRagdoll}, 
+\par
+{\bfseries WOT\_\-ActorTerrain}, 
+{\bfseries WOT\_\-AreaEffect}, 
+{\bfseries WOT\_\-GravityField}, 
+{\bfseries WOT\_\-GravityWell}, 
+\par
+{\bfseries WOT\_\-Light}, 
+{\bfseries WOT\_\-ParticleEffect}, 
+{\bfseries WOT\_\-Camera}
+ \}
+\begin{DoxyCompactList}\small\item\em Used by various classes to help identify what class an object is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -326,6 +347,22 @@ A Datatype used to represent an postive integer numbers.
 This is a typedef to unsigned Long. but could be smaller in some situations 
 
 Definition at line 79 of file datatypes.h.
+
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespacephys_a56410935e1c614a932dbc91ee7330df1}{
+\index{phys@{phys}!WorldObjectType@{WorldObjectType}}
+\index{WorldObjectType@{WorldObjectType}!phys@{phys}}
+\subsubsection[{WorldObjectType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::WorldObjectType}}}
+\label{df/dec/namespacephys_a56410935e1c614a932dbc91ee7330df1}
+
+
+Used by various classes to help identify what class an object is. 
+
+This is mostly used internally for casting void pointers. 
+
+Definition at line 51 of file enumerations.h.
 
 
 

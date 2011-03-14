@@ -117,12 +117,14 @@ namespace phys
 
             /// @brief Where or how much happened, Get the first event dependent data.
             /// @return An int with some details about the the event that happened.
-            /// @todo document GetFirstEventData further.
+            /// @details Currently this provides the x values for the new window locations in the event that a window moves, or it
+            /// is resized. If moved it has the new location, if resized it has the new size. This may be used in places in the future.
             int GetFirstEventData() const;
 
             /// @brief Where or how much happened, Get the second event dependent data.
+            /// @details Currently this provides the y values for the new window locations in the event that a window moves, or it
+            /// is resized. If moved it has the new location, if resized it has the new size. This may be used in places in the future.
             /// @return An int with some details about the the event that happened.
-            /// @todo document GetSecondEventData further.
             int GetSecondEventData() const;
 
             /// @brief Converts GameWindowEventID To Strings

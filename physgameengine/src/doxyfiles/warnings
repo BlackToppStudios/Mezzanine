@@ -8,12 +8,13 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/worldnode.h:78: warning: Compound phys::WorldNode is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:452: warning: Compound phys::UniversalConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:132: warning: Compound phys::ConeTwistConstraint is not documented.
+/home/dev/physgame/physgameengine/src/objectreference.h:48: warning: Compound phys::ObjectReference is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:386: warning: Compound phys::SliderConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:262: warning: Compound phys::HingeConstraint is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:178: warning: Compound phys::Generic6DofConstraint is not documented.
 /home/dev/physgame/physgameengine/src/uilinelist.h:67: warning: Compound phys::UI::LineList is not documented.
 /home/dev/physgame/physgameengine/src/constraint.h:345: warning: Compound phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:289: warning: Documentation for undefined enum `These' found.
+/home/dev/physgame/physgameengine/src/areaeffect.h:293: warning: Documentation for undefined enum `These' found.
 /home/dev/physgame/physgameengine/src/extendedtimer.h:76: warning: Documentation for undefined enum `The' found.
 /home/dev/physgame/physgameengine/src/timer.h:58: warning: Documentation for undefined enum `The' found.
 /home/dev/physgame/physgameengine/src/timer.h:66: warning: Documentation for undefined enum `The' found.
@@ -53,11 +54,11 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/actorterrain.h:63: warning: The following parameters of phys::ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group) are not documented:
   parameter 'InitPosition'
 /home/dev/physgame/physgameengine/src/areaeffect.h:78: warning: Member AEShapeType (enumeration) of class phys::AreaEffect is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:296: warning: Member AttenuationStyle (enumeration) of class phys::GravityWell is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:302: warning: Member Strength (variable) of class phys::GravityWell is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:303: warning: Member AllowWorldGrav (variable) of class phys::GravityWell is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:304: warning: Member AttenStyle (variable) of class phys::GravityWell is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:305: warning: Member AttenAmount (variable) of class phys::GravityWell is not documented.
+/home/dev/physgame/physgameengine/src/areaeffect.h:300: warning: Member AttenuationStyle (enumeration) of class phys::GravityWell is not documented.
+/home/dev/physgame/physgameengine/src/areaeffect.h:306: warning: Member Strength (variable) of class phys::GravityWell is not documented.
+/home/dev/physgame/physgameengine/src/areaeffect.h:307: warning: Member AllowWorldGrav (variable) of class phys::GravityWell is not documented.
+/home/dev/physgame/physgameengine/src/areaeffect.h:308: warning: Member AttenStyle (variable) of class phys::GravityWell is not documented.
+/home/dev/physgame/physgameengine/src/areaeffect.h:309: warning: Member AttenAmount (variable) of class phys::GravityWell is not documented.
 /home/dev/physgame/physgameengine/src/attachable.h:58: warning: Member AttachableElement (enumeration) of class phys::Attachable is not documented.
 /home/dev/physgame/physgameengine/src/attachable.h:66: warning: argument 'Enum' of command @param is not found in the argument list of phys::Attachable::SetElementType(Attachable::AttachableElement Type)
 /home/dev/physgame/physgameengine/src/attachable.h:66: warning: The following parameters of phys::Attachable::SetElementType(Attachable::AttachableElement Type) are not documented:
@@ -232,6 +233,8 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/metacode.h:598: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of phys::MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber)
 /home/dev/physgame/physgameengine/src/metacode.h:598: warning: The following parameters of phys::MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber) are not documented:
   parameter 'ButtonNumber'
+/home/dev/physgame/physgameengine/src/objectreference.h:50: warning: Member Type (variable) of class phys::ObjectReference is not documented.
+/home/dev/physgame/physgameengine/src/objectreference.h:51: warning: Member Object (variable) of class phys::ObjectReference is not documented.
 /home/dev/physgame/physgameengine/src/resourceinputstream.h:98: warning: Member operator>>(T &Data) (function) of class phys::ResourceInputStream is not documented.
 /home/dev/physgame/physgameengine/src/resourcemanager.h:80: warning: Member AddResourceGroupName(String Name) (function) of class phys::ResourceManager is not documented.
 /home/dev/physgame/physgameengine/src/resourcemanager.h:79: warning: Member ResourceGroups (variable) of class phys::ResourceManager is not documented.
