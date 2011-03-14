@@ -109,6 +109,10 @@ namespace phys{
             virtual void CreateGhostObject(const Vector3 Location);
             /// @brief Creates a basic material in code using the provided colour.
             virtual Ogre::MaterialPtr CreateColouredMaterial(const ColourValue& Colour);
+            /// @brief Convenience function for the common starting steps in making a graphics object.
+            virtual void PreGraphicsMeshCreate();
+            /// @brief Convenience function for the common final steps in making a graphics object.
+            virtual void PostGraphicsMeshCreate(String& GroupName);
             /// @brief Helper function for adding actors to relevant lists.
             virtual void AddActorToList(ActorBase* Actor);
             /// @brief Helper function for adding actors to relevant lists.

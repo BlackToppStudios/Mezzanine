@@ -48,6 +48,7 @@
 //#include "BulletCollision/Gimpact/btGImpactShape.h"
 
 #include "internalmeshtools.h.cpp"
+#include "objectreference.h"
 #include "world.h"
 #include "physicsmanager.h"
 #include "actorsoft.h"
@@ -81,7 +82,10 @@ namespace phys{
         entity = NULL;
         this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh(this->GameWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         CollisionObject=physsoftbody;
-        CollisionObject->setUserPointer(this);
+        ObjectReference* ActorRef = new ObjectReference(phys::WOT_ActorSoft,this);
+        Ogre::Any OgreRef(ActorRef);
+        entity->setUserAny(OgreRef);
+        CollisionObject->setUserPointer(ActorRef);
         Shape = physsoftbody->getCollisionShape();
         physsoftbody->setTotalMass(mass, true);
         physsoftbody->m_cfg.collisions = btSoftBody::fCollision::CL_SS + btSoftBody::fCollision::CL_RS;
