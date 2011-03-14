@@ -46,8 +46,11 @@
 #include "eventmanager.h"
 #include "cameramanager.h"
 #include "camera.h"
+#include "objectreference.h"
 
 #include <Ogre.h>
+
+#include <exception>
 
 namespace phys
 {
@@ -103,42 +106,53 @@ namespace phys
                 // get the entity to check
                 Ogre::Entity *pentity = static_cast<Ogre::Entity*>(query_result[qr_idx].movable);
 
-                // mesh data to retrieve
-                size_t vertex_count;
-                size_t index_count;
-                Ogre::Vector3 *vertices;
-                unsigned long *indices;
-
-                // get the mesh information
-                this->GetMeshInformation(pentity, vertex_count, vertices, index_count, indices,
-                                  pentity->getParentNode()->_getDerivedPosition(),
-                                  pentity->getParentNode()->_getDerivedOrientation(),
-                                  pentity->getParentNode()->_getDerivedScale());
-
-                // test for hitting individual triangles on the mesh
-                bool new_closest_found = false;
-                for (size_t i = 0; i < index_count; i += 3)
+                try
                 {
-                    // check for a hit against this triangle
-                    std::pair<bool, Ogre::Real> hit = Ogre::Math::intersects(Ooray, vertices[indices[i]], vertices[indices[i+1]], vertices[indices[i+2]], true, false);
-
-                    // if it was a hit check if its the closest
-                    if (hit.first && ((0.0f > closest_distance) || (hit.second < closest_distance)) )
+                    ObjectReference *HitMetaInfo = Ogre::any_cast<ObjectReference*>(pentity->getUserAny());
+                    if(HitMetaInfo->GetType()==WOT_ActorRigid)
                     {
-                        closest_distance = hit.second;                        // this is the closest so far, save it off
-                        new_closest_found = true;
-                    }
-                }
+                        // mesh data to retrieve
+                        size_t vertex_count;
+                        size_t index_count;
+                        Ogre::Vector3 *vertices;
+                        unsigned long *indices;
 
-                // free the verticies and indicies memory
-                delete[] vertices;
-                delete[] indices;
+                        // get the mesh information
+                        this->GetMeshInformation(pentity, vertex_count, vertices, index_count, indices,
+                                          pentity->getParentNode()->_getDerivedPosition(),
+                                          pentity->getParentNode()->_getDerivedOrientation(),
+                                          pentity->getParentNode()->_getDerivedScale());
 
-                // if we found a new closest raycast for this object, update the closest_result before moving on to the next object.
-                if (new_closest_found)
-                {
-                    closest_result = Ooray.getPoint(closest_distance);
-                    ClosestActor->Actor = World::GetWorldPointer()->GetActorManager()->FindActor( pentity->getParentNode() );
+                        // test for hitting individual triangles on the mesh
+                        bool new_closest_found = false;
+                        for (size_t i = 0; i < index_count; i += 3)
+                        {
+                            // check for a hit against this triangle
+                            std::pair<bool, Ogre::Real> hit = Ogre::Math::intersects(Ooray, vertices[indices[i]], vertices[indices[i+1]], vertices[indices[i+2]], true, false);
+
+                            // if it was a hit check if its the closest
+                            if (hit.first && ((0.0f > closest_distance) || (hit.second < closest_distance)) )
+                            {
+                                    closest_distance = hit.second;                        // this is the closest so far, save it off
+                                    new_closest_found = true;
+                            }
+                        }
+
+                        // free the vertices and indices memory
+                        delete[] vertices;
+                        delete[] indices;
+
+                        // if we found a new closest raycast for this object, update the closest_result before moving on to the next object.
+                        if (new_closest_found)
+                        {
+                            closest_result = Ooray.getPoint(closest_distance);
+                            ClosestActor->Actor = World::GetWorldPointer()->GetActorManager()->FindActor( pentity->getParentNode() );
+                        }
+
+                    } // \if WOT_ActorRigid
+                }catch(std::exception e){
+                    World::GetWorldPointer()->Log("Failed during cast in actor raycast.");
+                    World::GetWorldPointer()->LogAndThrow(e.what());
                 }
             } // \if entity
         } // \if qr_idx
@@ -176,6 +190,7 @@ namespace phys
             ClosestActor->Actor = World::GetWorldPointer()->GetActorManager()->FindActor( pentity->getParentNode() );
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow.
             /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested
+            /// @todo TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account
             return ClosestActor;
         }else{
             return 0;
