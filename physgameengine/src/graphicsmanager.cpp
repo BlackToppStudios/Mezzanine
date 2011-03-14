@@ -49,6 +49,7 @@
 #include "resourcemanager.h"
 #include "uimanager.h"
 #include "camera.h"
+#include "crossplatform.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -198,14 +199,16 @@ namespace phys
         OgreViewport->getCamera()->setAspectRatio((Real)(OgreViewport->getActualWidth()) / (Real)(OgreViewport->getActualHeight()));
     }
 
-    bool GraphicsManager::IsLargerThenDesktop(const Whole& Width, const Whole& Height)
+    int GraphicsManager::IsLargerThenDesktop(const Whole& Width, const Whole& Height)
     {
         SDL_DisplayMode DesktopDisplay;
         SDL_GetDesktopDisplayMode(0,&DesktopDisplay);
-        if(Width >= DesktopDisplay.w || Height >= DesktopDisplay.h)
-            return true;
+        if(Width > DesktopDisplay.w || Height > DesktopDisplay.h)
+            return 1;
+        else if(Width == DesktopDisplay.w || Height == DesktopDisplay.h)
+            return 0;
         else
-            return false;
+            return -1;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -224,8 +227,21 @@ namespace phys
             Settings.Fullscreen = Fullscreen;
             return;
         }
-        /// @todo TODO: Need to attempt to switch to fullscreen here
-        /// @todo TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games
+
+        if(!Fullscreen && Settings.Fullscreen)
+        {
+            if( Settings.RenderWidth > DesktopSettings.RenderWidth || Settings.RenderHeight > DesktopSettings.RenderHeight )
+            {
+                Settings.RenderWidth = DesktopSettings.RenderWidth;
+                Settings.RenderHeight = DesktopSettings.RenderHeight;
+            }
+            if( Settings.RenderWidth == DesktopSettings.RenderWidth || Settings.RenderHeight == DesktopSettings.RenderHeight )
+            {
+                Whole ResultWidth, ResultHeight;
+                crossplatform::SanitizeWindowedRes(Settings.RenderWidth,Settings.RenderHeight,ResultWidth,ResultHeight);
+                setRenderResolution(ResultWidth,ResultHeight);
+            }
+        }
 
         if(SDL_SetWindowFullscreen(SDLwindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0)
         {
@@ -297,13 +313,16 @@ namespace phys
                 return;
             }
         }else{
-            if(IsLargerThenDesktop(Width,Height))
+            int Result = IsLargerThenDesktop(Width,Height);
+            if(Result == 0)
             {
-                /// @todo Need to add a function that will sanitize a window size to account for decorations, and add it here.
-                Whole nWidth=Width-8;
-                Whole nHeight=Height-38;
-                SDL_SetWindowSize(SDLwindow,nWidth,nHeight);
-                OgreGameWindow->setFullscreen(false,nWidth,nHeight);
+                Whole ResultWidth, ResultHeight;
+                crossplatform::SanitizeWindowedRes(Width,Height,ResultWidth,ResultHeight);
+                SDL_SetWindowSize(SDLwindow,ResultWidth,ResultHeight);
+                OgreGameWindow->setFullscreen(false,Width,Height);
+            }else if(Result == 1){
+                GameWorld->Log("Cannot create a window larger then the desktop resolution.");
+                return;
             }else{
                 SDL_SetWindowSize(SDLwindow,Width,Height);
                 OgreGameWindow->setFullscreen(false,Width,Height);
@@ -423,6 +442,11 @@ namespace phys
                 continue;
             }
         }
+
+        SDL_DisplayMode DeskMode;
+        SDL_GetDesktopDisplayMode(0,&DeskMode);
+        DesktopSettings.RenderWidth = DeskMode.w;
+        DesktopSettings.RenderHeight = DeskMode.h;
 
         GraphicsInitialized = true;
     }

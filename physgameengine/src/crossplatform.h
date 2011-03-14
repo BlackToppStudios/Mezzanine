@@ -138,9 +138,11 @@ namespace phys
         String PHYS_LIB GetPlatform();
 
         /// @brief Gets cleaned dimensions for a game window.
-        /// @param Width The width of the client area.
-        /// @param Height The Height of the client area.
-        void PHYS_LIB SanitizeWindowedRes(Real& Width, Real& Height);
+        /// @param Width The desired width of the window area.
+        /// @param Height The desired height of the window area.
+        /// @param ActualWidth The modified value of the rendering width, after window decorations have been taken into account.
+        /// @param ActualHeight The modified value of the rendering height, after window decorations have been taken into account.
+        void PHYS_LIB SanitizeWindowedRes(const Whole& Width, const Whole& Height, Whole& ActualWidth, Whole& ActualHeight);
     }
 }
 #endif

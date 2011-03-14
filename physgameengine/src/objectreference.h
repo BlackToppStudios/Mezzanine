@@ -44,6 +44,12 @@
 
 namespace phys
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ObjectReference
+    /// @headerfile objectreference.h
+    /// @brief This is a small class used to store a reference to a world object.
+    /// @details This class is primarily used with internal structures.
+    ///////////////////////////////////////
     class ObjectReference
     {
         protected:

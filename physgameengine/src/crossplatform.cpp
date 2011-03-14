@@ -54,6 +54,7 @@
 //Selective Includes
 #ifdef WINDOWS
 	#include <cstdlib>//for sleep
+    #include <Winuser.h>
 	#include "SDL_syswm.h" //for the needed commands
 #else
 	#include <unistd.h>//for sleep
@@ -179,6 +180,20 @@ namespace phys
 			#ifdef MACOSX
 				return "MacOSX";
 			#endif
+        }
+
+        void SanitizeWindowedRes(const Whole& Width, const Whole& Height, Whole& ActualWidth, Whole& ActualHeight)
+        {
+            #ifdef WINDOWS
+            RECT rc;
+            SetRect(&rc, 0, 0, Width, Height);
+            AdjustWindowRect(&rc, WS_VISIBLE | WS_CLIPCHILDREN | WS_OVERLAPPEDWINDOW, false);
+            ActualWidth = Width - ((rc.right - rc.left) - Width);
+            ActualHeight = Height - ((rc.bottom - rc.top) - Height);
+            #else
+            ActualWidth = Width;
+            ActualHeight = Height;
+            #endif
         }
     }
 }
