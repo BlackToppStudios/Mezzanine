@@ -281,7 +281,7 @@ if(${UNIX})
 		add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
 		set(SDLName SDL)
-		set(SDLSoName libSDL.a)
+		set(SDLSoName libSDL.a) #todo fix this line, sdlso should be called sdlstatic or something
 		file( COPY 
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/${SDLSoName}"
 			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/"
@@ -296,54 +296,6 @@ if(${UNIX})
 endif(${UNIX})
 
 #######################################
-# Mac OS X and iPhone Build specific Items
-if(${APPLE})
-	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
-	set(BuildPlatform macosx)
-        
-	include(FindSDL)
-	message("SDL Headers and Library Found - ${SDL_FOUND}")
-	set(SDLName SDL)        
-
-       include(FindOpenAL)
-	message("OpenAL Headers and Library Found - ${OPENAL_LIBRARY}")
-
-	include(FindOgg)
-	message("Ogg Headers and Library Found - ${OGG_FOUND}")
-
-	include(FindVorbis)
-	message("Vorbis Headers and Library Found - ${Vorbis_FOUND}")
-
-	include(FindOgre)
-	message("Ogre Headers And library Found -	${OGRE_INCLUDE_DIRS}")
-
-	include(/Library/Frameworks/Ogre.framework)
-
-	include(FindBoost)
-	message("Boost Headers And library Found - ${BOOST_INCLUDE_DIRS}")
-	
-	find_package(OGRE REQUIRED)
-        
-	include_directories(
-		"${SDL_INCLUDE_DIR}"
-		"${OPENAL_INCLUDE_DIR}"
-		${OGRE_INCLUDE_DIRS}
-	        "${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogreSDK/boost_1_42"
-		"${OGG_INCLUDE_DIR}"
-	)
-
-	link_directories(
-	 ${SDL_LIBRARY}
-	 ${OPENAL_LIBRARY} 
-	 /Library/Frameworks/Ogre.framework
-	 ${OGG_LIBRARY}
-	)
-	findpkg_framework(OGRE)
-
-	message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
-endif(${UNIX} AND NOT ${APPLE})
-
-#######################################
 # Mac OS X and iPhone Build pecific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
@@ -352,8 +304,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	set(ARCH i386)
 	
         
-	include(FindSDL)
-	message("SDL Headers and Library Found - ${SDL_FOUND}")
         
         include(FindOpenAL)
 	message("OpenAL Headers and Library Found - ${OPENAL_INCLUDE_DIR}")
@@ -375,7 +325,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	find_package(OGRE REQUIRED)
         
 	include_directories(
-		"${SDL_INCLUDE_DIR}"
+		libincludes/common/sdlsrc/SDL/include
 		"${OPENAL_INCLUDE_DIR}"
 		"${OGRE_INCLUDE_DIR}"
 	#	/Library/Frameworks/Ogre.framework/Headers;/Library/Frameworks/Ogre.framework	
@@ -392,7 +342,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	link_directories("${OGRE_LIB_DIR}")
 
 	findpkg_framework(OGRE)
-	set(SDLName  ${SDL_LIBRARY})
+	set(SDLName  SDL)
     
 
 	add_definitions( -DMACOSX)
@@ -451,14 +401,14 @@ set( Bullet_LibraryNames
 )
 
 
-if(${APPLE}){
+if(${APPLE})
 	target_link_libraries(
 	    ${PROJECT_NAME}
 	    "${OGRE_LIBRARIES}"
 	    ${Bullet_LibraryNames}
 	    "${OPENAL_LIBRARY}" 
-	    ${SDL_LIBRARY}
-	  #  "${OGG_LIBRARY}"
+	    /Users/hydrowolfy/Documents/newphysgame/physgame/physgameengine/data/macosx/sdl/libSDL.dylib
+ 	  #  "${OGG_LIBRARY}"
 		/Users/hydrowolfy/Downloads/cAudio2.1.0-OSX/bin/Osx/libcAudio.dylib
 )
 else(${APPLE})
