@@ -1,6 +1,6 @@
 /*
     SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2010 Sam Lantinga
+    Copyright (C) 1997-2011 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -124,9 +124,7 @@ enum
 #define SDL_BITSPERPIXEL(X)	(((X) >> 8) & 0xFF)
 #define SDL_BYTESPERPIXEL(X) \
     (SDL_ISPIXELFORMAT_FOURCC(X) ? \
-        ((((X) == SDL_PIXELFORMAT_YV12) || \
-          ((X) == SDL_PIXELFORMAT_IYUV) || \
-          ((X) == SDL_PIXELFORMAT_YUY2) || \
+        ((((X) == SDL_PIXELFORMAT_YUY2) || \
           ((X) == SDL_PIXELFORMAT_UYVY) || \
           ((X) == SDL_PIXELFORMAT_YVYU)) ? 2 : 1) : (((X) >> 0) & 0xFF))
 
@@ -151,16 +149,16 @@ enum
 {
     SDL_PIXELFORMAT_UNKNOWN,
     SDL_PIXELFORMAT_INDEX1LSB =
-        SDL_DEFINE_PIXELFORMAT(SDL_PIXELTYPE_INDEX1, SDL_BITMAPORDER_1234, 0,
-                               1, 0),
-    SDL_PIXELFORMAT_INDEX1MSB =
         SDL_DEFINE_PIXELFORMAT(SDL_PIXELTYPE_INDEX1, SDL_BITMAPORDER_4321, 0,
                                1, 0),
+    SDL_PIXELFORMAT_INDEX1MSB =
+        SDL_DEFINE_PIXELFORMAT(SDL_PIXELTYPE_INDEX1, SDL_BITMAPORDER_1234, 0,
+                               1, 0),
     SDL_PIXELFORMAT_INDEX4LSB =
-        SDL_DEFINE_PIXELFORMAT(SDL_PIXELTYPE_INDEX4, SDL_BITMAPORDER_1234, 0,
+        SDL_DEFINE_PIXELFORMAT(SDL_PIXELTYPE_INDEX4, SDL_BITMAPORDER_4321, 0,
                                4, 0),
     SDL_PIXELFORMAT_INDEX4MSB =
-        SDL_DEFINE_PIXELFORMAT(SDL_PIXELTYPE_INDEX4, SDL_BITMAPORDER_4321, 0,
+        SDL_DEFINE_PIXELFORMAT(SDL_PIXELTYPE_INDEX4, SDL_BITMAPORDER_1234, 0,
                                4, 0),
     SDL_PIXELFORMAT_INDEX8 =
         SDL_DEFINE_PIXELFORMAT(SDL_PIXELTYPE_INDEX8, 0, 0, 8, 1),
@@ -255,27 +253,28 @@ typedef struct SDL_Color
 } SDL_Color;
 #define SDL_Colour SDL_Color
 
-typedef struct SDL_Palette SDL_Palette;
-typedef int (*SDL_PaletteChangedFunc) (void *userdata, SDL_Palette * palette);
-typedef struct SDL_PaletteWatch SDL_PaletteWatch;
-
-struct SDL_Palette
+typedef struct SDL_Palette
 {
     int ncolors;
     SDL_Color *colors;
-
+    Uint32 version;
     int refcount;
-    SDL_PaletteWatch *watch;
-};
+} SDL_Palette;
 
 /**
  *  \note Everything in the pixel format structure is read-only.
  */
 typedef struct SDL_PixelFormat
 {
+    Uint32 format;
     SDL_Palette *palette;
     Uint8 BitsPerPixel;
     Uint8 BytesPerPixel;
+    Uint8 padding[2];
+    Uint32 Rmask;
+    Uint32 Gmask;
+    Uint32 Bmask;
+    Uint32 Amask;
     Uint8 Rloss;
     Uint8 Gloss;
     Uint8 Bloss;
@@ -284,10 +283,8 @@ typedef struct SDL_PixelFormat
     Uint8 Gshift;
     Uint8 Bshift;
     Uint8 Ashift;
-    Uint32 Rmask;
-    Uint32 Gmask;
-    Uint32 Bmask;
-    Uint32 Amask;
+    int refcount;
+    struct SDL_PixelFormat *next;
 } SDL_PixelFormat;
 
 /**
@@ -324,6 +321,16 @@ extern DECLSPEC Uint32 SDLCALL SDL_MasksToPixelFormatEnum(int bpp,
                                                           Uint32 Amask);
 
 /**
+ *  \brief Create an SDL_PixelFormat structure from a pixel format enum.
+ */
+extern DECLSPEC SDL_PixelFormat * SDLCALL SDL_AllocFormat(Uint32 pixel_format);
+
+/**
+ *  \brief Free an SDL_PixelFormat structure.
+ */
+extern DECLSPEC void SDLCALL SDL_FreeFormat(SDL_PixelFormat *format);
+
+/**
  *  \brief Create a palette structure with the specified number of color 
  *         entries.
  *  
@@ -336,23 +343,10 @@ extern DECLSPEC Uint32 SDLCALL SDL_MasksToPixelFormatEnum(int bpp,
 extern DECLSPEC SDL_Palette *SDLCALL SDL_AllocPalette(int ncolors);
 
 /**
- *  \brief Add a callback function which is called when the palette changes.
- *  
- *  \sa SDL_DelPaletteWatch()
+ *  \brief Set the palette for a pixel format structure.
  */
-extern DECLSPEC int SDLCALL SDL_AddPaletteWatch(SDL_Palette * palette,
-                                                SDL_PaletteChangedFunc
-                                                callback, void *userdata);
-
-/**
- *  \brief Remove a callback function previously added with 
- *         SDL_AddPaletteWatch().
- *  
- *  \sa SDL_AddPaletteWatch()
- */
-extern DECLSPEC void SDLCALL SDL_DelPaletteWatch(SDL_Palette * palette,
-                                                 SDL_PaletteChangedFunc
-                                                 callback, void *userdata);
+extern DECLSPEC int SDLCALL SDL_SetPixelFormatPalette(SDL_PixelFormat * format,
+                                                      SDL_Palette *palette);
 
 /**
  *  \brief Set a range of colors in a palette.
@@ -410,6 +404,12 @@ extern DECLSPEC void SDLCALL SDL_GetRGBA(Uint32 pixel,
                                          const SDL_PixelFormat * format,
                                          Uint8 * r, Uint8 * g, Uint8 * b,
                                          Uint8 * a);
+
+/**
+ *  \brief Calculate a 256 entry gamma ramp for a gamma value.
+ */
+extern DECLSPEC void SDLCALL SDL_CalculateGammaRamp(float gamma, Uint16 * ramp);
+
 
 /* Ends C function definitions when using C++ */
 #ifdef __cplusplus

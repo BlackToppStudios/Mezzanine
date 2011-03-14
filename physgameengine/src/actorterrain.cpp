@@ -47,6 +47,7 @@
 #include "actorterrain.h"
 #include "world.h"
 #include "physicsmanager.h"
+#include "objectreference.h"
 #include "internalmotionstate.h.cpp"
 #include "internalmeshtools.h.cpp"
 
@@ -68,7 +69,10 @@ namespace phys
         btScalar mass = 0.f;
         RigidBody = new btRigidBody(mass, this->MotionState, this->Shape);
         CollisionObject = RigidBody;
-        CollisionObject->setUserPointer(this);
+        ObjectReference* ActorRef = new ObjectReference(phys::WOT_ActorTerrain,this);
+        Ogre::Any OgreRef(ActorRef);
+        entity->setUserAny(OgreRef);
+        CollisionObject->setUserPointer(ActorRef);
         ActorType = ActorBase::Actorterrain;
     }
 

@@ -1,6 +1,6 @@
 /*
     SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2010 Sam Lantinga
+    Copyright (C) 1997-2011 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -45,6 +45,8 @@ typedef unsigned long uintptr_t;
 typedef unsigned __PTRDIFF_TYPE__ uintptr_t;
 #endif
 #endif /* !_STDINT_H_ && !HAVE_STDINT_H */
+
+#define SIZEOF_VOIDP 4
 
 #define SDL_HAS_64BIT_TYPE	1
 
@@ -113,9 +115,18 @@ typedef unsigned __PTRDIFF_TYPE__ uintptr_t;
 
 /* Enable various video drivers */
 #define SDL_VIDEO_DRIVER_NDS	1
-/*#define SDL_VIDEO_DRIVER_DUMMY	1 TODO: uncomment this later*/
+#ifdef USE_HW_RENDERER
+#define SDL_VIDEO_RENDER_NDS	1
+#else
+#define SDL_VIDEO_RENDER_NDS	0
+#endif
 
 /* Enable system power support */
 #define SDL_POWER_NINTENDODS 1
+
+/* Enable haptic support */
+#define SDL_HAPTIC_NDS 1
+
+#define SDL_BYTEORDER   SDL_LIL_ENDIAN
 
 #endif /* _SDL_config_nintendods_h */

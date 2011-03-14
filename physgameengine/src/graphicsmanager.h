@@ -102,20 +102,21 @@ namespace phys
             std::vector<String> SupportedDevices;
 
             /// @brief Adjust all Settings
-            /// @param Width_ The desired width.
-            /// @param Height_ The desired height.
-            /// @param FullScreen_ True if fullscreen, false if not.
+            /// @param Width The desired width.
+            /// @param Height The desired height.
+            /// @param FullScreen True if fullscreen, false if not.
             /// @details This adjusts most data in this Graphics Settings and accepts new resolution and fullscreen settings. Be
             /// careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens
             /// do not support arbitrary resolutions in fullscreen mode.
-            void Construct( const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
+            void Construct( const Whole &Width, const Whole &Height, const bool &FullScreen);
 
             void CreateRenderWindow();
             void DestroyRenderWindow();
             void InitSDL();
             void ShutdownSDL();
             void InitViewportAndCamera();
-            void UpdateWindowStats();
+            void CorrectViewportAndCamera();
+            bool IsLargerThenDesktop(const Whole& Width, const Whole& Height);
 
             Ogre::Timer* RenderTimer;
             Ogre::RenderWindow* OgreGameWindow;
@@ -132,13 +133,13 @@ namespace phys
             GraphicsManager();
 
             /// @brief Versatile Constructor
-            /// @param Width_ The desired width.
-            /// @param Height_ The desired height.
-            /// @param FullScreen_ True if fullscreen, false if not.
+            /// @param Width The desired width.
+            /// @param Height The desired height.
+            /// @param FullScreen True if fullscreen, false if not.
             /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the
             /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
             /// arbitrary resolutions in fullscreen mode.
-            GraphicsManager(const Whole &Width_, const Whole &Height_, const bool &FullScreen_);
+            GraphicsManager(const Whole &Width, const Whole &Height, const bool &FullScreen);
 
             /// @brief Class Destructor.
             ~GraphicsManager();
@@ -150,8 +151,8 @@ namespace phys
 
             /// @brief Set the Fullscreen Setting
             /// @details Set the Fullscreen Setting
-            /// @param Fullscreen_ This accepts a bool. True for fullscreen, false for windowed
-            void setFullscreen(const bool &Fullscreen_);
+            /// @param Fullscreen This accepts a bool. True for fullscreen, false for windowed
+            void setFullscreen(const bool &Fullscreen);
 
             /// @brief Gets the Height of the Rendering Area
             /// @details Gets the Height of the Rendering Area
@@ -160,8 +161,8 @@ namespace phys
 
             /// @brief Sets the Height.
             /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Height_ This accepts a Whole.
-            void setRenderHeight(const Whole &Height_);
+            /// @param Height This accepts a Whole.
+            void setRenderHeight(const Whole &Height);
 
             /// @brief Gets the Width of the Rendering Area
             /// @details Gets the Width of the Rendering Area
@@ -170,14 +171,14 @@ namespace phys
 
             /// @brief Sets the Width.
             /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Width_ This accepts a Whole.
-            void setRenderWidth(const Whole &Width_);
+            /// @param Width This accepts a Whole.
+            void setRenderWidth(const Whole &Width);
 
             /// @brief Changes the X and Y Resolution at the same time
             /// @details This should be useful in situations where it is not possible to update the width and height separately.
-            /// @param Width_ The new desired Width for the rendering area as a whole number
-            /// @param Height_ The new desired Width for the rendering area as a whole number
-            void setRenderResolution(const Whole &Width_, const Whole &Height_);
+            /// @param Width The new desired Width for the rendering area as a whole number
+            /// @param Height The new desired Width for the rendering area as a whole number
+            void setRenderResolution(const Whole &Width, const Whole &Height);
 
             /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
             /// @details This should be useful in situations where it is not possible to update all of the options separately.

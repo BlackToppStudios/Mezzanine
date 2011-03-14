@@ -72,6 +72,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/managerbase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/meshgenerator.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/metacode.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/objectreference.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffect.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/physgame.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/physicsmanager.h"

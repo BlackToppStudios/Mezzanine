@@ -48,6 +48,7 @@
 #include "world.h"
 #include "physicsmanager.h"
 #include "actorrigid.h"
+#include "objectreference.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internalmeshtools.h.cpp"
 
@@ -73,7 +74,10 @@ namespace phys{
         btScalar bmass=pmass;
         this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
         CollisionObject=physrigidbody;
-        CollisionObject->setUserPointer(this);
+        ObjectReference* ActorRef = new ObjectReference(phys::WOT_ActorRigid,this);
+        Ogre::Any OgreRef(ActorRef);
+        entity->setUserAny(OgreRef);
+        CollisionObject->setUserPointer(ActorRef);
         if(0.0 == bmass)
         {
             CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);

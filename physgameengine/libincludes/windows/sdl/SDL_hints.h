@@ -1,6 +1,6 @@
 /*
     SDL - Simple DihintsMedia Layer
-    Copyright (C) 1997-2010 Sam Lantinga
+    Copyright (C) 1997-2011 Sam Lantinga
 
     This library is free software; you can redistribute it and/or
     modify it under the terms of the GNU Lesser General Public
@@ -154,7 +154,7 @@ extern DECLSPEC const char * SDLCALL SDL_GetHint(const char *name);
  *
  *  This function is called during SDL_Quit() to free stored hints.
  */
-extern DECLSPEC void SDLCALL SDL_ClearHints();
+extern DECLSPEC void SDLCALL SDL_ClearHints(void);
 
 
 /* Ends C function definitions when using C++ */
