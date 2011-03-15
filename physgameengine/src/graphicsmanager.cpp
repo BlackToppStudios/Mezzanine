@@ -228,6 +228,9 @@ namespace phys
             return;
         }
 
+        if(Fullscreen == Settings.Fullscreen)
+            return;
+
         if(!Fullscreen && Settings.Fullscreen)
         {
             if( Settings.RenderWidth > DesktopSettings.RenderWidth || Settings.RenderHeight > DesktopSettings.RenderHeight )
@@ -240,9 +243,18 @@ namespace phys
                 Whole ResultWidth, ResultHeight;
                 crossplatform::SanitizeWindowedRes(Settings.RenderWidth,Settings.RenderHeight,ResultWidth,ResultHeight);
                 setRenderResolution(ResultWidth,ResultHeight);
+                Settings.RenderWidth = DesktopSettings.RenderWidth;
+                Settings.RenderHeight = DesktopSettings.RenderHeight;
             }
         }
-
+        if(Fullscreen && !Settings.Fullscreen)
+        {
+            SDL_DisplayMode FSDisplayMode;
+            FSDisplayMode.w = Settings.RenderWidth;
+            FSDisplayMode.h = Settings.RenderHeight;
+            FSDisplayMode.refresh_rate = 0;
+            SDL_SetWindowDisplayMode(SDLwindow,&FSDisplayMode);
+        }
         if(SDL_SetWindowFullscreen(SDLwindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0)
         {
             OgreGameWindow->setFullscreen(Fullscreen,Settings.RenderWidth,Settings.RenderHeight);
@@ -303,7 +315,7 @@ namespace phys
             SDL_GetWindowDisplayMode(SDLwindow,&CurrentDisplay);
             CurrentDisplay.w = Width;
             CurrentDisplay.h = Height;
-            CurrentDisplay.refresh_rate = 60;
+            //CurrentDisplay.refresh_rate = 60;
             if(SDL_SetWindowDisplayMode(SDLwindow,&CurrentDisplay) == 0)
             {
                 OgreGameWindow->setFullscreen(true,Width,Height);

@@ -250,13 +250,13 @@ bool PostInput()
     if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        //TheWorld->GetGraphicsManager()->setFullscreen(true);
-        GraphicsSettings NewSet;
-        NewSet.RenderWidth = 1280;
-        NewSet.RenderHeight = 1024;
-        NewSet.Fullscreen = true;
-        NewSet.VSync = false;
-        TheWorld->GetGraphicsManager()->setRenderOptions(NewSet);
+        TheWorld->GetGraphicsManager()->setFullscreen(true);
+        //GraphicsSettings NewSet;
+        //NewSet.RenderWidth = 1280;
+        //NewSet.RenderHeight = 1024;
+        //NewSet.Fullscreen = true;
+        //NewSet.VSync = false;
+        //TheWorld->GetGraphicsManager()->setRenderOptions(NewSet);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
@@ -757,7 +757,7 @@ void LoadContent()
     Reverse->SetLocation(Vector3(200,50,-5.0));
     TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
-    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
     BlackHole->CreateSphereShape(750.0);
     BlackHole->SetAllowWorldGravity(false);
     BlackHole->SetFieldStrength(100000.0);

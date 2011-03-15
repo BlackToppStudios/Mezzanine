@@ -53,6 +53,10 @@
 #include <BulletCollision/Gimpact/btGImpactShape.h>
 #include <BulletSoftBody/btSoftRigidDynamicsWorld.h>
 
+#ifdef GetObject
+#undef GetObject
+#endif
+
 namespace phys{
 
     AreaEffect::AreaEffect(const String &name, const Vector3 Location)
@@ -169,7 +173,12 @@ namespace phys{
         {
             // Get the non-ghost object from a given pair and cast it to a usable pointer.
             btCollisionObject* ColObj = Pair[x].m_pProxy0->m_clientObject != Ghost ? (btCollisionObject*)(Pair[x].m_pProxy0->m_clientObject) : (btCollisionObject*)(Pair[x].m_pProxy1->m_clientObject);
-            ActorBase* Actor = (ActorBase*)(ColObj->getUserPointer());
+            ObjectReference* ActorRef = (ObjectReference*)(ColObj->getUserPointer());
+            ActorBase* Actor = NULL;
+            if(phys::WOT_AreaEffect > ActorRef->GetType())
+                Actor = (ActorBase*)ActorRef->GetObject();
+            else
+                continue;
             // Check list for the actor in the pair.
             for( it = OverlappingActors.begin(), bit = Tracker.begin() ; it != OverlappingActors.end() ; it++, bit++ )
             {
