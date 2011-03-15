@@ -276,14 +276,11 @@ bool PostInput()
     else { videobuttonpushed = false; }
 
     // Make a declaration for a static constrain so it survives the function lifetime
-    // static *constraint MouseDragger = 0;
-
-    //static Generic6DofConstraint* Dragger=NULL;
     static Point2PointConstraint* Dragger=NULL;
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        /// @todo determine whether this next snippt should be a function on the UIScreen
+        /// @todo determine whether this next snippet should be a function on the UIScreen
         UI::Button* MouseButton = NULL;
         UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
@@ -698,8 +695,20 @@ void LoadContent()
         TheWorld->Log(AndOneEventToRuleThemAll);
         stringstream XMLStringStream4;
         XMLStringStream4 << AndOneEventToRuleThemAll;
-        TheWorld->Log(XMLStringStream4.str());
         XMLStringStream4 >> AndOneEventToRuleThemAll;
+
+        EventRenderTime TimingEvent(55);
+        EventRenderTime TimingEvent2(0);
+        TheWorld->Log("EventRenderTime TimingEvent and TimingEvent2:");
+        TheWorld->Log(TimingEvent);
+        TheWorld->Log(TimingEvent2);
+        stringstream XMLStringStream5;
+        XMLStringStream5 << TimingEvent;
+        XMLStringStream5 >> TimingEvent2;
+        TheWorld->Log("EventRenderTime TimingEvent and TimingEvent2 After streaming:");
+        TheWorld->Log(TimingEvent);
+        TheWorld->Log(TimingEvent2);
+
 
         TheWorld->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
         XMLStringStream3 >> ASecondCode;
