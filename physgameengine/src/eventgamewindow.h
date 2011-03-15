@@ -178,7 +178,7 @@ namespace phys
 /// @brief Serializes the passed phys::EventGameWindow to XML
 /// @param stream The ostream to send the xml to.
 /// @param Ev the phys::EventGameWindow to be serialized
-/// @return this retruns the ostream, now with the serialized data
+/// @return this returns the ostream, now with the serialized data
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventGameWindow& Ev);
 
 /// @brief Deserialize a phys::EventGameWindow

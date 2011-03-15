@@ -663,7 +663,6 @@ void LoadContent()
         XMLStringStream >> ASecondPoint;
         TheWorld->Log(ASecondPoint);
 
-
         Plane ASinglePlane(Vector3(1.34,23,1.004),4.5);
         TheWorld->Log("ASinglePlane:");
         TheWorld->Log(ASinglePlane);
@@ -681,7 +680,6 @@ void LoadContent()
         XMLStringStream2 >> ASecondPlane;
         TheWorld->Log(ASecondPlane);
 
-
         MetaCode ASingleCode(MetaCode(1,MetaCode::MOUSEBUTTON));
         TheWorld->Log("ASingleCode:");
         TheWorld->Log(ASingleCode);
@@ -694,6 +692,14 @@ void LoadContent()
         MetaCode ASecondCode(MetaCode(0,MetaCode::KEY_FIRST));
         TheWorld->Log("ASecondCode:");
         TheWorld->Log(ASecondCode);
+
+        EventQuit AndOneEventToRuleThemAll;
+        TheWorld->Log("An EventQuit AndOneEventToRuleThemAll:");
+        TheWorld->Log(AndOneEventToRuleThemAll);
+        stringstream XMLStringStream4;
+        XMLStringStream4 << AndOneEventToRuleThemAll;
+        TheWorld->Log(XMLStringStream4.str());
+        XMLStringStream4 >> AndOneEventToRuleThemAll;
 
         TheWorld->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
         XMLStringStream3 >> ASecondCode;

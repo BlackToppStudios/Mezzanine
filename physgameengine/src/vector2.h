@@ -160,7 +160,6 @@ namespace phys
     };
 }
 
-
 /// @brief Used to Serialize an phys::Vector2 to a human readable stream
 /// @details If PHYSXML is disabled, this outputs to the format of [x,y], where x is replaced with the X value,
 /// and y is replaced with the Y value. For example [1,2] could be a serialized Vector2.\n\n

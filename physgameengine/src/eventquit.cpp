@@ -42,6 +42,10 @@
 
 #include "eventquit.h"
 
+#ifdef PHYSXML
+#include <memory>
+#endif
+
 namespace phys
 {
 
@@ -51,6 +55,37 @@ namespace phys
     }
 
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::EventQuit& Ev)
+{
+    stream << "<EventQuit Version=\"1\" />";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventQuit& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "EventQuit", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventQuit& Ev)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        Ev = phys::EventQuit();
+    }else{
+        throw( phys::Exception("Incompatible XML Version for EventQuit: Not Version 1"));
+    }
+}
+#endif // \PHYSXML
+
 
 #endif
 

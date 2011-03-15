@@ -45,6 +45,7 @@
 
 #include "crossplatformexport.h"
 #include "eventbase.h"
+#include "xml.h"
 
 using namespace std;
 
@@ -69,9 +70,32 @@ namespace phys
             /// this functions returns EventType::QuitMessage, then and event pointer can safely be
             /// cast to phys::EventQuit . This method is inherited from phys::Event .
             virtual EventType GetType() const;
-
     };
+
 }
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::EventQuit to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::EventQuit to be serialized
+/// @return this retruns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventQuit& Ev);
+
+/// @brief Deserialize a phys::EventQuit
+/// @param stream The istream to get the xml from to (re)make the phys::EventQuit.
+/// @param Ev the phys::EventQuit to be deserialized.
+/// @return this returns the ostream, advanced past the phys::EventQuit that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventQuit& Ev);
+
+/// @brief Set all values of a phys::EventQuit from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::EventQuit.
+/// @param Ev the phys::EventQuit to be reset.
+/// @return This returns thexml::Node that was passed in.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::EventQuit& Ev);
+
+#endif // \PHYSXML
 
 #endif
 
