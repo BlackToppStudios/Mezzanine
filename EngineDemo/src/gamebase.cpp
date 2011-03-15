@@ -448,7 +448,6 @@ bool CheckForStuff()
     EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
     while(0 != OneWindowEvent)
     {
-        int t = OneWindowEvent->GetType();
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
             { TheWorld->LogAndThrow("Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
@@ -457,20 +456,13 @@ bool CheckForStuff()
             TheWorld->Log("Invalid EventID on GameWindow Event");
             TheWorld->LogAndThrow(OneWindowEvent->GetEventID());
         }
-    t = OneWindowEvent->GetEventID();
 
         TheWorld->Log(*OneWindowEvent);
-    t = OneWindowEvent->GetEventID();
-        TheWorld->Log(EventGameWindow::GameWindowEventIDToString((EventGameWindow::GameWindowEventID)t));
-    t = OneWindowEvent->GetEventID();
-
+        TheWorld->Log(EventGameWindow::GameWindowEventIDToString(OneWindowEvent->GetEventID()));
         stringstream eventxml;
         eventxml << *OneWindowEvent;    // Test XML conversion and reconstruction
-    t = OneWindowEvent->GetEventID();
         EventGameWindow AnotherWindowEvent(EventGameWindow::GAME_WINDOW_NONE,0,0);
-    t = OneWindowEvent->GetEventID();
         eventxml >> AnotherWindowEvent;
-    t = OneWindowEvent->GetEventID();
         TheWorld->Log(AnotherWindowEvent);
 
         if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
@@ -483,7 +475,6 @@ bool CheckForStuff()
             }
         }
 
-        t = OneWindowEvent->GetEventID();
         delete OneWindowEvent;
         OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
     }

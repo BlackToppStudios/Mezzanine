@@ -77,7 +77,7 @@ AttenuationStyle {\bfseries AttenStyle}}
 This is a gravity well implementation of the \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class. This class is not a gravity field, where gravity only pulls in one direction. Instead this class will always pull objects inside it towards the field center. \par
  This class works best with sphere's, but can be made to work with any shape. 
 
-Definition at line 286 of file areaeffect.h.
+Definition at line 290 of file areaeffect.h.
 
 
 
@@ -101,7 +101,7 @@ Basic initialization constructor.
 \item[{\em name}]The name of the field. \item[{\em Location}]The location of the AE field. \end{DoxyParams}
 
 
-Definition at line 585 of file areaeffect.cpp.
+Definition at line 558 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_aeeeb63ceb3feb1223f8339f73412777d}{
 \index{phys::GravityWell@{phys::GravityWell}!$\sim$GravityWell@{$\sim$GravityWell}}
@@ -118,7 +118,7 @@ Destructor.
 
 Class destructor. 
 
-Definition at line 594 of file areaeffect.cpp.
+Definition at line 567 of file areaeffect.cpp.
 
 
 
@@ -142,7 +142,7 @@ Implements \hyperlink{classphys_1_1AreaEffect_a3b285ecfcf9c9200662d510e48dd222a}
 
 
 
-Definition at line 598 of file areaeffect.cpp.
+Definition at line 571 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_a6308d71921477e9031173e6900237f21}{
 \index{phys::GravityWell@{phys::GravityWell}!GetAllowWorldGravity@{GetAllowWorldGravity}}
@@ -162,7 +162,7 @@ Returns a bool indicating whether objects inside are affected by world gravity.
 \end{DoxyReturn}
 
 
-Definition at line 679 of file areaeffect.cpp.
+Definition at line 652 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_abcf5f7983c33307a54b362988b2d562a}{
 \index{phys::GravityWell@{phys::GravityWell}!GetAttenuationAmount@{GetAttenuationAmount}}
@@ -182,7 +182,7 @@ Returns a Real value
 \end{DoxyReturn}
 
 
-Definition at line 695 of file areaeffect.cpp.
+Definition at line 668 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_af6720913923c6376c893bc34bca7e8a4}{
 \index{phys::GravityWell@{phys::GravityWell}!GetAttenuationStyle@{GetAttenuationStyle}}
@@ -202,7 +202,7 @@ Returns the style of attenuation currently being used by this field.
 \end{DoxyReturn}
 
 
-Definition at line 690 of file areaeffect.cpp.
+Definition at line 663 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_afb006e895ec0465cc7d8ee85aff25776}{
 \index{phys::GravityWell@{phys::GravityWell}!GetFieldStrength@{GetFieldStrength}}
@@ -222,7 +222,7 @@ Returns a Real representing the value that is being multiplied by the direction 
 \end{DoxyReturn}
 
 
-Definition at line 669 of file areaeffect.cpp.
+Definition at line 642 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_a1dc68391835134835a9969ed823a0b81}{
 \index{phys::GravityWell@{phys::GravityWell}!SetAllowWorldGravity@{SetAllowWorldGravity}}
@@ -245,7 +245,7 @@ Changing this value while the field is in the world and active is not recommende
 \item[{\em WorldGravity}]If true, then forces exerted by this field will be added to the world gravity, otherwise world gravity for objects inside will be set to zero. \end{DoxyParams}
 
 
-Definition at line 674 of file areaeffect.cpp.
+Definition at line 647 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_a736d4b9b541b3cada4b0a31f422d6020}{
 \index{phys::GravityWell@{phys::GravityWell}!SetAttenuation@{SetAttenuation}}
@@ -266,7 +266,7 @@ Sets the attenuation for this field.
 \item[{\em Amount}]The amount of force that is dropped off per 1 unit of distance objects are from the AE center. \item[{\em Style}]The style of attenuation to apply, see the AttenuationStyle enum for more details. \end{DoxyParams}
 
 
-Definition at line 684 of file areaeffect.cpp.
+Definition at line 657 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_ab4ead80191e25dc9cb017ffaab44602f}{
 \index{phys::GravityWell@{phys::GravityWell}!SetFieldStrength@{SetFieldStrength}}
@@ -286,7 +286,7 @@ The direction of the field is based on the current position of the object in the
 \item[{\em FieldStrength}]The strength the field will have when exerting force onto other objects. \end{DoxyParams}
 
 
-Definition at line 664 of file areaeffect.cpp.
+Definition at line 637 of file areaeffect.cpp.
 
 
 

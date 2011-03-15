@@ -67,24 +67,24 @@ namespace phys
                 GAME_WINDOW_NONE=0,                     /**< Never used */
                 GAME_WINDOW_FIRST = GAME_WINDOW_NONE,   /**< Used only as the lower bounds of this enumeration*/
 
-                GAME_WINDOW_SHOWN,                      /**< Window has been shown */
-                GAME_WINDOW_HIDDEN,                     /**< Window has been hidden */
-                GAME_WINDOW_EXPOSED,                    /**< Window has been exposed and should be redrawn */
+                GAME_WINDOW_SHOWN = 1,                  /**< Window has been shown */
+                GAME_WINDOW_HIDDEN = 2,                 /**< Window has been hidden */
+                GAME_WINDOW_EXPOSED = 3,                /**< Window has been exposed and should be redrawn */
 
-                GAME_WINDOW_MOVED,                      /**< Window has been moved to data1, data2 */
+                GAME_WINDOW_MOVED = 4,                  /**< Window has been moved to data1, data2 */
 
-                GAME_WINDOW_RESIZED,                    /**< Window has been resized to data1xdata2 */
-                GAME_WINDOW_SIZE_CHANGED,               /**< The window size has changed, either as a result of an API call or through the system or user changing the window size. */
-                GAME_WINDOW_MINIMIZED,                  /**< Window has been minimized */
-                GAME_WINDOW_MAXIMIZED,                  /**< Window has been maximized */
-                GAME_WINDOW_RESTORED,                   /**< Window has been restored to normal size and position */
+                GAME_WINDOW_RESIZED = 5,                /**< Window has been resized to data1xdata2 */
+                GAME_WINDOW_SIZE_CHANGED = 6,           /**< The window size has changed, either as a result of an API call or through the system or user changing the window size. */
+                GAME_WINDOW_MINIMIZED = 7,              /**< Window has been minimized */
+                GAME_WINDOW_MAXIMIZED = 8,              /**< Window has been maximized */
+                GAME_WINDOW_RESTORED = 9,               /**< Window has been restored to normal size and position */
 
-                GAME_WINDOW_ENTER,                      /**< Window has gained mouse focus */
-                GAME_WINDOW_LEAVE,                      /**< Window has lost mouse focus */
-                GAME_WINDOW_FOCUS_GAINED,               /**< Window has gained keyboard focus */
-                GAME_WINDOW_FOCUS_LOST,                 /**< Window has lost keyboard focus */
+                GAME_WINDOW_ENTER = 10,                 /**< Window has gained mouse focus */
+                GAME_WINDOW_LEAVE = 11,                 /**< Window has lost mouse focus */
+                GAME_WINDOW_FOCUS_GAINED = 12,          /**< Window has gained keyboard focus */
+                GAME_WINDOW_FOCUS_LOST = 13,            /**< Window has lost keyboard focus */
 
-                GAME_WINDOW_CLOSE,                      /**< The window manager requests that the window be closed */
+                GAME_WINDOW_CLOSE = 14,                 /**< The window manager requests that the window be closed */
                 GAME_WINDOW_LAST = GAME_WINDOW_CLOSE    /**< Used only as the Upper bounds of this enumeration*/
             } GameWindowEventID;
 
@@ -117,12 +117,14 @@ namespace phys
 
             /// @brief Where or how much happened, Get the first event dependent data.
             /// @return An int with some details about the the event that happened.
-            /// @todo document GetFirstEventData further.
+            /// @details Currently this provides the x values for the new window locations in the event that a window moves, or it
+            /// is resized. If moved it has the new location, if resized it has the new size. This may be used in places in the future.
             int GetFirstEventData() const;
 
             /// @brief Where or how much happened, Get the second event dependent data.
+            /// @details Currently this provides the y values for the new window locations in the event that a window moves, or it
+            /// is resized. If moved it has the new location, if resized it has the new size. This may be used in places in the future.
             /// @return An int with some details about the the event that happened.
-            /// @todo document GetSecondEventData further.
             int GetSecondEventData() const;
 
             /// @brief Converts GameWindowEventID To Strings
