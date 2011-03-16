@@ -250,13 +250,13 @@ bool PostInput()
     if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        //TheWorld->GetGraphicsManager()->setFullscreen(true);
-        GraphicsSettings NewSet;
-        NewSet.RenderWidth = 1280;
-        NewSet.RenderHeight = 1024;
-        NewSet.Fullscreen = true;
-        NewSet.VSync = false;
-        TheWorld->GetGraphicsManager()->setRenderOptions(NewSet);
+        TheWorld->GetGraphicsManager()->setFullscreen(true);
+        //GraphicsSettings NewSet;
+        //NewSet.RenderWidth = 1280;
+        //NewSet.RenderHeight = 1024;
+        //NewSet.Fullscreen = true;
+        //NewSet.VSync = false;
+        //TheWorld->GetGraphicsManager()->setRenderOptions(NewSet);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
@@ -276,14 +276,11 @@ bool PostInput()
     else { videobuttonpushed = false; }
 
     // Make a declaration for a static constrain so it survives the function lifetime
-    // static *constraint MouseDragger = 0;
-
-    //static Generic6DofConstraint* Dragger=NULL;
     static Point2PointConstraint* Dragger=NULL;
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        /// @todo determine whether this next snippt should be a function on the UIScreen
+        /// @todo determine whether this next snippet should be a function on the UIScreen
         UI::Button* MouseButton = NULL;
         UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
@@ -448,7 +445,6 @@ bool CheckForStuff()
     EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
     while(0 != OneWindowEvent)
     {
-        int t = OneWindowEvent->GetType();
         if(OneWindowEvent->GetType()!=EventBase::GameWindow)
             { TheWorld->LogAndThrow("Trying to process a non-EventGameWindow as an EventGameWindow."); }
 
@@ -457,20 +453,13 @@ bool CheckForStuff()
             TheWorld->Log("Invalid EventID on GameWindow Event");
             TheWorld->LogAndThrow(OneWindowEvent->GetEventID());
         }
-    t = OneWindowEvent->GetEventID();
 
         TheWorld->Log(*OneWindowEvent);
-    t = OneWindowEvent->GetEventID();
-        TheWorld->Log(EventGameWindow::GameWindowEventIDToString((EventGameWindow::GameWindowEventID)t));
-    t = OneWindowEvent->GetEventID();
-
+        TheWorld->Log(EventGameWindow::GameWindowEventIDToString(OneWindowEvent->GetEventID()));
         stringstream eventxml;
         eventxml << *OneWindowEvent;    // Test XML conversion and reconstruction
-    t = OneWindowEvent->GetEventID();
         EventGameWindow AnotherWindowEvent(EventGameWindow::GAME_WINDOW_NONE,0,0);
-    t = OneWindowEvent->GetEventID();
         eventxml >> AnotherWindowEvent;
-    t = OneWindowEvent->GetEventID();
         TheWorld->Log(AnotherWindowEvent);
 
         if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
@@ -483,7 +472,6 @@ bool CheckForStuff()
             }
         }
 
-        t = OneWindowEvent->GetEventID();
         delete OneWindowEvent;
         OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
     }
@@ -672,7 +660,6 @@ void LoadContent()
         XMLStringStream >> ASecondPoint;
         TheWorld->Log(ASecondPoint);
 
-
         Plane ASinglePlane(Vector3(1.34,23,1.004),4.5);
         TheWorld->Log("ASinglePlane:");
         TheWorld->Log(ASinglePlane);
@@ -690,7 +677,6 @@ void LoadContent()
         XMLStringStream2 >> ASecondPlane;
         TheWorld->Log(ASecondPlane);
 
-
         MetaCode ASingleCode(MetaCode(1,MetaCode::MOUSEBUTTON));
         TheWorld->Log("ASingleCode:");
         TheWorld->Log(ASingleCode);
@@ -703,6 +689,26 @@ void LoadContent()
         MetaCode ASecondCode(MetaCode(0,MetaCode::KEY_FIRST));
         TheWorld->Log("ASecondCode:");
         TheWorld->Log(ASecondCode);
+
+        EventQuit AndOneEventToRuleThemAll;
+        TheWorld->Log("An EventQuit AndOneEventToRuleThemAll:");
+        TheWorld->Log(AndOneEventToRuleThemAll);
+        stringstream XMLStringStream4;
+        XMLStringStream4 << AndOneEventToRuleThemAll;
+        XMLStringStream4 >> AndOneEventToRuleThemAll;
+
+        EventRenderTime TimingEvent(55);
+        EventRenderTime TimingEvent2(0);
+        TheWorld->Log("EventRenderTime TimingEvent and TimingEvent2:");
+        TheWorld->Log(TimingEvent);
+        TheWorld->Log(TimingEvent2);
+        stringstream XMLStringStream5;
+        XMLStringStream5 << TimingEvent;
+        XMLStringStream5 >> TimingEvent2;
+        TheWorld->Log("EventRenderTime TimingEvent and TimingEvent2 After streaming:");
+        TheWorld->Log(TimingEvent);
+        TheWorld->Log(TimingEvent2);
+
 
         TheWorld->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
         XMLStringStream3 >> ASecondCode;
@@ -757,7 +763,7 @@ void LoadContent()
     Reverse->SetLocation(Vector3(200,50,-5.0));
     TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
-    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
     BlackHole->CreateSphereShape(750.0);
     BlackHole->SetAllowWorldGravity(false);
     BlackHole->SetFieldStrength(100000.0);

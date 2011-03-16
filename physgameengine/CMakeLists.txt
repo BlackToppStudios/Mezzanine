@@ -266,8 +266,8 @@ endif(${WIN32})
 # Linux Build Specific Items
 
 if(${UNIX})
-	if(${APPLE}) 	#if(${UNIX} AND NOT ${APPLE}) #does not appear to work as expected.
-	else(${APPLE})
+	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 	#if(${UNIX} AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin") #does not appear to work as expected.
+	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 		message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
 		set(BuildPlatform linux)
 
@@ -298,7 +298,7 @@ if(${UNIX})
 		)
 
 		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
-	endif(${APPLE})
+	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif(${UNIX})
 
 #######################################
@@ -314,51 +314,32 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
         include(FindOpenAL)
 	message("OpenAL Headers and Library Found - ${OPENAL_INCLUDE_DIR}")
 
+
 	include(FindOgg)
 	message("Ogg Headers and Library Found - ${OGG_FOUND}")
-
-	include(FindVorbis)
-	message("Vorbis Headers and Library Found - ${Vorbis_FOUND}")
 
 	include(FindOgre)
 	message("Ogre Headers And library Found -	"${OGRE_INCLUDE_DIR}"")
 
 	include(/Library/Frameworks/Ogre.framework)
 
-	include(FindBoost)
-	message("Boost Headers And library Found - ${BOOST_INCLUDE_DIR}")
-	
 	find_package(OGRE REQUIRED)
         
 	include_directories(
-		libincludes/common/sdlsrc/SDL/include
-		"${OPENAL_INCLUDE_DIR}"
+		${${PROJECT_NAME}_ROOT_DIR}/libincludes/common/sdlsrc/SDL/include
+		${OPENAL_INCLUDE_DIR}
 		"${OGRE_INCLUDE_DIR}"
-	#	/Library/Frameworks/Ogre.framework/Headers;/Library/Frameworks/Ogre.framework	
-
-		#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/frameworks/Ogre.framwork/headers"
-		#"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/include/OGRE"
-		/Users/hydrowolfy/Documents/newphysgame/physgame/physgameengine/libincludes/macosx/ogresrc/boost_1_42
+		${${PROJECT_NAME}_ROOT_DIR}/libincludes/macosx/ogresrc/boost_1_42
 		"${OGG_INCLUDE_DIR}"
-
-		#"/opt/local/include"
 	)
-#	FIND_LIBRARY(OGRE_LIBRARY Ogre)
 
 	link_directories("${OGRE_LIB_DIR}")
 
-	findpkg_framework(OGRE)
 	set(SDLName  SDL)
     
 
 	add_definitions( -DMACOSX)
 	message ("${PROJECT_NAME} - End Apple Specific Build Process")
-
-INSTALL(CODE "
-   include(BundleUtilities)
-   fixup_bundle(\"${APPS}\"   \"\"   \"${DIRS}\")
-   " COMPONENT Runtime)
-
 
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
@@ -407,19 +388,19 @@ set( Bullet_LibraryNames
 )
 
 
-if(${APPLE})
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	target_link_libraries(
 	    ${PROJECT_NAME}
 	    "${OGRE_LIBRARIES}"
 	    ${Bullet_LibraryNames}
 	    "${OPENAL_LIBRARY}" 
-	    /Users/hydrowolfy/Documents/newphysgame/physgame/physgameengine/data/macosx/sdl/libSDL.dylib
- 	  #  "${OGG_LIBRARY}"
-		/Users/hydrowolfy/Downloads/cAudio2.1.0-OSX/bin/Osx/libcAudio.dylib
+	    ${${PROJECT_NAME}_ROOT_DIR}/data/macosx/sdl/libSDL.dylib
+	    ${${PROJECT_NAME}_ROOT_DIR}/data/macosx/caudio/libcAudio.dylib
 	)
-else(${APPLE})
+
+else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDLName} )
-endif(${APPLE})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
 # Build Time File copying
@@ -451,8 +432,9 @@ endif(${WIN32})
 #######################################
 # Linux File Copy Specific Items
 if(${UNIX})
-	if(${APPLE})
-	else(${APPLE})
+	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 	#if(${UNIX} AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin") #does not appear to work as expected.
+	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
 		message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
 
 		#Copy System Dependant files during build time
@@ -462,19 +444,19 @@ if(${UNIX})
 		CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
 
 		message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
-	endif(${APPLE})
+	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif(${UNIX})
 
 #######################################
 # Mac File Copy pecific Items
-if(${APPLE})
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 	
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dylib data/${BuildPlatform}/ogre/RenderSystem_GL.dylib )
 #	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Ogre.framework Ogre.framework )
 	
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
-endif(${APPLE})
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
 # The End

@@ -98,10 +98,20 @@ namespace phys
     class PHYS_LIB EventManager: public ManagerBase
     {
         private:
+            /// @internal
+            /// @brief All the internal data for this EventManager
             internal::EventManagerInternalData* _Data;
 
-            //Checks for quit messages and adds them to the queue
+            /// @internal
+            /// @brief Checks for quit messages and adds them to the queue
             void UpdateQuitEvents();
+
+            /// @brief Private copy semantics, because copying this will cause problems.
+            /// @param Dummy A dummy argument
+            /// @details Since copying, or having more than one event manager doesn't seem to make sense
+            /// I just made it non-copyable.
+//            EventManager(EventManager Dummy)
+//            {}
 
         public:
             /// @brief Default constructor

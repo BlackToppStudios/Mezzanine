@@ -46,6 +46,7 @@
 #include "crossplatformexport.h"
 #include "eventbase.h"
 #include "datatypes.h"
+#include "xml.h"
 
 using namespace std;
 
@@ -77,8 +78,39 @@ namespace phys
             /// @brief Returns the a floating point value with the amount of time.
             /// @details Returns the a floating point value with the amount of time.
             /// @return A floating point value with the amount of time.
-            Whole getMilliSecondsSinceLastFrame();
+            Whole getMilliSecondsSinceLastFrame() const;
+
+            /// @brief Assignment operator
+            /// @param rhs the Right Hand object in the assignment operator
+            void operator= (const EventRenderTime& rhs);
+
     };
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::EventRenderTime to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::EventRenderTime to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventRenderTime& Ev);
+
+/// @brief Deserialize a phys::EventRenderTime
+/// @param stream The istream to get the xml from to (re)make the phys::EventRenderTime.
+/// @param Ev the phys::EventRenderTime to be deserialized.
+/// @return this returns the ostream, advanced past the phys::EventRenderTime that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventRenderTime& Ev);
+
+/// @brief Set all values of a phys::EventRenderTime from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::EventRenderTime.
+/// @param Ev the phys::EventRenderTime to be reset.
+/// @return This returns thexml::Node that was passed in.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::EventRenderTime& Ev);
+
+#endif // \PHYSXML
+
+
 
 #endif

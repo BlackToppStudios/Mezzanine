@@ -23,7 +23,9 @@ void \hyperlink{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18
 void \hyperlink{namespacephys_1_1crossplatform_a858c6c4155c4315d6eafb18cc30ce434}{RenderPhysWorld} (Ogre::RenderWindow $\ast$TheOgreWindow, SDL\_\-Window $\ast$SDLWindow)
 \begin{DoxyCompactList}\small\item\em Renders the current world contents to the screen. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{namespacephys_1_1crossplatform_af34fd6dc13360417a87c579744932dce}{GetPlatform} ()
-\begin{DoxyCompactList}\small\item\em Gets the platform currently being run on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Gets the platform currently being run on. \item\end{DoxyCompactList}\item 
+void PHYS\_\-LIB \hyperlink{namespacephys_1_1crossplatform_ad74953ea69d7b708261b3fc0fc623644}{SanitizeWindowedRes} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height)
+\begin{DoxyCompactList}\small\item\em Gets cleaned dimensions for a game window. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -138,6 +140,23 @@ Renders the current world contents to the screen.
 This makes use of \hyperlink{classphys_1_1World}{World} internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Currently this references Ogre systems, that makes this internal Handles the actual cross platform swapping of graphics buffers. 
 \begin{DoxyParams}{Parameters}
 \item[{\em TheWorld}]A pointer to the game window to be update to be rendered. This is considered an internal component \end{DoxyParams}
+\hypertarget{namespacephys_1_1crossplatform_ad74953ea69d7b708261b3fc0fc623644}{
+\index{phys::crossplatform@{phys::crossplatform}!SanitizeWindowedRes@{SanitizeWindowedRes}}
+\index{SanitizeWindowedRes@{SanitizeWindowedRes}!phys::crossplatform@{phys::crossplatform}}
+\subsubsection[{SanitizeWindowedRes}]{\setlength{\rightskip}{0pt plus 5cm}void PHYS\_\-LIB phys::crossplatform::SanitizeWindowedRes (
+\begin{DoxyParamCaption}
+\item[{Real \&}]{ Width, }
+\item[{Real \&}]{ Height}
+\end{DoxyParamCaption}
+)}}
+\label{d4/d59/namespacephys_1_1crossplatform_ad74953ea69d7b708261b3fc0fc623644}
+
+
+Gets cleaned dimensions for a game window. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Width}]The width of the client area. \item[{\em Height}]The Height of the client area. \end{DoxyParams}
 \hypertarget{namespacephys_1_1crossplatform_ab525e3abf3625b83954e2d55a5869d18}{
 \index{phys::crossplatform@{phys::crossplatform}!WaitMilliseconds@{WaitMilliseconds}}
 \index{WaitMilliseconds@{WaitMilliseconds}!phys::crossplatform@{phys::crossplatform}}

@@ -75,84 +75,107 @@
 <a name="l00044"></a>00044 <span class="comment">///////////////////////////////////////</span>
 <a name="l00045"></a>00045 <span class="comment"></span>
 <a name="l00046"></a>00046 <span class="keyword">namespace </span>phys
-<a name="l00047"></a>00047 {
-<a name="l00048"></a>00048     <span class="keyword">namespace </span>UI
-<a name="l00049"></a>00049     {<span class="comment"></span>
-<a name="l00050"></a>00050 <span class="comment">        /// @enum RenderPriority</span>
-<a name="l00051"></a>00051 <span class="comment">        /// @brief Used by UI elements created by layers to determine z-ordering within a layer.</span>
-<a name="l00052"></a>00052 <span class="comment">        /// @details This essentially means we&#39;re adding layers to our layers without the messy</span>
-<a name="l00053"></a>00053 <span class="comment">        /// and un-intuitive re-coding necessary to actually accomplish that.</span>
-<a name="l00054"></a>00054 <span class="comment"></span>        <span class="keyword">enum</span> RenderPriority
-<a name="l00055"></a>00055         {
-<a name="l00056"></a>00056             RP_Low,
-<a name="l00057"></a>00057             RP_Medium,
-<a name="l00058"></a>00058             RP_High
-<a name="l00059"></a>00059         };<span class="comment"></span>
-<a name="l00060"></a>00060 <span class="comment">        /// @enum ResizeableAnchor</span>
-<a name="l00061"></a>00061 <span class="comment">        /// @brief Used by UI container classes to determine their movement behavior when the container is resized.</span>
-<a name="l00062"></a>00062 <span class="comment">        /// @details RA_AnchorTop means it stays in the same position if given a resize event relative to the top.</span>
-<a name="l00063"></a>00063 <span class="comment">        /// RA_AnchorBottom means the same as RA_AnchorTop but for the bottom of the container.  RA_AnchorMiddle means</span>
-<a name="l00064"></a>00064 <span class="comment">        /// it&#39;ll change position by half of the pixels that the container was resized.</span>
-<a name="l00065"></a>00065 <span class="comment"></span>        <span class="keyword">enum</span> ResizeableAnchor
-<a name="l00066"></a>00066         {
-<a name="l00067"></a>00067             RA_AnchorTopLeft,
-<a name="l00068"></a>00068             RA_AnchorTop,
-<a name="l00069"></a>00069             RA_AnchorTopRight,
-<a name="l00070"></a>00070             RA_AnchorLeft,
-<a name="l00071"></a>00071             RA_AnchorMiddle,
-<a name="l00072"></a>00072             RA_AnchorRight,
-<a name="l00073"></a>00073             RA_AnchorBottomLeft,
-<a name="l00074"></a>00074             RA_AnchorBottom,
-<a name="l00075"></a>00075             RA_AnchorBottomRight
-<a name="l00076"></a>00076         };<span class="comment"></span>
-<a name="l00077"></a>00077 <span class="comment">        /// @enum ResizeableTether</span>
-<a name="l00078"></a>00078 <span class="comment">        /// @brief Used by UI container classes to determine their resize behavior when the container is resized.</span>
-<a name="l00079"></a>00079 <span class="comment">        /// @details RT_TetherHorizontal means it will resize itself equally during any Horizontal resizing of the container.</span>
-<a name="l00080"></a>00080 <span class="comment">        /// RT_TetherVertical means the same as RT_TetherHorizontal, but for Vertical resizes.  RT_TetherBoth means it&#39;ll do both.</span>
-<a name="l00081"></a>00081 <span class="comment"></span>        <span class="keyword">enum</span> ResizeableTether
-<a name="l00082"></a>00082         {
-<a name="l00083"></a>00083             RT_TetherBoth,
-<a name="l00084"></a>00084             RT_TetherNone,
-<a name="l00085"></a>00085             RT_TetherHorizontal,
-<a name="l00086"></a>00086             RT_TetherVertical
-<a name="l00087"></a>00087         };<span class="comment"></span>
-<a name="l00088"></a>00088 <span class="comment">        /// @enum ScrollbarStyle</span>
-<a name="l00089"></a>00089 <span class="comment">        /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.</span>
-<a name="l00090"></a>00090 <span class="comment">        /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.</span>
-<a name="l00091"></a>00091 <span class="comment"></span>        <span class="keyword">enum</span> ScrollbarStyle
-<a name="l00092"></a>00092         {
-<a name="l00093"></a>00093             SB_NoButtons,
-<a name="l00094"></a>00094             SB_Separate,
-<a name="l00095"></a>00095             SB_TogetherUpLeft,
-<a name="l00096"></a>00096             SB_TogetherDownRight
-<a name="l00097"></a>00097         };<span class="comment"></span>
-<a name="l00098"></a>00098 <span class="comment">        /// @enum TextHorizontalAlign</span>
-<a name="l00099"></a>00099 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
-<a name="l00100"></a>00100 <span class="comment">        /// @details This enum determines the Horizontal alignment of text.</span>
-<a name="l00101"></a>00101 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
-<a name="l00102"></a>00102 <span class="comment"></span>        <span class="keyword">enum</span> TextHorizontalAlign
-<a name="l00103"></a>00103         {
-<a name="l00104"></a>00104             Txt_Left,
-<a name="l00105"></a>00105             Txt_Right,
-<a name="l00106"></a>00106             Txt_Middle
-<a name="l00107"></a>00107         };<span class="comment"></span>
-<a name="l00108"></a>00108 <span class="comment">        /// @enum TextVerticalAlign</span>
-<a name="l00109"></a>00109 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
-<a name="l00110"></a>00110 <span class="comment">        /// @details This enum determines the Vertical alignment of text.</span>
-<a name="l00111"></a>00111 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
-<a name="l00112"></a>00112 <span class="comment"></span>        <span class="keyword">enum</span> TextVerticalAlign
-<a name="l00113"></a>00113         {
-<a name="l00114"></a>00114             Txt_Top,
-<a name="l00115"></a>00115             Txt_Bottom,
-<a name="l00116"></a>00116             Txt_Center
-<a name="l00117"></a>00117         };
-<a name="l00118"></a>00118     }
-<a name="l00119"></a>00119 }
-<a name="l00120"></a>00120 
-<a name="l00121"></a>00121 <span class="preprocessor">#endif</span>
+<a name="l00047"></a>00047 {<span class="comment"></span>
+<a name="l00048"></a>00048 <span class="comment">    /// @enum WorldObjectType</span>
+<a name="l00049"></a>00049 <span class="comment">    /// @brief Used by various classes to help identify what class an object is.</span>
+<a name="l00050"></a>00050 <span class="comment">    /// @details This is mostly used internally for casting void pointers.</span>
+<a name="l00051"></a><a class="code" href="../../df/dec/namespacephys.html#a56410935e1c614a932dbc91ee7330df1">00051</a> <span class="comment"></span>    <span class="keyword">enum</span> <a class="code" href="../../df/dec/namespacephys.html#a56410935e1c614a932dbc91ee7330df1" title="Used by various classes to help identify what class an object is.">WorldObjectType</a>
+<a name="l00052"></a>00052     {
+<a name="l00053"></a>00053         <span class="comment">// Actors</span>
+<a name="l00054"></a>00054         WOT_ActorBase,
+<a name="l00055"></a>00055         WOT_ActorRigid,
+<a name="l00056"></a>00056         WOT_ActorSoft,
+<a name="l00057"></a>00057         WOT_ActorRagdoll,
+<a name="l00058"></a>00058         WOT_ActorTerrain,
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060         <span class="comment">// AE Fields</span>
+<a name="l00061"></a>00061         WOT_AreaEffect,
+<a name="l00062"></a>00062         WOT_GravityField,
+<a name="l00063"></a>00063         WOT_GravityWell,
+<a name="l00064"></a>00064 
+<a name="l00065"></a>00065         <span class="comment">// Scene Objects</span>
+<a name="l00066"></a>00066         WOT_Light,
+<a name="l00067"></a>00067         WOT_ParticleEffect,
+<a name="l00068"></a>00068         WOT_Camera
+<a name="l00069"></a>00069     };
+<a name="l00070"></a>00070 
+<a name="l00071"></a>00071     <span class="keyword">namespace </span>UI
+<a name="l00072"></a>00072     {<span class="comment"></span>
+<a name="l00073"></a>00073 <span class="comment">        /// @enum RenderPriority</span>
+<a name="l00074"></a>00074 <span class="comment">        /// @brief Used by UI elements created by layers to determine z-ordering within a layer.</span>
+<a name="l00075"></a>00075 <span class="comment">        /// @details This essentially means we&#39;re adding layers to our layers without the messy</span>
+<a name="l00076"></a>00076 <span class="comment">        /// and un-intuitive re-coding necessary to actually accomplish that.</span>
+<a name="l00077"></a>00077 <span class="comment"></span>        <span class="keyword">enum</span> RenderPriority
+<a name="l00078"></a>00078         {
+<a name="l00079"></a>00079             RP_Low,
+<a name="l00080"></a>00080             RP_Medium,
+<a name="l00081"></a>00081             RP_High
+<a name="l00082"></a>00082         };<span class="comment"></span>
+<a name="l00083"></a>00083 <span class="comment">        /// @enum ResizeableAnchor</span>
+<a name="l00084"></a>00084 <span class="comment">        /// @brief Used by UI container classes to determine their movement behavior when the container is resized.</span>
+<a name="l00085"></a>00085 <span class="comment">        /// @details RA_AnchorTop means it stays in the same position if given a resize event relative to the top.</span>
+<a name="l00086"></a>00086 <span class="comment">        /// RA_AnchorBottom means the same as RA_AnchorTop but for the bottom of the container.  RA_AnchorMiddle means</span>
+<a name="l00087"></a>00087 <span class="comment">        /// it&#39;ll change position by half of the pixels that the container was resized.</span>
+<a name="l00088"></a>00088 <span class="comment"></span>        <span class="keyword">enum</span> ResizeableAnchor
+<a name="l00089"></a>00089         {
+<a name="l00090"></a>00090             RA_AnchorTopLeft,
+<a name="l00091"></a>00091             RA_AnchorTop,
+<a name="l00092"></a>00092             RA_AnchorTopRight,
+<a name="l00093"></a>00093             RA_AnchorLeft,
+<a name="l00094"></a>00094             RA_AnchorMiddle,
+<a name="l00095"></a>00095             RA_AnchorRight,
+<a name="l00096"></a>00096             RA_AnchorBottomLeft,
+<a name="l00097"></a>00097             RA_AnchorBottom,
+<a name="l00098"></a>00098             RA_AnchorBottomRight
+<a name="l00099"></a>00099         };<span class="comment"></span>
+<a name="l00100"></a>00100 <span class="comment">        /// @enum ResizeableTether</span>
+<a name="l00101"></a>00101 <span class="comment">        /// @brief Used by UI container classes to determine their resize behavior when the container is resized.</span>
+<a name="l00102"></a>00102 <span class="comment">        /// @details RT_TetherHorizontal means it will resize itself equally during any Horizontal resizing of the container.</span>
+<a name="l00103"></a>00103 <span class="comment">        /// RT_TetherVertical means the same as RT_TetherHorizontal, but for Vertical resizes.  RT_TetherBoth means it&#39;ll do both.</span>
+<a name="l00104"></a>00104 <span class="comment"></span>        <span class="keyword">enum</span> ResizeableTether
+<a name="l00105"></a>00105         {
+<a name="l00106"></a>00106             RT_TetherBoth,
+<a name="l00107"></a>00107             RT_TetherNone,
+<a name="l00108"></a>00108             RT_TetherHorizontal,
+<a name="l00109"></a>00109             RT_TetherVertical
+<a name="l00110"></a>00110         };<span class="comment"></span>
+<a name="l00111"></a>00111 <span class="comment">        /// @enum ScrollbarStyle</span>
+<a name="l00112"></a>00112 <span class="comment">        /// @brief Used by the scrollbar class to determine what styling should be used for the scrollbar.</span>
+<a name="l00113"></a>00113 <span class="comment">        /// @details These values are mostly self explanitory, the scrollbar class documentation has more details.</span>
+<a name="l00114"></a>00114 <span class="comment"></span>        <span class="keyword">enum</span> ScrollbarStyle
+<a name="l00115"></a>00115         {
+<a name="l00116"></a>00116             SB_NoButtons,
+<a name="l00117"></a>00117             SB_Separate,
+<a name="l00118"></a>00118             SB_TogetherUpLeft,
+<a name="l00119"></a>00119             SB_TogetherDownRight
+<a name="l00120"></a>00120         };<span class="comment"></span>
+<a name="l00121"></a>00121 <span class="comment">        /// @enum TextHorizontalAlign</span>
+<a name="l00122"></a>00122 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
+<a name="l00123"></a>00123 <span class="comment">        /// @details This enum determines the Horizontal alignment of text.</span>
+<a name="l00124"></a>00124 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
+<a name="l00125"></a>00125 <span class="comment"></span>        <span class="keyword">enum</span> TextHorizontalAlign
+<a name="l00126"></a>00126         {
+<a name="l00127"></a>00127             Txt_Left,
+<a name="l00128"></a>00128             Txt_Right,
+<a name="l00129"></a>00129             Txt_Middle
+<a name="l00130"></a>00130         };<span class="comment"></span>
+<a name="l00131"></a>00131 <span class="comment">        /// @enum TextVerticalAlign</span>
+<a name="l00132"></a>00132 <span class="comment">        /// @brief Used by UI classes to determine the placement of text within a given area.</span>
+<a name="l00133"></a>00133 <span class="comment">        /// @details This enum determines the Vertical alignment of text.</span>
+<a name="l00134"></a>00134 <span class="comment">        /// This enum is used by these classes in the UI namespace: Button and Caption.</span>
+<a name="l00135"></a>00135 <span class="comment"></span>        <span class="keyword">enum</span> TextVerticalAlign
+<a name="l00136"></a>00136         {
+<a name="l00137"></a>00137             Txt_Top,
+<a name="l00138"></a>00138             Txt_Bottom,
+<a name="l00139"></a>00139             Txt_Center
+<a name="l00140"></a>00140         };
+<a name="l00141"></a>00141     }
+<a name="l00142"></a>00142 }
+<a name="l00143"></a>00143 
+<a name="l00144"></a>00144 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 13 2011 22:56:33 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

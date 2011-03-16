@@ -97,6 +97,7 @@ namespace phys
     {
         private:
             GraphicsSettings Settings;
+            GraphicsSettings DesktopSettings;
 
             std::vector<String> SupportedResolutions;
             std::vector<String> SupportedDevices;
@@ -116,7 +117,7 @@ namespace phys
             void ShutdownSDL();
             void InitViewportAndCamera();
             void CorrectViewportAndCamera();
-            bool IsLargerThenDesktop(const Whole& Width, const Whole& Height);
+            int IsLargerThenDesktop(const Whole& Width, const Whole& Height);
 
             Ogre::Timer* RenderTimer;
             Ogre::RenderWindow* OgreGameWindow;

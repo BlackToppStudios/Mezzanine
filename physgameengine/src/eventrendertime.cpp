@@ -46,6 +46,8 @@
 #include "datatypes.h"
 #include "eventrendertime.h"
 
+#include <memory>
+
 using namespace std;
 
 namespace phys
@@ -57,13 +59,48 @@ namespace phys
 
     EventBase::EventType EventRenderTime::GetType() const
     {
-        return RenderTime;
+        return EventBase::RenderTime;
     }
 
-    Whole EventRenderTime::getMilliSecondsSinceLastFrame()
+    Whole EventRenderTime::getMilliSecondsSinceLastFrame() const
     {
         return Rendertime;
     }
+
+    void EventRenderTime::operator= (const EventRenderTime& rhs)
+    {
+        this->Rendertime=rhs.Rendertime;
+    }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::EventRenderTime& Ev)
+{
+    stream << "<EventRenderTime Version=\"1\" Rendertime=\"" << Ev.getMilliSecondsSinceLastFrame() << "\" />";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventRenderTime& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "EventRenderTime", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventRenderTime& Ev)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        Ev = phys::EventRenderTime( OneNode.GetAttribute("Rendertime").AsInt() );
+    }else{
+        throw( phys::Exception("Incompatible XML Version for EventRenderTime: Not Version 1"));
+    }
+}
+#endif // \PHYSXML
 
 #endif
