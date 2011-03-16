@@ -67,6 +67,7 @@
 #include "datatypes.h"
 #include "enumerations.h"
 #include "eventbase.h"
+#include "eventcollision.h"
 #include "eventmanager.h"
 #include "eventgamewindow.h"
 #include "eventquit.h"

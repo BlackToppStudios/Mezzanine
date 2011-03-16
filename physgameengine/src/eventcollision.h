@@ -44,6 +44,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "eventbase.h"
+#include "xml.h"
 #include "vector3.h"
 
 namespace phys {
@@ -56,10 +57,13 @@ namespace phys {
         public:
             /// @brief The location in the world where the collision occured, based on physics shapes.
             Vector3 Location;
+
             /// @brief The amount of force of the collision.
             Real Impulse;
+
             /// @brief The first Actor involved in the collision.
             ActorBase* ActorA;
+
             /// @brief The second Actor invovled in the collision.
             ActorBase* ActorB;
 
@@ -70,13 +74,44 @@ namespace phys {
             /// @param location The location in the world where the collision occured, based on physics shapes.
             /// @param impulse The amount of force of the collision.
             EventCollision(ActorBase* actora, ActorBase* actorb, Vector3 location, Real impulse);
+
+            /// @brief Copy Constructor.
+            /// @param Other The other EventCollision to copy
+            EventCollision(const EventCollision& Other);
+
             /// @brief Class Destructor.
             /// @details Basic Class Destructor.
             virtual ~EventCollision();
+
             /// @brief This returns EventType::Collision.
             /// @details  This returns the kind of message this is, specifcally EventType::Collision.  This method is inherited from phys::Event. .
             virtual EventType GetType() const;
     };
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::EventCollision to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::EventCollision to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventCollision& Ev);
+
+/// @brief Deserialize a phys::EventCollision
+/// @param stream The istream to get the xml from to (re)make the phys::EventCollision.
+/// @param Ev the phys::EventCollision to be deserialized.
+/// @return this returns the ostream, advanced past the phys::EventCollision that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventCollision& Ev);
+
+/// @brief Set all values of a phys::EventCollision from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::EventCollision.
+/// @param Ev the phys::EventCollision to be reset.
+/// @return This returns thexml::Node that was passed in.
+void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev);
+
+#endif // \PHYSXML
+
 
 #endif

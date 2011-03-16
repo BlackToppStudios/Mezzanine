@@ -53,6 +53,7 @@ using namespace std;
 
 #include "crossplatformexport.h"
 #include "eventbase.h"
+#include "eventcollision.h"
 #include "eventgamewindow.h"
 #include "eventquit.h"
 #include "eventrendertime.h"
@@ -161,6 +162,37 @@ namespace phys
             /// If a game developer chooses to use his own main loop. This adds system events, like EventQuit and Other Windows manager events,
             /// and if any user input event actions, this generates one EventUserInput that stores everythin that happened.
             void UpdateEvents();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Filtered management functions - Collision Events
+        ///////////////////////////////////////
+            /// @brief Returns a pointer to the Next Collision event
+            /// @details This Filtered event management function returns a pointer to the next Collision event. It is inadvisable to use
+            /// this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately
+            /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no Collision
+            /// events in the queue.
+            /// @return A pointer to a EventCollision, that still needs to be removed from the event manager and deleted.
+            EventCollision* GetNextCollisionEvent();
+
+            /// @brief Returns a pointer to the Next Collision event and removes it from the Que
+            /// @details This Filtered event management function returns a pointer to the next Collision event. It is inadvisable to use
+            /// this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately
+            /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no Collision
+            /// events in the que. This also removes the returned pointer form the Queue.
+            /// @return A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted.
+            EventCollision* PopNextCollisionEvent();
+
+            /// @brief Removes the First Collision Event From the que without looking at it.
+            /// @details This together with GetNextCollisionEvent() are the pretty much same as call PopNextCollisionEvent().
+            /// @warning If you did not call GetNextCollisionEvent() and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak.
+            /// Don't use this unless you are certain you have taken care of the pointer appropriately.
+            /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
+            void RemoveNextCollisionEvent();
+
+            /// @brief This returns a complete list of all the Render Time events.
+            /// @details This finds all the EventUserInput Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.
+            /// @return This returns a list<EventCollision*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. This list pointer must be deleted, but not the events in it.
+            std::list<EventCollision*>* GetAllCollisionEvents();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - GameWindow Events

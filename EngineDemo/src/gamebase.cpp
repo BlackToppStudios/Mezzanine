@@ -1,7 +1,11 @@
 #ifndef _gamebase_cpp
 #define _gamebase_cpp
 ///////////////////////////////////////////////////////////////////////////////
-// Gamewide Logic misc Features go here
+// This whole of the Engine demo code is terrible and disgusting...
+// This exists so that we can see the limits in worst case terms, intentionally
+// using linear alogrithm, ridiculous precision on physics models, and in
+// general sloppy code. The is sort of a testbed for any idea that comes about
+// and should not be imitated, ever.
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "gamebase.h"       //Game Include
@@ -20,6 +24,8 @@ using namespace std;
 World *TheWorld;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
+
+ActorBase *Robot7, *Robot8;
 
 int main(int argc, char **argv)
 {
@@ -442,6 +448,9 @@ bool CheckForStuff()
         OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
     }
 
+    #ifdef PHYSDEBUG
+    TheWorld->Log("All Game Window Changes This Frame");
+    #endif
     EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
     while(0 != OneWindowEvent)
     {
@@ -476,6 +485,22 @@ bool CheckForStuff()
         OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
     }
 
+    #ifdef PHYSDEBUG
+    TheWorld->Log("All Collisions This Frame");
+    #endif
+    EventCollision* OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
+    while(0 != OneCollision)
+    {
+        if(OneCollision->GetType() != EventBase::Collision)
+            { TheWorld->LogAndThrow("Trying to process a non-EventCollision as an EventCollision."); }
+
+        #ifdef PHYSDEBUG
+        TheWorld->Log(*OneCollision);
+        #endif
+
+        delete OneCollision;
+        OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
+    }
 
     return true;
 }
@@ -750,6 +775,10 @@ void LoadContent()
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
         TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
+        if (c+7==7)
+            {Robot7=TheWorld->GetActorManager()->LastActorAdded();}
+        if (c+7==8)
+            {Robot8=TheWorld->GetActorManager()->LastActorAdded();}
     }
 
     std::stringstream namestream;           //make the front pin

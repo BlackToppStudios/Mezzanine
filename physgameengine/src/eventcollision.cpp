@@ -51,6 +51,14 @@ namespace phys {
         Impulse=impulse;
     }
 
+    EventCollision::EventCollision(const EventCollision& Other)
+    {
+        ActorA=Other.ActorA;
+        ActorB=Other.ActorB;
+        Location=Other.Location;
+        Impulse=Other.Impulse;
+    }
+
     EventCollision::~EventCollision()
     {
     }
@@ -60,5 +68,39 @@ namespace phys {
         return EventBase::Collision;
     }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::EventCollision& Ev)
+{
+    stream  << "<EventCollision Version=\"1\" impulse=\"" << Ev.Impulse << "\" ActorA=\"" << Ev.ActorA->GetName() << "\" ActorB=\"" << Ev.ActorB->GetName() << "\" />"
+            <<  Ev.Location
+            << "</EventCollision>";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventCollision& Ev)
+{
+    /*phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "EventCollision", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+*/
+    return stream;
+}
+
+void operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev)
+{
+  /*  if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        Ev = phys::EventCollision( (phys::EventCollision::GameWindowEventID)OneNode.GetAttribute("EventID").AsInt(),
+                                    OneNode.GetAttribute("First").AsInt(),
+                                    OneNode.GetAttribute("Second").AsInt() );
+    }else{
+        throw( phys::Exception("Incompatible XML Version for EventCollision: Not Version 1"));
+    }*/
+}
+#endif // \PHYSXML
 
 #endif

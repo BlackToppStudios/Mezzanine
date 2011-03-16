@@ -439,6 +439,22 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - Collision Events
+    ///////////////////////////////////////
+    EventCollision* EventManager::GetNextCollisionEvent()
+        { return dynamic_cast<EventCollision*> (this->GetNextSpecificEvent(EventBase::Collision)); }
+
+    EventCollision* EventManager::PopNextCollisionEvent()
+        { return dynamic_cast<EventCollision*> (this->PopNextSpecificEvent(EventBase::Collision)); }
+
+    void EventManager::RemoveNextCollisionEvent()
+        { this->RemoveNextSpecificEvent(EventBase::Collision); }
+
+    std::list<EventCollision*>* EventManager::GetAllCollisionEvents()
+        { return (std::list<EventCollision*>*)this->GetAllSpecificEvents(EventBase::Collision); }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - GameWindow Events
     ///////////////////////////////////////
     EventGameWindow* EventManager::GetNextGameWindowEvent()
@@ -452,7 +468,6 @@ namespace phys
 
     std::list<EventGameWindow*>* EventManager::GetAllGameWindowEvents()
         { return (std::list<EventGameWindow*>*)this->GetAllSpecificEvents(EventBase::GameWindow); }
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - RenderTime Events
@@ -469,11 +484,9 @@ namespace phys
     std::list<EventRenderTime*>* EventManager::GetAllRenderTimeEvents()
         { return (std::list<EventRenderTime*>*)this->GetAllSpecificEvents(EventBase::RenderTime); }
 
-
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - User Input Events
     ///////////////////////////////////////
-
     EventUserInput* EventManager::GetNextUserInputEvent()
         { return dynamic_cast<EventUserInput*> (this->GetNextSpecificEvent(EventBase::UserInput)); }
 
