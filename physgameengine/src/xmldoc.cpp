@@ -65,7 +65,7 @@ namespace phys
         {
             Character ReadOne = 0;
             Character PrevOne = 0;
-            Integer TagCount = 1;
+            Integer TagCount = 0;
             bool HaveSlash = false;
             bool InText = false;
 
@@ -73,6 +73,11 @@ namespace phys
             while (!stream.get(ReadOne).fail() && !stream.eof())        //Read one character and if you didn't fail continue the loop
             {
                 OneTag.push_back(ReadOne);
+
+                if ('<' == ReadOne && !InText)                          //If a new tag starts
+                {
+                    ++TagCount;
+                }
 
                 if ( '"' == ReadOne && '\\' != PrevOne )                //If we find an unescaped " the we are either leaving or entering a quote
                     { InText = !InText; }
@@ -90,7 +95,7 @@ namespace phys
                             break;
                         }
                     }else{
-                        ++TagCount;                                     // if the tag does not have a slash then we are going one deeper
+                        //++TagCount;                                     // if the tag does not have a slash then we are going one deeper
                     }
                     HaveSlash=false;
                 }
@@ -106,7 +111,7 @@ namespace phys
         {
             Document* Doc = new Document();
             if(!Doc->Load(OneTag.c_str()))
-                { World::GetWorldPointer()->LogAndThrow(Exception("Could not Deserialize XML Stream which should contain Vector3 xml.")); }
+                { World::GetWorldPointer()->LogAndThrow(Exception(StringCat("Could not Deserialize XML Stream which should contain:", ClassName, "\n XML looked Like: ", OneTag) )); }
 
             Node InputNode = Doc->GetFirstChild();
             if (InputNode)

@@ -420,6 +420,10 @@ bool PostInput()
 //Non-Callbacks
 bool CheckForStuff()
 {
+    //#ifdef PHYSDEBUG
+    //TheWorld->Log(TheWorld->GetEventManager());
+    //#endif
+
     //this will either set the pointer to 0 or return a valid pointer to work with.
     EventUserInput* OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
 
@@ -427,18 +431,24 @@ bool CheckForStuff()
     while(0 != OneInput)
     {
         #ifdef PHYSDEBUG
-        TheWorld->LogStream << "Input Events Processed" << endl << "Escape is: " << MetaCode::KEY_ESCAPE << endl;
+        TheWorld->LogStream << "Input Events Processed (Escape is " << MetaCode::KEY_ESCAPE << ") : " << endl;
         #endif
 
         if(OneInput->GetType()!=EventBase::UserInput)
             { TheWorld->LogAndThrow("Trying to process a non-EventUserInput as an EventUserInput."); }
+
+        #ifdef PHYSDEBUG
+        TheWorld->Log(*OneInput);
+        EventUserInput ASecondInput;
+        stringstream UserInputXML;
+        UserInputXML << *OneInput;
+        UserInputXML >> ASecondInput;
+        TheWorld->Log(ASecondInput);
+        #endif
+
         //we check each MetaCode in each Event
         for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
-            #ifdef PHYSDEBUG
-            TheWorld->LogStream << "Metacode (" << c << ")" << OneInput->GetMetaCode(c) << endl ;
-            #endif
-
             //Is the key we just pushed ESCAPE
             if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && MetaCode::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
                 { return false; }

@@ -64,5 +64,12 @@ namespace phys
         return Adder.str();
     }
 
+    String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back)
+    {
+        std::stringstream Adder(Front);
+        Adder << Middle1 << Middle2 << Back;
+        return Adder.str();
+    }
+
 } // \phys
 #endif
