@@ -97,7 +97,9 @@ namespace phys
 
                 PrevOne=ReadOne;                                        //Store the Previous Character to check for escapes
             }
+
             return OneTag;
+
         }
 
         Document* PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag)

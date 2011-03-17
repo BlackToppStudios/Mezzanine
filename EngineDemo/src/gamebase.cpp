@@ -489,6 +489,7 @@ bool CheckForStuff()
     TheWorld->Log("All Collisions This Frame");
     #endif
     EventCollision* OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
+    EventCollision SecondCollision(0,0,Vector3(1,1,1),2.5);
     while(0 != OneCollision)
     {
         if(OneCollision->GetType() != EventBase::Collision)
@@ -497,6 +498,11 @@ bool CheckForStuff()
         #ifdef PHYSDEBUG
         TheWorld->Log(*OneCollision);
         #endif
+
+        stringstream temp;
+        temp << *OneCollision;
+        temp >> SecondCollision;
+        TheWorld->Log(SecondCollision);
 
         delete OneCollision;
         OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();

@@ -40,7 +40,11 @@
 #ifndef eventcollision_cpp
 #define eventcollision_cpp
 
+#include "actorcontainerbase.h"
 #include "eventcollision.h"
+#include "world.h"
+
+#include <memory>
 
 namespace phys {
     EventCollision::EventCollision(ActorBase* actora, ActorBase* actorb, Vector3 location, Real impulse)
@@ -74,7 +78,7 @@ namespace phys {
 #ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::EventCollision& Ev)
 {
-    stream  << "<EventCollision Version=\"1\" impulse=\"" << Ev.Impulse << "\" ActorA=\"" << Ev.ActorA->GetName() << "\" ActorB=\"" << Ev.ActorB->GetName() << "\" />"
+    stream  << "<EventCollision Version=\"1\" Impulse=\"" << Ev.Impulse << "\" ActorA=\"" << Ev.ActorA->GetName() << "\" ActorB=\"" << Ev.ActorB->GetName() << "\" >"
             <<  Ev.Location
             << "</EventCollision>";
     return stream;
@@ -82,24 +86,33 @@ std::ostream& operator << (std::ostream& stream, const phys::EventCollision& Ev)
 
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventCollision& Ev)
 {
-    /*phys::String OneTag( phys::xml::GetOneTag(stream) );
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
     std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "EventCollision", OneTag) );
 
     Doc->GetFirstChild() >> Ev;
-*/
+
     return stream;
 }
 
 void operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev)
 {
-  /*  if(OneNode.GetAttribute("Version").AsInt() == 1)
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
     {
-        Ev = phys::EventCollision( (phys::EventCollision::GameWindowEventID)OneNode.GetAttribute("EventID").AsInt(),
-                                    OneNode.GetAttribute("First").AsInt(),
-                                    OneNode.GetAttribute("Second").AsInt() );
+
+        Ev.ActorA=phys::World::GetWorldPointer()->GetActorManager()->FindActor(OneNode.GetAttribute("ActorA").AsString());
+        Ev.ActorB=phys::World::GetWorldPointer()->GetActorManager()->FindActor(OneNode.GetAttribute("ActorB").AsString());
+        Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
+
+        if(OneNode.GetFirstChild())
+        {
+            OneNode.GetFirstChild() >> Ev.Location;
+        }else{
+            throw(phys::Exception("Normal not found while parsing phys::EventCollision"));
+        }
+
     }else{
         throw( phys::Exception("Incompatible XML Version for EventCollision: Not Version 1"));
-    }*/
+    }
 }
 #endif // \PHYSXML
 
