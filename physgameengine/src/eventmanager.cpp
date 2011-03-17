@@ -56,6 +56,7 @@
 #include "world.h"
 
 #include <map>
+#include <memory>
 
 #include "SDL.h"
 //#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
@@ -118,7 +119,7 @@ namespace phys
 
             /// @internal
             /// @brief A unified polling and event repeater
-            /// the Inputcode is the kind of event to check for each frame. The PollingType is a bitfield used to control what can turn and of the pollingcheck check.
+            /// the Inputcode is the kind of event to check for each frame. The PollingType is a bit used to control what can turn on and off the pollingcheck check.
             std::map<MetaCode::InputCode, PollingType> ManualCheck;
 
             /// @internal
@@ -544,5 +545,63 @@ namespace phys
         { return ManagerBase::EventManager; }
 
 } // /phys
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::EventManager& Mgr)
+{
+    stream << "<EventManager Version=\"1\">";
+        //EventQueue
+            //events in event Queue
+
+        //ManualCheck
+            //MetaCode and the polling type as an
+
+/*    for (vector<phys::MetaCode>::const_iterator Iter = Ev.begin(); Iter!=Ev.end(); ++Iter)
+    {
+        stream << *Iter;
+    }*/
+    stream << "</EventManager>";
+
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventManager& Mgr)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "EventManager", OneTag) );
+
+    Doc->GetFirstChild() >> Mgr;
+
+    return stream;
+}
+
+void operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        /*Ev.clear();
+
+        //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
+        phys::xml::Node Child = OneNode.GetFirstChild();
+        phys::MetaCode ACode;
+        while(Child)
+        {
+            Child >> ACode;
+            Ev.AddCode(ACode);
+            Child = Child.GetNextSibling();
+        }*/
+
+    }else{
+        throw( phys::Exception("Incompatible XML Version for EventManager: Not Version 1"));
+    }
+}
+#endif // \PHYSXML
+
+
+
+
 
 #endif

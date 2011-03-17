@@ -420,9 +420,9 @@ bool PostInput()
 //Non-Callbacks
 bool CheckForStuff()
 {
-    //#ifdef PHYSDEBUG
-    //TheWorld->Log(TheWorld->GetEventManager());
-    //#endif
+    #ifdef PHYSDEBUG
+    TheWorld->Log(*(TheWorld->GetEventManager()));
+    #endif
 
     //this will either set the pointer to 0 or return a valid pointer to work with.
     EventUserInput* OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();

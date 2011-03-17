@@ -61,6 +61,34 @@ using namespace std;
 #include "managerbase.h"
 #include "metacode.h"
 #include "vector2.h"
+#include "xml.h"
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+namespace phys{             //forward declaration so we can use this in our << and >> operators
+    class EventManager;
+}
+
+/// @brief Serializes the passed phys::EventManager to XML
+/// @param stream The ostream to send the xml to.
+/// @param Mgr the phys::EventManager to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventManager& Mgr);
+
+/// @brief Deserialize a phys::EventManager
+/// @param stream The istream to get the xml from to (re)make the phys::EventManager.
+/// @param Mgr the phys::EventManager to be deserialized.
+/// @return this returns the ostream, advanced past the phys::EventManager that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventManager& Mgr);
+
+/// @brief Set all values of a phys::EventManager from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::EventManager.
+/// @param Mgr the phys::EventManager to be reset.
+/// @return This returns thexml::Node that was passed in.
+void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr);
+
+#endif // \PHYSXML
 
 namespace phys
 {
@@ -111,8 +139,22 @@ namespace phys
             /// @param Dummy A dummy argument
             /// @details Since copying, or having more than one event manager doesn't seem to make sense
             /// I just made it non-copyable.
-//            EventManager(EventManager Dummy)
-//            {}
+            EventManager(const EventManager& Dummy)
+            {}
+
+            #ifdef PHYSXML
+            /// @internal
+            /// @brief The << operator requires access to internal data, it is treated similarly to a member function.
+            friend std::ostream& PHYS_LIB ::operator << (std::ostream& stream, const phys::EventManager& Mgr);
+
+            /// @internal
+            /// @brief The >> operator requires access to internal data, it is treated similarly to a member function.
+            friend std::istream& PHYS_LIB ::operator >> (std::istream& stream, phys::EventManager& Mgr);
+
+            /// @internal
+            /// @brief The >> operator requires access to internal data, it is treated similarly to a member function.
+            friend void PHYS_LIB ::operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr);
+            #endif // \PHYSXML
 
         public:
             /// @brief Default constructor
@@ -397,4 +439,5 @@ namespace phys
             virtual ManagerTypeName GetType() const;
     };
 }
+
 #endif

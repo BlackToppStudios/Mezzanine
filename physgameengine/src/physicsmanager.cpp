@@ -405,7 +405,6 @@ namespace phys
                     EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
                     //create collision event
                     this->GameWorld->GetEventManager()->AddEvent(ColEvent);
-                    #define PHYSDEBUG
                     #ifdef PHYSDEBUG
                     this->GameWorld->Log("Collision Event:");
                     this->GameWorld->Log(*ColEvent);
