@@ -41,25 +41,41 @@
 #define EVENTBASE_CPP
 
 #include "eventbase.h"
+#include "eventcollision.h"
+#include "eventgamewindow.h"
+#include "eventquit.h"
+#include "eventrendertime.h"
+#include "eventuserinput.h"
+#include "exception.h"
 
-/*std::ostream& operator << (std::ostream& stream, const PhysEvent& x)
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventBase& Ev)
 {
-    switch(x.getEventType())
+    switch(Ev.GetType())
     {
-        case EventType.RenderTime:
-            stream << "RenderTime";
+        case phys::EventBase::Collision:
+            stream << *dynamic_cast<const phys::EventCollision*> (&Ev);
             break;
-        case EventType.UserInput:
-            stream << "UserInput";
+        case phys::EventBase::GameWindow:
+            stream << *dynamic_cast<const phys::EventGameWindow*> (&Ev);
             break;
-        case EventType:
-            stream << "SystemMessage";
+        case phys::EventBase::QuitMessage:
+            stream << *dynamic_cast<const phys::EventQuit*> (&Ev);
             break;
-         case EventType:
-            stream << "Other";
+        case phys::EventBase::RenderTime:
+            stream << *dynamic_cast<const phys::EventRenderTime*> (&Ev);
+            break;
+        case phys::EventBase::UserInput:
+            stream << *dynamic_cast<const phys::EventUserInput*> (&Ev);
+            break;
+        case phys::EventBase::Other:
+            throw phys::Exception ("Attemping to serialize a phys::Event::Other... not sure what you are trying to serialize.");
+            //throw Exception ("How did you instantiate an abstract base class?! Attemping to serialize a phys::EventBase");
+            break;
+        default:
+            throw phys::Exception ("Attemping to serialize a phys::Event... not sure what you are trying to serialize.");
             break;
     }
     return stream;
-}*/
+}
 
 #endif

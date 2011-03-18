@@ -119,7 +119,7 @@ namespace phys
 
             /// @internal
             /// @brief A unified polling and event repeater
-            /// the Inputcode is the kind of event to check for each frame. The PollingType is a bit used to control what can turn on and off the pollingcheck check.
+            /// the Inputcode is the kind of event to check for each frame. The PollingType is used to control what can turn on and off the pollingcheck check.
             std::map<MetaCode::InputCode, PollingType> ManualCheck;
 
             /// @internal
@@ -240,8 +240,8 @@ namespace phys
         //event types
             SDL_FIRSTEVENT				unused (do not remove)		Application events
             SDL_QUIT				user-requested quit		Window events
-         SDL_WINDOWEVENT				window state change
-         SDL_SYSWMEVENT				system specific event		Keyboard events
+            SDL_WINDOWEVENT				window state change
+        SDL_SYSWMEVENT				system specific event		Keyboard events
             SDL_KEYDOWN				key pressed
             SDL_KEYUP				key released
         SDL_TEXTEDITING				keyboard text editing (composition)
@@ -553,16 +553,10 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::EventManager& Mgr)
 {
     stream << "<EventManager Version=\"1\">";
-        //EventQueue
-            //events in event Queue
-
-        //ManualCheck
-            //MetaCode and the polling type as an
-
-/*    for (vector<phys::MetaCode>::const_iterator Iter = Ev.begin(); Iter!=Ev.end(); ++Iter)
-    {
-        stream << *Iter;
-    }*/
+    for(std::list<phys::EventBase*>::iterator Iter = Mgr._Data->EventQ.begin(); Iter!=Mgr._Data->EventQ.end(); ++Iter)
+        { stream << **Iter; }
+    for(phys::internal::EventManagerInternalData::ManualCheckIterator Iter=Mgr._Data->ManualCheck.begin(); Iter!=Mgr._Data->ManualCheck.end(); ++Iter)
+        { stream << "<ManualCheck Version=\"1\" PollingType=\"" << Iter->second << "\" InputCode=\"" << Iter->first << "\" />"; }
     stream << "</EventManager>";
 
     return stream;

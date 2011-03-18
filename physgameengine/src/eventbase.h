@@ -41,6 +41,7 @@
 #define EVENTBASE_H
 
 #include "crossplatformexport.h"
+#include <ostream>
 
 ///////////////////////////////////////////////////////////////////////////////
 // This is a parent class that all events must derive from. This exists solely
@@ -85,7 +86,11 @@ namespace phys
     };
 }
 
-// Allow the PhysEvent to be sent to a stream, and there sent directly to the log
-//std::ostream& operator<<(std::ostream& stream, const PhysEvent& x);
+/// @brief Serializes the passed phys::Event to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::Event to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventBase& Ev);
+
 
 #endif
