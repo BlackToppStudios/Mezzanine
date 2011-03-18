@@ -1423,8 +1423,7 @@ namespace phys
 
         /// @brief Gets the first tag out of the Stream and returns it as a String
         /// @param stream An std::ostream that contains atleast one xml tag
-        /// @details This simply returns all the characters from the current point in the stream until the first '>' is reached.
-        /// @return This returns from the begining of the stream to the first xml tag.
+        /// @return This gets one XML tag, its closing tage, and all subtags.
         String GetOneTag(std::istream& stream);
 
         /// @internal

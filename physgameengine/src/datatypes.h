@@ -229,11 +229,18 @@ namespace phys
 
     /// @brief Concatenates 3 Strings
     /// @param Front The first String
-    /// @param Middle The
+    /// @param Middle A String in the middle
     /// @param Back The last String
     /// @return A string containing the other Strings passed attached end to end
     String StringCat(const String& Front, const String& Middle, const String& Back);
 
+    /// @brief Concatenates 3 Strings
+    /// @param Front The first String
+    /// @param Middle1 The second string
+    /// @param Middle2 The third string
+    /// @param Back The last String
+    /// @return A string containing the other Strings passed attached end to end
+    String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back);
 
 } // \phys
 

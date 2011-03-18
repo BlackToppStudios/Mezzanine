@@ -406,8 +406,8 @@ namespace phys
                     //create collision event
                     this->GameWorld->GetEventManager()->AddEvent(ColEvent);
                     #ifdef PHYSDEBUG
-                    this->GameWorld->Log("Collision Event Logged at:");
-                    this->GameWorld->Log(emptyloc);
+                    this->GameWorld->Log("Collision Event:");
+                    this->GameWorld->Log(*ColEvent);
                     #endif
                 }
             }

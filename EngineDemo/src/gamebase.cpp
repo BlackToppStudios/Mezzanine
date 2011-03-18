@@ -1,7 +1,11 @@
 #ifndef _gamebase_cpp
 #define _gamebase_cpp
 ///////////////////////////////////////////////////////////////////////////////
-// Gamewide Logic misc Features go here
+// This whole of the Engine demo code is terrible and disgusting...
+// This exists so that we can see the limits in worst case terms, intentionally
+// using linear alogrithm, ridiculous precision on physics models, and in
+// general sloppy code. The is sort of a testbed for any idea that comes about
+// and should not be imitated, ever.
 ///////////////////////////////////////////////////////////////////////////////
 
 #include "gamebase.h"       //Game Include
@@ -20,6 +24,8 @@ using namespace std;
 World *TheWorld;
 
 const Plane PlaneOfPlay( Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0));
+
+ActorBase *Robot7, *Robot8;
 
 int main(int argc, char **argv)
 {
@@ -276,14 +282,11 @@ bool PostInput()
     else { videobuttonpushed = false; }
 
     // Make a declaration for a static constrain so it survives the function lifetime
-    // static *constraint MouseDragger = 0;
-
-    //static Generic6DofConstraint* Dragger=NULL;
     static Point2PointConstraint* Dragger=NULL;
 
     if( Queryer.IsMouseButtonPushed(1) )
     {
-        /// @todo determine whether this next snippt should be a function on the UIScreen
+        /// @todo determine whether this next snippet should be a function on the UIScreen
         UI::Button* MouseButton = NULL;
         UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
         for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
@@ -417,6 +420,10 @@ bool PostInput()
 //Non-Callbacks
 bool CheckForStuff()
 {
+    #ifdef PHYSDEBUG
+    TheWorld->Log(*(TheWorld->GetEventManager()));
+    #endif
+
     //this will either set the pointer to 0 or return a valid pointer to work with.
     EventUserInput* OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
 
@@ -424,18 +431,24 @@ bool CheckForStuff()
     while(0 != OneInput)
     {
         #ifdef PHYSDEBUG
-        TheWorld->LogStream << "Input Events Processed" << endl << "Escape is: " << MetaCode::KEY_ESCAPE << endl;
+        TheWorld->LogStream << "Input Events Processed (Escape is " << MetaCode::KEY_ESCAPE << ") : " << endl;
         #endif
 
         if(OneInput->GetType()!=EventBase::UserInput)
             { TheWorld->LogAndThrow("Trying to process a non-EventUserInput as an EventUserInput."); }
+
+        #ifdef PHYSDEBUG
+        TheWorld->Log(*OneInput);
+        EventUserInput ASecondInput;
+        stringstream UserInputXML;
+        UserInputXML << *OneInput;
+        UserInputXML >> ASecondInput;
+        TheWorld->Log(ASecondInput);
+        #endif
+
         //we check each MetaCode in each Event
         for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
-            #ifdef PHYSDEBUG
-            TheWorld->LogStream << "Metacode (" << c << ")" << OneInput->GetMetaCode(c) << endl ;
-            #endif
-
             //Is the key we just pushed ESCAPE
             if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && MetaCode::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
                 { return false; }
@@ -445,6 +458,9 @@ bool CheckForStuff()
         OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
     }
 
+    #ifdef PHYSDEBUG
+    TheWorld->Log("All Game Window Changes This Frame");
+    #endif
     EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
     while(0 != OneWindowEvent)
     {
@@ -479,6 +495,28 @@ bool CheckForStuff()
         OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
     }
 
+    #ifdef PHYSDEBUG
+    TheWorld->Log("All Collisions This Frame");
+    #endif
+    EventCollision* OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
+    EventCollision SecondCollision(0,0,Vector3(1,1,1),2.5);
+    while(0 != OneCollision)
+    {
+        if(OneCollision->GetType() != EventBase::Collision)
+            { TheWorld->LogAndThrow("Trying to process a non-EventCollision as an EventCollision."); }
+
+        #ifdef PHYSDEBUG
+        TheWorld->Log(*OneCollision);
+        #endif
+
+        stringstream temp;
+        temp << *OneCollision;
+        temp >> SecondCollision;
+        TheWorld->Log(SecondCollision);
+
+        delete OneCollision;
+        OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
+    }
 
     return true;
 }
@@ -663,7 +701,6 @@ void LoadContent()
         XMLStringStream >> ASecondPoint;
         TheWorld->Log(ASecondPoint);
 
-
         Plane ASinglePlane(Vector3(1.34,23,1.004),4.5);
         TheWorld->Log("ASinglePlane:");
         TheWorld->Log(ASinglePlane);
@@ -681,7 +718,6 @@ void LoadContent()
         XMLStringStream2 >> ASecondPlane;
         TheWorld->Log(ASecondPlane);
 
-
         MetaCode ASingleCode(MetaCode(1,MetaCode::MOUSEBUTTON));
         TheWorld->Log("ASingleCode:");
         TheWorld->Log(ASingleCode);
@@ -694,6 +730,26 @@ void LoadContent()
         MetaCode ASecondCode(MetaCode(0,MetaCode::KEY_FIRST));
         TheWorld->Log("ASecondCode:");
         TheWorld->Log(ASecondCode);
+
+        EventQuit AndOneEventToRuleThemAll;
+        TheWorld->Log("An EventQuit AndOneEventToRuleThemAll:");
+        TheWorld->Log(AndOneEventToRuleThemAll);
+        stringstream XMLStringStream4;
+        XMLStringStream4 << AndOneEventToRuleThemAll;
+        XMLStringStream4 >> AndOneEventToRuleThemAll;
+
+        EventRenderTime TimingEvent(55);
+        EventRenderTime TimingEvent2(0);
+        TheWorld->Log("EventRenderTime TimingEvent and TimingEvent2:");
+        TheWorld->Log(TimingEvent);
+        TheWorld->Log(TimingEvent2);
+        stringstream XMLStringStream5;
+        XMLStringStream5 << TimingEvent;
+        XMLStringStream5 >> TimingEvent2;
+        TheWorld->Log("EventRenderTime TimingEvent and TimingEvent2 After streaming:");
+        TheWorld->Log(TimingEvent);
+        TheWorld->Log(TimingEvent2);
+
 
         TheWorld->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
         XMLStringStream3 >> ASecondCode;
@@ -735,6 +791,10 @@ void LoadContent()
         TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
         TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
         TheWorld->GetActorManager()->LastActorAdded()->SetInitLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
+        if (c+7==7)
+            {Robot7=TheWorld->GetActorManager()->LastActorAdded();}
+        if (c+7==8)
+            {Robot8=TheWorld->GetActorManager()->LastActorAdded();}
     }
 
     std::stringstream namestream;           //make the front pin

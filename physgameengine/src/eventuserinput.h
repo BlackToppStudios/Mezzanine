@@ -68,7 +68,6 @@
     slouken@libsdl.org
 */
 
-
 #include <vector>
 
 using namespace std;
@@ -77,6 +76,7 @@ using namespace std;
 #include "eventbase.h"
 #include "datatypes.h"
 #include "metacode.h"
+#include "xml.h"
 
 namespace phys
 {
@@ -103,7 +103,16 @@ namespace phys
         private:
             //Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if
             //passed any other kind of data.
+            /// @internal
+            /// @brief Gets the MetaCode from RawInput Data
+            /// @param RawEvent_ The event that contains only Mouse button data
+            /// @return a metacode that represents button presses
             MetaCode AddCodeFromSDLMouseButton(const RawEvent &RawEvent_);
+
+            /// @internal
+            /// @brief Gets the MetaCode from RawInput Data
+            /// @param RawEvent_ The event that contains only Mouse Motion data
+            /// @return a metacode that represents button presses
             vector<MetaCode> AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
 
         protected:
@@ -193,5 +202,28 @@ namespace phys
     };
 }// /phys
 
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::EventUserInput to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::EventUserInput to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventUserInput& Ev);
+
+/// @brief Deserialize a phys::EventUserInput
+/// @param stream The istream to get the xml from to (re)make the phys::EventUserInput.
+/// @param Ev the phys::EventUserInput to be deserialized.
+/// @return this returns the ostream, advanced past the phys::EventUserInput that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventUserInput& Ev);
+
+/// @brief Set all values of a phys::EventUserInput from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::EventUserInput.
+/// @param Ev the phys::EventUserInput to be reset.
+/// @return This returns thexml::Node that was passed in.
+void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::EventUserInput& Ev);
+
+#endif // \PHYSXML
 
 #endif

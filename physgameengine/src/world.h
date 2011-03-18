@@ -276,7 +276,7 @@ namespace phys
             /// @details This also commits any outstanding log messages that are waiting in the World::LogStream, and any outstanding
             /// Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the
             /// Only ones to produce meaningul log messages.
-            template <class T> void Log(T Message)
+            template <class T> void Log(const T& Message)
                 { this->LogString(ToString(Message)); }
 
             /// @brief Force any outstanding logs to be commited to logs
@@ -302,7 +302,7 @@ namespace phys
             /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data
             /// types that overload the stream insertion operator ( << )
             /// @param Message This will be streamed to the log, then used in a thrown exception.
-            template <class T> void LogAndThrow(T Message)
+            template <class T> void LogAndThrow(const T& Message)
             {
                 this->Log(Message);
                 throw(Message);

@@ -53,6 +53,7 @@ using namespace std;
 
 #include "crossplatformexport.h"
 #include "eventbase.h"
+#include "eventcollision.h"
 #include "eventgamewindow.h"
 #include "eventquit.h"
 #include "eventrendertime.h"
@@ -60,6 +61,34 @@ using namespace std;
 #include "managerbase.h"
 #include "metacode.h"
 #include "vector2.h"
+#include "xml.h"
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+namespace phys{             //forward declaration so we can use this in our << and >> operators
+    class EventManager;
+}
+
+/// @brief Serializes the passed phys::EventManager to XML
+/// @param stream The ostream to send the xml to.
+/// @param Mgr the phys::EventManager to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventManager& Mgr);
+
+/// @brief Deserialize a phys::EventManager
+/// @param stream The istream to get the xml from to (re)make the phys::EventManager.
+/// @param Mgr the phys::EventManager to be deserialized.
+/// @return this returns the ostream, advanced past the phys::EventManager that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventManager& Mgr);
+
+/// @brief Set all values of a phys::EventManager from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::EventManager.
+/// @param Mgr the phys::EventManager to be reset.
+/// @return This returns thexml::Node that was passed in.
+void PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr);
+
+#endif // \PHYSXML
 
 namespace phys
 {
@@ -98,10 +127,34 @@ namespace phys
     class PHYS_LIB EventManager: public ManagerBase
     {
         private:
+            /// @internal
+            /// @brief All the internal data for this EventManager
             internal::EventManagerInternalData* _Data;
 
-            //Checks for quit messages and adds them to the queue
+            /// @internal
+            /// @brief Checks for quit messages and adds them to the queue
             void UpdateQuitEvents();
+
+            /// @brief Private copy semantics, because copying this will cause problems.
+            /// @param Dummy A dummy argument
+            /// @details Since copying, or having more than one event manager doesn't seem to make sense
+            /// I just made it non-copyable.
+            EventManager(const EventManager& Dummy)
+            {}
+
+            #ifdef PHYSXML
+            /// @internal
+            /// @brief The << operator requires access to internal data, it is treated similarly to a member function.
+            friend std::ostream& PHYS_LIB ::operator << (std::ostream& stream, const phys::EventManager& Mgr);
+
+            /// @internal
+            /// @brief The >> operator requires access to internal data, it is treated similarly to a member function.
+            friend std::istream& PHYS_LIB ::operator >> (std::istream& stream, phys::EventManager& Mgr);
+
+            /// @internal
+            /// @brief The >> operator requires access to internal data, it is treated similarly to a member function.
+            friend void PHYS_LIB ::operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr);
+            #endif // \PHYSXML
 
         public:
             /// @brief Default constructor
@@ -151,6 +204,37 @@ namespace phys
             /// If a game developer chooses to use his own main loop. This adds system events, like EventQuit and Other Windows manager events,
             /// and if any user input event actions, this generates one EventUserInput that stores everythin that happened.
             void UpdateEvents();
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Filtered management functions - Collision Events
+        ///////////////////////////////////////
+            /// @brief Returns a pointer to the Next Collision event
+            /// @details This Filtered event management function returns a pointer to the next Collision event. It is inadvisable to use
+            /// this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately
+            /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no Collision
+            /// events in the queue.
+            /// @return A pointer to a EventCollision, that still needs to be removed from the event manager and deleted.
+            EventCollision* GetNextCollisionEvent();
+
+            /// @brief Returns a pointer to the Next Collision event and removes it from the Que
+            /// @details This Filtered event management function returns a pointer to the next Collision event. It is inadvisable to use
+            /// this for performance reasons because it runs in linear time relative to the amount of events. However, it will return an immediately
+            /// usable pointer for case where an extreme level of performance is not required. This returns a pointer to 0 if there are no Collision
+            /// events in the que. This also removes the returned pointer form the Queue.
+            /// @return A pointer to a PhysEventRenderTime, that still needs to be removed from the event manager and deleted.
+            EventCollision* PopNextCollisionEvent();
+
+            /// @brief Removes the First Collision Event From the que without looking at it.
+            /// @details This together with GetNextCollisionEvent() are the pretty much same as call PopNextCollisionEvent().
+            /// @warning If you did not call GetNextCollisionEvent() and haven't deleted or stored, or somehow dealt with this pointer, then this is a memory leak.
+            /// Don't use this unless you are certain you have taken care of the pointer appropriately.
+            /// @exception This can throw any STL exception a queue could. And with likely throw some kind of except if called when there are no Events in the Que.
+            void RemoveNextCollisionEvent();
+
+            /// @brief This returns a complete list of all the Render Time events.
+            /// @details This finds all the EventUserInput Events then creates a new list and returns that. This runs in linear time relative to the amounts of events.
+            /// @return This returns a list<EventCollision*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. This list pointer must be deleted, but not the events in it.
+            std::list<EventCollision*>* GetAllCollisionEvents();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - GameWindow Events
@@ -355,4 +439,5 @@ namespace phys
             virtual ManagerTypeName GetType() const;
     };
 }
+
 #endif

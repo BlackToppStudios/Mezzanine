@@ -53,6 +53,7 @@
 #include "eventbase.h"
 #include "world.h"
 
+#include <memory>
 #include <vector>
 
 #include "SDL.h"
@@ -213,5 +214,53 @@ namespace phys
     }
 
 } // /phys
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::EventUserInput& Ev)
+{
+    stream << "<EventUserInput Version=\"1\">";
+    for (vector<phys::MetaCode>::const_iterator Iter = Ev.begin(); Iter!=Ev.end(); ++Iter)
+    {
+        stream << *Iter;
+    }
+    stream << "</EventUserInput>";
+
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventUserInput& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "EventUserInput", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+void operator >> (const phys::xml::Node& OneNode, phys::EventUserInput& Ev)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        Ev.clear();
+
+        //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
+        phys::xml::Node Child = OneNode.GetFirstChild();
+        phys::MetaCode ACode;
+        while(Child)
+        {
+            Child >> ACode;
+            Ev.AddCode(ACode);
+            Child = Child.GetNextSibling();
+        }
+
+    }else{
+        throw( phys::Exception("Incompatible XML Version for EventUserInput: Not Version 1"));
+    }
+}
+#endif // \PHYSXML
+
 
 #endif

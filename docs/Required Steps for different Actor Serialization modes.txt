@@ -1,0 +1,24 @@
+
+Actor
+	Both:
+		Collision shape:
+
+		Sound Set:
+
+	Raw Serialization:		
+		need to (de)serialize a number of Ogre and bullet parts.
+			may not be possible to duplicate perfectly
+		
+	
+
+
+	Constructor based serialization:
+		only need to seriale parts in controller
+		can always call constructors same way.
+
+EventCollision
+	Needs unique Identifier: Actor Name
+	Needs to use Unique ID to query and find on creation.
+		throw exception on Failure?
+
+

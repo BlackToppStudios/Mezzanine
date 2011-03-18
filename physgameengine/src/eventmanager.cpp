@@ -56,6 +56,7 @@
 #include "world.h"
 
 #include <map>
+#include <memory>
 
 #include "SDL.h"
 //#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
@@ -118,7 +119,7 @@ namespace phys
 
             /// @internal
             /// @brief A unified polling and event repeater
-            /// the Inputcode is the kind of event to check for each frame. The PollingType is a bitfield used to control what can turn and of the pollingcheck check.
+            /// the Inputcode is the kind of event to check for each frame. The PollingType is used to control what can turn on and off the pollingcheck check.
             std::map<MetaCode::InputCode, PollingType> ManualCheck;
 
             /// @internal
@@ -239,8 +240,8 @@ namespace phys
         //event types
             SDL_FIRSTEVENT				unused (do not remove)		Application events
             SDL_QUIT				user-requested quit		Window events
-         SDL_WINDOWEVENT				window state change
-         SDL_SYSWMEVENT				system specific event		Keyboard events
+            SDL_WINDOWEVENT				window state change
+        SDL_SYSWMEVENT				system specific event		Keyboard events
             SDL_KEYDOWN				key pressed
             SDL_KEYUP				key released
         SDL_TEXTEDITING				keyboard text editing (composition)
@@ -439,6 +440,22 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    // Filtered management functions - Collision Events
+    ///////////////////////////////////////
+    EventCollision* EventManager::GetNextCollisionEvent()
+        { return dynamic_cast<EventCollision*> (this->GetNextSpecificEvent(EventBase::Collision)); }
+
+    EventCollision* EventManager::PopNextCollisionEvent()
+        { return dynamic_cast<EventCollision*> (this->PopNextSpecificEvent(EventBase::Collision)); }
+
+    void EventManager::RemoveNextCollisionEvent()
+        { this->RemoveNextSpecificEvent(EventBase::Collision); }
+
+    std::list<EventCollision*>* EventManager::GetAllCollisionEvents()
+        { return (std::list<EventCollision*>*)this->GetAllSpecificEvents(EventBase::Collision); }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - GameWindow Events
     ///////////////////////////////////////
     EventGameWindow* EventManager::GetNextGameWindowEvent()
@@ -452,7 +469,6 @@ namespace phys
 
     std::list<EventGameWindow*>* EventManager::GetAllGameWindowEvents()
         { return (std::list<EventGameWindow*>*)this->GetAllSpecificEvents(EventBase::GameWindow); }
-
 
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - RenderTime Events
@@ -469,11 +485,9 @@ namespace phys
     std::list<EventRenderTime*>* EventManager::GetAllRenderTimeEvents()
         { return (std::list<EventRenderTime*>*)this->GetAllSpecificEvents(EventBase::RenderTime); }
 
-
     ///////////////////////////////////////////////////////////////////////////////
     // Filtered management functions - User Input Events
     ///////////////////////////////////////
-
     EventUserInput* EventManager::GetNextUserInputEvent()
         { return dynamic_cast<EventUserInput*> (this->GetNextSpecificEvent(EventBase::UserInput)); }
 
@@ -531,5 +545,57 @@ namespace phys
         { return ManagerBase::EventManager; }
 
 } // /phys
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::EventManager& Mgr)
+{
+    stream << "<EventManager Version=\"1\">";
+    for(std::list<phys::EventBase*>::iterator Iter = Mgr._Data->EventQ.begin(); Iter!=Mgr._Data->EventQ.end(); ++Iter)
+        { stream << **Iter; }
+    for(phys::internal::EventManagerInternalData::ManualCheckIterator Iter=Mgr._Data->ManualCheck.begin(); Iter!=Mgr._Data->ManualCheck.end(); ++Iter)
+        { stream << "<ManualCheck Version=\"1\" PollingType=\"" << Iter->second << "\" InputCode=\"" << Iter->first << "\" />"; }
+    stream << "</EventManager>";
+
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventManager& Mgr)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "EventManager", OneTag) );
+
+    Doc->GetFirstChild() >> Mgr;
+
+    return stream;
+}
+
+void operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    {
+        /*Ev.clear();
+
+        //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
+        phys::xml::Node Child = OneNode.GetFirstChild();
+        phys::MetaCode ACode;
+        while(Child)
+        {
+            Child >> ACode;
+            Ev.AddCode(ACode);
+            Child = Child.GetNextSibling();
+        }*/
+
+    }else{
+        throw( phys::Exception("Incompatible XML Version for EventManager: Not Version 1"));
+    }
+}
+#endif // \PHYSXML
+
+
+
+
 
 #endif
