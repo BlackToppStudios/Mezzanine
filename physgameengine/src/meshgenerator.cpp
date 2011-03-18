@@ -136,9 +136,103 @@ namespace phys
         delete box;
     }
 
-    void MeshGenerator::CreateCylinderMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Vector3& AxisOrientation)
+    void MeshGenerator::CreateCylinderMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes, const Whole& Segments)
     {
+/// Start of MIT(Ogre Proceadural) License ///
+        if(AxisOrientation != Vector3::Unit_Y())
+            return;
+        if(HalfExtents.X != HalfExtents.Z)
+            return;
 
+        Vector3 Half = HalfExtents;
+        Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
+        String GroupName = TheMaterial->getGroup();
+
+        Real deltaAngle = (Ogre::Math::TWO_PI / CircleRes);
+        Real deltaHeight = (Half.X * 2)/(Real)Segments;
+        Real radius = Half.X;
+        Whole offset = 0;
+
+        Ogre::ManualObject* cylinder = new Ogre::ManualObject("TempMan");
+        cylinder->begin(MaterialName);
+
+        for (int i = 0; i <= Segments; i++)
+        {
+            for (int j = 0; j < CircleRes; j++)
+            {
+                Real x0 = radius * cosf(j*deltaAngle);
+                Real z0 = radius * sinf(j*deltaAngle);
+                cylinder->position(x0, (i*deltaHeight) - Half.Y, z0);
+                cylinder->normal(Ogre::Vector3(x0,0,z0).normalisedCopy());
+                cylinder->textureCoord(j/(Real)CircleRes, i/(Real)Segments);
+
+                if (i != Segments)
+                {
+                    cylinder->index(offset + CircleRes + 1);
+                    cylinder->index(offset);
+                    cylinder->index(offset + CircleRes);
+                    cylinder->index(offset + CircleRes + 1);
+                    cylinder->index(offset + 1);
+                    cylinder->index(offset);
+                }
+                offset ++;
+            }
+		}
+
+		//low cap
+		int centerIndex = offset;
+		cylinder->position(0,-Half.Y,0);
+		cylinder->normal(Ogre::Vector3::NEGATIVE_UNIT_Y);
+		cylinder->textureCoord(0,1);
+		offset++;
+		for (int j=0;j<=CircleRes;j++)
+		{
+			Real x0 = radius * cosf(j*deltaAngle);
+			Real z0 = radius * sinf(j*deltaAngle);
+
+			cylinder->position(x0,-Half.Y, z0);
+			cylinder->normal(Ogre::Vector3::NEGATIVE_UNIT_Y);
+			cylinder->textureCoord(j/(Real)CircleRes,0.0);
+			if (j!=CircleRes)
+			{
+				cylinder->index(centerIndex);
+				cylinder->index(offset);
+				cylinder->index(offset+1);
+			}
+			offset++;
+		}
+
+		// high cap
+		centerIndex = offset;
+		cylinder->position(0,Half.Y,0);
+		cylinder->normal(Ogre::Vector3::UNIT_Y);
+		cylinder->textureCoord(0,0);
+		offset++;
+		for (int j=0;j<=CircleRes;j++)
+		{
+			Real x0 = radius * cosf(j*deltaAngle);
+			Real z0 = radius * sinf(j*deltaAngle);
+
+			cylinder->position(x0, Half.Y, z0);
+			cylinder->normal(Ogre::Vector3::UNIT_Y);
+			cylinder->textureCoord(j/(Real)CircleRes,1);
+			if (j!=CircleRes)
+			{
+				cylinder->index(centerIndex);
+				cylinder->index(offset+1);
+				cylinder->index(offset);
+			}
+			offset++;
+		}
+
+		cylinder->end();
+        Ogre::MeshPtr cylindermesh = cylinder->convertToMesh(MeshName, GroupName);
+        cylindermesh->_setBounds(Ogre::AxisAlignedBox(-Half.X,-Half.Y,-Half.Z,Half.X,Half.Y,Half.Z));
+        Real FirstCheck = Half.X > Half.Y ? Half.X : Half.Y;
+        Real Largest = FirstCheck > Half.Z ? FirstCheck : Half.Z;
+        cylindermesh->_setBoundingSphereRadius(1.4 * Largest);
+        delete cylinder;
+/// End of MIT(Ogre Proceadural) License ///
     }
 
     void MeshGenerator::CreateSphereMesh(const String& MeshName, const String& MaterialName, const Real& Radius, const Real& Rings, const Real& Segments)

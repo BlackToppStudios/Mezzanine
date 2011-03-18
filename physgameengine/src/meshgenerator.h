@@ -70,7 +70,9 @@ namespace phys
             /// @param MaterialName The name of the material script which will be applied to this mesh.
             /// @param HalfExtents Half of the full dimentions of the final object in world units.  This allows the objects origin to be it's center.
             /// @param AxisOrientation Vector3 representing which axis the cylinder should be aligned on.  Should be one of the three: (1,0,0), (0,1,0), (0,0,1).
-            static void CreateCylinderMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Vector3& AxisOrientation);
+            /// @param CircleRes The number of segments the circle should be comprised of.  Determines the "resolution" of the cylinder.
+            /// @param Segments Optional parameter to specify the number of segments the cylinder should be comprised of.  Mostly just useful if a special material is made for his.
+            static void CreateCylinderMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents, const Vector3& AxisOrientation, const Whole& CircleRes = 16, const Whole& Segments = 1);
             /// @brief Creates a sphere graphical mesh which can be used for actors.
             /// @param MeshName The name for the mesh which will be created.  Use this to reference the mesh when creating other objects that need a mesh.
             /// @param MaterialName The name of the material script which will be applied to this mesh.

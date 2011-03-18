@@ -82,6 +82,42 @@ namespace phys
         this->ExtractcAudioVector3(Vec);
     }
 
+    Vector3 Vector3::Unit_X()
+    {
+        Vector3 Vec(1,0,0);
+        return Vec;
+    }
+
+    Vector3 Vector3::Unit_Y()
+    {
+        Vector3 Vec(0,1,0);
+        return Vec;
+    }
+
+    Vector3 Vector3::Unit_Z()
+    {
+        Vector3 Vec(0,0,1);
+        return Vec;
+    }
+
+    Vector3 Vector3::Neg_Unit_X()
+    {
+        Vector3 Vec(-1,0,0);
+        return Vec;
+    }
+
+    Vector3 Vector3::Neg_Unit_Y()
+    {
+        Vector3 Vec(0,-1,0);
+        return Vec;
+    }
+
+    Vector3 Vector3::Neg_Unit_Z()
+    {
+        Vector3 Vec(0,0,-1);
+        return Vec;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Assignment Operators
     Vector3& Vector3::operator= (const btVector3 &bt3)
@@ -142,23 +178,44 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
-    bool Vector3::operator== (const Vector3 &Vec2)
+    bool Vector3::operator== (const Vector3 &Vec2) const
     {
         if ( Vec2.X == this->X && Vec2.Y == this->Y && Vec2.Z == this->Z )
             { return true; }
         return false;
     }
 
-    bool Vector3::operator== (const btVector3 &Vec2)
+    bool Vector3::operator== (const btVector3 &Vec2) const
     {
         if ( Vec2.getX() == this->X && Vec2.getY() == this->Y && Vec2.getZ() == this->Z )
             { return true; }
         return false;
     }
 
-    bool Vector3::operator== (const Ogre::Vector3 &Vec2)
+    bool Vector3::operator== (const Ogre::Vector3 &Vec2) const
     {
         if ( Vec2.x == this->X && Vec2.y == this->Y && Vec2.z == this->Z )
+            { return true; }
+        return false;
+    }
+
+    bool Vector3::operator!= (const Vector3 &Vec2) const
+    {
+        if ( Vec2.X != this->X || Vec2.Y != this->Y || Vec2.Z != this->Z )
+            { return true; }
+        return false;
+    }
+
+    bool Vector3::operator!= (const btVector3 &Vec2) const
+    {
+        if ( Vec2.getX() != this->X || Vec2.getY() != this->Y || Vec2.getZ() != this->Z )
+            { return true; }
+        return false;
+    }
+
+    bool Vector3::operator!= (const Ogre::Vector3 &Vec2) const
+    {
+        if ( Vec2.x != this->X || Vec2.y != this->Y || Vec2.z != this->Z )
             { return true; }
         return false;
     }

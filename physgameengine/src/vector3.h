@@ -104,6 +104,19 @@ namespace phys
         /// @param Vec The vector to be copied to make this vector.
         explicit Vector3(cAudio::cVector3 Vec);
 
+        /// @brief Gets a vector representing the X unit of a vector(1,0,0).
+        static Vector3 Unit_X();
+        /// @brief Gets a vector representing the Y unit of a vector(0,1,0).
+        static Vector3 Unit_Y();
+        /// @brief Gets a vector representing the Z unit of a vector(0,0,1).
+        static Vector3 Unit_Z();
+        /// @brief Gets a vector representing the negative X unit of a vector(-1,0,0).
+        static Vector3 Neg_Unit_X();
+        /// @brief Gets a vector representing the negative Y unit of a vector(0,-1,0).
+        static Vector3 Neg_Unit_Y();
+        /// @brief Gets a vector representing the negative Z unit of a vector(0,0,-1).
+        static Vector3 Neg_Unit_Z();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Assignment Operators
 
@@ -120,20 +133,35 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         // Equality Comparison operators
 
-        /// @brief Equality Comparison Operator
+        /// @brief Equality Comparison Operator.
         /// @details Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false.
         /// @param Vec2 This is the other phys::Vector3.
-        bool operator== (const phys::Vector3 &Vec2);
+        bool operator== (const phys::Vector3 &Vec2) const;
 
-        /// @brief Equality Comparison Operator
+        /// @brief Equality Comparison Operator.
         /// @details Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false.
         /// @param Vec2 This is an btVector3 that needs to be compared with this.
-        bool operator== (const btVector3 &Vec2);
+        bool operator== (const btVector3 &Vec2) const;
 
-        /// @brief Equality Comparison Operator
+        /// @brief Equality Comparison Operator.
         /// @details Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
         /// @param Vec2 This is an Ogre::Vector3 that needs to be compared with this.
-        bool operator== (const Ogre::Vector3 &Vec2);
+        bool operator== (const Ogre::Vector3 &Vec2) const;
+
+        /// @brief Inequality Comparison Operator.
+        /// @details Returns true if X!=X, Y!=Y or Z!=Z. If all of those match this returns false.
+        /// @param Vec2 This is the other phys::Vector3.
+        bool operator!= (const phys::Vector3 &Vec2) const;
+
+        /// @brief Inequality Comparison Operator.
+        /// @details Returns true if X!=getX(), Y!=getY() or Z!=getZ(). If all of those match this returns false.
+        /// @param Vec2 This is an btVector3 that needs to be compared with this.
+        bool operator!= (const btVector3 &Vec2) const;
+
+        /// @brief Inequality Comparison Operator.
+        /// @details Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
+        /// @param Vec2 This is an Ogre::Vector3 that needs to be compared with this.
+        bool operator!= (const Ogre::Vector3 &Vec2) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Unary Operators
