@@ -425,8 +425,10 @@ bool CheckForStuff()
     XMLforEventMGR << *(TheWorld->GetEventManager());
     TheWorld->Log("Event Manager");
     TheWorld->Log(XMLforEventMGR.str());
-    TheWorld->Log("Reconstituted event manager");
+    TheWorld->Log("New and empty Event Manager");
     EventManager tempmgr;
+    TheWorld->Log(tempmgr);
+    TheWorld->Log("Reconstituted Event Manager");
     XMLforEventMGR >> tempmgr;
     TheWorld->Log(tempmgr);
 

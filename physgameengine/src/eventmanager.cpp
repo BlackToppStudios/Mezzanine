@@ -57,8 +57,11 @@
 
 #include <map>
 #include <memory>
+#include <cassert>
 
 #include "SDL.h"
+
+
 //#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
 
 namespace phys
@@ -129,7 +132,7 @@ namespace phys
             /// @brief Adds one type of polling check
             /// @param OneCode The code that will be check for each frame, under the new condition
             /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
-            void AddInputCodeToManualCheck(const MetaCode::InputCode& OneCode, PollingType _PollingCheck)
+            void AddInputCodeToManualCheck(MetaCode::InputCode OneCode, PollingType _PollingCheck)
             {
                 ManualCheckIterator Which = ManualCheck.find(OneCode);
                 if(ManualCheck.end() == Which )
@@ -138,6 +141,18 @@ namespace phys
                 }else{
                     Which->second = (PollingType)(Which->second | _PollingCheck); //An Item can be multiple kinds of polling checks
                 }
+            }
+
+            /// @internal
+            /// @brief Adds one type of polling check where the data is only available as Ints
+            /// @param OneCode The code that will be check for each frame, under the new condition
+            /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
+            void AddInputCodeToManualCheck(int OneCode, int _PollingCheck)
+            {
+                this->AddInputCodeToManualCheck(
+                        static_cast<phys::MetaCode::InputCode>(OneCode),
+                        static_cast<phys::internal::EventManagerInternalData::PollingType>(_PollingCheck)
+                );
             }
 
             /// @internal
@@ -574,25 +589,24 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventManager& Mg
 
 void operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    if(phys::String(OneNode.Name()) == phys::String("EventManager"))
     {
-        if (phys::String(OneNode.Name()) == phys::String("EventManager"))
+        if (OneNode.GetAttribute("Version").AsInt() == 1)
         {
-        phys::xml::Node Child = OneNode.GetFirstChild();
-        while(Child)
-        {
-            phys::String TagName(Child.Name());
-            if( TagName==phys::String("ManualCheck") )
+            phys::xml::Node Child = OneNode.GetFirstChild();
+            while(Child)
             {
-                Mgr._Data->AddInputCodeToManualCheck(
-                    static_cast<phys::MetaCode::InputCode>(OneNode.GetAttribute("InputCode").AsInt()),
-                    static_cast<phys::internal::EventManagerInternalData::PollingType>(OneNode.GetAttribute("PollingType").AsInt())
-                );
-            }else{
+                phys::String TagName(Child.Name());
                 if(TagName.length()>6)                  // I am pretty sure that the easiest wat to identify an event is by looking at the 6th
                 {                                       // Character and seeing what the actual name of the event is. So that is what this does.
                     switch(TagName[5])
                     {
+                        case 'l':{
+                            Mgr._Data->AddInputCodeToManualCheck(
+                                (Child.GetAttribute("InputCode").AsInt()),
+                                (Child.GetAttribute("PollingType").AsInt())
+                            );}
+                            break;
                         case 'C':{
                             phys::EventCollision *temp = new phys::EventCollision();
                             Child >> *temp;
@@ -627,28 +641,16 @@ void operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr)
                             break;
                     }
                 }else{
-                    throw phys::Exception ("Invalid event name is not long enough to identify event.");
+                    throw phys::Exception ("Invalid event, name is not long enough to identify event.");
                 } // end if name length
-            } // endif is it a ManualCheck
-            Child = Child.GetNextSibling();
-        }   // end while
-
-        }
-        /*Ev.clear();
-
-        //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
-        phys::xml::Node Child = OneNode.GetFirstChild();
-        phys::MetaCode ACode;
-        while(Child)
-        {
-            Child >> ACode;
-            Ev.AddCode(ACode);
-            Child = Child.GetNextSibling();
-        }*/
-
+                Child = Child.GetNextSibling();
+            } // end while
+        }else{
+            throw( phys::Exception("Incompatible XML Version for EventManager: Not Version 1"));
+        } // if version
     }else{
-        throw( phys::Exception("Incompatible XML Version for EventManager: Not Version 1"));
-    }
+        throw( phys::Exception("Attempting to deserialize an EventManager, event mananger not found.") );
+    }// if event
 }
 #endif // \PHYSXML
 
