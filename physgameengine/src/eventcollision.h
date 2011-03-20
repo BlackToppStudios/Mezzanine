@@ -67,6 +67,9 @@ namespace phys {
             /// @brief The second Actor invovled in the collision.
             ActorBase* ActorB;
 
+            /// @brief Default Constructor
+            EventCollision();
+
             /// @brief Class Constructor.
             /// @details This will construct a basic event class with the minimum data needed.
             /// @param actora The first Actor involved in the collision.

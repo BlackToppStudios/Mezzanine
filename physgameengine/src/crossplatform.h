@@ -143,6 +143,10 @@ namespace phys
         /// @param ActualWidth The modified value of the rendering width, after window decorations have been taken into account.
         /// @param ActualHeight The modified value of the rendering height, after window decorations have been taken into account.
         void PHYS_LIB SanitizeWindowedRes(const Whole& Width, const Whole& Height, Whole& ActualWidth, Whole& ActualHeight);
+
+        /// @brief Get the working directory as a phys::String
+        /// @return The Directory the game was called from (not nescessarilly the location of the executable), as a phys::String
+        String PHYS_LIB GetWorkingDir();
     }
 }
 #endif

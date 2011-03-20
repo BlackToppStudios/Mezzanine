@@ -96,7 +96,7 @@ namespace phys
             /// @param GWEventID What kind of change happened
             /// @param First A parameter that is dependant on the kind of change to the game window
             /// @param Second A parameter that is dependant on the kind of change to the game window
-            explicit EventGameWindow(GameWindowEventID GWEventID, int First=0, int Second=0);
+            explicit EventGameWindow(GameWindowEventID GWEventID=GAME_WINDOW_NONE, int First=0, int Second=0);
 
             /// @brief Copy constructor
             /// @param Other The Other EventGameWindow to use in the creation on this

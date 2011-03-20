@@ -576,6 +576,64 @@ void operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr)
 {
     if(OneNode.GetAttribute("Version").AsInt() == 1)
     {
+        if (phys::String(OneNode.Name()) == phys::String("EventManager"))
+        {
+        phys::xml::Node Child = OneNode.GetFirstChild();
+        while(Child)
+        {
+            phys::String TagName(Child.Name());
+            if( TagName==phys::String("ManualCheck") )
+            {
+                Mgr._Data->AddInputCodeToManualCheck(
+                    static_cast<phys::MetaCode::InputCode>(OneNode.GetAttribute("InputCode").AsInt()),
+                    static_cast<phys::internal::EventManagerInternalData::PollingType>(OneNode.GetAttribute("PollingType").AsInt())
+                );
+            }else{
+                if(TagName.length()>6)                  // I am pretty sure that the easiest wat to identify an event is by looking at the 6th
+                {                                       // Character and seeing what the actual name of the event is. So that is what this does.
+                    switch(TagName[5])
+                    {
+                        case 'C':{
+                            phys::EventCollision *temp = new phys::EventCollision();
+                            Child >> *temp;
+                            Mgr.AddEvent(temp); }
+                            break;
+                        case 'G':{
+                            phys::EventGameWindow *temp = new phys::EventGameWindow();
+                            Child >> *temp;
+                            Mgr.AddEvent(temp); }
+                            break;
+                        case 'Q':{
+                            phys::EventQuit *temp = new phys::EventQuit();
+                            Child >> *temp;
+                            Mgr.AddEvent(temp); }
+                            break;
+                        case 'R':{
+                            phys::EventRenderTime *temp = new phys::EventRenderTime();
+                            Child >> *temp;
+                            Mgr.AddEvent(temp); }
+                            break;
+                        case 'U':{
+                            phys::EventUserInput *temp = new phys::EventUserInput();
+                            Child >> *temp;
+                            Mgr.AddEvent(temp); }
+                            break;
+                        case 'O':
+                            throw phys::Exception ("Attemping to serialize a phys::Event::Other... not sure what you are trying to serialize.");
+                            //throw Exception ("How did you instantiate an abstract base class?! Attemping to serialize a phys::EventBase");
+                            break;
+                        default:
+                            throw phys::Exception ("Attemping to serialize a phys::Event... not sure what you are trying to serialize.");
+                            break;
+                    }
+                }else{
+                    throw phys::Exception ("Invalid event name is not long enough to identify event.");
+                } // end if name length
+            } // endif is it a ManualCheck
+            Child = Child.GetNextSibling();
+        }   // end while
+
+        }
         /*Ev.clear();
 
         //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();

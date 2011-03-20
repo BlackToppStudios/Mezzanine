@@ -421,7 +421,15 @@ bool PostInput()
 bool CheckForStuff()
 {
     #ifdef PHYSDEBUG
-    TheWorld->Log(*(TheWorld->GetEventManager()));
+    stringstream XMLforEventMGR;
+    XMLforEventMGR << *(TheWorld->GetEventManager());
+    TheWorld->Log("Event Manager");
+    TheWorld->Log(XMLforEventMGR.str());
+    TheWorld->Log("Reconstituted event manager");
+    EventManager tempmgr;
+    XMLforEventMGR >> tempmgr;
+    TheWorld->Log(tempmgr);
+
     #endif
 
     //this will either set the pointer to 0 or return a valid pointer to work with.
@@ -545,6 +553,8 @@ void LoadContent()
 
     //Test the Resource input stream here
     #ifdef PHYSDEBUG
+    TheWorld->Log("Getting Working Directory.");
+    TheWorld->Log(crossplatform::GetWorkingDir());
     TheWorld->Log("Trying to open test.xml and test.txt");
     #endif
     {

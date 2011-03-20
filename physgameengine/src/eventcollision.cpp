@@ -47,6 +47,15 @@
 #include <memory>
 
 namespace phys {
+
+    EventCollision::EventCollision()
+    {
+        ActorA=0;
+        ActorB=0;
+        Location=Vector3(0,0,0);
+        Impulse=0.0;
+    }
+
     EventCollision::EventCollision(ActorBase* actora, ActorBase* actorb, Vector3 location, Real impulse)
     {
         ActorA=actora;

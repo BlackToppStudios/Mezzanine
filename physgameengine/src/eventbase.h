@@ -75,6 +75,12 @@ namespace phys
                 //SystemMessage,  /**< Indicates the Event has not been coded yet */
                 Other
             };
+            // If you add an eventtype do not forget to add the appropriate functions tot he event manager and update these functions
+            //void operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr);
+            //std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::EventBase& Ev);
+
+
+
 
             /// @brief This will aid in identifying all classes that inherit from this class.
             /// @details All Classes derived form this calls will return an Event::EventType that correspond the

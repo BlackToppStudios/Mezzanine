@@ -67,7 +67,7 @@ namespace phys
             /// @brief The Constructor
             /// @details This is the only way to set the time
             /// @param Milliseconds As it says, the amount of milliseconds since the last rendering
-            EventRenderTime (Whole Milliseconds);
+            EventRenderTime (Whole Milliseconds=0);
 
             /// @brief Returns that this event is a EventType::RenderTime
             /// @details This is primarily for the benefit of sorting thorugh event pointers. If

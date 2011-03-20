@@ -51,13 +51,16 @@
 #include <Ogre.h>
 #include "SDL.h"
 
+#include <stdio.h>
+
 //Selective Includes
 #ifdef WINDOWS
 	#include <cstdlib>//for sleep
     #include <Winuser.h>
 	#include "SDL_syswm.h" //for the needed commands
+    #include <direct.h> // for _getcwd
 #else
-	#include <unistd.h>//for sleep
+	#include <unistd.h>//for sleep and getcwd
     #include "graphicsmanager.h"
 #endif
 
@@ -195,6 +198,20 @@ namespace phys
             ActualHeight = Height;
             #endif
         }
+
+        String GetWorkingDir()
+        {
+            char cCurrentPath[FILENAME_MAX];
+            //char cCurrentPath[MAXPATHLEN];
+            #ifdef WINDOWS
+            String Results (_getcwd(cCurrentPath,sizeof(cCurrentPath)));
+            #else
+            String Results (getcwd(cCurrentPath,sizeof(cCurrentPath)));
+            #endif
+            return Results;
+        }
+
+
     }
 }
 
