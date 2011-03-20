@@ -222,6 +222,7 @@ namespace phys
     //returns: false if changes could not be made
     void GraphicsManager::setFullscreen(const bool &Fullscreen)
     {
+        static SDL_DisplayMode FSDisplayMode;
         if(!GraphicsInitialized)
         {
             Settings.Fullscreen = Fullscreen;
@@ -247,14 +248,14 @@ namespace phys
                 Settings.RenderHeight = DesktopSettings.RenderHeight;
             }
         }
-        if(Fullscreen && !Settings.Fullscreen)
+        else if(Fullscreen && !Settings.Fullscreen)
         {
-            SDL_DisplayMode FSDisplayMode;
             FSDisplayMode.w = Settings.RenderWidth;
             FSDisplayMode.h = Settings.RenderHeight;
-            FSDisplayMode.refresh_rate = 0;
+            FSDisplayMode.refresh_rate = Settings.RefreshRate;
             SDL_SetWindowDisplayMode(SDLwindow,&FSDisplayMode);
         }
+
         if(SDL_SetWindowFullscreen(SDLwindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0)
         {
             OgreGameWindow->setFullscreen(Fullscreen,Settings.RenderWidth,Settings.RenderHeight);
@@ -331,7 +332,7 @@ namespace phys
                 Whole ResultWidth, ResultHeight;
                 crossplatform::SanitizeWindowedRes(Width,Height,ResultWidth,ResultHeight);
                 SDL_SetWindowSize(SDLwindow,ResultWidth,ResultHeight);
-                OgreGameWindow->setFullscreen(false,Width,Height);
+                OgreGameWindow->setFullscreen(false,ResultWidth,ResultHeight);
             }else if(Result == 1){
                 GameWorld->Log("Cannot create a window larger then the desktop resolution.");
                 return;
@@ -459,6 +460,7 @@ namespace phys
         SDL_GetDesktopDisplayMode(0,&DeskMode);
         DesktopSettings.RenderWidth = DeskMode.w;
         DesktopSettings.RenderHeight = DeskMode.h;
+        DesktopSettings.RefreshRate = DeskMode.refresh_rate;
 
         GraphicsInitialized = true;
     }

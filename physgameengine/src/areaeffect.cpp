@@ -385,7 +385,6 @@ namespace phys{
             TheWorld->Log("Attempting to create sphere graphics shape when AreaEffect isn't a sphere is not supported.  Exiting Function.");
             return;
         }
-        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
         PreGraphicsMeshCreate();
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
         String GroupName = TheMaterial->getGroup();
@@ -412,7 +411,6 @@ namespace phys{
             TheWorld->Log("Attempting to create cylinder graphics shape when AreaEffect isn't a cylinder is not supported.  Exiting Function.");
             return;
         }
-        Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
         PreGraphicsMeshCreate();
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
         String GroupName = TheMaterial->getGroup();
@@ -452,7 +450,6 @@ namespace phys{
             TheWorld->Log("Attempting to create box graphics shape when AreaEffect isn't a box is not supported.  Exiting Function.");
             return;
         }
-        Ogre::SceneManager* OgreManager = TheWorld->GetSceneManager()->GetGraphicsWorldPointer();
         PreGraphicsMeshCreate();
         Ogre::MaterialPtr TheMaterial = Ogre::MaterialManager::getSingleton().getByName(MaterialName);
         String GroupName = TheMaterial->getGroup();

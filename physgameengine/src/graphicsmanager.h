@@ -49,8 +49,8 @@ namespace Ogre
     class RenderWindow;
 }
 
-class SDL_Surface;
-class SDL_Window;
+struct SDL_Surface;
+struct SDL_Window;
 
 namespace phys
 {
@@ -64,20 +64,23 @@ namespace phys
     ///////////////////////////////////////
     struct GraphicsSettings
     {
-        /// @brief This stores the Height of the renderwindow
+        /// @brief This stores the Height of the renderwindow.
         Whole RenderHeight;
-        /// @brief This stores the Width of the renderwindow
+        /// @brief This stores the Width of the renderwindow.
         Whole RenderWidth;
+        /// @brief This stores the device refresh rate in Hz.
+        Whole RefreshRate;
         /// @brief This is the desired state of whether the window is fullscreen or not.
         bool Fullscreen;
         /// @brief This is the desired state of whether to enable VSync or not.
         bool VSync;
         /// @brief Struct Constructor
-        GraphicsSettings() : RenderHeight(0),RenderWidth(0),Fullscreen(false),VSync(false) {}
+        GraphicsSettings() : RenderHeight(0),RenderWidth(0),RefreshRate(0),Fullscreen(false),VSync(false) {}
         GraphicsSettings& operator= (const GraphicsSettings &GS)
         {
             this->RenderHeight = GS.RenderHeight;
             this->RenderWidth = GS.RenderWidth;
+            this->RefreshRate = GS.RefreshRate;
             this->Fullscreen = GS.Fullscreen;
             this->VSync = GS.VSync;
             return *this;
