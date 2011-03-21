@@ -201,10 +201,10 @@ namespace phys
         Results.push_back(this->AddCode(RawEvent_.motion.y, MetaCode::MOUSEABSOLUTEVERTICAL));
 
         if(0 != RawEvent_.motion.xrel)
-            { Results.push_back(this->AddCode(RawEvent_.motion.xrel, MetaCode::MOUSEVERTICAL));}
+            { Results.push_back(this->AddCode(RawEvent_.motion.xrel, MetaCode::MOUSEHORIZONTAL));}
 
         if(0 != RawEvent_.motion.yrel)
-            { Results.push_back(this->AddCode(RawEvent_.motion.yrel, MetaCode::MOUSEHORIZONTAL));}
+            { Results.push_back(this->AddCode(RawEvent_.motion.yrel, MetaCode::MOUSEVERTICAL));}
         return Results;
     }
 

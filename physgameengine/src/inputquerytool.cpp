@@ -57,6 +57,9 @@ namespace phys
         { return CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL] ;}
     int InputQueryTool::GetMouseY()
         { return CodeCache[MetaCode::MOUSEABSOLUTEVERTICAL] ;}
+    int InputQueryTool::GetJoystickAxis(short unsigned int Axis)
+        { return CodeCache[MetaCode::GetJoystickAxisCode(Axis)]; }
+
 
     Vector2 InputQueryTool::GetMouseCoordinates()
         { return Vector2(CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL],CodeCache[MetaCode::MOUSEABSOLUTEVERTICAL]); }
@@ -83,15 +86,27 @@ namespace phys
 
     void InputQueryTool::GatherEvents(bool ClearEventsFromEventMgr)
     {
+        CodeCache[MetaCode::MOUSEHORIZONTAL] = 0;           //We need to 0 out all
+        CodeCache[MetaCode::MOUSEVERTICAL] = 0;
+
         std::list<EventUserInput*>* UserInput = World::GetWorldPointer()->GetEventManager()->GetAllUserInputEvents();   // Get the updated list of events
 
         if( ClearEventsFromEventMgr )
             { World::GetWorldPointer()->GetEventManager()->RemoveAllSpecificEvents(EventBase::UserInput); }
 
+        MetaCode::InputCode ThisCode;
         for(std::list<EventUserInput*>::iterator Iter = UserInput->begin(); Iter!=UserInput->end(); Iter++) //for each event
         {
             for(unsigned int c = 0; c<(*Iter)->GetMetaCodeCount(); c++) //For each metacode in the event
-                { CodeCache[(*Iter)->GetMetaCode(c).GetCode()] = (*Iter)->GetMetaCode(c).GetMetaValue(); }
+            {
+                ThisCode = (*Iter)->GetMetaCode(c).GetCode() ;
+                if( ThisCode==MetaCode::MOUSEVERTICAL || ThisCode==MetaCode::MOUSEHORIZONTAL )
+                {
+                    CodeCache[ThisCode] += (*Iter)->GetMetaCode(c).GetMetaValue();
+                }else{
+                    CodeCache[ThisCode] = (*Iter)->GetMetaCode(c).GetMetaValue();
+                }
+            }
         }
 
         if( ClearEventsFromEventMgr )//Erase everything if we were asked to.

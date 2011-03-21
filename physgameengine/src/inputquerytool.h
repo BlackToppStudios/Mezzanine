@@ -54,7 +54,11 @@ namespace phys
     /// @class InputQueryTool
     /// @headerfile inputquerytool.h
     /// @brief This provides a number of utilities for getting input information.
-    /// @details This is useful for quickly and easily getting common input information.
+    /// @details This is useful for quickly and easily getting common input information. This does so
+    /// by querying the event manager when GatherEvents() is called, and storing all of the results in
+    /// an vector, array or similar structure. All of the functions except GatherEvents() run in
+    /// constant time because of this. Having this remove the read events from the event manager can
+    /// reduce time spent working on user input events to focus on other events.
     ///////////////////////////////////////
     class PHYS_LIB InputQueryTool
     {
@@ -74,14 +78,17 @@ namespace phys
             ~InputQueryTool();
 
             /// @brief This gets the X coordinate of the mouse
-            /// @details This gets the X location of this mouse. This runs in constant time.
             /// @return This returns a Whole number which represents the X coordinate of the mouse.
             int GetMouseX();
 
             /// @brief This gets the Y coordinate of the mouse
-            /// @details This gets the Y location of this mouse. This runs in constant time.
             /// @return This returns a Whole number which represents the Y coordinate of the mouse.
             int GetMouseY();
+
+            /// @brief This Gets the value of the given joystick axis
+            /// @param Axis The index of the axis that you want
+            /// @return An integer with the Value of the joystick axis
+            int GetJoystickAxis(short unsigned int Axis);
 
             /// @brief This gets a vector2 containing both X and Y coordinates of the mouse.
             /// @details If precision is important then you should use the individual coordinate fetching

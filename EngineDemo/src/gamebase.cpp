@@ -217,9 +217,15 @@ bool PostInput()
     static WorldQueryTool Queryer;
 
     Queryer.GatherEvents();
-    TheWorld->Log("Mouse location From WorldQueryTool X/Y");
-    TheWorld->Log(Queryer.GetMouseX());
-    TheWorld->Log(Queryer.GetMouseY());
+    TheWorld->Log("Mouse location From WorldQueryTool X/Y: ");
+    TheWorld->LogStream << Queryer.GetMouseX() << ", " << Queryer.GetMouseY() << endl
+                        << Queryer.GetRawMetaValue(MetaCode::MOUSEABSOLUTEHORIZONTAL) << ", " << Queryer.GetRawMetaValue(MetaCode::MOUSEABSOLUTEVERTICAL) << endl
+                        << Queryer.GetMouseCoordinates() << endl;
+    TheWorld->Log("Relative Mouse location From WorldQueryTool X/Y: ");
+    TheWorld->LogStream << Queryer.GetRawMetaValue(MetaCode::MOUSEHORIZONTAL) << ", " << Queryer.GetRawMetaValue(MetaCode::MOUSEVERTICAL) << endl
+                        << Queryer.GetMousePrevFrameOffset() << endl;
+
+
 
 //    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
 //        {TheWorld->Cameras->IncrementYOrbit(-0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
