@@ -168,6 +168,12 @@ bool PostRender()
     String AFPS = AFPSstream.str();
     CurFPS->SetText(CFPS);
     AvFPS->SetText(AFPS);
+    // Update mouse positions
+    UI::Caption* IMPos = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("IMPos");
+    std::stringstream IMPosstream;
+    IMPosstream << TheWorld->GetUIManager()->GetInputQueryer()->GetMouseCoordinates().X << "," << TheWorld->GetUIManager()->GetInputQueryer()->GetMouseCoordinates().Y;
+    String IMPosTex = IMPosstream.str();
+    IMPos->SetText(IMPosTex);
 
     // Turn on the Wireframe
     if (30000<gametime)
@@ -214,6 +220,9 @@ bool PostUI()
 
 bool PreInput()
 {
+    // using the Raw Event Manager, and deleting the events
+    if( !CheckForStuff() )
+        return false;
     return true;
 }
 
@@ -221,6 +230,12 @@ bool PostInput()
 {
     //User Input through a WorldQueryTool
     static WorldQueryTool Queryer;
+
+    UI::Caption* WMPos = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("WMPos");
+    std::stringstream WMPosstream;
+    WMPosstream << Queryer.GetMouseCoordinates().X << "," << Queryer.GetMouseCoordinates().Y;
+    String WMPosTex = WMPosstream.str();
+    WMPos->SetText(WMPosTex);
 
     Queryer.GatherEvents();
     TheWorld->Log("Mouse location From WorldQueryTool X/Y: ");
@@ -436,10 +451,6 @@ bool PostInput()
             Act->RestoreActivation();
         }
     }
-
-    // using the Raw Event Manager, and deleting the events
-    if( !CheckForStuff() )
-        return false;
     return true;
 }
 
@@ -1008,6 +1019,22 @@ void MakeGUI()
     UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), 14, "Average FPS: ");
     AvFPSText->SetBackgroundColour(Transparent);
     AvFPSText->HorizontallyAlign(UI::Txt_Left);
+
+    UI::Caption* WMPos = Stats->CreateCaption( "WMPos", Vector2(0.16, 0.15), Vector2(0.12, 0.065), 14, "0,0");
+    WMPos->SetBackgroundColour(Transparent);
+    WMPos->HorizontallyAlign(UI::Txt_Left);
+
+    UI::Caption* WMPosText = Stats->CreateCaption( "WMPosText", Vector2(0.008, 0.15), Vector2(0.15, 0.065), 14, "World M Pos: ");
+    WMPosText->SetBackgroundColour(Transparent);
+    WMPosText->HorizontallyAlign(UI::Txt_Left);
+
+    UI::Caption* IMPos = Stats->CreateCaption( "IMPos", Vector2(0.16, 0.195), Vector2(0.12, 0.065), 14, "0,0");
+    IMPos->SetBackgroundColour(Transparent);
+    IMPos->HorizontallyAlign(UI::Txt_Left);
+
+    UI::Caption* IMPosText = Stats->CreateCaption( "IMPosText", Vector2(0.008, 0.195), Vector2(0.15, 0.065), 14, "Input M Pos: ");
+    IMPosText->SetBackgroundColour(Transparent);
+    IMPosText->HorizontallyAlign(UI::Txt_Left);
     //End of Stats Layer
 }
 //*/
