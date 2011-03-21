@@ -106,6 +106,13 @@ namespace phys
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
             bool IsMouseButtonPushed(short unsigned int MouseButton);
 
+            /// @brief Returns whether a specific Joystick button is pushed
+            /// @details This runs in constant time and returns a true is the requested Joystick button is pressed. Buttons that are being pressed
+            /// are considered pressed, and buttons that are being lifted are considered unpressed.
+            /// @param JoyStickButton This is the Joystick button that is being checked
+            /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
+            bool IsJoystickButtonPushed(short unsigned int JoyStickButton);
+
             /// @brief Returns whether a specific Keyboard button is pushed
             /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
             /// are considered pressed, and buttons that are being lifted are considered unpressed.
@@ -127,7 +134,7 @@ namespace phys
 
             /// @brief Gets the current status of the mouse wheel.
             /// @return Returns an enum value representing the current state of the mouse wheel.
-            MetaCode::MouseWheelState GetMouseWheelState();
+            MetaCode::DirectionalMotionState GetMouseWheelState();
 
             /// @brief This gathers any user-input/event data that might be queryed
             /// @details This should be called periodcally (ideally in the post user input callback) to allow this

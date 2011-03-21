@@ -68,6 +68,8 @@ namespace phys
 
     bool InputQueryTool::IsMouseButtonPushed(short unsigned int MouseButton)
         { return MetaCode::BUTTON_UP < CodeCache[MetaCode::GetMouseButtonCode(MouseButton)]; }
+    bool InputQueryTool::IsJoystickButtonPushed(short unsigned int JoyStickButton)
+        { return MetaCode::BUTTON_UP < CodeCache[MetaCode::GetJoystickButtonCode(JoyStickButton)]; }
     bool InputQueryTool::IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton)
         { return MetaCode::BUTTON_UP < CodeCache[KeyboardButton]; }
 
@@ -76,8 +78,8 @@ namespace phys
     MetaCode::ButtonState InputQueryTool::GetKeyboardButtonState(MetaCode::InputCode KeyboardButton)
         { return (MetaCode::ButtonState)CodeCache[KeyboardButton]; }
 
-    MetaCode::MouseWheelState InputQueryTool::GetMouseWheelState()
-        { return (MetaCode::MouseWheelState)CodeCache[MetaCode::MOUSEWHEELVERTICAL]; }
+    MetaCode::DirectionalMotionState InputQueryTool::GetMouseWheelState()
+        { return (MetaCode::DirectionalMotionState)CodeCache[MetaCode::MOUSEWHEELVERTICAL]; }
 
     void InputQueryTool::GatherEvents(bool ClearEventsFromEventMgr)
     {

@@ -101,8 +101,21 @@ namespace phys
     class PHYS_LIB EventUserInput : public EventBase, public vector<MetaCode>
     {
         private:
-            //Thse both accept a specific king of RawEvent from SDL and will behave non-deterministically if
+            //These private methods all accept a specific kind of RawEvent from SDL and will behave non-deterministically if
             //passed any other kind of data.
+
+            /// @internal
+            /// @brief Gets the MetaCode from RawInput Data
+            /// @param RawEvent_ The event that contains only Mouse Motion data
+            /// @return a metacode that represents button presses
+            vector<MetaCode> AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
+
+            /// @internal
+            /// @brief Gets the MetaCode from RawInput Data
+            /// @param RawEvent_ The event that contains only Joystick Motion data
+            /// @return a metacode that represents button presses
+            vector<MetaCode> AddCodesFromSDLJoyStickMotion(const RawEvent &RawEvent_);
+
             /// @internal
             /// @brief Gets the MetaCode from RawInput Data
             /// @param RawEvent_ The event that contains only Mouse button data
@@ -111,9 +124,9 @@ namespace phys
 
             /// @internal
             /// @brief Gets the MetaCode from RawInput Data
-            /// @param RawEvent_ The event that contains only Mouse Motion data
+            /// @param RawEvent_ The event that contains only Joystick button data
             /// @return a metacode that represents button presses
-            vector<MetaCode> AddCodesFromSDLMouseMotion(const RawEvent &RawEvent_);
+            MetaCode AddCodeFromSDLJoyStickButton(const RawEvent &RawEvent_);
 
         protected:
             /// @brief Adds a MetaCode created from a RawEvent

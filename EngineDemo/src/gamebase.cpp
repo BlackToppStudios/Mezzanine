@@ -233,21 +233,36 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
         { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
 
+    if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
+        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.000003 * (float)Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)); }
+
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
         { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( -12.0 ); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
         { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( 12.0 ); }
 
+    if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_2)!=0)
+        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera(0.002 * (float)Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_2)); }
+
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom(); }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_M) )
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_M) || Queryer.IsJoystickButtonPushed(1) )
     {
         Sound* Theme = TheWorld->GetSoundManager()->GetSoundByName("Theme2");
         if(!Theme->IsPlaying())
         {
             Theme->Play2d(false);
+        }
+    }
+
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_N) || Queryer.IsJoystickButtonPushed(2) )
+    {
+        Sound* Theme = TheWorld->GetSoundManager()->GetSoundByName("Theme2");
+        if(Theme->IsPlaying())
+        {
+            Theme->Stop();
         }
     }
 

@@ -165,13 +165,13 @@ namespace phys
         }
     }
 
-    MetaCode::MouseWheelState MetaCode::GetMetaValueAsMouseWheelState() const
+    MetaCode::DirectionalMotionState MetaCode::GetMetaValueAsDirectionalMotionState() const
     {
-        if( MetaCode::MOUSEWHEEL_DOWN <= this->MetaValue && MetaCode::MOUSEWHEEL_UP >= this->MetaValue)
+        if( MetaCode::DIRECTIONALMOTION_DOWNRIGHT <= this->MetaValue && MetaCode::DIRECTIONALMOTION_UPLEFT >= this->MetaValue)
         {
-            return (MetaCode::MouseWheelState) this->MetaValue;
+            return (MetaCode::DirectionalMotionState) this->MetaValue;
         }else{
-            throw("Invalid MouseWheelState in MetaValue");
+            throw("Invalid DirectionalMotionState in MetaValue");
         }
     }
     ///////////////////////////////////////////////////////////////////////////////
@@ -207,6 +207,22 @@ namespace phys
         MetaCode::InputCode Answer = (MetaCode::InputCode)(ButtonNumber + (int)MetaCode::MOUSEBUTTON);
         if ( MetaCode::MOUSEBUTTON_FIRST > Answer && MetaCode::MOUSEBUTTON_LAST < Answer)
             { throw (Exception("Unsupported mouse Button.")); }
+        return Answer;
+    }
+
+    MetaCode::InputCode MetaCode::GetJoystickButtonCode(short unsigned int ButtonNumber)
+    {
+        MetaCode::InputCode Answer = (MetaCode::InputCode)(ButtonNumber + (int)MetaCode::JOYSTICKBUTTON);
+        if ( MetaCode::JOYSTICKBUTTON_FIRST > Answer && MetaCode::JOYSTICKBUTTON_LAST < Answer)
+            { throw (Exception("Unsupported Joystick Button.")); }
+        return Answer;
+    }
+
+    MetaCode::InputCode MetaCode::GetJoystickAxisCode(short unsigned int ButtonNumber)
+    {
+        MetaCode::InputCode Answer = (MetaCode::InputCode)(ButtonNumber + (int)MetaCode::JOYSTICKAXIS);
+        if ( MetaCode::JOYSTICKAXIS_FIRST > Answer && MetaCode::JOYSTICKAXIS_LAST < Answer)
+            { throw (Exception("Unsupported Joystick AXIS.")); }
         return Answer;
     }
 

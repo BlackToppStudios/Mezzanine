@@ -192,6 +192,17 @@ namespace phys
                     { RemoveInputCodeToManualCheck(Iter->GetCode(), _PollingCheck); }
             }
 
+            /// @internal
+            /// @brief This will identify the main Joystick
+            SDL_Joystick *Joy0;
+
+            /// @internal
+            /// @brief Constructor, it only inits pointers to 0
+            EventManagerInternalData()
+            {
+                Joy0=0;
+            }
+
         };
 
     } // /internal
@@ -202,6 +213,9 @@ namespace phys
     {
         this->Priority=-40;
         this->_Data = new internal::EventManagerInternalData;
+        SDL_InitSubSystem(SDL_INIT_JOYSTICK);
+        if( SDL_NumJoysticks()>0 )
+            { this->_Data->Joy0=SDL_JoystickOpen(0); }
 
         //Remove GameWorld Pointer From everything
         this->GameWorld = World::GetWorldPointer();
@@ -209,6 +223,9 @@ namespace phys
 
     EventManager::~EventManager()
     {
+        if(SDL_JoystickOpened(0))
+            { SDL_JoystickClose(this->_Data->Joy0); }
+
         for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
             { delete *Iter; }
         delete _Data;
@@ -250,13 +267,12 @@ namespace phys
         RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
         EventUserInput* FromSDLEvent = new EventUserInput();    //Used to build up all of our userinput data into one event
 
-
         /* Here is a list of SDL event which aren't coded yet.
         //event types
             SDL_FIRSTEVENT				unused (do not remove)		Application events
             SDL_QUIT				user-requested quit		Window events
             SDL_WINDOWEVENT				window state change
-        SDL_SYSWMEVENT				system specific event		Keyboard events
+         SDL_SYSWMEVENT				system specific event		Keyboard events
             SDL_KEYDOWN				key pressed
             SDL_KEYUP				key released
         SDL_TEXTEDITING				keyboard text editing (composition)
@@ -271,11 +287,11 @@ namespace phys
         SDL_INPUTWHEEL				input wheel motion
         SDL_INPUTPROXIMITYIN				input pen entered proximity
         SDL_INPUTPROXIMITYOUT				input pen left proximity		Joystick events
-        SDL_JOYAXISMOTION				joystick axis motion
+         SDL_JOYAXISMOTION				joystick axis motion
         SDL_JOYBALLMOTION				joystick trackball motion
-        SDL_JOYHATMOTION				joystick hat position change
-        SDL_JOYBUTTONDOWN				joystick button pressed
-        SDL_JOYBUTTONUP				joystick button released		Touch events
+         SDL_JOYHATMOTION				joystick hat position change
+         SDL_JOYBUTTONDOWN				joystick button pressed
+         SDL_JOYBUTTONUP				joystick button released		Touch events
         SDL_FINGERDOWN
         SDL_FINGERUP
         SDL_FINGERMOTION
@@ -297,29 +313,21 @@ namespace phys
         {
             switch(FromSDLRaw.type)
             {
-            /*    case SDL_ACTIVEEVENT:   //when the window gains focus
-                case SDL_VIDEORESIZE:   //when the screen is resized
-                case SDL_VIDEOEXPOSE:   //when the windows goes from being hidden to being shown
-                case SDL_SYSWMEVENT:
-                case SDL_USEREVENT:
-                    /// @todo handle unhandled user system events
-                    //_Data->EventQ.push_back(FromSDLEvent);
-                    break;
-            */
-                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             //case SDL_JOYBUTTONUP:
+
+                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
                     _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
 
-                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           //case SDL_JOYBUTTONDOWN:
+                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           case SDL_JOYBUTTONDOWN:
                     _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
 
-                case SDL_MOUSEMOTION:       //case SDL_JOYAXISMOTION:     case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
+                case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYHATMOTION:      case SDL_JOYBALLMOTION: // What is a joyball, like the bowling games maybe, or the ORBit controller
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
                     break;
 
-
-                case SDL_FIRSTEVENT:  //capture and ignore
+                case SDL_FIRSTEVENT:  //capture and ignore or throw error
+                    World::GetWorldPointer()->LogAndThrow("Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");
                     break;
 
                 case SDL_WINDOWEVENT:

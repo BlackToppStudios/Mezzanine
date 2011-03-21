@@ -483,13 +483,65 @@ namespace phys
                 MULTITOUCH_LAST         = 449,  /// The last Multi Touch event
 
                 JOYSTICK_FIRST          = 450,  /// The First JoyStick event, all Joystick Event values will be more than this
-                JOYSTICKBUTTON          = 451,
-                JOYSTICKMOTIONAXIS      = 452,
-                JOYSTICKBALLVERTICAL    = 453,
-                JOYSTICKBALLHORIZONTAL  = 454,
-                JOYSTICKHATVERTICAL     = 455,
-                JOYSTICKHATHORIZONTAL   = 456,
-                JOYSTICK_LAST           = 457,  /// The last JoyStick Input Code, all JoyStick events will be less than this.
+                JOYSTICKBUTTON          = 450,  /// This is the generic Some stickbutton button code. You can add the number of the jpystick button to this and you will get the approriate code. Example (JOYSTICKBUTTON_1 == JOYSTICKBUTTON + 1)
+                JOYSTICKBUTTON_FIRST    = 451,  /// This is the lowest Joystick button value, all joystickbutton values will be larger of equal to this.
+                JOYSTICKBUTTON_1        = 451,
+                JOYSTICKBUTTON_2        = 452,
+                JOYSTICKBUTTON_3        = 453,
+                JOYSTICKBUTTON_4        = 454,
+                JOYSTICKBUTTON_5        = 455,
+                JOYSTICKBUTTON_6        = 456,
+                JOYSTICKBUTTON_7        = 457,
+                JOYSTICKBUTTON_8        = 458,
+                JOYSTICKBUTTON_9        = 459,
+                JOYSTICKBUTTON_10       = 460,
+                JOYSTICKBUTTON_11       = 461,
+                JOYSTICKBUTTON_12       = 462,
+                JOYSTICKBUTTON_13       = 463,
+                JOYSTICKBUTTON_14       = 464,
+                JOYSTICKBUTTON_15       = 465,
+                JOYSTICKBUTTON_16       = 466,
+                JOYSTICKBUTTON_17       = 467,
+                JOYSTICKBUTTON_18       = 468,
+                JOYSTICKBUTTON_19       = 469,
+                JOYSTICKBUTTON_20       = 470,
+                JOYSTICKBUTTON_LAST     = 470,  /// The Last Joystick button event, all joystick button event will be lower or equal to this.
+
+                JOYSTICKAXIS          = 480,  /// This is the generic joystick axis code. You can add the number of the joystick axis to this and you will get the approriate code. Example (JOYSTICKAXIS_1 == JOYSTICKAXIS + 1)
+                JOYSTICKAXIS_FIRST    = 481,  /// This is the lowest Joystick axis value, all jpystick values will be larger of equal to this
+                JOYSTICKAXIS_1        = 481,
+                JOYSTICKAXIS_2        = 482,
+                JOYSTICKAXIS_3        = 483,
+                JOYSTICKAXIS_4        = 484,
+                JOYSTICKAXIS_5        = 485,
+                JOYSTICKAXIS_6        = 486,
+                JOYSTICKAXIS_7        = 487,
+                JOYSTICKAXIS_8        = 488,
+                JOYSTICKAXIS_9        = 489,
+                JOYSTICKAXIS_10       = 490,
+                JOYSTICKAXIS_11       = 491,
+                JOYSTICKAXIS_12       = 492,
+                JOYSTICKAXIS_13       = 493,
+                JOYSTICKAXIS_14       = 494,
+                JOYSTICKAXIS_15       = 495,
+                JOYSTICKAXIS_16       = 496,
+                JOYSTICKAXIS_17       = 497,
+                JOYSTICKAXIS_18       = 498,
+                JOYSTICKAXIS_19       = 499,
+                JOYSTICKAXIS_20       = 500,
+                JOYSTICKAXIS_LAST     = 500,  /// The Last Joystick axis event, all joystick axis event will be lower or equal to this.
+
+                JOYSTICKBALLVERTICAL     = 501,
+                JOYSTICKBALLHORIZONTAL   = 502,
+
+                JOYSTICKHAT1VERTICAL     = 505,
+                JOYSTICKHAT1HORIZONTAL   = 506,
+                JOYSTICKHAT2VERTICAL     = 507,
+                JOYSTICKHAT2HORIZONTAL   = 508,
+                JOYSTICKHAT3VERTICAL     = 509,
+                JOYSTICKHAT3HORIZONTAL   = 510,
+
+                JOYSTICK_LAST           = 512,  /// The last JoyStick Input Code, all JoyStick events will be less than this.
 
                 INPUTEVENT_LAST         = 1024   /// The last Input Code, all event codes will be less than this.
             };
@@ -505,15 +557,17 @@ namespace phys
                 BUTTON_DOWN = 2         /**< This is used the entire time a key is down.  */
             };
 
-            /// @enum MouseWheelState
-            /// @brief An Optional listing of values that can be used in a metacode Indicate spin of a mouse wheel
-            /// @details This is optional set of values that can make working with the MouseWheel easier. The values the engine pass
+            /// @enum DirectionalMotionState
+            /// @brief An Optional listing of values that can be used in a metacode Indicate spin, digital or binary travel in a directionl
+            /// @details This is optional set of values that can make working with the MouseWheel, Joystick hats and other items that can be moved along 1 axis in two dirctions easier. The values the engine pass
             /// via the the event manager will all use these whereever appropriate.
-            enum MouseWheelState{
-                MOUSEWHEEL_UP = 1,          /**< Optionally Used when the MouseWheel is spun up as a Meta Code */
-                MOUSEWHEEL_UNCHANGED = 0,   /**< This really isn't used in normal situations, but if a mousewheel event is ever needed when the MouseWheel is unspun */
-                MOUSEWHEEL_DOWN = -1        /**< Optionally Used when the MouseWheel is spun Down as a Meta Code */
+            enum DirectionalMotionState{
+                DIRECTIONALMOTION_UPLEFT = 1,          /**< Optionally Used when the device is spun/moved up or to the left as a MetaValue */
+                DIRECTIONALMOTION_UNCHANGED = 0,       /**< This really isn't used in normal situations, but if a mousewheel or joyhat event is ever needed when the device is unmoved */
+                DIRECTIONALMOTION_DOWNRIGHT = -1       /**< Optionally Used when the MouseWheel/Joyhat is spun Down/Right as a Meta Code */
             };
+
+
 
         private:
             //The three values that make a MetaCode Useful
@@ -588,7 +642,7 @@ namespace phys
             /// @brief Get the MetaValue as a MetaCode::
             /// @return This returns the appropriate MouseWheel state or throws an phys::Exception if an invalid state is stored in the MetaValue
             /// @throw This throws a phys::Exception if the MetaValue is less than MOUSEWHEEL_DOWN or greater than MOUSEWHEEL_UP.
-            MetaCode::MouseWheelState GetMetaValueAsMouseWheelState() const;
+            MetaCode::DirectionalMotionState GetMetaValueAsDirectionalMotionState() const;
 
             /// @brief This Sets The MetaValue
             /// @details See @ref GetMetaValue to see exactly what the MetaValue is. This will set the MetaValue stored in this MetaCode. This value can be retrieved with @ref GetMetaValue .
@@ -596,9 +650,19 @@ namespace phys
             void SetMetaValue(const int &MetaValue_);      //For button presses a positive value is pushed and a zero means unpushed
 
             /// @brief Accepts a int and returns the InputCode for the Corresponding Mouse button
-            /// @param ButtonerNumber The number of the button you wan the code for
+            /// @param ButtonerNumber The number of the button you want the code for
             /// @return When passed 0 this returns MetaCode::MOUSEBUTTON, otherwise this returns MetaCode::MOUSEBUTTON_X where X is the number that was passed in
             static MetaCode::InputCode GetMouseButtonCode(short unsigned int ButtonNumber);
+
+            /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick button
+            /// @param ButtonerNumber The number of the button you want the code for
+            /// @return When passed 0 this returns MetaCode::JOYSTICKBUTTON, otherwise this returns MetaCode::JOYSTICKBUTTON_X where X is the number that was passed in
+            static MetaCode::InputCode GetJoystickButtonCode(short unsigned int ButtonNumber);
+
+            /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick Axis
+            /// @param AxisNumber The number of the button you want the code for
+            /// @return When passed 0 this returns MetaCode::JOYSTICKAXIS, otherwise this returns MetaCode::JOYSTICKAXIS_X where X is the number that was passed in
+            static MetaCode::InputCode GetJoystickAxisCode(short unsigned int ButtonNumber);
 
             /// @brief Does this MetaCode Represent a state of a keyboard key
             /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.
