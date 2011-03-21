@@ -56,9 +56,11 @@ namespace phys{
     ///////////////////////////////////
     // ActorRigid class functions
 
-    ActorRigid::ActorRigid (Real mass, String name, String file, String group) : ActorBase (name, file, group)
+    ActorRigid::ActorRigid (Real mass, String name, String file, String group)
+        : ActorBase (name, file, group)
     {
-        this->CreateMotionState(this->node);
+        this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
+        this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
         ActorType=ActorBase::Actorrigid;
     }
@@ -76,7 +78,7 @@ namespace phys{
         CollisionObject=physrigidbody;
         ObjectReference* ActorRef = new ObjectReference(phys::WOT_ActorRigid,this);
         Ogre::Any OgreRef(ActorRef);
-        entity->setUserAny(OgreRef);
+        GraphicsObject->setUserAny(OgreRef);
         CollisionObject->setUserPointer(ActorRef);
         if(0.0 == bmass)
         {
@@ -105,7 +107,7 @@ namespace phys{
                 delete Shape;
             }
             /// @todo - Check for thread safety
-            btConvexShape *tmpshape = new btConvexTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(entity,UseAllSubmeshes));
+            btConvexShape *tmpshape = new btConvexTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(GraphicsObject,UseAllSubmeshes));
             btShapeHull *hull = new btShapeHull(tmpshape);
             btScalar margin = tmpshape->getMargin();
             hull->buildHull(margin);
@@ -139,7 +141,7 @@ namespace phys{
             int depth=5;
             float cpercent=5;
             float ppercent=15;
-            Shape = internal::MeshTools::PerformConvexDecomposition(entity,depth,cpercent,ppercent,UseAllSubmeshes);
+            Shape = internal::MeshTools::PerformConvexDecomposition(GraphicsObject,depth,cpercent,ppercent,UseAllSubmeshes);
             ShapeIsSaved = false;
             this->physrigidbody->setCollisionShape(this->Shape);
 
@@ -161,7 +163,7 @@ namespace phys{
             int depth=7;
             float cpercent=5;
             float ppercent=10;
-            Shape = internal::MeshTools::PerformConvexDecomposition(entity,depth,cpercent,ppercent,UseAllSubmeshes);
+            Shape = internal::MeshTools::PerformConvexDecomposition(GraphicsObject,depth,cpercent,ppercent,UseAllSubmeshes);
             ShapeIsSaved = false;
             this->physrigidbody->setCollisionShape(this->Shape);
 
@@ -180,7 +182,7 @@ namespace phys{
             {
                 delete Shape;
             }
-            btGImpactMeshShape* gimpact = new btGImpactMeshShape(internal::MeshTools::CreateBulletTrimesh(entity,UseAllSubmeshes));
+            btGImpactMeshShape* gimpact = new btGImpactMeshShape(internal::MeshTools::CreateBulletTrimesh(GraphicsObject,UseAllSubmeshes));
             btScalar mass=this->physrigidbody->getInvMass();
             if(0 != mass)
                 mass=1/mass;
@@ -201,8 +203,7 @@ namespace phys{
 
     void ActorRigid::CreateSphereShapeFromMesh()
     {
-        Vector3 test;
-        test.ExtractOgreVector3(this->entity->getMesh()->getBounds().getSize());
+        Vector3 test(this->GraphicsObject->getMesh()->getBounds().getSize());
         if(test.X==test.Y && test.Y==test.Z)
         {
             if(!ShapeIsSaved)
@@ -237,7 +238,7 @@ namespace phys{
             delete Shape;
         }
         /// @todo - Check for thread safety
-        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(entity,UseAllSubmeshes),true);
+        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(GraphicsObject,UseAllSubmeshes),true);
         this->Shape=tmpshape;
         ShapeIsSaved = false;
         this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
@@ -247,7 +248,7 @@ namespace phys{
 
     std::string ActorRigid::GetName () const
     {
-        return this->entity->getName();
+        return this->GraphicsObject->getName();
     }
 
     void ActorRigid::LimitMovementOnAxis(bool x, bool y, bool z)

@@ -52,7 +52,7 @@ namespace phys
     /// which can be referenced and used.  Simply use the same Mesh Name used to create the mesh when creating
     /// an actor or having to specify a mesh.
     ///////////////////////////////////////
-    class MeshGenerator
+    class PHYS_LIB MeshGenerator
     {
         protected:
         public:

@@ -371,7 +371,7 @@ namespace phys
         GameWorld->Log();
 
         // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
-        this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
+        //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
 
         Profiler->reset();
         if( this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
@@ -401,8 +401,10 @@ namespace phys
                     btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
                     ActorBase* ActA = this->GameWorld->GetActorManager()->FindActor(objectA);
                     ActorBase* ActB = this->GameWorld->GetActorManager()->FindActor(objectB);
-                    Vector3 emptyloc(0,0,0);
-                    EventCollision* ColEvent = new EventCollision(ActA, ActB, emptyloc, pt.m_appliedImpulse);
+                    Vector3 WorldLoc((pt.getPositionWorldOnA() + pt.getPositionWorldOnB()) * 0.5);
+                    Vector3 ActALoc(pt.m_localPointA);
+                    Vector3 ActBLoc(pt.m_localPointB);
+                    EventCollision* ColEvent = new EventCollision(ActA,ActB,ActALoc,ActBLoc,WorldLoc,pt.m_appliedImpulse);
                     //create collision event
                     this->GameWorld->GetEventManager()->AddEvent(ColEvent);
                     #ifdef PHYSDEBUG

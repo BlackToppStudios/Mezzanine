@@ -56,8 +56,8 @@ namespace phys
     ActorContainerBase::~ActorContainerBase()
         {}
 
-    Ogre::Node* ActorContainerBase::GetNode(ActorBase* actor) const
-        { return actor->node; }
+    Ogre::SceneNode* ActorContainerBase::GetNode(ActorBase* actor) const
+        { return actor->GraphicsNode; }
 
     btCollisionObject* ActorContainerBase::GetCollisionObject(ActorBase* actor) const
         { return actor->CollisionObject; }

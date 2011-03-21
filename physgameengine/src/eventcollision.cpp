@@ -47,20 +47,23 @@
 #include <memory>
 
 namespace phys {
-
     EventCollision::EventCollision()
     {
-        ActorA=0;
-        ActorB=0;
-        Location=Vector3(0,0,0);
-        Impulse=0.0;
+        ActorA=NULL;
+        ActorB=NULL;
+        LocalALocation=Vector3(0,0,0);
+        LocalBLocation=Vector3(0,0,0);
+        WorldLocation=Vector3(0,0,0);
+        Impulse=0;
     }
 
-    EventCollision::EventCollision(ActorBase* actora, ActorBase* actorb, Vector3 location, Real impulse)
+    EventCollision::EventCollision(ActorBase* actora, ActorBase* actorb, Vector3 localAlocation, Vector3 localBlocation, Vector3 worldlocation, Real impulse)
     {
         ActorA=actora;
         ActorB=actorb;
-        Location=location;
+        LocalALocation=localAlocation;
+        LocalBLocation=localBlocation;
+        WorldLocation=worldlocation;
         Impulse=impulse;
     }
 
@@ -68,7 +71,9 @@ namespace phys {
     {
         ActorA=Other.ActorA;
         ActorB=Other.ActorB;
-        Location=Other.Location;
+        LocalALocation=Other.LocalALocation;
+        LocalBLocation=Other.LocalBLocation;
+        WorldLocation=Other.WorldLocation;
         Impulse=Other.Impulse;
     }
 
@@ -88,7 +93,7 @@ namespace phys {
 std::ostream& operator << (std::ostream& stream, const phys::EventCollision& Ev)
 {
     stream  << "<EventCollision Version=\"1\" Impulse=\"" << Ev.Impulse << "\" ActorA=\"" << Ev.ActorA->GetName() << "\" ActorB=\"" << Ev.ActorB->GetName() << "\" >"
-            <<  Ev.Location
+            <<  Ev.WorldLocation
             << "</EventCollision>";
     return stream;
 }
@@ -114,7 +119,7 @@ void operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev)
 
         if(OneNode.GetFirstChild())
         {
-            OneNode.GetFirstChild() >> Ev.Location;
+            OneNode.GetFirstChild() >> Ev.WorldLocation;
         }else{
             throw(phys::Exception("Normal not found while parsing phys::EventCollision"));
         }

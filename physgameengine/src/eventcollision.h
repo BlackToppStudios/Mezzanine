@@ -55,8 +55,14 @@ namespace phys {
     class PHYS_LIB EventCollision : public EventBase
     {
         public:
-            /// @brief The location in the world where the collision occured, based on physics shapes.
-            Vector3 Location;
+            /// @brief The location in the world where the collision occured.
+            Vector3 WorldLocation;
+
+            /// @brief The location in ActorA's local space where the collision occured.
+            Vector3 LocalALocation;
+
+            /// @brief The location in ActorB's local space where the collision occured.
+            Vector3 LocalBLocation;
 
             /// @brief The amount of force of the collision.
             Real Impulse;
@@ -74,9 +80,11 @@ namespace phys {
             /// @details This will construct a basic event class with the minimum data needed.
             /// @param actora The first Actor involved in the collision.
             /// @param actorb The second Actor invovled in the collision.
-            /// @param location The location in the world where the collision occured, based on physics shapes.
+            /// @param localAlocation The location in ActorA's local space where the collision occured.
+            /// @param localBlocation The location in ActorB's local space where the collision occured.
+            /// @param worldlocation The location in the world where the collision occured.
             /// @param impulse The amount of force of the collision.
-            EventCollision(ActorBase* actora, ActorBase* actorb, Vector3 location, Real impulse);
+            EventCollision(ActorBase* actora, ActorBase* actorb, Vector3 localAlocation, Vector3 localBlocation, Vector3 worldlocation, Real impulse);
 
             /// @brief Copy Constructor.
             /// @param Other The other EventCollision to copy

@@ -56,7 +56,8 @@ namespace phys{
     ///////////////////////////////////
     // ActorSoft class functions
 
-    ActorSoft::ActorSoft (Real mass, String name, String file, String group) : ActorBase (name, file, group)
+    ActorSoft::ActorSoft (Real mass, String name, String file, String group)
+        : ActorBase (name, file, group)
     {
         CreateSoftObject(mass);
         ActorType=ActorBase::Actorsoft;
@@ -69,35 +70,33 @@ namespace phys{
 
     void ActorSoft::CreateSoftObject (Real mass)
     {
-        //this->entity->getMesh()->getSubMesh(0)->useSharedVertices = false;
+        //this->GraphicsObject->getMesh()->getSubMesh(0)->useSharedVertices = false;
         internal::MeshInfo CurMesh;
-        internal::MeshTools::GetMeshVerticies(entity,CurMesh);
-        internal::MeshTools::GetMeshIndicies(entity,CurMesh);
-        internal::MeshTools::GetMeshNormals(entity,CurMesh);
-        internal::MeshTools::GetMeshTextures(entity,CurMesh);
-        internal::MeshTools::GetOtherMeshInfo(entity,CurMesh);
+        internal::MeshTools::GetMeshVerticies(GraphicsObject,CurMesh);
+        internal::MeshTools::GetMeshIndicies(GraphicsObject,CurMesh);
+        internal::MeshTools::GetMeshNormals(GraphicsObject,CurMesh);
+        internal::MeshTools::GetMeshTextures(GraphicsObject,CurMesh);
+        internal::MeshTools::GetOtherMeshInfo(GraphicsObject,CurMesh);
 
-        //delete entity;
-        GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(entity);
-        entity = NULL;
         this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh(this->GameWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         CollisionObject=physsoftbody;
         ObjectReference* ActorRef = new ObjectReference(phys::WOT_ActorSoft,this);
-        Ogre::Any OgreRef(ActorRef);
-        entity->setUserAny(OgreRef);
         CollisionObject->setUserPointer(ActorRef);
         Shape = physsoftbody->getCollisionShape();
         physsoftbody->setTotalMass(mass, true);
-        physsoftbody->m_cfg.collisions = btSoftBody::fCollision::CL_SS + btSoftBody::fCollision::CL_RS;
+        physsoftbody->m_cfg.collisions = /*btSoftBody::fCollision::CL_SS +*/ btSoftBody::fCollision::CL_RS;
         physsoftbody->m_cfg.piterations = 5;
+        physsoftbody->randomizeConstraints();
         physsoftbody->generateBendingConstraints(2);
         physsoftbody->generateClusters(20);
 
         CreateManualMesh(CurMesh);
 
-        CreateEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
+        this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
+        Ogre::Any OgreRef(ActorRef);
+        GraphicsObject->setUserAny(OgreRef);
 
-        //this->physsoftbody->m_clusters[0]->m_collide = true;
+        this->physsoftbody->m_clusters[0]->m_collide = true;
     }
 
     void ActorSoft::CreateManualMesh (internal::MeshInfo &TheMesh)
@@ -130,34 +129,33 @@ namespace phys{
         btTransform temp = this->physsoftbody->m_clusters[0]->m_framexform;
         tempv.ExtractBulletVector3(temp.getOrigin());
         tempq.ExtractBulletQuaternion(temp.getRotation());
-        this->node->setPosition(tempv.GetOgreVector3());
-        this->node->setOrientation(tempq.GetOgreQuaternion());
-        this->node->attachObject(this->entity);*/
+        this->GraphicsNode->setPosition(tempv.GetOgreVector3());
+        this->GraphicsNode->setOrientation(tempq.GetOgreQuaternion());
+        this->GraphicsNode->attachObject(this->GraphicsObject);*/
         ActorBase::AttachToGraphics();
     }
 
     void ActorSoft::DetachFromGraphics ()
     {
-        this->node->detachObject(this->entity);
+        this->GraphicsNode->detachObject(this->GraphicsObject);
     }
 
     void ActorSoft::SetBulletLocation (Vector3 Location)
     {
-        //this->physsoftbody->m_clusters[0]->m_framexform.setOrigin(Location.GetBulletVector3());
+        this->physsoftbody->m_clusters[0]->m_framexform.setOrigin(Location.GetBulletVector3());
         ActorBase::SetBulletLocation(Location);
     }
 
     Vector3 ActorSoft::GetBulletLocation() const
     {
-        //Vector3 temp;
-        //temp.ExtractBulletVector3(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin());
-        //return temp;
-        return ActorBase::GetBulletLocation();
+        Vector3 temp(this->physsoftbody->m_clusters[0]->m_framexform.getOrigin());
+        return temp;
+        //return ActorBase::GetBulletLocation();
     }
 
     void ActorSoft::SetBulletOrientation (Quaternion Rotation)
     {
-        //this->physsoftbody->m_clusters[0]->m_framexform.setRotation(Rotation.GetBulletQuaternion(true));
+        this->physsoftbody->m_clusters[0]->m_framexform.setRotation(Rotation.GetBulletQuaternion(true));
         ActorBase::SetBulletOrientation(Rotation);
     }
 
@@ -166,48 +164,49 @@ namespace phys{
 
     void ActorSoft::UpdateSoftBody()
     {
-        Ogre::VertexData* vertexData = entity->getMesh()->getSubMesh(0)->vertexData;
+        /*Ogre::VertexData* vertexData = entity->getMesh()->getSubMesh(0)->vertexData;
 
         const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
         Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
 
         unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_NORMAL));
         float* pReal = NULL;
-        for (size_t j = 0; j < vertexData->vertexCount; j++, vertex += vBuffer->getVertexSize() )
+        for (size_t j = 0; j < vertexData->vertexCount; j++ )
         {
             posElem->baseVertexPointerToElement(vertex, &pReal);
             *pReal++ = this->physsoftbody->m_nodes[j].m_x.x();
             *pReal++ = this->physsoftbody->m_nodes[j].m_x.y();
             *pReal++ = this->physsoftbody->m_nodes[j].m_x.z();
+            vertex += vBuffer->getVertexSize();
         }
-        vBuffer->unlock();
+        vBuffer->unlock();// */
 
-        btVector3 position = this->physsoftbody->getWorldTransform().getOrigin();
-        //btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();
-        this->node->setPosition(position.x(), position.y(), position.z());
-        btQuaternion rotation = this->physsoftbody->getWorldTransform().getRotation();
-        //btQuaternion rotation = this->physsoftbody->m_clusters[0]->m_framexform.getRotation();
-        this->node->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
+        //btVector3 position = this->physsoftbody->getWorldTransform().getOrigin();
+        //btQuaternion rotation = this->physsoftbody->getWorldTransform().getRotation();
+        btVector3 position = this->physsoftbody->m_clusters[0]->m_framexform.getOrigin();
+        btQuaternion rotation = this->physsoftbody->m_clusters[0]->m_framexform.getRotation();
+        this->GraphicsNode->setPosition(position.x(), position.y(), position.z());
+        this->GraphicsNode->setOrientation(rotation.w(), rotation.x(), rotation.y(), rotation.z());
     }
 
     std::string ActorSoft::GetName () const
     {
-        return this->entity->getName();
+        return this->GraphicsObject->getName();
     }
 
     void ActorSoft::SetActorScaling(Vector3 scaling)
     {
-        this->node->setScale(scaling.GetOgreVector3());
+        this->GraphicsNode->setScale(scaling.GetOgreVector3());
         this->Shape->setLocalScaling(scaling.GetBulletVector3());
     }
 
     void ActorSoft::SetInitLocation(Vector3 Location)
     {
-        //this->SetBulletLocation(Location);
+        this->SetBulletLocation(Location);
         //ActorBase::SetBulletLocation(Location);
         physsoftbody->translate(Location.GetBulletVector3());
         this->physsoftbody->m_initialWorldTransform.setOrigin(Location.GetBulletVector3());
-        //this->node->setPosition(Location.GetOgreVector3());
+        //this->GraphicsNode->setPosition(Location.GetOgreVector3());
     }
 
     void ActorSoft::SetInitOrientation(Quaternion Orientation)
