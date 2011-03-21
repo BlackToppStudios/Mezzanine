@@ -56,18 +56,18 @@ namespace phys{
     ///////////////////////////////////
     // ActorBase class fuctions
     ActorBase::ActorBase (String name, String file, String group)
+        : GraphicsObject(NULL),
+          MotionState(NULL),
+          ActorSounds(NULL),
+          Animation(NULL),
+          ShapeIsSaved(false),
+          ActorType(ActorBase::Actorbase)
     {
         this->GameWorld = World::GetWorldPointer();
-        this->node = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode();
-        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->addChild(this->node);
+        this->GraphicsNode = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode();
+        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->addChild(this->GraphicsNode);
         this->Shape = new btEmptyShape();
-        this->CreateEntity(name, file, group);
-        this->GraphicsSettings = new ActorGraphicsSettings(this,entity);
-        MotionState = NULL;
-        ActorSounds = NULL;
-        Animation = NULL;
-        ShapeIsSaved = false;
-        ActorType = ActorBase::Actorbase;
+        this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
     }
 
     ActorBase::~ActorBase ()
@@ -78,10 +78,10 @@ namespace phys{
         {
             delete Shape;
         }
-        //delete entity;
-        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(entity);
-        //delete node;
-        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroySceneNode(node);
+        //delete GraphicsObject;
+        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
+        //delete GraphicsNode;
+        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroySceneNode(GraphicsNode);
         if(CollisionObject)
         {
             delete CollisionObject;
@@ -89,55 +89,16 @@ namespace phys{
     }
 
     ///////////////////////////////////
-    // ActorBase Private misc functions
-    Ogre::ResourceGroupManager* ActorBase::GetOgreResourceManager()
-    {
-        return Ogre::ResourceGroupManager::getSingletonPtr();
-    }
-
-    ///////////////////////////////////
-    // ActorBase Constructor functions
-
-    void ActorBase::CreateEntity (String name, String file, String group)
-    {
-        this->entity = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
-    }
-
-    void ActorBase::CreateSceneNode ()
-    {
-        this->node = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode();
-    }
-
-    void ActorBase::CreateMotionState(Ogre::SceneNode* Node)
-    {
-        this->MotionState = new internal::PhysMotionState(Node);
-    }
-
-    void ActorBase::CreateMotionState(Ogre::SceneNode* Node, Vector3 InitPosition)
-    {
-        this->MotionState = new internal::PhysMotionState(Node);
-        this->MotionState->SetPosition(InitPosition);
-    }
-
-    void ActorBase::CreateMotionState(Ogre::SceneNode* Node, Vector3 InitPosition, Quaternion InitOrientation)
-    {
-        this->MotionState = new internal::PhysMotionState(Node);
-        this->MotionState->SetPosition(InitPosition);
-        this->MotionState->SetOrientation(InitOrientation);
-    }
-
-    ///////////////////////////////////
     // ActorBase Private Location Functions
 
     void ActorBase::SetOgreLocation (Vector3 Location)
     {
-        this->node->setPosition(Location.GetOgreVector3());
+        this->GraphicsNode->setPosition(Location.GetOgreVector3());
     }
 
     Vector3 ActorBase::GetOgreLocation() const
     {
-        Vector3 temp;
-        temp.ExtractOgreVector3(this->node->getPosition());
+        Vector3 temp(this->GraphicsNode->getPosition());
         return temp;
     }
 
@@ -149,9 +110,7 @@ namespace phys{
 
     Vector3 ActorBase::GetBulletLocation() const
     {
-        Vector3 temp;
-        //btTransform trans = this->CollisionObject->getWorldTransform();
-        temp.ExtractBulletVector3(this->CollisionObject->getWorldTransform().getOrigin());
+        Vector3 temp(this->CollisionObject->getWorldTransform().getOrigin());
         return temp;
     }
 
@@ -160,7 +119,7 @@ namespace phys{
 
     void ActorBase::SetOgreOrientation (Quaternion Rotation)
     {
-        this->node->setOrientation(Rotation.GetOgreQuaternion());
+        this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
     }
 
     void ActorBase::SetBulletOrientation (Quaternion Rotation)
@@ -219,23 +178,21 @@ namespace phys{
 
     void ActorBase::AttachToGraphics ()
     {
-        Vector3 tempv;
-        Quaternion tempq;
-        tempv = GetBulletLocation();
-        tempq.ExtractBulletQuaternion(CollisionObject->getWorldTransform().getRotation());
-        this->node->setPosition(tempv.GetOgreVector3());
-        this->node->setOrientation(tempq.GetOgreQuaternion());
-        this->node->attachObject(this->entity);
+        Vector3 tempv(CollisionObject->getWorldTransform().getOrigin());
+        Quaternion tempq(CollisionObject->getWorldTransform().getRotation());
+        this->GraphicsNode->setPosition(tempv.GetOgreVector3());
+        this->GraphicsNode->setOrientation(tempq.GetOgreQuaternion());
+        this->GraphicsNode->attachObject(this->GraphicsObject);
     }
 
     void ActorBase::DetachFromGraphics ()
     {
-        this->node->detachObject(this->entity);
+        this->GraphicsNode->detachObject(this->GraphicsObject);
     }
 
     void ActorBase::SetActorScaling(Vector3 scaling)
     {
-        this->node->setScale(scaling.GetOgreVector3());
+        this->GraphicsNode->setScale(scaling.GetOgreVector3());
         this->Shape->setLocalScaling(scaling.GetBulletVector3());
     }
 
@@ -247,6 +204,11 @@ namespace phys{
     const bool ActorBase::GetShapeIsSaved()
     {
         return ShapeIsSaved;
+    }
+
+    bool ActorBase::IsInWorld()
+    {
+        return CollisionObject->getBroadphaseHandle() != 0;
     }
 
     void ActorBase::SetBasicCollisionParams(Real Friction, Real Restitution)
@@ -261,7 +223,7 @@ namespace phys{
         {
             Animation->setEnabled(false);
         }
-        Animation = entity->getAnimationState(AnimationName);
+        Animation = GraphicsObject->getAnimationState(AnimationName);
         Animation->setLoop(Loop);
     }
 
@@ -309,19 +271,16 @@ namespace phys{
     // ActorBase Public Collision flag functions
     void ActorBase::SetKinematic()
     {
-        //int x=2;
         this->CollisionObject->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
     }
 
     void ActorBase::SetStatic()
     {
-        //int x=1;
         this->CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
     }
 
     bool ActorBase::IsStaticOrKinematic()
     {
-        //bool result = this->CollisionObject->isStaticOrKinematicObject();
         return this->CollisionObject->isStaticOrKinematicObject();
     }
 
@@ -414,7 +373,7 @@ namespace phys{
 
     Ogre::Entity* ActorBase::GetOgreObject()
     {
-        return entity;
+        return GraphicsObject;
     }
 }// /phys
 

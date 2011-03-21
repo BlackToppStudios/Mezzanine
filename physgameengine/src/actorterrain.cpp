@@ -53,9 +53,12 @@
 
 namespace phys
 {
-    ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group) : ActorBase(name, file, group)
+    ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group)
+        : ActorBase(name, file, group)
     {
-        CreateMotionState(this->node, InitPosition);
+        this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
+        this->MotionState = new internal::PhysMotionState(GraphicsNode);
+        this->MotionState->SetPosition(InitPosition);
         CreateCollisionTerrain();
     }
 
@@ -71,7 +74,7 @@ namespace phys
         CollisionObject = RigidBody;
         ObjectReference* ActorRef = new ObjectReference(phys::WOT_ActorTerrain,this);
         Ogre::Any OgreRef(ActorRef);
-        entity->setUserAny(OgreRef);
+        GraphicsObject->setUserAny(OgreRef);
         CollisionObject->setUserPointer(ActorRef);
         ActorType = ActorBase::Actorterrain;
     }
@@ -83,7 +86,7 @@ namespace phys
             delete Shape;
         }
         /// @todo - Check for thread safety
-        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(entity,UseAllSubmeshes),true);
+        btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(GraphicsObject,UseAllSubmeshes),true);
         this->Shape=tmpshape;
         ShapeIsSaved = false;
         this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
@@ -97,7 +100,7 @@ namespace phys
 
     std::string ActorTerrain::GetName () const
     {
-        return this->entity->getName();
+        return this->GraphicsObject->getName();
     }
 
     void ActorTerrain::AddObjectToWorld (World *TargetWorld)

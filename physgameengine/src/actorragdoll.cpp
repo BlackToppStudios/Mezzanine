@@ -47,13 +47,13 @@
 
 namespace phys
 {
-    ActorRagDoll::ActorRagDoll(String name, String file, String group) : ActorBase(name, file, group)
+    ActorRagDoll::ActorRagDoll(String name, String file, String group)
+        : ActorBase(name, file, group)
     {
     }
 
     ActorRagDoll::~ActorRagDoll()
     {
-
     }
 }
 

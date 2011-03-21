@@ -189,7 +189,7 @@ namespace phys
 
     void WorldNode::SetAutoTracking(ActorBase* Actor, Vector3 Offset)
     {
-        OgreNode->setAutoTracking(true, Actor->node, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
+        OgreNode->setAutoTracking(true, Actor->GraphicsNode, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
     }
 
     void WorldNode::DisableAutoTracking()

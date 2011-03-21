@@ -103,7 +103,7 @@ namespace phys
             /// @details This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time.
             /// @return This returns a pointer to and ActorBase that has a matching node.
             /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.
-            virtual ActorBase* FindActor(Ogre::Node* GraphicsNode);
+            virtual ActorBase* FindActor(Ogre::SceneNode* GraphicsNode);
 
             /// @brief This finds an actor by searching for a physics subsystem object.
             /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.

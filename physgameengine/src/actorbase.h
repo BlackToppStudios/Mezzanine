@@ -111,10 +111,10 @@ namespace phys
 
             //abstraction for other libraries
             ///@brief This class encapsulates the functionality of the Ogre::Entity using this
-            Ogre::Entity* entity;
+            Ogre::Entity* GraphicsObject;
 
             ///@brief This class encapsulates the functionality of the Ogre::SceneNode using this
-            Ogre::SceneNode* node;
+            Ogre::SceneNode* GraphicsNode;
 
             ///@brief This class encapsulates the functionality of the Ogre::AnimationState using this
             Ogre::AnimationState* Animation;
@@ -140,24 +140,6 @@ namespace phys
 //////////////////////////////////////////////////////////////////////////////
 // Ogre Management Functions
 ///////////////////////////////////////
-            /// @brief Gets the ogre resource manager pointer.
-            /// @details This function is needed for the ActorSoft implementation.
-            /// @return Returns a pointer to the ogre resource group manager.
-            virtual Ogre::ResourceGroupManager* GetOgreResourceManager();
-
-            /// @brief Creates an entity for the mesh file to be placed on a scene node.
-            /// @details Creates an entity in the scene manager from the mesh file provided to be attached to a node in the graphical world. @n
-            /// This function is called on by the Constructor, and shouldn't be called manually.
-            /// @param name Name of the actor.
-            /// @param file File name of the graphical mesh to be used.
-            /// @param group Resource group where the graphical mesh can be found.
-            virtual void CreateEntity(String name, String file, String group);
-
-            /// @brief Creates a node for the entity in the graphical world.
-            /// @details Creates a node in the scene manager to attach the actor's entity to within the graphical world. @n
-            /// This function is called on by the Constructor, and shouldn't be called manually.
-            virtual void CreateSceneNode();
-
             /// @brief Sets the location of the graphical body.
             /// @details This will take a Vector3 and set the location of the actor within the graphical world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
@@ -188,24 +170,6 @@ namespace phys
 //////////////////////////////////////////////////////////////////////////////
 // Bullet Management
 ///////////////////////////////////////
-            /// @brief Creates a motion state for use with syncronizing physics and graphics.
-            /// @details This is a helper function that will create a motionstate for the class.  This is called on by the constructor.
-            /// @param Node The node to be syncronized with physics data.
-            virtual void CreateMotionState(Ogre::SceneNode* Node);
-
-            /// @brief Creates a motion state for use with syncronizing physics and graphics.
-            /// @details This is a helper function that will create a motionstate for the class.  This is called on by the constructor.
-            /// @param Node The node to be syncronized with physics data.
-            /// @param InitPosition The starting location for the object that will be given this motionstate.
-            virtual void CreateMotionState(Ogre::SceneNode* Node, Vector3 InitPosition);
-
-            /// @brief Creates a motion state for use with syncronizing physics and graphics.
-            /// @details This is a helper function that will create a motionstate for the class.  This is called on by the constructor.
-            /// @param Node The node to be syncronized with physics data.
-            /// @param InitPosition The starting location for the object that will be given this motionstate.
-            /// @param InitOrientation The starting orientation for the object that will be given this motionstate.
-            virtual void CreateMotionState(Ogre::SceneNode* Node, Vector3 InitPosition, Quaternion InitOrientation);
-
             /// @brief Sets the location of the physics body.
             /// @details This will take a Vector3 and set the location of the actor within the physics world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
@@ -235,6 +199,10 @@ namespace phys
             /// @details This function will tell you if it's current physics shape has been saved for later use or not.
             /// @return Returns whether or not the shape of this actor has been saved.
             virtual const bool GetShapeIsSaved();
+
+            /// @brief Gets whether or not this object is currently in the world.
+            /// @return Returns a bool indicating if this object has been added to the world.
+            virtual bool IsInWorld();
 
             /// @brief Sets the basic parameters for more realistic collision behavior.
             /// @details This function will set the Friction and Resititution of the actor, which will enable it to collide

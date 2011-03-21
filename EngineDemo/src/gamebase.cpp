@@ -191,8 +191,14 @@ bool PrePhysics()
 bool PostPhysics()
 {
     //// Updating functions to be used when a suitable mesh is found/created.
-    //ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld->Actors->FindActor("Column1"));
-    //ActS->UpdateSoftBody();
+    /*ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld->GetActorManager()->FindActor("spheresoft"));
+    ActS->UpdateSoftBody();
+    TheWorld->Log("Soft Locations");
+    TheWorld->Log(TheWorld->GetActorManager()->FindActor("spheresoft")->GetLocation());
+    if(ActS->IsInWorld())
+        TheWorld->Log("Softbody is in World");
+    else
+        TheWorld->Log("Softbody is not in World");// */
     return true;
 }
 
@@ -524,7 +530,7 @@ bool CheckForStuff()
     TheWorld->Log("All Collisions This Frame");
     #endif
     EventCollision* OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
-    EventCollision SecondCollision(0,0,Vector3(1,1,1),2.5);
+    EventCollision SecondCollision(0,0,Vector3(0.5,0.5,0.5),Vector3(1.5,1.5,1.5),Vector3(1,1,1),2.5);
     while(0 != OneCollision)
     {
         if(OneCollision->GetType() != EventBase::Collision)
@@ -835,7 +841,7 @@ void LoadContent()
     Reverse->SetLocation(Vector3(200,50,-5.0));
     TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
 
-    GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
     BlackHole->CreateSphereShape(750.0);
     BlackHole->SetAllowWorldGravity(false);
     BlackHole->SetFieldStrength(100000.0);
@@ -844,9 +850,9 @@ void LoadContent()
     TheWorld->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
-    //TheWorld->Actors->AddActor( new ActorSoft (51,"Column1","column.mesh",groupname) );
-    //ActorSoft* Act9 = static_cast < ActorSoft* > (TheWorld->Actors->LastActorAdded());
-    //Act9->SetInitLocation(Vector3( (-0.5*PinSpacing), 100.0, -PinSpacing*4));
+    /*MeshGenerator::CreateSphereMesh("SoftTest","SphereWood",70);
+    ActorSoft* Act9 = new ActorSoft (500,"spheresoft","SoftTest",groupname);
+    Act9->SetInitLocation(Vector3( -35, 100, -50));// */
 
     object5 = new ActorTerrain (Vector3(0.0,-100,-300.0),"Plane","Plane.mesh",groupname);
     object5->CreateShapeFromMeshStatic();
@@ -900,6 +906,7 @@ void LoadContent()
     TheWorld->GetActorManager()->AddActor(object5);
     TheWorld->GetActorManager()->AddActor(object6);
     TheWorld->GetActorManager()->AddActor(object7);
+    //TheWorld->GetActorManager()->AddActor(Act9);
 
     AreaEffect* TestField = new TestAE("Tester", Vector3(0,0,150));
     TestField->CreateBoxShape(Vector3(500,80,80));

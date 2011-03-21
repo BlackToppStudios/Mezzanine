@@ -78,7 +78,7 @@ namespace phys
         protected:
             /// @internal
             /// @brief Used to work around the scenenode of an Actor being private, so all derived Containers can access it.
-            Ogre::Node* GetNode(ActorBase* actor) const;
+            Ogre::SceneNode* GetNode(ActorBase* actor) const;
 
             /// @internal
             /// @brief Used to work around the collision object of an Actor being private, so all derived Containers can access it.
@@ -165,7 +165,7 @@ namespace phys
             /// @brief This finds an actor by searching for a graphics subsystem nodes
             /// @return This returns a pointer to and ActorBase that has a matching node
             /// @param GraphicsNode This is a pointer to a GraphicsNode that the Actor you want to find will have.
-            virtual ActorBase* FindActor(Ogre::Node* GraphicsNode) = 0;
+            virtual ActorBase* FindActor(Ogre::SceneNode* GraphicsNode) = 0;
 
             /// @brief This finds an actor by searching for a physics subsystem object.
             /// @details This will iterate through each Actor in the container until it finds one with a matching physics object. This runs in linear time.
