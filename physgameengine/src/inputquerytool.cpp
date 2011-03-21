@@ -76,6 +76,16 @@ namespace phys
     bool InputQueryTool::IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton)
         { return MetaCode::BUTTON_UP < CodeCache[KeyboardButton]; }
 
+    bool InputQueryTool::IsJoystickHatPushedInDirection(MetaCode::DirectionalMotionState WhichWay, bool IsVertical)
+    {
+        if (IsVertical)
+        {
+            return CodeCache[MetaCode::JOYSTICKHAT_1_VERTICAL] == WhichWay;
+        }else{
+            return CodeCache[MetaCode::JOYSTICKHAT_1_HORIZONTAL] == WhichWay;
+        }
+    }
+
     MetaCode::ButtonState InputQueryTool::GetMouseButtonState(short unsigned int MouseButton)
         { return (MetaCode::ButtonState)CodeCache[MetaCode::GetMouseButtonCode(MouseButton)]; }
     MetaCode::ButtonState InputQueryTool::GetKeyboardButtonState(MetaCode::InputCode KeyboardButton)

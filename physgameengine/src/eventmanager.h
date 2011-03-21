@@ -165,6 +165,12 @@ namespace phys
             /// @details This deletes everything still in the event manager and tears it down.
             ~EventManager();
 
+            /// @brief Look for Joysticks that are hooked up to the system
+            /// @details Currently this will only find the first joystick. This only needs to be done once after the joystick has been connected and
+            /// detected/configured by the operating system. Joystick events may not be added if this has not been called. The is called once at
+            /// when the Event manager is contructed, but if the joystick was not connected yet then it might not be found.
+            void DetectJoysticks();
+
         ///////////////////////////////////////////////////////////////////////////////
         // Management functions - Work with all events
         ///////////////////////////////////////

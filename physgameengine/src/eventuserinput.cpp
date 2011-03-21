@@ -67,34 +67,22 @@ namespace phys
     // EventUserInput
     ///////////////////////////////////////
     EventUserInput::EventUserInput()
-    {
-
-    }
+        {}
 
     EventUserInput::EventUserInput(const MetaCode &Code_)
-    {
-        this->push_back(Code_);
-    }
+        { this->push_back(Code_); }
 
     EventUserInput::EventUserInput(const vector<MetaCode> &Code_)
-    {
-        AddCodes(Code_);
-    }
+        { AddCodes(Code_); }
 
     EventUserInput::~EventUserInput()
-    {
-
-    }
+        {}
 
     const MetaCode& EventUserInput::GetMetaCode(const unsigned int &Index)
-    {
-        return this->at(Index);
-    }
+        { return this->at(Index); }
 
     size_t EventUserInput::GetMetaCodeCount()
-    {
-        return this->size();
-    }
+        { return this->size(); }
 
     MetaCode EventUserInput::AddCode(const MetaCode &Code_)
     {
@@ -134,14 +122,10 @@ namespace phys
     }
 
     void EventUserInput::EraseCode(const unsigned int &Index)
-    {
-        this->erase(this->begin()+Index);
-    }
+        { this->erase(this->begin()+Index); }
 
     EventBase::EventType EventUserInput::GetType() const
-    {
-        return UserInput;
-    }
+        { return UserInput; }
 
     vector<MetaCode> EventUserInput::AddCodesFromRawEvent(const RawEvent &RawEvent_)
     {
@@ -175,14 +159,18 @@ namespace phys
                 Results.push_back(this->AddCodeFromSDLJoyStickButton(RawEvent_));
                 break;}
 
-            case SDL_JOYBALLMOTION:
+            case SDL_JOYBALLMOTION:{
+                vector<MetaCode> Transport(this->AddCodeFromSDLJoyStickBall(RawEvent_));
+                Results.insert(Results.end(), Transport.begin(),Transport.end());
+                break;}
 
-                break;
-            case SDL_JOYHATMOTION:
+            case SDL_JOYHATMOTION:{
+                vector<MetaCode> Transport(this->AddCodeFromSDLJoyStickHat(RawEvent_));
+                Results.insert(Results.end(), Transport.begin(),Transport.end());
+                break;}
 
-                break;
             default:
-                throw ("Unknown SDL Event Inserted");
+                World::GetWorldPointer()->LogAndThrow("Unknown SDL Event Inserted");
                 break;
         }
 
@@ -217,6 +205,60 @@ namespace phys
         return Results;
     }
 
+    vector<MetaCode> EventUserInput::AddCodeFromSDLJoyStickHat(const RawEvent &RawEvent_)
+    {
+        vector<MetaCode> Results;
+
+        MetaCode::InputCode HatVert;
+        MetaCode::InputCode HatHor;
+
+        if (RawEvent_.jhat.hat == 0)           // at some point this should be broken out into its own function like the axis and mousebutton int to code functions
+        {
+            HatVert = MetaCode::JOYSTICKHAT_1_VERTICAL;
+            HatHor = MetaCode::JOYSTICKHAT_1_HORIZONTAL;
+        }else if (RawEvent_.jhat.hat == 1){
+            HatVert = MetaCode::JOYSTICKHAT_2_VERTICAL;
+            HatHor = MetaCode::JOYSTICKHAT_2_HORIZONTAL;
+        }else if (RawEvent_.jhat.hat == 2){
+            HatVert = MetaCode::JOYSTICKHAT_3_VERTICAL;
+            HatHor = MetaCode::JOYSTICKHAT_3_HORIZONTAL;
+        }else{
+            World::GetWorldPointer()->LogAndThrow("Unsupported Joystick Hat Event");
+        }
+
+        if (RawEvent_.jhat.value & SDL_HAT_UP)
+        {
+            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_UPLEFT, HatVert));
+        }else if(RawEvent_.jhat.value & SDL_HAT_DOWN){
+            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, HatVert));
+        }else{
+            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_UNCHANGED, HatVert));
+        }
+
+        if (RawEvent_.jhat.value & SDL_HAT_LEFT)
+        {
+            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_UPLEFT, HatHor));
+        }else if(RawEvent_.jhat.value & SDL_HAT_RIGHT){
+            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, HatHor));
+        }else{
+            Results.push_back(this->AddCode(MetaCode::DIRECTIONALMOTION_UNCHANGED, HatHor));
+        }
+
+        return Results;
+    }
+
+    vector<MetaCode> EventUserInput::AddCodeFromSDLJoyStickBall(const RawEvent &RawEvent_)
+    {
+        vector<MetaCode> Results;
+
+        if( RawEvent_.jball.yrel != 0 )
+            { Results.push_back(this->AddCode(RawEvent_.jball.yrel, MetaCode::JOYSTICKBALL_VERTICAL)); }
+        if( RawEvent_.jball.xrel != 0 )
+            { Results.push_back(this->AddCode(RawEvent_.jball.xrel, MetaCode::JOYSTICKBALL_HORIZONTAL)); }
+
+        return Results;
+    }
+
     MetaCode EventUserInput::AddCodeFromSDLMouseButton(const RawEvent &RawEvent_)
     {
         if(RawEvent_.button.state==SDL_PRESSED)
@@ -236,6 +278,8 @@ namespace phys
             return this->AddCode(MetaCode::BUTTON_UP, MetaCode::GetJoystickButtonCode(RawEvent_.jbutton.button));
         }
     }
+
+
 
 } // /phys
 
