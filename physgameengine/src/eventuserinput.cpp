@@ -310,7 +310,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventUserInput& 
 
 void operator >> (const phys::xml::Node& OneNode, phys::EventUserInput& Ev)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("EventUserInput"))
     {
         Ev.clear();
 
@@ -325,7 +325,7 @@ void operator >> (const phys::xml::Node& OneNode, phys::EventUserInput& Ev)
         }
 
     }else{
-        throw( phys::Exception("Incompatible XML Version for EventUserInput: Not Version 1"));
+        throw( phys::Exception("Incompatible XML Version for EventUserInput: Not Version 1 or not EventUserInput"));
     }
 }
 #endif // \PHYSXML

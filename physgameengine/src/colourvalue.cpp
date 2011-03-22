@@ -41,8 +41,10 @@
 #define _colourvalue_cpp
 
 #include "colourvalue.h"
+
 #include <Ogre.h>
 
+#include <memory>
 namespace phys
 {
     ColourValue::ColourValue(Real red, Real green, Real blue)
@@ -61,12 +63,20 @@ namespace phys
         this->Alpha = alpha;
     }
 
-    ColourValue::ColourValue(Ogre::ColourValue OgreValues)
+    ColourValue::ColourValue(const Ogre::ColourValue& OgreValues)
     {
         this->Red = OgreValues.r;
         this->Green = OgreValues.g;
         this->Blue = OgreValues.b;
         this->Alpha = OgreValues.a;
+    }
+
+    ColourValue::ColourValue(const ColourValue& OtherColour)
+    {
+        this->Red = OtherColour.Red;
+        this->Green = OtherColour.Green;
+        this->Blue = OtherColour.Blue;
+        this->Alpha = OtherColour.Alpha;
     }
 
     ColourValue::~ColourValue()
@@ -85,16 +95,26 @@ namespace phys
 
     bool ColourValue::operator== (const ColourValue &Colour)
     {
-        if ( Colour.Red == this->Red && Colour.Green == this->Green && Colour.Blue == this->Blue && Colour.Alpha == this->Alpha )
+        return ( Colour.Red == this->Red && Colour.Green == this->Green && Colour.Blue == this->Blue && Colour.Alpha == this->Alpha );
+        /*if ( Colour.Red == this->Red && Colour.Green == this->Green && Colour.Blue == this->Blue && Colour.Alpha == this->Alpha )
             { return true; }
-        return false;
+        return false;*/
     }
 
     bool ColourValue::operator!= (const ColourValue &Colour)
     {
-        if ( Colour.Red != this->Red || Colour.Green != this->Green || Colour.Blue != this->Blue || Colour.Alpha != this->Alpha )
+        return ( Colour.Red != this->Red || Colour.Green != this->Green || Colour.Blue != this->Blue || Colour.Alpha != this->Alpha );
+        /*if ( Colour.Red != this->Red || Colour.Green != this->Green || Colour.Blue != this->Blue || Colour.Alpha != this->Alpha )
             { return true; }
-        return false;
+        return false;*/
+    }
+
+    void ColourValue::operator= (const ColourValue &OtherColour)
+    {
+        this->Red = OtherColour.Red;
+        this->Green = OtherColour.Green;
+        this->Blue = OtherColour.Blue;
+        this->Alpha = OtherColour.Alpha;
     }
 
     ColourValue ColourValue::GetBlank()
@@ -132,6 +152,58 @@ namespace phys
         ColourValue Colour(0.0,0.0,1.0,1.0);
         return Colour;
     }
+
+    ColourValue ColourValue::GetYellow()
+    {
+        ColourValue Colour(1.0,1.0,0.0,1.0);
+        return Colour;
+    }
+
+    ColourValue ColourValue::GetCyan()
+    {
+        ColourValue Colour(0.0,1.0,1.0,1.0);
+        return Colour;
+    }
+
+    ColourValue ColourValue::GetMagenta()
+    {
+        ColourValue Colour(1.0,0.0,1.0,1.0);
+        return Colour;
+    }
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::ColourValue& Ev)
+{
+    stream << "<ColourValue Version=\"1\" Red=\"" << Ev.Red << "\" Green=\"" << Ev.Green << "\" Blue=\"" << Ev.Blue << "\" Alpha=\"" << Ev.Alpha << "\" />";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ColourValue& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "ColourValue", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ColourValue& Ev)
+{
+    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("ColourValue"))
+    {
+        Ev.Red      = OneNode.GetAttribute("Red").AsReal();
+        Ev.Green    = OneNode.GetAttribute("Green").AsReal();
+        Ev.Blue     = OneNode.GetAttribute("Blue").AsReal();
+        Ev.Alpha    = OneNode.GetAttribute("Alpha").AsReal();
+    }else{
+        throw( phys::Exception("Incompatible XML Version for ColourValue: Not Version 1"));
+    }
+}
+#endif // \PHYSXML
+
 
 #endif

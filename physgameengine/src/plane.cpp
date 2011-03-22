@@ -108,7 +108,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Plane& x)
 
 phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::Plane& x)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("Plane"))
     {
         x.Distance=OneNode.GetAttribute("Distance").AsReal();
         if(OneNode.GetFirstChild())

@@ -800,10 +800,21 @@ void LoadContent()
         TheWorld->Log(TimingEvent);
         TheWorld->Log(TimingEvent2);
 
-
         TheWorld->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
         XMLStringStream3 >> ASecondCode;
         TheWorld->Log(ASecondCode);
+
+        ColourValue AColour(1.0,1.0,1.0,1.0);
+        ColourValue AnotherColour(0.5,0.5,0.5,0.5);
+        TheWorld->Log("A colour:");
+        TheWorld->Log(AColour);
+        TheWorld->Log("Another colour:");
+        TheWorld->Log(AnotherColour);
+        stringstream XMLStringStream7;
+        XMLStringStream7 << AColour;
+        XMLStringStream7 >> AnotherColour;
+        TheWorld->Log("Another colour after streaming A colour to it:");
+        TheWorld->Log(AColour);
 
 
         #ifdef PHYSDEBUG

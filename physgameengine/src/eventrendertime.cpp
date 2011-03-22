@@ -94,11 +94,11 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventRenderTime&
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventRenderTime& Ev)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("EventRenderTime"))
     {
         Ev = phys::EventRenderTime( OneNode.GetAttribute("Rendertime").AsInt() );
     }else{
-        throw( phys::Exception("Incompatible XML Version for EventRenderTime: Not Version 1"));
+        throw( phys::Exception("Incompatible XML Version for EventRenderTime: Not Version 1 or not EventRenderTime"));
     }
 }
 #endif // \PHYSXML
