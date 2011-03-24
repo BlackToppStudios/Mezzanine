@@ -46,6 +46,7 @@
 #include "world.h"
 #include "cameramanager.h"
 #include "graphicsmanager.h"
+#include "viewport.h"
 #include "uiscreen.h"
 #include "uibutton.h"
 #include "uilayer.h"
@@ -162,11 +163,11 @@ namespace phys
         return WidgetFocus;
     }
 
-    UIScreen* UIManager::CreateScreen(const String& Screen, const String& Atlas, const String& Viewport)
+    UIScreen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport)
     {
-        Ogre::Viewport* OgrePort = GameWorld->GetCameraManager()->GetOgreViewport(Viewport);
+        Ogre::Viewport* OgrePort = WindowViewport->GetOgreViewport();
         Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
-        UIScreen* physscreen = new UIScreen(Screen, guiscreen);
+        UIScreen* physscreen = new UIScreen(ScreenName, guiscreen, WindowViewport);
         Screens.push_back(physscreen);
         return physscreen;
     }
@@ -273,15 +274,6 @@ namespace phys
         }else{
             return false;
         }
-    }
-
-    Vector2 UIManager::GetWindowDimensions()
-    {
-        /// @todo This is the second occurance of needing to specify the namespace to declare data
-        /// without any apparent reason.  If possible a pattern/explaination should be found.
-        phys::GraphicsManager* Graphics = GetGameWorld()->GetGraphicsManager();
-        Vector2 Window((Real)Graphics->getRenderWidth(),(Real)Graphics->getRenderHeight());
-        return Window;
     }
 
     InputQueryTool* UIManager::GetInputQueryer()

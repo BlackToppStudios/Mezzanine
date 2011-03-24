@@ -50,6 +50,8 @@
 #include "uimanager.h"
 #include "camera.h"
 #include "crossplatform.h"
+#include "gamewindow.h"
+#include "viewport.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -61,113 +63,74 @@ namespace phys
     // Creation and Deletion functions
     ///////////////////////////////////
     GraphicsManager::GraphicsManager()
+        : SDLBeenInitialized(false),
+          OgreBeenInitialized(false)
     {
         Construct( 800, 600, false );
     }
 
     GraphicsManager::GraphicsManager( const Whole &Width, const Whole &Height, const bool &FullScreen )
+        : SDLBeenInitialized(false),
+          OgreBeenInitialized(false)
     {
         Construct( Width, Height, FullScreen );
     }
 
     GraphicsManager::~GraphicsManager()
     {
-        DestroyRenderWindow();
+        DestroyAllGameWindows(false);
         ShutdownSDL();
     }
 
     void GraphicsManager::Construct(const Whole &Width, const Whole &Height, const bool &FullScreen )
     {
-        Settings.Fullscreen = FullScreen;
-        Settings.RenderHeight = Height;
-        Settings.RenderWidth = Width;
+        PrimarySettings.Fullscreen = FullScreen;
+        PrimarySettings.RenderHeight = Height;
+        PrimarySettings.RenderWidth = Width;
         this->Priority = 0;
         this->FrameDelay = 0;
-    }
-
-    void GraphicsManager::CreateRenderWindow()
-    {
-        //InitSDL();
-        SDL_Init(SDL_INIT_VIDEO);
-        size_t RC = 0;
-        //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
-
-		try
-		{
-			//Setup the SDL render window
-			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-			if(Settings.Fullscreen)
-			{
-			    this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_SHOWN );
-			    //this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN );
-			}else{
-                this->SDLwindow = SDL_CreateWindow( GameWorld->GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
-                //this->SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );
-			}
-			RC = (size_t)SDL_GL_CreateContext(this->SDLwindow);
-			//SDL_WM_SetCaption(GameWorld->GetWindowName().c_str(), NULL);
-			#ifdef PHYSDEBUG
-            GameWorld->Log("Successfully Setup SDL");
-            #endif
-		}catch (exception& e) {
-		    GameWorld->Log("Failed to Setup SDL");
-			GameWorld->LogAndThrow(e.what());
-		}
-
-        //Start Ogre Without a native render window
-        try
-        {
-            //crossplatform::WaitMilliseconds(1000);
-            OgreGameWindow = Ogre::Root::getSingleton().initialise(false, GameWorld->GetWindowName());
-            #ifdef PHYSDEBUG
-            GameWorld->Log("Setup Ogre Window");
-            #endif
-        }catch (exception& e) {
-		    GameWorld->Log("Failed to Setup Ogre Window");
-			GameWorld->LogAndThrow(e.what());
-		}
-
-        //Configure Ogre to render to the SDL window
-        Ogre::NameValuePairList *misc;
-        misc=(Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLwindow,RC);
-        OgreGameWindow = Ogre::Root::getSingleton().createRenderWindow(GameWorld->GetWindowName(), Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, misc);
-        #ifdef PHYSDEBUG
-        GameWorld->Log("Bound Ogre to an SDL window");
-        #endif
-
-        InitViewportAndCamera();
-    }
-
-    void GraphicsManager::DestroyRenderWindow()
-    {
-        OgreGameWindow->destroy();
     }
 
     void GraphicsManager::InitSDL()
     {
         /// @todo TODO set multithreaded SDL so it will the run event manager in another thread
-        //Get what is needed for SDL started
-        if (SDL_Init(SDL_INIT_VIDEO) < 0) {
-            GameWorld->Log("Error 2: Unable to init SDL, SDL Error Follows:");
-            GameWorld->LogAndThrow(SDL_GetError());
+        if(!SDLBeenInitialized)
+        {
+            SDL_Init(SDL_INIT_VIDEO);
+            SDLBeenInitialized = true;
         }
-        SDLBeenInitialized = true;
         #ifdef PHYSDEBUG
         GameWorld->Log("Initialized SDL");
         #endif
     }
 
+    void GraphicsManager::InitOgre()
+    {
+        if(!OgreBeenInitialized)
+        {
+            try
+            {
+                /*NewWindows.OgreWindow = */Ogre::Root::getSingleton().initialise(false, GameWorld->GetWindowName());
+                #ifdef PHYSDEBUG
+                GameWorld->Log("Setup Ogre Window");
+                #endif
+            }catch (exception& e) {
+                GameWorld->Log("Failed to Setup Ogre Window");
+                GameWorld->LogAndThrow(e.what());
+            }
+            OgreBeenInitialized = true;
+        }
+    }
+
     void GraphicsManager::ShutdownSDL()
     {
         //SDL_DeleteContext();
-        SDL_DestroyWindow(SDLwindow);
+        //SDL_DestroyWindow(SDLwindow);
         //SDL_FreeSurface(SDLscreen);
         SDL_Quit();
     }
 
-    void GraphicsManager::InitViewportAndCamera()
+    void GraphicsManager::InitViewportAndCamera(GameWindow* NewWindow)
     {
         //setup a default camera unless has been setup yet
         Camera* camera = NULL;
@@ -181,185 +144,86 @@ namespace phys
         #endif
 
         //viewport connects camera and render window
-        Ogre::Viewport* OgreViewport = NULL;
-        OgreViewport = OgreGameWindow->addViewport(camera->GetOgreCamera());
-        GameWorld->GetCameraManager()->Viewports["Viewport1"] = OgreViewport;
+        Viewport* PrimaryViewport = NewWindow->CreateViewport(camera);
 
         //setting the aspect ratio must be done after we setup the viewport
-        camera->SetAspectRatio( (Real)(OgreViewport->getActualWidth()) / (Real)(OgreViewport->getActualHeight()) );
+        camera->SetAspectRatio( (Real)(PrimaryViewport->GetActualWidth()) / (Real)(PrimaryViewport->GetActualHeight()) );
         #ifdef PHYSDEBUG
         GameWorld->Log("Configured Viewport and Aspect Ratio");
         #endif
     }
 
-    void GraphicsManager::CorrectViewportAndCamera()
+    GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
     {
-        Ogre::Viewport* OgreViewport = GameWorld->GetCameraManager()->GetOgreViewport("Viewport1");
-        OgreViewport->setDimensions(0,0,1,1);
-        OgreViewport->getCamera()->setAspectRatio((Real)(OgreViewport->getActualWidth()) / (Real)(OgreViewport->getActualHeight()));
-    }
+        if(!SDLBeenInitialized) InitSDL();
+        if(!OgreBeenInitialized) InitOgre();
+        //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
+        GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags);
 
-    int GraphicsManager::IsLargerThenDesktop(const Whole& Width, const Whole& Height)
-    {
-        SDL_DisplayMode DesktopDisplay;
-        SDL_GetDesktopDisplayMode(0,&DesktopDisplay);
-        if(Width > DesktopDisplay.w || Height > DesktopDisplay.h)
-            return 1;
-        else if(Width == DesktopDisplay.w || Height == DesktopDisplay.h)
-            return 0;
-        else
-            return -1;
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Fullscreen functions
-    ///////////////////////////////////
-    bool GraphicsManager::getFullscreen() const
-    {
-        return Settings.Fullscreen;
-    }
-
-    //returns: false if changes could not be made
-    void GraphicsManager::setFullscreen(const bool &Fullscreen)
-    {
-        static SDL_DisplayMode FSDisplayMode;
-        if(!GraphicsInitialized)
+        if(GameWindows.empty())
         {
-            Settings.Fullscreen = Fullscreen;
-            return;
+            InitViewportAndCamera(NewWindow);
+            PrimaryGameWindow = NewWindow;
+            PrimarySettings = NewWindow->GetSettings();
         }
+        GameWindows.push_back(NewWindow);
+        return NewWindow;
+    }
 
-        if(Fullscreen == Settings.Fullscreen)
-            return;
+    GameWindow* GraphicsManager::GetGameWindow(const Whole& Index)
+    {
+        return GameWindows[Index];
+    }
 
-        if(!Fullscreen && Settings.Fullscreen)
+    Whole GraphicsManager::GetNumGameWindows()
+    {
+        return GameWindows.size();
+    }
+
+    void GraphicsManager::DestroyGameWindow(GameWindow* ToBeDestroyed)
+    {
+        for ( std::vector<GameWindow*>::iterator it = GameWindows.begin() ; it != GameWindows.end() ; it++ )
         {
-            if( Settings.RenderWidth > DesktopSettings.RenderWidth || Settings.RenderHeight > DesktopSettings.RenderHeight )
+            if ( ToBeDestroyed == (*it) )
             {
-                Settings.RenderWidth = DesktopSettings.RenderWidth;
-                Settings.RenderHeight = DesktopSettings.RenderHeight;
-            }
-            if( Settings.RenderWidth == DesktopSettings.RenderWidth || Settings.RenderHeight == DesktopSettings.RenderHeight )
-            {
-                Whole ResultWidth, ResultHeight;
-                crossplatform::SanitizeWindowedRes(Settings.RenderWidth,Settings.RenderHeight,ResultWidth,ResultHeight);
-                setRenderResolution(ResultWidth,ResultHeight);
-                Settings.RenderWidth = DesktopSettings.RenderWidth;
-                Settings.RenderHeight = DesktopSettings.RenderHeight;
-            }
-        }
-        else if(Fullscreen && !Settings.Fullscreen)
-        {
-            FSDisplayMode.w = Settings.RenderWidth;
-            FSDisplayMode.h = Settings.RenderHeight;
-            FSDisplayMode.refresh_rate = Settings.RefreshRate;
-            SDL_SetWindowDisplayMode(SDLwindow,&FSDisplayMode);
-        }
-
-        if(SDL_SetWindowFullscreen(SDLwindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0)
-        {
-            OgreGameWindow->setFullscreen(Fullscreen,Settings.RenderWidth,Settings.RenderHeight);
-            CorrectViewportAndCamera();
-            Settings.Fullscreen = Fullscreen;
-        }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////
-    // Resolution functions
-    ///////////////////////////////////
-    Whole GraphicsManager::getRenderHeight() const
-    {
-        return Settings.RenderHeight;
-    }
-
-    Whole GraphicsManager::getRenderWidth() const
-    {
-        return Settings.RenderWidth;
-    }
-
-    void GraphicsManager::setRenderHeight(const Whole &Height)
-    {
-        if(!GraphicsInitialized)
-        {
-            Settings.RenderHeight = Height;
-            return;
-        }
-        /// @todo TODO: Need to attempt to update resolution here
-        setRenderResolution(Settings.RenderWidth,Height);
-        Settings.RenderHeight = Height;
-    }
-
-    void GraphicsManager::setRenderWidth(const Whole &Width)
-    {
-        if(!GraphicsInitialized)
-        {
-            Settings.RenderWidth = Width;
-            return;
-        }
-        /// @todo TODO: Need to attempt to update resolution here
-        setRenderResolution(Width,Settings.RenderHeight);
-        Settings.RenderWidth = Width;
-    }
-
-    void GraphicsManager::setRenderResolution(const Whole &Width, const Whole &Height)
-    {
-        if(!GraphicsInitialized)
-        {
-            Settings.RenderWidth = Width;
-            Settings.RenderHeight = Height;
-            return;
-        }
-        /// @todo TODO: Need to attempt to update resolution here
-        if(Settings.Fullscreen)
-        {
-            SDL_DisplayMode CurrentDisplay;
-            SDL_GetWindowDisplayMode(SDLwindow,&CurrentDisplay);
-            CurrentDisplay.w = Width;
-            CurrentDisplay.h = Height;
-            //CurrentDisplay.refresh_rate = 60;
-            if(SDL_SetWindowDisplayMode(SDLwindow,&CurrentDisplay) == 0)
-            {
-                OgreGameWindow->setFullscreen(true,Width,Height);
-                CorrectViewportAndCamera();
-                Settings.RenderWidth = Width;
-                Settings.RenderHeight = Height;
+                delete ToBeDestroyed;
+                GameWindows.erase(it);
                 return;
             }
-        }else{
-            int Result = IsLargerThenDesktop(Width,Height);
-            if(Result == 0)
-            {
-                Whole ResultWidth, ResultHeight;
-                crossplatform::SanitizeWindowedRes(Width,Height,ResultWidth,ResultHeight);
-                SDL_SetWindowSize(SDLwindow,ResultWidth,ResultHeight);
-                OgreGameWindow->setFullscreen(false,ResultWidth,ResultHeight);
-            }else if(Result == 1){
-                GameWorld->Log("Cannot create a window larger then the desktop resolution.");
-                return;
-            }else{
-                SDL_SetWindowSize(SDLwindow,Width,Height);
-                OgreGameWindow->setFullscreen(false,Width,Height);
-            }
-            CorrectViewportAndCamera();
-            Settings.RenderWidth = Width;
-            Settings.RenderHeight = Height;
         }
     }
 
-    void GraphicsManager::setRenderOptions(const GraphicsSettings& NewSettings)
+    void GraphicsManager::DestroyAllGameWindows(bool ExcludePrimary)
     {
-        if(!GraphicsInitialized)
+        Whole X = 0;
+        if(ExcludePrimary) X++;
+        while( X < GameWindows.size() )
         {
-            Settings = NewSettings;
-            return;
+            delete GameWindows[X];
+            X++;
         }
-        setFullscreen(NewSettings.Fullscreen);
-        setRenderResolution(NewSettings.RenderWidth,NewSettings.RenderHeight);
+        GameWindows.clear();
+        if(ExcludePrimary) GameWindows.push_back(PrimaryGameWindow);
+    }
+
+    GameWindow* GraphicsManager::GetPrimaryGameWindow()
+    {
+        return PrimaryGameWindow;
+    }
+
+    const GraphicsSettings& GraphicsManager::GetDesktopSettings()
+    {
+        return DesktopSettings;
     }
 
     bool GraphicsManager::HasSDLBeenInitialized()
     {
         return SDLBeenInitialized;
+    }
+
+    bool GraphicsManager::HasOgreBeenInitialized()
+    {
+        return OgreBeenInitialized;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -375,38 +239,6 @@ namespace phys
             this->GameWorld->Log(e.what());
             return false;
         }
-    }
-
-    ///////////////////////////////////////////////////////////////////////////////
-    //Stats functions
-    Real GraphicsManager::GetLastFPS()
-    {
-        return OgreGameWindow->getLastFPS();
-    }
-
-    Real GraphicsManager::GetAverageFPS()
-    {
-        return OgreGameWindow->getAverageFPS();
-    }
-
-    Real GraphicsManager::GetBestFPS()
-    {
-        return OgreGameWindow->getBestFPS();
-    }
-
-    Real GraphicsManager::GetWorstFPS()
-    {
-        return OgreGameWindow->getWorstFPS();
-    }
-
-    Real GraphicsManager::GetBestFrameTime()
-    {
-        return OgreGameWindow->getBestFrameTime();
-    }
-
-    Real GraphicsManager::GetWorstFrameTime()
-    {
-        return OgreGameWindow->getWorstFrameTime();
     }
 
     String GraphicsManager::GetRenderSystemName()
@@ -435,7 +267,8 @@ namespace phys
     //Inherited From ManagerBase
     void GraphicsManager::Initialize()
     {
-        CreateRenderWindow();
+        if(GameWindows.empty())
+            CreateGameWindow(GameWorld->GetWindowName(),PrimarySettings.RenderWidth,PrimarySettings.RenderHeight,PrimarySettings.Fullscreen?GameWindow::WF_Fullscreen:0);
         this->RenderTimer = new Ogre::Timer();
 
         Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();
@@ -468,7 +301,7 @@ namespace phys
     void GraphicsManager::DoMainLoopItems()
     {
         //Ogre::WindowEventUtilities::messagePump();
-        crossplatform::RenderPhysWorld(this->OgreGameWindow, this->SDLwindow);
+        crossplatform::RenderPhysWorld(this->PrimaryGameWindow->GetOgreWindowPointer(), this->PrimaryGameWindow->GetSDLWindowPointer());
 
         //Do Time Calculations to Determine Rendering Time
         this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );
@@ -493,16 +326,6 @@ namespace phys
     {
         this->GameWorld->GetEventManager()->AddEvent(new EventRenderTime(this->GameWorld->GetFrameTime()));
         return ManagerBase::PostMainLoopItems();
-    }
-
-    void GraphicsManager::SetOgreWindowPointer(Ogre::RenderWindow* OgreWindow)
-    {
-        OgreGameWindow = OgreWindow;
-    }
-
-    Ogre::RenderWindow* GraphicsManager::GetOgreWindowPointer()
-    {
-        return OgreGameWindow;
     }
 }
 

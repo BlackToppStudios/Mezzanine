@@ -43,6 +43,7 @@
 #include "inputquerytool.h"
 #include "uicaption.h"
 #include "uilayer.h"
+#include "uiscreen.h"
 #include "uimanager.h"
 #include "eventmanager.h"
 #include "world.h"
@@ -62,7 +63,7 @@ namespace phys
         {
             Manager = World::GetWorldPointer()->GetUIManager();
 
-            Vector2 Window = Manager->GetWindowDimensions();
+            Vector2 Window = Parent->GetParent()->GetViewportDimensions();
             GorillaCaption = Parent->GetGorillaLayer()->createCaption(Glyph, Position.X * Window.X, Position.Y * Window.Y, Text);
             GorillaCaption->size(Size.X * Window.X, Size.Y * Window.Y);
             GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
@@ -231,7 +232,7 @@ namespace phys
         void Caption::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GorillaCaption->left(CurrDim.X * RelPosition.X);
             GorillaCaption->top(CurrDim.Y * RelPosition.Y);
             GorillaRectangle->left(CurrDim.X * RelPosition.X);
@@ -260,7 +261,7 @@ namespace phys
         void Caption::SetSize(const Vector2 Size)
         {
             RelSize = Size;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GorillaCaption->width(CurrDim.X * RelSize.X);
             GorillaCaption->height(CurrDim.Y * RelSize.Y);
             GorillaRectangle->width(CurrDim.X * RelSize.X);

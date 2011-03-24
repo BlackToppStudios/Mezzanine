@@ -42,6 +42,7 @@
 
 #include "uimarkuptext.h"
 #include "uilayer.h"
+#include "uiscreen.h"
 #include "uimanager.h"
 #include "world.h"
 
@@ -59,7 +60,7 @@ namespace phys
         {
             Manager = World::GetWorldPointer()->GetUIManager();
 
-            Vector2 Window = Manager->GetWindowDimensions();
+            Vector2 Window = Parent->GetParent()->GetViewportDimensions();
             GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Position.X * Window.X,Position.Y * Window.Y,Text);
         }
 
@@ -167,7 +168,7 @@ namespace phys
         void MarkupText::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GMarkup->left(CurrDim.X * RelPosition.X);
             GMarkup->top(CurrDim.Y * RelPosition.Y);
         }
@@ -192,7 +193,7 @@ namespace phys
         void MarkupText::SetMaxSize(const Vector2 Size)
         {
             RelSize = Size;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GMarkup->width(CurrDim.X * RelSize.X);
             GMarkup->height(CurrDim.Y * RelSize.Y);
         }
@@ -204,7 +205,7 @@ namespace phys
 
         void MarkupText::SetMaxActualSize(const Vector2 Size)
         {
-            RelSize = Size / Manager->GetWindowDimensions();
+            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             GMarkup->width(Size.X);
             GMarkup->height(Size.Y);
         }

@@ -42,11 +42,13 @@
 
 #include "crossplatformexport.h"
 #include "managerbase.h"
+#include "graphicssettings.h"
 
 namespace Ogre
 {
     class Timer;
     class RenderWindow;
+    class Viewport;
 }
 
 struct SDL_Surface;
@@ -54,39 +56,7 @@ struct SDL_Window;
 
 namespace phys
 {
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class GraphicsSettings
-    /// @headerfile graphicsmanager.h
-    /// @brief This stores all the possible configuration options the graphics manager supports.
-    /// @details The graphics manager stores one of these for all of it's configuration options,
-    /// additionally one can be created and passed into the manager to set all the configuration
-    /// options at once.
-    ///////////////////////////////////////
-    struct GraphicsSettings
-    {
-        /// @brief This stores the Height of the renderwindow.
-        Whole RenderHeight;
-        /// @brief This stores the Width of the renderwindow.
-        Whole RenderWidth;
-        /// @brief This stores the device refresh rate in Hz.
-        Whole RefreshRate;
-        /// @brief This is the desired state of whether the window is fullscreen or not.
-        bool Fullscreen;
-        /// @brief This is the desired state of whether to enable VSync or not.
-        bool VSync;
-        /// @brief Struct Constructor
-        GraphicsSettings() : RenderHeight(0),RenderWidth(0),RefreshRate(0),Fullscreen(false),VSync(false) {}
-        GraphicsSettings& operator= (const GraphicsSettings &GS)
-        {
-            this->RenderHeight = GS.RenderHeight;
-            this->RenderWidth = GS.RenderWidth;
-            this->RefreshRate = GS.RefreshRate;
-            this->Fullscreen = GS.Fullscreen;
-            this->VSync = GS.VSync;
-            return *this;
-        }
-    };
-
+    class GameWindow;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class GraphicsManager
     /// @headerfile graphicsmanager.h
@@ -99,11 +69,13 @@ namespace phys
     class PHYS_LIB GraphicsManager: public ManagerBase
     {
         private:
-            GraphicsSettings Settings;
+            GraphicsSettings PrimarySettings;
             GraphicsSettings DesktopSettings;
 
-            std::vector<String> SupportedResolutions;
-            std::vector<String> SupportedDevices;
+            std::vector< GameWindow* > GameWindows;
+
+            std::vector< String > SupportedResolutions;
+            std::vector< String > SupportedDevices;
 
             /// @brief Adjust all Settings
             /// @param Width The desired width.
@@ -114,21 +86,17 @@ namespace phys
             /// do not support arbitrary resolutions in fullscreen mode.
             void Construct( const Whole &Width, const Whole &Height, const bool &FullScreen);
 
-            void CreateRenderWindow();
-            void DestroyRenderWindow();
             void InitSDL();
+            void InitOgre();
             void ShutdownSDL();
-            void InitViewportAndCamera();
-            void CorrectViewportAndCamera();
-            int IsLargerThenDesktop(const Whole& Width, const Whole& Height);
+            void InitViewportAndCamera(GameWindow* NewWindow);
 
             Ogre::Timer* RenderTimer;
-            Ogre::RenderWindow* OgreGameWindow;
-            SDL_Surface* SDLscreen;
-            SDL_Window* SDLwindow;
+            GameWindow* PrimaryGameWindow;
 
             Whole FrameDelay;
             bool SDLBeenInitialized;
+            bool OgreBeenInitialized;
             bool GraphicsInitialized;
 
         public:
@@ -140,7 +108,8 @@ namespace phys
             /// @param Width The desired width.
             /// @param Height The desired height.
             /// @param FullScreen True if fullscreen, false if not.
-            /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the
+            /// @details This creates a Graphics Settings with resolution and fullscreen passed into to it that will be used
+            /// when creating the primary window if one isn't already created when this manager in initialized. Be careful that the
             /// settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support
             /// arbitrary resolutions in fullscreen mode.
             GraphicsManager(const Whole &Width, const Whole &Height, const bool &FullScreen);
@@ -148,49 +117,44 @@ namespace phys
             /// @brief Class Destructor.
             ~GraphicsManager();
 
-            /// @brief Gets the Fullscreen Setting
-            /// @details Gets the Fullscreen Setting
-            /// @return This returns a bool, true if fullscreen is set, false otherwise
-            bool getFullscreen() const;
+            /// @brief Creates a new game window to be rendered to.
+            /// @param WindowCaption The caption to be set in the window titlebar.
+            /// @param Width The desired width in pixels.
+            /// @param Height The desired height in pixels.
+            /// @param Flags Additional misc parameters, see GameWindow class for more info.
+            GameWindow* CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
 
-            /// @brief Set the Fullscreen Setting
-            /// @details Set the Fullscreen Setting
-            /// @param Fullscreen This accepts a bool. True for fullscreen, false for windowed
-            void setFullscreen(const bool &Fullscreen);
+            /// @brief Gets a game window by index.
+            /// @return Returns a pointer to the game window requested.
+            GameWindow* GetGameWindow(const Whole& Index);
 
-            /// @brief Gets the Height of the Rendering Area
-            /// @details Gets the Height of the Rendering Area
-            /// @return This returns the Height of the Rendering Area
-            Whole getRenderHeight() const;
+            /// @brief Gets the number of game windows within this manager.
+            /// @return Returns a Whole representing the number of game windows within this manager.
+            Whole GetNumGameWindows();
 
-            /// @brief Sets the Height.
-            /// @details Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Height This accepts a Whole.
-            void setRenderHeight(const Whole &Height);
+            /// @brief Destroys a created game window by index.
+            /// @param WindowIndex The index of the window to be destroyed.
+            void DestroyGameWindow(GameWindow* ToBeDestroyed);
 
-            /// @brief Gets the Width of the Rendering Area
-            /// @details Gets the Width of the Rendering Area
-            /// @return This returns the Width of the Rendering Area
-            Whole getRenderWidth() const;
+            /// @brief Destroys every game window created.
+            /// @param ExcludePrimary Whether or not you want to spare the primary window created.
+            void DestroyAllGameWindows(bool ExcludePrimary = true);
 
-            /// @brief Sets the Width.
-            /// @details Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen
-            /// @param Width This accepts a Whole.
-            void setRenderWidth(const Whole &Width);
+            /// @brief Gets the primary(first) game window.
+            /// @return Returns a pointer to the primary game window.
+            GameWindow* GetPrimaryGameWindow();
 
-            /// @brief Changes the X and Y Resolution at the same time
-            /// @details This should be useful in situations where it is not possible to update the width and height separately.
-            /// @param Width The new desired Width for the rendering area as a whole number
-            /// @param Height The new desired Width for the rendering area as a whole number
-            void setRenderResolution(const Whole &Width, const Whole &Height);
-
-            /// @brief Changes the X Resolution, Y Resolution, and fullscreen at the same time
-            /// @details This should be useful in situations where it is not possible to update all of the options separately.
-            void setRenderOptions(const GraphicsSettings& NewSettings);
+            /// @brief Gets the desktop display settings.
+            /// @param Returns a GraphicsSettings struct with the desktop display settings.
+            const GraphicsSettings& GetDesktopSettings();
 
             /// @brief Gets whether or not SDL has been started.
             /// @return Returns a bool indicating whether or not SDL has been initialized yet.
             bool HasSDLBeenInitialized();
+
+            /// @brief Gets whether or not Ogre has been started.
+            /// @return Returns a bool indicating whether or not Ogre has been initialized yet.
+            bool HasOgreBeenInitialized();
 
             /// @brief This Shows an Engine Generated Configuration Screen
             /// @details This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration
@@ -198,32 +162,6 @@ namespace phys
             /// Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage
             /// user settings.
             bool ShowGraphicsSettingDialog();
-
-            /// @brief Gets the FPS based on the last frame rendered.
-            /// @details This essentially determines how many frames could be rendered if all
-            /// frames within a second rendered at the same speed.
-            /// @return Returns a Real representing the framerate.
-            Real GetLastFPS();
-
-            /// @brief Gets the Average FPS.
-            /// @return Returns a Real representing the average framerate.
-            Real GetAverageFPS();
-
-            /// @brief Gets the Best FPS.
-            /// @return Returns a Real representing the best framerate.
-            Real GetBestFPS();
-
-            /// @brief Gets the Worst FPS.
-            /// @return Returns a Real representing the worst framerate.
-            Real GetWorstFPS();
-
-            /// @brief Gets the shortest amount of time it's taken to render a frame.
-            /// @return Returns a Real representing the best time for rendering a frame.
-            Real GetBestFrameTime();
-
-            /// @brief Gets the longest amount of time it's taken to render a frame.
-            /// @return Returns a Real representing the worst time for rendering a frame.
-            Real GetWorstFrameTime();
 
             /// @brief Gets the name of the render system in current use.
             /// @return Returns a string containing the name of the current render system.
@@ -261,16 +199,6 @@ namespace phys
             /// @brief This is derived from and uses the ManagerBase to perform the the post main loop callbacks
             /// @return This returns a true or false depending on what the callback returns
             virtual bool PostMainLoopItems();
-        //Internal access functions
-            /// @internal
-            /// @brief This will set the stored pointer to the ogre render window.
-            /// @details This function is called on once when constructing the world, should not be called otherwise.
-            /// @param OgreWindow A pointer to the created Ogre RenderWindow class.
-            void SetOgreWindowPointer(Ogre::RenderWindow* OgreWindow);
-            /// @internal
-            /// @brief This will get a pointer to the RenderWindow class in use by the world.
-            /// @return Returns a pointer to the Ogre RenderWindow class in use.
-            Ogre::RenderWindow* GetOgreWindowPointer();
     };
 }
 #endif

@@ -74,7 +74,6 @@ namespace phys
             friend class GraphicsManager;
             friend class World;
             friend class Camera;
-            std::map< String, Ogre::Viewport* > Viewports;
             phys::SceneManager* SManager;
             Camera* DefaultCamera;
             std::vector< Camera* > Cameras;
@@ -113,11 +112,6 @@ namespace phys
             /// @details This will clear the container of cameras.  The default camera is not stored in this container
             /// however, so it is spared from this wipe.
             void ClearCameras();
-            /// @brief Creates an additional Viewport within the set render window.
-            /// @details Like cameras, by default there is one veiwport already made when this class is made, called DefaultViewport.
-            /// @param Name The name of the new veiwport.
-            /// @param VeiwportCam The camera that is to be attached to this Viewport.
-            void CreateViewport(const String& Name, Camera* ViewportCam);
 
             //Inherited From ManagerBase
             /// @brief Empty Initializor.
@@ -132,10 +126,6 @@ namespace phys
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::CameraManager.
             virtual ManagerTypeName GetType() const;
-
-            /// @brief Gets the internal Ogre viewport.
-            /// @return Returns the Ogre viewport of the specified name.
-            Ogre::Viewport* GetOgreViewport(const String& Name);
     };
 }//phys
 #endif

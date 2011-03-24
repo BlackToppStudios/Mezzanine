@@ -43,6 +43,7 @@
 #include "uilinelist.h"
 #include "uimanager.h"
 #include "uilayer.h"
+#include "uiscreen.h"
 #include "world.h"
 
 #include "internalGorilla.h.cpp"
@@ -96,7 +97,7 @@ namespace phys
 
         void LineList::AddPoint(const Vector2 Position)
         {
-            GLineList->position((Position * Manager->GetWindowDimensions()).GetOgreVector2());
+            GLineList->position((Position * Parent->GetParent()->GetViewportDimensions()).GetOgreVector2());
         }
 
         void LineList::AddActualPoint(const Real X, const Real Y)

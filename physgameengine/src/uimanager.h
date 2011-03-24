@@ -56,6 +56,7 @@ namespace Gorilla
 
 namespace phys
 {
+    class Viewport;
     class UIScreen;
     class UILayer;
     class InputQueryTool;
@@ -116,10 +117,10 @@ namespace phys
             /// @brief Creates an internal HUD screen.
             /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
             /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.
-            /// @param Screen The name to be given to the screen.
+            /// @param ScreenName The name to be given to the screen.
             /// @param Atlas The name of a previously loaded Gorilla file to be used with this screen.
-            /// @param Viewport The name of the viewport to create this screen in.
-            UIScreen* CreateScreen(const String& Screen, const String& Atlas, const String& Viewport="Viewport1");
+            /// @param WindowViewport The viewport to create this screen in.
+            UIScreen* CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport);
             /// @brief Gets an already created screen by name.
             /// @return Returns a pointer to the screen of the specified name.
             UIScreen* GetScreen(const String& Name);
@@ -152,9 +153,6 @@ namespace phys
             /// @details This should only be called on after this manager does it's main loop items for best results.
             /// @return Returns true if the mouse is over a visable UI element, false if not.
             bool MouseIsInUISystem();
-            /// @brief Gets the current window dimensions.
-            /// @return Returns a Vector2 representing the current window dimensions.
-            Vector2 GetWindowDimensions();
             /// @brief Gets the input queryer used for automation in this subsystem.
             /// @return Returns a pointer to the InputQueryTool used to query input events for this subsystem.
             InputQueryTool* GetInputQueryer();

@@ -47,6 +47,7 @@
 #include "cameramanager.h"
 #include "camera.h"
 #include "objectreference.h"
+#include "gamewindow.h"
 
 #include <Ogre.h>
 
@@ -316,8 +317,8 @@ namespace phys
     Ray* WorldQueryTool::GetMouseRay(Real Length)
     {
         Ray* MouseRay = new Ray( World::GetWorldPointer()->GetCameraManager()->GetDefaultCamera()->GetCameraToViewportRay(
-                float(this->GetMouseX()) / float( World::GetWorldPointer()->GetGraphicsManager()->getRenderWidth() ) ,
-                float(this->GetMouseY()) / float( World::GetWorldPointer()->GetGraphicsManager()->getRenderHeight() )
+                float(this->GetMouseX()) / float( World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getRenderWidth() ) ,
+                float(this->GetMouseY()) / float( World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getRenderHeight() )
             ) );
 
         (*MouseRay) *= Length;

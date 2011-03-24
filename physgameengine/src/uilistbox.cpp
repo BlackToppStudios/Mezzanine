@@ -43,6 +43,7 @@
 #include "uilistbox.h"
 #include "uimanager.h"
 #include "uilayer.h"
+#include "uiscreen.h"
 #include "uicaption.h"
 #include "uirectangle.h"
 #include "uiscrollbar.h"
@@ -137,8 +138,8 @@ namespace phys
             Real Remainder = fmod(ToBeRounded,One);
             Whole FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (One - Remainder) : ToBeRounded - Remainder);
             Vector2 SelectionPos = GetActualPosition();
-            Real ActualDist = SelectionDist * Manager->GetWindowDimensions().Y;
-            Real ActualInc = ActualDist + (TSize.Y * Manager->GetWindowDimensions().Y);
+            Real ActualDist = SelectionDist * Parent->GetParent()->GetViewportDimensions().Y;
+            Real ActualInc = ActualDist + (TSize.Y * Parent->GetParent()->GetViewportDimensions().Y);
             SelectionPos.X+=ActualDist;
             SelectionPos.Y+=ActualDist;
             for( Whole w = 0 ; w < FirstCaption ; w++ )
@@ -394,8 +395,8 @@ namespace phys
 
         void ListBox::SetActualPosition(const Vector2 Position)
         {
-            RelPosition = Position / Manager->GetWindowDimensions();
-            Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Manager->GetWindowDimensions();
+            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
+            Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Parent->GetParent()->GetViewportDimensions();
             BoxBack->SetActualPosition(Position);
             VertScroll->SetPosition(Position + ScrollOffset);
             DrawList();
@@ -403,7 +404,7 @@ namespace phys
 
         Vector2 ListBox::GetActualPosition()
         {
-            return RelPosition * Manager->GetWindowDimensions();
+            return RelPosition * Parent->GetParent()->GetViewportDimensions();
         }
 
         void ListBox::SetSize(const Vector2 Size)
@@ -425,7 +426,7 @@ namespace phys
 
         void ListBox::SetActualSize(const Vector2 Size)
         {
-            RelSize = Size / Manager->GetWindowDimensions();
+            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             BoxBack->SetActualSize(Size);
             Vector2 ScrollP((GetActualPosition().X + Size.X) - VertScroll->GetActualSize().X,GetActualPosition().Y);
             Vector2 ScrollS(VertScroll->GetActualSize().X,Size.Y);
@@ -437,7 +438,7 @@ namespace phys
 
         Vector2 ListBox::GetActualSize()
         {
-            return RelSize * Manager->GetWindowDimensions();
+            return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
         Caption* ListBox::GetSelected()

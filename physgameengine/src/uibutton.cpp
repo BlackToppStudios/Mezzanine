@@ -42,6 +42,7 @@
 
 #include "uibutton.h"
 #include "uilayer.h"
+#include "uiscreen.h"
 #include "uimanager.h"
 #include "eventmanager.h"
 #include "inputquerytool.h"
@@ -66,7 +67,7 @@ namespace phys
         {
             Manager = World::GetWorldPointer()->GetUIManager();
 
-            Vector2 Window = Manager->GetWindowDimensions();
+            Vector2 Window = Parent->GetParent()->GetViewportDimensions();
             GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
         }
 
@@ -186,7 +187,7 @@ namespace phys
         void Button::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GorillaRectangle->left(CurrDim.X * RelPosition.X);
             GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
         }
@@ -211,7 +212,7 @@ namespace phys
         void Button::SetSize(const Vector2 Size)
         {
             RelSize = Size;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GorillaRectangle->width(CurrDim.X * RelSize.X);
             GorillaRectangle->height(CurrDim.Y * RelSize.Y);
         }
