@@ -504,13 +504,13 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("Vector3"))
     {
         Vec.X=OneNode.GetAttribute("X").AsReal();
         Vec.Y=OneNode.GetAttribute("Y").AsReal();
         Vec.Z=OneNode.GetAttribute("Z").AsReal();
     }else{
-        throw( phys::Exception("Incompatible XML Version for Vector3: Not Version 1"));
+        throw( phys::Exception("Incompatible XML Version for Vector3: Not Version 1 or not Vector3"));
     }
 }
 #endif // \PHYSXML

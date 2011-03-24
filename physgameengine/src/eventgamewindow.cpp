@@ -245,13 +245,13 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventGameWindow&
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventGameWindow& Ev)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    if(OneNode.GetAttribute("Version").AsInt() == 1  && phys::String(OneNode.Name())==phys::String("EventGameWindow"))
     {
         Ev = phys::EventGameWindow( (phys::EventGameWindow::GameWindowEventID)OneNode.GetAttribute("EventID").AsInt(),
                                     OneNode.GetAttribute("First").AsInt(),
                                     OneNode.GetAttribute("Second").AsInt() );
     }else{
-        throw( phys::Exception("Incompatible XML Version for EventGameWindow: Not Version 1"));
+        throw( phys::Exception("Incompatible XML Version for EventGameWindow: Not Version 1 or not EventGameWindow"));
     }
 }
 #endif // \PHYSXML

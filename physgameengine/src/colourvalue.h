@@ -42,6 +42,7 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
+#include "xml.h"
 
 namespace Ogre
 {
@@ -54,18 +55,17 @@ namespace phys
     /// @class ColourValue
     /// @headerfile colourvalue.h
     /// @brief This is a simple class for holding 4 reals representing the colour any give object or lightsource can have.
-    /// @details
     ///////////////////////////////////////
     class PHYS_LIB ColourValue
     {
         public:
-            /// @brief Value from 0.0 to 1.0 representing the amount of red present in the colour.
+            /// @brief Value from 0.0 to 1.0 representing the amount of red present in the colour. 1.0 if very red, 0.0 is no red.
             Real Red;
-            /// @brief Value from 0.0 to 1.0 representing the amount of green present in the colour.
+            /// @brief Value from 0.0 to 1.0 representing the amount of green present in the colour. 1.0 if very green, 0.0 is no green.
             Real Green;
-            /// @brief Value from 0.0 to 1.0 representing the amount of blue present in the colour.
+            /// @brief Value from 0.0 to 1.0 representing the amount of blue present in the colour. 1.0 if very blue, 0.0 is no blue.
             Real Blue;
-            /// @brief Value from 0.0 to 1.0 representing the transparency of the colours.
+            /// @brief Value from 0.0 to 1.0 representing the transparency of the colours. 1.0 is opaque and 0.0 is clear.
             Real Alpha;
 
             /// @brief Non-Alpha constructor.
@@ -74,6 +74,7 @@ namespace phys
             /// @param green Real representing the amount of green present in the colour.
             /// @param blue Real representing the amount of blue present in the colour.
             ColourValue(Real red, Real green, Real blue);
+
             /// @brief Alpha constructor.
             /// @details This constructor allows you to set the alpha value.
             /// @param red Real representing the amount of red present in the colour.
@@ -81,12 +82,19 @@ namespace phys
             /// @param blue Real representing the amount of blue present in the colour.
             /// @param alpha Real representing the transparency of the colours.
             ColourValue(Real red, Real green, Real blue, Real alpha);
+
             /// @brief Ogre constructor.
             /// @details Internal use only.  Constructs a colourvalue class from an ogre colourvalue.
             /// @param OgreValues The Ogre ColourValue class to base this class on.
-            ColourValue(Ogre::ColourValue OgreValues);
+            ColourValue(const Ogre::ColourValue& OgreValues);
+
+            /// @brief Copy Constructor
+            /// @param OtherColour
+            ColourValue(const ColourValue& OtherColour);
+
             /// @brief Class destructor.
             ~ColourValue();
+
             /// @brief Creates and returns an Ogre ColourValue class with values equal to this one.
             /// @details This function is intended for internal use only.
             /// @return Returns an Ogre ColourValue class that has values equal to this one.
@@ -94,10 +102,15 @@ namespace phys
 
             /// @brief Equality Comparison Operator
             /// @param Colour This is another ColourValue to compare with.
+            /// @return True if the colors match perfectly, false otherwise
             bool operator== (const ColourValue &Colour);
             /// @brief Inequality Comparison Operator
             /// @param Colour This is another ColourValue to compare with.
+            /// @return False if the colors match perfectly, True otherwise
             bool operator!= (const ColourValue &Colour);
+            /// @brief Assignment operator.
+            /// @param OtherColour The colour values you want to overwrite this colour's values with.
+            void operator= (const ColourValue &OtherColour);
 
             /// @brief Creates a ColourValue representing no colour.
             /// @return Returns the created ColourValue.
@@ -108,6 +121,7 @@ namespace phys
             /// @brief Creates a ColourValue representing the colour Black.
             /// @return Returns the created ColourValue.
             static ColourValue GetBlack();
+
             /// @brief Creates a ColourValue representing the colour Red.
             /// @return Returns the created ColourValue.
             static ColourValue GetRed();
@@ -117,7 +131,42 @@ namespace phys
             /// @brief Creates a ColourValue representing the colour Blue.
             /// @return Returns the created ColourValue.
             static ColourValue GetBlue();
+
+            /// @brief Creates a ColourValue representing the colour Yellow.
+            /// @return Returns the created ColourValue.
+            static ColourValue GetYellow();
+            /// @brief Creates a ColourValue representing the colour Cyan.
+            /// @return Returns the created ColourValue.
+            static ColourValue GetCyan();
+            /// @brief Creates a ColourValue representing the colour Magenta.
+            /// @return Returns the created ColourValue.
+            static ColourValue GetMagenta();
     };//colorvalue
 }//phys
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::ColourValue to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::ColourValue to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ColourValue& Ev);
+
+/// @brief Deserialize a phys::ColourValue
+/// @param stream The istream to get the xml from to (re)make the phys::ColourValue.
+/// @param Ev the phys::ColourValue to be deserialized.
+/// @return this returns the ostream, advanced past the phys::ColourValue that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ColourValue& Ev);
+
+/// @brief Set all values of a phys::ColourValue from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::ColourValue.
+/// @param Ev the phys::ColourValue to be reset.
+/// @return This returns thexml::Node that was passed in.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ColourValue& Ev);
+
+#endif // \PHYSXML
+
 
 #endif

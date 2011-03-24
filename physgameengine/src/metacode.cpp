@@ -286,12 +286,12 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::MetaCode& x)
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::MetaCode& x)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("MetaCode"))
     {
         x.SetMetaValue(OneNode.GetAttribute("MetaValue").AsInt());
         x.SetCode(OneNode.GetAttribute("Code").AsInt());
     }else{
-        throw( phys::Exception("Incompatible XML Version for MetaCode: Not Version 1"));
+        throw( phys::Exception("Incompatible XML Version for MetaCode: Not Version 1 or not MetaCode"));
     }
 }
 #endif // \PHYSXML

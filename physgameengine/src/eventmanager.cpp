@@ -214,8 +214,7 @@ namespace phys
         this->Priority=-40;
         this->_Data = new internal::EventManagerInternalData;
         SDL_InitSubSystem(SDL_INIT_JOYSTICK);
-        if( SDL_NumJoysticks()>0 )
-            { this->_Data->Joy0=SDL_JoystickOpen(0); }
+        this->DetectJoysticks();
 
         //Remove GameWorld Pointer From everything
         this->GameWorld = World::GetWorldPointer();
@@ -229,6 +228,12 @@ namespace phys
         for(std::list<EventBase*>::iterator Iter = _Data->EventQ.begin(); Iter!=_Data->EventQ.end(); Iter++)
             { delete *Iter; }
         delete _Data;
+    }
+
+    void EventManager::DetectJoysticks()
+    {
+        if( SDL_NumJoysticks()>0 )
+            { this->_Data->Joy0=SDL_JoystickOpen(0); }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

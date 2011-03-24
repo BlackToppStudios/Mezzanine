@@ -254,23 +254,23 @@ bool PostInput()
 //    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
 //        {TheWorld->Cameras->IncrementYOrbit(0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, false))
         { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01); }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, false))
         { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
 
     if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
-        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.000003 * (float)Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)); }
+        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.000003 * (float)Queryer.GetJoystickAxis(1)); }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) )
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, true))
         { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( -12.0 ); }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN) )
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN)  || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, true))
         { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( 12.0 ); }
 
     if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_2)!=0)
-        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera(0.002 * (float)Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_2)); }
+        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera(0.002 * (float)Queryer.GetJoystickAxis(2)); }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
         { TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom(); }
@@ -800,10 +800,21 @@ void LoadContent()
         TheWorld->Log(TimingEvent);
         TheWorld->Log(TimingEvent2);
 
-
         TheWorld->Log("ReStreaming ASingleCode from stringStream, to ASingleCode:");
         XMLStringStream3 >> ASecondCode;
         TheWorld->Log(ASecondCode);
+
+        ColourValue AColour(1.0,1.0,1.0,1.0);
+        ColourValue AnotherColour(0.5,0.5,0.5,0.5);
+        TheWorld->Log("A colour:");
+        TheWorld->Log(AColour);
+        TheWorld->Log("Another colour:");
+        TheWorld->Log(AnotherColour);
+        stringstream XMLStringStream7;
+        XMLStringStream7 << AColour;
+        XMLStringStream7 >> AnotherColour;
+        TheWorld->Log("Another colour after streaming A colour to it:");
+        TheWorld->Log(AColour);
 
 
         #ifdef PHYSDEBUG

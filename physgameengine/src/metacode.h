@@ -531,15 +531,15 @@ namespace phys
                 JOYSTICKAXIS_20       = 500,
                 JOYSTICKAXIS_LAST     = 500,  /// The Last Joystick axis event, all joystick axis event will be lower or equal to this.
 
-                JOYSTICKBALLVERTICAL     = 501,
-                JOYSTICKBALLHORIZONTAL   = 502,
+                JOYSTICKBALL_VERTICAL     = 501,
+                JOYSTICKBALL_HORIZONTAL   = 502,
 
-                JOYSTICKHAT1VERTICAL     = 505,
-                JOYSTICKHAT1HORIZONTAL   = 506,
-                JOYSTICKHAT2VERTICAL     = 507,
-                JOYSTICKHAT2HORIZONTAL   = 508,
-                JOYSTICKHAT3VERTICAL     = 509,
-                JOYSTICKHAT3HORIZONTAL   = 510,
+                JOYSTICKHAT_1_VERTICAL     = 505,
+                JOYSTICKHAT_1_HORIZONTAL   = 506,
+                JOYSTICKHAT_2_VERTICAL     = 507,
+                JOYSTICKHAT_2_HORIZONTAL   = 508,
+                JOYSTICKHAT_3_VERTICAL     = 509,
+                JOYSTICKHAT_3_HORIZONTAL   = 510,
 
                 JOYSTICK_LAST           = 512,  /// The last JoyStick Input Code, all JoyStick events will be less than this.
 
@@ -595,6 +595,7 @@ namespace phys
             // /// @param ID_ Which input is being activated. For everything except Keyboards codes, this selects which button, which joystick, which mouse which item.
             /// @param Code_ Which key or which type of input was pressed. Sqeaky, thinks this has partial unicode support.
             MetaCode(const int &MetaValue_, const MetaCode::InputCode &Code_);
+
 
             /// @brief The Heavy Lifting Constructor
             /// @details This contructor accepts a RawEvent from the input event subsystem internal to the engine. This converts all the required information

@@ -77,7 +77,7 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventQuit& Ev)
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventQuit& Ev)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1)
+    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("EventQuit"))
     {
         Ev = phys::EventQuit();
     }else{

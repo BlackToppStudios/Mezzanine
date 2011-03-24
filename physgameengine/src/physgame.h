@@ -48,6 +48,9 @@
 /// care about the internals of our project.
 ///////////////////////////////////////////////////////////////////////////////
 
+
+                                        // The remarks in line 41 are use to help with serializing and deserializing
+
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"
 #include "actorcontainerbase.h"
@@ -60,19 +63,19 @@
 #include "areaeffect.h"
 #include "camera.h"
 #include "cameramanager.h"
-#include "colourvalue.h"
+#include "colourvalue.h"                // Done
 #include "constraint.h"
 #include "crossplatform.h"
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "enumerations.h"
-#include "eventbase.h"
-#include "eventcollision.h"
-#include "eventmanager.h"
-#include "eventgamewindow.h"
-#include "eventquit.h"
-#include "eventrendertime.h"
-#include "eventuserinput.h"
+#include "eventbase.h"                  // done output only
+#include "eventcollision.h"             // Done
+#include "eventmanager.h"               // Done
+#include "eventgamewindow.h"            // Done
+#include "eventquit.h"                  // Done
+#include "eventrendertime.h"            // Done
+#include "eventuserinput.h"             // Done
 #include "exception.h"
 #include "extendedtimer.h"
 #include "gamewindow.h"
@@ -83,9 +86,9 @@
 #include "linegroup.h"
 #include "managerbase.h"
 #include "meshgenerator.h"
-#include "metacode.h"
+#include "metacode.h"                   // Done
 #include "physicsmanager.h"
-#include "plane.h"
+#include "plane.h"                      // Done
 #include "quaternion.h"
 #include "ray.h"
 #include "resourceinputstream.h"
@@ -113,14 +116,14 @@
 #include "uitextbutton.h"
 #include "uiwidget.h"
 #include "uiwindow.h"
-#include "vector2.h"
-#include "vector3.h"
+#include "vector2.h"                    // Done
+#include "vector3.h"                    // Done
 #include "vector3wactor.h"
 #include "viewport.h"
 #include "world.h"
 #include "worldgetset.h"
-#include "worldquerytool.h"
-#include "xml.h"
-#include "xmldoc.h"
+#include "worldquerytool.h"             // nothing to do
+#include "xml.h"                        // nothing to do
+#include "xmldoc.h"                     // nothing to do
 
 #endif
