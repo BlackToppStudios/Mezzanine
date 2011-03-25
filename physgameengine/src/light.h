@@ -97,7 +97,7 @@ namespace phys
             virtual ~Light();
             /// @brief Gets the name of this light.
             /// @return Returns a string containing the name given to this light.
-            ConstString& GetName();
+            ConstString& GetName() const;
             /// @brief Sets the type of light this light is.
             /// @details The light types are listed with the class info.  Types are Directional, Point, and Spotlight.
             /// @param Type The enum value representing the type of light this is.
@@ -160,43 +160,43 @@ namespace phys
             void SetPowerScale(Real Power);
             /// @brief Gets the type of light that this light is.
             /// @return Returns an enum value for this lights type.
-            Light::LightType GetType();
+            Light::LightType GetType() const;
             /// @brief Gets the current location of the light.
             /// @return Returns a vector3 representing the location of the light.
-            Vector3 GetPosition();
+            Vector3 GetPosition() const;
             /// @brief Gets the currently set direction of the light.
             /// @return Returns a vector3 representing the set direction of the light.
-            Vector3 GetDirection();
+            Vector3 GetDirection() const;
             /// @brief Gets the current colour of the diffuse light.
             /// @return Returns a colourvalue representing the currently set Diffuse light.
-            ColourValue GetDiffuseColour();
+            ColourValue GetDiffuseColour() const;
             /// @brief Gets the current colour of the specular light.
             /// @return Returns a colourvalue representing the currently set Specular light.
-            ColourValue GetSpecularColour();
+            ColourValue GetSpecularColour() const;
             /// @brief Gets the absolute range of attenuation in world units.
             /// @return Returns a real representing the absolute range of attenuation.
-            Real GetAttenuationRange();
+            Real GetAttenuationRange() const;
             /// @brief Gets the constant factor of the attenuation.
             /// @return Returns a real representing the constant factor of attenuation.
-            Real GetAttenuationConstant();
+            Real GetAttenuationConstant() const;
             /// @brief Gets the linear factor of the attentuation.
             /// @return Returns a real representing the linear factor of attenuation.
-            Real GetAttenuationLinear();
+            Real GetAttenuationLinear() const;
             /// @brief Gets the quadric factor of the attenuation.
             /// @return Returns a real representing the quadric factor of attenuation.
-            Real GetAttenuationQuadric();
+            Real GetAttenuationQuadric() const;
             /// @brief Gets the Inner angle of the cone of light emitted by this spotlight.
             /// @return Returns a real representing the inner angle of this spotlight, in radians.
-            Real GetSpotlightInnerAngle();
+            Real GetSpotlightInnerAngle() const;
             /// @brief Gets the Outer angle of the cone of light emitted by this spotlight.
             /// @return Returns a real representing the outer angle of this spotlight, in radians.
-            Real GetSpotlightOuterAngle();
+            Real GetSpotlightOuterAngle() const;
             /// @brief Gets the rate of falloff of the cone of light emitted by this spotlight.
             /// @return Returns a real representing the falloff of the cone of light.
-            Real GetSpotlightFalloff();
+            Real GetSpotlightFalloff() const;
             /// @brief Gets the lights power scale.
             /// @return Returns a real representing the power scale of the light.
-            Real GetPowerScale();
+            Real GetPowerScale() const;
     };
 }//phys
 

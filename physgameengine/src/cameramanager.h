@@ -100,7 +100,7 @@ namespace phys
             /// @details This function does the same as the other CreateCamera function but will also return a pointer to
             /// the camera class instead of a string(being the name of the camera).
             Camera* CreateCamera(const String& Name);
-            /// @brief Gets an already created camera by namr.
+            /// @brief Gets an already created camera by name.
             /// @return Returns a pointer to the camera of the specified name.
             Camera* GetCamera(const String& Name);
             /// @brief Gets an already created camera by index.
@@ -133,6 +133,7 @@ namespace phys
             /// @return This returns ManagerTypeName::CameraManager.
             virtual ManagerTypeName GetType() const;
 
+            /// @internal
             /// @brief Gets the internal Ogre viewport.
             /// @return Returns the Ogre viewport of the specified name.
             Ogre::Viewport* GetOgreViewport(const String& Name);

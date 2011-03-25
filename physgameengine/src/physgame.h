@@ -49,7 +49,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 
-                                        // The remarks in line 41 are use to help with serializing and deserializing
+                                        // The remarks in Column 41 are use to help with serializing and deserializing
 
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"
@@ -61,33 +61,35 @@
 #include "actorsoft.h"
 #include "actorterrain.h"
 #include "areaeffect.h"
-#include "camera.h"
+#include "attachable.h"                 // Target2
+#include "camera.h"                     // In progress
 #include "cameramanager.h"
-#include "colourvalue.h"                // Done
+#include "colourvalue.h"                // done
 #include "constraint.h"
-#include "crossplatform.h"
-#include "crossplatformexport.h"
-#include "datatypes.h"
-#include "enumerations.h"
-#include "eventbase.h"                  // done output only
-#include "eventcollision.h"             // Done
-#include "eventmanager.h"               // Done
-#include "eventgamewindow.h"            // Done
-#include "eventquit.h"                  // Done
-#include "eventrendertime.h"            // Done
-#include "eventuserinput.h"             // Done
+#include "crossplatform.h"              // nothing to do
+#include "crossplatformexport.h"        // nothing to do
+#include "datatypes.h"                  // nothing to do
+#include "enumerations.h"               // nothing to do
+#include "eventbase.h"                  // Done output only
+#include "eventcollision.h"             // done
+#include "eventgamewindow.h"            // done
+#include "eventmanager.h"               // done
+#include "eventquit.h"                  // done
+#include "eventrendertime.h"            // done
+#include "eventuserinput.h"             // done
 #include "exception.h"
 #include "extendedtimer.h"
 #include "graphicsmanager.h"
 #include "inputquerytool.h"
-#include "light.h"
+#include "light.h"                      // Target
 #include "linegroup.h"
 #include "managerbase.h"
 #include "meshgenerator.h"
-#include "metacode.h"                   // Done
+#include "metacode.h"                   // done
+#include "particleeffect.h"             // Target
 #include "physicsmanager.h"
-#include "plane.h"                      // Done
-#include "quaternion.h"
+#include "plane.h"                      // done
+#include "quaternion.h"                 // inp rogress
 #include "ray.h"
 #include "resourceinputstream.h"
 #include "resourcemanager.h"
@@ -96,6 +98,7 @@
 #include "sound.h"
 #include "soundlistener.h"
 #include "soundmanager.h"
+#include "timer.h"
 #include "timermanager.h"
 #include "uibutton.h"
 #include "uibuttonlistbox.h"
@@ -109,16 +112,18 @@
 #include "uimenu.h"
 #include "uimenuwindow.h"
 #include "uirectangle.h"
+#include "uiresizinginfo.h"
 #include "uiscreen.h"
 #include "uiscrollbar.h"
 #include "uitextbutton.h"
 #include "uiwidget.h"
 #include "uiwindow.h"
-#include "vector2.h"                    // Done
-#include "vector3.h"                    // Done
+#include "vector2.h"                    // done
+#include "vector3.h"                    // done
 #include "vector3wactor.h"
 #include "world.h"
 #include "worldgetset.h"
+#include "worldnode.h"                  // Target2
 #include "worldquerytool.h"             // nothing to do
 #include "xml.h"                        // nothing to do
 #include "xmldoc.h"                     // nothing to do

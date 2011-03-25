@@ -43,39 +43,63 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 
+
 namespace phys
 {
+    //Forward Declarations
+    class WorldNode;
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Attachable
     /// @headerfile attachable.h
-    /// @brief This is just a base class to be used by elements that are attachable to nodes.
+    /// @brief This is just a base class to be used by elements that are attachable to worldnodes.
     /// @details This class is useless on it's own and should not be created manually.
     ///////////////////////////////////////
     class PHYS_LIB Attachable
     {
         public:
+            friend class WorldNode;
+
+            /// @brief A list of possible types of this that could be attached to a WorldNode
             enum AttachableElement
             {
-                Camera,
-                Light,
-                ParticleEffect
+                None            = 0, ///< This is no-type of object, only used in error conditions
+                Camera          = 1, ///< This is a phys::Camera
+                Light           = 2, ///< This is a phys::Light
+                ParticleEffect  = 3  ///< This is a phys::ParticleEffect
             };
         protected:
             /// @brief Enum value representing the type of element this is.
             Attachable::AttachableElement ElementType;
+
             /// @brief Sets the type of element this class is.
             /// @param Enum value representing the type of element to be set.
             void SetElementType(Attachable::AttachableElement Type);
+
+            /// @brief The WorldNode this is attached to or null if not attached.
+            WorldNode* AttachedTo;
+
+            /// @brief This changes the WorldNode that this thinks it is attached to.
+            /// @param NextWorldNode A pointer to the WorldNode this should think it is attached to.
+            void SetAttachedTo(WorldNode* NextWorldNode);
+
         public:
             /// @brief No initialization class constructor.
             Attachable();
+
             /// @brief Class destructor.
             virtual ~Attachable();
+
             /// @brief Gets the type of element this is.
             /// @return Returns an enum value indicating what type of element this is.
-            Attachable::AttachableElement GetElementType();
+            Attachable::AttachableElement GetElementType() const;
+
+            /// @brief Gets the WorldNode this thinks it is attached to.
+            /// @return Returns a pointer to the WorldNode this is attached to.
+            WorldNode* GetAttachedTo() const;
+
             /// @brief Gets the name of the attachable element.
-            virtual ConstString& GetName() = 0;
+            virtual ConstString& GetName() const = 0;
     };
 }//phys
 

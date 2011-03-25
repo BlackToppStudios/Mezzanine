@@ -238,6 +238,7 @@ bool PostInput()
     WMPos->SetText(WMPosTex);
 
     Queryer.GatherEvents();
+    #ifdef PHYSDEBUG
     TheWorld->Log("Mouse location From WorldQueryTool X/Y: ");
     TheWorld->LogStream << Queryer.GetMouseX() << ", " << Queryer.GetMouseY() << endl
                         << Queryer.GetRawMetaValue(MetaCode::MOUSEABSOLUTEHORIZONTAL) << ", " << Queryer.GetRawMetaValue(MetaCode::MOUSEABSOLUTEVERTICAL) << endl
@@ -246,8 +247,15 @@ bool PostInput()
     TheWorld->LogStream << Queryer.GetRawMetaValue(MetaCode::MOUSEHORIZONTAL) << ", " << Queryer.GetRawMetaValue(MetaCode::MOUSEVERTICAL) << endl
                         << Queryer.GetMousePrevFrameOffset() << endl;
 
+    TheWorld->LogStream << "Default Camera:" << endl << *(TheWorld->GetCameraManager()->GetDefaultCamera()) << endl;
+    Camera TempCam("TempCam",TheWorld->GetCameraManager());
+    std::stringstream CamXML;
+    CamXML << *(TheWorld->GetCameraManager()->GetDefaultCamera());
+    CamXML >> TempCam;
+    TheWorld->LogStream << "Default serial-deserialized, the finally reserialized Camera" << endl << TempCam << endl;
 
 
+    #endif
 //    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
 //        {TheWorld->Cameras->IncrementYOrbit(-0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
 
@@ -259,6 +267,13 @@ bool PostInput()
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, false))
         { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
+
+    Quaternion CamRot = TheWorld->GetCameraManager()->GetDefaultCamera()->GetOrientation();
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEUP))
+        { CamRot.Y +=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot ); }
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEDOWN))
+        { CamRot.Y -=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot ); }
+
 
     if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
         { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.000003 * (float)Queryer.GetJoystickAxis(1)); }
@@ -357,7 +372,7 @@ bool PostInput()
         }else{
             #ifdef PHYSDEBUG
             TheWorld->Log("Gamebase CLICK:");
-            TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetCameraGlobalLocation() << endl;
+            TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetGlobalLocation() << endl;
             #endif
 
             Ray *MouseRay = Queryer.GetMouseRay(5000);

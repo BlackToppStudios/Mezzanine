@@ -77,12 +77,18 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventQuit& Ev)
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::EventQuit& Ev)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("EventQuit"))
+    if ( phys::String(OneNode.Name())==phys::String("EventQuit") )
     {
-        Ev = phys::EventQuit();
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            Ev = phys::EventQuit();
+        }else{
+            throw( phys::Exception("Incompatible XML Version for EventQuit: Not Version 1"));
+        }
     }else{
-        throw( phys::Exception("Incompatible XML Version for EventQuit: Not Version 1"));
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a EventQuit, found a ", OneNode.Name())));
     }
+
 }
 #endif // \PHYSXML
 

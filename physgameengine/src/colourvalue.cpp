@@ -193,14 +193,19 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ColourValue& Ev)
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ColourValue& Ev)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("ColourValue"))
+    if ( phys::String(OneNode.Name())==phys::String("ColourValue") )
     {
-        Ev.Red      = OneNode.GetAttribute("Red").AsReal();
-        Ev.Green    = OneNode.GetAttribute("Green").AsReal();
-        Ev.Blue     = OneNode.GetAttribute("Blue").AsReal();
-        Ev.Alpha    = OneNode.GetAttribute("Alpha").AsReal();
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            Ev.Red      = OneNode.GetAttribute("Red").AsReal();
+            Ev.Green    = OneNode.GetAttribute("Green").AsReal();
+            Ev.Blue     = OneNode.GetAttribute("Blue").AsReal();
+            Ev.Alpha    = OneNode.GetAttribute("Alpha").AsReal();
+        }else{
+            throw( phys::Exception("Incompatible XML Version for ColourValue: Not Version 1"));
+        }
     }else{
-        throw( phys::Exception("Incompatible XML Version for ColourValue: Not Version 1"));
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a ColourValue, found a ", OneNode.Name())));
     }
 }
 #endif // \PHYSXML

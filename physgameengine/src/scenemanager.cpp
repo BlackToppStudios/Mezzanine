@@ -143,11 +143,11 @@ namespace phys
         return light;
     }
 
-    Light* SceneManager::GetLight(const String& Name)
+    Light* SceneManager::GetLight(const String& Name) const
     {
         if(Lights.empty())
             return 0;
-        for( std::vector<Light*>::iterator it = Lights.begin() ; it != Lights.end() ; it++ )
+        for( std::vector<Light*>::const_iterator it = Lights.begin() ; it != Lights.end() ; it++ )
         {
             if( Name == (*it)->GetName() )
             {
@@ -157,12 +157,12 @@ namespace phys
         return 0;
     }
 
-    Light* SceneManager::GetLight(Whole Index)
+    Light* SceneManager::GetLight(Whole Index) const
     {
         return Lights[Index];
     }
 
-    Whole SceneManager::GetNumLights()
+    Whole SceneManager::GetNumLights() const
     {
         return Lights.size();
     }
@@ -189,11 +189,11 @@ namespace phys
         return Particle;
     }
 
-    ParticleEffect* SceneManager::GetParticleEffect(const String& Name)
+    ParticleEffect* SceneManager::GetParticleEffect(const String& Name) const
     {
         if(Particles.empty())
             return 0;
-        for( std::vector<ParticleEffect*>::iterator it = Particles.begin() ; it != Particles.end() ; it++ )
+        for( std::vector<ParticleEffect*>::const_iterator it = Particles.begin() ; it != Particles.end() ; it++ )
         {
             if( Name == (*it)->GetName() )
             {
@@ -203,12 +203,12 @@ namespace phys
         return 0;
     }
 
-    ParticleEffect* SceneManager::GetParticleEffect(Whole Index)
+    ParticleEffect* SceneManager::GetParticleEffect(Whole Index) const
     {
         return Particles[Index];
     }
 
-    Whole SceneManager::GetNumParticleEffects()
+    Whole SceneManager::GetNumParticleEffects() const
     {
         return Particles.size();
     }
@@ -228,7 +228,7 @@ namespace phys
         }
     }
 
-    ConstString& SceneManager::GetName()
+    ConstString& SceneManager::GetName() const
     {
         return this->OgreManager->getName();
     }
@@ -263,11 +263,11 @@ namespace phys
         return PhysNode;
     }
 
-    WorldNode* SceneManager::GetNode(const String& Name)
+    WorldNode* SceneManager::GetNode(const String& Name) const
     {
         if(WorldNodes.empty())
             return 0;
-        for( std::vector<WorldNode*>::iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
+        for( std::vector<WorldNode*>::const_iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
             if( Name == (*it)->GetName() )
             {
@@ -278,22 +278,22 @@ namespace phys
         return 0;
     }
 
-    WorldNode* SceneManager::GetNode(Whole Index)
+    WorldNode* SceneManager::GetNode(Whole Index) const
     {
         return WorldNodes[Index];
     }
 
-    Whole SceneManager::GetNumNodes()
+    Whole SceneManager::GetNumNodes() const
     {
         return WorldNodes.size();
     }
 
-    Whole SceneManager::GetNumStandNodes()
+    Whole SceneManager::GetNumStandNodes() const
     {
         if(WorldNodes.empty())
             return 0;
         Whole Num = 0;
-        for( std::vector<WorldNode*>::iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
+        for( std::vector<WorldNode*>::const_iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
             if( WorldNode::Stand == (*it)->GetType() )
             {
@@ -303,12 +303,12 @@ namespace phys
         return Num;
     }
 
-    Whole SceneManager::GetNumOrbitNodes()
+    Whole SceneManager::GetNumOrbitNodes() const
     {
         if(WorldNodes.empty())
             return 0;
         Whole Num = 0;
-        for( std::vector<WorldNode*>::iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
+        for( std::vector<WorldNode*>::const_iterator it = WorldNodes.begin() ; it != WorldNodes.end() ; it++ )
         {
             if( WorldNode::Orbit == (*it)->GetType() )
             {
@@ -336,7 +336,7 @@ namespace phys
     ManagerBase::ManagerTypeName SceneManager::GetType() const
         { return ManagerBase::SceneManager; }
 
-    Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer()
+    Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
     {
         return OgreManager;
     }

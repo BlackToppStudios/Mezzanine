@@ -17,8 +17,22 @@ Actor
 		can always call constructors same way.
 
 EventCollision
-	Needs unique Identifier: Actor Name
+	Needs unique Identifier: used Actor Name
 	Needs to use Unique ID to query and find on creation.
-		throw exception on Failure?
+		uses actor manager to query for the correct actor pointer.
+		throws exception on Failure
+
+Cameras could went into 2 containers
+		WorldNodes and CameraManager
+		Only deserialized in CameraManager
+		Name for camera will stored in WorldNode.
+		Camera will store nothing about WorldNode.
+
+Prereqs
+	All Attacheable must be deserialized before WorldNodes
+	All Actors must be deserialized EventCollisions
 
 
+Fixed const correctness on Light, Camera, ParticaleEffect, Scenemanager and Attachable
+Added Serialization and deserialization support for quaternion.
+Cleaned up the way attachables reference WorldNodes

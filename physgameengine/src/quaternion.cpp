@@ -118,4 +118,48 @@ namespace phys
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+std::ostream& operator << (std::ostream& stream, const phys::Quaternion& x)
+{
+    #ifdef PHYSXML
+        stream << "<Quaternion Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" W=\"" << x.W << "\" />";
+    #else
+        stream << "[" << x.X << "," << x.Y << "," << x.Z << "," << x.W << "]";
+    #endif // \PHYSXML
+    return stream;
+}
+
+#ifdef PHYSXML
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Quaternion& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Quaternion", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Quaternion& Ev)
+{
+    if ( phys::String(OneNode.Name())==phys::String("Quaternion") )
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            Ev.X=OneNode.GetAttribute("X").AsReal();
+            Ev.Y=OneNode.GetAttribute("Y").AsReal();
+            Ev.Z=OneNode.GetAttribute("Z").AsReal();
+            Ev.W=OneNode.GetAttribute("W").AsReal();
+        }else{
+            throw( phys::Exception("Incompatible XML Version for Quaternion: Not Version 1"));
+        }
+    }else{
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a Quaternion, found a ", OneNode.Name())));
+    }
+}
+#endif // \PHYSXML
+
+
+
 #endif

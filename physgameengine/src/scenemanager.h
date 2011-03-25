@@ -173,13 +173,13 @@ namespace phys
             Light* CreateLight(const String& Name);
             /// @brief Gets an already created light by name.
             /// @return Returns a pointer to the light of the specified name.
-            Light* GetLight(const String& Name);
+            Light* GetLight(const String& Name) const;
             /// @brief Gets an already created light by index.
             /// @return Returns a pointer to the light at the specified index.
-            Light* GetLight(Whole Index);
+            Light* GetLight(Whole Index) const;
             /// @brief Gets the number of lights created and stored in this manager.
             /// @return Returns the number of lights this manager is storing.
-            Whole GetNumLights();
+            Whole GetNumLights() const;
             /// @brief Deletes a light and removes all trace of it from the manager.
             /// @param light The light to be destroyed.
             void DestroyLight(Light* light);
@@ -191,13 +191,13 @@ namespace phys
             ParticleEffect* CreateParticleEffect(const String& Name, const String& Template);
             /// @brief Gets an already created particle effect by name.
             /// @return Returns a pointer to the particle effect of the specified name.
-            ParticleEffect* GetParticleEffect(const String& Name);
+            ParticleEffect* GetParticleEffect(const String& Name) const;
             /// @brief Gets an already created particle effect by index.
             /// @return Returns a pointer to the particle effect at the specified index.
-            ParticleEffect* GetParticleEffect(Whole Index);
+            ParticleEffect* GetParticleEffect(Whole Index) const;
             /// @brief Gets the number of particle effects created and stored in this manager.
             /// @return Returns the number of particle effects this manager is storing.
-            Whole GetNumParticleEffects();
+            Whole GetNumParticleEffects() const;
             /// @brief Deletes a particle effect and removes all trace of it from the manager.
             /// @param particleeffect The particle effect to be destroyed.
             void DestroyParticleEffect(ParticleEffect* particleeffect);
@@ -216,32 +216,33 @@ namespace phys
             /// @param Location The location of the node itself.
             WorldNode* CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location);
             /// @brief Gets an already created node by name.
-            /// @return Returns a pointer to the node of the specified name.
-            WorldNode* GetNode(const String& Name);
+            /// @return Returns a pointer to the node of the specified name, or 0 if no matching WorldNode could be Found.
+            WorldNode* GetNode(const String& Name) const;
             /// @brief Gets an already created node by index.
             /// @return Returns a pointer to the node at the specified index.
-            WorldNode* GetNode(Whole Index);
+            WorldNode* GetNode(Whole Index) const;
             /// @brief Gets the number of nodes created and stored in this manager.
             /// @return Returns the number of nodes this manager is storing.
-            Whole GetNumNodes();
+            Whole GetNumNodes() const;
             /// @brief Gets the number of stand type nodes created and stored in this manager.
             /// @return Returns the number of stand type nodes this manager is storing.
-            Whole GetNumStandNodes();
+            Whole GetNumStandNodes() const;
             /// @brief Gets the number of orbit type nodes created and stored in this manager.
             /// @return Returns the number of orbit type nodes this manager is storing.
-            Whole GetNumOrbitNodes();
+            Whole GetNumOrbitNodes() const;
             /// @brief Deletes a node and removes all trace of it from the manager.
             /// @param node The node to be destroyed.
             void DestroyNode(WorldNode* node);
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.
-            ConstString& GetName();
+            ConstString& GetName() const;
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;
+            /// @internal
             /// @brief Gets the internal Ogre Scene Manager pointer.
             /// @return Returns a pointer to the ogre Scene Manager.
-            Ogre::SceneManager* GetGraphicsWorldPointer();
+            Ogre::SceneManager* GetGraphicsWorldPointer() const;
     };//scenemanager
 }//phys
 
