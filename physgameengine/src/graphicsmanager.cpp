@@ -301,7 +301,7 @@ namespace phys
     void GraphicsManager::DoMainLoopItems()
     {
         //Ogre::WindowEventUtilities::messagePump();
-        crossplatform::RenderPhysWorld(this->PrimaryGameWindow->GetOgreWindowPointer(), this->PrimaryGameWindow->GetSDLWindowPointer());
+        crossplatform::RenderPhysWorld();
 
         //Do Time Calculations to Determine Rendering Time
         this->GameWorld->SetFrameTime( this->RenderTimer->getMilliseconds() );

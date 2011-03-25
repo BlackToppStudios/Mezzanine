@@ -115,6 +115,12 @@ namespace phys
         this->Cam->setDirection(Direction.GetOgreVector3());
     }
 
+    Vector3 Camera::GetDirection()
+    {
+        Vector3 Dir(this->Cam->getDirection());
+        return Dir;
+    }
+
     void Camera::SetOrientation(Quaternion Orientation)
     {
         this->Cam->setOrientation(Orientation.GetOgreQuaternion());

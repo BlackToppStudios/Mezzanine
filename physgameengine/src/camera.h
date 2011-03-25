@@ -137,6 +137,9 @@ namespace phys
             /// @details Sets which axis the camera will look down for rendering.
             /// @param Direction The vector3 representing the axis to be used.
             void SetDirection(Vector3 Direction);
+            /// @brief Gets the direction the camera is currently facing.
+            /// @return Returns a Vector3 representing the current direction the camera is facing.
+            Vector3 GetDirection();
             /// @brief Sets the orientation of the camera.
             /// @details This function will set the orientation of the specified camera via a quaternion.
             /// @param Orientation The quaternion representing the new orientation.

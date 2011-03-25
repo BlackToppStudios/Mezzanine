@@ -45,6 +45,8 @@
 //Internal includes
 #include "crossplatform.h"
 #include "world.h"
+#include "graphicsmanager.h"
+#include "gamewindow.h"
 
 
 //External includes
@@ -144,31 +146,24 @@ namespace phys
             #endif
         }
 
-        void RenderPhysWorld(Ogre::RenderWindow* TheOgreWindow, SDL_Window* SDLWindow)
+        void RenderPhysWorld()
         {
             World* TheWorld = World::GetWorldPointer();
+            GraphicsManager* Graphics = TheWorld->GetGraphicsManager();
             TheWorld->Log("Rendering the World.");
             #ifndef WINDOWS
                 Ogre::Root::getSingleton()._fireFrameStarted();
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
-                TheOgreWindow->update(true);
+                for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
+                    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(true);
                 Ogre::Root::getSingleton()._fireFrameEnded();
-                if( !TheOgreWindow->isVisible() )
-                    Ogre::Root::getSingleton().clearEventTimes();
             #else
-                if(TheOgreWindow->isActive())
-                {
-                    Ogre::Root::getSingleton().renderOneFrame();
-                    SDL_GL_SwapWindow(SDLWindow);
-                }else if( !TheOgreWindow->isActive() && TheOgreWindow->isVisible()){
-                    TheOgreWindow->update(false);
-                    SDL_GL_SwapWindow(SDLWindow);
-                }else{
-                    TheWorld->Log("Aborted Rendering, target is not active");
-                    // clear timings to allow smooth alt-tabbing action.
-                    Ogre::Root::getSingleton().clearEventTimes();
-                }
+                Ogre::Root::getSingleton().renderOneFrame();
+                for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
+                    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
             #endif
+            if( !Graphics->GetPrimaryGameWindow()->GetOgreWindowPointer()->isVisible() )
+                    Ogre::Root::getSingleton().clearEventTimes();
             TheWorld->Log("Finished Rendering");
         }
 
