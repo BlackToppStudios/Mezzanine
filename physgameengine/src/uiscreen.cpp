@@ -44,14 +44,16 @@
 #include "uimanager.h"
 #include "uilayer.h"
 #include "uibutton.h"
+#include "viewport.h"
 #include "world.h"
 #include "internalGorilla.h.cpp"
 
 namespace phys
 {
-    UIScreen::UIScreen(const String& name, Gorilla::Screen* GScreen)
+    UIScreen::UIScreen(const String& name, Gorilla::Screen* GScreen, Viewport* WindowViewport)
         : Name(name),
-          GorillaScreen(GScreen)
+          GorillaScreen(GScreen),
+          GameViewport(WindowViewport)
     {
         Manager = World::GetWorldPointer()->GetUIManager();
     }
@@ -89,7 +91,7 @@ namespace phys
     UILayer* UIScreen::CreateLayer(const String& Name, Whole Zorder)
     {
         Gorilla::Layer* layer = GorillaScreen->createLayer(Zorder);
-        UILayer* physlayer = new UILayer(Name, layer, this->GorillaScreen);
+        UILayer* physlayer = new UILayer(Name, layer, this);
         std::pair<std::map<Whole,UILayer*>::iterator,bool> TestPair = Layers.insert(std::pair<Whole,UILayer*>(Zorder,physlayer));
         if(TestPair.second)
         {
@@ -152,6 +154,12 @@ namespace phys
                 return;
             }
         }
+    }
+
+    Vector2 UIScreen::GetViewportDimensions()
+    {
+        Vector2 viewport((Real)GameViewport->GetActualWidth(),(Real)GameViewport->GetActualHeight());
+        return viewport;
     }
 
     UI::Button* UIScreen::CheckButtonMouseIsOver()

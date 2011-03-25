@@ -79,7 +79,9 @@
 #include "eventuserinput.h"             // done
 #include "exception.h"
 #include "extendedtimer.h"
+#include "gamewindow.h"
 #include "graphicsmanager.h"
+#include "graphicssettings.h"
 #include "inputquerytool.h"
 #include "light.h"                      // Target
 #include "linegroup.h"
@@ -121,6 +123,7 @@
 #include "vector2.h"                    // done
 #include "vector3.h"                    // done
 #include "vector3wactor.h"
+#include "viewport.h"
 #include "world.h"
 #include "worldgetset.h"
 #include "worldnode.h"                  // Target2

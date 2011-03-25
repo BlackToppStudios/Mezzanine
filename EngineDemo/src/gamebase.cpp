@@ -162,8 +162,8 @@ bool PostRender()
     UI::Caption* AvFPS = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
     std::stringstream CFPSstream;
     std::stringstream AFPSstream;
-    CFPSstream << TheWorld->GetGraphicsManager()->GetLastFPS();
-    AFPSstream << TheWorld->GetGraphicsManager()->GetAverageFPS();
+    CFPSstream << TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetLastFPS();
+    AFPSstream << TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetAverageFPS();
     String CFPS = CFPSstream.str();
     String AFPS = AFPSstream.str();
     CurFPS->SetText(CFPS);
@@ -313,7 +313,7 @@ bool PostInput()
     if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setFullscreen(true);
+        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(true);
         //GraphicsSettings NewSet;
         //NewSet.RenderWidth = 1280;
         //NewSet.RenderHeight = 1024;
@@ -324,17 +324,17 @@ bool PostInput()
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setFullscreen(false);
+        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(false);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setRenderResolution(1024,768);
+        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(1024,768);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setRenderResolution(800,600);
+        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(800,600);
     }
     else { videobuttonpushed = false; }
 
@@ -982,9 +982,10 @@ void MakeGUI()
     String ItemShopLayer = "ItemShopLayer";
     String StatsLayer = "StatsLayer";
     UIManager* GUI = TheWorld->GetUIManager();
+    Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
     GUI->LoadGorilla("dejavu");
 
-    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "dejavu");
+    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "dejavu", UIViewport);
     UILayer* Menu = Screen->CreateLayer(MenuLayer, 3);
     UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 2);
     UILayer* Stats = Screen->CreateLayer(StatsLayer, 1);

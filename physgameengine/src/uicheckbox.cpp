@@ -43,6 +43,7 @@
 #include "uicheckbox.h"
 #include "uimanager.h"
 #include "uilayer.h"
+#include "uiscreen.h"
 #include "uimarkuptext.h"
 #include "uibutton.h"
 #include "inputquerytool.h"
@@ -245,7 +246,7 @@ namespace phys
 
         void CheckBox::SetActualPosition(const Vector2 Position)
         {
-            RelPosition = Position / Manager->GetWindowDimensions();
+            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();;
             Box->SetActualPosition(Position);
             if(Label)
             {
@@ -257,7 +258,7 @@ namespace phys
 
         Vector2 CheckBox::GetActualPosition()
         {
-            return RelPosition * Manager->GetWindowDimensions();
+            return RelPosition * Parent->GetParent()->GetViewportDimensions();;
         }
 
         void CheckBox::SetSize(const Vector2 Size)
@@ -279,7 +280,7 @@ namespace phys
 
         void CheckBox::SetActualSize(const Vector2 Size)
         {
-            RelSize = Size / Manager->GetWindowDimensions();
+            RelSize = Size / Parent->GetParent()->GetViewportDimensions();;
             Box->SetActualSize(Size);
             if(Label)
             {
@@ -291,7 +292,7 @@ namespace phys
 
         Vector2 CheckBox::GetActualSize()
         {
-            return RelSize * Manager->GetWindowDimensions();
+            return RelSize * Parent->GetParent()->GetViewportDimensions();;
         }
 
         Button* CheckBox::GetCheckBoxButton()

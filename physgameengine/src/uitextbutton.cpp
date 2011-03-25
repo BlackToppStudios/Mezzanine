@@ -42,6 +42,7 @@
 
 #include "uitextbutton.h"
 #include "uilayer.h"
+#include "uiscreen.h"
 #include "uimanager.h"
 #include "internalGorilla.h.cpp"
 
@@ -141,7 +142,7 @@ namespace phys
         void TextButton::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GorillaButton->left(CurrDim.X * RelPosition.X);
             GorillaButton->top(CurrDim.Y * RelPosition.Y);
             GorillaRectangle->left(CurrDim.X * RelPosition.X);
@@ -170,7 +171,7 @@ namespace phys
         void TextButton::SetSize(const Vector2 Size)
         {
             RelSize = Size;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GorillaButton->left(CurrDim.X * RelSize.X);
             GorillaButton->top(CurrDim.Y * RelSize.Y);
             GorillaRectangle->left(CurrDim.X * RelSize.X);

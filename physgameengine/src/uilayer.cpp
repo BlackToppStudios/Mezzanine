@@ -49,6 +49,7 @@
 #include "uibuttonlistbox.h"
 #include "uimarkuptext.h"
 #include "uilistbox.h"
+#include "uiscreen.h"
 #include "uiscrollbar.h"
 #include "uilinelist.h"
 #include "uiwindow.h"
@@ -61,10 +62,10 @@
 
 namespace phys
 {
-    UILayer::UILayer(const String& name, Gorilla::Layer* GLayer, Gorilla::Screen* GScreen)
+    UILayer::UILayer(const String& name, Gorilla::Layer* GLayer, UIScreen* ParentScreen)
         : Name(name),
           GorillaLayer(GLayer),
-          Parent(GScreen)
+          Parent(ParentScreen)
     {
         Manager = World::GetWorldPointer()->GetUIManager();
     }
@@ -107,12 +108,17 @@ namespace phys
             delete widget;
             Widgets.pop_back();
         }
-        Parent->destroy(GorillaLayer);
+        Parent->GetGorillaScreen()->destroy(GorillaLayer);
     }
 
     String& UILayer::GetName()
     {
         return Name;
+    }
+
+    UIScreen* UILayer::GetParent()
+    {
+        return Parent;
     }
 
     void UILayer::SetVisible(bool Visable)

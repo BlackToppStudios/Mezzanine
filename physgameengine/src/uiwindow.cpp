@@ -43,6 +43,7 @@
 #include "uiwindow.h"
 #include "uimanager.h"
 #include "uilayer.h"
+#include "uiscreen.h"
 #include "uicaption.h"
 #include "uimarkuptext.h"
 #include "uilinelist.h"
@@ -441,7 +442,7 @@ namespace phys
         void Window::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
-            Vector2 ActPos = Position * Manager->GetWindowDimensions();
+            Vector2 ActPos = Position * Parent->GetParent()->GetViewportDimensions();
             SetLocation(ActPos);
         }
 
@@ -452,19 +453,19 @@ namespace phys
 
         void Window::SetActualPosition(const Vector2 Position)
         {
-            RelPosition = Position / Manager->GetWindowDimensions();
+            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             SetLocation(Position);
         }
 
         Vector2 Window::GetActualPosition()
         {
-            return RelPosition * Manager->GetWindowDimensions();
+            return RelPosition * Parent->GetParent()->GetViewportDimensions();
         }
 
         void Window::SetSize(const Vector2 Size)
         {
             RelSize = Size;
-            Vector2 ActSize = Size * Manager->GetWindowDimensions();
+            Vector2 ActSize = Size * Parent->GetParent()->GetViewportDimensions();
             SetArea(ActSize);
         }
 
@@ -475,13 +476,13 @@ namespace phys
 
         void Window::SetActualSize(const Vector2 Size)
         {
-            RelSize = Size / Manager->GetWindowDimensions();
+            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             SetArea(Size);
         }
 
         Vector2 Window::GetActualSize()
         {
-            return RelSize * Manager->GetWindowDimensions();
+            return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
         Button* Window::CreateButton(ConstString& Name, const Vector2 Position, const Vector2 Size)

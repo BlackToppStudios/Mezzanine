@@ -41,7 +41,7 @@
 #define _uiscreen_h
 
 #include "crossplatformexport.h"
-#include "datatypes.h"
+#include "vector2.h"
 
 #include <map>
 
@@ -53,6 +53,7 @@ namespace Gorilla
 
 namespace phys
 {
+    class Viewport;
     class UIManager;
     class UILayer;
     namespace UI
@@ -73,13 +74,15 @@ namespace phys
         protected:
             Gorilla::Screen* GorillaScreen;
             UIManager* Manager;
+            Viewport* GameViewport;
             String Name;
             std::map<Whole,UILayer*> Layers;
         public:
-            /// @brief Internal constructor
+            /// @brief Internal constructor.
+            /// @param name The name of this screen.
             /// @param GScreen The Gorilla Screen this Screen is based on.
-            /// @param manager Pointer to the manager that created this Screen.
-            UIScreen(const String& name, Gorilla::Screen* GScreen);
+            /// @param WindowViewport The Viewport to which this screen belongs.
+            UIScreen(const String& name, Gorilla::Screen* GScreen, Viewport* WindowViewport);
             /// @brief Class destructor.
             ~UIScreen();
             /// @brief Gets the name of this screen.
@@ -119,6 +122,9 @@ namespace phys
             /// @brief Destroy's a previously created layer.
             /// @param Name The name of the layer to be destroyed.
             void DestroyLayer(UILayer* Layer);
+            /// @brief Gets the current viewport dimensions.
+            /// @return Returns a Vector2 representing the current viewport dimensions.
+            Vector2 GetViewportDimensions();
             /// @brief Gets the button the mouse is over if any.
             /// @details This function searches only the visable layers contained in this screen.
             /// @return Returns the button the mouse is over, or NULL if there are none.

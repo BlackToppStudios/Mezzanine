@@ -44,6 +44,7 @@
 #include "uirectangle.h"
 #include "uimanager.h"
 #include "uilayer.h"
+#include "uiscreen.h"
 #include "world.h"
 #include "eventmanager.h"
 
@@ -61,7 +62,7 @@ namespace phys
         {
             Manager = World::GetWorldPointer()->GetUIManager();
 
-            Vector2 Window = Manager->GetWindowDimensions();
+            Vector2 Window = Parent->GetParent()->GetViewportDimensions();
             GRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
         }
 
@@ -133,7 +134,7 @@ namespace phys
         void Rectangle::SetPosition(const Vector2 Position)
         {
             RelPosition = Position;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GRectangle->position((CurrDim * RelPosition).GetOgreVector2());
         }
 
@@ -156,7 +157,7 @@ namespace phys
         void Rectangle::SetSize(const Vector2 Size)
         {
             RelSize = Size;
-            Vector2 CurrDim = Manager->GetWindowDimensions();
+            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
             GRectangle->width(CurrDim.X * RelSize.X);
             GRectangle->height(CurrDim.Y * RelSize.Y);
         }

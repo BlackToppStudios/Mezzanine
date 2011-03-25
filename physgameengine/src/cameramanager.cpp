@@ -145,11 +145,6 @@ namespace phys
         return;
     }
 
-    void CameraManager::CreateViewport(const String& Name, Camera* ViewportCam)
-    {
-        Viewports[Name] = GameWorld->GetGraphicsManager()->GetOgreWindowPointer()->addViewport(ViewportCam->Cam, Viewports.size());
-    }
-
     // Inherited from ManagerBase
     void CameraManager::Initialize()
         {}
@@ -159,11 +154,5 @@ namespace phys
 
     ManagerBase::ManagerTypeName CameraManager::GetType() const
         { return ManagerBase::CameraManager; }
-
-    Ogre::Viewport* CameraManager::GetOgreViewport(const String& Name)
-    {
-        return Viewports[Name];
-    }
-
 }//phys
 #endif
