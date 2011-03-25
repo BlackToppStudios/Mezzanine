@@ -43,8 +43,14 @@
 
 #include "camera.h"
 #include "cameramanager.h"
+#include "exception.h"
 #include "scenemanager.h"
+#include "world.h"
+#include "xml.h"
+
 #include <Ogre.h>
+
+#include <memory>
 
 namespace phys
 {
@@ -66,6 +72,7 @@ namespace phys
         this->SetNearClipDistance(5.0f);
         this->SetFarClipDistance(5000.0f);
         SetElementType(Attachable::Camera);
+        this->SetFixedYawAxis(true,phys::Vector3(0,1,0));
     }
 
     Camera::~Camera()
@@ -73,7 +80,7 @@ namespace phys
         CamManager->SManager->GetGraphicsWorldPointer()->destroyCamera(Cam);
     }
 
-    ConstString& Camera::GetName()
+    ConstString& Camera::GetName() const
     {
         return this->Cam->getName();
     }
@@ -87,6 +94,23 @@ namespace phys
         else if( Camera::Perspective == Type )
         {
             this->Cam->setProjectionType(Ogre::PT_PERSPECTIVE);
+        }else{
+            throw(phys::Exception("Unknown ProjectionType when attempting to set Camera Type."));
+        }
+    }
+
+    Camera::ProjectionType Camera::GetCameraType() const
+    {
+        if( this->Cam->getProjectionType()==Ogre::PT_ORTHOGRAPHIC )
+        {
+            return Camera::Orthographic;
+
+        }
+        else if( this->Cam->getProjectionType()==Ogre::PT_PERSPECTIVE )
+        {
+            return Camera::Perspective;
+        }else{
+            throw(phys::Exception("Unknown ProjectionType when attempting to get Camera Type."));
         }
     }
 
@@ -149,11 +173,25 @@ namespace phys
     void Camera::SetFixedYawAxis(bool UseFixed, Vector3 Axis)
     {
         this->Cam->setFixedYawAxis(UseFixed, Axis.GetOgreVector3());
+        this->YawAxis = Axis;
+        this->YawOnAxis = UseFixed;
     }
 
     void Camera::SetFixedYawAxis(bool UseFixed)
     {
         this->Cam->setFixedYawAxis(UseFixed);
+        this->YawOnAxis = UseFixed;
+    }
+
+    bool Camera::IsFixedYawEnabled() const
+        { return this->YawOnAxis; }
+
+    Vector3 Camera::GetFixedYawAxis() const
+    {
+        if (this->YawOnAxis)
+            { return this->YawAxis; }
+        else
+            { return Vector3(0,0,0); }
     }
 
     /*void Camera::SetAutoTracking(bool Enabled, String Target, Vector3 Offset)
@@ -168,28 +206,33 @@ namespace phys
         this->Cam->setAutoTracking(Enabled, Trgt);
     }*/
 
-    Ray Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
+    Ray Camera::GetCameraToViewportRay(Real Screenx, Real Screeny) const
     {
         Ray R(this->Cam->getCameraToViewportRay(Screenx, Screeny));
         return R;
     }
 
-    String Camera::GetNodeAttachedToCamera()
+    /*WorldNode* Camera::GetWorldNode() const
     {
-        Ogre::SceneNode* tempnode = this->Cam->getParentSceneNode();
-        return tempnode->getName();
-    }
+        //Ogre::SceneNode* tempnode = this->Cam->getParentSceneNode();
+        //return tempnode->getName();
+    }*/
 
-    Vector3 Camera::GetCameraRelativeLocation()
+    Vector3 Camera::GetRelativeLocation() const
     {
         Vector3 camloc(this->Cam->getPosition());
         return camloc;
     }
 
-    Vector3 Camera::GetCameraGlobalLocation()
+    Vector3 Camera::GetGlobalLocation() const
     {
         Vector3 camloc(this->Cam->getRealPosition());
         return camloc;
+    }
+
+    Quaternion Camera::GetOrientation() const
+    {
+        return this->Cam->getOrientation();
     }
 
     void Camera::ZoomCamera(Real Zoom)
@@ -207,10 +250,104 @@ namespace phys
         this->Cam->moveRelative(Ogre::Vector3(0,0,zoom));
     }
 
-    Ogre::Camera* Camera::GetOgreCamera()
+    Ogre::Camera* Camera::GetOgreCamera() const
     {
         return Cam;
     }
 }//phys
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::Camera& Ev)
+{
+
+    //stream << "<Camera Version=\"1\" attachedto=\"1\" location=\"1\" orientation=\"1\" name=\"1\" />" << *(Ev.Cam) << "</Camera>";
+    stream      << "<Camera Version=\"1\" Name=\"" << Ev.GetName() << "\" AttachedTo=\"" << Ev.GetAttachedTo()->GetName() << "\" CameraPerspective=\"" << Ev.GetCameraType() << "\">"
+                << "<Orientation>" << Ev.GetOrientation() << "</Orientation>"
+                << "<Location>" << Ev.GetRelativeLocation() << "</Location>";
+
+    if ( Ev.IsFixedYawEnabled() )
+        {stream << "<FixedYawAxis Enabled=\"1\">" << Ev.GetFixedYawAxis() << "</FixedYawAxis>"; }
+    else
+        {stream << "<FixedYawAxis Enabled=\"0\" />"; }
+
+    stream      << "</Camera>";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Camera& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Camera", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Camera& Ev)
+{
+    if ( phys::String(OneNode.Name())==phys::String("Camera") )
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            Ev.SetCameraType(static_cast<phys::Camera::ProjectionType>(OneNode.GetAttribute("CameraPerspective").AsInt()));
+            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            if (AttachPtr)
+                { AttachPtr->AttachElement(&Ev); }
+
+            phys::Quaternion TempQuat(0,0,0,0);
+            phys::Vector3 TempVec(0,0,0);
+
+            for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            {
+                phys::String Name(Child.Name());
+                switch(Name[0])
+                {
+                    case 'O':   //Orientation
+                        if(Name==phys::String("Orientation"))
+                        {
+                            Child.GetFirstChild() >> TempQuat;
+                            Ev.SetOrientation(TempQuat);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Camera: Includes unknown Element O-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'L':   //Location
+                        if(Name==phys::String("Location"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetLocation(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Camera: Includes unknown Element L-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'F':   //FixedYawAxis
+                        if(Name==phys::String("FixedYawAxis") && Child.GetAttribute("Enabled").AsBool())
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetFixedYawAxis(true,TempVec);
+                        }else if(Name==phys::String("FixedYawAxis")){
+                            Ev.SetFixedYawAxis(false);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Camera: Includes unknown Element F-\"",Name,"\"")) );
+                        }
+                        break;
+                    default:
+                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for Camera: Includes unknown Element default-\"",Name,"\"")) );
+                        break;
+                }
+            }
+
+        }else{
+            throw( phys::Exception("Incompatible XML Version for Camera: Not Version 1"));
+        }
+    }else{
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a Camera, found a ", OneNode.Name())));
+    }
+}
+#endif // \PHYSXML
+
 
 #endif

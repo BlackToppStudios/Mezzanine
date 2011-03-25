@@ -73,7 +73,7 @@ namespace phys
         Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
     }
 
-    ConstString& ParticleEffect::GetName()
+    ConstString& ParticleEffect::GetName() const
     {
         return OgreParticle->getName();
     }

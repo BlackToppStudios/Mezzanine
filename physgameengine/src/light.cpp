@@ -65,7 +65,7 @@ namespace phys
         Manager->GetGraphicsWorldPointer()->destroyLight(OgreLight);
     }
 
-    ConstString& Light::GetName()
+    ConstString& Light::GetName() const
     {
         return OgreLight->getName();
     }
@@ -154,7 +154,7 @@ namespace phys
         OgreLight->setPowerScale(Power);
     }
 
-    Light::LightType Light::GetType()
+    Light::LightType Light::GetType() const
     {
         Ogre::Light::LightTypes OgreType = OgreLight->getType();
         Light::LightType PhysType;
@@ -175,66 +175,66 @@ namespace phys
         return PhysType;
     }
 
-    Vector3 Light::GetPosition()
+    Vector3 Light::GetPosition() const
     {
         Vector3 Pos(OgreLight->getPosition());
         return Pos;
     }
 
-    Vector3 Light::GetDirection()
+    Vector3 Light::GetDirection() const
     {
         Vector3 Dir(OgreLight->getDirection());
         return Dir;
     }
 
-    ColourValue Light::GetDiffuseColour()
+    ColourValue Light::GetDiffuseColour() const
     {
         ColourValue DiffCol(OgreLight->getDiffuseColour());
         return DiffCol;
     }
 
-    ColourValue Light::GetSpecularColour()
+    ColourValue Light::GetSpecularColour() const
     {
         ColourValue SpecCol(OgreLight->getSpecularColour());
         return SpecCol;
     }
 
-    Real Light::GetAttenuationRange()
+    Real Light::GetAttenuationRange() const
     {
         return OgreLight->getAttenuationRange();
     }
 
-    Real Light::GetAttenuationConstant()
+    Real Light::GetAttenuationConstant() const
     {
         return OgreLight->getAttenuationConstant();
     }
 
-    Real Light::GetAttenuationLinear()
+    Real Light::GetAttenuationLinear() const
     {
         return OgreLight->getAttenuationLinear();
     }
 
-    Real Light::GetAttenuationQuadric()
+    Real Light::GetAttenuationQuadric() const
     {
         return OgreLight->getAttenuationQuadric();
     }
 
-    Real Light::GetSpotlightInnerAngle()
+    Real Light::GetSpotlightInnerAngle() const
     {
         return OgreLight->getSpotlightInnerAngle().valueRadians();
     }
 
-    Real Light::GetSpotlightOuterAngle()
+    Real Light::GetSpotlightOuterAngle() const
     {
         return OgreLight->getSpotlightOuterAngle().valueRadians();
     }
 
-    Real Light::GetSpotlightFalloff()
+    Real Light::GetSpotlightFalloff() const
     {
         return OgreLight->getSpotlightFalloff();
     }
 
-    Real Light::GetPowerScale()
+    Real Light::GetPowerScale() const
     {
         return OgreLight->getPowerScale();
     }

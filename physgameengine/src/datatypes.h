@@ -103,7 +103,6 @@ namespace phys
     typedef char Character;
     // #define XML_WCHAR_MODE   //UNREMARK ME if changing the above line to typedef wchar_t Character;
 
-
     /// @internal
     /// @typedef RawEvent
     /// @brief This is an internal datatype use to communicate with the User input Subsystem

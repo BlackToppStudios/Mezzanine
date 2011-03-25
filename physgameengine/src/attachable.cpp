@@ -46,6 +46,7 @@ namespace phys
 {
     Attachable::Attachable()
     {
+        AttachedTo = 0;
     }
 
     Attachable::~Attachable()
@@ -57,9 +58,19 @@ namespace phys
         ElementType = Type;
     }
 
-    Attachable::AttachableElement Attachable::GetElementType()
+    Attachable::AttachableElement Attachable::GetElementType() const
     {
         return ElementType;
+    }
+
+    void Attachable::SetAttachedTo(WorldNode* NextWorldNode)
+    {
+        this->AttachedTo = NextWorldNode;
+    }
+
+    WorldNode* Attachable::GetAttachedTo() const
+    {
+        return this->AttachedTo;
     }
 }//phys
 

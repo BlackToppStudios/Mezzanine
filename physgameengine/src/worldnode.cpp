@@ -43,6 +43,7 @@
 
 #include "worldnode.h"
 #include "scenemanager.h"
+#include "exception.h"
 #include "camera.h"
 #include "light.h"
 #include "particleeffect.h"
@@ -71,7 +72,7 @@ namespace phys
         Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
     }
 
-    ConstString& WorldNode::GetName()
+    ConstString& WorldNode::GetName() const
     {
         return OgreNode->getName();
     }
@@ -101,8 +102,10 @@ namespace phys
             }
             break;
             default:
+                throw(phys::Exception("Could not Attach element of unknown type to WorldNode."));
                 return;
         }
+        Element->SetAttachedTo(this);
         Elements.push_back(Element);
         return;
     }
@@ -131,8 +134,10 @@ namespace phys
             }
             break;
             default:
+                throw(phys::Exception("Could not Detach element of unknown type to WorldNode."));
                 return;
         }
+        Element->SetAttachedTo(0);
         for( std::vector< Attachable* >::iterator it = Elements.begin() ; it != Elements.end() ; it++ )
         {
             if( Element == (*it) )

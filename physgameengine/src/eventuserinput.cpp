@@ -310,22 +310,26 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventUserInput& 
 
 void operator >> (const phys::xml::Node& OneNode, phys::EventUserInput& Ev)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1 && phys::String(OneNode.Name())==phys::String("EventUserInput"))
+    if ( phys::String(OneNode.Name())==phys::String("EventUserInput") )
     {
-        Ev.clear();
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {            Ev.clear();
 
-        //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
-        phys::xml::Node Child = OneNode.GetFirstChild();
-        phys::MetaCode ACode;
-        while(Child)
-        {
-            Child >> ACode;
-            Ev.AddCode(ACode);
-            Child = Child.GetNextSibling();
+            //Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
+            phys::xml::Node Child = OneNode.GetFirstChild();
+            phys::MetaCode ACode;
+            while(Child)
+            {
+                Child >> ACode;
+                Ev.AddCode(ACode);
+                Child = Child.GetNextSibling();
+            }
+
+        }else{
+            throw( phys::Exception("Incompatible XML Version for EventUserInput: Not Version 1"));
         }
-
     }else{
-        throw( phys::Exception("Incompatible XML Version for EventUserInput: Not Version 1 or not EventUserInput"));
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a EventUserInput, found a ", OneNode.Name())));
     }
 }
 #endif // \PHYSXML

@@ -86,7 +86,7 @@ namespace phys
             ~ParticleEffect();
             /// @brief Gets the name of this particle effect.
             /// @return Returns a string containing the name given to this particle effect.
-            ConstString& GetName();
+            ConstString& GetName() const;
             /// @brief Enables the particle effect, allowing it to render.
             void EnableParticleEffect();
             /// @brief Disables the particle effect, preventing it from rendering.

@@ -110,22 +110,27 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::EventCollision& 
 
 void operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev)
 {
-    if(OneNode.GetAttribute("Version").AsInt() == 1  && phys::String(OneNode.Name())==phys::String("EventCollision"))
+    if ( phys::String(OneNode.Name())==phys::String("EventCollision"))
     {
-
-        Ev.ActorA=phys::World::GetWorldPointer()->GetActorManager()->FindActor(OneNode.GetAttribute("ActorA").AsString());
-        Ev.ActorB=phys::World::GetWorldPointer()->GetActorManager()->FindActor(OneNode.GetAttribute("ActorB").AsString());
-        Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
-
-        if(OneNode.GetFirstChild())
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            OneNode.GetFirstChild() >> Ev.WorldLocation;
-        }else{
-            throw(phys::Exception("Normal not found while parsing phys::EventCollision"));
-        }
 
+            Ev.ActorA=phys::World::GetWorldPointer()->GetActorManager()->FindActor(OneNode.GetAttribute("ActorA").AsString());
+            Ev.ActorB=phys::World::GetWorldPointer()->GetActorManager()->FindActor(OneNode.GetAttribute("ActorB").AsString());
+            Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
+
+            if(OneNode.GetFirstChild())
+            {
+                OneNode.GetFirstChild() >> Ev.WorldLocation;
+            }else{
+                throw(phys::Exception("Normal not found while parsing phys::EventCollision"));
+            }
+
+        }else{
+            throw( phys::Exception("Incompatible XML Version for EventCollision: Not Version 1"));
+        }
     }else{
-        throw( phys::Exception("Incompatible XML Version for EventCollision: Not Version 1 or not EventCollision"));
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a EventCollision, found a ", OneNode.Name())));
     }
 }
 #endif // \PHYSXML
