@@ -63,6 +63,9 @@ namespace phys
     class PHYS_LIB Quaternion
     {
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            //  Data Members
+
             /// @brief Rotation on the X Axis.
             Real X;
             /// @brief Rotation on the Y Axis.
@@ -71,6 +74,9 @@ namespace phys
             Real Z;
             /// @brief Rotation on the W Axis.
             Real W;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Constructors
 
             /// @brief Blank Constructor.
             /// @details Basic no-initialization constructor.
@@ -94,10 +100,17 @@ namespace phys
             /// @param Theirs The quaternion to be copied to make this quaternion.
             Quaternion(const Ogre::Quaternion& Theirs);
 
+            /// @brief Copy Constructor
+            /// @param Other The Quaternion to copy
+            Quaternion(const phys::Quaternion& Other);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Explicit Conversion
+
             /// @brief Gets a Bullet quaternion.
             /// @details Creates a Bullet quaternion with values equal to this class and returns it.
             /// @param normalize Whether or not you want this function to normalize the quaternion for you.
-            btQuaternion GetBulletQuaternion(bool normalize=false);
+            btQuaternion GetBulletQuaternion(bool normalize=false) const;
 
             /// @brief Copies an existing Bullet quaternion.
             /// @details This function will copy the values stored in an existing Bullet quaternion
@@ -108,18 +121,90 @@ namespace phys
             /// @brief Gets a Ogre quaternion.
             /// @details Creates a Ogre quaternion with values equal to this class and returns it.
             /// @param normalize Whether or not you want this function to normalize the quaternion for you.
-            Ogre::Quaternion GetOgreQuaternion(bool normalize=false);
+            Ogre::Quaternion GetOgreQuaternion(bool normalize=false) const;
 
             /// @brief Copies an existing Ogre quaternion.
             /// @details This function will copy the values stored in an existing Ogre quaternion
             /// and set the values of this class to be the same.
             /// @param Ours The quaternion to be extracted.
             void ExtractOgreQuaternion(const Ogre::Quaternion &Ours);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Left Hand Basic Arithmetic Operators
+            Quaternion operator+ (const phys::Quaternion& Other) const;
+
+            Quaternion operator+ (const Ogre::Quaternion& Other) const;
+
+            Quaternion operator+ (const btQuaternion& Other) const;
+
+            Quaternion operator- (const phys::Quaternion& Other) const;
+
+            Quaternion operator- (const Ogre::Quaternion& Other) const;
+
+            Quaternion operator- (const btQuaternion& Other) const;
+
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Increment and Decrement Operators
+
+            Quaternion& operator+= (const phys::Quaternion& Other);
+
+            Quaternion& operator+= (const Ogre::Quaternion& Other);
+
+            Quaternion& operator+= (const btQuaternion& Other);
+
+            Quaternion& operator-= (const phys::Quaternion& Other);
+
+            Quaternion& operator-= (const Ogre::Quaternion& Other);
+
+            Quaternion& operator-= (const btQuaternion& Other);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Assignment Operators
+
+            Quaternion& operator= (const phys::Quaternion& Other);
+
+            Quaternion& operator= (const Ogre::Quaternion& Other);
+
+            Quaternion& operator= (const btQuaternion& Other);
+
     };
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// Right Hand Addition Operators
+phys::Quaternion PHYS_LIB operator+ (const Ogre::Quaternion& Other, const phys::Quaternion& Other2);
+
+phys::Quaternion PHYS_LIB operator+ (const btQuaternion& Other, const phys::Quaternion& Other2);
+
+phys::Quaternion PHYS_LIB operator- (const Ogre::Quaternion& Other, const phys::Quaternion& Other2);
+
+phys::Quaternion PHYS_LIB operator- (const btQuaternion& Other, const phys::Quaternion& Other2);
+
+
+///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
+
+btQuaternion& PHYS_LIB operator<< ( btQuaternion& Other, const phys::Quaternion& Other2);
+
+btQuaternion& PHYS_LIB operator<< ( btQuaternion& Other, const Ogre::Quaternion& Other2);
+
+btQuaternion& PHYS_LIB operator<< ( btQuaternion& Other, const btQuaternion& Other2);
+
+
+phys::Quaternion& PHYS_LIB operator<< ( phys::Quaternion& Other, const phys::Quaternion& Other2);
+
+phys::Quaternion& PHYS_LIB operator<< ( phys::Quaternion& Other, const Ogre::Quaternion& Other2);
+
+phys::Quaternion& PHYS_LIB operator<< ( phys::Quaternion& Other, const btQuaternion& Other2);
+
+
+Ogre::Quaternion& PHYS_LIB operator<< ( Ogre::Quaternion& Other, const phys::Quaternion& Other2);
+
+Ogre::Quaternion& PHYS_LIB operator<< ( Ogre::Quaternion& Other, const Ogre::Quaternion& Other2);
+
+Ogre::Quaternion& PHYS_LIB operator<< ( Ogre::Quaternion& Other, const btQuaternion& Other2);
+
 
 /// @brief Used to Serialize an phys::Quaternion to a human readable stream
 /// @details If PHYSXML is disabled, this outputs to the format of [x,y,z,w], where x is replaced with the X value,

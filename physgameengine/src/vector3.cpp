@@ -162,18 +162,20 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector3 Arithmetic and assignment with Real
-    void Vector3::operator*= (const Real &scalar)
+    Vector3& Vector3::operator*= (const Real &scalar)
     {
         this->X *= scalar;
         this->Y *= scalar;
         this->Z *= scalar;
+        return *this;
     }
 
-    void Vector3::operator/= (const Real &scalar)
+    Vector3& Vector3::operator/= (const Real &scalar)
     {
         this->X /= scalar;
         this->Y /= scalar;
         this->Z /= scalar;
+        return *this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -386,6 +388,7 @@ namespace phys
 
     void Vector3::Inverse()
     {
+        /// @todo fix division by zero in Vector3::Inverse()
         X=1/X;
         Y=1/Y;
         Z=1/Z;

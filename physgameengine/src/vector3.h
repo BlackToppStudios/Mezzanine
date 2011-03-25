@@ -188,12 +188,12 @@ namespace phys
         /// @brief Scaling by multiplication.
         /// @details This Multiplies X, Y and Z by scalar and stores the changes in this Vector3.
         /// @param scalar This is the amount to scale the Vector3 by.
-        void operator*= (const Real &scalar);
+        Vector3& operator*= (const Real &scalar);
 
         /// @brief Scaling by Division
         /// @details This Division X, Y and Z by scalar and and stores the changes in this Vector3.
         /// @param scalar This is the amount to scale the Vector3 by
-        void operator/= (const Real &scalar);
+        Vector3& operator/= (const Real &scalar);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators
