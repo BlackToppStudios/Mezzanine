@@ -1,4 +1,4 @@
-//© Copyright 2010 BlackTopp Studios Inc.
+//Â© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -227,16 +227,16 @@ namespace phys
 // Right Hand Addition Operators
 
 phys::Quaternion operator+ (const Ogre::Quaternion& Other, const phys::Quaternion& Other2)
-    {return Other2+Other;}
+    { return Other2+Other; }
 
 phys::Quaternion operator+ (const btQuaternion& Other, const phys::Quaternion& Other2)
-    {return Other2+Other;}
+    { return Other2+Other; }
 
 phys::Quaternion operator- (const Ogre::Quaternion& Other, const phys::Quaternion& Other2)
-    {return Other2-Other;}
+    { return phys::Quaternion(Other.x-Other2.X, Other.y-Other2.Y, Other.z-Other2.Z, Other.w-Other2.W); }
 
 phys::Quaternion operator- (const btQuaternion& Other, const phys::Quaternion& Other2)
-    {return Other2-Other;}
+    { return phys::Quaternion(Other.getX()-Other2.X, Other.getY()-Other2.Y, Other.getZ()-Other2.Z, Other.getW()-Other2.W); }
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
@@ -256,18 +256,6 @@ btQuaternion& operator<< ( btQuaternion& Other, const Ogre::Quaternion& Other2)
     return Other;
 }
 
-btQuaternion& operator<< ( btQuaternion& Other, const btQuaternion& Other2)
-{
-    Other=Other2;
-    return Other;
-}
-
-phys::Quaternion& operator<< ( phys::Quaternion& Other, const phys::Quaternion& Other2)
-{
-    Other=Other2;
-    return Other;
-}
-
 phys::Quaternion& operator<< ( phys::Quaternion& Other, const Ogre::Quaternion& Other2)
 {
     Other=Other2;
@@ -283,12 +271,6 @@ phys::Quaternion& operator<< ( phys::Quaternion& Other, const btQuaternion& Othe
 Ogre::Quaternion& operator<< ( Ogre::Quaternion& Other, const phys::Quaternion& Other2)
 {
     Other=Other2.GetOgreQuaternion();
-    return Other;
-}
-
-Ogre::Quaternion& operator<< ( Ogre::Quaternion& Other, const Ogre::Quaternion& Other2)
-{
-    Other=Other2;
     return Other;
 }
 

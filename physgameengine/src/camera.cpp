@@ -214,19 +214,17 @@ namespace phys
 
     Vector3 Camera::GetRelativeLocation() const
     {
-        Vector3 camloc(this->Cam->getPosition());
-        return camloc;
+        return  Vector3(this->Cam->getPosition());
     }
 
     Vector3 Camera::GetGlobalLocation() const
     {
-        Vector3 camloc(this->Cam->getRealPosition());
-        return camloc;
+        return  Vector3(this->Cam->getRealPosition());
     }
 
     Quaternion Camera::GetOrientation() const
     {
-        return this->Cam->getOrientation();
+        return Quaternion(this->Cam->getOrientation());
     }
 
     void Camera::ZoomCamera(Real Zoom)

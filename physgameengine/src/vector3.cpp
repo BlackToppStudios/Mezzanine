@@ -46,7 +46,7 @@
 
 #include "vector3.h"
 #include "exception.h"
-#include "world.h"          // Needed for Error loggin in stream
+#include "world.h"          // Needed for Error logging in streaming
 #include "xml.h"            // Needed for streaming to xml
 
 namespace phys
@@ -67,98 +67,74 @@ namespace phys
         Z=z;
     }
 
-    Vector3::Vector3(Ogre::Vector3 Vec)
-    {
-        this->ExtractOgreVector3(Vec);
-    }
+    Vector3::Vector3(const Ogre::Vector3& Vec)
+        { this->ExtractOgreVector3(Vec); }
 
-    Vector3::Vector3(btVector3 Vec)
-    {
-        this->ExtractBulletVector3(Vec);
-    }
+    Vector3::Vector3(const btVector3& Vec)
+        { this->ExtractBulletVector3(Vec); }
 
-    Vector3::Vector3(cAudio::cVector3 Vec)
-    {
-        this->ExtractcAudioVector3(Vec);
-    }
+    Vector3::Vector3(const cAudio::cVector3& Vec)
+        { this->ExtractcAudioVector3(Vec); }
+
+    Vector3::Vector3(const phys::Vector3& Vec)
+        { *this = Vec; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Prebuilt Vectors
 
     Vector3 Vector3::Unit_X()
-    {
-        Vector3 Vec(1,0,0);
-        return Vec;
-    }
+        { return Vector3(1,0,0); }
 
     Vector3 Vector3::Unit_Y()
-    {
-        Vector3 Vec(0,1,0);
-        return Vec;
-    }
+        { return Vector3(0,1,0);}
 
     Vector3 Vector3::Unit_Z()
-    {
-        Vector3 Vec(0,0,1);
-        return Vec;
-    }
+        { return Vector3(0,0,1); }
 
     Vector3 Vector3::Neg_Unit_X()
-    {
-        Vector3 Vec(-1,0,0);
-        return Vec;
-    }
+        { return Vector3(-1,0,0); }
 
     Vector3 Vector3::Neg_Unit_Y()
-    {
-        Vector3 Vec(0,-1,0);
-        return Vec;
-    }
+        { return Vector3(0,-1,0); }
 
     Vector3 Vector3::Neg_Unit_Z()
-    {
-        Vector3 Vec(0,0,-1);
-        return Vec;
-    }
+        { return Vector3(0,0,-1); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Assignment Operators
-    Vector3& Vector3::operator= (const btVector3 &bt3)
+    Vector3& Vector3::operator= (const btVector3 &Vec)
     {
-        (*this)<<bt3;
-        return *this;
+        this->X=Vec.getX();
+        this->Y=Vec.getY();
+        this->Z=Vec.getZ();
     }
 
-    Vector3& Vector3::operator=(const Ogre::Vector3 &Vec3)
+    Vector3& Vector3::operator= (const Ogre::Vector3 &Vec)
     {
-        (*this)<<Vec3;
-        return *this;
+        this->X=Vec.x;
+        this->Y=Vec.y;
+        this->Z=Vec.z;
+    }
+
+    Vector3& Vector3::operator= (const cAudio::cVector3 &Vec)
+    {
+        this->X=Vec.x;
+        this->Y=Vec.y;
+        this->Z=Vec.z;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Unary Operators
     Vector3 Vector3::operator- ()
-    {
-        Vector3 Temp(-X,-Y,-Z);
-        return Temp;
-    }
+        { return Vector3(-X,-Y,-Z); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector3 Arithmetic with Real
     Vector3 Vector3::operator* (const Real &scalar) const
-    {
-        return Vector3(
-            this->X * scalar,
-            this->Y * scalar,
-            this->Z * scalar
-        );
-    }
+        { return Vector3(this->X * scalar, this->Y * scalar, this->Z * scalar); }
 
     Vector3 Vector3::operator/ (const Real &scalar) const
-    {
-        return Vector3(
-            this->X / scalar,
-            this->Y / scalar,
-            this->Z / scalar
-        );
-    }
+        { return Vector3(this->X / scalar, this->Y / scalar, this->Z / scalar); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Vector3 Arithmetic and assignment with Real
@@ -180,180 +156,99 @@ namespace phys
 
     ///////////////////////////////////////////////////////////////////////////////
     // Equality Comparison operators
-    bool Vector3::operator== (const Vector3 &Vec2) const
-    {
-        if ( Vec2.X == this->X && Vec2.Y == this->Y && Vec2.Z == this->Z )
-            { return true; }
-        return false;
-    }
+    bool Vector3::operator== (const Vector3 &Vec) const
+        { return( Vec.X == this->X && Vec.Y == this->Y && Vec.Z == this->Z ); }
 
-    bool Vector3::operator== (const btVector3 &Vec2) const
-    {
-        if ( Vec2.getX() == this->X && Vec2.getY() == this->Y && Vec2.getZ() == this->Z )
-            { return true; }
-        return false;
-    }
+    bool Vector3::operator== (const btVector3 &Vec) const
+        { return( Vec.getX() == this->X && Vec.getY() == this->Y && Vec.getZ() == this->Z ); }
 
-    bool Vector3::operator== (const Ogre::Vector3 &Vec2) const
-    {
-        if ( Vec2.x == this->X && Vec2.y == this->Y && Vec2.z == this->Z )
-            { return true; }
-        return false;
-    }
+    bool Vector3::operator== (const Ogre::Vector3 &Vec) const
+        { return ( Vec.x == this->X && Vec.y == this->Y && Vec.z == this->Z ); }
 
-    bool Vector3::operator!= (const Vector3 &Vec2) const
-    {
-        if ( Vec2.X != this->X || Vec2.Y != this->Y || Vec2.Z != this->Z )
-            { return true; }
-        return false;
-    }
+    bool Vector3::operator!= (const Vector3 &Vec) const
+        { return ( Vec.X != this->X || Vec.Y != this->Y || Vec.Z != this->Z ); }
 
-    bool Vector3::operator!= (const btVector3 &Vec2) const
-    {
-        if ( Vec2.getX() != this->X || Vec2.getY() != this->Y || Vec2.getZ() != this->Z )
-            { return true; }
-        return false;
-    }
+    bool Vector3::operator!= (const btVector3 &Vec) const
+        { return ( Vec.getX() != this->X || Vec.getY() != this->Y || Vec.getZ() != this->Z ); }
 
-    bool Vector3::operator!= (const Ogre::Vector3 &Vec2) const
-    {
-        if ( Vec2.x != this->X || Vec2.y != this->Y || Vec2.z != this->Z )
-            { return true; }
-        return false;
-    }
+    bool Vector3::operator!= (const Ogre::Vector3 &Vec) const
+        { return ( Vec.x != this->X || Vec.y != this->Y || Vec.z != this->Z ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators
 
-    Vector3 Vector3::operator+ (const Vector3 &Vec2) const
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X+=Vec2.X;
-        Temp.Y+=Vec2.Y;
-        Temp.Z+=Vec2.Z;
-        return Temp;
-    }
+    Vector3 Vector3::operator+ (const Vector3 &Vec) const
+        { return Vector3(X+Vec.X, Y+Vec.Y, Z+Vec.Z ); }
 
-    Vector3 Vector3::operator- (const Vector3 &Vec2) const
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X-=Vec2.X;
-        Temp.Y-=Vec2.Y;
-        Temp.Z-=Vec2.Z;
-        return Temp;
-    }
+    Vector3 Vector3::operator- (const Vector3 &Vec) const
+        { return Vector3(X-Vec.X, Y-Vec.Y, Z-Vec.Z ); }
 
-    Vector3 Vector3::operator* (const Vector3 &Vec2) const
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X*=Vec2.X;
-        Temp.Y*=Vec2.Y;
-        Temp.Z*=Vec2.Z;
-        return Temp;
-    }
+    Vector3 Vector3::operator* (const Vector3 &Vec) const
+        { return Vector3(X*Vec.X, Y*Vec.Y, Z*Vec.Z ); }
 
-    Vector3 Vector3::operator/ (const Vector3 &Vec2) const
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X/=Vec2.X;
-        Temp.Y/=Vec2.Y;
-        Temp.Z/=Vec2.Z;
-        return Temp;
-    }
+    Vector3 Vector3::operator/ (const Vector3 &Vec) const
+        { return Vector3(X/Vec.X, Y/Vec.Y, Z/Vec.Z ); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators with btVector3
 
-    Vector3 Vector3::operator+ (const btVector3  &Vec2)
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X+=Vec2.getX();
-        Temp.Y+=Vec2.getY();
-        Temp.Z+=Vec2.getZ();
-        return Temp;
-    }
+    Vector3 Vector3::operator+ (const btVector3  &Vec) const
+        { return Vector3(X+Vec.getX(), Y+Vec.getY(), Z+Vec.getZ()); }
 
-    Vector3 Vector3::operator- (const btVector3  &Vec2)
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X-=Vec2.getX();
-        Temp.Y-=Vec2.getY();
-        Temp.Z-=Vec2.getZ();
-        return Temp;
-    }
+    Vector3 Vector3::operator- (const btVector3  &Vec) const
+        { return Vector3(X-Vec.getX(), Y-Vec.getY(), Z-Vec.getZ()); }
 
-    Vector3 Vector3::operator* (const btVector3  &Vec2)
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X*=Vec2.getX();
-        Temp.Y*=Vec2.getY();
-        Temp.Z*=Vec2.getZ();
-        return Temp;
-    }
+    Vector3 Vector3::operator* (const btVector3  &Vec) const
+        { return Vector3(X*Vec.getX(), Y*Vec.getY(), Z*Vec.getZ()); }
 
-    Vector3 Vector3::operator/ (const btVector3  &Vec2)
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X/=Vec2.getX();
-        Temp.Y/=Vec2.getY();
-        Temp.Z/=Vec2.getZ();
-        return Temp;
-    }
+    Vector3 Vector3::operator/ (const btVector3  &Vec) const
+        { return Vector3(X/Vec.getX(), Y/Vec.getY(), Z/Vec.getZ()); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Arithmetic Operators with Ogre::Vector3
 
-    Vector3 Vector3::operator+ (const Ogre::Vector3 &Vec2)
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X+=Vec2.x;
-        Temp.Y+=Vec2.y;
-        Temp.Z+=Vec2.z;
-        return Temp;
-    }
+    Vector3 Vector3::operator+ (const Ogre::Vector3 &Vec) const
+        { return Vector3(X+Vec.x, Y+Vec.y, Z+Vec.z); }
 
-    Vector3 Vector3::operator- (const Ogre::Vector3 &Vec2)
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X-=Vec2.x;
-        Temp.Y-=Vec2.y;
-        Temp.Z-=Vec2.z;
-        return Temp;
-    }
+    Vector3 Vector3::operator- (const Ogre::Vector3 &Vec) const
+        { return Vector3(X-Vec.x, Y-Vec.y, Z-Vec.z); }
 
-    Vector3 Vector3::operator* (const Ogre::Vector3 &Vec2)
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X*=Vec2.x;
-        Temp.Y*=Vec2.y;
-        Temp.Z*=Vec2.z;
-        return Temp;
-    }
+    Vector3 Vector3::operator* (const Ogre::Vector3 &Vec) const
+        { return Vector3(X*Vec.x, Y*Vec.y, Z*Vec.z); }
 
-    Vector3 Vector3::operator/ (const Ogre::Vector3 &Vec2)
-    {
-        Vector3 Temp(X,Y,Z);
-        Temp.X/=Vec2.x;
-        Temp.Y/=Vec2.y;
-        Temp.Z/=Vec2.z;
-        return Temp;
-    }
+    Vector3 Vector3::operator/ (const Ogre::Vector3 &Vec) const
+        { return Vector3(X/Vec.x, Y/Vec.y, Z/Vec.z); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Arithmetic Operators with cAudio::cVector3
+
+    Vector3 Vector3::operator+ (const cAudio::cVector3 &Vec) const
+        { return Vector3(X+Vec.x, Y+Vec.y, Z+Vec.z); }
+
+    Vector3 Vector3::operator- (const cAudio::cVector3 &Vec) const
+        { return Vector3(X-Vec.x, Y-Vec.y, Z-Vec.z); }
+
+    Vector3 Vector3::operator* (const cAudio::cVector3 &Vec) const
+        { return Vector3(X*Vec.x, Y*Vec.y, Z*Vec.z); }
+
+    Vector3 Vector3::operator/ (const cAudio::cVector3 &Vec)  const
+        { return Vector3(X/Vec.x, Y/Vec.y, Z/Vec.z); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Fancy Math
 
-    Vector3 Vector3::CrossProduct( const Vector3& rkVector ) const
+    Vector3 Vector3::CrossProduct( const Vector3& Vec ) const
     {
         return Vector3(
-                this->Y * rkVector.Z - this->Z * rkVector.Y,
-                this->Z * rkVector.X - this->X * rkVector.Z,
-                this->X * rkVector.Y - this->Y * rkVector.X
+                this->Y * Vec.Z - this->Z * Vec.Y,
+                this->Z * Vec.X - this->X * Vec.Z,
+                this->X * Vec.Y - this->Y * Vec.X
             );
     }
 
-    Real Vector3::dotProduct(const Vector3& vec) const
+    Real Vector3::dotProduct(const Vector3& Vec) const
     {
-        return this->X * vec.X + this->Y * vec.Y + this->Z * vec.Z;
+        return this->X * Vec.X + this->Y * Vec.Y + this->Z * Vec.Z;
     }
 
     void Vector3::Normalize()
@@ -455,6 +350,33 @@ namespace phys
 
 }
 
+phys::Vector3 operator+ (const btVector3  &Vec, const phys::Vector3& lhs)
+    { return lhs + Vec; }
+phys::Vector3 operator- (const btVector3  &Vec, const phys::Vector3& lhs)
+    { return phys::Vector3(Vec.getX()-lhs.X, Vec.getY()-lhs.Y, Vec.getZ()-lhs.Z); }
+phys::Vector3 operator* (const btVector3  &Vec, const phys::Vector3& lhs)
+    { return lhs * Vec; }
+phys::Vector3 operator/ (const btVector3  &Vec, const phys::Vector3& lhs)
+    { return phys::Vector3(Vec.getX()/lhs.X, Vec.getY()/lhs.Y, Vec.getZ()/lhs.Z); }
+
+phys::Vector3 operator+ (const Ogre::Vector3 &Vec, const phys::Vector3& lhs)
+    { return lhs + Vec; }
+phys::Vector3 operator- (const Ogre::Vector3 &Vec, const phys::Vector3& lhs)
+    { return phys::Vector3(Vec.x-lhs.X, Vec.y-lhs.Y, Vec.z-lhs.Z); }
+phys::Vector3 operator* (const Ogre::Vector3 &Vec, const phys::Vector3& lhs)
+    { return lhs * Vec; }
+phys::Vector3 operator/ (const Ogre::Vector3 &Vec, const phys::Vector3& lhs)
+    { return phys::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
+
+phys::Vector3 operator+ (const cAudio::cVector3 &Vec, const phys::Vector3& lhs)
+    { return lhs + Vec; }
+phys::Vector3 operator- (const cAudio::cVector3 &Vec, const phys::Vector3& lhs)
+    { return phys::Vector3(Vec.x-lhs.X, Vec.y-lhs.Y, Vec.z-lhs.Z); }
+phys::Vector3 operator* (const cAudio::cVector3 &Vec, const phys::Vector3& lhs)
+    { return lhs * Vec; }
+phys::Vector3 operator/ (const cAudio::cVector3 &Vec, const phys::Vector3& lhs)
+    { return phys::Vector3(Vec.x/lhs.X, Vec.y/lhs.Y, Vec.z/lhs.Z); }
+
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
@@ -495,7 +417,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 }
 
 #ifdef PHYSXML
-std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Vector3& Vec)
+std::istream& operator >> (std::istream& stream, phys::Vector3& Vec)
 {
     phys::String OneTag( phys::xml::GetOneTag(stream) );
     std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Vector3", OneTag) );
@@ -525,9 +447,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Vector3& Vec
 
 Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const phys::Vector3& VecFrom)
 {
-    VecTo.x=VecFrom.X;
-    VecTo.y=VecFrom.Y;
-    VecTo.z=VecFrom.Z;
+    VecTo = VecFrom.GetOgreVector3();
     return VecTo;
 }
 
@@ -539,13 +459,14 @@ Ogre::Vector3& operator << (Ogre::Vector3& VecTo, const btVector3& VecFrom)
     return VecTo;
 }
 
-Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const cAudio::cVector3& VecFrom)
+Ogre::Vector3&  operator << (Ogre::Vector3& VecTo, const cAudio::cVector3& VecFrom)
 {
     VecTo.x=VecFrom.x;
     VecTo.y=VecFrom.y;
     VecTo.z=VecFrom.z;
     return VecTo;
 }
+
 
 btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom)
 {
@@ -558,14 +479,11 @@ btVector3& operator << (btVector3& VecTo, const Ogre::Vector3& VecFrom)
 
 btVector3& operator << (btVector3& VecTo, const phys::Vector3& VecFrom)
 {
-    VecTo.setX(VecFrom.X);
-    VecTo.setY(VecFrom.Y);
-    VecTo.setZ(VecFrom.Z);
-    VecTo.setW(0);
+    VecTo=VecFrom.GetBulletVector3();
     return VecTo;
 }
 
-btVector3& PHYS_LIB operator << (btVector3& VecTo, const cAudio::cVector3& VecFrom)
+btVector3&  operator << (btVector3& VecTo, const cAudio::cVector3& VecFrom)
 {
     VecTo.setX(VecFrom.x);
     VecTo.setY(VecFrom.y);
@@ -575,29 +493,23 @@ btVector3& PHYS_LIB operator << (btVector3& VecTo, const cAudio::cVector3& VecFr
 
 phys::Vector3& operator << (phys::Vector3& VecTo, const Ogre::Vector3& VecFrom)
 {
-    VecTo.X=VecFrom.x;
-    VecTo.Y=VecFrom.y;
-    VecTo.Z=VecFrom.z;
+    VecTo=VecFrom;
     return VecTo;
 }
 
 phys::Vector3& operator << (phys::Vector3& VecTo, const btVector3& VecFrom)
 {
-    VecTo.X=VecFrom.getX();
-    VecTo.Y=VecFrom.getY();
-    VecTo.Z=VecFrom.getZ();
+    VecTo=VecFrom;
     return VecTo;
 }
 
-phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const cAudio::cVector3& VecFrom)
+phys::Vector3&  operator << (phys::Vector3& VecTo, const cAudio::cVector3& VecFrom)
 {
-    VecTo.X=VecFrom.x;
-    VecTo.Y=VecFrom.y;
-    VecTo.Z=VecFrom.z;
+    VecTo=VecFrom;
     return VecTo;
 }
 
-cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const Ogre::Vector3& VecFrom)
+cAudio::cVector3&  operator << (cAudio::cVector3& VecTo, const Ogre::Vector3& VecFrom)
 {
     VecTo.x=VecFrom.x;
     VecTo.y=VecFrom.y;
@@ -605,7 +517,7 @@ cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const Ogre::Vec
     return VecTo;
 }
 
-cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const btVector3& VecFrom)
+cAudio::cVector3&  operator << (cAudio::cVector3& VecTo, const btVector3& VecFrom)
 {
     VecTo.x=VecFrom.getX();
     VecTo.y=VecFrom.getY();
@@ -613,11 +525,9 @@ cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const btVector3
     return VecTo;
 }
 
-cAudio::cVector3& PHYS_LIB operator << (cAudio::cVector3& VecTo, const phys::Vector3& VecFrom)
+cAudio::cVector3&  operator << (cAudio::cVector3& VecTo, const phys::Vector3& VecFrom)
 {
-    VecTo.x=VecFrom.X;
-    VecTo.y=VecFrom.Y;
-    VecTo.z=VecFrom.Z;
+    VecTo=VecFrom.GetcAudioVector3();
     return VecTo;
 }
 
