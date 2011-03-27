@@ -73,7 +73,7 @@ namespace phys
             Attachable::AttachableElement ElementType;
 
             /// @brief Sets the type of element this class is.
-            /// @param Enum value representing the type of element to be set.
+            /// @param Type Value representing the type of element to be set.
             void SetElementType(Attachable::AttachableElement Type);
 
             /// @brief The WorldNode this is attached to or null if not attached.

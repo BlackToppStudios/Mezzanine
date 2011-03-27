@@ -59,8 +59,8 @@ namespace phys
     class ParticleEffect;
     class ActorBase;
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Node
-    /// @headerfile node.h
+    /// @class WorldNode
+    /// @headerfile worldnode.h
     /// @brief This is a helper class which non-physics objects, such as lights, cameras, ribbon trails, and
     /// particle effects may be attached to for enhanced effects.
     /// @details This class simply contains a group of functions for easy manipulation of movement and orientation
@@ -77,12 +77,13 @@ namespace phys
     class PHYS_LIB WorldNode
     {
         public:
+            /// @brief Kinds of movement (or non-movement modes) a world node could have
             enum NodeType
             {
-                Center,
-                Orbit,
-                Stand,
-                Free
+                Center,     ///< Description Required
+                Orbit,      ///< Description Required
+                Stand,      ///< Description Required
+                Free        ///< Description Required
             };
         protected:
             /// @brief Pointer to the ogre scenenode from which this class gets it's functionality.
@@ -132,7 +133,7 @@ namespace phys
             Vector3 GetPosition();
 
             /// @brief Sets the orientation of this node.
-            /// @param Position A Quaternion representing the orientation of this node.
+            /// @param Orientation A Quaternion representing the orientation of this node.
             void SetOrientation(Quaternion Orientation);
             /// @brief Gets the orientation of this node.
             /// @return Returns a quaternion representing the orientation of this node.

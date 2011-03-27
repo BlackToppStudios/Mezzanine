@@ -44,6 +44,8 @@
 #include "actorrigid.h"
 #include <btBulletDynamicsCommon.h>
 
+/// @cond 0
+
 namespace phys
 {
     /////////////////////////////////////////
@@ -764,5 +766,7 @@ namespace phys
         this->Universal->setLowerLimit(Ang1Min, Ang2Min);
     }
 }//phys
+
+/// @endcond
 
 #endif

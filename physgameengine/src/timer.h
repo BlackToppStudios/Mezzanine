@@ -55,20 +55,18 @@ namespace phys
     class Timer
     {
         public:
-            /// @enum The style of timer to be used. @n @n
-            ///
+            /// @brief The style of timer to be used.
             enum TimerStyle
             {
-                Normal,
-                StopWatch,
-                Alarm
+                Normal,     ///< Description Required
+                StopWatch,  ///< Description Required
+                Alarm       ///< Description Required
             };
-            /// @enum The type of timer to be used. @n @n
-            ///
+            /// @brief The type of timer to be used.
             enum TimerType
             {
-                Simple,
-                Extended
+                Simple,     ///< Description Required
+                Extended    ///< Description Required
             };
         protected:
             friend class TimerManager;

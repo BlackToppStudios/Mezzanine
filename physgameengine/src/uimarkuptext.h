@@ -78,7 +78,7 @@ namespace phys
                 String Name;
             public:
                 /// @brief Internal constructor
-                /// @param Name The name of this markup text.
+                /// @param name The name of this markup text.
                 /// @param Position The top left position of the markup text.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.

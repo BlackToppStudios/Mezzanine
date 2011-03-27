@@ -37,7 +37,7 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-
+/// @cond 0
 // To provide compilation option via cmake
 
 #ifdef PHYSXML
@@ -137,3 +137,4 @@ namespace phys
 #endif
 
 #endif // \PHYSXML
+/// @endcond

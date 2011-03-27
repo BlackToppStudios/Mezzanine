@@ -71,8 +71,8 @@ namespace phys
             Vector2();
             /// @brief Real value Constructor.
             /// @details Constructor that sets both vectors.
-            /// @param X Coordinate on the X vector.
-            /// @param Y Coordinate on the Y vector.
+            /// @param x Coordinate on the X vector.
+            /// @param y Coordinate on the Y vector.
             Vector2(Real x, Real y);
             /// @brief Ogre Value Constructor.
             /// @details Constructor that sets all values to match the Ogre vector.
@@ -84,7 +84,7 @@ namespace phys
             /// @brief Copies an existing Ogre vector2.
             /// @details This function will copy the values stored in an existing Ogre vector2
             /// and set the values of this class to be the same.
-            /// @param temp The vector2 to be extracted.
+            /// @param Ours The vector2 to be extracted.
             void ExtractOgreVector2(Ogre::Vector2 Ours);
 
             ///////////////////////////////////////////////////////////////////////////////

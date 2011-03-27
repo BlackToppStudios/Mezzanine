@@ -162,11 +162,15 @@ namespace std
 namespace phys
 { namespace xml
 { 
-	// Character Type used for all internal storage and operations; depends on XML_WCHAR_MODE 
+	/// @brief Used to represent a UTF8 code point, char, or wchar_t depending on how compiled. 
+		/// @details compatibility with phys::Character is guaranteed. The exact type of this depends on depends on XML_WCHAR_MODE .
+		 
 	typedef Character char_t; 
  
 #ifndef XML_NO_STL 
-	// String Type used for operations that work with STL string; depends on XML_WCHAR_MODE 
+	/// @brief Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.
+		/// @details compatibility with phys::String is guaranteed. The exact type of this depends on depends on XML_WCHAR_MODE .
+		 
 	typedef std::basic_string<XML_CHAR, std::char_traits<XML_CHAR>, std::allocator<XML_CHAR> > String; 
 #endif 
 } 
@@ -331,6 +335,7 @@ namespace phys
  
 	private: 
 		std::basic_ostream<char, std::char_traits<char> >* narrow_stream; 
+		/// @internal
 		std::basic_ostream<wchar_t, std::char_traits<wchar_t> >* wide_stream; 
 	}; 
 	#endif 
@@ -344,6 +349,8 @@ namespace phys
 	private: 
 		AttributeStruct* _attr; 
 	 
+		/// @internal
+		/// @brief Used when testing an Attribute as a bool
 		typedef AttributeStruct* Attribute::*unspecified_bool_type; 
  
 	public: 
@@ -466,6 +473,8 @@ namespace phys
 	protected: 
 		NodeStruct* _GetRoot; 
  
+		/// @internal
+		/// @brief Used when testing an Attribute as a bool
 		typedef NodeStruct* Node::*unspecified_bool_type; 
  
 	public: 
@@ -593,31 +602,55 @@ namespace phys
 		Attribute InsertCopyBefore(const Attribute& proto, const Attribute& attr); 
  
 		// Add GetChild node with specified Type. Returns added node, or empty node on errors. 
-		Node AppendChild(NodeType Type = NodeElement); 
+		/// @brief Creates a Node and makes it a child of this one.
+		/// @param Type The NodeType of the Node to be added to list of child Nodes.
+		/// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
+		Node AppendChild(NodeType Type = NodeElement);  
 		Node PrependChild(NodeType Type = NodeElement); 
 		Node InsertChildAfter(NodeType Type, const Node& node); 
+		/// @brief Creates a Node and makes it a child of this one, and puts at the middle of the Child Nodes.
+		/// @param Type The NodeType of the Node to be added, just before another specific node.
+		/// @param node The specific node to add the new one before.
+		/// @return A Node representing the freshly added Node, or an empty Node if there was an error.
+		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
 		Node InsertChildBefore(NodeType Type, const Node& node); 
  
-		// Add GetChild element with specified Name. Returns added node, or empty node on errors. 
+		/// @fn Node::AppendChild(const char_t* Name);
+		/// @brief Creates an element Node as a child of this Node, with the given name.
+		/// @param Name The name of the Node to be created.
+		/// @details Calls @ref Node::AppendChild(NodeType); using NodeElement as the NodeType.
+		/// @return The desired Node on success, an empty Node on failure. 
 		Node AppendChild(const char_t* Name); 
 		Node PrependChild(const char_t* Name); 
 		
 		/// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children
 		/// @param Name The name of the Node to be created.
-		/// @param Node The node just before were the Create node is to be placed.
-		/// @details Calls @ref Node::InsertChildAfter(NodeType, Node); using NodeElement as the NodeType.
+		/// @param node The node just before were the Create node is to be placed.
+		/// @details Calls Node::InsertChildAfter(NodeType, Node); using NodeElement as the NodeType.
 		/// @return The desired Node on success, an empty Node on failure.
 		Node InsertChildAfter(const char_t* Name, const Node& node); 
 		Node InsertChildBefore(const char_t* Name, const Node& node); 
  
-		// Add a copy of the specified node as a GetChild. Returns added node, or empty node on errors. 
+		/// @brief Copies a Node and puts the copy at the end of the list of this Nodes Childrem.
+		/// @param proto The Node to be copied. If this is emptry, no work is performed.
+		/// @return The copied Node on success, an empty Node on failure. 
 		Node AppendCopy(const Node& proto); 
 		
 		/// @brief Copies a Node and puts the copy at the start of the list of this Nodes Childrem.
 		/// @param proto The Node to be copied. If this is emptry, no work is performed.
 		/// @return The copied Node on success, an empty Node on failure.
 		Node PrependCopy(const Node& proto); 
+		
+		/// @brief Copies a Node and puts the copy in the middle the list of this Nodes Childrem.
+		/// @param proto The Node to be copied. If this is emptry, no work is performed.
+		/// @param node The Node just before the desired place in the list of children to insert the copied node.
+		/// @return The copied Node on success, an empty Node on failure.
 		Node InsertCopyAfter(const Node& proto, const Node& node); 
+		/// @brief Copies a Node and puts the copy in the middle the list of this Nodes Childrem.
+		/// @param proto The Node to be copied. If this is emptry, no work is performed.
+		/// @param node The Node just after the desired place in the list of children to insert the copied node.
+		/// @return The copied Node on success, an empty Node on failure.
 		Node InsertCopyBefore(const Node& proto, const Node& node); 
  
 		// Remove specified GetAttribute 
@@ -632,7 +665,12 @@ namespace phys
 		/// @return True if the removal was successful, false otherwise
 		bool RemoveChild(const char_t* Name); 
  
-		// Find GetAttribute using predicate. Returns first GetAttribute for which predicate returned true. 
+		/// @brief Search for an Attribute using a function to check each Attribute individually.
+		/// @param pred a pointer to a function that accepts an Attribute, and returns bool.
+		/// @details This iterates through each Attribute on this node, from begining to end and calls the Predicate function passing
+		/// an Attribute to it. If the Predicate returns true the Node it was just passed is returned. If Precdicate never returns
+		/// true, it is called on every Node and a blank Node is returned. The Predicate is never called with a null value.
+		/// @return This returns the first Attribute that causes Predicate to return true. 
 		template <typename Predicate> Attribute FindAttribute(Predicate pred) const 
 		{ 
 			if (!_GetRoot) return Attribute(); 
@@ -644,7 +682,13 @@ namespace phys
 			return Attribute(); 
 		} 
  
-		// Find GetChild node using predicate. Returns first GetChild for which predicate returned true. 
+		
+		/// @brief Search for an child ( only direct children ) Node using a function to check each Node individually.
+		/// @param pred a pointer to a function that accepts an Node, and returns bool.
+		/// @details This iterates through all immediate children of this Node and calls the Predicate function passing a Node to it. If
+		/// the Predicate returns true the Node it was just passed is returned. If Predicate never returns true, it is called
+		/// on every Node and a blank Node is returned. The Predicate is never called with a null value.
+		/// @return This returns the first Node that causes Predicate to return true. 
 		template <typename Predicate> Node FindChild(Predicate pred) const 
 		{ 
 			if (!_GetRoot) return Node(); 
@@ -656,7 +700,13 @@ namespace phys
 			return Node(); 
 		} 
  
-		// Find node from subtree using predicate. Returns first node from subtree (Depth-first), for which predicate returned true. 
+		/// @brief Search for any Node descended from this Node using a function to check each Node individually.
+		/// @param pred a pointer to a function that accepts an Node, and returns bool.
+		/// @details This iterates through all children of this Node, and their children ( and so on), and calls the Predicate function
+		/// passing each Node to it. This iterates through all Nodes using a depth first algorithm. If the Predicate returns true the
+		/// Node it was just passed is returned. If Predicate never returns true, it is called on every Node and a blank Node is
+		/// returned. The Predicate is never called with a null value.
+		/// @return This returns the first Node that causes Predicate to return true. 
 		template <typename Predicate> Node FindNode(Predicate pred) const 
 		{ 
 			if (!_GetRoot) return Node(); 
@@ -682,6 +732,10 @@ namespace phys
  
 		// Find GetChild node by GetAttribute Name/Value 
 		Node FindChildbyAttribute(const char_t* Name, const char_t* AttrName, const char_t* AttrValue) const; 
+		/// @brief Find a Node by an Attribute it has.
+		/// @param AttrName The name of the matching Attribute.
+		/// @param AttrValue The value of the matching Attribute.
+		/// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
 		Node FindChildbyAttribute(const char_t* AttrName, const char_t* AttrValue) const; 
  
 	#ifndef XML_NO_STL 
@@ -704,7 +758,7 @@ namespace phys
 		
 		/// @brief Select a group of nodes by evaluating an XPath query.
 		/// @param query The XPath query as a c-string to be evaluated.
-		/// @param XPathVariableSet undocumented.
+		/// @param variables undocumented.
 		/// @return An XPathNodeSet with the Matchs of the XPath query.
 		XPathNodeSet FindNodes(const char_t* query, XPathVariableSet* variables = 0) const;  
 		
@@ -972,7 +1026,17 @@ namespace phys
 		ParseResult Load(const char_t* contents, unsigned int options = ParseDefault); 
  
 		// Load document from file 
+		/// @brief Load document from file
+		/// @param Path An c-style char array that contains the path and filename of the xml document to load.
+		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+		/// @return A ParseResult that stores the the outcome of attempting to load the document.
 		ParseResult LoadFile(const char* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
+		/// @brief Load document from file
+		/// @param Path An c-style wide char array that contains the path and filename of the xml document to load.
+		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
+		/// @return A ParseResult that stores the the outcome of attempting to load the document.
 		ParseResult LoadFile(const wchar_t* Path, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
 		// Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns. 
@@ -984,9 +1048,20 @@ namespace phys
  
 		// Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data). 
 		// You should allocate the buffer with pugixml allocation function; document will free the buffer when it is no longer needed (you can't use it anymore). 
+		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
+		/// @details You should allocate the buffer with pugixml allocation function; xml::Document will free the buffer when it is no longer needed (you can not use it anymore).
+		/// @param contents A pointer to buffer containing the xml document to be parsed.
+		/// @param size The size of the buffer.
+		/// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+		/// @return A ParseResult that stores the the outcome of attempting to load the document.
 		ParseResult LoadBufferInplaceOwn(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto); 
  
-		// Save XML document to WriterInstance (semantics is slightly different from Node::Print, see documentation for details). 
+		/// @brief Save XML document to WriterInstance.
+		/// @param WriterInstance The Writer that will be used to output the xml text.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto. 
 		void Save(Writer& WriterInstance, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 	#ifndef XML_NO_STL 
@@ -1004,9 +1079,20 @@ namespace phys
 		void Save(std::basic_ostream<wchar_t, std::char_traits<wchar_t> >& stream, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault) const;  
 	#endif 
  
-		// Save XML to file 
+		/// @brief Save XML to file.
+		/// @param Path A c-style array of chars that contain the filename (and any path) of the file to be output.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+		/// @return False if the target file could not be opened for writing 
 		bool SaveFile(const char* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
-		bool SaveFile(const wchar_t* Path, const char_t* indent = XML_TEXT("\t"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
+		/// @brief Save XML to file.
+		/// @param Path A c-style array of wide chars that contain the filename (and any path) of the file to be output.
+		/// @param indent The Character(s) used to represent a tab in the output, this defaults to one tab character.
+		/// @param flags The output format flags, this is a bitfield that defaults to xml::FormatDefault.
+		/// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto.
+		/// @return False if the target file could not be opened for writing
+		bool SaveFile(const wchar_t* Path, const char_t* indent = XML_TEXT("	"), unsigned int flags = FormatDefault, Encoding DocumentEncoding = EncodingAuto) const; 
  
 		// Get document element 
 		/// @brief Get document element
@@ -1249,7 +1335,7 @@ namespace phys
 		typedef Node XPathNode::*unspecified_bool_type; 
  
 	public: 
-		// Default constructor; constructs empty XPath node 
+		/// @brief Default constructor; constructs empty XPath node 
 		XPathNode(); 
 		 
 		// Construct XPath node from XML node/GetAttribute 

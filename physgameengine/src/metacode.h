@@ -663,7 +663,7 @@ namespace phys
             /// @brief Accepts a int and returns the InputCode for the Corresponding Joystick Axis
             /// @param AxisNumber The number of the button you want the code for
             /// @return When passed 0 this returns MetaCode::JOYSTICKAXIS, otherwise this returns MetaCode::JOYSTICKAXIS_X where X is the number that was passed in
-            static MetaCode::InputCode GetJoystickAxisCode(short unsigned int ButtonNumber);
+            static MetaCode::InputCode GetJoystickAxisCode(short unsigned int AxisNumber);
 
             /// @brief Does this MetaCode Represent a state of a keyboard key
             /// @details Returns true if this MetaCode pertains to a keyboard key being up, polled, down, pressed, or lifted.

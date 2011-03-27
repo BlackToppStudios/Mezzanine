@@ -45,6 +45,8 @@
 #include "quaternion.h"
 #include "vector3.h"
 
+/// @cond 0
+
 namespace phys
 {
     class ActorRigid;
@@ -467,4 +469,7 @@ namespace phys
     };
 }//phys
 
+
+/// @endcond
 #endif
+

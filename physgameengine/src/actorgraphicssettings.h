@@ -62,8 +62,13 @@ namespace phys
     class ActorGraphicsSettings
     {
         protected:
+            /// @internal
+            /// @brief Store meta data for actor
             Ogre::Entity* ActorEnt;
+            /// @brief The Actor this bleongs to
             ActorBase* Parent;
+            //@internal
+            /// @brief Material/textures for the actor
             Ogre::MaterialPtr GetMaterial(Whole Submesh = 0);
         public:
             /// @brief Standard Constructor.

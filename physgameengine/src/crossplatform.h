@@ -130,7 +130,8 @@ namespace phys
         /// Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop
         /// at the aproppriate times. Currently this references Ogre systems, that makes this internal
         /// Handles the actual cross platform swapping of graphics buffers.
-        /// @param TheWorld A pointer to the game window to be update to be rendered. This is considered an internal component
+        /// @param TheOgreWindow A pointer to the game window to be update to be rendered. This is considered an internal component
+        /// @param SDLWindow A pointer to the game window to be update to be rendered. This is considered an internal component
         void PHYS_LIB RenderPhysWorld(Ogre::RenderWindow* TheOgreWindow, SDL_Window* SDLWindow);
 
         /// @brief Gets the platform currently being run on.
