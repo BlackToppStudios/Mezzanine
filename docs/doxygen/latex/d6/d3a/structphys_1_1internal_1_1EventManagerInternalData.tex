@@ -11,7 +11,7 @@ Used to increase encapsulation, just a bit.
 \begin{DoxyCompactItemize}
 \item 
 enum \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ab9ab8380b84448aacf46a63050e159af}{PollingType} \{ {\bfseries Polling} = 1, 
-{\bfseries Keypress} = 2
+{\bfseries Keypress}
  \}
 \begin{DoxyCompactList}\small\item\em The kinds of data that can be stored in Manual Check. \item\end{DoxyCompactList}\item 
 typedef std::map$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode}, \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ab9ab8380b84448aacf46a63050e159af}{PollingType} $>$::iterator \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ad2b9c7924f32e299846f1d945cb82dc0}{ManualCheckIterator}
@@ -19,24 +19,27 @@ typedef std::map$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_a2cf843f8829114491b13b3253a27b627}{AddInputCodeToManualCheck} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&OneCode, \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ab9ab8380b84448aacf46a63050e159af}{PollingType} \_\-PollingCheck)
+void \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_abf8c7b472e4b19a0c0243dcaf49a38ae}{AddInputCodeToManualCheck} (\hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} OneCode, \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ab9ab8380b84448aacf46a63050e159af}{PollingType} \_\-PollingCheck)
 \begin{DoxyCompactList}\small\item\em Adds one type of polling check. \item\end{DoxyCompactList}\item 
+void \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_a38365985c350611884fdd3eca7d5acd5}{AddInputCodeToManualCheck} (int OneCode, int \_\-PollingCheck)
+\begin{DoxyCompactList}\small\item\em Adds one type of polling check where the data is only available as Ints. \item\end{DoxyCompactList}\item 
 void \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ac2e4044e2fc6eb2df18a3e274c175065}{AddMetaCodesToManualCheck} (vector$<$ \hyperlink{classphys_1_1MetaCode}{MetaCode} $>$ Transport, \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ab9ab8380b84448aacf46a63050e159af}{PollingType} \_\-PollingCheck)
 \begin{DoxyCompactList}\small\item\em Used to insert Codes into the list of items to be manually checked. \item\end{DoxyCompactList}\item 
 void \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_aadc9e786da13f2c669fc7e054d8fbf37}{RemoveInputCodeToManualCheck} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&OneCode, \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ab9ab8380b84448aacf46a63050e159af}{PollingType} \_\-PollingCheck)
 \begin{DoxyCompactList}\small\item\em Removes one type of polling check. \item\end{DoxyCompactList}\item 
 void \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_a54babcae1822814f09beace684f97e72}{RemoveMetaCodesToManualCheck} (vector$<$ \hyperlink{classphys_1_1MetaCode}{MetaCode} $>$ Transport, \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ab9ab8380b84448aacf46a63050e159af}{PollingType} \_\-PollingCheck)
-\begin{DoxyCompactList}\small\item\em Remove Items form the internal manual check list. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Remove Items form the internal manual check list. \item\end{DoxyCompactList}\item 
+\hyperlink{structphys_1_1internal_1_1EventManagerInternalData_a2bc6e8af4992cc8b4935f4e5b32b32a0}{EventManagerInternalData} ()
+\begin{DoxyCompactList}\small\item\em Constructor, it only inits pointers to 0. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{structphys_1_1internal_1_1EventManagerInternalData_a2a3389f3831cae8ded6dd0a3b6395a68}{
-std::list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ {\bfseries EventQ}}
-\label{d6/d3a/structphys_1_1internal_1_1EventManagerInternalData_a2a3389f3831cae8ded6dd0a3b6395a68}
-
-\item 
+std::list$<$ \hyperlink{classphys_1_1EventBase}{EventBase} $\ast$ $>$ \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_a2a3389f3831cae8ded6dd0a3b6395a68}{EventQ}
+\begin{DoxyCompactList}\small\item\em The Queue that all the events get stored in. \item\end{DoxyCompactList}\item 
 std::map$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode}, \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_ab9ab8380b84448aacf46a63050e159af}{PollingType} $>$ \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_a717396b1782d7f491e0f085643507639}{ManualCheck}
-\begin{DoxyCompactList}\small\item\em A unified polling and event repeater the Inputcode is the kind of event to check for each frame. The PollingType is a bitfield used to control what can turn and of the pollingcheck check. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em A unified polling and event repeater the Inputcode is the kind of event to check for each frame. The PollingType is used to control what can turn on and off the pollingcheck check. \item\end{DoxyCompactList}\item 
+SDL\_\-Joystick $\ast$ \hyperlink{structphys_1_1internal_1_1EventManagerInternalData_aafd32b9b23cb2121bd268e3c56a3f46e}{Joy0}
+\begin{DoxyCompactList}\small\item\em This will identify the main Joystick. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -58,7 +61,7 @@ Definition at line 93 of file eventmanager.cpp.
 \end{DoxyInternal}
 
 
-Definition at line 111 of file eventmanager.cpp.
+Definition at line 114 of file eventmanager.cpp.
 
 
 
@@ -76,21 +79,43 @@ The kinds of data that can be stored in Manual Check.
 \end{DoxyInternal}
 
 
-Definition at line 100 of file eventmanager.cpp.
+Definition at line 101 of file eventmanager.cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structphys_1_1internal_1_1EventManagerInternalData_a2bc6e8af4992cc8b4935f4e5b32b32a0}{
+\index{phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}!EventManagerInternalData@{EventManagerInternalData}}
+\index{EventManagerInternalData@{EventManagerInternalData}!phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}}
+\subsubsection[{EventManagerInternalData}]{\setlength{\rightskip}{0pt plus 5cm}phys::internal::EventManagerInternalData::EventManagerInternalData (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{d6/d3a/structphys_1_1internal_1_1EventManagerInternalData_a2bc6e8af4992cc8b4935f4e5b32b32a0}
+
+
+Constructor, it only inits pointers to 0. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 188 of file eventmanager.cpp.
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{structphys_1_1internal_1_1EventManagerInternalData_a2cf843f8829114491b13b3253a27b627}{
+\hypertarget{structphys_1_1internal_1_1EventManagerInternalData_abf8c7b472e4b19a0c0243dcaf49a38ae}{
 \index{phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}!AddInputCodeToManualCheck@{AddInputCodeToManualCheck}}
 \index{AddInputCodeToManualCheck@{AddInputCodeToManualCheck}!phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}}
 \subsubsection[{AddInputCodeToManualCheck}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::EventManagerInternalData::AddInputCodeToManualCheck (
 \begin{DoxyParamCaption}
-\item[{const {\bf MetaCode::InputCode} \&}]{ OneCode, }
+\item[{{\bf MetaCode::InputCode}}]{ OneCode, }
 \item[{{\bf PollingType}}]{ \_\-PollingCheck}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
-\label{d6/d3a/structphys_1_1internal_1_1EventManagerInternalData_a2cf843f8829114491b13b3253a27b627}
+\label{d6/d3a/structphys_1_1internal_1_1EventManagerInternalData_abf8c7b472e4b19a0c0243dcaf49a38ae}
 
 
 Adds one type of polling check. 
@@ -102,7 +127,30 @@ Adds one type of polling check.
 \end{DoxyInternal}
 
 
-Definition at line 117 of file eventmanager.cpp.
+Definition at line 120 of file eventmanager.cpp.
+
+\hypertarget{structphys_1_1internal_1_1EventManagerInternalData_a38365985c350611884fdd3eca7d5acd5}{
+\index{phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}!AddInputCodeToManualCheck@{AddInputCodeToManualCheck}}
+\index{AddInputCodeToManualCheck@{AddInputCodeToManualCheck}!phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}}
+\subsubsection[{AddInputCodeToManualCheck}]{\setlength{\rightskip}{0pt plus 5cm}void phys::internal::EventManagerInternalData::AddInputCodeToManualCheck (
+\begin{DoxyParamCaption}
+\item[{int}]{ OneCode, }
+\item[{int}]{ \_\-PollingCheck}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
+\label{d6/d3a/structphys_1_1internal_1_1EventManagerInternalData_a38365985c350611884fdd3eca7d5acd5}
+
+
+Adds one type of polling check where the data is only available as Ints. 
+
+\begin{DoxyInternal}{For internal use only.}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em OneCode}]The code that will be check for each frame, under the new condition \item[{\em \_\-PollingCheck}]This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on \end{DoxyParams}
+\end{DoxyInternal}
+
+
+Definition at line 135 of file eventmanager.cpp.
 
 \hypertarget{structphys_1_1internal_1_1EventManagerInternalData_ac2e4044e2fc6eb2df18a3e274c175065}{
 \index{phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}!AddMetaCodesToManualCheck@{AddMetaCodesToManualCheck}}
@@ -121,11 +169,11 @@ Used to insert Codes into the list of items to be manually checked.
 \begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Transport}]A vector of every Meta that may need to be added to the list \end{DoxyParams}
+\item[{\em Transport}]A vector of every Meta that may need to be added to the list \item[{\em \_\-PollingCheck}]This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on \end{DoxyParams}
 \end{DoxyInternal}
 
 
-Definition at line 131 of file eventmanager.cpp.
+Definition at line 147 of file eventmanager.cpp.
 
 \hypertarget{structphys_1_1internal_1_1EventManagerInternalData_aadc9e786da13f2c669fc7e054d8fbf37}{
 \index{phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}!RemoveInputCodeToManualCheck@{RemoveInputCodeToManualCheck}}
@@ -144,11 +192,11 @@ Removes one type of polling check.
 \begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em OneCode}]The code that will no longer be checked each frame, under the given condition \item[{\em \_\-PollingCheck}]This is the polling into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on \end{DoxyParams}
+\item[{\em OneCode}]The code that will no longer be checked each frame, under the given condition \item[{\em \_\-PollingCheck}]If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed. \end{DoxyParams}
 \end{DoxyInternal}
 
 
-Definition at line 144 of file eventmanager.cpp.
+Definition at line 160 of file eventmanager.cpp.
 
 \hypertarget{structphys_1_1internal_1_1EventManagerInternalData_a54babcae1822814f09beace684f97e72}{
 \index{phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}!RemoveMetaCodesToManualCheck@{RemoveMetaCodesToManualCheck}}
@@ -167,15 +215,45 @@ Remove Items form the internal manual check list.
 \begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Transport}]A vector of every \hyperlink{classphys_1_1MetaCode}{MetaCode} that may need to be removed to the list \end{DoxyParams}
+\item[{\em Transport}]A vector of every \hyperlink{classphys_1_1MetaCode}{MetaCode} that may need to be removed to the list \item[{\em \_\-PollingCheck}]If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed. \end{DoxyParams}
 \end{DoxyInternal}
 
 
-Definition at line 159 of file eventmanager.cpp.
+Definition at line 176 of file eventmanager.cpp.
 
 
 
 \subsection{Member Data Documentation}
+\hypertarget{structphys_1_1internal_1_1EventManagerInternalData_a2a3389f3831cae8ded6dd0a3b6395a68}{
+\index{phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}!EventQ@{EventQ}}
+\index{EventQ@{EventQ}!phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}}
+\subsubsection[{EventQ}]{\setlength{\rightskip}{0pt plus 5cm}std::list$<${\bf EventBase}$\ast$$>$ {\bf phys::internal::EventManagerInternalData::EventQ}}}
+\label{d6/d3a/structphys_1_1internal_1_1EventManagerInternalData_a2a3389f3831cae8ded6dd0a3b6395a68}
+
+
+The Queue that all the events get stored in. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 97 of file eventmanager.cpp.
+
+\hypertarget{structphys_1_1internal_1_1EventManagerInternalData_aafd32b9b23cb2121bd268e3c56a3f46e}{
+\index{phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}!Joy0@{Joy0}}
+\index{Joy0@{Joy0}!phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}}
+\subsubsection[{Joy0}]{\setlength{\rightskip}{0pt plus 5cm}SDL\_\-Joystick$\ast$ {\bf phys::internal::EventManagerInternalData::Joy0}}}
+\label{d6/d3a/structphys_1_1internal_1_1EventManagerInternalData_aafd32b9b23cb2121bd268e3c56a3f46e}
+
+
+This will identify the main Joystick. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 184 of file eventmanager.cpp.
+
 \hypertarget{structphys_1_1internal_1_1EventManagerInternalData_a717396b1782d7f491e0f085643507639}{
 \index{phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}!ManualCheck@{ManualCheck}}
 \index{ManualCheck@{ManualCheck}!phys::internal::EventManagerInternalData@{phys::internal::EventManagerInternalData}}
@@ -183,13 +261,13 @@ Definition at line 159 of file eventmanager.cpp.
 \label{d6/d3a/structphys_1_1internal_1_1EventManagerInternalData_a717396b1782d7f491e0f085643507639}
 
 
-A unified polling and event repeater the Inputcode is the kind of event to check for each frame. The PollingType is a bitfield used to control what can turn and of the pollingcheck check. 
+A unified polling and event repeater the Inputcode is the kind of event to check for each frame. The PollingType is used to control what can turn on and off the pollingcheck check. 
 
 \begin{DoxyInternal}{For internal use only.}
 \end{DoxyInternal}
 
 
-Definition at line 108 of file eventmanager.cpp.
+Definition at line 111 of file eventmanager.cpp.
 
 
 

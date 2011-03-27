@@ -55,7 +55,7 @@ virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyp
 \begin{DoxyCompactList}\small\item\em Which kind of container it this anyway. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a5519eb0000073a2f397e158bfc368349}{GetGameWorld} () const 
 \begin{DoxyCompactList}\small\item\em This gets the \hyperlink{classphys_1_1World}{World} that this class is working with. \item\end{DoxyCompactList}\item 
-virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}{FindActor} (Ogre::Node $\ast$GraphicsNode)
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a99ea0e27153c0a652264853fca7cd1b1}{FindActor} (Ogre::SceneNode $\ast$GraphicsNode)
 \begin{DoxyCompactList}\small\item\em This finds an actor by searching for a graphics subsystem nodes. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorContainerVector_a5ebcdeb3018f3baf92154ddec79cd054}{FindActor} (btCollisionObject $\ast$PhysicsObject)
 \begin{DoxyCompactList}\small\item\em This finds an actor by searching for a physics subsystem object. \item\end{DoxyCompactList}\item 
@@ -291,20 +291,20 @@ Implements \hyperlink{classphys_1_1ActorContainerBase_a91223cbaebb8e5f11a4f971d7
 
 Definition at line 157 of file actorcontainervector.cpp.
 
-\hypertarget{classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}{
+\hypertarget{classphys_1_1ActorContainerVector_a99ea0e27153c0a652264853fca7cd1b1}{
 \index{phys::ActorContainerVector@{phys::ActorContainerVector}!FindActor@{FindActor}}
 \index{FindActor@{FindActor}!phys::ActorContainerVector@{phys::ActorContainerVector}}
 \subsubsection[{FindActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorContainerVector::FindActor (
 \begin{DoxyParamCaption}
-\item[{Ogre::Node $\ast$}]{ GraphicsNode}
+\item[{Ogre::SceneNode $\ast$}]{ GraphicsNode}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
-\label{d3/d64/classphys_1_1ActorContainerVector_ad01cf1452bda36cee175ae0e54d509cc}
+\label{d3/d64/classphys_1_1ActorContainerVector_a99ea0e27153c0a652264853fca7cd1b1}
 
 
 This finds an actor by searching for a graphics subsystem nodes. 
 
-This will iterate through each Actor in the container until it finds one with a matching \hyperlink{classNode}{Node}. This runs in linear time. \begin{DoxyReturn}{Returns}
+This will iterate through each Actor in the container until it finds one with a matching Node. This runs in linear time. \begin{DoxyReturn}{Returns}
 This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that has a matching node. 
 \end{DoxyReturn}
 
@@ -312,7 +312,7 @@ This returns a pointer to and \hyperlink{classphys_1_1ActorBase}{ActorBase} that
 \item[{\em GraphicsNode}]This is a pointer to a GraphicsNode that the Actor you want to find will have. \end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1ActorContainerBase_a2e4652bf92f24a0ff20bdc4a7173b567}{phys::ActorContainerBase}.
+Implements \hyperlink{classphys_1_1ActorContainerBase_a1ade0001858f87ce1843cc6f6ec4e1c0}{phys::ActorContainerBase}.
 
 
 

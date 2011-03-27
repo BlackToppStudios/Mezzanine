@@ -74,16 +74,17 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds the actor to the physics world.  <a href="#a890ee6f67fda30381bce9c949ae36566"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d74/classphys_1_1ActorTerrain.html#aeded1fdabfc4dd407f81fcc5b97c1f77">RemoveObjectFromWorld</a> (<a class="el" href="../../da/ddf/classphys_1_1World.html">World</a> *TargetWorld)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes the actor from the physics world.  <a href="#aeded1fdabfc4dd407f81fcc5b97c1f77"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bed32f1b9afd1bd28c231b7505c267e"></a><!-- doxytag: member="phys::ActorTerrain::GetBulletObject" ref="a1bed32f1b9afd1bd28c231b7505c267e" args="()" -->
-virtual btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GetBulletObject</b> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d74/classphys_1_1ActorTerrain.html#a1bed32f1b9afd1bd28c231b7505c267e">GetBulletObject</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the Physics data raw from the physic subsystem.  <a href="#a1bed32f1b9afd1bd28c231b7505c267e"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ade758919c0f2b58ad1fe4bfd388d79af"></a><!-- doxytag: member="phys::ActorTerrain::CreateCollisionTerrain" ref="ade758919c0f2b58ad1fe4bfd388d79af" args="()" -->
-void&nbsp;</td><td class="memItemRight" valign="bottom"><b>CreateCollisionTerrain</b> ()</td></tr>
+void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d74/classphys_1_1ActorTerrain.html#ade758919c0f2b58ad1fe4bfd388d79af">CreateCollisionTerrain</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Uses value already passed into this to create the physics shapes. <br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a86b22aad61a7ffceb5c757ddcbca48c3"></a><!-- doxytag: member="phys::ActorTerrain::RigidBody" ref="a86b22aad61a7ffceb5c757ddcbca48c3" args="" -->
-btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d74/classphys_1_1ActorTerrain.html#a86b22aad61a7ffceb5c757ddcbca48c3">RigidBody</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The physics data.  <a href="#a86b22aad61a7ffceb5c757ddcbca48c3"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is actor class for terrain. </p>
@@ -132,7 +133,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 <p>The class constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Initposition</em>&nbsp;</td><td>The location for this terrain. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>InitPosition</em>&nbsp;</td><td>The location for this terrain. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>The name of the actor. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>file</em>&nbsp;</td><td>The 3d mesh file that contains the 3d model the actor will use. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>group</em>&nbsp;</td><td>The resource group where the 3d mesh and other related files can be found. </td></tr>
@@ -162,7 +163,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 <p>Class destructor. </p>
 <p>The class destructor. </p>
 
-<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00062">62</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
 
 </div>
 </div>
@@ -195,7 +196,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 
 <p>Implements <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a3d28e4c4a33f50210101695cb33ded3b">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00103">103</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00106">106</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
 
 </div>
 </div>
@@ -227,9 +228,9 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 <p>Compatability function. </p>
 <p>This function does nothing, as this class isn't dynamic. This is simply here to allow the engine to compile. </p>
 
-<p>Implements <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#ada78fff2625d1154025627c98dc844c8">phys::ActorBase</a>.</p>
+<p>Implements <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a85a06be4c1f069c45215dc9574e2fb23">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00094">94</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00097">97</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
 
 </div>
 </div>
@@ -264,7 +265,30 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00079">79</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00082">82</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1bed32f1b9afd1bd28c231b7505c267e"></a><!-- doxytag: member="phys::ActorTerrain::GetBulletObject" ref="a1bed32f1b9afd1bd28c231b7505c267e" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">btRigidBody * phys::ActorTerrain::GetBulletObject </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [virtual]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the Physics data raw from the physic subsystem. </p>
+<p><b>For internal use only.</b></p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Currently this returns a pointer to a btSoftBody. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00120">120</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
 
 </div>
 </div>
@@ -288,7 +312,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 
 <p>Implements <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#a8309f5bd133c936abe3a856b0240159f">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00098">98</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00101">101</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
 
 </div>
 </div>
@@ -320,7 +344,26 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 
 <p>Implements <a class="el" href="../../d8/d0f/classphys_1_1ActorBase.html#aaa787de7ec5d7d1d8428ea78f37bcb40">phys::ActorBase</a>.</p>
 
-<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00110">110</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/d27/actorterrain_8cpp_source.html#l00113">113</a> of file <a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a86b22aad61a7ffceb5c757ddcbca48c3"></a><!-- doxytag: member="phys::ActorTerrain::RigidBody" ref="a86b22aad61a7ffceb5c757ddcbca48c3" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">btRigidBody* <a class="el" href="../../de/d74/classphys_1_1ActorTerrain.html#a86b22aad61a7ffceb5c757ddcbca48c3">phys::ActorTerrain::RigidBody</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The physics data. </p>
+<p><b>For internal use only.</b></p>
+
+<p>Definition at line <a class="el" href="../../db/d2f/actorterrain_8h_source.html#l00062">62</a> of file <a class="el" href="../../db/d2f/actorterrain_8h_source.html">actorterrain.h</a>.</p>
 
 </div>
 </div>
@@ -329,7 +372,7 @@ btRigidBody *&nbsp;</td><td class="memItemRight" valign="bottom"><b>RigidBody</b
 <li><a class="el" href="../../db/d27/actorterrain_8cpp_source.html">actorterrain.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:52 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:43:00 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

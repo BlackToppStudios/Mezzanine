@@ -50,8 +50,8 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html#a721e1743b3f09e0112ff512d2888737c">UIScreen</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;name, Gorilla::Screen *GScreen)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal constructor.  <a href="#a721e1743b3f09e0112ff512d2888737c"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html#a1075b96ce6edcc071080f362df507530">UIScreen</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;name, Gorilla::Screen *GScreen, <a class="el" href="../../d5/d62/classphys_1_1Viewport.html">Viewport</a> *WindowViewport)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal constructor.  <a href="#a1075b96ce6edcc071080f362df507530"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5b8d4ebcffefeac1b39b6dac5a51b650"></a><!-- doxytag: member="phys::UIScreen::~UIScreen" ref="a5b8d4ebcffefeac1b39b6dac5a51b650" args="()" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html#a5b8d4ebcffefeac1b39b6dac5a51b650">~UIScreen</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor. <br/></td></tr>
@@ -79,6 +79,8 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the number of layers created and stored in this class.  <a href="#a87c4cf832f36af0182483814fec30f88"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html#ac1d9dfc0b8d9b3720f1447dcc93d8b55">DestroyLayer</a> (<a class="el" href="../../da/d48/classphys_1_1UILayer.html">UILayer</a> *Layer)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destroy's a previously created layer.  <a href="#ac1d9dfc0b8d9b3720f1447dcc93d8b55"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d0/d2c/classphys_1_1Vector2.html">Vector2</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html#a588a4da7416bbbc0d96bc872c22d76bd">GetViewportDimensions</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the current viewport dimensions.  <a href="#a588a4da7416bbbc0d96bc872c22d76bd"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d8/d88/classphys_1_1UI_1_1Button.html">UI::Button</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html#a7bc1a10b2172ad8885901de1a65a819d">CheckButtonMouseIsOver</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the button the mouse is over if any.  <a href="#a7bc1a10b2172ad8885901de1a65a819d"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html">UI::Widget</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html#a00befef8c7bce9e8d149e6ba03419a53">CheckWidgetMouseIsOver</a> ()</td></tr>
@@ -91,6 +93,8 @@ Protected Attributes</h2></td></tr>
 Gorilla::Screen *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GorillaScreen</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8cb86a27b0ac39426ae23e67e34ebd47"></a><!-- doxytag: member="phys::UIScreen::Manager" ref="a8cb86a27b0ac39426ae23e67e34ebd47" args="" -->
 <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html">UIManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a925f63ce04a6dee96df78f031928c0b7"></a><!-- doxytag: member="phys::UIScreen::GameViewport" ref="a925f63ce04a6dee96df78f031928c0b7" args="" -->
+<a class="el" href="../../d5/d62/classphys_1_1Viewport.html">Viewport</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GameViewport</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a513aebb318ba6e21fcc95090c4385614"></a><!-- doxytag: member="phys::UIScreen::Name" ref="a513aebb318ba6e21fcc95090c4385614" args="" -->
 <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><b>Name</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aab6876d055853ed554e1ab09d0e91ce0"></a><!-- doxytag: member="phys::UIScreen::Layers" ref="aab6876d055853ed554e1ab09d0e91ce0" args="" -->
@@ -100,9 +104,9 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>This class is a helper class for creating UI's. It is responsible for storing and keeping track of all the elements of a single UI screen. </p>
 <p>UI's can optionally be divided up into Screens, or "pages". Each screen is batched together for rendering, so keeping the amount of screens to a minimum will improve performance. </p>
 
-<p>Definition at line <a class="el" href="../../dd/d18/uiscreen_8h_source.html#l00071">71</a> of file <a class="el" href="../../dd/d18/uiscreen_8h_source.html">uiscreen.h</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/d18/uiscreen_8h_source.html#l00072">72</a> of file <a class="el" href="../../dd/d18/uiscreen_8h_source.html">uiscreen.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a721e1743b3f09e0112ff512d2888737c"></a><!-- doxytag: member="phys::UIScreen::UIScreen" ref="a721e1743b3f09e0112ff512d2888737c" args="(const String &amp;name, Gorilla::Screen *GScreen)" -->
+<a class="anchor" id="a1075b96ce6edcc071080f362df507530"></a><!-- doxytag: member="phys::UIScreen::UIScreen" ref="a1075b96ce6edcc071080f362df507530" args="(const String &amp;name, Gorilla::Screen *GScreen, Viewport *WindowViewport)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -116,7 +120,13 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">Gorilla::Screen *&nbsp;</td>
-          <td class="paramname"> <em>GScreen</em></td><td>&nbsp;</td>
+          <td class="paramname"> <em>GScreen</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d62/classphys_1_1Viewport.html">Viewport</a> *&nbsp;</td>
+          <td class="paramname"> <em>WindowViewport</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -130,13 +140,14 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>Internal constructor. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>The name of this screen. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>GScreen</em>&nbsp;</td><td>The Gorilla Screen this Screen is based on. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>manager</em>&nbsp;</td><td>Pointer to the manager that created this Screen. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>WindowViewport</em>&nbsp;</td><td>The <a class="el" href="../../d5/d62/classphys_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a> to which this screen belongs. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00052">52</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00053">53</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -160,7 +171,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>This function searches only the visable layers contained in this screen. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the button the mouse is over, or NULL if there are none. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00157">157</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00165">165</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -183,7 +194,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>This function searches only the visable layers contained in this screen. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the widget the mouse is over, or NULL if there are none. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00173">173</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00181">181</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -222,10 +233,10 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
   </dd>
 </dl>
 
-<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000028">Todo:</a></b></dt><dd>add an exception here or maybe log entry, some notification it failed. </dd></dl>
+<p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000025">Todo:</a></b></dt><dd>add an exception here or maybe log entry, some notification it failed. </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00089">89</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00091">91</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -253,7 +264,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00142">142</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -276,7 +287,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p><b>For internal use only.</b></p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the Gorilla screen this screen is based on. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00189">189</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00197">197</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -299,7 +310,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>Gets an already created layer by it's index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the layer at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00116">116</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -322,7 +333,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>Gets an already created layer by name. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the layer of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00103">103</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00105">105</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -345,7 +356,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>Gets an already created layer by it's Zorder. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the layer with the specified Zorder. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00129">129</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -367,7 +378,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>Gets the name of this screen. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of this screen. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00066">66</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -389,7 +400,29 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>Gets the number of layers created and stored in this class. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of layers this class is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00137">137</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00139">139</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a588a4da7416bbbc0d96bc872c22d76bd"></a><!-- doxytag: member="phys::UIScreen::GetViewportDimensions" ref="a588a4da7416bbbc0d96bc872c22d76bd" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d0/d2c/classphys_1_1Vector2.html">Vector2</a> phys::UIScreen::GetViewportDimensions </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the current viewport dimensions. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a <a class="el" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> representing the current viewport dimensions. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00159">159</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -411,7 +444,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <p>Gets the screens visability. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool representing the visability of the screen. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -439,7 +472,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html#l00071">71</a> of file <a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a>.</p>
 
 </div>
 </div>
@@ -448,7 +481,7 @@ std::map&lt; <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd3
 <li><a class="el" href="../../d4/d34/uiscreen_8cpp_source.html">uiscreen.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:59 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:43:05 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

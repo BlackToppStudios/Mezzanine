@@ -51,7 +51,7 @@
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ab9ab8380b84448aacf46a63050e159af">PollingType</a> { <b>Polling</b> = 1, 
-<b>Keypress</b> = 2
+<b>Keypress</b>
  }</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>The kinds of data that can be stored in Manual Check. </p>
  <a href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ab9ab8380b84448aacf46a63050e159af">More...</a><br/></td></tr>
@@ -60,21 +60,27 @@ Public Types</h2></td></tr>
 <a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ab9ab8380b84448aacf46a63050e159af">PollingType</a> &gt;::iterator&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ad2b9c7924f32e299846f1d945cb82dc0">ManualCheckIterator</a></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#a2cf843f8829114491b13b3253a27b627">AddInputCodeToManualCheck</a> (const <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;OneCode, <a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ab9ab8380b84448aacf46a63050e159af">PollingType</a> _PollingCheck)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds one type of polling check.  <a href="#a2cf843f8829114491b13b3253a27b627"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#abf8c7b472e4b19a0c0243dcaf49a38ae">AddInputCodeToManualCheck</a> (<a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> OneCode, <a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ab9ab8380b84448aacf46a63050e159af">PollingType</a> _PollingCheck)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds one type of polling check.  <a href="#abf8c7b472e4b19a0c0243dcaf49a38ae"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#a38365985c350611884fdd3eca7d5acd5">AddInputCodeToManualCheck</a> (int OneCode, int _PollingCheck)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Adds one type of polling check where the data is only available as Ints.  <a href="#a38365985c350611884fdd3eca7d5acd5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ac2e4044e2fc6eb2df18a3e274c175065">AddMetaCodesToManualCheck</a> (vector&lt; <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html">MetaCode</a> &gt; Transport, <a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ab9ab8380b84448aacf46a63050e159af">PollingType</a> _PollingCheck)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Used to insert Codes into the list of items to be manually checked.  <a href="#ac2e4044e2fc6eb2df18a3e274c175065"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#aadc9e786da13f2c669fc7e054d8fbf37">RemoveInputCodeToManualCheck</a> (const <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;OneCode, <a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ab9ab8380b84448aacf46a63050e159af">PollingType</a> _PollingCheck)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Removes one type of polling check.  <a href="#aadc9e786da13f2c669fc7e054d8fbf37"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#a54babcae1822814f09beace684f97e72">RemoveMetaCodesToManualCheck</a> (vector&lt; <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html">MetaCode</a> &gt; Transport, <a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ab9ab8380b84448aacf46a63050e159af">PollingType</a> _PollingCheck)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Remove Items form the internal manual check list.  <a href="#a54babcae1822814f09beace684f97e72"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#a2bc6e8af4992cc8b4935f4e5b32b32a0">EventManagerInternalData</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Constructor, it only inits pointers to 0.  <a href="#a2bc6e8af4992cc8b4935f4e5b32b32a0"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a3389f3831cae8ded6dd0a3b6395a68"></a><!-- doxytag: member="phys::internal::EventManagerInternalData::EventQ" ref="a2a3389f3831cae8ded6dd0a3b6395a68" args="" -->
-std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">EventBase</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><b>EventQ</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">EventBase</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#a2a3389f3831cae8ded6dd0a3b6395a68">EventQ</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The Queue that all the events get stored in.  <a href="#a2a3389f3831cae8ded6dd0a3b6395a68"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a>, <br class="typebreak"/>
 <a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#ab9ab8380b84448aacf46a63050e159af">PollingType</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#a717396b1782d7f491e0f085643507639">ManualCheck</a></td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A unified polling and event repeater the Inputcode is the kind of event to check for each frame. The PollingType is a bitfield used to control what can turn and of the pollingcheck check.  <a href="#a717396b1782d7f491e0f085643507639"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A unified polling and event repeater the Inputcode is the kind of event to check for each frame. The PollingType is used to control what can turn on and off the pollingcheck check.  <a href="#a717396b1782d7f491e0f085643507639"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">SDL_Joystick *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#aafd32b9b23cb2121bd268e3c56a3f46e">Joy0</a></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will identify the main Joystick.  <a href="#aafd32b9b23cb2121bd268e3c56a3f46e"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>Used to increase encapsulation, just a bit. </p>
@@ -94,7 +100,7 @@ std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">Even
 <div class="memdoc">
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00111">111</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00114">114</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -113,19 +119,42 @@ std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">Even
 <p>The kinds of data that can be stored in Manual Check. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00100">100</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00101">101</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<hr/><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a2bc6e8af4992cc8b4935f4e5b32b32a0"></a><!-- doxytag: member="phys::internal::EventManagerInternalData::EventManagerInternalData" ref="a2bc6e8af4992cc8b4935f4e5b32b32a0" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">phys::internal::EventManagerInternalData::EventManagerInternalData </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Constructor, it only inits pointers to 0. </p>
+<p><b>For internal use only.</b></p>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00188">188</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a2cf843f8829114491b13b3253a27b627"></a><!-- doxytag: member="phys::internal::EventManagerInternalData::AddInputCodeToManualCheck" ref="a2cf843f8829114491b13b3253a27b627" args="(const MetaCode::InputCode &amp;OneCode, PollingType _PollingCheck)" -->
+<a class="anchor" id="abf8c7b472e4b19a0c0243dcaf49a38ae"></a><!-- doxytag: member="phys::internal::EventManagerInternalData::AddInputCodeToManualCheck" ref="abf8c7b472e4b19a0c0243dcaf49a38ae" args="(MetaCode::InputCode OneCode, PollingType _PollingCheck)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void phys::internal::EventManagerInternalData::AddInputCodeToManualCheck </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a> &amp;&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../da/dc9/classphys_1_1MetaCode.html#a3e501cbb5bf0f6f1fdb7211465bda8d8">MetaCode::InputCode</a>&nbsp;</td>
           <td class="paramname"> <em>OneCode</em>, </td>
         </tr>
         <tr>
@@ -153,7 +182,46 @@ std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">Even
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00117">117</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00120">120</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a38365985c350611884fdd3eca7d5acd5"></a><!-- doxytag: member="phys::internal::EventManagerInternalData::AddInputCodeToManualCheck" ref="a38365985c350611884fdd3eca7d5acd5" args="(int OneCode, int _PollingCheck)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void phys::internal::EventManagerInternalData::AddInputCodeToManualCheck </td>
+          <td>(</td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>OneCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&nbsp;</td>
+          <td class="paramname"> <em>_PollingCheck</em></td><td>&nbsp;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td><td><code> [inline]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Adds one type of polling check where the data is only available as Ints. </p>
+<p><b>For internal use only.</b></p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table border="0" cellspacing="2" cellpadding="0">
+    <tr><td valign="top"></td><td valign="top"><em>OneCode</em>&nbsp;</td><td>The code that will be check for each frame, under the new condition </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_PollingCheck</em>&nbsp;</td><td>This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00135">135</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -187,11 +255,12 @@ std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">Even
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Transport</em>&nbsp;</td><td>A vector of every Meta that may need to be added to the list </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_PollingCheck</em>&nbsp;</td><td>This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00147">147</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -225,12 +294,12 @@ std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">Even
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>OneCode</em>&nbsp;</td><td>The code that will no longer be checked each frame, under the given condition </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>_PollingCheck</em>&nbsp;</td><td>This is the polling into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_PollingCheck</em>&nbsp;</td><td>If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00160">160</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -264,15 +333,52 @@ std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">Even
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Transport</em>&nbsp;</td><td>A vector of every <a class="el" href="../../da/dc9/classphys_1_1MetaCode.html" title="This Determines the kind of user input.">MetaCode</a> that may need to be removed to the list </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>_PollingCheck</em>&nbsp;</td><td>If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00159">159</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00176">176</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
 <hr/><h2>Member Data Documentation</h2>
+<a class="anchor" id="a2a3389f3831cae8ded6dd0a3b6395a68"></a><!-- doxytag: member="phys::internal::EventManagerInternalData::EventQ" ref="a2a3389f3831cae8ded6dd0a3b6395a68" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::list&lt;<a class="el" href="../../dd/d80/classphys_1_1EventBase.html">EventBase</a>*&gt; <a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#a2a3389f3831cae8ded6dd0a3b6395a68">phys::internal::EventManagerInternalData::EventQ</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The Queue that all the events get stored in. </p>
+<p><b>For internal use only.</b></p>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00097">97</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="aafd32b9b23cb2121bd268e3c56a3f46e"></a><!-- doxytag: member="phys::internal::EventManagerInternalData::Joy0" ref="aafd32b9b23cb2121bd268e3c56a3f46e" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SDL_Joystick* <a class="el" href="../../d6/d3a/structphys_1_1internal_1_1EventManagerInternalData.html#aafd32b9b23cb2121bd268e3c56a3f46e">phys::internal::EventManagerInternalData::Joy0</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>This will identify the main Joystick. </p>
+<p><b>For internal use only.</b></p>
+
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00184">184</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a717396b1782d7f491e0f085643507639"></a><!-- doxytag: member="phys::internal::EventManagerInternalData::ManualCheck" ref="a717396b1782d7f491e0f085643507639" args="" -->
 <div class="memitem">
 <div class="memproto">
@@ -284,10 +390,10 @@ std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">Even
 </div>
 <div class="memdoc">
 
-<p>A unified polling and event repeater the Inputcode is the kind of event to check for each frame. The PollingType is a bitfield used to control what can turn and of the pollingcheck check. </p>
+<p>A unified polling and event repeater the Inputcode is the kind of event to check for each frame. The PollingType is used to control what can turn on and off the pollingcheck check. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00108">108</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html#l00111">111</a> of file <a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a>.</p>
 
 </div>
 </div>
@@ -295,7 +401,7 @@ std::list&lt; <a class="el" href="../../dd/d80/classphys_1_1EventBase.html">Even
 <li><a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:59 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:43:05 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

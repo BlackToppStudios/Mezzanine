@@ -20,11 +20,11 @@ Inheritance diagram for phys::GravityWell:\begin{figure}[H]
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum {\bfseries AttenuationStyle} \{ {\bfseries GW\_\-Att\_\-None}, 
-{\bfseries GW\_\-Att\_\-Linear}, 
-{\bfseries GW\_\-Att\_\-Quadratic}
+enum \hyperlink{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1f}{AttenuationStyle} \{ \hyperlink{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1fa1429a2da7d5eccb56f773b12f67d2dc3}{GW\_\-Att\_\-None}, 
+\hyperlink{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1fa266647471ad2a0f86c272b8ff7ddd342}{GW\_\-Att\_\-Linear}, 
+\hyperlink{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1fac181ac3728c9280d52ccb355a5b9247f}{GW\_\-Att\_\-Quadratic}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em These values represent the kind of attenuation applied to the field strength over a distance. None is the default, where the force is constant in all area's of the field. Linear is where the force applied drops by the attenuation value times the distance (strength -\/ (attenuation amount $\ast$ distance to AE center)). Quadratic is where the force applied drops by the attenuation value times the distance squared (strength -\/ (attenuation amount $\ast$ distance to AE center $\ast$ distance to AE center)). \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -42,9 +42,9 @@ virtual void \hyperlink{classphys_1_1GravityWell_a1dc68391835134835a9969ed823a0b
 \begin{DoxyCompactList}\small\item\em Sets whether or not world gravity should be removed for objects in this field. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1GravityWell_a6308d71921477e9031173e6900237f21}{GetAllowWorldGravity} ()
 \begin{DoxyCompactList}\small\item\em Gets whether or not world gravity is is removed for objects inside this field. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1GravityWell_a736d4b9b541b3cada4b0a31f422d6020}{SetAttenuation} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Amount, AttenuationStyle Style)
+virtual void \hyperlink{classphys_1_1GravityWell_a736d4b9b541b3cada4b0a31f422d6020}{SetAttenuation} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Amount, \hyperlink{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1f}{AttenuationStyle} Style)
 \begin{DoxyCompactList}\small\item\em Sets the attenuation for this field. \item\end{DoxyCompactList}\item 
-virtual AttenuationStyle \hyperlink{classphys_1_1GravityWell_af6720913923c6376c893bc34bca7e8a4}{GetAttenuationStyle} ()
+virtual \hyperlink{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1f}{AttenuationStyle} \hyperlink{classphys_1_1GravityWell_af6720913923c6376c893bc34bca7e8a4}{GetAttenuationStyle} ()
 \begin{DoxyCompactList}\small\item\em Gets the Style of attenuation applied. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GravityWell_abcf5f7983c33307a54b362988b2d562a}{GetAttenuationAmount} ()
 \begin{DoxyCompactList}\small\item\em Gets the amount force is attenuated over distance. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -52,32 +52,66 @@ virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyper
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1GravityWell_acc6e405d39cdc6017040902190e16652}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries Strength}}
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GravityWell_acc6e405d39cdc6017040902190e16652}{Strength}}
 \label{d6/d21/classphys_1_1GravityWell_acc6e405d39cdc6017040902190e16652}
 
-\item 
+\begin{DoxyCompactList}\small\item\em The amount of force exerted on other objects. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1GravityWell_a8b7106e7670a7bc074c245269d211ba0}{
-bool {\bfseries AllowWorldGrav}}
+bool \hyperlink{classphys_1_1GravityWell_a8b7106e7670a7bc074c245269d211ba0}{AllowWorldGrav}}
 \label{d6/d21/classphys_1_1GravityWell_a8b7106e7670a7bc074c245269d211ba0}
 
-\item 
+\begin{DoxyCompactList}\small\item\em Should world gravity ne ignored. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1GravityWell_a13fda8d3a831a6eba5fd2e03ef2dbcfc}{
-AttenuationStyle {\bfseries AttenStyle}}
+\hyperlink{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1f}{AttenuationStyle} \hyperlink{classphys_1_1GravityWell_a13fda8d3a831a6eba5fd2e03ef2dbcfc}{AttenStyle}}
 \label{d6/d21/classphys_1_1GravityWell_a13fda8d3a831a6eba5fd2e03ef2dbcfc}
 
-\item 
+\begin{DoxyCompactList}\small\item\em How does gravity. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1GravityWell_ad9fd8f2f2dea6a53241ef90852e84503}{
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries AttenAmount}}
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GravityWell_ad9fd8f2f2dea6a53241ef90852e84503}{AttenAmount}}
 \label{d6/d21/classphys_1_1GravityWell_ad9fd8f2f2dea6a53241ef90852e84503}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em how much does the Gravity attenuate. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 This is a gravity well implementation of the \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class. This class is not a gravity field, where gravity only pulls in one direction. Instead this class will always pull objects inside it towards the field center. \par
  This class works best with sphere's, but can be made to work with any shape. 
 
-Definition at line 290 of file areaeffect.h.
+Definition at line 291 of file areaeffect.h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1f}{
+\index{phys::GravityWell@{phys::GravityWell}!AttenuationStyle@{AttenuationStyle}}
+\index{AttenuationStyle@{AttenuationStyle}!phys::GravityWell@{phys::GravityWell}}
+\subsubsection[{AttenuationStyle}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::GravityWell::AttenuationStyle}}}
+\label{d6/d21/classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1f}
+
+
+These values represent the kind of attenuation applied to the field strength over a distance. None is the default, where the force is constant in all area's of the field. Linear is where the force applied drops by the attenuation value times the distance (strength -\/ (attenuation amount $\ast$ distance to AE center)). Quadratic is where the force applied drops by the attenuation value times the distance squared (strength -\/ (attenuation amount $\ast$ distance to AE center $\ast$ distance to AE center)). 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{GW\_\-Att\_\-None@{GW\_\-Att\_\-None}!phys::GravityWell@{phys::GravityWell}}\index{phys::GravityWell@{phys::GravityWell}!GW\_\-Att\_\-None@{GW\_\-Att\_\-None}}\item[{\em 
+\hypertarget{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1fa1429a2da7d5eccb56f773b12f67d2dc3}{
+GW\_\-Att\_\-None}
+\label{d6/d21/classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1fa1429a2da7d5eccb56f773b12f67d2dc3}
+}]No Attentuation, Equal strength through. \index{GW\_\-Att\_\-Linear@{GW\_\-Att\_\-Linear}!phys::GravityWell@{phys::GravityWell}}\index{phys::GravityWell@{phys::GravityWell}!GW\_\-Att\_\-Linear@{GW\_\-Att\_\-Linear}}\item[{\em 
+\hypertarget{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1fa266647471ad2a0f86c272b8ff7ddd342}{
+GW\_\-Att\_\-Linear}
+\label{d6/d21/classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1fa266647471ad2a0f86c272b8ff7ddd342}
+}]Linear attentuation, Strength weaker farther from center. \index{GW\_\-Att\_\-Quadratic@{GW\_\-Att\_\-Quadratic}!phys::GravityWell@{phys::GravityWell}}\index{phys::GravityWell@{phys::GravityWell}!GW\_\-Att\_\-Quadratic@{GW\_\-Att\_\-Quadratic}}\item[{\em 
+\hypertarget{classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1fac181ac3728c9280d52ccb355a5b9247f}{
+GW\_\-Att\_\-Quadratic}
+\label{d6/d21/classphys_1_1GravityWell_a72d0da5f140b91bc364f2c46e7536e1fac181ac3728c9280d52ccb355a5b9247f}
+}]Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get. \end{description}
+\end{Desc}
+
+
+
+Definition at line 300 of file areaeffect.h.
 
 
 
@@ -101,7 +135,7 @@ Basic initialization constructor.
 \item[{\em name}]The name of the field. \item[{\em Location}]The location of the AE field. \end{DoxyParams}
 
 
-Definition at line 558 of file areaeffect.cpp.
+Definition at line 560 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_aeeeb63ceb3feb1223f8339f73412777d}{
 \index{phys::GravityWell@{phys::GravityWell}!$\sim$GravityWell@{$\sim$GravityWell}}
@@ -118,7 +152,7 @@ Destructor.
 
 Class destructor. 
 
-Definition at line 567 of file areaeffect.cpp.
+Definition at line 569 of file areaeffect.cpp.
 
 
 
@@ -142,7 +176,7 @@ Implements \hyperlink{classphys_1_1AreaEffect_a3b285ecfcf9c9200662d510e48dd222a}
 
 
 
-Definition at line 571 of file areaeffect.cpp.
+Definition at line 573 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_a6308d71921477e9031173e6900237f21}{
 \index{phys::GravityWell@{phys::GravityWell}!GetAllowWorldGravity@{GetAllowWorldGravity}}
@@ -162,7 +196,7 @@ Returns a bool indicating whether objects inside are affected by world gravity.
 \end{DoxyReturn}
 
 
-Definition at line 652 of file areaeffect.cpp.
+Definition at line 654 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_abcf5f7983c33307a54b362988b2d562a}{
 \index{phys::GravityWell@{phys::GravityWell}!GetAttenuationAmount@{GetAttenuationAmount}}
@@ -182,12 +216,12 @@ Returns a Real value
 \end{DoxyReturn}
 
 
-Definition at line 668 of file areaeffect.cpp.
+Definition at line 670 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_af6720913923c6376c893bc34bca7e8a4}{
 \index{phys::GravityWell@{phys::GravityWell}!GetAttenuationStyle@{GetAttenuationStyle}}
 \index{GetAttenuationStyle@{GetAttenuationStyle}!phys::GravityWell@{phys::GravityWell}}
-\subsubsection[{GetAttenuationStyle}]{\setlength{\rightskip}{0pt plus 5cm}GravityWell::AttenuationStyle phys::GravityWell::GetAttenuationStyle (
+\subsubsection[{GetAttenuationStyle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GravityWell::AttenuationStyle} phys::GravityWell::GetAttenuationStyle (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -202,7 +236,7 @@ Returns the style of attenuation currently being used by this field.
 \end{DoxyReturn}
 
 
-Definition at line 663 of file areaeffect.cpp.
+Definition at line 665 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_afb006e895ec0465cc7d8ee85aff25776}{
 \index{phys::GravityWell@{phys::GravityWell}!GetFieldStrength@{GetFieldStrength}}
@@ -222,7 +256,7 @@ Returns a Real representing the value that is being multiplied by the direction 
 \end{DoxyReturn}
 
 
-Definition at line 642 of file areaeffect.cpp.
+Definition at line 644 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_a1dc68391835134835a9969ed823a0b81}{
 \index{phys::GravityWell@{phys::GravityWell}!SetAllowWorldGravity@{SetAllowWorldGravity}}
@@ -245,7 +279,7 @@ Changing this value while the field is in the world and active is not recommende
 \item[{\em WorldGravity}]If true, then forces exerted by this field will be added to the world gravity, otherwise world gravity for objects inside will be set to zero. \end{DoxyParams}
 
 
-Definition at line 647 of file areaeffect.cpp.
+Definition at line 649 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_a736d4b9b541b3cada4b0a31f422d6020}{
 \index{phys::GravityWell@{phys::GravityWell}!SetAttenuation@{SetAttenuation}}
@@ -253,7 +287,7 @@ Definition at line 647 of file areaeffect.cpp.
 \subsubsection[{SetAttenuation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GravityWell::SetAttenuation (
 \begin{DoxyParamCaption}
 \item[{{\bf Real}}]{ Amount, }
-\item[{AttenuationStyle}]{ Style}
+\item[{{\bf AttenuationStyle}}]{ Style}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
 \label{d6/d21/classphys_1_1GravityWell_a736d4b9b541b3cada4b0a31f422d6020}
@@ -266,7 +300,7 @@ Sets the attenuation for this field.
 \item[{\em Amount}]The amount of force that is dropped off per 1 unit of distance objects are from the AE center. \item[{\em Style}]The style of attenuation to apply, see the AttenuationStyle enum for more details. \end{DoxyParams}
 
 
-Definition at line 657 of file areaeffect.cpp.
+Definition at line 659 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1GravityWell_ab4ead80191e25dc9cb017ffaab44602f}{
 \index{phys::GravityWell@{phys::GravityWell}!SetFieldStrength@{SetFieldStrength}}
@@ -286,7 +320,7 @@ The direction of the field is based on the current position of the object in the
 \item[{\em FieldStrength}]The strength the field will have when exerting force onto other objects. \end{DoxyParams}
 
 
-Definition at line 637 of file areaeffect.cpp.
+Definition at line 639 of file areaeffect.cpp.
 
 
 

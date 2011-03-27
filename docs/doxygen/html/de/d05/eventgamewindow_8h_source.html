@@ -127,7 +127,7 @@
 <a name="l00096"></a>00096 <span class="comment">            /// @param GWEventID What kind of change happened</span>
 <a name="l00097"></a>00097 <span class="comment">            /// @param First A parameter that is dependant on the kind of change to the game window</span>
 <a name="l00098"></a>00098 <span class="comment">            /// @param Second A parameter that is dependant on the kind of change to the game window</span>
-<a name="l00099"></a>00099 <span class="comment"></span>            <span class="keyword">explicit</span> <a class="code" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">EventGameWindow</a>(GameWindowEventID GWEventID, <span class="keywordtype">int</span> First=0, <span class="keywordtype">int</span> Second=0);
+<a name="l00099"></a>00099 <span class="comment"></span>            <span class="keyword">explicit</span> <a class="code" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">EventGameWindow</a>(GameWindowEventID GWEventID=GAME_WINDOW_NONE, <span class="keywordtype">int</span> First=0, <span class="keywordtype">int</span> Second=0);
 <a name="l00100"></a>00100 <span class="comment"></span>
 <a name="l00101"></a>00101 <span class="comment">            /// @brief Copy constructor</span>
 <a name="l00102"></a>00102 <span class="comment">            /// @param Other The Other EventGameWindow to use in the creation on this</span>
@@ -209,7 +209,7 @@
 <a name="l00178"></a>00178 <span class="comment">/// @brief Serializes the passed phys::EventGameWindow to XML</span>
 <a name="l00179"></a>00179 <span class="comment">/// @param stream The ostream to send the xml to.</span>
 <a name="l00180"></a>00180 <span class="comment">/// @param Ev the phys::EventGameWindow to be serialized</span>
-<a name="l00181"></a>00181 <span class="comment">/// @return this retruns the ostream, now with the serialized data</span>
+<a name="l00181"></a>00181 <span class="comment">/// @return this returns the ostream, now with the serialized data</span>
 <a name="l00182"></a>00182 <span class="comment"></span>std::ostream&amp; PHYS_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../d4/d0f/classphys_1_1EventGameWindow.html" title="This is intended to convey the message that quitting needs to happen.">phys::EventGameWindow</a>&amp; Ev);
 <a name="l00183"></a>00183 <span class="comment"></span>
 <a name="l00184"></a>00184 <span class="comment">/// @brief Deserialize a phys::EventGameWindow</span>
@@ -230,7 +230,7 @@
 <a name="l00199"></a>00199 <span class="preprocessor"></span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

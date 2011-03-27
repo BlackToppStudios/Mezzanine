@@ -87,49 +87,56 @@
 <a name="l00056"></a>00056 <span class="comment">    /// class as well as processing speed.</span>
 <a name="l00057"></a>00057 <span class="comment">    ///////////////////////////////////////</span>
 <a name="l00058"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html">00058</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html" title="This is actor class for terrain.">ActorTerrain</a> : <span class="keyword">public</span> <a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a> {
-<a name="l00059"></a>00059         <span class="keyword">protected</span>:
-<a name="l00060"></a>00060             btRigidBody* RigidBody;
-<a name="l00061"></a>00061             <span class="keywordtype">void</span> CreateCollisionTerrain();
-<a name="l00062"></a>00062         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00063"></a>00063 <span class="comment">            /// @brief Class constructor.</span>
-<a name="l00064"></a>00064 <span class="comment">            /// @details The class constructor.</span>
-<a name="l00065"></a>00065 <span class="comment">            /// @param Initposition The location for this terrain.</span>
-<a name="l00066"></a>00066 <span class="comment">            /// @param name The name of the actor.</span>
-<a name="l00067"></a>00067 <span class="comment">            /// @param file The 3d mesh file that contains the 3d model the actor will use.</span>
-<a name="l00068"></a>00068 <span class="comment">            /// @param group The resource group where the 3d mesh and other related files can be found.</span>
-<a name="l00069"></a>00069 <span class="comment"></span>            <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html" title="This is actor class for terrain.">ActorTerrain</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> InitPosition, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group);
-<a name="l00070"></a>00070 <span class="comment"></span>
-<a name="l00071"></a>00071 <span class="comment">            /// @brief Class destructor.</span>
-<a name="l00072"></a>00072 <span class="comment">            /// @details The class destructor.</span>
-<a name="l00073"></a>00073 <span class="comment"></span>            ~<a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html" title="This is actor class for terrain.">ActorTerrain</a>();
+<a name="l00059"></a>00059         <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l00060"></a>00060 <span class="comment">            /// @internal</span>
+<a name="l00061"></a>00061 <span class="comment">            /// @brief The physics data.</span>
+<a name="l00062"></a><a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html#a86b22aad61a7ffceb5c757ddcbca48c3">00062</a> <span class="comment"></span>            btRigidBody* RigidBody;
+<a name="l00063"></a>00063 <span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">            /// @brief Uses value already passed into this to create the physics shapes</span>
+<a name="l00065"></a>00065 <span class="comment"></span>            <span class="keywordtype">void</span> CreateCollisionTerrain();
+<a name="l00066"></a>00066         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00067"></a>00067 <span class="comment">            /// @brief Class constructor.</span>
+<a name="l00068"></a>00068 <span class="comment">            /// @details The class constructor.</span>
+<a name="l00069"></a>00069 <span class="comment">            /// @param InitPosition The location for this terrain.</span>
+<a name="l00070"></a>00070 <span class="comment">            /// @param name The name of the actor.</span>
+<a name="l00071"></a>00071 <span class="comment">            /// @param file The 3d mesh file that contains the 3d model the actor will use.</span>
+<a name="l00072"></a>00072 <span class="comment">            /// @param group The resource group where the 3d mesh and other related files can be found.</span>
+<a name="l00073"></a>00073 <span class="comment"></span>            <a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html" title="This is actor class for terrain.">ActorTerrain</a>(<a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> InitPosition, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> name, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> file, <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> group);
 <a name="l00074"></a>00074 <span class="comment"></span>
-<a name="l00075"></a>00075 <span class="comment">            /// @brief Creates a collision shape from mesh file.</span>
-<a name="l00076"></a>00076 <span class="comment">            /// @details This function will read the location of every verticy in the mesh file and use that to</span>
-<a name="l00077"></a>00077 <span class="comment">            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld</span>
-<a name="l00078"></a>00078 <span class="comment">            /// be used with only with Static objects.</span>
-<a name="l00079"></a>00079 <span class="comment">            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it&#39;ll only use the first submesh.</span>
-<a name="l00080"></a>00080 <span class="comment"></span>            <span class="keywordtype">void</span> CreateShapeFromMeshStatic(<span class="keywordtype">bool</span> UseAllSubmeshes = <span class="keyword">false</span>);
-<a name="l00081"></a>00081 <span class="comment"></span>
-<a name="l00082"></a>00082 <span class="comment">            /// @brief Compatability function.</span>
-<a name="l00083"></a>00083 <span class="comment">            /// @details This function does nothing, as this class isn&#39;t dynamic.  This is simply here to</span>
-<a name="l00084"></a>00084 <span class="comment">            /// allow the engine to compile.</span>
-<a name="l00085"></a>00085 <span class="comment"></span>            <span class="keywordtype">void</span> CreateShapeFromMeshDynamic(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Accuracy, <span class="keywordtype">bool</span> UseAllSubmeshes = <span class="keyword">false</span>);
-<a name="l00086"></a>00086 <span class="comment"></span>
-<a name="l00087"></a>00087 <span class="comment">            /// @brief Retrieves the name of the object.</span>
-<a name="l00088"></a>00088 <span class="comment">            /// @details This function will retrieve the name of the object,</span>
-<a name="l00089"></a>00089 <span class="comment"></span>            std::string GetName() <span class="keyword">const</span>;
-<a name="l00090"></a>00090 
-<a name="l00091"></a>00091             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddObjectToWorld (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld);
-<a name="l00092"></a>00092             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveObjectFromWorld(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld);
-<a name="l00093"></a>00093 
-<a name="l00094"></a>00094             <span class="keyword">virtual</span> btRigidBody* GetBulletObject();
-<a name="l00095"></a>00095     };
-<a name="l00096"></a>00096 }
-<a name="l00097"></a>00097 
-<a name="l00098"></a>00098 <span class="preprocessor">#endif</span>
+<a name="l00075"></a>00075 <span class="comment">            /// @brief Class destructor.</span>
+<a name="l00076"></a>00076 <span class="comment">            /// @details The class destructor.</span>
+<a name="l00077"></a>00077 <span class="comment"></span>            ~<a class="code" href="../../de/d74/classphys_1_1ActorTerrain.html" title="This is actor class for terrain.">ActorTerrain</a>();
+<a name="l00078"></a>00078 <span class="comment"></span>
+<a name="l00079"></a>00079 <span class="comment">            /// @brief Creates a collision shape from mesh file.</span>
+<a name="l00080"></a>00080 <span class="comment">            /// @details This function will read the location of every verticy in the mesh file and use that to</span>
+<a name="l00081"></a>00081 <span class="comment">            /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld</span>
+<a name="l00082"></a>00082 <span class="comment">            /// be used with only with Static objects.</span>
+<a name="l00083"></a>00083 <span class="comment">            /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it&#39;ll only use the first submesh.</span>
+<a name="l00084"></a>00084 <span class="comment"></span>            <span class="keywordtype">void</span> CreateShapeFromMeshStatic(<span class="keywordtype">bool</span> UseAllSubmeshes = <span class="keyword">false</span>);
+<a name="l00085"></a>00085 <span class="comment"></span>
+<a name="l00086"></a>00086 <span class="comment">            /// @brief Compatability function.</span>
+<a name="l00087"></a>00087 <span class="comment">            /// @details This function does nothing, as this class isn&#39;t dynamic.  This is simply here to</span>
+<a name="l00088"></a>00088 <span class="comment">            /// allow the engine to compile.</span>
+<a name="l00089"></a>00089 <span class="comment"></span>            <span class="keywordtype">void</span> CreateShapeFromMeshDynamic(<span class="keywordtype">short</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> Accuracy, <span class="keywordtype">bool</span> UseAllSubmeshes = <span class="keyword">false</span>);
+<a name="l00090"></a>00090 <span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">            /// @brief Retrieves the name of the object.</span>
+<a name="l00092"></a>00092 <span class="comment">            /// @details This function will retrieve the name of the object,</span>
+<a name="l00093"></a>00093 <span class="comment"></span>            std::string GetName() <span class="keyword">const</span>;
+<a name="l00094"></a>00094 
+<a name="l00095"></a>00095             <span class="keyword">virtual</span> <span class="keywordtype">void</span> AddObjectToWorld (<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> *TargetWorld);
+<a name="l00096"></a>00096             <span class="keyword">virtual</span> <span class="keywordtype">void</span> RemoveObjectFromWorld(<a class="code" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a>* TargetWorld);
+<a name="l00097"></a>00097 <span class="comment"></span>
+<a name="l00098"></a>00098 <span class="comment">            /// @internal</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @brief Get the Physics data raw from the physic subsystem</span>
+<a name="l00100"></a>00100 <span class="comment">            /// @return Currently this returns a pointer to a btSoftBody.</span>
+<a name="l00101"></a>00101 <span class="comment"></span>            <span class="keyword">virtual</span> btRigidBody* GetBulletObject();
+<a name="l00102"></a>00102     };
+<a name="l00103"></a>00103 }
+<a name="l00104"></a>00104 
+<a name="l00105"></a>00105 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

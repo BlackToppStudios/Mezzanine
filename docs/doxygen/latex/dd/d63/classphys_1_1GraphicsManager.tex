@@ -29,38 +29,26 @@ Inheritance diagram for phys::GraphicsManager:\begin{figure}[H]
 \label{dd/d63/classphys_1_1GraphicsManager_a3a2cb4b7e078faa168025c835062e78f}
 
 \begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1GraphicsManager_ad126eedb81e3f0304731ddd33b617593}{getFullscreen} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Fullscreen Setting. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GraphicsManager_aeea7f2f26a3f9a53754ad34219f75e99}{setFullscreen} (const bool \&Fullscreen)
-\begin{DoxyCompactList}\small\item\em Set the Fullscreen Setting. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GraphicsManager_a38ee0f8a8a7d8ba861b1c6cfe579443e}{getRenderHeight} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Height of the Rendering Area. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GraphicsManager_afc98369b4c2664990c6b5a0370e5e74e}{setRenderHeight} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height)
-\begin{DoxyCompactList}\small\item\em Sets the Height. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GraphicsManager_a9e1ce1f9f8bcff7712fd5beaf7cf2337}{getRenderWidth} () const 
-\begin{DoxyCompactList}\small\item\em Gets the Width of the Rendering Area. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GraphicsManager_a00215d086bc439c64906186f02a9bd76}{setRenderWidth} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width)
-\begin{DoxyCompactList}\small\item\em Sets the Width. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GraphicsManager_ad61858461f05ddb9cadec77eea41abde}{setRenderResolution} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height)
-\begin{DoxyCompactList}\small\item\em Changes the X and Y Resolution at the same time. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GraphicsManager_aeeca7f0fc3c3b31abc153031fa4ccbf2}{setRenderOptions} (const \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} \&NewSettings)
-\begin{DoxyCompactList}\small\item\em Changes the X Resolution, Y Resolution, and fullscreen at the same time. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classphys_1_1GraphicsManager_a31c4d90e4ee016b96b7f4e78e20d87a0}{CreateGameWindow} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&WindowCaption, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Flags)
+\begin{DoxyCompactList}\small\item\em Creates a new game window to be rendered to. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classphys_1_1GraphicsManager_a94952747ba141966fb138101b10864ee}{GetGameWindow} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets a game window by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1GraphicsManager_ae54cf5861681ef6b1849b35bfaa55bb6}{GetNumGameWindows} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of game windows within this manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GraphicsManager_a814eb66a4da0075dc8f46199a4716241}{DestroyGameWindow} (\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a created game window by index. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GraphicsManager_a2824743d519bcc98abe5c95d0180c73c}{DestroyAllGameWindows} (bool ExcludePrimary=true)
+\begin{DoxyCompactList}\small\item\em Destroys every game window created. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classphys_1_1GraphicsManager_a4a0ef06c307c1521f60d39bd7a020643}{GetPrimaryGameWindow} ()
+\begin{DoxyCompactList}\small\item\em Gets the primary(first) game window. \item\end{DoxyCompactList}\item 
+const \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} \& \hyperlink{classphys_1_1GraphicsManager_ab2b1a8f5e714454f26f936bd746b256a}{GetDesktopSettings} ()
+\begin{DoxyCompactList}\small\item\em Gets the desktop display settings. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1GraphicsManager_ad07600281c765e22bc413a1a9df1a22c}{HasSDLBeenInitialized} ()
 \begin{DoxyCompactList}\small\item\em Gets whether or not SDL has been started. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1GraphicsManager_ab7ab98ff594726f8cc6d3ca0fac0ecdf}{HasOgreBeenInitialized} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not Ogre has been started. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1GraphicsManager_adcded385b6442aa5da6097f1edd5471a}{ShowGraphicsSettingDialog} ()
 \begin{DoxyCompactList}\small\item\em This Shows an Engine Generated Configuration Screen. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GraphicsManager_ac1b8450e3cb7d83d0414322fcf403421}{GetLastFPS} ()
-\begin{DoxyCompactList}\small\item\em Gets the FPS based on the last frame rendered. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GraphicsManager_aaa43222ecf0a25841435651139539a94}{GetAverageFPS} ()
-\begin{DoxyCompactList}\small\item\em Gets the Average FPS. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GraphicsManager_a6b644d683013467e1df4e115c4347be2}{GetBestFPS} ()
-\begin{DoxyCompactList}\small\item\em Gets the Best FPS. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GraphicsManager_a52d675b375be04a02d6d91f27fb714a8}{GetWorstFPS} ()
-\begin{DoxyCompactList}\small\item\em Gets the Worst FPS. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GraphicsManager_ab24bb81be1005487b2aab49af89c759c}{GetBestFrameTime} ()
-\begin{DoxyCompactList}\small\item\em Gets the shortest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GraphicsManager_a96e6324466a121df5977446f019cee57}{GetWorstFrameTime} ()
-\begin{DoxyCompactList}\small\item\em Gets the longest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1GraphicsManager_a9138c2f79ff9b711494089802724615e}{GetRenderSystemName} ()
 \begin{DoxyCompactList}\small\item\em Gets the name of the render system in current use. \item\end{DoxyCompactList}\item 
 const std::vector$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} $>$ $\ast$ \hyperlink{classphys_1_1GraphicsManager_a4bfa1c07f2c2305ec892e603a71c6341}{GetSupportedResolutions} ()
@@ -76,17 +64,13 @@ virtual void \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3
 virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1GraphicsManager_ae2330172be150cd4d12aa2ed62b0474c}{PostMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em This is derived from and uses the \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1GraphicsManager_ae08ff0d9f16d7b9bc35d2399c1389e6a}{SetOgreWindowPointer} (Ogre::RenderWindow $\ast$OgreWindow)
-\begin{DoxyCompactList}\small\item\em This will set the stored pointer to the ogre render window. \item\end{DoxyCompactList}\item 
-Ogre::RenderWindow $\ast$ \hyperlink{classphys_1_1GraphicsManager_a56d2f5d2ad9fb277723facd7f54034ec}{GetOgreWindowPointer} ()
-\begin{DoxyCompactList}\small\item\em This will get a pointer to the RenderWindow class in use by the world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This is derived from and uses the \hyperlink{classphys_1_1ManagerBase}{ManagerBase} to perform the the post main loop callbacks. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 This is intended to store basic graphics setting for the user. This stores x/y resolution, fullscreen and in the future other settings. This is intended to make it easy for developers to pass/move around complex graphics settings. We hope to eventually include other items like shader settings, rendering API, and maybe other settings too. 
 
-Definition at line 96 of file graphicsmanager.h.
+Definition at line 69 of file graphicsmanager.h.
 
 
 
@@ -126,13 +110,76 @@ Versatile Constructor.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Width}]The desired width. \item[{\em Height}]The desired height. \item[{\em FullScreen}]True if fullscreen, false if not.\end{DoxyParams}
-This creates a Graphics Settings with resolution and fullscreen passed into to it. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
+This creates a Graphics Settings with resolution and fullscreen passed into to it that will be used when creating the primary window if one isn't already created when this manager in initialized. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
 
-Definition at line 61 of file graphicsmanager.cpp.
+Definition at line 63 of file graphicsmanager.cpp.
 
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classphys_1_1GraphicsManager_a31c4d90e4ee016b96b7f4e78e20d87a0}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!CreateGameWindow@{CreateGameWindow}}
+\index{CreateGameWindow@{CreateGameWindow}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{CreateGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GameWindow} $\ast$ phys::GraphicsManager::CreateGameWindow (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ WindowCaption, }
+\item[{const {\bf Whole} \&}]{ Width, }
+\item[{const {\bf Whole} \&}]{ Height, }
+\item[{const {\bf Whole} \&}]{ Flags}
+\end{DoxyParamCaption}
+)}}
+\label{dd/d63/classphys_1_1GraphicsManager_a31c4d90e4ee016b96b7f4e78e20d87a0}
+
+
+Creates a new game window to be rendered to. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em WindowCaption}]The caption to be set in the window titlebar. \item[{\em Width}]The desired width in pixels. \item[{\em Height}]The desired height in pixels. \item[{\em Flags}]Additional misc parameters, see \hyperlink{classphys_1_1GameWindow}{GameWindow} class for more info. \end{DoxyParams}
+
+
+Definition at line 147 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_a2824743d519bcc98abe5c95d0180c73c}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!DestroyAllGameWindows@{DestroyAllGameWindows}}
+\index{DestroyAllGameWindows@{DestroyAllGameWindows}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{DestroyAllGameWindows}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::DestroyAllGameWindows (
+\begin{DoxyParamCaption}
+\item[{bool}]{ ExcludePrimary = {\ttfamily true}}
+\end{DoxyParamCaption}
+)}}
+\label{dd/d63/classphys_1_1GraphicsManager_a2824743d519bcc98abe5c95d0180c73c}
+
+
+Destroys every game window created. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ExcludePrimary}]Whether or not you want to spare the primary window created. \end{DoxyParams}
+
+
+Definition at line 187 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_a814eb66a4da0075dc8f46199a4716241}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!DestroyGameWindow@{DestroyGameWindow}}
+\index{DestroyGameWindow@{DestroyGameWindow}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{DestroyGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::DestroyGameWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf GameWindow} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)}}
+\label{dd/d63/classphys_1_1GraphicsManager_a814eb66a4da0075dc8f46199a4716241}
+
+
+Destroys a created game window by index. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em WindowIndex}]The index of the window to be destroyed. \end{DoxyParams}
+
+
+Definition at line 174 of file graphicsmanager.cpp.
+
 \hypertarget{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!DoMainLoopItems@{DoMainLoopItems}}
 \index{DoMainLoopItems@{DoMainLoopItems}!phys::GraphicsManager@{phys::GraphicsManager}}
@@ -152,149 +199,87 @@ Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7
 
 
 
-Definition at line 424 of file graphicsmanager.cpp.
+Definition at line 292 of file graphicsmanager.cpp.
 
-\hypertarget{classphys_1_1GraphicsManager_aaa43222ecf0a25841435651139539a94}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!GetAverageFPS@{GetAverageFPS}}
-\index{GetAverageFPS@{GetAverageFPS}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{GetAverageFPS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::GraphicsManager::GetAverageFPS (
+\hypertarget{classphys_1_1GraphicsManager_ab2b1a8f5e714454f26f936bd746b256a}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!GetDesktopSettings@{GetDesktopSettings}}
+\index{GetDesktopSettings@{GetDesktopSettings}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{GetDesktopSettings}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf GraphicsSettings} \& phys::GraphicsManager::GetDesktopSettings (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}
-\label{dd/d63/classphys_1_1GraphicsManager_aaa43222ecf0a25841435651139539a94}
+\label{dd/d63/classphys_1_1GraphicsManager_ab2b1a8f5e714454f26f936bd746b256a}
 
 
-Gets the Average FPS. 
+Gets the desktop display settings. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Returns}]a \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} struct with the desktop display settings. \end{DoxyParams}
+
+
+Definition at line 205 of file graphicsmanager.cpp.
+
+\hypertarget{classphys_1_1GraphicsManager_a94952747ba141966fb138101b10864ee}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!GetGameWindow@{GetGameWindow}}
+\index{GetGameWindow@{GetGameWindow}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{GetGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GameWindow} $\ast$ phys::GraphicsManager::GetGameWindow (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{ Index}
+\end{DoxyParamCaption}
+)}}
+\label{dd/d63/classphys_1_1GraphicsManager_a94952747ba141966fb138101b10864ee}
+
+
+Gets a game window by index. 
 
 \begin{DoxyReturn}{Returns}
-Returns a Real representing the average framerate. 
+Returns a pointer to the game window requested. 
 \end{DoxyReturn}
 
 
-Definition at line 349 of file graphicsmanager.cpp.
+Definition at line 164 of file graphicsmanager.cpp.
 
-\hypertarget{classphys_1_1GraphicsManager_a6b644d683013467e1df4e115c4347be2}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!GetBestFPS@{GetBestFPS}}
-\index{GetBestFPS@{GetBestFPS}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{GetBestFPS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::GraphicsManager::GetBestFPS (
+\hypertarget{classphys_1_1GraphicsManager_ae54cf5861681ef6b1849b35bfaa55bb6}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!GetNumGameWindows@{GetNumGameWindows}}
+\index{GetNumGameWindows@{GetNumGameWindows}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{GetNumGameWindows}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::GraphicsManager::GetNumGameWindows (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}
-\label{dd/d63/classphys_1_1GraphicsManager_a6b644d683013467e1df4e115c4347be2}
+\label{dd/d63/classphys_1_1GraphicsManager_ae54cf5861681ef6b1849b35bfaa55bb6}
 
 
-Gets the Best FPS. 
+Gets the number of game windows within this manager. 
 
 \begin{DoxyReturn}{Returns}
-Returns a Real representing the best framerate. 
+Returns a Whole representing the number of game windows within this manager. 
 \end{DoxyReturn}
 
 
-Definition at line 354 of file graphicsmanager.cpp.
+Definition at line 169 of file graphicsmanager.cpp.
 
-\hypertarget{classphys_1_1GraphicsManager_ab24bb81be1005487b2aab49af89c759c}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!GetBestFrameTime@{GetBestFrameTime}}
-\index{GetBestFrameTime@{GetBestFrameTime}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{GetBestFrameTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::GraphicsManager::GetBestFrameTime (
+\hypertarget{classphys_1_1GraphicsManager_a4a0ef06c307c1521f60d39bd7a020643}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!GetPrimaryGameWindow@{GetPrimaryGameWindow}}
+\index{GetPrimaryGameWindow@{GetPrimaryGameWindow}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{GetPrimaryGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GameWindow} $\ast$ phys::GraphicsManager::GetPrimaryGameWindow (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}
-\label{dd/d63/classphys_1_1GraphicsManager_ab24bb81be1005487b2aab49af89c759c}
+\label{dd/d63/classphys_1_1GraphicsManager_a4a0ef06c307c1521f60d39bd7a020643}
 
 
-Gets the shortest amount of time it's taken to render a frame. 
+Gets the primary(first) game window. 
 
 \begin{DoxyReturn}{Returns}
-Returns a Real representing the best time for rendering a frame. 
+Returns a pointer to the primary game window. 
 \end{DoxyReturn}
 
 
-Definition at line 364 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_ad126eedb81e3f0304731ddd33b617593}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!getFullscreen@{getFullscreen}}
-\index{getFullscreen@{getFullscreen}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{getFullscreen}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::GraphicsManager::getFullscreen (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}}
-\label{dd/d63/classphys_1_1GraphicsManager_ad126eedb81e3f0304731ddd33b617593}
-
-
-Gets the Fullscreen Setting. 
-
-Gets the Fullscreen Setting \begin{DoxyReturn}{Returns}
-This returns a bool, true if fullscreen is set, false otherwise 
-\end{DoxyReturn}
-
-
-Definition at line 208 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_ac1b8450e3cb7d83d0414322fcf403421}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!GetLastFPS@{GetLastFPS}}
-\index{GetLastFPS@{GetLastFPS}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{GetLastFPS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::GraphicsManager::GetLastFPS (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d63/classphys_1_1GraphicsManager_ac1b8450e3cb7d83d0414322fcf403421}
-
-
-Gets the FPS based on the last frame rendered. 
-
-This essentially determines how many frames could be rendered if all frames within a second rendered at the same speed. \begin{DoxyReturn}{Returns}
-Returns a Real representing the framerate. 
-\end{DoxyReturn}
-
-
-Definition at line 344 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_a56d2f5d2ad9fb277723facd7f54034ec}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!GetOgreWindowPointer@{GetOgreWindowPointer}}
-\index{GetOgreWindowPointer@{GetOgreWindowPointer}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{GetOgreWindowPointer}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::RenderWindow $\ast$ phys::GraphicsManager::GetOgreWindowPointer (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d63/classphys_1_1GraphicsManager_a56d2f5d2ad9fb277723facd7f54034ec}
-
-
-This will get a pointer to the RenderWindow class in use by the world. 
-
-\begin{DoxyInternal}{For internal use only.}
-\begin{DoxyReturn}{Returns}
-Returns a pointer to the Ogre RenderWindow class in use. 
-\end{DoxyReturn}
-\end{DoxyInternal}
-
-
-Definition at line 459 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_a38ee0f8a8a7d8ba861b1c6cfe579443e}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!getRenderHeight@{getRenderHeight}}
-\index{getRenderHeight@{getRenderHeight}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{getRenderHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::GraphicsManager::getRenderHeight (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}}
-\label{dd/d63/classphys_1_1GraphicsManager_a38ee0f8a8a7d8ba861b1c6cfe579443e}
-
-
-Gets the Height of the Rendering Area. 
-
-Gets the Height of the Rendering Area \begin{DoxyReturn}{Returns}
-This returns the Height of the Rendering Area 
-\end{DoxyReturn}
-
-
-Definition at line 235 of file graphicsmanager.cpp.
+Definition at line 200 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a9138c2f79ff9b711494089802724615e}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetRenderSystemName@{GetRenderSystemName}}
@@ -314,27 +299,7 @@ Returns a string containing the name of the current render system.
 \end{DoxyReturn}
 
 
-Definition at line 374 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_a9e1ce1f9f8bcff7712fd5beaf7cf2337}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!getRenderWidth@{getRenderWidth}}
-\index{getRenderWidth@{getRenderWidth}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{getRenderWidth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::GraphicsManager::getRenderWidth (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}}
-\label{dd/d63/classphys_1_1GraphicsManager_a9e1ce1f9f8bcff7712fd5beaf7cf2337}
-
-
-Gets the Width of the Rendering Area. 
-
-Gets the Width of the Rendering Area \begin{DoxyReturn}{Returns}
-This returns the Width of the Rendering Area 
-\end{DoxyReturn}
-
-
-Definition at line 240 of file graphicsmanager.cpp.
+Definition at line 235 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a7d1cce1c63d5678266337323da1e8ff5}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetSupportedDevices@{GetSupportedDevices}}
@@ -354,7 +319,7 @@ Returns a Const Pointer to the vector storing all the supported devices.
 \end{DoxyReturn}
 
 
-Definition at line 387 of file graphicsmanager.cpp.
+Definition at line 248 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a4bfa1c07f2c2305ec892e603a71c6341}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetSupportedResolutions@{GetSupportedResolutions}}
@@ -374,7 +339,7 @@ Returns a Const Pointer to the vector storing all the supported resolutions.
 \end{DoxyReturn}
 
 
-Definition at line 382 of file graphicsmanager.cpp.
+Definition at line 243 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetType@{GetType}}
@@ -398,47 +363,27 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 445 of file graphicsmanager.cpp.
+Definition at line 313 of file graphicsmanager.cpp.
 
-\hypertarget{classphys_1_1GraphicsManager_a52d675b375be04a02d6d91f27fb714a8}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!GetWorstFPS@{GetWorstFPS}}
-\index{GetWorstFPS@{GetWorstFPS}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{GetWorstFPS}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::GraphicsManager::GetWorstFPS (
+\hypertarget{classphys_1_1GraphicsManager_ab7ab98ff594726f8cc6d3ca0fac0ecdf}{
+\index{phys::GraphicsManager@{phys::GraphicsManager}!HasOgreBeenInitialized@{HasOgreBeenInitialized}}
+\index{HasOgreBeenInitialized@{HasOgreBeenInitialized}!phys::GraphicsManager@{phys::GraphicsManager}}
+\subsubsection[{HasOgreBeenInitialized}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::GraphicsManager::HasOgreBeenInitialized (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}}
-\label{dd/d63/classphys_1_1GraphicsManager_a52d675b375be04a02d6d91f27fb714a8}
+\label{dd/d63/classphys_1_1GraphicsManager_ab7ab98ff594726f8cc6d3ca0fac0ecdf}
 
 
-Gets the Worst FPS. 
+Gets whether or not Ogre has been started. 
 
 \begin{DoxyReturn}{Returns}
-Returns a Real representing the worst framerate. 
+Returns a bool indicating whether or not Ogre has been initialized yet. 
 \end{DoxyReturn}
 
 
-Definition at line 359 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_a96e6324466a121df5977446f019cee57}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!GetWorstFrameTime@{GetWorstFrameTime}}
-\index{GetWorstFrameTime@{GetWorstFrameTime}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{GetWorstFrameTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::GraphicsManager::GetWorstFrameTime (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d63/classphys_1_1GraphicsManager_a96e6324466a121df5977446f019cee57}
-
-
-Gets the longest amount of time it's taken to render a frame. 
-
-\begin{DoxyReturn}{Returns}
-Returns a Real representing the worst time for rendering a frame. 
-\end{DoxyReturn}
-
-
-Definition at line 369 of file graphicsmanager.cpp.
+Definition at line 215 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ad07600281c765e22bc413a1a9df1a22c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!HasSDLBeenInitialized@{HasSDLBeenInitialized}}
@@ -458,7 +403,7 @@ Returns a bool indicating whether or not SDL has been initialized yet.
 \end{DoxyReturn}
 
 
-Definition at line 322 of file graphicsmanager.cpp.
+Definition at line 210 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!Initialize@{Initialize}}
@@ -479,7 +424,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed
 
 
 
-Definition at line 398 of file graphicsmanager.cpp.
+Definition at line 259 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ae2330172be150cd4d12aa2ed62b0474c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!PostMainLoopItems@{PostMainLoopItems}}
@@ -503,7 +448,7 @@ Reimplemented from \hyperlink{classphys_1_1ManagerBase_afc3572602f96bdeb8215c386
 
 
 
-Definition at line 448 of file graphicsmanager.cpp.
+Definition at line 316 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ac4b864de93827447bf8f47487da3bf32}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!ResetRenderTimer@{ResetRenderTimer}}
@@ -520,157 +465,7 @@ Resets the Render timer.
 
 This function should not be called unless you know exactly what you are doing. This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop. 
 
-Definition at line 392 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_aeea7f2f26a3f9a53754ad34219f75e99}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!setFullscreen@{setFullscreen}}
-\index{setFullscreen@{setFullscreen}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{setFullscreen}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setFullscreen (
-\begin{DoxyParamCaption}
-\item[{const bool \&}]{ Fullscreen}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d63/classphys_1_1GraphicsManager_aeea7f2f26a3f9a53754ad34219f75e99}
-
-
-Set the Fullscreen Setting. 
-
-Set the Fullscreen Setting 
-\begin{DoxyParams}{Parameters}
-\item[{\em Fullscreen}]This accepts a bool. True for fullscreen, false for windowed \end{DoxyParams}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000008}{Todo}]TODO: Need to attempt to switch to fullscreen here \end{Desc}
-\begin{Desc}
-\item[\hyperlink{todo__todo000009}{Todo}]TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games \end{Desc}
-
-
-
-
-Definition at line 214 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_ae08ff0d9f16d7b9bc35d2399c1389e6a}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!SetOgreWindowPointer@{SetOgreWindowPointer}}
-\index{SetOgreWindowPointer@{SetOgreWindowPointer}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{SetOgreWindowPointer}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::SetOgreWindowPointer (
-\begin{DoxyParamCaption}
-\item[{Ogre::RenderWindow $\ast$}]{ OgreWindow}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d63/classphys_1_1GraphicsManager_ae08ff0d9f16d7b9bc35d2399c1389e6a}
-
-
-This will set the stored pointer to the ogre render window. 
-
-\begin{DoxyInternal}{For internal use only.}
-This function is called on once when constructing the world, should not be called otherwise. 
-\begin{DoxyParams}{Parameters}
-\item[{\em OgreWindow}]A pointer to the created Ogre RenderWindow class. \end{DoxyParams}
-\end{DoxyInternal}
-
-
-Definition at line 454 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_afc98369b4c2664990c6b5a0370e5e74e}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderHeight@{setRenderHeight}}
-\index{setRenderHeight@{setRenderHeight}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{setRenderHeight}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setRenderHeight (
-\begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Height}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d63/classphys_1_1GraphicsManager_afc98369b4c2664990c6b5a0370e5e74e}
-
-
-Sets the Height. 
-
-Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen 
-\begin{DoxyParams}{Parameters}
-\item[{\em Height}]This accepts a Whole. \end{DoxyParams}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000010}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
-
-
-
-
-Definition at line 245 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_aeeca7f0fc3c3b31abc153031fa4ccbf2}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderOptions@{setRenderOptions}}
-\index{setRenderOptions@{setRenderOptions}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{setRenderOptions}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setRenderOptions (
-\begin{DoxyParamCaption}
-\item[{const {\bf GraphicsSettings} \&}]{ NewSettings}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d63/classphys_1_1GraphicsManager_aeeca7f0fc3c3b31abc153031fa4ccbf2}
-
-
-Changes the X Resolution, Y Resolution, and fullscreen at the same time. 
-
-This should be useful in situations where it is not possible to update all of the options separately. 
-
-Definition at line 311 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_ad61858461f05ddb9cadec77eea41abde}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderResolution@{setRenderResolution}}
-\index{setRenderResolution@{setRenderResolution}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{setRenderResolution}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setRenderResolution (
-\begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Width, }
-\item[{const {\bf Whole} \&}]{ Height}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d63/classphys_1_1GraphicsManager_ad61858461f05ddb9cadec77eea41abde}
-
-
-Changes the X and Y Resolution at the same time. 
-
-This should be useful in situations where it is not possible to update the width and height separately. 
-\begin{DoxyParams}{Parameters}
-\item[{\em Width}]The new desired Width for the rendering area as a whole number \item[{\em Height}]The new desired Width for the rendering area as a whole number \end{DoxyParams}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000012}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000013}{Todo}]Need to add a function that will sanitize a window size to account for decorations, and add it here. \end{Desc}
-
-
-
-
-Definition at line 269 of file graphicsmanager.cpp.
-
-\hypertarget{classphys_1_1GraphicsManager_a00215d086bc439c64906186f02a9bd76}{
-\index{phys::GraphicsManager@{phys::GraphicsManager}!setRenderWidth@{setRenderWidth}}
-\index{setRenderWidth@{setRenderWidth}!phys::GraphicsManager@{phys::GraphicsManager}}
-\subsubsection[{setRenderWidth}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::setRenderWidth (
-\begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Width}
-\end{DoxyParamCaption}
-)}}
-\label{dd/d63/classphys_1_1GraphicsManager_a00215d086bc439c64906186f02a9bd76}
-
-
-Sets the Width. 
-
-Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen 
-\begin{DoxyParams}{Parameters}
-\item[{\em Width}]This accepts a Whole. \end{DoxyParams}
-
-
-\begin{Desc}
-\item[\hyperlink{todo__todo000011}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
-
-
-
-
-Definition at line 257 of file graphicsmanager.cpp.
+Definition at line 253 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_adcded385b6442aa5da6097f1edd5471a}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!ShowGraphicsSettingDialog@{ShowGraphicsSettingDialog}}
@@ -687,7 +482,7 @@ This Shows an Engine Generated Configuration Screen.
 
 This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. 
 
-Definition at line 330 of file graphicsmanager.cpp.
+Definition at line 223 of file graphicsmanager.cpp.
 
 
 

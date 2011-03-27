@@ -31,23 +31,19 @@ virtual \hyperlink{classphys_1_1CameraManager_a0b0f032477309eb47b0302fd5eef198c}
 \hyperlink{classphys_1_1Camera}{Camera} $\ast$ \hyperlink{classphys_1_1CameraManager_a3681545c19a96ae62032204a6f4a602b}{CreateCamera} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
 \begin{DoxyCompactList}\small\item\em Creates a camera and returns a pointer. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Camera}{Camera} $\ast$ \hyperlink{classphys_1_1CameraManager_ad247bd3789c579cba5edb4c00848ac7c}{GetCamera} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Gets an already created camera by namr. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Gets an already created camera by name. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Camera}{Camera} $\ast$ \hyperlink{classphys_1_1CameraManager_a5147ab2269311bec15100953b7505d4b}{GetCamera} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
 \begin{DoxyCompactList}\small\item\em Gets an already created camera by index. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1CameraManager_a1a2111b4868bec403979b354395c4caf}{GetNumCameras} ()
 \begin{DoxyCompactList}\small\item\em Gets the number of cameras created and stored in this manager. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1CameraManager_a76bebee0820fcfa462412cb112b1b874}{ClearCameras} ()
 \begin{DoxyCompactList}\small\item\em Deletes all cameras except for the first camera. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1CameraManager_a99deb0e895ad703651b0ea6c933a0727}{CreateViewport} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1Camera}{Camera} $\ast$ViewportCam)
-\begin{DoxyCompactList}\small\item\em Creates an additional Viewport within the set render window. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{Initialize} ()
 \begin{DoxyCompactList}\small\item\em Empty Initializor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{DoMainLoopItems} ()
 \begin{DoxyCompactList}\small\item\em Empty MainLoopItems. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{GetType} () const 
-\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\item 
-Ogre::Viewport $\ast$ \hyperlink{classphys_1_1CameraManager_ac1b9928181ee006fea42152f3ea406cb}{GetOgreViewport} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
-\begin{DoxyCompactList}\small\item\em Gets the internal Ogre viewport. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -58,11 +54,6 @@ Ogre::Viewport $\ast$ \hyperlink{classphys_1_1CameraManager_ac1b9928181ee006fea4
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1CameraManager_ab2705f97633e7cd2ecb087d0711d7d6e}{
-std::map$<$ \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String}, Ogre::Viewport $\ast$ $>$ {\bfseries Viewports}}
-\label{d9/d91/classphys_1_1CameraManager_ab2705f97633e7cd2ecb087d0711d7d6e}
-
 \item 
 \hypertarget{classphys_1_1CameraManager_a8e89645398c7d334e99280cfa721d864}{
 \hyperlink{classphys_1_1SceneManager}{phys::SceneManager} $\ast$ {\bfseries SManager}}
@@ -203,27 +194,6 @@ Returns a pointer to the created camera.
 
 Definition at line 85 of file cameramanager.cpp.
 
-\hypertarget{classphys_1_1CameraManager_a99deb0e895ad703651b0ea6c933a0727}{
-\index{phys::CameraManager@{phys::CameraManager}!CreateViewport@{CreateViewport}}
-\index{CreateViewport@{CreateViewport}!phys::CameraManager@{phys::CameraManager}}
-\subsubsection[{CreateViewport}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraManager::CreateViewport (
-\begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{ Name, }
-\item[{{\bf Camera} $\ast$}]{ ViewportCam}
-\end{DoxyParamCaption}
-)}}
-\label{d9/d91/classphys_1_1CameraManager_a99deb0e895ad703651b0ea6c933a0727}
-
-
-Creates an additional Viewport within the set render window. 
-
-Like cameras, by default there is one veiwport already made when this class is made, called DefaultViewport. 
-\begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the new veiwport. \item[{\em VeiwportCam}]The camera that is to be attached to this Viewport. \end{DoxyParams}
-
-
-Definition at line 139 of file cameramanager.cpp.
-
 \hypertarget{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{
 \index{phys::CameraManager@{phys::CameraManager}!DoMainLoopItems@{DoMainLoopItems}}
 \index{DoMainLoopItems@{DoMainLoopItems}!phys::CameraManager@{phys::CameraManager}}
@@ -243,7 +213,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7
 
 
 
-Definition at line 148 of file cameramanager.cpp.
+Definition at line 143 of file cameramanager.cpp.
 
 \hypertarget{classphys_1_1CameraManager_ad247bd3789c579cba5edb4c00848ac7c}{
 \index{phys::CameraManager@{phys::CameraManager}!GetCamera@{GetCamera}}
@@ -256,7 +226,7 @@ Definition at line 148 of file cameramanager.cpp.
 \label{d9/d91/classphys_1_1CameraManager_ad247bd3789c579cba5edb4c00848ac7c}
 
 
-Gets an already created camera by namr. 
+Gets an already created camera by name. 
 
 \begin{DoxyReturn}{Returns}
 Returns a pointer to the camera of the specified name. 
@@ -325,26 +295,6 @@ Returns the number of cameras this manager is storing.
 
 Definition at line 122 of file cameramanager.cpp.
 
-\hypertarget{classphys_1_1CameraManager_ac1b9928181ee006fea42152f3ea406cb}{
-\index{phys::CameraManager@{phys::CameraManager}!GetOgreViewport@{GetOgreViewport}}
-\index{GetOgreViewport@{GetOgreViewport}!phys::CameraManager@{phys::CameraManager}}
-\subsubsection[{GetOgreViewport}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Viewport $\ast$ phys::CameraManager::GetOgreViewport (
-\begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{ Name}
-\end{DoxyParamCaption}
-)}}
-\label{d9/d91/classphys_1_1CameraManager_ac1b9928181ee006fea42152f3ea406cb}
-
-
-Gets the internal Ogre viewport. 
-
-\begin{DoxyReturn}{Returns}
-Returns the Ogre viewport of the specified name. 
-\end{DoxyReturn}
-
-
-Definition at line 154 of file cameramanager.cpp.
-
 \hypertarget{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{
 \index{phys::CameraManager@{phys::CameraManager}!GetType@{GetType}}
 \index{GetType@{GetType}!phys::CameraManager@{phys::CameraManager}}
@@ -367,7 +317,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 151 of file cameramanager.cpp.
+Definition at line 146 of file cameramanager.cpp.
 
 \hypertarget{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{
 \index{phys::CameraManager@{phys::CameraManager}!Initialize@{Initialize}}
@@ -388,7 +338,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed
 
 
 
-Definition at line 145 of file cameramanager.cpp.
+Definition at line 140 of file cameramanager.cpp.
 
 
 

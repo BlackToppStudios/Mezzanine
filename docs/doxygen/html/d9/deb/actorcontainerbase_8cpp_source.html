@@ -83,12 +83,12 @@
 <a name="l00052"></a><a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa5eac062dd70a220a4ec6df973c6f258">00052</a> 
 <a name="l00053"></a>00053     <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#ac17a442ad8aacba14d1cef956c0ddbb8" title="Basic Constructor.">ActorContainerBase::ActorContainerBase</a>() : <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>()
 <a name="l00054"></a>00054         {}
-<a name="l00055"></a><a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a9813fe23051cc1a324bfedd4d35d27ad">00055</a> 
+<a name="l00055"></a><a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a44adf1174e624d9fa1408c9885f9ea12">00055</a> 
 <a name="l00056"></a>00056     <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa5eac062dd70a220a4ec6df973c6f258" title="Destructor.">ActorContainerBase::~ActorContainerBase</a>()
 <a name="l00057"></a>00057         {}
 <a name="l00058"></a><a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a3f3d84f7775d2e8597290e214fedd5f9">00058</a> 
-<a name="l00059"></a>00059     Ogre::Node* <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a9813fe23051cc1a324bfedd4d35d27ad" title="Used to work around the scenenode of an Actor being private, so all derived Containers can access it...">ActorContainerBase::GetNode</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* actor)<span class="keyword"> const</span>
-<a name="l00060"></a>00060 <span class="keyword">        </span>{ <span class="keywordflow">return</span> actor-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a687bfa0cc44adf715651c7ac41a46321" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">node</a>; }
+<a name="l00059"></a>00059     Ogre::SceneNode* <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a44adf1174e624d9fa1408c9885f9ea12" title="Used to work around the scenenode of an Actor being private, so all derived Containers can access it...">ActorContainerBase::GetNode</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* actor)<span class="keyword"> const</span>
+<a name="l00060"></a>00060 <span class="keyword">        </span>{ <span class="keywordflow">return</span> actor-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a7262c31023ff41a027206e47befc7417" title="This class encapsulates the functionality of the Ogre::SceneNode using this.">GraphicsNode</a>; }
 <a name="l00061"></a><a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#aa86380fd1b18d660f68b60f075967cf8">00061</a> 
 <a name="l00062"></a>00062     btCollisionObject* <a class="code" href="../../d1/d00/classphys_1_1ActorContainerBase.html#a3f3d84f7775d2e8597290e214fedd5f9" title="Used to work around the collision object of an Actor being private, so all derived Containers can acc...">ActorContainerBase::GetCollisionObject</a>(<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html" title="This is the base class from which all the actors inherit.">ActorBase</a>* actor)<span class="keyword"> const</span>
 <a name="l00063"></a>00063 <span class="keyword">        </span>{ <span class="keywordflow">return</span> actor-&gt;<a class="code" href="../../d8/d0f/classphys_1_1ActorBase.html#a70676c52ffee64705a7b463d29b60429" title="This class encapsulates the functionality of the btCollisionObject using this.">CollisionObject</a>; }
@@ -114,7 +114,7 @@
 <a name="l00083"></a>00083 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

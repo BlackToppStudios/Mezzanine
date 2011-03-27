@@ -92,10 +92,10 @@
 <a name="l00061"></a>00061 <span class="comment">    /// Note: If attaching a particle effect to a node, all transform information(position and orientation) becomes relative</span>
 <a name="l00062"></a>00062 <span class="comment">    /// to the nodes transform.</span>
 <a name="l00063"></a>00063 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00064"></a><a class="code" href="../../d2/d69/classphys_1_1ParticleEffect.html">00064</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../d2/d69/classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a> : <span class="keyword">public</span> <a class="code" href="../../df/dbd/classphys_1_1Attachable.html" title="This is just a base class to be used by elements that are attachable to nodes.">Attachable</a>
+<a name="l00064"></a><a class="code" href="../../d2/d69/classphys_1_1ParticleEffect.html">00064</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../d2/d69/classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a> : <span class="keyword">public</span> <a class="code" href="../../df/dbd/classphys_1_1Attachable.html" title="This is just a base class to be used by elements that are attachable to worldnodes.">Attachable</a>
 <a name="l00065"></a>00065     {
 <a name="l00066"></a>00066         <span class="keyword">protected</span>:
-<a name="l00067"></a>00067             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html">WorldNode</a>;<span class="comment"></span>
+<a name="l00067"></a>00067             <span class="keyword">friend</span> <span class="keyword">class </span><a class="code" href="../../d2/d3e/classphys_1_1WorldNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">WorldNode</a>;<span class="comment"></span>
 <a name="l00068"></a>00068 <span class="comment">            /// @brief Pointer to the ogre ParticleSystem from which this class gets it&#39;s functionality.</span>
 <a name="l00069"></a><a class="code" href="../../d2/d69/classphys_1_1ParticleEffect.html#a187582776f54626a02638263ccae85d4">00069</a> <span class="comment"></span>            Ogre::ParticleSystem* OgreParticle;<span class="comment"></span>
 <a name="l00070"></a>00070 <span class="comment">            /// @brief Pointer to the ogre Scenenode to which this object is attached.</span>
@@ -117,7 +117,7 @@
 <a name="l00086"></a>00086 <span class="comment"></span>            ~<a class="code" href="../../d2/d69/classphys_1_1ParticleEffect.html" title="This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.">ParticleEffect</a>();<span class="comment"></span>
 <a name="l00087"></a>00087 <span class="comment">            /// @brief Gets the name of this particle effect.</span>
 <a name="l00088"></a>00088 <span class="comment">            /// @return Returns a string containing the name given to this particle effect.</span>
-<a name="l00089"></a>00089 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; GetName();<span class="comment"></span>
+<a name="l00089"></a>00089 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; GetName() <span class="keyword">const</span>;<span class="comment"></span>
 <a name="l00090"></a>00090 <span class="comment">            /// @brief Enables the particle effect, allowing it to render.</span>
 <a name="l00091"></a>00091 <span class="comment"></span>            <span class="keywordtype">void</span> EnableParticleEffect();<span class="comment"></span>
 <a name="l00092"></a>00092 <span class="comment">            /// @brief Disables the particle effect, preventing it from rendering.</span>
@@ -128,7 +128,7 @@
 <a name="l00097"></a>00097 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
