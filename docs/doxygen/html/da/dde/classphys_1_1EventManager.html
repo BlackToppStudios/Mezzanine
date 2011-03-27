@@ -139,12 +139,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This returns the type of this manager.  <a href="#a194890f7f8be5d45aa98623481482696"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="friends"></a>
 Friends</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#ad68113acdef0b428e8180ee4192aca09">PHYS_LIB::operator&lt;&lt;</a> (std::ostream &amp;stream, const <a class="el" href="../../da/dde/classphys_1_1EventManager.html">phys::EventManager</a> &amp;Mgr)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The &lt;&lt; operator requires access to internal data, it is treated similarly to a member function.  <a href="#ad68113acdef0b428e8180ee4192aca09"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">std::istream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#ac32b5a1ad8a8171298bd544eda444865">PHYS_LIB::operator&gt;&gt;</a> (std::istream &amp;stream, <a class="el" href="../../da/dde/classphys_1_1EventManager.html">phys::EventManager</a> &amp;Mgr)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The &gt;&gt; operator requires access to internal data, it is treated similarly to a member function.  <a href="#ac32b5a1ad8a8171298bd544eda444865"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/dde/classphys_1_1EventManager.html#a04e666d9104e325839dc9a6e63cd3c6f">PHYS_LIB::operator&gt;&gt;</a> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">phys::xml::Node</a> &amp;OneNode, <a class="el" href="../../da/dde/classphys_1_1EventManager.html">phys::EventManager</a> &amp;Mgr)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The &gt;&gt; operator requires access to internal data, it is treated similarly to a member function.  <a href="#a04e666d9104e325839dc9a6e63cd3c6f"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad68113acdef0b428e8180ee4192aca09"></a><!-- doxytag: member="phys::EventManager::PHYS_LIB::operator&lt;&lt;" ref="ad68113acdef0b428e8180ee4192aca09" args="(std::ostream &amp;stream, const phys::EventManager &amp;Mgr)" -->
+std::ostream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>PHYS_LIB::operator&lt;&lt;</b> (std::ostream &amp;stream, const <a class="el" href="../../da/dde/classphys_1_1EventManager.html">phys::EventManager</a> &amp;Mgr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac32b5a1ad8a8171298bd544eda444865"></a><!-- doxytag: member="phys::EventManager::PHYS_LIB::operator&gt;&gt;" ref="ac32b5a1ad8a8171298bd544eda444865" args="(std::istream &amp;stream, phys::EventManager &amp;Mgr)" -->
+std::istream &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><b>PHYS_LIB::operator&gt;&gt;</b> (std::istream &amp;stream, <a class="el" href="../../da/dde/classphys_1_1EventManager.html">phys::EventManager</a> &amp;Mgr)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a04e666d9104e325839dc9a6e63cd3c6f"></a><!-- doxytag: member="phys::EventManager::PHYS_LIB::operator&gt;&gt;" ref="a04e666d9104e325839dc9a6e63cd3c6f" args="(const phys::xml::Node &amp;OneNode, phys::EventManager &amp;Mgr)" -->
+void&nbsp;</td><td class="memItemRight" valign="bottom"><b>PHYS_LIB::operator&gt;&gt;</b> (const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">phys::xml::Node</a> &amp;OneNode, <a class="el" href="../../da/dde/classphys_1_1EventManager.html">phys::EventManager</a> &amp;Mgr)</td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>This is a container for Events and facilitates the transfer of data. </p>
@@ -1153,103 +1153,12 @@ Currently this is not thread safe, even though it should be. </dd></dl>
 
 </div>
 </div>
-<hr/><h2>Friends And Related Function Documentation</h2>
-<a class="anchor" id="ad68113acdef0b428e8180ee4192aca09"></a><!-- doxytag: member="phys::EventManager::PHYS_LIB::operator&lt;&lt;" ref="ad68113acdef0b428e8180ee4192aca09" args="(std::ostream &amp;stream, const phys::EventManager &amp;Mgr)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::ostream&amp; PHYS_LIB::operator&lt;&lt; </td>
-          <td>(</td>
-          <td class="paramtype">std::ostream &amp;&nbsp;</td>
-          <td class="paramname"> <em>stream</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="../../da/dde/classphys_1_1EventManager.html">phys::EventManager</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>Mgr</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The &lt;&lt; operator requires access to internal data, it is treated similarly to a member function. </p>
-<p><b>For internal use only.</b></p>
-
-</div>
-</div>
-<a class="anchor" id="a04e666d9104e325839dc9a6e63cd3c6f"></a><!-- doxytag: member="phys::EventManager::PHYS_LIB::operator&gt;&gt;" ref="a04e666d9104e325839dc9a6e63cd3c6f" args="(const phys::xml::Node &amp;OneNode, phys::EventManager &amp;Mgr)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void PHYS_LIB::operator&gt;&gt; </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="../../d7/d0a/classphys_1_1xml_1_1Node.html">phys::xml::Node</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>OneNode</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../da/dde/classphys_1_1EventManager.html">phys::EventManager</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>Mgr</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The &gt;&gt; operator requires access to internal data, it is treated similarly to a member function. </p>
-<p><b>For internal use only.</b></p>
-
-</div>
-</div>
-<a class="anchor" id="ac32b5a1ad8a8171298bd544eda444865"></a><!-- doxytag: member="phys::EventManager::PHYS_LIB::operator&gt;&gt;" ref="ac32b5a1ad8a8171298bd544eda444865" args="(std::istream &amp;stream, phys::EventManager &amp;Mgr)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::istream&amp; PHYS_LIB::operator&gt;&gt; </td>
-          <td>(</td>
-          <td class="paramtype">std::istream &amp;&nbsp;</td>
-          <td class="paramname"> <em>stream</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="../../da/dde/classphys_1_1EventManager.html">phys::EventManager</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>Mgr</em></td><td>&nbsp;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td><td><code> [friend]</code></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>The &gt;&gt; operator requires access to internal data, it is treated similarly to a member function. </p>
-<p><b>For internal use only.</b></p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d2/ddb/eventmanager_8h_source.html">eventmanager.h</a></li>
 <li><a class="el" href="../../d4/d76/eventmanager_8cpp_source.html">eventmanager.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:43:02 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:55:27 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>
