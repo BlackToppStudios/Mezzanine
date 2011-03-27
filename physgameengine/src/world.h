@@ -53,9 +53,9 @@
  to keep the most up to date shared libraries around, but what about when they don't ship what you need, or ship a broken copy or an older library. What about
  Windows and Mac OS X which make no attempt to keep these kinds of software up to date. What if you do manage to get and stay up to date, then you still have to
  work on a confusing compiler and linker options, Code::Blocks or Visual Studio aren't going to set that up for you. The Physgame Engine project depends on a dozen
- or more libaries, so would your project if it had high performance 3d graphics, easy to use 3d physics intgrated witht the graphics and 3d positional audio ready
+ or more libaries, so would your project if it had high performance 3d graphics, easy to use 3d physics integrated with the graphics and 3d positional audio ready
  to run on Windows, Linux and Mac OS X. We are figuring it out once, getting it right ( if we aren't, tell us and we will fix it ), so it doesn't need to be done again
- and again for each game made.
+ and again, for each game made.
 
  This is still in heavy development and is not in usable condition for all systems. Currently the synchronization of 3d graphics and physics works great. But,
  some of the more advanced features of both physics and graphics to do not yet work. There are a number of other features that are in varied states of development.
@@ -63,7 +63,7 @@
  If we do our jobs right this will save time and effort making, updating and porting games between a variety of platforms. If you link only
  against this library, not a single line of your standard compliant C++ code should need to change between platforms. At this early stage we are proving the
  concept with "Catch!" our first sample game. It Currently runs on Linux, Windows and Mac OS X with an Identical
- codebase. When we are done with "Catch!" We want it to have one codebase (with no messy #IFDEFs for compatibility), and downloadable in the Iphone
+ codebase. When we are done with "Catch!" We want it to have one codebase (with no messy #IFDEFs in game code for compatibility), and downloadable in the Iphone
  app store, on the PS3, Wii download on Steam, and in a variety of linux repositories.
 
  To get the latest news on development checkout: http://gitorious.org/physgame
