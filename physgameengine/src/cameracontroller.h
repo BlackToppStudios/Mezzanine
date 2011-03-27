@@ -40,6 +40,8 @@
 #ifndef _cameracontroller_h
 #define _cameracontroller_h
 
+#include "datatypes.h"
+
 namespace phys
 {
     class Camera;
@@ -75,20 +77,33 @@ namespace phys
             ~CameraController();
             /// @brief Gets the camera this controller is controlling.
             /// @return Returns a camera pointer for the camera this controller is applied to.
-            Camera* GetControlledCamera();
+            Camera* GetControlledCamera() const;
             /// @brief Sets the movement mode for this camera/controller.
             /// @param MoveMode The MovementMode value for which mode you want applied.  See MovementMode enum for more info.
-            void SetMovementMode(MovementMode MoveMode);
+            void SetMovementMode(const MovementMode& MoveMode);
             /// @brief Gets the currently set movement mode.
             /// @return Returns an enum value representing the current movement mode.  See MovementMode enum for more info.
-            MovementMode GetMovementMode();
+            MovementMode GetMovementMode() const;
             /// @brief Sets the hover distance for the camera while it's moving.
             /// @details Hover is only applied in CCM_Walk mode.  Default: 1.0.
             /// @param Hover The distance above the ground to hover, in world units.
-            void SetHoverHeight(Real Hover);
+            void SetHoverHeight(const Real& Hover);
             /// @brief Gets the distance the camera hovers over terrain while in CCM_Walk mode.
             /// @return Returns a Real represening the distance above terrain the camera is to hover, in world units.
-            Real GetHoverHeight();
+            Real GetHoverHeight() const;
+            /// @brief Moves the camera forward.
+            /// @param Units The distance to be moved in world units.
+            void MoveForward(Real Units);
+            /// @brief Moves the camera backward.
+            /// @param Units The distance to be moved in world units.
+            void MoveBackward(Real Units);
+            /// @brief Moves the camera to the left.
+            /// @param Units The distance to be moved in world units.
+            void StrafeLeft(Real Units);
+            /// @brief Moves the camera to the right.
+            /// @param Units The distance to be moved in world units.
+            void StrafeRight(Real Units);
+
         };//cameracontroller
 }//phys
 

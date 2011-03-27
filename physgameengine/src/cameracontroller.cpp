@@ -56,29 +56,53 @@ namespace phys
     {
     }
 
-    Camera* CameraController::GetControlledCamera()
+    Camera* CameraController::GetControlledCamera() const
     {
         return Controlled;
     }
 
-    void CameraController::SetMovementMode(MovementMode MoveMode)
+    void CameraController::SetMovementMode(const CameraController::MovementMode& MoveMode)
     {
         CurrentMode = MoveMode;
     }
 
-    MovementMode CameraController::GetMovementMode()
+    CameraController::MovementMode CameraController::GetMovementMode() const
     {
         return CurrentMode;
     }
 
-    void CameraController::SetHoverHeight(Real Hover)
+    void CameraController::SetHoverHeight(const Real& Hover)
     {
         HoverHeight = Hover;
     }
 
-    Real CameraController::GetHoverHeight()
+    Real CameraController::GetHoverHeight() const
     {
         return HoverHeight;
+    }
+
+    void CameraController::MoveForward(Real Units)
+    {
+        Vector3 Move(0,0,Units);
+        Controlled->MoveRelative(Move);
+    }
+
+    void CameraController::MoveBackward(Real Units)
+    {
+        Vector3 Move(0,0,-Units);
+        Controlled->MoveRelative(Move);
+    }
+
+    void CameraController::StrafeLeft(Real Units)
+    {
+        Vector3 Move(-Units,0,0);
+        Controlled->MoveRelative(Move);
+    }
+
+    void CameraController::StrafeRight(Real Units)
+    {
+        Vector3 Move(Units,0,0);
+        Controlled->MoveRelative(Move);
     }
 }
 

@@ -97,7 +97,7 @@ namespace phys
             /// @brief Gets a Bullet quaternion.
             /// @details Creates a Bullet quaternion with values equal to this class and returns it.
             /// @param normalize Whether or not you want this function to normalize the quaternion for you.
-            btQuaternion GetBulletQuaternion(bool normalize=false);
+            btQuaternion GetBulletQuaternion(bool normalize=false) const;
 
             /// @brief Copies an existing Bullet quaternion.
             /// @details This function will copy the values stored in an existing Bullet quaternion
@@ -108,7 +108,7 @@ namespace phys
             /// @brief Gets a Ogre quaternion.
             /// @details Creates a Ogre quaternion with values equal to this class and returns it.
             /// @param normalize Whether or not you want this function to normalize the quaternion for you.
-            Ogre::Quaternion GetOgreQuaternion(bool normalize=false);
+            Ogre::Quaternion GetOgreQuaternion(bool normalize=false) const;
 
             /// @brief Copies an existing Ogre quaternion.
             /// @details This function will copy the values stored in an existing Ogre quaternion

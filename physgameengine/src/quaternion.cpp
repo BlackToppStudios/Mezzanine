@@ -73,7 +73,7 @@ namespace phys
         ExtractOgreQuaternion(Theirs);
     }
 
-    btQuaternion Quaternion::GetBulletQuaternion(bool normalize)
+    btQuaternion Quaternion::GetBulletQuaternion(bool normalize) const
     {
         btQuaternion Theirs;
         Theirs.setX(this->X);
@@ -95,7 +95,7 @@ namespace phys
         this->W=Ours.w();
     }
 
-    Ogre::Quaternion Quaternion::GetOgreQuaternion(bool normalize)
+    Ogre::Quaternion Quaternion::GetOgreQuaternion(bool normalize) const
     {
         Ogre::Quaternion Theirs;
         Theirs.x=this->X;

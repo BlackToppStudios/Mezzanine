@@ -154,9 +154,9 @@ namespace phys
             CameraController* Controller = new CameraController(Controlled);
             CameraControllers[Controlled] = Controller;
             return Controller;
-        }else(
-            return *CamIt.second;
-        )
+        }else{
+            return (*CamIt).second;
+        }
     }
 
     // Inherited from ManagerBase
