@@ -22,14 +22,69 @@ This is used to store information about rotation in 3d space.
 \begin{DoxyCompactList}\small\item\em Bullet \hyperlink{classphys_1_1Quaternion}{Quaternion} constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Quaternion_a4902c05489ebae03a55433d947c53d03}{Quaternion} (const Ogre::Quaternion \&Theirs)
 \begin{DoxyCompactList}\small\item\em Ogre \hyperlink{classphys_1_1Quaternion}{Quaternion} constructor. \item\end{DoxyCompactList}\item 
-btQuaternion \hyperlink{classphys_1_1Quaternion_a30944ae1fe905ee4f5c946c9a0b354f7}{GetBulletQuaternion} (bool normalize=false)
+\hyperlink{classphys_1_1Quaternion_a46d08f43b0b638a256344b3919ba9e0d}{Quaternion} (const \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} \&Other)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. \item\end{DoxyCompactList}\item 
+btQuaternion \hyperlink{classphys_1_1Quaternion_a053f994770b600ae153a142bb4ba7d33}{GetBulletQuaternion} (bool normalize=false) const 
 \begin{DoxyCompactList}\small\item\em Gets a Bullet quaternion. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Quaternion_a10d3582b2731e70279d7bab43173f317}{ExtractBulletQuaternion} (const btQuaternion \&Ours)
 \begin{DoxyCompactList}\small\item\em Copies an existing Bullet quaternion. \item\end{DoxyCompactList}\item 
-Ogre::Quaternion \hyperlink{classphys_1_1Quaternion_ad7501687205092c203d2358ca53d3bfe}{GetOgreQuaternion} (bool normalize=false)
+Ogre::Quaternion \hyperlink{classphys_1_1Quaternion_aa22645e2e2972007bcf61cd2f8e506d0}{GetOgreQuaternion} (bool normalize=false) const 
 \begin{DoxyCompactList}\small\item\em Gets a Ogre quaternion. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1Quaternion_a942fab675a0b124e1dc5e2febab113e6}{ExtractOgreQuaternion} (const Ogre::Quaternion \&Ours)
-\begin{DoxyCompactList}\small\item\em Copies an existing Ogre quaternion. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Copies an existing Ogre quaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Quaternion_af3f9a9b5835400dc5b83ba06bf9845b0}{operator+} (const \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Addition operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Quaternion_a71fcb37dae7602349e856b202ca00e89}{operator+} (const Ogre::Quaternion \&Other) const 
+\begin{DoxyCompactList}\small\item\em Addition operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and Ogre::Quaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Quaternion_a3dc35eeb41c43ce79fdf2fc64fc15532}{operator+} (const btQuaternion \&Other) const 
+\begin{DoxyCompactList}\small\item\em Addition operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and btQuaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Quaternion_abab2d787eefc90bbc6710091a5a79234}{operator-\/} (const \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} \&Other) const 
+\begin{DoxyCompactList}\small\item\em Subtraction operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Quaternion_a01c5412ce8f1ebb212c9afd7e19feb1e}{operator-\/} (const Ogre::Quaternion \&Other) const 
+\begin{DoxyCompactList}\small\item\em Subtraction operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and Ogre::Quaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Quaternion_aca49f84681f836545c30c0b42480dccc}{operator-\/} (const btQuaternion \&Other) const 
+\begin{DoxyCompactList}\small\item\em Subtraction operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and btQuaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \& \hyperlink{classphys_1_1Quaternion_a5d9d2ee516e4e142417b21eecf2e94ce}{operator+=} (const \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} \&Other)
+\begin{DoxyCompactList}\small\item\em Incrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \& \hyperlink{classphys_1_1Quaternion_ada6772fd05ec9c8d50b8a25ece3d1c5b}{operator+=} (const Ogre::Quaternion \&Other)
+\begin{DoxyCompactList}\small\item\em Incrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and Ogre::Quaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \& \hyperlink{classphys_1_1Quaternion_ab167530770fb0463c5473b5f533db9a8}{operator+=} (const btQuaternion \&Other)
+\begin{DoxyCompactList}\small\item\em Incrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and btQuaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \& \hyperlink{classphys_1_1Quaternion_a66086148dd9154e3e3e0b46bacafe0f7}{operator-\/=} (const \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} \&Other)
+\begin{DoxyCompactList}\small\item\em Decrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \& \hyperlink{classphys_1_1Quaternion_af62037687eea0005c9fc4a09355656ed}{operator-\/=} (const Ogre::Quaternion \&Other)
+\begin{DoxyCompactList}\small\item\em Decrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and Ogre::Quaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \& \hyperlink{classphys_1_1Quaternion_abd1e9d740b3af194c60466105d07f6ff}{operator-\/=} (const btQuaternion \&Other)
+\begin{DoxyCompactList}\small\item\em Decrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and btQuaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \& \hyperlink{classphys_1_1Quaternion_a6213bddf8f928a8510260b9deb712fd7}{operator=} (const \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} \&Other)
+\begin{DoxyCompactList}\small\item\em Assignment Operator from \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \& \hyperlink{classphys_1_1Quaternion_a6b9fe92548e3fd114d7419ddd5d5a660}{operator=} (const Ogre::Quaternion \&Other)
+\begin{DoxyCompactList}\small\item\em Assignment Operator from Ogre::Quaternion. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \& \hyperlink{classphys_1_1Quaternion_a05e7364791bf7f38ad63dc59184cd5ca}{operator=} (const btQuaternion \&Other)
+\begin{DoxyCompactList}\small\item\em Assignment Operator from btQuaternion. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Quaternion_a29c08e725c7bbb389547cbe03f40f5bd}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Quaternion_a29c08e725c7bbb389547cbe03f40f5bd}{X}}
+\label{df/d8c/classphys_1_1Quaternion_a29c08e725c7bbb389547cbe03f40f5bd}
+
+\begin{DoxyCompactList}\small\item\em Rotation on the X Axis. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Quaternion_a756165050c3c241fd8b8de6ed21bb268}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Quaternion_a756165050c3c241fd8b8de6ed21bb268}{Y}}
+\label{df/d8c/classphys_1_1Quaternion_a756165050c3c241fd8b8de6ed21bb268}
+
+\begin{DoxyCompactList}\small\item\em Rotation on the Y Axis. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Quaternion_a708ae111e0cf387b94f33dc7d5b3c59a}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Quaternion_a708ae111e0cf387b94f33dc7d5b3c59a}{Z}}
+\label{df/d8c/classphys_1_1Quaternion_a708ae111e0cf387b94f33dc7d5b3c59a}
+
+\begin{DoxyCompactList}\small\item\em Rotation on the Z Axis. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Quaternion_af509194048d0cd8fb03d45f150afaa0c}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Quaternion_af509194048d0cd8fb03d45f150afaa0c}{W}}
+\label{df/d8c/classphys_1_1Quaternion_af509194048d0cd8fb03d45f150afaa0c}
+
+\begin{DoxyCompactList}\small\item\em Rotation on the W Axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -38,7 +93,7 @@ The Documentation for this class needs to be revised. It describes 2 mutually ex
 \end{DoxyWarning}
 
 
-Definition at line 62 of file quaternion.h.
+Definition at line 63 of file quaternion.h.
 
 
 
@@ -58,7 +113,7 @@ Blank Constructor.
 
 Basic no-\/initialization constructor. 
 
-Definition at line 50 of file quaternion.cpp.
+Definition at line 52 of file quaternion.cpp.
 
 \hypertarget{classphys_1_1Quaternion_ac8037875c08ce10c0195f3e6fd08b172}{
 \index{phys::Quaternion@{phys::Quaternion}!Quaternion@{Quaternion}}
@@ -81,7 +136,7 @@ Constructor that sets all four axis' of rotation.
 \item[{\em x}]Rotation on the X Axis. \item[{\em y}]Rotation on the Y Axis. \item[{\em z}]Rotation on the Z Axis. \item[{\em w}]Rotation on the W Axis. \end{DoxyParams}
 
 
-Definition at line 58 of file quaternion.cpp.
+Definition at line 60 of file quaternion.cpp.
 
 \hypertarget{classphys_1_1Quaternion_ab9f13d19fe7d602d7c5feaed0aaf4620}{
 \index{phys::Quaternion@{phys::Quaternion}!Quaternion@{Quaternion}}
@@ -90,7 +145,7 @@ Definition at line 58 of file quaternion.cpp.
 \begin{DoxyParamCaption}
 \item[{const btQuaternion \&}]{ Theirs}
 \end{DoxyParamCaption}
-)}}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
 \label{df/d8c/classphys_1_1Quaternion_ab9f13d19fe7d602d7c5feaed0aaf4620}
 
 
@@ -101,7 +156,7 @@ Constructor that sets all values to match the Bullet quaternion.
 \item[{\em Theirs}]The quaternion to be copied to make this quaternion. \end{DoxyParams}
 
 
-Definition at line 66 of file quaternion.cpp.
+Definition at line 68 of file quaternion.cpp.
 
 \hypertarget{classphys_1_1Quaternion_a4902c05489ebae03a55433d947c53d03}{
 \index{phys::Quaternion@{phys::Quaternion}!Quaternion@{Quaternion}}
@@ -110,7 +165,7 @@ Definition at line 66 of file quaternion.cpp.
 \begin{DoxyParamCaption}
 \item[{const Ogre::Quaternion \&}]{ Theirs}
 \end{DoxyParamCaption}
-)}}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}}
 \label{df/d8c/classphys_1_1Quaternion_a4902c05489ebae03a55433d947c53d03}
 
 
@@ -122,6 +177,26 @@ Constructor that sets all values to match the Ogre quaternion.
 
 
 Definition at line 71 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a46d08f43b0b638a256344b3919ba9e0d}{
+\index{phys::Quaternion@{phys::Quaternion}!Quaternion@{Quaternion}}
+\index{Quaternion@{Quaternion}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{Quaternion}]{\setlength{\rightskip}{0pt plus 5cm}phys::Quaternion::Quaternion (
+\begin{DoxyParamCaption}
+\item[{const {\bf phys::Quaternion} \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a46d08f43b0b638a256344b3919ba9e0d}
+
+
+Copy Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The \hyperlink{classphys_1_1Quaternion}{Quaternion} to copy \end{DoxyParams}
+
+
+Definition at line 74 of file quaternion.cpp.
 
 
 
@@ -144,7 +219,7 @@ This function will copy the values stored in an existing Bullet quaternion and s
 \item[{\em Ours}]The quaternion to be extracted. \end{DoxyParams}
 
 
-Definition at line 90 of file quaternion.cpp.
+Definition at line 97 of file quaternion.cpp.
 
 \hypertarget{classphys_1_1Quaternion_a942fab675a0b124e1dc5e2febab113e6}{
 \index{phys::Quaternion@{phys::Quaternion}!ExtractOgreQuaternion@{ExtractOgreQuaternion}}
@@ -164,17 +239,17 @@ This function will copy the values stored in an existing Ogre quaternion and set
 \item[{\em Ours}]The quaternion to be extracted. \end{DoxyParams}
 
 
-Definition at line 112 of file quaternion.cpp.
+Definition at line 117 of file quaternion.cpp.
 
-\hypertarget{classphys_1_1Quaternion_a30944ae1fe905ee4f5c946c9a0b354f7}{
+\hypertarget{classphys_1_1Quaternion_a053f994770b600ae153a142bb4ba7d33}{
 \index{phys::Quaternion@{phys::Quaternion}!GetBulletQuaternion@{GetBulletQuaternion}}
 \index{GetBulletQuaternion@{GetBulletQuaternion}!phys::Quaternion@{phys::Quaternion}}
 \subsubsection[{GetBulletQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}btQuaternion phys::Quaternion::GetBulletQuaternion (
 \begin{DoxyParamCaption}
 \item[{bool}]{ normalize = {\ttfamily false}}
 \end{DoxyParamCaption}
-)}}
-\label{df/d8c/classphys_1_1Quaternion_a30944ae1fe905ee4f5c946c9a0b354f7}
+) const}}
+\label{df/d8c/classphys_1_1Quaternion_a053f994770b600ae153a142bb4ba7d33}
 
 
 Gets a Bullet quaternion. 
@@ -182,19 +257,22 @@ Gets a Bullet quaternion.
 Creates a Bullet quaternion with values equal to this class and returns it. 
 \begin{DoxyParams}{Parameters}
 \item[{\em normalize}]Whether or not you want this function to normalize the quaternion for you. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A btQuaternion that has the same contents as this \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. 
+\end{DoxyReturn}
 
 
-Definition at line 76 of file quaternion.cpp.
+Definition at line 85 of file quaternion.cpp.
 
-\hypertarget{classphys_1_1Quaternion_ad7501687205092c203d2358ca53d3bfe}{
+\hypertarget{classphys_1_1Quaternion_aa22645e2e2972007bcf61cd2f8e506d0}{
 \index{phys::Quaternion@{phys::Quaternion}!GetOgreQuaternion@{GetOgreQuaternion}}
 \index{GetOgreQuaternion@{GetOgreQuaternion}!phys::Quaternion@{phys::Quaternion}}
 \subsubsection[{GetOgreQuaternion}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Quaternion phys::Quaternion::GetOgreQuaternion (
 \begin{DoxyParamCaption}
 \item[{bool}]{ normalize = {\ttfamily false}}
 \end{DoxyParamCaption}
-)}}
-\label{df/d8c/classphys_1_1Quaternion_ad7501687205092c203d2358ca53d3bfe}
+) const}}
+\label{df/d8c/classphys_1_1Quaternion_aa22645e2e2972007bcf61cd2f8e506d0}
 
 
 Gets a Ogre quaternion. 
@@ -204,7 +282,343 @@ Creates a Ogre quaternion with values equal to this class and returns it.
 \item[{\em normalize}]Whether or not you want this function to normalize the quaternion for you. \end{DoxyParams}
 
 
-Definition at line 98 of file quaternion.cpp.
+Definition at line 105 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_af3f9a9b5835400dc5b83ba06bf9845b0}{
+\index{phys::Quaternion@{phys::Quaternion}!operator+@{operator+}}
+\index{operator+@{operator+}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::Quaternion::operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf phys::Quaternion} \&}]{ Other}
+\end{DoxyParamCaption}
+) const}}
+\label{df/d8c/classphys_1_1Quaternion_af3f9a9b5835400dc5b83ba06bf9845b0}
+
+
+Addition operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to add to this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the sum. 
+\end{DoxyReturn}
+
+
+Definition at line 128 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a71fcb37dae7602349e856b202ca00e89}{
+\index{phys::Quaternion@{phys::Quaternion}!operator+@{operator+}}
+\index{operator+@{operator+}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::Quaternion::operator+ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Quaternion \&}]{ Other}
+\end{DoxyParamCaption}
+) const}}
+\label{df/d8c/classphys_1_1Quaternion_a71fcb37dae7602349e856b202ca00e89}
+
+
+Addition operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and Ogre::Quaternion. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to add to this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the sum. 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a3dc35eeb41c43ce79fdf2fc64fc15532}{
+\index{phys::Quaternion@{phys::Quaternion}!operator+@{operator+}}
+\index{operator+@{operator+}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::Quaternion::operator+ (
+\begin{DoxyParamCaption}
+\item[{const btQuaternion \&}]{ Other}
+\end{DoxyParamCaption}
+) const}}
+\label{df/d8c/classphys_1_1Quaternion_a3dc35eeb41c43ce79fdf2fc64fc15532}
+
+
+Addition operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and btQuaternion. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to add to this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the sum. 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a5d9d2ee516e4e142417b21eecf2e94ce}{
+\index{phys::Quaternion@{phys::Quaternion}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& phys::Quaternion::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf phys::Quaternion} \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a5d9d2ee516e4e142417b21eecf2e94ce}
+
+
+Incrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to add to this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the sum. 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_ada6772fd05ec9c8d50b8a25ece3d1c5b}{
+\index{phys::Quaternion@{phys::Quaternion}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& phys::Quaternion::operator+= (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Quaternion \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_ada6772fd05ec9c8d50b8a25ece3d1c5b}
+
+
+Incrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and Ogre::Quaternion. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to add to this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the sum. 
+\end{DoxyReturn}
+
+
+Definition at line 158 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_ab167530770fb0463c5473b5f533db9a8}{
+\index{phys::Quaternion@{phys::Quaternion}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& phys::Quaternion::operator+= (
+\begin{DoxyParamCaption}
+\item[{const btQuaternion \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_ab167530770fb0463c5473b5f533db9a8}
+
+
+Incrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and btQuaternion. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to add to this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the sum. 
+\end{DoxyReturn}
+
+
+Definition at line 167 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_abab2d787eefc90bbc6710091a5a79234}{
+\index{phys::Quaternion@{phys::Quaternion}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::Quaternion::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf phys::Quaternion} \&}]{ Other}
+\end{DoxyParamCaption}
+) const}}
+\label{df/d8c/classphys_1_1Quaternion_abab2d787eefc90bbc6710091a5a79234}
+
+
+Subtraction operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to subtract from this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the difference. 
+\end{DoxyReturn}
+
+
+Definition at line 137 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a01c5412ce8f1ebb212c9afd7e19feb1e}{
+\index{phys::Quaternion@{phys::Quaternion}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::Quaternion::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Quaternion \&}]{ Other}
+\end{DoxyParamCaption}
+) const}}
+\label{df/d8c/classphys_1_1Quaternion_a01c5412ce8f1ebb212c9afd7e19feb1e}
+
+
+Subtraction operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and Ogre::Quaternion. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to subtract from this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the difference. 
+\end{DoxyReturn}
+
+
+Definition at line 140 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_aca49f84681f836545c30c0b42480dccc}{
+\index{phys::Quaternion@{phys::Quaternion}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::Quaternion::operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const btQuaternion \&}]{ Other}
+\end{DoxyParamCaption}
+) const}}
+\label{df/d8c/classphys_1_1Quaternion_aca49f84681f836545c30c0b42480dccc}
+
+
+Subtraction operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and btQuaternion. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to subtract from this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the difference. 
+\end{DoxyReturn}
+
+
+Definition at line 143 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_abd1e9d740b3af194c60466105d07f6ff}{
+\index{phys::Quaternion@{phys::Quaternion}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& phys::Quaternion::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const btQuaternion \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_abd1e9d740b3af194c60466105d07f6ff}
+
+
+Decrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and btQuaternion. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to subtract from this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the difference. 
+\end{DoxyReturn}
+
+
+Definition at line 194 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a66086148dd9154e3e3e0b46bacafe0f7}{
+\index{phys::Quaternion@{phys::Quaternion}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& phys::Quaternion::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf phys::Quaternion} \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a66086148dd9154e3e3e0b46bacafe0f7}
+
+
+Decrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to subtract from this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the difference. 
+\end{DoxyReturn}
+
+
+Definition at line 176 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_af62037687eea0005c9fc4a09355656ed}{
+\index{phys::Quaternion@{phys::Quaternion}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& phys::Quaternion::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Quaternion \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_af62037687eea0005c9fc4a09355656ed}
+
+
+Decrementing operator with \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} and Ogre::Quaternion. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Other}]The other \hyperlink{classphys_1_1Quaternion}{Quaternion} to subtract from this one. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} with the difference. 
+\end{DoxyReturn}
+
+
+Definition at line 185 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a05e7364791bf7f38ad63dc59184cd5ca}{
+\index{phys::Quaternion@{phys::Quaternion}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& phys::Quaternion::operator= (
+\begin{DoxyParamCaption}
+\item[{const btQuaternion \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a05e7364791bf7f38ad63dc59184cd5ca}
+
+
+Assignment Operator from btQuaternion. 
+
+Other The other quaternion to overwrite this one. \begin{DoxyReturn}{Returns}
+This \hyperlink{classphys_1_1Quaternion}{Quaternion} after being assigned fresh values. 
+\end{DoxyReturn}
+
+
+Definition at line 213 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a6b9fe92548e3fd114d7419ddd5d5a660}{
+\index{phys::Quaternion@{phys::Quaternion}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& phys::Quaternion::operator= (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Quaternion \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a6b9fe92548e3fd114d7419ddd5d5a660}
+
+
+Assignment Operator from Ogre::Quaternion. 
+
+Other The other quaternion to overwrite this one. \begin{DoxyReturn}{Returns}
+This \hyperlink{classphys_1_1Quaternion}{Quaternion} after being assigned fresh values. 
+\end{DoxyReturn}
+
+
+Definition at line 219 of file quaternion.cpp.
+
+\hypertarget{classphys_1_1Quaternion_a6213bddf8f928a8510260b9deb712fd7}{
+\index{phys::Quaternion@{phys::Quaternion}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::Quaternion@{phys::Quaternion}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} \& phys::Quaternion::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf phys::Quaternion} \&}]{ Other}
+\end{DoxyParamCaption}
+)}}
+\label{df/d8c/classphys_1_1Quaternion_a6213bddf8f928a8510260b9deb712fd7}
+
+
+Assignment Operator from \hyperlink{classphys_1_1Quaternion}{phys::Quaternion}. 
+
+Other The other quaternion to overwrite this one. \begin{DoxyReturn}{Returns}
+This \hyperlink{classphys_1_1Quaternion}{Quaternion} after being assigned fresh values. 
+\end{DoxyReturn}
+
+
+Definition at line 205 of file quaternion.cpp.
 
 
 

@@ -42,15 +42,22 @@
 </div>
 <div class="contents">
 <!-- doxytag: class="phys::WorldNode" -->
+<p>This is a helper class which non-physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects.  
+<a href="#_details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="../../d4/d01/worldnode_8h_source.html">worldnode.h</a>&gt;</code></p>
+
 <p><a href="../../d4/d4c/classphys_1_1WorldNode-members.html">List of all members.</a></p>
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>NodeType</b> { <b>Center</b>, 
-<b>Orbit</b>, 
-<b>Stand</b>, 
-<b>Free</b>
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5a">NodeType</a> { <a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5aa06be3334346d6ba7913197ee0dd5b8bb">Center</a>, 
+<a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5aae9751e5fc4396425fbd7b93171541a22">Orbit</a>, 
+<a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5aa2ae400375e79106ae01adf39dd5c1185">Stand</a>, 
+<a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5aaa4f848b95586fc581aa1f749c82a1fb5">Free</a>
  }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>Kinds of movement (or non-movement modes) a world node could have. </p>
+ <a href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5a">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a02ab92f8a5f9da35926ef133a11a441e">WorldNode</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;Name, <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html">SceneManager</a> *manager)</td></tr>
@@ -60,12 +67,12 @@ Public Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a357c18b6e04a9ae0d0855841a3c774b2"></a><!-- doxytag: member="phys::WorldNode::~WorldNode" ref="a357c18b6e04a9ae0d0855841a3c774b2" args="()" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a357c18b6e04a9ae0d0855841a3c774b2">~WorldNode</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor. <br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#ad8a5650d5fb9f804b863c434ffab2cc1">GetName</a> ()</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the name of this node.  <a href="#ad8a5650d5fb9f804b863c434ffab2cc1"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#ae3c12e7aced8f84e2191a5e08e2767a8">GetName</a> () const </td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the name of this node.  <a href="#ae3c12e7aced8f84e2191a5e08e2767a8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a82710a08f767447266c1307b55a5636b">AttachElement</a> (<a class="el" href="../../df/dbd/classphys_1_1Attachable.html">Attachable</a> *Element)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attaches an attachable element to this <a class="el" href="../../df/dd0/classNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>.  <a href="#a82710a08f767447266c1307b55a5636b"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Attaches an attachable element to this Node.  <a href="#a82710a08f767447266c1307b55a5636b"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#ab5ce9ccc5dea9a450f3f72442ca10cf5">DetachElement</a> (<a class="el" href="../../df/dbd/classphys_1_1Attachable.html">Attachable</a> *Element)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Detaches an attachable element from this <a class="el" href="../../df/dd0/classNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>.  <a href="#ab5ce9ccc5dea9a450f3f72442ca10cf5"></a><br/></td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Detaches an attachable element from this Node.  <a href="#ab5ce9ccc5dea9a450f3f72442ca10cf5"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf433bc8dbe404cbaf4cb9e2264a7a84"></a><!-- doxytag: member="phys::WorldNode::DetachAllElements" ref="acf433bc8dbe404cbaf4cb9e2264a7a84" args="()" -->
 void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#acf433bc8dbe404cbaf4cb9e2264a7a84">DetachAllElements</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Detaches all attached cameras, lights, and particle effects. <br/></td></tr>
@@ -90,9 +97,9 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Disables any active autotracking for this node. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0849395a47c9cd3182a6a3717b95bcbc">IncrementOrbit</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> Radians)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Increments the orbit of this node if this is an orbiting node.  <a href="#a0849395a47c9cd3182a6a3717b95bcbc"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#abc4cf216177c0a3f4397c83fe3b58e75">SetType</a> (WorldNode::NodeType type)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#abc4cf216177c0a3f4397c83fe3b58e75">SetType</a> (<a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5a">WorldNode::NodeType</a> type)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the type of node that this is.  <a href="#abc4cf216177c0a3f4397c83fe3b58e75"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">WorldNode::NodeType&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a9688a418ab6871f89845b69f02ab7f9c">GetType</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5a">WorldNode::NodeType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a9688a418ab6871f89845b69f02ab7f9c">GetType</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the type of node that this is.  <a href="#a9688a418ab6871f89845b69f02ab7f9c"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
@@ -103,15 +110,57 @@ Ogre::SceneNode *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="e
 <a class="el" href="../../dd/da8/classphys_1_1SceneManager.html">SceneManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a070f1686f70880dac0241c96518c7a8a">Manager</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Pointer to the manager that created this class. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef2329f38799c3d67f1f1f69b35dda20"></a><!-- doxytag: member="phys::WorldNode::Type" ref="aef2329f38799c3d67f1f1f69b35dda20" args="" -->
-WorldNode::NodeType&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#aef2329f38799c3d67f1f1f69b35dda20">Type</a></td></tr>
+<a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5a">WorldNode::NodeType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#aef2329f38799c3d67f1f1f69b35dda20">Type</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Enum value storing the type of node this class is. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a17c53f3a7ad3d5bd322855096fcbc3"></a><!-- doxytag: member="phys::WorldNode::Elements" ref="a2a17c53f3a7ad3d5bd322855096fcbc3" args="" -->
 std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">Attachable</a> * &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a2a17c53f3a7ad3d5bd322855096fcbc3">Elements</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Vector storing all attached cameras. <br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
+<p>This is a helper class which non-physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects. </p>
+<p>This class simply contains a group of functions for easy manipulation of movement and orientation as well as attaching elements to them. This class should only be created through the scene manager. <br/>
+ There are 4 types of nodes: <br/>
+ Center - Works in conjunction with the orbit node and serves as it's center point for the orbit node to rotate around. <br/>
+ Orbit - Counterpart to the Center node, this type does the orbiting. <br/>
+ Stand - Stationary node that points in one direction, that is it. <br/>
+ Free - A node with no rules governing how it moves. <br/>
+ Note: There are no rules restricting the use of nodes anyway, this enum is here simply to help indicate the intended use upon creation. </p>
 
 <p>Definition at line <a class="el" href="../../d4/d01/worldnode_8h_source.html#l00077">77</a> of file <a class="el" href="../../d4/d01/worldnode_8h_source.html">worldnode.h</a>.</p>
+<hr/><h2>Member Enumeration Documentation</h2>
+<a class="anchor" id="a0b178b06aa411b00c4c2ccd926d9bf5a"></a><!-- doxytag: member="phys::WorldNode::NodeType" ref="a0b178b06aa411b00c4c2ccd926d9bf5a" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5a">phys::WorldNode::NodeType</a></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Kinds of movement (or non-movement modes) a world node could have. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a0b178b06aa411b00c4c2ccd926d9bf5aa06be3334346d6ba7913197ee0dd5b8bb"></a><!-- doxytag: member="Center" ref="a0b178b06aa411b00c4c2ccd926d9bf5aa06be3334346d6ba7913197ee0dd5b8bb" args="" -->Center</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a0b178b06aa411b00c4c2ccd926d9bf5aae9751e5fc4396425fbd7b93171541a22"></a><!-- doxytag: member="Orbit" ref="a0b178b06aa411b00c4c2ccd926d9bf5aae9751e5fc4396425fbd7b93171541a22" args="" -->Orbit</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a0b178b06aa411b00c4c2ccd926d9bf5aa2ae400375e79106ae01adf39dd5c1185"></a><!-- doxytag: member="Stand" ref="a0b178b06aa411b00c4c2ccd926d9bf5aa2ae400375e79106ae01adf39dd5c1185" args="" -->Stand</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a0b178b06aa411b00c4c2ccd926d9bf5aaa4f848b95586fc581aa1f749c82a1fb5"></a><!-- doxytag: member="Free" ref="a0b178b06aa411b00c4c2ccd926d9bf5aaa4f848b95586fc581aa1f749c82a1fb5" args="" -->Free</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d4/d01/worldnode_8h_source.html#l00081">81</a> of file <a class="el" href="../../d4/d01/worldnode_8h_source.html">worldnode.h</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a02ab92f8a5f9da35926ef133a11a441e"></a><!-- doxytag: member="phys::WorldNode::WorldNode" ref="a02ab92f8a5f9da35926ef133a11a441e" args="(const String &amp;Name, SceneManager *manager)" -->
 <div class="memitem">
@@ -147,7 +196,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00055">55</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00056">56</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -177,6 +226,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <div class="memdoc">
 
 <p>Internal constructor. </p>
+<p><b>For internal use only.</b></p>
 <p>This constructor should not be called on manually. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -186,7 +236,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00062">62</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00063">63</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -207,7 +257,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 </div>
 <div class="memdoc">
 
-<p>Attaches an attachable element to this <a class="el" href="../../df/dd0/classNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>. </p>
+<p>Attaches an attachable element to this Node. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Element</em>&nbsp;</td><td>The Element to be attached. </td></tr>
@@ -215,7 +265,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00079">79</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -235,7 +285,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 </div>
 <div class="memdoc">
 
-<p>Detaches an attachable element from this <a class="el" href="../../df/dd0/classNode.html" title="This is a helper class which non-physics objects, such as lights, cameras, ribbon trails...">Node</a>. </p>
+<p>Detaches an attachable element from this Node. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>Element</em>&nbsp;</td><td>The Element to be detached. </td></tr>
@@ -243,11 +293,11 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00110">110</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00113">113</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="ad8a5650d5fb9f804b863c434ffab2cc1"></a><!-- doxytag: member="phys::WorldNode::GetName" ref="ad8a5650d5fb9f804b863c434ffab2cc1" args="()" -->
+<a class="anchor" id="ae3c12e7aced8f84e2191a5e08e2767a8"></a><!-- doxytag: member="phys::WorldNode::GetName" ref="ae3c12e7aced8f84e2191a5e08e2767a8" args="() const " -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -256,7 +306,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
 </div>
@@ -265,7 +315,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <p>Gets the name of this node. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name given to this node. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00074">74</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00075">75</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -287,7 +337,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <p>Gets the number of elements attached to this node. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of elements attached to this node. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -309,7 +359,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <p>Gets the orientation of this node. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a quaternion representing the orientation of this node. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00174">174</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00179">179</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -331,7 +381,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <p>Gets the position of this node. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a vector3 representing the location of this node. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00163">163</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00168">168</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -340,7 +390,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">WorldNode::NodeType phys::WorldNode::GetType </td>
+          <td class="memname"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5a">WorldNode::NodeType</a> phys::WorldNode::GetType </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -353,7 +403,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <p>Gets the type of node that this is. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the type of node this is set as. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00214">214</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00219">219</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -382,7 +432,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00200">200</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00205">205</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -410,7 +460,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00180">180</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00185">185</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -449,7 +499,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00185">185</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00190">190</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -488,7 +538,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00190">190</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00195">195</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -511,12 +561,12 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <p>Sets the orientation of this node. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Position</em>&nbsp;</td><td>A <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> representing the orientation of this node. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Orientation</em>&nbsp;</td><td>A <a class="el" href="../../df/d8c/classphys_1_1Quaternion.html" title="This is used to store information about rotation in 3d space.">Quaternion</a> representing the orientation of this node. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00169">169</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00174">174</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -544,7 +594,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00163">163</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -555,7 +605,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
         <tr>
           <td class="memname">void phys::WorldNode::SetType </td>
           <td>(</td>
-          <td class="paramtype">WorldNode::NodeType&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../d2/d3e/classphys_1_1WorldNode.html#a0b178b06aa411b00c4c2ccd926d9bf5a">WorldNode::NodeType</a>&nbsp;</td>
           <td class="paramname"> <em>type</em></td>
           <td>&nbsp;)&nbsp;</td>
           <td></td>
@@ -565,6 +615,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <div class="memdoc">
 
 <p>Sets the type of node that this is. </p>
+<p><b>For internal use only.</b></p>
 <p>This is intended for internal/expert use only. Manually calling this could disrupt normal function. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
@@ -573,7 +624,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00209">209</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html#l00214">214</a> of file <a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a>.</p>
 
 </div>
 </div>
@@ -582,7 +633,7 @@ std::vector&lt; <a class="el" href="../../df/dbd/classphys_1_1Attachable.html">A
 <li><a class="el" href="../../dd/dd2/worldnode_8cpp_source.html">worldnode.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:59 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:43:05 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

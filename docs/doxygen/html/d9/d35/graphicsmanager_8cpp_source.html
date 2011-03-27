@@ -80,429 +80,290 @@
 <a name="l00049"></a>00049 <span class="preprocessor">#include &quot;resourcemanager.h&quot;</span>
 <a name="l00050"></a>00050 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
 <a name="l00051"></a>00051 <span class="preprocessor">#include &quot;camera.h&quot;</span>
-<a name="l00052"></a>00052 
-<a name="l00053"></a>00053 <span class="preprocessor">#include &lt;SDL.h&gt;</span>
-<a name="l00054"></a>00054 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
+<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;crossplatform.h&quot;</span>
+<a name="l00053"></a>00053 <span class="preprocessor">#include &quot;gamewindow.h&quot;</span>
+<a name="l00054"></a>00054 <span class="preprocessor">#include &quot;viewport.h&quot;</span>
 <a name="l00055"></a>00055 
-<a name="l00056"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1">00056</a> <span class="keyword">namespace </span>phys
-<a name="l00057"></a>00057 {
-<a name="l00058"></a>00058 <span class="comment"></span>
-<a name="l00059"></a>00059 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
-<a name="l00060"></a>00060 <span class="comment"></span>    <span class="comment">// Creation and Deletion functions</span><span class="comment"></span>
-<a name="l00061"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a886beb1a86c4d25fde0a2965e464be62">00061</a> <span class="comment">    ///////////////////////////////////</span>
-<a name="l00062"></a>00062 <span class="comment"></span>    <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1" title="Basic constructor.">GraphicsManager::GraphicsManager</a>()
-<a name="l00063"></a>00063     {
-<a name="l00064"></a>00064         Construct( 800, 600, <span class="keyword">false</span> );
-<a name="l00065"></a>00065     }
-<a name="l00066"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a3a2cb4b7e078faa168025c835062e78f">00066</a> 
-<a name="l00067"></a>00067     <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1" title="Basic constructor.">GraphicsManager::GraphicsManager</a>( <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen )
+<a name="l00056"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1">00056</a> <span class="preprocessor">#include &lt;SDL.h&gt;</span>
+<a name="l00057"></a>00057 <span class="preprocessor">#include &lt;Ogre.h&gt;</span>
+<a name="l00058"></a>00058 
+<a name="l00059"></a>00059 <span class="keyword">namespace </span>phys
+<a name="l00060"></a>00060 {
+<a name="l00061"></a>00061 <span class="comment"></span>
+<a name="l00062"></a>00062 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
+<a name="l00063"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a886beb1a86c4d25fde0a2965e464be62">00063</a> <span class="comment"></span>    <span class="comment">// Creation and Deletion functions</span><span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">    ///////////////////////////////////</span>
+<a name="l00065"></a>00065 <span class="comment"></span>    <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1" title="Basic constructor.">GraphicsManager::GraphicsManager</a>()
+<a name="l00066"></a>00066         : SDLBeenInitialized(false),
+<a name="l00067"></a>00067           OgreBeenInitialized(false)
 <a name="l00068"></a>00068     {
-<a name="l00069"></a>00069         Construct( Width, Height, FullScreen );
-<a name="l00070"></a>00070     }
+<a name="l00069"></a>00069         Construct( 800, 600, <span class="keyword">false</span> );
+<a name="l00070"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a3a2cb4b7e078faa168025c835062e78f">00070</a>     }
 <a name="l00071"></a>00071 
-<a name="l00072"></a>00072     <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a3a2cb4b7e078faa168025c835062e78f" title="Class Destructor.">GraphicsManager::~GraphicsManager</a>()
-<a name="l00073"></a>00073     {
-<a name="l00074"></a>00074         DestroyRenderWindow();
-<a name="l00075"></a>00075         ShutdownSDL();
-<a name="l00076"></a>00076     }
-<a name="l00077"></a>00077 
-<a name="l00078"></a>00078     <span class="keywordtype">void</span> GraphicsManager::Construct(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen )
-<a name="l00079"></a>00079     {
-<a name="l00080"></a>00080         Settings.Fullscreen = FullScreen;
-<a name="l00081"></a>00081         Settings.RenderHeight = Height;
-<a name="l00082"></a>00082         Settings.RenderWidth = Width;
-<a name="l00083"></a>00083         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef" title="This is a weighting used by the main loop to decide what order the managers should be called in...">Priority</a> = 0;
-<a name="l00084"></a>00084         this-&gt;FrameDelay = 0;
-<a name="l00085"></a>00085     }
-<a name="l00086"></a>00086 
-<a name="l00087"></a>00087     <span class="keywordtype">void</span> GraphicsManager::CreateRenderWindow()
-<a name="l00088"></a>00088     {
-<a name="l00089"></a>00089         <span class="comment">//InitSDL();</span>
-<a name="l00090"></a>00090         SDL_Init(SDL_INIT_VIDEO);
-<a name="l00091"></a>00091         <span class="keywordtype">size_t</span> RC = 0;
-<a name="l00092"></a>00092         <span class="comment">//http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags</span>
+<a name="l00072"></a>00072     <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aceab258136ec2f29c8f163bf270f62c1" title="Basic constructor.">GraphicsManager::GraphicsManager</a>( <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen )
+<a name="l00073"></a>00073         : SDLBeenInitialized(false),
+<a name="l00074"></a>00074           OgreBeenInitialized(false)
+<a name="l00075"></a>00075     {
+<a name="l00076"></a>00076         Construct( Width, Height, FullScreen );
+<a name="l00077"></a>00077     }
+<a name="l00078"></a>00078 
+<a name="l00079"></a>00079     <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a3a2cb4b7e078faa168025c835062e78f" title="Class Destructor.">GraphicsManager::~GraphicsManager</a>()
+<a name="l00080"></a>00080     {
+<a name="l00081"></a>00081         <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a2824743d519bcc98abe5c95d0180c73c" title="Destroys every game window created.">DestroyAllGameWindows</a>(<span class="keyword">false</span>);
+<a name="l00082"></a>00082         ShutdownSDL();
+<a name="l00083"></a>00083     }
+<a name="l00084"></a>00084 
+<a name="l00085"></a>00085     <span class="keywordtype">void</span> GraphicsManager::Construct(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height, <span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;FullScreen )
+<a name="l00086"></a>00086     {
+<a name="l00087"></a>00087         PrimarySettings.Fullscreen = FullScreen;
+<a name="l00088"></a>00088         PrimarySettings.RenderHeight = Height;
+<a name="l00089"></a>00089         PrimarySettings.RenderWidth = Width;
+<a name="l00090"></a>00090         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#a28e2690fbcf644a7780a53b81821d8ef" title="This is a weighting used by the main loop to decide what order the managers should be called in...">Priority</a> = 0;
+<a name="l00091"></a>00091         this-&gt;FrameDelay = 0;
+<a name="l00092"></a>00092     }
 <a name="l00093"></a>00093 
-<a name="l00094"></a>00094                 <span class="keywordflow">try</span>
-<a name="l00095"></a>00095                 {
-<a name="l00096"></a>00096                         <span class="comment">//Setup the SDL render window</span>
-<a name="l00097"></a>00097                         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-<a name="l00098"></a>00098                         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-<a name="l00099"></a>00099             SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
-<a name="l00100"></a>00100                         <span class="keywordflow">if</span>(Settings.Fullscreen)
-<a name="l00101"></a>00101                         {
-<a name="l00102"></a>00102                             this-&gt;SDLwindow = SDL_CreateWindow( <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_FULLSCREEN | SDL_WINDOW_SHOWN );
-<a name="l00103"></a>00103                             <span class="comment">//this-&gt;SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL | SDL_FULLSCREEN );</span>
-<a name="l00104"></a>00104                         }<span class="keywordflow">else</span>{
-<a name="l00105"></a>00105                 this-&gt;SDLwindow = SDL_CreateWindow( <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetWindowName().c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN );
-<a name="l00106"></a>00106                 <span class="comment">//this-&gt;SDLscreen = SDL_SetVideoMode( RenderWidth, RenderHeight,0, SDL_OPENGL );</span>
-<a name="l00107"></a>00107                         }
-<a name="l00108"></a>00108                         RC = (size_t)SDL_GL_CreateContext(this-&gt;SDLwindow);
-<a name="l00109"></a>00109                         <span class="comment">//SDL_WM_SetCaption(GameWorld-&gt;GetWindowName().c_str(), NULL);</span>
-<a name="l00110"></a>00110 <span class="preprocessor">                        #ifdef PHYSDEBUG</span>
-<a name="l00111"></a>00111 <span class="preprocessor"></span>            <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Successfully Setup SDL&quot;</span>);
-<a name="l00112"></a>00112 <span class="preprocessor">            #endif</span>
-<a name="l00113"></a>00113 <span class="preprocessor"></span>                }<span class="keywordflow">catch</span> (exception&amp; e) {
-<a name="l00114"></a>00114                     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Failed to Setup SDL&quot;</span>);
-<a name="l00115"></a>00115                         <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;LogAndThrow(e.what());
-<a name="l00116"></a>00116                 }
-<a name="l00117"></a>00117 
-<a name="l00118"></a>00118         <span class="comment">//Start Ogre Without a native render window</span>
-<a name="l00119"></a>00119         <span class="keywordflow">try</span>
-<a name="l00120"></a>00120         {
-<a name="l00121"></a>00121             <span class="comment">//crossplatform::WaitMilliseconds(1000);</span>
-<a name="l00122"></a>00122             OgreGameWindow = Ogre::Root::getSingleton().initialise(<span class="keyword">false</span>, <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetWindowName());
-<a name="l00123"></a>00123 <span class="preprocessor">            #ifdef PHYSDEBUG</span>
-<a name="l00124"></a>00124 <span class="preprocessor"></span>            <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Setup Ogre Window&quot;</span>);
-<a name="l00125"></a>00125 <span class="preprocessor">            #endif</span>
-<a name="l00126"></a>00126 <span class="preprocessor"></span>        }<span class="keywordflow">catch</span> (exception&amp; e) {
-<a name="l00127"></a>00127                     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Failed to Setup Ogre Window&quot;</span>);
-<a name="l00128"></a>00128                         <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;LogAndThrow(e.what());
-<a name="l00129"></a>00129                 }
-<a name="l00130"></a>00130 
-<a name="l00131"></a>00131         <span class="comment">//Configure Ogre to render to the SDL window</span>
-<a name="l00132"></a>00132         Ogre::NameValuePairList *misc;
-<a name="l00133"></a>00133         misc=(Ogre::NameValuePairList*) <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ae7aee515262e81cb9c1cfad652c86044" title="This creates a data structure that can help SDL(User Input Subsystem) with Ogre(graphics subsystem)...">crossplatform::GetSDLOgreBinder</a>(SDLwindow,RC);
-<a name="l00134"></a>00134         OgreGameWindow = Ogre::Root::getSingleton().createRenderWindow(<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetWindowName(), Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, misc);
-<a name="l00135"></a>00135 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
-<a name="l00136"></a>00136 <span class="preprocessor"></span>        <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Bound Ogre to an SDL window&quot;</span>);
-<a name="l00137"></a>00137 <span class="preprocessor">        #endif</span>
-<a name="l00138"></a>00138 <span class="preprocessor"></span>
-<a name="l00139"></a>00139         InitViewportAndCamera();
-<a name="l00140"></a>00140     }
-<a name="l00141"></a>00141 
-<a name="l00142"></a>00142     <span class="keywordtype">void</span> GraphicsManager::DestroyRenderWindow()
-<a name="l00143"></a>00143     {
-<a name="l00144"></a>00144         OgreGameWindow-&gt;destroy();
-<a name="l00145"></a>00145     }
-<a name="l00146"></a>00146 
-<a name="l00147"></a>00147     <span class="keywordtype">void</span> GraphicsManager::InitSDL()
-<a name="l00148"></a>00148     {<span class="comment"></span>
-<a name="l00149"></a>00149 <span class="comment">        /// @todo TODO set multithreaded SDL so it will the run event manager in another thread</span>
-<a name="l00150"></a>00150 <span class="comment"></span>        <span class="comment">//Get what is needed for SDL started</span>
-<a name="l00151"></a>00151         <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO) &lt; 0) {
-<a name="l00152"></a>00152             <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Error 2: Unable to init SDL, SDL Error Follows:&quot;</span>);
-<a name="l00153"></a>00153             <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;LogAndThrow(SDL_GetError());
-<a name="l00154"></a>00154         }
-<a name="l00155"></a>00155         SDLBeenInitialized = <span class="keyword">true</span>;
-<a name="l00156"></a>00156 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
-<a name="l00157"></a>00157 <span class="preprocessor"></span>        <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Initialized SDL&quot;</span>);
-<a name="l00158"></a>00158 <span class="preprocessor">        #endif</span>
-<a name="l00159"></a>00159 <span class="preprocessor"></span>    }
-<a name="l00160"></a>00160 
-<a name="l00161"></a>00161     <span class="keywordtype">void</span> GraphicsManager::ShutdownSDL()
-<a name="l00162"></a>00162     {
-<a name="l00163"></a>00163         <span class="comment">//SDL_DeleteContext();</span>
-<a name="l00164"></a>00164         SDL_DestroyWindow(SDLwindow);
-<a name="l00165"></a>00165         <span class="comment">//SDL_FreeSurface(SDLscreen);</span>
-<a name="l00166"></a>00166         SDL_Quit();
-<a name="l00167"></a>00167     }
-<a name="l00168"></a>00168 
-<a name="l00169"></a>00169     <span class="keywordtype">void</span> GraphicsManager::InitViewportAndCamera()
-<a name="l00170"></a>00170     {
-<a name="l00171"></a>00171         <span class="comment">//setup a default camera unless has been setup yet</span>
-<a name="l00172"></a>00172         Camera* camera = NULL;
-<a name="l00173"></a>00173         <span class="keywordflow">if</span>(<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetCameraManager()==0)
-<a name="l00174"></a>00174         {
-<a name="l00175"></a>00175             <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;AddManager(<span class="keyword">new</span> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html" title="This is the manager class for all camera functions.">phys::CameraManager</a>(0));
-<a name="l00176"></a>00176         }
-<a name="l00177"></a>00177         camera = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetCameraManager()-&gt;GetDefaultCamera();
-<a name="l00178"></a>00178 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
-<a name="l00179"></a>00179 <span class="preprocessor"></span>        <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Created Default Camera&quot;</span>);
-<a name="l00180"></a>00180 <span class="preprocessor">        #endif</span>
-<a name="l00181"></a>00181 <span class="preprocessor"></span>
-<a name="l00182"></a>00182         <span class="comment">//viewport connects camera and render window</span>
-<a name="l00183"></a>00183         Ogre::Viewport* OgreViewport = NULL;
-<a name="l00184"></a>00184         OgreViewport = OgreGameWindow-&gt;addViewport(camera-&gt;GetOgreCamera());
-<a name="l00185"></a>00185         <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetCameraManager()-&gt;Viewports[<span class="stringliteral">&quot;Viewport1&quot;</span>] = OgreViewport;
-<a name="l00186"></a>00186 
-<a name="l00187"></a>00187         <span class="comment">//setting the aspect ratio must be done after we setup the viewport</span>
-<a name="l00188"></a>00188         camera-&gt;SetAspectRatio( (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)(OgreViewport-&gt;getActualWidth()) / (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)(OgreViewport-&gt;getActualHeight()) );
-<a name="l00189"></a>00189 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
-<a name="l00190"></a>00190 <span class="preprocessor"></span>        <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Configured Viewport and Aspect Ratio&quot;</span>);
-<a name="l00191"></a>00191 <span class="preprocessor">        #endif</span>
-<a name="l00192"></a>00192 <span class="preprocessor"></span>    }
-<a name="l00193"></a>00193 
-<a name="l00194"></a>00194     <span class="keywordtype">void</span> GraphicsManager::CorrectViewportAndCamera()
-<a name="l00195"></a>00195     {
-<a name="l00196"></a>00196         Ogre::Viewport* OgreViewport = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetCameraManager()-&gt;GetOgreViewport(<span class="stringliteral">&quot;Viewport1&quot;</span>);
-<a name="l00197"></a>00197         OgreViewport-&gt;setDimensions(0,0,1,1);
-<a name="l00198"></a>00198         OgreViewport-&gt;getCamera()-&gt;setAspectRatio((<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)(OgreViewport-&gt;getActualWidth()) / (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)(OgreViewport-&gt;getActualHeight()));
-<a name="l00199"></a>00199     }
-<a name="l00200"></a>00200 
-<a name="l00201"></a>00201     <span class="keywordtype">bool</span> GraphicsManager::IsLargerThenDesktop(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Width, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Height)
-<a name="l00202"></a>00202     {
-<a name="l00203"></a>00203         SDL_DisplayMode DesktopDisplay;
-<a name="l00204"></a>00204         SDL_GetDesktopDisplayMode(0,&amp;DesktopDisplay);
-<a name="l00205"></a>00205         <span class="keywordflow">if</span>(Width &gt;= DesktopDisplay.w || Height &gt;= DesktopDisplay.h)
-<a name="l00206"></a>00206             <span class="keywordflow">return</span> <span class="keyword">true</span>;
-<a name="l00207"></a>00207         <span class="keywordflow">else</span>
-<a name="l00208"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad126eedb81e3f0304731ddd33b617593">00208</a>             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00209"></a>00209     }
-<a name="l00210"></a>00210 <span class="comment"></span>
-<a name="l00211"></a>00211 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
-<a name="l00212"></a>00212 <span class="comment"></span>    <span class="comment">// Fullscreen functions</span><span class="comment"></span>
-<a name="l00213"></a>00213 <span class="comment">    ///////////////////////////////////</span>
-<a name="l00214"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aeea7f2f26a3f9a53754ad34219f75e99">00214</a> <span class="comment"></span>    <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad126eedb81e3f0304731ddd33b617593" title="Gets the Fullscreen Setting.">GraphicsManager::getFullscreen</a>()<span class="keyword"> const</span>
-<a name="l00215"></a>00215 <span class="keyword">    </span>{
-<a name="l00216"></a>00216         <span class="keywordflow">return</span> Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a>;
+<a name="l00094"></a>00094     <span class="keywordtype">void</span> GraphicsManager::InitSDL()
+<a name="l00095"></a>00095     {<span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">        /// @todo TODO set multithreaded SDL so it will the run event manager in another thread</span>
+<a name="l00097"></a>00097 <span class="comment"></span>        <span class="keywordflow">if</span>(!SDLBeenInitialized)
+<a name="l00098"></a>00098         {
+<a name="l00099"></a>00099             SDL_Init(SDL_INIT_VIDEO);
+<a name="l00100"></a>00100             SDLBeenInitialized = <span class="keyword">true</span>;
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
+<a name="l00103"></a>00103 <span class="preprocessor"></span>        <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Initialized SDL&quot;</span>);
+<a name="l00104"></a>00104 <span class="preprocessor">        #endif</span>
+<a name="l00105"></a>00105 <span class="preprocessor"></span>    }
+<a name="l00106"></a>00106 
+<a name="l00107"></a>00107     <span class="keywordtype">void</span> GraphicsManager::InitOgre()
+<a name="l00108"></a>00108     {
+<a name="l00109"></a>00109         <span class="keywordflow">if</span>(!OgreBeenInitialized)
+<a name="l00110"></a>00110         {
+<a name="l00111"></a>00111             <span class="keywordflow">try</span>
+<a name="l00112"></a>00112             {
+<a name="l00113"></a>00113                 <span class="comment">/*NewWindows.OgreWindow = */</span>Ogre::Root::getSingleton().initialise(<span class="keyword">false</span>, <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetWindowName());
+<a name="l00114"></a>00114 <span class="preprocessor">                #ifdef PHYSDEBUG</span>
+<a name="l00115"></a>00115 <span class="preprocessor"></span>                <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Setup Ogre Window&quot;</span>);
+<a name="l00116"></a>00116 <span class="preprocessor">                #endif</span>
+<a name="l00117"></a>00117 <span class="preprocessor"></span>            }<span class="keywordflow">catch</span> (exception&amp; e) {
+<a name="l00118"></a>00118                 <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Failed to Setup Ogre Window&quot;</span>);
+<a name="l00119"></a>00119                 <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;LogAndThrow(e.what());
+<a name="l00120"></a>00120             }
+<a name="l00121"></a>00121             OgreBeenInitialized = <span class="keyword">true</span>;
+<a name="l00122"></a>00122         }
+<a name="l00123"></a>00123     }
+<a name="l00124"></a>00124 
+<a name="l00125"></a>00125     <span class="keywordtype">void</span> GraphicsManager::ShutdownSDL()
+<a name="l00126"></a>00126     {
+<a name="l00127"></a>00127         <span class="comment">//SDL_DeleteContext();</span>
+<a name="l00128"></a>00128         <span class="comment">//SDL_DestroyWindow(SDLwindow);</span>
+<a name="l00129"></a>00129         <span class="comment">//SDL_FreeSurface(SDLscreen);</span>
+<a name="l00130"></a>00130         SDL_Quit();
+<a name="l00131"></a>00131     }
+<a name="l00132"></a>00132 
+<a name="l00133"></a>00133     <span class="keywordtype">void</span> GraphicsManager::InitViewportAndCamera(GameWindow* NewWindow)
+<a name="l00134"></a>00134     {
+<a name="l00135"></a>00135         <span class="comment">//setup a default camera unless has been setup yet</span>
+<a name="l00136"></a>00136         Camera* camera = NULL;
+<a name="l00137"></a>00137         <span class="keywordflow">if</span>(<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetCameraManager()==0)
+<a name="l00138"></a>00138         {
+<a name="l00139"></a>00139             <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;AddManager(<span class="keyword">new</span> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html" title="This is the manager class for all camera functions.">phys::CameraManager</a>(0));
+<a name="l00140"></a>00140         }
+<a name="l00141"></a>00141         camera = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetCameraManager()-&gt;GetDefaultCamera();
+<a name="l00142"></a>00142 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
+<a name="l00143"></a>00143 <span class="preprocessor"></span>        <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Created Default Camera&quot;</span>);
+<a name="l00144"></a>00144 <span class="preprocessor">        #endif</span>
+<a name="l00145"></a>00145 <span class="preprocessor"></span>
+<a name="l00146"></a>00146         <span class="comment">//viewport connects camera and render window</span>
+<a name="l00147"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a31c4d90e4ee016b96b7f4e78e20d87a0">00147</a>         <a class="code" href="../../d5/d62/classphys_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* PrimaryViewport = NewWindow-&gt;CreateViewport(camera);
+<a name="l00148"></a>00148 
+<a name="l00149"></a>00149         <span class="comment">//setting the aspect ratio must be done after we setup the viewport</span>
+<a name="l00150"></a>00150         camera-&gt;SetAspectRatio( (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)(PrimaryViewport-&gt;<a class="code" href="../../d5/d62/classphys_1_1Viewport.html#a301262e5da6926296241f0e2cc2de7d2" title="Gets the width of the viewport in pixels.">GetActualWidth</a>()) / (<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)(PrimaryViewport-&gt;<a class="code" href="../../d5/d62/classphys_1_1Viewport.html#a1eee22594548a38910dee8e838e6449d" title="Gets the height of the viewport in pixels.">GetActualHeight</a>()) );
+<a name="l00151"></a>00151 <span class="preprocessor">        #ifdef PHYSDEBUG</span>
+<a name="l00152"></a>00152 <span class="preprocessor"></span>        <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a4ab573bc3b060d6b3f58483bab04fca2" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Configured Viewport and Aspect Ratio&quot;</span>);
+<a name="l00153"></a>00153 <span class="preprocessor">        #endif</span>
+<a name="l00154"></a>00154 <span class="preprocessor"></span>    }
+<a name="l00155"></a>00155 
+<a name="l00156"></a>00156     <a class="code" href="../../dc/d4f/classphys_1_1GameWindow.html" title="This class is for creating and managing game windows.">GameWindow</a>* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a31c4d90e4ee016b96b7f4e78e20d87a0" title="Creates a new game window to be rendered to.">GraphicsManager::CreateGameWindow</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; WindowCaption, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Width, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Height, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Flags)
+<a name="l00157"></a>00157     {
+<a name="l00158"></a>00158         <span class="keywordflow">if</span>(!SDLBeenInitialized) InitSDL();
+<a name="l00159"></a>00159         <span class="keywordflow">if</span>(!OgreBeenInitialized) InitOgre();
+<a name="l00160"></a>00160         <span class="comment">//http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags</span>
+<a name="l00161"></a>00161         <a class="code" href="../../dc/d4f/classphys_1_1GameWindow.html" title="This class is for creating and managing game windows.">GameWindow</a>* NewWindow = <span class="keyword">new</span> <a class="code" href="../../dc/d4f/classphys_1_1GameWindow.html" title="This class is for creating and managing game windows.">GameWindow</a>(WindowCaption,Width,Height,Flags);
+<a name="l00162"></a>00162 
+<a name="l00163"></a>00163         <span class="keywordflow">if</span>(GameWindows.empty())
+<a name="l00164"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a94952747ba141966fb138101b10864ee">00164</a>         {
+<a name="l00165"></a>00165             InitViewportAndCamera(NewWindow);
+<a name="l00166"></a>00166             PrimaryGameWindow = NewWindow;
+<a name="l00167"></a>00167             PrimarySettings = NewWindow-&gt;<a class="code" href="../../dc/d4f/classphys_1_1GameWindow.html#a9f74d3e37c8ad83727c050175927bdc1" title="Gets the current window settings.">GetSettings</a>();
+<a name="l00168"></a>00168         }
+<a name="l00169"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae54cf5861681ef6b1849b35bfaa55bb6">00169</a>         GameWindows.push_back(NewWindow);
+<a name="l00170"></a>00170         <span class="keywordflow">return</span> NewWindow;
+<a name="l00171"></a>00171     }
+<a name="l00172"></a>00172 
+<a name="l00173"></a>00173     <a class="code" href="../../dc/d4f/classphys_1_1GameWindow.html" title="This class is for creating and managing game windows.">GameWindow</a>* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a94952747ba141966fb138101b10864ee" title="Gets a game window by index.">GraphicsManager::GetGameWindow</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a>&amp; Index)
+<a name="l00174"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a814eb66a4da0075dc8f46199a4716241">00174</a>     {
+<a name="l00175"></a>00175         <span class="keywordflow">return</span> GameWindows[Index];
+<a name="l00176"></a>00176     }
+<a name="l00177"></a>00177 
+<a name="l00178"></a>00178     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae54cf5861681ef6b1849b35bfaa55bb6" title="Gets the number of game windows within this manager.">GraphicsManager::GetNumGameWindows</a>()
+<a name="l00179"></a>00179     {
+<a name="l00180"></a>00180         <span class="keywordflow">return</span> GameWindows.size();
+<a name="l00181"></a>00181     }
+<a name="l00182"></a>00182 
+<a name="l00183"></a>00183     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a814eb66a4da0075dc8f46199a4716241" title="Destroys a created game window by index.">GraphicsManager::DestroyGameWindow</a>(GameWindow* ToBeDestroyed)
+<a name="l00184"></a>00184     {
+<a name="l00185"></a>00185         <span class="keywordflow">for</span> ( std::vector&lt;GameWindow*&gt;::iterator it = GameWindows.begin() ; it != GameWindows.end() ; it++ )
+<a name="l00186"></a>00186         {
+<a name="l00187"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a2824743d519bcc98abe5c95d0180c73c">00187</a>             <span class="keywordflow">if</span> ( ToBeDestroyed == (*it) )
+<a name="l00188"></a>00188             {
+<a name="l00189"></a>00189                 <span class="keyword">delete</span> ToBeDestroyed;
+<a name="l00190"></a>00190                 GameWindows.erase(it);
+<a name="l00191"></a>00191                 <span class="keywordflow">return</span>;
+<a name="l00192"></a>00192             }
+<a name="l00193"></a>00193         }
+<a name="l00194"></a>00194     }
+<a name="l00195"></a>00195 
+<a name="l00196"></a>00196     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a2824743d519bcc98abe5c95d0180c73c" title="Destroys every game window created.">GraphicsManager::DestroyAllGameWindows</a>(<span class="keywordtype">bool</span> ExcludePrimary)
+<a name="l00197"></a>00197     {
+<a name="l00198"></a>00198         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0;
+<a name="l00199"></a>00199         <span class="keywordflow">if</span>(ExcludePrimary) X++;
+<a name="l00200"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a4a0ef06c307c1521f60d39bd7a020643">00200</a>         <span class="keywordflow">while</span>( X &lt; GameWindows.size() )
+<a name="l00201"></a>00201         {
+<a name="l00202"></a>00202             <span class="keyword">delete</span> GameWindows[X];
+<a name="l00203"></a>00203             X++;
+<a name="l00204"></a>00204         }
+<a name="l00205"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ab2b1a8f5e714454f26f936bd746b256a">00205</a>         GameWindows.clear();
+<a name="l00206"></a>00206         <span class="keywordflow">if</span>(ExcludePrimary) GameWindows.push_back(PrimaryGameWindow);
+<a name="l00207"></a>00207     }
+<a name="l00208"></a>00208 
+<a name="l00209"></a>00209     <a class="code" href="../../dc/d4f/classphys_1_1GameWindow.html" title="This class is for creating and managing game windows.">GameWindow</a>* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a4a0ef06c307c1521f60d39bd7a020643" title="Gets the primary(first) game window.">GraphicsManager::GetPrimaryGameWindow</a>()
+<a name="l00210"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad07600281c765e22bc413a1a9df1a22c">00210</a>     {
+<a name="l00211"></a>00211         <span class="keywordflow">return</span> PrimaryGameWindow;
+<a name="l00212"></a>00212     }
+<a name="l00213"></a>00213 
+<a name="l00214"></a>00214     <span class="keyword">const</span> <a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html" title="This stores all the possible configuration options the graphics manager supports.">GraphicsSettings</a>&amp; <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ab2b1a8f5e714454f26f936bd746b256a" title="Gets the desktop display settings.">GraphicsManager::GetDesktopSettings</a>()
+<a name="l00215"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ab7ab98ff594726f8cc6d3ca0fac0ecdf">00215</a>     {
+<a name="l00216"></a>00216         <span class="keywordflow">return</span> DesktopSettings;
 <a name="l00217"></a>00217     }
 <a name="l00218"></a>00218 
-<a name="l00219"></a>00219     <span class="comment">//returns: false if changes could not be made</span>
-<a name="l00220"></a>00220     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aeea7f2f26a3f9a53754ad34219f75e99" title="Set the Fullscreen Setting.">GraphicsManager::setFullscreen</a>(<span class="keyword">const</span> <span class="keywordtype">bool</span> &amp;Fullscreen)
-<a name="l00221"></a>00221     {
-<a name="l00222"></a>00222         <span class="keywordflow">if</span>(!GraphicsInitialized)
-<a name="l00223"></a>00223         {
-<a name="l00224"></a>00224             Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a64e9751b921685cac320650bd54e0a8e" title="This is the desired state of whether the window is fullscreen or not.">Fullscreen</a> = Fullscreen;
-<a name="l00225"></a>00225             <span class="keywordflow">return</span>;
-<a name="l00226"></a>00226         }<span class="comment"></span>
-<a name="l00227"></a>00227 <span class="comment">        /// @todo TODO: Need to attempt to switch to fullscreen here</span>
-<a name="l00228"></a>00228 <span class="comment">        /// @todo TODO: We really should double check that going into fullscreen worked the way we wanted, this fails in too many games</span>
-<a name="l00229"></a>00229 <span class="comment"></span>
-<a name="l00230"></a>00230         <span class="keywordflow">if</span>(SDL_SetWindowFullscreen(SDLwindow, Fullscreen?SDL_TRUE:SDL_FALSE ) == 0)
-<a name="l00231"></a>00231         {
-<a name="l00232"></a>00232             OgreGameWindow-&gt;setFullscreen(Fullscreen,Settings.RenderWidth,Settings.RenderHeight);
-<a name="l00233"></a>00233             CorrectViewportAndCamera();
-<a name="l00234"></a>00234             Settings.Fullscreen = Fullscreen;
-<a name="l00235"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a38ee0f8a8a7d8ba861b1c6cfe579443e">00235</a>         }
-<a name="l00236"></a>00236     }
-<a name="l00237"></a>00237 <span class="comment"></span>
-<a name="l00238"></a>00238 <span class="comment">    ///////////////////////////////////////////////////////////////////////////</span>
-<a name="l00239"></a>00239 <span class="comment"></span>    <span class="comment">// Resolution functions</span><span class="comment"></span>
-<a name="l00240"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9e1ce1f9f8bcff7712fd5beaf7cf2337">00240</a> <span class="comment">    ///////////////////////////////////</span>
-<a name="l00241"></a>00241 <span class="comment"></span>    <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a38ee0f8a8a7d8ba861b1c6cfe579443e" title="Gets the Height of the Rendering Area.">GraphicsManager::getRenderHeight</a>()<span class="keyword"> const</span>
-<a name="l00242"></a>00242 <span class="keyword">    </span>{
-<a name="l00243"></a>00243         <span class="keywordflow">return</span> Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a>;
-<a name="l00244"></a>00244     }
-<a name="l00245"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#afc98369b4c2664990c6b5a0370e5e74e">00245</a> 
-<a name="l00246"></a>00246     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9e1ce1f9f8bcff7712fd5beaf7cf2337" title="Gets the Width of the Rendering Area.">GraphicsManager::getRenderWidth</a>()<span class="keyword"> const</span>
-<a name="l00247"></a>00247 <span class="keyword">    </span>{
-<a name="l00248"></a>00248         <span class="keywordflow">return</span> Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a>;
-<a name="l00249"></a>00249     }
-<a name="l00250"></a>00250 
-<a name="l00251"></a>00251     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#afc98369b4c2664990c6b5a0370e5e74e" title="Sets the Height.">GraphicsManager::setRenderHeight</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height)
-<a name="l00252"></a>00252     {
-<a name="l00253"></a>00253         <span class="keywordflow">if</span>(!GraphicsInitialized)
-<a name="l00254"></a>00254         {
-<a name="l00255"></a>00255             Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a> = Height;
-<a name="l00256"></a>00256             <span class="keywordflow">return</span>;
-<a name="l00257"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a00215d086bc439c64906186f02a9bd76">00257</a>         }<span class="comment"></span>
-<a name="l00258"></a>00258 <span class="comment">        /// @todo TODO: Need to attempt to update resolution here</span>
-<a name="l00259"></a>00259 <span class="comment"></span>        <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad61858461f05ddb9cadec77eea41abde" title="Changes the X and Y Resolution at the same time.">setRenderResolution</a>(Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a>,Height);
-<a name="l00260"></a>00260         Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a> = Height;
-<a name="l00261"></a>00261     }
-<a name="l00262"></a>00262 
-<a name="l00263"></a>00263     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a00215d086bc439c64906186f02a9bd76" title="Sets the Width.">GraphicsManager::setRenderWidth</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width)
-<a name="l00264"></a>00264     {
-<a name="l00265"></a>00265         <span class="keywordflow">if</span>(!GraphicsInitialized)
-<a name="l00266"></a>00266         {
-<a name="l00267"></a>00267             Settings.RenderWidth = Width;
-<a name="l00268"></a>00268             <span class="keywordflow">return</span>;
-<a name="l00269"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad61858461f05ddb9cadec77eea41abde">00269</a>         }<span class="comment"></span>
-<a name="l00270"></a>00270 <span class="comment">        /// @todo TODO: Need to attempt to update resolution here</span>
-<a name="l00271"></a>00271 <span class="comment"></span>        <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad61858461f05ddb9cadec77eea41abde" title="Changes the X and Y Resolution at the same time.">setRenderResolution</a>(Width,Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a>);
-<a name="l00272"></a>00272         Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a> = Width;
-<a name="l00273"></a>00273     }
-<a name="l00274"></a>00274 
-<a name="l00275"></a>00275     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad61858461f05ddb9cadec77eea41abde" title="Changes the X and Y Resolution at the same time.">GraphicsManager::setRenderResolution</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Width, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> &amp;Height)
-<a name="l00276"></a>00276     {
-<a name="l00277"></a>00277         <span class="keywordflow">if</span>(!GraphicsInitialized)
-<a name="l00278"></a>00278         {
-<a name="l00279"></a>00279             Settings.RenderWidth = Width;
-<a name="l00280"></a>00280             Settings.RenderHeight = Height;
-<a name="l00281"></a>00281             <span class="keywordflow">return</span>;
-<a name="l00282"></a>00282         }<span class="comment"></span>
-<a name="l00283"></a>00283 <span class="comment">        /// @todo TODO: Need to attempt to update resolution here</span>
-<a name="l00284"></a>00284 <span class="comment"></span>        <span class="keywordflow">if</span>(Settings.Fullscreen)
-<a name="l00285"></a>00285         {
-<a name="l00286"></a>00286             SDL_DisplayMode CurrentDisplay;
-<a name="l00287"></a>00287             SDL_GetWindowDisplayMode(SDLwindow,&amp;CurrentDisplay);
-<a name="l00288"></a>00288             CurrentDisplay.w = Width;
-<a name="l00289"></a>00289             CurrentDisplay.h = Height;
-<a name="l00290"></a>00290             CurrentDisplay.refresh_rate = 60;
-<a name="l00291"></a>00291             <span class="keywordflow">if</span>(SDL_SetWindowDisplayMode(SDLwindow,&amp;CurrentDisplay) == 0)
-<a name="l00292"></a>00292             {
-<a name="l00293"></a>00293                 OgreGameWindow-&gt;setFullscreen(<span class="keyword">true</span>,Width,Height);
-<a name="l00294"></a>00294                 CorrectViewportAndCamera();
-<a name="l00295"></a>00295                 Settings.RenderWidth = Width;
-<a name="l00296"></a>00296                 Settings.RenderHeight = Height;
-<a name="l00297"></a>00297                 <span class="keywordflow">return</span>;
-<a name="l00298"></a>00298             }
-<a name="l00299"></a>00299         }<span class="keywordflow">else</span>{
-<a name="l00300"></a>00300             <span class="keywordflow">if</span>(IsLargerThenDesktop(Width,Height))
-<a name="l00301"></a>00301             {<span class="comment"></span>
-<a name="l00302"></a>00302 <span class="comment">                /// @todo Need to add a function that will sanitize a window size to account for decorations, and add it here.</span>
-<a name="l00303"></a>00303 <span class="comment"></span>                <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> nWidth=Width-8;
-<a name="l00304"></a>00304                 <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> nHeight=Height-38;
-<a name="l00305"></a>00305                 SDL_SetWindowSize(SDLwindow,nWidth,nHeight);
-<a name="l00306"></a>00306                 OgreGameWindow-&gt;setFullscreen(<span class="keyword">false</span>,nWidth,nHeight);
-<a name="l00307"></a>00307             }<span class="keywordflow">else</span>{
-<a name="l00308"></a>00308                 SDL_SetWindowSize(SDLwindow,Width,Height);
-<a name="l00309"></a>00309                 OgreGameWindow-&gt;setFullscreen(<span class="keyword">false</span>,Width,Height);
-<a name="l00310"></a>00310             }
-<a name="l00311"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aeeca7f0fc3c3b31abc153031fa4ccbf2">00311</a>             CorrectViewportAndCamera();
-<a name="l00312"></a>00312             Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a> = Width;
-<a name="l00313"></a>00313             Settings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a> = Height;
-<a name="l00314"></a>00314         }
-<a name="l00315"></a>00315     }
-<a name="l00316"></a>00316 
-<a name="l00317"></a>00317     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aeeca7f0fc3c3b31abc153031fa4ccbf2" title="Changes the X Resolution, Y Resolution, and fullscreen at the same time.">GraphicsManager::setRenderOptions</a>(<span class="keyword">const</span> GraphicsSettings&amp; NewSettings)
-<a name="l00318"></a>00318     {
-<a name="l00319"></a>00319         <span class="keywordflow">if</span>(!GraphicsInitialized)
-<a name="l00320"></a>00320         {
-<a name="l00321"></a>00321             Settings = NewSettings;
-<a name="l00322"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad07600281c765e22bc413a1a9df1a22c">00322</a>             <span class="keywordflow">return</span>;
-<a name="l00323"></a>00323         }
-<a name="l00324"></a>00324         <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aeea7f2f26a3f9a53754ad34219f75e99" title="Set the Fullscreen Setting.">setFullscreen</a>(NewSettings.Fullscreen);
-<a name="l00325"></a>00325         <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad61858461f05ddb9cadec77eea41abde" title="Changes the X and Y Resolution at the same time.">setRenderResolution</a>(NewSettings.RenderWidth,NewSettings.RenderHeight);
-<a name="l00326"></a>00326     }
-<a name="l00327"></a>00327 
-<a name="l00328"></a>00328     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad07600281c765e22bc413a1a9df1a22c" title="Gets whether or not SDL has been started.">GraphicsManager::HasSDLBeenInitialized</a>()
-<a name="l00329"></a>00329     {
-<a name="l00330"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#adcded385b6442aa5da6097f1edd5471a">00330</a>         <span class="keywordflow">return</span> SDLBeenInitialized;
-<a name="l00331"></a>00331     }
-<a name="l00332"></a>00332 <span class="comment"></span>
-<a name="l00333"></a>00333 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00334"></a>00334 <span class="comment"></span>    <span class="comment">//Shows the ogre settings Dialog, and allows it to save settings to ogres</span>
-<a name="l00335"></a>00335     <span class="comment">//preset save location</span>
-<a name="l00336"></a>00336     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#adcded385b6442aa5da6097f1edd5471a" title="This Shows an Engine Generated Configuration Screen.">GraphicsManager::ShowGraphicsSettingDialog</a>()
-<a name="l00337"></a>00337     {
-<a name="l00338"></a>00338         <span class="keywordflow">try</span>
-<a name="l00339"></a>00339         {
-<a name="l00340"></a>00340             <span class="keywordflow">return</span> Ogre::Root::getSingleton().showConfigDialog();
-<a name="l00341"></a>00341         } <span class="keywordflow">catch</span> (exception&amp; e) {
-<a name="l00342"></a>00342             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(<span class="stringliteral">&quot;Ogre settings windows from main UI or mandatory setting failure&quot;</span>);
-<a name="l00343"></a>00343             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;Log(e.what());
-<a name="l00344"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac1b8450e3cb7d83d0414322fcf403421">00344</a>             <span class="keywordflow">return</span> <span class="keyword">false</span>;
-<a name="l00345"></a>00345         }
-<a name="l00346"></a>00346     }
-<a name="l00347"></a>00347 <span class="comment"></span>
-<a name="l00348"></a>00348 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00349"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aaa43222ecf0a25841435651139539a94">00349</a> <span class="comment"></span>    <span class="comment">//Stats functions</span>
-<a name="l00350"></a>00350     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac1b8450e3cb7d83d0414322fcf403421" title="Gets the FPS based on the last frame rendered.">GraphicsManager::GetLastFPS</a>()
-<a name="l00351"></a>00351     {
-<a name="l00352"></a>00352         <span class="keywordflow">return</span> OgreGameWindow-&gt;getLastFPS();
-<a name="l00353"></a>00353     }
-<a name="l00354"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a6b644d683013467e1df4e115c4347be2">00354</a> 
-<a name="l00355"></a>00355     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#aaa43222ecf0a25841435651139539a94" title="Gets the Average FPS.">GraphicsManager::GetAverageFPS</a>()
-<a name="l00356"></a>00356     {
-<a name="l00357"></a>00357         <span class="keywordflow">return</span> OgreGameWindow-&gt;getAverageFPS();
-<a name="l00358"></a>00358     }
-<a name="l00359"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a52d675b375be04a02d6d91f27fb714a8">00359</a> 
-<a name="l00360"></a>00360     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a6b644d683013467e1df4e115c4347be2" title="Gets the Best FPS.">GraphicsManager::GetBestFPS</a>()
-<a name="l00361"></a>00361     {
-<a name="l00362"></a>00362         <span class="keywordflow">return</span> OgreGameWindow-&gt;getBestFPS();
-<a name="l00363"></a>00363     }
-<a name="l00364"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ab24bb81be1005487b2aab49af89c759c">00364</a> 
-<a name="l00365"></a>00365     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a52d675b375be04a02d6d91f27fb714a8" title="Gets the Worst FPS.">GraphicsManager::GetWorstFPS</a>()
-<a name="l00366"></a>00366     {
-<a name="l00367"></a>00367         <span class="keywordflow">return</span> OgreGameWindow-&gt;getWorstFPS();
-<a name="l00368"></a>00368     }
-<a name="l00369"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a96e6324466a121df5977446f019cee57">00369</a> 
-<a name="l00370"></a>00370     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ab24bb81be1005487b2aab49af89c759c" title="Gets the shortest amount of time it&amp;#39;s taken to render a frame.">GraphicsManager::GetBestFrameTime</a>()
-<a name="l00371"></a>00371     {
-<a name="l00372"></a>00372         <span class="keywordflow">return</span> OgreGameWindow-&gt;getBestFrameTime();
-<a name="l00373"></a>00373     }
-<a name="l00374"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9138c2f79ff9b711494089802724615e">00374</a> 
-<a name="l00375"></a>00375     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a96e6324466a121df5977446f019cee57" title="Gets the longest amount of time it&amp;#39;s taken to render a frame.">GraphicsManager::GetWorstFrameTime</a>()
-<a name="l00376"></a>00376     {
-<a name="l00377"></a>00377         <span class="keywordflow">return</span> OgreGameWindow-&gt;getWorstFrameTime();
-<a name="l00378"></a>00378     }
-<a name="l00379"></a>00379 
-<a name="l00380"></a>00380     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9138c2f79ff9b711494089802724615e" title="Gets the name of the render system in current use.">GraphicsManager::GetRenderSystemName</a>()
-<a name="l00381"></a>00381     {
-<a name="l00382"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a4bfa1c07f2c2305ec892e603a71c6341">00382</a>         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Renderer = Ogre::Root::getSingleton().getRenderSystem()-&gt;getName();
-<a name="l00383"></a>00383         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> EditPos = Renderer.find(<span class="stringliteral">&quot;Rendering&quot;</span>);
-<a name="l00384"></a>00384         Renderer.erase(EditPos - 1);
-<a name="l00385"></a>00385         <span class="keywordflow">return</span> Renderer;
-<a name="l00386"></a>00386     }
-<a name="l00387"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a7d1cce1c63d5678266337323da1e8ff5">00387</a> 
-<a name="l00388"></a>00388     <span class="keyword">const</span> std::vector&lt;String&gt;* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a4bfa1c07f2c2305ec892e603a71c6341" title="Gets a vector containing all the resolutions supported by this render system on the current hardware...">GraphicsManager::GetSupportedResolutions</a>()
-<a name="l00389"></a>00389     {
-<a name="l00390"></a>00390         <span class="keywordflow">return</span> &amp;SupportedResolutions;
-<a name="l00391"></a>00391     }
-<a name="l00392"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac4b864de93827447bf8f47487da3bf32">00392</a> 
-<a name="l00393"></a>00393     <span class="keyword">const</span> std::vector&lt;String&gt;* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a7d1cce1c63d5678266337323da1e8ff5" title="Gets a vector containing all the devices supported by this render system on the current hardware...">GraphicsManager::GetSupportedDevices</a>()
-<a name="l00394"></a>00394     {
-<a name="l00395"></a>00395         <span class="keywordflow">return</span> &amp;SupportedDevices;
-<a name="l00396"></a>00396     }
-<a name="l00397"></a>00397 
-<a name="l00398"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">00398</a>     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac4b864de93827447bf8f47487da3bf32" title="Resets the Render timer.">GraphicsManager::ResetRenderTimer</a>()
-<a name="l00399"></a>00399     {
-<a name="l00400"></a>00400         this-&gt;RenderTimer-&gt;reset();
-<a name="l00401"></a>00401     }
-<a name="l00402"></a>00402 
-<a name="l00403"></a>00403     <span class="comment">//Inherited From ManagerBase</span>
-<a name="l00404"></a>00404     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c" title="Empty Initializor.">GraphicsManager::Initialize</a>()
-<a name="l00405"></a>00405     {
-<a name="l00406"></a>00406         CreateRenderWindow();
-<a name="l00407"></a>00407         this-&gt;RenderTimer = <span class="keyword">new</span> Ogre::Timer();
-<a name="l00408"></a>00408 
-<a name="l00409"></a>00409         Ogre::ConfigOptionMap&amp; CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()-&gt;getConfigOptions();
-<a name="l00410"></a>00410         <span class="keywordflow">for</span>( Ogre::ConfigOptionMap::iterator configItr = CurrentRendererOptions.begin() ;
-<a name="l00411"></a>00411             configItr != CurrentRendererOptions.end() ; configItr++)
-<a name="l00412"></a>00412         {
-<a name="l00413"></a>00413             <span class="keywordflow">if</span>( (configItr)-&gt;first == <span class="stringliteral">&quot;Video Mode&quot;</span> )
-<a name="l00414"></a>00414             {
-<a name="l00415"></a>00415                 <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; (configItr)-&gt;second.possibleValues.size() ; X++ )
-<a name="l00416"></a>00416                     SupportedResolutions.push_back((configItr)-&gt;second.possibleValues[X]);
-<a name="l00417"></a>00417                 <span class="keywordflow">continue</span>;
-<a name="l00418"></a>00418             }
-<a name="l00419"></a>00419             <span class="keywordflow">if</span>( (configItr)-&gt;first == <span class="stringliteral">&quot;Rendering Device&quot;</span> )
-<a name="l00420"></a>00420             {
-<a name="l00421"></a>00421                 <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Y = 0 ; Y &lt; (configItr)-&gt;second.possibleValues.size() ; Y++ )
-<a name="l00422"></a>00422                     SupportedDevices.push_back((configItr)-&gt;second.possibleValues[Y]);
-<a name="l00423"></a>00423                 <span class="keywordflow">continue</span>;
-<a name="l00424"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">00424</a>             }
-<a name="l00425"></a>00425         }
-<a name="l00426"></a>00426 
-<a name="l00427"></a>00427         GraphicsInitialized = <span class="keyword">true</span>;
-<a name="l00428"></a>00428     }
-<a name="l00429"></a>00429 
-<a name="l00430"></a>00430     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee" title="This is where the rendering takes place.">GraphicsManager::DoMainLoopItems</a>()
-<a name="l00431"></a>00431     {
-<a name="l00432"></a>00432         <span class="comment">//Ogre::WindowEventUtilities::messagePump();</span>
-<a name="l00433"></a>00433         <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a858c6c4155c4315d6eafb18cc30ce434" title="Renders the current world contents to the screen.">crossplatform::RenderPhysWorld</a>(this-&gt;OgreGameWindow, this-&gt;SDLwindow);
-<a name="l00434"></a>00434 
-<a name="l00435"></a>00435         <span class="comment">//Do Time Calculations to Determine Rendering Time</span>
-<a name="l00436"></a>00436         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;SetFrameTime( this-&gt;RenderTimer-&gt;getMilliseconds() );
-<a name="l00437"></a>00437         this-&gt;RenderTimer-&gt;reset();
-<a name="l00438"></a>00438         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetTargetFrameTime() &gt; this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetFrameTime()){
-<a name="l00439"></a>00439             FrameDelay++;
-<a name="l00440"></a>00440         }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetTargetFrameTime() == this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetFrameTime()){
-<a name="l00441"></a>00441         }<span class="keywordflow">else</span>{
-<a name="l00442"></a>00442             <span class="keywordflow">if</span> (0&lt;FrameDelay){
-<a name="l00443"></a>00443                 FrameDelay--;
-<a name="l00444"></a>00444             }<span class="keywordflow">else</span>{
-<a name="l00445"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">00445</a>                 FrameDelay=0;
-<a name="l00446"></a>00446             }
-<a name="l00447"></a>00447         }
-<a name="l00448"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c">00448</a>         <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab525e3abf3625b83954e2d55a5869d18" title="Pauses the program for a given period of time.">crossplatform::WaitMilliseconds</a>( FrameDelay );
-<a name="l00449"></a>00449     }
-<a name="l00450"></a>00450 
-<a name="l00451"></a>00451     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58" title="This returns the type of this manager.">GraphicsManager::GetType</a>()<span class="keyword"> const</span>
-<a name="l00452"></a>00452 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::GraphicsManager; }
-<a name="l00453"></a>00453 
-<a name="l00454"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae08ff0d9f16d7b9bc35d2399c1389e6a">00454</a>     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c" title="This is derived from and uses the ManagerBase to perform the the post main loop callbacks.">GraphicsManager::PostMainLoopItems</a>()
-<a name="l00455"></a>00455     {
-<a name="l00456"></a>00456         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ac20a304413b4d47f9ae657983e903a67" title="This gets the EventManager from the manager list.">GetEventManager</a>()-&gt;<a class="code" href="../../da/dde/classphys_1_1EventManager.html#abada23d83ef38e59a38eb91a88a07404" title="Adds an event of any kind to the end of the Event Queue.">AddEvent</a>(<span class="keyword">new</span> <a class="code" href="../../d3/d8b/classphys_1_1EventRenderTime.html" title="This communicates the amount of time since the world was rendered.">EventRenderTime</a>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a348cebf8f15202a9916ac1b2400c63b1" title="Gets the amount of time since the last time Rendering began.">GetFrameTime</a>()));
-<a name="l00457"></a>00457         <span class="keywordflow">return</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c" title="This is derived from and uses the ManagerBase to perform the the post main loop callbacks.">ManagerBase::PostMainLoopItems</a>();
-<a name="l00458"></a>00458     }
-<a name="l00459"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a56d2f5d2ad9fb277723facd7f54034ec">00459</a> 
-<a name="l00460"></a>00460     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae08ff0d9f16d7b9bc35d2399c1389e6a" title="This will set the stored pointer to the ogre render window.">GraphicsManager::SetOgreWindowPointer</a>(Ogre::RenderWindow* OgreWindow)
-<a name="l00461"></a>00461     {
-<a name="l00462"></a>00462         OgreGameWindow = OgreWindow;
-<a name="l00463"></a>00463     }
-<a name="l00464"></a>00464 
-<a name="l00465"></a>00465     Ogre::RenderWindow* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a56d2f5d2ad9fb277723facd7f54034ec" title="This will get a pointer to the RenderWindow class in use by the world.">GraphicsManager::GetOgreWindowPointer</a>()
-<a name="l00466"></a>00466     {
-<a name="l00467"></a>00467         <span class="keywordflow">return</span> OgreGameWindow;
-<a name="l00468"></a>00468     }
-<a name="l00469"></a>00469 }
-<a name="l00470"></a>00470 
-<a name="l00471"></a>00471 <span class="preprocessor">#endif</span>
+<a name="l00219"></a>00219     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ad07600281c765e22bc413a1a9df1a22c" title="Gets whether or not SDL has been started.">GraphicsManager::HasSDLBeenInitialized</a>()
+<a name="l00220"></a>00220     {
+<a name="l00221"></a>00221         <span class="keywordflow">return</span> SDLBeenInitialized;
+<a name="l00222"></a>00222     }
+<a name="l00223"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#adcded385b6442aa5da6097f1edd5471a">00223</a> 
+<a name="l00224"></a>00224     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ab7ab98ff594726f8cc6d3ca0fac0ecdf" title="Gets whether or not Ogre has been started.">GraphicsManager::HasOgreBeenInitialized</a>()
+<a name="l00225"></a>00225     {
+<a name="l00226"></a>00226         <span class="keywordflow">return</span> OgreBeenInitialized;
+<a name="l00227"></a>00227     }
+<a name="l00228"></a>00228 <span class="comment"></span>
+<a name="l00229"></a>00229 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00230"></a>00230 <span class="comment"></span>    <span class="comment">//Shows the ogre settings Dialog, and allows it to save settings to ogres</span>
+<a name="l00231"></a>00231     <span class="comment">//preset save location</span>
+<a name="l00232"></a>00232     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#adcded385b6442aa5da6097f1edd5471a" title="This Shows an Engine Generated Configuration Screen.">GraphicsManager::ShowGraphicsSettingDialog</a>()
+<a name="l00233"></a>00233     {
+<a name="l00234"></a>00234         <span class="keywordflow">try</span>
+<a name="l00235"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9138c2f79ff9b711494089802724615e">00235</a>         {
+<a name="l00236"></a>00236             <span class="keywordflow">return</span> Ogre::Root::getSingleton().showConfigDialog();
+<a name="l00237"></a>00237         } <span class="keywordflow">catch</span> (exception&amp; e) {
+<a name="l00238"></a>00238             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a4ab573bc3b060d6b3f58483bab04fca2" title="Runtime event and message logging.">Log</a>(<span class="stringliteral">&quot;Ogre settings windows from main UI or mandatory setting failure&quot;</span>);
+<a name="l00239"></a>00239             this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a4ab573bc3b060d6b3f58483bab04fca2" title="Runtime event and message logging.">Log</a>(e.what());
+<a name="l00240"></a>00240             <span class="keywordflow">return</span> <span class="keyword">false</span>;
+<a name="l00241"></a>00241         }
+<a name="l00242"></a>00242     }
+<a name="l00243"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a4bfa1c07f2c2305ec892e603a71c6341">00243</a> 
+<a name="l00244"></a>00244     <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a9138c2f79ff9b711494089802724615e" title="Gets the name of the render system in current use.">GraphicsManager::GetRenderSystemName</a>()
+<a name="l00245"></a>00245     {
+<a name="l00246"></a>00246         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Renderer = Ogre::Root::getSingleton().getRenderSystem()-&gt;getName();
+<a name="l00247"></a>00247         <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> EditPos = Renderer.find(<span class="stringliteral">&quot;Rendering&quot;</span>);
+<a name="l00248"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a7d1cce1c63d5678266337323da1e8ff5">00248</a>         Renderer.erase(EditPos - 1);
+<a name="l00249"></a>00249         <span class="keywordflow">return</span> Renderer;
+<a name="l00250"></a>00250     }
+<a name="l00251"></a>00251 
+<a name="l00252"></a>00252     <span class="keyword">const</span> std::vector&lt;String&gt;* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a4bfa1c07f2c2305ec892e603a71c6341" title="Gets a vector containing all the resolutions supported by this render system on the current hardware...">GraphicsManager::GetSupportedResolutions</a>()
+<a name="l00253"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac4b864de93827447bf8f47487da3bf32">00253</a>     {
+<a name="l00254"></a>00254         <span class="keywordflow">return</span> &amp;SupportedResolutions;
+<a name="l00255"></a>00255     }
+<a name="l00256"></a>00256 
+<a name="l00257"></a>00257     <span class="keyword">const</span> std::vector&lt;String&gt;* <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a7d1cce1c63d5678266337323da1e8ff5" title="Gets a vector containing all the devices supported by this render system on the current hardware...">GraphicsManager::GetSupportedDevices</a>()
+<a name="l00258"></a>00258     {
+<a name="l00259"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c">00259</a>         <span class="keywordflow">return</span> &amp;SupportedDevices;
+<a name="l00260"></a>00260     }
+<a name="l00261"></a>00261 
+<a name="l00262"></a>00262     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ac4b864de93827447bf8f47487da3bf32" title="Resets the Render timer.">GraphicsManager::ResetRenderTimer</a>()
+<a name="l00263"></a>00263     {
+<a name="l00264"></a>00264         this-&gt;RenderTimer-&gt;reset();
+<a name="l00265"></a>00265     }
+<a name="l00266"></a>00266 
+<a name="l00267"></a>00267     <span class="comment">//Inherited From ManagerBase</span>
+<a name="l00268"></a>00268     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a554572de5d1cdce37aa1760d6e6e039c" title="Empty Initializor.">GraphicsManager::Initialize</a>()
+<a name="l00269"></a>00269     {
+<a name="l00270"></a>00270         <span class="keywordflow">if</span>(GameWindows.empty())
+<a name="l00271"></a>00271             <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a31c4d90e4ee016b96b7f4e78e20d87a0" title="Creates a new game window to be rendered to.">CreateGameWindow</a>(<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetWindowName(),PrimarySettings.RenderWidth,PrimarySettings.RenderHeight,PrimarySettings.Fullscreen?GameWindow::WF_Fullscreen:0);
+<a name="l00272"></a>00272         this-&gt;RenderTimer = <span class="keyword">new</span> Ogre::Timer();
+<a name="l00273"></a>00273 
+<a name="l00274"></a>00274         Ogre::ConfigOptionMap&amp; CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()-&gt;getConfigOptions();
+<a name="l00275"></a>00275         <span class="keywordflow">for</span>( Ogre::ConfigOptionMap::iterator configItr = CurrentRendererOptions.begin() ;
+<a name="l00276"></a>00276             configItr != CurrentRendererOptions.end() ; configItr++)
+<a name="l00277"></a>00277         {
+<a name="l00278"></a>00278             <span class="keywordflow">if</span>( (configItr)-&gt;first == <span class="stringliteral">&quot;Video Mode&quot;</span> )
+<a name="l00279"></a>00279             {
+<a name="l00280"></a>00280                 <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> X = 0 ; X &lt; (configItr)-&gt;second.possibleValues.size() ; X++ )
+<a name="l00281"></a>00281                     SupportedResolutions.push_back((configItr)-&gt;second.possibleValues[X]);
+<a name="l00282"></a>00282                 <span class="keywordflow">continue</span>;
+<a name="l00283"></a>00283             }
+<a name="l00284"></a>00284             <span class="keywordflow">if</span>( (configItr)-&gt;first == <span class="stringliteral">&quot;Rendering Device&quot;</span> )
+<a name="l00285"></a>00285             {
+<a name="l00286"></a>00286                 <span class="keywordflow">for</span>( <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Y = 0 ; Y &lt; (configItr)-&gt;second.possibleValues.size() ; Y++ )
+<a name="l00287"></a>00287                     SupportedDevices.push_back((configItr)-&gt;second.possibleValues[Y]);
+<a name="l00288"></a>00288                 <span class="keywordflow">continue</span>;
+<a name="l00289"></a>00289             }
+<a name="l00290"></a>00290         }
+<a name="l00291"></a>00291 
+<a name="l00292"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee">00292</a>         SDL_DisplayMode DeskMode;
+<a name="l00293"></a>00293         SDL_GetDesktopDisplayMode(0,&amp;DeskMode);
+<a name="l00294"></a>00294         DesktopSettings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a34226592a7e1ce7b0a2036afed00f239" title="This stores the Width of the renderwindow.">RenderWidth</a> = DeskMode.w;
+<a name="l00295"></a>00295         DesktopSettings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a82fe053e6276e29fbf473c3854bd4265" title="This stores the Height of the renderwindow.">RenderHeight</a> = DeskMode.h;
+<a name="l00296"></a>00296         DesktopSettings.<a class="code" href="../../d0/dd0/structphys_1_1GraphicsSettings.html#a510b666656f7d50532e9e8b37c3c429e" title="This stores the device refresh rate in Hz.">RefreshRate</a> = DeskMode.refresh_rate;
+<a name="l00297"></a>00297 
+<a name="l00298"></a>00298         GraphicsInitialized = <span class="keyword">true</span>;
+<a name="l00299"></a>00299     }
+<a name="l00300"></a>00300 
+<a name="l00301"></a>00301     <span class="keywordtype">void</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a72e5dc563c6947cded348f19d3df41ee" title="This is where the rendering takes place.">GraphicsManager::DoMainLoopItems</a>()
+<a name="l00302"></a>00302     {
+<a name="l00303"></a>00303         <span class="comment">//Ogre::WindowEventUtilities::messagePump();</span>
+<a name="l00304"></a>00304         <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#a858c6c4155c4315d6eafb18cc30ce434" title="Renders the current world contents to the screen.">crossplatform::RenderPhysWorld</a>(this-&gt;PrimaryGameWindow-&gt;<a class="code" href="../../dc/d4f/classphys_1_1GameWindow.html#ad94dbdf063bd5dd9a285a7803928aede" title="This will get a pointer to the Ogre RenderWindow.">GetOgreWindowPointer</a>(), this-&gt;PrimaryGameWindow-&gt;<a class="code" href="../../dc/d4f/classphys_1_1GameWindow.html#aefddde0d6790e9e71687310b0328b043" title="This will get a pointer to the SDL Window.">GetSDLWindowPointer</a>());
+<a name="l00305"></a>00305 
+<a name="l00306"></a>00306         <span class="comment">//Do Time Calculations to Determine Rendering Time</span>
+<a name="l00307"></a>00307         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a0168122baeb30d4b90ddecdda46c8fea" title="Sets the amount of time since the last time Rendering began.">SetFrameTime</a>( this-&gt;RenderTimer-&gt;getMilliseconds() );
+<a name="l00308"></a>00308         this-&gt;RenderTimer-&gt;reset();
+<a name="l00309"></a>00309         <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#aa063ace52be484c7b03ec5859453f48b" title="Retrieves the amount of milliseconds we would like each iteration of the Main Loop to be...">GetTargetFrameTime</a>() &gt; this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a348cebf8f15202a9916ac1b2400c63b1" title="Gets the amount of time since the last time Rendering began.">GetFrameTime</a>()){
+<a name="l00310"></a>00310             FrameDelay++;
+<a name="l00311"></a>00311         }<span class="keywordflow">else</span> <span class="keywordflow">if</span>(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetTargetFrameTime() == this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetFrameTime()){
+<a name="l00312"></a>00312         }<span class="keywordflow">else</span>{
+<a name="l00313"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58">00313</a>             <span class="keywordflow">if</span> (0&lt;FrameDelay){
+<a name="l00314"></a>00314                 FrameDelay--;
+<a name="l00315"></a>00315             }<span class="keywordflow">else</span>{
+<a name="l00316"></a><a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c">00316</a>                 FrameDelay=0;
+<a name="l00317"></a>00317             }
+<a name="l00318"></a>00318         }
+<a name="l00319"></a>00319         <a class="code" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab525e3abf3625b83954e2d55a5869d18" title="Pauses the program for a given period of time.">crossplatform::WaitMilliseconds</a>( FrameDelay );
+<a name="l00320"></a>00320     }
+<a name="l00321"></a>00321 
+<a name="l00322"></a>00322     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#abf48faad2e09cd564442e66bc0473e58" title="This returns the type of this manager.">GraphicsManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00323"></a>00323 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::GraphicsManager; }
+<a name="l00324"></a>00324 
+<a name="l00325"></a>00325     <span class="keywordtype">bool</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c" title="This is derived from and uses the ManagerBase to perform the the post main loop callbacks.">GraphicsManager::PostMainLoopItems</a>()
+<a name="l00326"></a>00326     {
+<a name="l00327"></a>00327         this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetEventManager()-&gt;AddEvent(<span class="keyword">new</span> EventRenderTime(this-&gt;<a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;GetFrameTime()));
+<a name="l00328"></a>00328         <span class="keywordflow">return</span> <a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#ae2330172be150cd4d12aa2ed62b0474c" title="This is derived from and uses the ManagerBase to perform the the post main loop callbacks.">ManagerBase::PostMainLoopItems</a>();
+<a name="l00329"></a>00329     }
+<a name="l00330"></a>00330 }
+<a name="l00331"></a>00331 
+<a name="l00332"></a>00332 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

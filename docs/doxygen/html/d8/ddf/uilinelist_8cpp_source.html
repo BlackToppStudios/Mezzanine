@@ -74,123 +74,124 @@
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;uilinelist.h&quot;</span>
 <a name="l00044"></a>00044 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
 <a name="l00045"></a>00045 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
-<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00047"></a>00047 
-<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;internalGorilla.h.cpp&quot;</span>
-<a name="l00049"></a>00049 
-<a name="l00050"></a>00050 <span class="keyword">namespace </span>phys
-<a name="l00051"></a>00051 {
-<a name="l00052"></a>00052     <span class="keyword">namespace </span>UI
-<a name="l00053"></a>00053     {
-<a name="l00054"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a0de86be9d9ecbd6f903cc15e6f44e135">00054</a>         <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a0de86be9d9ecbd6f903cc15e6f44e135" title="Class constructor.">LineList::LineList</a>(<a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
-<a name="l00055"></a>00055             : Parent(Layer)
-<a name="l00056"></a>00056         {
-<a name="l00057"></a>00057             Manager = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ab7888bf9286df602490c30df6382fde9" title="This gets the UIManager from the manager list.">GetUIManager</a>();
-<a name="l00058"></a>00058 
-<a name="l00059"></a>00059             GLineList = Parent-&gt;<a class="code" href="../../da/d48/classphys_1_1UILayer.html#a0f1d04779794d4401714b0d8fa90cab5" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createLineList();
-<a name="l00060"></a>00060         }
-<a name="l00061"></a>00061 
-<a name="l00062"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ae962ca10492137ed85f7b66a79d4887e">00062</a>         <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ae962ca10492137ed85f7b66a79d4887e" title="Class destructor.">LineList::~LineList</a>()
-<a name="l00063"></a>00063         {
-<a name="l00064"></a>00064             Parent-&gt;<a class="code" href="../../da/d48/classphys_1_1UILayer.html#a0f1d04779794d4401714b0d8fa90cab5" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyLineList(GLineList);
-<a name="l00065"></a>00065         }
-<a name="l00066"></a>00066 
-<a name="l00067"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#acecf11c133825233afd73d55ba9e4c1d">00067</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#acecf11c133825233afd73d55ba9e4c1d" title="Sets the visibility of this rectangle.">LineList::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
-<a name="l00068"></a>00068         {
-<a name="l00069"></a>00069             GLineList-&gt;SetVisible(Visible);
-<a name="l00070"></a>00070         }
-<a name="l00071"></a>00071 
-<a name="l00072"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#af8c50f2e60b5a087cc9f3a280e10bd72">00072</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#af8c50f2e60b5a087cc9f3a280e10bd72" title="Gets the visibility of this rectangle.">LineList::IsVisible</a>()
-<a name="l00073"></a>00073         {
-<a name="l00074"></a>00074             <span class="keywordflow">return</span> GLineList-&gt;IsVisible();
-<a name="l00075"></a>00075         }
-<a name="l00076"></a>00076 
-<a name="l00077"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ae725a770a9b938d01f1a161be050fcc5">00077</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ae725a770a9b938d01f1a161be050fcc5" title="Forces this rectangle to be shown.">LineList::Show</a>()
-<a name="l00078"></a>00078         {
-<a name="l00079"></a>00079             GLineList-&gt;Show();
-<a name="l00080"></a>00080         }
-<a name="l00081"></a>00081 
-<a name="l00082"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a4e1d09adc4ed6947d93ae6030e00263e">00082</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a4e1d09adc4ed6947d93ae6030e00263e" title="Forces this rectangle to hide.">LineList::Hide</a>()
-<a name="l00083"></a>00083         {
-<a name="l00084"></a>00084             GLineList-&gt;Hide();
-<a name="l00085"></a>00085         }
-<a name="l00086"></a>00086 
-<a name="l00087"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a2f172bef99b94fa0e1d2f819b00fd8d4">00087</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a2f172bef99b94fa0e1d2f819b00fd8d4" title="Starts a new line list.">LineList::Begin</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Thickness, <span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
-<a name="l00088"></a>00088         {
-<a name="l00089"></a>00089             GLineList-&gt;begin((<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)Thickness, Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
-<a name="l00090"></a>00090         }
-<a name="l00091"></a>00091 
-<a name="l00092"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa7987e39f5fcf6e6351e710f1c6922ba">00092</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa7987e39f5fcf6e6351e710f1c6922ba" title="Adds a new point/line to the list via 2 reals.">LineList::AddPoint</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> X, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Y)
-<a name="l00093"></a>00093         {
-<a name="l00094"></a>00094             <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa7987e39f5fcf6e6351e710f1c6922ba" title="Adds a new point/line to the list via 2 reals.">AddPoint</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(X,Y));
-<a name="l00095"></a>00095         }
-<a name="l00096"></a>00096 
-<a name="l00097"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a5988b99342c7ed5d3aba5d4c33df7ed4">00097</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa7987e39f5fcf6e6351e710f1c6922ba" title="Adds a new point/line to the list via 2 reals.">LineList::AddPoint</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
-<a name="l00098"></a>00098         {
-<a name="l00099"></a>00099             GLineList-&gt;position((Position * Manager-&gt;<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ae56846a64d8ce312aa36a749d15619df" title="Gets the current window dimensions.">GetWindowDimensions</a>()).GetOgreVector2());
-<a name="l00100"></a>00100         }
-<a name="l00101"></a>00101 
-<a name="l00102"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a6fdb46f6c8527d994bb6f37a764e5543">00102</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a6fdb46f6c8527d994bb6f37a764e5543" title="Adds a new point/line to the list via 2 reals.">LineList::AddActualPoint</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> X, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Y)
-<a name="l00103"></a>00103         {
-<a name="l00104"></a>00104             <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a6fdb46f6c8527d994bb6f37a764e5543" title="Adds a new point/line to the list via 2 reals.">AddActualPoint</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(X,Y));
-<a name="l00105"></a>00105         }
-<a name="l00106"></a>00106 
-<a name="l00107"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ab867e29dafa4e512f2ab655388214a96">00107</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a6fdb46f6c8527d994bb6f37a764e5543" title="Adds a new point/line to the list via 2 reals.">LineList::AddActualPoint</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
-<a name="l00108"></a>00108         {
-<a name="l00109"></a>00109             GLineList-&gt;position(Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#adc6efedbdfdca596b719decc87ee2e4b" title="Gets a Ogre vector2.">GetOgreVector2</a>());
-<a name="l00110"></a>00110         }
-<a name="l00111"></a>00111 
-<a name="l00112"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a8ea40817665ec539b4ff97a64b73317f">00112</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a8ea40817665ec539b4ff97a64b73317f" title="Finalizes the list and prepares it for rendering.">LineList::End</a>(<span class="keywordtype">bool</span> Closed)
-<a name="l00113"></a>00113         {
-<a name="l00114"></a>00114             GLineList-&gt;end(Closed);
-<a name="l00115"></a>00115         }
-<a name="l00116"></a>00116 
-<a name="l00117"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa108c16282875850e5a6c01353977e97">00117</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa108c16282875850e5a6c01353977e97" title="Sets the priority this button should be rendered with.">LineList::SetRenderPriority</a>(UI::RenderPriority Priority)
-<a name="l00118"></a>00118         {
-<a name="l00119"></a>00119             Gorilla::RenderPriority RP;
-<a name="l00120"></a>00120             <span class="keywordflow">switch</span>(Priority)
-<a name="l00121"></a>00121             {
-<a name="l00122"></a>00122                 <span class="keywordflow">case</span> UI::RP_Low:
-<a name="l00123"></a>00123                     RP = Gorilla::RP_Low;
-<a name="l00124"></a>00124                     <span class="keywordflow">break</span>;
-<a name="l00125"></a>00125                 <span class="keywordflow">case</span> UI::RP_Medium:
-<a name="l00126"></a>00126                     RP = Gorilla::RP_Medium;
-<a name="l00127"></a>00127                     <span class="keywordflow">break</span>;
-<a name="l00128"></a>00128                 <span class="keywordflow">case</span> UI::RP_High:
-<a name="l00129"></a>00129                     RP = Gorilla::RP_High;
-<a name="l00130"></a>00130                     <span class="keywordflow">break</span>;
-<a name="l00131"></a>00131                 <span class="keywordflow">default</span>:
-<a name="l00132"></a>00132                     <span class="keywordflow">break</span>;
-<a name="l00133"></a>00133             }
-<a name="l00134"></a>00134             GLineList-&gt;RenderPriority(RP);
-<a name="l00135"></a>00135         }
-<a name="l00136"></a>00136 
-<a name="l00137"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a95aa150344304a49d8f6c6024d6a5351">00137</a>         UI::RenderPriority <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a95aa150344304a49d8f6c6024d6a5351" title="Gets the priority this button should be rendered with.">LineList::GetRenderPriority</a>()
-<a name="l00138"></a>00138         {
-<a name="l00139"></a>00139             Gorilla::RenderPriority RP = this-&gt;GLineList-&gt;RenderPriority();
-<a name="l00140"></a>00140             <span class="keywordflow">switch</span>(RP)
-<a name="l00141"></a>00141             {
-<a name="l00142"></a>00142                 <span class="keywordflow">case</span> Gorilla::RP_Low:
-<a name="l00143"></a>00143                     <span class="keywordflow">return</span> UI::RP_Low;
-<a name="l00144"></a>00144                     <span class="keywordflow">break</span>;
-<a name="l00145"></a>00145                 <span class="keywordflow">case</span> Gorilla::RP_Medium:
-<a name="l00146"></a>00146                     <span class="keywordflow">return</span> UI::RP_Medium;
-<a name="l00147"></a>00147                     <span class="keywordflow">break</span>;
-<a name="l00148"></a>00148                 <span class="keywordflow">case</span> Gorilla::RP_High:
-<a name="l00149"></a>00149                     <span class="keywordflow">return</span> UI::RP_High;
-<a name="l00150"></a>00150                     <span class="keywordflow">break</span>;
-<a name="l00151"></a>00151                 <span class="keywordflow">default</span>:
-<a name="l00152"></a>00152                     <span class="keywordflow">break</span>;
-<a name="l00153"></a>00153             }
-<a name="l00154"></a>00154             <span class="keywordflow">return</span> UI::RP_Medium;
-<a name="l00155"></a>00155         }
-<a name="l00156"></a>00156     }<span class="comment">//UI</span>
-<a name="l00157"></a>00157 }<span class="comment">//phys</span>
-<a name="l00158"></a>00158 
-<a name="l00159"></a>00159 <span class="preprocessor">#endif</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00048"></a>00048 
+<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;internalGorilla.h.cpp&quot;</span>
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 <span class="keyword">namespace </span>phys
+<a name="l00052"></a>00052 {
+<a name="l00053"></a>00053     <span class="keyword">namespace </span>UI
+<a name="l00054"></a>00054     {
+<a name="l00055"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a0de86be9d9ecbd6f903cc15e6f44e135">00055</a>         <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a0de86be9d9ecbd6f903cc15e6f44e135" title="Class constructor.">LineList::LineList</a>(<a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* Layer)
+<a name="l00056"></a>00056             : Parent(Layer)
+<a name="l00057"></a>00057         {
+<a name="l00058"></a>00058             Manager = <a class="code" href="../../da/ddf/classphys_1_1World.html#ac7b8470a75353497bf8f85a8d3cd24e4" title="Return a pointer to the world.">World::GetWorldPointer</a>()-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#ab7888bf9286df602490c30df6382fde9" title="This gets the UIManager from the manager list.">GetUIManager</a>();
+<a name="l00059"></a>00059 
+<a name="l00060"></a>00060             GLineList = Parent-&gt;<a class="code" href="../../da/d48/classphys_1_1UILayer.html#a0f1d04779794d4401714b0d8fa90cab5" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;createLineList();
+<a name="l00061"></a>00061         }
+<a name="l00062"></a>00062 
+<a name="l00063"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ae962ca10492137ed85f7b66a79d4887e">00063</a>         <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ae962ca10492137ed85f7b66a79d4887e" title="Class destructor.">LineList::~LineList</a>()
+<a name="l00064"></a>00064         {
+<a name="l00065"></a>00065             Parent-&gt;<a class="code" href="../../da/d48/classphys_1_1UILayer.html#a0f1d04779794d4401714b0d8fa90cab5" title="Gets the internal gorilla layer pointer.">GetGorillaLayer</a>()-&gt;destroyLineList(GLineList);
+<a name="l00066"></a>00066         }
+<a name="l00067"></a>00067 
+<a name="l00068"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#acecf11c133825233afd73d55ba9e4c1d">00068</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#acecf11c133825233afd73d55ba9e4c1d" title="Sets the visibility of this rectangle.">LineList::SetVisible</a>(<span class="keywordtype">bool</span> Visible)
+<a name="l00069"></a>00069         {
+<a name="l00070"></a>00070             GLineList-&gt;SetVisible(Visible);
+<a name="l00071"></a>00071         }
+<a name="l00072"></a>00072 
+<a name="l00073"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#af8c50f2e60b5a087cc9f3a280e10bd72">00073</a>         <span class="keywordtype">bool</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#af8c50f2e60b5a087cc9f3a280e10bd72" title="Gets the visibility of this rectangle.">LineList::IsVisible</a>()
+<a name="l00074"></a>00074         {
+<a name="l00075"></a>00075             <span class="keywordflow">return</span> GLineList-&gt;IsVisible();
+<a name="l00076"></a>00076         }
+<a name="l00077"></a>00077 
+<a name="l00078"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ae725a770a9b938d01f1a161be050fcc5">00078</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ae725a770a9b938d01f1a161be050fcc5" title="Forces this rectangle to be shown.">LineList::Show</a>()
+<a name="l00079"></a>00079         {
+<a name="l00080"></a>00080             GLineList-&gt;Show();
+<a name="l00081"></a>00081         }
+<a name="l00082"></a>00082 
+<a name="l00083"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a4e1d09adc4ed6947d93ae6030e00263e">00083</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a4e1d09adc4ed6947d93ae6030e00263e" title="Forces this rectangle to hide.">LineList::Hide</a>()
+<a name="l00084"></a>00084         {
+<a name="l00085"></a>00085             GLineList-&gt;Hide();
+<a name="l00086"></a>00086         }
+<a name="l00087"></a>00087 
+<a name="l00088"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a2f172bef99b94fa0e1d2f819b00fd8d4">00088</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a2f172bef99b94fa0e1d2f819b00fd8d4" title="Starts a new line list.">LineList::Begin</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Thickness, <span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Colour)
+<a name="l00089"></a>00089         {
+<a name="l00090"></a>00090             GLineList-&gt;begin((<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a>)Thickness, Colour.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00091"></a>00091         }
+<a name="l00092"></a>00092 
+<a name="l00093"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa7987e39f5fcf6e6351e710f1c6922ba">00093</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa7987e39f5fcf6e6351e710f1c6922ba" title="Adds a new point/line to the list via 2 reals.">LineList::AddPoint</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> X, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Y)
+<a name="l00094"></a>00094         {
+<a name="l00095"></a>00095             <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa7987e39f5fcf6e6351e710f1c6922ba" title="Adds a new point/line to the list via 2 reals.">AddPoint</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(X,Y));
+<a name="l00096"></a>00096         }
+<a name="l00097"></a>00097 
+<a name="l00098"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a5988b99342c7ed5d3aba5d4c33df7ed4">00098</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa7987e39f5fcf6e6351e710f1c6922ba" title="Adds a new point/line to the list via 2 reals.">LineList::AddPoint</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
+<a name="l00099"></a>00099         {
+<a name="l00100"></a>00100             GLineList-&gt;position((Position * Parent-&gt;<a class="code" href="../../da/d48/classphys_1_1UILayer.html#a1eeb2847ca5a3b71d8164c0dd1e1ec6c" title="Gets the parent screen of this layer.">GetParent</a>()-&gt;<a class="code" href="../../d9/de8/classphys_1_1UIScreen.html#a588a4da7416bbbc0d96bc872c22d76bd" title="Gets the current viewport dimensions.">GetViewportDimensions</a>()).GetOgreVector2());
+<a name="l00101"></a>00101         }
+<a name="l00102"></a>00102 
+<a name="l00103"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a6fdb46f6c8527d994bb6f37a764e5543">00103</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a6fdb46f6c8527d994bb6f37a764e5543" title="Adds a new point/line to the list via 2 reals.">LineList::AddActualPoint</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> X, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Y)
+<a name="l00104"></a>00104         {
+<a name="l00105"></a>00105             <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a6fdb46f6c8527d994bb6f37a764e5543" title="Adds a new point/line to the list via 2 reals.">AddActualPoint</a>(<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a>(X,Y));
+<a name="l00106"></a>00106         }
+<a name="l00107"></a>00107 
+<a name="l00108"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#ab867e29dafa4e512f2ab655388214a96">00108</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a6fdb46f6c8527d994bb6f37a764e5543" title="Adds a new point/line to the list via 2 reals.">LineList::AddActualPoint</a>(<span class="keyword">const</span> <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> Position)
+<a name="l00109"></a>00109         {
+<a name="l00110"></a>00110             GLineList-&gt;position(Position.<a class="code" href="../../d0/d2c/classphys_1_1Vector2.html#adc6efedbdfdca596b719decc87ee2e4b" title="Gets a Ogre vector2.">GetOgreVector2</a>());
+<a name="l00111"></a>00111         }
+<a name="l00112"></a>00112 
+<a name="l00113"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a8ea40817665ec539b4ff97a64b73317f">00113</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a8ea40817665ec539b4ff97a64b73317f" title="Finalizes the list and prepares it for rendering.">LineList::End</a>(<span class="keywordtype">bool</span> Closed)
+<a name="l00114"></a>00114         {
+<a name="l00115"></a>00115             GLineList-&gt;end(Closed);
+<a name="l00116"></a>00116         }
+<a name="l00117"></a>00117 
+<a name="l00118"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa108c16282875850e5a6c01353977e97">00118</a>         <span class="keywordtype">void</span> <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#aa108c16282875850e5a6c01353977e97" title="Sets the priority this button should be rendered with.">LineList::SetRenderPriority</a>(UI::RenderPriority Priority)
+<a name="l00119"></a>00119         {
+<a name="l00120"></a>00120             Gorilla::RenderPriority RP;
+<a name="l00121"></a>00121             <span class="keywordflow">switch</span>(Priority)
+<a name="l00122"></a>00122             {
+<a name="l00123"></a>00123                 <span class="keywordflow">case</span> UI::RP_Low:
+<a name="l00124"></a>00124                     RP = Gorilla::RP_Low;
+<a name="l00125"></a>00125                     <span class="keywordflow">break</span>;
+<a name="l00126"></a>00126                 <span class="keywordflow">case</span> UI::RP_Medium:
+<a name="l00127"></a>00127                     RP = Gorilla::RP_Medium;
+<a name="l00128"></a>00128                     <span class="keywordflow">break</span>;
+<a name="l00129"></a>00129                 <span class="keywordflow">case</span> UI::RP_High:
+<a name="l00130"></a>00130                     RP = Gorilla::RP_High;
+<a name="l00131"></a>00131                     <span class="keywordflow">break</span>;
+<a name="l00132"></a>00132                 <span class="keywordflow">default</span>:
+<a name="l00133"></a>00133                     <span class="keywordflow">break</span>;
+<a name="l00134"></a>00134             }
+<a name="l00135"></a>00135             GLineList-&gt;RenderPriority(RP);
+<a name="l00136"></a>00136         }
+<a name="l00137"></a>00137 
+<a name="l00138"></a><a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a95aa150344304a49d8f6c6024d6a5351">00138</a>         UI::RenderPriority <a class="code" href="../../d7/de8/classphys_1_1UI_1_1LineList.html#a95aa150344304a49d8f6c6024d6a5351" title="Gets the priority this button should be rendered with.">LineList::GetRenderPriority</a>()
+<a name="l00139"></a>00139         {
+<a name="l00140"></a>00140             Gorilla::RenderPriority RP = this-&gt;GLineList-&gt;RenderPriority();
+<a name="l00141"></a>00141             <span class="keywordflow">switch</span>(RP)
+<a name="l00142"></a>00142             {
+<a name="l00143"></a>00143                 <span class="keywordflow">case</span> Gorilla::RP_Low:
+<a name="l00144"></a>00144                     <span class="keywordflow">return</span> UI::RP_Low;
+<a name="l00145"></a>00145                     <span class="keywordflow">break</span>;
+<a name="l00146"></a>00146                 <span class="keywordflow">case</span> Gorilla::RP_Medium:
+<a name="l00147"></a>00147                     <span class="keywordflow">return</span> UI::RP_Medium;
+<a name="l00148"></a>00148                     <span class="keywordflow">break</span>;
+<a name="l00149"></a>00149                 <span class="keywordflow">case</span> Gorilla::RP_High:
+<a name="l00150"></a>00150                     <span class="keywordflow">return</span> UI::RP_High;
+<a name="l00151"></a>00151                     <span class="keywordflow">break</span>;
+<a name="l00152"></a>00152                 <span class="keywordflow">default</span>:
+<a name="l00153"></a>00153                     <span class="keywordflow">break</span>;
+<a name="l00154"></a>00154             }
+<a name="l00155"></a>00155             <span class="keywordflow">return</span> UI::RP_Medium;
+<a name="l00156"></a>00156         }
+<a name="l00157"></a>00157     }<span class="comment">//UI</span>
+<a name="l00158"></a>00158 }<span class="comment">//phys</span>
+<a name="l00159"></a>00159 
+<a name="l00160"></a>00160 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:50 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

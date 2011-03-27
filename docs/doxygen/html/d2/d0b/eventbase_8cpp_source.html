@@ -72,31 +72,47 @@
 <a name="l00041"></a>00041 <span class="preprocessor"></span><span class="preprocessor">#define EVENTBASE_CPP</span>
 <a name="l00042"></a>00042 <span class="preprocessor"></span>
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
-<a name="l00044"></a>00044 
-<a name="l00045"></a>00045 <span class="comment">/*std::ostream&amp; operator &lt;&lt; (std::ostream&amp; stream, const PhysEvent&amp; x)</span>
-<a name="l00046"></a>00046 <span class="comment">{</span>
-<a name="l00047"></a>00047 <span class="comment">    switch(x.getEventType())</span>
-<a name="l00048"></a>00048 <span class="comment">    {</span>
-<a name="l00049"></a>00049 <span class="comment">        case EventType.RenderTime:</span>
-<a name="l00050"></a>00050 <span class="comment">            stream &lt;&lt; &quot;RenderTime&quot;;</span>
-<a name="l00051"></a>00051 <span class="comment">            break;</span>
-<a name="l00052"></a>00052 <span class="comment">        case EventType.UserInput:</span>
-<a name="l00053"></a>00053 <span class="comment">            stream &lt;&lt; &quot;UserInput&quot;;</span>
-<a name="l00054"></a>00054 <span class="comment">            break;</span>
-<a name="l00055"></a>00055 <span class="comment">        case EventType:</span>
-<a name="l00056"></a>00056 <span class="comment">            stream &lt;&lt; &quot;SystemMessage&quot;;</span>
-<a name="l00057"></a>00057 <span class="comment">            break;</span>
-<a name="l00058"></a>00058 <span class="comment">         case EventType:</span>
-<a name="l00059"></a>00059 <span class="comment">            stream &lt;&lt; &quot;Other&quot;;</span>
-<a name="l00060"></a>00060 <span class="comment">            break;</span>
-<a name="l00061"></a>00061 <span class="comment">    }</span>
-<a name="l00062"></a>00062 <span class="comment">    return stream;</span>
-<a name="l00063"></a>00063 <span class="comment">}*/</span>
-<a name="l00064"></a>00064 
-<a name="l00065"></a>00065 <span class="preprocessor">#endif</span>
+<a name="l00044"></a>00044 <span class="preprocessor">#include &quot;eventcollision.h&quot;</span>
+<a name="l00045"></a>00045 <span class="preprocessor">#include &quot;eventgamewindow.h&quot;</span>
+<a name="l00046"></a>00046 <span class="preprocessor">#include &quot;eventquit.h&quot;</span>
+<a name="l00047"></a>00047 <span class="preprocessor">#include &quot;eventrendertime.h&quot;</span>
+<a name="l00048"></a>00048 <span class="preprocessor">#include &quot;eventuserinput.h&quot;</span>
+<a name="l00049"></a>00049 <span class="preprocessor">#include &quot;exception.h&quot;</span>
+<a name="l00050"></a>00050 
+<a name="l00051"></a>00051 std::ostream&amp; PHYS_LIB operator &lt;&lt; (std::ostream&amp; stream, <span class="keyword">const</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html" title="The base class for all events.">phys::EventBase</a>&amp; Ev)
+<a name="l00052"></a>00052 {
+<a name="l00053"></a>00053     <span class="keywordflow">switch</span>(Ev.<a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a1b3d29b6ecf30f18cc3e1825a515c508" title="This will aid in identifying all classes that inherit from this class.">GetType</a>())
+<a name="l00054"></a>00054     {
+<a name="l00055"></a>00055         <span class="keywordflow">case</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923adb6767503168d145497ef65a708725e5">phys::EventBase::Collision</a>:
+<a name="l00056"></a>00056             stream &lt;&lt; *dynamic_cast&lt;const phys::EventCollision*&gt; (&amp;Ev);
+<a name="l00057"></a>00057             <span class="keywordflow">break</span>;
+<a name="l00058"></a>00058         <span class="keywordflow">case</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923ad094ddaa5cafeb0880c838e58b84693e">phys::EventBase::GameWindow</a>:
+<a name="l00059"></a>00059             stream &lt;&lt; *dynamic_cast&lt;const phys::EventGameWindow*&gt; (&amp;Ev);
+<a name="l00060"></a>00060             <span class="keywordflow">break</span>;
+<a name="l00061"></a>00061         <span class="keywordflow">case</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a84742ff55e9abdde8f5e0578d30f73a9">phys::EventBase::QuitMessage</a>:
+<a name="l00062"></a>00062             stream &lt;&lt; *dynamic_cast&lt;const phys::EventQuit*&gt; (&amp;Ev);
+<a name="l00063"></a>00063             <span class="keywordflow">break</span>;
+<a name="l00064"></a>00064         <span class="keywordflow">case</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923acdfa47d279e8a1c460d557d14b85c7a5">phys::EventBase::RenderTime</a>:
+<a name="l00065"></a>00065             stream &lt;&lt; *dynamic_cast&lt;const phys::EventRenderTime*&gt; (&amp;Ev);
+<a name="l00066"></a>00066             <span class="keywordflow">break</span>;
+<a name="l00067"></a>00067         <span class="keywordflow">case</span> <a class="code" href="../../dd/d80/classphys_1_1EventBase.html#a5e6a8564e127f654123f0bf6a2751923a320cc0817dc2c2201501b12c50c89bef">phys::EventBase::UserInput</a>:
+<a name="l00068"></a>00068             stream &lt;&lt; *dynamic_cast&lt;const phys::EventUserInput*&gt; (&amp;Ev);
+<a name="l00069"></a>00069             <span class="keywordflow">break</span>;
+<a name="l00070"></a>00070         <span class="keywordflow">case</span> phys::EventBase::Other:
+<a name="l00071"></a>00071             <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a> (<span class="stringliteral">&quot;Attemping to serialize a phys::Event::Other... not sure what you are trying to serialize.&quot;</span>);
+<a name="l00072"></a>00072             <span class="comment">//throw Exception (&quot;How did you instantiate an abstract base class?! Attemping to serialize a phys::EventBase&quot;);</span>
+<a name="l00073"></a>00073             <span class="keywordflow">break</span>;
+<a name="l00074"></a>00074         <span class="keywordflow">default</span>:
+<a name="l00075"></a>00075             <span class="keywordflow">throw</span> <a class="code" href="../../dc/d47/classphys_1_1Exception.html" title="This is the exception thrown by most physgame system that can throw exceptions.">phys::Exception</a> (<span class="stringliteral">&quot;Attemping to serialize a phys::Event... not sure what you are trying to serialize.&quot;</span>);
+<a name="l00076"></a>00076             <span class="keywordflow">break</span>;
+<a name="l00077"></a>00077     }
+<a name="l00078"></a>00078     <span class="keywordflow">return</span> stream;
+<a name="l00079"></a>00079 }
+<a name="l00080"></a>00080 
+<a name="l00081"></a>00081 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

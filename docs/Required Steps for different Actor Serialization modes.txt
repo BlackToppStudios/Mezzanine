@@ -33,6 +33,4 @@ Prereqs
 	All Actors must be deserialized EventCollisions
 
 
-Fixed const correctness on Light, Camera, ParticaleEffect, Scenemanager and Attachable
-Added Serialization and deserialization support for quaternion.
-Cleaned up the way attachables reference WorldNodes
+Fixed const correctness on Light, Camera, ParticaleEffect, Scenemanager and Attachable. Added Serialization and deserialization support for quaternion and camera. Cleaned up the way attachables reference WorldNode. Added a check for the name in all deserialization >> operators.

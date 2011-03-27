@@ -47,79 +47,241 @@
 
 namespace phys
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    // Constructors
     Quaternion::Quaternion()
     {
-        X=0;
-        Y=0;
-        Z=0;
-        W=1;
+        this->X=0;
+        this->Y=0;
+        this->Z=0;
+        this->W=1;
     }
 
     Quaternion::Quaternion(const Real &x, const Real &y, const Real &z, const Real &w)
     {
-        X=x;
-        Y=y;
-        Z=z;
-        W=w;
+        this->X=x;
+        this->Y=y;
+        this->Z=z;
+        this->W=w;
     }
 
-    Quaternion::Quaternion(const btQuaternion& Theirs)
+    Quaternion::Quaternion(const btQuaternion& Other)
+        { ExtractBulletQuaternion(Other); }
+
+    Quaternion::Quaternion(const Ogre::Quaternion& Other)
+        { ExtractOgreQuaternion(Other); }
+
+    Quaternion::Quaternion(const phys::Quaternion& Other)
     {
-        ExtractBulletQuaternion(Theirs);
+        this->X=Other.X;
+        this->Y=Other.Y;
+        this->Z=Other.Z;
+        this->W=Other.W;
     }
 
-    Quaternion::Quaternion(const Ogre::Quaternion& Theirs)
-    {
-        ExtractOgreQuaternion(Theirs);
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Explicit Conversion
 
     btQuaternion Quaternion::GetBulletQuaternion(bool normalize) const
     {
-        btQuaternion Theirs;
-        Theirs.setX(this->X);
-        Theirs.setY(this->Y);
-        Theirs.setZ(this->Z);
-        Theirs.setW(this->W);
+        btQuaternion Other;
+        Other.setX(this->X);
+        Other.setY(this->Y);
+        Other.setZ(this->Z);
+        Other.setW(this->W);
         if(normalize)
-        {
-            Theirs.normalize();
-        }
-        return Theirs;
+            { Other.normalize(); }
+        return Other;
     }
 
-    void Quaternion::ExtractBulletQuaternion(const btQuaternion &Ours)
+    void Quaternion::ExtractBulletQuaternion(const btQuaternion &Other)
     {
-        this->X=Ours.x();
-        this->Y=Ours.y();
-        this->Z=Ours.z();
-        this->W=Ours.w();
+        this->X=Other.x();
+        this->Y=Other.y();
+        this->Z=Other.z();
+        this->W=Other.w();
     }
 
     Ogre::Quaternion Quaternion::GetOgreQuaternion(bool normalize) const
     {
-        Ogre::Quaternion Theirs;
-        Theirs.x=this->X;
-        Theirs.y=this->Y;
-        Theirs.z=this->Z;
-        Theirs.w=this->W;
+        Ogre::Quaternion Other;
+        Other.x=this->X;
+        Other.y=this->Y;
+        Other.z=this->Z;
+        Other.w=this->W;
         if(normalize)
-        {
-            Theirs.normalise();
-        }
-        return Theirs;
+            { Other.normalise(); }
+        return Other;
     }
 
-    void Quaternion::ExtractOgreQuaternion(const Ogre::Quaternion &Ours)
+    void Quaternion::ExtractOgreQuaternion(const Ogre::Quaternion &Other)
     {
-        this->X=Ours.x;
-        this->Y=Ours.y;
-        this->Z=Ours.z;
-        this->W=Ours.w;
+        this->X=Other.x;
+        this->Y=Other.y;
+        this->Z=Other.z;
+        this->W=Other.w;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Left Hand Basic Arithmetic Operators
+
+    Quaternion Quaternion::operator+ (const phys::Quaternion& Other) const
+        { return Quaternion(this->X+Other.X, this->Y+Other.Y, this->Z+Other.Z, this->W+Other.W); }
+
+    Quaternion Quaternion::operator+ (const Ogre::Quaternion& Other) const
+        { return Quaternion(this->X+Other.x, this->Y+Other.y, this->Z+Other.z, this->W+Other.w); }
+
+    Quaternion Quaternion::operator+ (const btQuaternion& Other) const
+        { return Quaternion(this->X+Other.x(), this->Y+Other.y(), this->Z+Other.z(), this->W+Other.w()); }
+
+    Quaternion Quaternion::operator- (const phys::Quaternion& Other) const
+        { return Quaternion(this->X-Other.X, this->Y-Other.Y, this->Z-Other.Z, this->W-Other.W); }
+
+    Quaternion Quaternion::operator- (const Ogre::Quaternion& Other) const
+        { return Quaternion(this->X-Other.x, this->Y-Other.y, this->Z-Other.z, this->W-Other.w); }
+
+    Quaternion Quaternion::operator- (const btQuaternion& Other) const
+        { return Quaternion(this->X-Other.x(), this->Y-Other.y(), this->Z-Other.z(), this->W-Other.w()); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Increment and Decrement Operators
+
+    Quaternion& Quaternion::operator+= (const phys::Quaternion& Other)
+    {
+        this->X=this->X+Other.X;
+        this->Y=this->Y+Other.Y;
+        this->Z=this->Z+Other.Z;
+        this->W=this->W+Other.W;
+        return *this;
+    }
+
+    Quaternion& Quaternion::operator+= (const Ogre::Quaternion& Other)
+    {
+        this->X=this->X+Other.x;
+        this->Y=this->Y+Other.y;
+        this->Z=this->Z+Other.z;
+        this->W=this->W+Other.w;
+        return *this;
+    }
+
+    Quaternion& Quaternion::operator+= (const btQuaternion& Other)
+    {
+        this->X=this->X+Other.x();
+        this->Y=this->Y+Other.y();
+        this->Z=this->Z+Other.z();
+        this->W=this->W+Other.w();
+        return *this;
+    }
+
+    Quaternion& Quaternion::operator-= (const phys::Quaternion& Other)
+    {
+        this->X=this->X-Other.X;
+        this->Y=this->Y-Other.Y;
+        this->Z=this->Z-Other.Z;
+        this->W=this->W-Other.W;
+        return *this;
+    }
+
+    Quaternion& Quaternion::operator-= (const Ogre::Quaternion& Other)
+    {
+        this->X=this->X-Other.x;
+        this->Y=this->Y-Other.y;
+        this->Z=this->Z-Other.z;
+        this->W=this->W-Other.w;
+        return *this;
+    }
+
+    Quaternion& Quaternion::operator-= (const btQuaternion& Other)
+    {
+        this->X=this->X-Other.x();
+        this->Y=this->Y-Other.y();
+        this->Z=this->Z-Other.z();
+        this->W=this->W-Other.w();
+        return *this;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Assignment Operators
+    Quaternion& Quaternion::operator= (const phys::Quaternion& Other)
+    {
+        this->X=Other.X;
+        this->Y=Other.Y;
+        this->Z=Other.Z;
+        this->W=Other.W;
+    }
+
+    Quaternion& Quaternion::operator= (const btQuaternion& Other)
+    {
+        ExtractBulletQuaternion(Other);
+        return *this;
+    }
+
+    Quaternion& Quaternion::operator= (const Ogre::Quaternion& Other)
+    {
+        ExtractOgreQuaternion(Other);
+        return *this;
     }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// Right Hand Addition Operators
+
+phys::Quaternion operator+ (const Ogre::Quaternion& Other, const phys::Quaternion& Other2)
+    { return Other2+Other; }
+
+phys::Quaternion operator+ (const btQuaternion& Other, const phys::Quaternion& Other2)
+    { return Other2+Other; }
+
+phys::Quaternion operator- (const Ogre::Quaternion& Other, const phys::Quaternion& Other2)
+    { return phys::Quaternion(Other.x-Other2.X, Other.y-Other2.Y, Other.z-Other2.Z, Other.w-Other2.W); }
+
+phys::Quaternion operator- (const btQuaternion& Other, const phys::Quaternion& Other2)
+    { return phys::Quaternion(Other.getX()-Other2.X, Other.getY()-Other2.Y, Other.getZ()-Other2.Z, Other.getW()-Other2.W); }
+
+///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
+
+btQuaternion& operator<< ( btQuaternion& Other, const phys::Quaternion& Other2)
+{
+    Other=Other2.GetBulletQuaternion();
+    return Other;
+}
+
+btQuaternion& operator<< ( btQuaternion& Other, const Ogre::Quaternion& Other2)
+{
+    Other.setX(Other2.x);
+    Other.setY(Other2.y);
+    Other.setZ(Other2.z);
+    Other.setW(Other2.w);
+    return Other;
+}
+
+phys::Quaternion& operator<< ( phys::Quaternion& Other, const Ogre::Quaternion& Other2)
+{
+    Other=Other2;
+    return Other;
+}
+
+phys::Quaternion& operator<< ( phys::Quaternion& Other, const btQuaternion& Other2)
+{
+    Other=Other2;
+    return Other;
+}
+
+Ogre::Quaternion& operator<< ( Ogre::Quaternion& Other, const phys::Quaternion& Other2)
+{
+    Other=Other2.GetOgreQuaternion();
+    return Other;
+}
+
+Ogre::Quaternion& operator<< ( Ogre::Quaternion& Other, const btQuaternion& Other2)
+{
+    Other.x=Other2.getX();
+    Other.y=Other2.getY();
+    Other.z=Other2.getZ();
+    Other.w=Other2.getW();
+}
+
 std::ostream& operator << (std::ostream& stream, const phys::Quaternion& x)
 {
     #ifdef PHYSXML
@@ -131,7 +293,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Quaternion& x)
 }
 
 #ifdef PHYSXML
-std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Quaternion& Ev)
+std::istream& operator >> (std::istream& stream, phys::Quaternion& Ev)
 {
     phys::String OneTag( phys::xml::GetOneTag(stream) );
     std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Quaternion", OneTag) );

@@ -218,9 +218,9 @@ namespace phys
         return Answer;
     }
 
-    MetaCode::InputCode MetaCode::GetJoystickAxisCode(short unsigned int ButtonNumber)
+    MetaCode::InputCode MetaCode::GetJoystickAxisCode(short unsigned int AxisNumber)
     {
-        MetaCode::InputCode Answer = (MetaCode::InputCode)(ButtonNumber + (int)MetaCode::JOYSTICKAXIS);
+        MetaCode::InputCode Answer = (MetaCode::InputCode)(AxisNumber + (int)MetaCode::JOYSTICKAXIS);
         if ( MetaCode::JOYSTICKAXIS_FIRST > Answer && MetaCode::JOYSTICKAXIS_LAST < Answer)
             { throw (Exception("Unsupported Joystick AXIS.")); }
         return Answer;

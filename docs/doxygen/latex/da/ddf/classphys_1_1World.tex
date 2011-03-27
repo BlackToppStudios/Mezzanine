@@ -22,7 +22,7 @@ This is the main entry point for the entire library.
 \begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1World_a8b2c74c7e5d5ce3c46a814e183a7aff1}{$\sim$World} ()
 \begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\void \hyperlink{classphys_1_1World_a05267a20e8d5518771d0848190b33d60}{Log} (T Message)
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{classphys_1_1World_a4ab573bc3b060d6b3f58483bab04fca2}{Log} (const T \&Message)
 \begin{DoxyCompactList}\small\item\em Runtime event and message logging. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1World_a7dbf83226aaa109a09efab00ae682761}{
 void \hyperlink{classphys_1_1World_a7dbf83226aaa109a09efab00ae682761}{Log} ()}
@@ -31,7 +31,7 @@ void \hyperlink{classphys_1_1World_a7dbf83226aaa109a09efab00ae682761}{Log} ()}
 \begin{DoxyCompactList}\small\item\em Force any outstanding logs to be commited to logs. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_a372ee96d395d735531f755fc0a72de4a}{LogAndThrow} (\hyperlink{classphys_1_1Exception}{Exception} Err)
 \begin{DoxyCompactList}\small\item\em This is the preferred way to throw an exception. \item\end{DoxyCompactList}\item 
-{\footnotesize template$<$class T $>$ }\\void \hyperlink{classphys_1_1World_a88e6bdee6b972111b6804ca746738c50}{LogAndThrow} (T Message)
+{\footnotesize template$<$class T $>$ }\\void \hyperlink{classphys_1_1World_a4bc9fb3942b6c1cf216bd356a1b6332b}{LogAndThrow} (const T \&Message)
 \begin{DoxyCompactList}\small\item\em This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1World_abf6cb15d85be4e7dcb99db24f979319b}{LogString} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&message)
 \begin{DoxyCompactList}\small\item\em Log String directly with no conversion. \item\end{DoxyCompactList}\item 
@@ -598,15 +598,15 @@ This returns a pointer the one and only \hyperlink{classphys_1_1World}{phys::Wor
 
 Definition at line 131 of file world.cpp.
 
-\hypertarget{classphys_1_1World_a05267a20e8d5518771d0848190b33d60}{
+\hypertarget{classphys_1_1World_a4ab573bc3b060d6b3f58483bab04fca2}{
 \index{phys::World@{phys::World}!Log@{Log}}
 \index{Log@{Log}!phys::World@{phys::World}}
 \subsubsection[{Log}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void phys::World::Log (
 \begin{DoxyParamCaption}
-\item[{T}]{ Message}
+\item[{const T \&}]{ Message}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
-\label{da/ddf/classphys_1_1World_a05267a20e8d5518771d0848190b33d60}
+\label{da/ddf/classphys_1_1World_a4ab573bc3b060d6b3f58483bab04fca2}
 
 
 Runtime event and message logging. 
@@ -638,15 +638,15 @@ This is the preferred way to throw an exception.
 
 Definition at line 294 of file world.h.
 
-\hypertarget{classphys_1_1World_a88e6bdee6b972111b6804ca746738c50}{
+\hypertarget{classphys_1_1World_a4bc9fb3942b6c1cf216bd356a1b6332b}{
 \index{phys::World@{phys::World}!LogAndThrow@{LogAndThrow}}
 \index{LogAndThrow@{LogAndThrow}!phys::World@{phys::World}}
 \subsubsection[{LogAndThrow}]{\setlength{\rightskip}{0pt plus 5cm}template$<$class T $>$ void phys::World::LogAndThrow (
 \begin{DoxyParamCaption}
-\item[{T}]{ Message}
+\item[{const T \&}]{ Message}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
-\label{da/ddf/classphys_1_1World_a88e6bdee6b972111b6804ca746738c50}
+\label{da/ddf/classphys_1_1World_a4bc9fb3942b6c1cf216bd356a1b6332b}
 
 
 This is the preferred a good way to throw an exception, in a recordable fashion. It streams any thrown object to the log. 
@@ -819,7 +819,7 @@ This changes the text in the bar at the top of the game window in windowed mode.
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000032}{Todo}]TODO Change the name of an application once it is running \end{Desc}
+\item[\hyperlink{todo__todo000030}{Todo}]TODO Change the name of an application once it is running \end{Desc}
 
 
 
@@ -876,7 +876,7 @@ Definition at line 521 of file world.cpp.
 
 This is another way to put data in the log. 
 
-The contents of this will be commited to the log once per frame, just before rendering, or whenever \hyperlink{classphys_1_1World_a05267a20e8d5518771d0848190b33d60}{World::Log} is called. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. 
+The contents of this will be commited to the log once per frame, just before rendering, or whenever \hyperlink{classphys_1_1World_a4ab573bc3b060d6b3f58483bab04fca2}{World::Log} is called. Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs and gameworld recreations. 
 
 Definition at line 290 of file world.h.
 

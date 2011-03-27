@@ -18,8 +18,10 @@ This is a simple class for holding 4 reals representing the colour any give obje
 \begin{DoxyCompactList}\small\item\em Non-\/Alpha constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ColourValue_a28ee2493cd6a7bb8bc4104d223e3e709}{ColourValue} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} red, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} green, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} blue, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} alpha)
 \begin{DoxyCompactList}\small\item\em Alpha constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ColourValue_a8a004962cde5fd3063dd845be4256fa9}{ColourValue} (Ogre::ColourValue OgreValues)
+\hyperlink{classphys_1_1ColourValue_ac814df9f1709186fa6aeadbca8e0ed9f}{ColourValue} (const Ogre::ColourValue \&OgreValues)
 \begin{DoxyCompactList}\small\item\em Ogre constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ColourValue_add6b3ac7e9809dce240cd584b94e8c67}{ColourValue} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&OtherColour)
+\begin{DoxyCompactList}\small\item\em Copy Constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ColourValue_adc37cfdba61d80ad23765cea5c858751}{
 \hyperlink{classphys_1_1ColourValue_adc37cfdba61d80ad23765cea5c858751}{$\sim$ColourValue} ()}
 \label{d3/db0/classphys_1_1ColourValue_adc37cfdba61d80ad23765cea5c858751}
@@ -30,7 +32,9 @@ Ogre::ColourValue \hyperlink{classphys_1_1ColourValue_a025ed32506fe3df9e360dc00f
 bool \hyperlink{classphys_1_1ColourValue_a4615835cadb51c814ef87377ac2fbc8c}{operator==} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
 \begin{DoxyCompactList}\small\item\em Equality Comparison Operator. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1ColourValue_a06b52ce51b723ea733f2b067b03530a5}{operator!=} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
-\begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Inequality Comparison Operator. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ColourValue_af6df730e4a222be3caeca83db91a56ec}{operator=} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&OtherColour)
+\begin{DoxyCompactList}\small\item\em Assignment operator. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -45,7 +49,13 @@ static \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_
 static \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_1ColourValue_abe2c8f2cb0a609af18238fec49630a78}{GetGreen} ()
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1ColourValue}{ColourValue} representing the colour Green. \item\end{DoxyCompactList}\item 
 static \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_1ColourValue_a75c9d235524e52c9347085e445a53671}{GetBlue} ()
-\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1ColourValue}{ColourValue} representing the colour Blue. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1ColourValue}{ColourValue} representing the colour Blue. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_1ColourValue_a4139c90ab0369af1fafcb6b6eecaf3f3}{GetYellow} ()
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1ColourValue}{ColourValue} representing the colour Yellow. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_1ColourValue_a8ba924734eec3a913add8a40bc62ed1e}{GetCyan} ()
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1ColourValue}{ColourValue} representing the colour Cyan. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_1ColourValue_afba8b8dde8539ac97c3181dc763c9125}{GetMagenta} ()
+\begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1ColourValue}{ColourValue} representing the colour Magenta. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -53,22 +63,22 @@ static \hyperlink{classphys_1_1ColourValue}{ColourValue} \hyperlink{classphys_1_
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ColourValue_a32b5411b9b87f92a6626f3f4d5f0a158}{Red}}
 \label{d3/db0/classphys_1_1ColourValue_a32b5411b9b87f92a6626f3f4d5f0a158}
 
-\begin{DoxyCompactList}\small\item\em Value from 0.0 to 1.0 representing the amount of red present in the colour. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Value from 0.0 to 1.0 representing the amount of red present in the colour. 1.0 if very red, 0.0 is no red. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ColourValue_adea93a8cd64acc8b5fd1851b4460af00}{
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ColourValue_adea93a8cd64acc8b5fd1851b4460af00}{Green}}
 \label{d3/db0/classphys_1_1ColourValue_adea93a8cd64acc8b5fd1851b4460af00}
 
-\begin{DoxyCompactList}\small\item\em Value from 0.0 to 1.0 representing the amount of green present in the colour. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Value from 0.0 to 1.0 representing the amount of green present in the colour. 1.0 if very green, 0.0 is no green. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ColourValue_a403503f979575b17d1873f031e8d7d75}{
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ColourValue_a403503f979575b17d1873f031e8d7d75}{Blue}}
 \label{d3/db0/classphys_1_1ColourValue_a403503f979575b17d1873f031e8d7d75}
 
-\begin{DoxyCompactList}\small\item\em Value from 0.0 to 1.0 representing the amount of blue present in the colour. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Value from 0.0 to 1.0 representing the amount of blue present in the colour. 1.0 if very blue, 0.0 is no blue. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1ColourValue_a5fc5eceef739a91d7cc079767d712f52}{
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ColourValue_a5fc5eceef739a91d7cc079767d712f52}{Alpha}}
 \label{d3/db0/classphys_1_1ColourValue_a5fc5eceef739a91d7cc079767d712f52}
 
-\begin{DoxyCompactList}\small\item\em Value from 0.0 to 1.0 representing the transparency of the colours. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Value from 0.0 to 1.0 representing the transparency of the colours. 1.0 is opaque and 0.0 is clear. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -99,7 +109,7 @@ This constructor assumes the alpha value to be 1.0 (completely opaque).
 \item[{\em red}]Real representing the amount of red present in the colour. \item[{\em green}]Real representing the amount of green present in the colour. \item[{\em blue}]Real representing the amount of blue present in the colour. \end{DoxyParams}
 
 
-Definition at line 48 of file colourvalue.cpp.
+Definition at line 50 of file colourvalue.cpp.
 
 \hypertarget{classphys_1_1ColourValue_a28ee2493cd6a7bb8bc4104d223e3e709}{
 \index{phys::ColourValue@{phys::ColourValue}!ColourValue@{ColourValue}}
@@ -122,17 +132,17 @@ This constructor allows you to set the alpha value.
 \item[{\em red}]Real representing the amount of red present in the colour. \item[{\em green}]Real representing the amount of green present in the colour. \item[{\em blue}]Real representing the amount of blue present in the colour. \item[{\em alpha}]Real representing the transparency of the colours. \end{DoxyParams}
 
 
-Definition at line 56 of file colourvalue.cpp.
+Definition at line 58 of file colourvalue.cpp.
 
-\hypertarget{classphys_1_1ColourValue_a8a004962cde5fd3063dd845be4256fa9}{
+\hypertarget{classphys_1_1ColourValue_ac814df9f1709186fa6aeadbca8e0ed9f}{
 \index{phys::ColourValue@{phys::ColourValue}!ColourValue@{ColourValue}}
 \index{ColourValue@{ColourValue}!phys::ColourValue@{phys::ColourValue}}
 \subsubsection[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (
 \begin{DoxyParamCaption}
-\item[{Ogre::ColourValue}]{ OgreValues}
+\item[{const Ogre::ColourValue \&}]{ OgreValues}
 \end{DoxyParamCaption}
 )}}
-\label{d3/db0/classphys_1_1ColourValue_a8a004962cde5fd3063dd845be4256fa9}
+\label{d3/db0/classphys_1_1ColourValue_ac814df9f1709186fa6aeadbca8e0ed9f}
 
 
 Ogre constructor. 
@@ -142,7 +152,27 @@ Internal use only. Constructs a colourvalue class from an ogre colourvalue.
 \item[{\em OgreValues}]The Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class to base this class on. \end{DoxyParams}
 
 
-Definition at line 64 of file colourvalue.cpp.
+Definition at line 66 of file colourvalue.cpp.
+
+\hypertarget{classphys_1_1ColourValue_add6b3ac7e9809dce240cd584b94e8c67}{
+\index{phys::ColourValue@{phys::ColourValue}!ColourValue@{ColourValue}}
+\index{ColourValue@{ColourValue}!phys::ColourValue@{phys::ColourValue}}
+\subsubsection[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ OtherColour}
+\end{DoxyParamCaption}
+)}}
+\label{d3/db0/classphys_1_1ColourValue_add6b3ac7e9809dce240cd584b94e8c67}
+
+
+Copy Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em OtherColour}]\end{DoxyParams}
+
+
+Definition at line 74 of file colourvalue.cpp.
 
 
 
@@ -165,7 +195,7 @@ Returns the created \hyperlink{classphys_1_1ColourValue}{ColourValue}.
 \end{DoxyReturn}
 
 
-Definition at line 112 of file colourvalue.cpp.
+Definition at line 132 of file colourvalue.cpp.
 
 \hypertarget{classphys_1_1ColourValue_a80d899e82d1151487254b5c31a098a44}{
 \index{phys::ColourValue@{phys::ColourValue}!GetBlank@{GetBlank}}
@@ -185,7 +215,7 @@ Returns the created \hyperlink{classphys_1_1ColourValue}{ColourValue}.
 \end{DoxyReturn}
 
 
-Definition at line 100 of file colourvalue.cpp.
+Definition at line 120 of file colourvalue.cpp.
 
 \hypertarget{classphys_1_1ColourValue_a75c9d235524e52c9347085e445a53671}{
 \index{phys::ColourValue@{phys::ColourValue}!GetBlue@{GetBlue}}
@@ -205,7 +235,27 @@ Returns the created \hyperlink{classphys_1_1ColourValue}{ColourValue}.
 \end{DoxyReturn}
 
 
-Definition at line 130 of file colourvalue.cpp.
+Definition at line 150 of file colourvalue.cpp.
+
+\hypertarget{classphys_1_1ColourValue_a8ba924734eec3a913add8a40bc62ed1e}{
+\index{phys::ColourValue@{phys::ColourValue}!GetCyan@{GetCyan}}
+\index{GetCyan@{GetCyan}!phys::ColourValue@{phys::ColourValue}}
+\subsubsection[{GetCyan}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} phys::ColourValue::GetCyan (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{d3/db0/classphys_1_1ColourValue_a8ba924734eec3a913add8a40bc62ed1e}
+
+
+Creates a \hyperlink{classphys_1_1ColourValue}{ColourValue} representing the colour Cyan. 
+
+\begin{DoxyReturn}{Returns}
+Returns the created \hyperlink{classphys_1_1ColourValue}{ColourValue}. 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file colourvalue.cpp.
 
 \hypertarget{classphys_1_1ColourValue_abe2c8f2cb0a609af18238fec49630a78}{
 \index{phys::ColourValue@{phys::ColourValue}!GetGreen@{GetGreen}}
@@ -225,7 +275,27 @@ Returns the created \hyperlink{classphys_1_1ColourValue}{ColourValue}.
 \end{DoxyReturn}
 
 
-Definition at line 124 of file colourvalue.cpp.
+Definition at line 144 of file colourvalue.cpp.
+
+\hypertarget{classphys_1_1ColourValue_afba8b8dde8539ac97c3181dc763c9125}{
+\index{phys::ColourValue@{phys::ColourValue}!GetMagenta@{GetMagenta}}
+\index{GetMagenta@{GetMagenta}!phys::ColourValue@{phys::ColourValue}}
+\subsubsection[{GetMagenta}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} phys::ColourValue::GetMagenta (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{d3/db0/classphys_1_1ColourValue_afba8b8dde8539ac97c3181dc763c9125}
+
+
+Creates a \hyperlink{classphys_1_1ColourValue}{ColourValue} representing the colour Magenta. 
+
+\begin{DoxyReturn}{Returns}
+Returns the created \hyperlink{classphys_1_1ColourValue}{ColourValue}. 
+\end{DoxyReturn}
+
+
+Definition at line 168 of file colourvalue.cpp.
 
 \hypertarget{classphys_1_1ColourValue_a025ed32506fe3df9e360dc00f3fb4898}{
 \index{phys::ColourValue@{phys::ColourValue}!GetOgreColourValue@{GetOgreColourValue}}
@@ -245,7 +315,7 @@ Returns an Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class that has
 \end{DoxyReturn}
 
 
-Definition at line 76 of file colourvalue.cpp.
+Definition at line 86 of file colourvalue.cpp.
 
 \hypertarget{classphys_1_1ColourValue_ada0b48c5bedd42446f9d2dc202c7b226}{
 \index{phys::ColourValue@{phys::ColourValue}!GetRed@{GetRed}}
@@ -265,7 +335,7 @@ Returns the created \hyperlink{classphys_1_1ColourValue}{ColourValue}.
 \end{DoxyReturn}
 
 
-Definition at line 118 of file colourvalue.cpp.
+Definition at line 138 of file colourvalue.cpp.
 
 \hypertarget{classphys_1_1ColourValue_a77d1204bea0f2f07338d46317d644f6b}{
 \index{phys::ColourValue@{phys::ColourValue}!GetWhite@{GetWhite}}
@@ -285,7 +355,27 @@ Returns the created \hyperlink{classphys_1_1ColourValue}{ColourValue}.
 \end{DoxyReturn}
 
 
-Definition at line 106 of file colourvalue.cpp.
+Definition at line 126 of file colourvalue.cpp.
+
+\hypertarget{classphys_1_1ColourValue_a4139c90ab0369af1fafcb6b6eecaf3f3}{
+\index{phys::ColourValue@{phys::ColourValue}!GetYellow@{GetYellow}}
+\index{GetYellow@{GetYellow}!phys::ColourValue@{phys::ColourValue}}
+\subsubsection[{GetYellow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ColourValue} phys::ColourValue::GetYellow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}}
+\label{d3/db0/classphys_1_1ColourValue_a4139c90ab0369af1fafcb6b6eecaf3f3}
+
+
+Creates a \hyperlink{classphys_1_1ColourValue}{ColourValue} representing the colour Yellow. 
+
+\begin{DoxyReturn}{Returns}
+Returns the created \hyperlink{classphys_1_1ColourValue}{ColourValue}. 
+\end{DoxyReturn}
+
+
+Definition at line 156 of file colourvalue.cpp.
 
 \hypertarget{classphys_1_1ColourValue_a06b52ce51b723ea733f2b067b03530a5}{
 \index{phys::ColourValue@{phys::ColourValue}!operator!=@{operator!=}}
@@ -303,9 +393,32 @@ Inequality Comparison Operator.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Colour}]This is another \hyperlink{classphys_1_1ColourValue}{ColourValue} to compare with. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+False if the colors match perfectly, True otherwise 
+\end{DoxyReturn}
 
 
-Definition at line 93 of file colourvalue.cpp.
+Definition at line 104 of file colourvalue.cpp.
+
+\hypertarget{classphys_1_1ColourValue_af6df730e4a222be3caeca83db91a56ec}{
+\index{phys::ColourValue@{phys::ColourValue}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::ColourValue@{phys::ColourValue}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ColourValue::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf ColourValue} \&}]{ OtherColour}
+\end{DoxyParamCaption}
+)}}
+\label{d3/db0/classphys_1_1ColourValue_af6df730e4a222be3caeca83db91a56ec}
+
+
+Assignment operator. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em OtherColour}]The colour values you want to overwrite this colour's values with. \end{DoxyParams}
+
+
+Definition at line 112 of file colourvalue.cpp.
 
 \hypertarget{classphys_1_1ColourValue_a4615835cadb51c814ef87377ac2fbc8c}{
 \index{phys::ColourValue@{phys::ColourValue}!operator==@{operator==}}
@@ -323,9 +436,12 @@ Equality Comparison Operator.
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Colour}]This is another \hyperlink{classphys_1_1ColourValue}{ColourValue} to compare with. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the colors match perfectly, false otherwise 
+\end{DoxyReturn}
 
 
-Definition at line 86 of file colourvalue.cpp.
+Definition at line 96 of file colourvalue.cpp.
 
 
 

@@ -2,6 +2,15 @@
 \section{phys::UI::LineList Class Reference}
 \label{d7/de8/classphys_1_1UI_1_1LineList}\index{phys::UI::LineList@{phys::UI::LineList}}
 }
+
+
+This is an object comprised of a series of lines.  
+
+
+
+
+{\ttfamily \#include $<$uilinelist.h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -63,7 +72,7 @@ Gorilla::LineList $\ast$ {\bfseries GLineList}}
 
 
 \subsection{Detailed Description}
-
+This is an object comprised of a series of lines. This class isn't an object, but rather just a series of lines. As such it doesn't have a position or size. The position functions exist only to create additional points for the lines to connect. 
 
 Definition at line 66 of file uilinelist.h.
 
@@ -88,7 +97,7 @@ Class constructor.
 \item[{\em Layer}]Pointer to the parent Layer that created this rectangle. \end{DoxyParams}
 
 
-Definition at line 54 of file uilinelist.cpp.
+Definition at line 55 of file uilinelist.cpp.
 
 
 
@@ -112,7 +121,7 @@ Adds a new point/line to the list via 2 reals.
 \item[{\em X}]Coordinate on the X vector. \item[{\em Y}]Coordinate on the Y vector. \end{DoxyParams}
 
 
-Definition at line 102 of file uilinelist.cpp.
+Definition at line 103 of file uilinelist.cpp.
 
 \hypertarget{classphys_1_1UI_1_1LineList_ab867e29dafa4e512f2ab655388214a96}{
 \index{phys::UI::LineList@{phys::UI::LineList}!AddActualPoint@{AddActualPoint}}
@@ -132,7 +141,7 @@ Adds a new point/line to the list via a vector2.
 \item[{\em Position}]A vector2 representing the position on screen. \end{DoxyParams}
 
 
-Definition at line 107 of file uilinelist.cpp.
+Definition at line 108 of file uilinelist.cpp.
 
 \hypertarget{classphys_1_1UI_1_1LineList_aa7987e39f5fcf6e6351e710f1c6922ba}{
 \index{phys::UI::LineList@{phys::UI::LineList}!AddPoint@{AddPoint}}
@@ -153,7 +162,7 @@ Adds a new point/line to the list via 2 reals.
 \item[{\em X}]Relative coordinate on the X vector. \item[{\em Y}]Relative coordinate on the Y vector. \end{DoxyParams}
 
 
-Definition at line 92 of file uilinelist.cpp.
+Definition at line 93 of file uilinelist.cpp.
 
 \hypertarget{classphys_1_1UI_1_1LineList_a5988b99342c7ed5d3aba5d4c33df7ed4}{
 \index{phys::UI::LineList@{phys::UI::LineList}!AddPoint@{AddPoint}}
@@ -173,7 +182,7 @@ Adds a new point/line to the list via a vector2.
 \item[{\em Position}]A vector2 representing the relative position on screen. \end{DoxyParams}
 
 
-Definition at line 97 of file uilinelist.cpp.
+Definition at line 98 of file uilinelist.cpp.
 
 \hypertarget{classphys_1_1UI_1_1LineList_a2f172bef99b94fa0e1d2f819b00fd8d4}{
 \index{phys::UI::LineList@{phys::UI::LineList}!Begin@{Begin}}
@@ -194,7 +203,7 @@ If this function is called while lines have already been defined, it will clear 
 \item[{\em Thickness}]The thickness of the line to draw in pixels. \item[{\em Colour}]The colour of the line. \end{DoxyParams}
 
 
-Definition at line 87 of file uilinelist.cpp.
+Definition at line 88 of file uilinelist.cpp.
 
 \hypertarget{classphys_1_1UI_1_1LineList_a8ea40817665ec539b4ff97a64b73317f}{
 \index{phys::UI::LineList@{phys::UI::LineList}!End@{End}}
@@ -214,7 +223,7 @@ Finalizes the list and prepares it for rendering.
 \item[{\em Closed}]Whether or not the line list connects back to it's starting position. If true this will create one last line connecting the last provided position with the first. \end{DoxyParams}
 
 
-Definition at line 112 of file uilinelist.cpp.
+Definition at line 113 of file uilinelist.cpp.
 
 \hypertarget{classphys_1_1UI_1_1LineList_a95aa150344304a49d8f6c6024d6a5351}{
 \index{phys::UI::LineList@{phys::UI::LineList}!GetRenderPriority@{GetRenderPriority}}
@@ -234,7 +243,7 @@ Returns an enum value representing this button's priority level.
 \end{DoxyReturn}
 
 
-Definition at line 137 of file uilinelist.cpp.
+Definition at line 138 of file uilinelist.cpp.
 
 \hypertarget{classphys_1_1UI_1_1LineList_af8c50f2e60b5a087cc9f3a280e10bd72}{
 \index{phys::UI::LineList@{phys::UI::LineList}!IsVisible@{IsVisible}}
@@ -254,7 +263,7 @@ Returns a bool representing the visibility of this rectangle.
 \end{DoxyReturn}
 
 
-Definition at line 72 of file uilinelist.cpp.
+Definition at line 73 of file uilinelist.cpp.
 
 \hypertarget{classphys_1_1UI_1_1LineList_aa108c16282875850e5a6c01353977e97}{
 \index{phys::UI::LineList@{phys::UI::LineList}!SetRenderPriority@{SetRenderPriority}}
@@ -274,7 +283,7 @@ The default value for this is Medium.
 \item[{\em Priority}]The priority level to be used when rendering this button. \end{DoxyParams}
 
 
-Definition at line 117 of file uilinelist.cpp.
+Definition at line 118 of file uilinelist.cpp.
 
 \hypertarget{classphys_1_1UI_1_1LineList_acecf11c133825233afd73d55ba9e4c1d}{
 \index{phys::UI::LineList@{phys::UI::LineList}!SetVisible@{SetVisible}}
@@ -294,7 +303,7 @@ Sets the visibility of this rectangle.
 \item[{\em Visible}]Bool determining whether or not this rectangle should be visible. \end{DoxyParams}
 
 
-Definition at line 67 of file uilinelist.cpp.
+Definition at line 68 of file uilinelist.cpp.
 
 
 

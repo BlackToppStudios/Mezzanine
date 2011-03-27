@@ -130,7 +130,7 @@
 <a name="l00099"></a>00099             DefaultCamera = NULL;
 <a name="l00100"></a>00100         }
 <a name="l00101"></a>00101         <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> Name=<span class="stringliteral">&quot;DefaultCamera&quot;</span>;
-<a name="l00102"></a>00102         Ogre::Camera* OgreCam = this-&gt;SManager-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createCamera(Name);
+<a name="l00102"></a>00102         Ogre::Camera* OgreCam = this-&gt;SManager-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aa6bfec6329ecfb7c6196f488e1499c3c" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createCamera(Name);
 <a name="l00103"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a3681545c19a96ae62032204a6f4a602b">00103</a>         this-&gt;DefaultCamera = <span class="keyword">new</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>(OgreCam, <span class="keyword">this</span>);
 <a name="l00104"></a>00104         <span class="keywordflow">return</span> DefaultCamera;
 <a name="l00105"></a>00105     }
@@ -142,19 +142,19 @@
 <a name="l00111"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ad247bd3789c579cba5edb4c00848ac7c">00111</a> 
 <a name="l00112"></a>00112     <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>* <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a3681545c19a96ae62032204a6f4a602b" title="Creates a camera and returns a pointer.">CameraManager::CreateCamera</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
 <a name="l00113"></a>00113     {
-<a name="l00114"></a>00114         Ogre::Camera* OgreCam = this-&gt;SManager-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createCamera(Name);
+<a name="l00114"></a>00114         Ogre::Camera* OgreCam = this-&gt;SManager-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aa6bfec6329ecfb7c6196f488e1499c3c" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createCamera(Name);
 <a name="l00115"></a>00115         <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>* tempcam = <span class="keyword">new</span> <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>(OgreCam, <span class="keyword">this</span>);
 <a name="l00116"></a>00116         Cameras.push_back(tempcam);
 <a name="l00117"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a5147ab2269311bec15100953b7505d4b">00117</a>         <span class="keywordflow">return</span> tempcam;
 <a name="l00118"></a>00118     }
 <a name="l00119"></a>00119 
-<a name="l00120"></a>00120     <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>* <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ad247bd3789c579cba5edb4c00848ac7c" title="Gets an already created camera by namr.">CameraManager::GetCamera</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
+<a name="l00120"></a>00120     <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>* <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ad247bd3789c579cba5edb4c00848ac7c" title="Gets an already created camera by name.">CameraManager::GetCamera</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
 <a name="l00121"></a>00121     {
 <a name="l00122"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a1a2111b4868bec403979b354395c4caf">00122</a>         <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>* tempcam = FindCamera(Name);
 <a name="l00123"></a>00123         <span class="keywordflow">return</span> tempcam;
 <a name="l00124"></a>00124     }
 <a name="l00125"></a>00125 
-<a name="l00126"></a>00126     <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>* <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ad247bd3789c579cba5edb4c00848ac7c" title="Gets an already created camera by namr.">CameraManager::GetCamera</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
+<a name="l00126"></a>00126     <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>* <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ad247bd3789c579cba5edb4c00848ac7c" title="Gets an already created camera by name.">CameraManager::GetCamera</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index)
 <a name="l00127"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a76bebee0820fcfa462412cb112b1b874">00127</a>     {
 <a name="l00128"></a>00128         <span class="keywordflow">return</span> Cameras[Index];
 <a name="l00129"></a>00129     }
@@ -167,40 +167,29 @@
 <a name="l00136"></a>00136     <span class="keywordtype">void</span> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a76bebee0820fcfa462412cb112b1b874" title="Deletes all cameras except for the first camera.">CameraManager::ClearCameras</a>()
 <a name="l00137"></a>00137     {
 <a name="l00138"></a>00138         Camera* camera = NULL;
-<a name="l00139"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a99deb0e895ad703651b0ea6c933a0727">00139</a>         <span class="keywordflow">for</span>( std::vector&lt; Camera* &gt;::iterator it = Cameras.begin() ; it != Cameras.end() ; it++ )
-<a name="l00140"></a>00140         {
+<a name="l00139"></a>00139         <span class="keywordflow">for</span>( std::vector&lt; Camera* &gt;::iterator it = Cameras.begin() ; it != Cameras.end() ; it++ )
+<a name="l00140"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488">00140</a>         {
 <a name="l00141"></a>00141             camera = (*it);
 <a name="l00142"></a>00142             <span class="keyword">delete</span> camera;
-<a name="l00143"></a>00143             Cameras.erase(it);
+<a name="l00143"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">00143</a>             Cameras.erase(it);
 <a name="l00144"></a>00144         }
-<a name="l00145"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488">00145</a>         <span class="keywordflow">return</span>;
-<a name="l00146"></a>00146     }
+<a name="l00145"></a>00145         <span class="keywordflow">return</span>;
+<a name="l00146"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">00146</a>     }
 <a name="l00147"></a>00147 
-<a name="l00148"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3">00148</a>     <span class="keywordtype">void</span> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a99deb0e895ad703651b0ea6c933a0727" title="Creates an additional Viewport within the set render window.">CameraManager::CreateViewport</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../d9/df8/classphys_1_1Camera.html" title="This is the camera class.">Camera</a>* ViewportCam)
-<a name="l00149"></a>00149     {
-<a name="l00150"></a>00150         Viewports[Name] = <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#ae2f158b4b2fef1bf2bee2524e0236c7b" title="The actual pointer to the world.">GameWorld</a>-&gt;<a class="code" href="../../da/ddf/classphys_1_1World.html#a15f968adb5d841da6c5eb51607a8f525" title="This gets the GraphicsManager from the manager list.">GetGraphicsManager</a>()-&gt;<a class="code" href="../../dd/d63/classphys_1_1GraphicsManager.html#a56d2f5d2ad9fb277723facd7f54034ec" title="This will get a pointer to the RenderWindow class in use by the world.">GetOgreWindowPointer</a>()-&gt;addViewport(ViewportCam-&gt;<a class="code" href="../../d9/df8/classphys_1_1Camera.html#a91622148b9b9a9ae1554c828f7e2fc89" title="This is the Camera used by the graphics Subsystem, that this class wraps.">Cam</a>, Viewports.size());
-<a name="l00151"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739">00151</a>     }
-<a name="l00152"></a>00152 
-<a name="l00153"></a>00153     <span class="comment">// Inherited from ManagerBase</span>
-<a name="l00154"></a><a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ac1b9928181ee006fea42152f3ea406cb">00154</a>     <span class="keywordtype">void</span> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488" title="Empty Initializor.">CameraManager::Initialize</a>()
-<a name="l00155"></a>00155         {}
-<a name="l00156"></a>00156 
-<a name="l00157"></a>00157     <span class="keywordtype">void</span> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3" title="Empty MainLoopItems.">CameraManager::DoMainLoopItems</a>()
-<a name="l00158"></a>00158         {}
-<a name="l00159"></a>00159 
-<a name="l00160"></a>00160     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739" title="This returns the type of this manager.">CameraManager::GetType</a>()<span class="keyword"> const</span>
-<a name="l00161"></a>00161 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::CameraManager; }
-<a name="l00162"></a>00162 
-<a name="l00163"></a>00163     Ogre::Viewport* <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#ac1b9928181ee006fea42152f3ea406cb" title="Gets the internal Ogre viewport.">CameraManager::GetOgreViewport</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name)
-<a name="l00164"></a>00164     {
-<a name="l00165"></a>00165         <span class="keywordflow">return</span> Viewports[Name];
-<a name="l00166"></a>00166     }
-<a name="l00167"></a>00167 
-<a name="l00168"></a>00168 }<span class="comment">//phys</span>
-<a name="l00169"></a>00169 <span class="preprocessor">#endif</span>
+<a name="l00148"></a>00148     <span class="comment">// Inherited from ManagerBase</span>
+<a name="l00149"></a>00149     <span class="keywordtype">void</span> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a5e956b61fa341ae576d8d160da518488" title="Empty Initializor.">CameraManager::Initialize</a>()
+<a name="l00150"></a>00150         {}
+<a name="l00151"></a>00151 
+<a name="l00152"></a>00152     <span class="keywordtype">void</span> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#aaae22266bccc43f6efa66d2735d7d1d3" title="Empty MainLoopItems.">CameraManager::DoMainLoopItems</a>()
+<a name="l00153"></a>00153         {}
+<a name="l00154"></a>00154 
+<a name="l00155"></a>00155     <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> <a class="code" href="../../d9/d91/classphys_1_1CameraManager.html#a8412ea634307aa280b615a3cc7c9b739" title="This returns the type of this manager.">CameraManager::GetType</a>()<span class="keyword"> const</span>
+<a name="l00156"></a>00156 <span class="keyword">        </span>{ <span class="keywordflow">return</span> ManagerBase::CameraManager; }
+<a name="l00157"></a>00157 }<span class="comment">//phys</span>
+<a name="l00158"></a>00158 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

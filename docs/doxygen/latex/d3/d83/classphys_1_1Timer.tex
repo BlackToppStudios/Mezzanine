@@ -20,19 +20,19 @@ Inheritance diagram for phys::Timer:\begin{figure}[H]
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum {\bfseries TimerStyle} \{ {\bfseries Normal}, 
-{\bfseries StopWatch}, 
-{\bfseries Alarm}
+enum \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{TimerStyle} \{ \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a5debd5b8437d14405bf25cd9b130449f}{Normal}, 
+\hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a7599daa63100c2134df7d8b7c9b7f867}{StopWatch}, 
+\hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329ae9b9fa35767e4ac2c87c078e1d9a0729}{Alarm}
  \}
-\item 
-enum {\bfseries TimerType} \{ {\bfseries Simple}, 
-{\bfseries Extended}
+\begin{DoxyCompactList}\small\item\em The style of timer to be used. \item\end{DoxyCompactList}\item 
+enum \hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{TimerType} \{ \hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1af8d1697e79f90f675fecc82e9aba7819}{Simple}, 
+\hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1aba207ea661f064c2041c73852c91efaa}{Extended}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em The type of timer to be used. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1Timer_a25b70d2d45c5c56cce475841b7b18cd0}{Timer} (const Timer::TimerStyle style)
+\hyperlink{classphys_1_1Timer_a25b70d2d45c5c56cce475841b7b18cd0}{Timer} (const \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} style)
 \begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Timer_ab96eede362c41f1ab56f1530cbae22b8}{
 \hyperlink{classphys_1_1Timer_ab96eede362c41f1ab56f1530cbae22b8}{$\sim$Timer} ()}
@@ -56,7 +56,7 @@ virtual void \hyperlink{classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}{Re
 \label{d3/d83/classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}
 
 \begin{DoxyCompactList}\small\item\em Sets the current values to their initial values. \item\end{DoxyCompactList}\item 
-virtual Timer::TimerType \hyperlink{classphys_1_1Timer_af0eaa87bf3074047db36ba1c6fd33c70}{GetType} ()
+virtual \hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{Timer::TimerType} \hyperlink{classphys_1_1Timer_af0eaa87bf3074047db36ba1c6fd33c70}{GetType} ()
 \begin{DoxyCompactList}\small\item\em Gets the type of timer this is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -75,12 +75,12 @@ virtual bool {\bfseries GoalReached} ()=0}
 \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classphys_1_1Timer_a4b0ece69e1df2bd7dd3c8001c279276a}{
-Timer::TimerStyle {\bfseries Style}}
+\hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{Timer::TimerStyle} {\bfseries Style}}
 \label{d3/d83/classphys_1_1Timer_a4b0ece69e1df2bd7dd3c8001c279276a}
 
 \item 
 \hypertarget{classphys_1_1Timer_ac22ea3e7dfa49b2653d03b9579a04972}{
-Timer::TimerType {\bfseries Type}}
+\hyperlink{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{Timer::TimerType} {\bfseries Type}}
 \label{d3/d83/classphys_1_1Timer_ac22ea3e7dfa49b2653d03b9579a04972}
 
 \item 
@@ -121,13 +121,74 @@ Definition at line 55 of file timer.h.
 
 
 
+\subsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}{
+\index{phys::Timer@{phys::Timer}!TimerStyle@{TimerStyle}}
+\index{TimerStyle@{TimerStyle}!phys::Timer@{phys::Timer}}
+\subsubsection[{TimerStyle}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::Timer::TimerStyle}}}
+\label{d3/d83/classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329}
+
+
+The style of timer to be used. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{Normal@{Normal}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!Normal@{Normal}}\item[{\em 
+\hypertarget{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a5debd5b8437d14405bf25cd9b130449f}{
+Normal}
+\label{d3/d83/classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a5debd5b8437d14405bf25cd9b130449f}
+}]Description Required. \index{StopWatch@{StopWatch}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!StopWatch@{StopWatch}}\item[{\em 
+\hypertarget{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a7599daa63100c2134df7d8b7c9b7f867}{
+StopWatch}
+\label{d3/d83/classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a7599daa63100c2134df7d8b7c9b7f867}
+}]Description Required. \index{Alarm@{Alarm}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!Alarm@{Alarm}}\item[{\em 
+\hypertarget{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329ae9b9fa35767e4ac2c87c078e1d9a0729}{
+Alarm}
+\label{d3/d83/classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329ae9b9fa35767e4ac2c87c078e1d9a0729}
+}]Description Required. \end{description}
+\end{Desc}
+
+
+
+Definition at line 59 of file timer.h.
+
+\hypertarget{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{
+\index{phys::Timer@{phys::Timer}!TimerType@{TimerType}}
+\index{TimerType@{TimerType}!phys::Timer@{phys::Timer}}
+\subsubsection[{TimerType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::Timer::TimerType}}}
+\label{d3/d83/classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}
+
+
+The type of timer to be used. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{Simple@{Simple}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!Simple@{Simple}}\item[{\em 
+\hypertarget{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1af8d1697e79f90f675fecc82e9aba7819}{
+Simple}
+\label{d3/d83/classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1af8d1697e79f90f675fecc82e9aba7819}
+}]Description Required. \index{Extended@{Extended}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!Extended@{Extended}}\item[{\em 
+\hypertarget{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1aba207ea661f064c2041c73852c91efaa}{
+Extended}
+\label{d3/d83/classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1aba207ea661f064c2041c73852c91efaa}
+}]Description Required. \end{description}
+\end{Desc}
+
+
+
+Definition at line 66 of file timer.h.
+
+
+
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classphys_1_1Timer_a25b70d2d45c5c56cce475841b7b18cd0}{
 \index{phys::Timer@{phys::Timer}!Timer@{Timer}}
 \index{Timer@{Timer}!phys::Timer@{phys::Timer}}
 \subsubsection[{Timer}]{\setlength{\rightskip}{0pt plus 5cm}phys::Timer::Timer (
 \begin{DoxyParamCaption}
-\item[{const Timer::TimerStyle}]{ style}
+\item[{const {\bf Timer::TimerStyle}}]{ style}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}}
 \label{d3/d83/classphys_1_1Timer_a25b70d2d45c5c56cce475841b7b18cd0}
@@ -140,7 +201,7 @@ Standard Constructor.
 \item[{\em Style}]The styling/type of timer to be constructed. \end{DoxyParams}
 
 
-Definition at line 86 of file timer.h.
+Definition at line 84 of file timer.h.
 
 
 
@@ -148,7 +209,7 @@ Definition at line 86 of file timer.h.
 \hypertarget{classphys_1_1Timer_af0eaa87bf3074047db36ba1c6fd33c70}{
 \index{phys::Timer@{phys::Timer}!GetType@{GetType}}
 \index{GetType@{GetType}!phys::Timer@{phys::Timer}}
-\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual Timer::TimerType phys::Timer::GetType (
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Timer::TimerType} phys::Timer::GetType (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -163,7 +224,7 @@ Returns an enum value representing the type of timer this is.
 \end{DoxyReturn}
 
 
-Definition at line 100 of file timer.h.
+Definition at line 98 of file timer.h.
 
 \hypertarget{classphys_1_1Timer_a046ca4f7dcf2503e5993a18e11172f5e}{
 \index{phys::Timer@{phys::Timer}!SetCallback@{SetCallback}}
@@ -183,7 +244,7 @@ Sets the callback to be used with this timer.
 \item[{\em Call}]The callback to be set. \end{DoxyParams}
 
 
-Definition at line 91 of file timer.h.
+Definition at line 89 of file timer.h.
 
 
 

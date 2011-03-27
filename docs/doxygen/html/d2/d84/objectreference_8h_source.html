@@ -74,33 +74,39 @@
 <a name="l00043"></a>00043 <span class="preprocessor">#include &quot;enumerations.h&quot;</span>
 <a name="l00044"></a>00044 
 <a name="l00045"></a>00045 <span class="keyword">namespace </span>phys
-<a name="l00046"></a>00046 {
-<a name="l00047"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html">00047</a>     <span class="keyword">class </span><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html">ObjectReference</a>
-<a name="l00048"></a>00048     {
-<a name="l00049"></a>00049         <span class="keyword">protected</span>:
-<a name="l00050"></a>00050             <a class="code" href="../../df/dec/namespacephys.html#a56410935e1c614a932dbc91ee7330df1" title="Used by various classes to help identify what class an object is.">WorldObjectType</a> Type;
-<a name="l00051"></a>00051             <span class="keywordtype">void</span>* Object;
-<a name="l00052"></a>00052         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00053"></a>00053 <span class="comment">            /// @brief Class constructor.</span>
-<a name="l00054"></a>00054 <span class="comment">            /// @param TheType The type of object this class is storing.</span>
-<a name="l00055"></a>00055 <span class="comment">            /// @param TheObject The object to be stored.</span>
-<a name="l00056"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#aa97733aef863b81f9fdbb4455d60d7e9">00056</a> <span class="comment"></span>            <a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#aa97733aef863b81f9fdbb4455d60d7e9" title="Class constructor.">ObjectReference</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a56410935e1c614a932dbc91ee7330df1" title="Used by various classes to help identify what class an object is.">WorldObjectType</a>&amp; TheType, <span class="keywordtype">void</span>* TheObject)
-<a name="l00057"></a>00057                 : Type(TheType), Object(TheObject) {};<span class="comment"></span>
-<a name="l00058"></a>00058 <span class="comment">            /// @brief Class destructor.</span>
-<a name="l00059"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#ae0205396bc65406316730a6cd5bdc237">00059</a> <span class="comment"></span>            <a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#ae0205396bc65406316730a6cd5bdc237" title="Class destructor.">~ObjectReference</a>() {};<span class="comment"></span>
-<a name="l00060"></a>00060 <span class="comment">            /// @brief Gets the type of object this class references.</span>
-<a name="l00061"></a>00061 <span class="comment">            /// @return Returns an enum value indicating what type of object this class references.</span>
-<a name="l00062"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#aea70ac457331e5b20a7487e2d93ba005">00062</a> <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a56410935e1c614a932dbc91ee7330df1" title="Used by various classes to help identify what class an object is.">WorldObjectType</a> <a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#aea70ac457331e5b20a7487e2d93ba005" title="Gets the type of object this class references.">GetType</a>() { <span class="keywordflow">return</span> Type; };<span class="comment"></span>
-<a name="l00063"></a>00063 <span class="comment">            /// @brief Gets the object this class references.</span>
-<a name="l00064"></a>00064 <span class="comment">            /// @return Returns a void pointer pointing to the object this class references.</span>
-<a name="l00065"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#a729c6e6b0ec5f0bbc7eb19987235729e">00065</a> <span class="comment"></span>            <span class="keywordtype">void</span>* <a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#a729c6e6b0ec5f0bbc7eb19987235729e" title="Gets the object this class references.">GetObject</a>() { <span class="keywordflow">return</span> Object; };
-<a name="l00066"></a>00066     };
-<a name="l00067"></a>00067 }
-<a name="l00068"></a>00068 
-<a name="l00069"></a>00069 <span class="preprocessor">#endif</span>
+<a name="l00046"></a>00046 {<span class="comment"></span>
+<a name="l00047"></a>00047 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00048"></a>00048 <span class="comment">    /// @class ObjectReference</span>
+<a name="l00049"></a>00049 <span class="comment">    /// @headerfile objectreference.h</span>
+<a name="l00050"></a>00050 <span class="comment">    /// @brief This is a small class used to store a reference to a world object.</span>
+<a name="l00051"></a>00051 <span class="comment">    /// @details This class is primarily used with internal structures.</span>
+<a name="l00052"></a>00052 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00053"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html">00053</a> <span class="comment"></span>    <span class="keyword">class </span><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html" title="This is a small class used to store a reference to a world object.">ObjectReference</a>
+<a name="l00054"></a>00054     {
+<a name="l00055"></a>00055         <span class="keyword">protected</span>:
+<a name="l00056"></a>00056             <a class="code" href="../../df/dec/namespacephys.html#a56410935e1c614a932dbc91ee7330df1" title="Used by various classes to help identify what class an object is.">WorldObjectType</a> Type;
+<a name="l00057"></a>00057             <span class="keywordtype">void</span>* Object;
+<a name="l00058"></a>00058         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00059"></a>00059 <span class="comment">            /// @brief Class constructor.</span>
+<a name="l00060"></a>00060 <span class="comment">            /// @param TheType The type of object this class is storing.</span>
+<a name="l00061"></a>00061 <span class="comment">            /// @param TheObject The object to be stored.</span>
+<a name="l00062"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#aa97733aef863b81f9fdbb4455d60d7e9">00062</a> <span class="comment"></span>            <a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#aa97733aef863b81f9fdbb4455d60d7e9" title="Class constructor.">ObjectReference</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a56410935e1c614a932dbc91ee7330df1" title="Used by various classes to help identify what class an object is.">WorldObjectType</a>&amp; TheType, <span class="keywordtype">void</span>* TheObject)
+<a name="l00063"></a>00063                 : Type(TheType), Object(TheObject) {};<span class="comment"></span>
+<a name="l00064"></a>00064 <span class="comment">            /// @brief Class destructor.</span>
+<a name="l00065"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#ae0205396bc65406316730a6cd5bdc237">00065</a> <span class="comment"></span>            <a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#ae0205396bc65406316730a6cd5bdc237" title="Class destructor.">~ObjectReference</a>() {};<span class="comment"></span>
+<a name="l00066"></a>00066 <span class="comment">            /// @brief Gets the type of object this class references.</span>
+<a name="l00067"></a>00067 <span class="comment">            /// @return Returns an enum value indicating what type of object this class references.</span>
+<a name="l00068"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#aea70ac457331e5b20a7487e2d93ba005">00068</a> <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a56410935e1c614a932dbc91ee7330df1" title="Used by various classes to help identify what class an object is.">WorldObjectType</a> <a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#aea70ac457331e5b20a7487e2d93ba005" title="Gets the type of object this class references.">GetType</a>() { <span class="keywordflow">return</span> Type; };<span class="comment"></span>
+<a name="l00069"></a>00069 <span class="comment">            /// @brief Gets the object this class references.</span>
+<a name="l00070"></a>00070 <span class="comment">            /// @return Returns a void pointer pointing to the object this class references.</span>
+<a name="l00071"></a><a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#a729c6e6b0ec5f0bbc7eb19987235729e">00071</a> <span class="comment"></span>            <span class="keywordtype">void</span>* <a class="code" href="../../d6/d54/classphys_1_1ObjectReference.html#a729c6e6b0ec5f0bbc7eb19987235729e" title="Gets the object this class references.">GetObject</a>() { <span class="keywordflow">return</span> Object; };
+<a name="l00072"></a>00072     };
+<a name="l00073"></a>00073 }
+<a name="l00074"></a>00074 
+<a name="l00075"></a>00075 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

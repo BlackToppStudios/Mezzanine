@@ -2,15 +2,24 @@
 \section{phys::WorldNode Class Reference}
 \label{d2/d3e/classphys_1_1WorldNode}\index{phys::WorldNode@{phys::WorldNode}}
 }
+
+
+This is a helper class which non-\/physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects.  
+
+
+
+
+{\ttfamily \#include $<$worldnode.h$>$}
+
 \subsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-enum {\bfseries NodeType} \{ {\bfseries Center}, 
-{\bfseries Orbit}, 
-{\bfseries Stand}, 
-{\bfseries Free}
+enum \hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{NodeType} \{ \hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa06be3334346d6ba7913197ee0dd5b8bb}{Center}, 
+\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aae9751e5fc4396425fbd7b93171541a22}{Orbit}, 
+\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa2ae400375e79106ae01adf39dd5c1185}{Stand}, 
+\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aaa4f848b95586fc581aa1f749c82a1fb5}{Free}
  \}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Kinds of movement (or non-\/movement modes) a world node could have. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -23,12 +32,12 @@ enum {\bfseries NodeType} \{ {\bfseries Center},
 \label{d2/d3e/classphys_1_1WorldNode_a357c18b6e04a9ae0d0855841a3c774b2}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1WorldNode_ad8a5650d5fb9f804b863c434ffab2cc1}{GetName} ()
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1WorldNode_ae3c12e7aced8f84e2191a5e08e2767a8}{GetName} () const 
 \begin{DoxyCompactList}\small\item\em Gets the name of this node. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1WorldNode_a82710a08f767447266c1307b55a5636b}{AttachElement} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Element)
-\begin{DoxyCompactList}\small\item\em Attaches an attachable element to this \hyperlink{classNode}{Node}. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Attaches an attachable element to this Node. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1WorldNode_ab5ce9ccc5dea9a450f3f72442ca10cf5}{DetachElement} (\hyperlink{classphys_1_1Attachable}{Attachable} $\ast$Element)
-\begin{DoxyCompactList}\small\item\em Detaches an attachable element from this \hyperlink{classNode}{Node}. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Detaches an attachable element from this Node. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1WorldNode_acf433bc8dbe404cbaf4cb9e2264a7a84}{
 void \hyperlink{classphys_1_1WorldNode_acf433bc8dbe404cbaf4cb9e2264a7a84}{DetachAllElements} ()}
 \label{d2/d3e/classphys_1_1WorldNode_acf433bc8dbe404cbaf4cb9e2264a7a84}
@@ -57,9 +66,9 @@ void \hyperlink{classphys_1_1WorldNode_aec20d9b24a8de76a227307a9d287d127}{Disabl
 \begin{DoxyCompactList}\small\item\em Disables any active autotracking for this node. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1WorldNode_a0849395a47c9cd3182a6a3717b95bcbc}{IncrementOrbit} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Radians)
 \begin{DoxyCompactList}\small\item\em Increments the orbit of this node if this is an orbiting node. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1WorldNode_abc4cf216177c0a3f4397c83fe3b58e75}{SetType} (WorldNode::NodeType type)
+void \hyperlink{classphys_1_1WorldNode_abc4cf216177c0a3f4397c83fe3b58e75}{SetType} (\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{WorldNode::NodeType} type)
 \begin{DoxyCompactList}\small\item\em Sets the type of node that this is. \item\end{DoxyCompactList}\item 
-WorldNode::NodeType \hyperlink{classphys_1_1WorldNode_a9688a418ab6871f89845b69f02ab7f9c}{GetType} ()
+\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{WorldNode::NodeType} \hyperlink{classphys_1_1WorldNode_a9688a418ab6871f89845b69f02ab7f9c}{GetType} ()
 \begin{DoxyCompactList}\small\item\em Gets the type of node that this is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -75,7 +84,7 @@ Ogre::SceneNode $\ast$ \hyperlink{classphys_1_1WorldNode_abc3e4ddcd1dc2f15ffa40e
 
 \begin{DoxyCompactList}\small\item\em Pointer to the manager that created this class. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1WorldNode_aef2329f38799c3d67f1f1f69b35dda20}{
-WorldNode::NodeType \hyperlink{classphys_1_1WorldNode_aef2329f38799c3d67f1f1f69b35dda20}{Type}}
+\hyperlink{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{WorldNode::NodeType} \hyperlink{classphys_1_1WorldNode_aef2329f38799c3d67f1f1f69b35dda20}{Type}}
 \label{d2/d3e/classphys_1_1WorldNode_aef2329f38799c3d67f1f1f69b35dda20}
 
 \begin{DoxyCompactList}\small\item\em Enum value storing the type of node this class is. \item\end{DoxyCompactList}\item 
@@ -87,9 +96,53 @@ std::vector$<$ \hyperlink{classphys_1_1Attachable}{Attachable} $\ast$ $>$ \hyper
 
 
 \subsection{Detailed Description}
-
+This is a helper class which non-\/physics objects, such as lights, cameras, ribbon trails, and particle effects may be attached to for enhanced effects. This class simply contains a group of functions for easy manipulation of movement and orientation as well as attaching elements to them. This class should only be created through the scene manager. \par
+ There are 4 types of nodes: \par
+ Center -\/ Works in conjunction with the orbit node and serves as it's center point for the orbit node to rotate around. \par
+ Orbit -\/ Counterpart to the Center node, this type does the orbiting. \par
+ Stand -\/ Stationary node that points in one direction, that is it. \par
+ Free -\/ A node with no rules governing how it moves. \par
+ Note: There are no rules restricting the use of nodes anyway, this enum is here simply to help indicate the intended use upon creation. 
 
 Definition at line 77 of file worldnode.h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}{
+\index{phys::WorldNode@{phys::WorldNode}!NodeType@{NodeType}}
+\index{NodeType@{NodeType}!phys::WorldNode@{phys::WorldNode}}
+\subsubsection[{NodeType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::WorldNode::NodeType}}}
+\label{d2/d3e/classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5a}
+
+
+Kinds of movement (or non-\/movement modes) a world node could have. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{Center@{Center}!phys::WorldNode@{phys::WorldNode}}\index{phys::WorldNode@{phys::WorldNode}!Center@{Center}}\item[{\em 
+\hypertarget{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa06be3334346d6ba7913197ee0dd5b8bb}{
+Center}
+\label{d2/d3e/classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa06be3334346d6ba7913197ee0dd5b8bb}
+}]Description Required. \index{Orbit@{Orbit}!phys::WorldNode@{phys::WorldNode}}\index{phys::WorldNode@{phys::WorldNode}!Orbit@{Orbit}}\item[{\em 
+\hypertarget{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aae9751e5fc4396425fbd7b93171541a22}{
+Orbit}
+\label{d2/d3e/classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aae9751e5fc4396425fbd7b93171541a22}
+}]Description Required. \index{Stand@{Stand}!phys::WorldNode@{phys::WorldNode}}\index{phys::WorldNode@{phys::WorldNode}!Stand@{Stand}}\item[{\em 
+\hypertarget{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa2ae400375e79106ae01adf39dd5c1185}{
+Stand}
+\label{d2/d3e/classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aa2ae400375e79106ae01adf39dd5c1185}
+}]Description Required. \index{Free@{Free}!phys::WorldNode@{phys::WorldNode}}\index{phys::WorldNode@{phys::WorldNode}!Free@{Free}}\item[{\em 
+\hypertarget{classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aaa4f848b95586fc581aa1f749c82a1fb5}{
+Free}
+\label{d2/d3e/classphys_1_1WorldNode_a0b178b06aa411b00c4c2ccd926d9bf5aaa4f848b95586fc581aa1f749c82a1fb5}
+}]Description Required. \end{description}
+\end{Desc}
+
+
+
+Definition at line 81 of file worldnode.h.
 
 
 
@@ -113,7 +166,7 @@ Standard initialization constructor.
 \item[{\em Name}]The name of this node. \item[{\em manager}]Pointer to the manager that this node is to be used in. \end{DoxyParams}
 
 
-Definition at line 55 of file worldnode.cpp.
+Definition at line 56 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_ae813a2aa737980824725b1909372484e}{
 \index{phys::WorldNode@{phys::WorldNode}!WorldNode@{WorldNode}}
@@ -129,12 +182,14 @@ Definition at line 55 of file worldnode.cpp.
 
 Internal constructor. 
 
+\begin{DoxyInternal}{For internal use only.}
 This constructor should not be called on manually. 
 \begin{DoxyParams}{Parameters}
 \item[{\em snode}]Pointer to the Ogre SceneNode this class is based on. \item[{\em manager}]Pointer to the manager that this node is to be used in. \end{DoxyParams}
+\end{DoxyInternal}
 
 
-Definition at line 62 of file worldnode.cpp.
+Definition at line 63 of file worldnode.cpp.
 
 
 
@@ -150,14 +205,14 @@ Definition at line 62 of file worldnode.cpp.
 \label{d2/d3e/classphys_1_1WorldNode_a82710a08f767447266c1307b55a5636b}
 
 
-Attaches an attachable element to this \hyperlink{classNode}{Node}. 
+Attaches an attachable element to this Node. 
 
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Element}]The Element to be attached. \end{DoxyParams}
 
 
-Definition at line 79 of file worldnode.cpp.
+Definition at line 80 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_ab5ce9ccc5dea9a450f3f72442ca10cf5}{
 \index{phys::WorldNode@{phys::WorldNode}!DetachElement@{DetachElement}}
@@ -170,24 +225,24 @@ Definition at line 79 of file worldnode.cpp.
 \label{d2/d3e/classphys_1_1WorldNode_ab5ce9ccc5dea9a450f3f72442ca10cf5}
 
 
-Detaches an attachable element from this \hyperlink{classNode}{Node}. 
+Detaches an attachable element from this Node. 
 
 
 \begin{DoxyParams}{Parameters}
 \item[{\em Element}]The Element to be detached. \end{DoxyParams}
 
 
-Definition at line 110 of file worldnode.cpp.
+Definition at line 113 of file worldnode.cpp.
 
-\hypertarget{classphys_1_1WorldNode_ad8a5650d5fb9f804b863c434ffab2cc1}{
+\hypertarget{classphys_1_1WorldNode_ae3c12e7aced8f84e2191a5e08e2767a8}{
 \index{phys::WorldNode@{phys::WorldNode}!GetName@{GetName}}
 \index{GetName@{GetName}!phys::WorldNode@{phys::WorldNode}}
 \subsubsection[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& phys::WorldNode::GetName (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}}
-\label{d2/d3e/classphys_1_1WorldNode_ad8a5650d5fb9f804b863c434ffab2cc1}
+) const}}
+\label{d2/d3e/classphys_1_1WorldNode_ae3c12e7aced8f84e2191a5e08e2767a8}
 
 
 Gets the name of this node. 
@@ -197,7 +252,7 @@ Returns a string containing the name given to this node.
 \end{DoxyReturn}
 
 
-Definition at line 74 of file worldnode.cpp.
+Definition at line 75 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_a57cf111ca5ef3ccc75bd9c5fef77ae00}{
 \index{phys::WorldNode@{phys::WorldNode}!GetNumAttachedElements@{GetNumAttachedElements}}
@@ -217,7 +272,7 @@ Returns the number of elements attached to this node.
 \end{DoxyReturn}
 
 
-Definition at line 153 of file worldnode.cpp.
+Definition at line 158 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_ad99c661777321343f4b9ee220a678315}{
 \index{phys::WorldNode@{phys::WorldNode}!GetOrientation@{GetOrientation}}
@@ -237,7 +292,7 @@ Returns a quaternion representing the orientation of this node.
 \end{DoxyReturn}
 
 
-Definition at line 174 of file worldnode.cpp.
+Definition at line 179 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_a4edb1d8bec8b23a1962579d5012793f9}{
 \index{phys::WorldNode@{phys::WorldNode}!GetPosition@{GetPosition}}
@@ -257,12 +312,12 @@ Returns a vector3 representing the location of this node.
 \end{DoxyReturn}
 
 
-Definition at line 163 of file worldnode.cpp.
+Definition at line 168 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_a9688a418ab6871f89845b69f02ab7f9c}{
 \index{phys::WorldNode@{phys::WorldNode}!GetType@{GetType}}
 \index{GetType@{GetType}!phys::WorldNode@{phys::WorldNode}}
-\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}WorldNode::NodeType phys::WorldNode::GetType (
+\subsubsection[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldNode::NodeType} phys::WorldNode::GetType (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
@@ -277,7 +332,7 @@ Returns the type of node this is set as.
 \end{DoxyReturn}
 
 
-Definition at line 214 of file worldnode.cpp.
+Definition at line 219 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_a0849395a47c9cd3182a6a3717b95bcbc}{
 \index{phys::WorldNode@{phys::WorldNode}!IncrementOrbit@{IncrementOrbit}}
@@ -297,7 +352,7 @@ This function has no effect if this isn't an orbiting node.
 \item[{\em Radians}]A real reprsenting the amount of orbit to increment in radians. \end{DoxyParams}
 
 
-Definition at line 200 of file worldnode.cpp.
+Definition at line 205 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_aa0373976b11af2171188d2ee8c114420}{
 \index{phys::WorldNode@{phys::WorldNode}!LookAt@{LookAt}}
@@ -317,7 +372,7 @@ Automatically sets the orientation needed to point this node at a location in th
 \item[{\em LookAt}]The location in world space to point at. \end{DoxyParams}
 
 
-Definition at line 180 of file worldnode.cpp.
+Definition at line 185 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_a3c8447cd6de0af06a6004cdd968671f0}{
 \index{phys::WorldNode@{phys::WorldNode}!SetAutoTracking@{SetAutoTracking}}
@@ -338,7 +393,7 @@ This function will make this node update it's orientation every frame automatica
 \item[{\em node}]The node to be tracked. \item[{\em Offset}]A vector3 representing the offset from the nodes location to be tracked. \end{DoxyParams}
 
 
-Definition at line 185 of file worldnode.cpp.
+Definition at line 190 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_a3bd06b9d4a4baa6937a8a3a33a33b047}{
 \index{phys::WorldNode@{phys::WorldNode}!SetAutoTracking@{SetAutoTracking}}
@@ -359,7 +414,7 @@ This function will make this node update it's orientation every frame automatica
 \item[{\em Actor}]The actor to be tracked. \item[{\em Offset}]A vector3 representing the offset from the actor's location to be tracked. \end{DoxyParams}
 
 
-Definition at line 190 of file worldnode.cpp.
+Definition at line 195 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_a583cbdca344ac23894ef469c7b7f6062}{
 \index{phys::WorldNode@{phys::WorldNode}!SetOrientation@{SetOrientation}}
@@ -376,10 +431,10 @@ Sets the orientation of this node.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]A \hyperlink{classphys_1_1Quaternion}{Quaternion} representing the orientation of this node. \end{DoxyParams}
+\item[{\em Orientation}]A \hyperlink{classphys_1_1Quaternion}{Quaternion} representing the orientation of this node. \end{DoxyParams}
 
 
-Definition at line 169 of file worldnode.cpp.
+Definition at line 174 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_ab15c80e2afc78640c4382b88474b02c5}{
 \index{phys::WorldNode@{phys::WorldNode}!SetPosition@{SetPosition}}
@@ -399,14 +454,14 @@ Sets the position of this node.
 \item[{\em Position}]A vector3 representing the location of this node. \end{DoxyParams}
 
 
-Definition at line 158 of file worldnode.cpp.
+Definition at line 163 of file worldnode.cpp.
 
 \hypertarget{classphys_1_1WorldNode_abc4cf216177c0a3f4397c83fe3b58e75}{
 \index{phys::WorldNode@{phys::WorldNode}!SetType@{SetType}}
 \index{SetType@{SetType}!phys::WorldNode@{phys::WorldNode}}
 \subsubsection[{SetType}]{\setlength{\rightskip}{0pt plus 5cm}void phys::WorldNode::SetType (
 \begin{DoxyParamCaption}
-\item[{WorldNode::NodeType}]{ type}
+\item[{{\bf WorldNode::NodeType}}]{ type}
 \end{DoxyParamCaption}
 )}}
 \label{d2/d3e/classphys_1_1WorldNode_abc4cf216177c0a3f4397c83fe3b58e75}
@@ -414,12 +469,14 @@ Definition at line 158 of file worldnode.cpp.
 
 Sets the type of node that this is. 
 
+\begin{DoxyInternal}{For internal use only.}
 This is intended for internal/expert use only. Manually calling this could disrupt normal function. 
 \begin{DoxyParams}{Parameters}
 \item[{\em type}]The type of node this is to be set as. \end{DoxyParams}
+\end{DoxyInternal}
 
 
-Definition at line 209 of file worldnode.cpp.
+Definition at line 214 of file worldnode.cpp.
 
 
 

@@ -110,7 +110,8 @@ namespace phys
         /// @brief Used to increase encapsulation, just a bit.
         struct EventManagerInternalData
         {
-            //The Queue that all the events get stored in
+            /// @internal
+            /// @brief The Queue that all the events get stored in
             std::list<EventBase*> EventQ;
 
             /// @internal
@@ -118,6 +119,8 @@ namespace phys
             enum PollingType{
                 Polling     =1,
                 Keypress    =2
+
+                PollingKeyPress = Polling|Keypress;
             };
 
             /// @internal
@@ -158,6 +161,7 @@ namespace phys
             /// @internal
             /// @brief Used to insert Codes into the list of items to be manually checked
             /// @param Transport A vector of every Meta that may need to be added to the list
+            /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
             void AddMetaCodesToManualCheck(vector<MetaCode> Transport, PollingType _PollingCheck)
             {
                 for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
@@ -170,7 +174,7 @@ namespace phys
             /// @internal
             /// @brief Removes one type of polling check
             /// @param OneCode The code that will no longer be checked each frame, under the given condition
-            /// @param _PollingCheck This is the polling into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
+            /// @param _PollingCheck If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed.
             void RemoveInputCodeToManualCheck(const MetaCode::InputCode& OneCode, PollingType _PollingCheck)
             {
                 ManualCheckIterator Which = ManualCheck.find(OneCode);
@@ -186,6 +190,7 @@ namespace phys
             /// @internal
             /// @brief Remove Items form the internal manual check list
             /// @param Transport A vector of every MetaCode that may need to be removed to the list
+            /// @param _PollingCheck If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed.
             void RemoveMetaCodesToManualCheck(vector<MetaCode> Transport, PollingType _PollingCheck)
             {
                 for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)

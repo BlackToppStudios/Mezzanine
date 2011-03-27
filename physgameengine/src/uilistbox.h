@@ -92,7 +92,7 @@ namespace phys
                 /// @param Size The size of the List Box.
                 /// @param ScrollbarWidth The relative(to screensize) width of the vertical scrollbar.
                 /// If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look.
-                /// @param ScrollbarStyle The style of the scrollbar you want for this List Box.  See Scrollbar
+                /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this List Box belongs to.
                 ListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer);
@@ -119,6 +119,7 @@ namespace phys
                 /// @brief Sets additional optional perameters to the creation of each caption.
                 /// @details This function does not need to be called before creating captions, but if you plan to use this, it
                 /// would be a good idea to call this function prior to any creation.
+                /// @param TextColour The Colour of the text.
                 /// @param BackgroundColour The colour to set for the captions background.
                 /// @param HorAlign The horizontal text alignment.  This defaults to UI::Middle.
                 /// @param VertAlign The Vertical text alignment.  This defaults to UI::Center.
@@ -129,7 +130,8 @@ namespace phys
                 /// @brief Adds a selectable caption to the list to be displayed.
                 /// @details If a colour other then white was set as the template and you try to set a background sprite, it will
                 /// attempt to blend the colour and sprite.  Pure white colour will cause the sprite to look normal.
-                /// @param TextLabel The text to be displayed within the created caption.
+                /// @param name A name for the selection.
+                /// @param Text The text to be displayed within the created caption.
                 /// @param BackgroundSprite Optional, name of the sprite to set as it's background.  Ignored if the string is empty.
                 virtual Caption* AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite = "");
                 /// @brief Gets a caption by name.

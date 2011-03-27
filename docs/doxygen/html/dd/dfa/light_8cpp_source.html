@@ -80,24 +80,24 @@
 <a name="l00049"></a>00049     <a class="code" href="../../dc/df1/classphys_1_1Light.html#a4bcb13aaf1ab92e7df71b565eeec61e4" title="Standard initialization constructor.">Light::Light</a>(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name, <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* manager)
 <a name="l00050"></a>00050     {
 <a name="l00051"></a>00051         <a class="code" href="../../dc/df1/classphys_1_1Light.html#a2633fc1795d2a3e2ddddc71674a7eb84" title="Pointer to the manager that created this class.">Manager</a> = manager;
-<a name="l00052"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a27cfdf1933c6b0054aa4ef8348f56daa">00052</a>         <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a> = <a class="code" href="../../dc/df1/classphys_1_1Light.html#a2633fc1795d2a3e2ddddc71674a7eb84" title="Pointer to the manager that created this class.">Manager</a>-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createLight(Name);
-<a name="l00053"></a>00053         <a class="code" href="../../df/dbd/classphys_1_1Attachable.html#a74361315eba9e4f0ce288518c92541fa" title="Sets the type of element this class is.">SetElementType</a>(Attachable::Light);
+<a name="l00052"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a27cfdf1933c6b0054aa4ef8348f56daa">00052</a>         <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a> = <a class="code" href="../../dc/df1/classphys_1_1Light.html#a2633fc1795d2a3e2ddddc71674a7eb84" title="Pointer to the manager that created this class.">Manager</a>-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aa6bfec6329ecfb7c6196f488e1499c3c" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;createLight(Name);
+<a name="l00053"></a>00053         <a class="code" href="../../df/dbd/classphys_1_1Attachable.html#a74361315eba9e4f0ce288518c92541fa" title="Sets the type of element this class is.">SetElementType</a>(<a class="code" href="../../df/dbd/classphys_1_1Attachable.html#acd1fca033e7cc0bb3024a92d466d213aa33e8ea44892e656e8b94e744957c3aff" title="This is a phys::Light.">Attachable::Light</a>);
 <a name="l00054"></a>00054     }
 <a name="l00055"></a>00055 
 <a name="l00056"></a>00056     <a class="code" href="../../dc/df1/classphys_1_1Light.html#a4bcb13aaf1ab92e7df71b565eeec61e4" title="Standard initialization constructor.">Light::Light</a>(Ogre::Light* light, <a class="code" href="../../dd/da8/classphys_1_1SceneManager.html" title="This class contains utilities and functions to allow the manipulation of the Graphical scene...">SceneManager</a>* manager)
 <a name="l00057"></a>00057     {
 <a name="l00058"></a>00058         <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a> = light;
 <a name="l00059"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a0ee3882bb8e1e613bd88380a9681af2e">00059</a>         <a class="code" href="../../dc/df1/classphys_1_1Light.html#a2633fc1795d2a3e2ddddc71674a7eb84" title="Pointer to the manager that created this class.">Manager</a> = manager;
-<a name="l00060"></a>00060         <a class="code" href="../../df/dbd/classphys_1_1Attachable.html#a74361315eba9e4f0ce288518c92541fa" title="Sets the type of element this class is.">SetElementType</a>(Attachable::Light);
+<a name="l00060"></a>00060         <a class="code" href="../../df/dbd/classphys_1_1Attachable.html#a74361315eba9e4f0ce288518c92541fa" title="Sets the type of element this class is.">SetElementType</a>(<a class="code" href="../../df/dbd/classphys_1_1Attachable.html#acd1fca033e7cc0bb3024a92d466d213aa33e8ea44892e656e8b94e744957c3aff" title="This is a phys::Light.">Attachable::Light</a>);
 <a name="l00061"></a>00061     }
 <a name="l00062"></a>00062 
 <a name="l00063"></a>00063     <a class="code" href="../../dc/df1/classphys_1_1Light.html#a0ee3882bb8e1e613bd88380a9681af2e" title="Class destructor.">Light::~Light</a>()
-<a name="l00064"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a70f84fef8451b7d489c21476fa90d9df">00064</a>     {
-<a name="l00065"></a>00065         <a class="code" href="../../dc/df1/classphys_1_1Light.html#a2633fc1795d2a3e2ddddc71674a7eb84" title="Pointer to the manager that created this class.">Manager</a>-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#af3e5081f780b6527f075d1bb579f0601" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;destroyLight(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>);
+<a name="l00064"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a5e85ef1867ad92d589b6cfa96500fcb2">00064</a>     {
+<a name="l00065"></a>00065         <a class="code" href="../../dc/df1/classphys_1_1Light.html#a2633fc1795d2a3e2ddddc71674a7eb84" title="Pointer to the manager that created this class.">Manager</a>-&gt;<a class="code" href="../../dd/da8/classphys_1_1SceneManager.html#aa6bfec6329ecfb7c6196f488e1499c3c" title="Gets the internal Ogre Scene Manager pointer.">GetGraphicsWorldPointer</a>()-&gt;destroyLight(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>);
 <a name="l00066"></a>00066     }
 <a name="l00067"></a>00067 
-<a name="l00068"></a>00068     <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="../../dc/df1/classphys_1_1Light.html#a70f84fef8451b7d489c21476fa90d9df" title="Gets the name of this light.">Light::GetName</a>()
-<a name="l00069"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a87fced0afb0fd44d333c499d41e8568a">00069</a>     {
+<a name="l00068"></a>00068     <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="../../dc/df1/classphys_1_1Light.html#a5e85ef1867ad92d589b6cfa96500fcb2" title="Gets the name of this light.">Light::GetName</a>()<span class="keyword"> const</span>
+<a name="l00069"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a87fced0afb0fd44d333c499d41e8568a">00069</a> <span class="keyword">    </span>{
 <a name="l00070"></a>00070         <span class="keywordflow">return</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getName();
 <a name="l00071"></a>00071     }
 <a name="l00072"></a>00072 
@@ -181,12 +181,12 @@
 <a name="l00150"></a>00150     }
 <a name="l00151"></a>00151 
 <a name="l00152"></a>00152     <span class="keywordtype">void</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#af4a6428b87c443a33261575783a4fb05" title="Sets the lights power scale.">Light::SetPowerScale</a>(<a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> Power)
-<a name="l00153"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#aede2c9db5c558e649a5de00ff6918ff4">00153</a>     {
+<a name="l00153"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#ac404a6c7df9758f8420a8931118f516b">00153</a>     {
 <a name="l00154"></a>00154         <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;setPowerScale(Power);
 <a name="l00155"></a>00155     }
 <a name="l00156"></a>00156 
-<a name="l00157"></a>00157     Light::LightType <a class="code" href="../../dc/df1/classphys_1_1Light.html#aede2c9db5c558e649a5de00ff6918ff4" title="Gets the type of light that this light is.">Light::GetType</a>()
-<a name="l00158"></a>00158     {
+<a name="l00157"></a>00157     Light::LightType <a class="code" href="../../dc/df1/classphys_1_1Light.html#ac404a6c7df9758f8420a8931118f516b" title="Gets the type of light that this light is.">Light::GetType</a>()<span class="keyword"> const</span>
+<a name="l00158"></a>00158 <span class="keyword">    </span>{
 <a name="l00159"></a>00159         Ogre::Light::LightTypes OgreType = <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getType();
 <a name="l00160"></a>00160         Light::LightType PhysType;
 <a name="l00161"></a>00161         <span class="keywordflow">switch</span> (OgreType)
@@ -202,71 +202,71 @@
 <a name="l00171"></a>00171                 <span class="keywordflow">break</span>;
 <a name="l00172"></a>00172             <span class="keywordflow">default</span>:
 <a name="l00173"></a>00173                 <span class="keywordflow">return</span> Light::Point;
-<a name="l00174"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#ae2211ed844f8f5e25bcb74c3222a87d1">00174</a>         }
+<a name="l00174"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a9cdf0ce6b98bcb601237aa75d54b9c7d">00174</a>         }
 <a name="l00175"></a>00175         <span class="keywordflow">return</span> PhysType;
 <a name="l00176"></a>00176     }
 <a name="l00177"></a>00177 
-<a name="l00178"></a>00178     Vector3 <a class="code" href="../../dc/df1/classphys_1_1Light.html#ae2211ed844f8f5e25bcb74c3222a87d1" title="Gets the current location of the light.">Light::GetPosition</a>()
-<a name="l00179"></a>00179     {
-<a name="l00180"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a2c7051ac99d359da14b192852f78bc69">00180</a>         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Pos(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getPosition());
+<a name="l00178"></a>00178     Vector3 <a class="code" href="../../dc/df1/classphys_1_1Light.html#a9cdf0ce6b98bcb601237aa75d54b9c7d" title="Gets the current location of the light.">Light::GetPosition</a>()<span class="keyword"> const</span>
+<a name="l00179"></a>00179 <span class="keyword">    </span>{
+<a name="l00180"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#afde81fca535417fdb33d23d38117ccac">00180</a>         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Pos(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getPosition());
 <a name="l00181"></a>00181         <span class="keywordflow">return</span> Pos;
 <a name="l00182"></a>00182     }
 <a name="l00183"></a>00183 
-<a name="l00184"></a>00184     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a2c7051ac99d359da14b192852f78bc69" title="Gets the currently set direction of the light.">Light::GetDirection</a>()
-<a name="l00185"></a>00185     {
-<a name="l00186"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a2f21391ae6a8bf6cc8c8a6b1196f0ed4">00186</a>         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Dir(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getDirection());
+<a name="l00184"></a>00184     <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#afde81fca535417fdb33d23d38117ccac" title="Gets the currently set direction of the light.">Light::GetDirection</a>()<span class="keyword"> const</span>
+<a name="l00185"></a>00185 <span class="keyword">    </span>{
+<a name="l00186"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a75d4d4c33bf0f552e48f280a80dc5fb4">00186</a>         <a class="code" href="../../d5/d6a/classphys_1_1Vector3.html" title="This is used to represent a point in space, or a vector through space.">Vector3</a> Dir(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getDirection());
 <a name="l00187"></a>00187         <span class="keywordflow">return</span> Dir;
 <a name="l00188"></a>00188     }
 <a name="l00189"></a>00189 
-<a name="l00190"></a>00190     <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a2f21391ae6a8bf6cc8c8a6b1196f0ed4" title="Gets the current colour of the diffuse light.">Light::GetDiffuseColour</a>()
-<a name="l00191"></a>00191     {
-<a name="l00192"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#abaf4675bac9f769706f91ccacfdd278e">00192</a>         <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> DiffCol(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getDiffuseColour());
+<a name="l00190"></a>00190     <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a75d4d4c33bf0f552e48f280a80dc5fb4" title="Gets the current colour of the diffuse light.">Light::GetDiffuseColour</a>()<span class="keyword"> const</span>
+<a name="l00191"></a>00191 <span class="keyword">    </span>{
+<a name="l00192"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a05c7ab32ddb1acf71a041098fbb9ff35">00192</a>         <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> DiffCol(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getDiffuseColour());
 <a name="l00193"></a>00193         <span class="keywordflow">return</span> DiffCol;
 <a name="l00194"></a>00194     }
 <a name="l00195"></a>00195 
-<a name="l00196"></a>00196     <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#abaf4675bac9f769706f91ccacfdd278e" title="Gets the current colour of the specular light.">Light::GetSpecularColour</a>()
-<a name="l00197"></a>00197     {
-<a name="l00198"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a23a8b0fe2bee88d45ef647165357186a">00198</a>         <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> SpecCol(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getSpecularColour());
+<a name="l00196"></a>00196     <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a05c7ab32ddb1acf71a041098fbb9ff35" title="Gets the current colour of the specular light.">Light::GetSpecularColour</a>()<span class="keyword"> const</span>
+<a name="l00197"></a>00197 <span class="keyword">    </span>{
+<a name="l00198"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#ad113608997af66646ed91c28acb9057c">00198</a>         <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a> SpecCol(<a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getSpecularColour());
 <a name="l00199"></a>00199         <span class="keywordflow">return</span> SpecCol;
 <a name="l00200"></a>00200     }
 <a name="l00201"></a>00201 
-<a name="l00202"></a>00202     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a23a8b0fe2bee88d45ef647165357186a" title="Gets the absolute range of attenuation in world units.">Light::GetAttenuationRange</a>()
-<a name="l00203"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#afc87c26ec4500caf94c6210329c091f9">00203</a>     {
+<a name="l00202"></a>00202     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#ad113608997af66646ed91c28acb9057c" title="Gets the absolute range of attenuation in world units.">Light::GetAttenuationRange</a>()<span class="keyword"> const</span>
+<a name="l00203"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#aad30f7fb932b030de7eb15046dea83a7">00203</a> <span class="keyword">    </span>{
 <a name="l00204"></a>00204         <span class="keywordflow">return</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getAttenuationRange();
 <a name="l00205"></a>00205     }
 <a name="l00206"></a>00206 
-<a name="l00207"></a>00207     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#afc87c26ec4500caf94c6210329c091f9" title="Gets the constant factor of the attenuation.">Light::GetAttenuationConstant</a>()
-<a name="l00208"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#acd3d3a2cf672fe18bd9e6d47676c2387">00208</a>     {
+<a name="l00207"></a>00207     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#aad30f7fb932b030de7eb15046dea83a7" title="Gets the constant factor of the attenuation.">Light::GetAttenuationConstant</a>()<span class="keyword"> const</span>
+<a name="l00208"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a92245ddc5383fd7f0989866852e36ed8">00208</a> <span class="keyword">    </span>{
 <a name="l00209"></a>00209         <span class="keywordflow">return</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getAttenuationConstant();
 <a name="l00210"></a>00210     }
 <a name="l00211"></a>00211 
-<a name="l00212"></a>00212     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#acd3d3a2cf672fe18bd9e6d47676c2387" title="Gets the linear factor of the attentuation.">Light::GetAttenuationLinear</a>()
-<a name="l00213"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a25d32e506ed943e8f5571edbaf2d16d6">00213</a>     {
+<a name="l00212"></a>00212     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a92245ddc5383fd7f0989866852e36ed8" title="Gets the linear factor of the attentuation.">Light::GetAttenuationLinear</a>()<span class="keyword"> const</span>
+<a name="l00213"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a4ea9693e7ba3f4b6199f132b29e645fa">00213</a> <span class="keyword">    </span>{
 <a name="l00214"></a>00214         <span class="keywordflow">return</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getAttenuationLinear();
 <a name="l00215"></a>00215     }
 <a name="l00216"></a>00216 
-<a name="l00217"></a>00217     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a25d32e506ed943e8f5571edbaf2d16d6" title="Gets the quadric factor of the attenuation.">Light::GetAttenuationQuadric</a>()
-<a name="l00218"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#ab91651e77bf290dbcf9eef005307f081">00218</a>     {
+<a name="l00217"></a>00217     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a4ea9693e7ba3f4b6199f132b29e645fa" title="Gets the quadric factor of the attenuation.">Light::GetAttenuationQuadric</a>()<span class="keyword"> const</span>
+<a name="l00218"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a429728b3eb1287806c70a24666705213">00218</a> <span class="keyword">    </span>{
 <a name="l00219"></a>00219         <span class="keywordflow">return</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getAttenuationQuadric();
 <a name="l00220"></a>00220     }
 <a name="l00221"></a>00221 
-<a name="l00222"></a>00222     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#ab91651e77bf290dbcf9eef005307f081" title="Gets the Inner angle of the cone of light emitted by this spotlight.">Light::GetSpotlightInnerAngle</a>()
-<a name="l00223"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a1f16eb63b48366c0cae7d139d51568d3">00223</a>     {
+<a name="l00222"></a>00222     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a429728b3eb1287806c70a24666705213" title="Gets the Inner angle of the cone of light emitted by this spotlight.">Light::GetSpotlightInnerAngle</a>()<span class="keyword"> const</span>
+<a name="l00223"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a669ab7936e718263d02343ef03333bad">00223</a> <span class="keyword">    </span>{
 <a name="l00224"></a>00224         <span class="keywordflow">return</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getSpotlightInnerAngle().valueRadians();
 <a name="l00225"></a>00225     }
 <a name="l00226"></a>00226 
-<a name="l00227"></a>00227     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a1f16eb63b48366c0cae7d139d51568d3" title="Gets the Outer angle of the cone of light emitted by this spotlight.">Light::GetSpotlightOuterAngle</a>()
-<a name="l00228"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a498e84301731cb0cc9fa7c75cb0d752c">00228</a>     {
+<a name="l00227"></a>00227     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a669ab7936e718263d02343ef03333bad" title="Gets the Outer angle of the cone of light emitted by this spotlight.">Light::GetSpotlightOuterAngle</a>()<span class="keyword"> const</span>
+<a name="l00228"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a7682e55d5210c2433060dd9e4f4669ba">00228</a> <span class="keyword">    </span>{
 <a name="l00229"></a>00229         <span class="keywordflow">return</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getSpotlightOuterAngle().valueRadians();
 <a name="l00230"></a>00230     }
 <a name="l00231"></a>00231 
-<a name="l00232"></a>00232     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a498e84301731cb0cc9fa7c75cb0d752c" title="Gets the rate of falloff of the cone of light emitted by this spotlight.">Light::GetSpotlightFalloff</a>()
-<a name="l00233"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#a686dece4d19fbf37705e47e605f7fabf">00233</a>     {
+<a name="l00232"></a>00232     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a7682e55d5210c2433060dd9e4f4669ba" title="Gets the rate of falloff of the cone of light emitted by this spotlight.">Light::GetSpotlightFalloff</a>()<span class="keyword"> const</span>
+<a name="l00233"></a><a class="code" href="../../dc/df1/classphys_1_1Light.html#add09593ac1e57a946aa5f0c319dd56ae">00233</a> <span class="keyword">    </span>{
 <a name="l00234"></a>00234         <span class="keywordflow">return</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getSpotlightFalloff();
 <a name="l00235"></a>00235     }
 <a name="l00236"></a>00236 
-<a name="l00237"></a>00237     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a686dece4d19fbf37705e47e605f7fabf" title="Gets the lights power scale.">Light::GetPowerScale</a>()
-<a name="l00238"></a>00238     {
+<a name="l00237"></a>00237     <a class="code" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f" title="A Datatype used to represent a real floating point number.">Real</a> <a class="code" href="../../dc/df1/classphys_1_1Light.html#add09593ac1e57a946aa5f0c319dd56ae" title="Gets the lights power scale.">Light::GetPowerScale</a>()<span class="keyword"> const</span>
+<a name="l00238"></a>00238 <span class="keyword">    </span>{
 <a name="l00239"></a>00239         <span class="keywordflow">return</span> <a class="code" href="../../dc/df1/classphys_1_1Light.html#a20fc9136847907955cfb8c1a47d6ec6a" title="The ogre light this class gets it&amp;#39;s functionality from.">OgreLight</a>-&gt;getPowerScale();
 <a name="l00240"></a>00240     }
 <a name="l00241"></a>00241 }<span class="comment">//phys</span>
@@ -274,7 +274,7 @@
 <a name="l00243"></a>00243 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

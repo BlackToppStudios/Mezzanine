@@ -78,7 +78,7 @@ Default constructor.
 
 This creates a perfectly functional, but empty \hyperlink{classphys_1_1EventUserInput}{EventUserInput}. 
 
-Definition at line 68 of file eventuserinput.cpp.
+Definition at line 69 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_af54d4604d18b25a2dc99a4a3090b9f1d}{
 \index{phys::EventUserInput@{phys::EventUserInput}!EventUserInput@{EventUserInput}}
@@ -98,7 +98,7 @@ Single Data Point constructor.
 \item[{\em Code\_\-}]This \hyperlink{classphys_1_1MetaCode}{MetaCode} will be added to the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} during creation.\end{DoxyParams}
 This creates a functional \hyperlink{classphys_1_1EventUserInput}{EventUserInput} which already contains one metacode. 
 
-Definition at line 73 of file eventuserinput.cpp.
+Definition at line 72 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a56ca671dd5d28396cab0d7036e08a1f1}{
 \index{phys::EventUserInput@{phys::EventUserInput}!EventUserInput@{EventUserInput}}
@@ -118,7 +118,7 @@ Multi Data Point constructor.
 \item[{\em Codes\_\-}]The MetaCodes in this vecotor will be added to the \hyperlink{classphys_1_1EventUserInput}{EventUserInput} during creation.\end{DoxyParams}
 This creates a ready to use \hyperlink{classphys_1_1EventUserInput}{EventUserInput} which already contains all the metacodes included. 
 
-Definition at line 78 of file eventuserinput.cpp.
+Definition at line 75 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a5c4bb6a5016dad4cb32f51cc1d88eac3}{
 \index{phys::EventUserInput@{phys::EventUserInput}!$\sim$EventUserInput@{$\sim$EventUserInput}}
@@ -135,7 +135,7 @@ Default desstructor.
 
 This tears down the 
 
-Definition at line 83 of file eventuserinput.cpp.
+Definition at line 78 of file eventuserinput.cpp.
 
 
 
@@ -164,7 +164,7 @@ This returns a const reference to the \hyperlink{classphys_1_1MetaCode}{MetaCode
 \end{DoxyReturn}
 
 
-Definition at line 104 of file eventuserinput.cpp.
+Definition at line 93 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_aa244b6b8a4b7dc930e25ef8b24af84f4}{
 \index{phys::EventUserInput@{phys::EventUserInput}!AddCode@{AddCode}}
@@ -187,7 +187,7 @@ This returns a const reference to the \hyperlink{classphys_1_1MetaCode}{MetaCode
 \end{DoxyReturn}
 
 
-Definition at line 98 of file eventuserinput.cpp.
+Definition at line 87 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a9f87a9e6b57f8958945d4955922ebacd}{
 \index{phys::EventUserInput@{phys::EventUserInput}!AddCode@{AddCode}}
@@ -211,7 +211,7 @@ This returns a const reference to the \hyperlink{classphys_1_1MetaCode}{MetaCode
 \end{DoxyReturn}
 
 
-Definition at line 110 of file eventuserinput.cpp.
+Definition at line 99 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a1da1fcba3c00346e00c1d4477cc3dbe9}{
 \index{phys::EventUserInput@{phys::EventUserInput}!AddCodes@{AddCodes}}
@@ -231,7 +231,7 @@ Add Several MetaCodes from a vector.
 \item[{\em Codes}]A vector of MetaCodes to be added to this event\end{DoxyParams}
 This adds several existing metacodes to this event. 
 
-Definition at line 116 of file eventuserinput.cpp.
+Definition at line 105 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_aa83cb95f719dbdceae282f0dc545aeb0}{
 \index{phys::EventUserInput@{phys::EventUserInput}!AddCodesFromRawEvent@{AddCodesFromRawEvent}}
@@ -258,7 +258,7 @@ this returns a complete set of all the MetaCodes added.
 \end{DoxyReturn}
 
 
-Definition at line 146 of file eventuserinput.cpp.
+Definition at line 130 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a583084578443019d6e286b8f0e02ce58}{
 \index{phys::EventUserInput@{phys::EventUserInput}!EraseCode@{EraseCode}}
@@ -278,7 +278,7 @@ Removes a specific code from storage.
 \item[{\em Index}]This is the location to removed from\end{DoxyParams}
 The \hyperlink{classphys_1_1MetaCode}{MetaCode} at and only at the given Index will be deleted. 
 
-Definition at line 136 of file eventuserinput.cpp.
+Definition at line 124 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a34c05a76a790435799441da75a83fa9c}{
 \index{phys::EventUserInput@{phys::EventUserInput}!EraseCode@{EraseCode}}
@@ -298,7 +298,7 @@ Removes a specific code from storage.
 \item[{\em Code\_\-}]This will search for all matching copies of this\end{DoxyParams}
 All MetaCodes that are equal to Code\_\- will simply be erased. 
 
-Definition at line 123 of file eventuserinput.cpp.
+Definition at line 111 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a5f67c5ad4aa4edcce629955fd7d869ac}{
 \index{phys::EventUserInput@{phys::EventUserInput}!GetMetaCode@{GetMetaCode}}
@@ -319,7 +319,7 @@ Index The requested \hyperlink{classphys_1_1MetaCode}{MetaCode} to return.
 This function simply retrieves the requested \hyperlink{classphys_1_1MetaCode}{MetaCode}. It can throw standard Out of bounds exceptions if attemped to reference a negative item or an item with Index higher than what exists \par
  This is useful for accessing each \hyperlink{classphys_1_1MetaCode}{MetaCode} stored in this physUserInputEvent. 
 
-Definition at line 88 of file eventuserinput.cpp.
+Definition at line 81 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_ae7964b1ac3a474415d6f6cf6c26a2f7b}{
 \index{phys::EventUserInput@{phys::EventUserInput}!GetMetaCodeCount@{GetMetaCodeCount}}
@@ -339,7 +339,7 @@ The amount of codes stored in this physEventUserInput.
 \end{DoxyReturn}
 Retrieves a count of the stored Metacodes. Synonym for vector::size(); 
 
-Definition at line 93 of file eventuserinput.cpp.
+Definition at line 84 of file eventuserinput.cpp.
 
 \hypertarget{classphys_1_1EventUserInput_a3e803a8d9bcc1576fe04d2245a86ec80}{
 \index{phys::EventUserInput@{phys::EventUserInput}!GetType@{GetType}}
@@ -363,7 +363,7 @@ Implements \hyperlink{classphys_1_1EventBase_a1b3d29b6ecf30f18cc3e1825a515c508}{
 
 
 
-Definition at line 141 of file eventuserinput.cpp.
+Definition at line 127 of file eventuserinput.cpp.
 
 
 

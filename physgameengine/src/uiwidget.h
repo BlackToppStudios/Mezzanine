@@ -94,6 +94,7 @@ namespace phys
             public:
                 /// @brief Standard initialization constructor.
                 /// @param parent The parent layer that created this widget.
+                /// @param name The Name for the Widget.
                 Widget(const String& name, UILayer* parent);
                 /// @brief Standard destructor.
                 virtual ~Widget();

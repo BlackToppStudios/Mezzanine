@@ -53,11 +53,8 @@ virtual void \hyperlink{classphys_1_1ActorSoft_a5f97915d1cda0d048853718714a26d93
 \begin{DoxyCompactList}\small\item\em Adds the actor to the physics world. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1ActorSoft_ab65d106fcc1ee5243a990e7b42326bf0}{RemoveObjectFromWorld} (\hyperlink{classphys_1_1World}{World} $\ast$TargetWorld)
 \begin{DoxyCompactList}\small\item\em Removes the actor from the physics world. \item\end{DoxyCompactList}\item 
-\hypertarget{classphys_1_1ActorSoft_a33b3fa2d6fcbb4e742e53fbde22f21a9}{
-virtual btSoftBody $\ast$ {\bfseries GetBulletObject} ()}
-\label{d4/d23/classphys_1_1ActorSoft_a33b3fa2d6fcbb4e742e53fbde22f21a9}
-
-\end{DoxyCompactItemize}
+virtual btSoftBody $\ast$ \hyperlink{classphys_1_1ActorSoft_a33b3fa2d6fcbb4e742e53fbde22f21a9}{GetBulletObject} ()
+\begin{DoxyCompactList}\small\item\em Get the Physics data raw from the physic subsystem. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -114,7 +111,7 @@ Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em mass}]The mass of the soft body. \item[{\em name}]Name of the object \item[{\em file}]Mesh the soft body is stored in \item[{\em The}]Resource group the mesh can be found in. \end{DoxyParams}
+\item[{\em mass}]The mass of the soft body. \item[{\em name}]Name of the object \item[{\em file}]Mesh the soft body is stored in \item[{\em group}]The Resource group the mesh can be found in. \end{DoxyParams}
 
 
 Definition at line 59 of file actorsoft.cpp.
@@ -134,7 +131,7 @@ Destructor.
 
 The class destructor. 
 
-Definition at line 65 of file actorsoft.cpp.
+Definition at line 66 of file actorsoft.cpp.
 
 
 
@@ -162,7 +159,7 @@ Implements \hyperlink{classphys_1_1ActorBase_a3d28e4c4a33f50210101695cb33ded3b}{
 
 
 
-Definition at line 252 of file actorsoft.cpp.
+Definition at line 251 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a37b3bf631e8f73b3f19c3bb043d011c3}{
 \index{phys::ActorSoft@{phys::ActorSoft}!AttachToGraphics@{AttachToGraphics}}
@@ -184,7 +181,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a45f190cb9b647bb3385d1298f9
 
 
 
-Definition at line 126 of file actorsoft.cpp.
+Definition at line 125 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a341d9124acd59a4597745c3eff06dfc8}{
 \index{phys::ActorSoft@{phys::ActorSoft}!CreateManualMesh@{CreateManualMesh}}
@@ -204,7 +201,7 @@ This function will create and configure an Ogre manual object based on the mesh 
 \item[{\em TheMesh}]The struct with all the appropriate mesh information to base the manual object on. \end{DoxyParams}
 
 
-Definition at line 103 of file actorsoft.cpp.
+Definition at line 102 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_acc0ff92e2dcc0e5d99ca62f07bc9174d}{
 \index{phys::ActorSoft@{phys::ActorSoft}!CreateSoftObject@{CreateSoftObject}}
@@ -225,7 +222,7 @@ Creates a soft object to be placed in the physics world later. \par
 \item[{\em mass}]The desired total mass of the soft object. \end{DoxyParams}
 
 
-Definition at line 70 of file actorsoft.cpp.
+Definition at line 71 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a568b070c746775b73a3aa8ab33d6cc58}{
 \index{phys::ActorSoft@{phys::ActorSoft}!DetachFromGraphics@{DetachFromGraphics}}
@@ -247,7 +244,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_acc352d14b6d7f15694ea108ec1
 
 
 
-Definition at line 139 of file actorsoft.cpp.
+Definition at line 138 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a2b30f96cb01df382a774dfae5200fed0}{
 \index{phys::ActorSoft@{phys::ActorSoft}!GetBulletLocation@{GetBulletLocation}}
@@ -268,7 +265,29 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a9b32df1efdc346f5d6c0920b95
 
 
 
-Definition at line 150 of file actorsoft.cpp.
+Definition at line 149 of file actorsoft.cpp.
+
+\hypertarget{classphys_1_1ActorSoft_a33b3fa2d6fcbb4e742e53fbde22f21a9}{
+\index{phys::ActorSoft@{phys::ActorSoft}!GetBulletObject@{GetBulletObject}}
+\index{GetBulletObject@{GetBulletObject}!phys::ActorSoft@{phys::ActorSoft}}
+\subsubsection[{GetBulletObject}]{\setlength{\rightskip}{0pt plus 5cm}btSoftBody $\ast$ phys::ActorSoft::GetBulletObject (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}}
+\label{d4/d23/classphys_1_1ActorSoft_a33b3fa2d6fcbb4e742e53fbde22f21a9}
+
+
+Get the Physics data raw from the physic subsystem. 
+
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+Currently this returns a pointer to a btSoftBody. 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 263 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_afdbd6ae49e3838190e5481796e650ce8}{
 \index{phys::ActorSoft@{phys::ActorSoft}!GetLocation@{GetLocation}}
@@ -289,7 +308,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a777b4ea4d6881af76c646b1ba9
 
 
 
-Definition at line 231 of file actorsoft.cpp.
+Definition at line 230 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a2b6bc680d900626275dc5eb3b631acca}{
 \index{phys::ActorSoft@{phys::ActorSoft}!GetName@{GetName}}
@@ -310,7 +329,7 @@ Implements \hyperlink{classphys_1_1ActorBase_a8309f5bd133c936abe3a856b0240159f}{
 
 
 
-Definition at line 193 of file actorsoft.cpp.
+Definition at line 192 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_ab65d106fcc1ee5243a990e7b42326bf0}{
 \index{phys::ActorSoft@{phys::ActorSoft}!RemoveObjectFromWorld@{RemoveObjectFromWorld}}
@@ -335,7 +354,7 @@ Implements \hyperlink{classphys_1_1ActorBase_aaa787de7ec5d7d1d8428ea78f37bcb40}{
 
 
 
-Definition at line 258 of file actorsoft.cpp.
+Definition at line 257 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_ad1696a10b3057897ca503de013aaddc6}{
 \index{phys::ActorSoft@{phys::ActorSoft}!SetActorScaling@{SetActorScaling}}
@@ -359,7 +378,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a1ac7c692d7f88f39ebb1c1db5d
 
 
 
-Definition at line 198 of file actorsoft.cpp.
+Definition at line 197 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_aef041f3eee69bb8eceef32fa0513e340}{
 \index{phys::ActorSoft@{phys::ActorSoft}!SetBulletLocation@{SetBulletLocation}}
@@ -384,7 +403,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_aa7ab524d2905e640cea6324cce
 
 
 
-Definition at line 144 of file actorsoft.cpp.
+Definition at line 143 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a4a1119b6e42ff11784673657e7d62c1f}{
 \index{phys::ActorSoft@{phys::ActorSoft}!SetBulletOrientation@{SetBulletOrientation}}
@@ -409,7 +428,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a492244ac46ced53b809f436da9
 
 
 
-Definition at line 158 of file actorsoft.cpp.
+Definition at line 156 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_abbb6f5cce15d4efee91acd4825c75801}{
 \index{phys::ActorSoft@{phys::ActorSoft}!SetInitLocation@{SetInitLocation}}
@@ -434,7 +453,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a0ff0980bcf33a8205eb058b8ca
 
 
 
-Definition at line 204 of file actorsoft.cpp.
+Definition at line 203 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_adde8ecfb7188b8cbb238e88da18ac95e}{
 \index{phys::ActorSoft@{phys::ActorSoft}!SetInitOrientation@{SetInitOrientation}}
@@ -459,7 +478,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a681186465db767954ca3f9530a
 
 
 
-Definition at line 213 of file actorsoft.cpp.
+Definition at line 212 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a35020af183a31e288ff226a34fd1a0ab}{
 \index{phys::ActorSoft@{phys::ActorSoft}!SetLocation@{SetLocation}}
@@ -484,7 +503,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a3212be459859a67bf7ae64919d
 
 
 
-Definition at line 225 of file actorsoft.cpp.
+Definition at line 224 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a30ca5d4db06d9a81b5aff23faed4ee8d}{
 \index{phys::ActorSoft@{phys::ActorSoft}!SetLocation@{SetLocation}}
@@ -511,7 +530,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_a0b0db2ec0f4926326635b86f1e
 
 
 
-Definition at line 219 of file actorsoft.cpp.
+Definition at line 218 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a84541e8ebf7b54c91d2353d5f84381bb}{
 \index{phys::ActorSoft@{phys::ActorSoft}!SetOrientation@{SetOrientation}}
@@ -538,7 +557,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_adbf0cc77031f22597a799fd0f7
 
 
 
-Definition at line 236 of file actorsoft.cpp.
+Definition at line 235 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_ad57b502da0658de31a4b3a9bb9be7900}{
 \index{phys::ActorSoft@{phys::ActorSoft}!SetOrientation@{SetOrientation}}
@@ -562,7 +581,7 @@ Reimplemented from \hyperlink{classphys_1_1ActorBase_ac4b0bf1eff730d94f72d04957e
 
 
 
-Definition at line 242 of file actorsoft.cpp.
+Definition at line 241 of file actorsoft.cpp.
 
 \hypertarget{classphys_1_1ActorSoft_a330e7bacd6250a2a24479561a84ea073}{
 \index{phys::ActorSoft@{phys::ActorSoft}!UpdateSoftBody@{UpdateSoftBody}}
@@ -579,7 +598,7 @@ Updates the rendering info with physics info.
 
 This function needs to be called every frame, otherwise your soft bodies won't appear to move. 
 
-Definition at line 167 of file actorsoft.cpp.
+Definition at line 165 of file actorsoft.cpp.
 
 
 

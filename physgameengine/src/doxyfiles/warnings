@@ -1,228 +1,68 @@
-warning: source /home/dev/physgame/physgameengine/src/sed4WHn5D is not a readable file or directory... skipping.
-warning: source /home/dev/physgame/physgameengine/src/sed9Zqwm8 is not a readable file or directory... skipping.
-warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readable file or directory... skipping.
-/home/dev/physgame/physgameengine/src/datatypes.cpp:50: warning: the name `datatype.cpp' supplied as the second argument in the \file statement is not an input file
-/home/dev/physgame/physgameengine/src/worldnode.h:62: warning: the name `node.h' supplied as the argument of the \class, \struct, \union, or \include command is not an input file
-/home/dev/physgame/physgameengine/src/constraint.h:321: warning: Compound phys::Hinge2Constraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:230: warning: Compound phys::Generic6DofSpringConstraint is not documented.
-/home/dev/physgame/physgameengine/src/worldnode.h:78: warning: Compound phys::WorldNode is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:452: warning: Compound phys::UniversalConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:132: warning: Compound phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/objectreference.h:48: warning: Compound phys::ObjectReference is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:386: warning: Compound phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:262: warning: Compound phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:178: warning: Compound phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/uilinelist.h:67: warning: Compound phys::UI::LineList is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:345: warning: Compound phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:293: warning: Documentation for undefined enum `These' found.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:76: warning: Documentation for undefined enum `The' found.
-/home/dev/physgame/physgameengine/src/timer.h:58: warning: Documentation for undefined enum `The' found.
-/home/dev/physgame/physgameengine/src/timer.h:66: warning: Documentation for undefined enum `The' found.
-/home/dev/physgame/physgameengine/src/actorragdoll.cpp:49: warning: documented function `phys::ActorRagDoll::ActorRagDoll' was not declared or defined.
-/home/dev/physgame/physgameengine/src/actorragdoll.cpp:53: warning: documented function `phys::ActorRagDoll::~ActorRagDoll' was not declared or defined.
-/home/dev/physgame/physgameengine/src/xmldoc.h:305: warning: member with no name found.
-/home/dev/physgame/physgameengine/src/xmldoc.h:500: warning: documented function `phys::xml::operator&&' was not declared or defined.
-/home/dev/physgame/physgameengine/src/xmldoc.h:506: warning: documented function `phys::xml::operator||' was not declared or defined.
-/home/dev/physgame/physgameengine/src/xmldoc.h:1288: warning: member with no name found.
-/home/dev/physgame/physgameengine/src/xmldoc.h:195: warning: Unsupported xml/html tag <node> found
-/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xmldoc.h:1017: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1029: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1022: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xml.h:166: warning: Member char_t (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:170: warning: Member String (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/actorbase.h:289: warning: Member InitEntity(bool force) (function) of class phys::ActorBase is not documented.
-/home/dev/physgame/physgameengine/src/actorbase.h:358: warning: argument 'Accuracy' of command @param is not found in the argument list of phys::ActorBase::CreateShapeFromMeshDynamic(short unsigned int accuracy, bool UseAllSubmeshes=false)
-/home/dev/physgame/physgameengine/src/actorbase.h:358: warning: The following parameters of phys::ActorBase::CreateShapeFromMeshDynamic(short unsigned int accuracy, bool UseAllSubmeshes=false) are not documented:
-  parameter 'accuracy'
-/home/dev/physgame/physgameengine/src/actorgraphicssettings.h:67: warning: Member GetMaterial(Whole Submesh=0) (function) of class phys::ActorGraphicsSettings is not documented.
-/home/dev/physgame/physgameengine/src/actorgraphicssettings.h:65: warning: Member ActorEnt (variable) of class phys::ActorGraphicsSettings is not documented.
-/home/dev/physgame/physgameengine/src/actorgraphicssettings.h:66: warning: Member Parent (variable) of class phys::ActorGraphicsSettings is not documented.
-/home/dev/physgame/physgameengine/src/actorrigid.h:168: warning: Member GetBulletObject() (function) of class phys::ActorRigid is not documented.
-/home/dev/physgame/physgameengine/src/actorrigid.h:89: warning: The following parameters of phys::ActorRigid::CreateShapeFromMeshDynamic(short unsigned int Accuracy=1, bool UseAllSubmeshes=false) are not documented:
-  parameter 'UseAllSubmeshes'
-/home/dev/physgame/physgameengine/src/actorsoft.h:188: warning: Member GetBulletObject() (function) of class phys::ActorSoft is not documented.
-/home/dev/physgame/physgameengine/src/actorsoft.h:114: warning: argument 'The' of command @param is not found in the argument list of phys::ActorSoft::ActorSoft(Real mass, String name, String file, String group)
-/home/dev/physgame/physgameengine/src/actorsoft.h:114: warning: The following parameters of phys::ActorSoft::ActorSoft(Real mass, String name, String file, String group) are not documented:
-  parameter 'group'
-/home/dev/physgame/physgameengine/src/actorterrain.h:94: warning: Member GetBulletObject() (function) of class phys::ActorTerrain is not documented.
-/home/dev/physgame/physgameengine/src/actorterrain.h:61: warning: Member CreateCollisionTerrain() (function) of class phys::ActorTerrain is not documented.
-/home/dev/physgame/physgameengine/src/actorterrain.h:60: warning: Member RigidBody (variable) of class phys::ActorTerrain is not documented.
-/home/dev/physgame/physgameengine/src/actorterrain.h:63: warning: argument 'Initposition' of command @param is not found in the argument list of phys::ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group)
-/home/dev/physgame/physgameengine/src/actorterrain.h:63: warning: The following parameters of phys::ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group) are not documented:
-  parameter 'InitPosition'
-/home/dev/physgame/physgameengine/src/areaeffect.h:78: warning: Member AEShapeType (enumeration) of class phys::AreaEffect is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:300: warning: Member AttenuationStyle (enumeration) of class phys::GravityWell is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:306: warning: Member Strength (variable) of class phys::GravityWell is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:307: warning: Member AllowWorldGrav (variable) of class phys::GravityWell is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:308: warning: Member AttenStyle (variable) of class phys::GravityWell is not documented.
-/home/dev/physgame/physgameengine/src/areaeffect.h:309: warning: Member AttenAmount (variable) of class phys::GravityWell is not documented.
-/home/dev/physgame/physgameengine/src/attachable.h:58: warning: Member AttachableElement (enumeration) of class phys::Attachable is not documented.
-/home/dev/physgame/physgameengine/src/attachable.h:66: warning: argument 'Enum' of command @param is not found in the argument list of phys::Attachable::SetElementType(Attachable::AttachableElement Type)
-/home/dev/physgame/physgameengine/src/attachable.h:66: warning: The following parameters of phys::Attachable::SetElementType(Attachable::AttachableElement Type) are not documented:
-  parameter 'Type'
-/home/dev/physgame/physgameengine/src/camera.h:70: warning: Member ProjectionType (enumeration) of class phys::Camera is not documented.
-/home/dev/physgame/physgameengine/src/camera.h:186: warning: argument 'Enabled' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
-/home/dev/physgame/physgameengine/src/camera.h:186: warning: argument 'Target' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
-/home/dev/physgame/physgameengine/src/camera.h:186: warning: argument 'Offset' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
-/home/dev/physgame/physgameengine/src/camera.h:186: warning: argument 'Enabled' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
-/home/dev/physgame/physgameengine/src/camera.h:186: warning: argument 'Target' of command @param is not found in the argument list of phys::Camera::GetCameraToViewportRay(Real Screenx, Real Screeny)
-/home/dev/physgame/physgameengine/src/cameramanager.h:81: warning: Member FindCamera(String Name) (function) of class phys::CameraManager is not documented.
-/home/dev/physgame/physgameengine/src/cameramanager.h:77: warning: Member Viewports (variable) of class phys::CameraManager is not documented.
-/home/dev/physgame/physgameengine/src/cameramanager.h:78: warning: Member SManager (variable) of class phys::CameraManager is not documented.
-/home/dev/physgame/physgameengine/src/cameramanager.h:79: warning: Member DefaultCamera (variable) of class phys::CameraManager is not documented.
-/home/dev/physgame/physgameengine/src/cameramanager.h:80: warning: Member Cameras (variable) of class phys::CameraManager is not documented.
-/home/dev/physgame/physgameengine/src/cameramanager.h:83: warning: argument 'SceneManagerName' of command @param is not found in the argument list of phys::CameraManager::CameraManager(Whole SceneManagerIndex)
-/home/dev/physgame/physgameengine/src/cameramanager.h:83: warning: argument 'SManager' of command @param is not found in the argument list of phys::CameraManager::CameraManager(Whole SceneManagerIndex)
-/home/dev/physgame/physgameengine/src/cameramanager.h:83: warning: The following parameters of phys::CameraManager::CameraManager(Whole SceneManagerIndex) are not documented:
+Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
+/home/dev/physgame/physgameengine/src/cameramanager.h:80: warning: Member FindCamera(String Name) (function) of class phys::CameraManager is not documented.
+/home/dev/physgame/physgameengine/src/cameramanager.h:77: warning: Member SManager (variable) of class phys::CameraManager is not documented.
+/home/dev/physgame/physgameengine/src/cameramanager.h:78: warning: Member DefaultCamera (variable) of class phys::CameraManager is not documented.
+/home/dev/physgame/physgameengine/src/cameramanager.h:79: warning: Member Cameras (variable) of class phys::CameraManager is not documented.
+/home/dev/physgame/physgameengine/src/cameramanager.h:82: warning: argument 'SceneManagerName' of command @param is not found in the argument list of phys::CameraManager::CameraManager(Whole SceneManagerIndex)
+/home/dev/physgame/physgameengine/src/cameramanager.h:82: warning: argument 'SManager' of command @param is not found in the argument list of phys::CameraManager::CameraManager(Whole SceneManagerIndex)
+/home/dev/physgame/physgameengine/src/cameramanager.h:82: warning: The following parameters of phys::CameraManager::CameraManager(Whole SceneManagerIndex) are not documented:
   parameter 'SceneManagerIndex'
-/home/dev/physgame/physgameengine/src/cameramanager.h:116: warning: argument 'VeiwportCam' of command @param is not found in the argument list of phys::CameraManager::CreateViewport(const String &Name, Camera *ViewportCam)
-/home/dev/physgame/physgameengine/src/cameramanager.h:116: warning: The following parameters of phys::CameraManager::CreateViewport(const String &Name, Camera *ViewportCam) are not documented:
-  parameter 'ViewportCam'
-/home/dev/physgame/physgameengine/src/constraint.h:137: warning: Member ConeTwistConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 Vectorb, Quaternion QuaternionA, Quaternion QuaternionB) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:138: warning: Member ConeTwistConstraint(ActorRigid *ActorA, Vector3 VectorA, Quaternion QuaternionA) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:146: warning: Member SetAngularOnly(bool AngularOnly) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:147: warning: Member SetLimit(int LimitIndex, Real LimitValue) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:148: warning: Member SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:149: warning: Member SetDamping(Real Damping) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:150: warning: Member SetMaxMotorImpulse(Real MaxMotorImpulse) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:151: warning: Member SetMaxMotorImpulseNormalized(Real MaxMotorImpulse) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:152: warning: Member SetFixThresh(Real FixThresh) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:153: warning: Member SetMotorTarget(Quaternion Quat) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:154: warning: Member SetMotorTargetInConstraintSpace(Quaternion Quat) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:155: warning: Member EnableMotor(bool Enable) (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:156: warning: Member IsPassedSwingLimit() (function) of class phys::ConeTwistConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:191: warning: Member Generic6DofConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:192: warning: Member Generic6DofConstraint(ActorRigid *ActorB, Vector3 Vectorb, Quaternion QuaternionB, bool UseLinearReferenceB) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:200: warning: Member SetOffsetALocation(Vector3 Location) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:201: warning: Member SetOffsetBLocation(Vector3 Location) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:202: warning: Member SetLinearUpperLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:203: warning: Member SetLinearLowerLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:204: warning: Member SetAngularUpperLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:205: warning: Member SetAngularLowerLimit(Vector3 Limit) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:206: warning: Member SetUseFrameOffset(bool UseOffset) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:207: warning: Member SetLimit(int Axis, Real Low, Real High) (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:208: warning: Member CalculateTransforms() (function) of class phys::Generic6DofConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:241: warning: Member Generic6DofSpringConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:249: warning: Member SetStiffness(int Index, Real Stiffness) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:250: warning: Member SetDamping(int Index, Real Damping) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:251: warning: Member SetEquilibriumPoint(int Index) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:252: warning: Member EnableSpring(int Index, bool Enable) (function) of class phys::Generic6DofSpringConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:289: warning: Member SetAPivotLocation(Vector3 Location) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:290: warning: Member SetBPivotLocation(Vector3 Location) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:291: warning: Member SetAngularOnly(bool AngularOnly) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:292: warning: Member EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:293: warning: Member EnableMotor(bool EnableMotor) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:294: warning: Member SetMaxMotorImpulse(Real MaxMotorImpulse) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:295: warning: Member SetMotorTarget(Quaternion QuatAInB, Real Dt) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:296: warning: Member SetMotorTarget(Real TargetAngle, Real Dt) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:297: warning: Member SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:298: warning: Member SetAxis(Vector3 AxisInA) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:299: warning: Member SetUseFrameOffset(bool FrameOffset) (function) of class phys::HingeConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:267: warning: The following parameters of phys::HingeConstraint::HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, bool UseReferenceA=false) are not documented:
-  parameter 'ActorA'
-  parameter 'ActorB'
-  parameter 'PivotInA'
-  parameter 'PivotInB'
-/home/dev/physgame/physgameengine/src/constraint.h:273: warning: The following parameters of phys::HingeConstraint::HingeConstraint(ActorRigid *ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA=false) are not documented:
-  parameter 'ActorA'
-  parameter 'PivotInA'
-/home/dev/physgame/physgameengine/src/constraint.h:278: warning: The following parameters of phys::HingeConstraint::HingeConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false) are not documented:
-  parameter 'ActorA'
-  parameter 'ActorB'
-  parameter 'VectorA'
-  parameter 'VectorB'
-  parameter 'QuaternionA'
-  parameter 'QuaternionB'
-/home/dev/physgame/physgameengine/src/constraint.h:326: warning: Member Hinge2Constraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::Hinge2Constraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:334: warning: Member SetUpperLimit(Real Ang1Max) (function) of class phys::Hinge2Constraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:335: warning: Member SetLowerLimit(Real Ang1Min) (function) of class phys::Hinge2Constraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:350: warning: Member Point2PointConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 PivotA, Vector3 PivotB) (function) of class phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:351: warning: Member Point2PointConstraint(ActorRigid *ActorA, Vector3 PivotA) (function) of class phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:359: warning: Member SetPivotA(Vector3 PivotA) (function) of class phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:360: warning: Member SetPivotB(Vector3 PivotB) (function) of class phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:361: warning: Member GetPivotInA() (function) of class phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:362: warning: Member GetPivotInB() (function) of class phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:363: warning: Member SetImpulseClamping(Real Clamping) (function) of class phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:364: warning: Member SetTAU(Real TAU) (function) of class phys::Point2PointConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:391: warning: Member SliderConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:392: warning: Member SliderConstraint(ActorRigid *ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:400: warning: Member SetFrameOffsetALocation(Vector3 Location) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:401: warning: Member SetFrameOffsetBLocation(Vector3 Location) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:402: warning: Member SetUpperLinLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:403: warning: Member SetUpperAngLimit(Real UpperLimit) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:404: warning: Member SetLowerLinLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:405: warning: Member SetLowerAngLimit(Real LowerLimit) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:406: warning: Member SetPoweredLinMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:407: warning: Member SetTargetLinMotorVelocity(Real TargetLinMotorVelocity) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:408: warning: Member SetMaxLinMotorForce(Real MaxLinMotorForce) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:409: warning: Member SetPoweredAngMotor(bool OnOff) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:410: warning: Member SetTargetAngMotorVelocity(Real TargetAngMotorVelocity) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:411: warning: Member SetMaxAngMotorForce(Real MaxAngMotorForce) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:412: warning: Member SetUseFrameOffset(bool FrameOffset) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:413: warning: Member SetSoftnessDirLin(Real SoftnessDirLin) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:414: warning: Member SetRestitutionDirLin(Real RestitutionDirLin) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:415: warning: Member SetDampingDirLin(Real DampingDirLin) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:416: warning: Member SetSoftnessDirAng(Real SoftnessDirAng) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:417: warning: Member SetRestitutionDirAng(Real RestitutionDirAng) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:418: warning: Member SetDampingDirAng(Real DampingDirAng) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:419: warning: Member SetSoftnessLimLin(Real SoftnessLimLin) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:420: warning: Member SetRestitutionLimLin(Real RestitutionLimLin) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:421: warning: Member SetDampingLimLin(Real DampingLimLin) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:422: warning: Member SetSoftnessLimAng(Real SoftnessLimAng) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:423: warning: Member SetRestitutionLimAng(Real RestitutionLimAng) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:424: warning: Member SetDampingLimAng(Real DampingLimAng) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:425: warning: Member SetSoftnessOrthoLin(Real SoftnessOrthoLin) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:426: warning: Member SetRestitutionOrthoLin(Real RestitutionOrthoLin) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:427: warning: Member SetDampingOrthoLin(Real DampingOrthoLin) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:428: warning: Member SetSoftnessOrthoAng(Real SoftnessOrthoAng) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:429: warning: Member SetRestitutionOrthoAng(Real RestitutionOrthoAng) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:430: warning: Member SetDampingOrthoAng(Real DampingOrthoAng) (function) of class phys::SliderConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:457: warning: Member UniversalConstraint(ActorRigid *ActorA, ActorRigid *ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) (function) of class phys::UniversalConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:465: warning: Member SetUpperLimit(Real Ang1Max, Real Ang2Max) (function) of class phys::UniversalConstraint is not documented.
-/home/dev/physgame/physgameengine/src/constraint.h:466: warning: Member SetLowerLimit(Real Ang1Min, Real Ang2Min) (function) of class phys::UniversalConstraint is not documented.
-/home/dev/physgame/physgameengine/src/eventgamewindow.cpp:47: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class phys::EventGameWindowData is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:55: warning: Member Microseconds (variable) of class phys::Time is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:56: warning: Member Milliseconds (variable) of class phys::Time is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:57: warning: Member Seconds (variable) of class phys::Time is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:58: warning: Member Minutes (variable) of class phys::Time is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:59: warning: Member Hours (variable) of class phys::Time is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:60: warning: Member Days (variable) of class phys::Time is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:79: warning: Member TimeStruct (enumeration) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:88: warning: Member GetStruct(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:89: warning: Member Update(const Whole MicroSecondsElapsed) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:90: warning: Member UpdateAsNormal(const Whole MicroSecondsElapsed) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:91: warning: Member UpdateAsStopWatch(const Whole MicroSecondsElapsed) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:92: warning: Member CheckMicroSeconds(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:93: warning: Member CheckMilliSeconds(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:94: warning: Member CheckSeconds(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:95: warning: Member CheckMinutes(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:96: warning: Member CheckHours(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:97: warning: Member CheckDays(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:98: warning: Member CheckAll(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:99: warning: Member CompareCurrentAndGoal(const Integer Current, const Integer Goal) (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:100: warning: Member GoalReached() (function) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:85: warning: Member CurrentTime (variable) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:86: warning: Member GoalTime (variable) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:87: warning: Member InitialTime (variable) of class phys::ExtendedTimer is not documented.
-/home/dev/physgame/physgameengine/src/extendedtimer.h:102: warning: argument 'Style' of command @param is not found in the argument list of phys::ExtendedTimer::ExtendedTimer(const Timer::TimerStyle style)
-/home/dev/physgame/physgameengine/src/extendedtimer.h:102: warning: The following parameters of phys::ExtendedTimer::ExtendedTimer(const Timer::TimerStyle style) are not documented:
+/home/dev/physgame/physgameengine/src/eventgamewindow.cpp:61: warning: Member EventGameWindowData(EventGameWindow::GameWindowEventID GWEventID, int First_, int Second_) (function) of class phys::EventGameWindowData is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:54: warning: Member Microseconds (variable) of class phys::Time is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:55: warning: Member Milliseconds (variable) of class phys::Time is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:56: warning: Member Seconds (variable) of class phys::Time is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:57: warning: Member Minutes (variable) of class phys::Time is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:58: warning: Member Hours (variable) of class phys::Time is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:59: warning: Member Days (variable) of class phys::Time is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:86: warning: Member GetStruct(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:87: warning: Member Update(const Whole MicroSecondsElapsed) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:88: warning: Member UpdateAsNormal(const Whole MicroSecondsElapsed) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:89: warning: Member UpdateAsStopWatch(const Whole MicroSecondsElapsed) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:90: warning: Member CheckMicroSeconds(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:91: warning: Member CheckMilliSeconds(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:92: warning: Member CheckSeconds(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:93: warning: Member CheckMinutes(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:94: warning: Member CheckHours(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:95: warning: Member CheckDays(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:96: warning: Member CheckAll(const ExtendedTimer::TimeStruct Struct) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:97: warning: Member CompareCurrentAndGoal(const Integer Current, const Integer Goal) (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:98: warning: Member GoalReached() (function) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:83: warning: Member CurrentTime (variable) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:84: warning: Member GoalTime (variable) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:85: warning: Member InitialTime (variable) of class phys::ExtendedTimer is not documented.
+/home/dev/physgame/physgameengine/src/extendedtimer.h:100: warning: argument 'Style' of command @param is not found in the argument list of phys::ExtendedTimer::ExtendedTimer(const Timer::TimerStyle style)
+/home/dev/physgame/physgameengine/src/extendedtimer.h:100: warning: The following parameters of phys::ExtendedTimer::ExtendedTimer(const Timer::TimerStyle style) are not documented:
   parameter 'style'
-/home/dev/physgame/physgameengine/src/extendedtimer.h:138: warning: The following parameters of phys::ExtendedTimer::SetDays(Integer Day, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
+/home/dev/physgame/physgameengine/src/extendedtimer.h:136: warning: The following parameters of phys::ExtendedTimer::SetDays(Integer Day, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
   parameter 'Struct'
-/home/dev/physgame/physgameengine/src/extendedtimer.h:133: warning: The following parameters of phys::ExtendedTimer::SetHours(Integer Hr, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
+/home/dev/physgame/physgameengine/src/extendedtimer.h:131: warning: The following parameters of phys::ExtendedTimer::SetHours(Integer Hr, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
   parameter 'Struct'
-/home/dev/physgame/physgameengine/src/extendedtimer.h:113: warning: The following parameters of phys::ExtendedTimer::SetMicroseconds(Integer MS, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
+/home/dev/physgame/physgameengine/src/extendedtimer.h:111: warning: The following parameters of phys::ExtendedTimer::SetMicroseconds(Integer MS, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
   parameter 'Struct'
-/home/dev/physgame/physgameengine/src/extendedtimer.h:118: warning: The following parameters of phys::ExtendedTimer::SetMilliseconds(Integer MS, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
+/home/dev/physgame/physgameengine/src/extendedtimer.h:116: warning: The following parameters of phys::ExtendedTimer::SetMilliseconds(Integer MS, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
   parameter 'Struct'
-/home/dev/physgame/physgameengine/src/extendedtimer.h:128: warning: The following parameters of phys::ExtendedTimer::SetMinutes(Integer Min, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
+/home/dev/physgame/physgameengine/src/extendedtimer.h:126: warning: The following parameters of phys::ExtendedTimer::SetMinutes(Integer Min, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
   parameter 'Struct'
-/home/dev/physgame/physgameengine/src/extendedtimer.h:123: warning: The following parameters of phys::ExtendedTimer::SetSeconds(Integer Sec, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
+/home/dev/physgame/physgameengine/src/extendedtimer.h:121: warning: The following parameters of phys::ExtendedTimer::SetSeconds(Integer Sec, const ExtendedTimer::TimeStruct Struct=ExtendedTimer::Current) are not documented:
   parameter 'Struct'
-/home/dev/physgame/physgameengine/src/graphicsmanager.h:78: warning: Member operator=(const GraphicsSettings &GS) (function) of class phys::GraphicsSettings is not documented.
+/home/dev/physgame/physgameengine/src/gamewindow.h:103: warning: Member CreateGameWindow(const String &WindowCaption, const Whole &Width, const Whole &Height, const Whole &Flags) (function) of class phys::GameWindow is not documented.
+/home/dev/physgame/physgameengine/src/gamewindow.h:104: warning: Member CorrectViewportAndCamera(const Whole &Index) (function) of class phys::GameWindow is not documented.
+/home/dev/physgame/physgameengine/src/gamewindow.h:105: warning: Member IsLargerThenDesktop(const Whole &Width, const Whole &Height) (function) of class phys::GameWindow is not documented.
+/home/dev/physgame/physgameengine/src/gamewindow.h:95: warning: Member OgreWindow (variable) of class phys::GameWindow is not documented.
+/home/dev/physgame/physgameengine/src/gamewindow.h:96: warning: Member SDLWindow (variable) of class phys::GameWindow is not documented.
+/home/dev/physgame/physgameengine/src/gamewindow.h:97: warning: Member Settings (variable) of class phys::GameWindow is not documented.
+/home/dev/physgame/physgameengine/src/gamewindow.h:99: warning: Member Viewports (variable) of class phys::GameWindow is not documented.
+/home/dev/physgame/physgameengine/src/gamewindow.h:101: warning: Member Manager (variable) of class phys::GameWindow is not documented.
+/home/dev/physgame/physgameengine/src/gamewindow.h:117: warning: argument 'VeiwportCamera' of command @param is not found in the argument list of phys::GameWindow::CreateViewport(Camera *ViewportCamera, const Whole &ZOrder=0)
+/home/dev/physgame/physgameengine/src/gamewindow.h:117: warning: The following parameters of phys::GameWindow::CreateViewport(Camera *ViewportCamera, const Whole &ZOrder=0) are not documented:
+  parameter 'ViewportCamera'
+/home/dev/physgame/physgameengine/src/gamewindow.h:135: warning: argument 'Returns' of command @param is not found in the argument list of phys::GameWindow::GetSettings()
+/home/dev/physgame/physgameengine/src/graphicsmanager.h:135: warning: argument 'WindowIndex' of command @param is not found in the argument list of phys::GraphicsManager::DestroyGameWindow(GameWindow *ToBeDestroyed)
+/home/dev/physgame/physgameengine/src/graphicsmanager.h:135: warning: The following parameters of phys::GraphicsManager::DestroyGameWindow(GameWindow *ToBeDestroyed) are not documented:
+  parameter 'ToBeDestroyed'
+/home/dev/physgame/physgameengine/src/graphicsmanager.h:147: warning: argument 'Returns' of command @param is not found in the argument list of phys::GraphicsManager::GetDesktopSettings()
+/home/dev/physgame/physgameengine/src/graphicssettings.h:70: warning: Member operator=(const GraphicsSettings &GS) (function) of class phys::GraphicsSettings is not documented.
+/home/dev/physgame/physgameengine/src/inputquerytool.h:124: warning: Member IsJoystickHatPushedInDirection(MetaCode::DirectionalMotionState WhichWay, bool IsVertical) (function) of class phys::InputQueryTool is not documented.
 /home/dev/physgame/physgameengine/src/light.h:75: warning: Member LightType (enumeration) of class phys::Light is not documented.
 /home/dev/physgame/physgameengine/src/light.h:111: warning: The following parameters of phys::Light::SetDiffuseColour(Real Red, Real Green, Real Blue) are not documented:
   parameter 'Green'
@@ -230,11 +70,14 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/light.h:122: warning: The following parameters of phys::Light::SetSpecularColour(Real Red, Real Green, Real Blue) are not documented:
   parameter 'Green'
   parameter 'Blue'
-/home/dev/physgame/physgameengine/src/metacode.h:598: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of phys::MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber)
-/home/dev/physgame/physgameengine/src/metacode.h:598: warning: The following parameters of phys::MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber) are not documented:
+/home/dev/physgame/physgameengine/src/metacode.h:658: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of phys::MetaCode::GetJoystickButtonCode(short unsigned int ButtonNumber)
+/home/dev/physgame/physgameengine/src/metacode.h:658: warning: The following parameters of phys::MetaCode::GetJoystickButtonCode(short unsigned int ButtonNumber) are not documented:
   parameter 'ButtonNumber'
-/home/dev/physgame/physgameengine/src/objectreference.h:50: warning: Member Type (variable) of class phys::ObjectReference is not documented.
-/home/dev/physgame/physgameengine/src/objectreference.h:51: warning: Member Object (variable) of class phys::ObjectReference is not documented.
+/home/dev/physgame/physgameengine/src/metacode.h:653: warning: argument 'ButtonerNumber' of command @param is not found in the argument list of phys::MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber)
+/home/dev/physgame/physgameengine/src/metacode.h:653: warning: The following parameters of phys::MetaCode::GetMouseButtonCode(short unsigned int ButtonNumber) are not documented:
+  parameter 'ButtonNumber'
+/home/dev/physgame/physgameengine/src/objectreference.h:56: warning: Member Type (variable) of class phys::ObjectReference is not documented.
+/home/dev/physgame/physgameengine/src/objectreference.h:57: warning: Member Object (variable) of class phys::ObjectReference is not documented.
 /home/dev/physgame/physgameengine/src/resourceinputstream.h:98: warning: Member operator>>(T &Data) (function) of class phys::ResourceInputStream is not documented.
 /home/dev/physgame/physgameengine/src/resourcemanager.h:80: warning: Member AddResourceGroupName(String Name) (function) of class phys::ResourceManager is not documented.
 /home/dev/physgame/physgameengine/src/resourcemanager.h:79: warning: Member ResourceGroups (variable) of class phys::ResourceManager is not documented.
@@ -267,75 +110,53 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/soundmanager.h:151: warning: The following parameters of phys::SoundManager::AddSoundToSoundSet(String SoundSetName, Sound *SoundInst) are not documented:
   parameter 'SoundSetName'
   parameter 'SoundInst'
-/home/dev/physgame/physgameengine/src/timer.h:61: warning: Member TimerStyle (enumeration) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:69: warning: Member TimerType (enumeration) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:81: warning: Member Update(const Whole MicroSecondsElapsed)=0 (function) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:82: warning: Member GoalReached()=0 (function) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:75: warning: Member Style (variable) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:76: warning: Member Type (variable) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:77: warning: Member IsSimple (variable) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:78: warning: Member ResetAtGoal (variable) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:79: warning: Member Active (variable) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:80: warning: Member Callback (variable) of class phys::Timer is not documented.
-/home/dev/physgame/physgameengine/src/timer.h:84: warning: argument 'Style' of command @param is not found in the argument list of phys::Timer::Timer(const Timer::TimerStyle style)
-/home/dev/physgame/physgameengine/src/timer.h:84: warning: The following parameters of phys::Timer::Timer(const Timer::TimerStyle style) are not documented:
+/home/dev/physgame/physgameengine/src/timer.h:79: warning: Member Update(const Whole MicroSecondsElapsed)=0 (function) of class phys::Timer is not documented.
+/home/dev/physgame/physgameengine/src/timer.h:80: warning: Member GoalReached()=0 (function) of class phys::Timer is not documented.
+/home/dev/physgame/physgameengine/src/timer.h:73: warning: Member Style (variable) of class phys::Timer is not documented.
+/home/dev/physgame/physgameengine/src/timer.h:74: warning: Member Type (variable) of class phys::Timer is not documented.
+/home/dev/physgame/physgameengine/src/timer.h:75: warning: Member IsSimple (variable) of class phys::Timer is not documented.
+/home/dev/physgame/physgameengine/src/timer.h:76: warning: Member ResetAtGoal (variable) of class phys::Timer is not documented.
+/home/dev/physgame/physgameengine/src/timer.h:77: warning: Member Active (variable) of class phys::Timer is not documented.
+/home/dev/physgame/physgameengine/src/timer.h:78: warning: Member Callback (variable) of class phys::Timer is not documented.
+/home/dev/physgame/physgameengine/src/timer.h:82: warning: argument 'Style' of command @param is not found in the argument list of phys::Timer::Timer(const Timer::TimerStyle style)
+/home/dev/physgame/physgameengine/src/timer.h:82: warning: The following parameters of phys::Timer::Timer(const Timer::TimerStyle style) are not documented:
   parameter 'style'
 /home/dev/physgame/physgameengine/src/timermanager.h:65: warning: Member Timers (variable) of class phys::TimerManager is not documented.
 /home/dev/physgame/physgameengine/src/timermanager.h:66: warning: Member MasterTimer (variable) of class phys::TimerManager is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:85: warning: Member GorillaLayer (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:86: warning: Member Parent (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:87: warning: Member Manager (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:88: warning: Member Name (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:89: warning: Member Buttons (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:90: warning: Member Rectangles (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:91: warning: Member Captions (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:92: warning: Member MarkupTexts (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:93: warning: Member LineLists (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:94: warning: Member Widgets (variable) of class phys::UILayer is not documented.
-/home/dev/physgame/physgameengine/src/uilayer.h:109: warning: argument 'Visable' of command @param is not found in the argument list of phys::UILayer::SetVisible(bool Visible)
-/home/dev/physgame/physgameengine/src/uilayer.h:109: warning: The following parameters of phys::UILayer::SetVisible(bool Visible) are not documented:
+/home/dev/physgame/physgameengine/src/uilayer.h:86: warning: Member GorillaLayer (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:87: warning: Member Parent (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:88: warning: Member Manager (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:89: warning: Member Name (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:90: warning: Member Buttons (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:91: warning: Member Rectangles (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:92: warning: Member Captions (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:93: warning: Member MarkupTexts (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:94: warning: Member LineLists (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:95: warning: Member Widgets (variable) of class phys::UILayer is not documented.
+/home/dev/physgame/physgameengine/src/uilayer.h:113: warning: argument 'Visable' of command @param is not found in the argument list of phys::UILayer::SetVisible(bool Visible)
+/home/dev/physgame/physgameengine/src/uilayer.h:113: warning: The following parameters of phys::UILayer::SetVisible(bool Visible) are not documented:
   parameter 'Visible'
-/home/dev/physgame/physgameengine/src/uimanager.h:84: warning: Member HoverChecks() (function) of class phys::UIManager is not documented.
-/home/dev/physgame/physgameengine/src/uimanager.h:85: warning: Member WidgetFocusUpdate() (function) of class phys::UIManager is not documented.
-/home/dev/physgame/physgameengine/src/uimanager.h:79: warning: Member Screens (variable) of class phys::UIManager is not documented.
-/home/dev/physgame/physgameengine/src/uimanager.h:80: warning: Member HoveredButton (variable) of class phys::UIManager is not documented.
-/home/dev/physgame/physgameengine/src/uimanager.h:81: warning: Member HoveredWidget (variable) of class phys::UIManager is not documented.
-/home/dev/physgame/physgameengine/src/uimanager.h:82: warning: Member WidgetFocus (variable) of class phys::UIManager is not documented.
-/home/dev/physgame/physgameengine/src/uimanager.h:83: warning: Member InputQueryer (variable) of class phys::UIManager is not documented.
-/home/dev/physgame/physgameengine/src/uiscreen.h:74: warning: Member GorillaScreen (variable) of class phys::UIScreen is not documented.
-/home/dev/physgame/physgameengine/src/uiscreen.h:75: warning: Member Manager (variable) of class phys::UIScreen is not documented.
-/home/dev/physgame/physgameengine/src/uiscreen.h:76: warning: Member Name (variable) of class phys::UIScreen is not documented.
-/home/dev/physgame/physgameengine/src/uiscreen.h:77: warning: Member Layers (variable) of class phys::UIScreen is not documented.
-/home/dev/physgame/physgameengine/src/uiscreen.h:79: warning: argument 'manager' of command @param is not found in the argument list of phys::UIScreen::UIScreen(const String &name, Gorilla::Screen *GScreen)
-/home/dev/physgame/physgameengine/src/uiscreen.h:79: warning: The following parameters of phys::UIScreen::UIScreen(const String &name, Gorilla::Screen *GScreen) are not documented:
-  parameter 'name'
-/home/dev/physgame/physgameengine/src/uiscreen.h:119: warning: argument 'Name' of command @param is not found in the argument list of phys::UIScreen::DestroyLayer(UILayer *Layer)
-/home/dev/physgame/physgameengine/src/uiscreen.h:119: warning: The following parameters of phys::UIScreen::DestroyLayer(UILayer *Layer) are not documented:
+/home/dev/physgame/physgameengine/src/uimanager.h:85: warning: Member HoverChecks() (function) of class phys::UIManager is not documented.
+/home/dev/physgame/physgameengine/src/uimanager.h:86: warning: Member WidgetFocusUpdate() (function) of class phys::UIManager is not documented.
+/home/dev/physgame/physgameengine/src/uimanager.h:80: warning: Member Screens (variable) of class phys::UIManager is not documented.
+/home/dev/physgame/physgameengine/src/uimanager.h:81: warning: Member HoveredButton (variable) of class phys::UIManager is not documented.
+/home/dev/physgame/physgameengine/src/uimanager.h:82: warning: Member HoveredWidget (variable) of class phys::UIManager is not documented.
+/home/dev/physgame/physgameengine/src/uimanager.h:83: warning: Member WidgetFocus (variable) of class phys::UIManager is not documented.
+/home/dev/physgame/physgameengine/src/uimanager.h:84: warning: Member InputQueryer (variable) of class phys::UIManager is not documented.
+/home/dev/physgame/physgameengine/src/uiscreen.h:75: warning: Member GorillaScreen (variable) of class phys::UIScreen is not documented.
+/home/dev/physgame/physgameengine/src/uiscreen.h:76: warning: Member Manager (variable) of class phys::UIScreen is not documented.
+/home/dev/physgame/physgameengine/src/uiscreen.h:77: warning: Member GameViewport (variable) of class phys::UIScreen is not documented.
+/home/dev/physgame/physgameengine/src/uiscreen.h:78: warning: Member Name (variable) of class phys::UIScreen is not documented.
+/home/dev/physgame/physgameengine/src/uiscreen.h:79: warning: Member Layers (variable) of class phys::UIScreen is not documented.
+/home/dev/physgame/physgameengine/src/uiscreen.h:122: warning: argument 'Name' of command @param is not found in the argument list of phys::UIScreen::DestroyLayer(UILayer *Layer)
+/home/dev/physgame/physgameengine/src/uiscreen.h:122: warning: The following parameters of phys::UIScreen::DestroyLayer(UILayer *Layer) are not documented:
   parameter 'Layer'
-/home/dev/physgame/physgameengine/src/uiscreen.h:88: warning: argument 'Visable' of command @param is not found in the argument list of phys::UIScreen::SetVisible(bool Visible)
-/home/dev/physgame/physgameengine/src/uiscreen.h:88: warning: The following parameters of phys::UIScreen::SetVisible(bool Visible) are not documented:
+/home/dev/physgame/physgameengine/src/uiscreen.h:91: warning: argument 'Visable' of command @param is not found in the argument list of phys::UIScreen::SetVisible(bool Visible)
+/home/dev/physgame/physgameengine/src/uiscreen.h:91: warning: The following parameters of phys::UIScreen::SetVisible(bool Visible) are not documented:
   parameter 'Visible'
-/home/dev/physgame/physgameengine/src/vector2.h:72: warning: argument 'X' of command @param is not found in the argument list of phys::Vector2::Vector2(Real x, Real y)
-/home/dev/physgame/physgameengine/src/vector2.h:72: warning: argument 'Y' of command @param is not found in the argument list of phys::Vector2::Vector2(Real x, Real y)
-/home/dev/physgame/physgameengine/src/vector2.h:72: warning: The following parameters of phys::Vector2::Vector2(Real x, Real y) are not documented:
-  parameter 'x'
-  parameter 'y'
-/home/dev/physgame/physgameengine/src/vector2.h:84: warning: argument 'temp' of command @param is not found in the argument list of phys::Vector2::ExtractOgreVector2(Ogre::Vector2 Ours)
-/home/dev/physgame/physgameengine/src/vector2.h:84: warning: The following parameters of phys::Vector2::ExtractOgreVector2(Ogre::Vector2 Ours) are not documented:
-  parameter 'Ours'
-/home/dev/physgame/physgameengine/src/worldnode.h:81: warning: Member NodeType (enumeration) of class phys::WorldNode is not documented.
-/home/dev/physgame/physgameengine/src/worldnode.h:128: warning: argument 'Position' of command @param is not found in the argument list of phys::WorldNode::SetOrientation(Quaternion Orientation)
-/home/dev/physgame/physgameengine/src/worldnode.h:128: warning: The following parameters of phys::WorldNode::SetOrientation(Quaternion Orientation) are not documented:
-  parameter 'Orientation'
-/home/dev/physgame/physgameengine/src/crossplatform.h:128: warning: argument 'TheWorld' of command @param is not found in the argument list of phys::crossplatform::RenderPhysWorld(Ogre::RenderWindow *TheOgreWindow, SDL_Window *SDLWindow)
-/home/dev/physgame/physgameengine/src/crossplatform.h:128: warning: The following parameters of phys::crossplatform::RenderPhysWorld(Ogre::RenderWindow *TheOgreWindow, SDL_Window *SDLWindow) are not documented:
-  parameter 'TheOgreWindow'
-  parameter 'SDLWindow'
-/home/dev/physgame/physgameengine/src/eventmanager.cpp:96: warning: Member EventQ (variable) of class phys::internal::EventManagerInternalData is not documented.
-/home/dev/physgame/physgameengine/src/eventmanager.cpp:128: warning: The following parameters of phys::internal::EventManagerInternalData::AddMetaCodesToManualCheck(vector< MetaCode > Transport, PollingType _PollingCheck) are not documented:
-  parameter '_PollingCheck'
-/home/dev/physgame/physgameengine/src/eventmanager.cpp:156: warning: The following parameters of phys::internal::EventManagerInternalData::RemoveMetaCodesToManualCheck(vector< MetaCode > Transport, PollingType _PollingCheck) are not documented:
-  parameter '_PollingCheck'
+/home/dev/physgame/physgameengine/src/viewport.h:65: warning: Member OgreViewport (variable) of class phys::Viewport is not documented.
+/home/dev/physgame/physgameengine/src/viewport.h:66: warning: Member Parent (variable) of class phys::Viewport is not documented.
+/home/dev/physgame/physgameengine/src/viewport.h:67: warning: Member ViewportCam (variable) of class phys::Viewport is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:74: warning: Member GorillaRectangle (variable) of class phys::UI::Button is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:75: warning: Member Parent (variable) of class phys::UI::Button is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:76: warning: Member Manager (variable) of class phys::UI::Button is not documented.
@@ -412,15 +233,6 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/uilistbox.h:79: warning: Member TTColour (variable) of class phys::UI::ListBox is not documented.
 /home/dev/physgame/physgameengine/src/uilistbox.h:80: warning: Member TBGColour (variable) of class phys::UI::ListBox is not documented.
 /home/dev/physgame/physgameengine/src/uilistbox.h:81: warning: Member SelectColour (variable) of class phys::UI::ListBox is not documented.
-/home/dev/physgame/physgameengine/src/uilistbox.h:89: warning: argument 'ScrollbarStyle' of command @param is not found in the argument list of phys::UI::ListBox::ListBox(ConstString &name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer *Layer)
-/home/dev/physgame/physgameengine/src/uilistbox.h:89: warning: The following parameters of phys::UI::ListBox::ListBox(ConstString &name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer *Layer) are not documented:
-  parameter 'ScrollStyle'
-/home/dev/physgame/physgameengine/src/uilistbox.h:129: warning: argument 'TextLabel' of command @param is not found in the argument list of phys::UI::ListBox::AddSelection(ConstString &name, ConstString &Text, ConstString &BackgroundSprite="")
-/home/dev/physgame/physgameengine/src/uilistbox.h:129: warning: The following parameters of phys::UI::ListBox::AddSelection(ConstString &name, ConstString &Text, ConstString &BackgroundSprite="") are not documented:
-  parameter 'name'
-  parameter 'Text'
-/home/dev/physgame/physgameengine/src/uilistbox.h:119: warning: The following parameters of phys::UI::ListBox::SetMoreTemplateParameters(const ColourValue &TextColour=ColourValue(0.0, 0.0, 0.0, 1.0), const ColourValue &BackgroundColour=ColourValue(1.0, 1.0, 1.0, 1.0), UI::TextHorizontalAlign HorAlign=UI::Txt_Middle, UI::TextVerticalAlign VertAlign=UI::Txt_Center) are not documented:
-  parameter 'TextColour'
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:72: warning: Member GMarkup (variable) of class phys::UI::MarkupText is not documented.
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:73: warning: Member Parent (variable) of class phys::UI::MarkupText is not documented.
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:74: warning: Member Manager (variable) of class phys::UI::MarkupText is not documented.
@@ -428,9 +240,6 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:76: warning: Member RelPosition (variable) of class phys::UI::MarkupText is not documented.
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:77: warning: Member RelSize (variable) of class phys::UI::MarkupText is not documented.
 /home/dev/physgame/physgameengine/src/uimarkuptext.h:78: warning: Member Name (variable) of class phys::UI::MarkupText is not documented.
-/home/dev/physgame/physgameengine/src/uimarkuptext.h:80: warning: argument 'Name' of command @param is not found in the argument list of phys::UI::MarkupText::MarkupText(ConstString &name, const Vector2 Position, const Whole Glyph, String Text, UILayer *Layer)
-/home/dev/physgame/physgameengine/src/uimarkuptext.h:80: warning: The following parameters of phys::UI::MarkupText::MarkupText(ConstString &name, const Vector2 Position, const Whole Glyph, String Text, UILayer *Layer) are not documented:
-  parameter 'name'
 /home/dev/physgame/physgameengine/src/uimenu.h:66: warning: Member RootWindow (variable) of class phys::UI::Menu is not documented.
 /home/dev/physgame/physgameengine/src/uimenu.h:67: warning: Member MenuStack (variable) of class phys::UI::Menu is not documented.
 /home/dev/physgame/physgameengine/src/uimenu.h:68: warning: Member HideSubWindows (variable) of class phys::UI::Menu is not documented.
@@ -479,88 +288,9 @@ warning: source /home/dev/physgame/physgameengine/src/sedtPNouT is not a readabl
 /home/dev/physgame/physgameengine/src/uiwidget.h:85: warning: Member RelSize (variable) of class phys::UI::Widget is not documented.
 /home/dev/physgame/physgameengine/src/uiwidget.h:86: warning: Member Type (variable) of class phys::UI::Widget is not documented.
 /home/dev/physgame/physgameengine/src/uiwidget.h:87: warning: Member Name (variable) of class phys::UI::Widget is not documented.
-/home/dev/physgame/physgameengine/src/uiwidget.h:95: warning: The following parameters of phys::UI::Widget::Widget(const String &name, UILayer *parent) are not documented:
-  parameter 'name'
 /home/dev/physgame/physgameengine/src/uiwindow.h:76: warning: Member WindowBack (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/uiwindow.h:78: warning: Member Buttons (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/uiwindow.h:79: warning: Member Rectangles (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/uiwindow.h:80: warning: Member Captions (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/uiwindow.h:81: warning: Member MarkupTexts (variable) of class phys::UI::Window is not documented.
 /home/dev/physgame/physgameengine/src/uiwindow.h:82: warning: Member Widgets (variable) of class phys::UI::Window is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xml.h:166: warning: Member char_t (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.h:170: warning: Member String (typedef) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:4811: warning: Member AsUtf8(const std::wstring &str) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:4823: warning: Member AsWide(const std::string &str) (function) of namespace phys::xml is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:195: warning: Unsupported xml/html tag <node> found
-/home/dev/physgame/physgameengine/src/xml.cpp:454: warning: Member AttributeStruct(MemoryPage *page) (function) of class phys::xml::AttributeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:457: warning: Member header (variable) of class phys::xml::AttributeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:459: warning: Member Name (variable) of class phys::xml::AttributeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:460: warning: Member Value (variable) of class phys::xml::AttributeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:462: warning: Member prev_attribute_c (variable) of class phys::xml::AttributeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:463: warning: Member GetNextAttribute (variable) of class phys::xml::AttributeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:472: warning: Member NodeStruct(MemoryPage *page, NodeType Type) (function) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:475: warning: Member header (variable) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:477: warning: Member GetParent (variable) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:479: warning: Member Name (variable) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:480: warning: Member Value (variable) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:482: warning: Member GetFirstChild (variable) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:484: warning: Member prev_sibling_c (variable) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:485: warning: Member GetNextSibling (variable) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xml.cpp:487: warning: Member GetFirstAttribute (variable) of class phys::xml::NodeStruct is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xmldoc.h:284: warning: unable to resolve reference to `Node::print' for \ref command
-/home/dev/physgame/physgameengine/src/xml.h:469: warning: Member unspecified_bool_type (typedef) of class phys::xml::Node is not documented.
-/home/dev/physgame/physgameengine/src/xmldoc.h:699: warning: argument 'node' of command @param is not found in the argument list of phys::xml::Node::AppendChild(const char_t *Name)
-/home/dev/physgame/physgameengine/src/xmldoc.h:718: warning: unable to resolve reference to `Node::InsertChildBefore(NodeType, Node)' for \ref command
-/home/dev/physgame/physgameengine/src/xmldoc.h:750: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindAttribute(Predicate pred) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:750: warning: The following parameters of phys::xml::Node::FindAttribute(Predicate pred) const are not documented:
-  parameter 'pred'
-/home/dev/physgame/physgameengine/src/xmldoc.h:758: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindChild(Predicate pred) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:758: warning: The following parameters of phys::xml::Node::FindChild(Predicate pred) const are not documented:
-  parameter 'pred'
-/home/dev/physgame/physgameengine/src/xmldoc.h:766: warning: argument 'Predicate' of command @param is not found in the argument list of phys::xml::Node::FindNode(Predicate pred) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:766: warning: The following parameters of phys::xml::Node::FindNode(Predicate pred) const are not documented:
-  parameter 'pred'
-/home/dev/physgame/physgameengine/src/xml.h:705: warning: argument 'XPathVariableSet' of command @param is not found in the argument list of phys::xml::Node::FindNodes(const char_t *query, XPathVariableSet *variables=0) const
-/home/dev/physgame/physgameengine/src/xml.h:705: warning: The following parameters of phys::xml::Node::FindNodes(const char_t *query, XPathVariableSet *variables=0) const are not documented:
-  parameter 'variables'
-/home/dev/physgame/physgameengine/src/xmldoc.h:806: warning: argument 'XPathVariableSet' of command @param is not found in the argument list of phys::xml::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:806: warning: The following parameters of phys::xml::Node::FindSingleNode(const char_t *query, XPathVariableSet *variables=0) const are not documented:
-  parameter 'variables'
-/home/dev/physgame/physgameengine/src/xml.h:605: warning: argument 'Node' of command @param is not found in the argument list of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node)
-/home/dev/physgame/physgameengine/src/xml.h:609: warning: unable to resolve reference to `Node::InsertChildAfter(NodeType, Node)' for \ref command
-/home/dev/physgame/physgameengine/src/xml.h:605: warning: The following parameters of phys::xml::Node::InsertChildAfter(const char_t *Name, const Node &node) are not documented:
-  parameter 'node'
-/home/dev/physgame/physgameengine/src/xmldoc.h:692: warning: The following parameters of phys::xml::Node::InsertChildBefore(NodeType Type, const Node &node) are not documented:
-  parameter 'node'
-/home/dev/physgame/physgameengine/src/xmldoc.h:711: warning: argument 'Node' of command @param is not found in the argument list of phys::xml::Node::InsertChildBefore(const char_t *Name, const Node &node)
-/home/dev/physgame/physgameengine/src/xmldoc.h:711: warning: The following parameters of phys::xml::Node::InsertChildBefore(const char_t *Name, const Node &node) are not documented:
-  parameter 'node'
-/home/dev/physgame/physgameengine/src/xmldoc.h:723: warning: The following parameters of phys::xml::Node::InsertCopyAfter(const Node &proto, const Node &node) are not documented:
-  parameter 'node'
-/home/dev/physgame/physgameengine/src/xmldoc.h:788: warning: argument 'AttrName' of command @param is not found in the argument list of phys::xml::Node::Path(char_t delimiter='/') const
-/home/dev/physgame/physgameengine/src/xmldoc.h:788: warning: argument 'AttrValue' of command @param is not found in the argument list of phys::xml::Node::Path(char_t delimiter='/') const
-/home/dev/physgame/physgameengine/src/xmldoc.h:735: warning: argument 'proto' of command @param is not found in the argument list of phys::xml::Node::RemoveAttribute(const Attribute &a)
-/home/dev/physgame/physgameengine/src/xmldoc.h:735: warning: argument 'node' of command @param is not found in the argument list of phys::xml::Node::RemoveAttribute(const Attribute &a)
-/home/dev/physgame/physgameengine/src/xmldoc.h:1017: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1022: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1029: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1017: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1029: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1022: warning: Found unknown command `\detail'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1085: warning: The following parameters of phys::xml::Document::LoadBufferInplace(void *contents, size_t size, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
-  parameter 'contents'
-  parameter 'size'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1071: warning: The following parameters of phys::xml::Document::LoadFile(const char *Path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
-  parameter 'DocumentEncoding'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1078: warning: The following parameters of phys::xml::Document::LoadFile(const wchar_t *Path, unsigned int options=ParseDefault, Encoding DocumentEncoding=EncodingAuto) are not documented:
-  parameter 'options'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1111: warning: argument 'contents' of command @param is not found in the argument list of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:1111: warning: argument 'size' of command @param is not found in the argument list of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:1111: warning: argument 'options' of command @param is not found in the argument list of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const
-/home/dev/physgame/physgameengine/src/xmldoc.h:1111: warning: The following parameters of phys::xml::Document::Save(Writer &WriterInstance, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const are not documented:
-  parameter 'WriterInstance'
-  parameter 'indent'
-  parameter 'flags'
-/home/dev/physgame/physgameengine/src/xmldoc.h:1118: warning: argument 'WriterInstance' of command @param is not found in the argument list of phys::xml::Document::SaveFile(const char *Path, const char_t *indent=XML_TEXT("\t"), unsigned int flags=FormatDefault, Encoding DocumentEncoding=EncodingAuto) const

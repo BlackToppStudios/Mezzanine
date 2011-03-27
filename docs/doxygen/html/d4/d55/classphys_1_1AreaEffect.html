@@ -94,7 +94,7 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the origin for the area effect.  <a href="#a76040dd90ff314ea6973dccf4e90ba37"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a6395eeec0a3aec2385027cca35cf15cb">GetName</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the Area Effects name.  <a href="#a6395eeec0a3aec2385027cca35cf15cb"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">AreaEffect::AEShapeType&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a13b613426c282222fec2b93dbbd9e7a8">GetShapeType</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9">AreaEffect::AEShapeType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a13b613426c282222fec2b93dbbd9e7a8">GetShapeType</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the current shape type in use by this class.  <a href="#a13b613426c282222fec2b93dbbd9e7a8"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a6d1e8ddcea39fa441f02010af1970a16">CreateGraphicsSphere</a> (const <a class="el" href="../../d3/db0/classphys_1_1ColourValue.html">ColourValue</a> &amp;Colour, const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> Rings=16, const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> Segments=16)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a sphere mesh based on the physics shape for this area effect.  <a href="#a6d1e8ddcea39fa441f02010af1970a16"></a><br/></td></tr>
@@ -116,17 +116,19 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the list of actors that have been removed from the list since the last simulation step.  <a href="#a021763db69e977a3a19ad7cc39df073b"></a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-types"></a>
 Protected Types</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><b>AEShapeType</b> { <br/>
-&nbsp;&nbsp;<b>AE_Sphere</b>, 
-<b>AE_CylinderX</b>, 
-<b>AE_CylinderY</b>, 
-<b>AE_CylinderZ</b>, 
+<tr><td class="memItemLeft" align="right" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9">AEShapeType</a> { <br/>
+&nbsp;&nbsp;<a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9a607185bf8c230fe2c39df9d96bd66a09">AE_Sphere</a>, 
+<a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9a623ebbf1c726ad947a74aff5d36d3b8f">AE_CylinderX</a>, 
+<a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9a363e015e6e77fb2f74b63e5dd687a981">AE_CylinderY</a>, 
+<a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9a001df4767697c5c30d2c7b4f318301ba">AE_CylinderZ</a>, 
 <br/>
-&nbsp;&nbsp;<b>AE_Box</b>, 
-<b>AE_Custom</b>, 
-<b>AE_Unassigned</b>
+&nbsp;&nbsp;<a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9a579014c1569b6129ee8b2cf74e3a14e4">AE_Box</a>, 
+<a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9a1c411d786f32da69b69e6f8dae26f977">AE_Custom</a>, 
+<a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9a9eef62b75d698ff6ef4e74bd2a2df132">AE_Unassigned</a>
 <br/>
  }</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight"><p>The kinds of shapes and <a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a> can take. </p>
+ <a href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9">More...</a><br/></td></tr>
 <tr><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#afe30d4ffa4e16dfb151446960dad61ac">CreateGhostObject</a> (const <a class="el" href="../../d5/d6a/classphys_1_1Vector3.html">Vector3</a> Location)</td></tr>
@@ -152,7 +154,7 @@ Protected Attributes</h2></td></tr>
 <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a1cf5a878eb22b30a166f5b065944a986">Name</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The name of the Area Effect. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1465c564cc8e32b8a530881c5db70b88"></a><!-- doxytag: member="phys::AreaEffect::ShapeType" ref="a1465c564cc8e32b8a530881c5db70b88" args="" -->
-AEShapeType&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a1465c564cc8e32b8a530881c5db70b88">ShapeType</a></td></tr>
+<a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9">AEShapeType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a1465c564cc8e32b8a530881c5db70b88">ShapeType</a></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">The type of physics shape in use by this AE field. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8189f9e8dc4bf04f44550918e0ee117"></a><!-- doxytag: member="phys::AreaEffect::Shape" ref="af8189f9e8dc4bf04f44550918e0ee117" args="" -->
 btCollisionShape *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#af8189f9e8dc4bf04f44550918e0ee117">Shape</a></td></tr>
@@ -189,6 +191,49 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
  Note: This is a base class intended to be derived from. This class cannot be created itself. To make an <a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a> class that does what you want it to, simple inherit from this class with an AE class of your own, and define the <a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a3b285ecfcf9c9200662d510e48dd222a" title="Defines and applies the effect of the field.">ApplyEffect()</a> function to do what you want your effect to do. </p>
 
 <p>Definition at line <a class="el" href="../../d6/dc0/areaeffect_8h_source.html#l00073">73</a> of file <a class="el" href="../../d6/dc0/areaeffect_8h_source.html">areaeffect.h</a>.</p>
+<hr/><h2>Member Enumeration Documentation</h2>
+<a class="anchor" id="a99b8746c43eac266d48ad613110dc6f9"></a><!-- doxytag: member="phys::AreaEffect::AEShapeType" ref="a99b8746c43eac266d48ad613110dc6f9" args="" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9">phys::AreaEffect::AEShapeType</a><code> [protected]</code></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>The kinds of shapes and <a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html" title="This class is used to define area&#39;s in the world that have unique effects.">AreaEffect</a> can take. </p>
+<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
+<tr><td valign="top"><em><a class="anchor" id="a99b8746c43eac266d48ad613110dc6f9a607185bf8c230fe2c39df9d96bd66a09"></a><!-- doxytag: member="AE_Sphere" ref="a99b8746c43eac266d48ad613110dc6f9a607185bf8c230fe2c39df9d96bd66a09" args="" -->AE_Sphere</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a99b8746c43eac266d48ad613110dc6f9a623ebbf1c726ad947a74aff5d36d3b8f"></a><!-- doxytag: member="AE_CylinderX" ref="a99b8746c43eac266d48ad613110dc6f9a623ebbf1c726ad947a74aff5d36d3b8f" args="" -->AE_CylinderX</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a99b8746c43eac266d48ad613110dc6f9a363e015e6e77fb2f74b63e5dd687a981"></a><!-- doxytag: member="AE_CylinderY" ref="a99b8746c43eac266d48ad613110dc6f9a363e015e6e77fb2f74b63e5dd687a981" args="" -->AE_CylinderY</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a99b8746c43eac266d48ad613110dc6f9a001df4767697c5c30d2c7b4f318301ba"></a><!-- doxytag: member="AE_CylinderZ" ref="a99b8746c43eac266d48ad613110dc6f9a001df4767697c5c30d2c7b4f318301ba" args="" -->AE_CylinderZ</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a99b8746c43eac266d48ad613110dc6f9a579014c1569b6129ee8b2cf74e3a14e4"></a><!-- doxytag: member="AE_Box" ref="a99b8746c43eac266d48ad613110dc6f9a579014c1569b6129ee8b2cf74e3a14e4" args="" -->AE_Box</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a99b8746c43eac266d48ad613110dc6f9a1c411d786f32da69b69e6f8dae26f977"></a><!-- doxytag: member="AE_Custom" ref="a99b8746c43eac266d48ad613110dc6f9a1c411d786f32da69b69e6f8dae26f977" args="" -->AE_Custom</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+<tr><td valign="top"><em><a class="anchor" id="a99b8746c43eac266d48ad613110dc6f9a9eef62b75d698ff6ef4e74bd2a2df132"></a><!-- doxytag: member="AE_Unassigned" ref="a99b8746c43eac266d48ad613110dc6f9a9eef62b75d698ff6ef4e74bd2a2df132" args="" -->AE_Unassigned</em>&nbsp;</td><td>
+<p>Description Required. </p>
+</td></tr>
+</table>
+</dd>
+</dl>
+
+<p>Definition at line <a class="el" href="../../d6/dc0/areaeffect_8h_source.html#l00078">78</a> of file <a class="el" href="../../d6/dc0/areaeffect_8h_source.html">areaeffect.h</a>.</p>
+
+</div>
+</div>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="af4a11385bfc07aea76d135be8a88e136"></a><!-- doxytag: member="phys::AreaEffect::AreaEffect" ref="af4a11385bfc07aea76d135be8a88e136" args="(const String &amp;name, const Vector3 Location)" -->
 <div class="memitem">
@@ -300,7 +345,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00229">229</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00234">234</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -329,7 +374,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00208">208</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00213">213</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -358,7 +403,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00215">215</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00220">220</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -387,7 +432,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00222">222</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00227">227</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -444,7 +489,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00421">421</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00424">424</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -475,7 +520,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p><dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000004">Todo:</a></b></dt><dd>The HalfExtents returned here includes scaling, should account for that so weird scaling sync issues don't occur. </dd></dl>
 </p>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00432">432</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00435">435</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -504,7 +549,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00381">381</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00385">385</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -532,7 +577,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00392">392</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00396">396</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -578,7 +623,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00354">354</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00359">359</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -623,7 +668,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00365">365</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00370">370</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -668,7 +713,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00236">236</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00241">241</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -696,7 +741,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00201">201</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00206">206</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -718,7 +763,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the list of actors that have been added to the list since the last simulation step. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the vector storing all the actors that have been added to the list since the last simulation step. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00454">454</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00456">456</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -741,7 +786,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>The default scale is 1.0. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the current scale applied to the fields shape. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00325">325</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00330">330</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -764,7 +809,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>This function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the vector3 representing the location of the area effect. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00338">338</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00343">343</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -786,7 +831,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the Area Effects name. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the name of the Area Effect. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00344">344</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00349">349</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -808,7 +853,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the list of actors within this field. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the list of actors contained within this field. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00449">449</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00451">451</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -830,7 +875,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the list of actors that have been removed from the list since the last simulation step. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the vector storing all the actors that have been removed from the list since the last simulation step. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00459">459</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00461">461</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -839,7 +884,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">AreaEffect::AEShapeType phys::AreaEffect::GetShapeType </td>
+          <td class="memname"><a class="el" href="../../d4/d55/classphys_1_1AreaEffect.html#a99b8746c43eac266d48ad613110dc6f9">AreaEffect::AEShapeType</a> phys::AreaEffect::GetShapeType </td>
           <td>(</td>
           <td class="paramname"></td>
           <td>&nbsp;)&nbsp;</td>
@@ -852,7 +897,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <p>Gets the current shape type in use by this class. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns an enum value representing the type of shape being used by this class. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00349">349</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00354">354</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -881,7 +926,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00320">320</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00325">325</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -910,7 +955,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00331">331</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html#l00336">336</a> of file <a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a>.</p>
 
 </div>
 </div>
@@ -941,7 +986,7 @@ class&nbsp;</td><td class="memItemRight" valign="bottom"><b>PhysicsManager</b></
 <li><a class="el" href="../../d8/d8e/areaeffect_8cpp_source.html">areaeffect.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:53 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:43:00 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

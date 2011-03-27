@@ -63,13 +63,13 @@ Public Member Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A constructor that accepts a stream of characters.  <a href="#ae170ab7c429b6f7149d3540243329dfa"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#aaebcd545af8e44cf6556a46077f0a366">WriterStream</a> (std::basic_ostream&lt; wchar_t, std::char_traits&lt; wchar_t &gt; &gt; &amp;stream)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">A constructor that accepts a stream of wide characters.  <a href="#aaebcd545af8e44cf6556a46077f0a366"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a74242c8abe03f6244d3464a663f75de9">Write</a> (const void *data, size_t size)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will be used to output xml to an external source such as a file or stream.  <a href="#a74242c8abe03f6244d3464a663f75de9"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d5/d6f/classphys_1_1xml_1_1WriterStream.html#a743c3f41a010df17f54054031fdc4891">Write</a> (const void *data, size_t size)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">This will be used to output xml to an external source such as a file or stream.  <a href="#a743c3f41a010df17f54054031fdc4891"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>An implementation of <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html">Writer</a> intended for writing std::ostreams. </p>
 
-<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00319">319</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d0/d62/xml_8h_source.html#l00323">323</a> of file <a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ae170ab7c429b6f7149d3540243329dfa"></a><!-- doxytag: member="phys::xml::WriterStream::WriterStream" ref="ae170ab7c429b6f7149d3540243329dfa" args="(std::basic_ostream&lt; char, std::char_traits&lt; char &gt; &gt; &amp;stream)" -->
 <div class="memitem">
@@ -94,8 +94,6 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03303">3303</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
 
 </div>
 </div>
@@ -123,17 +121,15 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03307">3307</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
-
 </div>
 </div>
 <hr/><h2>Member Function Documentation</h2>
-<a class="anchor" id="a74242c8abe03f6244d3464a663f75de9"></a><!-- doxytag: member="phys::xml::WriterStream::Write" ref="a74242c8abe03f6244d3464a663f75de9" args="(const void *data, size_t size)" -->
+<a class="anchor" id="a743c3f41a010df17f54054031fdc4891"></a><!-- doxytag: member="phys::xml::WriterStream::Write" ref="a743c3f41a010df17f54054031fdc4891" args="(const void *data, size_t size)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void phys::xml::WriterStream::Write </td>
+          <td class="memname">virtual void phys::xml::WriterStream::Write </td>
           <td>(</td>
           <td class="paramtype">const void *&nbsp;</td>
           <td class="paramname"> <em>data</em>, </td>
@@ -164,17 +160,14 @@ Public Member Functions</h2></td></tr>
 
 <p>Implements <a class="el" href="../../d2/d28/classphys_1_1xml_1_1Writer.html#ab6d4758ab53743f236eb64d5b2dd7e9e">phys::xml::Writer</a>.</p>
 
-<p>Definition at line <a class="el" href="../../db/dfc/xml_8cpp_source.html#l03311">3311</a> of file <a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="../../d0/d62/xml_8h_source.html">xml.h</a></li>
-<li><a class="el" href="../../db/dfc/xml_8cpp_source.html">xml.cpp</a></li>
 <li><a class="el" href="../../d1/d99/xmldoc_8h_source.html">xmldoc.h</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:01:01 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:43:09 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

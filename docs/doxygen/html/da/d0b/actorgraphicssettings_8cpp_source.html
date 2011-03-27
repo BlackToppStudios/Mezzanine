@@ -88,51 +88,51 @@
 <a name="l00057"></a>00057     {
 <a name="l00058"></a>00058     }
 <a name="l00059"></a>00059 
-<a name="l00060"></a>00060     Ogre::MaterialPtr ActorGraphicsSettings::GetMaterial(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Submesh)
+<a name="l00060"></a><a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#ade1b760cc01187e9ffdeed8871533066">00060</a>     Ogre::MaterialPtr <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#ade1b760cc01187e9ffdeed8871533066" title="Material/textures for the actor.">ActorGraphicsSettings::GetMaterial</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Submesh)
 <a name="l00061"></a>00061     {
 <a name="l00062"></a>00062         <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Ogre::MaterialPtr<span class="keyword">&gt;</span>(Ogre::MaterialManager::getSingleton().getByName(<a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#ab0c7beb46db48e20f42d50516b826a86" title="Gets the material name of the specified submesh.">GetMaterialName</a>(Submesh)));
 <a name="l00063"></a>00063     }
 <a name="l00064"></a>00064 
 <a name="l00065"></a><a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a8954153fe516ddf4e0107348c3af5abc">00065</a>     <span class="keywordtype">void</span> <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a8954153fe516ddf4e0107348c3af5abc" title="Sets the material of the specified submesh.">ActorGraphicsSettings::SetMaterial</a>(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a> MatName, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Submesh)
 <a name="l00066"></a>00066     {
-<a name="l00067"></a>00067         ActorEnt-&gt;getMesh()-&gt;getSubMesh(Submesh)-&gt;setMaterialName(MatName);
+<a name="l00067"></a>00067         <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a256f2b713dbfe39007708600e58bf2f7" title="Store meta data for actor.">ActorEnt</a>-&gt;getMesh()-&gt;getSubMesh(Submesh)-&gt;setMaterialName(MatName);
 <a name="l00068"></a>00068     }
 <a name="l00069"></a>00069 
 <a name="l00070"></a><a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#ab0c7beb46db48e20f42d50516b826a86">00070</a>     <a class="code" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31" title="A Datatype used to a series of imutable characters.">ConstString</a>&amp; <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#ab0c7beb46db48e20f42d50516b826a86" title="Gets the material name of the specified submesh.">ActorGraphicsSettings::GetMaterialName</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Submesh)
 <a name="l00071"></a>00071     {
-<a name="l00072"></a>00072         <span class="keywordflow">return</span> ActorEnt-&gt;getMesh()-&gt;getSubMesh(Submesh)-&gt;getMaterialName();
+<a name="l00072"></a>00072         <span class="keywordflow">return</span> <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a256f2b713dbfe39007708600e58bf2f7" title="Store meta data for actor.">ActorEnt</a>-&gt;getMesh()-&gt;getSubMesh(Submesh)-&gt;getMaterialName();
 <a name="l00073"></a>00073     }
 <a name="l00074"></a>00074 
 <a name="l00075"></a><a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a7b1948300461014e30e8a295917ae886">00075</a>     <span class="keywordtype">bool</span> <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a7b1948300461014e30e8a295917ae886" title="Gets whether or not the specified submesh has a material script assigned to it.">ActorGraphicsSettings::HasMaterialSet</a>(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Submesh)
 <a name="l00076"></a>00076     {
-<a name="l00077"></a>00077         <span class="keywordflow">return</span> ActorEnt-&gt;getMesh()-&gt;getSubMesh(Submesh)-&gt;isMatInitialised();
+<a name="l00077"></a>00077         <span class="keywordflow">return</span> <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a256f2b713dbfe39007708600e58bf2f7" title="Store meta data for actor.">ActorEnt</a>-&gt;getMesh()-&gt;getSubMesh(Submesh)-&gt;isMatInitialised();
 <a name="l00078"></a>00078     }
 <a name="l00079"></a>00079 
 <a name="l00080"></a><a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#af959c11c0de5b62d217201731163ee8d">00080</a>     <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#af959c11c0de5b62d217201731163ee8d" title="Gets the number of submeshes in the mesh of the graphics ohject.">ActorGraphicsSettings::GetNumSubmeshes</a>()
 <a name="l00081"></a>00081     {
-<a name="l00082"></a>00082         <span class="keywordflow">return</span> ActorEnt-&gt;getMesh()-&gt;getNumSubMeshes();
+<a name="l00082"></a>00082         <span class="keywordflow">return</span> <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a256f2b713dbfe39007708600e58bf2f7" title="Store meta data for actor.">ActorEnt</a>-&gt;getMesh()-&gt;getNumSubMeshes();
 <a name="l00083"></a>00083     }
 <a name="l00084"></a>00084 
 <a name="l00085"></a><a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a93d1c9b229b51b98702b29b8bb5ec4d0">00085</a>     <span class="keywordtype">void</span> <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a93d1c9b229b51b98702b29b8bb5ec4d0" title="Sets the Ambient colour value of the material belonging to the specified submesh.">ActorGraphicsSettings::SetMaterialAmbient</a>(<span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Ambient, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Submesh)
 <a name="l00086"></a>00086     {
-<a name="l00087"></a>00087         GetMaterial(Submesh)-&gt;setAmbient(Ambient.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00087"></a>00087         <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#ade1b760cc01187e9ffdeed8871533066" title="Material/textures for the actor.">GetMaterial</a>(Submesh)-&gt;setAmbient(Ambient.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
 <a name="l00088"></a>00088     }
 <a name="l00089"></a>00089 
 <a name="l00090"></a><a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a51bfae72380679093595c1805b1d940b">00090</a>     <span class="keywordtype">void</span> <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a51bfae72380679093595c1805b1d940b" title="Sets the Specular colour value of the material belonging to the specified submesh.">ActorGraphicsSettings::SetMaterialSpecular</a>(<span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Specular, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Submesh)
 <a name="l00091"></a>00091     {
-<a name="l00092"></a>00092         GetMaterial(Submesh)-&gt;setSpecular(Specular.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00092"></a>00092         <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#ade1b760cc01187e9ffdeed8871533066" title="Material/textures for the actor.">GetMaterial</a>(Submesh)-&gt;setSpecular(Specular.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
 <a name="l00093"></a>00093     }
 <a name="l00094"></a>00094 
 <a name="l00095"></a><a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a135bebcafc6a2386aaec61bce7a5e548">00095</a>     <span class="keywordtype">void</span> <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#a135bebcafc6a2386aaec61bce7a5e548" title="Sets the Diffuse colour value of the material belonging to the specified submesh.">ActorGraphicsSettings::SetMaterialDiffuse</a>(<span class="keyword">const</span> <a class="code" href="../../d3/db0/classphys_1_1ColourValue.html" title="This is a simple class for holding 4 reals representing the colour any give object or lightsource can...">ColourValue</a>&amp; Diffuse, <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Submesh)
 <a name="l00096"></a>00096     {
-<a name="l00097"></a>00097         GetMaterial(Submesh)-&gt;setDiffuse(Diffuse.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
+<a name="l00097"></a>00097         <a class="code" href="../../dd/dd6/classphys_1_1ActorGraphicsSettings.html#ade1b760cc01187e9ffdeed8871533066" title="Material/textures for the actor.">GetMaterial</a>(Submesh)-&gt;setDiffuse(Diffuse.<a class="code" href="../../d3/db0/classphys_1_1ColourValue.html#a025ed32506fe3df9e360dc00f3fb4898" title="Creates and returns an Ogre ColourValue class with values equal to this one.">GetOgreColourValue</a>());
 <a name="l00098"></a>00098     }
 <a name="l00099"></a>00099 }
 <a name="l00100"></a>00100 
 <a name="l00101"></a>00101 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

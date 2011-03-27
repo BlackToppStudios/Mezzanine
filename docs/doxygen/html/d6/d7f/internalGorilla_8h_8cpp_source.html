@@ -456,7 +456,7 @@
 <a name="l00425"></a>00425 <span class="comment">           resource group if you give that name as the second argument, otherwise it will assume</span>
 <a name="l00426"></a>00426 <span class="comment">           to be &quot;General&quot;.</span>
 <a name="l00427"></a>00427 <span class="comment">   */</span>
-<a name="l00428"></a>00428    <span class="keywordtype">void</span> loadAtlas(<span class="keyword">const</span> Ogre::String&amp; name, <span class="keyword">const</span> Ogre::String&amp; group = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+<a name="l00428"></a>00428    <span class="keywordtype">void</span> loadAtlas(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; name, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; group = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 <a name="l00429"></a>00429 <span class="comment"></span>
 <a name="l00430"></a>00430 <span class="comment">   /*! function. createScreen</span>
 <a name="l00431"></a>00431 <span class="comment">       desc.</span>
@@ -467,7 +467,7 @@
 <a name="l00436"></a>00436 <span class="comment">           Each screen is considered a new batch. To reduce your batch count in Gorilla,</span>
 <a name="l00437"></a>00437 <span class="comment">           reduce the number of screens you use.</span>
 <a name="l00438"></a>00438 <span class="comment">   */</span>
-<a name="l00439"></a>00439    Screen* createScreen(Ogre::Viewport*, <span class="keyword">const</span> Ogre::String&amp; atlas);
+<a name="l00439"></a>00439    Screen* createScreen(Ogre::Viewport*, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; atlas);
 <a name="l00440"></a>00440 <span class="comment"></span>
 <a name="l00441"></a>00441 <span class="comment">   /*! function. destroyScreen</span>
 <a name="l00442"></a>00442 <span class="comment">       desc.</span>
@@ -477,7 +477,7 @@
 <a name="l00446"></a>00446 <span class="comment"></span>
 <a name="l00447"></a>00447 <span class="comment">   /*! function. createScreenRenderable</span>
 <a name="l00448"></a>00448 <span class="comment">   */</span>
-<a name="l00449"></a>00449    ScreenRenderable* createScreenRenderable(<span class="keyword">const</span> Ogre::Vector2&amp; maxSize, <span class="keyword">const</span> Ogre::String&amp; atlas);
+<a name="l00449"></a>00449    ScreenRenderable* createScreenRenderable(<span class="keyword">const</span> Ogre::Vector2&amp; maxSize, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; atlas);
 <a name="l00450"></a>00450 <span class="comment"></span>
 <a name="l00451"></a>00451 <span class="comment">   /*! function. destroyScreen</span>
 <a name="l00452"></a>00452 <span class="comment">       desc.</span>
@@ -586,7 +586,7 @@
 <a name="l00555"></a>00555 <span class="comment">        desc.</span>
 <a name="l00556"></a>00556 <span class="comment">            Get the name of the material assigned to this TextureAtlas</span>
 <a name="l00557"></a>00557 <span class="comment">    */</span>
-<a name="l00558"></a>00558     <span class="keyword">inline</span> Ogre::String get2DMaterialName()<span class="keyword"> const</span>
+<a name="l00558"></a>00558     <span class="keyword">inline</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> get2DMaterialName()<span class="keyword"> const</span>
 <a name="l00559"></a>00559 <span class="keyword">    </span>{
 <a name="l00560"></a>00560      <span class="keywordflow">return</span> m2DMaterial-&gt;getName();
 <a name="l00561"></a>00561     }<span class="comment"></span>
@@ -594,7 +594,7 @@
 <a name="l00563"></a>00563 <span class="comment">        desc.</span>
 <a name="l00564"></a>00564 <span class="comment">            Get the name of the material assigned to this TextureAtlas</span>
 <a name="l00565"></a>00565 <span class="comment">    */</span>
-<a name="l00566"></a>00566     <span class="keyword">inline</span> Ogre::String get3DMaterialName()<span class="keyword"> const</span>
+<a name="l00566"></a>00566     <span class="keyword">inline</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> get3DMaterialName()<span class="keyword"> const</span>
 <a name="l00567"></a>00567 <span class="keyword">    </span>{
 <a name="l00568"></a>00568      <span class="keywordflow">return</span> m3DMaterial-&gt;getName();
 <a name="l00569"></a>00569     }
@@ -614,7 +614,7 @@
 <a name="l00583"></a>00583 <span class="comment">            If the sprite doesn&#39;t exist then a null pointer is returned.</span>
 <a name="l00584"></a>00584 <span class="comment">            Do not delete the Sprite pointer.</span>
 <a name="l00585"></a>00585 <span class="comment">    */</span>
-<a name="l00586"></a>00586     <span class="keyword">inline</span> Sprite* getSprite(<span class="keyword">const</span> Ogre::String&amp; name)<span class="keyword"> const</span>
+<a name="l00586"></a>00586     <span class="keyword">inline</span> Sprite* getSprite(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; name)<span class="keyword"> const</span>
 <a name="l00587"></a>00587 <span class="keyword">    </span>{
 <a name="l00588"></a>00588      std::map&lt;Ogre::String, Sprite*&gt;::const_iterator it = mSprites.find(name);
 <a name="l00589"></a>00589      <span class="keywordflow">if</span> (it == mSprites.end())
@@ -727,12 +727,12 @@
 <a name="l00696"></a>00696 
 <a name="l00697"></a>00697    <span class="keyword">protected</span>:
 <a name="l00698"></a>00698 
-<a name="l00699"></a>00699     TextureAtlas(<span class="keyword">const</span> Ogre::String&amp; gorillaFile, <span class="keyword">const</span> Ogre::String&amp; group);
+<a name="l00699"></a>00699     TextureAtlas(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; gorillaFile, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; group);
 <a name="l00700"></a>00700 
 <a name="l00701"></a>00701    ~TextureAtlas();
 <a name="l00702"></a>00702 
 <a name="l00703"></a>00703     <span class="keywordtype">void</span>  _reset();
-<a name="l00704"></a>00704     <span class="keywordtype">void</span>  _load(<span class="keyword">const</span> Ogre::String&amp; gorillaFile, <span class="keyword">const</span> Ogre::String&amp; groupName);
+<a name="l00704"></a>00704     <span class="keywordtype">void</span>  _load(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; gorillaFile, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; groupName);
 <a name="l00705"></a>00705     <span class="keywordtype">void</span>  _loadTexture(Ogre::ConfigFile::SettingsMultiMap*);
 <a name="l00706"></a>00706     <span class="keywordtype">void</span>  _loadGlyphs(Ogre::ConfigFile::SettingsMultiMap*, GlyphData*);
 <a name="l00707"></a>00707     <span class="keywordtype">void</span>  _loadKerning(Ogre::ConfigFile::SettingsMultiMap*, GlyphData*);
@@ -970,10 +970,10 @@
 <a name="l00939"></a>00939    ~Screen();
 <a name="l00940"></a>00940 
 <a name="l00941"></a>00941     <span class="comment">// Internal -- Not used, but required by renderQueueListener</span>
-<a name="l00942"></a>00942     <span class="keywordtype">void</span> renderQueueStarted(Ogre::uint8, <span class="keyword">const</span> Ogre::String&amp;, <span class="keywordtype">bool</span>&amp;) {}
+<a name="l00942"></a>00942     <span class="keywordtype">void</span> renderQueueStarted(Ogre::uint8, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp;, <span class="keywordtype">bool</span>&amp;) {}
 <a name="l00943"></a>00943 
 <a name="l00944"></a>00944     <span class="comment">// Internal -- Called by Ogre to render the screen.</span>
-<a name="l00945"></a>00945     <span class="keywordtype">void</span> renderQueueEnded(Ogre::uint8 queueGroupId, <span class="keyword">const</span> Ogre::String&amp; invocation, <span class="keywordtype">bool</span>&amp; repeatThisInvocation);
+<a name="l00945"></a>00945     <span class="keywordtype">void</span> renderQueueEnded(Ogre::uint8 queueGroupId, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; invocation, <span class="keywordtype">bool</span>&amp; repeatThisInvocation);
 <a name="l00946"></a>00946 
 <a name="l00947"></a>00947     <span class="comment">// Internal -- Prepares RenderSystem for rendering.</span>
 <a name="l00948"></a>00948     <span class="keywordtype">void</span> _prepareRenderSystem();
@@ -1251,7 +1251,7 @@
 <a name="l01220"></a>01220 <span class="comment">        desc.</span>
 <a name="l01221"></a>01221 <span class="comment">            Creates a caption</span>
 <a name="l01222"></a>01222 <span class="comment">    */</span>
-<a name="l01223"></a>01223     Caption*         createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, <span class="keyword">const</span> Ogre::String&amp; text);
+<a name="l01223"></a>01223     Caption*         createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; text);
 <a name="l01224"></a>01224 <span class="comment"></span>
 <a name="l01225"></a>01225 <span class="comment">    /*! function. destroyCaption</span>
 <a name="l01226"></a>01226 <span class="comment">        desc.</span>
@@ -1278,7 +1278,7 @@
 <a name="l01247"></a>01247 <span class="comment">        desc.</span>
 <a name="l01248"></a>01248 <span class="comment">            Creates a markup text</span>
 <a name="l01249"></a>01249 <span class="comment">    */</span>
-<a name="l01250"></a>01250     MarkupText*         createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, <span class="keyword">const</span> Ogre::String&amp; text);
+<a name="l01250"></a>01250     MarkupText*         createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; text);
 <a name="l01251"></a>01251 <span class="comment"></span>
 <a name="l01252"></a>01252 <span class="comment">    /*! function. destroyMarkupText</span>
 <a name="l01253"></a>01253 <span class="comment">        desc.</span>
@@ -1323,7 +1323,7 @@
 <a name="l01292"></a>01292 <span class="comment">        desc.</span>
 <a name="l01293"></a>01293 <span class="comment">            Helper function to get a Sprite from the assigned texture atlas.</span>
 <a name="l01294"></a>01294 <span class="comment">    */</span>
-<a name="l01295"></a>01295     <span class="keyword">inline</span> Sprite*            _getSprite(<span class="keyword">const</span> Ogre::String&amp; sprite_name)<span class="keyword"> const</span>
+<a name="l01295"></a>01295     <span class="keyword">inline</span> Sprite*            _getSprite(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; sprite_name)<span class="keyword"> const</span>
 <a name="l01296"></a>01296 <span class="keyword">    </span>{
 <a name="l01297"></a>01297      <span class="keywordflow">return</span> mParent-&gt;getAtlas()-&gt;getSprite(sprite_name);
 <a name="l01298"></a>01298     }
@@ -1739,7 +1739,7 @@
 <a name="l01708"></a>01708 <span class="comment">        note.</span>
 <a name="l01709"></a>01709 <span class="comment">            To remove the image pass on a null pointer.</span>
 <a name="l01710"></a>01710 <span class="comment">    */</span>
-<a name="l01711"></a>01711     <span class="keywordtype">void</span>  background_image(<span class="keyword">const</span> Ogre::String&amp; sprite_name_or_none, Ogre::Real widthClip, Ogre::Real heightClip)
+<a name="l01711"></a>01711     <span class="keywordtype">void</span>  background_image(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; sprite_name_or_none, Ogre::Real widthClip, Ogre::Real heightClip)
 <a name="l01712"></a>01712     {
 <a name="l01713"></a>01713      <span class="keywordflow">if</span> (sprite_name_or_none.length() == 0 || sprite_name_or_none == <span class="stringliteral">&quot;none&quot;</span>)
 <a name="l01714"></a>01714      {
@@ -1774,7 +1774,7 @@
 <a name="l01743"></a>01743 <span class="comment">        note.</span>
 <a name="l01744"></a>01744 <span class="comment">            To remove the image pass on &quot;none&quot; or a empty string</span>
 <a name="l01745"></a>01745 <span class="comment">    */</span>
-<a name="l01746"></a>01746     <span class="keywordtype">void</span>  background_image(<span class="keyword">const</span> Ogre::String&amp; sprite_name_or_none)
+<a name="l01746"></a>01746     <span class="keywordtype">void</span>  background_image(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; sprite_name_or_none)
 <a name="l01747"></a>01747     {
 <a name="l01748"></a>01748      <span class="keywordflow">if</span> (sprite_name_or_none.length() == 0 || sprite_name_or_none == <span class="stringliteral">&quot;none&quot;</span>)
 <a name="l01749"></a>01749      {
@@ -2153,7 +2153,7 @@
 <a name="l02122"></a>02122 <span class="comment">        note.</span>
 <a name="l02123"></a>02123 <span class="comment">            Use a empty string or &quot;none&quot; to clear.</span>
 <a name="l02124"></a>02124 <span class="comment">    */</span>
-<a name="l02125"></a>02125     <span class="keywordtype">void</span>  background_image(<span class="keyword">const</span> Ogre::String&amp; name_or_none)
+<a name="l02125"></a>02125     <span class="keywordtype">void</span>  background_image(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; name_or_none)
 <a name="l02126"></a>02126     {
 <a name="l02127"></a>02127      <span class="keywordflow">if</span> (name_or_none.size() == 0 || name_or_none == <span class="stringliteral">&quot;none&quot;</span>)
 <a name="l02128"></a>02128       mSprite = 0;
@@ -2803,7 +2803,7 @@
 <a name="l02772"></a>02772 <span class="comment">        desc.</span>
 <a name="l02773"></a>02773 <span class="comment">            Get the text indented to show.</span>
 <a name="l02774"></a>02774 <span class="comment">    */</span>
-<a name="l02775"></a>02775     Ogre::String  text()<span class="keyword"> const</span>
+<a name="l02775"></a>02775     <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>  text()<span class="keyword"> const</span>
 <a name="l02776"></a>02776 <span class="keyword">    </span>{
 <a name="l02777"></a>02777      <span class="keywordflow">return</span> mText;
 <a name="l02778"></a>02778     }
@@ -2812,7 +2812,7 @@
 <a name="l02781"></a>02781 <span class="comment">        desc.</span>
 <a name="l02782"></a>02782 <span class="comment">            Set the text to show.</span>
 <a name="l02783"></a>02783 <span class="comment">    */</span>
-<a name="l02784"></a>02784     <span class="keywordtype">void</span>  text(<span class="keyword">const</span> Ogre::String&amp; text)
+<a name="l02784"></a>02784     <span class="keywordtype">void</span>  text(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; text)
 <a name="l02785"></a>02785     {
 <a name="l02786"></a>02786      mText = text;
 <a name="l02787"></a>02787      mDirty = <span class="keyword">true</span>;
@@ -3040,7 +3040,7 @@
 <a name="l03009"></a>03009 
 <a name="l03010"></a>03010     <span class="keywordtype">void</span>               _calculateDrawSize(Ogre::Vector2&amp; size);
 <a name="l03011"></a>03011 
-<a name="l03012"></a>03012     Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> Ogre::String&amp; caption, Layer* parent);
+<a name="l03012"></a>03012     Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; caption, Layer* parent);
 <a name="l03013"></a>03013 
 <a name="l03014"></a>03014    ~Caption() {}
 <a name="l03015"></a>03015 
@@ -3051,7 +3051,7 @@
 <a name="l03020"></a>03020     Ogre::Real            mLeft, mTop, mWidth, mHeight;
 <a name="l03021"></a>03021     TextAlignment         mAlignment;
 <a name="l03022"></a>03022     VerticalAlignment     mVerticalAlign;
-<a name="l03023"></a>03023     Ogre::String          mText;
+<a name="l03023"></a>03023     <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>          mText;
 <a name="l03024"></a>03024     Ogre::ColourValue     mColour, mBackground;
 <a name="l03025"></a>03025     <span class="keywordtype">bool</span>                  mDirty;
 <a name="l03026"></a>03026     <span class="keywordtype">bool</span>                  mVisible;
@@ -3174,7 +3174,7 @@
 <a name="l03143"></a>03143 <span class="comment">        desc.</span>
 <a name="l03144"></a>03144 <span class="comment">            Get the text indented to show.</span>
 <a name="l03145"></a>03145 <span class="comment">    */</span>
-<a name="l03146"></a>03146     Ogre::String  text()<span class="keyword"> const</span>
+<a name="l03146"></a>03146     <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>  text()<span class="keyword"> const</span>
 <a name="l03147"></a>03147 <span class="keyword">    </span>{
 <a name="l03148"></a>03148      <span class="keywordflow">return</span> mText;
 <a name="l03149"></a>03149     }
@@ -3183,7 +3183,7 @@
 <a name="l03152"></a>03152 <span class="comment">        desc.</span>
 <a name="l03153"></a>03153 <span class="comment">            Set the text to show.</span>
 <a name="l03154"></a>03154 <span class="comment">    */</span>
-<a name="l03155"></a>03155     <span class="keywordtype">void</span>  text(<span class="keyword">const</span> Ogre::String&amp; text)
+<a name="l03155"></a>03155     <span class="keywordtype">void</span>  text(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; text)
 <a name="l03156"></a>03156     {
 <a name="l03157"></a>03157      mText = text;
 <a name="l03158"></a>03158      mTextDirty = <span class="keyword">true</span>;
@@ -3299,7 +3299,7 @@
 <a name="l03268"></a>03268 
 <a name="l03269"></a>03269    <span class="keyword">protected</span>:
 <a name="l03270"></a>03270 
-<a name="l03271"></a>03271     MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> Ogre::String&amp; text, Layer* parent);
+<a name="l03271"></a>03271     MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; text, Layer* parent);
 <a name="l03272"></a>03272 
 <a name="l03273"></a>03273    ~MarkupText() {}
 <a name="l03274"></a>03274 
@@ -3316,7 +3316,7 @@
 <a name="l03285"></a>03285     Layer*                mLayer;
 <a name="l03286"></a>03286     GlyphData*            mDefaultGlyphData;
 <a name="l03287"></a>03287     Ogre::Real            mLeft, mTop, mWidth, mHeight;
-<a name="l03288"></a>03288     Ogre::String          mText;
+<a name="l03288"></a>03288     <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>          mText;
 <a name="l03289"></a>03289     Ogre::ColourValue     mBackground;
 <a name="l03290"></a>03290     <span class="keywordtype">bool</span>                  mDirty, mTextDirty;
 <a name="l03291"></a>03291     <span class="keywordtype">bool</span>                  mVisible;
@@ -3333,7 +3333,7 @@
 <a name="l03302"></a>03302 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

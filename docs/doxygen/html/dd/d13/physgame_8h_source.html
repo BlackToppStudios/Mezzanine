@@ -79,81 +79,93 @@
 <a name="l00048"></a>00048 <span class="comment">/// care about the internals of our project.</span>
 <a name="l00049"></a>00049 <span class="comment">///////////////////////////////////////////////////////////////////////////////</span>
 <a name="l00050"></a>00050 <span class="comment"></span>
-<a name="l00051"></a>00051 <span class="comment">// We put headers in our headers so we can include while we include</span>
-<a name="l00052"></a>00052 <span class="preprocessor">#include &quot;actorbase.h&quot;</span>
-<a name="l00053"></a>00053 <span class="preprocessor">#include &quot;actorcontainerbase.h&quot;</span>
-<a name="l00054"></a>00054 <span class="preprocessor">#include &quot;actorcontainervector.h&quot;</span>
-<a name="l00055"></a>00055 <span class="preprocessor">#include &quot;actorgraphicssettings.h&quot;</span>
-<a name="l00056"></a>00056 <span class="preprocessor">#include &quot;actorragdoll.h&quot;</span>
-<a name="l00057"></a>00057 <span class="preprocessor">#include &quot;actorrigid.h&quot;</span>
-<a name="l00058"></a>00058 <span class="preprocessor">#include &quot;actorsoft.h&quot;</span>
-<a name="l00059"></a>00059 <span class="preprocessor">#include &quot;actorterrain.h&quot;</span>
-<a name="l00060"></a>00060 <span class="preprocessor">#include &quot;areaeffect.h&quot;</span>
-<a name="l00061"></a>00061 <span class="preprocessor">#include &quot;camera.h&quot;</span>
-<a name="l00062"></a>00062 <span class="preprocessor">#include &quot;cameramanager.h&quot;</span>
-<a name="l00063"></a>00063 <span class="preprocessor">#include &quot;colourvalue.h&quot;</span>
-<a name="l00064"></a>00064 <span class="preprocessor">#include &quot;constraint.h&quot;</span>
-<a name="l00065"></a>00065 <span class="preprocessor">#include &quot;crossplatform.h&quot;</span>
-<a name="l00066"></a>00066 <span class="preprocessor">#include &quot;<a class="code" href="../../d5/d4d/crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s...">crossplatformexport.h</a>&quot;</span>
-<a name="l00067"></a>00067 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>
-<a name="l00068"></a>00068 <span class="preprocessor">#include &quot;enumerations.h&quot;</span>
-<a name="l00069"></a>00069 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>
-<a name="l00070"></a>00070 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>
-<a name="l00071"></a>00071 <span class="preprocessor">#include &quot;eventgamewindow.h&quot;</span>
-<a name="l00072"></a>00072 <span class="preprocessor">#include &quot;eventquit.h&quot;</span>
-<a name="l00073"></a>00073 <span class="preprocessor">#include &quot;eventrendertime.h&quot;</span>
-<a name="l00074"></a>00074 <span class="preprocessor">#include &quot;eventuserinput.h&quot;</span>
-<a name="l00075"></a>00075 <span class="preprocessor">#include &quot;exception.h&quot;</span>
-<a name="l00076"></a>00076 <span class="preprocessor">#include &quot;extendedtimer.h&quot;</span>
-<a name="l00077"></a>00077 <span class="preprocessor">#include &quot;graphicsmanager.h&quot;</span>
-<a name="l00078"></a>00078 <span class="preprocessor">#include &quot;inputquerytool.h&quot;</span>
-<a name="l00079"></a>00079 <span class="preprocessor">#include &quot;light.h&quot;</span>
-<a name="l00080"></a>00080 <span class="preprocessor">#include &quot;linegroup.h&quot;</span>
-<a name="l00081"></a>00081 <span class="preprocessor">#include &quot;managerbase.h&quot;</span>
-<a name="l00082"></a>00082 <span class="preprocessor">#include &quot;meshgenerator.h&quot;</span>
-<a name="l00083"></a>00083 <span class="preprocessor">#include &quot;metacode.h&quot;</span>
-<a name="l00084"></a>00084 <span class="preprocessor">#include &quot;physicsmanager.h&quot;</span>
-<a name="l00085"></a>00085 <span class="preprocessor">#include &quot;plane.h&quot;</span>
-<a name="l00086"></a>00086 <span class="preprocessor">#include &quot;quaternion.h&quot;</span>
-<a name="l00087"></a>00087 <span class="preprocessor">#include &quot;ray.h&quot;</span>
-<a name="l00088"></a>00088 <span class="preprocessor">#include &quot;resourceinputstream.h&quot;</span>
-<a name="l00089"></a>00089 <span class="preprocessor">#include &quot;resourcemanager.h&quot;</span>
-<a name="l00090"></a>00090 <span class="preprocessor">#include &quot;scenemanager.h&quot;</span>
-<a name="l00091"></a>00091 <span class="preprocessor">#include &quot;simpletimer.h&quot;</span>
-<a name="l00092"></a>00092 <span class="preprocessor">#include &quot;sound.h&quot;</span>
-<a name="l00093"></a>00093 <span class="preprocessor">#include &quot;soundlistener.h&quot;</span>
-<a name="l00094"></a>00094 <span class="preprocessor">#include &quot;soundmanager.h&quot;</span>
-<a name="l00095"></a>00095 <span class="preprocessor">#include &quot;timermanager.h&quot;</span>
-<a name="l00096"></a>00096 <span class="preprocessor">#include &quot;uibutton.h&quot;</span>
-<a name="l00097"></a>00097 <span class="preprocessor">#include &quot;uibuttonlistbox.h&quot;</span>
-<a name="l00098"></a>00098 <span class="preprocessor">#include &quot;uicaption.h&quot;</span>
-<a name="l00099"></a>00099 <span class="preprocessor">#include &quot;uicheckbox.h&quot;</span>
-<a name="l00100"></a>00100 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
-<a name="l00101"></a>00101 <span class="preprocessor">#include &quot;uilinelist.h&quot;</span>
-<a name="l00102"></a>00102 <span class="preprocessor">#include &quot;uilistbox.h&quot;</span>
-<a name="l00103"></a>00103 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
-<a name="l00104"></a>00104 <span class="preprocessor">#include &quot;uimarkuptext.h&quot;</span>
-<a name="l00105"></a>00105 <span class="preprocessor">#include &quot;uimenu.h&quot;</span>
-<a name="l00106"></a>00106 <span class="preprocessor">#include &quot;uimenuwindow.h&quot;</span>
-<a name="l00107"></a>00107 <span class="preprocessor">#include &quot;uirectangle.h&quot;</span>
-<a name="l00108"></a>00108 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
-<a name="l00109"></a>00109 <span class="preprocessor">#include &quot;uiscrollbar.h&quot;</span>
-<a name="l00110"></a>00110 <span class="preprocessor">#include &quot;uitextbutton.h&quot;</span>
-<a name="l00111"></a>00111 <span class="preprocessor">#include &quot;uiwidget.h&quot;</span>
-<a name="l00112"></a>00112 <span class="preprocessor">#include &quot;uiwindow.h&quot;</span>
-<a name="l00113"></a>00113 <span class="preprocessor">#include &quot;vector2.h&quot;</span>
-<a name="l00114"></a>00114 <span class="preprocessor">#include &quot;vector3.h&quot;</span>
-<a name="l00115"></a>00115 <span class="preprocessor">#include &quot;vector3wactor.h&quot;</span>
-<a name="l00116"></a>00116 <span class="preprocessor">#include &quot;world.h&quot;</span>
-<a name="l00117"></a>00117 <span class="preprocessor">#include &quot;worldgetset.h&quot;</span>
-<a name="l00118"></a>00118 <span class="preprocessor">#include &quot;worldquerytool.h&quot;</span>
-<a name="l00119"></a>00119 <span class="preprocessor">#include &quot;<a class="code" href="../../d0/d62/xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a>&quot;</span>
-<a name="l00120"></a>00120 <span class="preprocessor">#include &quot;<a class="code" href="../../d1/d99/xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system.">xmldoc.h</a>&quot;</span>
-<a name="l00121"></a>00121 
-<a name="l00122"></a>00122 <span class="preprocessor">#endif</span>
+<a name="l00051"></a>00051 
+<a name="l00052"></a>00052                                         <span class="comment">// The remarks in Column 41 are use to help with serializing and deserializing</span>
+<a name="l00053"></a>00053 
+<a name="l00054"></a>00054 <span class="comment">// We put headers in our headers so we can include while we include</span>
+<a name="l00055"></a>00055 <span class="preprocessor">#include &quot;actorbase.h&quot;</span>
+<a name="l00056"></a>00056 <span class="preprocessor">#include &quot;actorcontainerbase.h&quot;</span>
+<a name="l00057"></a>00057 <span class="preprocessor">#include &quot;actorcontainervector.h&quot;</span>
+<a name="l00058"></a>00058 <span class="preprocessor">#include &quot;actorgraphicssettings.h&quot;</span>
+<a name="l00059"></a>00059 <span class="preprocessor">#include &quot;actorragdoll.h&quot;</span>
+<a name="l00060"></a>00060 <span class="preprocessor">#include &quot;actorrigid.h&quot;</span>
+<a name="l00061"></a>00061 <span class="preprocessor">#include &quot;actorsoft.h&quot;</span>
+<a name="l00062"></a>00062 <span class="preprocessor">#include &quot;actorterrain.h&quot;</span>
+<a name="l00063"></a>00063 <span class="preprocessor">#include &quot;areaeffect.h&quot;</span>
+<a name="l00064"></a>00064 <span class="preprocessor">#include &quot;attachable.h&quot;</span>                 <span class="comment">// Target2</span>
+<a name="l00065"></a>00065 <span class="preprocessor">#include &quot;camera.h&quot;</span>                     <span class="comment">// In progress</span>
+<a name="l00066"></a>00066 <span class="preprocessor">#include &quot;cameramanager.h&quot;</span>
+<a name="l00067"></a>00067 <span class="preprocessor">#include &quot;colourvalue.h&quot;</span>                <span class="comment">// done</span>
+<a name="l00068"></a>00068 <span class="preprocessor">#include &quot;constraint.h&quot;</span>
+<a name="l00069"></a>00069 <span class="preprocessor">#include &quot;crossplatform.h&quot;</span>              <span class="comment">// nothing to do</span>
+<a name="l00070"></a>00070 <span class="preprocessor">#include &quot;<a class="code" href="../../d5/d4d/crossplatformexport_8h.html" title="This file is used on some platforms to determine what data should be read and written to and from a s...">crossplatformexport.h</a>&quot;</span>        <span class="comment">// nothing to do</span>
+<a name="l00071"></a>00071 <span class="preprocessor">#include &quot;datatypes.h&quot;</span>                  <span class="comment">// nothing to do</span>
+<a name="l00072"></a>00072 <span class="preprocessor">#include &quot;enumerations.h&quot;</span>               <span class="comment">// nothing to do</span>
+<a name="l00073"></a>00073 <span class="preprocessor">#include &quot;eventbase.h&quot;</span>                  <span class="comment">// Done output only</span>
+<a name="l00074"></a>00074 <span class="preprocessor">#include &quot;eventcollision.h&quot;</span>             <span class="comment">// done</span>
+<a name="l00075"></a>00075 <span class="preprocessor">#include &quot;eventgamewindow.h&quot;</span>            <span class="comment">// done</span>
+<a name="l00076"></a>00076 <span class="preprocessor">#include &quot;eventmanager.h&quot;</span>               <span class="comment">// done</span>
+<a name="l00077"></a>00077 <span class="preprocessor">#include &quot;eventquit.h&quot;</span>                  <span class="comment">// done</span>
+<a name="l00078"></a>00078 <span class="preprocessor">#include &quot;eventrendertime.h&quot;</span>            <span class="comment">// done</span>
+<a name="l00079"></a>00079 <span class="preprocessor">#include &quot;eventuserinput.h&quot;</span>             <span class="comment">// done</span>
+<a name="l00080"></a>00080 <span class="preprocessor">#include &quot;exception.h&quot;</span>
+<a name="l00081"></a>00081 <span class="preprocessor">#include &quot;extendedtimer.h&quot;</span>
+<a name="l00082"></a>00082 <span class="preprocessor">#include &quot;gamewindow.h&quot;</span>
+<a name="l00083"></a>00083 <span class="preprocessor">#include &quot;graphicsmanager.h&quot;</span>
+<a name="l00084"></a>00084 <span class="preprocessor">#include &quot;graphicssettings.h&quot;</span>
+<a name="l00085"></a>00085 <span class="preprocessor">#include &quot;inputquerytool.h&quot;</span>
+<a name="l00086"></a>00086 <span class="preprocessor">#include &quot;light.h&quot;</span>                      <span class="comment">// Target</span>
+<a name="l00087"></a>00087 <span class="preprocessor">#include &quot;linegroup.h&quot;</span>
+<a name="l00088"></a>00088 <span class="preprocessor">#include &quot;managerbase.h&quot;</span>
+<a name="l00089"></a>00089 <span class="preprocessor">#include &quot;meshgenerator.h&quot;</span>
+<a name="l00090"></a>00090 <span class="preprocessor">#include &quot;metacode.h&quot;</span>                   <span class="comment">// done</span>
+<a name="l00091"></a>00091 <span class="preprocessor">#include &quot;particleeffect.h&quot;</span>             <span class="comment">// Target</span>
+<a name="l00092"></a>00092 <span class="preprocessor">#include &quot;physicsmanager.h&quot;</span>
+<a name="l00093"></a>00093 <span class="preprocessor">#include &quot;plane.h&quot;</span>                      <span class="comment">// done</span>
+<a name="l00094"></a>00094 <span class="preprocessor">#include &quot;quaternion.h&quot;</span>                 <span class="comment">// in progress</span>
+<a name="l00095"></a>00095 <span class="preprocessor">#include &quot;ray.h&quot;</span>
+<a name="l00096"></a>00096 <span class="preprocessor">#include &quot;resourceinputstream.h&quot;</span>
+<a name="l00097"></a>00097 <span class="preprocessor">#include &quot;resourcemanager.h&quot;</span>
+<a name="l00098"></a>00098 <span class="preprocessor">#include &quot;scenemanager.h&quot;</span>
+<a name="l00099"></a>00099 <span class="preprocessor">#include &quot;simpletimer.h&quot;</span>
+<a name="l00100"></a>00100 <span class="preprocessor">#include &quot;sound.h&quot;</span>
+<a name="l00101"></a>00101 <span class="preprocessor">#include &quot;soundlistener.h&quot;</span>
+<a name="l00102"></a>00102 <span class="preprocessor">#include &quot;soundmanager.h&quot;</span>
+<a name="l00103"></a>00103 <span class="preprocessor">#include &quot;timer.h&quot;</span>
+<a name="l00104"></a>00104 <span class="preprocessor">#include &quot;timermanager.h&quot;</span>
+<a name="l00105"></a>00105 <span class="preprocessor">#include &quot;uibutton.h&quot;</span>
+<a name="l00106"></a>00106 <span class="preprocessor">#include &quot;uibuttonlistbox.h&quot;</span>
+<a name="l00107"></a>00107 <span class="preprocessor">#include &quot;uicaption.h&quot;</span>
+<a name="l00108"></a>00108 <span class="preprocessor">#include &quot;uicheckbox.h&quot;</span>
+<a name="l00109"></a>00109 <span class="preprocessor">#include &quot;uilayer.h&quot;</span>
+<a name="l00110"></a>00110 <span class="preprocessor">#include &quot;uilinelist.h&quot;</span>
+<a name="l00111"></a>00111 <span class="preprocessor">#include &quot;uilistbox.h&quot;</span>
+<a name="l00112"></a>00112 <span class="preprocessor">#include &quot;uimanager.h&quot;</span>
+<a name="l00113"></a>00113 <span class="preprocessor">#include &quot;uimarkuptext.h&quot;</span>
+<a name="l00114"></a>00114 <span class="preprocessor">#include &quot;uimenu.h&quot;</span>
+<a name="l00115"></a>00115 <span class="preprocessor">#include &quot;uimenuwindow.h&quot;</span>
+<a name="l00116"></a>00116 <span class="preprocessor">#include &quot;uirectangle.h&quot;</span>
+<a name="l00117"></a>00117 <span class="preprocessor">#include &quot;uiresizinginfo.h&quot;</span>
+<a name="l00118"></a>00118 <span class="preprocessor">#include &quot;uiscreen.h&quot;</span>
+<a name="l00119"></a>00119 <span class="preprocessor">#include &quot;uiscrollbar.h&quot;</span>
+<a name="l00120"></a>00120 <span class="preprocessor">#include &quot;uitextbutton.h&quot;</span>
+<a name="l00121"></a>00121 <span class="preprocessor">#include &quot;uiwidget.h&quot;</span>
+<a name="l00122"></a>00122 <span class="preprocessor">#include &quot;uiwindow.h&quot;</span>
+<a name="l00123"></a>00123 <span class="preprocessor">#include &quot;vector2.h&quot;</span>                    <span class="comment">// done</span>
+<a name="l00124"></a>00124 <span class="preprocessor">#include &quot;vector3.h&quot;</span>                    <span class="comment">// done</span>
+<a name="l00125"></a>00125 <span class="preprocessor">#include &quot;vector3wactor.h&quot;</span>
+<a name="l00126"></a>00126 <span class="preprocessor">#include &quot;viewport.h&quot;</span>
+<a name="l00127"></a>00127 <span class="preprocessor">#include &quot;world.h&quot;</span>
+<a name="l00128"></a>00128 <span class="preprocessor">#include &quot;worldgetset.h&quot;</span>
+<a name="l00129"></a>00129 <span class="preprocessor">#include &quot;worldnode.h&quot;</span>                  <span class="comment">// Target2</span>
+<a name="l00130"></a>00130 <span class="preprocessor">#include &quot;worldquerytool.h&quot;</span>             <span class="comment">// nothing to do</span>
+<a name="l00131"></a>00131 <span class="preprocessor">#include &quot;<a class="code" href="../../d0/d62/xml_8h.html" title="This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty int...">xml.h</a>&quot;</span>                        <span class="comment">// nothing to do</span>
+<a name="l00132"></a>00132 <span class="preprocessor">#include &quot;<a class="code" href="../../d1/d99/xmldoc_8h.html" title="The Doxygen documentation and minor tools to assist with the XML system.">xmldoc.h</a>&quot;</span>                     <span class="comment">// nothing to do</span>
+<a name="l00133"></a>00133 
+<a name="l00134"></a>00134 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

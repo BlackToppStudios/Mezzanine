@@ -37,6 +37,9 @@
    Joseph Toppi - toppij@gmail.com 
    John Blackwood - makoenergy02@gmail.com 
 */ 
+ 
+/// @cond 0 
+ 
 #ifdef PHYSXML 
 /* 
  * 
@@ -9656,3 +9659,5 @@ namespace phys
  * OTHER DEALINGS IN THE SOFTWARE. 
  */ 
 #endif // \PHYSXML 
+ 
+/// @endcond 

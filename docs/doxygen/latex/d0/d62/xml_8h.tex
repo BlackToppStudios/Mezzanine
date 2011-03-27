@@ -16,7 +16,7 @@ This is where bulk of the XML subsystem is declare, there are numerous class tha
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classphys_1_1xml_1_1Writer}{phys::xml::Writer}
-\begin{DoxyCompactList}\small\item\em Interface for node printing (see Node::print). \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Interface for node printing (see \hyperlink{classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}{Node::Print}). \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1WriterFile}{phys::xml::WriterFile}
 \begin{DoxyCompactList}\small\item\em An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing to FILEs as defined in stdio. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1WriterStream}{phys::xml::WriterStream}
@@ -61,7 +61,7 @@ namespace \hyperlink{namespacephys}{phys}
 namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
 
 
-\begin{DoxyCompactList}\small\item\em This is where bulk of the XML subsystem is declare, there are numerous class that are all tighlty integrated so one file seemed appropriate. \item\end{DoxyCompactList}
+\begin{DoxyCompactList}\small\item\em This is where bulk of the XML subsystem resides, there are numerous class that are all tighlty integrated so one file seemed appropriate. \item\end{DoxyCompactList}
 
 \end{DoxyCompactItemize}
 \subsection*{Defines}
@@ -69,7 +69,10 @@ namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
 \item 
 \#define \hyperlink{xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}{\_\-XML\_\-H}
 \begin{DoxyCompactList}\small\item\em Prevents accidental loading of the file \hyperlink{xml_8h}{xml.h} multiple times. \item\end{DoxyCompactList}\item 
-\#define \hyperlink{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{XML\_\-DEPRECATED}
+\hypertarget{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{
+\#define \hyperlink{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{XML\_\-DEPRECATED}}
+\label{d0/d62/xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}
+
 \begin{DoxyCompactList}\small\item\em Used to mark XML internals as deprecated at the compiler level. \item\end{DoxyCompactList}\item 
 \#define \hyperlink{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{XML\_\-TEXT}(t)~t
 \begin{DoxyCompactList}\small\item\em Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time. \item\end{DoxyCompactList}\item 
@@ -78,16 +81,10 @@ namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{
-typedef Character {\bfseries phys::xml::char\_\-t}}
-\label{d9/d27/namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}
-
-\item 
-\hypertarget{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{
-typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR $>$, std::allocator$<$ XML\_\-CHAR $>$ $>$ {\bfseries phys::xml::String}}
-\label{d9/d27/namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}
-
-\item 
+typedef Character \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{phys::xml::char\_\-t}
+\begin{DoxyCompactList}\small\item\em Used to represent a UTF8 code point, char, or wchar\_\-t depending on how compiled. \item\end{DoxyCompactList}\item 
+typedef std::basic\_\-string$<$ XML\_\-CHAR, std::char\_\-traits$<$ XML\_\-CHAR $>$, std::allocator$<$ XML\_\-CHAR $>$ $>$ \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{phys::xml::String}
+\begin{DoxyCompactList}\small\item\em Used to represent a string of UTF8 code point, char, or wchar\_\-t depending on how compiled. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{
 typedef void $\ast$($\ast$ \hyperlink{namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}{phys::xml::AllocationFunction} )(size\_\-t size)}
 \label{d9/d27/namespacephys_1_1xml_a6d772c4cf52d017d4d6ad68ddcbd493f}
@@ -162,11 +159,11 @@ enum \hyperlink{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{phys::xm
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-std::string PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2d4bf28045544dc7350827f568cad46f}{phys::xml::AsUtf8} (const wchar\_\-t $\ast$str)
+std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2d4bf28045544dc7350827f568cad46f}{phys::xml::AsUtf8} (const wchar\_\-t $\ast$str)
 \begin{DoxyCompactList}\small\item\em Convert a c-\/style string of wchar\_\-t to std::string containing UTF8. \item\end{DoxyCompactList}\item 
 std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_aa3d160a2965f60bc3b2f019be6c7d038}{phys::xml::AsUtf8} (const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&str)
 \begin{DoxyCompactList}\small\item\em Convert a std::wstring to a UTF8 std::string. \item\end{DoxyCompactList}\item 
-std::wstring PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a0a57ef612f499a03733ca18d0e4f0c4f}{phys::xml::AsWide} (const char $\ast$str)
+std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a0a57ef612f499a03733ca18d0e4f0c4f}{phys::xml::AsWide} (const char $\ast$str)
 \begin{DoxyCompactList}\small\item\em Convert a Convert a c-\/style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
 std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a7ca79461d40476ea4cde4f54dadffff4}{phys::xml::AsWide} (const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&str)
 \begin{DoxyCompactList}\small\item\em Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). \item\end{DoxyCompactList}\item 
@@ -283,17 +280,6 @@ Prevents accidental loading of the file \hyperlink{xml_8h}{xml.h} multiple times
 
 
 Links the Pugi character datatype to match the Physgame phys::Characterdatatype. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-\hypertarget{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{
-\index{xml.h@{xml.h}!XML\_\-DEPRECATED@{XML\_\-DEPRECATED}}
-\index{XML\_\-DEPRECATED@{XML\_\-DEPRECATED}!xml.h@{xml.h}}
-\subsubsection[{XML\_\-DEPRECATED}]{\setlength{\rightskip}{0pt plus 5cm}\#define XML\_\-DEPRECATED}}
-\label{d0/d62/xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}
-
-
-Used to mark XML internals as deprecated at the compiler level. 
 
 \begin{DoxyInternal}{For internal use only.}
 \end{DoxyInternal}

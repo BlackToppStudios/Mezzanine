@@ -56,7 +56,7 @@ namespace phys
     namespace UI
     {
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class phys::UI::Linelist
+        /// @class LineList
         /// @headerfile uilinelist.h
         /// @brief This is an object comprised of a series of lines.
         /// @details This class isn't an object, but rather just a series of lines.  As such it

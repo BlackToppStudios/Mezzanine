@@ -47,7 +47,7 @@
 namespace phys
 {
 
-    /// @file datatype.cpp
+    /// @file datatypes.cpp
     /// @brief Holds utilities for converting, concatenating, manipulating and working with simple datatypes
 
     String StringCat(const String& Front, const String& Back)

@@ -63,6 +63,9 @@ namespace phys
     class PHYS_LIB Quaternion
     {
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            //  Data Members
+
             /// @brief Rotation on the X Axis.
             Real X;
             /// @brief Rotation on the Y Axis.
@@ -71,6 +74,9 @@ namespace phys
             Real Z;
             /// @brief Rotation on the W Axis.
             Real W;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Constructors
 
             /// @brief Blank Constructor.
             /// @details Basic no-initialization constructor.
@@ -87,16 +93,24 @@ namespace phys
             /// @brief Bullet Quaternion constructor.
             /// @details Constructor that sets all values to match the Bullet quaternion.
             /// @param Theirs The quaternion to be copied to make this quaternion.
-            Quaternion(const btQuaternion& Theirs);
+            explicit Quaternion(const btQuaternion& Theirs);
 
             /// @brief Ogre Quaternion constructor.
             /// @details Constructor that sets all values to match the Ogre quaternion.
             /// @param Theirs The quaternion to be copied to make this quaternion.
-            Quaternion(const Ogre::Quaternion& Theirs);
+            explicit Quaternion(const Ogre::Quaternion& Theirs);
+
+            /// @brief Copy Constructor
+            /// @param Other The Quaternion to copy
+            Quaternion(const phys::Quaternion& Other);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Explicit Conversion
 
             /// @brief Gets a Bullet quaternion.
             /// @details Creates a Bullet quaternion with values equal to this class and returns it.
             /// @param normalize Whether or not you want this function to normalize the quaternion for you.
+            /// @return A btQuaternion that has the same contents as this phys::Quaternion.
             btQuaternion GetBulletQuaternion(bool normalize=false) const;
 
             /// @brief Copies an existing Bullet quaternion.
@@ -115,11 +129,161 @@ namespace phys
             /// and set the values of this class to be the same.
             /// @param Ours The quaternion to be extracted.
             void ExtractOgreQuaternion(const Ogre::Quaternion &Ours);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Left Hand Basic Arithmetic Operators
+
+            /// @brief Addition operator with phys::Quaternion and phys::Quaternion.
+            /// @param Other The other Quaternion to add to this one.
+            /// @return A phys::Quaternion with the sum.
+            Quaternion operator+ (const phys::Quaternion& Other) const;
+
+            /// @brief Addition operator with phys::Quaternion and Ogre::Quaternion.
+            /// @param Other The other Quaternion to add to this one.
+            /// @return A phys::Quaternion with the sum.
+            Quaternion operator+ (const Ogre::Quaternion& Other) const;
+
+            /// @brief Addition operator with phys::Quaternion and btQuaternion.
+            /// @param Other The other Quaternion to add to this one.
+            /// @return A phys::Quaternion with the sum.
+            Quaternion operator+ (const btQuaternion& Other) const;
+
+            /// @brief Subtraction operator with phys::Quaternion and phys::Quaternion.
+            /// @param Other The other Quaternion to subtract from this one.
+            /// @return A phys::Quaternion with the difference.
+            Quaternion operator- (const phys::Quaternion& Other) const;
+
+            /// @brief Subtraction operator with phys::Quaternion and Ogre::Quaternion.
+            /// @param Other The other Quaternion to subtract from this one.
+            /// @return A phys::Quaternion with the difference.
+            Quaternion operator- (const Ogre::Quaternion& Other) const;
+
+            /// @brief Subtraction operator with phys::Quaternion and btQuaternion.
+            /// @param Other The other Quaternion to subtract from this one.
+            /// @return A phys::Quaternion with the difference.
+            Quaternion operator- (const btQuaternion& Other) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Increment and Decrement Operators
+
+            /// @brief Incrementing operator with phys::Quaternion and phys::Quaternion.
+            /// @param Other The other Quaternion to add to this one.
+            /// @return This phys::Quaternion with the sum.
+            Quaternion& operator+= (const phys::Quaternion& Other);
+
+            /// @brief Incrementing operator with phys::Quaternion and Ogre::Quaternion.
+            /// @param Other The other Quaternion to add to this one.
+            /// @return This phys::Quaternion with the sum.
+            Quaternion& operator+= (const Ogre::Quaternion& Other);
+
+            /// @brief Incrementing operator with phys::Quaternion and btQuaternion.
+            /// @param Other The other Quaternion to add to this one.
+            /// @return This phys::Quaternion with the sum.
+            Quaternion& operator+= (const btQuaternion& Other);
+
+            /// @brief Decrementing operator with phys::Quaternion and phys::Quaternion.
+            /// @param Other The other Quaternion to subtract from this one.
+            /// @return This phys::Quaternion with the difference.
+            Quaternion& operator-= (const phys::Quaternion& Other);
+
+            /// @brief Decrementing operator with phys::Quaternion and Ogre::Quaternion.
+            /// @param Other The other Quaternion to subtract from this one.
+            /// @return This phys::Quaternion with the difference.
+            Quaternion& operator-= (const Ogre::Quaternion& Other);
+
+            /// @brief Decrementing operator with phys::Quaternion and btQuaternion.
+            /// @param Other The other Quaternion to subtract from this one.
+            /// @return This phys::Quaternion with the difference.
+            Quaternion& operator-= (const btQuaternion& Other);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Assignment Operators
+
+            /// @brief Assignment Operator from phys::Quaternion.
+            /// @brief Other The other quaternion to overwrite this one.
+            /// @return This Quaternion after being assigned fresh values.
+            Quaternion& operator= (const phys::Quaternion& Other);
+
+            /// @brief Assignment Operator from Ogre::Quaternion.
+            /// @brief Other The other quaternion to overwrite this one.
+            /// @return This Quaternion after being assigned fresh values.
+            Quaternion& operator= (const Ogre::Quaternion& Other);
+
+            /// @brief Assignment Operator from btQuaternion.
+            /// @brief Other The other quaternion to overwrite this one.
+            /// @return This Quaternion after being assigned fresh values.
+            Quaternion& operator= (const btQuaternion& Other);
+
     };
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+// Right Hand Arithmetic Operators
+
+/// @brief Addition operator with phys::Quaternion and Ogre::Quaternion.
+/// @param Other The first Quaternion to add.
+/// @param Other2 The phys::Quaternion to add.
+/// @return A phys::Quaternion with the sum.
+phys::Quaternion PHYS_LIB operator+ (const Ogre::Quaternion& Other, const phys::Quaternion& Other2);
+
+/// @brief Addition operator with phys::Quaternion and btQuaternion.
+/// @param Other The first Quaternion to add.
+/// @param Other2 The phys::Quaternion to add.
+/// @return A phys::Quaternion with the sum.
+phys::Quaternion PHYS_LIB operator+ (const btQuaternion& Other, const phys::Quaternion& Other2);
+
+/// @brief Subtraction operator with phys::Quaternion and Ogre::Quaternion.
+/// @param Other The first Quaternion to subtract from.
+/// @param Other2 The phys::Quaternion to subtract.
+/// @return A phys::Quaternion with the sum.
+phys::Quaternion PHYS_LIB operator- (const Ogre::Quaternion& Other, const phys::Quaternion& Other2);
+
+/// @brief Subtraction operator with phys::Quaternion and btQuaternion.
+/// @param Other The first Quaternion to subtract from.
+/// @param Other2 The phys::Quaternion to subtract.
+/// @return A phys::Quaternion with the sum.
+phys::Quaternion PHYS_LIB operator- (const btQuaternion& Other, const phys::Quaternion& Other2);
+
+
+///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
+
+/// @brief Conversion operator to btQuaternion.
+/// @param Other The Quaternion to store the fresh contents.
+/// @param Other2 The Quaternion to be converted.
+/// @return A btQuaternion containing the contents of the converted Quaternion.
+btQuaternion& PHYS_LIB operator<< ( btQuaternion& Other, const phys::Quaternion& Other2);
+
+/// @brief Conversion operator to btQuaternion.
+/// @param Other The Quaternion to store the fresh contents.
+/// @param Other2 The Quaternion to be converted.
+/// @return A btQuaternion containing the contents of the converted Quaternion.
+btQuaternion& PHYS_LIB operator<< ( btQuaternion& Other, const Ogre::Quaternion& Other2);
+
+/// @brief Conversion operator to phys::Quaternion.
+/// @param Other The Quaternion to store the fresh contents.
+/// @param Other2 The Quaternion to be converted.
+/// @return A phys::Quaternion containing the contents of the converted Quaternion.
+phys::Quaternion& PHYS_LIB operator<< ( phys::Quaternion& Other, const Ogre::Quaternion& Other2);
+
+/// @brief Conversion operator to btQuaternion.
+/// @param Other The Quaternion to store the fresh contents.
+/// @param Other2 The Quaternion to be converted.
+/// @return A btQuaternion containing the contents of the converted Quaternion.
+phys::Quaternion& PHYS_LIB operator<< ( phys::Quaternion& Other, const btQuaternion& Other2);
+
+/// @brief Conversion operator to Ogre::Quaternion.
+/// @param Other The Quaternion to store the fresh contents.
+/// @param Other2 The Quaternion to be converted.
+/// @return A Ogre::Quaternion containing the contents of the converted Quaternion.
+Ogre::Quaternion& PHYS_LIB operator<< ( Ogre::Quaternion& Other, const phys::Quaternion& Other2);
+
+/// @brief Conversion operator to Ogre::Quaternion.
+/// @param Other The Quaternion to store the fresh contents.
+/// @param Other2 The Quaternion to be converted.
+/// @return A Ogre::Quaternion containing the contents of the converted Quaternion.
+Ogre::Quaternion& PHYS_LIB operator<< ( Ogre::Quaternion& Other, const btQuaternion& Other2);
+
 
 /// @brief Used to Serialize an phys::Quaternion to a human readable stream
 /// @details If PHYSXML is disabled, this outputs to the format of [x,y,z,w], where x is replaced with the X value,

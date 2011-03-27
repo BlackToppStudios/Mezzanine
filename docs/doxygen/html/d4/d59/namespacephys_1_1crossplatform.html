@@ -58,8 +58,10 @@ Functions</h2></td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Renders the current world contents to the screen.  <a href="#a858c6c4155c4315d6eafb18cc30ce434"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#af34fd6dc13360417a87c579744932dce">GetPlatform</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the platform currently being run on.  <a href="#af34fd6dc13360417a87c579744932dce"></a><br/></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">void PHYS_LIB&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ad74953ea69d7b708261b3fc0fc623644">SanitizeWindowedRes</a> (<a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Width, <a class="el" href="../../df/dec/namespacephys.html#af7eb897198d265b8e868f45240230d5f">Real</a> &amp;Height)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets cleaned dimensions for a game window.  <a href="#ad74953ea69d7b708261b3fc0fc623644"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#ab8bf982a60b008f32c91c90354efc162">SanitizeWindowedRes</a> (const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;Width, const <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;Height, <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;ActualWidth, <a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a> &amp;ActualHeight)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets cleaned dimensions for a game window.  <a href="#ab8bf982a60b008f32c91c90354efc162"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d59/namespacephys_1_1crossplatform.html#aa13f8bf79ac9313095e9a1b935ef3a10">GetWorkingDir</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Get the working directory as a <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>.  <a href="#aa13f8bf79ac9313095e9a1b935ef3a10"></a><br/></td></tr>
 </table>
 <hr/><a name="_details"></a><h2>Detailed Description</h2>
 <p>All functionality that needs different implemenations per platform will go in here. </p>
@@ -186,6 +188,26 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="aa13f8bf79ac9313095e9a1b935ef3a10"></a><!-- doxytag: member="phys::crossplatform::GetWorkingDir" ref="aa13f8bf79ac9313095e9a1b935ef3a10" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> PHYS_LIB phys::crossplatform::GetWorkingDir </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Get the working directory as a <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a>. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>The Directory the game was called from (not nescessarilly the location of the executable), as a <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">phys::String</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a858c6c4155c4315d6eafb18cc30ce434"></a><!-- doxytag: member="phys::crossplatform::RenderPhysWorld" ref="a858c6c4155c4315d6eafb18cc30ce434" args="(Ogre::RenderWindow *TheOgreWindow, SDL_Window *SDLWindow)" -->
 <div class="memitem">
 <div class="memproto">
@@ -215,28 +237,41 @@ Functions</h2></td></tr>
 <p>This makes use of <a class="el" href="../../da/ddf/classphys_1_1World.html" title="This is the main entry point for the entire library.">World</a> internals to Render to the screen, So it is advised against calling this directly. Currently there is no known issue with calling this directly, but it is not thread safe and is run during the main loop at the aproppriate times. Currently this references Ogre systems, that makes this internal Handles the actual cross platform swapping of graphics buffers. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>TheWorld</em>&nbsp;</td><td>A pointer to the game window to be update to be rendered. This is considered an internal component </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>TheOgreWindow</em>&nbsp;</td><td>A pointer to the game window to be update to be rendered. This is considered an internal component </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>SDLWindow</em>&nbsp;</td><td>A pointer to the game window to be update to be rendered. This is considered an internal component </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="ad74953ea69d7b708261b3fc0fc623644"></a><!-- doxytag: member="phys::crossplatform::SanitizeWindowedRes" ref="ad74953ea69d7b708261b3fc0fc623644" args="(Real &amp;Width, Real &amp;Height)" -->
+<a class="anchor" id="ab8bf982a60b008f32c91c90354efc162"></a><!-- doxytag: member="phys::crossplatform::SanitizeWindowedRes" ref="ab8bf982a60b008f32c91c90354efc162" args="(const Whole &amp;Width, const Whole &amp;Height, Whole &amp;ActualWidth, Whole &amp;ActualHeight)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void PHYS_LIB phys::crossplatform::SanitizeWindowedRes </td>
           <td>(</td>
-          <td class="paramtype">Real &amp;&nbsp;</td>
+          <td class="paramtype">const Whole &amp;&nbsp;</td>
           <td class="paramname"> <em>Width</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Real &amp;&nbsp;</td>
-          <td class="paramname"> <em>Height</em></td><td>&nbsp;</td>
+          <td class="paramtype">const Whole &amp;&nbsp;</td>
+          <td class="paramname"> <em>Height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Whole &amp;&nbsp;</td>
+          <td class="paramname"> <em>ActualWidth</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Whole &amp;&nbsp;</td>
+          <td class="paramname"> <em>ActualHeight</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -250,8 +285,10 @@ Functions</h2></td></tr>
 <p>Gets cleaned dimensions for a game window. </p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table border="0" cellspacing="2" cellpadding="0">
-    <tr><td valign="top"></td><td valign="top"><em>Width</em>&nbsp;</td><td>The width of the client area. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>Height</em>&nbsp;</td><td>The Height of the client area. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Width</em>&nbsp;</td><td>The desired width of the window area. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>Height</em>&nbsp;</td><td>The desired height of the window area. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ActualWidth</em>&nbsp;</td><td>The modified value of the rendering width, after window decorations have been taken into account. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ActualHeight</em>&nbsp;</td><td>The modified value of the rendering height, after window decorations have been taken into account. </td></tr>
   </table>
   </dd>
 </dl>
@@ -286,7 +323,7 @@ Functions</h2></td></tr>
 </div>
 </div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:59 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:43:05 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

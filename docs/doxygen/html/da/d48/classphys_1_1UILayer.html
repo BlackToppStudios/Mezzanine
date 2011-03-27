@@ -50,13 +50,15 @@
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d48/classphys_1_1UILayer.html#aee4df9be8deb377bc7905c785ddf2819">UILayer</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;name, Gorilla::Layer *GLayer, Gorilla::Screen *GScreen)</td></tr>
-<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal constructor.  <a href="#aee4df9be8deb377bc7905c785ddf2819"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d48/classphys_1_1UILayer.html#a2ba5ae1bd83313646e18f7082c586c1f">UILayer</a> (const <a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;name, Gorilla::Layer *GLayer, <a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIScreen</a> *ParentScreen)</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Internal constructor.  <a href="#a2ba5ae1bd83313646e18f7082c586c1f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac09b13a0ebae1a2ed99f689c70ada5e5"></a><!-- doxytag: member="phys::UILayer::~UILayer" ref="ac09b13a0ebae1a2ed99f689c70ada5e5" args="()" -->
 &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d48/classphys_1_1UILayer.html#ac09b13a0ebae1a2ed99f689c70ada5e5">~UILayer</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Class destructor. <br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e">String</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d48/classphys_1_1UILayer.html#af69573dd43356fa8cf1672ac405f788e">GetName</a> ()</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the name of this layer.  <a href="#af69573dd43356fa8cf1672ac405f788e"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIScreen</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d48/classphys_1_1UILayer.html#a1eeb2847ca5a3b71d8164c0dd1e1ec6c">GetParent</a> ()</td></tr>
+<tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the parent screen of this layer.  <a href="#a1eeb2847ca5a3b71d8164c0dd1e1ec6c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d48/classphys_1_1UILayer.html#a466e35a0362e5f8f47c35e646075432c">SetVisible</a> (bool Visible)</td></tr>
 <tr><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the layers' visability.  <a href="#a466e35a0362e5f8f47c35e646075432c"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../da/d48/classphys_1_1UILayer.html#a2d4aaa7627339d7139d7a453ccf55ade">GetVisible</a> ()</td></tr>
@@ -146,8 +148,8 @@ void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="../.
 Protected Attributes</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1cfdc64e509e8bf94b10844655ebb6c"></a><!-- doxytag: member="phys::UILayer::GorillaLayer" ref="ac1cfdc64e509e8bf94b10844655ebb6c" args="" -->
 Gorilla::Layer *&nbsp;</td><td class="memItemRight" valign="bottom"><b>GorillaLayer</b></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3da8314d7bcab7a0261100969d636abf"></a><!-- doxytag: member="phys::UILayer::Parent" ref="a3da8314d7bcab7a0261100969d636abf" args="" -->
-Gorilla::Screen *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Parent</b></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aadfee5b1ccbbf76a582b20c0171826ef"></a><!-- doxytag: member="phys::UILayer::Parent" ref="aadfee5b1ccbbf76a582b20c0171826ef" args="" -->
+<a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIScreen</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Parent</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa6c5cb17111c680c1af20d734dd0a3d7"></a><!-- doxytag: member="phys::UILayer::Manager" ref="aa6c5cb17111c680c1af20d734dd0a3d7" args="" -->
 <a class="el" href="../../d5/dc5/classphys_1_1UIManager.html">UIManager</a> *&nbsp;</td><td class="memItemRight" valign="bottom"><b>Manager</b></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26df3b08c7bdcb07eeb9f0633c8d2df8"></a><!-- doxytag: member="phys::UILayer::Name" ref="a26df3b08c7bdcb07eeb9f0633c8d2df8" args="" -->
@@ -169,9 +171,9 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>This class is the basic container class for UI elements. </p>
 <p>A layer is a container for widgets and other UI elements that are visable. </p>
 
-<p>Definition at line <a class="el" href="../../d9/d83/uilayer_8h_source.html#l00082">82</a> of file <a class="el" href="../../d9/d83/uilayer_8h_source.html">uilayer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../d9/d83/uilayer_8h_source.html#l00083">83</a> of file <a class="el" href="../../d9/d83/uilayer_8h_source.html">uilayer.h</a>.</p>
 <hr/><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aee4df9be8deb377bc7905c785ddf2819"></a><!-- doxytag: member="phys::UILayer::UILayer" ref="aee4df9be8deb377bc7905c785ddf2819" args="(const String &amp;name, Gorilla::Layer *GLayer, Gorilla::Screen *GScreen)" -->
+<a class="anchor" id="a2ba5ae1bd83313646e18f7082c586c1f"></a><!-- doxytag: member="phys::UILayer::UILayer" ref="a2ba5ae1bd83313646e18f7082c586c1f" args="(const String &amp;name, Gorilla::Layer *GLayer, UIScreen *ParentScreen)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -190,8 +192,8 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Gorilla::Screen *&nbsp;</td>
-          <td class="paramname"> <em>GScreen</em></td><td>&nbsp;</td>
+          <td class="paramtype"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIScreen</a> *&nbsp;</td>
+          <td class="paramname"> <em>ParentScreen</em></td><td>&nbsp;</td>
         </tr>
         <tr>
           <td></td>
@@ -207,12 +209,12 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   <table border="0" cellspacing="2" cellpadding="0">
     <tr><td valign="top"></td><td valign="top"><em>name</em>&nbsp;</td><td>The name of this layer. </td></tr>
     <tr><td valign="top"></td><td valign="top"><em>GLayer</em>&nbsp;</td><td>The Gorilla Layer this Layer is based on. </td></tr>
-    <tr><td valign="top"></td><td valign="top"><em>GScreen</em>&nbsp;</td><td>The gorilla parent screen to this layer. </td></tr>
+    <tr><td valign="top"></td><td valign="top"><em>ParentScreen</em>&nbsp;</td><td>The screen that created this layer. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00065">65</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -236,7 +238,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>This function searches only the buttons contained in this layer. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the button the mouse is over, or NULL if there are none. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00447">447</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00453">453</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -259,7 +261,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>This function searches only the widgets contained in this layer. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the widget the mouse is over, or NULL if there are none. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00468">468</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00474">474</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -306,7 +308,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00138">138</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -367,7 +369,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00419">419</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00425">425</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -428,7 +430,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00218">218</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00224">224</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -489,7 +491,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00412">412</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00418">418</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -550,7 +552,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00426">426</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00432">432</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -604,7 +606,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00267">267</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -651,7 +653,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00440">440</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00446">446</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -691,7 +693,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00188">188</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00194">194</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -745,7 +747,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00405">405</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00411">411</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -806,7 +808,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00145">145</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00151">151</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -853,7 +855,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00433">433</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00439">439</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -881,7 +883,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00175">175</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00181">181</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -909,7 +911,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00248">248</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00254">254</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -937,7 +939,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00321">321</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00327">327</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -965,7 +967,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00291">291</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00297">297</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -993,7 +995,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00205">205</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00211">211</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1021,7 +1023,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00357">357</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00363">363</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1044,7 +1046,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets an already created button by index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the button at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00165">165</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00171">171</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1067,7 +1069,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets an already created button by name. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the button of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00152">152</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1090,7 +1092,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets an already created caption by name. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the caption of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00225">225</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00231">231</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1113,7 +1115,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets an already created caption by index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the caption at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00238">238</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00244">244</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1135,7 +1137,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets the internal gorilla layer pointer. </p>
 <p><b>For internal use only.</b></p>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00487">487</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00493">493</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1158,30 +1160,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets an already created line list by index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the line list at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00311">311</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a2f40efc62324c5d2d5c1282f2ea6088d"></a><!-- doxytag: member="phys::UILayer::GetMarkupText" ref="a2f40efc62324c5d2d5c1282f2ea6088d" args="(Whole Index)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html">UI::MarkupText</a> * phys::UILayer::GetMarkupText </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&nbsp;</td>
-          <td class="paramname"> <em>Index</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets an already created markup text by index. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the markup text at the specified index. </dd></dl>
-
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00281">281</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00317">317</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1204,7 +1183,30 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets an already created markup text by name. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the markup text of the specified name. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00268">268</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00274">274</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a2f40efc62324c5d2d5c1282f2ea6088d"></a><!-- doxytag: member="phys::UILayer::GetMarkupText" ref="a2f40efc62324c5d2d5c1282f2ea6088d" args="(Whole Index)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d7/d23/classphys_1_1UI_1_1MarkupText.html">UI::MarkupText</a> * phys::UILayer::GetMarkupText </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a">Whole</a>&nbsp;</td>
+          <td class="paramname"> <em>Index</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets an already created markup text by index. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the markup text at the specified index. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00287">287</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1226,7 +1228,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets the name of this layer. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a string containing the name of this layer. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00113">113</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00114">114</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1248,7 +1250,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets the number of buttons created and stored in this class. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of buttons this class is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00170">170</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00176">176</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1270,7 +1272,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets the number of captions created and stored in this class. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of captions this class is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00243">243</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00249">249</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1292,7 +1294,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets the number of line lists created and stored in this class. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of line lists this class is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00316">316</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00322">322</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1314,7 +1316,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets the number of markup texts created and stored in this class. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of markup texts this class is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00286">286</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00292">292</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1336,7 +1338,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets the number of rectangles created and stored in this class. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of rectangles this class is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00200">200</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00206">206</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1358,7 +1360,29 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets the number of widgets created and stored in this class. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns the number of widgets this class is storing. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00352">352</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00358">358</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a1eeb2847ca5a3b71d8164c0dd1e1ec6c"></a><!-- doxytag: member="phys::UILayer::GetParent" ref="a1eeb2847ca5a3b71d8164c0dd1e1ec6c" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/de8/classphys_1_1UIScreen.html">UIScreen</a> * phys::UILayer::GetParent </td>
+          <td>(</td>
+          <td class="paramname"></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets the parent screen of this layer. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the screen that created this layer. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00119">119</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1381,7 +1405,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets an already created rectangle by index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the rectangle at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00195">195</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00201">201</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1403,30 +1427,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets the layers' visability. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a bool representing the visability of the layer. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00123">123</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="afcc3fd6ff5d0731aa57f1012deea7214"></a><!-- doxytag: member="phys::UILayer::GetWidget" ref="afcc3fd6ff5d0731aa57f1012deea7214" args="(ConstString &amp;Name)" -->
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html">UI::Widget</a> * phys::UILayer::GetWidget </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td>
-          <td class="paramname"> <em>Name</em></td>
-          <td>&nbsp;)&nbsp;</td>
-          <td></td>
-        </tr>
-      </table>
-</div>
-<div class="memdoc">
-
-<p>Gets an already created widget by name. </p>
-<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the widget of the specified name. </dd></dl>
-
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00334">334</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00129">129</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1449,7 +1450,30 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <p>Gets an already created widget by index. </p>
 <dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the widget at the specified index. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00347">347</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00353">353</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="afcc3fd6ff5d0731aa57f1012deea7214"></a><!-- doxytag: member="phys::UILayer::GetWidget" ref="afcc3fd6ff5d0731aa57f1012deea7214" args="(ConstString &amp;Name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html">UI::Widget</a> * phys::UILayer::GetWidget </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../df/dec/namespacephys.html#a5ce5049f8b4bf88d6413c47b504ebb31">ConstString</a> &amp;&nbsp;</td>
+          <td class="paramname"> <em>Name</em></td>
+          <td>&nbsp;)&nbsp;</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Gets an already created widget by name. </p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>Returns a pointer to the widget of the specified name. </dd></dl>
+
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00340">340</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1477,7 +1501,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00118">118</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../db/ddc/uilayer_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a>.</p>
 
 </div>
 </div>
@@ -1486,7 +1510,7 @@ std::vector&lt; <a class="el" href="../../d9/d48/classphys_1_1UI_1_1Widget.html"
 <li><a class="el" href="../../db/ddc/uilayer_8cpp_source.html">uilayer.cpp</a></li>
 </ul>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:59 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:43:05 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

@@ -45,6 +45,9 @@
 
 #include "actorragdoll.h"
 
+// Do not put in documentation until this is done
+/// @cond 0
+
 namespace phys
 {
     ActorRagDoll::ActorRagDoll(String name, String file, String group)
@@ -56,5 +59,7 @@ namespace phys
     {
     }
 }
+
+/// @endcond
 
 #endif

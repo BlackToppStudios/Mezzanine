@@ -76,7 +76,7 @@
 <a name="l00045"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a5dfd8368d6fa8b69ca8ab23b2d3ba69e">00045</a> 
 <a name="l00046"></a>00046 <span class="keyword">namespace </span>phys
 <a name="l00047"></a>00047 {
-<a name="l00048"></a>00048     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a5dfd8368d6fa8b69ca8ab23b2d3ba69e" title="Standard Constructor.">ExtendedTimer::ExtendedTimer</a>(<span class="keyword">const</span> Timer::TimerStyle style)
+<a name="l00048"></a>00048     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a5dfd8368d6fa8b69ca8ab23b2d3ba69e" title="Standard Constructor.">ExtendedTimer::ExtendedTimer</a>(<span class="keyword">const</span> <a class="code" href="../../d3/d83/classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329" title="The style of timer to be used.">Timer::TimerStyle</a> style)
 <a name="l00049"></a>00049         : <a class="code" href="../../d3/d83/classphys_1_1Timer.html" title="A base timer class for the different timers.">Timer</a>(style)
 <a name="l00050"></a>00050     {
 <a name="l00051"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a7a9ce42ffda17cbe366adde1688120af">00051</a>         Type = Timer::Extended;
@@ -86,17 +86,17 @@
 <a name="l00055"></a>00055     {
 <a name="l00056"></a>00056     }
 <a name="l00057"></a>00057 
-<a name="l00058"></a>00058     Time&amp; ExtendedTimer::GetStruct(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00058"></a>00058     Time&amp; ExtendedTimer::GetStruct(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00059"></a>00059     {
 <a name="l00060"></a>00060         <span class="keywordflow">switch</span>(Struct)
 <a name="l00061"></a>00061         {
-<a name="l00062"></a>00062             <span class="keywordflow">case</span> ExtendedTimer::Current:
+<a name="l00062"></a>00062             <span class="keywordflow">case</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4" title="Current description.">ExtendedTimer::Current</a>:
 <a name="l00063"></a>00063                 <span class="keywordflow">return</span> CurrentTime;
 <a name="l00064"></a>00064                 <span class="keywordflow">break</span>;
-<a name="l00065"></a>00065             <span class="keywordflow">case</span> ExtendedTimer::Goal:
+<a name="l00065"></a>00065             <span class="keywordflow">case</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554ba7179bcde29cd5fdda024ebe5f42207ae" title="Goal description.">ExtendedTimer::Goal</a>:
 <a name="l00066"></a>00066                 <span class="keywordflow">return</span> GoalTime;
 <a name="l00067"></a>00067                 <span class="keywordflow">break</span>;
-<a name="l00068"></a>00068             <span class="keywordflow">case</span> ExtendedTimer::Initial:
+<a name="l00068"></a>00068             <span class="keywordflow">case</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554baca4dbfbcf56212e4df189c571d9718b3" title="Initial description.">ExtendedTimer::Initial</a>:
 <a name="l00069"></a>00069                 <span class="keywordflow">return</span> InitialTime;
 <a name="l00070"></a>00070                 <span class="keywordflow">break</span>;
 <a name="l00071"></a>00071         }
@@ -108,10 +108,10 @@
 <a name="l00077"></a>00077         {
 <a name="l00078"></a>00078             <span class="keywordflow">switch</span>(Style)
 <a name="l00079"></a>00079             {
-<a name="l00080"></a>00080                 <span class="keywordflow">case</span> Timer::Normal:
+<a name="l00080"></a>00080                 <span class="keywordflow">case</span> <a class="code" href="../../d3/d83/classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329a5debd5b8437d14405bf25cd9b130449f" title="Description Required.">Timer::Normal</a>:
 <a name="l00081"></a>00081                     UpdateAsNormal(MicroSecondsElapsed);
 <a name="l00082"></a>00082                     <span class="keywordflow">break</span>;
-<a name="l00083"></a>00083                 <span class="keywordflow">case</span> Timer::StopWatch:
+<a name="l00083"></a>00083                 <span class="keywordflow">case</span> <a class="code" href="../../d3/d83/classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329a7599daa63100c2134df7d8b7c9b7f867" title="Description Required.">Timer::StopWatch</a>:
 <a name="l00084"></a>00084                 {
 <a name="l00085"></a>00085                     UpdateAsStopWatch(MicroSecondsElapsed);
 <a name="l00086"></a>00086                     <span class="keywordflow">if</span>(GoalReached())
@@ -124,7 +124,7 @@
 <a name="l00093"></a>00093                     }
 <a name="l00094"></a>00094                     <span class="keywordflow">break</span>;
 <a name="l00095"></a>00095                 }
-<a name="l00096"></a>00096                 <span class="keywordflow">case</span> Timer::Alarm:
+<a name="l00096"></a>00096                 <span class="keywordflow">case</span> <a class="code" href="../../d3/d83/classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329ae9b9fa35767e4ac2c87c078e1d9a0729" title="Description Required.">Timer::Alarm</a>:
 <a name="l00097"></a>00097                 {
 <a name="l00098"></a>00098                     UpdateAsNormal(MicroSecondsElapsed);
 <a name="l00099"></a>00099                     <span class="keywordflow">if</span>(GoalReached())
@@ -144,11 +144,11 @@
 <a name="l00113"></a>00113     <span class="keywordtype">void</span> ExtendedTimer::UpdateAsNormal(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed)
 <a name="l00114"></a>00114     {
 <a name="l00115"></a>00115         CurrentTime.Microseconds+=(Integer)MicroSecondsElapsed;
-<a name="l00116"></a>00116         <span class="keywordflow">if</span>(!CheckMicroSeconds(ExtendedTimer::Current)) <span class="keywordflow">return</span>;
-<a name="l00117"></a>00117         <span class="keywordflow">if</span>(!CheckMilliSeconds(ExtendedTimer::Current)) <span class="keywordflow">return</span>;
-<a name="l00118"></a>00118         <span class="keywordflow">if</span>(!CheckSeconds(ExtendedTimer::Current)) <span class="keywordflow">return</span>;
-<a name="l00119"></a>00119         <span class="keywordflow">if</span>(!CheckMinutes(ExtendedTimer::Current)) <span class="keywordflow">return</span>;
-<a name="l00120"></a>00120         <span class="keywordflow">if</span>(!CheckHours(ExtendedTimer::Current)) <span class="keywordflow">return</span>;
+<a name="l00116"></a>00116         <span class="keywordflow">if</span>(!CheckMicroSeconds(<a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4" title="Current description.">ExtendedTimer::Current</a>)) <span class="keywordflow">return</span>;
+<a name="l00117"></a>00117         <span class="keywordflow">if</span>(!CheckMilliSeconds(<a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4" title="Current description.">ExtendedTimer::Current</a>)) <span class="keywordflow">return</span>;
+<a name="l00118"></a>00118         <span class="keywordflow">if</span>(!CheckSeconds(<a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4" title="Current description.">ExtendedTimer::Current</a>)) <span class="keywordflow">return</span>;
+<a name="l00119"></a>00119         <span class="keywordflow">if</span>(!CheckMinutes(<a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4" title="Current description.">ExtendedTimer::Current</a>)) <span class="keywordflow">return</span>;
+<a name="l00120"></a>00120         <span class="keywordflow">if</span>(!CheckHours(<a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554bab42e601e90bdd3d9a40e8bd2203748f4" title="Current description.">ExtendedTimer::Current</a>)) <span class="keywordflow">return</span>;
 <a name="l00121"></a>00121     }
 <a name="l00122"></a>00122 
 <a name="l00123"></a>00123     <span class="keywordtype">void</span> ExtendedTimer::UpdateAsStopWatch(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> MicroSecondsElapsed)
@@ -191,7 +191,7 @@
 <a name="l00160"></a>00160         }<span class="keywordflow">else</span>{ <span class="keywordflow">return</span>; }
 <a name="l00161"></a>00161     }
 <a name="l00162"></a>00162 
-<a name="l00163"></a>00163     <span class="keywordtype">bool</span> ExtendedTimer::CheckMicroSeconds(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00163"></a>00163     <span class="keywordtype">bool</span> ExtendedTimer::CheckMicroSeconds(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00164"></a>00164     {
 <a name="l00165"></a>00165         <span class="keywordflow">if</span>(GetStruct(Struct).Microseconds &gt; 1000)
 <a name="l00166"></a>00166         {
@@ -203,7 +203,7 @@
 <a name="l00172"></a>00172         }<span class="keywordflow">else</span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }
 <a name="l00173"></a>00173     }
 <a name="l00174"></a>00174 
-<a name="l00175"></a>00175     <span class="keywordtype">bool</span> ExtendedTimer::CheckMilliSeconds(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00175"></a>00175     <span class="keywordtype">bool</span> ExtendedTimer::CheckMilliSeconds(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00176"></a>00176     {
 <a name="l00177"></a>00177         <span class="keywordflow">if</span>(GetStruct(Struct).Milliseconds &gt; 1000)
 <a name="l00178"></a>00178         {
@@ -215,7 +215,7 @@
 <a name="l00184"></a>00184         }<span class="keywordflow">else</span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }
 <a name="l00185"></a>00185     }
 <a name="l00186"></a>00186 
-<a name="l00187"></a>00187     <span class="keywordtype">bool</span> ExtendedTimer::CheckSeconds(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00187"></a>00187     <span class="keywordtype">bool</span> ExtendedTimer::CheckSeconds(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00188"></a>00188     {
 <a name="l00189"></a>00189         <span class="keywordflow">if</span>(GetStruct(Struct).Seconds &gt; 60)
 <a name="l00190"></a>00190         {
@@ -227,7 +227,7 @@
 <a name="l00196"></a>00196         }<span class="keywordflow">else</span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }
 <a name="l00197"></a>00197     }
 <a name="l00198"></a>00198 
-<a name="l00199"></a>00199     <span class="keywordtype">bool</span> ExtendedTimer::CheckMinutes(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00199"></a>00199     <span class="keywordtype">bool</span> ExtendedTimer::CheckMinutes(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00200"></a>00200     {
 <a name="l00201"></a>00201         <span class="keywordflow">if</span>(GetStruct(Struct).Minutes &gt; 60)
 <a name="l00202"></a>00202         {
@@ -239,7 +239,7 @@
 <a name="l00208"></a>00208         }<span class="keywordflow">else</span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }
 <a name="l00209"></a>00209     }
 <a name="l00210"></a>00210 
-<a name="l00211"></a>00211     <span class="keywordtype">bool</span> ExtendedTimer::CheckHours(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00211"></a>00211     <span class="keywordtype">bool</span> ExtendedTimer::CheckHours(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00212"></a>00212     {
 <a name="l00213"></a>00213         <span class="keywordflow">if</span>(GetStruct(Struct).Hours &gt; 24)
 <a name="l00214"></a>00214         {
@@ -251,12 +251,12 @@
 <a name="l00220"></a>00220         }<span class="keywordflow">else</span>{ <span class="keywordflow">return</span> <span class="keyword">false</span>; }
 <a name="l00221"></a>00221     }
 <a name="l00222"></a>00222 
-<a name="l00223"></a>00223     <span class="keywordtype">bool</span> ExtendedTimer::CheckDays(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00223"></a>00223     <span class="keywordtype">bool</span> ExtendedTimer::CheckDays(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00224"></a>00224     {
 <a name="l00225"></a>00225         <span class="keywordflow">return</span> <span class="keyword">false</span>;
 <a name="l00226"></a>00226     }
 <a name="l00227"></a>00227 
-<a name="l00228"></a>00228     <span class="keywordtype">bool</span> ExtendedTimer::CheckAll(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00228"></a>00228     <span class="keywordtype">bool</span> ExtendedTimer::CheckAll(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00229"></a>00229     {
 <a name="l00230"></a>00230         <span class="keywordflow">if</span>(CheckMicroSeconds(Struct) || CheckMilliSeconds(Struct) || CheckSeconds(Struct)
 <a name="l00231"></a>00231            || CheckMinutes(Struct) || CheckHours(Struct) || CheckDays(Struct))
@@ -267,7 +267,7 @@
 <a name="l00236"></a>00236 
 <a name="l00237"></a>00237     <span class="keywordtype">bool</span> ExtendedTimer::CompareCurrentAndGoal(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Current, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Goal)
 <a name="l00238"></a>00238     {
-<a name="l00239"></a>00239         <span class="keywordflow">return</span> Timer::StopWatch == Style ? Current &lt; Goal : Current &gt; Goal;
+<a name="l00239"></a>00239         <span class="keywordflow">return</span> <a class="code" href="../../d3/d83/classphys_1_1Timer.html#a1ee86bf43e20329d750c5d582dcce329a7599daa63100c2134df7d8b7c9b7f867" title="Description Required.">Timer::StopWatch</a> == Style ? Current &lt; Goal : Current &gt; Goal;
 <a name="l00240"></a>00240         <span class="comment">/*if(Timer::StopWatch == Style)</span>
 <a name="l00241"></a>00241 <span class="comment">        {</span>
 <a name="l00242"></a>00242 <span class="comment">            return Current &lt; Goal;</span>
@@ -326,14 +326,14 @@
 <a name="l00295"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a86f1e5d470565a2dda78b66aca47d667">00295</a>         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00296"></a>00296     }
 <a name="l00297"></a>00297 
-<a name="l00298"></a>00298     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a86f1e5d470565a2dda78b66aca47d667" title="Sets the value for Microseconds of the specified struct.">ExtendedTimer::SetMicroseconds</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> MS, <span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00298"></a>00298     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a86f1e5d470565a2dda78b66aca47d667" title="Sets the value for Microseconds of the specified struct.">ExtendedTimer::SetMicroseconds</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> MS, <span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00299"></a>00299     {
 <a name="l00300"></a>00300         GetStruct(Struct).Microseconds = MS;
 <a name="l00301"></a>00301         CheckAll(Struct);
 <a name="l00302"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#ab64ddc2dc49d4daf9b0e5a33dc9dc68a">00302</a>         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00303"></a>00303     }
 <a name="l00304"></a>00304 
-<a name="l00305"></a>00305     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#ab64ddc2dc49d4daf9b0e5a33dc9dc68a" title="Sets the value for Milliseconds of the specified struct.">ExtendedTimer::SetMilliseconds</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> MS, <span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00305"></a>00305     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#ab64ddc2dc49d4daf9b0e5a33dc9dc68a" title="Sets the value for Milliseconds of the specified struct.">ExtendedTimer::SetMilliseconds</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> MS, <span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00306"></a>00306     {
 <a name="l00307"></a>00307         GetStruct(Struct).Milliseconds = MS;
 <a name="l00308"></a>00308         CheckMilliSeconds(Struct);
@@ -343,7 +343,7 @@
 <a name="l00312"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#ad9303e618cb0ea171441d595eb5a3e55">00312</a>         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00313"></a>00313     }
 <a name="l00314"></a>00314 
-<a name="l00315"></a>00315     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#ad9303e618cb0ea171441d595eb5a3e55" title="Sets the value for Seconds of the specified struct.">ExtendedTimer::SetSeconds</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Sec, <span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00315"></a>00315     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#ad9303e618cb0ea171441d595eb5a3e55" title="Sets the value for Seconds of the specified struct.">ExtendedTimer::SetSeconds</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Sec, <span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00316"></a>00316     {
 <a name="l00317"></a>00317         GetStruct(Struct).Seconds = Sec;
 <a name="l00318"></a>00318         CheckSeconds(Struct);
@@ -352,7 +352,7 @@
 <a name="l00321"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a780114f83344b2cd15a558f054b4e8e8">00321</a>         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00322"></a>00322     }
 <a name="l00323"></a>00323 
-<a name="l00324"></a>00324     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a780114f83344b2cd15a558f054b4e8e8" title="Sets the value for Minutes of the specified struct.">ExtendedTimer::SetMinutes</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Min, <span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00324"></a>00324     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a780114f83344b2cd15a558f054b4e8e8" title="Sets the value for Minutes of the specified struct.">ExtendedTimer::SetMinutes</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Min, <span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00325"></a>00325     {
 <a name="l00326"></a>00326         GetStruct(Struct).Minutes = Min;
 <a name="l00327"></a>00327         CheckMinutes(Struct);
@@ -360,40 +360,40 @@
 <a name="l00329"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a33f3d02bdf07073dc4fdf979dd3f68bc">00329</a>         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00330"></a>00330     }
 <a name="l00331"></a>00331 
-<a name="l00332"></a>00332     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a33f3d02bdf07073dc4fdf979dd3f68bc" title="Sets the value for Hours of the specified struct.">ExtendedTimer::SetHours</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Hr, <span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00332"></a>00332     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a33f3d02bdf07073dc4fdf979dd3f68bc" title="Sets the value for Hours of the specified struct.">ExtendedTimer::SetHours</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Hr, <span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00333"></a>00333     {
 <a name="l00334"></a>00334         GetStruct(Struct).Hours = Hr;
 <a name="l00335"></a>00335         CheckHours(Struct);
 <a name="l00336"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a3aeeb90ac4e4b20a59b29fc1ee738141">00336</a>         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00337"></a>00337     }
 <a name="l00338"></a>00338 
-<a name="l00339"></a>00339     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a3aeeb90ac4e4b20a59b29fc1ee738141" title="Sets the value for Days of the specified struct.">ExtendedTimer::SetDays</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Day, <span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00339"></a>00339     <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html" title="An enhanced timer class that can store and track many units of time.">ExtendedTimer</a>&amp; <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a3aeeb90ac4e4b20a59b29fc1ee738141" title="Sets the value for Days of the specified struct.">ExtendedTimer::SetDays</a>(<a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> Day, <span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00340"></a>00340     {
 <a name="l00341"></a>00341         GetStruct(Struct).Days = Day;
 <a name="l00342"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a91e0b11c0e77c7eea5152efb5bed9453">00342</a>         <span class="keywordflow">return</span> *<span class="keyword">this</span>;
 <a name="l00343"></a>00343     }
 <a name="l00344"></a>00344 
-<a name="l00345"></a>00345     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a91e0b11c0e77c7eea5152efb5bed9453" title="Gets the current internal Millisecond count.">ExtendedTimer::GetMilliseconds</a>(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00345"></a>00345     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a91e0b11c0e77c7eea5152efb5bed9453" title="Gets the current internal Millisecond count.">ExtendedTimer::GetMilliseconds</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00346"></a>00346     {
 <a name="l00347"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a4b8cd596878863ce9272f0484067c1f3">00347</a>         <span class="keywordflow">return</span> GetStruct(Struct).Milliseconds;
 <a name="l00348"></a>00348     }
 <a name="l00349"></a>00349 
-<a name="l00350"></a>00350     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a4b8cd596878863ce9272f0484067c1f3" title="Gets the current internal Second count.">ExtendedTimer::GetSeconds</a>(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00350"></a>00350     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a4b8cd596878863ce9272f0484067c1f3" title="Gets the current internal Second count.">ExtendedTimer::GetSeconds</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00351"></a>00351     {
 <a name="l00352"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a4081b9972f76c424b4ca067c8358a926">00352</a>         <span class="keywordflow">return</span> GetStruct(Struct).Seconds;
 <a name="l00353"></a>00353     }
 <a name="l00354"></a>00354 
-<a name="l00355"></a>00355     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a4081b9972f76c424b4ca067c8358a926" title="Gets the current internal Minute count.">ExtendedTimer::GetMinutes</a>(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00355"></a>00355     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a4081b9972f76c424b4ca067c8358a926" title="Gets the current internal Minute count.">ExtendedTimer::GetMinutes</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00356"></a>00356     {
 <a name="l00357"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#af5cada222452ad347062efa9eb6f365a">00357</a>         <span class="keywordflow">return</span> GetStruct(Struct).Minutes;
 <a name="l00358"></a>00358     }
 <a name="l00359"></a>00359 
-<a name="l00360"></a>00360     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#af5cada222452ad347062efa9eb6f365a" title="Gets the current internal Hour count.">ExtendedTimer::GetHours</a>(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00360"></a>00360     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#af5cada222452ad347062efa9eb6f365a" title="Gets the current internal Hour count.">ExtendedTimer::GetHours</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00361"></a>00361     {
 <a name="l00362"></a><a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#ac3fe4d0a31999d8f6e3a900f8aaa6816">00362</a>         <span class="keywordflow">return</span> GetStruct(Struct).Hours;
 <a name="l00363"></a>00363     }
 <a name="l00364"></a>00364 
-<a name="l00365"></a>00365     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#ac3fe4d0a31999d8f6e3a900f8aaa6816" title="Gets the current internal Day count.">ExtendedTimer::GetDays</a>(<span class="keyword">const</span> ExtendedTimer::TimeStruct Struct)
+<a name="l00365"></a>00365     <a class="code" href="../../df/dec/namespacephys.html#a7f09bf5585b2bb97613cd9aad4273a81" title="A datatype use to represent any integer close to.">Integer</a> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#ac3fe4d0a31999d8f6e3a900f8aaa6816" title="Gets the current internal Day count.">ExtendedTimer::GetDays</a>(<span class="keyword">const</span> <a class="code" href="../../dc/d7c/classphys_1_1ExtendedTimer.html#a0f316e9347d1c118a157cc3c737c554b" title="The internal time struct to be used...">ExtendedTimer::TimeStruct</a> Struct)
 <a name="l00366"></a>00366     {
 <a name="l00367"></a>00367         <span class="keywordflow">return</span> GetStruct(Struct).Days;
 <a name="l00368"></a>00368     }
@@ -402,7 +402,7 @@
 <a name="l00371"></a>00371 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

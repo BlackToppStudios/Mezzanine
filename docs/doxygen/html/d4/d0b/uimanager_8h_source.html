@@ -87,122 +87,120 @@
 <a name="l00056"></a>00056 
 <a name="l00057"></a>00057 <span class="keyword">namespace </span>phys
 <a name="l00058"></a>00058 {
-<a name="l00059"></a>00059     <span class="keyword">class </span>UIScreen;
-<a name="l00060"></a>00060     <span class="keyword">class </span>UILayer;
-<a name="l00061"></a>00061     <span class="keyword">class </span>InputQueryTool;
-<a name="l00062"></a>00062     <span class="keyword">namespace </span>UI
-<a name="l00063"></a>00063     {
-<a name="l00064"></a>00064         <span class="keyword">class </span>Button;
-<a name="l00065"></a>00065         <span class="keyword">class </span>Widget;
-<a name="l00066"></a>00066         <span class="keyword">class </span>Scrollbar;
-<a name="l00067"></a>00067     }<span class="comment"></span>
-<a name="l00068"></a>00068 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
-<a name="l00069"></a>00069 <span class="comment">    /// @class UIManager</span>
-<a name="l00070"></a>00070 <span class="comment">    /// @headerfile uimanager.h</span>
-<a name="l00071"></a>00071 <span class="comment">    /// @brief This class is responsible for any and all user interactions with the User interface/HUD.</span>
-<a name="l00072"></a>00072 <span class="comment">    /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade Gorilla file(*.gorilla).</span>
-<a name="l00073"></a>00073 <span class="comment">    ///////////////////////////////////////</span>
-<a name="l00074"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html">00074</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a> : <span class="keyword">public</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>
-<a name="l00075"></a>00075     {
-<a name="l00076"></a>00076         <span class="keyword">protected</span>:<span class="comment"></span>
-<a name="l00077"></a>00077 <span class="comment">            /// @brief Pointer for the Gorilla core class, where this manager gets it&#39;s functionality.</span>
-<a name="l00078"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab4c5b8c7e3c4c7b03847b1af18bea02a">00078</a> <span class="comment"></span>            Gorilla::Silverback* Silver;
-<a name="l00079"></a>00079             std::vector&lt; UIScreen* &gt; Screens;
-<a name="l00080"></a>00080             <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* HoveredButton;
-<a name="l00081"></a>00081             <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* HoveredWidget;
-<a name="l00082"></a>00082             <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* WidgetFocus;
-<a name="l00083"></a>00083             <a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html" title="This provides a number of utilities for getting input information.">InputQueryTool</a>* InputQueryer;
-<a name="l00084"></a>00084             <span class="keywordtype">void</span> HoverChecks();
-<a name="l00085"></a>00085             <span class="keywordtype">void</span> WidgetFocusUpdate();
-<a name="l00086"></a>00086         <span class="keyword">public</span>:<span class="comment"></span>
-<a name="l00087"></a>00087 <span class="comment">            /// @brief Class Constructor.</span>
-<a name="l00088"></a>00088 <span class="comment">            /// @details Standard class initialization constructor.</span>
-<a name="l00089"></a>00089 <span class="comment"></span>            <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>();<span class="comment"></span>
-<a name="l00090"></a>00090 <span class="comment">            /// @brief Class Destructor.</span>
-<a name="l00091"></a>00091 <span class="comment">            /// @details The class destructor.</span>
-<a name="l00092"></a>00092 <span class="comment"></span>            ~<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>();<span class="comment"></span>
-<a name="l00093"></a>00093 <span class="comment">            /// @brief Inherited from ManagerBase.</span>
-<a name="l00094"></a>00094 <span class="comment"></span>            <span class="keywordtype">void</span> Initialize();<span class="comment"></span>
-<a name="l00095"></a>00095 <span class="comment">            /// @brief Inherited from ManagerBase.</span>
-<a name="l00096"></a>00096 <span class="comment"></span>            <span class="keywordtype">void</span> DoMainLoopItems();<span class="comment"></span>
-<a name="l00097"></a>00097 <span class="comment">            /// @brief Loads a Gorilla file for use with this manager.</span>
-<a name="l00098"></a>00098 <span class="comment">            /// @param Name The name of the file to be loaded, not including the extension.</span>
-<a name="l00099"></a>00099 <span class="comment"></span>            <span class="keywordtype">void</span> LoadGorilla(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
-<a name="l00100"></a>00100 <span class="comment">            /// @brief Forces everything loaded into the UI system to be redrawn.</span>
-<a name="l00101"></a>00101 <span class="comment">            /// @param Force If Force is set to true, it will redraw everything regardless of if it has changed.</span>
-<a name="l00102"></a>00102 <span class="comment"></span>            <span class="keywordtype">void</span> RedrawAll(<span class="keywordtype">bool</span> Force = <span class="keyword">false</span>);<span class="comment"></span>
-<a name="l00103"></a>00103 <span class="comment">            /// @brief Gets the button the mouse is hovering over.</span>
-<a name="l00104"></a>00104 <span class="comment">            /// @details This check will look through both standalone buttons and widget buttons.</span>
-<a name="l00105"></a>00105 <span class="comment">            /// @return Returns a pointer to the button, or NULL if it&#39;s not over any visable buttons.</span>
-<a name="l00106"></a>00106 <span class="comment"></span>            <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* GetHoveredButton();<span class="comment"></span>
-<a name="l00107"></a>00107 <span class="comment">            /// @brief Gets the Widget the mouse is hovering over.</span>
-<a name="l00108"></a>00108 <span class="comment">            /// @details If the widget found during widget checks belongs to a widget, this will get that widget.</span>
-<a name="l00109"></a>00109 <span class="comment">            /// @return Returns a pointer to the widget, or NULL if it&#39;s not over any visable buttons.</span>
-<a name="l00110"></a>00110 <span class="comment"></span>            <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* GetHoveredWidget();<span class="comment"></span>
-<a name="l00111"></a>00111 <span class="comment">            /// @brief Gets the current widget being controlled.</span>
-<a name="l00112"></a>00112 <span class="comment">            /// @details The widget control is used mostly for manipulating widgets while the mouse is not</span>
-<a name="l00113"></a>00113 <span class="comment">            /// currently hovering over them, such as the click and drag action of scrollbars and resizing windows.</span>
-<a name="l00114"></a>00114 <span class="comment">            /// @return Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame.</span>
-<a name="l00115"></a>00115 <span class="comment"></span>            <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* GetWidgetFocus();<span class="comment"></span>
-<a name="l00116"></a>00116 <span class="comment">            /// @brief Creates an internal HUD screen.</span>
-<a name="l00117"></a>00117 <span class="comment">            /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI&#39;s</span>
-<a name="l00118"></a>00118 <span class="comment">            /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.</span>
-<a name="l00119"></a>00119 <span class="comment">            /// @param Screen The name to be given to the screen.</span>
-<a name="l00120"></a>00120 <span class="comment">            /// @param Atlas The name of a previously loaded Gorilla file to be used with this screen.</span>
-<a name="l00121"></a>00121 <span class="comment">            /// @param Viewport The name of the viewport to create this screen in.</span>
-<a name="l00122"></a>00122 <span class="comment"></span>            <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* CreateScreen(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Screen, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Atlas, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Viewport=<span class="stringliteral">&quot;Viewport1&quot;</span>);<span class="comment"></span>
-<a name="l00123"></a>00123 <span class="comment">            /// @brief Gets an already created screen by name.</span>
-<a name="l00124"></a>00124 <span class="comment">            /// @return Returns a pointer to the screen of the specified name.</span>
-<a name="l00125"></a>00125 <span class="comment"></span>            <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* GetScreen(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
-<a name="l00126"></a>00126 <span class="comment">            /// @brief Gets an already created screen by index.</span>
-<a name="l00127"></a>00127 <span class="comment">            /// @return Returns a pointer to the screen at the specified index.</span>
-<a name="l00128"></a>00128 <span class="comment"></span>            <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* GetScreen(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index);<span class="comment"></span>
-<a name="l00129"></a>00129 <span class="comment">            /// @brief Gets the number of screens created and stored in this manager.</span>
-<a name="l00130"></a>00130 <span class="comment">            /// @return Returns the number of screens this manager is storing.</span>
-<a name="l00131"></a>00131 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetNumScreens();<span class="comment"></span>
-<a name="l00132"></a>00132 <span class="comment">            /// @brief Deletes a screen and removes all trace of it from the manager.</span>
-<a name="l00133"></a>00133 <span class="comment">            /// @details Destroying a screen will also destroy all of it&#39;s layers, and everything contained in those layers.</span>
-<a name="l00134"></a>00134 <span class="comment">            /// @param Screen The screen to be destroyed.</span>
-<a name="l00135"></a>00135 <span class="comment"></span>            <span class="keywordtype">void</span> DestroyScreen(<a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* Screen);<span class="comment"></span>
-<a name="l00136"></a>00136 <span class="comment">            /// @brief Deletes all screens stored in this manager.</span>
-<a name="l00137"></a>00137 <span class="comment"></span>            <span class="keywordtype">void</span> DestroyAllScreens();<span class="comment"></span>
-<a name="l00138"></a>00138 <span class="comment">            /// @brief Searches all screens and gets the named Layer.</span>
-<a name="l00139"></a>00139 <span class="comment">            /// @return Returns the named layer if found, NULL if not.</span>
-<a name="l00140"></a>00140 <span class="comment"></span>            <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* GetLayer(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
-<a name="l00141"></a>00141 <span class="comment">            /// @brief Searches all visable screens and layers to see if a button was clicked.</span>
-<a name="l00142"></a>00142 <span class="comment">            /// @details This is called automatically once every frame.  Should only be called on manually if</span>
-<a name="l00143"></a>00143 <span class="comment">            /// you need more then one check per frame.</span>
-<a name="l00144"></a>00144 <span class="comment">            /// @return Returns the button clicked if there is one, NULL if not.</span>
-<a name="l00145"></a>00145 <span class="comment"></span>            <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* CheckButtonMouseIsOver();<span class="comment"></span>
-<a name="l00146"></a>00146 <span class="comment">            /// @brief Searches all visable screens and layers to see if a widget was clicked.</span>
-<a name="l00147"></a>00147 <span class="comment">            /// @details This is called automatically once every frame.  Should only be called on manually if</span>
-<a name="l00148"></a>00148 <span class="comment">            /// you need more then one check per frame.</span>
-<a name="l00149"></a>00149 <span class="comment">            /// @return Returns the widget clicked if there is one, NULL if not.</span>
-<a name="l00150"></a>00150 <span class="comment"></span>            <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* CheckWidgetMouseIsOver();<span class="comment"></span>
-<a name="l00151"></a>00151 <span class="comment">            /// @brief Checks to see if the mouse is over a UI element.</span>
-<a name="l00152"></a>00152 <span class="comment">            /// @details This should only be called on after this manager does it&#39;s main loop items for best results.</span>
-<a name="l00153"></a>00153 <span class="comment">            /// @return Returns true if the mouse is over a visable UI element, false if not.</span>
-<a name="l00154"></a>00154 <span class="comment"></span>            <span class="keywordtype">bool</span> MouseIsInUISystem();<span class="comment"></span>
-<a name="l00155"></a>00155 <span class="comment">            /// @brief Gets the current window dimensions.</span>
-<a name="l00156"></a>00156 <span class="comment">            /// @return Returns a Vector2 representing the current window dimensions.</span>
-<a name="l00157"></a>00157 <span class="comment"></span>            <a class="code" href="../../d0/d2c/classphys_1_1Vector2.html" title="This is used to represent a point on a 2 dimentional area, such as a screen.">Vector2</a> GetWindowDimensions();<span class="comment"></span>
-<a name="l00158"></a>00158 <span class="comment">            /// @brief Gets the input queryer used for automation in this subsystem.</span>
-<a name="l00159"></a>00159 <span class="comment">            /// @return Returns a pointer to the InputQueryTool used to query input events for this subsystem.</span>
-<a name="l00160"></a>00160 <span class="comment"></span>            <a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html" title="This provides a number of utilities for getting input information.">InputQueryTool</a>* GetInputQueryer();<span class="comment"></span>
-<a name="l00161"></a>00161 <span class="comment">            /// @brief Gets the type of manager that this manager is.</span>
-<a name="l00162"></a>00162 <span class="comment">            /// @return Returns an enum value representing the type of manager that this manager is.</span>
-<a name="l00163"></a>00163 <span class="comment"></span>            <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> GetType() <span class="keyword">const</span>;<span class="comment"></span>
-<a name="l00164"></a>00164 <span class="comment">            /// @internal</span>
-<a name="l00165"></a>00165 <span class="comment">            /// @brief Gets the internal silverback pointer.</span>
-<a name="l00166"></a>00166 <span class="comment">            /// @return Returns a pointer to the internal silverback class.</span>
-<a name="l00167"></a>00167 <span class="comment"></span>            Gorilla::Silverback* GetSilverbackPointer();
-<a name="l00168"></a>00168     };<span class="comment">//uimanager</span>
-<a name="l00169"></a>00169 }<span class="comment">//phys</span>
-<a name="l00170"></a>00170 
-<a name="l00171"></a>00171 <span class="preprocessor">#endif</span>
+<a name="l00059"></a>00059     <span class="keyword">class </span>Viewport;
+<a name="l00060"></a>00060     <span class="keyword">class </span>UIScreen;
+<a name="l00061"></a>00061     <span class="keyword">class </span>UILayer;
+<a name="l00062"></a>00062     <span class="keyword">class </span>InputQueryTool;
+<a name="l00063"></a>00063     <span class="keyword">namespace </span>UI
+<a name="l00064"></a>00064     {
+<a name="l00065"></a>00065         <span class="keyword">class </span>Button;
+<a name="l00066"></a>00066         <span class="keyword">class </span>Widget;
+<a name="l00067"></a>00067         <span class="keyword">class </span>Scrollbar;
+<a name="l00068"></a>00068     }<span class="comment"></span>
+<a name="l00069"></a>00069 <span class="comment">    ///////////////////////////////////////////////////////////////////////////////</span>
+<a name="l00070"></a>00070 <span class="comment">    /// @class UIManager</span>
+<a name="l00071"></a>00071 <span class="comment">    /// @headerfile uimanager.h</span>
+<a name="l00072"></a>00072 <span class="comment">    /// @brief This class is responsible for any and all user interactions with the User interface/HUD.</span>
+<a name="l00073"></a>00073 <span class="comment">    /// @details Currently, you have to create the UI/HUD in code.  Font and sprite data is loaded through a premade Gorilla file(*.gorilla).</span>
+<a name="l00074"></a>00074 <span class="comment">    ///////////////////////////////////////</span>
+<a name="l00075"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html">00075</a> <span class="comment"></span>    <span class="keyword">class </span>PHYS_LIB <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a> : <span class="keyword">public</span> <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html" title="This is the base class from which all the World Managers inherit.">ManagerBase</a>
+<a name="l00076"></a>00076     {
+<a name="l00077"></a>00077         <span class="keyword">protected</span>:<span class="comment"></span>
+<a name="l00078"></a>00078 <span class="comment">            /// @brief Pointer for the Gorilla core class, where this manager gets it&#39;s functionality.</span>
+<a name="l00079"></a><a class="code" href="../../d5/dc5/classphys_1_1UIManager.html#ab4c5b8c7e3c4c7b03847b1af18bea02a">00079</a> <span class="comment"></span>            Gorilla::Silverback* Silver;
+<a name="l00080"></a>00080             std::vector&lt; UIScreen* &gt; Screens;
+<a name="l00081"></a>00081             <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* HoveredButton;
+<a name="l00082"></a>00082             <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* HoveredWidget;
+<a name="l00083"></a>00083             <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* WidgetFocus;
+<a name="l00084"></a>00084             <a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html" title="This provides a number of utilities for getting input information.">InputQueryTool</a>* InputQueryer;
+<a name="l00085"></a>00085             <span class="keywordtype">void</span> HoverChecks();
+<a name="l00086"></a>00086             <span class="keywordtype">void</span> WidgetFocusUpdate();
+<a name="l00087"></a>00087         <span class="keyword">public</span>:<span class="comment"></span>
+<a name="l00088"></a>00088 <span class="comment">            /// @brief Class Constructor.</span>
+<a name="l00089"></a>00089 <span class="comment">            /// @details Standard class initialization constructor.</span>
+<a name="l00090"></a>00090 <span class="comment"></span>            <a class="code" href="../../d5/dc5/classphys_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>();<span class="comment"></span>
+<a name="l00091"></a>00091 <span class="comment">            /// @brief Class Destructor.</span>
+<a name="l00092"></a>00092 <span class="comment">            /// @details The class destructor.</span>
+<a name="l00093"></a>00093 <span class="comment"></span>            ~<a class="code" href="../../d5/dc5/classphys_1_1UIManager.html" title="This class is responsible for any and all user interactions with the User interface/HUD.">UIManager</a>();<span class="comment"></span>
+<a name="l00094"></a>00094 <span class="comment">            /// @brief Inherited from ManagerBase.</span>
+<a name="l00095"></a>00095 <span class="comment"></span>            <span class="keywordtype">void</span> Initialize();<span class="comment"></span>
+<a name="l00096"></a>00096 <span class="comment">            /// @brief Inherited from ManagerBase.</span>
+<a name="l00097"></a>00097 <span class="comment"></span>            <span class="keywordtype">void</span> DoMainLoopItems();<span class="comment"></span>
+<a name="l00098"></a>00098 <span class="comment">            /// @brief Loads a Gorilla file for use with this manager.</span>
+<a name="l00099"></a>00099 <span class="comment">            /// @param Name The name of the file to be loaded, not including the extension.</span>
+<a name="l00100"></a>00100 <span class="comment"></span>            <span class="keywordtype">void</span> LoadGorilla(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
+<a name="l00101"></a>00101 <span class="comment">            /// @brief Forces everything loaded into the UI system to be redrawn.</span>
+<a name="l00102"></a>00102 <span class="comment">            /// @param Force If Force is set to true, it will redraw everything regardless of if it has changed.</span>
+<a name="l00103"></a>00103 <span class="comment"></span>            <span class="keywordtype">void</span> RedrawAll(<span class="keywordtype">bool</span> Force = <span class="keyword">false</span>);<span class="comment"></span>
+<a name="l00104"></a>00104 <span class="comment">            /// @brief Gets the button the mouse is hovering over.</span>
+<a name="l00105"></a>00105 <span class="comment">            /// @details This check will look through both standalone buttons and widget buttons.</span>
+<a name="l00106"></a>00106 <span class="comment">            /// @return Returns a pointer to the button, or NULL if it&#39;s not over any visable buttons.</span>
+<a name="l00107"></a>00107 <span class="comment"></span>            <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* GetHoveredButton();<span class="comment"></span>
+<a name="l00108"></a>00108 <span class="comment">            /// @brief Gets the Widget the mouse is hovering over.</span>
+<a name="l00109"></a>00109 <span class="comment">            /// @details If the widget found during widget checks belongs to a widget, this will get that widget.</span>
+<a name="l00110"></a>00110 <span class="comment">            /// @return Returns a pointer to the widget, or NULL if it&#39;s not over any visable buttons.</span>
+<a name="l00111"></a>00111 <span class="comment"></span>            <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* GetHoveredWidget();<span class="comment"></span>
+<a name="l00112"></a>00112 <span class="comment">            /// @brief Gets the current widget being controlled.</span>
+<a name="l00113"></a>00113 <span class="comment">            /// @details The widget control is used mostly for manipulating widgets while the mouse is not</span>
+<a name="l00114"></a>00114 <span class="comment">            /// currently hovering over them, such as the click and drag action of scrollbars and resizing windows.</span>
+<a name="l00115"></a>00115 <span class="comment">            /// @return Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame.</span>
+<a name="l00116"></a>00116 <span class="comment"></span>            <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* GetWidgetFocus();<span class="comment"></span>
+<a name="l00117"></a>00117 <span class="comment">            /// @brief Creates an internal HUD screen.</span>
+<a name="l00118"></a>00118 <span class="comment">            /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI&#39;s</span>
+<a name="l00119"></a>00119 <span class="comment">            /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.</span>
+<a name="l00120"></a>00120 <span class="comment">            /// @param ScreenName The name to be given to the screen.</span>
+<a name="l00121"></a>00121 <span class="comment">            /// @param Atlas The name of a previously loaded Gorilla file to be used with this screen.</span>
+<a name="l00122"></a>00122 <span class="comment">            /// @param WindowViewport The viewport to create this screen in.</span>
+<a name="l00123"></a>00123 <span class="comment"></span>            <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* CreateScreen(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; ScreenName, <span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Atlas, <a class="code" href="../../d5/d62/classphys_1_1Viewport.html" title="This class is for creating and managing viewports within a game window.">Viewport</a>* WindowViewport);<span class="comment"></span>
+<a name="l00124"></a>00124 <span class="comment">            /// @brief Gets an already created screen by name.</span>
+<a name="l00125"></a>00125 <span class="comment">            /// @return Returns a pointer to the screen of the specified name.</span>
+<a name="l00126"></a>00126 <span class="comment"></span>            <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* GetScreen(<span class="keyword">const</span> <a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
+<a name="l00127"></a>00127 <span class="comment">            /// @brief Gets an already created screen by index.</span>
+<a name="l00128"></a>00128 <span class="comment">            /// @return Returns a pointer to the screen at the specified index.</span>
+<a name="l00129"></a>00129 <span class="comment"></span>            <a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* GetScreen(<a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> Index);<span class="comment"></span>
+<a name="l00130"></a>00130 <span class="comment">            /// @brief Gets the number of screens created and stored in this manager.</span>
+<a name="l00131"></a>00131 <span class="comment">            /// @return Returns the number of screens this manager is storing.</span>
+<a name="l00132"></a>00132 <span class="comment"></span>            <a class="code" href="../../df/dec/namespacephys.html#a460f6bc24c8dd347b05e0366ae34f34a" title="A Datatype used to represent an postive integer numbers.">Whole</a> GetNumScreens();<span class="comment"></span>
+<a name="l00133"></a>00133 <span class="comment">            /// @brief Deletes a screen and removes all trace of it from the manager.</span>
+<a name="l00134"></a>00134 <span class="comment">            /// @details Destroying a screen will also destroy all of it&#39;s layers, and everything contained in those layers.</span>
+<a name="l00135"></a>00135 <span class="comment">            /// @param Screen The screen to be destroyed.</span>
+<a name="l00136"></a>00136 <span class="comment"></span>            <span class="keywordtype">void</span> DestroyScreen(<a class="code" href="../../d9/de8/classphys_1_1UIScreen.html" title="This class is a helper class for creating UI&amp;#39;s. It is responsible for storing and keeping track o...">UIScreen</a>* Screen);<span class="comment"></span>
+<a name="l00137"></a>00137 <span class="comment">            /// @brief Deletes all screens stored in this manager.</span>
+<a name="l00138"></a>00138 <span class="comment"></span>            <span class="keywordtype">void</span> DestroyAllScreens();<span class="comment"></span>
+<a name="l00139"></a>00139 <span class="comment">            /// @brief Searches all screens and gets the named Layer.</span>
+<a name="l00140"></a>00140 <span class="comment">            /// @return Returns the named layer if found, NULL if not.</span>
+<a name="l00141"></a>00141 <span class="comment"></span>            <a class="code" href="../../da/d48/classphys_1_1UILayer.html" title="This class is the basic container class for UI elements.">UILayer</a>* GetLayer(<a class="code" href="../../df/dec/namespacephys.html#aa03900411993de7fbfec4789bc1d392e" title="A Datatype used to a series of characters.">String</a>&amp; Name);<span class="comment"></span>
+<a name="l00142"></a>00142 <span class="comment">            /// @brief Searches all visable screens and layers to see if a button was clicked.</span>
+<a name="l00143"></a>00143 <span class="comment">            /// @details This is called automatically once every frame.  Should only be called on manually if</span>
+<a name="l00144"></a>00144 <span class="comment">            /// you need more then one check per frame.</span>
+<a name="l00145"></a>00145 <span class="comment">            /// @return Returns the button clicked if there is one, NULL if not.</span>
+<a name="l00146"></a>00146 <span class="comment"></span>            <a class="code" href="../../d8/d88/classphys_1_1UI_1_1Button.html" title="This class is a helper class, specifically for use as a button.">UI::Button</a>* CheckButtonMouseIsOver();<span class="comment"></span>
+<a name="l00147"></a>00147 <span class="comment">            /// @brief Searches all visable screens and layers to see if a widget was clicked.</span>
+<a name="l00148"></a>00148 <span class="comment">            /// @details This is called automatically once every frame.  Should only be called on manually if</span>
+<a name="l00149"></a>00149 <span class="comment">            /// you need more then one check per frame.</span>
+<a name="l00150"></a>00150 <span class="comment">            /// @return Returns the widget clicked if there is one, NULL if not.</span>
+<a name="l00151"></a>00151 <span class="comment"></span>            <a class="code" href="../../d9/d48/classphys_1_1UI_1_1Widget.html" title="This class is the base class for all widgets.">UI::Widget</a>* CheckWidgetMouseIsOver();<span class="comment"></span>
+<a name="l00152"></a>00152 <span class="comment">            /// @brief Checks to see if the mouse is over a UI element.</span>
+<a name="l00153"></a>00153 <span class="comment">            /// @details This should only be called on after this manager does it&#39;s main loop items for best results.</span>
+<a name="l00154"></a>00154 <span class="comment">            /// @return Returns true if the mouse is over a visable UI element, false if not.</span>
+<a name="l00155"></a>00155 <span class="comment"></span>            <span class="keywordtype">bool</span> MouseIsInUISystem();<span class="comment"></span>
+<a name="l00156"></a>00156 <span class="comment">            /// @brief Gets the input queryer used for automation in this subsystem.</span>
+<a name="l00157"></a>00157 <span class="comment">            /// @return Returns a pointer to the InputQueryTool used to query input events for this subsystem.</span>
+<a name="l00158"></a>00158 <span class="comment"></span>            <a class="code" href="../../da/d96/classphys_1_1InputQueryTool.html" title="This provides a number of utilities for getting input information.">InputQueryTool</a>* GetInputQueryer();<span class="comment"></span>
+<a name="l00159"></a>00159 <span class="comment">            /// @brief Gets the type of manager that this manager is.</span>
+<a name="l00160"></a>00160 <span class="comment">            /// @return Returns an enum value representing the type of manager that this manager is.</span>
+<a name="l00161"></a>00161 <span class="comment"></span>            <a class="code" href="../../d2/de3/classphys_1_1ManagerBase.html#aaa6ccddf23892eaccb898529414f80a5" title="A listing of Manager TypeNames.">ManagerBase::ManagerTypeName</a> GetType() <span class="keyword">const</span>;<span class="comment"></span>
+<a name="l00162"></a>00162 <span class="comment">            /// @internal</span>
+<a name="l00163"></a>00163 <span class="comment">            /// @brief Gets the internal silverback pointer.</span>
+<a name="l00164"></a>00164 <span class="comment">            /// @return Returns a pointer to the internal silverback class.</span>
+<a name="l00165"></a>00165 <span class="comment"></span>            Gorilla::Silverback* GetSilverbackPointer();
+<a name="l00166"></a>00166     };<span class="comment">//uimanager</span>
+<a name="l00167"></a>00167 }<span class="comment">//phys</span>
+<a name="l00168"></a>00168 
+<a name="l00169"></a>00169 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:50 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

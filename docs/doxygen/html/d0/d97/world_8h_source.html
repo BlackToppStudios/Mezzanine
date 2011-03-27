@@ -307,7 +307,7 @@
 <a name="l00276"></a>00276 <span class="comment">            /// @details This also commits any outstanding log messages that are waiting in the World::LogStream, and any outstanding</span>
 <a name="l00277"></a>00277 <span class="comment">            /// Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the</span>
 <a name="l00278"></a>00278 <span class="comment">            /// Only ones to produce meaningul log messages.</span>
-<a name="l00279"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a05267a20e8d5518771d0848190b33d60">00279</a> <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> Log(T Message)
+<a name="l00279"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a4ab573bc3b060d6b3f58483bab04fca2">00279</a> <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> Log(<span class="keyword">const</span> T&amp; Message)
 <a name="l00280"></a>00280                 { this-&gt;LogString(<a class="code" href="../../df/dec/namespacephys.html#ae81e34843c6c569026b9a7d9d54c4f04" title="Converts whatever to a String as long as a streaming operator is available for it.">ToString</a>(Message)); }
 <a name="l00281"></a>00281 <span class="comment"></span>
 <a name="l00282"></a>00282 <span class="comment">            /// @brief Force any outstanding logs to be commited to logs</span>
@@ -333,7 +333,7 @@
 <a name="l00302"></a>00302 <span class="comment">            /// @details This will log the Message, and will throw an exception with the Message included. Currently this supports all the Data</span>
 <a name="l00303"></a>00303 <span class="comment">            /// types that overload the stream insertion operator ( &lt;&lt; )</span>
 <a name="l00304"></a>00304 <span class="comment">            /// @param Message This will be streamed to the log, then used in a thrown exception.</span>
-<a name="l00305"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a88e6bdee6b972111b6804ca746738c50">00305</a> <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> LogAndThrow(T Message)
+<a name="l00305"></a><a class="code" href="../../da/ddf/classphys_1_1World.html#a4bc9fb3942b6c1cf216bd356a1b6332b">00305</a> <span class="comment"></span>            <span class="keyword">template</span> &lt;<span class="keyword">class</span> T&gt; <span class="keywordtype">void</span> LogAndThrow(<span class="keyword">const</span> T&amp; Message)
 <a name="l00306"></a>00306             {
 <a name="l00307"></a>00307                 this-&gt;Log(Message);
 <a name="l00308"></a>00308                 <span class="keywordflow">throw</span>(Message);
@@ -504,7 +504,7 @@
 <a name="l00473"></a>00473 <span class="preprocessor">#endif</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:50 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

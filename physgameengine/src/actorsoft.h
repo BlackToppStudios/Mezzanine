@@ -115,7 +115,7 @@ namespace phys
             /// @param mass The mass of the soft body.
             /// @param name Name of the object
             /// @param file Mesh the soft body is stored in
-            /// @param The Resource group the mesh can be found in.
+            /// @param group The Resource group the mesh can be found in.
             ActorSoft(Real mass, String name, String file, String group);
 
             /// @brief Destructor.
@@ -185,6 +185,9 @@ namespace phys
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);
 
+            /// @internal
+            /// @brief Get the Physics data raw from the physic subsystem
+            /// @return Currently this returns a pointer to a btSoftBody.
             virtual btSoftBody* GetBulletObject();
     };
 }

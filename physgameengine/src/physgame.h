@@ -91,7 +91,7 @@
 #include "particleeffect.h"             // Target
 #include "physicsmanager.h"
 #include "plane.h"                      // done
-#include "quaternion.h"                 // inp rogress
+#include "quaternion.h"                 // in progress
 #include "ray.h"
 #include "resourceinputstream.h"
 #include "resourcemanager.h"

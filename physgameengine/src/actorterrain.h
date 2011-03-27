@@ -57,12 +57,16 @@ namespace phys
     ///////////////////////////////////////
     class PHYS_LIB ActorTerrain : public ActorBase {
         protected:
+            /// @internal
+            /// @brief The physics data.
             btRigidBody* RigidBody;
+
+            /// @brief Uses value already passed into this to create the physics shapes
             void CreateCollisionTerrain();
         public:
             /// @brief Class constructor.
             /// @details The class constructor.
-            /// @param Initposition The location for this terrain.
+            /// @param InitPosition The location for this terrain.
             /// @param name The name of the actor.
             /// @param file The 3d mesh file that contains the 3d model the actor will use.
             /// @param group The resource group where the 3d mesh and other related files can be found.
@@ -91,6 +95,9 @@ namespace phys
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);
 
+            /// @internal
+            /// @brief Get the Physics data raw from the physic subsystem
+            /// @return Currently this returns a pointer to a btSoftBody.
             virtual btRigidBody* GetBulletObject();
     };
 }

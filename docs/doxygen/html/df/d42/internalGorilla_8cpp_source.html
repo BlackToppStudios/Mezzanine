@@ -123,7 +123,7 @@
 <a name="l00092"></a>00092   <span class="keywordflow">return</span> ret;
 <a name="l00093"></a>00093  }
 <a name="l00094"></a>00094 
-<a name="l00095"></a>00095  TextureAtlas::TextureAtlas(<span class="keyword">const</span> Ogre::String&amp; gorillaFile, <span class="keyword">const</span> Ogre::String&amp; groupName)
+<a name="l00095"></a>00095  TextureAtlas::TextureAtlas(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; gorillaFile, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; groupName)
 <a name="l00096"></a>00096  {
 <a name="l00097"></a>00097 
 <a name="l00098"></a>00098   _reset();
@@ -152,14 +152,14 @@
 <a name="l00121"></a>00121   refreshMarkupColours();
 <a name="l00122"></a>00122  }
 <a name="l00123"></a>00123 
-<a name="l00124"></a>00124  <span class="keywordtype">void</span>  TextureAtlas::_load(<span class="keyword">const</span> Ogre::String&amp; gorillaFile, <span class="keyword">const</span> Ogre::String&amp; groupName)
+<a name="l00124"></a>00124  <span class="keywordtype">void</span>  TextureAtlas::_load(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; gorillaFile, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; groupName)
 <a name="l00125"></a>00125  {
 <a name="l00126"></a>00126 
 <a name="l00127"></a>00127   Ogre::ConfigFile f;
 <a name="l00128"></a>00128   f.loadFromResourceSystem(gorillaFile, groupName, <span class="stringliteral">&quot; &quot;</span>, <span class="keyword">true</span>);
 <a name="l00129"></a>00129   Ogre::ConfigFile::SectionIterator seci = f.getSectionIterator();
 <a name="l00130"></a>00130 
-<a name="l00131"></a>00131   Ogre::String secName;
+<a name="l00131"></a>00131   <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> secName;
 <a name="l00132"></a>00132   <span class="keywordflow">while</span> (seci.hasMoreElements())
 <a name="l00133"></a>00133   {
 <a name="l00134"></a>00134 
@@ -190,7 +190,7 @@
 <a name="l00159"></a>00159  {
 <a name="l00160"></a>00160 
 <a name="l00161"></a>00161 
-<a name="l00162"></a>00162   Ogre::String name, data;
+<a name="l00162"></a>00162   <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> name, data;
 <a name="l00163"></a>00163   Ogre::ConfigFile::SettingsMultiMap::iterator i;
 <a name="l00164"></a>00164   <span class="keywordflow">for</span> (i = settings-&gt;begin(); i != settings-&gt;end(); ++i)
 <a name="l00165"></a>00165   {
@@ -208,8 +208,8 @@
 <a name="l00177"></a>00177    <span class="comment">// &gt;  file myatlas.png ~loadinggroup</span>
 <a name="l00178"></a>00178    <span class="keywordflow">if</span> (name == <span class="stringliteral">&quot;file&quot;</span>)
 <a name="l00179"></a>00179    {
-<a name="l00180"></a>00180     Ogre::String textureName = data;
-<a name="l00181"></a>00181     Ogre::String groupName = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
+<a name="l00180"></a>00180     <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> textureName = data;
+<a name="l00181"></a>00181     <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> groupName = Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME;
 <a name="l00182"></a>00182     <span class="keywordtype">size_t</span> groupSplit = data.find_first_of(<span class="charliteral">&#39;~&#39;</span>);
 <a name="l00183"></a>00183     <span class="keywordflow">if</span> (groupSplit != std::string::npos)
 <a name="l00184"></a>00184     {
@@ -248,7 +248,7 @@
 <a name="l00217"></a>00217  <span class="keywordtype">void</span>  TextureAtlas::_loadGlyphs(Ogre::ConfigFile::SettingsMultiMap* settings, GlyphData* glyphData)
 <a name="l00218"></a>00218  {
 <a name="l00219"></a>00219 
-<a name="l00220"></a>00220   Ogre::String name, data;
+<a name="l00220"></a>00220   <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> name, data;
 <a name="l00221"></a>00221   Ogre::ConfigFile::SettingsMultiMap::iterator i;
 <a name="l00222"></a>00222 
 <a name="l00223"></a>00223   Ogre::StringVector str_values;
@@ -358,7 +358,7 @@
 <a name="l00327"></a>00327  <span class="keywordtype">void</span>  TextureAtlas::_loadKerning(Ogre::ConfigFile::SettingsMultiMap* settings, GlyphData* glyphData)
 <a name="l00328"></a>00328  {
 <a name="l00329"></a>00329 
-<a name="l00330"></a>00330   Ogre::String left_name, data;
+<a name="l00330"></a>00330   <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> left_name, data;
 <a name="l00331"></a>00331   Ogre::ConfigFile::SettingsMultiMap::iterator i;
 <a name="l00332"></a>00332   Ogre::uint left_glyph_id;
 <a name="l00333"></a>00333   Ogre::uint right_glyph_id;
@@ -403,7 +403,7 @@
 <a name="l00372"></a>00372  <span class="keywordtype">void</span>  TextureAtlas::_loadSprites(Ogre::ConfigFile::SettingsMultiMap* settings)
 <a name="l00373"></a>00373  {
 <a name="l00374"></a>00374 
-<a name="l00375"></a>00375   Ogre::String sprite_name, data;
+<a name="l00375"></a>00375   <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> sprite_name, data;
 <a name="l00376"></a>00376   Ogre::ConfigFile::SettingsMultiMap::iterator i;
 <a name="l00377"></a>00377 
 <a name="l00378"></a>00378   Ogre::StringVector str_values;
@@ -659,13 +659,13 @@
 <a name="l00628"></a>00628 
 <a name="l00629"></a>00629  }
 <a name="l00630"></a>00630 
-<a name="l00631"></a>00631  <span class="keywordtype">void</span> Silverback::loadAtlas(<span class="keyword">const</span> Ogre::String &amp;name, <span class="keyword">const</span> Ogre::String &amp;group)
+<a name="l00631"></a>00631  <span class="keywordtype">void</span> Silverback::loadAtlas(<span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> &amp;name, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> &amp;group)
 <a name="l00632"></a>00632  {
 <a name="l00633"></a>00633   TextureAtlas* atlas = OGRE_NEW TextureAtlas(name + <span class="stringliteral">&quot;.gorilla&quot;</span>, group);
 <a name="l00634"></a>00634   mAtlases[name] = atlas;
 <a name="l00635"></a>00635  }
 <a name="l00636"></a>00636 
-<a name="l00637"></a>00637  Screen* Silverback::createScreen(Ogre::Viewport* viewport, <span class="keyword">const</span> Ogre::String&amp; atlas_name)
+<a name="l00637"></a>00637  Screen* Silverback::createScreen(Ogre::Viewport* viewport, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; atlas_name)
 <a name="l00638"></a>00638  {
 <a name="l00639"></a>00639   TextureAtlas* atlas = (*mAtlases.find(atlas_name)).second;
 <a name="l00640"></a>00640   Screen* screen = OGRE_NEW Screen(viewport, atlas);
@@ -673,7 +673,7 @@
 <a name="l00642"></a>00642   <span class="keywordflow">return</span> screen;
 <a name="l00643"></a>00643  }
 <a name="l00644"></a>00644 
-<a name="l00645"></a>00645  ScreenRenderable* Silverback::createScreenRenderable(<span class="keyword">const</span> Ogre::Vector2&amp; maxSize, <span class="keyword">const</span> Ogre::String&amp; atlas_name)
+<a name="l00645"></a>00645  ScreenRenderable* Silverback::createScreenRenderable(<span class="keyword">const</span> Ogre::Vector2&amp; maxSize, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; atlas_name)
 <a name="l00646"></a>00646  {
 <a name="l00647"></a>00647   TextureAtlas* atlas = (*mAtlases.find(atlas_name)).second;
 <a name="l00648"></a>00648   ScreenRenderable* screen = OGRE_NEW ScreenRenderable(maxSize, atlas);
@@ -1003,7 +1003,7 @@
 <a name="l00972"></a>00972  }
 <a name="l00973"></a>00973 
 <a name="l00974"></a>00974 
-<a name="l00975"></a>00975  <span class="keywordtype">void</span> Screen::renderQueueEnded(Ogre::uint8 queueGroupId, <span class="keyword">const</span> Ogre::String&amp; invocation, <span class="keywordtype">bool</span>&amp; repeatThisInvocation)
+<a name="l00975"></a>00975  <span class="keywordtype">void</span> Screen::renderQueueEnded(Ogre::uint8 queueGroupId, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; invocation, <span class="keywordtype">bool</span>&amp; repeatThisInvocation)
 <a name="l00976"></a>00976  {
 <a name="l00977"></a>00977   <span class="keywordflow">if</span> (mRenderSystem-&gt;_getViewport() != mViewport || queueGroupId != SCREEN_RENDERQUEUE)
 <a name="l00978"></a>00978    <span class="keywordflow">return</span>;
@@ -1290,7 +1290,7 @@
 <a name="l01259"></a>01259   mQuadLists.clear();
 <a name="l01260"></a>01260  }
 <a name="l01261"></a>01261 
-<a name="l01262"></a>01262  Caption* Layer::createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, <span class="keyword">const</span> Ogre::String&amp; text)
+<a name="l01262"></a>01262  Caption* Layer::createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; text)
 <a name="l01263"></a>01263  {
 <a name="l01264"></a>01264   Caption* caption = OGRE_NEW Caption(glyphDataIndex,x, y, text, <span class="keyword">this</span>);
 <a name="l01265"></a>01265   mCaptions.push_back(caption);
@@ -1318,7 +1318,7 @@
 <a name="l01287"></a>01287   mCaptions.clear();
 <a name="l01288"></a>01288  }
 <a name="l01289"></a>01289 
-<a name="l01290"></a>01290  MarkupText* Layer::createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, <span class="keyword">const</span> Ogre::String&amp; text)
+<a name="l01290"></a>01290  MarkupText* Layer::createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; text)
 <a name="l01291"></a>01291  {
 <a name="l01292"></a>01292   MarkupText* markuptext = OGRE_NEW MarkupText(defaultGlyphIndex, x, y, text, <span class="keyword">this</span>);
 <a name="l01293"></a>01293   mMarkupTexts.push_back(markuptext);
@@ -2014,7 +2014,7 @@
 <a name="l01983"></a>01983  }
 <a name="l01984"></a>01984 
 <a name="l01985"></a>01985 
-<a name="l01986"></a>01986  Caption::Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> Ogre::String&amp; caption, Layer* layer)
+<a name="l01986"></a>01986  Caption::Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; caption, Layer* layer)
 <a name="l01987"></a>01987  : mLayer(layer)
 <a name="l01988"></a>01988  {
 <a name="l01989"></a>01989   mGlyphData      = mLayer-&gt;_getGlyphData(glyphDataIndex);
@@ -2251,7 +2251,7 @@
 <a name="l02220"></a>02220  }
 <a name="l02221"></a>02221 
 <a name="l02222"></a>02222 
-<a name="l02223"></a>02223  MarkupText::MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> Ogre::String&amp; text, Layer* parent)
+<a name="l02223"></a>02223  MarkupText::MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, <span class="keyword">const</span> <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a>&amp; text, Layer* parent)
 <a name="l02224"></a>02224  : mLayer(parent)
 <a name="l02225"></a>02225  {
 <a name="l02226"></a>02226   mDefaultGlyphData = mLayer-&gt;_getGlyphData(defaultGlyphIndex);
@@ -2398,7 +2398,7 @@
 <a name="l02367"></a>02367       <span class="keywordflow">if</span> (foundIt == <span class="keyword">false</span>)
 <a name="l02368"></a>02368        <span class="keywordflow">return</span>;
 <a name="l02369"></a>02369 
-<a name="l02370"></a>02370       Ogre::String sprite_name = mText.substr(begin+1, i - begin - 1);
+<a name="l02370"></a>02370       <a class="code" href="../../d9/d27/namespacephys_1_1xml.html#a4d8ca7638328d16d303e5a4c849f4704" title="Used to represent a string of UTF8 code point, char, or wchar_t depending on how compiled.">Ogre::String</a> sprite_name = mText.substr(begin+1, i - begin - 1);
 <a name="l02371"></a>02371 
 <a name="l02372"></a>02372       Sprite* sprite = mLayer-&gt;_getSprite(sprite_name);
 <a name="l02373"></a>02373       <span class="keywordflow">if</span> (sprite == 0)
@@ -2509,7 +2509,7 @@
 <a name="l02478"></a>02478 <span class="comment">/// @endcond</span>
 </pre></div></div>
 </div>
-<hr class="footer"/><address class="footer"><small>Generated on Mon Mar 14 2011 12:00:49 for PhysGameEngine by&nbsp;
+<hr class="footer"/><address class="footer"><small>Generated on Sun Mar 27 2011 00:42:58 for PhysGameEngine by&nbsp;
 <a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.7.1 </small></address>
 </body>

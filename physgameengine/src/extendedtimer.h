@@ -48,7 +48,6 @@ namespace phys
     /// @struct Time
     /// @headerfile timer.h
     /// @brief A container for the metrics of time relevant for the timer class.
-    /// @details
     ///////////////////////////////////////
     struct Time
     {
@@ -73,13 +72,12 @@ namespace phys
     class PHYS_LIB ExtendedTimer : public Timer
     {
         public:
-            /// @enum The internal time struct to be used. @n @n
-            ///
+            /// @brief The internal time struct to be used...
             enum TimeStruct
             {
-                Current,
-                Goal,
-                Initial
+                Current,    ///< Current description
+                Goal,       ///< Goal description
+                Initial     ///< Initial description
             };
         protected:
             Time CurrentTime;

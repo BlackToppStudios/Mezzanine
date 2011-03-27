@@ -320,7 +320,7 @@ namespace phys
             /// be used with only with Dynamic objects.
             /// @param Accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent.
             /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
-            virtual void CreateShapeFromMeshDynamic(short unsigned int accuracy, bool UseAllSubmeshes = false) = 0;
+            virtual void CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes = false) = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Working with the World

@@ -78,6 +78,9 @@ namespace phys
         /// @brief Coordinate on the Z vector.
         Real Z;
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Constructors
+
         /// @brief Default Constructor.
         /// @details Basic all zero initialization constructor.
         Vector3();
@@ -92,29 +95,42 @@ namespace phys
         /// @brief Ogre Value Constructor.
         /// @details Constructor that sets all values to match the Ogre vector.
         /// @param Vec The vector to be copied to make this vector.
-        explicit Vector3(Ogre::Vector3 Vec);
+        explicit Vector3(const Ogre::Vector3& Vec);
 
         /// @brief Bullet Value Constructor.
         /// @details Constructor that sets all values to match the Bullet vector.
         /// @param Vec The vector to be copied to make this vector.
-        explicit Vector3(btVector3 Vec);
+        explicit Vector3(const btVector3& Vec);
 
         /// @brief cAudio Value Constructor.
         /// @details Constructor that sets all values to match the cAudio vector.
         /// @param Vec The vector to be copied to make this vector.
-        explicit Vector3(cAudio::cVector3 Vec);
+        explicit Vector3(const cAudio::cVector3& Vec);
 
-        /// @brief Gets a vector representing the X unit of a vector(1,0,0).
+        /// @brief Copy Constructor
+        /// @param Vec The other phys::Vector3 to copy to make this one.
+        Vector3(const phys::Vector3& Vec);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Prebuilt Vectors
+
+        /// @brief Gets a vector representing the X unit of a Vector3.
+        /// @return A Vector3(1,0,0).
         static Vector3 Unit_X();
-        /// @brief Gets a vector representing the Y unit of a vector(0,1,0).
+        /// @brief Gets a vector representing the Y unit of a vector.
+        /// @return A Vector3(0,1,0).
         static Vector3 Unit_Y();
-        /// @brief Gets a vector representing the Z unit of a vector(0,0,1).
+        /// @brief Gets a vector representing the Z unit of a vector.
+        /// @return A Vector3(0,0,1).
         static Vector3 Unit_Z();
-        /// @brief Gets a vector representing the negative X unit of a vector(-1,0,0).
+        /// @brief Gets a vector representing the negative X unit of a vector.
+        /// @return A Vector3(-1,0,0).
         static Vector3 Neg_Unit_X();
-        /// @brief Gets a vector representing the negative Y unit of a vector(0,-1,0).
+        /// @brief Gets a vector representing the negative Y unit of a vector.
+        /// @return A Vector3(0,-1,0).
         static Vector3 Neg_Unit_Y();
-        /// @brief Gets a vector representing the negative Z unit of a vector(0,0,-1).
+        /// @brief Gets a vector representing the negative Z unit of a vector.
+        /// @return A Vector3(0,0,-1).
         static Vector3 Neg_Unit_Z();
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -122,49 +138,22 @@ namespace phys
 
         /// @brief Assignment operator to convert from Bullet Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
-        /// @param bt3 This is a btVector3 that will be copied
-        Vector3& operator= (const btVector3 &bt3);
+        /// @param Vec This is a btVector3 that will be copied
+        Vector3& operator= (const btVector3 &Vec);
 
         /// @brief Assignment operator to convert from Ogre Vectors
         /// @details This copies the x,y and z values from the bullet into this vector
-        /// @param OVec3 This is a Ogre::Vector3 that will be copied.
-        Vector3& operator= (const Ogre::Vector3 &OVec3);
+        /// @param Vec This is a Ogre::Vector3 that will be copied.
+        Vector3& operator= (const Ogre::Vector3 &Vec);
 
-        ///////////////////////////////////////////////////////////////////////////////
-        // Equality Comparison operators
-
-        /// @brief Equality Comparison Operator.
-        /// @details Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false.
-        /// @param Vec2 This is the other phys::Vector3.
-        bool operator== (const phys::Vector3 &Vec2) const;
-
-        /// @brief Equality Comparison Operator.
-        /// @details Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false.
-        /// @param Vec2 This is an btVector3 that needs to be compared with this.
-        bool operator== (const btVector3 &Vec2) const;
-
-        /// @brief Equality Comparison Operator.
-        /// @details Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
-        /// @param Vec2 This is an Ogre::Vector3 that needs to be compared with this.
-        bool operator== (const Ogre::Vector3 &Vec2) const;
-
-        /// @brief Inequality Comparison Operator.
-        /// @details Returns true if X!=X, Y!=Y or Z!=Z. If all of those match this returns false.
-        /// @param Vec2 This is the other phys::Vector3.
-        bool operator!= (const phys::Vector3 &Vec2) const;
-
-        /// @brief Inequality Comparison Operator.
-        /// @details Returns true if X!=getX(), Y!=getY() or Z!=getZ(). If all of those match this returns false.
-        /// @param Vec2 This is an btVector3 that needs to be compared with this.
-        bool operator!= (const btVector3 &Vec2) const;
-
-        /// @brief Inequality Comparison Operator.
-        /// @details Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
-        /// @param Vec2 This is an Ogre::Vector3 that needs to be compared with this.
-        bool operator!= (const Ogre::Vector3 &Vec2) const;
+        /// @brief Assignment operator to convert from cAudio Vectors
+        /// @details This copies the x,y and z values from the bullet into this vector
+        /// @param Vec This is a cAudio::cVector3 that will be copied.
+        Vector3& operator= (const cAudio::cVector3 &Vec);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Unary Operators
+
         /// @brief Additive Inverse Operator
         /// @details Returns the opposite Vector3 relative to 0,0,0
         Vector3 operator- ();
@@ -188,79 +177,133 @@ namespace phys
         /// @brief Scaling by multiplication.
         /// @details This Multiplies X, Y and Z by scalar and stores the changes in this Vector3.
         /// @param scalar This is the amount to scale the Vector3 by.
-        void operator*= (const Real &scalar);
+        Vector3& operator*= (const Real &scalar);
 
         /// @brief Scaling by Division
         /// @details This Division X, Y and Z by scalar and and stores the changes in this Vector3.
         /// @param scalar This is the amount to scale the Vector3 by
-        void operator/= (const Real &scalar);
+        Vector3& operator/= (const Real &scalar);
+
+        ///////////////////////////////////////////////////////////////////////////////
+        // Equality Comparison operators
+
+        /// @brief Equality Comparison Operator.
+        /// @details Returns true if X==X, Y==Y and Z==Z. If any of those do not match this returns false.
+        /// @param Vec This is the other phys::Vector3.
+        bool operator== (const phys::Vector3 &Vec) const;
+
+        /// @brief Equality Comparison Operator.
+        /// @details Returns true if X==getX(), Y==getY() and Z==getZ(). If any of those do not match this returns false.
+        /// @param Vec This is an btVector3 that needs to be compared with this.
+        bool operator== (const btVector3 &Vec) const;
+
+        /// @brief Equality Comparison Operator.
+        /// @details Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
+        /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
+        bool operator== (const Ogre::Vector3 &Vec) const;
+
+        /// @brief Inequality Comparison Operator.
+        /// @details Returns true if X!=X, Y!=Y or Z!=Z. If all of those match this returns false.
+        /// @param Vec This is the other phys::Vector3.
+        bool operator!= (const phys::Vector3 &Vec) const;
+
+        /// @brief Inequality Comparison Operator.
+        /// @details Returns true if X!=getX(), Y!=getY() or Z!=getZ(). If all of those match this returns false.
+        /// @param Vec This is an btVector3 that needs to be compared with this.
+        bool operator!= (const btVector3 &Vec) const;
+
+        /// @brief Inequality Comparison Operator.
+        /// @details Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
+        /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
+        bool operator!= (const Ogre::Vector3 &Vec) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators
         /// @brief Addition Operator
         /// @details Allows for addition from a phys::Vector3
-        /// @param Vec2 This is the other phys::Vector3
-        Vector3 operator+ (const Vector3 &Vec2) const;
+        /// @param Vec This is the other phys::Vector3
+        Vector3 operator+ (const Vector3 &Vec) const;
 
         /// @brief Subraction Operator
         /// @details Allows for subtraction from a phys::Vector3
-        /// @param Vec2 This is the other phys::Vector3
-        Vector3 operator- (const Vector3 &Vec2) const;
+        /// @param Vec This is the other phys::Vector3
+        Vector3 operator- (const Vector3 &Vec) const;
 
         /// @brief Multiplaction Operator
         /// @details Allows for multiplaction from a phys::Vector3
-        /// @param Vec2 This is the other phys::Vector3
-        Vector3 operator* (const Vector3 &Vec2) const;
+        /// @param Vec This is the other phys::Vector3
+        Vector3 operator* (const Vector3 &Vec) const;
 
         /// @brief Division Operator
         /// @details Allows for division from a phys::Vector3
-        /// @param Vec2 This is the other phys::Vector3
-        Vector3 operator/ (const Vector3 &Vec2) const;
+        /// @param Vec This is the other phys::Vector3
+        Vector3 operator/ (const Vector3 &Vec) const;
 
         /////////////////////////////////////////////////////////////////////
         // Arithmetic Operators with btVector3
         /// @brief Bullet Addition Operator
         /// @details Allows for addition  between a phys::Vector3 and a btVector3
-        /// @param Vec2 This is the btVector3 to be added
-        Vector3 operator+ (const btVector3  &Vec2);
+        /// @param Vec This is the btVector3 to be added
+        Vector3 operator+ (const btVector3  &Vec) const;
 
         /// @brief Bullet Subtraction Operator
         /// @details Allows for subtraction  between a phys::Vector3 and a btVector3
-        /// @param Vec2 This is the btVector3 to be subtracted
-        Vector3 operator- (const btVector3  &Vec2);
+        /// @param Vec This is the btVector3 to be subtracted
+        Vector3 operator- (const btVector3  &Vec) const;
 
         /// @brief Bullet Multiplication Operator
         /// @details Allows for multiplication  between a phys::Vector3 and a btVector3
-        /// @param Vec2 This is the btVector3 to be multiplied
-        Vector3 operator* (const btVector3  &Vec2);
+        /// @param Vec This is the btVector3 to be multiplied
+        Vector3 operator* (const btVector3  &Vec) const;
 
         /// @brief Bullet Division Operator
         /// @details Allows for division  between a phys::Vector3 and a btVector3
-        /// @param Vec2 This is the btVector3 to be divided
-        Vector3 operator/ (const btVector3  &Vec2);
+        /// @param Vec This is the btVector3 to be divided
+        Vector3 operator/ (const btVector3  &Vec) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators with Ogre::Vector3
         /// @brief Ogre Addition Operator
         /// @details Allows for addition  between a phys::Vector3 and a Ogre::Vector3
-        /// @param Vec2 This is the Ogre::Vector3 to be added
-        Vector3 operator+ (const Ogre::Vector3 &Vec2);
+        /// @param Vec This is the Ogre::Vector3 to be added
+        Vector3 operator+ (const Ogre::Vector3 &Vec) const;
 
-        /// @brief Bullet Subtraction Operator
+        /// @brief Ogre Subtraction Operator
         /// @details Allows for subtraction  between a phys::Vector3 and a Ogre::Vector3
-        /// @param Vec2 This is the Ogre::Vector3 to be subtracted
-        Vector3 operator- (const Ogre::Vector3 &Vec2);
+        /// @param Vec This is the Ogre::Vector3 to be subtracted
+        Vector3 operator- (const Ogre::Vector3 &Vec) const;
 
-        /// @brief Bullet Multiplication Operator
+        /// @brief Ogre Multiplication Operator
         /// @details Allows for multiplying  between a phys::Vector3 and a Ogre::Vector3
-        /// @param Vec2 This is the Ogre::Vector3 to be multiplied
-        Vector3 operator* (const Ogre::Vector3 &Vec2);
+        /// @param Vec This is the Ogre::Vector3 to be multiplied
+        Vector3 operator* (const Ogre::Vector3 &Vec) const;
 
-        /// @brief Bullet Division Operator
+        /// @brief Ogre Division Operator
         /// @details Allows for division  between a phys::Vector3 and a Ogre::Vector3
-        /// @param Vec2 This is the Ogre::Vector3 to be divided
-        Vector3 operator/ (const Ogre::Vector3 &Vec2);
+        /// @param Vec This is the Ogre::Vector3 to be divided
+        Vector3 operator/ (const Ogre::Vector3 &Vec) const;
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Arithmetic Operators with cAudio::cVector3
+        /// @brief cAudio Addition Operator
+        /// @details Allows for addition  between a phys::Vector3 and a cAudio::cVector3
+        /// @param Vec This is the cAudio::cVector3 to be added
+        Vector3 operator+ (const cAudio::cVector3 &Vec) const;
+
+        /// @brief cAudio Subtraction Operator
+        /// @details Allows for subtraction  between a phys::Vector3 and a cAudio::cVector3
+        /// @param Vec This is the cAudio::cVector3 to be subtracted
+        Vector3 operator- (const cAudio::cVector3 &Vec) const;
+
+        /// @brief cAudio Multiplication Operator
+        /// @details Allows for multiplying  between a phys::Vector3 and a cAudio::cVector3
+        /// @param Vec This is the cAudio::cVector3 to be multiplied
+        Vector3 operator* (const cAudio::cVector3 &Vec) const;
+
+        /// @brief cAudio Division Operator
+        /// @details Allows for division  between a phys::Vector3 and a cAudio::cVector3
+        /// @param Vec This is the cAudio::cVector3 to be divided
+        Vector3 operator/ (const cAudio::cVector3 &Vec) const;
         ///////////////////////////////////////////////////////////////////////////////
         // Fancy Math
 
@@ -269,17 +312,17 @@ namespace phys
         /// to lines that contain the origin and the other vectors \n\n
         /// Thanks to the guys at Ogre3d for the well written version of this function
         /// that we based this on.
-        /// @param rkVector the Vector to work with to create the cross product
-        /// @return This is the crossproduct of this vector and rkVector
-        Vector3 CrossProduct( const Vector3& rkVector ) const;
+        /// @param Vec the Vector to work with to create the cross product
+        /// @return This is the crossproduct of this vector and Vec
+        Vector3 CrossProduct( const Vector3& Vec ) const;
 
         /// @brief This is used to calculate the dotproduct of this and another vector
         /// @details This calculates the sum of the products of X, Y and Z. \n\n
         /// Thanks to the guys at Ogre3d for the well written version of this function
         /// that we based this on.
-        /// @param vec The vector to work with to create the cross product
+        /// @param Vec The vector to work with to create the cross product
         /// @return This is the dotproduct of this vector and vec
-        Real dotProduct(const Vector3& vec) const;
+        Real dotProduct(const Vector3& Vec) const;
 
         /// @brief This will change this point into it's own normal relative to the origin
         /// @details This will change this vector into one that is the same direction from the origin, but only one unit a away.
@@ -342,6 +385,84 @@ namespace phys
 
     };
 }// /phys
+
+///////////////////////////////////////////////////////////////////////////////
+// Right Hand Arithmetic Operators
+
+/// @brief Right Hand Addition Operator for Bullet Vectors with a phys::Vector3.
+/// @param Vec The Bullet Vector to be added.
+/// @param lhs The phys::Vector3 to be added.
+/// @return A phys::Vector3 with the Sum.
+phys::Vector3 PHYS_LIB operator+ (const btVector3  &Vec, const phys::Vector3& lhs);
+
+/// @brief Right Hand Subtraction Operator for Bullet Vectors with a phys::Vector3.
+/// @param Vec The Bullet Vector to be subtracted from.
+/// @param lhs The phys::Vector3 to be subtracted.
+/// @return A phys::Vector3 with the difference.
+phys::Vector3 PHYS_LIB operator- (const btVector3  &Vec, const phys::Vector3& lhs);
+
+/// @brief Right Hand Multiplication Operator for Bullet Vectors with a phys::Vector3.
+/// @param Vec The Bullet Vector to be multiplied.
+/// @param lhs The phys::Vector3 to be multiplied.
+/// @return A phys::Vector3 with the product.
+phys::Vector3 PHYS_LIB operator* (const btVector3  &Vec, const phys::Vector3& lhs);
+
+/// @brief Right Hand Division Operator for Bullet Vectors with a phys::Vector3.
+/// @param Vec The Bullet Vector to be divided by.
+/// @param lhs The phys::Vector3 to be divided.
+/// @return A phys::Vector3 with the results
+phys::Vector3 PHYS_LIB operator/ (const btVector3  &Vec, const phys::Vector3& lhs);
+
+
+/// @brief Right Hand Addition Operator for Ogre Vectors with a phys::Vector3.
+/// @param Vec The Ogre Vector to be added.
+/// @param lhs The phys::Vector3 to be added.
+/// @return A phys::Vector3 with the Sum.
+phys::Vector3 PHYS_LIB operator+ (const Ogre::Vector3 &Vec, const phys::Vector3& lhs);
+
+/// @brief Right Hand Subtraction Operator for Ogre Vectors with a phys::Vector3.
+/// @param Vec The Ogre Vector to be subtracted from.
+/// @param lhs The phys::Vector3 to be subtracted.
+/// @return A phys::Vector3 with the difference.
+phys::Vector3 PHYS_LIB operator- (const Ogre::Vector3 &Vec, const phys::Vector3& lhs);
+
+/// @brief Right Hand Multiplication Operator for Ogre Vectors with a phys::Vector3.
+/// @param Vec The Ogre Vector to be multiplied.
+/// @param lhs The phys::Vector3 to be multiplied.
+/// @return A phys::Vector3 with the product.
+phys::Vector3 PHYS_LIB operator* (const Ogre::Vector3 &Vec, const phys::Vector3& lhs);
+
+/// @brief Right Hand Division Operator for Ogre Vectors with a phys::Vector3.
+/// @param Vec The Ogre Vector to be divided by.
+/// @param lhs The phys::Vector3 to be divided.
+/// @return A phys::Vector3 with the results
+phys::Vector3 PHYS_LIB operator/ (const Ogre::Vector3 &Vec, const phys::Vector3& lhs);
+
+
+/// @brief Right Hand Addition Operator for cAudio Vectors with a phys::Vector3.
+/// @param Vec The cAudio Vector to be added.
+/// @param lhs The phys::Vector3 to be added.
+/// @return A phys::Vector3 with the Sum.
+phys::Vector3 PHYS_LIB operator+ (const cAudio::cVector3 &Vec, const phys::Vector3& lhs);
+
+/// @brief Right Hand Subtraction Operator for cAudio Vectors with a phys::Vector3.
+/// @param Vec The cAudio Vector to be subtracted from.
+/// @param lhs The phys::Vector3 to be subtracted.
+/// @return A phys::Vector3 with the difference.
+phys::Vector3 PHYS_LIB operator- (const cAudio::cVector3 &Vec, const phys::Vector3& lhs);
+
+/// @brief Right Hand Multiplication Operator for cAudio Vectors with a phys::Vector3.
+/// @param Vec The cAudio Vector to be multiplied.
+/// @param lhs The phys::Vector3 to be multiplied.
+/// @return A phys::Vector3 with the product.
+phys::Vector3 PHYS_LIB operator* (const cAudio::cVector3 &Vec, const phys::Vector3& lhs);
+
+/// @brief Right Hand Division Operator for cAudio Vectors with a phys::Vector3.
+/// @param Vec The cAudio Vector to be divided by.
+/// @param lhs The phys::Vector3 to be divided.
+/// @return A phys::Vector3 with the results
+phys::Vector3 PHYS_LIB operator/ (const cAudio::cVector3 &Vec, const phys::Vector3& lhs);
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment

@@ -91,6 +91,7 @@ namespace phys
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
             /// be used with only with Dynamic objects.
             /// @param Accuracy A value from 1 to 4. The higher the more accurate, but the more resource intensive
+            /// @param UseAllSubmeshes Should Child meshes, if any, be used when approximating physics shapes
             virtual void CreateShapeFromMeshDynamic(short unsigned int Accuracy = 1, bool UseAllSubmeshes = false);
 
             /// @brief Creates a sphere collision shape.
@@ -165,6 +166,9 @@ namespace phys
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);
 
+            /// @internal
+            /// @brief Get the Physics data raw from the physic subsystem
+            /// @return Currently this returns a pointer to a btRigidBody.
             virtual btRigidBody* GetBulletObject();
     };
 }

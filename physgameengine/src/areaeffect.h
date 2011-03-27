@@ -74,15 +74,16 @@ namespace phys{
     {
         friend class PhysicsManager;
         protected:
+            /// @brief The kinds of shapes and AreaEffect can take.
             enum AEShapeType
             {
-                AE_Sphere,
-                AE_CylinderX,
-                AE_CylinderY,
-                AE_CylinderZ,
-                AE_Box,
-                AE_Custom,
-                AE_Unassigned
+                AE_Sphere,      ///< Description Required
+                AE_CylinderX,   ///< Description Required
+                AE_CylinderY,   ///< Description Required
+                AE_CylinderZ,   ///< Description Required
+                AE_Box,         ///< Description Required
+                AE_Custom,      ///< Description Required
+                AE_Unassigned   ///< Description Required
             };
             /// @brief The name of the Area Effect.
             String Name;
@@ -290,7 +291,7 @@ namespace phys{
     class PHYS_LIB GravityWell : public AreaEffect
     {
         public:
-            /// @enum These values represent the kind of attenuation applied to the field strength
+            /// @brief These values represent the kind of attenuation applied to the field strength
             /// over a distance.  None is the default, where the force is constant in all area's of the
             /// field.  Linear is where the force applied drops by the attenuation value times the distance
             /// (strength - (attenuation amount * distance to AE center)).  Quadratic is where the force
@@ -298,14 +299,18 @@ namespace phys{
             /// (attenuation amount * distance to AE center * distance to AE center)).
             enum AttenuationStyle
             {
-                GW_Att_None,
-                GW_Att_Linear,
-                GW_Att_Quadratic
+                GW_Att_None,        ///< No Attentuation, Equal strength through.
+                GW_Att_Linear,      ///< Linear attentuation, Strength weaker farther from center.
+                GW_Att_Quadratic    ///< Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.
             };
         protected:
+            /// @brief The amount of force exerted on other objects
             Real Strength;
+            /// @brief Should world gravity ne ignored
             bool AllowWorldGrav;
+            /// @brief How does gravity
             AttenuationStyle AttenStyle;
+            /// @brief how much does the Gravity attenuate.
             Real AttenAmount;
         public:
             /// @brief Constructor.
