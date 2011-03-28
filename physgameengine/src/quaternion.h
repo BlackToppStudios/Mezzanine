@@ -52,6 +52,7 @@ namespace Ogre
 
 namespace phys
 {
+    class Vector3;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Quaternion
     /// @headerfile quaternion.h
@@ -89,6 +90,12 @@ namespace phys
             /// @param z Rotation on the Z Axis.
             /// @param w Rotation on the W Axis.
             Quaternion(const Real &x, const Real &y, const Real &z, const Real &w);
+
+            /// @brief Axis and Rotation Constructor.
+            /// @details This assembles a quaternion based on an axis and a rotation in radians.
+            /// @param Angle Real representing the angle to be applied along the axis in radians.
+            /// @param Axis Vector3 representing the axis to apply the rotation.
+            Quaternion(const Real& Angle, const Vector3& Axis);
 
             /// @brief Bullet Quaternion constructor.
             /// @details Constructor that sets all values to match the Bullet quaternion.
@@ -162,6 +169,21 @@ namespace phys
             /// @param Other The other Quaternion to subtract from this one.
             /// @return A phys::Quaternion with the difference.
             Quaternion operator- (const btQuaternion& Other) const;
+
+            /// @brief Multiplication operator with phys::Quaternion and phys::Quaternion.
+            /// @param Other The other Quaternion to multiply from this one.
+            /// @return A phys::Quaternion with the result.
+            Quaternion operator* (const phys::Quaternion& Other) const;
+
+            /// @brief Multiplication operator with phys::Quaternion and Ogre::Quaternion.
+            /// @param Other The other Quaternion to multiply from this one.
+            /// @return A phys::Quaternion with the result.
+            Quaternion operator* (const Ogre::Quaternion& Other) const;
+
+            /// @brief Multiplication operator with phys::Quaternion and btQuaternion.
+            /// @param Other The other Quaternion to multiply from this one.
+            /// @return A phys::Quaternion with the result.
+            Quaternion operator* (const btQuaternion& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Increment and Decrement Operators
