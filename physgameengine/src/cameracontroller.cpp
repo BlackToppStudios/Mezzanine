@@ -83,13 +83,13 @@ namespace phys
 
     void CameraController::MoveForward(Real Units)
     {
-        Vector3 Move(0,0,Units);
+        Vector3 Move(0,0,-Units);
         Controlled->MoveRelative(Move);
     }
 
     void CameraController::MoveBackward(Real Units)
     {
-        Vector3 Move(0,0,-Units);
+        Vector3 Move(0,0,Units);
         Controlled->MoveRelative(Move);
     }
 
@@ -109,19 +109,20 @@ namespace phys
     {
         Quaternion CamRot(Controlled->GetOrientation());
         CamRot = CamRot *
-            Quaternion(Yaw,Vector3::Unit_Y()) *
-            Quaternion(Pitch,Vector3::Unit_X());
-        Controlled->SetOrientation(CamRot);
+            Quaternion(-Pitch,Vector3::Unit_X()) *
+            //CamRot *
+            Quaternion(-Yaw,Vector3::Unit_Y());
+        Controlled->SetOrientation(CamRot);// */
     }
 
     void CameraController::Rotate(Real Yaw, Real Pitch, Real Roll)
     {
         Quaternion CamRot(Controlled->GetOrientation());
         CamRot = CamRot *
-            Quaternion(Yaw,Vector3::Unit_Y()) *
-            Quaternion(Pitch,Vector3::Unit_X()) *
-            Quaternion(Roll,Vector3::Unit_Z());
-        Controlled->SetOrientation(CamRot);
+            Quaternion(-Yaw,Vector3::Unit_Y()) *
+            Quaternion(-Pitch,Vector3::Unit_X()) *
+            Quaternion(-Roll,Vector3::Unit_Z());
+        Controlled->SetOrientation(CamRot);// */
     }
 }
 

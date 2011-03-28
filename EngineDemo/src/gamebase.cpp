@@ -86,6 +86,7 @@ int main(int argc, char **argv)
     //Setup some camera tricks
     //WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
     //CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
+    TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0.0,200.0,750.0));
 
     TheWorld->Log("Printing Supported Resolutions:");
     const std::vector<String>* ResList = TheWorld->GetGraphicsManager()->GetSupportedResolutions();
@@ -264,28 +265,28 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, false))
     {
         //TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01);
-        DefaultControl->StrafeLeft(100 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, false))
     {
         //TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01);
-        DefaultControl->StrafeRight(100 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->StrafeRight(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, true))
     {
         //TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( -12.0 );
-        DefaultControl->MoveForward(100 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->MoveForward(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN)  || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, true))
     {
         //TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( 12.0 );
-        DefaultControl->MoveBackward(100 * (TheWorld->GetFrameTime() * 0.001));
+        DefaultControl->MoveBackward(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
-    Quaternion CamRot = TheWorld->GetCameraManager()->GetDefaultCamera()->GetOrientation();
+    /*Quaternion CamRot = TheWorld->GetCameraManager()->GetDefaultCamera()->GetOrientation();
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEUP))
     {
         CamRot.Y +=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot );
@@ -293,23 +294,26 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEDOWN))
     {
         CamRot.Y -=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot );
-    }
+    }// */
 
+    Vector2 Offset = Queryer.GetMousePrevFrameOffset();
+    if( Vector2(0,0) != Offset )
+        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01);
 
-    if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
+    /*if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
     {
-        //TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.000003 * (float)Queryer.GetJoystickAxis(1));
+        TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.000003 * (float)Queryer.GetJoystickAxis(1));
     }
 
     if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_2)!=0)
     {
-        //TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera(0.002 * (float)Queryer.GetJoystickAxis(2));
+        TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera(0.002 * (float)Queryer.GetJoystickAxis(2));
     }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
     {
-        //TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom();
-    }
+        TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom();
+    }// */
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_M) || Queryer.IsJoystickButtonPushed(1) )
     {

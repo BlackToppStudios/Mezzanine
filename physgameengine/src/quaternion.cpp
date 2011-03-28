@@ -43,8 +43,11 @@
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 
+#include <cmath>
+
 #include "quaternion.h"
 #include "vector3.h"
+#include "world.h"
 
 namespace phys
 {
@@ -74,7 +77,7 @@ namespace phys
         this->W = Ogre::Math::Cos(fHalfAngle);
         this->X = fSin*Axis.X;
         this->Y = fSin*Axis.Y;
-        this->X = fSin*Axis.Z;
+        this->Z = fSin*Axis.Z;
     }
 
     Quaternion::Quaternion(const btQuaternion& Other)
@@ -89,6 +92,27 @@ namespace phys
         this->Y=Other.Y;
         this->Z=Other.Z;
         this->W=Other.W;
+    }
+
+    Real Quaternion::DotProduct(const Quaternion& Other) const
+    {
+        return this->X * Other.X + this->Y * Other.Y + this->Z * Other.Z + this->W * Other.W;
+    }
+
+    Real Quaternion::Length() const
+    {
+        return sqrt(LengthSqrd());
+    }
+
+    Real Quaternion::LengthSqrd() const
+    {
+        return DotProduct(*this);
+    }
+
+    Quaternion& Quaternion::Normalize()
+    {
+        *this = *this / Length();
+        return *this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -132,6 +156,21 @@ namespace phys
         this->Y=Other.y;
         this->Z=Other.z;
         this->W=Other.w;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    //  Arithmetic By Real Operators
+
+    Quaternion Quaternion::operator* (const Real& Scalar) const
+    {
+        return Quaternion(this->X * Scalar,this->Y * Scalar,this->Z * Scalar,this->W * Scalar);
+    }
+
+    Quaternion Quaternion::operator/ (const Real& Scalar) const
+    {
+        if( 0 == Scalar )
+            World::GetWorldPointer()->LogAndThrow("Dividing by zero in 'Quaternion::operator/', Quit it.");
+        return *this * ( 1.0 / Scalar );
     }
 
     ///////////////////////////////////////////////////////////////////////////////

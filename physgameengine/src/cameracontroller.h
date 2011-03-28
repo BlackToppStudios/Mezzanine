@@ -104,10 +104,15 @@ namespace phys
             /// @param Units The distance to be moved in world units.
             void StrafeRight(Real Units);
             /// @brief Rotates the camera.
+            /// @details This is a limited(but common) rotation method that prevents roll from occuring
+            /// by yaw'ing around the world axes and pitching on the local axes.  This is ideal for
+            /// shooter style cameras.
             /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
             /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
             void Rotate(Real Yaw, Real Pitch);
             /// @brief Rotates the camera.
+            /// @details This is a 6DOF rotation method.  If you want to fly around like you
+            /// would in an actual spacecraft this is the function to use.
             /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
             /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
             /// @param RollThe amount to rotate the camera on it's local Z axis in Radians.

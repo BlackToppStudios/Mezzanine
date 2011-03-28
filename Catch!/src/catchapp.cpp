@@ -56,9 +56,10 @@ void CatchApp::MakeGUI()
     String ItemShopLayer = "ItemShopLayer";
     String StatsLayer = "StatsLayer";
     UIManager* GUI = TheWorld->GetUIManager();
+    Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
     GUI->LoadGorilla("Catch!");
 
-    UIScreen* Screen = GUI->CreateScreen(GameScreen, "Catch!");
+    UIScreen* Screen = GUI->CreateScreen(GameScreen, "Catch!", UIViewport);
     UILayer* Menu = Screen->CreateLayer(MenuLayer, 10);
     UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 4);
     UILayer* Stats = Screen->CreateLayer(StatsLayer, 1);
@@ -236,22 +237,22 @@ bool CatchApp::PostUI()
     if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setFullscreen(true);
+        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(true);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setFullscreen(false);
+        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(false);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setRenderResolution(1024,768);
+        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(1024,768);
     }
     else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
-        TheWorld->GetGraphicsManager()->setRenderResolution(800,600);
+        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(800,600);
     }
     else { videobuttonpushed = false; }
 
@@ -468,8 +469,8 @@ bool CatchApp::PostRender()
     UI::Caption* AvFPS = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("StatsLayer")->GetCaption("AvFPS");
     std::stringstream CFPSstream;
     std::stringstream AFPSstream;
-    CFPSstream << TheWorld->GetGraphicsManager()->GetLastFPS();
-    AFPSstream << TheWorld->GetGraphicsManager()->GetAverageFPS();
+    CFPSstream << TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetLastFPS();
+    AFPSstream << TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetAverageFPS();
     String CFPS = CFPSstream.str();
     String AFPS = AFPSstream.str();
     CurFPS->SetText(CFPS);

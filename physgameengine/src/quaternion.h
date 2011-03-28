@@ -111,6 +111,23 @@ namespace phys
             /// @param Other The Quaternion to copy
             Quaternion(const phys::Quaternion& Other);
 
+            /// @brief Gets the Dot Product of this quaternion and another quaternion.
+            /// @param Other The other quaternion to calculate the dot product from.
+            /// @return Returns a Real that is the Dot Product of the two quaternions.
+            Real DotProduct(const Quaternion& Other) const;
+
+            /// @brief Gets the length of the quaternion.
+            /// @return Returns a Real representing the length of the quaternion.
+            Real Length() const;
+
+            /// @brief Gets the squared length(len^2) of the quaternion.
+            /// @return Returns a Real representing the squared length(len^2) of the quaternion.
+            Real LengthSqrd() const;
+
+            /// @brief Normalizes this Quaternion.
+            /// @return Returns a normalized reference of this quaternion.
+            Quaternion& Normalize();
+
             ///////////////////////////////////////////////////////////////////////////////
             // Explicit Conversion
 
@@ -136,6 +153,19 @@ namespace phys
             /// and set the values of this class to be the same.
             /// @param Ours The quaternion to be extracted.
             void ExtractOgreQuaternion(const Ogre::Quaternion &Ours);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            //  Arithmetic By Real Operators
+
+            /// @brief Scaling by multiplication.
+            /// @param Scalar This is the amount to scale the quaternion by.
+            /// @return Returns a scaled quaternion.
+            Quaternion operator* (const Real& Scalar) const;
+
+            /// @brief Scaling by division.
+            /// @param Scalar This is the amount to scale the quaternion by.
+            /// @return Returns a scaled quaternion.
+            Quaternion operator/ (const Real& Scalar) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Left Hand Basic Arithmetic Operators
