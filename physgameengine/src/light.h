@@ -83,7 +83,6 @@ namespace phys
                 Spotlight   = 2     ///< From a point emanating in a cone, like a flashlight, hooded lantern, really bright computer screens, flood lights, older style space heaters, Concert lights, camera flashes, etc...
             };
         protected:
-            friend class WorldNode;
             /// @brief The ogre light this class gets it's functionality from.
             Ogre::Light* OgreLight;
             /// @brief Pointer to the manager that created this class.

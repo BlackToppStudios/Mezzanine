@@ -117,7 +117,7 @@ namespace phys
             /// @internal
             /// @brief This is called by the called by the constructors, it is a single point of class initialization.
             /// @param Camera A pointer the graphics subsystem camera
-            /// @param Manager The camera manager this will be attached to
+            /// @param Manager The camera manager this will be attached to.
             void Construct(Ogre::Camera* Camera, CameraManager* Manager);
 
             /// @internal
@@ -128,7 +128,6 @@ namespace phys
             Vector3 YawAxis;
 
         protected:
-            friend class WorldNode;
             friend class CameraManager;
 
             /// @internal

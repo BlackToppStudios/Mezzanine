@@ -71,11 +71,10 @@ namespace phys
     class PHYS_LIB ParticleEffect : public Attachable
     {
         private:
-            friend class WorldNode;
-
             /// @internal
             /// The internal data for the particle effect
             internal::ParticleEffectInternalData *Pie;
+
         public:
 
             ///////////////////////////////////////////////////////////////////////////////
