@@ -119,17 +119,17 @@
 
 namespace phys
 {
+    class ActorBase;
+    class ActorContainerBase;
     class EventManager;
     class CameraManager;
     class PhysicsManager;
+    class GameWindow;
     class GraphicsManager;
     class SoundManager;
     class ResourceManager;
     class TimerManager;
-    //namespace UI
-    //{
-        class UIManager;
-    //}
+    class UIManager;
 }
 #include <list>
 #include <string>
@@ -162,11 +162,6 @@ namespace Ogre
 ///////////////////////////////////////
 namespace phys
 {
-    //Forward Declarations
-    class ActorBase;
-    class ActorContainerBase;
-    class GraphicsManager;
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @class World
     /// @headerfile world.h
@@ -315,19 +310,6 @@ namespace phys
             /// @brief Log String directly with no conversion
             /// @param message The string to log
             void LogString(const String& message);
-
-        ///////////////////////////////////////////////////////////////////////////////
-        // Window Management
-        ///////////////////////////////////////
-            /// @brief Retrieves the Current Window Title
-            /// @details This gets the texts that the engine has stored for use in the title bar
-            /// @return This returns a String Containing the Window Title
-            std::string GetWindowName();
-
-            /// @brief This can set the the Text in the titlebar
-            /// @details This changes the text in the bar at the top of the game window in windowed mode. It can be changed at anytime.
-            /// @param NewName This is the new text to be used in the titlebar.
-            void SetWindowName(const String &NewName);
 
         ///////////////////////////////////////////////////////////////////////////////
         // Timing system methods

@@ -152,6 +152,11 @@ namespace phys
             return -1;
     }
 
+    void GameWindow::SetWindowCaption(const String &NewCaption)
+    {
+        SDL_SetWindowTitle(SDLWindow,NewCaption.c_str());
+    }
+
     Viewport* GameWindow::CreateViewport(Camera* ViewportCamera, const Whole& ZOrder)
     {
         Whole Order = ZOrder == 0 ? Viewports.size() : ZOrder;

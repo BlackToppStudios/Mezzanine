@@ -110,7 +110,7 @@ namespace phys
         {
             try
             {
-                /*NewWindows.OgreWindow = */Ogre::Root::getSingleton().initialise(false, GameWorld->GetWindowName());
+                /*NewWindows.OgreWindow = */Ogre::Root::getSingleton().initialise(false,"AppName");
                 #ifdef PHYSDEBUG
                 GameWorld->Log("Setup Ogre Window");
                 #endif
@@ -268,7 +268,7 @@ namespace phys
     void GraphicsManager::Initialize()
     {
         if(GameWindows.empty())
-            CreateGameWindow(GameWorld->GetWindowName(),PrimarySettings.RenderWidth,PrimarySettings.RenderHeight,PrimarySettings.Fullscreen?GameWindow::WF_Fullscreen:0);
+            CreateGameWindow("",PrimarySettings.RenderWidth,PrimarySettings.RenderHeight,PrimarySettings.Fullscreen?GameWindow::WF_Fullscreen:0);
         this->RenderTimer = new Ogre::Timer();
 
         Ogre::ConfigOptionMap& CurrentRendererOptions = Ogre::Root::getSingleton().getRenderSystem()->getConfigOptions();

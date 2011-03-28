@@ -142,7 +142,6 @@ namespace phys
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
         //Set some sane Defaults for some values
-        this->SetWindowName("AppName");
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
@@ -381,20 +380,6 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     // Simple get and Set functions
     ///////////////////////////////////////
-    std::string World::GetWindowName()
-    {
-        return this->WindowName;
-    }
-
-    void World::SetWindowName(const String &NewName)
-    {
-        /// @todo TODO Change the name of an application once it is running
-        WindowName = NewName;
-        if(this->HasSDLBeenInitialized)
-        {
-            SDL_WM_SetCaption(WindowName.c_str(),WindowName.c_str());
-        }
-    }
 
     Whole World::GetTargetFrameTime()
     {

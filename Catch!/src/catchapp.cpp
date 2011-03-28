@@ -161,10 +161,6 @@ CatchApp* CatchApp::GetCatchAppPointer()
 
 int CatchApp::GetCatchin()
 {
-    // Set the Title
-    TheWorld->SetWindowName("Catch!");
-    TheWorld->SetTargetFrameRate(60);
-
     //Give the world functions to run before and after input and physics
     TheWorld->GetEventManager()->SetPreMainLoopItems(&CPreInput);
     TheWorld->GetEventManager()->SetPostMainLoopItems(&CPostInput);
@@ -176,6 +172,10 @@ int CatchApp::GetCatchin()
 
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
+
+	// Set the Title
+    TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("Catch!");
+    TheWorld->SetTargetFrameRate(60);
 
     //Actually Load the game stuff
     LoadContent();
@@ -203,6 +203,9 @@ int CatchApp::GetCatchin()
 
 bool CatchApp::PreInput()
 {
+    // using the Raw Event Manager, and deleting the events
+    if( !CheckForStuff() )
+        return false;
     return true;
 }
 
@@ -393,10 +396,6 @@ bool CatchApp::PostUI()
             Act->RestoreActivation();
         }
     }
-
-    // using the Raw Event Manager, and deleting the events
-    if( !CheckForEsc() )
-        return false;
     return true;
 }
 
@@ -504,7 +503,7 @@ bool CatchApp::PostRender()
     return true;
 }
 
-bool CatchApp::CheckForEsc()
+bool CatchApp::CheckForStuff()
 {
     //this will either set the pointer to 0 or return a valid pointer to work with.
     EventUserInput* OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
@@ -512,25 +511,69 @@ bool CatchApp::CheckForEsc()
     //We check each Event
     while(0 != OneInput)
     {
-        #ifdef PHYSDEBUG
-        TheWorld->Log("Input Events Processed");
-        #endif
+        if(OneInput->GetType()!=EventBase::UserInput)
+            { TheWorld->LogAndThrow("Trying to process a non-EventUserInput as an EventUserInput."); }
 
         //we check each MetaCode in each Event
-        for (int c=0; c<OneInput->GetMetaCodeCount(); c++ )
+        for (unsigned int c=0; c<OneInput->GetMetaCodeCount(); c++ )
         {
-            #ifdef PHYSDEBUG
-            TheWorld->LogStream << Metacode << "(" << c << ")" = << OneInput->GetMetaCode(c));
-            #endif
             //Is the key we just pushed ESCAPE
-            if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode())
-            {
-                return false;
-            }
+            if(MetaCode::KEY_ESCAPE == OneInput->GetMetaCode(c).GetCode() && MetaCode::BUTTON_PRESSING == OneInput->GetMetaCode(c).GetMetaValue())
+                { return false; }
         }
 
         delete OneInput;
         OneInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+    }
+
+    EventGameWindow* OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+    while(0 != OneWindowEvent)
+    {
+        if(OneWindowEvent->GetType()!=EventBase::GameWindow)
+            { TheWorld->LogAndThrow("Trying to process a non-EventGameWindow as an EventGameWindow."); }
+
+        if(!OneWindowEvent->IsEventIDValid())
+        {
+            TheWorld->Log("Invalid EventID on GameWindow Event");
+            TheWorld->LogAndThrow(OneWindowEvent->GetEventID());
+        }
+
+        TheWorld->Log(*OneWindowEvent);
+        TheWorld->Log(EventGameWindow::GameWindowEventIDToString(OneWindowEvent->GetEventID()));
+        stringstream eventxml;
+        eventxml << *OneWindowEvent;    // Test XML conversion and reconstruction
+        EventGameWindow AnotherWindowEvent(EventGameWindow::GAME_WINDOW_NONE,0,0);
+        eventxml >> AnotherWindowEvent;
+        TheWorld->Log(AnotherWindowEvent);
+
+        if (OneWindowEvent->GetEventID()==EventGameWindow::GAME_WINDOW_MINIMIZED)
+        {
+            Sound* Welcome = NULL;
+            Welcome = TheWorld->GetSoundManager()->GetSoundByName("Welcome");
+            if(Welcome)
+            {
+                Welcome->Play2d(false);
+            }
+        }
+
+        delete OneWindowEvent;
+        OneWindowEvent = TheWorld->GetEventManager()->PopNextGameWindowEvent();
+    }
+
+    EventCollision* OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
+    EventCollision SecondCollision(0,0,Vector3(0.5,0.5,0.5),Vector3(1.5,1.5,1.5),Vector3(1,1,1),2.5);
+    while(0 != OneCollision)
+    {
+        if(OneCollision->GetType() != EventBase::Collision)
+            { TheWorld->LogAndThrow("Trying to process a non-EventCollision as an EventCollision."); }
+
+        stringstream temp;
+        temp << *OneCollision;
+        temp >> SecondCollision;
+        TheWorld->Log(SecondCollision);
+
+        delete OneCollision;
+        OneCollision = TheWorld->GetEventManager()->PopNextCollisionEvent();
     }
 
     return true;

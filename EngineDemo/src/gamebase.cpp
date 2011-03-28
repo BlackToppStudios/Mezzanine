@@ -43,13 +43,6 @@ int main(int argc, char **argv)
     TheWorld->Log(PlaneOfPlay);
     #endif
 
-    // Set the Title
-    TheWorld->SetWindowName("Catch!... The Game!");
-    TheWorld->SetTargetFrameRate(60);
-    #ifdef PHYSDEBUG
-    TheWorld->Log("Framerate and Title set");
-    #endif
-
     //Give the world functions to run before and after input and physics
     TheWorld->GetEventManager()->SetPreMainLoopItems(&PreInput);
     TheWorld->GetEventManager()->SetPostMainLoopItems(&PostInput);
@@ -64,6 +57,13 @@ int main(int argc, char **argv)
 	TheWorld->GameInit(false);
     #ifdef PHYSDEBUG
     TheWorld->Log("Initialized games");
+    #endif
+
+    // Set the Title
+    TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("Catch!... The Game!");
+    TheWorld->SetTargetFrameRate(60);
+    #ifdef PHYSDEBUG
+    TheWorld->Log("Framerate and Title set");
     #endif
 
     //Set up polling for the letter Q and middle mouse button, and the mouse X and Y locations
@@ -131,7 +131,7 @@ bool PostRender()
     //Play around with the title bar
     std::stringstream timestream;
     timestream << "Catch!... " << gametime;
-    TheWorld->SetWindowName( timestream.str() );
+    TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption( timestream.str() );
 
     ActorBase* Act1 = TheWorld->GetActorManager()->FindActor("RobotWayUpFrontLeft");
     ActorBase* Act2 = TheWorld->GetActorManager()->FindActor("RobotWayUpFrontRight");
