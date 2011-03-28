@@ -53,6 +53,9 @@ namespace Ogre
     class Camera;
 }
 
+/// @file camera.h
+/// @brief Declaration of the phys::Camera class
+
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 #ifdef PHYSXML
@@ -185,15 +188,15 @@ namespace phys
             /// @brief Sets the location of a camera.
             /// @details Sets the location of the specified camera.
             /// @param Location The new location for the camera.
-            void SetLocation(Vector3 Location);
+            virtual void SetLocation(const Vector3& Location);
             /// @brief Sets the Direction for the camera.
             /// @details Sets which axis the camera will look down for rendering.
             /// @param Direction The vector3 representing the axis to be used.
-            void SetDirection(Vector3 Direction);
+            void SetDirection(const Vector3& Direction);
             /// @brief Sets the orientation of the camera.
             /// @details This function will set the orientation of the specified camera via a quaternion.
             /// @param Orientation The quaternion representing the new orientation.
-            void SetOrientation(Quaternion Orientation);
+            void SetOrientation(const Quaternion& Orientation);
             /// @brief Sets the short range clip distance.
             /// @details Sets the distance at which objects are considered too close to render.
             /// @param NearDist A Real representing the distance.  Note:  This number directly corolates to the dimentions
@@ -256,6 +259,11 @@ namespace phys
             /// @details This will return a pointer to the phys::WorldNode that this camera is attached to if any. If none, then 0 is returned.
             WorldNode* GetWorldNode() const;*/
 
+
+            /// @brief Gets the relative location of the camera.
+            /// @details Gets the location of the camera, relative to any parent WorldNode.
+            /// @return A phys::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
+            virtual Vector3 GetLocation() const;
             /// @brief Gets the relative location of the camera.
             /// @details Gets the location of the camera, relative to any parent WorldNode.
             /// @return A phys::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
@@ -283,6 +291,17 @@ namespace phys
             /// @brief Gets the internal camera this camera is based on.
             /// @return Returns a pointer to the Ogre Camera this camera is based on.
             Ogre::Camera* GetOgreCamera() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Inherited From Attachable
+
+            /// @brief What kind of Attachable is this.
+            /// @return An Attachable::GetAttachableType containing Attachable::Camera.
+            virtual Attachable::AttachableElement GetAttachableType() const;
+
+            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
+
+            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
     };
 }//phys
 

@@ -49,31 +49,34 @@
 
 #include <memory>
 
+/// @file light.cpp
+/// @brief Implemenation of phys::Light
+
 namespace phys
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Construction
+
     Light::Light(const String& Name, SceneManager* manager)
     {
         Manager = manager;
         OgreLight = Manager->GetGraphicsWorldPointer()->createLight(Name);
-        SetElementType(Attachable::Light);
     }
 
     Light::Light(Ogre::Light* light, SceneManager* manager)
     {
         OgreLight = light;
         Manager = manager;
-        SetElementType(Attachable::Light);
     }
 
     Light::~Light()
-    {
-        Manager->GetGraphicsWorldPointer()->destroyLight(OgreLight);
-    }
+        { Manager->GetGraphicsWorldPointer()->destroyLight(OgreLight); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Meta
 
     ConstString& Light::GetName() const
-    {
-        return OgreLight->getName();
-    }
+        { return OgreLight->getName(); }
 
     void Light::SetType(Light::LightType Type)
     {
@@ -95,69 +98,6 @@ namespace phys
         OgreLight->setType(OgreType);
     }
 
-    void Light::SetLocation(Vector3 Location)
-    {
-        OgreLight->setPosition(Location.GetOgreVector3());
-    }
-
-    void Light::SetDirection(Vector3 Direction)
-    {
-        OgreLight->setDirection(Direction.GetOgreVector3());
-    }
-
-    void Light::SetDiffuseColour(Real Red, Real Green, Real Blue)
-    {
-        OgreLight->setDiffuseColour(Red, Green, Blue);
-    }
-
-    void Light::SetDiffuseColour(ColourValue &Colour)
-    {
-        OgreLight->setDiffuseColour(Colour.GetOgreColourValue());
-    }
-
-    void Light::SetSpecularColour(Real Red, Real Green, Real Blue)
-    {
-        OgreLight->setSpecularColour(Red, Green, Blue);
-    }
-
-    void Light::SetSpecularColour(ColourValue &Colour)
-    {
-        OgreLight->setSpecularColour(Colour.GetOgreColourValue());
-    }
-
-    void Light::SetAttenuation(Real Range, Real Constant, Real Linear, Real Quadratic)
-    {
-        OgreLight->setAttenuation(Range, Constant, Linear, Quadratic);
-    }
-
-    void Light::SetSpotlightRange(Real InnerAngle, Real OuterAngle, Real Falloff)
-    {
-        Ogre::Radian IAngle(InnerAngle);
-        Ogre::Radian OAngle(OuterAngle);
-        OgreLight->setSpotlightRange(IAngle, OAngle, Falloff);
-    }
-
-    void Light::SetSpotlightInnerAngle(Real InnerAngle)
-    {
-        Ogre::Radian IAngle(InnerAngle);
-        OgreLight->setSpotlightInnerAngle(IAngle);
-    }
-
-    void Light::SetSpotlightOuterAngle(Real OuterAngle)
-    {
-        Ogre::Radian OAngle(OuterAngle);
-        OgreLight->setSpotlightOuterAngle(OAngle);
-    }
-
-    void Light::SetSpotlightFalloff(Real Falloff)
-    {
-        OgreLight->setSpotlightFalloff(Falloff);
-    }
-
-    void Light::SetPowerScale(Real Power)
-    {
-        OgreLight->setPowerScale(Power);
-    }
 
     Light::LightType Light::GetType() const
     {
@@ -180,75 +120,122 @@ namespace phys
         return PhysType;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    /// 3d navigation
+
+    void Light::SetLocation(const Vector3 &Location)
+        { OgreLight->setPosition(Location.GetOgreVector3()); }
+
+    void Light::SetDirection(const Vector3& Direction)
+        { OgreLight->setDirection(Direction.GetOgreVector3()); }
+
     Vector3 Light::GetLocation() const
-    {
-        Vector3 Pos(OgreLight->getPosition());
-        return Pos;
-    }
+        { return Vector3(OgreLight->getPosition()); }
 
     Vector3 Light::GetDirection() const
-    {
-        Vector3 Dir(OgreLight->getDirection());
-        return Dir;
-    }
+        { return Vector3(OgreLight->getDirection()); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Colour
+
+    void Light::SetDiffuseColour(Real Red, Real Green, Real Blue)
+        { OgreLight->setDiffuseColour(Red, Green, Blue); }
+
+    void Light::SetDiffuseColour(const ColourValue &Colour)
+        { OgreLight->setDiffuseColour(Colour.GetOgreColourValue()); }
+
+    void Light::SetSpecularColour(Real Red, Real Green, Real Blue)
+        { OgreLight->setSpecularColour(Red, Green, Blue); }
+
+    void Light::SetSpecularColour(const ColourValue &Colour)
+        { OgreLight->setSpecularColour(Colour.GetOgreColourValue()); }
 
     ColourValue Light::GetDiffuseColour() const
-    {
-        ColourValue DiffCol(OgreLight->getDiffuseColour());
-        return DiffCol;
-    }
+        { return ColourValue(OgreLight->getDiffuseColour()); }
 
     ColourValue Light::GetSpecularColour() const
-    {
-        ColourValue SpecCol(OgreLight->getSpecularColour());
-        return SpecCol;
-    }
+        { return ColourValue(OgreLight->getSpecularColour()); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Attenuation
+
+    void Light::SetAttenuation(Real Range, Real Constant, Real Linear, Real Quadratic)
+        { OgreLight->setAttenuation(Range, Constant, Linear, Quadratic); }
 
     Real Light::GetAttenuationRange() const
-    {
-        return OgreLight->getAttenuationRange();
-    }
+        { return OgreLight->getAttenuationRange(); }
 
     Real Light::GetAttenuationConstant() const
-    {
-        return OgreLight->getAttenuationConstant();
-    }
+        { return OgreLight->getAttenuationConstant(); }
 
     Real Light::GetAttenuationLinear() const
-    {
-        return OgreLight->getAttenuationLinear();
-    }
+        { return OgreLight->getAttenuationLinear(); }
 
     Real Light::GetAttenuationQuadric() const
+        { return OgreLight->getAttenuationQuadric(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Spotlight specific methods
+
+    void Light::SetSpotlightRange(Real InnerAngle, Real OuterAngle, Real Falloff)
     {
-        return OgreLight->getAttenuationQuadric();
+        Ogre::Radian IAngle(InnerAngle);
+        Ogre::Radian OAngle(OuterAngle);
+        OgreLight->setSpotlightRange(IAngle, OAngle, Falloff);
     }
+
+    void Light::SetSpotlightInnerAngle(Real InnerAngle)
+    {
+        Ogre::Radian IAngle(InnerAngle);
+        OgreLight->setSpotlightInnerAngle(IAngle);
+    }
+
+    void Light::SetSpotlightOuterAngle(Real OuterAngle)
+    {
+        Ogre::Radian OAngle(OuterAngle);
+        OgreLight->setSpotlightOuterAngle(OAngle);
+    }
+
+    void Light::SetSpotlightFalloff(Real Falloff)
+        { OgreLight->setSpotlightFalloff(Falloff); }
 
     Real Light::GetSpotlightInnerAngle() const
-    {
-        return OgreLight->getSpotlightInnerAngle().valueRadians();
-    }
+        { return OgreLight->getSpotlightInnerAngle().valueRadians(); }
 
     Real Light::GetSpotlightOuterAngle() const
-    {
-        return OgreLight->getSpotlightOuterAngle().valueRadians();
-    }
+        { return OgreLight->getSpotlightOuterAngle().valueRadians(); }
 
     Real Light::GetSpotlightFalloff() const
-    {
-        return OgreLight->getSpotlightFalloff();
-    }
+        { return OgreLight->getSpotlightFalloff(); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Effects
 
     Real Light::GetPowerScale() const
-    {
-        return OgreLight->getPowerScale();
-    }
-}//phys
+        { return OgreLight->getPowerScale(); }
 
-/*must store type, Location, direction, diffusecolour, specularcolour, powerscale,
-		if spotlight the 4 attentuation values
-		if spotlight 3 angles
-*/
+    void Light::SetPowerScale(Real Power)
+        { OgreLight->setPowerScale(Power); }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Inherited From Attachable
+
+    Attachable::AttachableElement Light::GetAttachableType() const
+        { return Attachable::Light; }
+
+    void Light::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
+    {
+        Attachable::AttachToFinal(RawTarget, Target);
+        RawTarget->attachObject(this->OgreLight);
+    }
+
+    void Light::DetachFromFinal(Ogre::SceneNode* RawTarget)
+    {
+        Attachable::DetachFromFinal(RawTarget);
+        RawTarget->detachObject(this->OgreLight);
+    }
+
+}//phys
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
@@ -291,7 +278,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            Ev.SetType(static_cast<phys::Light::LightType>(OneNode.GetAttribute("LightPerspective").AsInt()));
+            Ev.SetType(static_cast<phys::Light::LightType>(OneNode.GetAttribute("Type").AsInt()));
             Ev.SetPowerScale(OneNode.GetAttribute("PowerScale").AsReal());
             Ev.SetAttenuation(OneNode.GetAttribute("AttenuationRange").AsReal(), OneNode.GetAttribute("AttenuationConstant").AsReal(), OneNode.GetAttribute("AttenuationLinear").AsReal(), OneNode.GetAttribute("AttenuationQuadric").AsReal());
             Ev.SetSpotlightInnerAngle(OneNode.GetAttribute("SpotlightInnerAngle").AsReal());
@@ -299,7 +286,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
             Ev.SetSpotlightFalloff(OneNode.GetAttribute("SpotlightFalloff").AsReal());
             phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
-                { AttachPtr->AttachElement(&Ev); }
+                { AttachPtr->AttachObject(&Ev); }
 
             phys::ColourValue TempColour(0,0,0,0);
             phys::Vector3 TempVec(0,0,0);
@@ -315,7 +302,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
                             Child.GetFirstChild() >> TempColour;
                             Ev.SetDiffuseColour(TempColour);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element O-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element f-\"",Name,"\"")) );
                         }
                         break;
                     case 'S':   //SpecularColour
@@ -324,7 +311,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
                             Child.GetFirstChild() >> TempColour;
                             Ev.SetSpecularColour(TempColour);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element O-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element S-\"",Name,"\"")) );
                         }
                         break;
                     case 'D':   //Direction
@@ -333,7 +320,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetDirection(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element O-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element D-\"",Name,"\"")) );
                         }
                         break;
                     case 'L':   //Location

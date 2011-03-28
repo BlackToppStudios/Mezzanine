@@ -85,7 +85,11 @@ int main(int argc, char **argv)
 
     //Setup some camera tricks
     WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
-    CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
+    CameraNode->AttachObject(TheWorld->GetCameraManager()->GetDefaultCamera());
+    Light *Headlight = TheWorld->GetSceneManager()->CreateLight("Headlight");
+    //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
+    //Headlight->SetType(Light::Spotlight);
+    CameraNode->AttachObject(Headlight);
 
     TheWorld->Log("Printing Supported Resolutions:");
     const std::vector<String>* ResList = TheWorld->GetGraphicsManager()->GetSupportedResolutions();
@@ -591,14 +595,16 @@ void LoadContent()
     phys::Light *TorchG=TheWorld->GetSceneManager()->CreateLight("Greentorch");
     phys::Light *TorchToStream=TheWorld->GetSceneManager()->CreateLight("TempLightToBeDestroyed");
 
+    Vector3 RedBase(70,70,100);
     ColourValue RTorchLight(0.8,0.1,0.3,1.0);
-    TorchR->SetLocation(Vector3(70,70,100));
+    TorchR->SetLocation(RedBase);
     TorchR->SetPowerScale(1.0);
     TorchR->SetSpecularColour(RTorchLight);
     TorchR->SetDiffuseColour(RTorchLight);
 
+    Vector3 GreenBase(-70,70,-100);
     ColourValue GTorchLight(0.1,0.8,0.3,1.0);
-    TorchToStream->SetLocation(Vector3(-70,70,-100));
+    TorchToStream->SetLocation(GreenBase);
     TorchToStream->SetPowerScale(1.0);
     TorchToStream->SetSpecularColour(GTorchLight);
     TorchToStream->SetDiffuseColour(GTorchLight);
@@ -642,6 +648,16 @@ void LoadContent()
     TheWorld->Log(*TorchG);
     #endif
     TheWorld->GetSceneManager()->DestroyLight(TorchToStream);
+    //TheWorld->GetSceneManager()->DestroyLight(TorchG);
+    //TheWorld->GetSceneManager()->DestroyLight(TorchR);
+
+    ParticleEffect *GreenPart = TheWorld->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
+    GreenPart->SetLocation(GreenBase);
+    GreenPart->EnableParticleEffect();
+
+
+
+
 
     {
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");

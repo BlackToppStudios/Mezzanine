@@ -44,6 +44,9 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 
+/// @file particleeffect.cpp
+/// @brief Contains the declaration of the ParticleEffect class
+
 namespace Ogre
 {
     class ParticleSystem;
@@ -52,45 +55,77 @@ namespace Ogre
 
 namespace phys
 {
+    namespace internal
+    {
+        struct ParticleEffectInternalData;
+    }
+
     class SceneManager;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ParticleEffect
     /// @headerfile particleeffect.h
     /// @brief This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.
     /// @details Particle effects are loaded from particle scripts which are contained in particle files(*.particle). @n
-    /// Note: If attaching a particle effect to a node, all transform information(position and orientation) becomes relative
-    /// to the nodes transform.
+    /// All particle effects are created attached to a world node. The world Node provides the Nagivation functionality of for this
     ///////////////////////////////////////
     class PHYS_LIB ParticleEffect : public Attachable
     {
-        protected:
+        private:
             friend class WorldNode;
-            /// @brief Pointer to the ogre ParticleSystem from which this class gets it's functionality.
-            Ogre::ParticleSystem* OgreParticle;
-            /// @brief Pointer to the ogre Scenenode to which this object is attached.
-            Ogre::SceneNode* OgreNode;
-            /// @brief Pointer to the manager that created this class.
-            SceneManager* Manager;
+
+            /// @internal
+            /// The internal data for the particle effect
+            internal::ParticleEffectInternalData *Pie;
         public:
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Construction
+
             /// @brief Standard initialization constructor.
             /// @param Name The name of this particle effect.
             /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param manager Pointer to the manager that this particle effect is to be used in.
             ParticleEffect(const String& Name, const String& Template, SceneManager* manager);
+
             /// @brief Internal constructor.
             /// @details This constructor should not be called on manually.
             /// @param System Pointer to the Ogre ParticleSystem this class is based on.
             /// @param manager Pointer to the manager that this particle effect is to be used in.
             ParticleEffect(Ogre::ParticleSystem* System, SceneManager* manager);
+
             /// @brief Class destructor.
             ~ParticleEffect();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Inherited From Attachable
+
             /// @brief Gets the name of this particle effect.
             /// @return Returns a string containing the name given to this particle effect.
             ConstString& GetName() const;
+
+            /// @brief What kind of Attachable is this.
+            /// @return An Attachable::GetAttachableType containing Attachable::Attachable.
+            virtual Attachable::AttachableElement GetAttachableType() const;
+
+            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
+            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Particle Functionality
+
             /// @brief Enables the particle effect, allowing it to render.
             void EnableParticleEffect();
+
             /// @brief Disables the particle effect, preventing it from rendering.
             void DisableParticleEffect();
+
+            /// @brief Set the location of this Particle effect relative to the object it is attached to.
+            /// @param vec The location.
+            virtual void SetLocation(const Vector3& Vec);
+
+            /// @brief Get the location of the Particle Effect, relative to the Object is is attached to.
+            /// @return A Vector3 with the location.
+            virtual Vector3 GetLocation() const;
     };
 }
 

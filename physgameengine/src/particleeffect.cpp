@@ -45,48 +45,97 @@
 
 #include <Ogre.h>
 
+/// @file particleeffect.cpp
+/// @brief Contains the implemenation of the ParticleEffect class
+
 namespace phys
 {
-    ParticleEffect::ParticleEffect(const String& Name, const String& Template, SceneManager* manager)
+    namespace internal
     {
-        Manager = manager;
-        Ogre::SceneManager* OgreManager = Manager->GetGraphicsWorldPointer();
-        OgreParticle = OgreManager->createParticleSystem(Name, Template);
-        OgreNode = OgreManager->createSceneNode();
-        OgreManager->getRootSceneNode()->addChild(OgreNode);
-        SetElementType(Attachable::ParticleEffect);
+        /// @internal
+        /// @brief used to store internal data and functions for the ParticleEffect;
+        struct ParticleEffectInternalData
+        {
+            /// @internal
+            /// @brief Pointer to the ogre ParticleSystem from which this class gets it's functionality.
+            Ogre::ParticleSystem* OgreParticle;
+
+            /// @internal
+            /// @brief Pointer to the ogre Scenenode to which this object is attached.
+            Ogre::SceneNode* OgreNode;
+
+            /// @internal
+            /// @brief Pointer to the manager that created this class.
+            SceneManager* Manager;
+
+            /// @internal
+            /// @brief Functionally, this constructs the whole ParticleEffect
+            ParticleEffectInternalData(SceneManager* manager, Ogre::ParticleSystem* System)
+            {
+                OgreParticle=System;
+                this->Manager = manager;
+                Ogre::SceneManager* OgreManager = Manager->GetGraphicsWorldPointer();
+                OgreNode = OgreManager->createSceneNode();
+                OgreManager->getRootSceneNode()->addChild(OgreNode);
+            }
+
+            /// @internal
+            /// @brief Cleans up after the Particle Effect.
+            ~ParticleEffectInternalData()
+            {
+                Manager->GetGraphicsWorldPointer()->destroyParticleSystem(OgreParticle);
+                Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
+            }
+        };
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Construction
+
+    ParticleEffect::ParticleEffect(const String& Name, const String& Template, SceneManager* manager)
+        { this->Pie = new internal::ParticleEffectInternalData(manager, manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template)); }
 
     ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, SceneManager* manager)
-    {
-        OgreParticle = System;
-        Manager = manager;
-        Ogre::SceneManager* OgreManager = Manager->GetGraphicsWorldPointer();
-        OgreNode = OgreManager->createSceneNode();
-        OgreManager->getRootSceneNode()->addChild(OgreNode);
-        SetElementType(Attachable::ParticleEffect);
-    }
+        { this->Pie = new internal::ParticleEffectInternalData(manager, System); }
 
     ParticleEffect::~ParticleEffect()
-    {
-        Manager->GetGraphicsWorldPointer()->destroyParticleSystem(OgreParticle);
-        Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
-    }
+        { delete this->Pie; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Inherited From Attachable
 
     ConstString& ParticleEffect::GetName() const
+        { return this->Pie->OgreParticle->getName(); }
+
+    Attachable::AttachableElement ParticleEffect::GetAttachableType() const
+        { return Attachable::ParticleEffect; }
+
+    void ParticleEffect::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
     {
-        return OgreParticle->getName();
+        Attachable::AttachToFinal(RawTarget, Target);
+        RawTarget->addChild(this->Pie->OgreNode);
     }
 
-    void ParticleEffect::EnableParticleEffect()
+    void ParticleEffect::DetachFromFinal(Ogre::SceneNode* RawTarget)
     {
-        OgreNode->attachObject(OgreParticle);
+        Attachable::DetachFromFinal(RawTarget);
+        RawTarget->removeChild(this->Pie->OgreNode);
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Particle Functionality
+    void ParticleEffect::EnableParticleEffect()
+        { this->Pie->OgreNode->attachObject(this->Pie->OgreParticle); }
 
     void ParticleEffect::DisableParticleEffect()
-    {
-        OgreNode->detachObject(OgreParticle);
-    }
+        { this->Pie->OgreNode->detachObject(this->Pie->OgreParticle); }
+
+    void ParticleEffect::SetLocation(const Vector3& Vec)
+        { this->Pie->OgreNode->setPosition(Vec.GetOgreVector3()); }
+
+    Vector3 ParticleEffect::GetLocation() const
+        { return Vector3(this->Pie->OgreNode->getPosition()); }
+
 }
 
 #endif

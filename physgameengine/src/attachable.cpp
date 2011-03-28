@@ -41,37 +41,58 @@
 #define _attachable_cpp
 
 #include "attachable.h"
+#include "worldnode.h"
+
+/// @file attachable.cpp
+/// @brief Contains the phys::Attachable Class and phys::Attachable::AttachableElement enumeration implementations
 
 namespace phys
 {
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Set data
+
+    void Attachable::SetAttachedTo(phys::WorldNode* Target)
+        { this->AttachedTo = Target; }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Construction
     Attachable::Attachable()
-    {
-        AttachedTo = 0;
-    }
+        { AttachedTo = 0; }
+
+    Attachable::Attachable(phys::WorldNode* Target)
+        { this ->SetAttachedTo(Target); }
 
     Attachable::~Attachable()
-    {
-    }
+        { }
 
-    void Attachable::SetElementType(Attachable::AttachableElement Type)
-    {
-        ElementType = Type;
-    }
-
-    Attachable::AttachableElement Attachable::GetElementType() const
-    {
-        return ElementType;
-    }
-
-    void Attachable::SetAttachedTo(WorldNode* NextWorldNode)
-    {
-        this->AttachedTo = NextWorldNode;
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Attachment management
 
     WorldNode* Attachable::GetAttachedTo() const
-    {
-        return this->AttachedTo;
-    }
+        { return this->AttachedTo; }
+
+    void Attachable::AttachTo(phys::WorldNode* Target)
+        { Target->AttachObjectFinal(this); }
+
+    void Attachable::DetachFrom()
+        { AttachedTo->DetachObjectFinal(this); }
+
+    void Attachable::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
+        { this->SetAttachedTo(Target); }
+
+    void Attachable::DetachFromFinal(Ogre::SceneNode* RawTarget)
+        { this->SetAttachedTo(0); }
+
+    /// @todo consider adding get/set Orientation to Attachable
+    /// @todo consider adding rotate to Attachable
+    /// @todo consider adding LookAt to Attachable
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Pure Virtual Functions
+
+    // For the lulz
+
 }//phys
 
 #endif

@@ -52,6 +52,9 @@
 
 #include <memory>
 
+/// @file camera.h
+/// @brief Declaration of the phys::Camera class
+
 namespace phys
 {
     Camera::Camera(const String& Name, CameraManager* Manager)
@@ -71,7 +74,6 @@ namespace phys
         this->CamManager = Manager;
         this->SetNearClipDistance(5.0f);
         this->SetFarClipDistance(5000.0f);
-        SetElementType(Attachable::Camera);
         this->SetFixedYawAxis(true,phys::Vector3(0,1,0));
     }
 
@@ -129,17 +131,17 @@ namespace phys
         this->Cam->setOrthoWindowWidth(Width);
     }
 
-    void Camera::SetLocation(Vector3 Location)
+    void Camera::SetLocation(const Vector3& Location)
     {
         this->Cam->setPosition(Location.GetOgreVector3());
     }
 
-    void Camera::SetDirection(Vector3 Direction)
+    void Camera::SetDirection(const Vector3& Direction)
     {
         this->Cam->setDirection(Direction.GetOgreVector3());
     }
 
-    void Camera::SetOrientation(Quaternion Orientation)
+    void Camera::SetOrientation(const Quaternion& Orientation)
     {
         this->Cam->setOrientation(Orientation.GetOgreQuaternion());
     }
@@ -212,15 +214,14 @@ namespace phys
         //return tempnode->getName();
     }*/
 
+    Vector3 Camera::GetLocation() const
+        { return  Vector3(this->Cam->getPosition()); }
+
     Vector3 Camera::GetRelativeLocation() const
-    {
-        return  Vector3(this->Cam->getPosition());
-    }
+        { return  Vector3(this->Cam->getPosition()); }
 
     Vector3 Camera::GetGlobalLocation() const
-    {
-        return  Vector3(this->Cam->getRealPosition());
-    }
+        { return  Vector3(this->Cam->getRealPosition()); }
 
     Quaternion Camera::GetOrientation() const
     {
@@ -246,6 +247,24 @@ namespace phys
     {
         return Cam;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Inherited From Attachable
+    Attachable::AttachableElement Camera::GetAttachableType() const
+        { return Attachable::Camera; }
+
+    void Camera::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
+    {
+        Attachable::AttachToFinal(RawTarget, Target);
+        RawTarget->attachObject(this->Cam);
+    }
+
+    void Camera::DetachFromFinal(Ogre::SceneNode* RawTarget)
+    {
+        Attachable::DetachFromFinal(RawTarget);
+        RawTarget->detachObject(this->Cam);
+    }
+
 }//phys
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -287,7 +306,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Camera& Ev)
             Ev.SetCameraType(static_cast<phys::Camera::ProjectionType>(OneNode.GetAttribute("CameraPerspective").AsInt()));
             phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
             if (AttachPtr)
-                { AttachPtr->AttachElement(&Ev); }
+                { AttachPtr->AttachObject(&Ev); }
 
             phys::Quaternion TempQuat(0,0,0,0);
             phys::Vector3 TempVec(0,0,0);

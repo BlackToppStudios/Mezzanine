@@ -1,3 +1,4 @@
+/home/dev/physgame/physgameengine/src/attachable.cpp:65: warning: Member Attachable(WorldNode *_NextWorldNode, Attachable::AttachableElement _Type) (function) of namespace phys is not documented.
 /home/dev/physgame/physgameengine/src/datatypes.h:98: warning: return type of member phys::Character is not documented
 /home/dev/physgame/physgameengine/src/datatypes.h:93: warning: return type of member phys::ConstString is not documented
 /home/dev/physgame/physgameengine/src/datatypes.h:81: warning: return type of member phys::Integer is not documented
@@ -27,13 +28,18 @@
 /home/dev/physgame/physgameengine/src/actorterrain.h:86: warning: parameters of member phys::ActorTerrain::CreateShapeFromMeshDynamic are not (all) documented
 /home/dev/physgame/physgameengine/src/actorterrain.h:91: warning: return type of member phys::ActorTerrain::GetName is not documented
 /home/dev/physgame/physgameengine/src/actorterrain.h:60: warning: return type of member phys::ActorTerrain::RigidBody is not documented
-/home/dev/physgame/physgameengine/src/camera.h:141: warning: parameters of member phys::Camera::Camera are not (all) documented
-/home/dev/physgame/physgameengine/src/camera.h:144: warning: parameters of member phys::Camera::Camera are not (all) documented
-/home/dev/physgame/physgameengine/src/camera.h:250: warning: return type of member phys::Camera::GetCameraToViewportRay is not documented
+/home/dev/physgame/physgameengine/src/attachable.h:118: warning: return type of member phys::Attachable::GetName is not documented
+/home/dev/physgame/physgameengine/src/attachable.h:124: warning: argument 'vec' of command @param is not found in the argument list of phys::Attachable::SetLocation(const Vector3 &Vec)
+/home/dev/physgame/physgameengine/src/attachable.h:124: warning: The following parameters of phys::Attachable::SetLocation(const Vector3 &Vec) are not documented:
+  parameter 'Vec'
+/home/dev/physgame/physgameengine/src/attachable.h:74: warning: return type of member phys::Attachable::ElementType is not documented
+/home/dev/physgame/physgameengine/src/camera.h:140: warning: parameters of member phys::Camera::Camera are not (all) documented
+/home/dev/physgame/physgameengine/src/camera.h:143: warning: parameters of member phys::Camera::Camera are not (all) documented
+/home/dev/physgame/physgameengine/src/camera.h:249: warning: return type of member phys::Camera::GetCameraToViewportRay is not documented
 /home/dev/physgame/physgameengine/src/camera.h:110: warning: parameters of member phys::Camera::operator>> are not (all) documented
 /home/dev/physgame/physgameengine/src/camera.h:110: warning: return type of member phys::Camera::operator>> is not documented
-/home/dev/physgame/physgameengine/src/camera.h:132: warning: return type of member phys::Camera::Cam is not documented
-/home/dev/physgame/physgameengine/src/camera.h:136: warning: return type of member phys::Camera::CamManager is not documented
+/home/dev/physgame/physgameengine/src/camera.h:131: warning: return type of member phys::Camera::Cam is not documented
+/home/dev/physgame/physgameengine/src/camera.h:135: warning: return type of member phys::Camera::CamManager is not documented
 /home/dev/physgame/physgameengine/src/cameramanager.h:80: warning: Member FindCamera(String Name) (function) of class phys::CameraManager is not documented.
 /home/dev/physgame/physgameengine/src/cameramanager.h:77: warning: Member SManager (variable) of class phys::CameraManager is not documented.
 /home/dev/physgame/physgameengine/src/cameramanager.h:78: warning: Member DefaultCamera (variable) of class phys::CameraManager is not documented.
@@ -125,10 +131,10 @@
 /home/dev/physgame/physgameengine/src/graphicssettings.h:70: warning: Member operator=(const GraphicsSettings &GS) (function) of class phys::GraphicsSettings is not documented.
 /home/dev/physgame/physgameengine/src/inputquerytool.h:124: warning: Member IsJoystickHatPushedInDirection(MetaCode::DirectionalMotionState WhichWay, bool IsVertical) (function) of class phys::InputQueryTool is not documented.
 /home/dev/physgame/physgameengine/src/inputquerytool.h:66: warning: return type of member phys::InputQueryTool::CodeCache is not documented
-/home/dev/physgame/physgameengine/src/light.h:112: warning: The following parameters of phys::Light::SetDiffuseColour(Real Red, Real Green, Real Blue) are not documented:
+/home/dev/physgame/physgameengine/src/light.h:113: warning: The following parameters of phys::Light::SetDiffuseColour(Real Red, Real Green, Real Blue) are not documented:
   parameter 'Green'
   parameter 'Blue'
-/home/dev/physgame/physgameengine/src/light.h:123: warning: The following parameters of phys::Light::SetSpecularColour(Real Red, Real Green, Real Blue) are not documented:
+/home/dev/physgame/physgameengine/src/light.h:124: warning: The following parameters of phys::Light::SetSpecularColour(Real Red, Real Green, Real Blue) are not documented:
   parameter 'Green'
   parameter 'Blue'
 /home/dev/physgame/physgameengine/src/linegroup.h:80: warning: return type of member phys::LineGroup::getPoint is not documented
@@ -159,20 +165,19 @@
 /home/dev/physgame/physgameengine/src/resourcemanager.h:79: warning: Member ResourceGroups (variable) of class phys::ResourceManager is not documented.
 /home/dev/physgame/physgameengine/src/resourcemanager.h:89: warning: return type of member phys::ResourceManager::ExportShapeData is not documented
 /home/dev/physgame/physgameengine/src/resourcemanager.h:93: warning: return type of member phys::ResourceManager::ImportShapeData is not documented
-/home/dev/physgame/physgameengine/src/scenemanager.h:73: warning: Member SceneManagerType (enumeration) of class phys::SceneManager is not documented.
-/home/dev/physgame/physgameengine/src/scenemanager.h:204: warning: The following parameters of phys::SceneManager::CreateOrbitingNode(const String &Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack) are not documented:
+/home/dev/physgame/physgameengine/src/scenemanager.h:205: warning: The following parameters of phys::SceneManager::CreateOrbitingNode(const String &Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack) are not documented:
   parameter 'Name'
   parameter 'AutoTrack'
-/home/dev/physgame/physgameengine/src/scenemanager.h:204: warning: return type of member phys::SceneManager::CreateOrbitingNode is not documented
-/home/dev/physgame/physgameengine/src/scenemanager.h:212: warning: The following parameters of phys::SceneManager::CreateStandNode(const String &Name, Vector3 LookAt, Vector3 Location) are not documented:
+/home/dev/physgame/physgameengine/src/scenemanager.h:205: warning: return type of member phys::SceneManager::CreateOrbitingNode is not documented
+/home/dev/physgame/physgameengine/src/scenemanager.h:213: warning: The following parameters of phys::SceneManager::CreateStandNode(const String &Name, Vector3 LookAt, Vector3 Location) are not documented:
   parameter 'Name'
-/home/dev/physgame/physgameengine/src/scenemanager.h:212: warning: return type of member phys::SceneManager::CreateStandNode is not documented
-/home/dev/physgame/physgameengine/src/scenemanager.h:174: warning: parameters of member phys::SceneManager::GetLight are not (all) documented
-/home/dev/physgame/physgameengine/src/scenemanager.h:177: warning: parameters of member phys::SceneManager::GetLight are not (all) documented
-/home/dev/physgame/physgameengine/src/scenemanager.h:218: warning: parameters of member phys::SceneManager::GetNode are not (all) documented
-/home/dev/physgame/physgameengine/src/scenemanager.h:221: warning: parameters of member phys::SceneManager::GetNode are not (all) documented
-/home/dev/physgame/physgameengine/src/scenemanager.h:192: warning: parameters of member phys::SceneManager::GetParticleEffect are not (all) documented
-/home/dev/physgame/physgameengine/src/scenemanager.h:195: warning: parameters of member phys::SceneManager::GetParticleEffect are not (all) documented
+/home/dev/physgame/physgameengine/src/scenemanager.h:213: warning: return type of member phys::SceneManager::CreateStandNode is not documented
+/home/dev/physgame/physgameengine/src/scenemanager.h:175: warning: parameters of member phys::SceneManager::GetLight are not (all) documented
+/home/dev/physgame/physgameengine/src/scenemanager.h:178: warning: parameters of member phys::SceneManager::GetLight are not (all) documented
+/home/dev/physgame/physgameengine/src/scenemanager.h:219: warning: parameters of member phys::SceneManager::GetNode are not (all) documented
+/home/dev/physgame/physgameengine/src/scenemanager.h:222: warning: parameters of member phys::SceneManager::GetNode are not (all) documented
+/home/dev/physgame/physgameengine/src/scenemanager.h:193: warning: parameters of member phys::SceneManager::GetParticleEffect are not (all) documented
+/home/dev/physgame/physgameengine/src/scenemanager.h:196: warning: parameters of member phys::SceneManager::GetParticleEffect are not (all) documented
 /home/dev/physgame/physgameengine/src/simpletimer.h:60: warning: Member Update(const Whole MicroSecondsElapsed) (function) of class phys::SimpleTimer is not documented.
 /home/dev/physgame/physgameengine/src/simpletimer.h:61: warning: Member UpdateAsNormal(const Whole MicroSecondsElapsed) (function) of class phys::SimpleTimer is not documented.
 /home/dev/physgame/physgameengine/src/simpletimer.h:62: warning: Member UpdateAsStopWatch(const Whole MicroSecondsElapsed) (function) of class phys::SimpleTimer is not documented.
@@ -318,6 +323,10 @@
 /home/dev/physgame/physgameengine/src/linegroup.cpp:117: warning: return type of member phys::internal::Line3D::getSquaredViewDepth is not documented
 /home/dev/physgame/physgameengine/src/linegroup.cpp:145: warning: return type of member phys::internal::Line3D::mDrawn is not documented
 /home/dev/physgame/physgameengine/src/linegroup.cpp:141: warning: return type of member phys::internal::Line3D::mPoints is not documented
+/home/dev/physgame/physgameengine/src/particleeffect.cpp:58: warning: Member ParticleEffectInternalData(SceneManager *manager) (function) of class phys::internal::ParticleEffectInternalData is not documented.
+/home/dev/physgame/physgameengine/src/particleeffect.cpp:53: warning: return type of member phys::internal::ParticleEffectInternalData::Manager is not documented
+/home/dev/physgame/physgameengine/src/particleeffect.cpp:49: warning: return type of member phys::internal::ParticleEffectInternalData::OgreNode is not documented
+/home/dev/physgame/physgameengine/src/particleeffect.cpp:45: warning: return type of member phys::internal::ParticleEffectInternalData::OgreParticle is not documented
 /home/dev/physgame/physgameengine/src/uibutton.h:74: warning: Member GorillaRectangle (variable) of class phys::UI::Button is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:75: warning: Member Parent (variable) of class phys::UI::Button is not documented.
 /home/dev/physgame/physgameengine/src/uibutton.h:76: warning: Member Manager (variable) of class phys::UI::Button is not documented.
