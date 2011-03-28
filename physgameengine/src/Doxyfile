@@ -80,7 +80,7 @@ QUIET                  = NO
 WARNINGS               = YES
 WARN_IF_UNDOCUMENTED   = YES
 WARN_IF_DOC_ERROR      = YES
-WARN_NO_PARAMDOC       = NO
+WARN_NO_PARAMDOC       = YES
 WARN_FORMAT            = "$file:$line: $text"
 WARN_LOGFILE           =
 #---------------------------------------------------------------------------
@@ -155,7 +155,7 @@ GENERATE_TREEVIEW      = NO
 USE_INLINE_TREES       = NO
 TREEVIEW_WIDTH         = 250
 FORMULA_FONTSIZE       = 10
-SEARCHENGINE           = NO
+SEARCHENGINE           = YEs
 #---------------------------------------------------------------------------
 # configuration options related to the LaTeX output
 #---------------------------------------------------------------------------
@@ -163,8 +163,12 @@ GENERATE_LATEX         = YES
 LATEX_OUTPUT           = latex
 LATEX_CMD_NAME         = latex
 MAKEINDEX_CMD_NAME     = makeindex
-COMPACT_LATEX          = NO
+COMPACT_LATEX          = YES
+#PAPER_TYPE             = executive
 PAPER_TYPE             = a4wide
+		#/usr/share/texmf-texlive/tex/latex/ltxmisc/a4wide.sty
+#PAPER_TYPE             = a4
+		#/usr/share/texmf-texlive/tex/latex/ntgclass/a4.sty
 EXTRA_PACKAGES         =
 LATEX_HEADER           =
 PDF_HYPERLINKS         = YES
@@ -175,10 +179,10 @@ LATEX_SOURCE_CODE      = NO
 #---------------------------------------------------------------------------
 # configuration options related to the RTF output
 #---------------------------------------------------------------------------
-GENERATE_RTF           = NO
+GENERATE_RTF           = no
 RTF_OUTPUT             = rtf
 COMPACT_RTF            = NO
-RTF_HYPERLINKS         = NO
+RTF_HYPERLINKS         = YES
 RTF_STYLESHEET_FILE    =
 RTF_EXTENSIONS_FILE    =
 #---------------------------------------------------------------------------

@@ -435,15 +435,15 @@ namespace phys
                 KEY_SLEEP = 282,
                     //Copying from SDL ends here
 
-                KEY_LAST            = 379,      /// The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that
+                KEY_LAST            = 379,      ///< The last Keyboard InputCode, all Keys values will be less than this, and all Events will be larger than that
 
 
-                MOUSE_FIRST         = 380,      /// The First Mouse event, all Mouse Event values will be more than this
-                MOUSEBUTTON         = 380,      /// This is the generic Some mouse button code. You can add the number of the mouse button to this and you will get the approriate code. Example (MOUSEBUTTON_1 == MOUSEBUTTON + 1)
-                MOUSEBUTTON_FIRST   = 381,      /// This is the lowest mouse button value, all mice values will be larger of equal to this
-                MOUSEBUTTON_1       = 381,      /// Most commonly left click.
-                MOUSEBUTTON_2       = 382,      /// Most Commonly Right click
-                MOUSEBUTTON_3       = 383,      /// Most commonly middle click
+                MOUSE_FIRST         = 380,      ///< The First Mouse event, all Mouse Event values will be more than this
+                MOUSEBUTTON         = 380,      ///< This is the generic Some mouse button code. You can add the number of the mouse button to this and you will get the approriate code. Example (MOUSEBUTTON_1 == MOUSEBUTTON + 1)
+                MOUSEBUTTON_FIRST   = 381,      ///< This is the lowest mouse button value, all mice values will be larger of equal to this
+                MOUSEBUTTON_1       = 381,      ///< Most commonly left click.
+                MOUSEBUTTON_2       = 382,      ///< Most Commonly Right click
+                MOUSEBUTTON_3       = 383,      ///< Most commonly middle click
                 MOUSEBUTTON_4       = 384,
                 MOUSEBUTTON_5       = 385,
                 MOUSEBUTTON_6       = 386,
@@ -461,30 +461,30 @@ namespace phys
                 MOUSEBUTTON_18      = 398,
                 MOUSEBUTTON_19      = 399,
                 MOUSEBUTTON_20      = 400,
-                MOUSEBUTTON_LAST    = 400,      /// The Last mouse button event, all mouse button event will be lower or equal to this.
+                MOUSEBUTTON_LAST    = 400,      ///< The Last mouse button event, all mouse button event will be lower or equal to this.
 
-                INPUTEVENT_FIRST        = 401,  /// The First non-button event, all Mouse and keyboard button values will be Less than this
+                INPUTEVENT_FIRST        = 401,  ///< The First non-button event, all Mouse and keyboard button values will be Less than this
                 MOUSEABSOLUTEVERTICAL   = 402,
                 MOUSEABSOLUTEHORIZONTAL = 403,
                 MOUSEVERTICAL           = 404,
                 MOUSEHORIZONTAL         = 405,
                 MOUSEWHEELVERTICAL      = 406,
                 MOUSEWHEELHORIZONTAL    = 407,
-                MOUSE_LAST              = 410,  /// The last MouseEvent Code, all Mouse events will be less than this
+                MOUSE_LAST              = 410,  ///< The last MouseEvent Code, all Mouse events will be less than this
 
-                MOTION_FIRST            = 420,  /// The first Motion event
-                MOTION_LAST             = 429,  /// The last Motion event
+                MOTION_FIRST            = 420,  ///< The first Motion event
+                MOTION_LAST             = 429,  ///< The last Motion event
 
-                MULTITOUCH_FIRST        = 440,  /// The first Multi Touch event
+                MULTITOUCH_FIRST        = 440,  ///< The first Multi Touch event
                 MULTITOUCH_ACTION       = 441,
                 MULTITOUCH_GESTURE      = 442,
                 MULTITOUCH_PINCH        = 443,
                 MULTITOUCH_STRETCH      = 444,
-                MULTITOUCH_LAST         = 449,  /// The last Multi Touch event
+                MULTITOUCH_LAST         = 449,  ///< The last Multi Touch event
 
-                JOYSTICK_FIRST          = 450,  /// The First JoyStick event, all Joystick Event values will be more than this
-                JOYSTICKBUTTON          = 450,  /// This is the generic Some stickbutton button code. You can add the number of the jpystick button to this and you will get the approriate code. Example (JOYSTICKBUTTON_1 == JOYSTICKBUTTON + 1)
-                JOYSTICKBUTTON_FIRST    = 451,  /// This is the lowest Joystick button value, all joystickbutton values will be larger of equal to this.
+                JOYSTICK_FIRST          = 450,  ///< The First JoyStick event, all Joystick Event values will be more than this
+                JOYSTICKBUTTON          = 450,  ///< This is the generic Some stickbutton button code. You can add the number of the jpystick button to this and you will get the approriate code. Example (JOYSTICKBUTTON_1 == JOYSTICKBUTTON + 1)
+                JOYSTICKBUTTON_FIRST    = 451,  ///< This is the lowest Joystick button value, all joystickbutton values will be larger of equal to this.
                 JOYSTICKBUTTON_1        = 451,
                 JOYSTICKBUTTON_2        = 452,
                 JOYSTICKBUTTON_3        = 453,
@@ -505,10 +505,10 @@ namespace phys
                 JOYSTICKBUTTON_18       = 468,
                 JOYSTICKBUTTON_19       = 469,
                 JOYSTICKBUTTON_20       = 470,
-                JOYSTICKBUTTON_LAST     = 470,  /// The Last Joystick button event, all joystick button event will be lower or equal to this.
+                JOYSTICKBUTTON_LAST     = 470,  ///< The Last Joystick button event, all joystick button event will be lower or equal to this.
 
-                JOYSTICKAXIS          = 480,  /// This is the generic joystick axis code. You can add the number of the joystick axis to this and you will get the approriate code. Example (JOYSTICKAXIS_1 == JOYSTICKAXIS + 1)
-                JOYSTICKAXIS_FIRST    = 481,  /// This is the lowest Joystick axis value, all jpystick values will be larger of equal to this
+                JOYSTICKAXIS          = 480,  ///< This is the generic joystick axis code. You can add the number of the joystick axis to this and you will get the approriate code. Example (JOYSTICKAXIS_1 == JOYSTICKAXIS + 1)
+                JOYSTICKAXIS_FIRST    = 481,  ///< This is the lowest Joystick axis value, all jpystick values will be larger of equal to this
                 JOYSTICKAXIS_1        = 481,
                 JOYSTICKAXIS_2        = 482,
                 JOYSTICKAXIS_3        = 483,
@@ -529,7 +529,7 @@ namespace phys
                 JOYSTICKAXIS_18       = 498,
                 JOYSTICKAXIS_19       = 499,
                 JOYSTICKAXIS_20       = 500,
-                JOYSTICKAXIS_LAST     = 500,  /// The Last Joystick axis event, all joystick axis event will be lower or equal to this.
+                JOYSTICKAXIS_LAST     = 500,  ///< The Last Joystick axis event, all joystick axis event will be lower or equal to this.
 
                 JOYSTICKBALL_VERTICAL     = 501,
                 JOYSTICKBALL_HORIZONTAL   = 502,
@@ -541,9 +541,9 @@ namespace phys
                 JOYSTICKHAT_3_VERTICAL     = 509,
                 JOYSTICKHAT_3_HORIZONTAL   = 510,
 
-                JOYSTICK_LAST           = 512,  /// The last JoyStick Input Code, all JoyStick events will be less than this.
+                JOYSTICK_LAST           = 512,  ///< The last JoyStick Input Code, all JoyStick events will be less than this.
 
-                INPUTEVENT_LAST         = 1024   /// The last Input Code, all event codes will be less than this.
+                INPUTEVENT_LAST         = 1024   ///< The last Input Code, all event codes will be less than this.
             };
 
             /// @enum ButtonState

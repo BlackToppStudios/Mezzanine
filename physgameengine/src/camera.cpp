@@ -274,7 +274,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Camera& Ev)
 {
 
     //stream << "<Camera Version=\"1\" attachedto=\"1\" location=\"1\" orientation=\"1\" name=\"1\" />" << *(Ev.Cam) << "</Camera>";
-    stream      << "<Camera Version=\"1\" Name=\"" << Ev.GetName() << "\" AttachedTo=\"" << Ev.GetAttachedTo()->GetName() << "\" CameraPerspective=\"" << Ev.GetCameraType() << "\">"
+    stream      << "<Camera Version=\"1\" Name=\"" << Ev.GetName() << "\" AttachedTo=\"" << (Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "") << "\" CameraPerspective=\"" << Ev.GetCameraType() << "\">"
                 << "<Orientation>" << Ev.GetOrientation() << "</Orientation>"
                 << "<Location>" << Ev.GetRelativeLocation() << "</Location>";
 

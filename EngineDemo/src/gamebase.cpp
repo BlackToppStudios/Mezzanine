@@ -253,9 +253,8 @@ bool PostInput()
     CamXML << *(TheWorld->GetCameraManager()->GetDefaultCamera());
     CamXML >> TempCam;
     TheWorld->LogStream << "Default serial-deserialized, the finally reserialized Camera" << endl << TempCam << endl;
-
-
     #endif
+
 //    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
 //        {TheWorld->Cameras->IncrementYOrbit(-0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
 
@@ -608,7 +607,24 @@ bool CheckForStuff()
 
 void LoadContent()
 {
-    TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
+    //TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
+    TheWorld->GetSceneManager()->SetAmbientLight(0.10,0.10,0.10,0.10);
+    phys::Light *TorchR=TheWorld->GetSceneManager()->CreateLight("Redtorch");
+    phys::Light *TorchG=TheWorld->GetSceneManager()->CreateLight("Greentorch");
+    phys::Light *TorchToStream=TheWorld->GetSceneManager()->CreateLight("TempLightToBeDestroyed");
+
+    ColourValue RTorchLight(0.8,0.1,0.3,1.0);
+    TorchR->SetLocation(Vector3(70,70,100));
+    TorchR->SetPowerScale(1.0);
+    TorchR->SetSpecularColour(RTorchLight);
+    TorchR->SetDiffuseColour(RTorchLight);
+
+    ColourValue GTorchLight(0.1,0.8,0.3,1.0);
+    TorchToStream->SetLocation(Vector3(-70,70,-100));
+    TorchToStream->SetPowerScale(1.0);
+    TorchToStream->SetSpecularColour(GTorchLight);
+    TorchToStream->SetDiffuseColour(GTorchLight);
+
     ActorRigid *object1, *object2, *object3, *object4;
     ActorTerrain *object5, *object6;
     ActorRigid *object7;
@@ -633,7 +649,22 @@ void LoadContent()
     TheWorld->Log("Getting Working Directory.");
     TheWorld->Log(crossplatform::GetWorkingDir());
     TheWorld->Log("Trying to open test.xml and test.txt");
+    TheWorld->Log("Distinct green Torch, not in scene");
+    TheWorld->Log(*TorchToStream);
     #endif
+    stringstream Torchstream;
+    Torchstream << *TorchToStream;
+    #ifdef PHYSDEBUG
+    TheWorld->Log("Default Torch that should be green");
+    TheWorld->Log(*TorchG);
+    #endif
+    Torchstream >>*TorchG;
+    #ifdef PHYSDEBUG
+    TheWorld->Log("Default Torch that is now be green and no longer default");
+    TheWorld->Log(*TorchG);
+    #endif
+    TheWorld->GetSceneManager()->DestroyLight(TorchToStream);
+
     {
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");
         ResourceInputStream* Zippedptr = TheWorld->GetResourceManager()->GetResourceStream("test.txt");

@@ -42,7 +42,12 @@
 
 #include "light.h"
 #include "scenemanager.h"
+#include "world.h"
+#include "worldnode.h"
+
 #include <Ogre.h>
+
+#include <memory>
 
 namespace phys
 {
@@ -90,9 +95,9 @@ namespace phys
         OgreLight->setType(OgreType);
     }
 
-    void Light::SetPosition(Vector3 Position)
+    void Light::SetLocation(Vector3 Location)
     {
-        OgreLight->setPosition(Position.GetOgreVector3());
+        OgreLight->setPosition(Location.GetOgreVector3());
     }
 
     void Light::SetDirection(Vector3 Direction)
@@ -175,7 +180,7 @@ namespace phys
         return PhysType;
     }
 
-    Vector3 Light::GetPosition() const
+    Vector3 Light::GetLocation() const
     {
         Vector3 Pos(OgreLight->getPosition());
         return Pos;
@@ -239,5 +244,121 @@ namespace phys
         return OgreLight->getPowerScale();
     }
 }//phys
+
+/*must store type, Location, direction, diffusecolour, specularcolour, powerscale,
+		if spotlight the 4 attentuation values
+		if spotlight 3 angles
+*/
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::Light& Ev)
+{
+    stream      << "<Light Version=\"1\" Name=\"" << Ev.GetName()
+                    << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
+                    << "\" Type=\"" << Ev.GetType()
+                    << "\" PowerScale=\"" << Ev.GetPowerScale()
+                    << "\" AttenuationRange=\"" << Ev.GetAttenuationRange()
+                    << "\" AttenuationConstant=\"" << Ev.GetAttenuationConstant()
+                    << "\" AttenuationQuadric=\"" << Ev.GetAttenuationQuadric()
+                    << "\" AttenuationLinear=\"" << Ev.GetAttenuationLinear()
+                    << "\" SpotlightInnerAngle=\"" << Ev.GetSpotlightInnerAngle()
+                    << "\" SpotlightOuterAngle=\"" << Ev.GetSpotlightOuterAngle()
+                    << "\" SpotlightFalloff=\"" << Ev.GetSpotlightFalloff()
+                << "\">"
+                << "<Direction>" << Ev.GetDirection() << "</Direction>"
+                << "<Location>" << Ev.GetLocation() << "</Location>"
+                << "<SpecularColour>" << Ev.GetSpecularColour() << "</SpecularColour>"
+                << "<fDiffuseColour>" << Ev.GetDiffuseColour() << "</fDiffuseColour>"
+                << "</Light>";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Light& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "Light", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::Light& Ev)
+{
+    if ( phys::String(OneNode.Name())==phys::String("Light") )
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            Ev.SetType(static_cast<phys::Light::LightType>(OneNode.GetAttribute("LightPerspective").AsInt()));
+            Ev.SetPowerScale(OneNode.GetAttribute("PowerScale").AsReal());
+            Ev.SetAttenuation(OneNode.GetAttribute("AttenuationRange").AsReal(), OneNode.GetAttribute("AttenuationConstant").AsReal(), OneNode.GetAttribute("AttenuationLinear").AsReal(), OneNode.GetAttribute("AttenuationQuadric").AsReal());
+            Ev.SetSpotlightInnerAngle(OneNode.GetAttribute("SpotlightInnerAngle").AsReal());
+            Ev.SetSpotlightOuterAngle(OneNode.GetAttribute("SpotlightOuterAngle").AsReal());
+            Ev.SetSpotlightFalloff(OneNode.GetAttribute("SpotlightFalloff").AsReal());
+            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            if (AttachPtr)
+                { AttachPtr->AttachElement(&Ev); }
+
+            phys::ColourValue TempColour(0,0,0,0);
+            phys::Vector3 TempVec(0,0,0);
+
+            for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            {
+                phys::String Name(Child.Name());
+                switch(Name[0])
+                {
+                    case 'f':   //fDiffuseColour
+                        if(Name==phys::String("fDiffuseColour"))
+                        {
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetDiffuseColour(TempColour);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element O-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'S':   //SpecularColour
+                        if(Name==phys::String("SpecularColour"))
+                        {
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetSpecularColour(TempColour);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element O-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'D':   //Direction
+                        if(Name==phys::String("Direction"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetDirection(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element O-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'L':   //Location
+                        if(Name==phys::String("Location"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetLocation(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element L-\"",Name,"\"")) );
+                        }
+                        break;
+                    default:
+                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element default-\"",Name,"\"")) );
+                        break;
+                }
+            }
+
+        }else{
+            throw( phys::Exception("Incompatible XML Version for Light: Not Version 1"));
+        }
+    }else{
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a Light, found a ", OneNode.Name())));
+    }
+}
+#endif // \PHYSXML
+
 
 #endif
