@@ -63,6 +63,7 @@
 #include "areaeffect.h"
 #include "attachable.h"                 // Target2
 #include "camera.h"                     // done, must redo after Mar27 upgrades
+#include "cameracontroller.h"
 #include "cameramanager.h"
 #include "colourvalue.h"                // done
 #include "constraint.h"

@@ -1,4 +1,4 @@
-//Â© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -43,7 +43,11 @@
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 
+#include <cmath>
+
 #include "quaternion.h"
+#include "vector3.h"
+#include "world.h"
 
 namespace phys
 {
@@ -65,6 +69,17 @@ namespace phys
         this->W=w;
     }
 
+    Quaternion::Quaternion(const Real& Angle, const Vector3& Axis)
+    {
+        /// @todo Need to find a clean way to wrap sin and cos functions.  Also may want to make a radian class/datatype.
+        Ogre::Radian fHalfAngle ( 0.5*Angle );
+        Real fSin = Ogre::Math::Sin(fHalfAngle);
+        this->W = Ogre::Math::Cos(fHalfAngle);
+        this->X = fSin*Axis.X;
+        this->Y = fSin*Axis.Y;
+        this->Z = fSin*Axis.Z;
+    }
+
     Quaternion::Quaternion(const btQuaternion& Other)
         { ExtractBulletQuaternion(Other); }
 
@@ -77,6 +92,27 @@ namespace phys
         this->Y=Other.Y;
         this->Z=Other.Z;
         this->W=Other.W;
+    }
+
+    Real Quaternion::DotProduct(const Quaternion& Other) const
+    {
+        return this->X * Other.X + this->Y * Other.Y + this->Z * Other.Z + this->W * Other.W;
+    }
+
+    Real Quaternion::Length() const
+    {
+        return sqrt(LengthSqrd());
+    }
+
+    Real Quaternion::LengthSqrd() const
+    {
+        return DotProduct(*this);
+    }
+
+    Quaternion& Quaternion::Normalize()
+    {
+        *this = *this / Length();
+        return *this;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -123,6 +159,21 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
+    //  Arithmetic By Real Operators
+
+    Quaternion Quaternion::operator* (const Real& Scalar) const
+    {
+        return Quaternion(this->X * Scalar,this->Y * Scalar,this->Z * Scalar,this->W * Scalar);
+    }
+
+    Quaternion Quaternion::operator/ (const Real& Scalar) const
+    {
+        if( 0 == Scalar )
+            World::GetWorldPointer()->LogAndThrow("Dividing by zero in 'Quaternion::operator/', Quit it.");
+        return *this * ( 1.0 / Scalar );
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
     // Left Hand Basic Arithmetic Operators
 
     Quaternion Quaternion::operator+ (const phys::Quaternion& Other) const
@@ -142,6 +193,39 @@ namespace phys
 
     Quaternion Quaternion::operator- (const btQuaternion& Other) const
         { return Quaternion(this->X-Other.x(), this->Y-Other.y(), this->Z-Other.z(), this->W-Other.w()); }
+
+    Quaternion Quaternion::operator* (const phys::Quaternion& Other) const
+    {
+        return Quaternion
+        (
+            this->W * Other.X + this->X * Other.W + this->Y * Other.Z - this->Z * Other.Y,
+            this->W * Other.Y + this->Y * Other.W + this->Z * Other.X - this->X * Other.Z,
+            this->W * Other.Z + this->Z * Other.W + this->X * Other.Y - this->Y * Other.X,
+            this->W * Other.W - this->X * Other.X + this->Y * Other.Y - this->Z * Other.Z
+        );
+    }
+
+    Quaternion Quaternion::operator* (const Ogre::Quaternion& Other) const
+    {
+        return Quaternion
+        (
+            this->W * Other.x + this->X * Other.w + this->Y * Other.z - this->Z * Other.y,
+            this->W * Other.y + this->Y * Other.w + this->Z * Other.x - this->X * Other.z,
+            this->W * Other.z + this->Z * Other.w + this->X * Other.y - this->Y * Other.x,
+            this->W * Other.w - this->X * Other.x + this->Y * Other.y - this->Z * Other.z
+        );
+    }
+
+    Quaternion Quaternion::operator* (const btQuaternion& Other) const
+    {
+        return Quaternion
+        (
+            this->W * Other.x() + this->X * Other.w() + this->Y * Other.z() - this->Z * Other.y(),
+            this->W * Other.y() + this->Y * Other.w() + this->Z * Other.x() - this->X * Other.z(),
+            this->W * Other.z() + this->Z * Other.w() + this->X * Other.y() - this->Y * Other.x(),
+            this->W * Other.w() - this->X * Other.x() + this->Y * Other.y() - this->Z * Other.z()
+        );
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Increment and Decrement Operators

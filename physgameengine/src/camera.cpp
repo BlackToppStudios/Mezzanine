@@ -87,7 +87,7 @@ namespace phys
         return this->Cam->getName();
     }
 
-    void Camera::SetCameraType(ProjectionType Type)
+    void Camera::SetCameraType(const ProjectionType Type)
     {
         if( Camera::Orthographic == Type )
         {
@@ -116,17 +116,17 @@ namespace phys
         }
     }
 
-    void Camera::SetOrthoWindow(Real Width, Real Height)
+    void Camera::SetOrthoWindow(const Real& Width, const Real& Height)
     {
         this->Cam->setOrthoWindow(Width, Height);
     }
 
-    void Camera::SetOrthoWindowHeight(Real Height)
+    void Camera::SetOrthoWindowHeight(const Real& Height)
     {
         this->Cam->setOrthoWindowHeight(Height);
     }
 
-    void Camera::SetOrthoWindowWidth(Real Width)
+    void Camera::SetOrthoWindowWidth(const Real& Width)
     {
         this->Cam->setOrthoWindowWidth(Width);
     }
@@ -135,7 +135,6 @@ namespace phys
     {
         this->Cam->setPosition(Location.GetOgreVector3());
     }
-
     void Camera::SetDirection(const Vector3& Direction)
     {
         this->Cam->setDirection(Direction.GetOgreVector3());
@@ -146,27 +145,37 @@ namespace phys
         this->Cam->setOrientation(Orientation.GetOgreQuaternion());
     }
 
-    void Camera::SetNearClipDistance(Real NearDist)
+    void Camera::SetNearClipDistance(const Real& NearDist)
     {
         this->Cam->setNearClipDistance(NearDist);
     }
 
-    void Camera::SetFarClipDistance(Real FarDist)
+    void Camera::SetFarClipDistance(const Real& FarDist)
     {
         this->Cam->setFarClipDistance (FarDist);
     }
 
-    void Camera::SetAspectRatio(Real Ratio)
+    void Camera::SetAspectRatio(const Real& Ratio)
     {
         this->Cam->setAspectRatio(Ratio);
     }
 
-    void Camera::LookAt(Vector3 TargetLoc)
+    void Camera::LookAt(const Vector3& TargetLoc)
     {
         this->Cam->lookAt(TargetLoc.GetOgreVector3());
     }
 
-    void Camera::SetFixedYawAxis(bool UseFixed, Vector3 Axis)
+    void Camera::Move(const Vector3& ToMove)
+    {
+        this->Cam->move(ToMove.GetOgreVector3());
+    }
+
+    void Camera::MoveRelative(const Vector3& ToMove)
+    {
+        this->Cam->moveRelative(ToMove.GetOgreVector3());
+    }
+
+    void Camera::SetFixedYawAxis(bool UseFixed, const Vector3& Axis)
     {
         this->Cam->setFixedYawAxis(UseFixed, Axis.GetOgreVector3());
         this->YawAxis = Axis;
@@ -228,7 +237,7 @@ namespace phys
         return Quaternion(this->Cam->getOrientation());
     }
 
-    void Camera::ZoomCamera(Real Zoom)
+    void Camera::ZoomCamera(const Real& Zoom)
     {
         Ogre::Vector3 zoomlevel(0,0,Zoom);
         this->Cam->moveRelative(zoomlevel);

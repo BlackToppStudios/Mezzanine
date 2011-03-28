@@ -44,6 +44,7 @@
 #include "scenemanager.h"
 #include "graphicsmanager.h"
 #include "camera.h"
+#include "cameracontroller.h"
 #include "world.h"
 
 #include <Ogre.h>
@@ -143,6 +144,19 @@ namespace phys
             Cameras.erase(it);
         }
         return;
+    }
+
+    CameraController* CameraManager::GetOrCreateCameraController(Camera* Controlled)
+    {
+        std::map<Camera*,CameraController*>::iterator CamIt = CameraControllers.find(Controlled);
+        if(CamIt == CameraControllers.end())
+        {
+            CameraController* Controller = new CameraController(Controlled);
+            CameraControllers[Controlled] = Controller;
+            return Controller;
+        }else{
+            return (*CamIt).second;
+        }
     }
 
     // Inherited from ManagerBase

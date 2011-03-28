@@ -161,7 +161,7 @@ namespace phys
             /// Perspective can be thought of as a pyramid, with the camera at the top of the cone.  Orthographic would instead be a
             /// cube.
             /// @param Type The type of projection to be used.
-            void SetCameraType(ProjectionType Type);
+            void SetCameraType(const ProjectionType Type);
 
             /// @brief Get the type of projection used by the camera
             /// @return A ProjectionType that will identify the kind of projection this camera uses.
@@ -172,58 +172,86 @@ namespace phys
             /// window size without changing the aspect ratio, call either the SetOrthoWindowHeight, or SetOrthoWindowWidth functions.
             /// @param Width The new width of the projection window.
             /// @param Height The new height of the projection window.
-            void SetOrthoWindow(Real Width, Real Height);
+            void SetOrthoWindow(const Real& Width, const Real& Height);
             /// @brief Defines the size of the Orthographic projection window.
             /// @details This function will not change the aspect ratio of the screen, unlike SetOrthoWindow.  The aspect ratio will be
             /// preserved and the Width of the screen automatically recalculated based on the Height passed in.
             /// @param Height The new height of the projection window.
-            void SetOrthoWindowHeight(Real Height);
+            void SetOrthoWindowHeight(const Real& Height);
             /// @brief Defines the size of the Orthographic projection window.
             /// @details This function will not change the aspect ratio of the screen, unlike SetOrthoWindow.  The aspect ratio will be
             /// preserved and the Height of the screen automatically recalculated based on the Width passed in.
             /// @param Width The new width of the projection window.
-            void SetOrthoWindowWidth(Real Width);
+            void SetOrthoWindowWidth(const Real& Width);
 
             /// @brief Sets the location of a camera.
             /// @details Sets the location of the specified camera.
             /// @param Location The new location for the camera.
             virtual void SetLocation(const Vector3& Location);
+            // @brief Gets the relative location of the camera.
+            /// @details Gets the location of the camera, relative to any parent WorldNode.
+            /// @return A phys::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
+            virtual Vector3 GetLocation() const;
+            /// @brief Gets the relative location of the camera.
+            /// @details Gets the location of the camera, relative to any parent WorldNode.
+            /// @return A phys::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
+            Vector3 GetRelativeLocation() const;
+            /// @brief Gets the global/absolute location of the camera.
+            /// @return A phys::Vector3 containing the location of this object as an offset from the global origin.
+            Vector3 GetGlobalLocation() const;
+
             /// @brief Sets the Direction for the camera.
             /// @details Sets which axis the camera will look down for rendering.
             /// @param Direction The vector3 representing the axis to be used.
             void SetDirection(const Vector3& Direction);
+            /// @brief Gets the direction the camera is currently facing.
+            /// @return Returns a Vector3 representing the current direction the camera is facing.
+            Vector3 GetDirection() const;
+
             /// @brief Sets the orientation of the camera.
             /// @details This function will set the orientation of the specified camera via a quaternion.
             /// @param Orientation The quaternion representing the new orientation.
             void SetOrientation(const Quaternion& Orientation);
+            /// @brief Gets the direction the camera is facing.
+            /// @return A phys::Quaternion representing how the camera is rotated.
+            Quaternion GetOrientation() const;
+
             /// @brief Sets the short range clip distance.
             /// @details Sets the distance at which objects are considered too close to render.
             /// @param NearDist A Real representing the distance.  Note:  This number directly corolates to the dimentions
             /// you provide in the constructor for the physgame.  You should understand your games scale before setting
             /// this number.
+            void SetNearClipDistance(const Real& NearDist);
 
-            void SetNearClipDistance(Real NearDist);
             /// @brief Sets the long range clip distance.
             /// @details Sets the distance at which objects are considered too far to render.
             /// @param FarDist A Real representing the distance.  Note:  This number directly corolates to the dimentions
             /// you provide in the constructor for the physgame.  You should understand your games scale before setting
             /// this number.
-            void SetFarClipDistance(Real FarDist);
+            void SetFarClipDistance(const Real& FarDist);
             /// @brief Sets the aspect ratio of the cameras veiw.
             /// @details This function will set the aspect ratio between the width and height of the cameras viewing area.
             /// @param Ratio A Real that represents the aspect ratio, where Ratio = width / height.
-            void SetAspectRatio(Real Ratio);
+            void SetAspectRatio(const Real& Ratio);
             /// @brief Sets the direction the camera faces.
             /// @details Sets the direction the camera faces.  Will also take orientation into account.
             /// @param TargetLoc The location in the game world to look at.
-            void LookAt(Vector3 TargetLoc);
+            void LookAt(const Vector3& TargetLoc);
+            /// @brief Moves the camera without factoring orientation.
+            /// @details This function will move the camera along the provided vector based on world axes.
+            /// @param ToMove The vector to move the camera by.
+            void Move(const Vector3& ToMove);
+            /// @brief Moves the camera while factoring orientation.
+            /// @details This function will move the camera along the provided vector based on local axes.
+            /// @param ToMove The vector to move the camera by.
+            void MoveRelative(const Vector3& ToMove);
 
             /// @brief Sets whether to lock rotation around the Y axis.
             /// @details This function will lock rotations around the Y axis (or another axis if you specify).  This
             /// function is automatically called on by the camera constructor.
             /// @param UseFixed Enable or disable the locking of the axis.
             /// @param Axis The axis to lock, defaults to the Y axis.
-            void SetFixedYawAxis(bool UseFixed, Vector3 Axis);
+            void SetFixedYawAxis(bool UseFixed, const Vector3& Axis);
             /// @brief Sets whether to lock rotation around the Y axis.
             /// @details This function will lock rotations around the Y axis.  This function is automatically called
             /// on by the camera constructor to enable camera yawing.
@@ -258,28 +286,12 @@ namespace phys
             /// @details This will return a pointer to the phys::WorldNode that this camera is attached to if any. If none, then 0 is returned.
             WorldNode* GetWorldNode() const;*/
 
-
-            /// @brief Gets the relative location of the camera.
-            /// @details Gets the location of the camera, relative to any parent WorldNode.
-            /// @return A phys::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
-            virtual Vector3 GetLocation() const;
-            /// @brief Gets the relative location of the camera.
-            /// @details Gets the location of the camera, relative to any parent WorldNode.
-            /// @return A phys::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
-            Vector3 GetRelativeLocation() const;
-            /// @brief Gets the global/absolute location of the camera.
-            /// @return A phys::Vector3 containing the location of this object as an offset from the global origin.
-            Vector3 GetGlobalLocation() const;
-            /// @brief Gets the direction the camera is facing.
-            /// @return A phys::Quaternion representing how the camera is rotated.
-            Quaternion GetOrientation() const;
-
             /// @brief Will zoom in or out the camera.
             /// @details This function will zoom in the camera by the amount specified.
             /// @param Zoom A Real of how much to zoom in by.  Note:  This number directly corolates to the dimentions
             /// you provide in the constructor for the physgame.  You should understand your games scale before setting
             /// this number.
-            void ZoomCamera(Real Zoom);
+            void ZoomCamera(const Real& Zoom);
 
             /// @brief Resets the zoom level back to the default.
             /// @details This function will return the zoom level back to normal.  Note this function will only work if

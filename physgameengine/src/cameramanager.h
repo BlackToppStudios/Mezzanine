@@ -58,6 +58,7 @@ namespace Ogre
 namespace phys
 {
     class Camera;
+    class CameraController;
     class SceneManager;
     class GraphicsManager;
     ///////////////////////////////////////////////////////////////////////////////
@@ -77,6 +78,7 @@ namespace phys
             phys::SceneManager* SManager;
             Camera* DefaultCamera;
             std::vector< Camera* > Cameras;
+            std::map< Camera* , CameraController* > CameraControllers;
             Camera* FindCamera(String Name);
         public:
             /// @brief Class Constructor.
@@ -112,6 +114,11 @@ namespace phys
             /// @details This will clear the container of cameras.  The default camera is not stored in this container
             /// however, so it is spared from this wipe.
             void ClearCameras();
+
+            /// @brief Gets a camera controller if it exists, otherwise creates it.
+            /// @param Controlled The camera that will be controlled by the controller returned.
+            /// @return Returns a pointer to the created or retrieved camera controller for the camera.
+            CameraController* GetOrCreateCameraController(Camera* Controlled);
 
             //Inherited From ManagerBase
             /// @brief Empty Initializor.

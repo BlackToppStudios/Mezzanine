@@ -84,12 +84,13 @@ int main(int argc, char **argv)
     TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
 
     //Setup some camera tricks
-    WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
-    CameraNode->AttachObject(TheWorld->GetCameraManager()->GetDefaultCamera());
+    //WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
+    //CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
+    TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0.0,200.0,750.0));
     Light *Headlight = TheWorld->GetSceneManager()->CreateLight("Headlight");
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
     //Headlight->SetType(Light::Spotlight);
-    CameraNode->AttachObject(Headlight);
+    //CameraNode->AttachObject(Headlight);
 
     TheWorld->Log("Printing Supported Resolutions:");
     const std::vector<String>* ResList = TheWorld->GetGraphicsManager()->GetSupportedResolutions();
@@ -264,34 +265,71 @@ bool PostInput()
 
 //    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
 //        {TheWorld->Cameras->IncrementYOrbit(0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
-
+    CameraController* DefaultControl = TheWorld->GetCameraManager()->GetOrCreateCameraController(TheWorld->GetCameraManager()->GetDefaultCamera());
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, false))
-        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01); }
+    {
+        //TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01);
+        DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
+    }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, false))
-        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
-
-    Quaternion CamRot = TheWorld->GetCameraManager()->GetDefaultCamera()->GetOrientation();
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEUP))
-        { CamRot.Y +=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot ); }
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEDOWN))
-        { CamRot.Y -=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot ); }
-
-
-    if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
-        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.000003 * (float)Queryer.GetJoystickAxis(1)); }
+    {
+        //TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01);
+        DefaultControl->StrafeRight(300 * (TheWorld->GetFrameTime() * 0.001));
+    }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, true))
-        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( -12.0 ); }
+    {
+        //TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( -12.0 );
+        DefaultControl->MoveForward(300 * (TheWorld->GetFrameTime() * 0.001));
+    }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN)  || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, true))
-        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( 12.0 ); }
+    {
+        //TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( 12.0 );
+        DefaultControl->MoveBackward(300 * (TheWorld->GetFrameTime() * 0.001));
+    }
+
+    static bool MouseCam=false;
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_HOME) )
+    {
+        MouseCam=true;
+        TheWorld->GetEventManager()->StartRelativeMouseMode();
+    }
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_END))
+    {
+        MouseCam=false;
+        TheWorld->GetEventManager()->EndRelativeMouseMode();
+    }
+
+    /*Quaternion CamRot = TheWorld->GetCameraManager()->GetDefaultCamera()->GetOrientation();
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEUP))
+    {
+        CamRot.Y +=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot );
+    }
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEDOWN))
+    {
+        CamRot.Y -=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot );
+    }// */
+
+    Vector2 Offset = Queryer.GetMousePrevFrameOffset();
+    if( MouseCam && Vector2(0,0) != Offset )
+        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01);
+
+    /*if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
+    {
+        TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.000003 * (float)Queryer.GetJoystickAxis(1));
+    }
 
     if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_2)!=0)
-        { TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera(0.002 * (float)Queryer.GetJoystickAxis(2)); }
+    {
+        TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera(0.002 * (float)Queryer.GetJoystickAxis(2));
+    }
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_SPACE) )
-        { TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom(); }
+    {
+        TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom();
+    }// */
 
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_M) || Queryer.IsJoystickButtonPushed(1) )
     {

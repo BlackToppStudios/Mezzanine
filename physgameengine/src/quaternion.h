@@ -1,4 +1,4 @@
-//Â© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -52,6 +52,7 @@ namespace Ogre
 
 namespace phys
 {
+    class Vector3;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Quaternion
     /// @headerfile quaternion.h
@@ -90,6 +91,12 @@ namespace phys
             /// @param w Rotation on the W Axis.
             Quaternion(const Real &x, const Real &y, const Real &z, const Real &w);
 
+            /// @brief Axis and Rotation Constructor.
+            /// @details This assembles a quaternion based on an axis and a rotation in radians.
+            /// @param Angle Real representing the angle to be applied along the axis in radians.
+            /// @param Axis Vector3 representing the axis to apply the rotation.
+            Quaternion(const Real& Angle, const Vector3& Axis);
+
             /// @brief Bullet Quaternion constructor.
             /// @details Constructor that sets all values to match the Bullet quaternion.
             /// @param Theirs The quaternion to be copied to make this quaternion.
@@ -103,6 +110,23 @@ namespace phys
             /// @brief Copy Constructor
             /// @param Other The Quaternion to copy
             Quaternion(const phys::Quaternion& Other);
+
+            /// @brief Gets the Dot Product of this quaternion and another quaternion.
+            /// @param Other The other quaternion to calculate the dot product from.
+            /// @return Returns a Real that is the Dot Product of the two quaternions.
+            Real DotProduct(const Quaternion& Other) const;
+
+            /// @brief Gets the length of the quaternion.
+            /// @return Returns a Real representing the length of the quaternion.
+            Real Length() const;
+
+            /// @brief Gets the squared length(len^2) of the quaternion.
+            /// @return Returns a Real representing the squared length(len^2) of the quaternion.
+            Real LengthSqrd() const;
+
+            /// @brief Normalizes this Quaternion.
+            /// @return Returns a normalized reference of this quaternion.
+            Quaternion& Normalize();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Explicit Conversion
@@ -129,6 +153,19 @@ namespace phys
             /// and set the values of this class to be the same.
             /// @param Ours The quaternion to be extracted.
             void ExtractOgreQuaternion(const Ogre::Quaternion &Ours);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            //  Arithmetic By Real Operators
+
+            /// @brief Scaling by multiplication.
+            /// @param Scalar This is the amount to scale the quaternion by.
+            /// @return Returns a scaled quaternion.
+            Quaternion operator* (const Real& Scalar) const;
+
+            /// @brief Scaling by division.
+            /// @param Scalar This is the amount to scale the quaternion by.
+            /// @return Returns a scaled quaternion.
+            Quaternion operator/ (const Real& Scalar) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Left Hand Basic Arithmetic Operators
@@ -162,6 +199,21 @@ namespace phys
             /// @param Other The other Quaternion to subtract from this one.
             /// @return A phys::Quaternion with the difference.
             Quaternion operator- (const btQuaternion& Other) const;
+
+            /// @brief Multiplication operator with phys::Quaternion and phys::Quaternion.
+            /// @param Other The other Quaternion to multiply from this one.
+            /// @return A phys::Quaternion with the result.
+            Quaternion operator* (const phys::Quaternion& Other) const;
+
+            /// @brief Multiplication operator with phys::Quaternion and Ogre::Quaternion.
+            /// @param Other The other Quaternion to multiply from this one.
+            /// @return A phys::Quaternion with the result.
+            Quaternion operator* (const Ogre::Quaternion& Other) const;
+
+            /// @brief Multiplication operator with phys::Quaternion and btQuaternion.
+            /// @param Other The other Quaternion to multiply from this one.
+            /// @return A phys::Quaternion with the result.
+            Quaternion operator* (const btQuaternion& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Increment and Decrement Operators
