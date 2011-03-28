@@ -1,0 +1,202 @@
+\hypertarget{classphys_1_1Plane}{
+\subsection{phys::Plane Class Reference}
+\label{d1/d0c/classphys_1_1Plane}\index{phys::Plane@{phys::Plane}}
+}
+
+
+This is used to represent a flat infinite slice of the game world.  
+
+
+
+
+{\ttfamily \#include $<$plane.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1Plane_a8896c8a09a604fff0668e5044889bea7}{Plane} ()
+\begin{DoxyCompactList}\small\item\em Default constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Plane_a921d5668dfee52875ba025528604182f}{Plane} (\hyperlink{classphys_1_1Vector3}{Vector3} Normal\_\-, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Distance\_\-)
+\begin{DoxyCompactList}\small\item\em Thorough constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Plane_aa6c075364461a2996a6575fb022c47a9}{Plane} (Ogre::Plane Plane\_\-)
+\begin{DoxyCompactList}\small\item\em Compatibily constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Plane_a9b0fde4e97a7391259b2e659e46b3c30}{Plane} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkPoint0, const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkPoint1, const \hyperlink{classphys_1_1Vector3}{Vector3} \&rkPoint2)
+\begin{DoxyCompactList}\small\item\em Triangle constructor. \item\end{DoxyCompactList}\item 
+Ogre::Plane \hyperlink{classphys_1_1Plane_abbdcdd8d6e7c0d8de92cabd250ff41dc}{GetOgrePlane} () const 
+\begin{DoxyCompactList}\small\item\em Gets an Ogre::Plane that contains this Plane's information. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}{ExtractOgrePlane} (const Ogre::Plane \&Plane2)
+\begin{DoxyCompactList}\small\item\em Changes this \hyperlink{classphys_1_1Plane}{Plane} to match the Ogre \hyperlink{classphys_1_1Plane}{Plane}. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Plane_ac045b7b0aac024a5fe771786d0c433f7}{operator=} (const Ogre::Plane \&Plane2)
+\begin{DoxyCompactList}\small\item\em The assignment operator from Ogre::Plane to \hyperlink{classphys_1_1Plane}{phys::Plane}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Plane_ac54624aabcdede3d45e06dd869419c9f}{
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Plane_ac54624aabcdede3d45e06dd869419c9f}{Normal}}
+\label{d1/d0c/classphys_1_1Plane_ac54624aabcdede3d45e06dd869419c9f}
+
+\begin{DoxyCompactList}\small\item\em The rotation of the plane. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Plane_ac352595324c4df7f8385c3ad7014e65c}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Plane_ac352595324c4df7f8385c3ad7014e65c}{Distance}}
+\label{d1/d0c/classphys_1_1Plane_ac352595324c4df7f8385c3ad7014e65c}
+
+\begin{DoxyCompactList}\small\item\em How from from the origin the plane is. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is used to represent a flat infinite slice of the game world. The Normal value represents how rotated the plane will be, and The Distance with represent how far you need to move down a line perpendicular to the plane, (ie the normal, which is defined by the Normal value) from the Origin. 
+
+Definition at line 62 of file plane.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1Plane_a8896c8a09a604fff0668e5044889bea7}{
+\index{phys::Plane@{phys::Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!phys::Plane@{phys::Plane}}
+\paragraph[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d1/d0c/classphys_1_1Plane_a8896c8a09a604fff0668e5044889bea7}
+
+
+Default constructor. 
+
+This create a \hyperlink{classphys_1_1Plane}{Plane} with gimbals 0,0,0 and 0 distance from the Origin 
+
+Definition at line 58 of file plane.cpp.
+
+\hypertarget{classphys_1_1Plane_a921d5668dfee52875ba025528604182f}{
+\index{phys::Plane@{phys::Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!phys::Plane@{phys::Plane}}
+\paragraph[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Normal\_\-, }
+\item[{{\bf Real}}]{ Distance\_\-}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d1/d0c/classphys_1_1Plane_a921d5668dfee52875ba025528604182f}
+
+
+Thorough constructor. 
+
+This accepts 2 Vector3s and uses them to build the ray 
+\begin{DoxyParams}{Parameters}
+\item[{\em Normal\_\-}]The rotation of the plane \item[{\em Distance\_\-}]Distance from origin to the plane \end{DoxyParams}
+
+
+Definition at line 61 of file plane.cpp.
+
+\hypertarget{classphys_1_1Plane_aa6c075364461a2996a6575fb022c47a9}{
+\index{phys::Plane@{phys::Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!phys::Plane@{phys::Plane}}
+\paragraph[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
+\begin{DoxyParamCaption}
+\item[{Ogre::Plane}]{ Plane\_\-}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
+\label{d1/d0c/classphys_1_1Plane_aa6c075364461a2996a6575fb022c47a9}
+
+
+Compatibily constructor. 
+
+This accepts an Ogre \hyperlink{classphys_1_1Plane}{Plane}, (graphics subsystem) to make this \hyperlink{classphys_1_1Plane}{Plane} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Plane\_\-}]This is the Ogre::Plane \end{DoxyParams}
+
+
+Definition at line 64 of file plane.cpp.
+
+\hypertarget{classphys_1_1Plane_a9b0fde4e97a7391259b2e659e46b3c30}{
+\index{phys::Plane@{phys::Plane}!Plane@{Plane}}
+\index{Plane@{Plane}!phys::Plane@{phys::Plane}}
+\paragraph[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ rkPoint0, }
+\item[{const {\bf Vector3} \&}]{ rkPoint1, }
+\item[{const {\bf Vector3} \&}]{ rkPoint2}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d1/d0c/classphys_1_1Plane_a9b0fde4e97a7391259b2e659e46b3c30}
+
+
+Triangle constructor. 
+
+This determines the plane the triangle this resides on and uses that plane here 
+\begin{DoxyParams}{Parameters}
+\item[{\em rkPoint0}]This is one point in the triangle \item[{\em rkPoint1}]This is another point in the triangle \item[{\em rkPoint2}]This is one point in the triangle \end{DoxyParams}
+
+
+Definition at line 67 of file plane.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}{
+\index{phys::Plane@{phys::Plane}!ExtractOgrePlane@{ExtractOgrePlane}}
+\index{ExtractOgrePlane@{ExtractOgrePlane}!phys::Plane@{phys::Plane}}
+\paragraph[{ExtractOgrePlane}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Plane::ExtractOgrePlane (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Plane \&}]{ Plane2}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d1/d0c/classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}
+
+
+Changes this \hyperlink{classphys_1_1Plane}{Plane} to match the Ogre \hyperlink{classphys_1_1Plane}{Plane}. 
+
+Used to aid interopability, this will result in this \hyperlink{classphys_1_1Plane}{Plane} exactly matching the Ogre::Plane 
+\begin{DoxyParams}{Parameters}
+\item[{\em Plane2}]The Ogre::Plane to copy \end{DoxyParams}
+
+
+Definition at line 81 of file plane.cpp.
+
+\hypertarget{classphys_1_1Plane_abbdcdd8d6e7c0d8de92cabd250ff41dc}{
+\index{phys::Plane@{phys::Plane}!GetOgrePlane@{GetOgrePlane}}
+\index{GetOgrePlane@{GetOgrePlane}!phys::Plane@{phys::Plane}}
+\paragraph[{GetOgrePlane}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Plane phys::Plane::GetOgrePlane (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{d1/d0c/classphys_1_1Plane_abbdcdd8d6e7c0d8de92cabd250ff41dc}
+
+
+Gets an Ogre::Plane that contains this Plane's information. 
+
+Used to aid interopability, this will return a fresh Ogre::Plane with the same data as this \hyperlink{classphys_1_1Plane}{Plane} \begin{DoxyReturn}{Returns}
+This returns an Ogre::Plnae that contains the same information as this Plane's information 
+\end{DoxyReturn}
+
+
+Definition at line 78 of file plane.cpp.
+
+\hypertarget{classphys_1_1Plane_ac045b7b0aac024a5fe771786d0c433f7}{
+\index{phys::Plane@{phys::Plane}!operator=@{operator=}}
+\index{operator=@{operator=}!phys::Plane@{phys::Plane}}
+\paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Plane::operator= (
+\begin{DoxyParamCaption}
+\item[{const Ogre::Plane \&}]{ Plane2}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d1/d0c/classphys_1_1Plane_ac045b7b0aac024a5fe771786d0c433f7}
+
+
+The assignment operator from Ogre::Plane to \hyperlink{classphys_1_1Plane}{phys::Plane}. 
+
+this simply call \hyperlink{classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}{phys::Plane::ExtractOgrePlane} 
+\begin{DoxyParams}{Parameters}
+\item[{\em Plane2}]The Ogre::Plane to take data from. \end{DoxyParams}
+
+
+Definition at line 87 of file plane.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+plane.h\item 
+plane.cpp\end{DoxyCompactItemize}
