@@ -52,7 +52,7 @@ namespace phys
     /// @details This class is useful for manipulating cameras to move around in simple ways,
     /// such as flying through a scene.
     ///////////////////////////////////////
-    class CameraController
+    class PHYS_LIB CameraController
     {
         public:
             /// @enum MovementMode
@@ -103,7 +103,15 @@ namespace phys
             /// @brief Moves the camera to the right.
             /// @param Units The distance to be moved in world units.
             void StrafeRight(Real Units);
-
+            /// @brief Rotates the camera.
+            /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
+            /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
+            void Rotate(Real Yaw, Real Pitch);
+            /// @brief Rotates the camera.
+            /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
+            /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
+            /// @param RollThe amount to rotate the camera on it's local Z axis in Radians.
+            void Rotate(Real Yaw, Real Pitch, Real Roll);
         };//cameracontroller
 }//phys
 

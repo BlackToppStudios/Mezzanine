@@ -44,6 +44,7 @@
 #include "btBulletDynamicsCommon.h"
 
 #include "quaternion.h"
+#include "vector3.h"
 
 namespace phys
 {
@@ -63,6 +64,17 @@ namespace phys
         this->Y=y;
         this->Z=z;
         this->W=w;
+    }
+
+    Quaternion::Quaternion(const Real& Angle, const Vector3& Axis)
+    {
+        /// @todo Need to find a clean way to wrap sin and cos functions.  Also may want to make a radian class/datatype.
+        Ogre::Radian fHalfAngle ( 0.5*Angle );
+        Real fSin = Ogre::Math::Sin(fHalfAngle);
+        this->W = Ogre::Math::Cos(fHalfAngle);
+        this->X = fSin*Axis.X;
+        this->Y = fSin*Axis.Y;
+        this->X = fSin*Axis.Z;
     }
 
     Quaternion::Quaternion(const btQuaternion& Other)
@@ -142,6 +154,39 @@ namespace phys
 
     Quaternion Quaternion::operator- (const btQuaternion& Other) const
         { return Quaternion(this->X-Other.x(), this->Y-Other.y(), this->Z-Other.z(), this->W-Other.w()); }
+
+    Quaternion Quaternion::operator* (const phys::Quaternion& Other) const
+    {
+        return Quaternion
+        (
+            this->W * Other.X + this->X * Other.W + this->Y * Other.Z - this->Z * Other.Y,
+            this->W * Other.Y + this->Y * Other.W + this->Z * Other.X - this->X * Other.Z,
+            this->W * Other.Z + this->Z * Other.W + this->X * Other.Y - this->Y * Other.X,
+            this->W * Other.W - this->X * Other.X + this->Y * Other.Y - this->Z * Other.Z
+        );
+    }
+
+    Quaternion Quaternion::operator* (const Ogre::Quaternion& Other) const
+    {
+        return Quaternion
+        (
+            this->W * Other.x + this->X * Other.w + this->Y * Other.z - this->Z * Other.y,
+            this->W * Other.y + this->Y * Other.w + this->Z * Other.x - this->X * Other.z,
+            this->W * Other.z + this->Z * Other.w + this->X * Other.y - this->Y * Other.x,
+            this->W * Other.w - this->X * Other.x + this->Y * Other.y - this->Z * Other.z
+        );
+    }
+
+    Quaternion Quaternion::operator* (const btQuaternion& Other) const
+    {
+        return Quaternion
+        (
+            this->W * Other.x() + this->X * Other.w() + this->Y * Other.z() - this->Z * Other.y(),
+            this->W * Other.y() + this->Y * Other.w() + this->Z * Other.x() - this->X * Other.z(),
+            this->W * Other.z() + this->Z * Other.w() + this->X * Other.y() - this->Y * Other.x(),
+            this->W * Other.w() - this->X * Other.x() + this->Y * Other.y() - this->Z * Other.z()
+        );
+    }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Increment and Decrement Operators

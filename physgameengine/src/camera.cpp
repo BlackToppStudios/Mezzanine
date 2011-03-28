@@ -164,7 +164,8 @@ namespace phys
 
     Quaternion Camera::GetOrientation() const
     {
-        return this->Cam->getOrientation();
+        Quaternion Ori(this->Cam->getOrientation());
+        return Ori;
     }
 
     void Camera::SetNearClipDistance(const Real& NearDist)

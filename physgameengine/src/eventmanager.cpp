@@ -118,9 +118,9 @@ namespace phys
             /// @brief The kinds of data that can be stored in Manual Check
             enum PollingType{
                 Polling     =1,
-                Keypress    =2
+                Keypress    =2,
 
-                PollingKeyPress = Polling|Keypress;
+                PollingKeyPress = Polling|Keypress
             };
 
             /// @internal

@@ -104,6 +104,25 @@ namespace phys
         Vector3 Move(Units,0,0);
         Controlled->MoveRelative(Move);
     }
+
+    void CameraController::Rotate(Real Yaw, Real Pitch)
+    {
+        Quaternion CamRot(Controlled->GetOrientation());
+        CamRot = CamRot *
+            Quaternion(Yaw,Vector3::Unit_Y()) *
+            Quaternion(Pitch,Vector3::Unit_X());
+        Controlled->SetOrientation(CamRot);
+    }
+
+    void CameraController::Rotate(Real Yaw, Real Pitch, Real Roll)
+    {
+        Quaternion CamRot(Controlled->GetOrientation());
+        CamRot = CamRot *
+            Quaternion(Yaw,Vector3::Unit_Y()) *
+            Quaternion(Pitch,Vector3::Unit_X()) *
+            Quaternion(Roll,Vector3::Unit_Z());
+        Controlled->SetOrientation(CamRot);
+    }
 }
 
 #endif
