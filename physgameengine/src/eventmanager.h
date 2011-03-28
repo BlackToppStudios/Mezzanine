@@ -419,6 +419,12 @@ namespace phys
             /// @exception "Polling check not present" Is thrown
             void RemovePollingCheck(const MetaCode &InputToStopPolling);
 
+            void StartRelativeMouseMode();
+
+            void EndRelativeMouseMode();
+
+
+
         ///////////////////////////////////////////////////////////////////////////////
         // Inherited From ManagerBase
         ///////////////////////////////////////

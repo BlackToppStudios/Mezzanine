@@ -227,6 +227,8 @@ namespace phys
 
     EventManager::~EventManager()
     {
+        EndRelativeMouseMode();
+
         if(SDL_JoystickOpened(0))
             { SDL_JoystickClose(this->_Data->Joy0); }
 
@@ -565,6 +567,24 @@ namespace phys
     void EventManager::RemovePollingCheck(const MetaCode &InputToStopPolling)
     {
         this->_Data->RemoveInputCodeToManualCheck(InputToStopPolling.GetCode(), internal::EventManagerInternalData::Polling);
+    }
+
+    void EventManager::StartRelativeMouseMode()
+    {
+        if(SDL_SetRelativeMouseMode (SDL_TRUE))
+        {
+            //it failed
+            World::GetWorldPointer()->LogAndThrow("Failed to Grab Mouse");
+        }
+    }
+
+    void EventManager::EndRelativeMouseMode()
+    {
+        if(SDL_SetRelativeMouseMode (SDL_FALSE))
+        {
+            //it failed
+            World::GetWorldPointer()->LogAndThrow("Failed to Release Mouse");
+        }
     }
 
     //Inherited From ManagerBase
