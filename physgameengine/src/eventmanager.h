@@ -143,16 +143,8 @@ namespace phys
             {}
 
             #ifdef PHYSXML
-            /// @internal
-            /// @brief The << operator requires access to internal data, it is treated similarly to a member function.
             friend std::ostream& PHYS_LIB ::operator << (std::ostream& stream, const phys::EventManager& Mgr);
-
-            /// @internal
-            /// @brief The >> operator requires access to internal data, it is treated similarly to a member function.
             friend std::istream& PHYS_LIB ::operator >> (std::istream& stream, phys::EventManager& Mgr);
-
-            /// @internal
-            /// @brief The >> operator requires access to internal data, it is treated similarly to a member function.
             friend void PHYS_LIB ::operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr);
             #endif // \PHYSXML
 

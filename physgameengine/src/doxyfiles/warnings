@@ -1,4 +1,3 @@
-Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
 /home/dev/physgame/physgameengine/src/cameramanager.h:80: warning: Member FindCamera(String Name) (function) of class phys::CameraManager is not documented.
 /home/dev/physgame/physgameengine/src/cameramanager.h:77: warning: Member SManager (variable) of class phys::CameraManager is not documented.
 /home/dev/physgame/physgameengine/src/cameramanager.h:78: warning: Member DefaultCamera (variable) of class phys::CameraManager is not documented.
