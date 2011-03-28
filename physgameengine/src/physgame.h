@@ -62,7 +62,7 @@
 #include "actorterrain.h"
 #include "areaeffect.h"
 #include "attachable.h"                 // Target2
-#include "camera.h"                     // In progress
+#include "camera.h"                     // done, must redo after Mar27 upgrades
 #include "cameramanager.h"
 #include "colourvalue.h"                // done
 #include "constraint.h"

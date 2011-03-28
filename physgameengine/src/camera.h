@@ -108,7 +108,6 @@ namespace phys
 
         private:
             /// @internal
-            /// @brief Required to properly handle the complex web of objects created in ram.
             friend xml::Node& PHYS_LIB operator >> (xml::Node& OneNode, Camera& Ev);
 
 

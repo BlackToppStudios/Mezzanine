@@ -45,6 +45,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "vector3.h"
+#include "xml.h"
 
 namespace Ogre
 {
@@ -62,20 +63,21 @@ namespace phys
     /// Directional - Used to simulate light from a very distant source.  Doesn't need a location, only
     /// a direction.  Light will hit all objects accordingly from that direction. @n
     /// Point - Used to simulate local light sources that emit light in all directions.  Doesn't need a
-    /// direction, just a position. @n
+    /// direction, just a Location. @n
     /// Spotlight - Used to simulate local light sources that emit light in one direction, such as a flashlight.
-    /// Needs both a position and direction.  In addition needs values for falloff. @n
-    /// Note: If attaching a light to a node, all transform information(position and orientation) becomes relative
+    /// Needs both a Location and direction.  In addition needs values for falloff. @n
+    /// Note: If attaching a light to a node, all transform information(Location and orientation) becomes relative
     /// to the nodes transform.
     ///////////////////////////////////////
     class PHYS_LIB Light : public Attachable
     {
         public:
+            /// @brief What kind of light Source.
             enum LightType
             {
-                Directional,
-                Point,
-                Spotlight
+                Directional = 0,    ///< From one direction, like sunlight.
+                Point       = 1,    ///< From a point in space, like a Torch, campfire, muzzle flash, Mutant Fireflies, bonfires, light bulbs, non-hooded lantern, the DnD D20 Light spell, explosions, and scotch tape separating from the roll in a unlit vacuum. There may be other uses, be creative.
+                Spotlight   = 2     ///< From a point emanating in a cone, like a flashlight, hooded lantern, really bright computer screens, flood lights, older style space heaters, Concert lights, camera flashes, etc...
             };
         protected:
             friend class WorldNode;
@@ -103,8 +105,8 @@ namespace phys
             /// @param Type The enum value representing the type of light this is.
             void SetType(Light::LightType Type);
             /// @brief Sets the location from where the light will originate.
-            /// @param Position A vector3 representing the location to set the light.
-            void SetPosition(Vector3 Position);
+            /// @param Location A vector3 representing the location to set the light.
+            void SetLocation(Vector3 Location);
             /// @brief Sets the direction the light will originate from.
             /// @param Direction A vector3 representing the direction the light will come from.
             void SetDirection(Vector3 Direction);
@@ -163,7 +165,7 @@ namespace phys
             Light::LightType GetType() const;
             /// @brief Gets the current location of the light.
             /// @return Returns a vector3 representing the location of the light.
-            Vector3 GetPosition() const;
+            Vector3 GetLocation() const;
             /// @brief Gets the currently set direction of the light.
             /// @return Returns a vector3 representing the set direction of the light.
             Vector3 GetDirection() const;
@@ -199,5 +201,37 @@ namespace phys
             Real GetPowerScale() const;
     };
 }//phys
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::Light to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::Light to be serialized
+/// @return this returns the ostream, now with the serialized data
+/// @warning This does not attempt to store the Light aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
+/// @warning This does not s the pointer to the Light manager. When a Light manager is serialized, this data is implicitly stored by the Lights location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Light& Ev);
+
+/// @brief Deserialize a phys::Light
+/// @param stream The istream to get the xml from to (re)make the phys::Light.
+/// @param Ev the phys::Light to be deserialized.
+/// @return this returns the ostream, advanced past the phys::Light that was recreated onto Ev.
+/// @warning This does not attempt to store the Light aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
+/// @warning This does not s the pointer to the Light manager. When a Light manager is serialized, this data is implicitly stored by the Lights location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Light& Ev);
+
+/// @brief Set all values of a phys::Light from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::Light.
+/// @param Ev the phys::Light to be reset.
+/// @return This returns thexml::Node that was passed in.
+/// @warning This does not attempt to de-serialize the name of the Light. This is not currently changeable after the creation of a Light. However, the Lightmanager will correctly create name Light upon creation then deserialize the rest of the Light.
+/// @warning This does not throw an exception if the Light could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::Light& Ev);
+
+#endif // \PHYSXML
+
+
 
 #endif
