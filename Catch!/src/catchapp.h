@@ -45,7 +45,7 @@ class CatchApp
         bool PostPhysics();
         bool PostRender();
 
-        bool CheckForEsc();
+        bool CheckForStuff();
 };
 
 #endif

@@ -114,6 +114,10 @@ namespace phys
             /// @brief Class destructor.
             ~GameWindow();
 
+            /// @brief This can set the the Text in the titlebar.
+            /// @param NewName This is the new text to be used in the titlebar.
+            void SetWindowCaption(const String &NewCaption);
+
             /// @brief Creates an additional Viewport within a created render window.
             /// @param VeiwportCamera The camera that is to be attached to this Viewport.
             /// @param ZOrder The render order of this viewport relative to other viewports in this window.
