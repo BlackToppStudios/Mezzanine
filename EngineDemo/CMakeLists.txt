@@ -134,7 +134,7 @@ if(${UNIX})
 	CopyFilesFromPhygameDuringBuild( libOgreMain.so.1.7.2 )
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
 	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-endif(${UNIX} AND NOT ${APPLE})
+endif(${UNIX})
 
 # Mac File Copy Specific Items
 if(${APPLE})

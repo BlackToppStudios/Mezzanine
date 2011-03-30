@@ -41,5 +41,6 @@ set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR})
 add_subdirectory (physgameengine)
 add_subdirectory (EngineDemo)
 add_subdirectory (Catch!) 
+add_subdirectory (UnitTests) 
 
 
