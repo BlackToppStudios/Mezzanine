@@ -57,17 +57,17 @@ namespace phys
     /// @headerfile actorgraphicssettings.h
     /// @brief This is a helper class for configuring graphics settings of an actor.
     /// @details This class contains functions for the configuring of graphics specific settings of an actor.
-    /// This class can only configure the actors graphics.  For configuring actor physics, see ActorPhysicsSettings.
+    /// This class can only configure the actors graphics.  For configuring actor physics, see ActorBasePhysicsSettings.
     ///////////////////////////////////////
     class ActorGraphicsSettings
     {
         protected:
             /// @internal
-            /// @brief Store meta data for actor
+            /// @brief Graphics Object of the actor.
             Ogre::Entity* ActorEnt;
-            /// @brief The Actor this bleongs to
+            /// @brief The Actor this belongs to.
             ActorBase* Parent;
-            //@internal
+            ///@internal
             /// @brief Material/textures for the actor
             Ogre::MaterialPtr GetMaterial(Whole Submesh = 0);
         public:
@@ -111,7 +111,7 @@ namespace phys
             /// @param Diffuse The colour you wish to set as the material Diffuse.
             /// @param Submesh The submesh you want to alter the material of.
             void SetMaterialDiffuse(const ColourValue& Diffuse, Whole Submesh = 0);
-    };
-}
+    };//actorgraphicssettings
+}//phys
 
 #endif

@@ -22,7 +22,7 @@ void StartingArea::Initialize()
     for( std::list<ActorBase*>::iterator it = OverlappingActors.begin() ; it != OverlappingActors.end() ; it++ )
     {
         Act = (*it);
-        Act->DisableCollisionResponse();
+        Act->GetPhysicsSettings()->DisableCollisionResponse();
         TheWorld->GetPhysicsManager()->SetIndividualGravity(Act, Grav);
     }
 }
@@ -34,7 +34,7 @@ void StartingArea::ApplyEffect()
     for( std::vector<ActorBase*>::iterator it = RemovedActors.begin() ; it != RemovedActors.end() ; it++ )
     {
         Act = (*it);
-        Act->EnableCollisionResponse();
+        Act->GetPhysicsSettings()->EnableCollisionResponse();
         PhysMan->SetIndividualGravity(Act, PhysMan->GetGravity());
     }
 }

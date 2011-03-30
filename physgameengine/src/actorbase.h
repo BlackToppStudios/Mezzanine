@@ -66,6 +66,7 @@ namespace phys
     class ActorContainerBase;
     class World;
     class ActorGraphicsSettings;
+    class ActorBasePhysicsSettings;
     namespace internal
     {
         class PhysMotionState;
@@ -131,6 +132,9 @@ namespace phys
             /// @brief This class encapsulates graphics specific configuration for this actor.
             ActorGraphicsSettings* GraphicsSettings;
 
+            /// @brief This class encapsulates physics specific configuration for this actor.
+            ActorBasePhysicsSettings* BasePhysicsSettings;
+
             /// @brief This variable stores the type of actor that this class is.
             ActorTypeName ActorType;
 
@@ -157,18 +161,8 @@ namespace phys
             /// @param Rotation The quaternion representing the rotation of the actor.
             virtual void SetOgreOrientation (Quaternion Rotation);
 
-            /// @brief Makes the actor visable.
-            /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n
-            /// This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually.
-            virtual void AttachToGraphics();
-
-            /// @brief Makes the actor invisable.
-            /// @details This is the inverse of the AttachToGraphics function.  This will effectively remove the object from the graphics world and make it no longer visable. @n
-            /// This is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually.
-            virtual void DetachFromGraphics();
-
 //////////////////////////////////////////////////////////////////////////////
-// Bullet Management
+// Bullet Management Functions
 ///////////////////////////////////////
             /// @brief Sets the location of the physics body.
             /// @details This will take a Vector3 and set the location of the actor within the physics world. @n
@@ -186,7 +180,72 @@ namespace phys
             /// @param Rotation The quaternion representing the rotation of the actor.
             virtual void SetBulletOrientation (Quaternion Rotation);
 
+//////////////////////////////////////////////////////////////////////////////
+// Other Management Functions
+///////////////////////////////////////
+            /// @brief Makes the actor visable.
+            /// @details Adds the actor to all the nessessary graphics elements to make it visable on screen. @n
+            /// This is automaticly called by the PhysWorlds AddActor function and shouldn't ever need to be called manually.
+            virtual void AttachToGraphics();
+
+            /// @brief Makes the actor invisable.
+            /// @details This is the inverse of the AttachToGraphics function.  This will effectively remove the object from the graphics world and make it no longer visable. @n
+            /// This is automaticly called by the PhysWorlds RemoveActor function and shouldn't ever need to be called manually.
+            virtual void DetachFromGraphics();
+
         public:
+///////////////////////////////////////////////////////////////////////////////
+// Creation, Destruction and Initialization
+///////////////////////////////////////
+            /// @brief Descriptive constructor.
+            /// @details This constructor contains the basic information needed to make an actor.
+            /// @param name The name of the actor.
+            /// @param file The 3d mesh file that contains the 3d model the actor will use.
+            /// @param group The resource group where the 3d mesh and other related files can be found.
+            ActorBase (String name, String file, String group);
+
+            /// @brief Destructor.
+            /// @details The class destructor.
+            virtual ~ActorBase ();
+
+            /// @brief Retrieves the name of the object.
+            /// @details This function will retrieve the name of the object,
+            virtual std::string GetName() const = 0;
+
+            /// @brief Manually sets the location of the actor.
+            /// @details Calling this function prior to adding it to the World will have no effect. @n
+            /// In most situations you won't want to use this function, and instead produce movement through physics functions.
+            /// @param x Location on the X vector.
+            /// @param y Location on the Y vector.
+            /// @param z Location on the Z vector.
+            virtual void SetLocation(Real x, Real y, Real z);
+
+            /// @brief Manually sets the location of the actor.
+            /// @details Calling this function prior to adding it to the World will have no effect. @n
+            /// In most situations you won't want to use this function, and instead produce movement through physics functions.
+            /// @param Place The Vector3 representing the location.
+            virtual void SetLocation(Vector3 Place);
+
+            /// @brief Retrieves the location of the object.
+            /// @details This function will retrieve the location of the object within the world.
+            virtual Vector3 GetLocation() const;
+
+            /// @brief Sets the orientation of the actor.
+            /// @details Sets the orientation of the actor via Quaternion parameters.
+            /// @param x Where the X vector is rotated about.
+            /// @param y Where the Y vector is rotated about.
+            /// @param z Where the Z vector is rotated about.
+            /// @param w How much to about the x, y, z.
+            virtual void SetOrientation(Real x, Real y, Real z, Real w);
+
+            /// @brief Sets the orientation of the actor.
+            /// @details Sets the orientation of the actor via a Quaternion.
+            /// @param Rotation The Quaternion representing the Rotation.
+            virtual void SetOrientation(Quaternion Rotation);
+
+///////////////////////////////////////////////////////////////////////////////
+// Utility and Configuration
+///////////////////////////////////////
             ///@brief This is a collection of sounds for use with this actor.
             SoundSet* ActorSounds;
 
@@ -203,6 +262,11 @@ namespace phys
             /// @brief Gets whether or not this object is currently in the world.
             /// @return Returns a bool indicating if this object has been added to the world.
             virtual bool IsInWorld();
+
+            /// @brief Checks of the actor is static or kinematic.
+            /// @details Checks of the actor is static or kinematic, returns true if it is either.
+            /// @return Returns true if the actor is static or kinematic.
+            virtual bool IsStaticOrKinematic();
 
             /// @brief Sets the basic parameters for more realistic collision behavior.
             /// @details This function will set the Friction and Resititution of the actor, which will enable it to collide
@@ -243,72 +307,6 @@ namespace phys
             /// @details This function will remove the existing set animation.
             virtual void RemoveSetAnimation();
 
-            /// @brief Gets the graphics settings class associated with this actor.
-            /// @return Returns a pointer to the graphics settings class in use by this actor.
-            virtual ActorGraphicsSettings* GetGraphicsSettings();
-
-///////////////////////////////////////////////////////////////////////////////
-// Creation, Destruction and Initialization
-///////////////////////////////////////
-
-            /// @brief Destructor.
-            /// @details The class destructor.
-            virtual ~ActorBase ();
-
-            /// @brief Descriptive constructor.
-            /// @details This constructor contains the basic information needed to make an actor.
-            /// @param name The name of the actor.
-            /// @param file The 3d mesh file that contains the 3d model the actor will use.
-            /// @param group The resource group where the 3d mesh and other related files can be found.
-            ActorBase (String name, String file, String group);
-
-            /// @brief Sets the starting location of the actor.
-            /// @details Calling this function after adding it to the World will have no effect. @n
-            /// This function will set where the actor will be located in the World when it is first placed inside the world.
-            /// @param Location The Vector3 representing the location.
-            virtual void SetInitLocation(Vector3 Location);
-
-            /// @brief Sets the starting orientation of the actor.
-            /// @details Calling this function after adding it to the World will have no effect. @n
-            /// This function will set where the actor is facing in the World when it is first placed inside the world.
-            /// @param Orientation The PhysQuaternion representing the Orientation.
-            virtual void SetInitOrientation(Quaternion Orientation);
-
-            /// @brief Manually sets the location of the actor.
-            /// @details Calling this function prior to adding it to the World will have no effect. @n
-            /// In most situations you won't want to use this function, and instead produce movement through physics functions.
-            /// @param x Location on the X vector.
-            /// @param y Location on the Y vector.
-            /// @param z Location on the Z vector.
-            virtual void SetLocation(Real x, Real y, Real z);
-
-            /// @brief Manually sets the location of the actor.
-            /// @details Calling this function prior to adding it to the World will have no effect. @n
-            /// In most situations you won't want to use this function, and instead produce movement through physics functions.
-            /// @param Place The Vector3 representing the location.
-            virtual void SetLocation(Vector3 Place);
-
-            /// @brief Retrieves the location of the object.
-            /// @details This function will retrieve the location of the object within the world.
-            virtual Vector3 GetLocation() const;
-
-            /// @brief Retrieves the name of the object.
-            /// @details This function will retrieve the name of the object,
-            virtual std::string GetName() const = 0;
-
-            /// @brief Sets the orientation of the actor.
-            /// @details Sets the orientation of the actor via Quaternion parameters.
-            /// @param x Where the X vector is rotated about.
-            /// @param y Where the Y vector is rotated about.
-            /// @param z Where the Z vector is rotated about.
-            /// @param w How much to about the x, y, z.
-            virtual void SetOrientation(Real x, Real y, Real z, Real w);
-
-            /// @brief Sets the orientation of the actor.
-            /// @details Sets the orientation of the actor via a Quaternion.
-            /// @param Rotation The Quaternion representing the Rotation.
-            virtual void SetOrientation(Quaternion Rotation);
-
             /// @brief Sets the scale of the actor.
             /// @details This function will alter the scaling/size of the actor with the given vector3.
             /// @param scale The vector3 by which to apply the scale.  Will scale each axis' accordingly.
@@ -321,6 +319,14 @@ namespace phys
             /// @param Accuracy A short unsigned int, the higher the more accurate, but the more resource intensive. This is Actor dependent.
             /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
             virtual void CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes = false) = 0;
+
+            /// @brief Gets the graphics settings class associated with this actor.
+            /// @return Returns a pointer to the graphics settings class in use by this actor.
+            virtual ActorGraphicsSettings* GetGraphicsSettings();
+
+            /// @brief Gets the physics settings class associated with this actor.
+            /// @return Returns a pointer to the physics settings class in use by this actor.
+            virtual ActorBasePhysicsSettings* GetPhysicsSettings();
 
 ///////////////////////////////////////////////////////////////////////////////
 // Working with the World
@@ -338,42 +344,12 @@ namespace phys
             virtual void RemoveObjectFromWorld(World* TargetWorld) = 0;
 
 ///////////////////////////////////////////////////////////////////////////////
-// Public Collision flag functions
-///////////////////////////////////////
-            /// @brief Sets the state of the object to Kinematic.
-            /// @details This function will set the object to a Kinematic Object. @n
-            /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.
-            virtual void SetKinematic();
-
-            /// @brief Sets the state of the object to Static.
-            /// @details This function will set the object to a Static Object. @n
-            /// Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects.
-            virtual void SetStatic();
-
-            /// @brief Checks of the actor is static or kinematic.
-            /// @details Checks of the actor is static or kinematic, returns true if it is either.
-            /// @return Returns true if the actor is static or kinematic.
-            virtual bool IsStaticOrKinematic();
-
-            /// @brief Sets the actor to be able to collide with other objects in the world.
-            /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
-            virtual void EnableCollisionResponse();
-
-            /// @brief Sets the actor to be unable to collide with other objects in the world.
-            /// @details By default collision response is enabled.  Be sure to reactivate collision response if you want your objects to collide again.
-            virtual void DisableCollisionResponse();
-
-            /// @brief Checks if the object is active in the simulation.
-            /// @return Returns true if the object is active, false if it's deactivated(at rest).
-            virtual bool CheckActivation();
-
-///////////////////////////////////////////////////////////////////////////////
 // Internal Object Access functions
 ///////////////////////////////////////
             /// @internal
             /// @brief Gets the internal physics object this actor is based on.
             /// @return Returns a pointer to the internal Bullet object.
-            //virtual btCollisionObject* GetBulletObject() = 0;
+            virtual btCollisionObject* GetBaseBulletObject();
 
             /// @internal
             /// @brief Gets the internal graphics object this actor is based on.

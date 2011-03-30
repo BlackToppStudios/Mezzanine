@@ -48,6 +48,7 @@
 #include "actorterrain.h"
 #include "actorsoft.h"
 #include "actorgraphicssettings.h"
+#include "actorphysicssettings.h"
 #include "world.h"
 #include "internalmotionstate.h.cpp"
 #include "internalmeshtools.h.cpp"
@@ -89,7 +90,7 @@ namespace phys{
     }
 
     ///////////////////////////////////
-    // ActorBase Private Location Functions
+    // Ogre Management Functions
 
     void ActorBase::SetOgreLocation (Vector3 Location)
     {
@@ -101,6 +102,14 @@ namespace phys{
         Vector3 temp(this->GraphicsNode->getPosition());
         return temp;
     }
+
+    void ActorBase::SetOgreOrientation (Quaternion Rotation)
+    {
+        this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
+    }
+
+    ///////////////////////////////////
+    // Bullet Management Functions
 
     void ActorBase::SetBulletLocation (Vector3 Location)
     {
@@ -114,21 +123,30 @@ namespace phys{
         return temp;
     }
 
-    ///////////////////////////////////
-    // ActorBase Private Orientation functions
-
-    void ActorBase::SetOgreOrientation (Quaternion Rotation)
-    {
-        this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
-    }
-
     void ActorBase::SetBulletOrientation (Quaternion Rotation)
     {
         this->CollisionObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
     }
 
     ///////////////////////////////////
-    // ActorBase Public Location functions
+    // Other Management Functions
+
+    void ActorBase::AttachToGraphics ()
+    {
+        Vector3 tempv(CollisionObject->getWorldTransform().getOrigin());
+        Quaternion tempq(CollisionObject->getWorldTransform().getRotation());
+        this->GraphicsNode->setPosition(tempv.GetOgreVector3());
+        this->GraphicsNode->setOrientation(tempq.GetOgreQuaternion());
+        this->GraphicsNode->attachObject(this->GraphicsObject);
+    }
+
+    void ActorBase::DetachFromGraphics ()
+    {
+        this->GraphicsNode->detachObject(this->GraphicsObject);
+    }
+
+    ///////////////////////////////////
+    // Creation, Destruction and Initialization
 
     void ActorBase::SetLocation (Real x, Real y, Real z)
     {
@@ -147,20 +165,6 @@ namespace phys{
         return this->GetBulletLocation();
     }
 
-    void ActorBase::SetInitLocation(Vector3 Location)
-    {
-        this->SetBulletLocation(Location);
-        this->SetOgreLocation(Location);
-    }
-
-    ///////////////////////////////////
-    // ActorBase Public Orientation functions
-
-    void ActorBase::SetInitOrientation(Quaternion Orientation)
-    {
-        this->SetBulletOrientation(Orientation);
-    }
-
     void ActorBase::SetOrientation (Real x, Real y, Real z, Real w)
     {
         Quaternion temp(x,y,z,w);
@@ -174,27 +178,7 @@ namespace phys{
     }
 
     ///////////////////////////////////
-    // ActorBase Public Misc Functions
-
-    void ActorBase::AttachToGraphics ()
-    {
-        Vector3 tempv(CollisionObject->getWorldTransform().getOrigin());
-        Quaternion tempq(CollisionObject->getWorldTransform().getRotation());
-        this->GraphicsNode->setPosition(tempv.GetOgreVector3());
-        this->GraphicsNode->setOrientation(tempq.GetOgreQuaternion());
-        this->GraphicsNode->attachObject(this->GraphicsObject);
-    }
-
-    void ActorBase::DetachFromGraphics ()
-    {
-        this->GraphicsNode->detachObject(this->GraphicsObject);
-    }
-
-    void ActorBase::SetActorScaling(Vector3 scaling)
-    {
-        this->GraphicsNode->setScale(scaling.GetOgreVector3());
-        this->Shape->setLocalScaling(scaling.GetBulletVector3());
-    }
+    // Utility and Configuration
 
     int ActorBase::GetType()
     {
@@ -209,6 +193,11 @@ namespace phys{
     bool ActorBase::IsInWorld()
     {
         return CollisionObject->getBroadphaseHandle() != 0;
+    }
+
+    bool ActorBase::IsStaticOrKinematic()
+    {
+        return BasePhysicsSettings->IsStaticOrKinematic();
     }
 
     void ActorBase::SetBasicCollisionParams(Real Friction, Real Restitution)
@@ -262,113 +251,28 @@ namespace phys{
         }
     }
 
+    void ActorBase::SetActorScaling(Vector3 scaling)
+    {
+        this->GraphicsNode->setScale(scaling.GetOgreVector3());
+        this->Shape->setLocalScaling(scaling.GetBulletVector3());
+    }
+
     ActorGraphicsSettings* ActorBase::GetGraphicsSettings()
     {
         return GraphicsSettings;
     }
 
+    ActorBasePhysicsSettings* ActorBase::GetPhysicsSettings()
+    {
+        return BasePhysicsSettings;
+    }
+
     ///////////////////////////////////
-    // ActorBase Public Collision flag functions
-    void ActorBase::SetKinematic()
-    {
-        this->CollisionObject->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
-    }
+    // Internal Object Access functions
 
-    void ActorBase::SetStatic()
+    btCollisionObject* ActorBase::GetBaseBulletObject()
     {
-        this->CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
-    }
-
-    bool ActorBase::IsStaticOrKinematic()
-    {
-        return this->CollisionObject->isStaticOrKinematicObject();
-    }
-
-    void ActorBase::EnableCollisionResponse()
-    {
-        switch (ActorType)
-        {
-            case ActorBase::Actorrigid:
-            {
-                ActorRigid* Rigid = static_cast<ActorRigid*> (this);
-                Rigid->RemoveObjectFromWorld(GameWorld);
-                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Rigid->AddObjectToWorld(GameWorld);
-                break;
-            }
-            case ActorBase::Actorsoft:
-            {
-                ActorSoft* Soft = static_cast<ActorSoft*> (this);
-                Soft->RemoveObjectFromWorld(GameWorld);
-                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Soft->AddObjectToWorld(GameWorld);
-                break;
-            }
-            case ActorBase::Actorterrain:
-            {
-                ActorTerrain* Terrain = static_cast<ActorTerrain*> (this);
-                Terrain->RemoveObjectFromWorld(GameWorld);
-                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Terrain->AddObjectToWorld(GameWorld);
-                break;
-            }
-            case ActorBase::Actorragdoll:
-            {
-                return;
-                break;
-            }
-            default:
-                return;
-        }
-    }
-
-    void ActorBase::DisableCollisionResponse()
-    {
-        switch (ActorType)
-        {
-            case ActorBase::Actorrigid:
-            {
-                ActorRigid* Rigid = static_cast<ActorRigid*> (this);
-                Rigid->RemoveObjectFromWorld(GameWorld);
-                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Rigid->AddObjectToWorld(GameWorld);
-                break;
-            }
-            case ActorBase::Actorsoft:
-            {
-                ActorSoft* Soft = static_cast<ActorSoft*> (this);
-                Soft->RemoveObjectFromWorld(GameWorld);
-                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Soft->AddObjectToWorld(GameWorld);
-                break;
-            }
-            case ActorBase::Actorterrain:
-            {
-                ActorTerrain* Terrain = static_cast<ActorTerrain*> (this);
-                Terrain->RemoveObjectFromWorld(GameWorld);
-                this->CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Terrain->AddObjectToWorld(GameWorld);
-                break;
-            }
-            case ActorBase::Actorragdoll:
-            {
-                return;
-                break;
-            }
-            default:
-                return;
-        }
-    }
-
-    bool ActorBase::CheckActivation()
-    {
-        int Activation = this->CollisionObject->getActivationState();
-        if( ACTIVE_TAG == Activation )
-        {
-            return true;
-        }else{
-            return false;
-        }
+        return CollisionObject;
     }
 
     Ogre::Entity* ActorBase::GetOgreObject()
