@@ -227,7 +227,7 @@ namespace phys
 
     EventManager::~EventManager()
     {
-        EndRelativeMouseMode();
+        //EndRelativeMouseMode();
 
         if(SDL_JoystickOpened(0))
             { SDL_JoystickClose(this->_Data->Joy0); }
@@ -281,6 +281,9 @@ namespace phys
 
         /* Here is a list of SDL event which aren't coded yet.
         //event types
+        Tabbed items are fully working
+        items with one space are partially implemented of known to not work
+        other items are unimplemented
             SDL_FIRSTEVENT				unused (do not remove)		Application events
             SDL_QUIT				user-requested quit		Window events
             SDL_WINDOWEVENT				window state change
@@ -299,11 +302,11 @@ namespace phys
         SDL_INPUTWHEEL				input wheel motion
         SDL_INPUTPROXIMITYIN				input pen entered proximity
         SDL_INPUTPROXIMITYOUT				input pen left proximity		Joystick events
-         SDL_JOYAXISMOTION				joystick axis motion
-        SDL_JOYBALLMOTION				joystick trackball motion
-         SDL_JOYHATMOTION				joystick hat position change
-         SDL_JOYBUTTONDOWN				joystick button pressed
-         SDL_JOYBUTTONUP				joystick button released		Touch events
+            SDL_JOYAXISMOTION				joystick axis motion
+         SDL_JOYBALLMOTION				joystick trackball motion
+            SDL_JOYHATMOTION				joystick hat position change
+            SDL_JOYBUTTONDOWN				joystick button pressed
+            SDL_JOYBUTTONUP				joystick button released		Touch events
         SDL_FINGERDOWN
         SDL_FINGERUP
         SDL_FINGERMOTION
@@ -569,12 +572,12 @@ namespace phys
         this->_Data->RemoveInputCodeToManualCheck(InputToStopPolling.GetCode(), internal::EventManagerInternalData::Polling);
     }
 
-    void EventManager::StartRelativeMouseMode()
+/*    void EventManager::StartRelativeMouseMode()
     {
         if(SDL_SetRelativeMouseMode (SDL_TRUE))
         {
             //it failed
-            World::GetWorldPointer()->LogAndThrow("Failed to Grab Mouse");
+//            World::GetWorldPointer()->LogAndThrow("Failed to Grab Mouse");
         }
     }
 
@@ -586,6 +589,7 @@ namespace phys
             World::GetWorldPointer()->LogAndThrow("Failed to Release Mouse");
         }
     }
+*/
 
     //Inherited From ManagerBase
     void EventManager::Initialize()

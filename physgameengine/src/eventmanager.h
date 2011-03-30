@@ -296,8 +296,6 @@ namespace phys
             /// @return This returns a list<EventRenderTime*> pointer which is this a subset of this classes event pointer list. Use this carefully, it can cause errors if used improperly. Additionally this list pointer must be deleted, but not the events in it.
             std::list<EventRenderTime*>* GetAllRenderTimeEvents();
 
-
-
         ///////////////////////////////////////////////////////////////////////////////
         // Filtered management functions - User Input Events
         ///////////////////////////////////////
@@ -419,11 +417,13 @@ namespace phys
             /// @exception "Polling check not present" Is thrown
             void RemovePollingCheck(const MetaCode &InputToStopPolling);
 
+            /*/// @brief Should Hide The mouse Cursor and report on relative movements
+            /// @details useful for games that will use the mouse to directly control a camera
+            /// @warning Simply crashes.
             void StartRelativeMouseMode();
 
-            void EndRelativeMouseMode();
-
-
+            /// @brief unhide the cursor and report mouse movements normally
+            void EndRelativeMouseMode();*/
 
         ///////////////////////////////////////////////////////////////////////////////
         // Inherited From ManagerBase

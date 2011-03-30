@@ -192,7 +192,7 @@ int CatchApp::GetCatchin()
     TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
 
     WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,0.0,-250.0), true );
-    CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
+    CameraNode->AttachObject(TheWorld->GetCameraManager()->GetDefaultCamera());
     CameraNode->LookAt(Vector3(0,0,0));
 
 	//Start the Main Loop

@@ -294,12 +294,12 @@ bool PostInput()
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_HOME) )
     {
         MouseCam=true;
-        TheWorld->GetEventManager()->StartRelativeMouseMode();
+//        TheWorld->GetEventManager()->StartRelativeMouseMode();
     }
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_END))
     {
         MouseCam=false;
-        TheWorld->GetEventManager()->EndRelativeMouseMode();
+//        TheWorld->GetEventManager()->EndRelativeMouseMode();
     }
 
     /*Quaternion CamRot = TheWorld->GetCameraManager()->GetDefaultCamera()->GetOrientation();
