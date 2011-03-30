@@ -69,6 +69,7 @@ namespace phys{
         this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->addChild(this->GraphicsNode);
         this->Shape = new btEmptyShape();
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
+        this->BasePhysicsSettings = new ActorBasePhysicsSettings(this,CollisionObject);
     }
 
     ActorBase::~ActorBase ()
