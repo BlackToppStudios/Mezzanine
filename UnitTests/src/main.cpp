@@ -81,14 +81,14 @@ class AllUnitTests : public UnitTest
                         if(RunAll || (*CurrentTestName)=="vector2")
                         {
                             std::cout << "Ran Vector2 faux test" << endl;
-                            //Vector2 Vector2_;
+                            //Vector2Tests Vector2_;
                             //Vector2_.RunTests(RunAutomaticTests, RunInteractiveTests);
                             //(*this)+=Vector2_;
                         }
                         if(RunAll || (*CurrentTestName)=="vector3")
                         {
                             std::cout << "Ran Vector3 faux test" << endl;
-                            //Vector3 Vector3_;
+                            //Vector3Tests Vector3_;
                             //Vector3_.RunTests(RunAutomaticTests, RunInteractiveTests);
                             //(*this)+=Vector_;
                         }

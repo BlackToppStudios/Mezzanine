@@ -96,8 +96,12 @@ namespace phys
 
     void InputQueryTool::GatherEvents(bool ClearEventsFromEventMgr)
     {
-        CodeCache[MetaCode::MOUSEHORIZONTAL] = 0;           //We need to 0 out all
-        CodeCache[MetaCode::MOUSEVERTICAL] = 0;
+        int H = CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL];
+        int V = CodeCache[MetaCode::MOUSEABSOLUTEVERTICAL];
+        CodeCache.clear();
+        CodeCache.insert(CodeCache.end(), MetaCode::INPUTEVENT_LAST, 0);
+        CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL] = H;
+        CodeCache[MetaCode::MOUSEABSOLUTEVERTICAL] = V;
 
         std::list<EventUserInput*>* UserInput = World::GetWorldPointer()->GetEventManager()->GetAllUserInputEvents();   // Get the updated list of events
 

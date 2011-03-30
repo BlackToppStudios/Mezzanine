@@ -80,8 +80,8 @@ class UnitTest : public TestDataStorage
             LeastSuccessful=TestData("",Success);
         }
 
-        // This is expected to run all the tests that meet either of the criteria passed in
-        // This should return the LeastSuccessful TestResult this will make it easier for the main to find and report errors
+        // This is expected to run all the tests that meet the criteria passed in
+        // This should return the LeastSuccessful TestResult, this will make it easier for the main to find and report errors
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests) = 0;
 
         // It is expected that tests will be inserted using these, this will automate tracking of the most and least successful tests
