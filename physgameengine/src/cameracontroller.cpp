@@ -48,12 +48,20 @@ namespace phys
     CameraController::CameraController(Camera* ToBeControlled)
         : Controlled(ToBeControlled),
           CurrentMode(CCM_Fly),
-          HoverHeight(1)
+          HoverHeight(1),
+          YawRad(0),
+          PitchRad(0),
+          RollRad(0)
     {
     }
 
     CameraController::~CameraController()
     {
+    }
+
+    Real CameraController::FindDistanceToGround()
+    {
+
     }
 
     Camera* CameraController::GetControlledCamera() const
@@ -107,12 +115,10 @@ namespace phys
 
     void CameraController::Rotate(Real Yaw, Real Pitch)
     {
-        Quaternion CamRot(Controlled->GetOrientation());
-        CamRot = CamRot *
-            Quaternion(-Pitch,Vector3::Unit_X()) *
-            //CamRot *
-            Quaternion(-Yaw,Vector3::Unit_Y());
-        Controlled->SetOrientation(CamRot);// */
+        YawRad+=Yaw;
+        PitchRad+=Pitch;
+        Quaternion CamRot = Quaternion(-YawRad,Vector3::Unit_Y()) * Quaternion(-PitchRad,Vector3::Unit_X());
+        Controlled->SetOrientation(CamRot);
     }
 
     void CameraController::Rotate(Real Yaw, Real Pitch, Real Roll)
