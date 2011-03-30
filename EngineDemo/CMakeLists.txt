@@ -89,6 +89,7 @@ CopyDemoFilesDuringBuild( common/Examples.material data/common/Examples.material
 CopyDemoFilesDuringBuild( common/Plane.material data/common/Plane.material )
 CopyDemoFilesDuringBuild( common/Sphere_Metal.material data/common/Sphere_Metal.material )
 CopyDemoFilesDuringBuild( common/RobotDecomp3.bullet data/common/RobotDecomp3.bullet )
+CopyDemoFilesDuringBuild( common/Examples.particle data/common/Examples.particle )
 CopyDemoFilesDuringBuild( common/test.xml data/common/test.xml )
 CopyDemoFilesDuringBuild( common/test.zip data/common/test.zip )
 CopyDemoFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
@@ -117,31 +118,33 @@ if(${WIN32})
 endif(${WIN32})
 
 # Linux File Copy Specific Items
-if(${UNIX} AND NOT ${APPLE})
+if(${UNIX})
+	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 
+	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+
 	message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
 	#CopyDemoFilesDuringBuild( linux/EngineDemo EngineDemo )
 	#CopyFilesFromPhygameDuringBuild( libOgreMain.so )
 	CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 	CopyFilesFromPhygameDuringBuild( data/linux/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/linux/ogre/RenderSystem_GL.so )
+	CopyFilesFromPhygameDuringBuild( data/linux/ogre/Plugin_ParticleFX.so )
 	CopyFilesFromPhygameDuringBuild( data/linux/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( libphysgame.so )
 	CopyFilesFromPhygameDuringBuild( libOgreMain.so.1.7.2 )
 	message ("${PROJECT_NAME} - End Unix/Linux Specific File Copy Process")
-endif(${UNIX} AND NOT ${APPLE})
+	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+endif(${UNIX})
 
-# Mac File Copy pecific Items
+# Mac File Copy Specific Items
 if(${APPLE})
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
-		message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 	CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 	CopyFilesFromPhygameDuringBuild( data/macosx/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( data/macosx/ogre/RenderSystem_GL.dylib )
 	CopyFilesFromPhygameDuringBuild( data/macosx/plugins.cfg )
 	CopyFilesFromPhygameDuringBuild( libphysgame.dylib )
 	#CopyFilesFromPhygameDuringBuild( data/macosx/ogre/Ogre.framework)
-
-
 
 	message ("${PROJECT_NAME} - End Apple Specific File Copy Process")
 endif(${APPLE})

@@ -81,6 +81,10 @@
   @subpage actorcontainer1 "Actor Container - Keeping track of our in game objects"
 
  @section Types Data Types
+  @ref phys::ColourValue
+
+  @ref phys::Vector3
+
   @ref phys::Vector3
 
   @ref phys::Vector3WActor

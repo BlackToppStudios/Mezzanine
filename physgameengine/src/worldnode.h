@@ -46,6 +46,9 @@
 #include "vector3.h"
 #include "quaternion.h"
 
+/// @file worldnode.h
+/// @brief The declaration of the WorldNode, A class to facilitate navigation in 3d environment
+
 namespace Ogre
 {
     class SceneNode;
@@ -74,7 +77,7 @@ namespace phys
     /// Note:  There are no rules restricting the use of nodes anyway, this enum is here simply to help
     /// indicate the intended use upon creation.
     ///////////////////////////////////////
-    class PHYS_LIB WorldNode
+    class PHYS_LIB WorldNode : public Attachable
     {
         public:
             /// @brief Kinds of movement (or non-movement modes) a world node could have
@@ -112,25 +115,14 @@ namespace phys
             /// @return Returns a string containing the name given to this node.
             ConstString& GetName() const;
 
-            /// @brief Attaches an attachable element to this Node.
-            /// @param Element The Element to be attached.
-            void AttachElement(Attachable* Element);
-            /// @brief Detaches an attachable element from this Node.
-            /// @param Element The Element to be detached.
-            void DetachElement(Attachable* Element);
-            /// @brief Detaches all attached cameras, lights, and particle effects.
-            void DetachAllElements();
 
-            /// @brief Gets the number of elements attached to this node.
-            /// @return Returns the number of elements attached to this node.
-            Whole GetNumAttachedElements();
 
-            /// @brief Sets the position of this node.
-            /// @param Position A vector3 representing the location of this node.
-            void SetPosition(Vector3 Position);
-            /// @brief Gets the position of this node.
+            /// @brief Sets the Location of this node.
+            /// @param Location A vector3 representing the location of this node.
+            virtual void SetLocation(const Vector3& Location);
+            /// @brief Gets the Location of this node.
             /// @return Returns a vector3 representing the location of this node.
-            Vector3 GetPosition();
+            virtual Vector3 GetLocation() const;
 
             /// @brief Sets the orientation of this node.
             /// @param Orientation A Quaternion representing the orientation of this node.
@@ -170,6 +162,49 @@ namespace phys
             /// @brief Gets the type of node that this is.
             /// @return Returns the type of node this is set as.
             WorldNode::NodeType GetType();
+
+            /// @brief What kind of Attachable is this.
+            /// @return An Attachable::GetAttachableType containing Attachable::WorldNode.
+            virtual Attachable::AttachableElement GetAttachableType() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Attachment child management
+
+            /// @brief Attaches an attachable element to this Node.
+            /// @param Target The Attachable to be attached.
+            void AttachObject(Attachable* Target);
+
+            /// @brief Detaches an attachable element from this Node.
+            /// @param Target The Attachable to be detached.
+            /// @details Detach an item is done in linear time relative to the amount of attached items
+            void DetachObject(Attachable* Target);
+
+            /// @internal
+            /// @brief Does the actual work of attaching on the WorldNode Side so that ::Attach() can be called on WorldNode or Attachable without caveats
+            /// @param Target A pointer to the Attachable to finalize the attaching of.
+            void AttachObjectFinal(Attachable* Target);
+
+            /// @internal
+            /// @brief Does the actual work of dettaching on the WorldNode Side so that ::Dettach() can be called on WorldNode or Attachable without caveats
+            /// @param Target A pointer to the Attachable to finalize the dettaching of.
+            void DetachObjectFinal(Attachable* Target);
+
+            /// @brief Detaches all attached cameras, lights, particle effects and anything else attached.
+            void DetachAll();
+
+            /// @brief Gets the number of elements attached to this node.
+            /// @return Returns the number of elements attached to this node.
+            Whole GetNumAttached() const;
+
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Attachment child management
+
+            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
+
+            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
+
+
     };//node
 }//phys
 

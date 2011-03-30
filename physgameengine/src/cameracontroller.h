@@ -57,14 +57,12 @@ namespace phys
         public:
             /// @enum MovementMode
             /// @brief Possible options for determining how the camera should move relative to the world.
-            /// @details Options are as follows: @n
-            /// CCM_Fly: This is the default option for every Camera Controller.  Allows the camera unrestrained movement throughout the scene. @n
-            /// CCM_Walk: This forces the camera to be only a certain distance above the terrain.
             enum MovementMode
             {
-                CCM_Fly,
-                CCM_Walk
+                CCM_Fly,        ///< CCM_Fly: This is the default option for every Camera Controller.  Allows the camera unrestrained movement throughout the scene.
+                CCM_Walk        ///< CCM_Walk: This forces the camera to be only a certain distance above the terrain.
             };
+
         protected:
             Camera* Controlled;
             MovementMode CurrentMode;

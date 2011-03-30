@@ -1,0 +1,397 @@
+\hypertarget{classphys_1_1UIScreen}{
+\subsection{phys::UIScreen Class Reference}
+\label{d9/de8/classphys_1_1UIScreen}\index{phys::UIScreen@{phys::UIScreen}}
+}
+
+
+This class is a helper class for creating UI's. It is responsible for storing and keeping track of all the elements of a single UI screen.  
+
+
+
+
+{\ttfamily \#include $<$uiscreen.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UIScreen_a1075b96ce6edcc071080f362df507530}{UIScreen} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, Gorilla::Screen $\ast$GScreen, \hyperlink{classphys_1_1Viewport}{Viewport} $\ast$WindowViewport)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIScreen_a5b8d4ebcffefeac1b39b6dac5a51b650}{
+\hyperlink{classphys_1_1UIScreen_a5b8d4ebcffefeac1b39b6dac5a51b650}{$\sim$UIScreen} ()}
+\label{d9/de8/classphys_1_1UIScreen_a5b8d4ebcffefeac1b39b6dac5a51b650}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \& \hyperlink{classphys_1_1UIScreen_aee363edcdc7d21197e4103668011f8fb}{GetName} ()
+\begin{DoxyCompactList}\small\item\em Gets the name of this screen. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UIScreen_ac8b143b35fd96e9aed694089d2732396}{SetVisible} (bool Visible)
+\begin{DoxyCompactList}\small\item\em Sets the screens visability. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1UIScreen_a8f64052f7bb0b6be2f55c73f31bfea29}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the screens visability. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIScreen_a0ba9ce016f7da06ab73fa2abea134a18}{
+void \hyperlink{classphys_1_1UIScreen_a0ba9ce016f7da06ab73fa2abea134a18}{Show} ()}
+\label{d9/de8/classphys_1_1UIScreen_a0ba9ce016f7da06ab73fa2abea134a18}
+
+\begin{DoxyCompactList}\small\item\em Forces the screen to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UIScreen_af9ea18cf145e31b90dbe02faed758343}{
+void \hyperlink{classphys_1_1UIScreen_af9ea18cf145e31b90dbe02faed758343}{Hide} ()}
+\label{d9/de8/classphys_1_1UIScreen_af9ea18cf145e31b90dbe02faed758343}
+
+\begin{DoxyCompactList}\small\item\em Forces the screen to hide. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ \hyperlink{classphys_1_1UIScreen_a14c3256bda81d40553ff065993fcbe77}{CreateLayer} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Zorder)
+\begin{DoxyCompactList}\small\item\em Creates a layer in the GUI screen to place GUI objects in. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ \hyperlink{classphys_1_1UIScreen_a661f461325f3a67169ce0c4ee107c8eb}{GetLayer} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created layer by name. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ \hyperlink{classphys_1_1UIScreen_a8b9aeb4599c47d2b4ea0a1c5d5e6f210}{GetLayer} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created layer by it's index. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ \hyperlink{classphys_1_1UIScreen_ab558b5405a1f64d7558e34a217bfc28d}{GetLayerbyZorder} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Zorder)
+\begin{DoxyCompactList}\small\item\em Gets an already created layer by it's Zorder. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UIScreen_a87c4cf832f36af0182483814fec30f88}{GetNumLayers} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of layers created and stored in this class. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UIScreen_ac1d9dfc0b8d9b3720f1447dcc93d8b55}{DestroyLayer} (\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\begin{DoxyCompactList}\small\item\em Destroy's a previously created layer. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UIScreen_a588a4da7416bbbc0d96bc872c22d76bd}{GetViewportDimensions} ()
+\begin{DoxyCompactList}\small\item\em Gets the current viewport dimensions. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ \hyperlink{classphys_1_1UIScreen_a7bc1a10b2172ad8885901de1a65a819d}{CheckButtonMouseIsOver} ()
+\begin{DoxyCompactList}\small\item\em Gets the button the mouse is over if any. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1UI_1_1Widget}{UI::Widget} $\ast$ \hyperlink{classphys_1_1UIScreen_a00befef8c7bce9e8d149e6ba03419a53}{CheckWidgetMouseIsOver} ()
+\begin{DoxyCompactList}\small\item\em Gets the widget the mouse is over if any. \item\end{DoxyCompactList}\item 
+Gorilla::Screen $\ast$ \hyperlink{classphys_1_1UIScreen_a1ec3a329f7864905e6dc387f469068df}{GetGorillaScreen} ()
+\begin{DoxyCompactList}\small\item\em Gets the internal screen this screen is based on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UIScreen_a6cc0cb1a19c2b2a8cee20222d1af333c}{
+Gorilla::Screen $\ast$ {\bfseries GorillaScreen}}
+\label{d9/de8/classphys_1_1UIScreen_a6cc0cb1a19c2b2a8cee20222d1af333c}
+
+\item 
+\hypertarget{classphys_1_1UIScreen_a8cb86a27b0ac39426ae23e67e34ebd47}{
+\hyperlink{classphys_1_1UIManager}{UIManager} $\ast$ {\bfseries Manager}}
+\label{d9/de8/classphys_1_1UIScreen_a8cb86a27b0ac39426ae23e67e34ebd47}
+
+\item 
+\hypertarget{classphys_1_1UIScreen_a925f63ce04a6dee96df78f031928c0b7}{
+\hyperlink{classphys_1_1Viewport}{Viewport} $\ast$ {\bfseries GameViewport}}
+\label{d9/de8/classphys_1_1UIScreen_a925f63ce04a6dee96df78f031928c0b7}
+
+\item 
+\hypertarget{classphys_1_1UIScreen_a513aebb318ba6e21fcc95090c4385614}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries Name}}
+\label{d9/de8/classphys_1_1UIScreen_a513aebb318ba6e21fcc95090c4385614}
+
+\item 
+\hypertarget{classphys_1_1UIScreen_aab6876d055853ed554e1ab09d0e91ce0}{
+std::map$<$ \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole}, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ $>$ {\bfseries Layers}}
+\label{d9/de8/classphys_1_1UIScreen_aab6876d055853ed554e1ab09d0e91ce0}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is a helper class for creating UI's. It is responsible for storing and keeping track of all the elements of a single UI screen. UI's can optionally be divided up into Screens, or \char`\"{}pages\char`\"{}. Each screen is batched together for rendering, so keeping the amount of screens to a minimum will improve performance. 
+
+Definition at line 72 of file uiscreen.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UIScreen_a1075b96ce6edcc071080f362df507530}{
+\index{phys::UIScreen@{phys::UIScreen}!UIScreen@{UIScreen}}
+\index{UIScreen@{UIScreen}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{UIScreen}]{\setlength{\rightskip}{0pt plus 5cm}phys::UIScreen::UIScreen (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ name, }
+\item[{Gorilla::Screen $\ast$}]{ GScreen, }
+\item[{{\bf Viewport} $\ast$}]{ WindowViewport}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a1075b96ce6edcc071080f362df507530}
+
+
+Internal constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em name}]The name of this screen. \item[{\em GScreen}]The Gorilla Screen this Screen is based on. \item[{\em WindowViewport}]The \hyperlink{classphys_1_1Viewport}{Viewport} to which this screen belongs. \end{DoxyParams}
+
+
+Definition at line 53 of file uiscreen.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1UIScreen_a7bc1a10b2172ad8885901de1a65a819d}{
+\index{phys::UIScreen@{phys::UIScreen}!CheckButtonMouseIsOver@{CheckButtonMouseIsOver}}
+\index{CheckButtonMouseIsOver@{CheckButtonMouseIsOver}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{CheckButtonMouseIsOver}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Button} $\ast$ phys::UIScreen::CheckButtonMouseIsOver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a7bc1a10b2172ad8885901de1a65a819d}
+
+
+Gets the button the mouse is over if any. 
+
+This function searches only the visable layers contained in this screen. \begin{DoxyReturn}{Returns}
+Returns the button the mouse is over, or NULL if there are none. 
+\end{DoxyReturn}
+
+
+Definition at line 165 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_a00befef8c7bce9e8d149e6ba03419a53}{
+\index{phys::UIScreen@{phys::UIScreen}!CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}}
+\index{CheckWidgetMouseIsOver@{CheckWidgetMouseIsOver}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{CheckWidgetMouseIsOver}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Widget} $\ast$ phys::UIScreen::CheckWidgetMouseIsOver (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a00befef8c7bce9e8d149e6ba03419a53}
+
+
+Gets the widget the mouse is over if any. 
+
+This function searches only the visable layers contained in this screen. \begin{DoxyReturn}{Returns}
+Returns the widget the mouse is over, or NULL if there are none. 
+\end{DoxyReturn}
+
+
+Definition at line 181 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_a14c3256bda81d40553ff065993fcbe77}{
+\index{phys::UIScreen@{phys::UIScreen}!CreateLayer@{CreateLayer}}
+\index{CreateLayer@{CreateLayer}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{CreateLayer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UILayer} $\ast$ phys::UIScreen::CreateLayer (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ Name, }
+\item[{{\bf Whole}}]{ Zorder}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a14c3256bda81d40553ff065993fcbe77}
+
+
+Creates a layer in the GUI screen to place GUI objects in. 
+
+A GUI layer is exactly that, a layer of GUI objects. You can have multiple GUI layers per screen. The Zorder of the layer determines it's visability if there are multiple layers. If the Zorder of one layer is higher then another in the same space, then the Zorder with the higher Zorder will be rendered...giving it the appearance of being on top of the other GUI object or objects. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name to be given to the layer. \item[{\em Zorder}]The layers Zorder, as explained above. \end{DoxyParams}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000025}{Todo}]add an exception here or maybe log entry, some notification it failed. \end{Desc}
+
+
+
+
+Definition at line 91 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_ac1d9dfc0b8d9b3720f1447dcc93d8b55}{
+\index{phys::UIScreen@{phys::UIScreen}!DestroyLayer@{DestroyLayer}}
+\index{DestroyLayer@{DestroyLayer}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{DestroyLayer}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UIScreen::DestroyLayer (
+\begin{DoxyParamCaption}
+\item[{{\bf UILayer} $\ast$}]{ Layer}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_ac1d9dfc0b8d9b3720f1447dcc93d8b55}
+
+
+Destroy's a previously created layer. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the layer to be destroyed. \end{DoxyParams}
+
+
+Definition at line 144 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_a1ec3a329f7864905e6dc387f469068df}{
+\index{phys::UIScreen@{phys::UIScreen}!GetGorillaScreen@{GetGorillaScreen}}
+\index{GetGorillaScreen@{GetGorillaScreen}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{GetGorillaScreen}]{\setlength{\rightskip}{0pt plus 5cm}Gorilla::Screen $\ast$ phys::UIScreen::GetGorillaScreen (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a1ec3a329f7864905e6dc387f469068df}
+
+
+Gets the internal screen this screen is based on. 
+
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Gorilla screen this screen is based on. 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 197 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_a8b9aeb4599c47d2b4ea0a1c5d5e6f210}{
+\index{phys::UIScreen@{phys::UIScreen}!GetLayer@{GetLayer}}
+\index{GetLayer@{GetLayer}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{GetLayer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UILayer} $\ast$ phys::UIScreen::GetLayer (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a8b9aeb4599c47d2b4ea0a1c5d5e6f210}
+
+
+Gets an already created layer by it's index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the layer at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_a661f461325f3a67169ce0c4ee107c8eb}{
+\index{phys::UIScreen@{phys::UIScreen}!GetLayer@{GetLayer}}
+\index{GetLayer@{GetLayer}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{GetLayer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UILayer} $\ast$ phys::UIScreen::GetLayer (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a661f461325f3a67169ce0c4ee107c8eb}
+
+
+Gets an already created layer by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the layer of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 105 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_ab558b5405a1f64d7558e34a217bfc28d}{
+\index{phys::UIScreen@{phys::UIScreen}!GetLayerbyZorder@{GetLayerbyZorder}}
+\index{GetLayerbyZorder@{GetLayerbyZorder}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{GetLayerbyZorder}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UILayer} $\ast$ phys::UIScreen::GetLayerbyZorder (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ Zorder}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_ab558b5405a1f64d7558e34a217bfc28d}
+
+
+Gets an already created layer by it's Zorder. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the layer with the specified Zorder. 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_aee363edcdc7d21197e4103668011f8fb}{
+\index{phys::UIScreen@{phys::UIScreen}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} \& phys::UIScreen::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_aee363edcdc7d21197e4103668011f8fb}
+
+
+Gets the name of this screen. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the name of this screen. 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_a87c4cf832f36af0182483814fec30f88}{
+\index{phys::UIScreen@{phys::UIScreen}!GetNumLayers@{GetNumLayers}}
+\index{GetNumLayers@{GetNumLayers}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{GetNumLayers}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UIScreen::GetNumLayers (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a87c4cf832f36af0182483814fec30f88}
+
+
+Gets the number of layers created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of layers this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 139 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_a588a4da7416bbbc0d96bc872c22d76bd}{
+\index{phys::UIScreen@{phys::UIScreen}!GetViewportDimensions@{GetViewportDimensions}}
+\index{GetViewportDimensions@{GetViewportDimensions}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{GetViewportDimensions}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UIScreen::GetViewportDimensions (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a588a4da7416bbbc0d96bc872c22d76bd}
+
+
+Gets the current viewport dimensions. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the current viewport dimensions. 
+\end{DoxyReturn}
+
+
+Definition at line 159 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_a8f64052f7bb0b6be2f55c73f31bfea29}{
+\index{phys::UIScreen@{phys::UIScreen}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UIScreen::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_a8f64052f7bb0b6be2f55c73f31bfea29}
+
+
+Gets the screens visability. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visability of the screen. 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file uiscreen.cpp.
+
+\hypertarget{classphys_1_1UIScreen_ac8b143b35fd96e9aed694089d2732396}{
+\index{phys::UIScreen@{phys::UIScreen}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!phys::UIScreen@{phys::UIScreen}}
+\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UIScreen::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{ Visible}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/de8/classphys_1_1UIScreen_ac8b143b35fd96e9aed694089d2732396}
+
+
+Sets the screens visability. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Visable}]A bool representing the visability of the screen. \end{DoxyParams}
+
+
+Definition at line 71 of file uiscreen.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uiscreen.h\item 
+uiscreen.cpp\end{DoxyCompactItemize}

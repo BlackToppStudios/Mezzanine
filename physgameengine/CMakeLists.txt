@@ -285,6 +285,7 @@ if(${UNIX})
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreSoName}"
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
+				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX.so"
 			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
 		)
 		include_directories(
@@ -439,7 +440,7 @@ endif(${WIN32})
 #######################################
 # Linux File Copy Specific Items
 if(${UNIX})
-	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 	#if(${UNIX} AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin") #does not appear to work as expected.
+	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 		message ("${PROJECT_NAME} - Begin Unix/Linux Specific File Copy Process")
@@ -447,6 +448,7 @@ if(${UNIX})
 		#Copy System Dependant files during build time
 		#CopyFilesDuringBuild( ${BuildPlatform}/sdl/${SDLLibName} ${SDLLibName})
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so)
+		CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.so data/${BuildPlatform}/ogre/Plugin_ParticleFX.so)
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
 		CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
 
@@ -455,7 +457,7 @@ if(${UNIX})
 endif(${UNIX})
 
 #######################################
-# Mac File Copy pecific Items
+# Mac File Copy Specific Items
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	message ("${PROJECT_NAME} - Begin Apple Specific File Copy Process")
 	

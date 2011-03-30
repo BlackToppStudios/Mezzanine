@@ -69,13 +69,15 @@ namespace phys
     class PHYS_LIB SceneManager : public ManagerBase
     {
         public:
+            /// @brief Needs to be documented.
             enum SceneManagerType
             {
-                Generic,
-                Exterior,
-                ExteriorRealFar,
-                Interior
+                Generic,            ///< Documatation Required
+                Exterior,           ///< Documatation Required
+                ExteriorRealFar,    ///< Documatation Required
+                Interior            ///< Documatation Required
             };
+
         protected:
             /// @brief Pointer for the Ogre Scenemanager, where this manager gets it's functionality.
             Ogre::SceneManager* OgreManager;

@@ -583,6 +583,7 @@ namespace phys
             //If mishandled this function can corrupt the MetaCode, and it can throw any error memcpy could throw.
             static MetaCode::InputCode GetInputCodeFromSDL_KEY(const RawEvent &RawEvent_);
             static MetaCode::InputCode GetInputCodeFromSDL_MOUSE(const RawEvent &RawEvent_);
+            static MetaCode::InputCode GetInputCodeFromSDL_JOYSTICK(const RawEvent &RawEvent_);
 
         public:
             /// @brief Default constructor

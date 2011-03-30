@@ -87,6 +87,10 @@ int main(int argc, char **argv)
     //WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
     //CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
     TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0.0,200.0,750.0));
+    Light *Headlight = TheWorld->GetSceneManager()->CreateLight("Headlight");
+    //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
+    //Headlight->SetType(Light::Spotlight);
+    //CameraNode->AttachObject(Headlight);
 
     TheWorld->Log("Printing Supported Resolutions:");
     const std::vector<String>* ResList = TheWorld->GetGraphicsManager()->GetSupportedResolutions();
@@ -286,6 +290,18 @@ bool PostInput()
         DefaultControl->MoveBackward(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
+    static bool MouseCam=false;
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_HOME) )
+    {
+        MouseCam=true;
+//        TheWorld->GetEventManager()->StartRelativeMouseMode();
+    }
+    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_END))
+    {
+        MouseCam=false;
+//        TheWorld->GetEventManager()->EndRelativeMouseMode();
+    }
+
     /*Quaternion CamRot = TheWorld->GetCameraManager()->GetDefaultCamera()->GetOrientation();
     if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEUP))
     {
@@ -297,7 +313,7 @@ bool PostInput()
     }// */
 
     Vector2 Offset = Queryer.GetMousePrevFrameOffset();
-    if( Vector2(0,0) != Offset )
+    if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01);
 
     /*if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
@@ -617,14 +633,16 @@ void LoadContent()
     phys::Light *TorchG=TheWorld->GetSceneManager()->CreateLight("Greentorch");
     phys::Light *TorchToStream=TheWorld->GetSceneManager()->CreateLight("TempLightToBeDestroyed");
 
+    Vector3 RedBase(70,70,100);
     ColourValue RTorchLight(0.8,0.1,0.3,1.0);
-    TorchR->SetLocation(Vector3(70,70,100));
+    TorchR->SetLocation(RedBase);
     TorchR->SetPowerScale(1.0);
     TorchR->SetSpecularColour(RTorchLight);
     TorchR->SetDiffuseColour(RTorchLight);
 
+    Vector3 GreenBase(-70,70,-100);
     ColourValue GTorchLight(0.1,0.8,0.3,1.0);
-    TorchToStream->SetLocation(Vector3(-70,70,-100));
+    TorchToStream->SetLocation(GreenBase);
     TorchToStream->SetPowerScale(1.0);
     TorchToStream->SetSpecularColour(GTorchLight);
     TorchToStream->SetDiffuseColour(GTorchLight);
@@ -668,6 +686,16 @@ void LoadContent()
     TheWorld->Log(*TorchG);
     #endif
     TheWorld->GetSceneManager()->DestroyLight(TorchToStream);
+    //TheWorld->GetSceneManager()->DestroyLight(TorchG);
+    //TheWorld->GetSceneManager()->DestroyLight(TorchR);
+
+    ParticleEffect *GreenPart = TheWorld->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
+    GreenPart->SetLocation(GreenBase);
+    GreenPart->EnableParticleEffect();
+
+
+
+
 
     {
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");

@@ -1,0 +1,65 @@
+\hypertarget{classphys_1_1xml_1_1Writer}{
+\subsection{phys::xml::Writer Class Reference}
+\label{d2/d28/classphys_1_1xml_1_1Writer}\index{phys::xml::Writer@{phys::xml::Writer}}
+}
+
+
+Interface for node printing (see \hyperlink{classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}{Node::Print}).  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
+Inheritance diagram for phys::xml::Writer:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d2/d28/classphys_1_1xml_1_1Writer}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1xml_1_1Writer_a527c2e01738b1e570d08674eada21800}{
+virtual \hyperlink{classphys_1_1xml_1_1Writer_a527c2e01738b1e570d08674eada21800}{$\sim$Writer} ()}
+\label{d2/d28/classphys_1_1xml_1_1Writer_a527c2e01738b1e570d08674eada21800}
+
+\begin{DoxyCompactList}\small\item\em Empty Virtual Destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1xml_1_1Writer_ab6d4758ab53743f236eb64d5b2dd7e9e}{Write} (const void $\ast$data, size\_\-t size)=0
+\begin{DoxyCompactList}\small\item\em This will be used to output xml to an external source such as a file or stream. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Interface for node printing (see \hyperlink{classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}{Node::Print}). 
+
+Definition at line 296 of file xml.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1Writer_ab6d4758ab53743f236eb64d5b2dd7e9e}{
+\index{phys::xml::Writer@{phys::xml::Writer}!Write@{Write}}
+\index{Write@{Write}!phys::xml::Writer@{phys::xml::Writer}}
+\paragraph[{Write}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::xml::Writer::Write (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{ data, }
+\item[{size\_\-t}]{ size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
+\label{d2/d28/classphys_1_1xml_1_1Writer_ab6d4758ab53743f236eb64d5b2dd7e9e}
+
+
+This will be used to output xml to an external source such as a file or stream. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em data}]This is a pointer to something that will get written to the output \item[{\em size}]The size in bytes of whatever was passed in. \end{DoxyParams}
+
+
+Implemented in \hyperlink{classphys_1_1xml_1_1WriterFile_afb46a51336fd6072e8c774da8af31172}{phys::xml::WriterFile}, and \hyperlink{classphys_1_1xml_1_1WriterStream_a743c3f41a010df17f54054031fdc4891}{phys::xml::WriterStream}.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\end{DoxyCompactItemize}

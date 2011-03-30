@@ -1,0 +1,355 @@
+\hypertarget{classphys_1_1UI_1_1MenuWindow}{
+\subsection{phys::UI::MenuWindow Class Reference}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow}\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+}
+
+
+This class is an extended version of the window class for use exclusively with the menu widget.  
+
+
+
+
+{\ttfamily \#include $<$uimenuwindow.h$>$}
+
+Inheritance diagram for phys::UI::MenuWindow:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d4/d07/classphys_1_1UI_1_1MenuWindow}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UI_1_1MenuWindow_a8d62e0cdbb3e8073c62b67c3e0b4dfda}{MenuWindow} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{classphys_1_1UI_1_1Menu}{UI::Menu} $\ast$TheMenu, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a8de1eab7a7897e24dfb722cce7d903eb}{
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow_a8de1eab7a7897e24dfb722cce7d903eb}{$\sim$MenuWindow} ()}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a8de1eab7a7897e24dfb722cce7d903eb}
+
+\begin{DoxyCompactList}\small\item\em Standard destructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_ac47ccc564f09ac33e13e56860b6ae281}{GetParentWindow} ()
+\begin{DoxyCompactList}\small\item\em Gets the parent window of this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_acb16433bca03c75b71ddb74d8df5b5ab}{CreateBackButton} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Creates a back button for this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a7c286758bac0e21154f41a56d9da8c08}{GetBackButton} ()
+\begin{DoxyCompactList}\small\item\em Gets the back button of this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a268a077bde24ce6d1a2a4a9f1bf23ce0}{CreateAccessorButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\begin{DoxyCompactList}\small\item\em Creates a button to be used for accessing child windows. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a7ee13fd6573f8c6d4f6c4992d414e7c2}{GetAccessorButton} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an Accessor button by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a12b1586cd33bc03b5902018376878961}{GetWindowOfAccessButton} (\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$Accessor)
+\begin{DoxyCompactList}\small\item\em Gets the \hyperlink{classphys_1_1UI_1_1Window}{Window} corresponding to the access button. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a5b4945e253037695a8ea7d09560dd9d8}{CreateChildMenuWindow} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size, \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$Accessor)
+\begin{DoxyCompactList}\small\item\em Adds a child window to this window. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_ad1136c4e4b2ff9b9dc5d6aac2dba45a7}{GetChildMenuWindow} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an already created menu window by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ \hyperlink{classphys_1_1UI_1_1MenuWindow_a528d6397f8799219793978c70a26c22c}{GetChildMenuWindow} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets an already created menu window by index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1MenuWindow_ab3a6ae708ba2cea16cd0de176e265459}{GetNumChildMenuWindows} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of menu windows created and stored in this class. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1MenuWindow_ace2796c2d250fe1582f7c43333a7295e}{DestroyChildMenuWindow} (\hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ToBeDestroyed)
+\begin{DoxyCompactList}\small\item\em Destroys a menu window. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a94ec8861afbc6f39ac4b443a912bc0c1}{
+\hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ {\bfseries ParentWindow}}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a94ec8861afbc6f39ac4b443a912bc0c1}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1MenuWindow_adeed2fd68308846df8885febee141111}{
+\hyperlink{classphys_1_1UI_1_1Menu}{UI::Menu} $\ast$ {\bfseries MasterMenu}}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_adeed2fd68308846df8885febee141111}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a02826ad4a8d0b8934a7dbe86e4ea3edf}{
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ {\bfseries BackButton}}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a02826ad4a8d0b8934a7dbe86e4ea3edf}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1MenuWindow_ae55c88520920e44c0bb125e812d62272}{
+std::vector$<$ std::pair$<$ \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$, \hyperlink{classphys_1_1UI_1_1MenuWindow}{MenuWindow} $\ast$ $>$ $>$ {\bfseries ChildWindows}}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_ae55c88520920e44c0bb125e812d62272}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is an extended version of the window class for use exclusively with the menu widget. 
+
+Definition at line 60 of file uimenuwindow.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a8d62e0cdbb3e8073c62b67c3e0b4dfda}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!MenuWindow@{MenuWindow}}
+\index{MenuWindow@{MenuWindow}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{MenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::MenuWindow::MenuWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{const {\bf Vector2}}]{ Position, }
+\item[{const {\bf Vector2}}]{ Size, }
+\item[{{\bf UI::Menu} $\ast$}]{ TheMenu, }
+\item[{{\bf UILayer} $\ast$}]{ Layer}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a8d62e0cdbb3e8073c62b67c3e0b4dfda}
+
+
+Standard initialization constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the window. \item[{\em Position}]The position of the window. \item[{\em Size}]The size of the window. \item[{\em TheMenu}]The menu this window belongs to. \item[{\em Layer}]The parent layer this window belongs to. \end{DoxyParams}
+
+
+Definition at line 52 of file uimenuwindow.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a268a077bde24ce6d1a2a4a9f1bf23ce0}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!CreateAccessorButton@{CreateAccessorButton}}
+\index{CreateAccessorButton@{CreateAccessorButton}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{CreateAccessorButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::MenuWindow::CreateAccessorButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{const {\bf Vector2}}]{ Position, }
+\item[{const {\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a268a077bde24ce6d1a2a4a9f1bf23ce0}
+
+
+Creates a button to be used for accessing child windows. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the button. \item[{\em Position}]The position of the button. \item[{\em Size}]The size of the button. \end{DoxyParams}
+
+
+Definition at line 93 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_acb16433bca03c75b71ddb74d8df5b5ab}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!CreateBackButton@{CreateBackButton}}
+\index{CreateBackButton@{CreateBackButton}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{CreateBackButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::MenuWindow::CreateBackButton (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2}}]{ Position, }
+\item[{const {\bf Vector2}}]{ Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_acb16433bca03c75b71ddb74d8df5b5ab}
+
+
+Creates a back button for this window. 
+
+The name is autogenerated to be the name of the window + \char`\"{}back\char`\"{}. This function will do nothing if the back button has already been created. \begin{DoxyReturn}{Returns}
+Returns a pointer to the created Back \hyperlink{classphys_1_1UI_1_1Button}{Button}. 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a5b4945e253037695a8ea7d09560dd9d8}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!CreateChildMenuWindow@{CreateChildMenuWindow}}
+\index{CreateChildMenuWindow@{CreateChildMenuWindow}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{CreateChildMenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ phys::UI::MenuWindow::CreateChildMenuWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name, }
+\item[{const {\bf Vector2}}]{ Position, }
+\item[{const {\bf Vector2}}]{ Size, }
+\item[{{\bf Button} $\ast$}]{ Accessor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a5b4945e253037695a8ea7d09560dd9d8}
+
+
+Adds a child window to this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the created child window. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the window. \item[{\em Position}]The position of the window. \item[{\em Size}]The size of the window. \end{DoxyParams}
+
+
+Definition at line 129 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_ace2796c2d250fe1582f7c43333a7295e}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!DestroyChildMenuWindow@{DestroyChildMenuWindow}}
+\index{DestroyChildMenuWindow@{DestroyChildMenuWindow}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{DestroyChildMenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::MenuWindow::DestroyChildMenuWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf MenuWindow} $\ast$}]{ ToBeDestroyed}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_ace2796c2d250fe1582f7c43333a7295e}
+
+
+Destroys a menu window. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em ToBeDestroyed}]Pointer to the menu window you want destroyed. \end{DoxyParams}
+
+
+Definition at line 169 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a7ee13fd6573f8c6d4f6c4992d414e7c2}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!GetAccessorButton@{GetAccessorButton}}
+\index{GetAccessorButton@{GetAccessorButton}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{GetAccessorButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::MenuWindow::GetAccessorButton (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a7ee13fd6573f8c6d4f6c4992d414e7c2}
+
+
+Gets an Accessor button by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the named accessor button. 
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Name}]The name of the accessor button you want to find. \end{DoxyParams}
+
+
+Definition at line 103 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a7c286758bac0e21154f41a56d9da8c08}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!GetBackButton@{GetBackButton}}
+\index{GetBackButton@{GetBackButton}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{GetBackButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::MenuWindow::GetBackButton (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a7c286758bac0e21154f41a56d9da8c08}
+
+
+Gets the back button of this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Back \hyperlink{classphys_1_1UI_1_1Button}{Button}, or NULL if it hasn't been created. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_ad1136c4e4b2ff9b9dc5d6aac2dba45a7}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!GetChildMenuWindow@{GetChildMenuWindow}}
+\index{GetChildMenuWindow@{GetChildMenuWindow}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{GetChildMenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ phys::UI::MenuWindow::GetChildMenuWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf ConstString} \&}]{ Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_ad1136c4e4b2ff9b9dc5d6aac2dba45a7}
+
+
+Gets an already created menu window by name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the menu window of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 146 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a528d6397f8799219793978c70a26c22c}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!GetChildMenuWindow@{GetChildMenuWindow}}
+\index{GetChildMenuWindow@{GetChildMenuWindow}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{GetChildMenuWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ phys::UI::MenuWindow::GetChildMenuWindow (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole}}]{ Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a528d6397f8799219793978c70a26c22c}
+
+
+Gets an already created menu window by index. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the menu window at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 159 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_ab3a6ae708ba2cea16cd0de176e265459}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!GetNumChildMenuWindows@{GetNumChildMenuWindows}}
+\index{GetNumChildMenuWindows@{GetNumChildMenuWindows}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{GetNumChildMenuWindows}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UI::MenuWindow::GetNumChildMenuWindows (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_ab3a6ae708ba2cea16cd0de176e265459}
+
+
+Gets the number of menu windows created and stored in this class. 
+
+\begin{DoxyReturn}{Returns}
+Returns the number of menu windows this class is storing. 
+\end{DoxyReturn}
+
+
+Definition at line 164 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_ac47ccc564f09ac33e13e56860b6ae281}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!GetParentWindow@{GetParentWindow}}
+\index{GetParentWindow@{GetParentWindow}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{GetParentWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ phys::UI::MenuWindow::GetParentWindow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_ac47ccc564f09ac33e13e56860b6ae281}
+
+
+Gets the parent window of this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the parent window of this window, or NULL if this is the root window. 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file uimenuwindow.cpp.
+
+\hypertarget{classphys_1_1UI_1_1MenuWindow_a12b1586cd33bc03b5902018376878961}{
+\index{phys::UI::MenuWindow@{phys::UI::MenuWindow}!GetWindowOfAccessButton@{GetWindowOfAccessButton}}
+\index{GetWindowOfAccessButton@{GetWindowOfAccessButton}!phys::UI::MenuWindow@{phys::UI::MenuWindow}}
+\paragraph[{GetWindowOfAccessButton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf MenuWindow} $\ast$ phys::UI::MenuWindow::GetWindowOfAccessButton (
+\begin{DoxyParamCaption}
+\item[{{\bf Button} $\ast$}]{ Accessor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d4/d07/classphys_1_1UI_1_1MenuWindow_a12b1586cd33bc03b5902018376878961}
+
+
+Gets the \hyperlink{classphys_1_1UI_1_1Window}{Window} corresponding to the access button. 
+
+
+\begin{DoxyParams}{Parameters}
+\item[{\em Accessor}]Pointer to the \hyperlink{classphys_1_1UI_1_1Button}{Button} of which you want to get the window for. \end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns A pointer to the \hyperlink{classphys_1_1UI_1_1Menu}{Menu} window the button provided accesses. 
+\end{DoxyReturn}
+
+
+Definition at line 116 of file uimenuwindow.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uimenuwindow.h\item 
+uimenuwindow.cpp\end{DoxyCompactItemize}

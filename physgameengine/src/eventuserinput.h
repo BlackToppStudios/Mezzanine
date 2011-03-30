@@ -131,13 +131,13 @@ namespace phys
             /// @internal
             /// @brief Gets the MetaCode from RawInput Data
             /// @param RawEvent_ The event that contains only Mouse button data
-            /// @return a metacode that represents button presses
+            /// @return a metacode that represents a button press
             MetaCode AddCodeFromSDLMouseButton(const RawEvent &RawEvent_);
 
             /// @internal
             /// @brief Gets the MetaCode from RawInput Data
             /// @param RawEvent_ The event that contains only Joystick button data
-            /// @return a metacode that represents button presses
+            /// @return a metacode that represents a button press
             MetaCode AddCodeFromSDLJoyStickButton(const RawEvent &RawEvent_);
 
         protected:

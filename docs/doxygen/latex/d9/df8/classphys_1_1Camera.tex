@@ -1,0 +1,743 @@
+\hypertarget{classphys_1_1Camera}{
+\subsection{phys::Camera Class Reference}
+\label{d9/df8/classphys_1_1Camera}\index{phys::Camera@{phys::Camera}}
+}
+
+
+This is the camera class.  
+
+
+
+
+{\ttfamily \#include $<$camera.h$>$}
+
+Inheritance diagram for phys::Camera:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d9/df8/classphys_1_1Camera}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86a}{ProjectionType} \{ \hyperlink{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86aa6a71e6ab2139c8fc4d48d64aa9717f02}{Orthographic} =  0, 
+\hyperlink{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86aacfe21986c8c655b8d19ebd76118de055}{Perspective} =  1
+ \}
+\begin{DoxyCompactList}\small\item\em Values for storing how perspective should be interpretted. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1Camera_a863e7b7a0fb4db7969014d8391b5ca30}{Camera} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, \hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$Manager)
+\begin{DoxyCompactList}\small\item\em Basic \hyperlink{classphys_1_1Camera}{Camera} Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Camera_a0510d4f9bf6fb195115272cbd116e8dd}{Camera} (Ogre::Camera $\ast$\hyperlink{classphys_1_1Camera}{Camera}, \hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$Manager)
+\begin{DoxyCompactList}\small\item\em Ogre Cam Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Camera_aa45f340a6f7ba0970aa2602a928463ea}{$\sim$Camera} ()
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1Camera_ae24490b8589796cb5f51d291cc418d84}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the camera's set name. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_ac3a8ffec5fa70fa4981fc25815fdc8a3}{SetCameraType} (\hyperlink{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86a}{ProjectionType} Type)
+\begin{DoxyCompactList}\small\item\em Sets the type of projection to be used with this camera. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86a}{Camera::ProjectionType} \hyperlink{classphys_1_1Camera_aa79582e78a3eff11a8c4fe9c058566b0}{GetCameraType} () const 
+\begin{DoxyCompactList}\small\item\em Get the type of projection used by the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a6a5b1aa3d453486354b24b7e4b918988}{SetOrthoWindow} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Width, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Height)
+\begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a41f859ab51712fb465416e4c7edd29ff}{SetOrthoWindowHeight} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Height)
+\begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_abe6bb6c5d46ca588026fb163b4e5d387}{SetOrthoWindowWidth} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Width)
+\begin{DoxyCompactList}\small\item\em Defines the size of the Orthographic projection window. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_ab1fb572982464212b2fa33e2df6f688b}{SetLocation} (\hyperlink{classphys_1_1Vector3}{Vector3} Location)
+\begin{DoxyCompactList}\small\item\em Sets the location of a camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a50746cdd4f7d483edffe87d24d2b4bc6}{SetDirection} (\hyperlink{classphys_1_1Vector3}{Vector3} Direction)
+\begin{DoxyCompactList}\small\item\em Sets the Direction for the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_af0822410414622c2a3c8b4da207b53ab}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_aff7cb792640b250cafdfbc333de4bbeb}{SetNearClipDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} NearDist)
+\begin{DoxyCompactList}\small\item\em Sets the short range clip distance. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a25408db8110ac5035fafbd58a5b1106d}{SetFarClipDistance} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} FarDist)
+\begin{DoxyCompactList}\small\item\em Sets the long range clip distance. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a6f895759e653eedb985217c621b265f6}{SetAspectRatio} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Ratio)
+\begin{DoxyCompactList}\small\item\em Sets the aspect ratio of the cameras veiw. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a6534be5001bf06ab4c4b32a084629842}{LookAt} (\hyperlink{classphys_1_1Vector3}{Vector3} TargetLoc)
+\begin{DoxyCompactList}\small\item\em Sets the direction the camera faces. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a0fe097fbabbe1a88881f25bc827cabf5}{SetFixedYawAxis} (bool UseFixed, \hyperlink{classphys_1_1Vector3}{Vector3} Axis)
+\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a1b4d5be85c528541c7a1cbebb41bfd89}{SetFixedYawAxis} (bool UseFixed)
+\begin{DoxyCompactList}\small\item\em Sets whether to lock rotation around the Y axis. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1Camera_a9b0aa17df46c427ab531bd587bd76e0f}{IsFixedYawEnabled} () const 
+\begin{DoxyCompactList}\small\item\em Is fixed yaw enabled. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a1f4126761e14d9b960395c79b6c4f13f}{GetFixedYawAxis} () const 
+\begin{DoxyCompactList}\small\item\em If fixed yaw is enabled, on which axis is yawing disabled. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Ray}{Ray} \hyperlink{classphys_1_1Camera_a01d119eb8bd10a8654493b043110ca0f}{GetCameraToViewportRay} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screenx, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Screeny) const 
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1Ray}{Ray} from the camera to the viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_ae3dc70090e83e19a9c5f6df302bb57a5}{GetRelativeLocation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the relative location of the camera. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1Camera_a7f71146cd533f6a1fc8426a9ed40b763}{GetGlobalLocation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the global/absolute location of the camera. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1Camera_a48e0b33e0f12247bc0a0e0d6f759683e}{GetOrientation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the direction the camera is facing. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a1cb593d12be4e6e1e51cb8f74ce2d97c}{ZoomCamera} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Zoom)
+\begin{DoxyCompactList}\small\item\em Will zoom in or out the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Camera_a181465e6add36c07a63fdd26aee7c69a}{ResetZoom} ()
+\begin{DoxyCompactList}\small\item\em Resets the zoom level back to the default. \item\end{DoxyCompactList}\item 
+Ogre::Camera $\ast$ \hyperlink{classphys_1_1Camera_a4f78f7a62580fa538d5bf2cb361644b2}{GetOgreCamera} () const 
+\begin{DoxyCompactList}\small\item\em Gets the internal camera this camera is based on. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Ogre::Camera $\ast$ \hyperlink{classphys_1_1Camera_a91622148b9b9a9ae1554c828f7e2fc89}{Cam}
+\begin{DoxyCompactList}\small\item\em This is the \hyperlink{classphys_1_1Camera}{Camera} used by the graphics Subsystem, that this class wraps. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1CameraManager}{CameraManager} $\ast$ \hyperlink{classphys_1_1Camera_a909203ede748deb1b587a8758ba8cec4}{CamManager}
+\begin{DoxyCompactList}\small\item\em This is the \hyperlink{classphys_1_1Camera}{Camera} manager that this camera is attached to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Camera_a1cacd07efb11226da49a7c80569b18e8}{
+class {\bfseries WorldNode}}
+\label{d9/df8/classphys_1_1Camera_a1cacd07efb11226da49a7c80569b18e8}
+
+\item 
+\hypertarget{classphys_1_1Camera_afae5bf9a900e8c5bc70c9332785e8465}{
+class {\bfseries CameraManager}}
+\label{d9/df8/classphys_1_1Camera_afae5bf9a900e8c5bc70c9332785e8465}
+
+\item 
+\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&PHYS\_\-LIB \hyperlink{classphys_1_1Camera_a903516ddc793b1d17d4d766a13bd6962}{operator$>$$>$} (\hyperlink{classphys_1_1xml_1_1Node}{xml::Node} \&OneNode, \hyperlink{classphys_1_1Camera}{Camera} \&Ev)
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is the camera class. This class contains all the functionality needed to manipulate an individual camera that has been created. \begin{Desc}
+\item[\hyperlink{todo__todo000005}{Todo}]Fix all the extra occurences of the word \hyperlink{classphys_1_1Camera}{Camera} in Function names on the camera. \end{Desc}
+
+
+Definition at line 99 of file camera.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86a}{
+\index{phys::Camera@{phys::Camera}!ProjectionType@{ProjectionType}}
+\index{ProjectionType@{ProjectionType}!phys::Camera@{phys::Camera}}
+\paragraph[{ProjectionType}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::Camera::ProjectionType}}\hfill}
+\label{d9/df8/classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86a}
+
+
+Values for storing how perspective should be interpretted. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{Orthographic@{Orthographic}!phys::Camera@{phys::Camera}}\index{phys::Camera@{phys::Camera}!Orthographic@{Orthographic}}\item[{\em 
+\hypertarget{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86aa6a71e6ab2139c8fc4d48d64aa9717f02}{
+Orthographic}
+\label{d9/df8/classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86aa6a71e6ab2139c8fc4d48d64aa9717f02}
+}]Not at all, objects at any distance are the same size. \index{Perspective@{Perspective}!phys::Camera@{phys::Camera}}\index{phys::Camera@{phys::Camera}!Perspective@{Perspective}}\item[{\em 
+\hypertarget{classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86aacfe21986c8c655b8d19ebd76118de055}{
+Perspective}
+\label{d9/df8/classphys_1_1Camera_a87d8d46e9eb2080b10712079be69d86aacfe21986c8c655b8d19ebd76118de055}
+}]Normal perspective. \end{description}
+\end{Desc}
+
+
+
+Definition at line 103 of file camera.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1Camera_a863e7b7a0fb4db7969014d8391b5ca30}{
+\index{phys::Camera@{phys::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!phys::Camera@{phys::Camera}}
+\paragraph[{Camera}]{\setlength{\rightskip}{0pt plus 5cm}phys::Camera::Camera (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{ Name, }
+\item[{{\bf CameraManager} $\ast$}]{ Manager}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a863e7b7a0fb4db7969014d8391b5ca30}
+
+
+Basic \hyperlink{classphys_1_1Camera}{Camera} Constructor. 
+
+This is the basic constructor for the \hyperlink{classphys_1_1Camera}{Camera} class. 
+
+Definition at line 47 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a0510d4f9bf6fb195115272cbd116e8dd}{
+\index{phys::Camera@{phys::Camera}!Camera@{Camera}}
+\index{Camera@{Camera}!phys::Camera@{phys::Camera}}
+\paragraph[{Camera}]{\setlength{\rightskip}{0pt plus 5cm}phys::Camera::Camera (
+\begin{DoxyParamCaption}
+\item[{Ogre::Camera $\ast$}]{ Camera, }
+\item[{{\bf CameraManager} $\ast$}]{ Manager}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a0510d4f9bf6fb195115272cbd116e8dd}
+
+
+Ogre Cam Constructor. 
+
+This is for internal use only and shouldn't be called manually. 
+
+Definition at line 53 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_aa45f340a6f7ba0970aa2602a928463ea}{
+\index{phys::Camera@{phys::Camera}!$\sim$Camera@{$\sim$Camera}}
+\index{$\sim$Camera@{$\sim$Camera}!phys::Camera@{phys::Camera}}
+\paragraph[{$\sim$Camera}]{\setlength{\rightskip}{0pt plus 5cm}phys::Camera::$\sim$Camera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d9/df8/classphys_1_1Camera_aa45f340a6f7ba0970aa2602a928463ea}
+
+
+Class Destructor. 
+
+The Class Destructor. 
+
+Definition at line 68 of file camera.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1Camera_a01d119eb8bd10a8654493b043110ca0f}{
+\index{phys::Camera@{phys::Camera}!GetCameraToViewportRay@{GetCameraToViewportRay}}
+\index{GetCameraToViewportRay@{GetCameraToViewportRay}!phys::Camera@{phys::Camera}}
+\paragraph[{GetCameraToViewportRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} phys::Camera::GetCameraToViewportRay (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Screenx, }
+\item[{{\bf Real}}]{ Screeny}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{d9/df8/classphys_1_1Camera_a01d119eb8bd10a8654493b043110ca0f}
+
+
+Gets a \hyperlink{classphys_1_1Ray}{Ray} from the camera to the viewport. 
+
+This will cast a ray from the camera to the viewport and return it. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Screenx}]A Real representing the relative location on screen, on the x axis(0.0-\/1.0). \item[{\em Screeny}]A Real representing the relative location on screen, on the y axis(0.0-\/1.0). \end{DoxyParams}
+
+
+Definition at line 193 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_aa79582e78a3eff11a8c4fe9c058566b0}{
+\index{phys::Camera@{phys::Camera}!GetCameraType@{GetCameraType}}
+\index{GetCameraType@{GetCameraType}!phys::Camera@{phys::Camera}}
+\paragraph[{GetCameraType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera::ProjectionType} phys::Camera::GetCameraType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{d9/df8/classphys_1_1Camera_aa79582e78a3eff11a8c4fe9c058566b0}
+
+
+Get the type of projection used by the camera. 
+
+\begin{DoxyReturn}{Returns}
+A ProjectionType that will identify the kind of projection this camera uses. 
+\end{DoxyReturn}
+
+
+Definition at line 92 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a1f4126761e14d9b960395c79b6c4f13f}{
+\index{phys::Camera@{phys::Camera}!GetFixedYawAxis@{GetFixedYawAxis}}
+\index{GetFixedYawAxis@{GetFixedYawAxis}!phys::Camera@{phys::Camera}}
+\paragraph[{GetFixedYawAxis}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Camera::GetFixedYawAxis (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{d9/df8/classphys_1_1Camera_a1f4126761e14d9b960395c79b6c4f13f}
+
+
+If fixed yaw is enabled, on which axis is yawing disabled. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector3}{Vector3} of 0s if disable, otherwise this return the Fixed Yaw Axis. 
+\end{DoxyReturn}
+
+
+Definition at line 173 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a7f71146cd533f6a1fc8426a9ed40b763}{
+\index{phys::Camera@{phys::Camera}!GetGlobalLocation@{GetGlobalLocation}}
+\index{GetGlobalLocation@{GetGlobalLocation}!phys::Camera@{phys::Camera}}
+\paragraph[{GetGlobalLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Camera::GetGlobalLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{d9/df8/classphys_1_1Camera_a7f71146cd533f6a1fc8426a9ed40b763}
+
+
+Gets the global/absolute location of the camera. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{phys::Vector3} containing the location of this object as an offset from the global origin. 
+\end{DoxyReturn}
+
+
+Definition at line 210 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_ae24490b8589796cb5f51d291cc418d84}{
+\index{phys::Camera@{phys::Camera}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::Camera@{phys::Camera}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& phys::Camera::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d9/df8/classphys_1_1Camera_ae24490b8589796cb5f51d291cc418d84}
+
+
+Gets the camera's set name. 
+
+\begin{DoxyReturn}{Returns}
+Returns a string containing the camera's name. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1Attachable_a0a07d727fa2630dc3550fd991ca28256}{phys::Attachable}.
+
+
+
+Definition at line 73 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a4f78f7a62580fa538d5bf2cb361644b2}{
+\index{phys::Camera@{phys::Camera}!GetOgreCamera@{GetOgreCamera}}
+\index{GetOgreCamera@{GetOgreCamera}!phys::Camera@{phys::Camera}}
+\paragraph[{GetOgreCamera}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Camera $\ast$ phys::Camera::GetOgreCamera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{d9/df8/classphys_1_1Camera_a4f78f7a62580fa538d5bf2cb361644b2}
+
+
+Gets the internal camera this camera is based on. 
+
+\begin{DoxyInternal}{For internal use only.}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Ogre \hyperlink{classphys_1_1Camera}{Camera} this camera is based on. 
+\end{DoxyReturn}
+\end{DoxyInternal}
+
+
+Definition at line 235 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a48e0b33e0f12247bc0a0e0d6f759683e}{
+\index{phys::Camera@{phys::Camera}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!phys::Camera@{phys::Camera}}
+\paragraph[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::Camera::GetOrientation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{d9/df8/classphys_1_1Camera_a48e0b33e0f12247bc0a0e0d6f759683e}
+
+
+Gets the direction the camera is facing. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Quaternion}{phys::Quaternion} representing how the camera is rotated. 
+\end{DoxyReturn}
+
+
+Definition at line 215 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_ae3dc70090e83e19a9c5f6df302bb57a5}{
+\index{phys::Camera@{phys::Camera}!GetRelativeLocation@{GetRelativeLocation}}
+\index{GetRelativeLocation@{GetRelativeLocation}!phys::Camera@{phys::Camera}}
+\paragraph[{GetRelativeLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::Camera::GetRelativeLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{d9/df8/classphys_1_1Camera_ae3dc70090e83e19a9c5f6df302bb57a5}
+
+
+Gets the relative location of the camera. 
+
+Gets the location of the camera, relative to any parent \hyperlink{classphys_1_1WorldNode}{WorldNode}. \begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{phys::Vector3} with the location of the camera as though the Parent \hyperlink{classphys_1_1WorldNode}{WorldNode} were the origin. 
+\end{DoxyReturn}
+
+
+Definition at line 205 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a9b0aa17df46c427ab531bd587bd76e0f}{
+\index{phys::Camera@{phys::Camera}!IsFixedYawEnabled@{IsFixedYawEnabled}}
+\index{IsFixedYawEnabled@{IsFixedYawEnabled}!phys::Camera@{phys::Camera}}
+\paragraph[{IsFixedYawEnabled}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Camera::IsFixedYawEnabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{d9/df8/classphys_1_1Camera_a9b0aa17df46c427ab531bd587bd76e0f}
+
+
+Is fixed yaw enabled. 
+
+\begin{DoxyReturn}{Returns}
+True if it is enable, such as the default setting, or false if it is not enabled. 
+\end{DoxyReturn}
+
+
+Definition at line 170 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a6534be5001bf06ab4c4b32a084629842}{
+\index{phys::Camera@{phys::Camera}!LookAt@{LookAt}}
+\index{LookAt@{LookAt}!phys::Camera@{phys::Camera}}
+\paragraph[{LookAt}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::LookAt (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ TargetLoc}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a6534be5001bf06ab4c4b32a084629842}
+
+
+Sets the direction the camera faces. 
+
+Sets the direction the camera faces. Will also take orientation into account. 
+\begin{DoxyParams}{Parameters}
+\item[{\em TargetLoc}]The location in the game world to look at. \end{DoxyParams}
+
+
+Definition at line 152 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a181465e6add36c07a63fdd26aee7c69a}{
+\index{phys::Camera@{phys::Camera}!ResetZoom@{ResetZoom}}
+\index{ResetZoom@{ResetZoom}!phys::Camera@{phys::Camera}}
+\paragraph[{ResetZoom}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::ResetZoom (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a181465e6add36c07a63fdd26aee7c69a}
+
+
+Resets the zoom level back to the default. 
+
+This function will return the zoom level back to normal. Note this function will only work if the camera is attached to a node. 
+
+Definition at line 226 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a6f895759e653eedb985217c621b265f6}{
+\index{phys::Camera@{phys::Camera}!SetAspectRatio@{SetAspectRatio}}
+\index{SetAspectRatio@{SetAspectRatio}!phys::Camera@{phys::Camera}}
+\paragraph[{SetAspectRatio}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetAspectRatio (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Ratio}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a6f895759e653eedb985217c621b265f6}
+
+
+Sets the aspect ratio of the cameras veiw. 
+
+This function will set the aspect ratio between the width and height of the cameras viewing area. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Ratio}]A Real that represents the aspect ratio, where Ratio = width / height. \end{DoxyParams}
+
+
+Definition at line 147 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_ac3a8ffec5fa70fa4981fc25815fdc8a3}{
+\index{phys::Camera@{phys::Camera}!SetCameraType@{SetCameraType}}
+\index{SetCameraType@{SetCameraType}!phys::Camera@{phys::Camera}}
+\paragraph[{SetCameraType}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetCameraType (
+\begin{DoxyParamCaption}
+\item[{{\bf ProjectionType}}]{ Type}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_ac3a8ffec5fa70fa4981fc25815fdc8a3}
+
+
+Sets the type of projection to be used with this camera. 
+
+By default, all cameras are enabled with Perspective projection. This is the standard 3-\/dimentional view anyone would expect in a 3D world. Orthographic projection is useful when displaying 2D worlds, or only 2 dimentions of a 3D world. It enables you to see the entire side of an object without regard for camera perspective. Perspective can be thought of as a pyramid, with the camera at the top of the cone. Orthographic would instead be a cube. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Type}]The type of projection to be used. \end{DoxyParams}
+
+
+Definition at line 78 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a50746cdd4f7d483edffe87d24d2b4bc6}{
+\index{phys::Camera@{phys::Camera}!SetDirection@{SetDirection}}
+\index{SetDirection@{SetDirection}!phys::Camera@{phys::Camera}}
+\paragraph[{SetDirection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetDirection (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Direction}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a50746cdd4f7d483edffe87d24d2b4bc6}
+
+
+Sets the Direction for the camera. 
+
+Sets which axis the camera will look down for rendering. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Direction}]The vector3 representing the axis to be used. \end{DoxyParams}
+
+
+Definition at line 127 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a25408db8110ac5035fafbd58a5b1106d}{
+\index{phys::Camera@{phys::Camera}!SetFarClipDistance@{SetFarClipDistance}}
+\index{SetFarClipDistance@{SetFarClipDistance}!phys::Camera@{phys::Camera}}
+\paragraph[{SetFarClipDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetFarClipDistance (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ FarDist}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a25408db8110ac5035fafbd58a5b1106d}
+
+
+Sets the long range clip distance. 
+
+Sets the distance at which objects are considered too far to render. 
+\begin{DoxyParams}{Parameters}
+\item[{\em FarDist}]A Real representing the distance. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \end{DoxyParams}
+
+
+Definition at line 142 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a1b4d5be85c528541c7a1cbebb41bfd89}{
+\index{phys::Camera@{phys::Camera}!SetFixedYawAxis@{SetFixedYawAxis}}
+\index{SetFixedYawAxis@{SetFixedYawAxis}!phys::Camera@{phys::Camera}}
+\paragraph[{SetFixedYawAxis}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetFixedYawAxis (
+\begin{DoxyParamCaption}
+\item[{bool}]{ UseFixed}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a1b4d5be85c528541c7a1cbebb41bfd89}
+
+
+Sets whether to lock rotation around the Y axis. 
+
+This function will lock rotations around the Y axis. This function is automatically called on by the camera constructor to enable camera yawing. 
+\begin{DoxyParams}{Parameters}
+\item[{\em UseFixed}]Enable or disable the locking of the axis. \end{DoxyParams}
+
+
+Definition at line 164 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a0fe097fbabbe1a88881f25bc827cabf5}{
+\index{phys::Camera@{phys::Camera}!SetFixedYawAxis@{SetFixedYawAxis}}
+\index{SetFixedYawAxis@{SetFixedYawAxis}!phys::Camera@{phys::Camera}}
+\paragraph[{SetFixedYawAxis}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetFixedYawAxis (
+\begin{DoxyParamCaption}
+\item[{bool}]{ UseFixed, }
+\item[{{\bf Vector3}}]{ Axis}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a0fe097fbabbe1a88881f25bc827cabf5}
+
+
+Sets whether to lock rotation around the Y axis. 
+
+This function will lock rotations around the Y axis (or another axis if you specify). This function is automatically called on by the camera constructor. 
+\begin{DoxyParams}{Parameters}
+\item[{\em UseFixed}]Enable or disable the locking of the axis. \item[{\em Axis}]The axis to lock, defaults to the Y axis. \end{DoxyParams}
+
+
+Definition at line 157 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_ab1fb572982464212b2fa33e2df6f688b}{
+\index{phys::Camera@{phys::Camera}!SetLocation@{SetLocation}}
+\index{SetLocation@{SetLocation}!phys::Camera@{phys::Camera}}
+\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetLocation (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector3}}]{ Location}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_ab1fb572982464212b2fa33e2df6f688b}
+
+
+Sets the location of a camera. 
+
+Sets the location of the specified camera. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Location}]The new location for the camera. \end{DoxyParams}
+
+
+Definition at line 122 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_aff7cb792640b250cafdfbc333de4bbeb}{
+\index{phys::Camera@{phys::Camera}!SetNearClipDistance@{SetNearClipDistance}}
+\index{SetNearClipDistance@{SetNearClipDistance}!phys::Camera@{phys::Camera}}
+\paragraph[{SetNearClipDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetNearClipDistance (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ NearDist}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_aff7cb792640b250cafdfbc333de4bbeb}
+
+
+Sets the short range clip distance. 
+
+Sets the distance at which objects are considered too close to render. 
+\begin{DoxyParams}{Parameters}
+\item[{\em NearDist}]A Real representing the distance. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \end{DoxyParams}
+
+
+Definition at line 137 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_af0822410414622c2a3c8b4da207b53ab}{
+\index{phys::Camera@{phys::Camera}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!phys::Camera@{phys::Camera}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Quaternion}}]{ Orientation}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_af0822410414622c2a3c8b4da207b53ab}
+
+
+Sets the orientation of the camera. 
+
+This function will set the orientation of the specified camera via a quaternion. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Orientation}]The quaternion representing the new orientation. \end{DoxyParams}
+
+
+Definition at line 132 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a6a5b1aa3d453486354b24b7e4b918988}{
+\index{phys::Camera@{phys::Camera}!SetOrthoWindow@{SetOrthoWindow}}
+\index{SetOrthoWindow@{SetOrthoWindow}!phys::Camera@{phys::Camera}}
+\paragraph[{SetOrthoWindow}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetOrthoWindow (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Width, }
+\item[{{\bf Real}}]{ Height}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a6a5b1aa3d453486354b24b7e4b918988}
+
+
+Defines the size of the Orthographic projection window. 
+
+This function will change the aspect ratio of the screen, determined by the values passed in. To set the window size without changing the aspect ratio, call either the SetOrthoWindowHeight, or SetOrthoWindowWidth functions. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Width}]The new width of the projection window. \item[{\em Height}]The new height of the projection window. \end{DoxyParams}
+
+
+Definition at line 107 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a41f859ab51712fb465416e4c7edd29ff}{
+\index{phys::Camera@{phys::Camera}!SetOrthoWindowHeight@{SetOrthoWindowHeight}}
+\index{SetOrthoWindowHeight@{SetOrthoWindowHeight}!phys::Camera@{phys::Camera}}
+\paragraph[{SetOrthoWindowHeight}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetOrthoWindowHeight (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Height}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a41f859ab51712fb465416e4c7edd29ff}
+
+
+Defines the size of the Orthographic projection window. 
+
+This function will not change the aspect ratio of the screen, unlike SetOrthoWindow. The aspect ratio will be preserved and the Width of the screen automatically recalculated based on the Height passed in. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Height}]The new height of the projection window. \end{DoxyParams}
+
+
+Definition at line 112 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_abe6bb6c5d46ca588026fb163b4e5d387}{
+\index{phys::Camera@{phys::Camera}!SetOrthoWindowWidth@{SetOrthoWindowWidth}}
+\index{SetOrthoWindowWidth@{SetOrthoWindowWidth}!phys::Camera@{phys::Camera}}
+\paragraph[{SetOrthoWindowWidth}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::SetOrthoWindowWidth (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Width}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_abe6bb6c5d46ca588026fb163b4e5d387}
+
+
+Defines the size of the Orthographic projection window. 
+
+This function will not change the aspect ratio of the screen, unlike SetOrthoWindow. The aspect ratio will be preserved and the Height of the screen automatically recalculated based on the Width passed in. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Width}]The new width of the projection window. \end{DoxyParams}
+
+
+Definition at line 117 of file camera.cpp.
+
+\hypertarget{classphys_1_1Camera_a1cb593d12be4e6e1e51cb8f74ce2d97c}{
+\index{phys::Camera@{phys::Camera}!ZoomCamera@{ZoomCamera}}
+\index{ZoomCamera@{ZoomCamera}!phys::Camera@{phys::Camera}}
+\paragraph[{ZoomCamera}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Camera::ZoomCamera (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{ Zoom}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/df8/classphys_1_1Camera_a1cb593d12be4e6e1e51cb8f74ce2d97c}
+
+
+Will zoom in or out the camera. 
+
+This function will zoom in the camera by the amount specified. 
+\begin{DoxyParams}{Parameters}
+\item[{\em Zoom}]A Real of how much to zoom in by. Note: This number directly corolates to the dimentions you provide in the constructor for the physgame. You should understand your games scale before setting this number. \end{DoxyParams}
+
+
+Definition at line 220 of file camera.cpp.
+
+
+
+\subsubsection{Friends And Related Function Documentation}
+\hypertarget{classphys_1_1Camera_a903516ddc793b1d17d4d766a13bd6962}{
+\index{phys::Camera@{phys::Camera}!operator$>$$>$@{operator$>$$>$}}
+\index{operator$>$$>$@{operator$>$$>$}!phys::Camera@{phys::Camera}}
+\paragraph[{operator$>$$>$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf xml::Node}\& PHYS\_\-LIB operator$>$$>$ (
+\begin{DoxyParamCaption}
+\item[{{\bf xml::Node} \&}]{ OneNode, }
+\item[{{\bf Camera} \&}]{ Ev}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}friend\mbox{]}}}\hfill}
+\label{d9/df8/classphys_1_1Camera_a903516ddc793b1d17d4d766a13bd6962}
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+\subsubsection{Member Data Documentation}
+\hypertarget{classphys_1_1Camera_a91622148b9b9a9ae1554c828f7e2fc89}{
+\index{phys::Camera@{phys::Camera}!Cam@{Cam}}
+\index{Cam@{Cam}!phys::Camera@{phys::Camera}}
+\paragraph[{Cam}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Camera$\ast$ {\bf phys::Camera::Cam}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{d9/df8/classphys_1_1Camera_a91622148b9b9a9ae1554c828f7e2fc89}
+
+
+This is the \hyperlink{classphys_1_1Camera}{Camera} used by the graphics Subsystem, that this class wraps. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 133 of file camera.h.
+
+\hypertarget{classphys_1_1Camera_a909203ede748deb1b587a8758ba8cec4}{
+\index{phys::Camera@{phys::Camera}!CamManager@{CamManager}}
+\index{CamManager@{CamManager}!phys::Camera@{phys::Camera}}
+\paragraph[{CamManager}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CameraManager}$\ast$ {\bf phys::Camera::CamManager}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
+\label{d9/df8/classphys_1_1Camera_a909203ede748deb1b587a8758ba8cec4}
+
+
+This is the \hyperlink{classphys_1_1Camera}{Camera} manager that this camera is attached to. 
+
+\begin{DoxyInternal}{For internal use only.}
+\end{DoxyInternal}
+
+
+Definition at line 137 of file camera.h.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+camera.h\item 
+camera.cpp\end{DoxyCompactItemize}

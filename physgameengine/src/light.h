@@ -47,6 +47,9 @@
 #include "vector3.h"
 #include "xml.h"
 
+/// @file light.h
+/// @brief Declaration of phys::Light
+
 namespace Ogre
 {
     class Light;
@@ -80,36 +83,69 @@ namespace phys
                 Spotlight   = 2     ///< From a point emanating in a cone, like a flashlight, hooded lantern, really bright computer screens, flood lights, older style space heaters, Concert lights, camera flashes, etc...
             };
         protected:
-            friend class WorldNode;
             /// @brief The ogre light this class gets it's functionality from.
             Ogre::Light* OgreLight;
             /// @brief Pointer to the manager that created this class.
             SceneManager* Manager;
         public:
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Construction
+
             /// @brief Standard initialization constructor.
             /// @param Name The name of this light.
             /// @param manager Pointer to the manager that this light is to be used in.
             Light(const String& Name, SceneManager* manager);
+
+            /// @internal
             /// @brief Internal Constructor
             /// @details This constructor should not be called on manually.
             /// @param light The Ogre light this class is based on.
             /// @param manager Pointer to the manager that this light is to be used in.
             Light(Ogre::Light* light, SceneManager* manager);
+
             /// @brief Class destructor.
             virtual ~Light();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Meta
+
             /// @brief Gets the name of this light.
             /// @return Returns a string containing the name given to this light.
             ConstString& GetName() const;
+
             /// @brief Sets the type of light this light is.
             /// @details The light types are listed with the class info.  Types are Directional, Point, and Spotlight.
             /// @param Type The enum value representing the type of light this is.
             void SetType(Light::LightType Type);
+            /// @brief Gets the type of light that this light is.
+            /// @return Returns an enum value for this lights type.
+            Light::LightType GetType() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// 3d navigation
+
             /// @brief Sets the location from where the light will originate.
             /// @param Location A vector3 representing the location to set the light.
-            void SetLocation(Vector3 Location);
+            /// @details Not used in Directional Lights
+            void SetLocation(const Vector3& Location);
             /// @brief Sets the direction the light will originate from.
             /// @param Direction A vector3 representing the direction the light will come from.
-            void SetDirection(Vector3 Direction);
+            void SetDirection(const Vector3& Direction);
+            /// @details Not used in point lights
+
+            /// @brief Gets the current location of the light.
+            /// @return Returns a vector3 representing the location of the light.
+            /// @details Not used in Directional Lights
+            Vector3 GetLocation() const;
+            /// @brief Gets the currently set direction of the light.
+            /// @return Returns a vector3 representing the set direction of the light.
+            /// @details Not used in point lights
+            Vector3 GetDirection() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Colour
+
             /// @brief Sets the colour for the Diffuse light from this source.
             /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.
             /// The 3 types are: Diffuse, Specular, and Ambient.
@@ -120,7 +156,7 @@ namespace phys
             /// @brief Sets the colour for the Diffuse light from this source.
             /// @details This allows the setting of Diffuse color by a premade ColourValue.
             /// @param Colour ColourValue representing the color of the light to be set.
-            void SetDiffuseColour(ColourValue &Colour);
+            void SetDiffuseColour(const ColourValue &Colour);
             /// @brief Sets the colour for the Specular light from this source.
             /// @details When rendering the final color of an object values of the colours of 3 types of lights are taken into account.
             /// The 3 types are: Diffuse, Specular, and Ambient.
@@ -131,50 +167,25 @@ namespace phys
             /// @brief Sets the colour for the Specular light from this source.
             /// @details This allows the setting of Specular color by a premade ColourValue.
             /// @param Colour ColourValue representing the color of the light to be set.
-            void SetSpecularColour(ColourValue &Colour);
-            /// @brief Sets the factors for the attenuation formula applied to this light.
-            /// @details This function is only necessary when using a spotlight or point type of light.
-            /// @param Range The absolute range of the light in world units.  Objects beyond this range will not be influenced by this light.
-            /// @param Constant The constant of the attenuation, ranging from 0.0 to 1.0.  1.0 means never attenuate, 0.0 is complete attenuation.
-            /// @param Linear The linear factor of the attentuation, ranging from 0.0 to 1.0.  1.0 means attenuate evenly over the distance.
-            /// @param Quadratic The Quadratic factor of the attenuation.  This value adds curvature to the attenuation.
-            void SetAttenuation(Real Range, Real Constant, Real Linear, Real Quadratic);
-            /// @brief Defines the cone of light emitted by a spotlight.
-            /// @details InnerAngle and OuterAngle should be input as Radians.
-            /// @param InnerAngle Angle of the inner cone.
-            /// @param OuterAngle Angle of the outer cone.
-            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.
-            /// Less means slower falloff and higher means faster falloff.
-            void SetSpotlightRange(Real InnerAngle, Real OuterAngle, Real Falloff=1.0);
-            /// @brief Sets the Inner angle of the cone of light emitted by a spotlight.
-            /// @param InnerAngle Angle of the inner cone.
-            void SetSpotlightInnerAngle(Real InnerAngle);
-            /// @brief Sets the Outer angle of the cone of light emitted by a spotlight.
-            /// @param OuterAngle Angle of the outer cone.
-            void SetSpotlightOuterAngle(Real OuterAngle);
-            /// @brief Sets the rate of falloff of the cone of light emitted by a spotlight.
-            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.
-            /// Less means slower falloff and higher means faster falloff.
-            void SetSpotlightFalloff(Real Falloff);
-            /// @brief Sets the lights power scale.
-            /// @details The power scale of the light is a scaling factor indicating the relative power of the light.
-            /// @param Power Real representing the factor by which to scale the power of the light.
-            void SetPowerScale(Real Power);
-            /// @brief Gets the type of light that this light is.
-            /// @return Returns an enum value for this lights type.
-            Light::LightType GetType() const;
-            /// @brief Gets the current location of the light.
-            /// @return Returns a vector3 representing the location of the light.
-            Vector3 GetLocation() const;
-            /// @brief Gets the currently set direction of the light.
-            /// @return Returns a vector3 representing the set direction of the light.
-            Vector3 GetDirection() const;
+            void SetSpecularColour(const ColourValue &Colour);
+
             /// @brief Gets the current colour of the diffuse light.
             /// @return Returns a colourvalue representing the currently set Diffuse light.
             ColourValue GetDiffuseColour() const;
             /// @brief Gets the current colour of the specular light.
             /// @return Returns a colourvalue representing the currently set Specular light.
             ColourValue GetSpecularColour() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Attenuation
+
+            /// @brief Sets the factors for the attenuation formula applied to this light.
+            /// @details This function is only applicable when using a spotlight or point type of light.
+            /// @param Range The absolute range of the light in world units.  Objects beyond this range will not be influenced by this light.
+            /// @param Constant The constant of the attenuation, ranging from 0.0 to 1.0.  1.0 means never attenuate, 0.0 is complete attenuation.
+            /// @param Linear The linear factor of the attentuation, ranging from 0.0 to 1.0.  1.0 means attenuate evenly over the distance.
+            /// @param Quadratic The Quadratic factor of the attenuation.  This value adds curvature to the attenuation.
+            void SetAttenuation(Real Range, Real Constant, Real Linear, Real Quadratic);
             /// @brief Gets the absolute range of attenuation in world units.
             /// @return Returns a real representing the absolute range of attenuation.
             Real GetAttenuationRange() const;
@@ -187,6 +198,28 @@ namespace phys
             /// @brief Gets the quadric factor of the attenuation.
             /// @return Returns a real representing the quadric factor of attenuation.
             Real GetAttenuationQuadric() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Spotlight specific methods
+
+            /// @brief Defines the cone of light emitted by a spotlight.
+            /// @details InnerAngle and OuterAngle should be input as Radians.
+            /// @param InnerAngle Angle of the inner cone in radians.
+            /// @param OuterAngle Angle of the outer cone in radions.
+            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.
+            /// Less means slower falloff and higher means faster falloff.
+            void SetSpotlightRange(Real InnerAngle, Real OuterAngle, Real Falloff=1.0);
+            /// @brief Sets the Inner angle of the cone of light emitted by a spotlight.
+            /// @param InnerAngle Angle of the inner cone in radians.
+            void SetSpotlightInnerAngle(Real InnerAngle);
+            /// @brief Sets the Outer angle of the cone of light emitted by a spotlight.
+            /// @param OuterAngle Angle of the outer cone in radians.
+            void SetSpotlightOuterAngle(Real OuterAngle);
+            /// @brief Sets the rate of falloff of the cone of light emitted by a spotlight.
+            /// @param Falloff The rate of falloff between the inner and outer cones.  1.0 means linear falloff.
+            /// Less means slower falloff and higher means faster falloff.
+            void SetSpotlightFalloff(Real Falloff);
+
             /// @brief Gets the Inner angle of the cone of light emitted by this spotlight.
             /// @return Returns a real representing the inner angle of this spotlight, in radians.
             Real GetSpotlightInnerAngle() const;
@@ -196,9 +229,30 @@ namespace phys
             /// @brief Gets the rate of falloff of the cone of light emitted by this spotlight.
             /// @return Returns a real representing the falloff of the cone of light.
             Real GetSpotlightFalloff() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Effects
+
             /// @brief Gets the lights power scale.
             /// @return Returns a real representing the power scale of the light.
+            /// @details Only used with HDR ( High Dynamic Range ) rendering
             Real GetPowerScale() const;
+
+            /// @brief Sets the lights power scale.
+            /// @details The power scale of the light is a scaling factor indicating the relative power of the light.
+            /// @param Power Real representing the factor by which to scale the power of the light.
+            void SetPowerScale(Real Power);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Inherited From Attachable
+
+            /// @brief What kind of Attachable is this.
+            /// @return An Attachable::GetAttachableType containing Attachable::Light.
+            virtual Attachable::AttachableElement GetAttachableType() const;
+
+            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
+
+            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
     };
 }//phys
 

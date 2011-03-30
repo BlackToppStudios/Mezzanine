@@ -42,7 +42,15 @@
 
 #include "crossplatformexport.h"
 #include "datatypes.h"
+#include "vector3.h"
 
+/// @file attachable.h
+/// @brief Contains the phys::Attachable Class and phys::Attachable::AttachableElement enumeration declarations
+
+namespace Ogre
+{
+    class SceneNode;
+}
 
 namespace phys
 {
@@ -53,7 +61,8 @@ namespace phys
     /// @class Attachable
     /// @headerfile attachable.h
     /// @brief This is just a base class to be used by elements that are attachable to worldnodes.
-    /// @details This class is useless on it's own and should not be created manually.
+    /// @details This class is useless on it's own and should not be created manually. These can
+    /// be created by the phys::SceneManager.
     ///////////////////////////////////////
     class PHYS_LIB Attachable
     {
@@ -66,40 +75,98 @@ namespace phys
                 None            = 0, ///< This is no-type of object, only used in error conditions
                 Camera          = 1, ///< This is a phys::Camera
                 Light           = 2, ///< This is a phys::Light
-                ParticleEffect  = 3  ///< This is a phys::ParticleEffect
+                ParticleEffect  = 3, ///< This is a phys::ParticleEffect
+                WorldNode       = 4  ///< This is a phys::WorldNode
             };
         protected:
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Data Members
+
             /// @brief Enum value representing the type of element this is.
             Attachable::AttachableElement ElementType;
 
-            /// @brief Sets the type of element this class is.
-            /// @param Type Value representing the type of element to be set.
-            void SetElementType(Attachable::AttachableElement Type);
-
             /// @brief The WorldNode this is attached to or null if not attached.
-            WorldNode* AttachedTo;
+            phys::WorldNode* AttachedTo;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Set data
 
             /// @brief This changes the WorldNode that this thinks it is attached to.
-            /// @param NextWorldNode A pointer to the WorldNode this should think it is attached to.
-            void SetAttachedTo(WorldNode* NextWorldNode);
+            /// @param Target A pointer to the WorldNode this should think it is attached to.
+            virtual void SetAttachedTo(phys::WorldNode* Target);
 
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Construction
+
             /// @brief No initialization class constructor.
             Attachable();
+
+            /// @brief Create this already attached
+            /// @param _AttachedToWorldNode The WorldNode that this is attached to.
+            Attachable(phys::WorldNode* _AttachedToWorldNode);
 
             /// @brief Class destructor.
             virtual ~Attachable();
 
-            /// @brief Gets the type of element this is.
-            /// @return Returns an enum value indicating what type of element this is.
-            Attachable::AttachableElement GetElementType() const;
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Attachment management
 
             /// @brief Gets the WorldNode this thinks it is attached to.
             /// @return Returns a pointer to the WorldNode this is attached to.
-            WorldNode* GetAttachedTo() const;
+            phys::WorldNode* GetAttachedTo() const;
+
+            /// @brief Attach this to a WorldNode
+            /// @param Target the Target WorldNode
+            /// @details By default this calls AttachObjectFinal() on the worldnode. This can an should
+            /// be overridden if there are an special behaviors that need to be performed when
+            /// this is attached to a WorldNode. This is the function a WorldNode will call
+            /// to attach an object to itself. If overridden this should definitely be called
+            /// or the basic functionality should be duplicated.
+            virtual void AttachTo(phys::WorldNode* Target);
+
+            /// @brief Detach from the WorldNode
+            /// @details This is the function a WorldNode will call on destruction or when
+            /// detaching objects from itself. By default this just calls DetachObjectFinal()
+            /// on the World Node. If overridden this should definitely be called or the
+            /// basic functionality should be duplicated. If any Special Behaviors need to
+            /// be performed when detaching from a node this is function to overide.
+            virtual void DetachFrom();
+
+            /// @internal
+            /// @brief Does the Final Work to attach on the Attachable Side, should only be called by WorldNode::AttachFinal
+            /// @param RawTarget Any Raw data that need to be passed to finalize attaching
+            /// @param Target a pointer to the Worldnode being attached to.
+            /// @details This Sets the attaching pointer appropriately, This must be done if overiding this functioning. Any
+            /// other specific items relating directly to attaching should happen here. In general other attaching dependent
+            /// behaviors should not go here. This is called from WorldNode::AttachObjectFinal().
+            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
+
+            /// @internal
+            /// @brief Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal
+            /// @details This Sets the attached pointer to 0, This must be done if overiding this functioning. Any
+            /// other specific items relating directly to detaching should happen here. In general other detaching dependent
+            /// behaviors should not go here. This is called from WorldNode::DetachObjectFinal().
+            /// @param RawTarget Any Raw data that need to be passed to finalize detaching
+            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Pure Virtual Functions
+
+            /// @brief Gets the type of element this is.
+            /// @return Returns an enum value indicating what type of element this is.
+            virtual Attachable::AttachableElement GetAttachableType() const = 0;
 
             /// @brief Gets the name of the attachable element.
             virtual ConstString& GetName() const = 0;
+
+            /// @brief Set the location of this atachable object relative to the object it is attached to.
+            /// @param vec The location.
+            virtual void SetLocation(const Vector3& Vec) = 0;
+
+            /// @brief Get the location of the attachable object, relative to the Object is is attached to.
+            /// @return A Vector3 with the location.
+            virtual Vector3 GetLocation() const = 0;
     };
 }//phys
 

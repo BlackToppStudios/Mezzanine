@@ -1,0 +1,61 @@
+\hypertarget{classphys_1_1EventQuit}{
+\subsection{phys::EventQuit Class Reference}
+\label{dd/dea/classphys_1_1EventQuit}\index{phys::EventQuit@{phys::EventQuit}}
+}
+
+
+This is intended to convey the message that quitting needs to happen.  
+
+
+
+
+{\ttfamily \#include $<$eventquit.h$>$}
+
+Inheritance diagram for phys::EventQuit:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{dd/dea/classphys_1_1EventQuit}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classphys_1_1EventBase_a5e6a8564e127f654123f0bf6a2751923}{EventType} \hyperlink{classphys_1_1EventQuit_a3bfca875349e73dbda47c3c62a253e3b}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns EventType::QuitMessage. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is intended to convey the message that quitting needs to happen. This stores not data other than the fact that this is a Quit event. This means that either an underlying system like the OS or a service has requested a quit, or the application has manually put a quit message in the queue to signal that a graceful shutdown needs to occur. 
+
+Definition at line 63 of file eventquit.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1EventQuit_a3bfca875349e73dbda47c3c62a253e3b}{
+\index{phys::EventQuit@{phys::EventQuit}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::EventQuit@{phys::EventQuit}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventBase::EventType} phys::EventQuit::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{dd/dea/classphys_1_1EventQuit_a3bfca875349e73dbda47c3c62a253e3b}
+
+
+This returns EventType::QuitMessage. 
+
+This returns the kind of message this is, specifcally EventType::QuitMessage . If this functions returns EventType::QuitMessage, then and event pointer can safely be cast to \hyperlink{classphys_1_1EventQuit}{phys::EventQuit} . This method is inherited from phys::Event . 
+
+Implements \hyperlink{classphys_1_1EventBase_a1b3d29b6ecf30f18cc3e1825a515c508}{phys::EventBase}.
+
+
+
+Definition at line 52 of file eventquit.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+eventquit.h\item 
+eventquit.cpp\end{DoxyCompactItemize}

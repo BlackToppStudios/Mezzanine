@@ -53,6 +53,9 @@ namespace Ogre
     class Camera;
 }
 
+/// @file camera.h
+/// @brief Declaration of the phys::Camera class
+
 ///////////////////////////////////////////////////////////////////////////////
 // Class External << Operators for streaming or assignment
 #ifdef PHYSXML
@@ -114,7 +117,7 @@ namespace phys
             /// @internal
             /// @brief This is called by the called by the constructors, it is a single point of class initialization.
             /// @param Camera A pointer the graphics subsystem camera
-            /// @param Manager The camera manager this will be attached to
+            /// @param Manager The camera manager this will be attached to.
             void Construct(Ogre::Camera* Camera, CameraManager* Manager);
 
             /// @internal
@@ -125,7 +128,6 @@ namespace phys
             Vector3 YawAxis;
 
         protected:
-            friend class WorldNode;
             friend class CameraManager;
 
             /// @internal
@@ -185,7 +187,11 @@ namespace phys
             /// @brief Sets the location of a camera.
             /// @details Sets the location of the specified camera.
             /// @param Location The new location for the camera.
-            void SetLocation(const Vector3& Location);
+            virtual void SetLocation(const Vector3& Location);
+            // @brief Gets the relative location of the camera.
+            /// @details Gets the location of the camera, relative to any parent WorldNode.
+            /// @return A phys::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
+            virtual Vector3 GetLocation() const;
             /// @brief Gets the relative location of the camera.
             /// @details Gets the location of the camera, relative to any parent WorldNode.
             /// @return A phys::Vector3 with the location of the camera as though the Parent WorldNode were the origin.
@@ -193,6 +199,7 @@ namespace phys
             /// @brief Gets the global/absolute location of the camera.
             /// @return A phys::Vector3 containing the location of this object as an offset from the global origin.
             Vector3 GetGlobalLocation() const;
+
             /// @brief Sets the Direction for the camera.
             /// @details Sets which axis the camera will look down for rendering.
             /// @param Direction The vector3 representing the axis to be used.
@@ -200,6 +207,7 @@ namespace phys
             /// @brief Gets the direction the camera is currently facing.
             /// @return Returns a Vector3 representing the current direction the camera is facing.
             Vector3 GetDirection() const;
+
             /// @brief Sets the orientation of the camera.
             /// @details This function will set the orientation of the specified camera via a quaternion.
             /// @param Orientation The quaternion representing the new orientation.
@@ -207,6 +215,7 @@ namespace phys
             /// @brief Gets the direction the camera is facing.
             /// @return A phys::Quaternion representing how the camera is rotated.
             Quaternion GetOrientation() const;
+
             /// @brief Sets the short range clip distance.
             /// @details Sets the distance at which objects are considered too close to render.
             /// @param NearDist A Real representing the distance.  Note:  This number directly corolates to the dimentions
@@ -293,6 +302,17 @@ namespace phys
             /// @brief Gets the internal camera this camera is based on.
             /// @return Returns a pointer to the Ogre Camera this camera is based on.
             Ogre::Camera* GetOgreCamera() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Inherited From Attachable
+
+            /// @brief What kind of Attachable is this.
+            /// @return An Attachable::GetAttachableType containing Attachable::Camera.
+            virtual Attachable::AttachableElement GetAttachableType() const;
+
+            virtual void AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target);
+
+            virtual void DetachFromFinal(Ogre::SceneNode* RawTarget);
     };
 }//phys
 

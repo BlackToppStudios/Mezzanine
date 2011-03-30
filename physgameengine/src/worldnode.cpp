@@ -48,8 +48,13 @@
 #include "light.h"
 #include "particleeffect.h"
 #include "actorbase.h"
+#include "world.h"
 
 #include <Ogre.h>
+
+/// @file worldnode.cpp
+/// @brief The implementation of the WorldNode, A class to facilitate navigation in 3d environment
+
 
 namespace phys
 {
@@ -77,99 +82,14 @@ namespace phys
         return OgreNode->getName();
     }
 
-    void WorldNode::AttachElement(Attachable* Element)
+
+    void WorldNode::SetLocation(const Vector3& Location)
     {
-        Attachable::AttachableElement Type = Element->GetElementType();
-        switch (Type)
-        {
-            case Attachable::ParticleEffect:
-            {
-                ParticleEffect* particle = static_cast< ParticleEffect* > (Element);
-                OgreNode->addChild(particle->OgreNode);
-                //OgreNode->attachObject(particle->OgreParticle);
-            }
-            break;
-            case Attachable::Camera:
-            {
-                Camera* camera = static_cast< Camera* > (Element);
-                OgreNode->attachObject(camera->Cam);
-            }
-            break;
-            case Attachable::Light:
-            {
-                Light* light = static_cast< Light* > (Element);
-                OgreNode->attachObject(light->OgreLight);
-            }
-            break;
-            default:
-                throw(phys::Exception("Could not Attach element of unknown type to WorldNode."));
-                return;
-        }
-        Element->SetAttachedTo(this);
-        Elements.push_back(Element);
-        return;
+        OgreNode->setPosition(Location.GetOgreVector3());
     }
 
-    void WorldNode::DetachElement(Attachable* Element)
-    {
-        Attachable::AttachableElement Type = Element->GetElementType();
-        switch (Type)
-        {
-            case Attachable::ParticleEffect:
-            {
-                ParticleEffect* particle = static_cast< ParticleEffect* > (Element);
-                OgreNode->detachObject(particle->OgreParticle);
-            }
-            break;
-            case Attachable::Camera:
-            {
-                Camera* camera = static_cast< Camera* > (Element);
-                OgreNode->detachObject(camera->Cam);
-            }
-            break;
-            case Attachable::Light:
-            {
-                Light* light = static_cast< Light* > (Element);
-                OgreNode->detachObject(light->OgreLight);
-            }
-            break;
-            default:
-                throw(phys::Exception("Could not Detach element of unknown type to WorldNode."));
-                return;
-        }
-        Element->SetAttachedTo(0);
-        for( std::vector< Attachable* >::iterator it = Elements.begin() ; it != Elements.end() ; it++ )
-        {
-            if( Element == (*it) )
-            {
-                Elements.erase(it);
-                return;
-            }
-        }
-        return;
-    }
-
-    void WorldNode::DetachAllElements()
-    {
-        OgreNode->detachAllObjects();
-        Elements.clear();
-    }
-
-    Whole WorldNode::GetNumAttachedElements()
-    {
-        return Elements.size();
-    }
-
-    void WorldNode::SetPosition(Vector3 Position)
-    {
-        OgreNode->setPosition(Position.GetOgreVector3());
-    }
-
-    Vector3 WorldNode::GetPosition()
-    {
-        Vector3 Pos(OgreNode->getPosition());
-        return Pos;
-    }
+    Vector3 WorldNode::GetLocation() const
+        { return Vector3(OgreNode->getPosition()); }
 
     void WorldNode::SetOrientation(Quaternion Orientation)
     {
@@ -220,6 +140,68 @@ namespace phys
     {
         return Type;
     }
+
+    Attachable::AttachableElement WorldNode::GetAttachableType() const
+        { return Attachable::WorldNode; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Attachment child management
+
+    void WorldNode::AttachObject(Attachable* Target)
+        { Target->AttachTo(this); }
+
+    void WorldNode::DetachObject(Attachable* Target)
+        { Target->DetachFrom(); }
+
+    void WorldNode::AttachObjectFinal(Attachable* Target)
+    {
+        if(Target==this)
+            { World::GetWorldPointer()->LogAndThrow("Cannot Attach WorldNode To itself"); }
+        Target->AttachToFinal(OgreNode, this);
+        Elements.push_back(Target);
+    }
+
+    void WorldNode::DetachObjectFinal(Attachable* Target)
+    {
+        Target->DetachFromFinal(OgreNode);
+        for( std::vector< Attachable* >::iterator it = Elements.begin() ; it != Elements.end() ; it++ )
+        {
+            if( Target == (*it) )
+            {
+                Elements.erase(it);
+                return;
+            }
+        }
+    }
+
+    void WorldNode::DetachAll()
+    {
+        //OgreNode->detachAllObjects();
+        for( std::vector< Attachable* >::iterator it = Elements.begin() ; it != Elements.end() ; it++ )
+            { this->DetachObject(*it); }
+        Elements.clear();
+    }
+
+    Whole WorldNode::GetNumAttached() const
+        { return Elements.size(); }
+
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Attachment Parent management
+
+    void WorldNode::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
+    {
+        Attachable::AttachToFinal(RawTarget, Target);
+        RawTarget->addChild(this->OgreNode);
+    }
+
+    void WorldNode::DetachFromFinal(Ogre::SceneNode* RawTarget)
+    {
+        Attachable::DetachFromFinal(RawTarget);
+        RawTarget->removeChild(this->OgreNode);
+    }
+
+
 }
 
 #endif

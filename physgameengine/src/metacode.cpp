@@ -90,25 +90,22 @@ namespace phys
             case SDL_KEYUP:
                 Construct(BUTTON_LIFTING, GetInputCodeFromSDL_KEY(RawEvent_));
                 break;
-            case SDL_MOUSEBUTTONDOWN: //in some case will generate a mousewheel and a mouse button event
-                Construct(BUTTON_LIFTING, GetInputCodeFromSDL_MOUSE(RawEvent_));
+            case SDL_MOUSEBUTTONDOWN:
+                Construct(BUTTON_PRESSING, GetInputCodeFromSDL_MOUSE(RawEvent_));
                 break;
-            case SDL_MOUSEBUTTONUP: //in some case will generate a mousewheel and a mouse button event
+            case SDL_MOUSEBUTTONUP:
                 Construct(BUTTON_LIFTING, GetInputCodeFromSDL_MOUSE(RawEvent_));
-                break;
-
-            case SDL_JOYAXISMOTION:/// @todo TODO determine if Joystick RawEvents will emit 1 or multiple Metacodes
                 break;
             case SDL_JOYBUTTONDOWN:
+                Construct(BUTTON_PRESSING, GetInputCodeFromSDL_JOYSTICK(RawEvent_));
                 break;
             case SDL_JOYBUTTONUP:
-                break;
-            case SDL_JOYBALLMOTION:
-                break;
-            case SDL_JOYHATMOTION:
+                Construct(BUTTON_LIFTING, GetInputCodeFromSDL_JOYSTICK(RawEvent_));
                 break;
 
-            case SDL_MOUSEMOTION:
+            // Fail when incorrectly constructed
+            case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
+            case SDL_JOYAXISMOTION:     case SDL_MOUSEMOTION:
                 throw ("RawEvent which creates Multiple Metacodes inserted into Metacode");
                 break;
 
@@ -151,6 +148,9 @@ namespace phys
             case SDL_BUTTON_X2: return MetaCode::MOUSEBUTTON_5;
         }
     }
+
+    MetaCode::InputCode MetaCode::GetInputCodeFromSDL_JOYSTICK(const RawEvent &RawEvent_)
+        { return GetJoystickButtonCode(RawEvent_.jbutton.button); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Conversion and Casting Functions
