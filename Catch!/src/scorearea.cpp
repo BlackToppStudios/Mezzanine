@@ -27,7 +27,7 @@ bool ScoreArea::AllObjectsAtRest()
     for ( std::list<ActorBase*>::iterator it = OverlappingActors.begin() ; it != OverlappingActors.end() ; it++ )
     {
         Act = (*it);
-        if( Act->CheckActivation() )
+        if( Act->GetPhysicsSettings()->CheckActivation() )
             return false;
     }
     return true;

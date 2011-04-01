@@ -56,6 +56,7 @@
 #include "actorcontainerbase.h"
 #include "actorcontainervector.h"
 #include "actorgraphicssettings.h"
+#include "actorphysicssettings.h"
 #include "actorragdoll.h"
 #include "actorrigid.h"
 #include "actorsoft.h"

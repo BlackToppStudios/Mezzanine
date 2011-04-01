@@ -67,6 +67,12 @@ namespace phys
             Camera* Controlled;
             MovementMode CurrentMode;
             Real HoverHeight;
+
+            Real YawRad;
+            Real PitchRad;
+            Real RollRad;
+
+            Real FindDistanceToGround();
         public:
             /// @brief Class constructor.
             /// @param ToBeControlled The camera this controller is controlling.
