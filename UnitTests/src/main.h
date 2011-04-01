@@ -1,4 +1,4 @@
-//© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -48,16 +48,46 @@
 
 #include <physgame.h> // For String and all of physgame
 
+
 // Define some Results of tests
 enum TestResult
 {
     Success         = 0,
     Skipped         = 1,
-    Canceled        = 2,        // Was canceled by user, so success is unknown, but user doesn't cared
+    Cancelled        = 2,        // Was canceled by user, so success is unknown, but user doesn't cared
     Inconclusive    = 3,        // if a user answers that they don't know what happened in a test that involved interaction, it likely worked, but we can't be sure
     Failed          = 4,        // Known failure
     Unknown         = 5         // Since we don't know what happed this is the worst kind of failure
 };
+
+phys::String TestResultToString(TestResult Convertable)
+{
+    switch(Convertable)
+    {
+        case Success:
+            return "Success";
+        case Skipped:
+            return "Skipped";
+        case Cancelled:
+            return "Cancelled";
+        case Inconclusive:
+            return "Inconclusive";
+        case Failed:
+            return "Failed";
+        case Unknown:
+            return "Unknown";
+        default:
+            throw(phys::Exception(phys::StringCat("Cannot convert TestResult with value ", phys::ToString(Convertable))));
+    }
+}
+
+phys::String MakePadding(phys::String Leader, unsigned int Column)
+{
+    phys::String Spaces(" ");
+    for (unsigned int c=Leader.length(); c<Column;++c)
+        { Spaces+=" "; }
+    return Spaces;
+}
 
 // the return type of tests
 typedef std::pair<phys::String,TestResult> TestData;
@@ -72,13 +102,14 @@ class UnitTest : public TestDataStorage
         // Some basic variable for tracking simple statistics
         TestData MostSuccessful;
         TestData LeastSuccessful;
+        unsigned int LongestNameLength;
 
     public:
-        UnitTest()
-        {
-            MostSuccessful=TestData("",Unknown);
-            LeastSuccessful=TestData("",Success);
-        }
+        UnitTest() :
+            MostSuccessful("",Unknown),
+            LeastSuccessful("",Success),
+            LongestNameLength(0)
+        {}
 
         // This is expected to run all the tests that meet the criteria passed in
         // This should return the LeastSuccessful TestResult, this will make it easier for the main to find and report errors
@@ -91,6 +122,10 @@ class UnitTest : public TestDataStorage
                 { MostSuccessful=FreshMeat; }
             if(FreshMeat.second>LeastSuccessful.second)
                 { LeastSuccessful=FreshMeat; }
+
+            if(FreshMeat.first.length()>LongestNameLength)
+                { LongestNameLength=FreshMeat.first.length(); }
+
             this->insert(FreshMeat);
         }
 
@@ -111,32 +146,44 @@ class UnitTest : public TestDataStorage
                 { MostSuccessful=rhs.MostSuccessful; }
             if(rhs.MostSuccessful.second>LeastSuccessful.second)
                 { LeastSuccessful=rhs.MostSuccessful; }
+
+            if(rhs.LongestNameLength>LongestNameLength)
+                { LongestNameLength=rhs.LongestNameLength; }
+
             insert(rhs.begin(),rhs.end());
+        }
+
+        void DisplayResults(bool Summary = true, bool FullOutput = true)
+        {
+            vector<unsigned int> TestCounts;
+            TestCounts.insert(TestCounts.end(),1+(unsigned int)Unknown, 0);
+
+            phys::String TestName("Test Name");
+            cout << endl << " " << TestName << MakePadding(TestName, LongestNameLength) << "Result" << endl;
+            for (TestDataStorage::iterator Iter=this->begin(); Iter!=this->end(); Iter++)
+            {
+                if(FullOutput)
+                {
+                    cout << Iter->first << MakePadding(Iter->first, LongestNameLength+1) << TestResultToString(Iter->second) << endl;
+                }
+                TestCounts.at((unsigned int)Iter->second)++;
+            }
+
+            if(Summary)
+            {
+                cout << endl << " Results Summary:" << endl;
+                for(unsigned int c=0; c<TestCounts.size();++c)
+                {
+                    phys::String ResultName(TestResultToString((TestResult)c));
+                    cout << "  " << ResultName << MakePadding(ResultName,16) << TestCounts.at(c) << endl;
+                }
+                cout << endl;
+            }
         }
 
 };
 
-///Possible way to exit the UnitTest Program
-enum ExitCodes
-{
-    ExitSuccess             = 0,
-    ExitInvalidArguments    = 1
-};
-
-int Usage(phys::String ThisName)
-{
-    std::cout   << endl << "Usage: " << ThisName << " [[interactive][automatic]] | [all] Test Group Names ..." << endl << endl
-                << "All:         All tests in all groups will be run." << endl
-                << "Interactive: Only interactive tests will be performed on specified test groups." << endl
-                << "Automatic:   Only automated tests will be performed on specified test groups." << endl << endl
-                << "Interactive and Automatic: All tests will be run on specificied test groups." << endl
-                << "If only test group names are entered, then all tests in those groups are run." << endl
-                << "This command is not case sensitive." << endl << endl
-                << "Current Test Groups: " << endl
-                ;//<< \tVector2" <<endl;
-    return ExitInvalidArguments;
-}
-
+// Drops a String to all lower case, changes the string passed in
 char* AllLower(char* CString)
 {
     locale loc;
@@ -146,6 +193,75 @@ char* AllLower(char* CString)
     }
     return CString;
 }
+
+// Some simple functions for formatting user input/output
+phys::String BoolToString(bool i)
+    { return i?"True":"False" ; }
+
+// Picks up on
+//      True, Yes as Success
+//      False, No as Failed
+//      Cancel as Canceled
+//      Unsure, Inconclusive as Inconclusive
+TestResult GetTestAnswer(phys::String Question)
+{
+    phys::String Input;
+    char Answer;
+
+    while(true)
+    {
+        cout << Question;
+        getline(cin, Input);
+        stringstream InputStream(Input);
+        if (InputStream >> Answer)
+        {
+            Answer=tolower(Answer);
+            if (Answer=='t' || Answer=='y' || Answer=='f' || Answer=='n' || Answer=='c' || Answer=='u' || Answer=='i')
+                { break; }
+        }
+
+        cout << endl << "Expected (T)rue/(Y)es for Success, (F)alse/(N)o for Failure," << endl << " (C)anceled to cancel this test, or (U)nsure/(I)nconclusive if you don't know." << endl << endl;
+    }
+
+    switch(Answer)
+    {
+        case 't': case 'y':
+            return Success;
+        case 'f': case 'n':
+            return Failed;
+        case 'c':
+            return Cancelled;
+        case 'u': case 'i':
+            return Inconclusive;
+        default:
+            return Unknown;
+    }
+
+}
+
+///Possible ways to exit the UnitTest Program
+enum ExitCodes
+{
+    ExitSuccess             = 0,
+    ExitInvalidArguments    = 1
+};
+
+int Usage(phys::String ThisName)
+{
+    std::cout   << endl << "Usage: " << ThisName << " [summary] [[interactive][automatic]] [all] Test Group Names ..." << endl << endl
+                << "All:         All tests in all groups will be run." << endl
+                << "Interactive: Only interactive tests will be performed on specified test groups." << endl
+                << "Automatic:   Only automated tests will be performed on specified test groups." << endl
+                << "Interactive and Automatic: All tests will be run on specificied test groups." << endl << endl
+                << "Summary:     Only display a count of failures and successes" << endl << endl
+                << "If only test group names are entered, then all tests in those groups are run." << endl
+                << "This command is not case sensitive." << endl << endl
+                << "Current Test Groups: " << endl
+                << "\tCompilerFlag \tVector2" << endl << endl;//<< \tVector2" <<endl;
+    return ExitInvalidArguments;
+}
+
+
 
 
 

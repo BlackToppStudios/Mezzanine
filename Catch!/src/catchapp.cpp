@@ -301,7 +301,7 @@ bool CatchApp::PostUI()
         }else{
             #ifdef PHYSDEBUG
             TheWorld->Log("Gamebase CLICK:");
-            TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetCameraGlobalLocation() << endl;
+            TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetLocation() << endl;
             #endif
 
             Ray *MouseRay = RayQueryer->GetMouseRay(5000);

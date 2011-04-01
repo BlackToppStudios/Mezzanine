@@ -1,4 +1,4 @@
-//© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -51,7 +51,6 @@
 #include "actorbase.h"
 #include "internalogredatastreambuf.h.cpp"
 
-#define PHYSDEBUG
 #ifdef PHYSDEBUG
 #include "world.h"
 #endif
@@ -62,7 +61,6 @@ namespace phys {
     {
         this->Priority = 20;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-
     }
 
     ResourceManager::~ResourceManager()

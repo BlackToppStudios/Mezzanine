@@ -1,4 +1,4 @@
-//© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -255,7 +255,7 @@ namespace phys
             }
 
             #ifdef PHYSDEBUG
-            GameWorld->LogStream << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance << endl;
+            World::GetWorldPointer()->LogStream << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance << endl;
             #endif
 
             Vector3 w = QueryRay.From - p0;

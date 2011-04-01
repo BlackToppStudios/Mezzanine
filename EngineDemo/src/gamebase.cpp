@@ -15,7 +15,7 @@
 #include <string>
 #include <iostream>
 #include <fstream>            //Only used for testing
-#define PHYSDEBUG
+
 
 using namespace phys;
 using namespace std;

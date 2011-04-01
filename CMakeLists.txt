@@ -25,15 +25,32 @@ endif(${PhysDebug})
 
 option(PhysProfile "Executables will gather runtime statistics." OFF)
 if(${PhysProfile})
-	message ("${PROJECT_NAME} - Enabling gcc profiling")
+	message ("${PROJECT_NAME} - Enabling gcc profiling and PHYSPROFILE")
 	set(CommonBuildFlags "${CommonBuildFlags} -pg")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSPROFILE=1")
+else(${PhysProfile})
+	message ("${PROJECT_NAME} - Disabling gcc profiling and PHYSPROFILE")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSPROFILE=0")
 endif(${PhysProfile})
 
 option(PhysXML "Enable XML and XML serialization supprt." ON)
 if(${PhysXML})
-	message ("${PROJECT_NAME} - Enabling XML subsystem and object serialization to XML")
-	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML")
+	message ("${PROJECT_NAME} - Enabling XML subsystem, object serialization to XML, and PHYSXML")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=1")
+else(${PhysXML})
+	message ("${PROJECT_NAME} - Disabling XML subsystem, object serialization to XML, and PHYSXML")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSXML=0")
 endif(${PhysXML})
+
+if(${PhysDebug})
+	message ("${PROJECT_NAME} - Enabling PHYSDEBUG Messages")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSDEBUG=1")
+else(${PhysDebug})
+	message ("${PROJECT_NAME} - Disabling PHYSDEBUG Messages")
+	set(CommonBuildFlags "${CommonBuildFlags} -DPHYSDEBUG=0")
+endif(${PhysDebug})
+
+
 
 set(ProjectRootDir ${${PROJECT_NAME}_SOURCE_DIR})
 

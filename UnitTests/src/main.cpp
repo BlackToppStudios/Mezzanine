@@ -1,4 +1,4 @@
-//© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -40,6 +40,10 @@
 
 #include "main.h"
 
+#include "compilerflagtests.h"
+#include "vector2tests.h"
+
+
 #include <vector>
 
 // this does all the heavy lifting
@@ -67,6 +71,14 @@ class AllUnitTests : public UnitTest
                 switch ((*CurrentTestName)[0])
                 {
                     TheGauntlet:        //can you think of a better name for something that means all the tests will be run
+                    case 'c':
+                        if(RunAll || (*CurrentTestName)=="compilerflag")
+                        {
+                            CompilerFlagTests CompilerFlags_;
+                            CompilerFlags_.RunTests(RunAutomaticTests, RunInteractiveTests);
+                            (*this)+=CompilerFlags_;
+                        }
+                        if(!RunAll) break;
                     case 'e':
                         if(RunAll || (*CurrentTestName)=="eventmanager")
                         {
@@ -80,10 +92,9 @@ class AllUnitTests : public UnitTest
                     case 'v':
                         if(RunAll || (*CurrentTestName)=="vector2")
                         {
-                            std::cout << "Ran Vector2 faux test" << endl;
-                            //Vector2Tests Vector2_;
-                            //Vector2_.RunTests(RunAutomaticTests, RunInteractiveTests);
-                            //(*this)+=Vector2_;
+                            Vector2Tests Vector2_;
+                            Vector2_.RunTests(RunAutomaticTests, RunInteractiveTests);
+                            (*this)+=Vector2_;
                         }
                         if(RunAll || (*CurrentTestName)=="vector3")
                         {
@@ -96,13 +107,10 @@ class AllUnitTests : public UnitTest
                     case 'z':
 
                         break;
-
-
                 }
 
                 if(RunAll) // We Finished the Gauntlet We can Quit now
                     break;
-
             }
 
             return LeastSuccessful.second;
@@ -112,6 +120,7 @@ class AllUnitTests : public UnitTest
 int main (int argc, char** argv)
 {
     bool RunAutomaticTests = false, RunInteractiveTests = false;    //Set them both to false now, if they are both false later, then we will pass true
+    bool FullDisplay = true, SummaryDisplay = true;
     phys::String CommandName;
 
     if (argc > 0)                                                   //Not really sure how this would happen, but I would rather test for it than have it fail
@@ -133,7 +142,9 @@ int main (int argc, char** argv)
         else if(phys::String(AllLower(argv[c]))=="automatic")
             { RunAutomaticTests=true; }
         else if(phys::String(AllLower(argv[c]))=="all")
-            { RunAutomaticTests=true; RunInteractiveTests=true; Runner.RunAll=true;}
+            { Runner.RunAll=true;}
+        else if(phys::String(AllLower(argv[c]))=="summary")
+            { FullDisplay = false, SummaryDisplay = true; }
         else
             { Runner.TestGroupsToRun.push_back(AllLower(argv[c])); }            // Testing group is filled here
     }
@@ -142,6 +153,7 @@ int main (int argc, char** argv)
         { RunAutomaticTests=true; RunInteractiveTests=true; }
 
     Runner.RunTests(RunAutomaticTests,RunInteractiveTests);
+    Runner.DisplayResults(SummaryDisplay, FullDisplay);
 }
 
 

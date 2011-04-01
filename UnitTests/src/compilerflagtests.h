@@ -1,4 +1,4 @@
-//© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -37,9 +37,37 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _eventmanager_h
-#define _eventmanager_h
+#ifndef _compilerflagtests_h
+#define _compilerflagtests_h
 
 #include "main.h"
 
+
+// A simple test to see if the compiler flag are set correctly
+// mostly this is a sample of a very simple, but useful unit test (it fixed 2 bugs when we wrote it.)
+class CompilerFlagTests : public UnitTest
+{
+    public:
+        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        {
+            if (RunInteractiveTests)
+            {
+                TestResult temp;
+                temp = GetTestAnswer( phys::StringCat("Was PHYSDEBUG set to \"", BoolToString(PHYSDEBUG), "\" when this was configured with cmake (or other config tool)?"));
+                AddTestResult("CompilerFlag::PHYSDEBUG", temp);
+
+                temp = GetTestAnswer( phys::StringCat("Was PHYSXML set to \"", BoolToString(PHYSXML), "\" when this was configured with cmake? (or other config tool)"));
+                AddTestResult("CompilerFlag::PHYSXML", temp);
+
+                temp = GetTestAnswer( phys::StringCat("Was PHYSPROFILE set to \"", BoolToString(PHYSPROFILE), "\" when this was configured with cmake? (or other config tool)"));
+                AddTestResult("CompilerFlag::PHYSPROFILE", temp);
+
+            }else{
+                AddTestResult("CompilerFlag::PHYSDEBUG", Skipped);
+                AddTestResult("CompilerFlag::PHYSXML", Skipped);
+                AddTestResult("CompilerFlag::PHYSPROFILE", Skipped);
+            }
+
+        }
+};
 #endif
