@@ -37,38 +37,9 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
+#ifndef _eventmanagertests_h
+#define _eventmanagertests_h
 
-#ifndef _exception_cpp
-#define _exception_cpp
+#include "main.h"
 
-#include "exception.h"
-
-namespace phys
-{
-    Exception::Exception(const String &Message, bool Logged_):ErrorMessage(Message),Logged(Logged_)
-    {
-
-    }
-
-    bool Exception::HasBeenLogged()
-    {
-        return this->Logged;
-    }
-
-    String Exception::what() throw()
-    {
-        return this->ErrorMessage;
-    }
-
-    Exception::~Exception() throw()
-    {
-
-    }
-
-    void Exception::SetLogged()
-    {
-        this->Logged=true;
-    }
-} // \phys
-
-#endif // \exception_cpp
+#endif

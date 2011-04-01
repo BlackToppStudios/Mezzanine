@@ -1,4 +1,4 @@
-//© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -142,7 +142,7 @@ int main (int argc, char** argv)
         else if(phys::String(AllLower(argv[c]))=="automatic")
             { RunAutomaticTests=true; }
         else if(phys::String(AllLower(argv[c]))=="all")
-            { RunAutomaticTests=true; RunInteractiveTests=true; Runner.RunAll=true;}
+            { Runner.RunAll=true;}
         else if(phys::String(AllLower(argv[c]))=="summary")
             { FullDisplay = false, SummaryDisplay = true; }
         else

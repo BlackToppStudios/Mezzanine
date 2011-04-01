@@ -1,4 +1,4 @@
-//© Copyright 2010 BlackTopp Studios Inc.
+//© Copyright 2010 - 2011 BlackTopp Studios Inc.
 /* This file is part of The PhysGame Engine.
 
     The PhysGame Engine is free software: you can redistribute it and/or modify
@@ -73,7 +73,6 @@ namespace phys
 
     Sound* SoundManager::CreateSound(ConstString &SoundName, ConstString &FilePath, bool Stream)
     {
-        #define PHYSDEBUG
         #ifdef PHYSDEBUG
         this->GameWorld->LogStream<< "Entering: SoundManager::CreateSound( " << SoundName << ", " << FilePath << ", " << Stream << ");" << endl;
         this->GameWorld->Log("Attempting to create Sound");
