@@ -83,6 +83,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/plane.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/quaternion.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/ray.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/rayquerytool.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/resourceinputstream.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/resourcemanager.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanager.h"
@@ -117,7 +118,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/world.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldnode.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.h"
 
@@ -169,6 +169,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/plane.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/quaternion.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/ray.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/rayquerytool.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/resourceinputstream.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/resourcemanager.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanager.cpp"
@@ -202,7 +203,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/world.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldnode.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldgetset.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/worldquerytool.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xml.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/xmldoc.cpp"
 )
@@ -429,6 +429,7 @@ if(${WIN32})
 
 	#Copy System Dependant files during build time
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.dll data/${BuildPlatform}/ogre/RenderSystem_GL.dll )
+	CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.dll data/${BuildPlatform}/ogre/Plugin_ParticleFX.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/OgreMain.dll OgreMain.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/ogre/libboost_thread-mgw45-mt-1_44.dll libboost_thread-mgw45-mt-1_44.dll )
 	CopyFilesDuringBuild( ${BuildPlatform}/sdl/SDL.dll SDL.dll )

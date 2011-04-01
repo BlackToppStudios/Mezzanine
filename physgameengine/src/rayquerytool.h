@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _worldquerytool_h
-#define _worldquerytool_h
+#ifndef _rayquerytool_h
+#define _rayquerytool_h
 
 #include "actorbase.h"
 #include "crossplatformexport.h"
@@ -59,23 +59,26 @@ namespace Ogre
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class WorldQueryTool
-    /// @headerfile worldquerytool.h
+    /// @class RayQueryTool
+    /// @headerfile rayquerytool.h
     /// @brief This provides a number of optional tools for working with a phys::World
     /// @details Currently this allows for more seamless mouse use, including 'picking'
     /// of objects with the mouse, and associated functionality.
     ///////////////////////////////////////
-    class PHYS_LIB WorldQueryTool : public InputQueryTool
+    class PHYS_LIB RayQueryTool// : public InputQueryTool
     {
         private:
             /// @internal
             /// @brief An Ogre construct used to find information about the locations of graphical object
-            Ogre::RaySceneQuery* RayQuery;
+            static Ogre::RaySceneQuery* RayQuery;
 
+            /// @internal
+            /// @brief Creates a ray query data structure if one hasn't already been created.
+            static void VerifyRayQuery();
 
             /// @internal
             /// @brief used to get information about 3d graphical objects at specific locations
-            void GetMeshInformation(Ogre::Entity *entity,
+            static void GetMeshInformation(Ogre::Entity *entity,
                                 size_t &vertex_count,
                                 Ogre::Vector3* &vertices,
                                 size_t &index_count,
@@ -90,11 +93,11 @@ namespace phys
             ///////////////////////////////////////
             /// @brief Basic Constructor.
             /// @details This creates a WorldQueryTool Ready to run queries on the the world you pass it.
-            WorldQueryTool();
+            RayQueryTool();
 
             /// @brief Destructor
             /// @details Deletes everything in the world query tool.
-            ~WorldQueryTool();
+            ~RayQueryTool();
 
             ///////////////////////////////////////////////////////////////////////////////
             // World Ray Queries
@@ -105,7 +108,7 @@ namespace phys
             /// ray being cast. This will start at ray.from and go to ray.to .
             /// @param ActorRay The Ray to search along.
             /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor
-            Vector3WActor* GetFirstActorOnRayByPolygon(Ray ActorRay);
+            static Vector3WActor* GetFirstActorOnRayByPolygon(Ray ActorRay);
 
             /// @brief Partially implemented. This should find the first Actor that is on or almost on the a given Ray.
             /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.
@@ -113,14 +116,14 @@ namespace phys
             /// but not by a known amount.
             /// @param ActorRay The Ray to search along.
             /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.
-            Vector3WActor* GetFirstActorOnRayByAABB(Ray ActorRay);
+            static Vector3WActor* GetFirstActorOnRayByAABB(Ray ActorRay);
 
             /// @brief This will find the actor under the mouse.
             /// @details This will use
             /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .
             /// @param RayLength The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0
             /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
-            Vector3WActor* GetActorUnderMouse(Real RayLength=1000.0, bool UsePolygon=true);
+            static Vector3WActor* GetActorUnderMouse(Real RayLength=1000.0, bool UsePolygon=true);
 
             /// @brief Where does this Ray Meet this Plane?
             /// @details This does some fancy math to return the point where the ray and the plane intersent.
@@ -128,13 +131,13 @@ namespace phys
             /// @param QueryRay This is the Ray that could intersent the plane
             /// @param QueryPlane This is the plane to be interesected.
             /// @return This returns a pointer to a vector that matches where the intersection of the plane and Ray, if possible
-            Vector3* RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
+            static Vector3* RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane);
 
             /// @brief Get a Ray from the current viewport, following the mouse
             /// @details This calls on the graphics subsystem to get a ray from the location of the current camera
             /// @param Length how long of a ray do you want? Thsi defaults to 1000
             /// @return This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer.
-            Ray* GetMouseRay(Real Length=1000);
+            static Ray* GetMouseRay(Real Length=1000);
     };
 }
 

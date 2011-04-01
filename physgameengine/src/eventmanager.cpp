@@ -54,6 +54,7 @@
 #include "eventquit.h"
 #include "metacode.h"
 #include "world.h"
+#include "inputquerytool.h"
 
 #include <map>
 #include <memory>
@@ -596,7 +597,7 @@ namespace phys
         {}
 
     void EventManager::DoMainLoopItems()
-        { this->UpdateEvents(); }
+        { this->UpdateEvents(); InputQueryTool::GatherEvents(); }
 
     ManagerBase::ManagerTypeName EventManager::GetType() const
         { return ManagerBase::EventManager; }

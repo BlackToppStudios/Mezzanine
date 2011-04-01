@@ -268,17 +268,6 @@ namespace phys
             /// @return Returns true if the actor is static or kinematic.
             virtual bool IsStaticOrKinematic();
 
-            /// @brief Sets the basic parameters for more realistic collision behavior.
-            /// @details This function will set the Friction and Resititution of the actor, which will enable it to collide
-            /// and interact with other actors in a game world more realistically.
-            /// @param Friction Should be self explanitory, higher values will resist sliding across surfaces.  This number is the
-            /// coefficient of friction.  Range is from 0.0 to 2.0.  Behavior in this regard is determined by the friction of both
-            /// colliding bodies.  @n Default: 0.5
-            /// @param Restitution The coefficient of restitution determines how much energy is left after a collision with an object.
-            /// Range is from 0.0 to 1.0.  Behavior in this regard is determined by the restitution of both colliding bodies.
-            /// @n Default: 0.0
-            virtual void SetBasicCollisionParams(Real Friction, Real Restitution);
-
             /// @brief Sets the animation for this object.
             /// @details This function will get the specified animation for this object stored in the mesh file, and will loop the
             /// animation if specified.

@@ -58,6 +58,26 @@ namespace phys
     {
     }
 
+    void ActorBasePhysicsSettings::SetFriction(Real Friction)
+    {
+        ActorCO->setFriction(Friction);
+    }
+
+    Real ActorBasePhysicsSettings::GetFriction()
+    {
+        return ActorCO->getFriction();
+    }
+
+    void ActorBasePhysicsSettings::SetRestitution(Real Restitution)
+    {
+        ActorCO->setRestitution(Restitution);
+    }
+
+    Real ActorBasePhysicsSettings::GetRestitution()
+    {
+        return ActorCO->getRestitution();
+    }
+
     void ActorBasePhysicsSettings::SetKinematic()
     {
         ActorCO->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);

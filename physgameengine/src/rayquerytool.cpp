@@ -37,10 +37,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _worldquerytool_cpp
-#define _worldquerytool_cpp
+#ifndef _rayquerytool_cpp
+#define _rayquerytool_cpp
 
-#include "worldquerytool.h"
+#include "rayquerytool.h"
 #include "actorcontainerbase.h"
 #include "graphicsmanager.h"
 #include "eventmanager.h"
@@ -55,30 +55,34 @@
 
 namespace phys
 {
-    WorldQueryTool::WorldQueryTool()
+    Ogre::RaySceneQuery* RayQueryTool::RayQuery = 0;
+
+    RayQueryTool::RayQueryTool()
     {
+        VerifyRayQuery();
         // create the ray scene query object
-        this->RayQuery = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-        if (NULL == this->RayQuery)
-            {World::GetWorldPointer()->LogAndThrow("Failed to create RaySceneQuery instance in WorldQueryTool"); }
-        this->RayQuery->setSortByDistance(true);
+        //this->RayQuery = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+        //if (NULL == this->RayQuery)
+        //    {World::GetWorldPointer()->LogAndThrow("Failed to create RaySceneQuery instance in WorldQueryTool"); }
+        RayQuery->setSortByDistance(true);
     }
 
-    WorldQueryTool::~WorldQueryTool()
+    RayQueryTool::~RayQueryTool()
     {
-        delete this->RayQuery;
+        //delete this->RayQuery;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Raycasting Nonsense goe here
-    Vector3WActor* WorldQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
+    Vector3WActor* RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
     {
+        VerifyRayQuery();
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
-        if(NULL != this->RayQuery)          //Double check that the Rayquery is valid
+        if(NULL != RayQuery)          //Double check that the Rayquery is valid
         {
-            this->RayQuery->setRay(Ooray);
-            if( this->RayQuery->execute().size() <= 0 ) //Did we hit anything
+            RayQuery->setRay(Ooray);
+            if( RayQuery->execute().size() <= 0 ) //Did we hit anything
             {
                 return NULL;
             }
@@ -93,7 +97,7 @@ namespace phys
         // we need to test every triangle of every object.
         Ogre::Real closest_distance = -1.0f;
         Vector3 closest_result;
-        Ogre::RaySceneQueryResult &query_result = this->RayQuery->getLastResults();
+        Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
         Vector3WActor* ClosestActor = new Vector3WActor();
         for (size_t qr_idx = 0; qr_idx < query_result.size(); qr_idx++)
         {
@@ -119,7 +123,7 @@ namespace phys
                         unsigned long *indices;
 
                         // get the mesh information
-                        this->GetMeshInformation(pentity, vertex_count, vertices, index_count, indices,
+                        GetMeshInformation(pentity, vertex_count, vertices, index_count, indices,
                                           pentity->getParentNode()->_getDerivedPosition(),
                                           pentity->getParentNode()->_getDerivedOrientation(),
                                           pentity->getParentNode()->_getDerivedScale());
@@ -164,17 +168,18 @@ namespace phys
         return ClosestActor;
     }
 
-    Vector3WActor* WorldQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay)
+    Vector3WActor* RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay)
     {
+        VerifyRayQuery();
         #ifdef PHYSDEBUG
         World::GetWorldPointer()->Log("WorldQueryTool::GetFirstActorOnRayByAABB:");
         #endif
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
 
-        if(NULL != this->RayQuery)          //Double check that the Rayquery is valid
+        if(NULL != RayQuery)          //Double check that the Rayquery is valid
         {
-            this->RayQuery->setRay(Ooray);
-            if( this->RayQuery->execute().size() <= 0 ) //Did we hit anything
+            RayQuery->setRay(Ooray);
+            if( RayQuery->execute().size() <= 0 ) //Did we hit anything
             {
                 return NULL;
             }
@@ -182,7 +187,7 @@ namespace phys
             World::GetWorldPointer()->LogAndThrow("Attempting to run a query on Null RaySceneQuery");
         }
 
-        Ogre::RaySceneQueryResult &query_result = this->RayQuery->getLastResults();
+        Ogre::RaySceneQueryResult &query_result = RayQuery->getLastResults();
 
         if (0 < query_result.size())
         {
@@ -198,25 +203,27 @@ namespace phys
         }
     }
 
-    Vector3WActor* WorldQueryTool::GetActorUnderMouse(Real RayLength, bool UsePolygon)
+    Vector3WActor* RayQueryTool::GetActorUnderMouse(Real RayLength, bool UsePolygon)
     {
+        VerifyRayQuery();
         Vector3WActor* Results = 0;
 
-        Ray* MouseRay = this->GetMouseRay(RayLength);
+        Ray* MouseRay = GetMouseRay(RayLength);
 
         if (UsePolygon)
         {
-            Results = this->GetFirstActorOnRayByPolygon( *MouseRay );
+            Results = GetFirstActorOnRayByPolygon( *MouseRay );
         }else{
-            Results = this->GetFirstActorOnRayByAABB( *MouseRay );
+            Results = GetFirstActorOnRayByAABB( *MouseRay );
         }
 
         delete MouseRay;
         return Results;
     }
 
-    Vector3* WorldQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
+    Vector3* RayQueryTool::RayPlaneIntersection(const Ray &QueryRay, const Plane &QueryPlane)
     {
+        VerifyRayQuery();
         //#define PHYSDEBUG
         #ifdef PHYSDEBUG
         World::GetWorldPointer()->LogStream << "WorldQueryTool::RayPlaneIntersection("<< QueryRay << ", " << QueryPlane << ")" << endl;
@@ -314,11 +321,12 @@ namespace phys
         }
     }
 
-    Ray* WorldQueryTool::GetMouseRay(Real Length)
+    Ray* RayQueryTool::GetMouseRay(Real Length)
     {
+        VerifyRayQuery();
         Ray* MouseRay = new Ray( World::GetWorldPointer()->GetCameraManager()->GetDefaultCamera()->GetCameraToViewportRay(
-                float(this->GetMouseX()) / float( World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getRenderWidth() ) ,
-                float(this->GetMouseY()) / float( World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getRenderHeight() )
+                float(InputQueryTool::GetMouseX()) / float( World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getRenderWidth() ) ,
+                float(InputQueryTool::GetMouseY()) / float( World::GetWorldPointer()->GetGraphicsManager()->GetPrimaryGameWindow()->getRenderHeight() )
             ) );
 
         (*MouseRay) *= Length;
@@ -327,7 +335,13 @@ namespace phys
 
 
     // Private Members
-    void WorldQueryTool::GetMeshInformation( Ogre::Entity *entity,
+    void RayQueryTool::VerifyRayQuery()
+    {
+        if(!RayQuery)
+            RayQuery = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+    }
+
+    void RayQueryTool::GetMeshInformation( Ogre::Entity *entity,
                                 size_t &vertex_count,
                                 Ogre::Vector3* &vertices,
                                 size_t &index_count,
