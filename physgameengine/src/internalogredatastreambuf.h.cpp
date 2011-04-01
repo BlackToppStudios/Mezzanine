@@ -47,7 +47,6 @@
 
 #include <Ogre.h>
 
-#define PHYSDEBUG
 #ifdef PHYSDEBUG
 #include "world.h"
 #endif
