@@ -52,22 +52,22 @@ namespace phys
 
     String StringCat(const String& Front, const String& Back)
     {
-        std::stringstream Adder(Front);
-        Adder << Back;
+        std::stringstream Adder;
+        Adder << Front << Back;
         return Adder.str();
     }
 
     String StringCat(const String& Front, const String& Middle, const String& Back)
     {
-        std::stringstream Adder(Front);
-        Adder << Middle << Back;
+        std::stringstream Adder;
+        Adder << Front  << Middle << Back;
         return Adder.str();
     }
 
     String StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back)
     {
-        std::stringstream Adder(Front);
-        Adder << Middle1 << Middle2 << Back;
+        std::stringstream Adder;
+        Adder << Front  << Middle1 << Middle2 << Back;
         return Adder.str();
     }
 

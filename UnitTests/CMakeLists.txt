@@ -25,14 +25,17 @@ set (${PROJECT_NAME}_BINARY_DIR "${${PROJECT_NAME}_BINARY_DIR}/bin/")
 set (EXECUTABLE_OUTPUT_PATH "${${PROJECT_NAME}_BINARY_DIR}")
 message ("Base Directory for Executable Test binaries and test data output: ${${PROJECT_NAME}_BINARY_DIR}")
 
+set (physgame_LIBINCLUDE_DIR ${ProjectRootDir}/physgameengine/libincludes)
+
 ###############################################################################
 #Sources
 set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/main.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/main.cpp"
 
-	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanager.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/vector2.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/compilerflagtests.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanagertests.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/vector2tests.h"
 )
 
 ###############################################################################
@@ -60,6 +63,50 @@ function(CopyFilesFromPhygameDuringBuild FileName)
 	)
 endfunction(CopyFilesFromPhygameDuringBuild)
 
+##############################################################################
+# Accessing correct headers
+
+if(${WIN32})
+	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
+	set(BuildPlatform windows)
+
+	include_directories(
+		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
+		"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
+	)
+
+	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
+endif(${WIN32})
+
+if(${UNIX})
+	if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") 	#if(${UNIX} AND NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin") #does not appear to work as expected.
+	else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+		message ("${PROJECT_NAME} - Begin Unix/Linux Specific Build Process")
+		set(BuildPlatform linux)
+
+		#message("${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/")
+		include_directories(
+			"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/"
+			"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include/"
+			"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
+		)
+
+		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
+	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+endif(${UNIX})
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+	message ("${PROJECT_NAME} - Begin Apple Specific Build Process")
+
+
+	include_directories(
+		${${PROJECT_NAME}_ROOT_DIR}/libincludes/common/sdlsrc/SDL/include
+		${OPENAL_INCLUDE_DIR}
+		"${OGRE_INCLUDE_DIR}"
+		${${PROJECT_NAME}_ROOT_DIR}/libincludes/macosx/ogresrc/boost_1_42
+		"${OGG_INCLUDE_DIR}"
+	)
+endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 ##############################################################################
 #Executable definitions
 include_directories( ${${PROJECT_NAME}_SOURCE_DIR} ${${PROJECT_NAME}_PHYSGAME_BIN_SRC} )

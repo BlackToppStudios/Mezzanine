@@ -248,7 +248,7 @@ namespace phys
             }
 
             #ifdef PHYSDEBUG
-            GameWorld->LogStream << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance << endl;
+            World::GetWorldPointer()->LogStream << " WorldQueryTool p0: " << p0 << " QUERYPLANE D:" << QueryPlane.Distance << endl;
             #endif
 
             Vector3 w = QueryRay.From - p0;
