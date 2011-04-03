@@ -253,8 +253,8 @@ namespace phys
 
             Vector3 w = QueryRay.From - p0;
 
-            Real D = u.dotProduct(QueryPlane.Normal);
-            Real N = -1 * w.dotProduct(QueryPlane.Normal);
+            Real D = u.DotProduct(QueryPlane.Normal);
+            Real N = -1 * w.DotProduct(QueryPlane.Normal);
 
             Real SMALL_NUM = 0.00000001;
 

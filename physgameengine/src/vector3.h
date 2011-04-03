@@ -202,6 +202,11 @@ namespace phys
         /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
         bool operator== (const Ogre::Vector3 &Vec) const;
 
+        /// @brief Equality Comparison Operator.
+        /// @details Returns true if X==x, Y==y and Z==z. If any of those do not match this returns false.
+        /// @param Vec This is an cAudio::cVector3 that needs to be compared with this.
+        bool operator== (const cAudio::cVector3 &Vec) const;
+
         /// @brief Inequality Comparison Operator.
         /// @details Returns true if X!=X, Y!=Y or Z!=Z. If all of those match this returns false.
         /// @param Vec This is the other phys::Vector3.
@@ -216,6 +221,11 @@ namespace phys
         /// @details Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
         /// @param Vec This is an Ogre::Vector3 that needs to be compared with this.
         bool operator!= (const Ogre::Vector3 &Vec) const;
+
+        /// @brief Inequality Comparison Operator.
+        /// @details Returns true if X!=x, Y!=y or Z!=z. If all of those match this returns false.
+        /// @param Vec This is an cAudio::cVector3 that needs to be compared with this.
+        bool operator!= (const cAudio::cVector3 &Vec) const;
 
         ///////////////////////////////////////////////////////////////////////////////
         // Arithmetic Operators
@@ -322,7 +332,7 @@ namespace phys
         /// that we based this on.
         /// @param Vec The vector to work with to create the cross product
         /// @return This is the dotproduct of this vector and vec
-        Real dotProduct(const Vector3& Vec) const;
+        Real DotProduct(const Vector3& Vec) const;
 
         /// @brief This will change this point into it's own normal relative to the origin
         /// @details This will change this vector into one that is the same direction from the origin, but only one unit a away.
@@ -336,7 +346,7 @@ namespace phys
 
         /// @brief This will get the direction between two points.
         /// @details This returns the direction expressed as a vector between this vector and another provided vector.
-        /// The vector this is being calling from is assumed to be the origin.
+        /// The vector the results vector is relative to this vector.
         /// @param Destination The point in space to determine the direction for.
         Vector3 GetDirection(const Vector3& Destination) const;
 

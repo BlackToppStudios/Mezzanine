@@ -257,7 +257,7 @@ int Usage(phys::String ThisName)
                 << "If only test group names are entered, then all tests in those groups are run." << endl
                 << "This command is not case sensitive." << endl << endl
                 << "Current Test Groups: " << endl
-                << "\tCompilerFlag \tVector2" << endl << endl;//<< \tVector2" <<endl;
+                << "\tCompilerFlag \tVector2 \tVector3" << endl << endl;//<< \tVector2" <<endl;
     return ExitInvalidArguments;
 }
 

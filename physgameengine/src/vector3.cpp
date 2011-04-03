@@ -165,6 +165,10 @@ namespace phys
     bool Vector3::operator== (const Ogre::Vector3 &Vec) const
         { return ( Vec.x == this->X && Vec.y == this->Y && Vec.z == this->Z ); }
 
+    bool Vector3::operator== (const cAudio::cVector3 &Vec) const
+        { return ( Vec.x == this->X && Vec.y == this->Y && Vec.z == this->Z ); }
+
+
     bool Vector3::operator!= (const Vector3 &Vec) const
         { return ( Vec.X != this->X || Vec.Y != this->Y || Vec.Z != this->Z ); }
 
@@ -172,6 +176,9 @@ namespace phys
         { return ( Vec.getX() != this->X || Vec.getY() != this->Y || Vec.getZ() != this->Z ); }
 
     bool Vector3::operator!= (const Ogre::Vector3 &Vec) const
+        { return ( Vec.x != this->X || Vec.y != this->Y || Vec.z != this->Z ); }
+
+    bool Vector3::operator!= (const cAudio::cVector3 &Vec) const
         { return ( Vec.x != this->X || Vec.y != this->Y || Vec.z != this->Z ); }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -239,14 +246,14 @@ namespace phys
 
     Vector3 Vector3::CrossProduct( const Vector3& Vec ) const
     {
-        return Vector3(
-                this->Y * Vec.Z - this->Z * Vec.Y,
-                this->Z * Vec.X - this->X * Vec.Z,
-                this->X * Vec.Y - this->Y * Vec.X
+        return Vector3(                                        // 1,2,3 . 4,5,6
+                this->Y * Vec.Z - this->Z * Vec.Y,             // 2*6-3*5 = -3
+                this->Z * Vec.X - this->X * Vec.Z,             // 3*4-1*6 = 6
+                this->X * Vec.Y - this->Y * Vec.X              // 1*5-2*4 = -3
             );
     }
 
-    Real Vector3::dotProduct(const Vector3& Vec) const
+    Real Vector3::DotProduct(const Vector3& Vec) const
     {
         return this->X * Vec.X + this->Y * Vec.Y + this->Z * Vec.Z;
     }
@@ -258,7 +265,7 @@ namespace phys
         {
              (*this) /= TempLength;
         }else{
-            /// @todo discuss the merits throwing an error here.
+            throw (phys::Exception ("Cannot Normalize Vector3(0,0,0)"));
         }
     }
 
@@ -269,8 +276,7 @@ namespace phys
         {
             return (*this) / TempLength;
         }else{
-            /// @todo discuss the merits throwing an error here.
-            return (*this);
+            throw (phys::Exception ("Cannot Get the Normal of Vector3(0,0,0)"));
         }
     }
 
@@ -283,10 +289,12 @@ namespace phys
 
     void Vector3::Inverse()
     {
-        /// @todo fix division by zero in Vector3::Inverse()
-        X=1/X;
-        Y=1/Y;
-        Z=1/Z;
+        if (X!=0)
+            X=1/X;
+        if (Y!=0)
+            Y=1/Y;
+        if (Z!=0)
+            Z=1/Z;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

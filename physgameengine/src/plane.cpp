@@ -70,7 +70,7 @@ namespace phys
 		Vector3 kEdge2 = rkPoint2 - rkPoint0;
 		this->Normal = kEdge1.CrossProduct(kEdge2);
 		this->Normal.Normalize();
-		this->Distance = -this->Normal.dotProduct(rkPoint0);
+		this->Distance = -this->Normal.DotProduct(rkPoint0);
     }
 
     ///////////////////////////////////////////////////////////////////////////////
