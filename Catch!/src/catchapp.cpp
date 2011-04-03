@@ -222,37 +222,38 @@ bool CatchApp::PreUI()
 bool CatchApp::PostUI()
 {
     //User Input through a WorldQueryTool
-    static WorldQueryTool Queryer;
+    static RayQueryTool* RayQueryer = new RayQueryTool();
+    static InputQueryTool* InputQueryer = new InputQueryTool();
 
-    Queryer.GatherEvents();
+    //Queryer.GatherEvents();
     TheWorld->Log("Mouse location From WorldQueryTool X/Y");
-    TheWorld->Log(Queryer.GetMouseX());
-    TheWorld->Log(Queryer.GetMouseY());
+    TheWorld->Log(InputQueryer->GetMouseX());
+    TheWorld->Log(InputQueryer->GetMouseY());
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
         { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01); }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
         { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
 
     //Resize the window
     static bool videobuttonpushed = false;
-    if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
+    if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(true);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
+    else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(false);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
+    else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(1024,768);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
+    else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(800,600);
@@ -261,7 +262,7 @@ bool CatchApp::PostUI()
 
     static Point2PointConstraint* Dragger=NULL;
 
-    if( Queryer.IsMouseButtonPushed(1) )
+    if( InputQueryer->IsMouseButtonPushed(1) )
     {
         if(TheWorld->GetUIManager()->MouseIsInUISystem())
         {
@@ -271,7 +272,7 @@ bool CatchApp::PostUI()
                 MouseButton = UIMan->GetHoveredWidget()->GetHoveredButton();
             if(MouseButton)
             {
-                MetaCode::ButtonState State = Queryer.GetMouseButtonState(1);
+                MetaCode::ButtonState State = InputQueryer->GetMouseButtonState(1);
                 if("Store" == MouseButton->GetName())
                 {
                     String ItemShopL = "ItemShopLayer";
@@ -303,11 +304,11 @@ bool CatchApp::PostUI()
             TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetLocation() << endl;
             #endif
 
-            Ray *MouseRay = Queryer.GetMouseRay(5000);
+            Ray *MouseRay = RayQueryer->GetMouseRay(5000);
             //*MouseRay *= 1000;
             //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
-            Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
+            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon( *MouseRay );
             #ifdef PHYSDEBUG
             TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
             #endif
@@ -362,7 +363,7 @@ bool CatchApp::PostUI()
             }
 
             // This chunk of code calculates the 3d point that the actor needs to be dragged to
-            Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
+            Vector3 *DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
             if (0 == DragTo)
             {
                 #ifdef PHYSDEBUG

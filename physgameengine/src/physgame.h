@@ -95,6 +95,7 @@
 #include "plane.h"                      // done
 #include "quaternion.h"                 // in progress
 #include "ray.h"
+#include "rayquerytool.h"               // nothing to do
 #include "resourceinputstream.h"
 #include "resourcemanager.h"
 #include "scenemanager.h"
@@ -129,7 +130,6 @@
 #include "world.h"
 #include "worldgetset.h"
 #include "worldnode.h"                  // Target2
-#include "worldquerytool.h"             // nothing to do
 #include "xml.h"                        // nothing to do
 #include "xmldoc.h"                     // nothing to do
 

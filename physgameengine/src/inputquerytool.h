@@ -66,7 +66,7 @@ namespace phys
             /// @internal
             /// @brief A place to store which keys and mouse buttons are pressed or not.
             /// @details In the constructor we force the insertion INPUTEVENT_LAST
-            std::vector<int> CodeCache;
+            static std::vector<int> CodeCache;
 
         public:
             /// @brief Basic Constructor.
@@ -79,72 +79,72 @@ namespace phys
 
             /// @brief This gets the X coordinate of the mouse
             /// @return This returns a Whole number which represents the X coordinate of the mouse.
-            int GetMouseX();
+            static int GetMouseX();
 
             /// @brief This gets the Y coordinate of the mouse
             /// @return This returns a Whole number which represents the Y coordinate of the mouse.
-            int GetMouseY();
+            static int GetMouseY();
 
             /// @brief This Gets the value of the given joystick axis
             /// @param Axis The index of the axis that you want
             /// @return An integer with the Value of the joystick axis
-            int GetJoystickAxis(short unsigned int Axis);
+            static int GetJoystickAxis(short unsigned int Axis);
 
             /// @brief This gets a vector2 containing both X and Y coordinates of the mouse.
             /// @details If precision is important then you should use the individual coordinate fetching
             /// functions instead.
             /// @return This returns a Vector2 containing Reals to represent both mouse coordinates.
-            Vector2 GetMouseCoordinates();
+            static Vector2 GetMouseCoordinates();
 
             /// @brief This gets the offset location of the mouse since the previous frame.
             /// @details This Vector2 is only accurate if this class gathers events every frame.  Avoid calling this function otherwise.
             /// @return This returns a vector2 that stores how the mouse has moved since the previous frame.
-            Vector2 GetMousePrevFrameOffset();
+            static Vector2 GetMousePrevFrameOffset();
 
             /// @brief Get an unfiltered uninterpretted version of the value for an user input
             /// @param AnyCode The InputCode to retrieve the value for
             /// @return An int which may or may not correspond to a ButtonState, MouseWheelState, or some other Value.
-            int GetRawMetaValue(MetaCode::InputCode AnyCode);
+            static int GetRawMetaValue(MetaCode::InputCode AnyCode);
 
             /// @brief Returns whether a specific Mouse button is pushed
             /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
             /// are considered pressed, and buttons that are being lifted are considered unpressed.
             /// @param MouseButton This is the mouse button that is being checked
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
-            bool IsMouseButtonPushed(short unsigned int MouseButton);
+            static bool IsMouseButtonPushed(short unsigned int MouseButton);
 
             /// @brief Returns whether a specific Joystick button is pushed
             /// @details This runs in constant time and returns a true is the requested Joystick button is pressed. Buttons that are being pressed
             /// are considered pressed, and buttons that are being lifted are considered unpressed.
             /// @param JoyStickButton This is the Joystick button that is being checked
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
-            bool IsJoystickButtonPushed(short unsigned int JoyStickButton);
+            static bool IsJoystickButtonPushed(short unsigned int JoyStickButton);
 
 
-            bool IsJoystickHatPushedInDirection(MetaCode::DirectionalMotionState WhichWay, bool IsVertical);
+            static bool IsJoystickHatPushedInDirection(MetaCode::DirectionalMotionState WhichWay, bool IsVertical);
 
             /// @brief Returns whether a specific Keyboard button is pushed
             /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
             /// are considered pressed, and buttons that are being lifted are considered unpressed.
             /// @param KeyboardButton This is the button that is being checked.
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
-            bool IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton);
+            static bool IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton);
 
             /// @brief Gets the button state of the provided mouse button ID.
             /// @param MouseButton The mouse button ID(up to 16) you wish to query.
             /// @details Far from all mice have 16 buttons, be sure you know how many buttons the mouse has
             /// As this function doesn't perform that check.
             /// @return Returns a button state enum representing the button state.
-            MetaCode::ButtonState GetMouseButtonState(short unsigned int MouseButton);
+            static MetaCode::ButtonState GetMouseButtonState(short unsigned int MouseButton);
 
             /// @brief Gets the button state of the provided keyboard button ID.
             /// @param KeyboardButton The Input code for the keyboard button you wish to query.
             /// @return Returns a button state enum representing the button state.
-            MetaCode::ButtonState GetKeyboardButtonState(MetaCode::InputCode KeyboardButton);
+            static MetaCode::ButtonState GetKeyboardButtonState(MetaCode::InputCode KeyboardButton);
 
             /// @brief Gets the current status of the mouse wheel.
             /// @return Returns an enum value representing the current state of the mouse wheel.
-            MetaCode::DirectionalMotionState GetMouseWheelState();
+            static MetaCode::DirectionalMotionState GetMouseWheelState();
 
             /// @brief This gathers any user-input/event data that might be queryed
             /// @details This should be called periodcally (ideally in the post user input callback) to allow this
@@ -154,7 +154,7 @@ namespace phys
             /// This runs in linear time relative to the events in the event manager. This will usually be a trivial amount
             /// if this is run each iteration and excess events are removed (either by this method or some other form of event cleanup)
             /// @param ClearEventsFromEventMgr If set to true, This method will properly remove any events it pulls from the event manager.
-            void GatherEvents(bool ClearEventsFromEventMgr = false);
+            static void GatherEvents(bool ClearEventsFromEventMgr = false);
     };
 }
 

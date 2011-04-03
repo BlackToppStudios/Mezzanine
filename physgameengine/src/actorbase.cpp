@@ -65,8 +65,7 @@ namespace phys{
           ActorType(ActorBase::Actorbase)
     {
         this->GameWorld = World::GetWorldPointer();
-        this->GraphicsNode = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createSceneNode();
-        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->addChild(this->GraphicsNode);
+        this->GraphicsNode = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         this->Shape = new btEmptyShape();
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
         this->BasePhysicsSettings = new ActorBasePhysicsSettings(this,CollisionObject);
@@ -199,12 +198,6 @@ namespace phys{
     bool ActorBase::IsStaticOrKinematic()
     {
         return BasePhysicsSettings->IsStaticOrKinematic();
-    }
-
-    void ActorBase::SetBasicCollisionParams(Real Friction, Real Restitution)
-    {
-        this->CollisionObject->setFriction(Friction);
-        this->CollisionObject->setRestitution(Restitution);
     }
 
     void ActorBase::SetAnimation(ConstString &AnimationName, bool Loop)

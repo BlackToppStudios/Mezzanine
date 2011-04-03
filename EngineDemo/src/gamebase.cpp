@@ -234,23 +234,24 @@ bool PreInput()
 bool PostInput()
 {
     //User Input through a WorldQueryTool
-    static WorldQueryTool Queryer;
+    static RayQueryTool* RayQueryer = new RayQueryTool();
+    static InputQueryTool* InputQueryer = new InputQueryTool();
 
     UI::Caption* WMPos = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("WMPos");
     std::stringstream WMPosstream;
-    WMPosstream << Queryer.GetMouseCoordinates().X << "," << Queryer.GetMouseCoordinates().Y;
+    WMPosstream << InputQueryer->GetMouseCoordinates().X << "," << InputQueryer->GetMouseCoordinates().Y;
     String WMPosTex = WMPosstream.str();
     WMPos->SetText(WMPosTex);
 
-    Queryer.GatherEvents();
+    //Queryer.GatherEvents();
     #ifdef PHYSDEBUG
     TheWorld->Log("Mouse location From WorldQueryTool X/Y: ");
-    TheWorld->LogStream << Queryer.GetMouseX() << ", " << Queryer.GetMouseY() << endl
-                        << Queryer.GetRawMetaValue(MetaCode::MOUSEABSOLUTEHORIZONTAL) << ", " << Queryer.GetRawMetaValue(MetaCode::MOUSEABSOLUTEVERTICAL) << endl
-                        << Queryer.GetMouseCoordinates() << endl;
+    TheWorld->LogStream << InputQueryer->GetMouseX() << ", " << InputQueryer->GetMouseY() << endl
+                        << InputQueryer->GetRawMetaValue(MetaCode::MOUSEABSOLUTEHORIZONTAL) << ", " << InputQueryer->GetRawMetaValue(MetaCode::MOUSEABSOLUTEVERTICAL) << endl
+                        << InputQueryer->GetMouseCoordinates() << endl;
     TheWorld->Log("Relative Mouse location From WorldQueryTool X/Y: ");
-    TheWorld->LogStream << Queryer.GetRawMetaValue(MetaCode::MOUSEHORIZONTAL) << ", " << Queryer.GetRawMetaValue(MetaCode::MOUSEVERTICAL) << endl
-                        << Queryer.GetMousePrevFrameOffset() << endl;
+    TheWorld->LogStream << InputQueryer->GetRawMetaValue(MetaCode::MOUSEHORIZONTAL) << ", " << InputQueryer->GetRawMetaValue(MetaCode::MOUSEVERTICAL) << endl
+                        << InputQueryer->GetMousePrevFrameOffset() << endl;
 
     TheWorld->LogStream << "Default Camera:" << endl << *(TheWorld->GetCameraManager()->GetDefaultCamera()) << endl;
     Camera TempCam("TempCam",TheWorld->GetCameraManager());
@@ -266,37 +267,37 @@ bool PostInput()
 //    if(320<Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
 //        {TheWorld->Cameras->IncrementYOrbit(0.01, TheWorld->Cameras->GetNodeAttachedToCamera() );}
     CameraController* DefaultControl = TheWorld->GetCameraManager()->GetOrCreateCameraController(TheWorld->GetCameraManager()->GetDefaultCamera());
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, false))
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || InputQueryer->IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, false))
     {
         //TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01);
         DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, false))
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || InputQueryer->IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, false))
     {
         //TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01);
         DefaultControl->StrafeRight(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_UP) || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, true))
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_UP) || InputQueryer->IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_UPLEFT, true))
     {
         //TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( -12.0 );
         DefaultControl->MoveForward(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_DOWN)  || Queryer.IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, true))
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_DOWN)  || InputQueryer->IsJoystickHatPushedInDirection(MetaCode::DIRECTIONALMOTION_DOWNRIGHT, true))
     {
         //TheWorld->GetCameraManager()->GetDefaultCamera()->ZoomCamera( 12.0 );
         DefaultControl->MoveBackward(300 * (TheWorld->GetFrameTime() * 0.001));
     }
 
     static bool MouseCam=false;
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_HOME) )
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_HOME) )
     {
         MouseCam=true;
 //        TheWorld->GetEventManager()->StartRelativeMouseMode();
     }
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_END))
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_END))
     {
         MouseCam=false;
 //        TheWorld->GetEventManager()->EndRelativeMouseMode();
@@ -312,7 +313,7 @@ bool PostInput()
         CamRot.Y -=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot );
     }// */
 
-    Vector2 Offset = Queryer.GetMousePrevFrameOffset();
+    Vector2 Offset = InputQueryer->GetMousePrevFrameOffset();
     if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01);
 
@@ -331,7 +332,7 @@ bool PostInput()
         TheWorld->GetCameraManager()->GetDefaultCamera()->ResetZoom();
     }// */
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_M) || Queryer.IsJoystickButtonPushed(1) )
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_M) || InputQueryer->IsJoystickButtonPushed(1) )
     {
         Sound* Theme = TheWorld->GetSoundManager()->GetSoundByName("Theme2");
         if(!Theme->IsPlaying())
@@ -340,7 +341,7 @@ bool PostInput()
         }
     }
 
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_N) || Queryer.IsJoystickButtonPushed(2) )
+    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_N) || InputQueryer->IsJoystickButtonPushed(2) )
     {
         Sound* Theme = TheWorld->GetSoundManager()->GetSoundByName("Theme2");
         if(Theme->IsPlaying())
@@ -351,7 +352,7 @@ bool PostInput()
 
     //Resize the window
     static bool videobuttonpushed = false;
-    if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
+    if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(true);
@@ -362,17 +363,17 @@ bool PostInput()
         //NewSet.VSync = false;
         //TheWorld->GetGraphicsManager()->setRenderOptions(NewSet);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
+    else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(false);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
+    else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(1024,768);
     }
-    else if ( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
+    else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(800,600);
@@ -382,7 +383,7 @@ bool PostInput()
     // Make a declaration for a static constrain so it survives the function lifetime
     static Point2PointConstraint* Dragger=NULL;
 
-    if( Queryer.IsMouseButtonPushed(1) )
+    if( InputQueryer->IsMouseButtonPushed(1) )
     {
         /// @todo determine whether this next snippet should be a function on the UIScreen
         UI::Button* MouseButton = NULL;
@@ -416,11 +417,11 @@ bool PostInput()
             TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetGlobalLocation() << endl;
             #endif
 
-            Ray *MouseRay = Queryer.GetMouseRay(5000);
+            Ray *MouseRay = RayQueryer->GetMouseRay(5000);
             // *MouseRay *= 1000;
             //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
-            Vector3WActor *ClickOnActor = Queryer.GetFirstActorOnRayByPolygon( *MouseRay );
+            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon( *MouseRay );
             #ifdef PHYSDEBUG
             TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
             #endif
@@ -474,7 +475,7 @@ bool PostInput()
             }
 
             // This chunk of code calculates the 3d point that the actor needs to be dragged to
-            Vector3 *DragTo = Queryer.RayPlaneIntersection(*MouseRay, PlaneOfPlay);
+            Vector3 *DragTo = RayQueryer->RayPlaneIntersection(*MouseRay, PlaneOfPlay);
             if (0 == DragTo)
             {
                 #ifdef PHYSDEBUG

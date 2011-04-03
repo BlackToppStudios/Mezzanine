@@ -47,6 +47,8 @@
 
 namespace phys
 {
+    std::vector<int> InputQueryTool::CodeCache;
+
     InputQueryTool::InputQueryTool()
         { CodeCache.insert(CodeCache.end(), MetaCode::INPUTEVENT_LAST, 0); }
 

@@ -71,6 +71,28 @@ namespace phys
             /// @brief Class destructor.
             virtual ~ActorBasePhysicsSettings();
 
+            /// @brief Sets the Actors' friction coefficient.
+            /// @details Higher values will resist sliding across surfaces.  This number is the
+            /// coefficient of friction.  Range is from 0.0 to 2.0.  Behavior in this regard is determined by the friction of both
+            /// colliding bodies.  @n Default: 0.5
+            /// @param Friction A Real that is the friction coefficient desired.
+            virtual void SetFriction(Real Friction);
+
+            /// @brief Gets the Actors' friction coefficient.
+            /// @return Returns a Real representing the actors' friction coefficient.
+            virtual Real GetFriction();
+
+            /// @brief Sets the Actors' restitution coefficient.
+            /// @details Restitution determines how much energy is left after a collision with an object.
+            /// Range is from 0.0 to 1.0.  Behavior in this regard is determined by the restitution of both colliding bodies.
+            /// @n Default: 0.0
+            /// @param Restitution A Real that is the restiturion coefficient desired.
+            virtual void SetRestitution(Real Restitution);
+
+            /// @brief Gets the Actors' restitution coefficient.
+            /// @return Returns a Real representing the actors' restitution coefficient.
+            virtual Real GetRestitution();
+
             /// @brief Sets the state of the object to Kinematic.
             /// @details This function will set the object to a Kinematic Object. @n
             /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.
