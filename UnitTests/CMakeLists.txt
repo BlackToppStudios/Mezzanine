@@ -36,6 +36,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/compilerflagtests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanagertests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector2tests.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/vector3tests.h"
 )
 
 ###############################################################################
@@ -66,6 +67,14 @@ endfunction(CopyFilesFromPhygameDuringBuild)
 ##############################################################################
 # Accessing correct headers
 
+include_directories( ${${PROJECT_NAME}_SOURCE_DIR}
+	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
+	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
+	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
+	"${physgame_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/Serialize/BulletWorldImporter"
+	"${physgame_LIBINCLUDE_DIR}/common/caudiosrc/cAudio2.1.0/include"
+)
+
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific Build Process")
 	set(BuildPlatform windows)
@@ -89,6 +98,7 @@ if(${UNIX})
 			"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/OgreMain/include/"
 			"${physgame_LIBINCLUDE_DIR}/${BuildPlatform}/ogresrc/ogre/include/"
 			"${physgame_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
+
 		)
 
 		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")

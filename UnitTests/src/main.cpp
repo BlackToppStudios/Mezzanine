@@ -42,6 +42,7 @@
 
 #include "compilerflagtests.h"
 #include "vector2tests.h"
+#include "vector3tests.h"
 
 
 #include <vector>
@@ -98,10 +99,9 @@ class AllUnitTests : public UnitTest
                         }
                         if(RunAll || (*CurrentTestName)=="vector3")
                         {
-                            std::cout << "Ran Vector3 faux test" << endl;
-                            //Vector3Tests Vector3_;
-                            //Vector3_.RunTests(RunAutomaticTests, RunInteractiveTests);
-                            //(*this)+=Vector_;
+                            Vector3Tests Vector3_;
+                            Vector3_.RunTests(RunAutomaticTests, RunInteractiveTests);
+                            (*this)+=Vector3_;
                         }
                         if(!RunAll) break;
                     case 'z':
@@ -142,7 +142,7 @@ int main (int argc, char** argv)
         else if(phys::String(AllLower(argv[c]))=="automatic")
             { RunAutomaticTests=true; }
         else if(phys::String(AllLower(argv[c]))=="all")
-            { Runner.RunAll=true;}
+            { Runner.RunAll=true; }
         else if(phys::String(AllLower(argv[c]))=="summary")
             { FullDisplay = false, SummaryDisplay = true; }
         else
