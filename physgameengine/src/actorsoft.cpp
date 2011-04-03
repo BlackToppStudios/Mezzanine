@@ -60,6 +60,8 @@ namespace phys{
         : ActorBase (name, file, group)
     {
         CreateSoftObject(mass);
+        this->PhysicsSettings = new ActorSoftPhysicsSettings(this,physsoftbody);
+        BasePhysicsSettings = PhysicsSettings;
         ActorType=ActorBase::Actorsoft;
     }
 
@@ -192,6 +194,11 @@ namespace phys{
     std::string ActorSoft::GetName () const
     {
         return this->GraphicsObject->getName();
+    }
+
+    ActorSoftPhysicsSettings* ActorSoft::GetPhysicsSettings()
+    {
+        return PhysicsSettings;
     }
 
     void ActorSoft::SetActorScaling(Vector3 scaling)

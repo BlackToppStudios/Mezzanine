@@ -60,6 +60,7 @@ namespace phys
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->MotionState->SetPosition(InitPosition);
         CreateCollisionTerrain();
+        ActorType = ActorBase::Actorterrain;
     }
 
     ActorTerrain::~ActorTerrain()
@@ -76,7 +77,6 @@ namespace phys
         Ogre::Any OgreRef(ActorRef);
         GraphicsObject->setUserAny(OgreRef);
         CollisionObject->setUserPointer(ActorRef);
-        ActorType = ActorBase::Actorterrain;
     }
 
     void ActorTerrain::CreateShapeFromMeshStatic(bool UseAllSubmeshes)
@@ -98,9 +98,19 @@ namespace phys
     {
     }
 
+    bool ActorTerrain::IsStaticOrKinematic()
+    {
+        return RigidBody->isStaticOrKinematicObject();
+    }
+
     std::string ActorTerrain::GetName () const
     {
         return this->GraphicsObject->getName();
+    }
+
+    ActorRigidPhysicsSettings* ActorTerrain::GetPhysicsSettings()
+    {
+        return 0;
     }
 
     void ActorTerrain::AddObjectToWorld (World *TargetWorld)

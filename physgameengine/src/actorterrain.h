@@ -41,6 +41,7 @@
 #define _actorterrain_h
 
 #include "actorbase.h"
+#include "actorphysicssettings.h"
 #include "crossplatformexport.h"
 
 class btRigidBody;
@@ -88,9 +89,18 @@ namespace phys
             /// allow the engine to compile.
             void CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes = false);
 
+            /// @brief Checks of the actor is static or kinematic.
+            /// @details Checks of the actor is static or kinematic, returns true if it is either.
+            /// @return Returns true if the actor is static or kinematic.
+            virtual bool IsStaticOrKinematic();
+
             /// @brief Retrieves the name of the object.
             /// @details This function will retrieve the name of the object,
             std::string GetName() const;
+
+            /// @brief Gets the physics settings class associated with this actor.
+            /// @return Returns a pointer to the physics settings class in use by this actor.
+            virtual ActorRigidPhysicsSettings* GetPhysicsSettings();
 
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);

@@ -62,6 +62,8 @@ namespace phys{
         this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
+        this->PhysicsSettings = new ActorRigidPhysicsSettings(this,physrigidbody);
+        BasePhysicsSettings = PhysicsSettings;
         ActorType=ActorBase::Actorrigid;
     }
 
@@ -84,6 +86,11 @@ namespace phys{
         {
             CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
         }
+    }
+
+    std::string ActorRigid::GetName () const
+    {
+        return this->GraphicsObject->getName();
     }
 
     void ActorRigid::AddObjectToWorld (World *TargetWorld)
@@ -246,9 +253,9 @@ namespace phys{
         this->physrigidbody->updateInertiaTensor();
     }
 
-    std::string ActorRigid::GetName () const
+    ActorRigidPhysicsSettings* ActorRigid::GetPhysicsSettings()
     {
-        return this->GraphicsObject->getName();
+        return PhysicsSettings;
     }
 
     void ActorRigid::LimitMovementOnAxis(bool x, bool y, bool z)

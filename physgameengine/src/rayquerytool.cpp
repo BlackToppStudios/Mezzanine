@@ -59,17 +59,10 @@ namespace phys
 
     RayQueryTool::RayQueryTool()
     {
-        VerifyRayQuery();
-        // create the ray scene query object
-        //this->RayQuery = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-        //if (NULL == this->RayQuery)
-        //    {World::GetWorldPointer()->LogAndThrow("Failed to create RaySceneQuery instance in WorldQueryTool"); }
-        RayQuery->setSortByDistance(true);
     }
 
     RayQueryTool::~RayQueryTool()
     {
-        //delete this->RayQuery;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -338,7 +331,10 @@ namespace phys
     void RayQueryTool::VerifyRayQuery()
     {
         if(!RayQuery)
+        {
             RayQuery = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+            RayQuery->setSortByDistance(true);
+        }
     }
 
     void RayQueryTool::GetMeshInformation( Ogre::Entity *entity,

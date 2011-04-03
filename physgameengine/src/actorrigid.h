@@ -41,6 +41,7 @@
 #define _physactorrigid_h
 
 #include "actorbase.h"
+#include "actorphysicssettings.h"
 #include "crossplatformexport.h"
 
 ///////////////////////////////////
@@ -66,6 +67,9 @@ namespace phys
             /// @brief Used to simulate the behavior of a btRigidBody
             btRigidBody* physrigidbody;
 
+            /// @brief This class encapsulates physics specific configuration for this actor.
+            ActorRigidPhysicsSettings* PhysicsSettings;
+
             /// @brief Creates a rigid object for the actor.
             /// @details Creates a rigid object to be placed in the physics world later. @n
             /// This is automaticly called by the Constructor and shouldn't be called manually.
@@ -86,6 +90,10 @@ namespace phys
             /// @details The class destructor.
             virtual ~ActorRigid();
 
+            /// @brief Retrieves the name of the object.
+            /// @details This function will retrieve the name of the object,
+            virtual std::string GetName() const;
+
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld
@@ -104,6 +112,10 @@ namespace phys
             /// be used with only with Static objects.
             /// @param UseAllSubmeshes If true, this will use the geometry of all submeshes of the model to make the shape.  Otherwise it'll only use the first submesh.
             virtual void CreateShapeFromMeshStatic(bool UseAllSubmeshes = false);
+
+            /// @brief Gets the physics settings class associated with this actor.
+            /// @return Returns a pointer to the physics settings class in use by this actor.
+            virtual ActorRigidPhysicsSettings* GetPhysicsSettings();
 
             /// @brief Sets the Damping for this object.
             /// @details Both of Linear Damping and Angular Damping default to zero.  This is usful if you wish to simulate
@@ -138,10 +150,6 @@ namespace phys
             /// @details This is the gravity applied to this object, which may or may not be the same as the world gravity.
             /// @return Returns a Vector3 representing the gravity currently being applied to this object.
             virtual Vector3 GetIndividualGravity();
-
-            /// @brief Retrieves the name of the object.
-            /// @details This function will retrieve the name of the object,
-            virtual std::string GetName() const;
 
             /// @brief Restricts movement on the axis or axies of your choice.
             /// @details This function will lock any and all axies you define you want to be locked.
