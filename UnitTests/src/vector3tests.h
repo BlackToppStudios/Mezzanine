@@ -129,7 +129,7 @@ class Vector3Tests : public UnitTest
                     { temp=Failed; }
                 AddTestResult("Vector3::Neg_Unit_Y()", temp);                               //test
 
-                 if(Vector3::Neg_Unit_Z().X==0.0 && Vector3::Neg_Unit_Z().Y==0.0 && Vector3::Neg_Unit_Z().Z==-1.0)
+                if(Vector3::Neg_Unit_Z().X==0.0 && Vector3::Neg_Unit_Z().Y==0.0 && Vector3::Neg_Unit_Z().Z==-1.0)
                     { temp=Success; }
                 else
                     { temp=Failed; }
@@ -475,7 +475,6 @@ class Vector3Tests : public UnitTest
                     Vector3 VecZ(0.0,0.0,-1.0);
 
                     Vec4.Normalize(); Vec6.Normalize(); Vec5.Normalize();
-                    cerr << Vec4 << endl << Vec5 << endl << Vec6 << endl;
                     if(VecX==Vec4 && VecY==Vec5 && VecZ==Vec6)
                         { temp=Success; }
                     else
@@ -591,10 +590,123 @@ class Vector3Tests : public UnitTest
                     else
                         { temp=Failed; }
                     AddTestResult("Vector3::Distance(Vector3)", temp);                 //test
-
                 }
 
+                {
+                    Vector3 Vec4(3.0,4.0,5.0);
+                    btVector3 Vec5(7.0,9.0,11.0);
+                    Vector3 Vec6;
 
+                    Vec6=Vec5+Vec4;
+                    if(Vec6.X==10.0 && Vec6.Y==13.0 && Vec6.Z==16.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator+(btVector3,Vector3)", temp);                             //test
+
+                    Vec6=Vector3(0,0,0);
+                    Vec6=Vec5-Vec4;
+                    if(Vec6.X==4.0 && Vec6.Y==5.0 && Vec6.Z==6.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator-(btVector3,Vector3)", temp);                             //test
+
+                    Vec6=Vector3(0,0,0);
+                    Vec6=Vec5*Vec4;
+                    if(Vec6.X==21.0 && Vec6.Y==36.0 && Vec6.Z==55.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator*(btVector3,Vector3)", temp);                             //test
+
+                    Vec5=btVector3(21.0,36.0,55.0);
+                    Vec6=Vector3(0,0,0);
+                    Vec6=Vec5/Vec4;
+                    if(Vec6.X==7.0 && Vec6.Y==9.0 && Vec6.Z==11.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator/(btVector3,Vector3)", temp);                             //test
+                }
+
+                {
+                    Vector3 Vec4(3.0,4.0,5.0);
+                    Ogre::Vector3 Vec5(7.0,9.0,11.0);
+                    Vector3 Vec6;
+
+                    Vec6=Vec5+Vec4;
+                    if(Vec6.X==10.0 && Vec6.Y==13.0 && Vec6.Z==16.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator+(Ogre::Vector3,Vector3)", temp);                             //test
+
+                    Vec6=Vector3(0,0,0);
+                    Vec6=Vec5-Vec4;
+                    if(Vec6.X==4.0 && Vec6.Y==5.0 && Vec6.Z==6.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator-(Ogre::Vector3,Vector3)", temp);                             //test
+
+                    Vec6=Vector3(0,0,0);
+                    Vec6=Vec5*Vec4;
+                    if(Vec6.X==21.0 && Vec6.Y==36.0 && Vec6.Z==55.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator*(Ogre::Vector3,Vector3)", temp);                             //test
+
+                    Vec5=Ogre::Vector3(21.0,36.0,55.0);
+                    Vec6=Vector3(0,0,0);
+                    Vec6=Vec5/Vec4;
+                    if(Vec6.X==7.0 && Vec6.Y==9.0 && Vec6.Z==11.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator/(Ogre::Vector3,Vector3)", temp);                             //test
+                }
+
+                {
+                    Vector3 Vec4(3.0,4.0,5.0);
+                    cAudio::cVector3 Vec5(7.0,9.0,11.0);
+                    Vector3 Vec6;
+
+                    Vec6=Vec5+Vec4;
+                    if(Vec6.X==10.0 && Vec6.Y==13.0 && Vec6.Z==16.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator+(cAudio::cVector3,Vector3)", temp);                             //test
+
+                    Vec6=Vector3(0,0,0);
+                    Vec6=Vec5-Vec4;
+                    if(Vec6.X==4.0 && Vec6.Y==5.0 && Vec6.Z==6.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator-(cAudio::cVector3,Vector3)", temp);                             //test
+
+                    Vec6=Vector3(0,0,0);
+                    Vec6=Vec5*Vec4;
+                    if(Vec6.X==21.0 && Vec6.Y==36.0 && Vec6.Z==55.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator*(cAudio::cVector3,Vector3)", temp);                             //test
+
+                    Vec5=cAudio::cVector3(21.0,36.0,55.0);
+                    Vec6=Vector3(0,0,0);
+                    Vec6=Vec5/Vec4;
+                    if(Vec6.X==7.0 && Vec6.Y==9.0 && Vec6.Z==11.0)
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator/(cAudio::cVector3,Vector3)", temp);                             //test
+                }
+
+                temp = Skipped;
                 #ifdef PHYSXML
                 Vec=Vector3(3.0,4.0,5.0);
                 stringstream XMLstream;
@@ -605,8 +717,11 @@ class Vector3Tests : public UnitTest
                     { temp=Success; }
                 else
                     { temp=Failed; }
+                #endif
                 AddTestResult("Vector3::operator<<(ostream,Vector3)", temp);            //test
 
+                temp = Skipped;
+                #ifdef PHYSXML
                 try
                 {
                     Vector3 Vec4;
@@ -619,8 +734,12 @@ class Vector3Tests : public UnitTest
                     cerr << "Failure in: Vector3::operator>>(istream,Vector3)" << endl <<"\t phys::Exception: " << e.what();
                     temp=Failed;
                 }
+                #endif
                 AddTestResult("Vector3::operator>>(istream,Vector3)", temp);            //test
 
+
+                temp = Skipped;
+                #ifdef PHYSXML
                 try
                 {
                     Vector3 Vec5;
@@ -638,6 +757,121 @@ class Vector3Tests : public UnitTest
                 #endif
                 AddTestResult("Vector3::operator>>(xml::Node,Vector3)", temp);          //test
 
+                {
+                    Ogre::Vector3 Vec0(0.0, 0.0, 0.0);
+
+                    phys::Vector3 Vec4(1.5, 3.1, 7.2);
+                    btVector3 Vec5(2.3, 9.4, 6.3);
+                    cAudio::cVector3 Vec6(0.3, 3.6, 4.6);
+
+                    Vec0<<Vec4;
+                    if(Vector3(Vec0)==Vector3(Vec4))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(Ogre::Vector3,Vector3)", temp);          //test
+
+                    Vec0<<Vec5;
+                    if(Vector3(Vec0)==Vector3(Vec5))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(Ogre::Vector3,btVector3)", temp);          //test
+
+                    Vec0<<Vec6;
+                    if(Vector3(Vec0)==Vector3(Vec6))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(Ogre::Vector3,cAudio::cVector3)", temp);          //test
+                }
+
+                {
+                    phys::Vector3 Vec0(0.0, 0.0, 0.0);
+
+                    Ogre::Vector3 Vec4(1.5, 3.1, 7.2);
+                    btVector3 Vec5(2.3, 9.4, 6.3);
+                    cAudio::cVector3 Vec6(0.3, 3.6, 4.6);
+
+                    Vec0<<Vec4;
+                    if(Vector3(Vec0)==Vector3(Vec4))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(Vector3,Ogre::Vector3)", temp);          //test
+
+                    Vec0<<Vec5;
+                    if(Vector3(Vec0)==Vector3(Vec5))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(Vector3,btVector3)", temp);          //test
+
+                    Vec0<<Vec6;
+                    if(Vector3(Vec0)==Vector3(Vec6))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(Vector3,cAudio::cVector3)", temp);          //test
+                }
+
+                {
+                    btVector3 Vec0(0.0, 0.0, 0.0);
+
+                    Ogre::Vector3 Vec4(1.5, 3.1, 7.2);
+                    Vector3 Vec5(2.3, 9.4, 6.3);
+                    cAudio::cVector3 Vec6(0.3, 3.6, 4.6);
+
+                    Vec0<<Vec4;
+                    if(Vector3(Vec0)==Vector3(Vec4))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(btVector3,Ogre::Vector3)", temp);          //test
+
+                    Vec0<<Vec5;
+                    if(Vector3(Vec0)==Vector3(Vec5))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(btVector3,Vector3)", temp);          //test
+
+                    Vec0<<Vec6;
+                    if(Vector3(Vec0)==Vector3(Vec6))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(btVector3,cAudio::cVector3)", temp);          //test
+                }
+
+                {
+                    cAudio::cVector3 Vec0(0.0, 0.0, 0.0);
+
+                    Ogre::Vector3 Vec4(1.5, 3.1, 7.2);
+                    Vector3 Vec5(2.3, 9.4, 6.3);
+                    btVector3 Vec6(0.3, 3.6, 4.6);
+
+                    Vec0<<Vec4;
+                    if(Vector3(Vec0)==Vector3(Vec4))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(cAudio::cVector3,Ogre::Vector3)", temp);          //test
+
+                    Vec0<<Vec5;
+                    if(Vector3(Vec0)==Vector3(Vec5))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(cAudio::cVector3,Vector3)", temp);          //test
+
+                    Vec0<<Vec6;
+                    if(Vector3(Vec0)==Vector3(Vec6))
+                        { temp=Success; }
+                    else
+                        { temp=Failed; }
+                    AddTestResult("Vector3::operator<<(cAudio::cVector3,btVector3)", temp);          //test
+                }
 
             }else{
                 AddTestResult("Vector3::Vector3()", Skipped);
@@ -696,18 +930,37 @@ class Vector3Tests : public UnitTest
                 AddTestResult("Vector3::ExtractOgreVector3()", Skipped);
                 AddTestResult("Vector3::GetcAudioVector3()", Skipped);
                 AddTestResult("Vector3::ExtractcAudioVector3()", Skipped);
-                AddTestResult("Vector3::ExtractcAudioVector3()", Skipped);
                 AddTestResult("Vector3::Distance(Vector3)", Skipped);
-
-
+                AddTestResult("Vector3::operator+(btVector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator-(btVector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator*(btVector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator/(btVector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator+(Ogre::Vector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator-(Ogre::Vector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator*(Ogre::Vector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator/(Ogre::Vector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator+(cAudio::cVector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator-(cAudio::cVector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator*(cAudio::cVector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator/(cAudio::cVector3,Vector3)", Skipped);
                 #ifdef PHYSXML
                 AddTestResult("Vector3::operator<<(ostream,Vector3)", Skipped);
                 AddTestResult("Vector3::operator>>(istream,Vector3)", Skipped);
                 AddTestResult("Vector3::operator>>(xml::Node,Vector3)", Skipped);
                 #endif
+                AddTestResult("Vector3::operator<<(cAudio::cVector3,Ogre::Vector3)", Skipped);
+                AddTestResult("Vector3::operator<<(cAudio::cVector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator<<(cAudio::cVector3,btVector3)", Skipped);
+                AddTestResult("Vector3::operator<<(Ogre::Vector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator<<(Ogre::Vector3,btVector3)", Skipped);
+                AddTestResult("Vector3::operator<<(Ogre::Vector3,cAudio::cVector3)", Skipped);
+                AddTestResult("Vector3::operator<<(Vector3,Ogre::Vector3)", Skipped);
+                AddTestResult("Vector3::operator<<(Vector3,btVector3)", Skipped);
+                AddTestResult("Vector3::operator<<(Vector3,cAudio::cVector3)", Skipped);
+                AddTestResult("Vector3::operator<<(btVector3,Ogre::Vector3)", Skipped);
+                AddTestResult("Vector3::operator<<(btVector3,Vector3)", Skipped);
+                AddTestResult("Vector3::operator<<(btVector3,cAudio::cVector3)", Skipped);
             }
-
-
         }
 };
 

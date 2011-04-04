@@ -56,6 +56,8 @@
 #include <SDL.h>
 #include <Ogre.h>
 
+#include <cstdlib>
+
 namespace phys
 {
 
@@ -98,6 +100,7 @@ namespace phys
         {
             SDL_Init(SDL_INIT_VIDEO);
             SDLBeenInitialized = true;
+            atexit(SDL_Quit);
         }
         #ifdef PHYSDEBUG
         GameWorld->Log("Initialized SDL");
@@ -127,7 +130,7 @@ namespace phys
         //SDL_DeleteContext();
         //SDL_DestroyWindow(SDLwindow);
         //SDL_FreeSurface(SDLscreen);
-        SDL_Quit();
+        //SDL_Quit();               // replaced with atexist call
     }
 
     void GraphicsManager::InitViewportAndCamera(GameWindow* NewWindow)

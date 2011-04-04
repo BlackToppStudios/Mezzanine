@@ -58,15 +58,16 @@ namespace phys
             /// @brief The style of timer to be used.
             enum TimerStyle
             {
-                Normal,     ///< Description Required
-                StopWatch,  ///< Description Required
-                Alarm       ///< Description Required
+                Normal,     ///< Counts up forever, ignoring any goal and autoreset
+                StopWatch,  ///< Counts down, respecting any goal and autoreset
+                Alarm       ///< Counts up, respecting any goal and autoreset
             };
+
             /// @brief The type of timer to be used.
             enum TimerType
             {
-                Simple,     ///< Description Required
-                Extended    ///< Description Required
+                Simple,     ///< Measures only Micro Seconds, 1/1,000,000 of a second
+                Extended    ///< Measures in any unit smaller than day and larger than Micro Seconds
             };
         protected:
             friend class TimerManager;
@@ -85,6 +86,7 @@ namespace phys
             /// @brief Class Destructor.
             ~Timer() {};
             /// @brief Sets the callback to be used with this timer.
+            /// @details This function is called when a goal is reached on a Timer::StopWatch or a Timer::Alarm.
             /// @param Call The callback to be set.
             virtual void SetCallback(TimerCallback* Call) { Callback = Call; };
             /// @brief Activates the Timer.

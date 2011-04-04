@@ -41,6 +41,7 @@
 #include "main.h"
 
 #include "compilerflagtests.h"
+#include "eventmanagertests.h"
 #include "vector2tests.h"
 #include "vector3tests.h"
 
@@ -80,13 +81,13 @@ class AllUnitTests : public UnitTest
                             (*this)+=CompilerFlags_;
                         }
                         if(!RunAll) break;
+
                     case 'e':
                         if(RunAll || (*CurrentTestName)=="eventmanager")
                         {
-                            std::cout << "Ran EventManager faux test" << endl;
-                            //EventManagerTests EventManagerTests_;
-                            //EventManagerTests_.RunTests(RunAutomaticTests, RunInteractiveTests);
-                            //(*this)+=EventManagerTests_;
+                            EventManagerTests EventManagerTests_;
+                            EventManagerTests_.RunTests(RunAutomaticTests, RunInteractiveTests);
+                            (*this)+=EventManagerTests_;
                         }
                         if(!RunAll) break;
 
@@ -104,8 +105,11 @@ class AllUnitTests : public UnitTest
                             (*this)+=Vector3_;
                         }
                         if(!RunAll) break;
-                    case 'z':
 
+                    case 'y':
+                        if(!RunAll) break;
+
+                    case 'z':
                         break;
                 }
 

@@ -74,15 +74,15 @@ namespace phys
             /// Ex. If a stopwatch reaches 0.
             /// @return Returns a reference to this timer.
             virtual SimpleTimer& SetAutoReset(const bool AutoReset);
-            /// @brief Sets the current time.
+            /// @brief Sets the current time in Microseconds.
             /// @return Returns a reference to this timer.
             /// @param Current The value to set as current time in Microseconds.
             virtual SimpleTimer& SetCurrentTime(const Whole Current);
-            /// @brief Sets the goal time.
+            /// @brief Sets the goal time in Microseconds.
             /// @return Returns a reference to this timer.
             /// @param Goal The value to set as goal time in Microseconds.
             virtual SimpleTimer& SetGoalTime(const Whole Goal);
-            /// @brief Sets the initial time.
+            /// @brief Sets the initial time in Microseconds. The time that resetting sets the timer to.
             /// @return Returns a reference to this timer.
             /// @param Initial The value to set as initial time in Microseconds.
             virtual SimpleTimer& SetInitialTime(const Whole Initial);

@@ -42,4 +42,166 @@
 
 #include "main.h"
 
+using namespace phys;
+
+
+//This next block of code creates a minimal engine environment for testing managers and other ngine components
+namespace
+{
+    World *TheWorld;
+    phys::UI::Caption *TheText;
+    String TheMessage;
+    SimpleTimer *ThisTimer;
+
+    void StartEngine(String Message)
+    {
+        TheMessage=Message;
+        TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), SceneManager::Generic, 30);
+        TheWorld->GameInit(false);
+        TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", "files", false);
+        TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
+        TheWorld->GetUIManager()->LoadGorilla("dejavu");
+        phys::UIScreen *TheScreen = TheWorld->GetUIManager()->CreateScreen("Screen","dejavu",TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0));
+        phys::UILayer *TheLayer = TheScreen->CreateLayer("Layer",0);
+        TheText = TheLayer->CreateCaption(ConstString("TheText"),Vector2(0,0),Vector2(1,1),24, Message);
+        TheText->SetTextColour(ColourValue::GetWhite());
+        TheText->SetBackgroundColour(ColourValue::GetBlank());
+    }
+
+    bool PostInputEnd()
+        { return 0; }
+
+    class TimerEnding : public TimerCallback
+    {
+        virtual void DoCallbackItems()
+            { TheWorld->GetEventManager()->SetPostMainLoopItems(&PostInputEnd); }
+    };
+    TimerEnding* Callback;
+
+    void StopEngine()
+        { delete Callback; delete TheWorld; }
+
+    void StartCountdown(Whole Seconds)
+    {
+        ThisTimer = World::GetWorldPointer()->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
+        ThisTimer->SetInitialTime(Seconds * 1000000);
+        ThisTimer->Reset();
+        ThisTimer->SetGoalTime(0);
+        ThisTimer->Start();
+        Callback = new TimerEnding;
+        ThisTimer->SetCallback(Callback);
+    }
+
+    void UpdateMessage()
+    {
+        TheText->SetText( StringCat(TheMessage," - ", ToString(int(ThisTimer->GetCurrentTime()/1000000))  ));
+        //TheText->SetText( StringCat(TheMessage," - ", ToString(ThisTimer->GetCurrentTime())  ));
+    }
+}
+
+// This block of code with have everything required for performing the actual tests.
+namespace
+{
+    bool PostInputTestNull()
+    {
+        UpdateMessage();
+        return true;
+    }
+
+}
+
+class EventManagerTests : public UnitTest
+{
+    public:
+        virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
+        {
+            if (RunAutomaticTests)
+            {
+
+            }else{
+
+            }
+
+            if (RunInteractiveTests)
+            {
+
+                //Key ordering Test
+                StartEngine("Please Press a Button.");
+                StartCountdown(15);
+                TheWorld->GetEventManager()->SetPostMainLoopItems(&PostInputTestNull);
+                TheWorld->MainLoop();
+
+                TestResult Order1 = Success;
+                TestResult Order2 = Success;
+                TestResult Order3 = Success;
+                bool Tested1 = false;
+                bool Tested2 = false;
+                bool Tested3 = false;
+
+                vector<int> Keymap;
+                Keymap.insert(Keymap.end(), MetaCode::KEY_LAST, 0); // make a big empty arraylike thing
+
+                EventUserInput *ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+                while (ThisInput) //for each userinput event
+                {
+                    for (Whole c=0; c<ThisInput->GetMetaCodeCount(); ++c ) //for each metacode in each userinput
+                    {
+                        MetaCode::InputCode ThisCode = ThisInput->GetMetaCode(c).GetCode();
+                        if(MetaCode::KEY_LAST > ThisCode)
+                        {
+                            TheWorld->Log(ThisInput->GetMetaCode(c));
+                            MetaCode::ButtonState ThisValue = ThisInput->GetMetaCode(c).GetMetaValueAsButtonState();
+                            if(MetaCode::BUTTON_UP == Keymap.at(ThisCode))        //Up is stored so this should only be a pressing
+                            {
+                                Tested1=true;
+                                if(MetaCode::BUTTON_PRESSING==ThisValue)
+                                    { Keymap.at(ThisCode) = ThisValue; }
+                                else
+                                    { Order1=Failed; }
+                            }else if(MetaCode::BUTTON_PRESSING == Keymap.at(ThisCode))        //Up is stored so this should only be a pressing
+                            {
+                                Tested2=true;
+                                if(MetaCode::BUTTON_DOWN==ThisValue)
+                                    { Keymap.at(ThisCode) = ThisValue; }
+                                else
+                                    { Order2=Failed; }
+                            }else if(MetaCode::BUTTON_DOWN == Keymap.at(ThisCode))        //Up is stored so this should only be a pressing
+                            {
+                                Tested3=true;
+                                if(MetaCode::BUTTON_LIFTING==ThisValue || MetaCode::BUTTON_DOWN==ThisValue)
+                                    { Keymap.at(ThisCode) = ThisValue; }
+                                else
+                                    { Order3=Failed; }
+                            }
+                        }
+                    }
+
+                    ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+                }
+
+                if (!Tested1)
+                    Order1=Skipped;
+                if (!Tested2)
+                    Order2=Skipped;
+                if (!Tested3)
+                    Order3=Skipped;
+                //temp = GetTestAnswer( "Does the EventManager Work?" );
+                AddTestResult("EventManager::KeyEventOrdering::UpToPressing", Order1);
+                AddTestResult("EventManager::KeyEventOrdering::PressingToDown", Order2);
+                AddTestResult("EventManager::KeyEventOrdering::DownToLifting", Order3);
+                StopEngine();
+                crossplatform::WaitMilliseconds(1000);
+
+            }else{
+                AddTestResult("EventManager::KeyEventOrdering::UpToPressing", Skipped);
+                AddTestResult("EventManager::KeyEventOrdering::PressingToDown", Skipped);
+                AddTestResult("EventManager::KeyEventOrdering::DownToLifting", Skipped);
+            }
+        }
+};
+
+
+
+
+
 #endif
