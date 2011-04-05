@@ -56,7 +56,7 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     /// @class EventGameWindow
     /// @headerfile eventgamewindow.h
-    /// @brief This is intended to convey the message that quitting needs to happen
+    /// @brief Convey the message that Something happened to a game window
     /// @details
     class PHYS_LIB EventGameWindow : public EventBase
     {

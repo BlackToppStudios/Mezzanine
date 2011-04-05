@@ -183,6 +183,9 @@ class UnitTest : public TestDataStorage
 
 };
 
+// The list of all the testgroups
+map<phys::String, UnitTest*> TestGroups;
+
 // Drops a String to all lower case, changes the string passed in
 char* AllLower(char* CString)
 {
@@ -248,16 +251,21 @@ enum ExitCodes
 
 int Usage(phys::String ThisName)
 {
-    std::cout   << endl << "Usage: " << ThisName << " [summary] [[interactive][automatic]] [all] Test Group Names ..." << endl << endl
-                << "All:         All tests in all groups will be run." << endl
+    std::cout   << endl << "Usage: " << ThisName << " [help] [summary] [interactive|automatic] [all] Test Group Names ..." << endl << endl
+                << "All:         All test groups will be run." << endl
                 << "Interactive: Only interactive tests will be performed on specified test groups." << endl
                 << "Automatic:   Only automated tests will be performed on specified test groups." << endl
-                << "Interactive and Automatic: All tests will be run on specificied test groups." << endl << endl
-                << "Summary:     Only display a count of failures and successes" << endl << endl
+                //<< "Interactive and Automatic: All tests will be run on specificied test groups." << endl << endl
+                << "Summary:     Only display a count of failures and successes" << endl
+                << "Help:        Display this message"<< endl << endl
                 << "If only test group names are entered, then all tests in those groups are run." << endl
                 << "This command is not case sensitive." << endl << endl
-                << "Current Test Groups: " << endl
-                << "\tCompilerFlag \tEventManager \tVector2 \tVector3" << endl << endl;//<< \tVector2" <<endl;
+                << "Current Test Groups: " << endl;
+
+    for(map<phys::String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+        { cout << "\t" << Iter->first << " "; }
+    cout << endl;
+
     return ExitInvalidArguments;
 }
 
