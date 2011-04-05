@@ -159,7 +159,11 @@ namespace phys
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n
             /// This function is called on by the SetOrientation function, and shouldn't be called manually.
             /// @param Rotation The quaternion representing the rotation of the actor.
-            virtual void SetOgreOrientation (Quaternion Rotation);
+            virtual void SetOgreOrientation(Quaternion Rotation);
+
+            /// @brief Gets the orientation of the graphical body.
+            /// @return Returns a quaternion representing the rotation of the actor.
+            virtual Quaternion GetOgreOrientation();
 
 //////////////////////////////////////////////////////////////////////////////
 // Bullet Management Functions
@@ -179,6 +183,10 @@ namespace phys
             /// This function is called on by the SetOrientation function, and shouldn't be called manually.
             /// @param Rotation The quaternion representing the rotation of the actor.
             virtual void SetBulletOrientation (Quaternion Rotation);
+
+            /// @brief Gets the orientation of the graphical body.
+            /// @return Returns a quaternion representing the rotation of the actor.
+            virtual Quaternion GetBulletOrientation();
 
 //////////////////////////////////////////////////////////////////////////////
 // Other Management Functions
@@ -242,6 +250,10 @@ namespace phys
             /// @details Sets the orientation of the actor via a Quaternion.
             /// @param Rotation The Quaternion representing the Rotation.
             virtual void SetOrientation(Quaternion Rotation);
+
+            /// @brief Gets the orientation of the actor.
+            /// @return Returns a quaternion representing the rotation of the actor.
+            virtual Quaternion GetOrientation();
 
 ///////////////////////////////////////////////////////////////////////////////
 // Utility and Configuration

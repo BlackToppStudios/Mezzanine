@@ -56,7 +56,7 @@
 namespace phys{
     ///////////////////////////////////
     // ActorBase class fuctions
-    ActorBase::ActorBase (String name, String file, String group)
+    ActorBase::ActorBase(String name, String file, String group)
         : GraphicsObject(NULL),
           MotionState(NULL),
           ActorSounds(NULL),
@@ -71,7 +71,7 @@ namespace phys{
         //this->BasePhysicsSettings = new ActorBasePhysicsSettings(this,CollisionObject);
     }
 
-    ActorBase::~ActorBase ()
+    ActorBase::~ActorBase()
     {
         DetachFromGraphics();
         delete MotionState;
@@ -92,7 +92,7 @@ namespace phys{
     ///////////////////////////////////
     // Ogre Management Functions
 
-    void ActorBase::SetOgreLocation (Vector3 Location)
+    void ActorBase::SetOgreLocation(Vector3 Location)
     {
         this->GraphicsNode->setPosition(Location.GetOgreVector3());
     }
@@ -103,15 +103,21 @@ namespace phys{
         return temp;
     }
 
-    void ActorBase::SetOgreOrientation (Quaternion Rotation)
+    void ActorBase::SetOgreOrientation(Quaternion Rotation)
     {
         this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
+    }
+
+    Quaternion ActorBase::GetOgreOrientation()
+    {
+        Quaternion temp(GraphicsNode->getOrientation());
+        return temp;
     }
 
     ///////////////////////////////////
     // Bullet Management Functions
 
-    void ActorBase::SetBulletLocation (Vector3 Location)
+    void ActorBase::SetBulletLocation(Vector3 Location)
     {
         //btTransform* temp = this->CollisionObject->getWorldTransform();
         this->CollisionObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
@@ -123,15 +129,21 @@ namespace phys{
         return temp;
     }
 
-    void ActorBase::SetBulletOrientation (Quaternion Rotation)
+    void ActorBase::SetBulletOrientation(Quaternion Rotation)
     {
         this->CollisionObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
+    }
+
+    Quaternion ActorBase::GetBulletOrientation()
+    {
+        Quaternion temp(CollisionObject->getWorldTransform().getRotation());
+        return temp;
     }
 
     ///////////////////////////////////
     // Other Management Functions
 
-    void ActorBase::AttachToGraphics ()
+    void ActorBase::AttachToGraphics()
     {
         Vector3 tempv(CollisionObject->getWorldTransform().getOrigin());
         Quaternion tempq(CollisionObject->getWorldTransform().getRotation());
@@ -140,7 +152,7 @@ namespace phys{
         this->GraphicsNode->attachObject(this->GraphicsObject);
     }
 
-    void ActorBase::DetachFromGraphics ()
+    void ActorBase::DetachFromGraphics()
     {
         this->GraphicsNode->detachObject(this->GraphicsObject);
     }
@@ -148,13 +160,13 @@ namespace phys{
     ///////////////////////////////////
     // Creation, Destruction and Initialization
 
-    void ActorBase::SetLocation (Real x, Real y, Real z)
+    void ActorBase::SetLocation(Real x, Real y, Real z)
     {
         Vector3 temp(x,y,z);
         this->SetLocation(temp);
     }
 
-    void ActorBase::SetLocation (Vector3 Place)
+    void ActorBase::SetLocation(Vector3 Place)
     {
         this->SetBulletLocation(Place);
         this->SetOgreLocation(Place);
@@ -165,16 +177,21 @@ namespace phys{
         return this->GetBulletLocation();
     }
 
-    void ActorBase::SetOrientation (Real x, Real y, Real z, Real w)
+    void ActorBase::SetOrientation(Real x, Real y, Real z, Real w)
     {
         Quaternion temp(x,y,z,w);
         this->SetOrientation(temp);
     }
 
-    void ActorBase::SetOrientation (Quaternion Rotation)
+    void ActorBase::SetOrientation(Quaternion Rotation)
     {
         this->SetBulletOrientation(Rotation);
         this->SetOgreOrientation(Rotation);
+    }
+
+    Quaternion ActorBase::GetOrientation()
+    {
+        return this->GetBulletOrientation();
     }
 
     ///////////////////////////////////

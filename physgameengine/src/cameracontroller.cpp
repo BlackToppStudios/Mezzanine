@@ -42,13 +42,18 @@
 
 #include "cameracontroller.h"
 #include "camera.h"
+#include "mathtool.h"
+#include "rayquerytool.h"
+#include "ray.h"
+#include "vector3wactor.h"
+#include "enumerations.h"
 
 namespace phys
 {
     CameraController::CameraController(Camera* ToBeControlled)
         : Controlled(ToBeControlled),
-          CurrentMode(CCM_Fly),
-          HoverHeight(1),
+          CurrentMMode(CCM_Fly),
+          HoverHeight(2),
           YawRad(0),
           PitchRad(0),
           RollRad(0)
@@ -59,9 +64,59 @@ namespace phys
     {
     }
 
+    void CameraController::CheckAngle(Real Angle)
+    {
+        Real Pi = MathTool::GetPi();
+        if(Angle > Pi)
+        {
+            Angle = -Pi + (Angle - Pi);
+        }
+        else if(Angle < -Pi)
+        {
+            Angle = Pi + (Angle + Pi);
+        }
+    }
+
+    void CameraController::CheckAllAngles()
+    {
+        CheckAngle(YawRad);
+        CheckAngle(PitchRad);
+        CheckAngle(RollRad);
+    }
+
+    void CameraController::CheckHeight()
+    {
+        Vector3 Loc(Controlled->GetLocation());
+        Real Dist = FindDistanceToGround();
+        if(0==Dist)
+            return;
+        Real DeltaDist = Dist - HoverHeight;
+        Loc.Y-=DeltaDist;
+        Controlled->SetLocation(Loc);
+    }
+
     Real CameraController::FindDistanceToGround()
     {
-
+        Vector3 Loc(Controlled->GetLocation());
+        Vector3 Dest(Loc + Vector3(0,-2000,0));
+        Ray* GroundRay = new Ray(Loc,Dest);
+        Vector3WActor* Result = RayQueryTool::GetFirstActorOnRayByPolygon(*GroundRay,phys::WOT_ActorTerrain);
+        if(NULL == Result)
+        {
+            delete Result;
+            delete GroundRay;
+            return 0;
+        }
+        if(NULL == Result->Actor)
+        {
+            delete Result;
+            delete GroundRay;
+            return 0;
+        }
+        Real Distance = Loc.Y - (/*(Result->Actor->GetOrientation().GetInverse() * */Result->Vector + Loc).Y;
+        delete Result;
+        delete GroundRay;
+        return Distance;
     }
 
     Camera* CameraController::GetControlledCamera() const
@@ -71,12 +126,12 @@ namespace phys
 
     void CameraController::SetMovementMode(const CameraController::MovementMode& MoveMode)
     {
-        CurrentMode = MoveMode;
+        CurrentMMode = MoveMode;
     }
 
     CameraController::MovementMode CameraController::GetMovementMode() const
     {
-        return CurrentMode;
+        return CurrentMMode;
     }
 
     void CameraController::SetHoverHeight(const Real& Hover)
@@ -93,30 +148,39 @@ namespace phys
     {
         Vector3 Move(0,0,-Units);
         Controlled->MoveRelative(Move);
+        if(CCM_Walk == CurrentMMode)
+            CheckHeight();
     }
 
     void CameraController::MoveBackward(Real Units)
     {
         Vector3 Move(0,0,Units);
         Controlled->MoveRelative(Move);
+        if(CCM_Walk == CurrentMMode)
+            CheckHeight();
     }
 
     void CameraController::StrafeLeft(Real Units)
     {
         Vector3 Move(-Units,0,0);
         Controlled->MoveRelative(Move);
+        if(CCM_Walk == CurrentMMode)
+            CheckHeight();
     }
 
     void CameraController::StrafeRight(Real Units)
     {
         Vector3 Move(Units,0,0);
         Controlled->MoveRelative(Move);
+        if(CCM_Walk == CurrentMMode)
+            CheckHeight();
     }
 
     void CameraController::Rotate(Real Yaw, Real Pitch)
     {
         YawRad+=Yaw;
         PitchRad+=Pitch;
+        CheckAllAngles();
         Quaternion CamRot = Quaternion(-YawRad,Vector3::Unit_Y()) * Quaternion(-PitchRad,Vector3::Unit_X());
         Controlled->SetOrientation(CamRot);
     }

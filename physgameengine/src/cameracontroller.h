@@ -65,13 +65,16 @@ namespace phys
 
         protected:
             Camera* Controlled;
-            MovementMode CurrentMode;
+            MovementMode CurrentMMode;
             Real HoverHeight;
 
             Real YawRad;
             Real PitchRad;
             Real RollRad;
 
+            void CheckAngle(Real Angle);
+            void CheckAllAngles();
+            void CheckHeight();
             Real FindDistanceToGround();
         public:
             /// @brief Class constructor.

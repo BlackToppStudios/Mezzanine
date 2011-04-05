@@ -40,13 +40,9 @@
 #ifndef _rayquerytool_h
 #define _rayquerytool_h
 
-#include "actorbase.h"
+#include "datatypes.h"
 #include "crossplatformexport.h"
-#include "inputquerytool.h"
-#include "metacode.h"
-#include "plane.h"
-#include "ray.h"
-#include "vector3wactor.h"
+#include "vector3.h"
 
 namespace Ogre
 {
@@ -58,6 +54,10 @@ namespace Ogre
 
 namespace phys
 {
+    class Plane;
+    class Vector3WActor;
+    class Ray;
+    class ActorBase;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class RayQueryTool
     /// @headerfile rayquerytool.h
@@ -107,23 +107,29 @@ namespace phys
             /// This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the
             /// ray being cast. This will start at ray.from and go to ray.to .
             /// @param ActorRay The Ray to search along.
+            /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
+            /// See WorldObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return This returns a pointer to an Vector3WActor, which contains the first actor along the ray and the point of intersection Relative to the actor
-            static Vector3WActor* GetFirstActorOnRayByPolygon(Ray ActorRay);
+            static Vector3WActor* GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags);
 
             /// @brief Partially implemented. This should find the first Actor that is on or almost on the a given Ray.
             /// @details This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned.
             /// Presently this is untested and does not return the Offset of the intersection. This should perform faster than WorldQueryTool::GetFirstActorOnRayByPolygon
             /// but not by a known amount.
             /// @param ActorRay The Ray to search along.
+            /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
+            /// See WorldObjectType in enumerations.h for a listing of objects to use as flags.
             /// @return This returns a pointer to an actorbase, which is the first actor to have an Axis-Aligned Bounding Box along the ray.
-            static Vector3WActor* GetFirstActorOnRayByAABB(Ray ActorRay);
+            static Vector3WActor* GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags);
 
             /// @brief This will find the actor under the mouse.
             /// @details This will use
-            /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB .
-            /// @param RayLength The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0
+            /// @param ObjectFlags A whole comprising all the valid objects to be checked in the scene.
+            /// See WorldObjectType in enumerations.h for a listing of objects to use as flags.
+            /// @param RayLength The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0.
+            /// @param UsePolygon If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB.
             /// @return This returns a Vector3WActor which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass.
-            static Vector3WActor* GetActorUnderMouse(Real RayLength=1000.0, bool UsePolygon=true);
+            static Vector3WActor* GetActorUnderMouse(Whole ObjectFlags, Real RayLength=1000.0, bool UsePolygon=true);
 
             /// @brief Where does this Ray Meet this Plane?
             /// @details This does some fancy math to return the point where the ray and the plane intersent.

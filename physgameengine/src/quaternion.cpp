@@ -115,6 +115,18 @@ namespace phys
         return *this;
     }
 
+    Quaternion Quaternion::GetInverse() const
+    {
+        Real Norm = W*W+X*X+Y*Y+Z*Z;
+        if ( Norm > 0.0 )
+        {
+            Real InvNorm = 1.f/Norm;
+            return Quaternion(W*InvNorm,-X*InvNorm,-Y*InvNorm,-Z*InvNorm);
+        }else{
+            return Quaternion(0,0,0,0);
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     // Explicit Conversion
 
@@ -225,6 +237,20 @@ namespace phys
             this->W * Other.z() + this->Z * Other.w() + this->X * Other.y() - this->Y * Other.x(),
             this->W * Other.w() - this->X * Other.x() + this->Y * Other.y() - this->Z * Other.z()
         );
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Vector Rotation Operators
+
+    Vector3 Quaternion::operator* (const Vector3& Other) const
+    {
+        Vector3 UV, UUV;
+        Vector3 QuatVec(X,Y,Z);
+        UV = QuatVec.CrossProduct(Other);
+        UUV = QuatVec.CrossProduct(UV);
+        UV *= (2.f * W);
+        UUV *= 2.f;
+        return Other + UV + UUV;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

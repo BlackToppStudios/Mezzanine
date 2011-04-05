@@ -51,21 +51,22 @@ namespace phys
     enum WorldObjectType
     {
         // Actors
-        WOT_ActorBase,
-        WOT_ActorRigid,
-        WOT_ActorSoft,
-        WOT_ActorRagdoll,
-        WOT_ActorTerrain,
+        WOT_ActorBase = 1,
+        WOT_ActorRigid = 2,
+        WOT_ActorSoft = 4,
+        WOT_ActorRagdoll = 8,
+        WOT_ActorTerrain = 16,
 
         // AE Fields
-        WOT_AreaEffect,
-        WOT_GravityField,
-        WOT_GravityWell,
+        WOT_AreaEffect = 32,
+        WOT_CustomAE  = 64,
+        WOT_GravityField = 128,
+        WOT_GravityWell = 256,
 
         // Scene Objects
-        WOT_Light,
-        WOT_ParticleEffect,
-        WOT_Camera
+        WOT_Light = 512,
+        WOT_ParticleEffect = 1024,
+        WOT_Camera = 2048
     };
 
     namespace UI
