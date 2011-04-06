@@ -41,9 +41,11 @@
 #include "main.h"
 
 #include "compilerflagtests.h"
+#include "eventmanagertests.h"
 #include "vector2tests.h"
 #include "vector3tests.h"
 
+#include <cstdlib>
 
 #include <vector>
 
@@ -59,66 +61,41 @@ class AllUnitTests : public UnitTest
 
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
-            vector<phys::String>::iterator CurrentTestName;
-
-            // If we want to run all the tests then we don't really need to iterate do we? if somehow all those
-            // pesky breaks could be skipped we could just jump into the switch case and just run all the tests
             if(RunAll)
-                { goto TheGauntlet; }        // yup, I used a goto
-
-            for(CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
-            {
-                //add to the big switch case whenever you add a new UnitTest please.
-                switch ((*CurrentTestName)[0])
+            {                                   //Run every test in the big list of tests
+                for(map<String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
                 {
-                    TheGauntlet:        //can you think of a better name for something that means all the tests will be run
-                    case 'c':
-                        if(RunAll || (*CurrentTestName)=="compilerflag")
-                        {
-                            CompilerFlagTests CompilerFlags_;
-                            CompilerFlags_.RunTests(RunAutomaticTests, RunInteractiveTests);
-                            (*this)+=CompilerFlags_;
-                        }
-                        if(!RunAll) break;
-                    case 'e':
-                        if(RunAll || (*CurrentTestName)=="eventmanager")
-                        {
-                            std::cout << "Ran EventManager faux test" << endl;
-                            //EventManagerTests EventManagerTests_;
-                            //EventManagerTests_.RunTests(RunAutomaticTests, RunInteractiveTests);
-                            //(*this)+=EventManagerTests_;
-                        }
-                        if(!RunAll) break;
-
-                    case 'v':
-                        if(RunAll || (*CurrentTestName)=="vector2")
-                        {
-                            Vector2Tests Vector2_;
-                            Vector2_.RunTests(RunAutomaticTests, RunInteractiveTests);
-                            (*this)+=Vector2_;
-                        }
-                        if(RunAll || (*CurrentTestName)=="vector3")
-                        {
-                            Vector3Tests Vector3_;
-                            Vector3_.RunTests(RunAutomaticTests, RunInteractiveTests);
-                            (*this)+=Vector3_;
-                        }
-                        if(!RunAll) break;
-                    case 'z':
-
-                        break;
+                    Iter->second->RunTests(RunAutomaticTests, RunInteractiveTests);
+                    (*this) += *(Iter->second);
                 }
-
-                if(RunAll) // We Finished the Gauntlet We can Quit now
-                    break;
+            }else{                              // run the tests one at a time in the list of things to run by finding them in the big list
+                for(vector<phys::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
+                {
+                    TestGroups[*CurrentTestName]->RunTests(RunAutomaticTests, RunInteractiveTests);
+                    (*this) += *(TestGroups[*CurrentTestName]);
+                }
             }
-
             return LeastSuccessful.second;
         }
 };
 
+void DeleteTests()
+{
+    for(map<String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
+    {
+        //cout << Iter->first << endl;
+        delete Iter->second;
+    }
+}
+
 int main (int argc, char** argv)
 {
+    atexit(&DeleteTests);
+    TestGroups["compilerflag"] = new CompilerFlagTests;
+    TestGroups["eventmanager"] = new EventManagerTests;
+    TestGroups["vector2"] = new Vector2Tests;
+    TestGroups["vector3"] = new Vector3Tests;
+
     bool RunAutomaticTests = false, RunInteractiveTests = false;    //Set them both to false now, if they are both false later, then we will pass true
     bool FullDisplay = true, SummaryDisplay = true;
     phys::String CommandName;
@@ -135,18 +112,27 @@ int main (int argc, char** argv)
 
     for (int c=1; c<argc; ++c)                                                  // Check Command line for keywords and get all the test names
     {
-        if(phys::String(AllLower(argv[c]))=="help")
+        String ThisArg(AllLower(argv[c]));
+        if(ThisArg=="help")
             { Usage(argv[0]); return ExitSuccess; }
-        else if(phys::String(AllLower(argv[c]))=="interactive")
+        else if(ThisArg=="interactive")
             { RunInteractiveTests=true; }
-        else if(phys::String(AllLower(argv[c]))=="automatic")
+        else if(ThisArg=="automatic")
             { RunAutomaticTests=true; }
-        else if(phys::String(AllLower(argv[c]))=="all")
+        else if(ThisArg=="all")
             { Runner.RunAll=true; }
-        else if(phys::String(AllLower(argv[c]))=="summary")
+        else if(ThisArg=="summary")
             { FullDisplay = false, SummaryDisplay = true; }
-        else
-            { Runner.TestGroupsToRun.push_back(AllLower(argv[c])); }            // Testing group is filled here
+        else                                                                    // Wasn't a command so it is either gibberish or a test group
+        {
+            if(TestGroups[ThisArg.c_str()])                                     //pointer will be null if gibberish
+            {
+                Runner.TestGroupsToRun.push_back(AllLower(argv[c]));
+            }else{
+                cerr << ThisArg << " is not a valid testgroup or parameter." << endl;
+                return ExitInvalidArguments;
+            }
+        }
     }
 
     if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running all all test if no type of test is specified
@@ -154,9 +140,8 @@ int main (int argc, char** argv)
 
     Runner.RunTests(RunAutomaticTests,RunInteractiveTests);
     Runner.DisplayResults(SummaryDisplay, FullDisplay);
+
+    return ExitSuccess;
 }
-
-
-
 
 

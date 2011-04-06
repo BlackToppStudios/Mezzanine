@@ -45,7 +45,7 @@
 namespace phys
 {
     SimpleTimer::SimpleTimer(const Timer::TimerStyle style)
-        : Timer(style)
+        : Timer(style), CurrentTime(0), GoalTime(0), InitialTime(0)
     {
         Type = Timer::Simple;
     }

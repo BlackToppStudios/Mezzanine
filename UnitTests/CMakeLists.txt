@@ -130,8 +130,8 @@ target_link_libraries( ${PROJECT_NAME} physgame )
 # File copies during all builds
 message ("${PROJECT_NAME} - Begin File Copy Process")
 
-CopyDemoFilesDuringBuild( common/Catch_1.png data/common/Catch_1.png )
-CopyDemoFilesDuringBuild( common/Catch!.gorilla data/common/Catch!.gorilla )
+CopyDemoFilesDuringBuild( common/dejavu.png data/common/dejavu.png )
+CopyDemoFilesDuringBuild( common/dejavu.gorilla data/common/dejavu.gorilla )
 CopyDemoFilesDuringBuild( common/sounds/welcomefun-1.ogg data/ )
 CopyDemoFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt data/common/ubuntu-font-family/ubuntu-font-licence-1.0.txt )
 CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf data/common/ubuntu-font-family/Ubuntu-B.ttf )

@@ -151,13 +151,20 @@ namespace phys
             /// @brief Adds one type of polling check where the data is only available as Ints
             /// @param OneCode The code that will be check for each frame, under the new condition
             /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
-            void AddInputCodeToManualCheck(int OneCode, int _PollingCheck)
+            void AddInputCodesToManualCheck(int OneCode, int _PollingCheck)
             {
                 this->AddInputCodeToManualCheck(
                         static_cast<phys::MetaCode::InputCode>(OneCode),
                         static_cast<phys::internal::EventManagerInternalData::PollingType>(_PollingCheck)
                 );
             }
+
+            /// @internal
+            /// @brief Adds one type of polling check where the data is only available as Ints
+            /// @param OneCode The metacode that contains the input that will be checked for each frame
+            /// @param _PollingCheck This is inserted into a new polling check or it is bitwise or'ed into an existing one, and this will trigger other parts of the code to insert event later on
+            void AddMetaCodesToManualCheck(const MetaCode& OneCode, PollingType _PollingCheck)
+            { AddInputCodesToManualCheck(OneCode.GetCode(),_PollingCheck); }
 
             /// @internal
             /// @brief Used to insert Codes into the list of items to be manually checked
@@ -173,20 +180,36 @@ namespace phys
             }
 
             /// @internal
+            /// @brief Remove a kind polling check from an item or remove item if that is the last check
+            /// @param Reduce An Iterator Referencing an item in manual check
+            /// @param _PollingCheck What kind of Polling Type to Remove.
+            void RemovePollingCheck(ManualCheckIterator Reduce, PollingType _PollingCheck)
+            {
+                if( ManualCheck.end() != Reduce )
+                {
+                    if(Reduce->second == _PollingCheck)
+                        { ManualCheck.erase(Reduce); }
+                    else
+                        { Reduce->second = (PollingType)(Reduce->second & (~_PollingCheck)); }
+                }
+            }
+
+            /// @internal
             /// @brief Removes one type of polling check
             /// @param OneCode The code that will no longer be checked each frame, under the given condition
             /// @param _PollingCheck If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed.
             void RemoveInputCodeToManualCheck(const MetaCode::InputCode& OneCode, PollingType _PollingCheck)
             {
                 ManualCheckIterator Which = ManualCheck.find(OneCode);
-                if( ManualCheck.end() != Which )
-                {
-                    if(Which->second == _PollingCheck)
-                        { ManualCheck.erase(Which); }                           // if they are are equal then this
-                    else
-                        { Which->second = (PollingType)(Which->second & (~_PollingCheck)); }
-                }
+                RemovePollingCheck( Which, _PollingCheck );
             }
+
+            /// @internal
+            /// @brief Removes one type of polling check
+            /// @param OneCode A metacode that contains the the inputcode to remove
+            /// @param _PollingCheck If this matches via bitwise or with the kind of polling check check stored for the existing InputCode then the it will be removed.
+            void RemoveMetaCodesToManualCheck(const MetaCode& OneCode, PollingType _PollingCheck)
+                { RemoveInputCodeToManualCheck(OneCode.GetCode(),_PollingCheck); }
 
             /// @internal
             /// @brief Remove Items form the internal manual check list
@@ -196,6 +219,14 @@ namespace phys
             {
                 for ( vector<MetaCode>::iterator Iter=Transport.begin(); Iter!=Transport.end(); ++Iter)
                     { RemoveInputCodeToManualCheck(Iter->GetCode(), _PollingCheck); }
+            }
+
+            /// @internal
+            /// @param Drops all keypresses from the list of items to be perpetuated each frame.
+            void DropAllKeyPresses()
+            {
+                for (ManualCheckIterator Which = ManualCheck.begin(); Which!=ManualCheck.end(); ++Which)
+                    { RemovePollingCheck(Which, Keypress); }
             }
 
             /// @internal
@@ -279,6 +310,16 @@ namespace phys
 
         RawEvent FromSDLRaw;                                    //used to hold data as we go through loop
         EventUserInput* FromSDLEvent = new EventUserInput();    //Used to build up all of our userinput data into one event
+        bool ClearKeyPresses=false;                             //if true All the keypresses will be dropped and all keys will be assumed to be up
+
+        // Here we iterate through manual check to insert any requested polling checks and perpetuate button and key down events
+        for(internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
+        {
+            if(internal::EventManagerInternalData::Keypress & Iter->second)     //if the keypress event is in there, then the key must be down
+                { FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, Iter->first); }
+            else
+                { FromSDLEvent->AddCode(MetaCode::BUTTON_UP, Iter->first); }    //It must be just a polling check
+        }
 
         /* Here is a list of SDL event which aren't coded yet.
         //event types
@@ -329,29 +370,40 @@ namespace phys
         {
             switch(FromSDLRaw.type)
             {
+        //Events and User input sorted by estimate frequency
+                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:{
+                    MetaCode ResultCode(FromSDLRaw);
+                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), internal::EventManagerInternalData::Keypress);
+                    break;}
 
-                case SDL_MOUSEBUTTONUP:     case SDL_KEYUP:             case SDL_JOYBUTTONUP:
-                    _Data->RemoveMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
-                    break;
+                case SDL_KEYDOWN: {
+                    MetaCode ResultCode(FromSDLRaw);
+                    if ( !(_Data->ManualCheck[ResultCode.GetCode()]) )              //This checks for operating system level key repititions and skips adding them
+                        { _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(ResultCode), internal::EventManagerInternalData::Keypress); }
+                    break; }
 
-                case SDL_MOUSEBUTTONDOWN:   case SDL_KEYDOWN:           case SDL_JOYBUTTONDOWN:
-                    _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw), internal::EventManagerInternalData::Keypress);
+                case SDL_MOUSEBUTTONDOWN:   case SDL_JOYBUTTONDOWN:
+                    _Data->AddMetaCodesToManualCheck( FromSDLEvent->AddCode(FromSDLRaw), internal::EventManagerInternalData::Keypress);
                     break;
 
                 case SDL_MOUSEMOTION:       case SDL_JOYAXISMOTION:     case SDL_JOYHATMOTION:      case SDL_JOYBALLMOTION: // What is a joyball, like the bowling games maybe, or the ORBit controller
                     FromSDLEvent->AddCodesFromRawEvent(FromSDLRaw);
                     break;
 
-                case SDL_FIRSTEVENT:  //capture and ignore or throw error
-                    World::GetWorldPointer()->LogAndThrow("Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");
-                    break;
-
-                case SDL_WINDOWEVENT:
-                    this->AddEvent(new EventGameWindow(FromSDLRaw));
-                    break;
+                case SDL_WINDOWEVENT: {
+                    EventGameWindow* React = new EventGameWindow(FromSDLRaw);
+                    if(EventGameWindow::GAME_WINDOW_FOCUS_LOST==React->GetEventID())        //we dropp all keypresses when windows are switched
+                        { ClearKeyPresses = true; }
+                    this->AddEvent(React);
+                    break; }
 
                 case SDL_SYSWMEVENT:
                         // call a function with ifdefs here
+                    break;
+
+        // Error conditions
+                case SDL_FIRSTEVENT:  //capture and ignore or throw error
+                    World::GetWorldPointer()->LogAndThrow("Unexpected 'FIRSTEVENT' event in event manager. User input seems corrupted.");
                     break;
 
                 case SDL_QUIT:          //when SDL closes, but this really should be handled somewhere else, like the UpdateQuitEvents() function
@@ -365,27 +417,17 @@ namespace phys
             }
         }
 
-        // Here we iterate through manual check to insert any requested polling checks and perpetuate mousedown events
-        for(internal::EventManagerInternalData::ManualCheckIterator Iter=_Data->ManualCheck.begin(); _Data->ManualCheck.end()!=Iter; ++Iter)
+        if(ClearKeyPresses)
+            { this->_Data->DropAllKeyPresses(); }
+
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("User Input entered this Frame");
+        for(EventUserInput::iterator LIter=FromSDLEvent->begin(); FromSDLEvent->end()!=LIter; ++LIter)
         {
-            MetaCode::InputCode temp = (*Iter).first;
-            bool found=false;
-            for(EventUserInput::iterator LIter=FromSDLEvent->begin(); FromSDLEvent->end()!=LIter; ++LIter)
-            {
-                if (Iter->first == LIter->GetCode())
-                {
-                    found=true;
-                    break;
-                }
-            }
-            if(!found)
-            {
-                if(internal::EventManagerInternalData::Keypress & Iter->second)     //if the keypress event is in there, then the key must be down
-                    { FromSDLEvent->AddCode(MetaCode::BUTTON_DOWN, Iter->first); }
-                else
-                    { FromSDLEvent->AddCode(MetaCode::BUTTON_UP, Iter->first); }    //It must be just a polling check
-            }
+            World::GetWorldPointer()->Log(*LIter);
         }
+        World::GetWorldPointer()->Log("End Of User Input entered this Frame");
+        #endif
 
         //Check to see if we should add a User input event or not. We wouldn't want to pass an empty event
         if(FromSDLEvent->GetMetaCodeCount()==0)
@@ -645,7 +687,7 @@ void operator >> (const phys::xml::Node& OneNode, phys::EventManager& Mgr)
                     switch(TagName[5])
                     {
                         case 'l':{
-                            Mgr._Data->AddInputCodeToManualCheck(
+                            Mgr._Data->AddInputCodesToManualCheck(
                                 (Child.GetAttribute("InputCode").AsInt()),
                                 (Child.GetAttribute("PollingType").AsInt())
                             );}

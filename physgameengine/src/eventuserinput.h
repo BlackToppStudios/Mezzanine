@@ -140,18 +140,8 @@ namespace phys
             /// @return a metacode that represents a button press
             MetaCode AddCodeFromSDLJoyStickButton(const RawEvent &RawEvent_);
 
-        protected:
-            /// @brief Adds a MetaCode created from a RawEvent
-            /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode
-            /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is
-            /// recommended to not use this in game code.
-            /// @warning Do not use this without reading and fully understanding the warnings on MetaCode::MetaCode(const RawEvent &RawEvent_) . This function has all the same
-            /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, there is probably something wrong, but if it must it should use
-            /// EventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.
-            /// @return This returns a const reference to the MetaCode that was Added. This reference is valid for the lifetime of this EventUserInput.
-            MetaCode AddCode(const RawEvent &RawEvent_);
-
         public:
+
             /// @brief Default constructor
             /// @details This creates a perfectly functional, but empty EventUserInput.
             EventUserInput();
@@ -181,6 +171,17 @@ namespace phys
             /// @return The amount of codes stored in this physEventUserInput.
             /// @details Retrieves a count of the stored Metacodes. Synonym for vector::size();
             size_t GetMetaCodeCount();
+
+            /// @internal
+            /// @brief Adds a MetaCode created from a RawEvent
+            /// @param RawEvent_ The RawEvent which will be translated into exactly One MetaCode
+            /// @details This will add MetaCode to this event which will be create from a RawEvent which can produce Exactly one MetaCode. This is used by engine internals, it is
+            /// recommended to not use this in game code.
+            /// @warning Do not use this without reading and fully understanding the warnings on MetaCode::MetaCode(const RawEvent &RawEvent_) . This function has all the same
+            /// Restrictions. If game code is using RawEvents at all, the game logic should be scrutinized carefully, there is probably something wrong, but if it must it should use
+            /// EventUserInput::AddCodesFromRawEvent instead, as it can make the needed determinations automatically and in a platform agnostic way.
+            /// @return This returns a const reference to the MetaCode that was Added. This reference is valid for the lifetime of this EventUserInput.
+            MetaCode AddCode(const RawEvent &RawEvent_);
 
             /// @brief Adds a MetaCode
             /// @param Code_ The User Input MetaCode tobe added

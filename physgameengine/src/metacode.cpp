@@ -80,8 +80,9 @@ namespace phys
 
     void MetaCode::Construct(const RawEvent &RawEvent_)
     {
-        Construct(BUTTON_UP, KEY_FIRST);        //create a safe but gibberish default
-        /// @todo TODO: Actually process each event
+        #ifdef PHYSDEBUG
+        World::GetWorldPointer()->Log("Entering: MetaCode::Construct(RawEvent);");
+        #endif
         switch(RawEvent_.type)
         {
             case SDL_KEYDOWN:
@@ -106,10 +107,12 @@ namespace phys
             // Fail when incorrectly constructed
             case SDL_JOYBALLMOTION:     case SDL_JOYHATMOTION:
             case SDL_JOYAXISMOTION:     case SDL_MOUSEMOTION:
+                Construct(BUTTON_UP, KEY_FIRST);            //create a safe but gibberish default
                 throw ("RawEvent which creates Multiple Metacodes inserted into Metacode");
                 break;
 
             default:
+                Construct(BUTTON_UP, KEY_FIRST);            //create a safe but gibberish default
                 throw ("Unknown User Input Inserted into Metacode");
                 break;
         }

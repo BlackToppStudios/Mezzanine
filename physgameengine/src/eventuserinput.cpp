@@ -132,31 +132,21 @@ namespace phys
         vector<MetaCode> Results;
         switch(RawEvent_.type)
         {
-            case SDL_KEYUP:         case SDL_KEYDOWN:   //Only contains one metacode
+/*            case SDL_KEYUP:         case SDL_KEYDOWN:   //Only contains one metacode
             case SDL_MOUSEBUTTONUP: case SDL_MOUSEBUTTONDOWN:
             case SDL_JOYBUTTONDOWN: case SDL_JOYBUTTONUP:
                 Results.push_back(this->AddCode(RawEvent_));
-                break;
+                break;*/
 
             case SDL_MOUSEMOTION:{       //Can contain Multiple Metacodes
                 vector<MetaCode> Transport(this->AddCodesFromSDLMouseMotion(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
 
-            //case SDL_MOUSEBUTTONUP: case SDL_MOUSEBUTTONDOWN:{
-            //    //vector<MetaCode> Transport(this->AddCodesFromSDLMouseButton(RawEvent_));
-            //    //Results.insert(Results.end(), Transport.begin(),Transport.end());
-            //    Results.push_back(this->AddCodeFromSDLMouseButton(RawEvent_));
-            //    break;}
-
             case SDL_JOYAXISMOTION: {       //Can contain Multiple Metacodes
                 vector<MetaCode> Transport(this->AddCodesFromSDLJoyStickMotion(RawEvent_));
                 Results.insert(Results.end(), Transport.begin(),Transport.end());
                 break;}
-
-            //case SDL_JOYBUTTONDOWN: case SDL_JOYBUTTONUP:{
-            //    Results.push_back(this->AddCodeFromSDLJoyStickButton(RawEvent_));
-            //    break;}
 
             case SDL_JOYBALLMOTION:{
                 vector<MetaCode> Transport(this->AddCodeFromSDLJoyStickBall(RawEvent_));
@@ -257,28 +247,6 @@ namespace phys
 
         return Results;
     }
-
-/*    MetaCode EventUserInput::AddCodeFromSDLMouseButton(const RawEvent &RawEvent_)
-    {
-        if(RawEvent_.button.state==SDL_PRESSED)
-        {
-            return this->AddCode(MetaCode::BUTTON_PRESSING, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
-        }else{
-            return this->AddCode(MetaCode::BUTTON_LIFTING, MetaCode::GetMouseButtonCode(RawEvent_.button.button));
-        }
-    }
-
-    MetaCode EventUserInput::AddCodeFromSDLJoyStickButton(const RawEvent &RawEvent_)
-    {
-        if(RawEvent_.jbutton.state==SDL_PRESSED)
-        {
-            return this->AddCode(MetaCode::BUTTON_PRESSING, MetaCode::GetJoystickButtonCode(RawEvent_.jbutton.button));
-        }else{
-            return this->AddCode(MetaCode::BUTTON_LIFTING, MetaCode::GetJoystickButtonCode(RawEvent_.jbutton.button));
-        }
-    }
-*/
-
 
 } // /phys
 

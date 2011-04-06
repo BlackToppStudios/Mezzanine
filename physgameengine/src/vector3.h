@@ -527,6 +527,7 @@ Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const btVector3& VecF
 /// @return An Ogre::Vector3 in case multiple operators are chainged together (not usually a good idea).
 Ogre::Vector3& PHYS_LIB operator << (Ogre::Vector3& VecTo, const cAudio::cVector3& VecFrom);
 
+
 /// @brief Conversion Assignment Operator to btVector3.
 /// @param VecTo The left hand side vector, is an btVector3. The values of VecFrom will be copied here.
 /// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
@@ -545,6 +546,7 @@ btVector3& PHYS_LIB operator << (btVector3& VecTo, const phys::Vector3& VecFrom)
 /// @return An btVector3 in case multiple operators are chainged together (not usually a good idea).
 btVector3& PHYS_LIB operator << (btVector3& VecTo, const cAudio::cVector3& VecFrom);
 
+
 /// @brief Conversion Assignment Operator to phys::Vector3.
 /// @param VecTo The left hand side vector, is an phys::Vector3. The values of VecFrom will be copied here.
 /// @param VecFrom The right hand side, is a Ogre::Vector3, this vector will be copied and unchanged.
@@ -562,6 +564,7 @@ phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const btVector3& VecF
 /// @param VecFrom The right hand side, is a cAudio::cVector3, this vector will be copied and unchanged.
 /// @return An phys::Vector3 in case multiple operators are chainged together (not usually a good idea).
 phys::Vector3& PHYS_LIB operator << (phys::Vector3& VecTo, const cAudio::cVector3& VecFrom);
+
 
 /// @brief Conversion Assignment Operator to cAudio::cVector3.
 /// @param VecTo The left hand side vector, is an cAudio::cVector3. The values of VecFrom will be copied here.
