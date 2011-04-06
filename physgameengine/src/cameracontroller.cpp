@@ -113,7 +113,7 @@ namespace phys
             delete GroundRay;
             return 0;
         }
-        Real Distance = Loc.Y - (/*(Result->Actor->GetOrientation().GetInverse() * */Result->Vector + Loc).Y;
+        Real Distance = Loc.Y - (Result->Actor->GetLocation() + Result->Vector).Y;
         delete Result;
         delete GroundRay;
         return Distance;
