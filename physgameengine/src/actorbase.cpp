@@ -66,6 +66,7 @@ namespace phys{
     {
         this->GameWorld = World::GetWorldPointer();
         this->GraphicsNode = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        this->ActorWorldNode = new WorldNode(GraphicsNode,GameWorld->GetSceneManager());
         this->Shape = new btEmptyShape();
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
         //this->BasePhysicsSettings = new ActorBasePhysicsSettings(this,CollisionObject);
@@ -81,8 +82,7 @@ namespace phys{
         }
         //delete GraphicsObject;
         this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
-        //delete GraphicsNode;
-        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroySceneNode(GraphicsNode);
+        delete ActorWorldNode;
         if(CollisionObject)
         {
             delete CollisionObject;
@@ -200,6 +200,11 @@ namespace phys{
     int ActorBase::GetType()
     {
         return this->ActorType;
+    }
+
+    WorldNode* ActorBase::GetActorNode()
+    {
+        return ActorWorldNode;
     }
 
     const bool ActorBase::GetShapeIsSaved()

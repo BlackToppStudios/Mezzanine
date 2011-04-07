@@ -321,7 +321,7 @@ bool PostInput()
 
     Vector2 Offset = InputQueryer->GetMousePrevFrameOffset();
     if( MouseCam && Vector2(0,0) != Offset )
-        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01);
+        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
     /*if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
     {

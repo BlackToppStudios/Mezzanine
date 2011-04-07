@@ -64,6 +64,12 @@ namespace phys
             };
 
         protected:
+            struct AngleLimits
+            {
+                Real Upper;
+                Real Lower;
+                AngleLimits() : Upper(0),Lower(0) {};
+            };
             Camera* Controlled;
             MovementMode CurrentMMode;
             Real HoverHeight;
@@ -72,7 +78,12 @@ namespace phys
             Real PitchRad;
             Real RollRad;
 
-            void CheckAngle(Real Angle);
+            AngleLimits* YawLimits;
+            AngleLimits* PitchLimits;
+            AngleLimits* RollLimits;
+
+            void CheckAngleRollover(Real Angle);
+            void CheckAngleLimits();
             void CheckAllAngles();
             void CheckHeight();
             Real FindDistanceToGround();
@@ -98,6 +109,27 @@ namespace phys
             /// @brief Gets the distance the camera hovers over terrain while in CCM_Walk mode.
             /// @return Returns a Real represening the distance above terrain the camera is to hover, in world units.
             Real GetHoverHeight() const;
+            /// @brief Sets rotational limits on the Y axis.
+            /// @details The rotation range is from -Pi to Pi.
+            /// @param UpperLimit The allowed upper rotation limit in radians.
+            /// @param LowerLimit The allowed lower rotation limit in radians.
+            void SetYawLimits(const Real& UpperLimit, const Real& LowerLimit);
+            /// @brief Clears any set limits on yaw(Y axis) rotation.
+            void RemoveYawLimits();
+            /// @brief Sets rotational limits on the X axis.
+            /// @details The rotation range is from -Pi to Pi.
+            /// @param UpperLimit The allowed upper rotation limit in radians.
+            /// @param LowerLimit The allowed upper rotation limit in radians.
+            void SetPitchLimits(const Real& UpperLimit, const Real& LowerLimit);
+            /// @brief Clears any set limits on pitch(X axis) rotation.
+            void RemovePitchLimits();
+            /// @brief Sets rotational limits on the Z axis.
+            /// @details The rotation range is from -Pi to Pi.
+            /// @param UpperLimit The allowed upper rotation limit in radians.
+            /// @param LowerLimit The allowed upper rotation limit in radians.
+            void SetRollLimits(const Real& UpperLimit, const Real& LowerLimit);
+            /// @brief Clears any set limits on roll(Z axis) rotation.
+            void RemoveRollLimits();
             /// @brief Moves the camera forward.
             /// @param Units The distance to be moved in world units.
             void MoveForward(Real Units);
@@ -111,19 +143,19 @@ namespace phys
             /// @param Units The distance to be moved in world units.
             void StrafeRight(Real Units);
             /// @brief Rotates the camera.
-            /// @details This is a limited(but common) rotation method that prevents roll from occuring
-            /// by yaw'ing around the world axes and pitching on the local axes.  This is ideal for
-            /// shooter style cameras.
+            /// @details This is a safer rotation method that applies all the checks and can lock behaviors
+            /// such as roll if configured to do so.
             /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
             /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
-            void Rotate(Real Yaw, Real Pitch);
-            /// @brief Rotates the camera.
-            /// @details This is a 6DOF rotation method.  If you want to fly around like you
-            /// would in an actual spacecraft this is the function to use.
-            /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
-            /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
-            /// @param RollThe amount to rotate the camera on it's local Z axis in Radians.
+            /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
             void Rotate(Real Yaw, Real Pitch, Real Roll);
+            /// @brief Rotates the camera.
+            /// @details This is a freeform rotation method that will apply the rotation desired to the
+            /// camera without any checks.  This is ideal for spacecraft style controls.
+            /// @param Yaw The amount to rotate the camera on it's local Y axis in Radians.
+            /// @param Pitch The amount to rotate the camera on it's local X axis in Radians.
+            /// @param Roll The amount to rotate the camera on it's local Z axis in Radians.
+            void Rotate6DOF(Real Yaw, Real Pitch, Real Roll);
         };//cameracontroller
 }//phys
 

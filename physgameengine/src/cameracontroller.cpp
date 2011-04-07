@@ -56,15 +56,21 @@ namespace phys
           HoverHeight(2),
           YawRad(0),
           PitchRad(0),
-          RollRad(0)
+          RollRad(0),
+          YawLimits(NULL),
+          PitchLimits(NULL),
+          RollLimits(NULL)
     {
     }
 
     CameraController::~CameraController()
     {
+        RemoveYawLimits();
+        RemovePitchLimits();
+        RemoveRollLimits();
     }
 
-    void CameraController::CheckAngle(Real Angle)
+    void CameraController::CheckAngleRollover(Real Angle)
     {
         Real Pi = MathTool::GetPi();
         if(Angle > Pi)
@@ -77,11 +83,31 @@ namespace phys
         }
     }
 
+    void CameraController::CheckAngleLimits()
+    {
+        if(YawLimits)
+        {
+            if(YawRad > YawLimits->Upper) YawRad = YawLimits->Upper;
+            if(YawRad < YawLimits->Lower) YawRad = YawLimits->Lower;
+        }
+        if(PitchLimits)
+        {
+            if(PitchRad > PitchLimits->Upper) PitchRad = PitchLimits->Upper;
+            if(PitchRad < PitchLimits->Lower) PitchRad = PitchLimits->Lower;
+        }
+        if(YawLimits)
+        {
+            if(RollRad > RollLimits->Upper) RollRad = RollLimits->Upper;
+            if(RollRad < RollLimits->Lower) RollRad = RollLimits->Lower;
+        }
+    }
+
     void CameraController::CheckAllAngles()
     {
-        CheckAngle(YawRad);
-        CheckAngle(PitchRad);
-        CheckAngle(RollRad);
+        CheckAngleLimits();
+        CheckAngleRollover(YawRad);
+        CheckAngleRollover(PitchRad);
+        CheckAngleRollover(RollRad);
     }
 
     void CameraController::CheckHeight()
@@ -144,6 +170,57 @@ namespace phys
         return HoverHeight;
     }
 
+    void CameraController::SetYawLimits(const Real& UpperLimit, const Real& LowerLimit)
+    {
+        if(!YawLimits)
+            YawLimits = new AngleLimits();
+        YawLimits->Upper = UpperLimit;
+        YawLimits->Lower = LowerLimit;
+    }
+
+    void CameraController::RemoveYawLimits()
+    {
+        if(YawLimits)
+        {
+            delete YawLimits;
+            YawLimits = NULL;
+        }
+    }
+
+    void CameraController::SetPitchLimits(const Real& UpperLimit, const Real& LowerLimit)
+    {
+        if(!PitchLimits)
+            PitchLimits = new AngleLimits();
+        PitchLimits->Upper = UpperLimit;
+        PitchLimits->Lower = LowerLimit;
+    }
+
+    void CameraController::RemovePitchLimits()
+    {
+        if(PitchLimits)
+        {
+            delete PitchLimits;
+            PitchLimits = NULL;
+        }
+    }
+
+    void CameraController::SetRollLimits(const Real& UpperLimit, const Real& LowerLimit)
+    {
+        if(!RollLimits)
+            RollLimits = new AngleLimits();
+        RollLimits->Upper = UpperLimit;
+        RollLimits->Lower = LowerLimit;
+    }
+
+    void CameraController::RemoveRollLimits()
+    {
+        if(RollLimits)
+        {
+            delete RollLimits;
+            RollLimits = NULL;
+        }
+    }
+
     void CameraController::MoveForward(Real Units)
     {
         Vector3 Move(0,0,-Units);
@@ -176,16 +253,34 @@ namespace phys
             CheckHeight();
     }
 
-    void CameraController::Rotate(Real Yaw, Real Pitch)
+    void CameraController::Rotate(Real Yaw, Real Pitch, Real Roll)
     {
         YawRad+=Yaw;
         PitchRad+=Pitch;
+        RollRad+=Roll;
         CheckAllAngles();
-        Quaternion CamRot = Quaternion(-YawRad,Vector3::Unit_Y()) * Quaternion(-PitchRad,Vector3::Unit_X());
+        Quaternion YawQuat, PitchQuat, RollQuat;
+
+        if(0==YawRad)
+            YawQuat = Quaternion(0,0,0,1);
+        else
+            YawQuat = Quaternion(-YawRad,Vector3::Unit_Y());
+
+        if(0==PitchRad)
+            PitchQuat = Quaternion(0,0,0,1);
+        else
+            PitchQuat = Quaternion(-PitchRad,Vector3::Unit_X());
+
+        if(0==RollRad)
+            RollQuat = Quaternion(0,0,0,1);
+        else
+            RollQuat = Quaternion(-RollRad,Vector3::Unit_Z());
+
+        Quaternion CamRot = YawQuat * PitchQuat * RollQuat;
         Controlled->SetOrientation(CamRot);
     }
 
-    void CameraController::Rotate(Real Yaw, Real Pitch, Real Roll)
+    void CameraController::Rotate6DOF(Real Yaw, Real Pitch, Real Roll)
     {
         Quaternion CamRot(Controlled->GetOrientation());
         CamRot = CamRot *

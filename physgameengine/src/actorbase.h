@@ -111,23 +111,26 @@ namespace phys
             World* GameWorld;
 
             //abstraction for other libraries
-            ///@brief This class encapsulates the functionality of the Ogre::Entity using this
+            /// @brief This class encapsulates the functionality of the Ogre::Entity using this
             Ogre::Entity* GraphicsObject;
 
-            ///@brief This class encapsulates the functionality of the Ogre::SceneNode using this
+            /// @brief This class encapsulates the functionality of the Ogre::SceneNode using this
             Ogre::SceneNode* GraphicsNode;
 
-            ///@brief This class encapsulates the functionality of the Ogre::AnimationState using this
+            /// @brief This class encapsulates the functionality of the Ogre::AnimationState using this
             Ogre::AnimationState* Animation;
 
-            ///@brief This class encapsulates the functionality of the btCollisionShape using this
+            /// @brief This class encapsulates the functionality of the btCollisionShape using this
             btCollisionShape* Shape;
 
-            ///@brief This class encapsulates the functionality of the btCollisionObject using this
+            /// @brief This class encapsulates the functionality of the btCollisionObject using this
             btCollisionObject* CollisionObject;
 
-            ///@brief This class encapsulates the functionality of the PhysMotionState using this
+            /// @brief This class encapsulates the functionality of the PhysMotionState using this
             internal::PhysMotionState* MotionState;
+
+            /// @brief This class excapsulates the functionality of the Ogre::SceneNode.
+            WorldNode* ActorWorldNode;
 
             /// @brief This class encapsulates graphics specific configuration for this actor.
             ActorGraphicsSettings* GraphicsSettings;
@@ -265,6 +268,11 @@ namespace phys
             /// @details This function will get the type of class that you are working with for checking and casting.
             /// @return ActorTypeName The type of actor that this is.
             virtual int GetType();
+
+            /// @brief Gets a WorldNode representing the position and orientation of this actor.
+            /// @details The WorldNode returned by this function is not stored in the scene manasger.
+            /// @return Returns a WorldNode pointer poiniting to this actor's world node.
+            virtual WorldNode* GetActorNode();
 
             /// @brief Gets whether this actors current shape has been saved or not.
             /// @details This function will tell you if it's current physics shape has been saved for later use or not.

@@ -159,6 +159,45 @@ namespace phys
         }
     }
 
+    void CameraManager::DestroyCameraController(CameraController* ToBeDestroyed)
+    {
+        if(CameraControllers.empty())
+            return;
+        for( std::map<Camera*,CameraController*>::iterator CamIt = CameraControllers.begin() ; CamIt != CameraControllers.end() ; CamIt++ )
+        {
+            if(ToBeDestroyed == (*CamIt).second)
+            {
+                delete (*CamIt).second;
+                CameraControllers.erase(CamIt);
+                return;
+            }
+        }
+    }
+
+    void CameraManager::DestroyCameraController(Camera* ControlledCam)
+    {
+        if(CameraControllers.empty())
+            return;
+        std::map<Camera*,CameraController*>::iterator CamIt = CameraControllers.find(ControlledCam);
+        if(CamIt != CameraControllers.end())
+        {
+            delete (*CamIt).second;
+            CameraControllers.erase(CamIt);
+            return;
+        }
+    }
+
+    void CameraManager::DestroyAllCameraControllers()
+    {
+        if(CameraControllers.empty())
+            return;
+        for( std::map<Camera*,CameraController*>::iterator CamIt = CameraControllers.begin() ; CamIt != CameraControllers.end() ; CamIt++ )
+        {
+            delete (*CamIt).second;
+        }
+        CameraControllers.clear();
+    }
+
     // Inherited from ManagerBase
     void CameraManager::Initialize()
         {}

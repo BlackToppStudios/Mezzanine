@@ -119,6 +119,14 @@ namespace phys
             /// @param Controlled The camera that will be controlled by the controller returned.
             /// @return Returns a pointer to the created or retrieved camera controller for the camera.
             CameraController* GetOrCreateCameraController(Camera* Controlled);
+            /// @brief Destroys a cameracontroller.
+            /// @param ToBeDestroyed Pointer to the cameracontrolled you want destroyed.
+            void DestroyCameraController(CameraController* ToBeDestroyed);
+            /// @brief Destroys a cameracontroller by camera.
+            /// @param ControlledCam The camera who's controller will be destroyed.  This doesn't do anything to the camera.
+            void DestroyCameraController(Camera* ControlledCam);
+            /// @brief Destroys all camera controllers being stored in this manager.
+            void DestroyAllCameraControllers();
 
             //Inherited From ManagerBase
             /// @brief Empty Initializor.
