@@ -49,6 +49,7 @@
 #include "physicsmanager.h"
 #include "actorrigid.h"
 #include "objectreference.h"
+#include "actorgraphicssettings.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internalmeshtools.h.cpp"
 
@@ -62,6 +63,7 @@ namespace phys{
         this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
+        this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
         this->PhysicsSettings = new ActorRigidPhysicsSettings(this,physrigidbody);
         BasePhysicsSettings = PhysicsSettings;
         ActorType=ActorBase::Actorrigid;

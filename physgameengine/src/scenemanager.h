@@ -41,10 +41,10 @@
 #define _scenemanager_h
 
 #include "crossplatformexport.h"
-#include "datatypes.h"
 #include "managerbase.h"
 #include "quaternion.h"
 #include "vector3.h"
+#include "colourvalue.h"
 
 namespace Ogre
 {
@@ -77,7 +77,16 @@ namespace phys
                 ExteriorRealFar,    ///< Documatation Required
                 Interior            ///< Documatation Required
             };
-
+            enum SceneShadowTechnique
+            {                                     //Shadow Docs from Ogre ShadowTechnique Documentation.
+                SST_None,                         ///< No shadows.
+                SST_Stencil_Modulative,           ///< Stencil shadow technique which renders all shadow volumes as a modulation after all the non-transparent areas have been rendered.
+                SST_Stencil_Additive,             ///< Stencil shadow technique which renders each light as a separate additive pass to the scene.
+                SST_Texture_Modulative,           ///< Texture-based shadow technique which involves a monochrome render-to-texture of the shadow caster and a projection of that texture onto the shadow receivers as a modulative pass.
+                SST_Texture_Additive,             ///< Texture-based shadow technique which involves a render-to-texture of the shadow caster and a projection of that texture onto the shadow receivers, built up per light as additive passes.
+                SST_Texture_Additive_Integrated,  ///< Texture-based shadow technique which involves a render-to-texture of the shadow caster and a projection of that texture on to the shadow receivers, with the usage of those shadow textures completely controlled by the materials of the receivers.
+                SST_Texture_Modulative_Integrated ///< Texture-based shadow technique which involves a render-to-texture of the shadow caster and a projection of that texture on to the shadow receivers, with the usage of those shadow textures completely controlled by the materials of the receivers.
+            };
         protected:
             /// @brief Pointer for the Ogre Scenemanager, where this manager gets it's functionality.
             Ogre::SceneManager* OgreManager;
@@ -99,6 +108,19 @@ namespace phys
             void Initialize();
             /// @brief Inherited from ManagerBase.
             void DoMainLoopItems();
+            /// @brief Sets the type of shadows to be used when rendering the scene.
+            /// @details The scene manager defaults to no shadows.
+            /// @param Shadows The technique to be applied, see SceneShadowTechnique enum for more info.
+            void SetSceneShadowTechnique(SceneShadowTechnique Shadows);
+            /// @brief Gets the currently set shadow technique.
+            /// @return Returns a SceneShadowTechnique enum value representing the currently set shadow technique.
+            SceneShadowTechnique GetSceneShadowTechnique();
+            /// @brief Sets the colour to be used when casting shadows.
+            /// @param ShadowColour The colour desired to be used when rendering shadows.
+            void SetShadowColour(const ColourValue& ShadowColour);
+            /// @brief Gets the colour being used when casting shadows.
+            /// @return Returns a ColourValue representing the colour used when casting shadows.
+            ColourValue GetShadowColour();
             /// @brief Creates a skyplane for use in making a sky.
             /// @details Only one skyplane can exist in a scene.  Making a new one will remove the old one.  Skyplanes are
             /// flat planes that face in one direction.  They are ideal for levels with surrounding mountains or anything

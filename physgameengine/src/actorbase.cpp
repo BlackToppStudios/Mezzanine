@@ -58,6 +58,8 @@ namespace phys{
     // ActorBase class fuctions
     ActorBase::ActorBase(String name, String file, String group)
         : GraphicsObject(NULL),
+          GraphicsSettings(NULL),
+          BasePhysicsSettings(NULL),
           MotionState(NULL),
           ActorSounds(NULL),
           Animation(NULL),
@@ -68,7 +70,7 @@ namespace phys{
         this->GraphicsNode = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         this->ActorWorldNode = new WorldNode(GraphicsNode,GameWorld->GetSceneManager());
         this->Shape = new btEmptyShape();
-        this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
+        //this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
         //this->BasePhysicsSettings = new ActorBasePhysicsSettings(this,CollisionObject);
     }
 

@@ -48,6 +48,7 @@
 #include "world.h"
 #include "physicsmanager.h"
 #include "objectreference.h"
+#include "actorgraphicssettings.h"
 #include "internalmotionstate.h.cpp"
 #include "internalmeshtools.h.cpp"
 
@@ -57,6 +58,7 @@ namespace phys
         : ActorBase(name, file, group)
     {
         this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
+        this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->MotionState->SetPosition(InitPosition);
         CreateCollisionTerrain();
