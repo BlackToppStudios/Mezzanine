@@ -59,6 +59,10 @@ int main(int argc, char **argv)
     TheWorld->Log("Initialized games");
     #endif
 
+    // Configure Shadows
+    TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Texture_Modulative);
+    TheWorld->GetSceneManager()->SetShadowFarDistance(3000);
+
     // Set the Title
     TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("Catch!... The Game!");
     TheWorld->SetTargetFrameRate(60);
@@ -89,11 +93,19 @@ int main(int argc, char **argv)
     TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0.0,200.0,150.0));
     CameraController* DefaultControl = TheWorld->GetCameraManager()->GetOrCreateCameraController(TheWorld->GetCameraManager()->GetDefaultCamera());
     DefaultControl->SetMovementMode(CameraController::CCM_Walk);
-    DefaultControl->SetHoverHeight(40);
+    DefaultControl->SetHoverHeight(75);
     Light *Headlight = TheWorld->GetSceneManager()->CreateLight("Headlight");
-    TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Additive);
+    Headlight->SetType(Light::Directional);
+    Vector3 LightLoc(200,300,0);
+    Headlight->SetLocation(LightLoc);
+    LightLoc.X = -LightLoc.X;
+    LightLoc.Y = -LightLoc.Y;
+    LightLoc.Normalize();
+    Headlight->SetDirection(LightLoc);
+    Headlight->SetDiffuseColour(ColourValue(0.7,0.7,0.7,1.0));
+    Headlight->SetSpecularColour(ColourValue(0.7,0.7,0.7,1.0));
+    Headlight->SetLocation(Vector3(0,150,0));
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
-    //Headlight->SetType(Light::Spotlight);
     //CameraNode->AttachObject(Headlight);
 
     TheWorld->Log("Printing Supported Resolutions:");
@@ -189,7 +201,7 @@ bool PostRender()
 
     // Turn on the Wireframe
     if (30000<gametime)
-        { TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(1); }
+        { /*TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(1);*/ }
 
     //IF the game has gone on for 150 or more seconds close it.
 	if (150000<gametime || (TheWorld->GetEventManager()->GetNextQuitEvent()!=0) )
@@ -631,7 +643,7 @@ void LoadContent()
 {
     //TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
     TheWorld->GetSceneManager()->SetAmbientLight(0.10,0.10,0.10,0.10);
-    phys::Light *TorchR=TheWorld->GetSceneManager()->CreateLight("Redtorch");
+    /*phys::Light *TorchR=TheWorld->GetSceneManager()->CreateLight("Redtorch");
     phys::Light *TorchG=TheWorld->GetSceneManager()->CreateLight("Greentorch");
     phys::Light *TorchToStream=TheWorld->GetSceneManager()->CreateLight("TempLightToBeDestroyed");
 
@@ -647,7 +659,7 @@ void LoadContent()
     TorchToStream->SetLocation(GreenBase);
     TorchToStream->SetPowerScale(1.0);
     TorchToStream->SetSpecularColour(GTorchLight);
-    TorchToStream->SetDiffuseColour(GTorchLight);
+    TorchToStream->SetDiffuseColour(GTorchLight);// */
 
     ActorRigid *object1, *object2, *object3, *object4;
     ActorTerrain *object5, *object6;
@@ -674,25 +686,25 @@ void LoadContent()
     TheWorld->Log(crossplatform::GetWorkingDir());
     TheWorld->Log("Trying to open test.xml and test.txt");
     TheWorld->Log("Distinct green Torch, not in scene");
-    TheWorld->Log(*TorchToStream);
+    //TheWorld->Log(*TorchToStream);
     #endif
-    stringstream Torchstream;
-    Torchstream << *TorchToStream;
+    //stringstream Torchstream;
+    //Torchstream << *TorchToStream;
     #ifdef PHYSDEBUG
     TheWorld->Log("Default Torch that should be green");
-    TheWorld->Log(*TorchG);
+    //TheWorld->Log(*TorchG);
     #endif
-    Torchstream >>*TorchG;
+    //Torchstream >>*TorchG;
     #ifdef PHYSDEBUG
     TheWorld->Log("Default Torch that is now be green and no longer default");
-    TheWorld->Log(*TorchG);
+    //TheWorld->Log(*TorchG);
     #endif
-    TheWorld->GetSceneManager()->DestroyLight(TorchToStream);
+    //TheWorld->GetSceneManager()->DestroyLight(TorchToStream);
     //TheWorld->GetSceneManager()->DestroyLight(TorchG);
     //TheWorld->GetSceneManager()->DestroyLight(TorchR);
 
     ParticleEffect *GreenPart = TheWorld->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
-    GreenPart->SetLocation(GreenBase);
+    GreenPart->SetLocation(Vector3(-70,70,-100));
     GreenPart->EnableParticleEffect();
 
 
@@ -966,19 +978,6 @@ void LoadContent()
     TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
     TheWorld->GetActorManager()->LastActorAdded()->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
-    /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
-    Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
-    Reverse->SetLocation(Vector3(200,50,-5.0));
-    TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
-
-    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
-    BlackHole->CreateSphereShape(750.0);
-    BlackHole->SetAllowWorldGravity(false);
-    BlackHole->SetFieldStrength(100000.0);
-    BlackHole->SetAttenuation(85.0,GravityWell::GW_Att_Linear);
-    BlackHole->CreateGraphicsSphere(ColourValue(0.9,0.7,0.7,0.55));
-    TheWorld->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
-
     //// The simulations soft body, to be used once a suitable mesh is found/created.
     /*MeshGenerator::CreateSphereMesh("SoftTest","SphereWood",70);
     ActorSoft* Act9 = new ActorSoft (500,"spheresoft","SoftTest",groupname);
@@ -1038,10 +1037,23 @@ void LoadContent()
     TheWorld->GetActorManager()->AddActor(object7);
     //TheWorld->GetActorManager()->AddActor(Act9);
 
-    AreaEffect* TestField = new TestAE("Tester", Vector3(0,0,150));
+    /*GravityField* Reverse = new GravityField(String("UpField"), Vector3(0.0,-100.0,0.0));
+    Reverse->CreateCylinderShapeY(Vector3(100.0,200.0,100));
+    Reverse->SetLocation(Vector3(200,50,-5.0));
+    TheWorld->GetPhysicsManager()->AddAreaEffect(Reverse); // Now that we have passed it, we can forget about it*/
+
+    /*GravityWell* BlackHole = new GravityWell("BlackHole", Vector3(0.0,200.0,-300.0));
+    BlackHole->CreateSphereShape(750.0);
+    BlackHole->SetAllowWorldGravity(false);
+    BlackHole->SetFieldStrength(100000.0);
+    BlackHole->SetAttenuation(85.0,GravityWell::GW_Att_Linear);
+    BlackHole->CreateGraphicsSphere(ColourValue(0.9,0.7,0.7,0.55));
+    TheWorld->GetPhysicsManager()->AddAreaEffect(BlackHole);// */
+
+    /*AreaEffect* TestField = new TestAE("Tester", Vector3(0,0,150));
     TestField->CreateBoxShape(Vector3(500,80,80));
     TestField->CreateGraphicsBox(ColourValue(0.5,0.9,0.6,0.15));
-    TheWorld->GetPhysicsManager()->AddAreaEffect(TestField);
+    TheWorld->GetPhysicsManager()->AddAreaEffect(TestField);// */
 
     Sound *sound1, *music1, *music2;
     TheWorld->GetSoundManager()->CreateSoundSet("Announcer");
