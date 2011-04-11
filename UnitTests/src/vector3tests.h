@@ -712,7 +712,7 @@ class Vector3Tests : public UnitTest
                 stringstream XMLstream;
                 XMLstream<<Vec;
                 phys::String Actual(XMLstream.str());
-                phys::String Ideal("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\" />");
+                phys::String Ideal("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\"/>");
                 if(Actual==Ideal)
                     { temp=Success; }
                 else
@@ -744,7 +744,7 @@ class Vector3Tests : public UnitTest
                 {
                     Vector3 Vec5;
                     xml::Document XMLdoc;
-                    XMLdoc.Load("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\" />");
+                    XMLdoc.Load("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\"/>");
                     XMLdoc.GetFirstChild()>>Vec5;
                     if(Vec5==Vec)
                         { temp=Success; }

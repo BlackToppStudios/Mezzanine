@@ -145,9 +145,8 @@ namespace phys
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
-        Ogre::Root* OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName);
 
-        assert(0==World::TheRealWorld);
+        Ogre::Root* OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName);
         World::TheRealWorld = this;
 
         //add each manager that was passed in to the manager list
@@ -218,6 +217,7 @@ namespace phys
 
         //All the pointers Ogre made should get taken care of by OGRE
         Ogre::Root::getSingleton().shutdown();
+        delete Ogre::Root::getSingletonPtr();
     }
 
     ///////////////////////////////////////////////////////////////////////////////

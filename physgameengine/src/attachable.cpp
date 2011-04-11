@@ -73,7 +73,11 @@ namespace phys
         { return this->AttachedTo; }
 
     void Attachable::AttachTo(phys::WorldNode* Target)
-        { Target->AttachObjectFinal(this); }
+    {
+        if (AttachedTo)
+            { throw(phys::Exception("Already Attached to another WorldNode.")); }
+        Target->AttachObjectFinal(this);
+    }
 
     void Attachable::DetachFrom()
         { AttachedTo->DetachObjectFinal(this); }
@@ -91,8 +95,9 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     /// Pure Virtual Functions
 
-    // For the lulz
-
+    // The coding that goes into pure virtual functions is not for for inexperienced eyes such
+    // as yours. Take your training to the Mountaintop monanstary and learn the ancient ways of
+    // c++ from the Tibetan monks you find there.
 }//phys
 
 #endif

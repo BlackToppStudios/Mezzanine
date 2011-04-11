@@ -417,7 +417,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3& x)
 
         Doc.Save(stream,"\t",phys::xml::FormatNoDeclaration | phys::xml::FormatRaw);
         */
-        stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\" />";
+        stream << "<Vector3 Version=\"1\" X=\"" << x.X << "\" Y=\"" << x.Y << "\" Z=\"" << x.Z << "\"/>";
     #else
         stream << "[" << x.X << "," << x.Y << "," << x.Z << "]";
     #endif // \PHYSXML

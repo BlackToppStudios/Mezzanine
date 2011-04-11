@@ -252,6 +252,13 @@ namespace phys
             /// @param LookAt The location you want the node to look at.  Automatically handles orientation.
             /// @param Location The location of the node itself.
             WorldNode* CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location);
+            /// @brief Creates a freely moveable node that will look at a location.
+            /// @details This will create a node that can be freely moved. When created it will look at one location that you specify.  This
+            /// node can then have lights, particle effects or other attachables attached to it.
+            /// @param LookAt The location you want the node to look at.  Automatically handles orientation.
+            /// @param Location The location of the node itself.
+            WorldNode* CreateFreeNode(const String& Name, Vector3 LookAt, Vector3 Location);
+
             /// @brief Gets an already created node by name.
             /// @return Returns a pointer to the node of the specified name, or 0 if no matching WorldNode could be Found.
             WorldNode* GetNode(const String& Name) const;

@@ -358,6 +358,18 @@ namespace phys
         return PhysNode;
     }
 
+    WorldNode* SceneManager::CreateFreeNode(const String& Name, Vector3 LookAt, Vector3 Location)
+    {
+        Ogre::SceneNode* OgreNode = OgreManager->createSceneNode(Name);
+        OgreManager->getRootSceneNode()->addChild(OgreNode);
+        OgreNode->setPosition(Location.GetOgreVector3());
+        OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
+        WorldNode* PhysNode = new WorldNode(OgreNode, this);
+        PhysNode->SetType(WorldNode::Free);
+        WorldNodes.push_back(PhysNode);
+        return PhysNode;
+    }
+
     WorldNode* SceneManager::GetNode(const String& Name) const
     {
         if(WorldNodes.empty())
