@@ -70,6 +70,8 @@ namespace phys
                 Type = Ogre::ST_GENERIC;
         }
         OgreManager = Ogre::Root::getSingleton().createSceneManager(Type);
+        //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
+        //OgreManager->setShadowCameraSetup(ShadowCam);
     }
 
     SceneManager::~SceneManager()
@@ -129,7 +131,7 @@ namespace phys
         OgreManager->setShadowTechnique(Type);
     }
 
-    SceneManager::SceneShadowTechnique SceneManager::GetSceneShadowTechnique()
+    SceneManager::SceneShadowTechnique SceneManager::GetSceneShadowTechnique() const
     {
         Ogre::ShadowTechnique ShadowType = OgreManager->getShadowTechnique();
         switch (ShadowType)
@@ -155,6 +157,31 @@ namespace phys
             default:
                 return SST_None;
         }
+    }
+
+    void SceneManager::SetShadowTextureCount(const Whole& Count)
+    {
+        this->OgreManager->setShadowTextureCount(Count);
+    }
+
+    Whole SceneManager::GetShadowTextureCount() const
+    {
+        return this->OgreManager->getShadowTextureCount();
+    }
+
+    void SceneManager::SetShadowTextureSize(unsigned short Size)
+    {
+        this->OgreManager->setShadowTextureSize(Size);
+    }
+
+    void SceneManager::SetShadowFarDistance(const Real& FarDist)
+    {
+        this->OgreManager->setShadowFarDistance(FarDist);
+    }
+
+    Real SceneManager::GetShadowFarDistance()
+    {
+        return this->OgreManager->getShadowFarDistance();
     }
 
     void SceneManager::SetShadowColour(const ColourValue& ShadowColour)

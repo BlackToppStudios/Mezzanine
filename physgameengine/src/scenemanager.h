@@ -104,17 +104,30 @@ namespace phys
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~SceneManager();
-            /// @brief Inherited from ManagerBase.
-            void Initialize();
-            /// @brief Inherited from ManagerBase.
-            void DoMainLoopItems();
             /// @brief Sets the type of shadows to be used when rendering the scene.
             /// @details The scene manager defaults to no shadows.
             /// @param Shadows The technique to be applied, see SceneShadowTechnique enum for more info.
             void SetSceneShadowTechnique(SceneShadowTechnique Shadows);
             /// @brief Gets the currently set shadow technique.
             /// @return Returns a SceneShadowTechnique enum value representing the currently set shadow technique.
-            SceneShadowTechnique GetSceneShadowTechnique();
+            SceneShadowTechnique GetSceneShadowTechnique() const;
+            /// @brief Sets the number of textures to be alloted for creating shadows.
+            /// @details Defaults to 1.
+            /// @param Count The amount of textures to be used for creating texture-based shadows.
+            void SetShadowTextureCount(const Whole& Count);
+            /// @brief Gets the currently set number of textures being used to make texture shadows.
+            /// @return Returns a Whole indicating the number of textures used to make texture shadows.
+            Whole GetShadowTextureCount() const;
+            /// @brief Sets the size of all texture based shadows.
+            /// @details This defaults to 512.  Sizes must be a power of 2.
+            /// @param Size The size of all textures to be used with shadows, in KB(?).
+            void SetShadowTextureSize(unsigned short Size);
+            /// @brief Sets the maximum distance from the camera that shadows will be visible.
+            /// @param FarDist The maximum distance from the camera shadows will be rendered.
+            void SetShadowFarDistance(const Real& FarDist);
+            /// @brief Gets the maximum distance from the camera that shadows will be visible.
+            /// @return Returns a Real representing the maximum distance from the camera shadows will be rendered.
+            Real GetShadowFarDistance();
             /// @brief Sets the colour to be used when casting shadows.
             /// @param ShadowColour The colour desired to be used when rendering shadows.
             void SetShadowColour(const ColourValue& ShadowColour);
@@ -260,6 +273,10 @@ namespace phys
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.
             ConstString& GetName() const;
+            /// @brief Inherited from ManagerBase.
+            void Initialize();
+            /// @brief Inherited from ManagerBase.
+            void DoMainLoopItems();
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;

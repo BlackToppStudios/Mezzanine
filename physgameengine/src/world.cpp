@@ -488,7 +488,8 @@ namespace phys
                     if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
                     {
                         #ifdef PHYSDEBUG
-                        this->LogStream << " - Got:" << *ManIter <<endl;
+                        this->LogStream << " - Got:" << *ManIter;
+                        //this->Log();
                         #endif
                         return *ManIter;
                     }else{
