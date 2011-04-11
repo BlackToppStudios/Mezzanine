@@ -45,6 +45,7 @@
 #include "datatypes.h"
 #include "vector3.h"
 #include "quaternion.h"
+#include "xml.h"
 
 /// @file worldnode.h
 /// @brief The declaration of the WorldNode, A class to facilitate navigation in 3d environment
@@ -83,10 +84,10 @@ namespace phys
             /// @brief Kinds of movement (or non-movement modes) a world node could have
             enum NodeType
             {
-                Center,     ///< Description Required
-                Orbit,      ///< Description Required
-                Stand,      ///< Description Required
-                Free        ///< Description Required
+                Free    = 0,     ///< Description Required
+                Center  = 1,     ///< Description Required
+                Orbit   = 2,     ///< Description Required
+                Stand   = 3      ///< Description Required
             };
         protected:
             /// @brief Pointer to the ogre scenenode from which this class gets it's functionality.
@@ -95,8 +96,9 @@ namespace phys
             SceneManager* Manager;
             /// @brief Enum value storing the type of node this class is.
             WorldNode::NodeType Type;
-            /// @brief Vector storing all attached cameras.
+            /// @brief Vector storing all attached cameras, lights, etc... .
             std::vector< Attachable* > Elements;
+
         public:
             /// @brief Standard initialization constructor.
             /// @param Name The name of this node.
@@ -111,11 +113,8 @@ namespace phys
             /// @brief Class destructor.
             ~WorldNode();
 
-            /// @brief Gets the name of this node.
-            /// @return Returns a string containing the name given to this node.
-            ConstString& GetName() const;
-
-
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Navigation
 
             /// @brief Sets the Location of this node.
             /// @param Location A vector3 representing the location of this node.
@@ -129,11 +128,19 @@ namespace phys
             void SetOrientation(Quaternion Orientation);
             /// @brief Gets the orientation of this node.
             /// @return Returns a quaternion representing the orientation of this node.
-            Quaternion GetOrientation();
+            Quaternion GetOrientation() const;
 
             /// @brief Automatically sets the orientation needed to point this node at a location in the world.
             /// @param LookAt The location in world space to point at.
             void LookAt(Vector3 LookAt);
+
+            /// @brief Increments the orbit of this node if this is an orbiting node.
+            /// @details This function has no effect if this isn't an orbiting node.
+            /// @param Radians A real reprsenting the amount of orbit to increment in radians.
+            void IncrementOrbit(Real Radians);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Auto tracking
             /// @brief Makes this node autotrack another node.
             /// @details This function will make this node update it's orientation every frame automatically so
             /// that it's always facing the target node.
@@ -149,23 +156,26 @@ namespace phys
             /// @brief Disables any active autotracking for this node.
             void DisableAutoTracking();
 
-            /// @brief Increments the orbit of this node if this is an orbiting node.
-            /// @details This function has no effect if this isn't an orbiting node.
-            /// @param Radians A real reprsenting the amount of orbit to increment in radians.
-            void IncrementOrbit(Real Radians);
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Basic Data
 
             /// @internal
             /// @brief Sets the type of node that this is.
             /// @details This is intended for internal/expert use only.  Manually calling this could disrupt normal function.
             /// @param type The type of node this is to be set as.
             void SetType(WorldNode::NodeType type);
+
             /// @brief Gets the type of node that this is.
             /// @return Returns the type of node this is set as.
-            WorldNode::NodeType GetType();
+            WorldNode::NodeType GetType() const;
 
             /// @brief What kind of Attachable is this.
             /// @return An Attachable::GetAttachableType containing Attachable::WorldNode.
             virtual Attachable::AttachableElement GetAttachableType() const;
+
+            /// @brief Gets the name of this node.
+            /// @return Returns a string containing the name given to this node.
+            ConstString& GetName() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             /// Attachment child management
@@ -196,6 +206,33 @@ namespace phys
             /// @return Returns the number of elements attached to this node.
             Whole GetNumAttached() const;
 
+            /// @brief Get a specific attached Item
+            /// @param Index A number indicating which Attachable you want a pointer to. The WorldNode is like an Array starts at 0 and goes to WorldNode::GetNumAttached() - 1.
+            /// @return A pointer to an Attachable Item attached to this.
+            /// @throw This can throw an out of bounds std::exception if used incorrectly
+            Attachable* GetAttached(Whole Index) const;
+
+            /// @brief Used to make working with the attached items easier
+            typedef std::vector< Attachable* >::iterator iterator;
+
+            /// @brief Used to make working with the attached items easier, and avoid the risk of accidentally changing them
+            typedef std::vector< Attachable* >::const_iterator const_iterator;
+
+            /// @brief Get an iterator to the first item
+            /// @return An Iterator to the first
+            iterator begin();
+
+            /// @brief Get an iterator to one past the last item
+            /// @return An Iterator to one past the last item
+            iterator end();
+
+            /// @brief Get an const_iterator to the first item
+            /// @return An Iterator to the first
+            const_iterator begin() const;
+
+            /// @brief Get an const_iterator to one past the last item
+            /// @return An Iterator to one past the last item
+            const_iterator end() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             /// Attachment child management
@@ -207,5 +244,37 @@ namespace phys
 
     };//node
 }//phys
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::WorldNode to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::WorldNode to be serialized
+/// @return this returns the ostream, now with the serialized data
+/// @warning This does not attempt to store the WorldNode aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
+/// @warning This does not s the pointer to the WorldNode manager. When a WorldNode manager is serialized, this data is implicitly stored by the WorldNodes location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::WorldNode& Ev);
+
+/// @brief Deserialize a phys::WorldNode
+/// @param stream The istream to get the xml from to (re)make the phys::WorldNode.
+/// @param Ev the phys::WorldNode to be deserialized.
+/// @return this returns the ostream, advanced past the phys::WorldNode that was recreated onto Ev.
+/// @warning This does not attempt to store the WorldNode aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
+/// @warning This does not s the pointer to the WorldNode manager. When a WorldNode manager is serialized, this data is implicitly stored by the WorldNodes location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::WorldNode& Ev);
+
+/// @brief Set all values of a phys::WorldNode from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::WorldNode.
+/// @param Ev the phys::WorldNode to be reset.
+/// @return This returns thexml::Node that was passed in.
+/// @warning This does not attempt to de-serialize the name of the WorldNode. This is not currently changeable after the creation of a WorldNode. However, the WorldNodemanager will correctly create name WorldNode upon creation then deserialize the rest of the WorldNode.
+/// @warning This does not throw an exception if the WorldNode could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::WorldNode& Ev);
+
+#endif // \PHYSXML
 
 #endif

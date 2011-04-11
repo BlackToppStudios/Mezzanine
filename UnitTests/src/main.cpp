@@ -44,6 +44,7 @@
 #include "eventmanagertests.h"
 #include "vector2tests.h"
 #include "vector3tests.h"
+#include "worldnodetests.h"
 
 #include <cstdlib>
 
@@ -61,21 +62,26 @@ class AllUnitTests : public UnitTest
 
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
+            TestResult LowResults = Unknown;
             if(RunAll)
             {                                   //Run every test in the big list of tests
                 for(map<String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
                 {
-                    Iter->second->RunTests(RunAutomaticTests, RunInteractiveTests);
+                    TestResult temp = Iter->second->RunTests(RunAutomaticTests, RunInteractiveTests);
+                    if (temp < LowResults)
+                        { LowResults = temp; }
                     (*this) += *(Iter->second);
                 }
             }else{                              // run the tests one at a time in the list of things to run by finding them in the big list
                 for(vector<phys::String>::iterator CurrentTestName=TestGroupsToRun.begin(); CurrentTestName!=TestGroupsToRun.end(); ++CurrentTestName )
                 {
-                    TestGroups[*CurrentTestName]->RunTests(RunAutomaticTests, RunInteractiveTests);
+                    TestResult temp = TestGroups[*CurrentTestName]->RunTests(RunAutomaticTests, RunInteractiveTests);
+                    if (temp < LowResults)
+                        { LowResults = temp; }
                     (*this) += *(TestGroups[*CurrentTestName]);
                 }
             }
-            return LeastSuccessful.second;
+            return LowResults;
         }
 };
 
@@ -91,10 +97,12 @@ void DeleteTests()
 int main (int argc, char** argv)
 {
     atexit(&DeleteTests);
+    // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here
     TestGroups["compilerflag"] = new CompilerFlagTests;
     TestGroups["eventmanager"] = new EventManagerTests;
     TestGroups["vector2"] = new Vector2Tests;
     TestGroups["vector3"] = new Vector3Tests;
+    TestGroups["worldnode"] = new WorldNodeTests;
 
     bool RunAutomaticTests = false, RunInteractiveTests = false;    //Set them both to false now, if they are both false later, then we will pass true
     bool FullDisplay = true, SummaryDisplay = true;
@@ -142,6 +150,6 @@ int main (int argc, char** argv)
     Runner.DisplayResults(SummaryDisplay, FullDisplay);
 
     return ExitSuccess;
-}
+ }
 
 

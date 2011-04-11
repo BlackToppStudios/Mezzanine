@@ -54,7 +54,7 @@ enum TestResult
 {
     Success         = 0,
     Skipped         = 1,
-    Cancelled        = 2,        // Was canceled by user, so success is unknown, but user doesn't cared
+    Cancelled       = 2,        // Was canceled by user, so success is unknown, but user doesn't cared
     Inconclusive    = 3,        // if a user answers that they don't know what happened in a test that involved interaction, it likely worked, but we can't be sure
     Failed          = 4,        // Known failure
     Unknown         = 5         // Since we don't know what happed this is the worst kind of failure
@@ -95,19 +95,16 @@ typedef std::pair<phys::String,TestResult> TestData;
 // The classes for Tests themselves
 // inherits from std::map to make storage location of of the TestData obvious
 typedef std::map<phys::String,TestResult> TestDataStorage;
+
 class UnitTest : public TestDataStorage
 {
     protected:
 
         // Some basic variable for tracking simple statistics
-        TestData MostSuccessful;
-        TestData LeastSuccessful;
         unsigned int LongestNameLength;
 
     public:
         UnitTest() :
-            MostSuccessful("",Unknown),
-            LeastSuccessful("",Success),
             LongestNameLength(0)
         {}
 
@@ -115,18 +112,46 @@ class UnitTest : public TestDataStorage
         // This should return the LeastSuccessful TestResult, this will make it easier for the main to find and report errors
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests) = 0;
 
+        enum OverWriteResults{
+            OverWriteIfLessSuccessful,
+            OverWriteIfMoreSuccessful,
+            OverWrite,
+            DoNotOverWrite
+        };
+
         // It is expected that tests will be inserted using these, this will automate tracking of the most and least successful tests
-        void AddTestResult(TestData FreshMeat)
+        void AddTestResult(TestData FreshMeat, OverWriteResults Behavior=OverWriteIfLessSuccessful)
         {
-            if(FreshMeat.second<MostSuccessful.second)
-                { MostSuccessful=FreshMeat; }
-            if(FreshMeat.second>LeastSuccessful.second)
-                { LeastSuccessful=FreshMeat; }
+            bool Added=false;
 
-            if(FreshMeat.first.length()>LongestNameLength)
-                { LongestNameLength=FreshMeat.first.length(); }
+            TestDataStorage::iterator PreExisting = this->find(FreshMeat.first);
+            if(this->end()!=PreExisting)
+            {
+                switch(Behavior)
+                {
+                    case OverWriteIfLessSuccessful:
+                        if (PreExisting->second <= FreshMeat.second)
+                            { PreExisting->second = FreshMeat.second; }
+                        break;
+                    case OverWrite:
+                        this->insert(FreshMeat);
+                        break;
+                    case OverWriteIfMoreSuccessful:
+                        if (PreExisting->second >= FreshMeat.second)
+                            { PreExisting->second = FreshMeat.second; }
+                        break;
+                    case DoNotOverWrite:
+                        break;
+                }
+            }else{
+                this->insert(FreshMeat);
+            }
 
-            this->insert(FreshMeat);
+            if (Added)
+            {
+                if(FreshMeat.first.length()>LongestNameLength)
+                    { LongestNameLength=FreshMeat.first.length(); }
+            }
         }
 
         // It is expected that every member of a class in physgame will be tested and its full name, include scoping operators, namespace,
@@ -136,17 +161,12 @@ class UnitTest : public TestDataStorage
         //      "phys::Vector2::Vector2(Real,Real)"     //Test of the Vector2 Constructor that accepts 2 reals
         //      "phys::Vector2::operator+"              //Test of only operator+ on Vector2
         //      "operator<<(ostream,Vector2)"           //Test of streaming operator for vector2 in root namespace
-        void AddTestResult(const phys::String Fresh, TestResult Meat)
-            { AddTestResult(TestData(Fresh,Meat)); }
+        void AddTestResult(const phys::String Fresh, TestResult Meat, OverWriteResults Behavior=OverWriteIfLessSuccessful)
+            { AddTestResult(TestData(Fresh,Meat),Behavior); }
 
         // make it a little easier to aggregate answers in one place
         const UnitTest& operator+=(const UnitTest& rhs)
         {
-            if(rhs.MostSuccessful.second<MostSuccessful.second)
-                { MostSuccessful=rhs.MostSuccessful; }
-            if(rhs.MostSuccessful.second>LeastSuccessful.second)
-                { LeastSuccessful=rhs.MostSuccessful; }
-
             if(rhs.LongestNameLength>LongestNameLength)
                 { LongestNameLength=rhs.LongestNameLength; }
 
@@ -261,17 +281,81 @@ int Usage(phys::String ThisName)
                 << "If only test group names are entered, then all tests in those groups are run." << endl
                 << "This command is not case sensitive." << endl << endl
                 << "Current Test Groups: " << endl;
-
+    phys::Whole c = 0;
     for(map<phys::String,UnitTest*>::iterator Iter=TestGroups.begin(); Iter!=TestGroups.end(); ++Iter)
-        { cout << "\t" << Iter->first << " "; }
+        {
+            cout << "\t" << Iter->first << " ";
+            ++c;        //enforce 4 names per line
+            if (4==c)
+                { cout<<endl; c=0; }
+        }
     cout << endl;
 
     return ExitInvalidArguments;
 }
 
 
+/////////////////////////////////////////////////////////////////////////////////////
+//This next block of code creates a minimal engine environment for testing managers and other ngine components
+using namespace phys;
 
+World *TheWorld;
+phys::UI::Caption *TheText;
+String TheMessage;
+SimpleTimer *ThisTimer;
 
+void StartEngine(String Message)
+{
+    TheMessage=Message;
+    TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), SceneManager::Generic, 30);
+    TheWorld->GameInit(false);
+    TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", "files", false);
+    TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
+    TheWorld->GetUIManager()->LoadGorilla("dejavu");
+    phys::UIScreen *TheScreen = TheWorld->GetUIManager()->CreateScreen("Screen","dejavu",TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0));
+    phys::UILayer *TheLayer = TheScreen->CreateLayer("Layer",0);
+    TheText = TheLayer->CreateCaption(ConstString("TheText"),Vector2(0,0),Vector2(1,1),24, Message);
+    TheText->SetTextColour(ColourValue::GetWhite());
+    TheText->SetBackgroundColour(ColourValue::GetBlank());
+}
+
+void UpdateMessage()
+{
+    TheText->SetText( StringCat(TheMessage," - ", ToString(int(ThisTimer->GetCurrentTime()/1000000))  ));
+    //TheText->SetText( StringCat(TheMessage," - ", ToString(ThisTimer->GetCurrentTime())  ));
+}
+
+bool PostTimerEnd()
+    { return false; }
+
+bool PostTimerUpdate()
+    { UpdateMessage(); return true; }
+
+class TimerEnding : public TimerCallback
+{
+    virtual void DoCallbackItems()
+        { TheWorld->GetTimerManager()->SetPostMainLoopItems(&PostTimerEnd); }
+};
+TimerEnding* Callback;
+
+void StopEngine()
+    {
+        delete Callback;
+        delete TheWorld;
+        crossplatform::WaitMilliseconds(1000); // Ogre spawns some stuff in a seperate thread this is more then enough time for it to finish
+    }
+
+void StartCountdown(Whole Seconds)
+{
+    ThisTimer = World::GetWorldPointer()->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
+    ThisTimer->SetInitialTime(Seconds * 1000000);
+    ThisTimer->Reset();
+    ThisTimer->SetGoalTime(0);
+    ThisTimer->Start();
+    Callback = new TimerEnding;
+    ThisTimer->SetCallback(Callback);
+    TheWorld->GetTimerManager()->SetPostMainLoopItems(&PostTimerUpdate);
+}
 
 
 #endif

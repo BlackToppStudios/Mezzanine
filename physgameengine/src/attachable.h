@@ -113,7 +113,7 @@ namespace phys
             /// Attachment management
 
             /// @brief Gets the WorldNode this thinks it is attached to.
-            /// @return Returns a pointer to the WorldNode this is attached to.
+            /// @return Returns a pointer to the WorldNode this is attached to or 0 if not attached
             phys::WorldNode* GetAttachedTo() const;
 
             /// @brief Attach this to a WorldNode

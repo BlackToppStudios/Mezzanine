@@ -73,16 +73,10 @@ namespace phys
     }
 
     WorldNode::~WorldNode()
-    {
-        Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode);
-    }
+        { Manager->GetGraphicsWorldPointer()->destroySceneNode(OgreNode); }
 
-    ConstString& WorldNode::GetName() const
-    {
-        return OgreNode->getName();
-    }
-
-
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Navigation
     void WorldNode::SetLocation(const Vector3& Location)
     {
         OgreNode->setPosition(Location.GetOgreVector3());
@@ -92,21 +86,25 @@ namespace phys
         { return Vector3(OgreNode->getPosition()); }
 
     void WorldNode::SetOrientation(Quaternion Orientation)
-    {
-        OgreNode->setOrientation(Orientation.GetOgreQuaternion());
-    }
+        { OgreNode->setOrientation(Orientation.GetOgreQuaternion()); }
 
-    Quaternion WorldNode::GetOrientation()
-    {
-        Quaternion Ori(OgreNode->getOrientation());
-        return Ori;
-    }
+    Quaternion WorldNode::GetOrientation() const
+        { return Quaternion(OgreNode->getOrientation()); }
 
     void WorldNode::LookAt(Vector3 LookAt)
+        { OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD); }
+
+    void WorldNode::IncrementOrbit(Real Radians)
     {
-        OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
+        if( WorldNode::Orbit == this->Type )
+        {
+            Ogre::Radian Rad(Radians);
+            OgreNode->getParentSceneNode()->yaw(Rad);
+        }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Auto tracking
     void WorldNode::SetAutoTracking(WorldNode* node, Vector3 Offset)
     {
         OgreNode->setAutoTracking(true, node->OgreNode, Ogre::Vector3::NEGATIVE_UNIT_Z, Offset.GetOgreVector3());
@@ -122,27 +120,24 @@ namespace phys
         OgreNode->setAutoTracking(false);
     }
 
-    void WorldNode::IncrementOrbit(Real Radians)
-    {
-        if( WorldNode::Orbit == this->Type )
-        {
-            Ogre::Radian Rad(Radians);
-            OgreNode->getParentSceneNode()->yaw(Rad);
-        }
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Basic Data
 
     void WorldNode::SetType(WorldNode::NodeType type)
     {
         Type = type;
     }
 
-    WorldNode::NodeType WorldNode::GetType()
+    WorldNode::NodeType WorldNode::GetType() const
     {
         return Type;
     }
 
     Attachable::AttachableElement WorldNode::GetAttachableType() const
         { return Attachable::WorldNode; }
+
+    ConstString& WorldNode::GetName() const
+        { return OgreNode->getName(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     /// Attachment child management
@@ -174,6 +169,21 @@ namespace phys
         }
     }
 
+    Attachable* WorldNode::GetAttached(Whole Index) const
+        { return Elements.at(Index); }
+
+    WorldNode::iterator WorldNode::begin()
+        { return Elements.begin(); }
+
+    WorldNode::iterator WorldNode::end()
+        { return Elements.end(); }
+
+    WorldNode::const_iterator WorldNode::begin() const
+        { return Elements.begin(); }
+
+    WorldNode::const_iterator WorldNode::end() const
+        { return Elements.end(); }
+
     void WorldNode::DetachAll()
     {
         //OgreNode->detachAllObjects();
@@ -192,6 +202,9 @@ namespace phys
     void WorldNode::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
     {
         Attachable::AttachToFinal(RawTarget, Target);
+
+        if(this->OgreNode->getParent())
+            { this->OgreNode->getParentSceneNode()->removeChild(this->OgreNode); }
         RawTarget->addChild(this->OgreNode);
     }
 
@@ -201,7 +214,108 @@ namespace phys
         RawTarget->removeChild(this->OgreNode);
     }
 
+}
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::WorldNode& Ev)
+{
+    stream      << "<WorldNode Version=\"1\" Name=\"" << Ev.GetName()
+                    << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
+                << "\">";
+
+                for(phys::WorldNode::const_iterator Iter = Ev.begin(); Iter!=Ev.end(); ++Iter)
+                {
+                    stream << "<Attached Name=\"" << (*Iter)->GetName() << "\"/>";
+                }
+
+    stream      << "<Orientation>" << Ev.GetOrientation() << "</Orientation>"
+                << "<Location>" << Ev.GetLocation() << "</Location>"
+                << "</WorldNode>";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::WorldNode& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "WorldNode", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::WorldNode& Ev)
+{
+    if ( phys::String(OneNode.Name())==phys::String("WorldNode") )
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            if (AttachPtr)
+                { AttachPtr->AttachObject(&Ev); }
+
+            phys::Vector3 TempVec(0,0,0);
+            phys::Quaternion TempQuat(0,0,0,0);
+            for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            {
+                phys::String Name(Child.Name());
+                switch(Name[0])
+                {
+                    case 'A':
+                        if(Name==phys::String("Attached"))
+                        {
+                            phys::String AttributeName(OneNode.GetAttribute("Name").AsString());
+                            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( Child.GetAttribute("Name").AsString() );
+
+                            if (AttachPtr)  // fail silently, because if we don't find it then that means it just hasn't been deserialized yeat
+                            {
+                                if (0==AttachPtr->GetAttachedTo())// unless it is attached to something else
+                                {
+                                    Ev.AttachObject(AttachPtr);
+                                }else{
+                                    throw( phys::Exception(phys::StringCat("Cannot reconcile WorldNode with the current state of the world: Attachable \"",AttachPtr->GetName()," needs to be attached, but is already attached to ",AttachPtr->GetAttachedTo()->GetName() )) );
+                                }
+                            }
+
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'O':   //Orientation
+                        if(Name==phys::String("Orientation"))
+                        {
+                            Child.GetFirstChild() >> TempQuat;
+                            Ev.SetOrientation(TempQuat);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'L':   //Location
+                        if(Name==phys::String("Location"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetLocation(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element L-\"",Name,"\"")) );
+                        }
+                        break;
+                    default:
+                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element default-\"",Name,"\"")) );
+                        break;
+                }
+            }
+        }else{
+            throw( phys::Exception("Incompatible XML Version for WorldNode: Not Version 1"));
+        }
+    }else{
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a WorldNode, found a ", OneNode.Name())));
+    }
 
 }
+#endif //PHYSXML
+
+
 
 #endif
