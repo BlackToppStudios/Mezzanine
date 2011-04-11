@@ -88,6 +88,7 @@
 #include "light.h"                      // Target
 #include "linegroup.h"
 #include "managerbase.h"
+#include "mathtool.h"
 #include "meshgenerator.h"
 #include "metacode.h"                   // done
 #include "particleeffect.h"             // Target

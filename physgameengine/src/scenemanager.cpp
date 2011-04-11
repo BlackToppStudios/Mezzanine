@@ -100,6 +100,74 @@ namespace phys
     {
     }
 
+    void SceneManager::SetSceneShadowTechnique(SceneShadowTechnique Shadows)
+    {
+        Ogre::ShadowTechnique Type;
+        switch (Shadows)
+        {
+            case SST_Stencil_Modulative:
+                Type = Ogre::SHADOWTYPE_STENCIL_MODULATIVE;
+                break;
+            case SST_Stencil_Additive:
+                Type = Ogre::SHADOWTYPE_STENCIL_ADDITIVE;
+                break;
+            case SST_Texture_Modulative:
+                Type = Ogre::SHADOWTYPE_TEXTURE_MODULATIVE;
+                break;
+            case SST_Texture_Additive:
+                Type = Ogre::SHADOWTYPE_TEXTURE_ADDITIVE;
+                break;
+            case SST_Texture_Additive_Integrated:
+                Type = Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED;
+                break;
+            case SST_Texture_Modulative_Integrated:
+                Type = Ogre::SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED;
+                break;
+            default:
+                Type = Ogre::SHADOWTYPE_NONE;
+        }
+        OgreManager->setShadowTechnique(Type);
+    }
+
+    SceneManager::SceneShadowTechnique SceneManager::GetSceneShadowTechnique()
+    {
+        Ogre::ShadowTechnique ShadowType = OgreManager->getShadowTechnique();
+        switch (ShadowType)
+        {
+            case Ogre::SHADOWTYPE_STENCIL_MODULATIVE:
+                return SST_Stencil_Modulative;
+                break;
+            case Ogre::SHADOWTYPE_STENCIL_ADDITIVE:
+                return SST_Stencil_Additive;
+                break;
+            case Ogre::SHADOWTYPE_TEXTURE_MODULATIVE:
+                return SST_Texture_Modulative;
+                break;
+            case Ogre::SHADOWTYPE_TEXTURE_ADDITIVE:
+                return SST_Texture_Additive;
+                break;
+            case Ogre::SHADOWTYPE_TEXTURE_ADDITIVE_INTEGRATED:
+                return SST_Texture_Additive_Integrated;
+                break;
+            case Ogre::SHADOWTYPE_TEXTURE_MODULATIVE_INTEGRATED:
+                return SST_Texture_Modulative_Integrated;
+                break;
+            default:
+                return SST_None;
+        }
+    }
+
+    void SceneManager::SetShadowColour(const ColourValue& ShadowColour)
+    {
+        this->OgreManager->setShadowColour(ShadowColour.GetOgreColourValue());
+    }
+
+    ColourValue SceneManager::GetShadowColour()
+    {
+        ColourValue Shadow(this->OgreManager->getShadowColour());
+        return Shadow;
+    }
+
     void SceneManager::CreateSkyPlane(Plane& SkyPlane, String& Material, String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments)
     {
         this->OgreManager->setSkyPlane(true, SkyPlane.GetOgrePlane(), Material, Scale, Tiling, DrawFirst, Bow, XSegments, YSegments, Group);

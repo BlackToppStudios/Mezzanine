@@ -86,8 +86,12 @@ int main(int argc, char **argv)
     //Setup some camera tricks
     //WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,200.0,750.0), true );
     //CameraNode->AttachElement(TheWorld->GetCameraManager()->GetDefaultCamera());
-    TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0.0,200.0,750.0));
+    TheWorld->GetCameraManager()->GetDefaultCamera()->SetLocation(Vector3(0.0,200.0,150.0));
+    CameraController* DefaultControl = TheWorld->GetCameraManager()->GetOrCreateCameraController(TheWorld->GetCameraManager()->GetDefaultCamera());
+    DefaultControl->SetMovementMode(CameraController::CCM_Walk);
+    DefaultControl->SetHoverHeight(40);
     Light *Headlight = TheWorld->GetSceneManager()->CreateLight("Headlight");
+    TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Modulative);
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
     //Headlight->SetType(Light::Spotlight);
     //CameraNode->AttachObject(Headlight);
@@ -96,6 +100,9 @@ int main(int argc, char **argv)
     const std::vector<String>* ResList = TheWorld->GetGraphicsManager()->GetSupportedResolutions();
     for( Whole Z = 0 ; Z < ResList->size() ; Z++ )
         TheWorld->Log(ResList->at(Z));
+
+    TheWorld->Log("And now...some Pi:");
+    TheWorld->Log(MathTool::GetPi());
 
 	//Start the Main Loop
 	TheWorld->MainLoop();
@@ -315,7 +322,7 @@ bool PostInput()
 
     Vector2 Offset = InputQueryer->GetMousePrevFrameOffset();
     if( MouseCam && Vector2(0,0) != Offset )
-        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01);
+        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
 
     /*if (Queryer.GetRawMetaValue(MetaCode::JOYSTICKAXIS_1)!=0)
     {
@@ -356,12 +363,6 @@ bool PostInput()
     {
         videobuttonpushed = true;
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(true);
-        //GraphicsSettings NewSet;
-        //NewSet.RenderWidth = 1280;
-        //NewSet.RenderHeight = 1024;
-        //NewSet.Fullscreen = true;
-        //NewSet.VSync = false;
-        //TheWorld->GetGraphicsManager()->setRenderOptions(NewSet);
     }
     else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
     {
@@ -421,7 +422,7 @@ bool PostInput()
             // *MouseRay *= 1000;
             //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
 
-            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon( *MouseRay );
+            Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,phys::WOT_ActorRigid);
             #ifdef PHYSDEBUG
             TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
             #endif

@@ -94,6 +94,13 @@ namespace phys
         return this->From.Distance( this->To );
     }
 
+    Vector3 Ray::GetDirection() const
+    {
+        Vector3 Dir(To - From);
+        Dir.Normalize();
+        return Dir;
+    }
+
     Ray Ray::GetNormal() const
     {
         Real TempLength = this->Length();

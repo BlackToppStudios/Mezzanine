@@ -128,6 +128,10 @@ namespace phys
             /// @return Returns a normalized reference of this quaternion.
             Quaternion& Normalize();
 
+            /// @brief Inverses this Quaternion.
+            /// @return Returns a quaternion that is a copy of this one after it has been inversed.
+            Quaternion GetInverse() const;
+
             ///////////////////////////////////////////////////////////////////////////////
             // Explicit Conversion
 
@@ -214,6 +218,14 @@ namespace phys
             /// @param Other The other Quaternion to multiply from this one.
             /// @return A phys::Quaternion with the result.
             Quaternion operator* (const btQuaternion& Other) const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Vector Rotation Operators
+
+            /// @brief Rotates a vector by the provided vector.
+            /// @param Other The vector to rotate.
+            /// @return Returns a rotated version of the provided vector.
+            Vector3 operator* (const Vector3& Other) const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Increment and Decrement Operators

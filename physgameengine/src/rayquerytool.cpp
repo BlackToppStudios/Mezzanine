@@ -41,6 +41,7 @@
 #define _rayquerytool_cpp
 
 #include "rayquerytool.h"
+#include "actorbase.h"
 #include "actorcontainerbase.h"
 #include "graphicsmanager.h"
 #include "eventmanager.h"
@@ -48,6 +49,10 @@
 #include "camera.h"
 #include "objectreference.h"
 #include "gamewindow.h"
+#include "plane.h"
+#include "ray.h"
+#include "vector3wactor.h"
+#include "inputquerytool.h"
 
 #include <Ogre.h>
 
@@ -59,22 +64,15 @@ namespace phys
 
     RayQueryTool::RayQueryTool()
     {
-        VerifyRayQuery();
-        // create the ray scene query object
-        //this->RayQuery = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
-        //if (NULL == this->RayQuery)
-        //    {World::GetWorldPointer()->LogAndThrow("Failed to create RaySceneQuery instance in WorldQueryTool"); }
-        RayQuery->setSortByDistance(true);
     }
 
     RayQueryTool::~RayQueryTool()
     {
-        //delete this->RayQuery;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Raycasting Nonsense goe here
-    Vector3WActor* RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay)
+    Vector3WActor* RayQueryTool::GetFirstActorOnRayByPolygon(Ray ActorRay, Whole ObjectFlags)
     {
         VerifyRayQuery();
         Ogre::Ray Ooray = ActorRay.GetOgreRay();
@@ -114,7 +112,7 @@ namespace phys
                 try
                 {
                     ObjectReference *HitMetaInfo = Ogre::any_cast<ObjectReference*>(pentity->getUserAny());
-                    if(HitMetaInfo->GetType()==WOT_ActorRigid)
+                    if(HitMetaInfo->GetType() & ObjectFlags)
                     {
                         // mesh data to retrieve
                         size_t vertex_count;
@@ -168,7 +166,7 @@ namespace phys
         return ClosestActor;
     }
 
-    Vector3WActor* RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay)
+    Vector3WActor* RayQueryTool::GetFirstActorOnRayByAABB(Ray ActorRay, Whole ObjectFlags)
     {
         VerifyRayQuery();
         #ifdef PHYSDEBUG
@@ -203,7 +201,7 @@ namespace phys
         }
     }
 
-    Vector3WActor* RayQueryTool::GetActorUnderMouse(Real RayLength, bool UsePolygon)
+    Vector3WActor* RayQueryTool::GetActorUnderMouse(Whole ObjectFlags, Real RayLength, bool UsePolygon)
     {
         VerifyRayQuery();
         Vector3WActor* Results = 0;
@@ -212,9 +210,9 @@ namespace phys
 
         if (UsePolygon)
         {
-            Results = GetFirstActorOnRayByPolygon( *MouseRay );
+            Results = GetFirstActorOnRayByPolygon(*MouseRay,ObjectFlags);
         }else{
-            Results = GetFirstActorOnRayByAABB( *MouseRay );
+            Results = GetFirstActorOnRayByAABB(*MouseRay,ObjectFlags);
         }
 
         delete MouseRay;
@@ -338,7 +336,10 @@ namespace phys
     void RayQueryTool::VerifyRayQuery()
     {
         if(!RayQuery)
+        {
             RayQuery = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createRayQuery(Ogre::Ray(), Ogre::SceneManager::WORLD_GEOMETRY_TYPE_MASK);
+            RayQuery->setSortByDistance(true);
+        }
     }
 
     void RayQueryTool::GetMeshInformation( Ogre::Entity *entity,

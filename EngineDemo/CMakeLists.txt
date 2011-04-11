@@ -74,6 +74,7 @@ target_link_libraries( ${PROJECT_NAME} physgame )
 # File copies during all builds
 message ("${PROJECT_NAME} - Begin File Copy Process")
 CopyDemoFilesDuringBuild( common/r2skin.jpg data/common/r2skin.jpg )
+CopyDemoFilesDuringBuild( common/flare.png data/common/flare.png )
 CopyDemoFilesDuringBuild( common/wood-texture.jpg data/common/wood-texture.jpg )
 CopyDemoFilesDuringBuild( common/Sphere_Metal.psd data/common/Sphere_Metal.psd )
 CopyDemoFilesDuringBuild( common/dejavu.png data/common/dejavu.png )

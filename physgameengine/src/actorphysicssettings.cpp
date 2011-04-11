@@ -42,9 +42,12 @@
 
 #include "actorphysicssettings.h"
 #include "actorbase.h"
+#include "actorrigid.h"
+#include "actorsoft.h"
 #include "world.h"
 
 #include "btBulletDynamicsCommon.h"
+#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
 namespace phys
 {
@@ -180,6 +183,30 @@ namespace phys
         }else{
             return false;
         }
+    }
+
+
+    ActorRigidPhysicsSettings::ActorRigidPhysicsSettings(ActorRigid* Actor, btRigidBody* PhysicsObject)
+        : ActorBasePhysicsSettings(Actor,PhysicsObject),
+          RigidParent(Actor),
+          ActorRB(PhysicsObject)
+    {
+    }
+
+    ActorRigidPhysicsSettings::~ActorRigidPhysicsSettings()
+    {
+    }
+
+
+    ActorSoftPhysicsSettings::ActorSoftPhysicsSettings(ActorSoft* Actor, btSoftBody* PhysicsObject)
+        : ActorBasePhysicsSettings(Actor,PhysicsObject),
+          SoftParent(Actor),
+          ActorSB(PhysicsObject)
+    {
+    }
+
+    ActorSoftPhysicsSettings::~ActorSoftPhysicsSettings()
+    {
     }
 }
 

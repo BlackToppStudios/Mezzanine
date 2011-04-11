@@ -49,6 +49,7 @@
 
 #include "internalmeshtools.h.cpp"
 #include "objectreference.h"
+#include "actorgraphicssettings.h"
 #include "world.h"
 #include "physicsmanager.h"
 #include "actorsoft.h"
@@ -60,6 +61,9 @@ namespace phys{
         : ActorBase (name, file, group)
     {
         CreateSoftObject(mass);
+        this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
+        this->PhysicsSettings = new ActorSoftPhysicsSettings(this,physsoftbody);
+        BasePhysicsSettings = PhysicsSettings;
         ActorType=ActorBase::Actorsoft;
     }
 
@@ -192,6 +196,11 @@ namespace phys{
     std::string ActorSoft::GetName () const
     {
         return this->GraphicsObject->getName();
+    }
+
+    ActorSoftPhysicsSettings* ActorSoft::GetPhysicsSettings()
+    {
+        return PhysicsSettings;
     }
 
     void ActorSoft::SetActorScaling(Vector3 scaling)

@@ -41,6 +41,7 @@
 #define _physactorsoft_h
 
 #include "actorbase.h"
+#include "actorphysicssettings.h"
 #include "crossplatformexport.h"
 
 ///////////////////////////////////
@@ -79,6 +80,8 @@ namespace phys
         protected:
             ///@brief Used to simulate the functionality of a btSoftBody for use with the physics subsystem.
             btSoftBody* physsoftbody;
+            /// @brief This class encapsulates physics specific configuration for this actor.
+            ActorSoftPhysicsSettings* PhysicsSettings;
             /// @brief Creates a soft object for the actor.
             /// @details Creates a soft object to be placed in the physics world later. @n
             /// This is automatically called by the Constructor and shouldn't be called manually.
@@ -129,6 +132,10 @@ namespace phys
             /// @brief Retrieves the name of the object.
             /// @details This function will retrieve the name of the object,
             std::string GetName() const;
+
+            /// @brief Gets the physics settings class associated with this actor.
+            /// @return Returns a pointer to the physics settings class in use by this actor.
+            virtual ActorSoftPhysicsSettings* GetPhysicsSettings();
 
             /// @brief Sets the scale of the actor.
             /// @details This function will alter the scaling/size of the actor with the given vector3.

@@ -49,6 +49,7 @@
 #include "physicsmanager.h"
 #include "actorrigid.h"
 #include "objectreference.h"
+#include "actorgraphicssettings.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internalmeshtools.h.cpp"
 
@@ -62,6 +63,9 @@ namespace phys{
         this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
+        this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
+        this->PhysicsSettings = new ActorRigidPhysicsSettings(this,physrigidbody);
+        BasePhysicsSettings = PhysicsSettings;
         ActorType=ActorBase::Actorrigid;
     }
 
@@ -84,6 +88,11 @@ namespace phys{
         {
             CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
         }
+    }
+
+    std::string ActorRigid::GetName () const
+    {
+        return this->GraphicsObject->getName();
     }
 
     void ActorRigid::AddObjectToWorld (World *TargetWorld)
@@ -246,9 +255,9 @@ namespace phys{
         this->physrigidbody->updateInertiaTensor();
     }
 
-    std::string ActorRigid::GetName () const
+    ActorRigidPhysicsSettings* ActorRigid::GetPhysicsSettings()
     {
-        return this->GraphicsObject->getName();
+        return PhysicsSettings;
     }
 
     void ActorRigid::LimitMovementOnAxis(bool x, bool y, bool z)

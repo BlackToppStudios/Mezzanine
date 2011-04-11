@@ -60,7 +60,7 @@ namespace phys
     class PHYS_LIB Ray
     {
         public:
-            /// @brief The origin point of the Vector
+            /// @brief The origin point of the Vector.
             Vector3 From;
 
             /// @brief A point on the line of the ray.
@@ -69,40 +69,44 @@ namespace phys
             ///////////////////////////////////////////////////////////////////////////////
             // Constructors
 
-            /// @brief Default constructor
+            /// @brief Default constructor.
             /// @details This create a ray starting at 0,0,0 pointing to 0,1,0,
             Ray();
 
-            /// @brief Thorough constructor
-            /// @details This accepts 2 Vector3s and uses them to build the ray
-            /// @param From_ The origin fo the new Ray
+            /// @brief Thorough constructor.
+            /// @details This accepts 2 Vector3s and uses them to build the ray.
+            /// @param From_ The origin fo the new Ray.
             /// @param To_ A point along the line for the destination line.
             Ray(Vector3 From_, Vector3 To_);
 
-            /// @brief Compatibily constructor
-            /// @details This accepts an Ogre Ray, (graphics subsystem) to make ray
-            /// @param Ray2 This is the Ogre::Ray
+            /// @brief Compatibily constructor.
+            /// @details This accepts an Ogre Ray, (graphics subsystem) to make ray.
+            /// @param Ray2 This is the Ogre::Ray.
             Ray(Ogre::Ray Ray2);
 
             ///////////////////////////////////////////////////////////////////////////////
             // Manual Conversions and adjsutments
 
-            /// @brief Gets an Ogre::Ray that contains this Rays information
-            /// @details Used to aid interopability, this will return afresh Ogre::Ray with the same data as this Ray
-            /// @return This returns an Ogre::Ray that contains the same information as this rays information
+            /// @brief Gets an Ogre::Ray that contains this Rays information.
+            /// @details Used to aid interopability, this will return afresh Ogre::Ray with the same data as this Ray.
+            /// @return This returns an Ogre::Ray that contains the same information as this rays information.
             Ogre::Ray GetOgreRay() const;
 
-            /// @brief Measures the distance distance of this ray
+            /// @brief Measures the distance distance of this ray.
             /// @details This uses the distance method of Vector3 to determine the current length of this ray.
-            /// @return This returns a real value which contains the length
+            /// @return This returns a real value which contains the length.
             Real Length() const;
 
-            /// @brief This returns the normal for this ray
+            /// @brief Gets the direction of this ray.
+            /// @return Returns a vector3 that is the direction from it's origin to it's destination.
+            Vector3 GetDirection() const;
+
+            /// @brief This returns a normalized copy of this ray.
             /// @details This will get a ray that is 1 unit in length with the same From point as this ray, pointing in the same direction as this ray.
-            /// @return At a ray that is the normal for this array
+            /// @return Returns a ray that is a normalized copy of this array.
             Ray GetNormal() const;
 
-            /// @brief Turns this Ray into its own normal
+            /// @brief Turns this Ray into its own normal.
             /// @details This will change the ray to be exactly 1 unit long, but pointing the same direction.
             // /// @return The is the length of the Ray after Normalizing. This could be useful for finding problems with 0 length rays.
             void Normalize();

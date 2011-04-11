@@ -43,14 +43,18 @@
 #include "datatypes.h"
 
 class btCollisionObject;
+class btRigidBody;
+class btSoftBody;
 
 namespace phys
 {
     class ActorBase;
+    class ActorRigid;
+    class ActorSoft;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorBasePhysicsSettings
     /// @headerfile actorphysicssettings.h
-    /// @brief This is a helper class for configuring physics settings of an actor.
+    /// @brief This is a base helper class for configuring physics settings of an actor.
     /// @details This class contains functions for the configuring of physics specific settings of an actor.
     /// This class can only configure the actors physics.  For configuring actor graphics, see ActorGraphicsSettings.
     ///////////////////////////////////////
@@ -120,6 +124,56 @@ namespace phys
             /// @return Returns true if the object is active, false if it's deactivated(at rest).
             virtual bool CheckActivation();
     };//actorbasephysicssettings
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ActorRigidPhysicsSettings
+    /// @headerfile actorphysicssettings.h
+    /// @brief This is a helper class for configuring physics settings of an ActorRigid.
+    /// @details This class contains functions for the configuring of physics specific settings of an ActorRigid.
+    /// This class can only configure the ActorRigids physics.  For configuring actor graphics, see ActorGraphicsSettings.
+    ///////////////////////////////////////
+    class ActorRigidPhysicsSettings : public ActorBasePhysicsSettings
+    {
+        protected:
+            /// @internal
+            /// @brief Physics Object of the actor.
+            btRigidBody* ActorRB;
+            /// @brief The Actor this belongs to.
+            ActorRigid* RigidParent;
+        public:
+            /// @brief Standard Constructor.
+            /// @param Actor The actor this settings class configures.
+            /// @param PhysicsObject The physics object belonging to the actor this class configures.
+            ActorRigidPhysicsSettings(ActorRigid* Actor, btRigidBody* PhysicsObject);
+
+            /// @brief Class destructor.
+            ~ActorRigidPhysicsSettings();
+    };//actorrigidphysicssettings
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ActorSoftPhysicsSettings
+    /// @headerfile actorphysicssettings.h
+    /// @brief This is a helper class for configuring physics settings of an ActorSoft.
+    /// @details This class contains functions for the configuring of physics specific settings of an ActorSoft.
+    /// This class can only configure the ActorSofts physics.  For configuring actor graphics, see ActorGraphicsSettings.
+    ///////////////////////////////////////
+    class ActorSoftPhysicsSettings : public ActorBasePhysicsSettings
+    {
+        protected:
+            /// @internal
+            /// @brief Physics Object of the actor.
+            btSoftBody* ActorSB;
+            /// @brief The Actor this belongs to.
+            ActorSoft* SoftParent;
+        public:
+            /// @brief Standard Constructor.
+            /// @param Actor The actor this settings class configures.
+            /// @param PhysicsObject The physics object belonging to the actor this class configures.
+            ActorSoftPhysicsSettings(ActorSoft* Actor, btSoftBody* PhysicsObject);
+
+            /// @brief Class destructor.
+            ~ActorSoftPhysicsSettings();
+    };//actorsoftphysicssettings
 }//phys
 
 #endif
