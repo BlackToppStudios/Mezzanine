@@ -422,4 +422,109 @@ namespace phys
     }
 }
 
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
+{
+    stream      << "<SceneManager Version=\"1\" Name=\"" << Ev.GetName()
+                    //<< "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
+                    << "\" Type=\"" << Ev.GetType()
+// shadow type
+//
+//                << "\">"
+//                << "<Direction>" << Ev.GetDirection() << "</Direction>"
+
+
+                << "</SceneManager>";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::SceneManager& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "SceneManager", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager& Ev)
+{
+    if ( phys::String(OneNode.Name())==phys::String("SceneManager") )
+    {
+      /*  if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            Ev.SetType(static_cast<phys::SceneManager::SceneManagerType>(OneNode.GetAttribute("Type").AsInt()));
+            Ev.SetPowerScale(OneNode.GetAttribute("PowerScale").AsReal());
+            Ev.SetAttenuation(OneNode.GetAttribute("AttenuationRange").AsReal(), OneNode.GetAttribute("AttenuationConstant").AsReal(), OneNode.GetAttribute("AttenuationLinear").AsReal(), OneNode.GetAttribute("AttenuationQuadric").AsReal());
+            Ev.SetSpotSceneManagerInnerAngle(OneNode.GetAttribute("SpotSceneManagerInnerAngle").AsReal());
+            Ev.SetSpotSceneManagerOuterAngle(OneNode.GetAttribute("SpotSceneManagerOuterAngle").AsReal());
+            Ev.SetSpotSceneManagerFalloff(OneNode.GetAttribute("SpotSceneManagerFalloff").AsReal());
+            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            if (AttachPtr)
+                { AttachPtr->AttachObject(&Ev); }
+
+            phys::ColourValue TempColour(0,0,0,0);
+            phys::Vector3 TempVec(0,0,0);
+
+            for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            {
+                phys::String Name(Child.Name());
+                switch(Name[0])
+                {
+                    case 'f':   //fDiffuseColour
+                        if(Name==phys::String("fDiffuseColour"))
+                        {
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetDiffuseColour(TempColour);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element f-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'S':   //SpecularColour
+                        if(Name==phys::String("SpecularColour"))
+                        {
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetSpecularColour(TempColour);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element S-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'D':   //Direction
+                        if(Name==phys::String("Direction"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetDirection(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element D-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'L':   //Location
+                        if(Name==phys::String("Location"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetLocation(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element L-\"",Name,"\"")) );
+                        }
+                        break;
+                    default:
+                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element default-\"",Name,"\"")) );
+                        break;
+                }
+            }
+
+        }else{
+            throw( phys::Exception("Incompatible XML Version for SceneManager: Not Version 1"));
+        }*/
+    }else{
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a SceneManager, found a ", OneNode.Name())));
+    }
+}
+#endif
+
+
+
 #endif

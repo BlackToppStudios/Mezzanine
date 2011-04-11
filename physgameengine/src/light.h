@@ -264,16 +264,13 @@ namespace phys
 /// @param stream The ostream to send the xml to.
 /// @param Ev the phys::Light to be serialized
 /// @return this returns the ostream, now with the serialized data
-/// @warning This does not attempt to store the Light aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
-/// @warning This does not s the pointer to the Light manager. When a Light manager is serialized, this data is implicitly stored by the Lights location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
 std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::Light& Ev);
 
 /// @brief Deserialize a phys::Light
 /// @param stream The istream to get the xml from to (re)make the phys::Light.
 /// @param Ev the phys::Light to be deserialized.
 /// @return this returns the ostream, advanced past the phys::Light that was recreated onto Ev.
-/// @warning This does not attempt to store the Light aspect ratio. This is too often hardware dependent and may not be reliably re-serialized.
-/// @warning This does not s the pointer to the Light manager. When a Light manager is serialized, this data is implicitly stored by the Lights location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
+/// @warning This does not the pointer to the Light manager. When a Light manager is serialized, this data is implicitly stored by the Lights location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
 std::istream& PHYS_LIB operator >> (std::istream& stream, phys::Light& Ev);
 
 /// @brief Set all values of a phys::Light from parsed xml.

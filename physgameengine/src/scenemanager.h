@@ -39,12 +39,13 @@
 */
 #ifndef _scenemanager_h
 #define _scenemanager_h
-
 #include "crossplatformexport.h"
+
+#include "colourvalue.h"
 #include "managerbase.h"
 #include "quaternion.h"
 #include "vector3.h"
-#include "colourvalue.h"
+#include "xml.h"
 
 namespace Ogre
 {
@@ -276,5 +277,30 @@ namespace phys
             Ogre::SceneManager* GetGraphicsWorldPointer() const;
     };//scenemanager
 }//phys
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::SceneManager to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::SceneManager to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::SceneManager& Ev);
+
+/// @brief Deserialize a phys::SceneManager
+/// @param stream The istream to get the xml from to (re)make the phys::SceneManager.
+/// @param Ev the phys::SceneManager to be deserialized.
+/// @return this returns the ostream, advanced past the phys::SceneManager that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::SceneManager& Ev);
+
+/// @brief Set all values of a phys::SceneManager from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::SceneManager.
+/// @param Ev the phys::SceneManager to be reset.
+/// @return This returns thexml::Node that was passed in.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::SceneManager& Ev);
+
+#endif // \PHYSXML
+
 
 #endif

@@ -35,9 +35,11 @@ set(${PROJECT_NAME}_sources
 
 	"${${PROJECT_NAME}_SOURCE_DIR}/compilerflagtests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanagertests.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanagertests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector2tests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector3tests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldnodetests.h"
+
 )
 
 ###############################################################################
