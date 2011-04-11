@@ -339,11 +339,11 @@ class TimerEnding : public TimerCallback
 TimerEnding* Callback;
 
 void StopEngine()
-    {
-        delete Callback;
-        delete TheWorld;
-        crossplatform::WaitMilliseconds(1000); // Ogre spawns some stuff in a seperate thread this is more then enough time for it to finish
-    }
+{
+    delete Callback;
+    delete TheWorld;
+    crossplatform::WaitMilliseconds(1000); // Ogre spawns some stuff in a seperate thread this is more then enough time for it to finish
+}
 
 void StartCountdown(Whole Seconds)
 {

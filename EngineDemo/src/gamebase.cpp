@@ -91,7 +91,7 @@ int main(int argc, char **argv)
     DefaultControl->SetMovementMode(CameraController::CCM_Walk);
     DefaultControl->SetHoverHeight(40);
     Light *Headlight = TheWorld->GetSceneManager()->CreateLight("Headlight");
-    TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Modulative);
+    TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Additive);
     //Headlight->SetAttenuation(1000.0, 0.0, 1.0, 0.0);         //I couldn't get these to work
     //Headlight->SetType(Light::Spotlight);
     //CameraNode->AttachObject(Headlight);
