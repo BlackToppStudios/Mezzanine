@@ -115,6 +115,10 @@ namespace phys
         return *this;
     }
 
+    Quaternion Quaternion::GetNormalizedCopy()
+        { return *this / Length(); }
+
+
     Quaternion Quaternion::GetInverse() const
     {
         Real Norm = W*W+X*X+Y*Y+Z*Z;

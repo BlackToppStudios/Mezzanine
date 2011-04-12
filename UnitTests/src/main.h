@@ -131,14 +131,15 @@ class UnitTest : public TestDataStorage
                 {
                     case OverWriteIfLessSuccessful:
                         if (PreExisting->second <= FreshMeat.second)
-                            { PreExisting->second = FreshMeat.second; }
+                            { PreExisting->second = FreshMeat.second; Added=true; }
                         break;
                     case OverWrite:
-                        this->insert(FreshMeat);
+                        PreExisting->second = FreshMeat.second;
+                        Added=true;
                         break;
                     case OverWriteIfMoreSuccessful:
                         if (PreExisting->second >= FreshMeat.second)
-                            { PreExisting->second = FreshMeat.second; }
+                            { PreExisting->second = FreshMeat.second; Added=true; }
                         break;
                     case DoNotOverWrite:
                         break;

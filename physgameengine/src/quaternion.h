@@ -128,6 +128,10 @@ namespace phys
             /// @return Returns a normalized reference of this quaternion.
             Quaternion& Normalize();
 
+            /// @brief Get a normalized copy of this Quaternion without changing this one.
+            /// @return A Copy of this Quaternion after the copy has been normalized.
+            Quaternion GetNormalizedCopy();
+
             /// @brief Inverses this Quaternion.
             /// @return Returns a quaternion that is a copy of this one after it has been inversed.
             Quaternion GetInverse() const;

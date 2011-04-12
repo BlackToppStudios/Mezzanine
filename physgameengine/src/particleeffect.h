@@ -139,7 +139,7 @@ namespace phys
             void SetOrientation(Quaternion Orientation);
 
             /// @brief Gets the orientation of this node.
-            /// @return Returns a quaternion representing the orientation of this node.
+            /// @return Returns a normalized quaternion representing the orientation of this node.
             Quaternion GetOrientation() const;
 
     };
