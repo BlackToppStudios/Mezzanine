@@ -331,6 +331,18 @@ namespace phys
         ExtractOgreQuaternion(Other);
         return *this;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Equality Comparison Operators
+
+    bool Quaternion::operator== (const phys::Quaternion& Other) const
+        { return (this->X==Other.X && this->Y==Other.Y && this->Z==Other.Z && this->W==Other.W); }
+
+    bool Quaternion::operator== (const Ogre::Quaternion& Other) const
+        { return (this->X==Other.x && this->Y==Other.y && this->Z==Other.z && this->W==Other.w); }
+
+    bool Quaternion::operator== (const btQuaternion& Other) const
+        { return (this->X==Other.getX() && this->Y==Other.getY() && this->Z==Other.getZ() && this->W==Other.getW()); }
 }
 
 ///////////////////////////////////////////////////////////////////////////////

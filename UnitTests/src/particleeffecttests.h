@@ -72,8 +72,8 @@ class ParticleEffectTests : public UnitTest
 
                     AddTestResult("ParticleEffect::SetOrientation", Failed);
                     AddTestResult("ParticleEffect::GetOrientation", Failed);
-                    Test1->SetOrientation(Quaternion(.2,.3,.4,.5));
-                    if(Test1->GetOrientation()==Quaternion(.2,.3,.4,.5))
+                    Test1->SetOrientation(Quaternion(9,10,11,12));
+                    if(Test1->GetOrientation()==Quaternion(9,10,11,12))
                     {
                         AddTestResult("ParticleEffect::SetOrientation", Success, UnitTest::OverWriteIfMoreSuccessful);
                         AddTestResult("ParticleEffect::GetOrientation", Success, UnitTest::OverWriteIfMoreSuccessful);
@@ -96,7 +96,7 @@ class ParticleEffectTests : public UnitTest
                     stringstream XMLstream;
                     AddTestResult("ParticleEffect::operator<<", Failed, UnitTest::OverWriteIfMoreSuccessful);
                     XMLstream << *Test1;
-                    if (XMLstream.str() == String("<ParticleEffect Version=\"1\" Name=\"Beta\" AttachedTo=\"Alpha\"><Orientation><Quaternion Version=\"1\" X=\"0.2\" Y=\"0.3\" Z=\"0.4\" W=\"0.5\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\"/></Location></ParticleEffect>"))
+                    if (XMLstream.str() == String("<ParticleEffect Version=\"1\" Name=\"Beta\" AttachedTo=\"Alpha\" Enabled=\"0\"><Orientation><Quaternion Version=\"1\" X=\"9\" Y=\"10\" Z=\"11\" W=\"12\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\"/></Location></ParticleEffect>"))
                         { AddTestResult("ParticleEffect::operator<<", Success, UnitTest::OverWriteIfMoreSuccessful); }
                     cout << *Test1 << endl;
                     AddTestResult("ParticleEffect::DetachFrom", Failed);

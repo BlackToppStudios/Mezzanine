@@ -43,6 +43,8 @@
 #include "attachable.h"
 #include "crossplatformexport.h"
 #include "datatypes.h"
+#include "quaternion.h"
+#include "xml.h"
 
 /// @file particleeffect.cpp
 /// @brief Contains the declaration of the ParticleEffect class
@@ -113,10 +115,16 @@ namespace phys
             /// Particle Functionality
 
             /// @brief Enables the particle effect, allowing it to render.
+            /// @details If the Effect is already Enabled, this does nothing
             void EnableParticleEffect();
 
             /// @brief Disables the particle effect, preventing it from rendering.
+            /// @details If the Effect is already Disabled, this does nothing
             void DisableParticleEffect();
+
+            /// @brief Is this effect enabled
+            /// @return True if enabled, false otherwise
+            bool IsEnabled() const;
 
             /// @brief Set the location of this Particle effect relative to the object it is attached to.
             /// @param vec The location.
@@ -125,7 +133,44 @@ namespace phys
             /// @brief Get the location of the Particle Effect, relative to the Object is is attached to.
             /// @return A Vector3 with the location.
             virtual Vector3 GetLocation() const;
+
+            /// @brief Sets the orientation of this node.
+            /// @param Orientation A Quaternion representing the orientation of this node.
+            void SetOrientation(Quaternion Orientation);
+
+            /// @brief Gets the orientation of this node.
+            /// @return Returns a quaternion representing the orientation of this node.
+            Quaternion GetOrientation() const;
+
     };
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::ParticleEffect to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::ParticleEffect to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ParticleEffect& Ev);
+
+/// @brief Deserialize a phys::ParticleEffect
+/// @param stream The istream to get the xml from to (re)make the phys::ParticleEffect.
+/// @param Ev the phys::ParticleEffect to be deserialized.
+/// @return this returns the ostream, advanced past the phys::ParticleEffect that was recreated onto Ev.
+/// @warning This does not the pointer to the scene manager. When a scene manager is serialized, this data is implicitly stored by the ParticleEffects location in the xml hierarchy, this is used instead. The Name of the manager is stored for possible future use.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ParticleEffect& Ev);
+
+/// @brief Set all values of a phys::ParticleEffect from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::ParticleEffect.
+/// @param Ev the phys::ParticleEffect to be reset.
+/// @return This returns thexml::Node that was passed in.
+/// @warning This does not attempt to de-serialize the name or template of the ParticleEffect. These is not currently changeable after the creation of a ParticleEffect. However, the ParticleEffectmanager will correctly create name ParticleEffect upon creation then deserialize the rest of the ParticleEffect.
+/// @warning This does not throw an exception if the ParticleEffect could not be attached to the appropriate worldnode. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ParticleEffect& Ev);
+
+#endif
+
 
 #endif

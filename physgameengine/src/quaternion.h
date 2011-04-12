@@ -264,19 +264,37 @@ namespace phys
             // Assignment Operators
 
             /// @brief Assignment Operator from phys::Quaternion.
-            /// @brief Other The other quaternion to overwrite this one.
+            /// @param Other The other quaternion to overwrite this one.
             /// @return This Quaternion after being assigned fresh values.
             Quaternion& operator= (const phys::Quaternion& Other);
 
             /// @brief Assignment Operator from Ogre::Quaternion.
-            /// @brief Other The other quaternion to overwrite this one.
+            /// @param Other The other quaternion to overwrite this one.
             /// @return This Quaternion after being assigned fresh values.
             Quaternion& operator= (const Ogre::Quaternion& Other);
 
             /// @brief Assignment Operator from btQuaternion.
-            /// @brief Other The other quaternion to overwrite this one.
+            /// @param Other The other quaternion to overwrite this one.
             /// @return This Quaternion after being assigned fresh values.
             Quaternion& operator= (const btQuaternion& Other);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Equality Comparison Operators
+
+            /// @brief Equality Comparison Operator from phys::Quaternion.
+            /// @param Other The other quaternion to overwrite this one.
+            /// @return True if the Quaternions are semantically equal, false otherwise.
+            bool operator== (const phys::Quaternion& Other) const;
+
+            /// @brief Equality Comparison Operator from Ogre::Quaternion.
+            /// @param Other The other quaternion to overwrite this one.
+            /// @return True if the Quaternions are semantically equal, false otherwise.
+            bool operator== (const Ogre::Quaternion& Other) const;
+
+            /// @brief Equality Comparison Operator from btQuaternion.
+            /// @param Other The other quaternion to overwrite this one.
+            /// @return True if the Quaternions are semantically equal, false otherwise.
+            bool operator== (const btQuaternion& Other) const;
 
     };
 }

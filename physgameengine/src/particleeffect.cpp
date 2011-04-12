@@ -42,6 +42,9 @@
 
 #include "particleeffect.h"
 #include "scenemanager.h"
+#include "world.h"
+#include "worldnode.h"
+
 
 #include <Ogre.h>
 
@@ -113,6 +116,8 @@ namespace phys
     void ParticleEffect::AttachToFinal(Ogre::SceneNode* RawTarget, phys::WorldNode* Target)
     {
         Attachable::AttachToFinal(RawTarget, Target);
+        if(this->Pie->OgreNode->getParent())
+            { this->Pie->OgreNode->getParentSceneNode()->removeChild(this->Pie->OgreNode); }
         RawTarget->addChild(this->Pie->OgreNode);
     }
 
@@ -125,10 +130,19 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     /// Particle Functionality
     void ParticleEffect::EnableParticleEffect()
-        { this->Pie->OgreNode->attachObject(this->Pie->OgreParticle); }
+    {
+        if(!IsEnabled())
+            { this->Pie->OgreNode->attachObject(this->Pie->OgreParticle); }
+    }
 
     void ParticleEffect::DisableParticleEffect()
-        { this->Pie->OgreNode->detachObject(this->Pie->OgreParticle); }
+    {
+        if(IsEnabled())
+            { this->Pie->OgreNode->detachObject(this->Pie->OgreParticle); }
+    }
+
+    bool ParticleEffect::IsEnabled() const
+        { return this->Pie->OgreNode->numAttachedObjects(); }
 
     void ParticleEffect::SetLocation(const Vector3& Vec)
         { this->Pie->OgreNode->setPosition(Vec.GetOgreVector3()); }
@@ -136,6 +150,95 @@ namespace phys
     Vector3 ParticleEffect::GetLocation() const
         { return Vector3(this->Pie->OgreNode->getPosition()); }
 
+    void ParticleEffect::SetOrientation(Quaternion Orientation)
+        { this->Pie->OgreNode->setOrientation(Orientation.GetOgreQuaternion()); }
+
+    Quaternion ParticleEffect::GetOrientation() const
+        { return Quaternion(this->Pie->OgreNode->getOrientation()); }
+
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::ParticleEffect& Ev)
+{
+    stream      << "<ParticleEffect Version=\"1\" Name=\"" << Ev.GetName()
+                    << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
+                    << "\" Enabled=\"" << Ev.IsEnabled()
+                << "\">"
+                << "<Orientation>" << Ev.GetOrientation() << "</Orientation>"
+                << "<Location>" << Ev.GetLocation() << "</Location>"
+                << "</ParticleEffect>";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ParticleEffect& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "ParticleEffect", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ParticleEffect& Ev)
+{
+    if ( phys::String(OneNode.Name())==phys::String("ParticleEffect") )
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            if(OneNode.GetAttribute("Enabled").AsBool())
+            {
+                Ev.EnableParticleEffect();
+            }else{
+                Ev.DisableParticleEffect();
+            }
+
+            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            if (AttachPtr)
+                { AttachPtr->AttachObject(&Ev); }
+
+            phys::Quaternion TempQuat(0,0,0,0);
+            phys::Vector3 TempVec(0,0,0);
+
+            for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            {
+                phys::String Name(Child.Name());
+                switch(Name[0])
+                {
+                    case 'O':   //Orientation
+                        if(Name==phys::String("Orientation"))
+                        {
+                            Child.GetFirstChild() >> TempQuat;
+                            Ev.SetOrientation(TempQuat);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for WorldNode: Includes unknown Element D-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'L':   //Location
+                        if(Name==phys::String("Location"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetLocation(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ParticleEffect: Includes unknown Element L-\"",Name,"\"")) );
+                        }
+                        break;
+                    default:
+                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for ParticleEffect: Includes unknown Element default-\"",Name,"\"")) );
+                        break;
+                }
+            }
+
+        }else{
+            throw( phys::Exception("Incompatible XML Version for ParticleEffect: Not Version 1"));
+        }
+    }else{
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a ParticleEffect, found a ", OneNode.Name())));
+    }
+}
+#endif // \PHYSXML
 
 #endif

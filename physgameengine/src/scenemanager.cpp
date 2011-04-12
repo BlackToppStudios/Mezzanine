@@ -457,8 +457,41 @@ std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
     stream      << "<SceneManager Version=\"1\" Name=\"" << Ev.GetName()
                     //<< "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
                     << "\" Type=\"" << Ev.GetType()
-// shadow type
+// Tasks
+//  << and >>
+//      Particle
 //
+// get function creation
+//      which sky method
+//      skyplane info
+//      skydome info
+//      skybox info
+//      ambient light
+//      num particles
+//      particles by index
+//      particle by name
+//
+// Iterators +const iterators
+//      Lights
+//      Particles
+//      WorldNodes
+
+// name
+// shadow type
+// shadow Texture count
+// shadpw texture size
+// shadow distance
+// shadpw colour
+// Sky
+//      Disable
+//      Plane& SkyPlane, String& Material, String& Group, Real Scale=1000.0, Real Tiling=10.0, bool DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1
+//      SkyBox(String& Material, String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion());
+//      SkyDome(String& Material, String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, bool DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16);
+// Ambient light
+// iterate over
+//      lights
+//      particles
+//      Worldnodes
 //                << "\">"
 //                << "<Direction>" << Ev.GetDirection() << "</Direction>"
 

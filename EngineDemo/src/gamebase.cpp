@@ -60,7 +60,7 @@ int main(int argc, char **argv)
     #endif
 
     // Configure Shadows
-    TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Texture_Modulative);
+    TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Additive);
     TheWorld->GetSceneManager()->SetShadowFarDistance(3000);
 
     // Set the Title
@@ -706,10 +706,6 @@ void LoadContent()
     ParticleEffect *GreenPart = TheWorld->GetSceneManager()->CreateParticleEffect("GreenParticles", "Examples/GreenyNimbus");
     GreenPart->SetLocation(Vector3(-70,70,-100));
     GreenPart->EnableParticleEffect();
-
-
-
-
 
     {
         ResourceInputStream* XMLptr = TheWorld->GetResourceManager()->GetResourceStream("test.xml");

@@ -35,6 +35,7 @@ set(${PROJECT_NAME}_sources
 
 	"${${PROJECT_NAME}_SOURCE_DIR}/compilerflagtests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanagertests.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffecttests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanagertests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector2tests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector3tests.h"
@@ -142,7 +143,9 @@ CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf data/common/ub
 CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-I.ttf data/common/ubuntu-font-family/Ubuntu-I.ttf )
 CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-R.ttf data/common/ubuntu-font-family/Ubuntu-R.ttf )
 CopyDemoFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudioTheme1.ogg )
-
+CopyDemoFilesDuringBuild( common/Examples.particle data/common/Examples.particle )
+CopyDemoFilesDuringBuild( common/flare.png data/common/flare.png )
+CopyDemoFilesDuringBuild( common/Examples.material data/common/Examples.material )
 
 CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )

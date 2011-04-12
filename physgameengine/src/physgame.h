@@ -62,8 +62,8 @@
 #include "actorsoft.h"
 #include "actorterrain.h"
 #include "areaeffect.h"
-#include "attachable.h"                 // Target2
-#include "camera.h"                     // done, must redo after Mar27 upgrades
+#include "attachable.h"                 // Target2 for output only
+#include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"
 #include "cameramanager.h"
 #include "colourvalue.h"                // done
@@ -85,7 +85,7 @@
 #include "graphicsmanager.h"
 #include "graphicssettings.h"
 #include "inputquerytool.h"
-#include "light.h"                      // Target
+#include "light.h"                      // done
 #include "linegroup.h"
 #include "managerbase.h"
 #include "mathtool.h"
@@ -130,7 +130,7 @@
 #include "viewport.h"
 #include "world.h"
 #include "worldgetset.h"
-#include "worldnode.h"                  // Target2
+#include "worldnode.h"                  // done
 #include "xml.h"                        // nothing to do
 #include "xmldoc.h"                     // nothing to do
 

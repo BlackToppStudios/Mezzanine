@@ -167,6 +167,8 @@ namespace phys
             /// @brief Get the location of the attachable object, relative to the Object is is attached to.
             /// @return A Vector3 with the location.
             virtual Vector3 GetLocation() const = 0;
+
+            //Todo add get/set orientation here and do something to implement this on the light
     };
 }//phys
 

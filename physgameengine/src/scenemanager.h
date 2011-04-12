@@ -105,6 +105,7 @@ namespace phys
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~SceneManager();
+
             /// @brief Sets the type of shadows to be used when rendering the scene.
             /// @details The scene manager defaults to no shadows.
             /// @param Shadows The technique to be applied, see SceneShadowTechnique enum for more info.
@@ -135,6 +136,7 @@ namespace phys
             /// @brief Gets the colour being used when casting shadows.
             /// @return Returns a ColourValue representing the colour used when casting shadows.
             ColourValue GetShadowColour();
+
             /// @brief Creates a skyplane for use in making a sky.
             /// @details Only one skyplane can exist in a scene.  Making a new one will remove the old one.  Skyplanes are
             /// flat planes that face in one direction.  They are ideal for levels with surrounding mountains or anything
@@ -197,6 +199,7 @@ namespace phys
             /// @details Using this function effectively deletes the skydome, so you will have to provide a new set of parameters
             /// if you wish to re-create the skydome.
             void DisableSkyDome();
+
             /// @brief Sets the ambient light for the scene.
             /// @details Not all scene's will need ambient light.  Ambient light is light that hits all objects from
             /// all directions.
@@ -205,6 +208,9 @@ namespace phys
             /// @param Blue The value representing the amount of blue color in the ambient light.
             /// @param Alpha The value representing the transparency of the color in the ambient light.
             void SetAmbientLight(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0);
+
+            /// @todo Add GetAmbientLight()
+
             /// @brief Creates a dynamic light.
             /// @param Name The name to be given to this light.
             /// @return Returns a pointer to the light class which was created by this function.
@@ -221,6 +227,7 @@ namespace phys
             /// @brief Deletes a light and removes all trace of it from the manager.
             /// @param light The light to be destroyed.
             void DestroyLight(Light* light);
+
             /// @brief Creates a particle effect.
             /// @details Particle effects are useful when trying to create visual effects for rain, smoke, explosions, fireworks, etc..
             /// @param Name The name to be given to this particle effect.
@@ -239,6 +246,7 @@ namespace phys
             /// @brief Deletes a particle effect and removes all trace of it from the manager.
             /// @param particleeffect The particle effect to be destroyed.
             void DestroyParticleEffect(ParticleEffect* particleeffect);
+
             /// @brief Creates a node that will orbit around a point.
             /// @details This will create 2 nodes in the scene, the first being the point in the world you want to orbit
             /// the second node around.  The second being the node that does the orbiting.  You can then attach a light,
@@ -278,6 +286,7 @@ namespace phys
             /// @brief Deletes a node and removes all trace of it from the manager.
             /// @param node The node to be destroyed.
             void DestroyNode(WorldNode* node);
+
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.
             ConstString& GetName() const;

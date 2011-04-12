@@ -42,6 +42,7 @@
 
 #include "compilerflagtests.h"
 #include "eventmanagertests.h"
+#include "particleeffecttests.h"
 #include "scenemanagertests.h"
 #include "vector2tests.h"
 #include "vector3tests.h"
@@ -101,6 +102,7 @@ int main (int argc, char** argv)
     // This is the complete group of all Unit tests, when adding the header for a unit test it should be added here
     TestGroups["compilerflag"] = new CompilerFlagTests;
     TestGroups["eventmanager"] = new EventManagerTests;
+    TestGroups["particleeffect"] = new ParticleEffectTests;
     TestGroups["scenemanager"] = new SceneManagerTests;
     TestGroups["vector2"] = new Vector2Tests;
     TestGroups["vector3"] = new Vector3Tests;

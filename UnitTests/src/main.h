@@ -312,6 +312,7 @@ void StartEngine(String Message)
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", "files", false);
     TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
     TheWorld->GetUIManager()->LoadGorilla("dejavu");
+    TheWorld->GetResourceManager()->InitResourceGroup("files");
     phys::UIScreen *TheScreen = TheWorld->GetUIManager()->CreateScreen("Screen","dejavu",TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0));
     phys::UILayer *TheLayer = TheScreen->CreateLayer("Layer",0);
     TheText = TheLayer->CreateCaption(ConstString("TheText"),Vector2(0,0),Vector2(1,1),24, Message);
