@@ -146,6 +146,7 @@ CopyDemoFilesDuringBuild( common/music/cAudioTheme1.ogg data/common/music/cAudio
 CopyDemoFilesDuringBuild( common/Examples.particle data/common/Examples.particle )
 CopyDemoFilesDuringBuild( common/flare.png data/common/flare.png )
 CopyDemoFilesDuringBuild( common/Examples.material data/common/Examples.material )
+CopyDemoFilesDuringBuild( common/clouds.jpg data/common/clouds.jpg )
 
 CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )

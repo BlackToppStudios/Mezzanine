@@ -51,15 +51,45 @@ class SceneManagerTests : public UnitTest
 
             if (RunAutomaticTests)
             {
+                StartEngine("SceneManager Skyplane Tests");
+                SceneManager* SM = TheWorld->GetSceneManager();
+
+                SM->SetAmbientLight(1,1,1,1);
+                SM->CreateSkyPlane(Plane(Vector3(0,1,0),5),"Examples/CloudPlane","files");
+
+                StartCountdown(10);
+                TheWorld->MainLoop();
+                StopEngine();
+
+
+
+
+                StartEngine("SceneManager SkyBox Tests");
+                SM = TheWorld->GetSceneManager();
+
+                SM->SetAmbientLight(1,1,1,1);
+                SM->CreateSkyBox("Examples/CloudBox","files",50);
+
+                StartCountdown(10);
+                TheWorld->MainLoop();
+                StopEngine();
+
+
+
+
+
+                StartEngine("SceneManager SkyDome Tests");
+                SM = TheWorld->GetSceneManager();
+
+                SM->SetAmbientLight(1,1,1,1);
+                SM->CreateSkyDome("Examples/CloudPlane","files",50);
+
+                StartCountdown(10);
+                TheWorld->MainLoop();
+                StopEngine();
+
                 //AddTestResult("WorldNode::operator<<", Unknown);         // We add something now in case it crashes partway through.
                 //AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Success, UnitTest::OverWriteIfMoreSuccessful);
-/*
-                    StartCountdown(2);
-                    TheWorld->MainLoop();
-
-
-                StopEngine();
-*/
 
             }else{
 

@@ -91,15 +91,15 @@
 #include "mathtool.h"
 #include "meshgenerator.h"
 #include "metacode.h"                   // done
-#include "particleeffect.h"             // Target
+#include "particleeffect.h"             // done
 #include "physicsmanager.h"
 #include "plane.h"                      // done
-#include "quaternion.h"                 // in progress
+#include "quaternion.h"                 // done
 #include "ray.h"
 #include "rayquerytool.h"               // nothing to do
 #include "resourceinputstream.h"
 #include "resourcemanager.h"
-#include "scenemanager.h"
+#include "scenemanager.h"               // Target
 #include "simpletimer.h"
 #include "sound.h"
 #include "soundlistener.h"

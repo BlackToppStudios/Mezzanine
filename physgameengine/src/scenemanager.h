@@ -59,6 +59,12 @@ namespace phys
     class Plane;
     class ParticleEffect;
     class WorldNode;
+
+    namespace internal
+    {
+        class SceneManagerData;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class SceneManager
     /// @headerfile scenemanager.h
@@ -73,31 +79,47 @@ namespace phys
             /// @brief Needs to be documented.
             enum SceneManagerType
             {
-                Generic,            ///< Documatation Required
-                Exterior,           ///< Documatation Required
-                ExteriorRealFar,    ///< Documatation Required
-                Interior            ///< Documatation Required
+                Generic             = 0,        ///< Documatation Required
+                Exterior            = 1,        ///< Documatation Required
+                ExteriorRealFar     = 2,        ///< Documatation Required
+                Interior            = 3         ///< Documatation Required
             };
+
+            /// @brief needs to be documented
             enum SceneShadowTechnique
             {                                     //Shadow Docs from Ogre ShadowTechnique Documentation.
-                SST_None,                         ///< No shadows.
-                SST_Stencil_Modulative,           ///< Stencil shadow technique which renders all shadow volumes as a modulation after all the non-transparent areas have been rendered.
-                SST_Stencil_Additive,             ///< Stencil shadow technique which renders each light as a separate additive pass to the scene.
-                SST_Texture_Modulative,           ///< Texture-based shadow technique which involves a monochrome render-to-texture of the shadow caster and a projection of that texture onto the shadow receivers as a modulative pass.
-                SST_Texture_Additive,             ///< Texture-based shadow technique which involves a render-to-texture of the shadow caster and a projection of that texture onto the shadow receivers, built up per light as additive passes.
-                SST_Texture_Additive_Integrated,  ///< Texture-based shadow technique which involves a render-to-texture of the shadow caster and a projection of that texture on to the shadow receivers, with the usage of those shadow textures completely controlled by the materials of the receivers.
-                SST_Texture_Modulative_Integrated ///< Texture-based shadow technique which involves a render-to-texture of the shadow caster and a projection of that texture on to the shadow receivers, with the usage of those shadow textures completely controlled by the materials of the receivers.
+                SST_None                          = 0,      ///< No shadows.
+                SST_Stencil_Modulative            = 1,      ///< Stencil shadow technique which renders all shadow volumes as a modulation after all the non-transparent areas have been rendered.
+                SST_Stencil_Additive              = 2,      ///< Stencil shadow technique which renders each light as a separate additive pass to the scene.
+                SST_Texture_Modulative            = 11,     ///< Texture-based shadow technique which involves a monochrome render-to-texture of the shadow caster and a projection of that texture onto the shadow receivers as a modulative pass.
+                SST_Texture_Additive              = 12,     ///< Texture-based shadow technique which involves a render-to-texture of the shadow caster and a projection of that texture onto the shadow receivers, built up per light as additive passes.
+                SST_Texture_Additive_Integrated   = 13,     ///< Texture-based shadow technique which involves a render-to-texture of the shadow caster and a projection of that texture on to the shadow receivers, with the usage of those shadow textures completely controlled by the materials of the receivers.
+                SST_Texture_Modulative_Integrated = 14      ///< Texture-based shadow technique which involves a render-to-texture of the shadow caster and a projection of that texture on to the shadow receivers, with the usage of those shadow textures completely controlled by the materials of the receivers.
             };
+
+            /// @brief Used to help identify which method is used to draw the sky, if any
+            enum SkyMethod
+            {
+                SkyNone     = 0,        ///< No Sky rendering at all.
+                SkyPlane    = 1,        ///< A flat plane use to draw the sky.
+                SkyBox      = 2,        ///< A box using 5 Rectangles to draw the sky.
+                SkyDome     = 3         ///< A multifaceted hemispherical dome, the most sophisticated sky background.
+            };
+        private:
+            internal::SceneManagerData* SMD;
+
         protected:
-            /// @brief Pointer for the Ogre Scenemanager, where this manager gets it's functionality.
-            Ogre::SceneManager* OgreManager;
             /// @brief Vector storing all the nodes in use by this class.
             std::vector< WorldNode* > WorldNodes;
             /// @brief Vector storing all the lights in use by this class.
             std::vector< Light* > Lights;
             /// @brief Vector storing all the particle effects in use by this class.
             std::vector< ParticleEffect* > Particles;
+
         public:
+            ///////////////////////////////////////////////////////////////////////////////
+            /// Construction
+
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
             /// @param ManagerType Type of Scene Manager to be created.
@@ -105,6 +127,9 @@ namespace phys
             /// @brief Class Destructor.
             /// @details The class destructor.
             ~SceneManager();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Shadow Management
 
             /// @brief Sets the type of shadows to be used when rendering the scene.
             /// @details The scene manager defaults to no shadows.
@@ -137,6 +162,9 @@ namespace phys
             /// @return Returns a ColourValue representing the colour used when casting shadows.
             ColourValue GetShadowColour();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Sky Surface Management
+
             /// @brief Creates a skyplane for use in making a sky.
             /// @details Only one skyplane can exist in a scene.  Making a new one will remove the old one.  Skyplanes are
             /// flat planes that face in one direction.  They are ideal for levels with surrounding mountains or anything
@@ -156,12 +184,13 @@ namespace phys
             /// when giving the skyplane a bow.  By default the skyplane is just one massive box.
             /// @param YSegments The number of segments, or boxes, the skyplane consists of on the planes Y axis.  This is usful
             /// when giving the skyplane a bow.  By default the skyplane is just one massive box.
-            void CreateSkyPlane(Plane& SkyPlane, String& Material, String& Group, Real Scale=1000.0, Real Tiling=10.0,
+            void CreateSkyPlane(const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale=1000.0, Real Tiling=10.0,
                                 bool DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1);
             /// @brief Disables the currently active skyplane.
             /// @details Using this function effectively deletes the skyplane, so you will have to provide a new set of parameters
             /// if you wish to re-create the skyplane.
             void DisableSkyPlane();
+
             /// @brief Creates a skybox for use in making a sky.
             /// @details Like skyplanes, only one can exist per scene.  Unlike skyplanes, skyboxes will be applied individually to
             /// each camera in the scene.  The skybox will move with the camera, so as a result the camera will never be able to
@@ -173,11 +202,12 @@ namespace phys
             /// @param DrawFirst Whether or not the skybox should be the first thing rendered in the scene.  Usually you will
             /// want this to be true as it'll ensure all other objects are rendered on top of it.
             /// @param Orientation Optional quaternion to rotate the orientation of the skybox.
-            void CreateSkyBox(String& Material, String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion());
+            void CreateSkyBox(const String& Material, const String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion());
             /// @brief Disables the currently active skybox.
             /// @details Using this function effectively deletes the skybox, so you will have to provide a new set of parameters
             /// if you wish to re-create the skybox.
             void DisableSkyBox();
+
             /// @brief Creates a skydome for use in making a sky.
             /// @details Like the other two types of sky's, their can be only one skydome per scene.  Skydomes much like skyboxes, except
             /// they have 5 sides(the bottom side is missing), and they bow each of the sides to make the dome.  In all other respects they
@@ -193,12 +223,22 @@ namespace phys
             /// @param Orientation Optional quaternion to rotate the orientation of the skydome.
             /// @param XSegments The number of segments, or boxes, the skydome consists of on the dome's X axis.
             /// @param YSegments The number of segments, or boxes, the skydome consists of on the dome's Y axis.
-            void CreateSkyDome(String& Material, String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, bool DrawFirst=true,
+            void CreateSkyDome(const String& Material, const String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, bool DrawFirst=true,
                                Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16);
             /// @brief Disables the currently active skydome.
             /// @details Using this function effectively deletes the skydome, so you will have to provide a new set of parameters
             /// if you wish to re-create the skydome.
             void DisableSkyDome();
+
+            /// @brief If any sky is active, disable it
+            void DisableSky();
+
+            /// @brief get the kind of sy in use
+            /// @return The kind of sky in use
+            SkyMethod WhichSky() const;
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Light Management
 
             /// @brief Sets the ambient light for the scene.
             /// @details Not all scene's will need ambient light.  Ambient light is light that hits all objects from
@@ -228,6 +268,9 @@ namespace phys
             /// @param light The light to be destroyed.
             void DestroyLight(Light* light);
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Particle Effect Management
+
             /// @brief Creates a particle effect.
             /// @details Particle effects are useful when trying to create visual effects for rain, smoke, explosions, fireworks, etc..
             /// @param Name The name to be given to this particle effect.
@@ -246,6 +289,9 @@ namespace phys
             /// @brief Deletes a particle effect and removes all trace of it from the manager.
             /// @param particleeffect The particle effect to be destroyed.
             void DestroyParticleEffect(ParticleEffect* particleeffect);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // WorldNode Management
 
             /// @brief Creates a node that will orbit around a point.
             /// @details This will create 2 nodes in the scene, the first being the point in the world you want to orbit
@@ -270,22 +316,34 @@ namespace phys
 
             /// @brief Gets an already created node by name.
             /// @return Returns a pointer to the node of the specified name, or 0 if no matching WorldNode could be Found.
+            /// @details This runs in Linear time
             WorldNode* GetNode(const String& Name) const;
             /// @brief Gets an already created node by index.
             /// @return Returns a pointer to the node at the specified index.
+            /// @details This runs in constant time.
             WorldNode* GetNode(Whole Index) const;
+
             /// @brief Gets the number of nodes created and stored in this manager.
             /// @return Returns the number of nodes this manager is storing.
+            /// @details This runs in constant time, this data is cached constantly.
             Whole GetNumNodes() const;
             /// @brief Gets the number of stand type nodes created and stored in this manager.
             /// @return Returns the number of stand type nodes this manager is storing.
+            /// @details This runs in linear time, Nodes are counter every time this is called.
             Whole GetNumStandNodes() const;
             /// @brief Gets the number of orbit type nodes created and stored in this manager.
             /// @return Returns the number of orbit type nodes this manager is storing.
+            /// @details This runs in linear time, Nodes are counter every time this is called.
             Whole GetNumOrbitNodes() const;
+
+            /// @todo TODO: create SceneManager::GetNumFreeNodes
+
             /// @brief Deletes a node and removes all trace of it from the manager.
             /// @param node The node to be destroyed.
             void DestroyNode(WorldNode* node);
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Basic Functionality
 
             /// @brief Gets the name of this manager.
             /// @return Returns the name of this manager.

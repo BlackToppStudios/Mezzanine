@@ -327,6 +327,7 @@ void UpdateMessage()
     //TheText->SetText( StringCat(TheMessage," - ", ToString(ThisTimer->GetCurrentTime())  ));
 }
 
+// Countdown callbacks
 bool PostTimerEnd()
     { return false; }
 
@@ -338,11 +339,11 @@ class TimerEnding : public TimerCallback
     virtual void DoCallbackItems()
         { TheWorld->GetTimerManager()->SetPostMainLoopItems(&PostTimerEnd); }
 };
-TimerEnding* Callback;
+TimerEnding* CountDownCallback;
 
 void StopEngine()
 {
-    delete Callback;
+    delete CountDownCallback;
     delete TheWorld;
     crossplatform::WaitMilliseconds(1000); // Ogre spawns some stuff in a seperate thread this is more then enough time for it to finish
 }
@@ -354,8 +355,8 @@ void StartCountdown(Whole Seconds)
     ThisTimer->Reset();
     ThisTimer->SetGoalTime(0);
     ThisTimer->Start();
-    Callback = new TimerEnding;
-    ThisTimer->SetCallback(Callback);
+    CountDownCallback = new TimerEnding;
+    ThisTimer->SetCallback(CountDownCallback);
     TheWorld->GetTimerManager()->SetPostMainLoopItems(&PostTimerUpdate);
 }
 

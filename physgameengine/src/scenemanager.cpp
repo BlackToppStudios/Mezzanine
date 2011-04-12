@@ -49,8 +49,103 @@
 
 namespace phys
 {
+    namespace internal
+    {
+        /// @brief Stores internal data for the SCeneManager to keep it from cluttering the Header file
+        /// @internal
+        class SceneManagerData
+        {
+            public:
+
+            /// @internal
+            /// @brief The currently active sky, if set to anything other than SkyNone, then the 5 other skycache variable may have meaning
+            SceneManager::SkyMethod ActiveSky;
+
+            // The SkyCache
+            /// @internal
+            /// @brief The Name of the Material the sky is made of
+            String SkyMaterialName;
+            /// @internal
+            /// @brief The orientation of the sky, unless it's a Skyplane, this this is all 0s
+            Quaternion SkyOrientation;
+            /// @internal
+            /// @brief The name of the group the sky material is in
+            String SkyMaterialGroupName;
+            /// @internal
+            /// @brief When is the sky drawn, first or per Z-order
+            bool SkyDrawnFirst;
+            /// @internal
+            /// @brief Used to describe a skyplane instead of orientation
+            Plane SkyThePlane;
+
+            /// @internal
+            /// @brief Pointer for the Ogre Scenemanager, where this manager gets it's functionality.
+            Ogre::SceneManager* OgreManager;
+
+            void DisableSky(SceneManager* ScenePTR)
+            {
+                switch(ActiveSky)
+                {
+                    case SceneManager::SkyNone:
+                        break;
+                    case SceneManager::SkyPlane:
+                        ScenePTR->DisableSkyPlane();
+                        break;
+                    case SceneManager::SkyBox:
+                        ScenePTR->DisableSkyBox();
+                        break;
+                    case SceneManager::SkyDome:
+                        ScenePTR->DisableSkyDome();
+                        break;
+                }
+                ActiveSky = SceneManager::SkyNone;
+            }
+
+            /// @internal
+            /// @brief update
+            void UpdateSkyCache(
+                            SceneManager::SkyMethod FreshSkyMethod = SceneManager::SkyNone,
+                            String FreshSkyMaterialName = "",
+                            Quaternion FreshSkyOrientation = Quaternion(0,0,0,0),
+                            String FreshSkyMaterialGroupName = "",
+                            bool FreshSkyDrawnFirst = false,
+                            Plane FreshSkyThePlane = Plane(Vector3(0,0,0),0)
+                        )
+            {
+                ActiveSky=FreshSkyMethod;
+                SkyOrientation=FreshSkyOrientation;
+                SkyMaterialName=FreshSkyMaterialName;
+                SkyMaterialGroupName=FreshSkyMaterialGroupName;
+                SkyDrawnFirst=FreshSkyDrawnFirst;
+                SkyThePlane=FreshSkyThePlane;
+            }
+
+            SceneManagerData():
+                ActiveSky(SceneManager::SkyNone),
+                OgreManager(0),
+                SkyDrawnFirst(false),
+                SkyOrientation(0,0,0,0),
+                SkyMaterialName(""),
+                SkyMaterialGroupName(""),
+                SkyThePlane(Vector3(0,0,0),0)
+            {
+
+            }
+
+            ~SceneManagerData()
+            {
+                Ogre::Root::getSingleton().destroySceneManager(OgreManager);
+                //delete OgreManager;
+            }
+        };
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// Construction
+
     SceneManager::SceneManager(SceneManager::SceneManagerType ManagerType)
     {
+        this->SMD = new internal::SceneManagerData();
         Ogre::SceneType Type;
         switch (ManagerType)
         {
@@ -69,7 +164,7 @@ namespace phys
             default:
                 Type = Ogre::ST_GENERIC;
         }
-        OgreManager = Ogre::Root::getSingleton().createSceneManager(Type);
+        this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(Type);
         //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
         //OgreManager->setShadowCameraSetup(ShadowCam);
     }
@@ -91,16 +186,11 @@ namespace phys
             delete WorldNodes[x];
         }
         WorldNodes.clear();
-        Ogre::Root::getSingleton().destroySceneManager(OgreManager);
+        delete SMD;
     }
 
-    void SceneManager::Initialize()
-    {
-    }
-
-    void SceneManager::DoMainLoopItems()
-    {
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // Shadow Management
 
     void SceneManager::SetSceneShadowTechnique(SceneShadowTechnique Shadows)
     {
@@ -128,12 +218,12 @@ namespace phys
             default:
                 Type = Ogre::SHADOWTYPE_NONE;
         }
-        OgreManager->setShadowTechnique(Type);
+        this->SMD->OgreManager->setShadowTechnique(Type);
     }
 
     SceneManager::SceneShadowTechnique SceneManager::GetSceneShadowTechnique() const
     {
-        Ogre::ShadowTechnique ShadowType = OgreManager->getShadowTechnique();
+        Ogre::ShadowTechnique ShadowType = this->SMD->OgreManager->getShadowTechnique();
         switch (ShadowType)
         {
             case Ogre::SHADOWTYPE_STENCIL_MODULATIVE:
@@ -161,79 +251,101 @@ namespace phys
 
     void SceneManager::SetShadowTextureCount(const Whole& Count)
     {
-        this->OgreManager->setShadowTextureCount(Count);
+        this->SMD->OgreManager->setShadowTextureCount(Count);
     }
 
     Whole SceneManager::GetShadowTextureCount() const
     {
-        return this->OgreManager->getShadowTextureCount();
+        return this->SMD->OgreManager->getShadowTextureCount();
     }
 
     void SceneManager::SetShadowTextureSize(unsigned short Size)
     {
-        this->OgreManager->setShadowTextureSize(Size);
+        this->SMD->OgreManager->setShadowTextureSize(Size);
     }
 
     void SceneManager::SetShadowFarDistance(const Real& FarDist)
     {
-        this->OgreManager->setShadowFarDistance(FarDist);
+        this->SMD->OgreManager->setShadowFarDistance(FarDist);
     }
 
     Real SceneManager::GetShadowFarDistance()
     {
-        return this->OgreManager->getShadowFarDistance();
+        return this->SMD->OgreManager->getShadowFarDistance();
     }
 
     void SceneManager::SetShadowColour(const ColourValue& ShadowColour)
     {
-        this->OgreManager->setShadowColour(ShadowColour.GetOgreColourValue());
+        this->SMD->OgreManager->setShadowColour(ShadowColour.GetOgreColourValue());
     }
 
     ColourValue SceneManager::GetShadowColour()
     {
-        ColourValue Shadow(this->OgreManager->getShadowColour());
+        ColourValue Shadow(this->SMD->OgreManager->getShadowColour());
         return Shadow;
     }
 
-    void SceneManager::CreateSkyPlane(Plane& SkyPlane, String& Material, String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments)
+    ///////////////////////////////////////////////////////////////////////////////
+    // Sky Surface Management
+
+    void SceneManager::CreateSkyPlane(const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments)
     {
-        this->OgreManager->setSkyPlane(true, SkyPlane.GetOgrePlane(), Material, Scale, Tiling, DrawFirst, Bow, XSegments, YSegments, Group);
+        this->SMD->DisableSky(this);
+        this->SMD->UpdateSkyCache(SkyPlane, Material, Quaternion(0,0,0,0), Group, DrawFirst, SkyPlane_);
+        this->SMD->OgreManager->setSkyPlane(true, SkyPlane_.GetOgrePlane(), Material, Scale, Tiling, DrawFirst, Bow, XSegments, YSegments, Group);
     }
 
     void SceneManager::DisableSkyPlane()
     {
-        this->OgreManager->setSkyPlane(false, Ogre::Plane(), "");
+        this->SMD->OgreManager->setSkyPlane(false, Ogre::Plane(), "");
     }
 
-    void SceneManager::CreateSkyBox(String& Material, String& Group, Real Distance, bool DrawFirst, Quaternion Orientation)
+    void SceneManager::CreateSkyBox(const String& Material, const String& Group, Real Distance, bool DrawFirst, Quaternion Orientation)
     {
-        this->OgreManager->setSkyBox(true, Material, Distance, DrawFirst, Orientation.GetOgreQuaternion(), Group);
+        this->SMD->DisableSky(this);
+        this->SMD->UpdateSkyCache(SkyBox, Material, Orientation, Group, DrawFirst);
+        this->SMD->OgreManager->setSkyBox(true, Material, Distance, DrawFirst, Orientation.GetOgreQuaternion(), Group);
     }
 
     void SceneManager::DisableSkyBox()
     {
-        this->OgreManager->setSkyBox(false, "");
+        this->SMD->OgreManager->setSkyBox(false, "");
     }
 
-    void SceneManager::CreateSkyDome(String& Material, String& Group, Real Distance, Real Curvature, Real Tiling, bool DrawFirst,
+    void SceneManager::CreateSkyDome(const String& Material, const String& Group, Real Distance, Real Curvature, Real Tiling, bool DrawFirst,
                                     Quaternion Orientation, int XSegments, int YSegments)
     {
-        this->OgreManager->setSkyDome(true, Material, Curvature, Tiling, Distance, DrawFirst, Orientation.GetOgreQuaternion(), XSegments, YSegments, -1, Group);
+        this->SMD->DisableSky(this);
+        this->SMD->UpdateSkyCache(SkyDome, Material, Orientation, Group, DrawFirst);
+        this->SMD->OgreManager->setSkyDome(true, Material, Curvature, Tiling, Distance, DrawFirst, Orientation.GetOgreQuaternion(), XSegments, YSegments, -1, Group);
     }
 
     void SceneManager::DisableSkyDome()
     {
-        this->OgreManager->setSkyDome(false, "");
+        this->SMD->OgreManager->setSkyDome(false, "");
     }
+
+    void SceneManager::DisableSky()
+    {
+        this->SMD->UpdateSkyCache();
+        this->SMD->DisableSky(this);
+
+    }
+
+    SceneManager::SkyMethod SceneManager::WhichSky() const
+        { return this->SMD->ActiveSky; }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Light Management
 
     void SceneManager::SetAmbientLight(Real Red, Real Green, Real Blue, Real Alpha)
     {
-        this->OgreManager->setAmbientLight(Ogre::ColourValue(Red, Green, Blue, Alpha));
+        this->SMD->OgreManager->setAmbientLight(Ogre::ColourValue(Red, Green, Blue, Alpha));
     }
 
     Light* SceneManager::CreateLight(const String& Name)
     {
-        Light* light = new Light(this->OgreManager->createLight(Name), this);
+        Light* light = new Light(this->SMD->OgreManager->createLight(Name), this);
         Lights.push_back(light);
         return light;
     }
@@ -277,9 +389,12 @@ namespace phys
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Particle Effect Management
+
     ParticleEffect* SceneManager::CreateParticleEffect(const String& Name, const String& Template)
     {
-        ParticleEffect* Particle = new ParticleEffect(this->OgreManager->createParticleSystem(Name, Template), this);
+        ParticleEffect* Particle = new ParticleEffect(this->SMD->OgreManager->createParticleSystem(Name, Template), this);
         Particles.push_back(Particle);
         return Particle;
     }
@@ -323,17 +438,15 @@ namespace phys
         }
     }
 
-    ConstString& SceneManager::GetName() const
-    {
-        return this->OgreManager->getName();
-    }
+    ///////////////////////////////////////////////////////////////////////////////
+    // WorldNode Management
 
     WorldNode* SceneManager::CreateOrbitingNode(const String& Name, Vector3 Target, Vector3 RelativeLoc, bool AutoTrack)
     {
-        Ogre::SceneNode* OgreCNode = OgreManager->createSceneNode(Name + "C");
-        OgreManager->getRootSceneNode()->addChild(OgreCNode);
+        Ogre::SceneNode* OgreCNode = this->SMD->OgreManager->createSceneNode(Name + "C");
+        this->SMD->OgreManager->getRootSceneNode()->addChild(OgreCNode);
         OgreCNode->setPosition(Target.GetOgreVector3());
-        Ogre::SceneNode* OgreONode = OgreManager->createSceneNode(Name);
+        Ogre::SceneNode* OgreONode = this->SMD->OgreManager->createSceneNode(Name);
         OgreCNode->addChild(OgreONode);
         OgreONode->setPosition(RelativeLoc.GetOgreVector3());
         if(AutoTrack)
@@ -348,8 +461,8 @@ namespace phys
 
     WorldNode* SceneManager::CreateStandNode(const String& Name, Vector3 LookAt, Vector3 Location)
     {
-        Ogre::SceneNode* OgreNode = OgreManager->createSceneNode(Name);
-        OgreManager->getRootSceneNode()->addChild(OgreNode);
+        Ogre::SceneNode* OgreNode = this->SMD->OgreManager->createSceneNode(Name);
+        this->SMD->OgreManager->getRootSceneNode()->addChild(OgreNode);
         OgreNode->setPosition(Location.GetOgreVector3());
         OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
         WorldNode* PhysNode = new WorldNode(OgreNode, this);
@@ -360,8 +473,8 @@ namespace phys
 
     WorldNode* SceneManager::CreateFreeNode(const String& Name, Vector3 LookAt, Vector3 Location)
     {
-        Ogre::SceneNode* OgreNode = OgreManager->createSceneNode(Name);
-        OgreManager->getRootSceneNode()->addChild(OgreNode);
+        Ogre::SceneNode* OgreNode = this->SMD->OgreManager->createSceneNode(Name);
+        this->SMD->OgreManager->getRootSceneNode()->addChild(OgreNode);
         OgreNode->setPosition(Location.GetOgreVector3());
         OgreNode->lookAt(LookAt.GetOgreVector3(), Ogre::Node::TS_WORLD);
         WorldNode* PhysNode = new WorldNode(OgreNode, this);
@@ -440,12 +553,28 @@ namespace phys
         }
     }
 
+    ///////////////////////////////////////////////////////////////////////////////
+    // Basic Functionality
+
+    ConstString& SceneManager::GetName() const
+    {
+        return this->SMD->OgreManager->getName();
+    }
+
+    void SceneManager::Initialize()
+    {
+    }
+
+    void SceneManager::DoMainLoopItems()
+    {
+    }
+
     ManagerBase::ManagerTypeName SceneManager::GetType() const
         { return ManagerBase::SceneManager; }
 
     Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
     {
-        return OgreManager;
+        return this->SMD->OgreManager;
     }
 }
 
@@ -458,11 +587,11 @@ std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
                     //<< "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
                     << "\" Type=\"" << Ev.GetType()
 // Tasks
-//  << and >>
-//      Particle
-//
+// -- << and >>
+// --     Particle
+// --
 // get function creation
-//      which sky method
+// --     which sky method
 //      skyplane info
 //      skydome info
 //      skybox info

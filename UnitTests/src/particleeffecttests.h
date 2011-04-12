@@ -71,7 +71,6 @@ class ParticleEffectTests : public UnitTest
                     AddTestResult("ParticleEffect::SetOrientation", Failed, UnitTest::OverWrite);
                     AddTestResult("ParticleEffect::GetOrientation", Failed, UnitTest::OverWrite);
                     Test1->SetOrientation(Quaternion(0.426162,0.473514,0.520865,0.568217));
-                    cout << Test1->GetOrientation() << endl;
                     if(Test1->GetOrientation().GetNormalizedCopy()==Quaternion(0.426162,0.473514,0.520865,0.568217).GetNormalizedCopy())
                     {
                         AddTestResult("ParticleEffect::SetOrientation", Success, UnitTest::OverWriteIfMoreSuccessful);
@@ -96,7 +95,6 @@ class ParticleEffectTests : public UnitTest
                     XMLstream << *Test1;
                     if (XMLstream.str() == String("<ParticleEffect Version=\"1\" Name=\"Beta\" AttachedTo=\"Alpha\" Enabled=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.426162\" Y=\"0.473514\" Z=\"0.520865\" W=\"0.568217\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\"/></Location></ParticleEffect>"))
                         { AddTestResult("ParticleEffect::operator<<", Success, UnitTest::OverWriteIfMoreSuccessful); }
-                    cout << *Test1 << endl;
                     AddTestResult("ParticleEffect::DetachFrom", Failed, UnitTest::OverWrite);
                     Test1->DetachFrom();
                     if(0==Test1->GetAttachedTo())
@@ -105,8 +103,6 @@ class ParticleEffectTests : public UnitTest
                     ParticleEffect* Test3 = TheWorld->GetSceneManager()->CreateParticleEffect("Omega", "Examples/GreenyNimbus");
                     AddTestResult("ParticleEffect::operator>>(std::stream,ParticleEffect)", Failed, UnitTest::OverWriteIfMoreSuccessful);
                     XMLstream >> *Test3;
-                    cout << *Test1 << endl;
-                    cout << *Test3 << endl;
                     if (ToString(*Test3) == String("<ParticleEffect Version=\"1\" Name=\"Omega\" AttachedTo=\"Alpha\" Enabled=\"0\"><Orientation><Quaternion Version=\"1\" X=\"0.426162\" Y=\"0.473514\" Z=\"0.520865\" W=\"0.568217\" /></Orientation><Location><Vector3 Version=\"1\" X=\"1\" Y=\"2\" Z=\"3\"/></Location></ParticleEffect>"))
                         { AddTestResult("ParticleEffect::operator>>(std::stream,ParticleEffect)", Success, UnitTest::OverWriteIfMoreSuccessful); }
 

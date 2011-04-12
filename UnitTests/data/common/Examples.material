@@ -21,3 +21,38 @@ material Examples/FlarePointSprite
 	}
 }
 
+material Examples/CloudPlane
+{
+	technique
+	{
+		pass
+		{
+			lighting on
+			depth_write off
+
+			texture_unit
+			{
+				texture clouds.jpg
+			}
+		}
+	}
+}
+
+material Examples/CloudBox
+{
+	technique
+	{
+		pass
+		{
+			lighting off
+			depth_write off
+
+			texture_unit
+			{
+				cubic_texture clouds.jpg separateUV
+			}
+		}
+	}
+}
+
+
