@@ -117,14 +117,16 @@ namespace phys
             SDLFlags|=SDL_WINDOW_BORDERLESS;
             Opts["border"] = "none";
         }
-        size_t RC = 0;
         SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
         SDLFlags|=SDL_WINDOW_OPENGL;
         SDLFlags|=SDL_WINDOW_SHOWN;
         SDLWindow = SDL_CreateWindow( WindowCaption.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDLFlags );
-        RC = (size_t)SDL_GL_CreateContext(this->SDLWindow);
+
+        static size_t RC = 0;
+        if(!RC)
+            RC = (size_t)SDL_GL_CreateContext(this->SDLWindow);
 
         Ogre::NameValuePairList* Binder;
         Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,RC);

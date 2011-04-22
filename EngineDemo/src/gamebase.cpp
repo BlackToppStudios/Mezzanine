@@ -59,6 +59,14 @@ int main(int argc, char **argv)
     TheWorld->Log("Initialized games");
     #endif
 
+    // Second Window Setup
+    GameWindow* SecondaryWindow = TheWorld->GetGraphicsManager()->CreateGameWindow("Secondary",640,480,0);
+    Camera* SecondaryCamera = TheWorld->GetCameraManager()->CreateCamera("SecondaryCam");
+    SecondaryCamera->SetLocation(Vector3(-300,50,-50));
+    SecondaryCamera->LookAt(Vector3(0,0,0));
+    SecondaryWindow->CreateViewport(SecondaryCamera,0);
+    // */
+
     // Configure Shadows
     TheWorld->GetSceneManager()->SetSceneShadowTechnique(SceneManager::SST_Stencil_Additive);
     TheWorld->GetSceneManager()->SetShadowFarDistance(3000);
@@ -277,7 +285,7 @@ bool PostInput()
     std::stringstream CamXML;
     CamXML << *(TheWorld->GetCameraManager()->GetDefaultCamera());
     CamXML >> TempCam;
-    TheWorld->LogStream << "Default serial-deserialized, the finally reserialized Camera" << endl << TempCam << endl;
+    TheWorld->LogStream << "Default serial-deserialized, the finally reserialized Camera" << endl << TempCam << endl; // */
     #endif
 
 //    if(320>Queryer.GetMouseX() && Queryer.IsMouseButtonPushed(3))
@@ -538,7 +546,7 @@ bool CheckForStuff()
     TheWorld->Log(tempmgr);
     TheWorld->Log("Reconstituted Event Manager");
     XMLforEventMGR >> tempmgr;
-    TheWorld->Log(tempmgr);
+    TheWorld->Log(tempmgr); // */
 
     #endif
 

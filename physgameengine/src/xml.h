@@ -671,7 +671,7 @@ namespace phys
 		/// an Attribute to it. If the Predicate returns true the Node it was just passed is returned. If Precdicate never returns
 		/// true, it is called on every Node and a blank Node is returned. The Predicate is never called with a null value.
 		/// @return This returns the first Attribute that causes Predicate to return true.
-		template <typename Predicate> Attribute FindAttribute(Predicate pred) const
+		template <typename Predicate> inline Attribute FindAttribute(Predicate pred) const
 		{
 			if (!_GetRoot) return Attribute();
 
@@ -689,7 +689,7 @@ namespace phys
 		/// the Predicate returns true the Node it was just passed is returned. If Predicate never returns true, it is called
 		/// on every Node and a blank Node is returned. The Predicate is never called with a null value.
 		/// @return This returns the first Node that causes Predicate to return true.
-		template <typename Predicate> Node FindChild(Predicate pred) const
+		template <typename Predicate> inline Node FindChild(Predicate pred) const
 		{
 			if (!_GetRoot) return Node();
 
@@ -707,7 +707,7 @@ namespace phys
 		/// Node it was just passed is returned. If Predicate never returns true, it is called on every Node and a blank Node is
 		/// returned. The Predicate is never called with a null value.
 		/// @return This returns the first Node that causes Predicate to return true.
-		template <typename Predicate> Node FindNode(Predicate pred) const
+		template <typename Predicate> inline Node FindNode(Predicate pred) const
 		{
 			if (!_GetRoot) return Node();
 
