@@ -58,8 +58,8 @@ namespace phys
 {
     namespace UI
     {
-        ButtonListBox::ButtonListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer)
-            : Widget(name,Layer),
+        ButtonListBox::ButtonListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, Layer* PLayer)
+            : Widget(name,PLayer),
               Selected(NULL),
               AutoHideScroll(true),
               LastScrollValue(0),
@@ -72,11 +72,11 @@ namespace phys
             RelPosition = Position;
             RelSize = Size;
 
-            BoxBack = new Rectangle(Position,Size,Layer);
+            BoxBack = new Rectangle(Position,Size,Parent);
             Vector2 ScrollP((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
             Vector2 ScrollS(ScrollbarWidth,RelSize.Y);
             /// @todo Fourth instance of needing to include the namespace in the declaration seemingly needlessly.
-            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollStyle,Layer);
+            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollStyle,Parent);
             VertScroll->Hide();
         }
 
@@ -173,7 +173,7 @@ namespace phys
         {
             if(!Force)
                 SubWidgetUpdate();
-            MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
+            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(HoveredButton)
             {
                 if(MetaCode::BUTTON_PRESSING == State)

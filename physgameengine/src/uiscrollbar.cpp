@@ -52,7 +52,7 @@ namespace phys
 {
     namespace UI
     {
-        Scrollbar::Scrollbar(ConstString& name, const Vector2 Position, const Vector2 Size, UI::ScrollbarStyle Style, UILayer* parent)
+        Scrollbar::Scrollbar(ConstString& name, const Vector2 Position, const Vector2 Size, UI::ScrollbarStyle Style, Layer* parent)
             : Widget(name, parent),
               UpLeftButton(NULL),
               DownRightButton(NULL),
@@ -421,7 +421,7 @@ namespace phys
         {
             if(!ScrollBackLock)
             {
-                Vector2 MousePos = Manager->GetInputQueryer()->GetMouseCoordinates();
+                Vector2 MousePos = InputQueryTool::GetMouseCoordinates();
                 Vector2 ScPos = Scroller->GetActualPosition();
                 Vector2 ScSize = Scroller->GetActualSize();
                 if(Horizontal)
@@ -453,7 +453,7 @@ namespace phys
 
         void Scrollbar::Update(bool Force)
         {
-            MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
+            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(HoveredButton)
             {
                 if(MetaCode::BUTTON_PRESSING == State || MetaCode::BUTTON_DOWN == State)
@@ -466,7 +466,7 @@ namespace phys
                         }
                         else if(MetaCode::BUTTON_DOWN == State)
                         {
-                            Vector2 Offset = Manager->GetInputQueryer()->GetMousePrevFrameOffset();
+                            Vector2 Offset = InputQueryTool::GetMousePrevFrameOffset();
                             MouseScroll(Offset);
                         }
                     }
@@ -505,7 +505,7 @@ namespace phys
                 {
                     if(ScrollBackLock && !ScrollerLock)
                     {
-                        Vector2 Offset = Manager->GetInputQueryer()->GetMousePrevFrameOffset();
+                        Vector2 Offset = InputQueryTool::GetMousePrevFrameOffset();
                         MouseScroll(Offset);
                     }else{
                         ScrollBackScroll();
@@ -514,7 +514,7 @@ namespace phys
             }
             else if(Force && MetaCode::BUTTON_DOWN == State)
             {
-                Vector2 Offset = Manager->GetInputQueryer()->GetMousePrevFrameOffset();
+                Vector2 Offset = InputQueryTool::GetMousePrevFrameOffset();
                 MouseScroll(Offset);
             }
             else if(MetaCode::BUTTON_LIFTING == State)

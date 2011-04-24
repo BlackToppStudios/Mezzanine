@@ -55,89 +55,89 @@ namespace phys
 {
     class Viewport;
     class UIManager;
-    class UILayer;
     namespace UI
     {
         class Button;
         class Widget;
-    }
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class UIScreen
-    /// @headerfile uiscreen.h
-    /// @brief This class is a helper class for creating UI's.  It is responsible for storing and keeping
-    /// track of all the elements of a single UI screen.
-    /// @details UI's can optionally be divided up into Screens, or "pages".  Each screen is batched together
-    /// for rendering, so keeping the amount of screens to a minimum will improve performance.
-    ///////////////////////////////////////
-    class PHYS_LIB UIScreen
-    {
-        protected:
-            Gorilla::Screen* GorillaScreen;
-            UIManager* Manager;
-            Viewport* GameViewport;
-            String Name;
-            std::map<Whole,UILayer*> Layers;
-        public:
-            /// @brief Internal constructor.
-            /// @param name The name of this screen.
-            /// @param GScreen The Gorilla Screen this Screen is based on.
-            /// @param WindowViewport The Viewport to which this screen belongs.
-            UIScreen(const String& name, Gorilla::Screen* GScreen, Viewport* WindowViewport);
-            /// @brief Class destructor.
-            ~UIScreen();
-            /// @brief Gets the name of this screen.
-            /// @return Returns a string containing the name of this screen.
-            String& GetName();
-            /// @brief Sets the screens visability.
-            /// @param Visable A bool representing the visability of the screen.
-            void SetVisible(bool Visible);
-            /// @brief Gets the screens visability.
-            /// @return Returns a bool representing the visability of the screen.
-            bool IsVisible();
-            /// @brief Forces the screen to be shown.
-            void Show();
-            /// @brief Forces the screen to hide.
-            void Hide();
-            /// @brief Creates a layer in the GUI screen to place GUI objects in.
-            /// @details A GUI layer is exactly that, a layer of GUI objects.  You can have multiple GUI
-            /// layers per screen.  The Zorder of the layer determines it's visability if there are multiple
-            /// layers.  If the Zorder of one layer is higher then another in the same space, then the Zorder
-            /// with the higher Zorder will be rendered...giving it the appearance of being on top of the other
-            /// GUI object or objects.
-            /// @param Name The name to be given to the layer.
-            /// @param Zorder The layers Zorder, as explained above.
-            UILayer* CreateLayer(const String& Name, Whole Zorder);
-            /// @brief Gets an already created layer by name.
-            /// @return Returns a pointer to the layer of the specified name.
-            UILayer* GetLayer(const String& Name);
-            /// @brief Gets an already created layer by it's index.
-            /// @return Returns a pointer to the layer at the specified index.
-            UILayer* GetLayer(Whole Index);
-            /// @brief Gets an already created layer by it's Zorder.
-            /// @return Returns a pointer to the layer with the specified Zorder.
-            UILayer* GetLayerbyZorder(Whole Zorder);
-            /// @brief Gets the number of layers created and stored in this class.
-            /// @return Returns the number of layers this class is storing.
-            Whole GetNumLayers();
-            /// @brief Destroy's a previously created layer.
-            /// @param Name The name of the layer to be destroyed.
-            void DestroyLayer(UILayer* Layer);
-            /// @brief Gets the current viewport dimensions.
-            /// @return Returns a Vector2 representing the current viewport dimensions.
-            Vector2 GetViewportDimensions();
-            /// @brief Gets the button the mouse is over if any.
-            /// @details This function searches only the visable layers contained in this screen.
-            /// @return Returns the button the mouse is over, or NULL if there are none.
-            UI::Button* CheckButtonMouseIsOver();
-            /// @brief Gets the widget the mouse is over if any.
-            /// @details This function searches only the visable layers contained in this screen.
-            /// @return Returns the widget the mouse is over, or NULL if there are none.
-            UI::Widget* CheckWidgetMouseIsOver();
-            /// @internal
-            /// @brief Gets the internal screen this screen is based on.
-            /// @return Returns a pointer to the Gorilla screen this screen is based on.
-            Gorilla::Screen* GetGorillaScreen();
-    };//uiscreen
+        class Layer;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class UIScreen
+        /// @headerfile uiscreen.h
+        /// @brief This class is a helper class for creating UI's.  It is responsible for storing and keeping
+        /// track of all the elements of a single UI screen.
+        /// @details UI's can optionally be divided up into Screens, or "pages".  Each screen is batched together
+        /// for rendering, so keeping the amount of screens to a minimum will improve performance.
+        ///////////////////////////////////////
+        class PHYS_LIB Screen
+        {
+            protected:
+                Gorilla::Screen* GorillaScreen;
+                UIManager* Manager;
+                Viewport* GameViewport;
+                String Name;
+                std::map<Whole,Layer*> Layers;
+            public:
+                /// @brief Internal constructor.
+                /// @param name The name of this screen.
+                /// @param GScreen The Gorilla Screen this Screen is based on.
+                /// @param WindowViewport The Viewport to which this screen belongs.
+                Screen(const String& name, Gorilla::Screen* GScreen, Viewport* WindowViewport);
+                /// @brief Class destructor.
+                ~Screen();
+                /// @brief Gets the name of this screen.
+                /// @return Returns a string containing the name of this screen.
+                String& GetName();
+                /// @brief Sets the screens visability.
+                /// @param Visable A bool representing the visability of the screen.
+                void SetVisible(bool Visible);
+                /// @brief Gets the screens visability.
+                /// @return Returns a bool representing the visability of the screen.
+                bool IsVisible();
+                /// @brief Forces the screen to be shown.
+                void Show();
+                /// @brief Forces the screen to hide.
+                void Hide();
+                /// @brief Creates a layer in the GUI screen to place GUI objects in.
+                /// @details A GUI layer is exactly that, a layer of GUI objects.  You can have multiple GUI
+                /// layers per screen.  The Zorder of the layer determines it's visability if there are multiple
+                /// layers.  If the Zorder of one layer is higher then another in the same space, then the Zorder
+                /// with the higher Zorder will be rendered...giving it the appearance of being on top of the other
+                /// GUI object or objects.
+                /// @param Name The name to be given to the layer.
+                /// @param Zorder The layers Zorder, as explained above.
+                Layer* CreateLayer(const String& Name, Whole Zorder);
+                /// @brief Gets an already created layer by name.
+                /// @return Returns a pointer to the layer of the specified name.
+                Layer* GetLayer(const String& Name);
+                /// @brief Gets an already created layer by it's index.
+                /// @return Returns a pointer to the layer at the specified index.
+                Layer* GetLayer(Whole Index);
+                /// @brief Gets an already created layer by it's Zorder.
+                /// @return Returns a pointer to the layer with the specified Zorder.
+                Layer* GetLayerbyZorder(Whole Zorder);
+                /// @brief Gets the number of layers created and stored in this class.
+                /// @return Returns the number of layers this class is storing.
+                Whole GetNumLayers();
+                /// @brief Destroy's a previously created layer.
+                /// @param ToBeDestroyed The layer to be destroyed.
+                void DestroyLayer(Layer* ToBeDestroyed);
+                /// @brief Gets the current viewport dimensions.
+                /// @return Returns a Vector2 representing the current viewport dimensions.
+                Vector2 GetViewportDimensions();
+                /// @brief Gets the button the mouse is over if any.
+                /// @details This function searches only the visable layers contained in this screen.
+                /// @return Returns the button the mouse is over, or NULL if there are none.
+                Button* CheckButtonMouseIsOver();
+                /// @brief Gets the widget the mouse is over if any.
+                /// @details This function searches only the visable layers contained in this screen.
+                /// @return Returns the widget the mouse is over, or NULL if there are none.
+                Widget* CheckWidgetMouseIsOver();
+                /// @internal
+                /// @brief Gets the internal screen this screen is based on.
+                /// @return Returns a pointer to the Gorilla screen this screen is based on.
+                Gorilla::Screen* GetGorillaScreen();
+        };//uiscreen
+    }//ui
 }//phys
 
 #endif

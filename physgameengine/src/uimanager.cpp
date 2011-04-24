@@ -62,7 +62,6 @@ namespace phys
           WidgetFocus(NULL)
     {
         Silver = new Gorilla::Silverback();
-        InputQueryer = new InputQueryTool();
         Priority = -35;
     }
 
@@ -105,7 +104,7 @@ namespace phys
     {
         if(HoveredWidget || WidgetFocus)
         {
-            MetaCode::ButtonState State = InputQueryer->GetMouseButtonState(1);
+            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(MetaCode::BUTTON_PRESSING == State)
             {
                 WidgetFocus = HoveredWidget;
@@ -130,7 +129,7 @@ namespace phys
 
     void UIManager::DoMainLoopItems()
     {
-        InputQueryer->GatherEvents();
+        InputQueryTool::GatherEvents();
         HoverChecks();
         WidgetFocusUpdate();
     }
@@ -142,7 +141,7 @@ namespace phys
 
     void UIManager::RedrawAll(bool Force)
     {
-        for( std::vector<UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        for( std::vector<UI::Screen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
         {
             (*it)->GetGorillaScreen()->_redrawAllIndexes(Force);
         }
@@ -163,30 +162,30 @@ namespace phys
         return WidgetFocus;
     }
 
-    UIScreen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport)
+    UI::Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport)
     {
         Ogre::Viewport* OgrePort = WindowViewport->GetOgreViewport();
         Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
-        UIScreen* physscreen = new UIScreen(ScreenName, guiscreen, WindowViewport);
+        UI::Screen* physscreen = new UI::Screen(ScreenName, guiscreen, WindowViewport);
         Screens.push_back(physscreen);
         return physscreen;
     }
 
-    UIScreen* UIManager::GetScreen(const String& Name)
+    UI::Screen* UIManager::GetScreen(const String& Name)
     {
-        std::vector<UIScreen*>::iterator it = Screens.begin();
-        for ( std::vector<UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        std::vector<UI::Screen*>::iterator it = Screens.begin();
+        for ( std::vector<UI::Screen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
         {
             if ( Name == (*it)->GetName() )
             {
-                UIScreen* Screen = (*it);
+                UI::Screen* Screen = (*it);
                 return Screen;
             }
         }
         return 0;
     }
 
-    UIScreen* UIManager::GetScreen(Whole Index)
+    UI::Screen* UIManager::GetScreen(Whole Index)
     {
         return Screens[Index];
     }
@@ -196,11 +195,11 @@ namespace phys
         return Screens.size();
     }
 
-    void UIManager::DestroyScreen(UIScreen* Screen)
+    void UIManager::DestroyScreen(UI::Screen* Screen)
     {
         if(Screens.empty())
             return;
-        for( std::vector<UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        for( std::vector<UI::Screen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
         {
             if( Screen == (*it) )
             {
@@ -215,7 +214,7 @@ namespace phys
     {
         if(Screens.empty())
             return;
-        for( std::vector<UIScreen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
+        for( std::vector<UI::Screen*>::iterator it = Screens.begin() ; it != Screens.end() ; it++ )
         {
             delete (*it);
         }
@@ -223,11 +222,11 @@ namespace phys
         return;
     }
 
-    UILayer* UIManager::GetLayer(String& Name)
+    UI::Layer* UIManager::GetLayer(String& Name)
     {
         for( Whole x=0 ; x < Screens.size() ; x++ )
         {
-            UILayer* Layer = Screens[x]->GetLayer(Name);
+            UI::Layer* Layer = Screens[x]->GetLayer(Name);
             if(NULL!=Layer)
                 return Layer;
         }
@@ -274,11 +273,6 @@ namespace phys
         }else{
             return false;
         }
-    }
-
-    InputQueryTool* UIManager::GetInputQueryer()
-    {
-        return InputQueryer;
     }
 
     ManagerBase::ManagerTypeName UIManager::GetType() const

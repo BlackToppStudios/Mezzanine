@@ -203,7 +203,7 @@ bool PostRender()
     // Update mouse positions
     UI::Caption* IMPos = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("IMPos");
     std::stringstream IMPosstream;
-    IMPosstream << TheWorld->GetUIManager()->GetInputQueryer()->GetMouseCoordinates().X << "," << TheWorld->GetUIManager()->GetInputQueryer()->GetMouseCoordinates().Y;
+    IMPosstream << InputQueryTool::GetMouseCoordinates().X << "," << InputQueryTool::GetMouseCoordinates().Y;
     String IMPosTex = IMPosstream.str();
     IMPos->SetText(IMPosTex);
 
@@ -408,11 +408,11 @@ bool PostInput()
     {
         /// @todo determine whether this next snippet should be a function on the UIScreen
         UI::Button* MouseButton = NULL;
-        UIScreen* Screen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
-        for(Whole x=0 ; x != Screen->GetNumLayers() ; x++ )
+        UI::Screen* DScreen = TheWorld->GetUIManager()->GetScreen("DefaultScreen");
+        for(Whole x=0 ; x != DScreen->GetNumLayers() ; x++ )
         {
-            UILayer* Layer = Screen->GetLayer(x);
-            MouseButton = Layer->CheckButtonMouseIsOver();
+            UI::Layer* layer = DScreen->GetLayer(x);
+            MouseButton = layer->CheckButtonMouseIsOver();
             if(MouseButton)
             { break; }
         }
@@ -420,13 +420,13 @@ bool PostInput()
         {
             if("Menu" == MouseButton->GetName())
             {
-                UILayer* Layer = Screen->GetLayer("MenuLayer");
-                Layer->Show();
+                UI::Layer* layer = DScreen->GetLayer("MenuLayer");
+                layer->Show();
             }
             if("Return" == MouseButton->GetName())
             {
-                UILayer* Layer = Screen->GetLayer("MenuLayer");
-                Layer->Hide();
+                UI::Layer* layer = DScreen->GetLayer("MenuLayer");
+                layer->Hide();
             }
             if("Exit" == MouseButton->GetName())
             {
@@ -1088,11 +1088,11 @@ void MakeGUI()
     Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
     GUI->LoadGorilla("dejavu");
 
-    UIScreen* Screen = GUI->CreateScreen(DefaultScreen, "dejavu", UIViewport);
-    UILayer* Menu = Screen->CreateLayer(MenuLayer, 3);
-    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 2);
-    UILayer* Stats = Screen->CreateLayer(StatsLayer, 1);
-    UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
+    UI::Screen* DScreen = GUI->CreateScreen(DefaultScreen, "dejavu", UIViewport);
+    UI::Layer* Menu = DScreen->CreateLayer(MenuLayer, 3);
+    UI::Layer* ItemShop = DScreen->CreateLayer(ItemShopLayer, 2);
+    UI::Layer* Stats = DScreen->CreateLayer(StatsLayer, 1);
+    UI::Layer* HUD = DScreen->CreateLayer(HUDLayer, 0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ColourValue Black(0.0,0.0,0.0,1.0);

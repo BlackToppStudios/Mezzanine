@@ -95,7 +95,7 @@ namespace phys
                 /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this List Box belongs to.
-                ListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, UILayer* Layer);
+                ListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, Layer* PLayer);
                 /// @brief Standard destructor.
                 ~ListBox();
                 /// @brief Sets the visibility of this List Box.

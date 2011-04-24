@@ -52,8 +52,8 @@ namespace phys
 {
     namespace UI
     {
-        MarkupText::MarkupText(ConstString& name, const Vector2 Position, const Whole Glyph, String Text, UILayer* Layer)
-            : Parent(Layer),
+        MarkupText::MarkupText(ConstString& name, const Vector2 Position, const Whole Glyph, String Text, Layer* PLayer)
+            : Parent(PLayer),
               RelPosition(Position),
               RelSize(Vector2(0,0)),
               Name(name)

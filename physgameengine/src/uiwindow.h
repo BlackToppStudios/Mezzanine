@@ -96,7 +96,7 @@ namespace phys
                 /// @param Position The position of the window.
                 /// @param Size The size of the window.
                 /// @param Layer The parent layer this window belongs to.
-                Window(ConstString& name, const Vector2 Position, const Vector2 Size, UILayer* Layer);
+                Window(ConstString& name, const Vector2 Position, const Vector2 Size, Layer* PLayer);
                 /// @brief Standard destructor.
                 virtual ~Window();
                 /// @brief Sets the visibility of this window.

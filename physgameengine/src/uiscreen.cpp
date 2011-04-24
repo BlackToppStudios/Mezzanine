@@ -50,154 +50,157 @@
 
 namespace phys
 {
-    UIScreen::UIScreen(const String& name, Gorilla::Screen* GScreen, Viewport* WindowViewport)
-        : Name(name),
-          GorillaScreen(GScreen),
-          GameViewport(WindowViewport)
+    namespace UI
     {
-        Manager = World::GetWorldPointer()->GetUIManager();
-    }
-
-    UIScreen::~UIScreen()
-    {
-        Manager->GetSilverbackPointer()->destroyScreen(GorillaScreen);
-    }
-
-    String& UIScreen::GetName()
-    {
-        return Name;
-    }
-
-    void UIScreen::SetVisible(bool Visible)
-    {
-        GorillaScreen->setVisible(Visible);
-    }
-
-    bool UIScreen::IsVisible()
-    {
-        return GorillaScreen->isVisible();
-    }
-
-    void UIScreen::Show()
-    {
-        GorillaScreen->show();
-    }
-
-    void UIScreen::Hide()
-    {
-        GorillaScreen->hide();
-    }
-
-    UILayer* UIScreen::CreateLayer(const String& Name, Whole Zorder)
-    {
-        Gorilla::Layer* layer = GorillaScreen->createLayer(Zorder);
-        UILayer* physlayer = new UILayer(Name, layer, this);
-        std::pair<std::map<Whole,UILayer*>::iterator,bool> TestPair = Layers.insert(std::pair<Whole,UILayer*>(Zorder,physlayer));
-        if(TestPair.second)
+        Screen::Screen(const String& name, Gorilla::Screen* GScreen, Viewport* WindowViewport)
+            : Name(name),
+              GorillaScreen(GScreen),
+              GameViewport(WindowViewport)
         {
-            return physlayer;
-        }else{
-            /// @todo add an exception here or maybe log entry, some notification it failed.
+            Manager = World::GetWorldPointer()->GetUIManager();
+        }
+
+        Screen::~Screen()
+        {
+            Manager->GetSilverbackPointer()->destroyScreen(GorillaScreen);
+        }
+
+        String& Screen::GetName()
+        {
+            return Name;
+        }
+
+        void Screen::SetVisible(bool Visible)
+        {
+            GorillaScreen->setVisible(Visible);
+        }
+
+        bool Screen::IsVisible()
+        {
+            return GorillaScreen->isVisible();
+        }
+
+        void Screen::Show()
+        {
+            GorillaScreen->show();
+        }
+
+        void Screen::Hide()
+        {
+            GorillaScreen->hide();
+        }
+
+        Layer* Screen::CreateLayer(const String& Name, Whole Zorder)
+        {
+            Gorilla::Layer* layer = GorillaScreen->createLayer(Zorder);
+            Layer* physlayer = new Layer(Name, layer, this);
+            std::pair<std::map<Whole,Layer*>::iterator,bool> TestPair = Layers.insert(std::pair<Whole,Layer*>(Zorder,physlayer));
+            if(TestPair.second)
+            {
+                return physlayer;
+            }else{
+                /// @todo add an exception here or maybe log entry, some notification it failed.
+                return 0;
+            }
+        }
+
+        Layer* Screen::GetLayer(const String& Name)
+        {
+            for ( std::map<Whole,Layer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+            {
+                if ( Name == (*it).second->GetName() )
+                {
+                    Layer* Layer = (*it).second;
+                    return Layer;
+                }
+            }
             return 0;
         }
-    }
 
-    UILayer* UIScreen::GetLayer(const String& Name)
-    {
-        for ( std::map<Whole,UILayer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+        Layer* Screen::GetLayer(Whole Index)
         {
-            if ( Name == (*it).second->GetName() )
+            std::map<Whole,Layer*>::iterator it = Layers.begin();
+            while(0 < Index)
             {
-                UILayer* Layer = (*it).second;
-                return Layer;
+                it++;
+                Index--;
             }
+            if(it!=Layers.end())
+                return (*it).second;
+            return 0;
         }
-        return 0;
-    }
 
-    UILayer* UIScreen::GetLayer(Whole Index)
-    {
-        std::map<Whole,UILayer*>::iterator it = Layers.begin();
-        while(0 < Index)
+        Layer* Screen::GetLayerbyZorder(Whole Zorder)
         {
-            it++;
-            Index--;
+            std::map<Whole,Layer*>::iterator it = Layers.find(Zorder);
+            if(it!=Layers.end())
+                return (*it).second;
+            return 0;
         }
-        if(it!=Layers.end())
-            return (*it).second;
-        return 0;
-    }
 
-    UILayer* UIScreen::GetLayerbyZorder(Whole Zorder)
-    {
-        std::map<Whole,UILayer*>::iterator it = Layers.find(Zorder);
-        if(it!=Layers.end())
-            return (*it).second;
-        return 0;
-    }
-
-    Whole UIScreen::GetNumLayers()
-    {
-        return Layers.size();
-    }
-
-    void UIScreen::DestroyLayer(UILayer* Layer)
-    {
-        if(Layers.empty())
-            return;
-        for( std::map<Whole,UILayer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+        Whole Screen::GetNumLayers()
         {
-            if( Layer == (*it).second )
-            {
-                delete (*it).second;
-                Layers.erase(it);
+            return Layers.size();
+        }
+
+        void Screen::DestroyLayer(Layer* ToBeDestroyed)
+        {
+            if(Layers.empty())
                 return;
-            }
-        }
-    }
-
-    Vector2 UIScreen::GetViewportDimensions()
-    {
-        Vector2 viewport((Real)GameViewport->GetActualWidth(),(Real)GameViewport->GetActualHeight());
-        return viewport;
-    }
-
-    UI::Button* UIScreen::CheckButtonMouseIsOver()
-    {
-        for( std::map<Whole,UILayer*>::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
-        {
-            if( (*it).second->GetVisible() )
+            for( std::map<Whole,Layer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
             {
-                UI::Button* button = (*it).second->CheckButtonMouseIsOver();
-                if(button)
+                if( ToBeDestroyed == (*it).second )
                 {
-                    return button;
+                    delete (*it).second;
+                    Layers.erase(it);
+                    return;
                 }
             }
         }
-        return 0;
-    }
 
-    UI::Widget* UIScreen::CheckWidgetMouseIsOver()
-    {
-        for( std::map<Whole,UILayer*>::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
+        Vector2 Screen::GetViewportDimensions()
         {
-            if( (*it).second->GetVisible() )
+            Vector2 viewport((Real)GameViewport->GetActualWidth(),(Real)GameViewport->GetActualHeight());
+            return viewport;
+        }
+
+        Button* Screen::CheckButtonMouseIsOver()
+        {
+            for( std::map<Whole,Layer*>::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
             {
-                UI::Widget* widget = (*it).second->CheckWidgetMouseIsOver();
-                if(widget)
+                if( (*it).second->GetVisible() )
                 {
-                    return widget;
+                    Button* button = (*it).second->CheckButtonMouseIsOver();
+                    if(button)
+                    {
+                        return button;
+                    }
                 }
             }
+            return 0;
         }
-        return 0;
-    }
 
-    Gorilla::Screen* UIScreen::GetGorillaScreen()
-    {
-        return GorillaScreen;
-    }
-}
+        Widget* Screen::CheckWidgetMouseIsOver()
+        {
+            for( std::map<Whole,Layer*>::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
+            {
+                if( (*it).second->GetVisible() )
+                {
+                    Widget* widget = (*it).second->CheckWidgetMouseIsOver();
+                    if(widget)
+                    {
+                        return widget;
+                    }
+                }
+            }
+            return 0;
+        }
+
+        Gorilla::Screen* Screen::GetGorillaScreen()
+        {
+            return GorillaScreen;
+        }
+    }//ui
+}//phys
 
 #endif

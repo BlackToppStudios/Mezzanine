@@ -50,8 +50,8 @@ namespace phys
 {
     namespace UI
     {
-        TextButton::TextButton(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, UILayer* Layer)
-            : Button(name,Position,Size,Layer)
+        TextButton::TextButton(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, Layer* PLayer)
+            : Button(name,Position,Size,PLayer)
         {
             IsText = true;
             GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text);

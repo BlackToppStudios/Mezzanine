@@ -52,8 +52,8 @@ namespace phys
 {
     namespace UI
     {
-        Menu::Menu(ConstString name, const Vector2 Position, const Vector2 Size, UILayer* Layer)
-            : Widget(name,Layer),
+        Menu::Menu(ConstString name, const Vector2 Position, const Vector2 Size, Layer* PLayer)
+            : Widget(name,PLayer),
               HideSubWindows(true)
         {
             Type = Widget::Menu;
@@ -75,7 +75,7 @@ namespace phys
         {
             if(!Force)
                 SubWidgetUpdate();
-            MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
+            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(HoveredSubWidget)
             {
                 Button* button = HoveredSubWidget->GetHoveredButton();

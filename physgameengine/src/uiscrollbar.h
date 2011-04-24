@@ -48,11 +48,11 @@
 
 namespace phys
 {
-    class UILayer;
     namespace UI
     {
         class Button;
         class Rectangle;
+        class Layer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Scrollbar
         /// @headerfile uiscrollbar.h
@@ -137,7 +137,7 @@ namespace phys
                 /// @param Size A vector2 representing the size of this widget.
                 /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
                 /// @param parent The Layer that created this scrollbar.
-                Scrollbar(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::ScrollbarStyle Style, UILayer* parent);
+                Scrollbar(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::ScrollbarStyle Style, Layer* parent);
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
                 /// @brief Sets the visibility of this scrollbar.
