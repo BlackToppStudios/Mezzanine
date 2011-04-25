@@ -59,11 +59,11 @@ void CatchApp::MakeGUI()
     Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
     GUI->LoadGorilla("Catch!");
 
-    UIScreen* Screen = GUI->CreateScreen(GameScreen, "Catch!", UIViewport);
-    UILayer* Menu = Screen->CreateLayer(MenuLayer, 10);
-    UILayer* ItemShop = Screen->CreateLayer(ItemShopLayer, 4);
-    UILayer* Stats = Screen->CreateLayer(StatsLayer, 1);
-    UILayer* HUD = Screen->CreateLayer(HUDLayer, 0);
+    UI::Screen* screen = GUI->CreateScreen(GameScreen, "Catch!", UIViewport);
+    UI::Layer* Menu = screen->CreateLayer(MenuLayer, 10);
+    UI::Layer* ItemShop = screen->CreateLayer(ItemShopLayer, 4);
+    UI::Layer* Stats = screen->CreateLayer(StatsLayer, 1);
+    UI::Layer* HUD = screen->CreateLayer(HUDLayer, 0);
 
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ColourValue Black(0.0,0.0,0.0,1.0);
@@ -276,22 +276,22 @@ bool CatchApp::PostUI()
                 if("Store" == MouseButton->GetName())
                 {
                     String ItemShopL = "ItemShopLayer";
-                    UILayer* Layer = UIMan->GetLayer(ItemShopL);
+                    UI::Layer* layer = UIMan->GetLayer(ItemShopL);
                     if(MetaCode::BUTTON_PRESSING == State)
-                        Layer->SetVisible(!Layer->GetVisible());
+                        layer->SetVisible(!layer->GetVisible());
                 }
                 else if("Menu" == MouseButton->GetName())
                 {
                     String MenuL = "MenuLayer";
-                    UILayer* Layer = UIMan->GetLayer(MenuL);
+                    UI::Layer* layer = UIMan->GetLayer(MenuL);
                     if(MetaCode::BUTTON_PRESSING == State)
-                        Layer->SetVisible(!Layer->GetVisible());
+                        layer->SetVisible(!layer->GetVisible());
                 }
                 else if("Return" == MouseButton->GetName())
                 {
                     String MenuL = "MenuLayer";
-                    UILayer* Layer = UIMan->GetLayer(MenuL);
-                    Layer->Hide();
+                    UI::Layer* layer = UIMan->GetLayer(MenuL);
+                    layer->Hide();
                 }
                 else if("Exit" == MouseButton->GetName())
                 {

@@ -78,7 +78,7 @@ namespace phys
                 /// @param Position The top left position of the checkbox.
                 /// @param Size The size of the checkbox.
                 /// @param Layer Pointer to the Layer that created this checkbox.
-                CheckBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString &LabelText, UILayer* Layer);
+                CheckBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString &LabelText, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~CheckBox();
                 /// @brief Sets the visibility of this checkbox.

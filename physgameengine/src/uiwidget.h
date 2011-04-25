@@ -47,10 +47,10 @@
 namespace phys
 {
     class UIManager;
-    class UILayer;
     namespace UI
     {
         class Button;
+        class Layer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Widget
         /// @headerfile uiwidget.h
@@ -76,7 +76,7 @@ namespace phys
             protected:
                 friend class phys::UIManager;
                 UIManager* Manager;
-                UILayer* Parent;
+                Layer* Parent;
                 UI::Button* HoveredButton;
                 UI::Widget* HoveredSubWidget;
                 UI::Widget* SubWidgetFocus;
@@ -95,7 +95,7 @@ namespace phys
                 /// @brief Standard initialization constructor.
                 /// @param parent The parent layer that created this widget.
                 /// @param name The Name for the Widget.
-                Widget(const String& name, UILayer* parent);
+                Widget(const String& name, Layer* parent);
                 /// @brief Standard destructor.
                 virtual ~Widget();
                 /// @brief Sets the visibility of this widget.

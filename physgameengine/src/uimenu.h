@@ -74,7 +74,7 @@ namespace phys
                 /// @param Position The position of the window.
                 /// @param Size The size of the window.
                 /// @param Layer The parent layer this window belongs to.
-                Menu(ConstString name, const Vector2 Position, const Vector2 Size, UILayer* Layer);
+                Menu(ConstString name, const Vector2 Position, const Vector2 Size, Layer* PLayer);
                 /// @brief Standard destructor.
                 ~Menu();
                 /// @brief Sets the visibility of this menu.

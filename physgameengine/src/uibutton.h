@@ -57,9 +57,9 @@ namespace Gorilla
 namespace phys
 {
     class UIManager;
-    class UILayer;
     namespace UI
     {
+        class Layer;
         class ButtonCallback;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Button
@@ -72,7 +72,7 @@ namespace phys
         {
             protected:
                 Gorilla::Rectangle* GorillaRectangle;
-                UILayer* Parent;
+                Layer* Parent;
                 UIManager* Manager;
                 Gorilla::Sprite* NormalSprite;
                 Gorilla::Sprite* HoveredSprite;
@@ -89,7 +89,7 @@ namespace phys
                 /// @param Position The top left position of the button.
                 /// @param Size The size of the Button.
                 /// @param Layer Pointer to the Layer that created this button.
-                Button(ConstString& name, const Vector2 Position, const Vector2 Size, UILayer* Layer);
+                Button(ConstString& name, const Vector2 Position, const Vector2 Size, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Button();
                 /// @brief Sets the visibility of this button.

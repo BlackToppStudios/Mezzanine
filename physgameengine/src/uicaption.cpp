@@ -54,8 +54,8 @@ namespace phys
 {
     namespace UI
     {
-        Caption::Caption(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, UILayer* Layer)
-            : Parent(Layer),
+        Caption::Caption(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, Layer* PLayer)
+            : Parent(PLayer),
               MouseHover(false),
               RelPosition(Position),
               RelSize(Size),
@@ -105,7 +105,7 @@ namespace phys
         {
             if(!GorillaRectangle->IsVisible())
                 return false;
-            Vector2 MouseLoc = Manager->GetInputQueryer()->GetMouseCoordinates();
+            Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
             if(GorillaCaption->intersects(MouseLoc.GetOgreVector2()))
             {
                 MouseHover = true;

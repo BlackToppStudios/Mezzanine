@@ -51,10 +51,10 @@ namespace Gorilla
 
 namespace phys
 {
-    class UILayer;
     class UIManager;
     namespace UI
     {
+        class Layer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class LineList
         /// @headerfile uilinelist.h
@@ -67,12 +67,12 @@ namespace phys
         {
             protected:
                 Gorilla::LineList* GLineList;
-                UILayer* Parent;
+                Layer* Parent;
                 UIManager* Manager;
             public:
                 /// @brief Class constructor.
                 /// @param Layer Pointer to the parent Layer that created this rectangle.
-                LineList(UILayer* Layer);
+                LineList(Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~LineList();
                 /// @brief Sets the visibility of this rectangle.

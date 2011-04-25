@@ -54,8 +54,8 @@ namespace phys
 {
     namespace UI
     {
-        Rectangle::Rectangle(const Vector2 Position, const Vector2 Size, UILayer* Layer)
-            : Parent(Layer),
+        Rectangle::Rectangle(const Vector2 Position, const Vector2 Size, Layer* PLayer)
+            : Parent(PLayer),
               MouseHover(false),
               RelPosition(Position),
               RelSize(Size)
@@ -95,7 +95,7 @@ namespace phys
         {
             if(!GRectangle->IsVisible())
                 return false;
-            Vector2 MouseLoc = Manager->GetInputQueryer()->GetMouseCoordinates();
+            Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
             if(GRectangle->intersects(MouseLoc.GetOgreVector2()))
             {
                 MouseHover = true;

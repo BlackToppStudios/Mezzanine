@@ -53,9 +53,9 @@ namespace Gorilla
 namespace phys
 {
     class UIManager;
-    class UILayer;
     namespace UI
     {
+        class Layer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class MarkupText
         /// @headerfile uimarkuptext.h
@@ -70,7 +70,7 @@ namespace phys
         {
             protected:
                 Gorilla::MarkupText* GMarkup;
-                UILayer* Parent;
+                Layer* Parent;
                 UIManager* Manager;
                 Whole Glyphs;
                 Vector2 RelPosition;
@@ -83,7 +83,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
                 /// @param Layer Pointer to the layer that created this markup text.
-                MarkupText(ConstString& name, const Vector2 Position, const Whole Glyph, String Text, UILayer* Layer);
+                MarkupText(ConstString& name, const Vector2 Position, const Whole Glyph, String Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~MarkupText();
                 /// @brief Sets the visibility of this markup text.

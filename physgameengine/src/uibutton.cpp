@@ -53,8 +53,8 @@ namespace phys
 {
     namespace UI
     {
-        Button::Button(ConstString& name, const Vector2 Position, const Vector2 Size, UILayer* Layer)
-            : Parent(Layer),
+        Button::Button(ConstString& name, const Vector2 Position, const Vector2 Size, Layer* PLayer)
+            : Parent(PLayer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
               UserSprite(NULL),
@@ -115,7 +115,7 @@ namespace phys
         {
             if(!GorillaRectangle->IsVisible())
                 return false;
-            Vector2 MouseLoc = Manager->GetInputQueryer()->GetMouseCoordinates();
+            Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
             if(GorillaRectangle->intersects(MouseLoc.GetOgreVector2()))
             {
                 if(!MouseHover && HoveredSprite)

@@ -52,8 +52,8 @@ namespace phys
 {
     namespace UI
     {
-        LineList::LineList(UILayer* Layer)
-            : Parent(Layer)
+        LineList::LineList(Layer* PLayer)
+            : Parent(PLayer)
         {
             Manager = World::GetWorldPointer()->GetUIManager();
 

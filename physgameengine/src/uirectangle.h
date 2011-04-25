@@ -55,9 +55,9 @@ namespace Gorilla
 namespace phys
 {
     class UIManager;
-    class UILayer;
     namespace UI
     {
+        class Layer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Rectangle
         /// @headerfile uirectangle.h
@@ -69,7 +69,7 @@ namespace phys
         {
             protected:
                 Gorilla::Rectangle* GRectangle;
-                UILayer* Parent;
+                Layer* Parent;
                 UIManager* Manager;
                 Vector2 RelPosition;
                 Vector2 RelSize;
@@ -79,7 +79,7 @@ namespace phys
                 /// @param Position The top left position of the rectangle.
                 /// @param Size The size of the rectangle.
                 /// @param Layer Pointer to the parent Layer that created this rectangle.
-                Rectangle(const Vector2 Position, const Vector2 Size, UILayer* Layer);
+                Rectangle(const Vector2 Position, const Vector2 Size, Layer* PLayer);
                 /// @brief Class destructor.
                 ~Rectangle();
                 /// @brief Sets the visibility of this rectangle.

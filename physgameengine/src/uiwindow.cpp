@@ -62,8 +62,8 @@ namespace phys
 {
     namespace UI
     {
-        Window::Window(ConstString& name, const Vector2 Position, const Vector2 Size, UILayer* Layer)
-            : Widget(name,Layer)
+        Window::Window(ConstString& name, const Vector2 Position, const Vector2 Size, Layer* PLayer)
+            : Widget(name,PLayer)
         {
             RelPosition = Position;
             RelSize = Size;
@@ -111,7 +111,7 @@ namespace phys
         {
             if(!Force)
                 SubWidgetUpdate();
-            MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
+            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
             if(HoveredButton)
             {
             }

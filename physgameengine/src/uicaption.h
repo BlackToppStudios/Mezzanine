@@ -55,9 +55,9 @@ namespace Gorilla
 namespace phys
 {
     class UIManager;
-    class UILayer;
     namespace UI
     {
+        class Layer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Caption
         /// @headerfile uicaption.h
@@ -75,7 +75,7 @@ namespace phys
             protected:
                 Gorilla::Caption* GorillaCaption;
                 Gorilla::Rectangle* GorillaRectangle;
-                UILayer* Parent;
+                Layer* Parent;
                 UIManager* Manager;
                 Whole Glyphs;
                 bool MouseHover;
@@ -90,7 +90,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 /// @param Layer Pointer to the layer that created this caption.
-                Caption(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, UILayer* Layer);
+                Caption(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Caption();
                 /// @brief Sets the visibility of this caption.

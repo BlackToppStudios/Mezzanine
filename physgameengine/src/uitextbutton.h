@@ -45,9 +45,9 @@
 
 namespace phys
 {
-    class UILayer;
     namespace UI
     {
+        class Layer;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class TextButton
         /// @headerfile uitextbutton.h
@@ -66,7 +66,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
                 /// @param Layer Pointer to the Layer that created this button.
-                TextButton(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, UILayer* Layer);
+                TextButton(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, Layer* PLayer);
                 /// @brief Class destructor.
                 ~TextButton();
                 /// @brief Sets the visibility of this button.

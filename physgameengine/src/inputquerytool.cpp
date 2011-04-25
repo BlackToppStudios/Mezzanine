@@ -50,7 +50,7 @@ namespace phys
     std::vector<int> InputQueryTool::CodeCache;
 
     InputQueryTool::InputQueryTool()
-        { CodeCache.insert(CodeCache.end(), MetaCode::INPUTEVENT_LAST, 0); }
+        {}
 
     InputQueryTool::~InputQueryTool()
         {}
@@ -98,8 +98,13 @@ namespace phys
 
     void InputQueryTool::GatherEvents(bool ClearEventsFromEventMgr)
     {
-        int H = CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL];
-        int V = CodeCache[MetaCode::MOUSEABSOLUTEVERTICAL];
+        int H = 0;
+        int V = 0;
+        if(!CodeCache.empty())
+        {
+            H = CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL];
+            V = CodeCache[MetaCode::MOUSEABSOLUTEVERTICAL];
+        }
         CodeCache.clear();
         CodeCache.insert(CodeCache.end(), MetaCode::INPUTEVENT_LAST, 0);
         CodeCache[MetaCode::MOUSEABSOLUTEHORIZONTAL] = H;

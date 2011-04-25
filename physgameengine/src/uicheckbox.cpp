@@ -54,8 +54,8 @@ namespace phys
 {
     namespace UI
     {
-        CheckBox::CheckBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString &LabelText, UILayer* Layer)
-            : Widget(name,Layer),
+        CheckBox::CheckBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString &LabelText, Layer* PLayer)
+            : Widget(name,PLayer),
               GlyphIndex(Glyph),
               Checked(false),
               CheckLock(true)
@@ -64,14 +64,14 @@ namespace phys
             RelPosition = Position;
             RelSize = Size;
 
-            Box = new Button(Name+"CB",Position,Size,Layer);
+            Box = new Button(Name+"CB",Position,Size,Parent);
             if(LabelText.empty())
             {
                 Label = NULL;
             }else{
                 Vector2 Adjusted = Position;
                 Adjusted.X = Position.X + Size.X;
-                Label = new MarkupText(Name+"CM",Adjusted,GlyphIndex,LabelText,Layer);
+                Label = new MarkupText(Name+"CM",Adjusted,GlyphIndex,LabelText,Parent);
             }
         }
 
@@ -107,7 +107,7 @@ namespace phys
         {
             if(HoveredButton || Force)
             {
-                MetaCode::ButtonState State = Manager->GetInputQueryer()->GetMouseButtonState(1);
+                MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
                     CheckLock = false;

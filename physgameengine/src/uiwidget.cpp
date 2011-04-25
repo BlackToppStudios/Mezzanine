@@ -48,7 +48,7 @@ namespace phys
 {
     namespace UI
     {
-        Widget::Widget(const String& name, UILayer* parent)
+        Widget::Widget(const String& name, Layer* parent)
             : Parent(parent),
               HoveredButton(NULL),
               HoveredSubWidget(NULL),

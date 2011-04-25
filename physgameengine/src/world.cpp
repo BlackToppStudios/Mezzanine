@@ -224,7 +224,7 @@ namespace phys
     //appends to the gamelog which is managed by Ogre
     void World::LogString(const String& Message)
     {
-        static std::stringstream* Audiolog = 0;
+        static std::stringstream* Audiolog = 0;/*
         if (0 == Audiolog)
         {
             Audiolog = this->GetSoundManager()->GetLogs();
@@ -240,7 +240,7 @@ namespace phys
         }
 
         if(Message.size()>0)
-            { Ogre::LogManager::getSingleton().logMessage(Message); }
+            { Ogre::LogManager::getSingleton().logMessage(Message); }*/
 
     }
 
@@ -475,7 +475,7 @@ namespace phys
     ManagerBase* World::GetManager(const ManagerBase::ManagerTypeName &ManagersToGet, short unsigned int WhichOne)
     {
         #ifdef PHYSDEBUG
-        this->LogStream << "Calling World::GetManager(Type:"<<ManagersToGet<<") searching through "<<this->ManagerList.size()<<" Items.";
+        //this->LogStream << "Calling World::GetManager(Type:"<<ManagersToGet<<") searching through "<<this->ManagerList.size()<<" Items.";
         #endif
         if(this->ManagerList.empty())
         {
@@ -488,7 +488,7 @@ namespace phys
                     if(0==WhichOne)     // we use our copy of WhichOne as a countdown to 0
                     {
                         #ifdef PHYSDEBUG
-                        this->LogStream << " - Got:" << *ManIter;
+                        //this->LogStream << " - Got:" << *ManIter;
                         //this->Log();
                         #endif
                         return *ManIter;

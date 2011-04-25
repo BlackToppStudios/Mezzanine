@@ -49,8 +49,8 @@ namespace phys
 {
     namespace UI
     {
-        MenuWindow::MenuWindow(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::Menu* TheMenu, UILayer* Layer)
-            : Window(Name,Position,Size,Layer),
+        MenuWindow::MenuWindow(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::Menu* TheMenu,Layer* PLayer)
+            : Window(Name,Position,Size,PLayer),
               BackButton(NULL),
               ParentWindow(NULL),
               MasterMenu(TheMenu)

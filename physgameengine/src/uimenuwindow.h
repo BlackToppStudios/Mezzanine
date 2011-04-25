@@ -71,7 +71,7 @@ namespace phys
                 /// @param Size The size of the window.
                 /// @param TheMenu The menu this window belongs to.
                 /// @param Layer The parent layer this window belongs to.
-                MenuWindow(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::Menu* TheMenu, UILayer* Layer);
+                MenuWindow(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::Menu* TheMenu, Layer* PLayer);
                 /// @brief Standard destructor.
                 virtual ~MenuWindow();
                 /// @brief Gets the parent window of this window.

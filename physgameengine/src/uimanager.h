@@ -57,11 +57,11 @@ namespace Gorilla
 namespace phys
 {
     class Viewport;
-    class UIScreen;
-    class UILayer;
     class InputQueryTool;
     namespace UI
     {
+        class Screen;
+        class Layer;
         class Button;
         class Widget;
         class Scrollbar;
@@ -77,11 +77,10 @@ namespace phys
         protected:
             /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.
             Gorilla::Silverback* Silver;
-            std::vector< UIScreen* > Screens;
+            std::vector< UI::Screen* > Screens;
             UI::Button* HoveredButton;
             UI::Widget* HoveredWidget;
             UI::Widget* WidgetFocus;
-            InputQueryTool* InputQueryer;
             void HoverChecks();
             void WidgetFocusUpdate();
         public:
@@ -120,25 +119,25 @@ namespace phys
             /// @param ScreenName The name to be given to the screen.
             /// @param Atlas The name of a previously loaded Gorilla file to be used with this screen.
             /// @param WindowViewport The viewport to create this screen in.
-            UIScreen* CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport);
+            UI::Screen* CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport);
             /// @brief Gets an already created screen by name.
             /// @return Returns a pointer to the screen of the specified name.
-            UIScreen* GetScreen(const String& Name);
+            UI::Screen* GetScreen(const String& Name);
             /// @brief Gets an already created screen by index.
             /// @return Returns a pointer to the screen at the specified index.
-            UIScreen* GetScreen(Whole Index);
+            UI::Screen* GetScreen(Whole Index);
             /// @brief Gets the number of screens created and stored in this manager.
             /// @return Returns the number of screens this manager is storing.
             Whole GetNumScreens();
             /// @brief Deletes a screen and removes all trace of it from the manager.
             /// @details Destroying a screen will also destroy all of it's layers, and everything contained in those layers.
             /// @param Screen The screen to be destroyed.
-            void DestroyScreen(UIScreen* Screen);
+            void DestroyScreen(UI::Screen* Screen);
             /// @brief Deletes all screens stored in this manager.
             void DestroyAllScreens();
             /// @brief Searches all screens and gets the named Layer.
             /// @return Returns the named layer if found, NULL if not.
-            UILayer* GetLayer(String& Name);
+            UI::Layer* GetLayer(String& Name);
             /// @brief Searches all visable screens and layers to see if a button was clicked.
             /// @details This is called automatically once every frame.  Should only be called on manually if
             /// you need more then one check per frame.
@@ -153,9 +152,6 @@ namespace phys
             /// @details This should only be called on after this manager does it's main loop items for best results.
             /// @return Returns true if the mouse is over a visable UI element, false if not.
             bool MouseIsInUISystem();
-            /// @brief Gets the input queryer used for automation in this subsystem.
-            /// @return Returns a pointer to the InputQueryTool used to query input events for this subsystem.
-            InputQueryTool* GetInputQueryer();
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;
