@@ -211,6 +211,9 @@ namespace phys
             /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
             std::list< ManagerBase* > ManagerList;
 
+            // A pointer to the function that actually commits log messages.
+            void (*LogCommitFunc)();
+
         protected:
             /// @internal
             /// @brief A pointer to the one and only world
@@ -271,15 +274,30 @@ namespace phys
         // Logging
         ///////////////////////////////////////
 
-
             /// @brief Used to indicate the frequency of logging.
             enum LoggingFrequency
             {
-                LogEachFrame = 0,   ///< The Default, log each and every frame
-                LogEachSecond = 1,  ///< Log Once per second
-                LogEachXSecond = 2,
-                LogNever = 3        ///< Never log
+                LogNever = 0,               ///< Never log
+                LogOncePerFrame = 1,        ///< The Default, log each and every frame
+                LogOncePerXFrames = 2       ///< Log once per every Xth frame, X is the FrequencyCounter Value passed in with this
+                //LogOncePerSecond = 3,       ///< Log Once per second
+                //LogOncePerXSeconds = 4,     ///< Log once per every Xth second, X is the FrequencyCounter Value passed in with this
             };
+
+            /// @brief Set how often log message should be commited to disk (or network, or whatever).
+            /// @param HowOften The actual setting for how often.
+            /// @param FrequencyCounter For settings that use X this is X, this defaults to 5
+            /// @details By default this is set to LogOncePerFrame. \n \n
+            /// There are a series of functions internally that represent each of the LoggingFrequency values. When
+            /// You pass in one of these values you are setting which of these functions will be called. This way the
+            /// only cost that is guaranteed to be incurred is the dereferencing of a function pointer (constant time).
+            /// Additionally the members of the enum are sorted by the amount of time they are expected to take to run,
+            /// of course your performance will vary, the best way to know how it will perform is to test.
+            void SetLoggingFrequency(LoggingFrequency HowOften, Whole FrequencyCounter = 5);
+
+            /// @brief Returns the frequency of logging commits
+            /// @return A World::LoggingFrequency containing the requested information.
+            LoggingFrequency GetLoggingFrequency();
 
             /// @brief Runtime event and message logging.
             /// @param Message This is what will be streamed to the log

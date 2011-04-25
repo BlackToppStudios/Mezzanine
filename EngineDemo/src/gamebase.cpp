@@ -38,6 +38,8 @@ int main(int argc, char **argv)
         //could not create the perfect worldending program
     }
 
+    TheWorld->SetLoggingFrequency(World::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
+
     #ifdef PHYSDEBUG
     TheWorld->Log("World Created:");
     TheWorld->Log(PlaneOfPlay);

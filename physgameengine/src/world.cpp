@@ -146,6 +146,8 @@ namespace phys
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
 
+        this->SetLoggingFrequency(LogOncePerFrame);
+
         Ogre::Root* OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName);
         World::TheRealWorld = this;
 
@@ -223,12 +225,88 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     // Logging
 
-/*
-    void World::SetLoggingFrequency()
+    // anonymous namespace for function pointer for loggin commit
+    namespace
     {
+        // Used by some loggin functions, and interpretted differently by each
+        Whole FrequencyCounter__=0;
+
+        void Never()
+            {}
+
+        void EachFrame()
+        {
+            World::GetWorldPointer()->DoMainLoopLogging();
+        }
+
+        void EachXFrame()
+        {
+            static Whole X=0;
+            if (X>FrequencyCounter__)
+            {
+                World::GetWorldPointer()->DoMainLoopLogging();
+                X=0;
+            }else{
+                ++X;
+            }
+        }
+
+        void EachSecond()
+        {
+            // Do Something with a timer
+            World::GetWorldPointer()->DoMainLoopLogging();
+        }
+
+        void EachXSeconds()
+        {
+            //Each X seconds do something with a timer
+            World::GetWorldPointer()->DoMainLoopLogging();
+        }
 
     }
-*/
+
+    void World::SetLoggingFrequency(World::LoggingFrequency HowOften, Whole FrequencyCounter)
+    {
+        FrequencyCounter__=FrequencyCounter;
+        switch (HowOften)
+        {
+            case LogOncePerFrame:
+                LogCommitFunc=&EachFrame;
+                break;
+            case LogOncePerXFrames:
+                LogCommitFunc=&EachXFrame;
+                break;
+            /*case LogOncePerSecond:
+                LogCommitFunc=&EachSecond;
+                break;
+            case LogOncePerXSeconds:
+                LogCommitFunc=&EachXSeconds;
+                break;*/
+            case LogNever:
+                LogCommitFunc=&Never;
+                break;
+        }
+    }
+
+    World::LoggingFrequency World::GetLoggingFrequency()
+    {
+        if (&Never==LogCommitFunc)
+            return LogNever;
+
+        if (&EachFrame==LogCommitFunc)
+            return LogOncePerFrame;
+
+        if (&EachXFrame==LogCommitFunc)
+            return LogOncePerXFrames;
+
+        /*if (&EachSecond==LogCommitFunc)
+            return LogOncePerSecond;
+
+        if (&EachXSeconds==LogCommitFunc)
+            return LogOncePerXSeconds;*/
+    }
+
+
     void World::LogString(const String& Message)
     {
         // if it is in the Audiologs then it has already happened so it needs to be logged first
@@ -342,7 +420,7 @@ namespace phys
                 this->Log();
                 #endif
 
-                this->DoMainLoopLogging();
+                LogCommitFunc();
             }
 
         }//End of main loop
