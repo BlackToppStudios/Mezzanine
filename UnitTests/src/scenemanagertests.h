@@ -49,50 +49,50 @@ class SceneManagerTests : public UnitTest
         {
             TestResult temp=Failed;
 
+            AddTestResult("SceneManager::DisplaySkyPlane", Unknown);
+            AddTestResult("SceneManager::DisplaySkyBox", Unknown);
+            AddTestResult("SceneManager::DisplaySkyDome", Unknown);
             if (RunAutomaticTests)
             {
-                StartEngine("SceneManager Skyplane Tests");
+                StartEngine();
+                TheMessage="Does It Look Like a SkyPlane?";
                 SceneManager* SM = TheWorld->GetSceneManager();
-
                 SM->SetAmbientLight(1,1,1,1);
-                SM->CreateSkyPlane(Plane(Vector3(0,1,0),5),"Examples/CloudPlane","files");
-
-                StartCountdown(10);
+                //SM->CreateSkyPlane(Plane(Vector3(0,1,0),5),"Examples/CloudPlane","files");
+                SM->CreateSkyPlane(Plane(Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0)),"Examples/CloudPlane","files");
+                GetAnswer();
+                TheWorld->MainLoop();
+                GetAnswer();
+                TheWorld->MainLoop();
+                GetAnswer();
                 TheWorld->MainLoop();
                 StopEngine();
+                AddTestResult("SceneManager::DisplaySkyPlane", AnswerToQuestion, UnitTest::OverWrite);
 
-
-
-
-                StartEngine("SceneManager SkyBox Tests");
+                StartEngine();
+                TheMessage="Does It Look Like a SkyBox?";
                 SM = TheWorld->GetSceneManager();
-
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateSkyBox("Examples/CloudBox","files",50);
-
-                StartCountdown(10);
+                GetAnswer();
                 TheWorld->MainLoop();
                 StopEngine();
+                AddTestResult("SceneManager::DisplaySkyBox", AnswerToQuestion, UnitTest::OverWrite);
 
-
-
-
-
-                StartEngine("SceneManager SkyDome Tests");
+                StartEngine();
+                TheMessage="Does It Look Like a SkyDome?";
                 SM = TheWorld->GetSceneManager();
-
                 SM->SetAmbientLight(1,1,1,1);
                 SM->CreateSkyDome("Examples/CloudPlane","files",50);
-
-                StartCountdown(10);
+                GetAnswer();
                 TheWorld->MainLoop();
                 StopEngine();
-
-                //AddTestResult("WorldNode::operator<<", Unknown);         // We add something now in case it crashes partway through.
-                //AddTestResult("WorldNode::operator>>(std::stream,WorldNode)", Success, UnitTest::OverWriteIfMoreSuccessful);
+                AddTestResult("SceneManager::DisplaySkyDome", AnswerToQuestion, UnitTest::OverWrite);
 
             }else{
-
+                AddTestResult("SceneManager::DisplaySkyPlane", Skipped);
+                AddTestResult("SceneManager::DisplaySkyBox", Skipped);
+                AddTestResult("SceneManager::DisplaySkyDome", Skipped);
             }
 
 

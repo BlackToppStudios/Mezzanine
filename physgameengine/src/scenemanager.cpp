@@ -557,25 +557,22 @@ namespace phys
     // Basic Functionality
 
     ConstString& SceneManager::GetName() const
-    {
-        return this->SMD->OgreManager->getName();
-    }
+        { return this->SMD->OgreManager->getName(); }
 
     void SceneManager::Initialize()
-    {
-    }
+        { }
 
     void SceneManager::DoMainLoopItems()
-    {
-    }
+        { }
 
     ManagerBase::ManagerTypeName SceneManager::GetType() const
         { return ManagerBase::SceneManager; }
 
     Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
-    {
-        return this->SMD->OgreManager;
-    }
+        { return this->SMD->OgreManager; }
+
+    internal::SceneManagerData* SceneManager::GetRawInternalDataPointer() const
+        { return this->SMD; }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -592,11 +589,11 @@ std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
 // --
 // get function creation
 // --     which sky method
-//      skyplane info
-//      skydome info
-//      skybox info
+// --     skyplane info
+// --     skydome info
+// --     skybox info
 //      ambient light
-//      num particles
+//      num particles systems
 //      particles by index
 //      particle by name
 //

@@ -59,7 +59,8 @@ class WorldNodeTests : public UnitTest
 
                 try
                 {
-                    StartEngine("WorldNode Tests");
+                    StartEngine();
+                    TheMessage ="WorldNode Tests";
                     WorldNode* Test0 = TheWorld->GetSceneManager()->CreateFreeNode("Alpha", Vector3(0,0,0),Vector3(10,0,0));
                     WorldNode* Test1 = TheWorld->GetSceneManager()->CreateFreeNode("Beta", Vector3(0,0,0),Vector3(1,0,0));
                     WorldNode* Test2 = TheWorld->GetSceneManager()->CreateFreeNode("Gamma", Vector3(2,0,0),Vector3(1,0,0));
