@@ -270,10 +270,20 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         // Logging
         ///////////////////////////////////////
+
+
+            /// @brief Used to indicate the frequency of logging.
+            enum LoggingFrequency
+            {
+                LogEachFrame = 0,   ///< The Default, log each and every frame
+                LogEachSecond = 1,  ///< Log Once per second
+                LogEachXSecond = 2,
+                LogNever = 3        ///< Never log
+            };
+
             /// @brief Runtime event and message logging.
             /// @param Message This is what will be streamed to the log
-            /// @details This also commits any outstanding log messages that are waiting in the World::LogStream, and any outstanding
-            /// Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the
+            /// @details This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the
             /// Only ones to produce meaningul log messages.
             template <class T> void Log(const T& Message)
                 { this->LogString(ToString(Message)); }
@@ -282,7 +292,7 @@ namespace phys
             void Log();
 
             /// @brief This is another way to put data in the log.
-            /// @details The contents of this will be commited to the log once per frame, just before rendering, or whenever World::Log is called.
+            /// @details The contents of this will be commited to the log as per the logging frequency.
             /// Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely
             /// to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs
             /// and gameworld recreations.
@@ -362,7 +372,7 @@ namespace phys
             void MainLoop();
 
             /// @brief This commits the log stream to the log
-            /// @details This is called automatically during the main loop just before rendering.
+            /// @details This is called automatically at the end of each main loop iteration. You only need to call it if you are using your own main loop.
             void DoMainLoopLogging();
 
         ///////////////////////////////////////////////////////////////////////////////

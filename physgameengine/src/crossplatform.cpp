@@ -155,7 +155,11 @@ namespace phys
                 Ogre::Root::getSingleton()._fireFrameStarted();
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
                 for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
+                {
                     Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(true);
+                }
+                for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
+                    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
                 Ogre::Root::getSingleton()._fireFrameEnded();
             #else
                 Ogre::Root::getSingleton().renderOneFrame();

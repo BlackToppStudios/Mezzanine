@@ -221,27 +221,21 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    //appends to the gamelog which is managed by Ogre
+    // Logging
+
+/*
+    void World::SetLoggingFrequency()
+    {
+
+    }
+*/
     void World::LogString(const String& Message)
     {
-        static std::stringstream* Audiolog = 0;/*
-        if (0 == Audiolog)
-        {
-            Audiolog = this->GetSoundManager()->GetLogs();
-        }else{
-            Ogre::LogManager::getSingleton().logMessage(Audiolog->str());
-            Audiolog->str("");
-        }
-
-        if( this->LogStream.str().size() > 0 )
-        {
-            Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
-            this->LogStream.str("");
-        }
-
+        // if it is in the Audiologs then it has already happened so it needs to be logged first
+        if (this->GetSoundManager()->GetLogs())
+            { this->LogStream << this->GetSoundManager()->GetLogs()->str(); }
         if(Message.size()>0)
-            { Ogre::LogManager::getSingleton().logMessage(Message); }*/
-
+            { this->LogStream << endl << Message; }
     }
 
     void World::Log()
@@ -326,12 +320,15 @@ namespace phys
         {
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
-                //#ifdef PHYSDEBUG
-                this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " ";
-                this->Log( (*Iter)->GetPriority() );
-                LoopTimer->reset();
-                //#endif
+                #ifdef PHYSDEBUG
+                this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " - Priority: " << (*Iter)->GetPriority();
+                #endif
 
+                #ifdef PHYSPROFILE
+                LoopTimer->reset();
+                #endif
+
+                //Actual main loop work
                 if( !(*Iter)->PreMainLoopItems() )
                     { DoNotBreak=false; }
 
@@ -340,8 +337,11 @@ namespace phys
                 if( !(*Iter)->PostMainLoopItems() )
                     { DoNotBreak=false; }
 
+                #ifdef PHYSPROFILE
                 this->LogStream << (*Iter)->GetTypeName() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
                 this->Log();
+                #endif
+
                 this->DoMainLoopLogging();
             }
 
@@ -352,10 +352,13 @@ namespace phys
         //this->DestroyRenderWindow();
     }
 
-    void  World::DoMainLoopLogging()
+    void World::DoMainLoopLogging()
     {
-        this->Log(this->LogStream.str());
-        this->LogStream.str("");
+        if( this->LogStream.str().size() > 0 )
+        {
+            Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
+            this->LogStream.str("");
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////
