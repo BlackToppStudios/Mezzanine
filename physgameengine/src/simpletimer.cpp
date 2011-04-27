@@ -89,11 +89,12 @@ namespace phys
         }
         if(GoalReached())
         {
+            Stop();
             if(Callback)
                 Callback->DoCallbackItems();
             if(ResetAtGoal)
                 Reset();
-            Stop();
+
         }
     }
 
@@ -102,11 +103,11 @@ namespace phys
         UpdateAsNormal(MicroSecondsElapsed);
         if(GoalReached())
         {
+            Stop();
             if(Callback)
                 Callback->DoCallbackItems();
             if(ResetAtGoal)
                 Reset();
-            Stop();
         }
     }
 
