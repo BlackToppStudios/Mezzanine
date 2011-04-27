@@ -45,7 +45,23 @@
 namespace phys
 {
     class TimerManager;
-    class TimerCallback;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class TimerCallback
+    /// @headerfile timer.h
+    /// @brief A callback class for use automated and timed-event based timers.
+    ///////////////////////////////////////
+    class TimerCallback
+    {
+        protected:
+        public:
+            /// @brief Empty constructor
+            TimerCallback() {};
+            /// @brief Empty deconstructor
+            ~TimerCallback() {};
+            /// @brief The function called for this callback.
+            virtual void DoCallbackItems() = 0;
+    };
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Timer
     /// @headerfile timer.h
@@ -82,9 +98,13 @@ namespace phys
         public:
             /// @brief Standard Constructor.
             /// @param Style The styling/type of timer to be constructed.
-            Timer(const Timer::TimerStyle style) : Style(style), ResetAtGoal(false), Active(false) {};
+            Timer(const Timer::TimerStyle style) : Style(style), ResetAtGoal(false), Active(false), Callback(0) {};
             /// @brief Class Destructor.
-            ~Timer() {};
+            ~Timer()
+            {
+                if (Callback)
+                    { delete Callback; }
+            }
             /// @brief Sets the callback to be used with this timer.
             /// @details This function is called when a goal is reached on a Timer::StopWatch or a Timer::Alarm.
             /// @param Call The callback to be set.
@@ -100,21 +120,7 @@ namespace phys
             virtual Timer::TimerType GetType() { return Type; };
     };
 
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class TimerCallback
-    /// @headerfile timer.h
-    /// @brief A callback class for use automated and timed-event based timers.
-    /// @details
-    ///////////////////////////////////////
-    class TimerCallback
-    {
-        protected:
-        public:
-            TimerCallback() {};
-            ~TimerCallback() {};
-            /// @brief The function called for this callback.
-            virtual void DoCallbackItems() = 0;
-    };
+
 }
 
 #endif

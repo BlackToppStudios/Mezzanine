@@ -279,9 +279,8 @@ namespace phys
             {
                 LogNever = 0,               ///< Never log
                 LogOncePerFrame = 1,        ///< The Default, log each and every frame
-                LogOncePerXFrames = 2       ///< Log once per every Xth frame, X is the FrequencyCounter Value passed in with this
-                //LogOncePerSecond = 3,       ///< Log Once per second
-                //LogOncePerXSeconds = 4,     ///< Log once per every Xth second, X is the FrequencyCounter Value passed in with this
+                LogOncePerXFrames = 2,      ///< Log once per every Xth frame, X is the FrequencyCounter Value passed in with this
+                LogOncePerXSeconds = 3      ///< Log once per every Xth second, X is the FrequencyCounter Value passed in with this
             };
 
             /// @brief Set how often log message should be commited to disk (or network, or whatever).

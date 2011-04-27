@@ -48,30 +48,8 @@
 //for other code to interact with those libraries directly.
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
-#include "datatypes.h"
-#include "eventbase.h"
-#include "world.h"
-#include "vector3.h"
-#include "crossplatform.h"
-#include "graphicsmanager.h"
-#include "actorbase.h"
-#include "eventuserinput.h"
-#include "managerbase.h"
-#include "eventmanager.h"
-#include "cameramanager.h"
-#include "physicsmanager.h"
-#include "soundmanager.h"
-#include "resourcemanager.h"
-#include "scenemanager.h"
-#include "timermanager.h"
-#include "uimanager.h"
 
-#include "actorcontainervector.h"
-#include "ray.h"
-#include "actorrigid.h"
-#include "vector3wactor.h"
-#include "plane.h"
-#include "camera.h"
+#include "physgame.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -225,22 +203,34 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     // Logging
 
-    // anonymous namespace for function pointer for loggin commit
+    // anonymous namespace for function pointer for logging commit mess
     namespace
     {
-        // Used by some loggin functions, and interpretted differently by each
-        Whole FrequencyCounter__=0;
+        Whole FrequencyCounter__=0;     // Used by some loggin functions, and interpretted differently by each
+        SimpleTimer *LogTimer=0;
+
+        void SetupXSecondTimer();
 
         void Never()
             {}
 
         void EachFrame()
         {
+            #ifdef PHYSDEBUG
+            static Whole LogIteration = 0;
+            World::GetWorldPointer()->LogStream << "Logging - every frame, iteration: " << LogIteration;
+            ++LogIteration;
+            #endif
             World::GetWorldPointer()->DoMainLoopLogging();
         }
 
         void EachXFrame()
         {
+            #ifdef PHYSDEBUG
+            static Whole LogIteration = 0;
+            World::GetWorldPointer()->LogStream << "Logging - per X frames, iteration: " << LogIteration;
+            ++LogIteration;
+            #endif
             static Whole X=0;
             if (X>FrequencyCounter__)
             {
@@ -251,39 +241,66 @@ namespace phys
             }
         }
 
-        void EachSecond()
-        {
-            // Do Something with a timer
-            World::GetWorldPointer()->DoMainLoopLogging();
-        }
+        void EachXSeconds() //function still exists because we need it to identify what kind of logging frequency we are using.
+            { }
 
-        void EachXSeconds()
+        //helper functions and classes
+        class TimerLogInX : public TimerCallback
         {
-            //Each X seconds do something with a timer
-            World::GetWorldPointer()->DoMainLoopLogging();
+            virtual void DoCallbackItems()
+            {
+                #ifdef PHYSDEBUG
+                static Whole LogIteration = 0;
+                World::GetWorldPointer()->LogStream << "Logging - per X seconds, iteration: " << LogIteration;
+                ++LogIteration;
+                #endif
+                World::GetWorldPointer()->DoMainLoopLogging();
+                LogTimer->Reset();
+                LogTimer->Start();
+            }
+        };
+
+        void SetupXSecondTimer()
+        {
+            if (LogTimer)
+            {
+                World::GetWorldPointer()->GetTimerManager()->DestroyTimer(LogTimer);
+                LogTimer=0;
+            }
+            LogTimer = World::GetWorldPointer()->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
+            LogTimer->SetInitialTime(FrequencyCounter__ * 1000000);
+            LogTimer->SetGoalTime(0);
+            LogTimer->Reset();
+            //LogTimer->SetAutoReset(true);
+            LogTimer->Start();
+            LogTimer->SetCallback(new TimerLogInX);
         }
 
     }
 
     void World::SetLoggingFrequency(World::LoggingFrequency HowOften, Whole FrequencyCounter)
     {
+        if (LogTimer)
+        {
+            World::GetWorldPointer()->GetTimerManager()->DestroyTimer(LogTimer);
+            LogTimer=0;
+        }
         FrequencyCounter__=FrequencyCounter;
+
         switch (HowOften)
         {
+            case LogNever:
+                LogCommitFunc=&Never;
+                break;
             case LogOncePerFrame:
                 LogCommitFunc=&EachFrame;
                 break;
             case LogOncePerXFrames:
                 LogCommitFunc=&EachXFrame;
                 break;
-            /*case LogOncePerSecond:
-                LogCommitFunc=&EachSecond;
-                break;
             case LogOncePerXSeconds:
+                SetupXSecondTimer();
                 LogCommitFunc=&EachXSeconds;
-                break;*/
-            case LogNever:
-                LogCommitFunc=&Never;
                 break;
         }
     }
@@ -299,11 +316,8 @@ namespace phys
         if (&EachXFrame==LogCommitFunc)
             return LogOncePerXFrames;
 
-        /*if (&EachSecond==LogCommitFunc)
-            return LogOncePerSecond;
-
         if (&EachXSeconds==LogCommitFunc)
-            return LogOncePerXSeconds;*/
+            return LogOncePerXSeconds;
     }
 
 
