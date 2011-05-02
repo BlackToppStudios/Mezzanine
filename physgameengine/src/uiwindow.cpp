@@ -330,7 +330,7 @@ namespace phys
 
         bool Window::IsVisible()
         {
-            return Visible;
+            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
 
         void Window::Show()
@@ -488,9 +488,15 @@ namespace phys
         Button* Window::CreateButton(ConstString& Name, const Vector2 Position, const Vector2 Size)
         {
             Vector2 Offset = Position - RelPosition;
-            OffsetButtonInfo button(new Button(Name, Position, Size, Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-            Buttons.push_back(button);
-            return button.Object;
+            OffsetButtonInfo buttoninfo(new Button(Name, Position, Size, Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Buttons.push_back(buttoninfo);
+            if(Manager->ButtonAutoRegisterEnabled())
+            {
+                std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
+                for( Whole X = 0 ; X < Codes->size() ; X++ )
+                    buttoninfo.Object->RegisterActivationKeyOrButton(Codes->at(X));
+            }
+            return buttoninfo.Object;
         }
 
         TextButton* Window::CreateTextButton(ConstString& Name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString Text)
@@ -499,6 +505,12 @@ namespace phys
             TextButton* tbutton = new TextButton(Name, Position, Size, Glyph, Text, Parent);
             OffsetButtonInfo tbuttoninfo(tbutton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(tbuttoninfo);
+            if(Manager->ButtonAutoRegisterEnabled())
+            {
+                std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
+                for( Whole X = 0 ; X < Codes->size() ; X++ )
+                    tbutton->RegisterActivationKeyOrButton(Codes->at(X));
+            }
             return tbutton;
         }
 

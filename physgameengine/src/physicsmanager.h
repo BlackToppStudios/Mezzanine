@@ -202,7 +202,8 @@ namespace phys
             /// @brief Adds a constraint to the world.
             /// @details Adds the constraint to the world so that it can/will take effect.
             /// @param Constraint The constraint to be added.
-            void AddConstraint(TypedConstraint* Constraint);
+            /// @param DisableCollisions Sets whether or not the linked bodies collide with each other.
+            void AddConstraint(TypedConstraint* Constraint, bool DisableCollisions = false);
 
             /// @brief Removes a constraint from the world.
             /// @details Removes a constraint from the world so that it will have no effect.
@@ -213,13 +214,13 @@ namespace phys
             /// @details This function will take an actors physics shape and store it for re-use in other actors, in case a shape is able to be re-used by other actors.
             /// @param Actor The actor from which to store the shape.
             /// @param ShapeName The name you wish to assign to the shape being stored.
-            void StorePhysicsShape(ActorBase* Actor, String &ShapeName);
+            void StorePhysicsShape(ActorBase* Actor, const String& ShapeName);
 
             /// @brief Applies a previously stored shape.
             /// @details This function will take a stored shape and apply it to the actor provided.
             /// @param Actor The actor to which you want to apply the shape.
             /// @param ShapeName The name of the shape you wish to have applied to the actor.
-            void ApplyPhysicsShape(ActorBase* Actor, String &ShapeName);
+            void ApplyPhysicsShape(ActorBase* Actor, const String& ShapeName);
 
             /// @brief Adds an area effect to the world.
             /// @details Adds an area effect to the world so that it can/will take effect.

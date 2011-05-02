@@ -174,7 +174,7 @@ namespace phys
         }
     }
 
-    bool ActorBasePhysicsSettings::CheckActivation()
+    bool ActorBasePhysicsSettings::IsActive()
     {
         int Activation = ActorCO->getActivationState();
         if( ACTIVE_TAG == Activation )
@@ -183,6 +183,14 @@ namespace phys
         }else{
             return false;
         }
+    }
+
+    void ActorBasePhysicsSettings::SetActivationState(phys::ActorActivationState State, bool Force)
+    {
+        if(Force)
+            ActorCO->forceActivationState(State);
+        else
+            ActorCO->setActivationState(State);
     }
 
 

@@ -330,16 +330,6 @@ bool PostInput()
 //        TheWorld->GetEventManager()->EndRelativeMouseMode();
     }
 
-    /*Quaternion CamRot = TheWorld->GetCameraManager()->GetDefaultCamera()->GetOrientation();
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEUP))
-    {
-        CamRot.Y +=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot );
-    }
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEDOWN))
-    {
-        CamRot.Y -=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot );
-    }// */
-
     Vector2 Offset = InputQueryer->GetMousePrevFrameOffset();
     if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
@@ -470,7 +460,7 @@ bool PostInput()
                         {
                             Vector3 LocalPivot = ClickOnActor->Vector;
                             ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                            rigid->DisableDeactivation();
+                            rigid->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
                             //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                             Dragger = new Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
@@ -526,7 +516,7 @@ bool PostInput()
             TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
-            Act->RestoreActivation();
+            Act->GetPhysicsSettings()->SetActivationState(phys::AAS_Active);
         }
     }
     return true;

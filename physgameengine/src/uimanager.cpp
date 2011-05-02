@@ -46,6 +46,8 @@
 #include "world.h"
 #include "cameramanager.h"
 #include "graphicsmanager.h"
+#include "eventmanager.h"
+#include "eventuserinput.h"
 #include "viewport.h"
 #include "uiscreen.h"
 #include "uibutton.h"
@@ -59,7 +61,8 @@ namespace phys
     UIManager::UIManager()
         : HoveredButton(NULL),
           HoveredWidget(NULL),
-          WidgetFocus(NULL)
+          WidgetFocus(NULL),
+          ButtonAutoRegister(false)
     {
         Silver = new Gorilla::Silverback();
         Priority = -35;
@@ -77,6 +80,7 @@ namespace phys
         {
             if(HoveredButton->CheckMouseHover())
             {
+                MouseActivationCheck(HoveredButton);
                 return;
             }
         }
@@ -89,13 +93,36 @@ namespace phys
             }
         }
         HoveredButton = CheckButtonMouseIsOver();
-        if(!HoveredButton)
+        if(HoveredButton)
         {
+            MouseActivationCheck(HoveredButton);
+        }else{
             HoveredWidget = CheckWidgetMouseIsOver();
             if(HoveredWidget)
-            {
-                //HoveredButton = HoveredWidget->GetHoveredButton();
                 HoveredWidget->Update();
+        }
+    }
+
+    void UIManager::HotKeyChecks()
+    {
+        if(HotKeys.empty())
+            return;
+        std::list<EventUserInput*>* InputList = GameWorld->GetEventManager()->GetAllUserInputEvents();
+        MetaCode::InputCode CurrCode;
+        Whole X = 0;
+        for( std::list<EventUserInput*>::iterator Ilit = InputList->begin() ; Ilit != InputList->end() ; Ilit++, X++ )
+        {
+            CurrCode = (*Ilit)->GetMetaCode(X).GetCode();
+            if( MetaCode::KEY_FIRST < CurrCode && MetaCode::KEY_LAST > CurrCode )
+            {
+                std::pair<const std::multimap<MetaCode::InputCode,UI::Button*>::iterator,const std::multimap<MetaCode::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(CurrCode);
+                if( (*Result.first).first != CurrCode )
+                    continue;
+                for( std::multimap<MetaCode::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
+                {
+                    if((*It).second->IsVisible())
+                        (*It).second->SetActivation(true);
+                }
             }
         }
     }
@@ -123,6 +150,30 @@ namespace phys
         }
     }
 
+    void UIManager::ClearButtonActivations()
+    {
+        if(ActivatedButtons.empty())
+            return;
+        for(std::vector<UI::Button*>::iterator It = ActivatedButtons.begin() ; It != ActivatedButtons.end() ; It++ )
+            (*It)->SetActivation(false);
+        ActivatedButtons.clear();
+    }
+
+    void UIManager::MouseActivationCheck(UI::Button* ToCheck)
+    {
+        std::vector<MetaCode::InputCode>* MouseCodes = ToCheck->GetMouseActivationButtons();
+        MetaCode::InputCode Code;
+        for( Whole X = 0 ; X < MouseCodes->size() ; X++ )
+        {
+            Code = MouseCodes->at(X);
+            if(InputQueryTool::IsMouseButtonPushed(Code))
+            {
+                ToCheck->SetActivation(true);
+                ActivatedButtons.push_back(ToCheck);
+            }
+        }
+    }
+
     void UIManager::Initialize()
     {
     }
@@ -145,6 +196,72 @@ namespace phys
         {
             (*it)->GetGorillaScreen()->_redrawAllIndexes(Force);
         }
+    }
+
+    void UIManager::RegisterHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton)
+    {
+        if( MetaCode::KEY_FIRST < HotKey && MetaCode::KEY_LAST > HotKey )
+            HotKeys.insert(std::pair<MetaCode::InputCode,UI::Button*>(HotKey,BoundButton));
+    }
+
+    void UIManager::UnregisterHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton)
+    {
+        std::pair<const std::multimap<MetaCode::InputCode,UI::Button*>::iterator,const std::multimap<MetaCode::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(HotKey);
+        for( std::multimap<MetaCode::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
+        {
+            if(BoundButton == (*It).second)
+            {
+                HotKeys.erase(It);
+                return;
+            }
+        }
+    }
+
+    void UIManager::RemoveAllHotKeys()
+    {
+        HotKeys.clear();
+    }
+
+    void UIManager::EnableButtonAutoRegister(bool Enable)
+    {
+        ButtonAutoRegister = Enable;
+    }
+
+    bool UIManager::ButtonAutoRegisterEnabled()
+    {
+        return ButtonAutoRegister;
+    }
+
+    void UIManager::AddAutoRegisterCode(MetaCode::InputCode Code)
+    {
+        for( std::vector<MetaCode::InputCode>::iterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
+        {
+            if((*It)==Code)
+                return;
+        }
+        AutoRegisterCodes.push_back(Code);
+    }
+
+    void UIManager::RemoveAutoRegisterCode(MetaCode::InputCode Code)
+    {
+        for( std::vector<MetaCode::InputCode>::iterator It = AutoRegisterCodes.begin() ; It != AutoRegisterCodes.end() ; It++ )
+        {
+            if((*It)==Code)
+            {
+                AutoRegisterCodes.erase(It);
+                return;
+            }
+        }
+    }
+
+    void UIManager::RemoveAllAutoRegisterCodes()
+    {
+        AutoRegisterCodes.clear();
+    }
+
+    std::vector<MetaCode::InputCode>* UIManager::GetAutoRegisteredCodes()
+    {
+        return &AutoRegisterCodes;
     }
 
     UI::Button* UIManager::GetHoveredButton()

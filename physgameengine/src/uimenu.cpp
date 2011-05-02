@@ -44,6 +44,8 @@
 #include "uimenuwindow.h"
 
 #include "uimanager.h"
+#include "uilayer.h"
+#include "uiscreen.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -135,7 +137,7 @@ namespace phys
 
         bool Menu::IsVisible()
         {
-            return Visible;
+            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
 
         void Menu::Show()

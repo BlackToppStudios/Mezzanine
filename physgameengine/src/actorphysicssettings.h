@@ -41,6 +41,7 @@
 #define _actorphysicssettings_h
 
 #include "datatypes.h"
+#include "enumerations.h"
 
 class btCollisionObject;
 class btRigidBody;
@@ -58,7 +59,7 @@ namespace phys
     /// @details This class contains functions for the configuring of physics specific settings of an actor.
     /// This class can only configure the actors physics.  For configuring actor graphics, see ActorGraphicsSettings.
     ///////////////////////////////////////
-    class ActorBasePhysicsSettings
+    class PHYS_LIB ActorBasePhysicsSettings
     {
         protected:
             /// @internal
@@ -122,7 +123,12 @@ namespace phys
 
             /// @brief Checks if the object is active in the simulation.
             /// @return Returns true if the object is active, false if it's deactivated(at rest).
-            virtual bool CheckActivation();
+            virtual bool IsActive();
+
+            /// @brief Sets the activation state of the actor.
+            /// @param State The activation state to set for the actor.  See the ActorActivationState enum for more info.
+            /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the actor if this is set to false.
+            virtual void SetActivationState(phys::ActorActivationState State, bool Force = false);
     };//actorbasephysicssettings
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -132,7 +138,7 @@ namespace phys
     /// @details This class contains functions for the configuring of physics specific settings of an ActorRigid.
     /// This class can only configure the ActorRigids physics.  For configuring actor graphics, see ActorGraphicsSettings.
     ///////////////////////////////////////
-    class ActorRigidPhysicsSettings : public ActorBasePhysicsSettings
+    class PHYS_LIB ActorRigidPhysicsSettings : public ActorBasePhysicsSettings
     {
         protected:
             /// @internal
@@ -157,7 +163,7 @@ namespace phys
     /// @details This class contains functions for the configuring of physics specific settings of an ActorSoft.
     /// This class can only configure the ActorSofts physics.  For configuring actor graphics, see ActorGraphicsSettings.
     ///////////////////////////////////////
-    class ActorSoftPhysicsSettings : public ActorBasePhysicsSettings
+    class PHYS_LIB ActorSoftPhysicsSettings : public ActorBasePhysicsSettings
     {
         protected:
             /// @internal

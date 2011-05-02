@@ -41,6 +41,7 @@
 #define _uilayer_cpp
 
 #include "uilayer.h"
+#include "uimanager.h"
 #include "uitextbutton.h"
 #include "uirectangle.h"
 #include "uicaption.h"
@@ -128,9 +129,9 @@ namespace phys
             GorillaLayer->setVisible(Visable);
         }
 
-        bool Layer::GetVisible()
+        bool Layer::IsVisible()
         {
-            return GorillaLayer->isVisible();
+            return GorillaLayer->isVisible() && Parent->IsVisible();
         }
 
         void Layer::Show()
@@ -147,6 +148,12 @@ namespace phys
         {
             Button* button = new Button(Name, Position, Size, this);
             Buttons.push_back(button);
+            if(Manager->ButtonAutoRegisterEnabled())
+            {
+                std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
+                for( Whole X = 0 ; X < Codes->size() ; X++ )
+                    button->RegisterActivationKeyOrButton(Codes->at(X));
+            }
             return button;
         }
 
@@ -154,6 +161,12 @@ namespace phys
         {
             TextButton* tbutton = new TextButton(Name, Position, Size, Glyph, Text, this);
             Buttons.push_back(tbutton);
+            if(Manager->ButtonAutoRegisterEnabled())
+            {
+                std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
+                for( Whole X = 0 ; X < Codes->size() ; X++ )
+                    tbutton->RegisterActivationKeyOrButton(Codes->at(X));
+            }
             return tbutton;
         }
 
@@ -456,7 +469,7 @@ namespace phys
         {
             if(Buttons.empty())
                 return 0;
-            if(!GetVisible())
+            if(!IsVisible())
                 return 0;
             Button* button = NULL;
             for( std::vector<Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )

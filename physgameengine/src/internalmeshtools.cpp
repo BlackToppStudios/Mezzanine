@@ -325,18 +325,23 @@ namespace phys{
             Ogre::IndexData*  indexData = NULL;
             Ogre::VertexData* vertexData = NULL;
             bool use32bitindexes = false;
+            unsigned int currtriCount = 0;
             unsigned int triCount = 0;
             unsigned int vCount = 0;
             unsigned int iCount = 0;
             Whole VertPrevSize = 0;
             Whole IndiPrevSize = 0;
 
+            Whole* VertPerSubMesh = NULL;
+
             if(UseAllSubmeshes)
             {
+                VertPerSubMesh = new Whole[myMesh->getNumSubMeshes()];
                 for( Whole X = 0 ; X < myMesh->getNumSubMeshes() ; X++ )
                 {
                     vCount+=myMesh->getSubMesh(X)->vertexData->vertexCount;
                     iCount+=myMesh->getSubMesh(X)->indexData->indexCount;
+                    VertPerSubMesh[X] = myMesh->getSubMesh(X)->vertexData->vertexCount;
                 }
             }else{
                 vCount+=myMesh->getSubMesh(0)->vertexData->vertexCount;
@@ -358,6 +363,7 @@ namespace phys{
                 const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
                 Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
                 Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
+                currtriCount=indexData->indexCount/3;
                 triCount+=(indexData->indexCount/3);
 
                 unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
@@ -378,17 +384,27 @@ namespace phys{
 
                 if (use32bitindexes)
                 {
-                    for (size_t k = 0; k < triCount*3; ++k)
+                    for (size_t k = 0; k < currtriCount*3; ++k)
                     {
-                        indices[index_offset+IndiPrevSize] = pLong[k];
+                        if(SubMeshIndex > 0 && VertPerSubMesh)
+                            indices[index_offset+IndiPrevSize] = pLong[k] + VertPerSubMesh[SubMeshIndex];
+                        else
+                            indices[index_offset+IndiPrevSize] = pLong[k];
                         index_offset++;
                     }
                 }
                 else
                 {
-                    for (size_t k = 0; k < triCount*3; ++k)
+                    for (size_t k = 0; k < currtriCount*3; ++k)
                     {
-                        indices[index_offset+IndiPrevSize] = static_cast<unsigned long>(pShort[k]);
+                        if(SubMeshIndex > 0 && VertPerSubMesh)
+                        {
+                            indices[index_offset+IndiPrevSize] = (static_cast<unsigned long>(pShort[k])) + VertPerSubMesh[SubMeshIndex];
+                        }
+                        else
+                        {
+                            indices[index_offset+IndiPrevSize] = static_cast<unsigned long>(pShort[k]);
+                        }
                         index_offset++;
                     }
                 }

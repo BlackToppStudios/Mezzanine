@@ -44,6 +44,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "enumerations.h"
+#include "metacode.h"
 #include "vector2.h"
 
 namespace Gorilla
@@ -79,10 +80,14 @@ namespace phys
                 Gorilla::Sprite* UserSprite;
                 ButtonCallback* Callback;
                 bool MouseHover;
-                bool IsText;
+                bool Activated;
+                bool MultipleActivations;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 String Name;
+                std::vector<MetaCode::InputCode> KeyboardActivationKeys;
+                std::vector<MetaCode::InputCode> MouseActivationButtons;
+                void SetHovered(bool Hovered);
             public:
                 /// @brief Internal constructor
                 /// @param name The name of the button.
@@ -112,7 +117,40 @@ namespace phys
                 /// @details You can pass in a null pointer to disable a callback.
                 /// @param Call A pointer to the callback you wish to have set for this button.
                 virtual void SetButtonCallback(ButtonCallback* Call);
+                /// @brief Registers a keyboard key or mouse button that can activate this button.
+                /// @details In the case of a mouse button, the hover check has to return true to activate the button.
+                /// @param Code The input code to register that will trigger activation.
+                virtual void RegisterActivationKeyOrButton(const MetaCode::InputCode& Code);
+                /// @brief Removes a previously registered activation key or button.
+                /// @param Code The input code to remove.
+                virtual void UnregisterActivationKeyOrButton(const MetaCode::InputCode& Code);
+                /// @brief Clears all keyboard input codes from the list of activation keys.
+                virtual void RemoveAllKeyboardActivationKeys();
+                /// @brief Clears all mouse input codes from the list of activation buttons.
+                virtual void RemoveAllMouseActivationButtons();
+                /// @brief Clears all keyboard and mouse input codes from the list of activators.
+                virtual void RemoveAllActivationKeysAndButtons();
+                /// @brief Sets the button as activated, also calling any set callbacks.
+                /// @details This shouldn't be called on manually unless you know exactly what you are doing.
+                /// @param Activate The state of activation to be applied.
+                virtual void SetActivation(bool Activate);
+                /// @brief Gets whether or not this button is currently activated.
+                /// @details Button activations are cleared every frame by the UI manager.
+                /// @return Returns whether or not this button has been activated.
+                virtual bool IsActivated();
+                /// @brief Enables or disables whether or not the button should be allowed to activate multiple times per frame.
+                /// @details In most cases a button will only activate multiple times when using hotkeys, either when there are multiple
+                /// keys hotkeyed to the same button, or when the mouse button is pressed over a UI button while a hotkey for it is activated
+                /// in the same frame, or both.  If you only want a UI element being triggered once per frame at most, you want this disabled. @n
+                /// Default: false.
+                /// @param Enable Whether or not to enable this feature.
+                virtual void EnableMultipleActivations(bool Enable);
+                /// @brief Gets whether or not multiple activations per frame are enabled for this button.
+                /// @return Returns a bool indicating whether or not multiple activations are allowed for this button.
+                virtual bool IsMultipleActivationsEnabled();
                 /// @brief Determines whether the mouse is over this button.
+                /// @details While this can be called manually, it'll provide the same result if called more the once per frame.
+                /// Currently the UIManager calls this on it's own once per frame, so there isn't much point in calling this manually.
                 /// @return Returns a bool indicating whether the mouse is over this button.
                 virtual bool CheckMouseHover();
                 /// @brief Gets the stored value of whether or not the mouse is over the button.
@@ -171,6 +209,12 @@ namespace phys
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
                 virtual UI::RenderPriority GetRenderPriority();
+                /// @brief Gets a vector with all the keyboard input codes used to activate this button.
+                /// @return Returns a pointer to an std::vector containing all the keyboard keys that will activate this button.
+                virtual std::vector<MetaCode::InputCode>* GetKeyboardActivationKeys();
+                /// @brief Gets a vector with all the mouse input codes used to activate this button.
+                /// @return Returns a pointer to an std::vector containing all the mouse buttons that will activate this button.
+                virtual std::vector<MetaCode::InputCode>* GetMouseActivationButtons();
         };//button
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -182,13 +226,20 @@ namespace phys
         ///////////////////////////////////////
         class PHYS_LIB ButtonCallback
         {
+            protected:
+                Button* Caller;
             public:
-                ButtonCallback();
+                /// @brief Class constructor.
+                /// @param CallerButton The button to which this callback belongs.
+                ButtonCallback(Button* CallerButton);
+                /// @brief Class Destructor.
                 ~ButtonCallback();
-                /// @brief The function called for this callback.  This will be called every time the
-                /// button is checked for mouse hover.
-                virtual void DoCallbackItems() = 0;
-
+                /// @brief The hover function for this callback.  This will be called every time the
+                /// button is hovered over by the mouse.
+                virtual void DoHoverItems() = 0;
+                /// @brief The activation function for this callback.  This will be called every time the
+                /// button is activated by the mouse or keyboard.
+                virtual void DoActivateItems() = 0;
         };//buttoncallback
     }//UI
 }//phys

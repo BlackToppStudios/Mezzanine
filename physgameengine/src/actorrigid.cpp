@@ -305,17 +305,6 @@ namespace phys{
         return Grav;
     }
 
-    void ActorRigid::DisableDeactivation()
-    {
-        this->physrigidbody->setActivationState(DISABLE_DEACTIVATION);
-    }
-
-    void ActorRigid::RestoreActivation()
-    {
-        this->physrigidbody->forceActivationState(ACTIVE_TAG);
-		this->physrigidbody->setDeactivationTime( 0.f );
-    }
-
     btRigidBody* ActorRigid::GetBulletObject()
     {
         return physrigidbody;

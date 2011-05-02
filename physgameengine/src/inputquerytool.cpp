@@ -68,14 +68,16 @@ namespace phys
     Vector2 InputQueryTool::GetMousePrevFrameOffset()
         { return Vector2(CodeCache[MetaCode::MOUSEHORIZONTAL],CodeCache[MetaCode::MOUSEVERTICAL]); }
 
-    int InputQueryTool::GetRawMetaValue(MetaCode::InputCode AnyCode)
+    int InputQueryTool::GetRawMetaValue(const MetaCode::InputCode& AnyCode)
         { return CodeCache[AnyCode]; }
 
     bool InputQueryTool::IsMouseButtonPushed(short unsigned int MouseButton)
         { return MetaCode::BUTTON_UP < CodeCache[MetaCode::GetMouseButtonCode(MouseButton)]; }
+    bool InputQueryTool::IsMouseButtonPushed(const MetaCode::InputCode& MouseButton)
+        { return MetaCode::BUTTON_UP < CodeCache[MouseButton]; }
     bool InputQueryTool::IsJoystickButtonPushed(short unsigned int JoyStickButton)
         { return MetaCode::BUTTON_UP < CodeCache[MetaCode::GetJoystickButtonCode(JoyStickButton)]; }
-    bool InputQueryTool::IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton)
+    bool InputQueryTool::IsKeyboardButtonPushed(const MetaCode::InputCode& KeyboardButton)
         { return MetaCode::BUTTON_UP < CodeCache[KeyboardButton]; }
 
     bool InputQueryTool::IsJoystickHatPushedInDirection(MetaCode::DirectionalMotionState WhichWay, bool IsVertical)
@@ -90,7 +92,7 @@ namespace phys
 
     MetaCode::ButtonState InputQueryTool::GetMouseButtonState(short unsigned int MouseButton)
         { return (MetaCode::ButtonState)CodeCache[MetaCode::GetMouseButtonCode(MouseButton)]; }
-    MetaCode::ButtonState InputQueryTool::GetKeyboardButtonState(MetaCode::InputCode KeyboardButton)
+    MetaCode::ButtonState InputQueryTool::GetKeyboardButtonState(const MetaCode::InputCode& KeyboardButton)
         { return (MetaCode::ButtonState)CodeCache[KeyboardButton]; }
 
     MetaCode::DirectionalMotionState InputQueryTool::GetMouseWheelState()

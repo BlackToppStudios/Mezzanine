@@ -79,6 +79,9 @@ namespace phys
                 virtual void Show();
                 /// @brief Forces this button to hide.
                 virtual void Hide();
+                /// @brief Gets whether this is a text button.
+                /// @return Returns a bool representing whether or not this is a text button.
+                virtual bool IsTextButton();
                 /// @brief Sets the text displayed within the button.
                 /// @param Text The text to be displayed.
                 virtual void SetText(ConstString& Text);

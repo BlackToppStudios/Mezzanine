@@ -104,7 +104,7 @@ namespace phys
             /// @brief Get an unfiltered uninterpretted version of the value for an user input
             /// @param AnyCode The InputCode to retrieve the value for
             /// @return An int which may or may not correspond to a ButtonState, MouseWheelState, or some other Value.
-            static int GetRawMetaValue(MetaCode::InputCode AnyCode);
+            static int GetRawMetaValue(const MetaCode::InputCode& AnyCode);
 
             /// @brief Returns whether a specific Mouse button is pushed
             /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
@@ -112,6 +112,13 @@ namespace phys
             /// @param MouseButton This is the mouse button that is being checked
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
             static bool IsMouseButtonPushed(short unsigned int MouseButton);
+
+            /// @brief Returns whether a specific Mouse button is pushed
+            /// @details This runs in constant time and returns a true is the requested mouse button is pressed. Buttons that are being pressed
+            /// are considered pressed, and buttons that are being lifted are considered unpressed.
+            /// @param MouseButton This is the mouse button that is being checked
+            /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
+            static bool IsMouseButtonPushed(const MetaCode::InputCode& MouseButton);
 
             /// @brief Returns whether a specific Joystick button is pushed
             /// @details This runs in constant time and returns a true is the requested Joystick button is pressed. Buttons that are being pressed
@@ -128,7 +135,7 @@ namespace phys
             /// are considered pressed, and buttons that are being lifted are considered unpressed.
             /// @param KeyboardButton This is the button that is being checked.
             /// @return This returns a bool which is set to true if the requested button is pressed or held down, and false otherwise.
-            static bool IsKeyboardButtonPushed(MetaCode::InputCode KeyboardButton);
+            static bool IsKeyboardButtonPushed(const MetaCode::InputCode& KeyboardButton);
 
             /// @brief Gets the button state of the provided mouse button ID.
             /// @param MouseButton The mouse button ID(up to 16) you wish to query.
@@ -140,7 +147,7 @@ namespace phys
             /// @brief Gets the button state of the provided keyboard button ID.
             /// @param KeyboardButton The Input code for the keyboard button you wish to query.
             /// @return Returns a button state enum representing the button state.
-            static MetaCode::ButtonState GetKeyboardButtonState(MetaCode::InputCode KeyboardButton);
+            static MetaCode::ButtonState GetKeyboardButtonState(const MetaCode::InputCode& KeyboardButton);
 
             /// @brief Gets the current status of the mouse wheel.
             /// @return Returns an enum value representing the current state of the mouse wheel.

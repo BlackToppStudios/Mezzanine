@@ -224,7 +224,7 @@ namespace phys
     //appends to the gamelog which is managed by Ogre
     void World::LogString(const String& Message)
     {
-        static std::stringstream* Audiolog = 0;/*
+        static std::stringstream* Audiolog = 0;
         if (0 == Audiolog)
         {
             Audiolog = this->GetSoundManager()->GetLogs();
@@ -240,7 +240,7 @@ namespace phys
         }
 
         if(Message.size()>0)
-            { Ogre::LogManager::getSingleton().logMessage(Message); }*/
+            { Ogre::LogManager::getSingleton().logMessage(Message); }//*/
 
     }
 

@@ -257,8 +257,8 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     /// @class HingeConstraint
     /// @headerfile constraint.h
-    /// @brief
-    /// @details
+    /// @brief This is a constraint to be used to restrict the movement between two objects to angular rotation on a single axis.
+    /// @details As the name suggests, this constraint essentially works like a door Hinge.
     ///////////////////////////////////////
     class PHYS_LIB HingeConstraint : public TypedConstraint
     {
@@ -267,17 +267,29 @@ namespace phys
             btHingeConstraint* Hinge;
         public:
             /// @brief
-            /// @param AxisInA The orientation for the axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
-            /// @param AxisInB The orientation for the axis(for ActorB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param ActorA The first actor to apply this constraint to.
+            /// @param ActorB The second actor to apply this constraint to.
+            /// @param PivotInA
+            /// @param PivotInB
+            /// @param AxisInA The axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
+            /// @param AxisInB The axis(for ActorB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
             /// This simply controls whether or not it should use ActorA's local space instead.
             HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, bool UseReferenceA=false);
-            /// @brief
+            /// @brief Creates a Hinge constraint that will attach an actor to a point in world space.
+            /// @param ActorA The actor to apply this constraint to.
+            /// @param PivotInA The point in the object's(ActorA) local space where the constraint is to be attached to world space.
             /// @param AxisInA The axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
             /// This simply controls whether or not it should use ActorA's local space instead.
             HingeConstraint(ActorRigid* ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA=false);
             /// @brief
+            /// @param ActorA The first actor to apply this constraint to.
+            /// @param ActorB The second actor to apply this constraint to.
+            /// @param VectorA
+            /// @param VectorB
+            /// @param QuaternionA
+            /// @param QuaternionB
             /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
             /// This simply controls whether or not it should use ActorA's local space instead.
             HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false);
@@ -291,12 +303,22 @@ namespace phys
             void SetAPivotLocation(Vector3 Location);
             void SetBPivotLocation(Vector3 Location);
             void SetAngularOnly(bool AngularOnly);
+            /// @brief Enables(or Disables) the motor on the hinge and sets it's parameters.
+            /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
+            /// @param TargetVelocity The desired velocity of rotation the motor will have.  This may or may not be achieved based on obstructions in the simulation.
+            /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
             void EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
+            /// @brief Enables(or Disables) the motor on the hinge.
+            /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
             void EnableMotor(bool EnableMotor);
+            /// @brief Sets the maximum amount of force the motor is to apply.
+            /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
             void SetMaxMotorImpulse(Real MaxMotorImpulse);
             void SetMotorTarget(Quaternion QuatAInB, Real Dt);
             void SetMotorTarget(Real TargetAngle, Real Dt);
             void SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
+            /// @brief Sets the axis on which this constraint acts.
+            /// @param AxisInA A vector3 representing the axis to be used with this constraint.
             void SetAxis(Vector3 AxisInA);
             void SetUseFrameOffset(bool FrameOffset);
             /// @brief Provides override of constraint parameters.
