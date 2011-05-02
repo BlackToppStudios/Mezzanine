@@ -64,7 +64,8 @@ class ParticleEffectTests : public UnitTest
 
                 try
                 {
-                    StartEngine("ParticleEffect Tests");
+                    StartEngine();
+                    TheMessage="ParticleEffect Tests";
                     WorldNode* Test0 = TheWorld->GetSceneManager()->CreateFreeNode("Alpha", Vector3(0,0,0),Vector3(10,0,0));
                     ParticleEffect* Test1 = TheWorld->GetSceneManager()->CreateParticleEffect("Beta", "Examples/GreenyNimbus");
 

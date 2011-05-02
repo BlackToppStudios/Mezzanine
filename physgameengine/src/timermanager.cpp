@@ -56,9 +56,7 @@ namespace phys
     TimerManager::~TimerManager()
     {
         for( Whole x = 0 ; x < Timers.size() ; x++ )
-        {
-            delete Timers[x];
-        }
+            { delete Timers[x]; }
         Timers.clear();
         delete MasterTimer;
     }

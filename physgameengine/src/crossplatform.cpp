@@ -150,12 +150,18 @@ namespace phys
         {
             World* TheWorld = World::GetWorldPointer();
             GraphicsManager* Graphics = TheWorld->GetGraphicsManager();
+            #ifdef PHYSDEBUG
             TheWorld->Log("Rendering the World.");
+            #endif
             #ifndef WINDOWS
                 Ogre::Root::getSingleton()._fireFrameStarted();
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
                 for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
+                {
                     Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(true);
+                }
+                for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
+                    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
                 Ogre::Root::getSingleton()._fireFrameEnded();
             #else
                 Ogre::Root::getSingleton().renderOneFrame();
@@ -164,7 +170,10 @@ namespace phys
             #endif
             if( !Graphics->GetPrimaryGameWindow()->GetOgreWindowPointer()->isVisible() )
                     Ogre::Root::getSingleton().clearEventTimes();
+
+            #ifdef PHYSDEBUG
             TheWorld->Log("Finished Rendering");
+            #endif
         }
 
         String GetPlatform()

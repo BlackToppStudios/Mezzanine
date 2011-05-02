@@ -48,30 +48,8 @@
 //for other code to interact with those libraries directly.
 ///////////////////////////////////////////////////////////////////////////////
 //Includes
-#include "datatypes.h"
-#include "eventbase.h"
-#include "world.h"
-#include "vector3.h"
-#include "crossplatform.h"
-#include "graphicsmanager.h"
-#include "actorbase.h"
-#include "eventuserinput.h"
-#include "managerbase.h"
-#include "eventmanager.h"
-#include "cameramanager.h"
-#include "physicsmanager.h"
-#include "soundmanager.h"
-#include "resourcemanager.h"
-#include "scenemanager.h"
-#include "timermanager.h"
-#include "uimanager.h"
 
-#include "actorcontainervector.h"
-#include "ray.h"
-#include "actorrigid.h"
-#include "vector3wactor.h"
-#include "plane.h"
-#include "camera.h"
+#include "physgame.h"
 
 #include <SDL.h>
 #include <Ogre.h>
@@ -145,6 +123,8 @@ namespace phys
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
+
+        this->SetLoggingFrequency(LogOncePerFrame);
 
         Ogre::Root* OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName);
         World::TheRealWorld = this;
@@ -221,27 +201,133 @@ namespace phys
     }
 
     ///////////////////////////////////////////////////////////////////////////////
-    //appends to the gamelog which is managed by Ogre
+    // Logging
+
+    // anonymous namespace for function pointer for logging commit mess
+    namespace
+    {
+        Whole FrequencyCounter__=0;     // Used by some loggin functions, and interpretted differently by each
+        SimpleTimer *LogTimer=0;
+
+        void SetupXSecondTimer();
+
+        void Never()
+            {}
+
+        void EachFrame()
+        {
+            #ifdef PHYSDEBUG
+            static Whole LogIteration = 0;
+            World::GetWorldPointer()->LogStream << "Logging - every frame, iteration: " << LogIteration;
+            ++LogIteration;
+            #endif
+            World::GetWorldPointer()->DoMainLoopLogging();
+        }
+
+        void EachXFrame()
+        {
+            #ifdef PHYSDEBUG
+            static Whole LogIteration = 0;
+            World::GetWorldPointer()->LogStream << "Logging - per X frames, iteration: " << LogIteration;
+            ++LogIteration;
+            #endif
+            static Whole X=0;
+            if (X>FrequencyCounter__)
+            {
+                World::GetWorldPointer()->DoMainLoopLogging();
+                X=0;
+            }else{
+                ++X;
+            }
+        }
+
+        void EachXSeconds() //function still exists because we need it to identify what kind of logging frequency we are using.
+            { }
+
+        //helper functions and classes
+        class TimerLogInX : public TimerCallback
+        {
+            virtual void DoCallbackItems()
+            {
+                #ifdef PHYSDEBUG
+                static Whole LogIteration = 0;
+                World::GetWorldPointer()->LogStream << "Logging - per X seconds, iteration: " << LogIteration;
+                ++LogIteration;
+                #endif
+                World::GetWorldPointer()->DoMainLoopLogging();
+                LogTimer->Reset();
+                LogTimer->Start();
+            }
+        };
+
+        void SetupXSecondTimer()
+        {
+            if (LogTimer)
+            {
+                World::GetWorldPointer()->GetTimerManager()->DestroyTimer(LogTimer);
+                LogTimer=0;
+            }
+            LogTimer = World::GetWorldPointer()->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
+            LogTimer->SetInitialTime(FrequencyCounter__ * 1000000);
+            LogTimer->SetGoalTime(0);
+            LogTimer->Reset();
+            //LogTimer->SetAutoReset(true);
+            LogTimer->Start();
+            LogTimer->SetCallback(new TimerLogInX);
+        }
+
+    }
+
+    void World::SetLoggingFrequency(World::LoggingFrequency HowOften, Whole FrequencyCounter)
+    {
+        if (LogTimer)
+        {
+            World::GetWorldPointer()->GetTimerManager()->DestroyTimer(LogTimer);
+            LogTimer=0;
+        }
+        FrequencyCounter__=FrequencyCounter;
+
+        switch (HowOften)
+        {
+            case LogNever:
+                LogCommitFunc=&Never;
+                break;
+            case LogOncePerFrame:
+                LogCommitFunc=&EachFrame;
+                break;
+            case LogOncePerXFrames:
+                LogCommitFunc=&EachXFrame;
+                break;
+            case LogOncePerXSeconds:
+                SetupXSecondTimer();
+                LogCommitFunc=&EachXSeconds;
+                break;
+        }
+    }
+
+    World::LoggingFrequency World::GetLoggingFrequency()
+    {
+        if (&Never==LogCommitFunc)
+            return LogNever;
+
+        if (&EachFrame==LogCommitFunc)
+            return LogOncePerFrame;
+
+        if (&EachXFrame==LogCommitFunc)
+            return LogOncePerXFrames;
+
+        if (&EachXSeconds==LogCommitFunc)
+            return LogOncePerXSeconds;
+    }
+
+
     void World::LogString(const String& Message)
     {
-        static std::stringstream* Audiolog = 0;
-        if (0 == Audiolog)
-        {
-            Audiolog = this->GetSoundManager()->GetLogs();
-        }else{
-            Ogre::LogManager::getSingleton().logMessage(Audiolog->str());
-            Audiolog->str("");
-        }
-
-        if( this->LogStream.str().size() > 0 )
-        {
-            Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
-            this->LogStream.str("");
-        }
-
+        // if it is in the Audiologs then it has already happened so it needs to be logged first
+        if (this->GetSoundManager()->GetLogs())
+            { this->LogStream << this->GetSoundManager()->GetLogs()->str(); }
         if(Message.size()>0)
-            { Ogre::LogManager::getSingleton().logMessage(Message); }//*/
-
+            { this->LogStream << endl << Message; }
     }
 
     void World::Log()
@@ -326,12 +412,15 @@ namespace phys
         {
             for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
             {
-                //#ifdef PHYSDEBUG
-                this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " ";
-                this->Log( (*Iter)->GetPriority() );
-                LoopTimer->reset();
-                //#endif
+                #ifdef PHYSDEBUG
+                this->LogStream << "Current Manager: " << (*Iter)->GetTypeName() << " - Priority: " << (*Iter)->GetPriority();
+                #endif
 
+                #ifdef PHYSPROFILE
+                LoopTimer->reset();
+                #endif
+
+                //Actual main loop work
                 if( !(*Iter)->PreMainLoopItems() )
                     { DoNotBreak=false; }
 
@@ -340,9 +429,12 @@ namespace phys
                 if( !(*Iter)->PostMainLoopItems() )
                     { DoNotBreak=false; }
 
+                #ifdef PHYSPROFILE
                 this->LogStream << (*Iter)->GetTypeName() << " took " << LoopTimer->getMicroseconds() << " microseconds.";
                 this->Log();
-                this->DoMainLoopLogging();
+                #endif
+
+                LogCommitFunc();
             }
 
         }//End of main loop
@@ -352,10 +444,13 @@ namespace phys
         //this->DestroyRenderWindow();
     }
 
-    void  World::DoMainLoopLogging()
+    void World::DoMainLoopLogging()
     {
-        this->Log(this->LogStream.str());
-        this->LogStream.str("");
+        if( this->LogStream.str().size() > 0 )
+        {
+            Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
+            this->LogStream.str("");
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////

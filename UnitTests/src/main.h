@@ -301,13 +301,17 @@ int Usage(phys::String ThisName)
 using namespace phys;
 
 World *TheWorld;
-phys::UI::Caption *TheText;
+phys::UI::Caption *TheTextW1;
+phys::UI::Caption *TheTextB1;
+phys::UI::Caption *TheTextW2;
+phys::UI::Caption *TheTextB2;
 String TheMessage;
+String TheMessage2;
 SimpleTimer *ThisTimer;
+TestResult AnswerToQuestion = Unknown;
 
-void StartEngine(String Message)
+void StartEngine()
 {
-    TheMessage=Message;
     TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), SceneManager::Generic, 30);
     TheWorld->GameInit(false);
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", "files", false);
@@ -316,14 +320,29 @@ void StartEngine(String Message)
     TheWorld->GetResourceManager()->InitResourceGroup("files");
     phys::UIScreen *TheScreen = TheWorld->GetUIManager()->CreateScreen("Screen","dejavu",TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0));
     phys::UILayer *TheLayer = TheScreen->CreateLayer("Layer",0);
-    TheText = TheLayer->CreateCaption(ConstString("TheText"),Vector2(0,0),Vector2(1,1),24, Message);
-    TheText->SetTextColour(ColourValue::GetWhite());
-    TheText->SetBackgroundColour(ColourValue::GetBlank());
+
+    TheTextB1 = TheLayer->CreateCaption(ConstString("TheTextB1"),Vector2(0.0016,0.603),Vector2(1,0.25),24, TheMessage);
+    TheTextB1->SetTextColour(ColourValue::GetBlack());
+    TheTextB1->SetBackgroundColour(ColourValue::GetBlank());
+    TheTextW1 = TheLayer->CreateCaption(ConstString("TheTextW1"),Vector2(0,0.6),Vector2(1,0.25),24, TheMessage);
+    TheTextW1->SetTextColour(ColourValue::GetWhite());
+    TheTextW1->SetBackgroundColour(ColourValue::GetBlank());
+
+    TheTextB2 = TheLayer->CreateCaption(ConstString("TheTextB2"),Vector2(0.0016,0.753),Vector2(1.0,0.25),24, TheMessage2);
+    TheTextB2->SetTextColour(ColourValue::GetBlack());
+    TheTextB2->SetBackgroundColour(ColourValue::GetBlank());
+    TheTextW2 = TheLayer->CreateCaption(ConstString("TheTextW2"),Vector2(0,0.75),Vector2(1.0,0.25),24, TheMessage2);
+    TheTextW2->SetTextColour(ColourValue::GetWhite());
+    TheTextW2->SetBackgroundColour(ColourValue::GetBlank());
+
 }
 
-void UpdateMessage()
+void UpdateMessage( String Message, String Message2)
 {
-    TheText->SetText( StringCat(TheMessage," - ", ToString(int(ThisTimer->GetCurrentTime()/1000000))  ));
+    TheTextB1->SetText( Message );
+    TheTextW1->SetText( Message );
+    TheTextB2->SetText( Message2 );
+    TheTextW2->SetText( Message2 );
     //TheText->SetText( StringCat(TheMessage," - ", ToString(ThisTimer->GetCurrentTime())  ));
 }
 
@@ -332,7 +351,7 @@ bool PostTimerEnd()
     { return false; }
 
 bool PostTimerUpdate()
-    { UpdateMessage(); return true; }
+    { UpdateMessage(TheMessage,ToString(int(ThisTimer->GetCurrentTime()/1000000))); return true; }
 
 class TimerEnding : public TimerCallback
 {
@@ -348,6 +367,46 @@ void StopEngine()
     crossplatform::WaitMilliseconds(1000); // Ogre spawns some stuff in a seperate thread this is more then enough time for it to finish
 }
 
+bool PostInputCheck()
+{
+    UpdateMessage(TheMessage,TheMessage2);
+    AnswerToQuestion=Unknown;
+    EventUserInput *ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+    while (ThisInput) //for each userinput event
+    {
+        for (Whole c=0; c<ThisInput->GetMetaCodeCount(); ++c ) //for each metacode in each userinput
+        {
+            MetaCode::InputCode ThisCode = ThisInput->GetMetaCode(c).GetCode();
+            switch(ThisCode)
+            {
+                case MetaCode::KEY_T: case MetaCode::KEY_Y:
+                    AnswerToQuestion = Success;
+                    break;
+                case MetaCode::KEY_F: case MetaCode::KEY_N:
+                    AnswerToQuestion = Failed;
+                    break;
+                case MetaCode::KEY_C:
+                    AnswerToQuestion = Cancelled;
+                    break;
+                case MetaCode::KEY_U: case MetaCode::KEY_I:
+                    AnswerToQuestion = Inconclusive;
+                    break;
+                default:
+                    AnswerToQuestion = Unknown;
+                    break;
+            }
+        }
+        delete ThisInput;
+        ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
+    }
+
+    if (Unknown==AnswerToQuestion)
+        { return true; }
+    else
+        { return false; }
+}
+
+// Use this to start a countdown in the interactive test
 void StartCountdown(Whole Seconds)
 {
     ThisTimer = World::GetWorldPointer()->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
@@ -360,5 +419,11 @@ void StartCountdown(Whole Seconds)
     TheWorld->GetTimerManager()->SetPostMainLoopItems(&PostTimerUpdate);
 }
 
+void GetAnswer()
+{
+    TheMessage2 = "T/Y:Yes  F/N:No  C:Cancel  U/I:Inconclusive";
+    UpdateMessage(TheMessage, TheMessage2);
+    World::GetWorldPointer()->GetEventManager()->SetPostMainLoopItems(&PostInputCheck);
+}
 
 #endif

@@ -71,7 +71,8 @@ class EventManagerTests : public UnitTest
             {
 
                 //Key ordering Test
-                StartEngine("Please Press a Button.");
+                StartEngine();
+                TheMessage = "Please Press Some Buttons.";
                 StartCountdown(15);
                 TheWorld->GetEventManager()->SetPostMainLoopItems(&PostInputTestNull);
                 TheWorld->MainLoop();
@@ -120,7 +121,7 @@ class EventManagerTests : public UnitTest
                             }
                         }
                     }
-
+                    delete ThisInput;
                     ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
                 }
 

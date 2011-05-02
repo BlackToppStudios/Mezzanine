@@ -211,6 +211,9 @@ namespace phys
             /// @brief This is a listing of the priority and the Manager, and a pointer to the manager.
             std::list< ManagerBase* > ManagerList;
 
+            // A pointer to the function that actually commits log messages.
+            void (*LogCommitFunc)();
+
         protected:
             /// @internal
             /// @brief A pointer to the one and only world
@@ -270,10 +273,34 @@ namespace phys
         ///////////////////////////////////////////////////////////////////////////////
         // Logging
         ///////////////////////////////////////
+
+            /// @brief Used to indicate the frequency of logging.
+            enum LoggingFrequency
+            {
+                LogNever = 0,               ///< Never log
+                LogOncePerFrame = 1,        ///< The Default, log each and every frame
+                LogOncePerXFrames = 2,      ///< Log once per every Xth frame, X is the FrequencyCounter Value passed in with this
+                LogOncePerXSeconds = 3      ///< Log once per every Xth second, X is the FrequencyCounter Value passed in with this
+            };
+
+            /// @brief Set how often log message should be commited to disk (or network, or whatever).
+            /// @param HowOften The actual setting for how often.
+            /// @param FrequencyCounter For settings that use X this is X, this defaults to 5
+            /// @details By default this is set to LogOncePerFrame. \n \n
+            /// There are a series of functions internally that represent each of the LoggingFrequency values. When
+            /// You pass in one of these values you are setting which of these functions will be called. This way the
+            /// only cost that is guaranteed to be incurred is the dereferencing of a function pointer (constant time).
+            /// Additionally the members of the enum are sorted by the amount of time they are expected to take to run,
+            /// of course your performance will vary, the best way to know how it will perform is to test.
+            void SetLoggingFrequency(LoggingFrequency HowOften, Whole FrequencyCounter = 5);
+
+            /// @brief Returns the frequency of logging commits
+            /// @return A World::LoggingFrequency containing the requested information.
+            LoggingFrequency GetLoggingFrequency();
+
             /// @brief Runtime event and message logging.
             /// @param Message This is what will be streamed to the log
-            /// @details This also commits any outstanding log messages that are waiting in the World::LogStream, and any outstanding
-            /// Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the
+            /// @details This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the
             /// Only ones to produce meaningul log messages.
             template <class T> void Log(const T& Message)
                 { this->LogString(ToString(Message)); }
@@ -282,7 +309,7 @@ namespace phys
             void Log();
 
             /// @brief This is another way to put data in the log.
-            /// @details The contents of this will be commited to the log once per frame, just before rendering, or whenever World::Log is called.
+            /// @details The contents of this will be commited to the log as per the logging frequency.
             /// Because the entry of this data into the actual log file(or whatever destination) is delayed, do not use this for data that is likely
             /// to be required to debug something the frame something crashes. However, for other kinds of debugging data and creating in game logs
             /// and gameworld recreations.
@@ -362,7 +389,7 @@ namespace phys
             void MainLoop();
 
             /// @brief This commits the log stream to the log
-            /// @details This is called automatically during the main loop just before rendering.
+            /// @details This is called automatically at the end of each main loop iteration. You only need to call it if you are using your own main loop.
             void DoMainLoopLogging();
 
         ///////////////////////////////////////////////////////////////////////////////
