@@ -72,9 +72,14 @@ namespace phys
             SceneManager* Manager;
 
             /// @internal
+            /// @brief Stores the template, primarily for serializatino
+            String Template;
+
+            /// @internal
             /// @brief Functionally, this constructs the whole ParticleEffect
             ParticleEffectInternalData(SceneManager* manager, Ogre::ParticleSystem* System)
             {
+                Template = "";
                 OgreParticle=System;
                 this->Manager = manager;
                 Ogre::SceneManager* OgreManager = Manager->GetGraphicsWorldPointer();
@@ -96,7 +101,10 @@ namespace phys
     /// Construction
 
     ParticleEffect::ParticleEffect(const String& Name, const String& Template, SceneManager* manager)
-        { this->Pie = new internal::ParticleEffectInternalData(manager, manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template)); }
+    {
+        this->Pie = new internal::ParticleEffectInternalData(manager, manager->GetGraphicsWorldPointer()->createParticleSystem(Name, Template));
+        this->Pie->Template = Template;
+    }
 
     ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, SceneManager* manager)
         { this->Pie = new internal::ParticleEffectInternalData(manager, System); }
@@ -156,6 +164,8 @@ namespace phys
     Quaternion ParticleEffect::GetOrientation() const
         { return Quaternion(this->Pie->OgreNode->getOrientation()); }
 
+    ConstString& ParticleEffect::GetTemplate() const
+        { return this->Pie->Template; }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -166,6 +176,7 @@ std::ostream& operator << (std::ostream& stream, const phys::ParticleEffect& Ev)
     stream      << "<ParticleEffect Version=\"1\" Name=\"" << Ev.GetName()
                     << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
                     << "\" Enabled=\"" << Ev.IsEnabled()
+                    << "\" Template=\"" << Ev.GetTemplate()
                 << "\">"
                 << "<Orientation>" << Ev.GetOrientation() << "</Orientation>"
                 << "<Location>" << Ev.GetLocation() << "</Location>"

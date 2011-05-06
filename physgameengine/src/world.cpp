@@ -320,6 +320,8 @@ namespace phys
             return LogOncePerXSeconds;
     }
 
+    void World::CommitLog()
+        { this->DoMainLoopLogging(); }
 
     void World::LogString(const String& Message)
     {

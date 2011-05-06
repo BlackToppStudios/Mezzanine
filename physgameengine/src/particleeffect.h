@@ -88,6 +88,7 @@ namespace phys
             /// @param manager Pointer to the manager that this particle effect is to be used in.
             ParticleEffect(const String& Name, const String& Template, SceneManager* manager);
 
+            /// @internal
             /// @brief Internal constructor.
             /// @details This constructor should not be called on manually.
             /// @param System Pointer to the Ogre ParticleSystem this class is based on.
@@ -142,6 +143,9 @@ namespace phys
             /// @return Returns a normalized quaternion representing the orientation of this node.
             Quaternion GetOrientation() const;
 
+            /// @brief The name of the template used to create this.
+            /// @return A reaference to a ConstString that has the name.
+            ConstString& GetTemplate() const;
     };
 }
 

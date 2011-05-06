@@ -318,8 +318,8 @@ void StartEngine()
     TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("EventManager Test");
     TheWorld->GetUIManager()->LoadGorilla("dejavu");
     TheWorld->GetResourceManager()->InitResourceGroup("files");
-    phys::UIScreen *TheScreen = TheWorld->GetUIManager()->CreateScreen("Screen","dejavu",TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0));
-    phys::UILayer *TheLayer = TheScreen->CreateLayer("Layer",0);
+    phys::UI::Screen *TheScreen = TheWorld->GetUIManager()->CreateScreen("Screen","dejavu",TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0));
+    phys::UI::Layer *TheLayer = TheScreen->CreateLayer("Layer",0);
 
     TheTextB1 = TheLayer->CreateCaption(ConstString("TheTextB1"),Vector2(0.0016,0.603),Vector2(1,0.25),24, TheMessage);
     TheTextB1->SetTextColour(ColourValue::GetBlack());

@@ -222,7 +222,8 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::WorldNode& Ev)
 {
     stream      << "<WorldNode Version=\"1\" Name=\"" << Ev.GetName()
-                    << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
+                << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
+                << "\" StandingType=\"" << Ev.GetType()
                 << "\">";
 
                 for(phys::WorldNode::const_iterator Iter = Ev.begin(); Iter!=Ev.end(); ++Iter)
