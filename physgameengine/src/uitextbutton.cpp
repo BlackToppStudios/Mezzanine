@@ -53,7 +53,6 @@ namespace phys
         TextButton::TextButton(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, Layer* PLayer)
             : Button(name,Position,Size,PLayer)
         {
-            IsText = true;
             GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text);
             GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
             GorillaButton->background(Ogre::ColourValue(0,0,0,0));
@@ -87,6 +86,11 @@ namespace phys
         {
             GorillaRectangle->Hide();
             GorillaButton->Hide();
+        }
+
+        bool TextButton::IsTextButton()
+        {
+            return true;
         }
 
         void TextButton::SetText(ConstString& Text)

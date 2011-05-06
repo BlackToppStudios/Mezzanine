@@ -540,7 +540,7 @@ namespace phys
 
         bool Scrollbar::IsVisible()
         {
-            return Visible;
+            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
 
         void Scrollbar::Show()

@@ -162,14 +162,6 @@ namespace phys
             /// @param z Allow or Disallow use of the Z axis for movement.
             virtual void LimitMovementOnAxis(bool x, bool y, bool z);
 
-            /// @brief Disables the deactivation of the physics body.
-            /// @details This function is useful when using constraints to prevent it from locking in situations where it shouldn't.
-            virtual void DisableDeactivation();
-
-            /// @brief Restores the activation state of the physics body to normal.
-            /// @details This function is useful when you are done applying a constraint to a body, or any other effect that would have you call DisableDeactivation().
-            virtual void RestoreActivation();
-
             // Inherited from ActorBase
             virtual void AddObjectToWorld (World *TargetWorld);
             virtual void RemoveObjectFromWorld(World* TargetWorld);

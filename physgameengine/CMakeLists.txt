@@ -89,6 +89,7 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/resourcemanager.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/scenemanager.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/simpletimer.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/singleton.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/sound.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/soundlistener.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/soundmanager.h"

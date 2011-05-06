@@ -40,6 +40,8 @@ int main(int argc, char **argv)
 
     //TheWorld->SetLoggingFrequency(World::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
     //TheWorld->SetLoggingFrequency(World::LogOncePerXSeconds,5);
+    TheWorld->SetLoggingFrequency(World::LogNever);
+
     #ifdef PHYSDEBUG
     TheWorld->Log("World Created:");
     TheWorld->Log(PlaneOfPlay);
@@ -332,16 +334,6 @@ bool PostInput()
 //        TheWorld->GetEventManager()->EndRelativeMouseMode();
     }
 
-    /*Quaternion CamRot = TheWorld->GetCameraManager()->GetDefaultCamera()->GetOrientation();
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEUP))
-    {
-        CamRot.Y +=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot );
-    }
-    if( Queryer.IsKeyboardButtonPushed(MetaCode::KEY_PAGEDOWN))
-    {
-        CamRot.Y -=.01; TheWorld->GetCameraManager()->GetDefaultCamera()->SetOrientation( CamRot );
-    }// */
-
     Vector2 Offset = InputQueryer->GetMousePrevFrameOffset();
     if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
@@ -472,7 +464,7 @@ bool PostInput()
                         {
                             Vector3 LocalPivot = ClickOnActor->Vector;
                             ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                            rigid->DisableDeactivation();
+                            rigid->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
                             //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                             Dragger = new Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
@@ -528,7 +520,7 @@ bool PostInput()
             TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
-            Act->RestoreActivation();
+            Act->GetPhysicsSettings()->SetActivationState(phys::AAS_Active);
         }
     }
     return true;
@@ -682,7 +674,7 @@ void LoadContent()
     std::stringstream zipname;
     zipname << crossplatform::GetDataDirectory() << "test.zip";
 
-    Real mass=5.0;
+    Real mass=15.0;
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
     TheWorld->GetResourceManager()->AddResourceLocation(zipname.str(), "Zip", groupname, false);
     TheWorld->GetResourceManager()->AddResourceLocation("", "FileSystem", groupname, false);
@@ -1022,7 +1014,7 @@ void LoadContent()
     object4->SetAnimation("Idle", true);
     object4->EnableAnimation(true);
 
-    object7 = new ActorRigid (200.0f,"MetalSphere2","Sphere_Metal.mesh",groupname);
+    object7 = new ActorRigid (800.0f,"MetalSphere2","Sphere_Metal.mesh",groupname);
     object7->CreateSphereShapeFromMesh();
     object7->SetActorScaling(Vector3(0.3,0.3,0.3));
     object7->SetLocation(Vector3(10.0,25000.0,-1300.0));
@@ -1031,7 +1023,7 @@ void LoadContent()
     //Final Steps
     Vector3 grav;
     grav.X=0.0;
-    grav.Y=-10000.0;
+    grav.Y=-400.0;
     grav.Z=0.0;
 
     TheWorld->GetActorManager()->AddActor(object1);

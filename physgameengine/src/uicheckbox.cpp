@@ -136,7 +136,7 @@ namespace phys
 
         bool CheckBox::IsVisible()
         {
-            return Visible;
+            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
 
         void CheckBox::Show()

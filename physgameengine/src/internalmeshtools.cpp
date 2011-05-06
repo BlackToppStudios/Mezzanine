@@ -204,8 +204,8 @@ namespace phys{
         {
             Ogre::MeshPtr myMesh = TheEntity->getMesh();
             Ogre::SubMesh* subMesh = NULL;
-            Ogre::IndexData*  indexData = NULL;
-            Ogre::VertexData* vertexData = NULL;
+            Ogre::IndexData*  IndexData = NULL;
+            Ogre::VertexData* VertexData = NULL;
             bool use32bitindexes = false;
             unsigned int triCount = 0;
             unsigned int vCount = 0;
@@ -237,22 +237,22 @@ namespace phys{
                     break;
 
                 subMesh = myMesh->getSubMesh(SubMeshIndex);
-                indexData = subMesh->indexData;
-                vertexData = subMesh->vertexData;
+                IndexData = subMesh->indexData;
+                VertexData = subMesh->vertexData;
 
                 // Get the position element
-                const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
+                const Ogre::VertexElement* posElem = VertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
                 // Get a pointer to the vertex buffer
-                Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
+                Ogre::HardwareVertexBufferSharedPtr vBuffer = VertexData->vertexBufferBinding->getBuffer(posElem->getSource());
                 // Get a pointer to the index buffer
-                Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
+                Ogre::HardwareIndexBufferSharedPtr iBuffer = IndexData->indexBuffer;
                 // Get the number of triangles
-                triCount+=(indexData->indexCount/3);
+                triCount+=(IndexData->indexCount/3);
 
                 // Lock the vertex buffer (READ ONLY)
                 unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
                 float* pReal = NULL;
-                for (size_t j = 0; j < vertexData->vertexCount; ++j, vertex += vBuffer->getVertexSize() )
+                for (size_t j = 0; j < VertexData->vertexCount; ++j, vertex += vBuffer->getVertexSize() )
                 {
                     posElem->baseVertexPointerToElement(vertex, &pReal);
                     Ogre::Vector3 pt(pReal[0], pReal[1], pReal[2]);
@@ -284,8 +284,8 @@ namespace phys{
                 }
                 iBuffer->unlock();
 
-                VertPrevSize+=vertexData->vertexCount;
-                IndiPrevSize+=indexData->indexCount;
+                VertPrevSize+=VertexData->vertexCount;
+                IndiPrevSize+=IndexData->indexCount;
             }
 
             // We now have vertices and indices ready to go
@@ -325,18 +325,23 @@ namespace phys{
             Ogre::IndexData*  indexData = NULL;
             Ogre::VertexData* vertexData = NULL;
             bool use32bitindexes = false;
+            unsigned int currtriCount = 0;
             unsigned int triCount = 0;
             unsigned int vCount = 0;
             unsigned int iCount = 0;
             Whole VertPrevSize = 0;
             Whole IndiPrevSize = 0;
 
+            Whole* VertPerSubMesh = NULL;
+
             if(UseAllSubmeshes)
             {
+                VertPerSubMesh = new Whole[myMesh->getNumSubMeshes()];
                 for( Whole X = 0 ; X < myMesh->getNumSubMeshes() ; X++ )
                 {
                     vCount+=myMesh->getSubMesh(X)->vertexData->vertexCount;
                     iCount+=myMesh->getSubMesh(X)->indexData->indexCount;
+                    VertPerSubMesh[X] = myMesh->getSubMesh(X)->vertexData->vertexCount;
                 }
             }else{
                 vCount+=myMesh->getSubMesh(0)->vertexData->vertexCount;
@@ -358,6 +363,7 @@ namespace phys{
                 const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
                 Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
                 Ogre::HardwareIndexBufferSharedPtr iBuffer = indexData->indexBuffer;
+                currtriCount=indexData->indexCount/3;
                 triCount+=(indexData->indexCount/3);
 
                 unsigned char* vertex = static_cast<unsigned char*>(vBuffer->lock(Ogre::HardwareBuffer::HBL_READ_ONLY));
@@ -378,17 +384,27 @@ namespace phys{
 
                 if (use32bitindexes)
                 {
-                    for (size_t k = 0; k < triCount*3; ++k)
+                    for (size_t k = 0; k < currtriCount*3; ++k)
                     {
-                        indices[index_offset+IndiPrevSize] = pLong[k];
+                        if(SubMeshIndex > 0 && VertPerSubMesh)
+                            indices[index_offset+IndiPrevSize] = pLong[k] + VertPerSubMesh[SubMeshIndex];
+                        else
+                            indices[index_offset+IndiPrevSize] = pLong[k];
                         index_offset++;
                     }
                 }
                 else
                 {
-                    for (size_t k = 0; k < triCount*3; ++k)
+                    for (size_t k = 0; k < currtriCount*3; ++k)
                     {
-                        indices[index_offset+IndiPrevSize] = static_cast<unsigned long>(pShort[k]);
+                        if(SubMeshIndex > 0 && VertPerSubMesh)
+                        {
+                            indices[index_offset+IndiPrevSize] = (static_cast<unsigned long>(pShort[k])) + VertPerSubMesh[SubMeshIndex];
+                        }
+                        else
+                        {
+                            indices[index_offset+IndiPrevSize] = static_cast<unsigned long>(pShort[k]);
+                        }
                         index_offset++;
                     }
                 }

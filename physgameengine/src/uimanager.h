@@ -44,6 +44,7 @@
 #include "datatypes.h"
 #include "managerbase.h"
 #include "vector2.h"
+#include "metacode.h"
 
 #include <map>
 
@@ -78,11 +79,18 @@ namespace phys
             /// @brief Pointer for the Gorilla core class, where this manager gets it's functionality.
             Gorilla::Silverback* Silver;
             std::vector< UI::Screen* > Screens;
+            std::vector< UI::Button* > ActivatedButtons;
+            std::vector< MetaCode::InputCode > AutoRegisterCodes;
+            std::multimap< MetaCode::InputCode, UI::Button* > HotKeys;
             UI::Button* HoveredButton;
             UI::Widget* HoveredWidget;
             UI::Widget* WidgetFocus;
+            bool ButtonAutoRegister;
             void HoverChecks();
+            void HotKeyChecks();
             void WidgetFocusUpdate();
+            void ClearButtonActivations();
+            void MouseActivationCheck(UI::Button* ToCheck);
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -100,6 +108,37 @@ namespace phys
             /// @brief Forces everything loaded into the UI system to be redrawn.
             /// @param Force If Force is set to true, it will redraw everything regardless of if it has changed.
             void RedrawAll(bool Force = false);
+            /// @brief Binds a key to a button.
+            /// @details This function allows buttons to behave like they are pressed without mouse input.
+            /// @param HotKey The key or button (on the input device) to activate the button.
+            /// @param BoundButton The button being bound to the hotkey.
+            void RegisterHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton);
+            /// @brief Removes a previously set hotkey binding.
+            /// @param HotKey The key or button (on the input device) to activate the button.
+            /// @param BoundButton The button currently bound to the hotkey.
+            void UnregisterHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton);
+            /// @brief Clears all registered hotkeys.
+            void RemoveAllHotKeys();
+            /// @brief Enables whether or not to automatically set the activation key or button for UI buttons.
+            /// @details If true, this will cause every UI button to have keyboard keys or mouse buttons added with
+            /// AddButtonAutoRegister() to be added as activation keys or buttons immediately after they are created. @n
+            /// Default: False.
+            /// @param Enable Whether or not to enable this feature.
+            void EnableButtonAutoRegister(bool Enable);
+            /// @brief Gets whether or not the ButtonAutoRegister feature is enabled.
+            /// @return Returns a bool indicating whether or not the ButtonAutoRegister feature is enabled.
+            bool ButtonAutoRegisterEnabled();
+            /// @brief Adds a key or button that will be auto-registered with every created UI button.
+            /// @param Code The input code for the keyboard key or mouse button to be added to the list of codes to be auto-registered.
+            void AddAutoRegisterCode(MetaCode::InputCode Code);
+            /// @brief Removes a previously set auto-registering input code.
+            /// @param Code The input code to be removed from the list of auto-registering codes.
+            void RemoveAutoRegisterCode(MetaCode::InputCode Code);
+            /// @brief Removes all auto-registering input codes.
+            void RemoveAllAutoRegisterCodes();
+            /// @brief Gets the list of codes that will be auto-registered with each UI button.
+            /// @return Returns a pointer to the vector containing all the codes to be auto-registered with every UI button.
+            std::vector<MetaCode::InputCode>* GetAutoRegisteredCodes();
             /// @brief Gets the button the mouse is hovering over.
             /// @details This check will look through both standalone buttons and widget buttons.
             /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
@@ -138,7 +177,7 @@ namespace phys
             /// @brief Searches all screens and gets the named Layer.
             /// @return Returns the named layer if found, NULL if not.
             UI::Layer* GetLayer(String& Name);
-            /// @brief Searches all visable screens and layers to see if a button was clicked.
+            /// @brief Searches all visible screens and layers to see if a button was clicked.
             /// @details This is called automatically once every frame.  Should only be called on manually if
             /// you need more then one check per frame.
             /// @return Returns the button clicked if there is one, NULL if not.

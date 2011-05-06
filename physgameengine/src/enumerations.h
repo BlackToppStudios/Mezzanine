@@ -45,6 +45,17 @@
 
 namespace phys
 {
+    /// @enum ActorActivationState
+    /// @brief This is used by all the actors to monitor and set their physics activation.
+    enum ActorActivationState
+    {
+        AAS_Active = 1,
+        AAS_Island_Sleeping = 2,
+        AAS_Wants_Deactivation = 3,
+        AAS_DisableDeactivation = 4,
+        AAS_DisableSimulation = 5
+    };
+
     /// @enum WorldObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This is mostly used internally for casting void pointers.

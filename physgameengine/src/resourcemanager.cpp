@@ -85,10 +85,12 @@ namespace phys {
         {
             btRigidBody* Rigid = static_cast < btRigidBody* > (Actor->CollisionObject);
             btScalar mass = Rigid->getInvMass();
-            mass=1/mass;
+            if(0 != mass)
+                mass=1/mass;
             btVector3 inertia(0,0,0);
             ColShape->calculateLocalInertia(mass, inertia);
             Rigid->setMassProps(mass,inertia);
+            Rigid->updateInertiaTensor();
         }
         if(ActorBase::Actorragdoll == Actor->GetType())
         {

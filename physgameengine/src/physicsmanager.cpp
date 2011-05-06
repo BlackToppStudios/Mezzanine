@@ -358,10 +358,10 @@ namespace phys
         GameWorld->Log();
 
         Real FloatTime = TimeElapsed;
-        FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
+        FloatTime *= 0.001;    //Convert from MilliSeconds to Seconds
 
         Real IdealStep = this->GameWorld->GetTargetFrameTime();
-        IdealStep *= 0.0001;
+        IdealStep *= 0.001;
 
         //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
         int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe
@@ -500,9 +500,9 @@ namespace phys
         }
     }
 
-    void PhysicsManager::AddConstraint(TypedConstraint* Constraint)
+    void PhysicsManager::AddConstraint(TypedConstraint* Constraint, bool DisableCollisions)
     {
-        this->BulletDynamicsWorld->addConstraint(Constraint->ConstraintBase);
+        this->BulletDynamicsWorld->addConstraint(Constraint->ConstraintBase, DisableCollisions);
     }
 
     void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
@@ -552,16 +552,38 @@ namespace phys
         }
     }
 
-    void PhysicsManager::StorePhysicsShape(ActorBase* Actor, String &ShapeName)
+    void PhysicsManager::StorePhysicsShape(ActorBase* Actor, const String& ShapeName)
     {
         this->PhysicsShapes[ShapeName] = Actor->Shape;
         Actor->ShapeIsSaved = true;
     }
 
-    void PhysicsManager::ApplyPhysicsShape(ActorBase* Actor, String &ShapeName)
+    void PhysicsManager::ApplyPhysicsShape(ActorBase* Actor, const String& ShapeName)
     {
-        Actor->Shape = this->PhysicsShapes[ShapeName];
-        Actor->ShapeIsSaved = true;
+        int Type = Actor->GetType();
+        switch(Type)
+        {
+            case ActorBase::Actorrigid:
+            case ActorBase::Actorterrain:
+            {
+                btVector3 Inertia(0,0,0);
+                btRigidBody* ActorObject = btRigidBody::upcast(Actor->CollisionObject);
+                btCollisionShape* ActorShape = this->PhysicsShapes[ShapeName];
+                btScalar Mass = ActorObject->getInvMass();
+                if(0 != Mass)
+                    Mass=1/Mass;
+                ActorShape->calculateLocalInertia(Mass,Inertia);
+                ActorObject->setCollisionShape(ActorShape);
+                Actor->Shape = ActorShape;
+                ActorObject->setMassProps(Mass,Inertia);
+                ActorObject->updateInertiaTensor();
+                Actor->ShapeIsSaved = true;
+                return;
+            }
+            case ActorBase::Actorsoft:
+            default:
+                return;
+        }
     }
 
     void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)

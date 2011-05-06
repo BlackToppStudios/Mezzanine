@@ -60,7 +60,8 @@ namespace phys
               UserSprite(NULL),
               Callback(NULL),
               MouseHover(false),
-              IsText(false),
+              Activated(false),
+              MultipleActivations(false),
               RelPosition(Position),
               RelSize(Size),
               Name(name)
@@ -76,6 +77,20 @@ namespace phys
             Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
         }
 
+        void Button::SetHovered(bool Hovered)
+        {
+            if(Hovered && Callback)
+                Callback->DoHoverItems();
+            if(HoveredSprite)
+            {
+                if(Hovered && !MouseHover)
+                    GorillaRectangle->background_image(HoveredSprite);
+                else if(!Hovered && MouseHover)
+                    GorillaRectangle->background_image(NormalSprite);
+            }
+            MouseHover = Hovered;
+        }
+
         void Button::SetVisible(bool Visible)
         {
             GorillaRectangle->SetVisible(Visible);
@@ -83,7 +98,7 @@ namespace phys
 
         bool Button::IsVisible()
         {
-            return GorillaRectangle->IsVisible();
+            return GorillaRectangle->IsVisible() && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
 
         void Button::Show()
@@ -103,7 +118,7 @@ namespace phys
 
         bool Button::IsTextButton()
         {
-            return IsText;
+            return false;
         }
 
         void Button::SetButtonCallback(ButtonCallback* Call)
@@ -111,27 +126,104 @@ namespace phys
             Callback = Call;
         }
 
+        void Button::RegisterActivationKeyOrButton(const MetaCode::InputCode& Code)
+        {
+            if(MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code)
+            {
+                for( std::vector<MetaCode::InputCode>::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
+                {
+                    if((*It)==Code)
+                        return;
+                }
+                KeyboardActivationKeys.push_back(Code);
+
+            }else if(MetaCode::MOUSE_FIRST < Code && MetaCode::MOUSE_LAST > Code)
+            {
+                for( std::vector<MetaCode::InputCode>::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
+                {
+                    if((*It)==Code)
+                        return;
+                }
+                MouseActivationButtons.push_back(Code);
+            }else{
+                /// @todo Throw an error?
+            }
+        }
+
+        void Button::UnregisterActivationKeyOrButton(const MetaCode::InputCode& Code)
+        {
+            if(MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code)
+            {
+                for( std::vector<MetaCode::InputCode>::iterator It = KeyboardActivationKeys.begin() ; It != KeyboardActivationKeys.end() ; It++ )
+                {
+                    if((*It)==Code)
+                    {
+                        KeyboardActivationKeys.erase(It);
+                        return;
+                    }
+                }
+
+            }else if(MetaCode::MOUSE_FIRST < Code && MetaCode::MOUSE_LAST > Code)
+            {
+                for( std::vector<MetaCode::InputCode>::iterator It = MouseActivationButtons.begin() ; It != MouseActivationButtons.end() ; It++ )
+                {
+                    if((*It)==Code)
+                    {
+                        MouseActivationButtons.erase(It);
+                        return;
+                    }
+                }
+            }
+        }
+
+        void Button::RemoveAllKeyboardActivationKeys()
+        {
+            KeyboardActivationKeys.clear();
+        }
+
+        void Button::RemoveAllMouseActivationButtons()
+        {
+            MouseActivationButtons.clear();
+        }
+
+        void Button::RemoveAllActivationKeysAndButtons()
+        {
+            RemoveAllKeyboardActivationKeys();
+            RemoveAllMouseActivationButtons();
+        }
+
+        void Button::SetActivation(bool Activate)
+        {
+            if(Activate && Activated && !MultipleActivations)
+                return;
+            if(Activate && Callback)
+                Callback->DoActivateItems();
+            Activated = Activate;
+        }
+
+        bool Button::IsActivated()
+        {
+            return Activated;
+        }
+
+        void Button::EnableMultipleActivations(bool Enable)
+        {
+            MultipleActivations = Enable;
+        }
+
+        bool Button::IsMultipleActivationsEnabled()
+        {
+            return MultipleActivations;
+        }
+
         bool Button::CheckMouseHover()
         {
             if(!GorillaRectangle->IsVisible())
                 return false;
             Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
-            if(GorillaRectangle->intersects(MouseLoc.GetOgreVector2()))
-            {
-                if(!MouseHover && HoveredSprite)
-                {
-                    GorillaRectangle->background_image(HoveredSprite);
-                }
-                MouseHover = true;
-            }else{
-                if(MouseHover && HoveredSprite)
-                {
-                    GorillaRectangle->background_image(NormalSprite);
-                }
-                MouseHover = false;
-            }
-            if(Callback)
-                Callback->DoCallbackItems();
+            bool Hovered = GorillaRectangle->intersects(MouseLoc.GetOgreVector2());
+            if(Hovered != MouseHover)
+                SetHovered(Hovered);
             return MouseHover;
         }
 
@@ -274,7 +366,18 @@ namespace phys
             return UI::RP_Medium;
         }
 
-        ButtonCallback::ButtonCallback()
+        std::vector<MetaCode::InputCode>* Button::GetKeyboardActivationKeys()
+        {
+            return &KeyboardActivationKeys;
+        }
+
+        std::vector<MetaCode::InputCode>* Button::GetMouseActivationButtons()
+        {
+            return &MouseActivationButtons;
+        }
+
+        ButtonCallback::ButtonCallback(Button* CallerButton)
+            : Caller(CallerButton)
         {
         }
 

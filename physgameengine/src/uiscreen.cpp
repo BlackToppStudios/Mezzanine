@@ -168,7 +168,7 @@ namespace phys
         {
             for( std::map<Whole,Layer*>::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
             {
-                if( (*it).second->GetVisible() )
+                if( (*it).second->IsVisible() )
                 {
                     Button* button = (*it).second->CheckButtonMouseIsOver();
                     if(button)
@@ -184,7 +184,7 @@ namespace phys
         {
             for( std::map<Whole,Layer*>::reverse_iterator it = Layers.rbegin() ; it != Layers.rend() ; it++ )
             {
-                if( (*it).second->GetVisible() )
+                if( (*it).second->IsVisible() )
                 {
                     Widget* widget = (*it).second->CheckWidgetMouseIsOver();
                     if(widget)

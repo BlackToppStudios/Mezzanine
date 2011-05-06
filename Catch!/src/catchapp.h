@@ -3,6 +3,7 @@
 
 #include "startingarea.h"
 #include "scorearea.h"
+#include "areaofplay.h"
 #include <physgame.h>
 
 using namespace phys;
@@ -24,6 +25,7 @@ class CatchApp
         ActorBase* LastActorThrown;
         StartingArea* StartZone;
         ScoreArea* ScoreZone;
+        AreaOfPlay* PlayZone;
         Whole CurrScore;
         CatchApp::GameState CurrentState;
 

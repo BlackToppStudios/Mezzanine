@@ -12,7 +12,6 @@ class StartingArea : public AreaEffect
     public:
         StartingArea(const String &name, Vector3 Location);
         ~StartingArea();
-        void Initialize();
         void ApplyEffect();
         bool IsEmpty();
 };

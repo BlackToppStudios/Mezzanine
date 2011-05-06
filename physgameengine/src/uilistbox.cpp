@@ -225,7 +225,7 @@ namespace phys
 
         bool ListBox::IsVisible()
         {
-            return Visible;
+            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
 
         void ListBox::Show()

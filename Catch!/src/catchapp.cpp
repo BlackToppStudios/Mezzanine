@@ -13,7 +13,7 @@ CatchApp::CatchApp(const Vector3 &WorldLowerBounds, const Vector3 &WorldUpperBou
     : CurrScore(0),
       LastActorThrown(NULL),
       CurrentState(CatchApp::Catch_Loading),
-      PlaneOfPlay(Plane(Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0)))
+      PlaneOfPlay(Plane(Vector3(2.0,1.0,0.0), Vector3(1.0,2.0,0.0), Vector3(1.0,1.0,0.0)))
 {
     assert(0==CatchApp::TheRealCatchApp);
     CatchApp::TheRealCatchApp = this;
@@ -34,17 +34,155 @@ CatchApp::~CatchApp()
 
 void CatchApp::LoadContent()
 {
-    String groupname ("Group1");
-    TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
-    TheWorld->GetResourceManager()->InitResourceGroup(groupname);
-/*
-    ActorRigid *object1 = new ActorRigid (0,"Ferris","ferrisWheel.mesh","Group1");
-    object1->CreateShapeFromMeshDynamic(3);
-    //object1->SetInitLocation(Vector3(0,0,0));
-    object1->SetInitOrientation(Quaternion(1.0, 0.0, 0.0, 0.55));
-    TheWorld->GetActorManager()->AddActor(object1);
-    TheWorld->GetPhysicsManager()->SetGravity(Vector3(0,0,0));
-*/
+    // Get managers
+    PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
+    SceneManager* SceneMan = TheWorld->GetSceneManager();
+    ResourceManager* ResourceMan = TheWorld->GetResourceManager();
+
+    // Camera Setup
+	Camera* DefCamera = TheWorld->GetCameraManager()->GetDefaultCamera();
+	DefCamera->SetLocation(Vector3(0,0,425));
+	DefCamera->LookAt(Vector3(0,0,0));
+
+	// Lights Setup
+    SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+
+    // Physics Setup
+    PhysMan->SetGravity(Vector3(0,-1000,0));
+
+    //Configure the wireframe Drawer
+    //PhysMan->SetDebugPhysicsWireCount(2);
+    //PhysMan->SetDebugPhysicsRendering(1);
+
+    // Assuming all mass amounts are in metric kg.
+    // Assuming all distances are in metric cm.
+    String groupname("Group1");
+    String datadir = crossplatform::GetDataDirectory();
+    ResourceMan->AddResourceLocation(datadir, "FileSystem", groupname, false);
+    ResourceMan->AddResourceLocation(datadir+"Common.zip", "Zip", groupname, false);
+    ResourceMan->AddResourceLocation(datadir+"Ferris.zip", "Zip", groupname, false);
+    ResourceMan->AddResourceLocation(datadir+"AdvThrowables.zip", "Zip", groupname, false);
+    ResourceMan->InitResourceGroup(groupname);
+
+    // Create the background
+    Plane SkyPlane(Vector3(-15,-10,120),Vector3(15,-10,120),Vector3(0,10,120));
+    SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", groupname, 3, 3);
+
+    // Create the Wheel
+    ActorRigid* FerrisWheel = new ActorRigid (100.0,"FerrisWheel","wheel.mesh",groupname);
+    TheWorld->GetResourceManager()->ImportShapeData(FerrisWheel,"ferris_wheel.bullet");
+    FerrisWheel->SetLocation(100,0,0);
+    TheWorld->GetActorManager()->AddActor(FerrisWheel);
+
+    // Create the trayz
+    Real TrayMass = 50.0;
+    ActorRigid* Tray1 = new ActorRigid(TrayMass,"Tray1","tray.mesh",groupname);
+    TheWorld->GetResourceManager()->ImportShapeData(Tray1,"ferris_tray.bullet");
+    PhysMan->StorePhysicsShape(Tray1,"TrayShape");
+    Tray1->SetLocation(30.4,14.3,0);
+    Tray1->SetDamping(0,0.1);
+    TheWorld->GetActorManager()->AddActor(Tray1);
+    ActorRigid* Tray2 = new ActorRigid(TrayMass,"Tray2","tray.mesh",groupname);
+    PhysMan->ApplyPhysicsShape(Tray2,"TrayShape");
+    Tray2->SetLocation(169.6,14.3,0);
+    Tray2->SetDamping(0,0.1);
+    TheWorld->GetActorManager()->AddActor(Tray2);
+    ActorRigid* Tray3 = new ActorRigid(TrayMass,"Tray3","tray.mesh",groupname);
+    PhysMan->ApplyPhysicsShape(Tray3,"TrayShape");
+    Tray3->SetLocation(30.4,-42.7,0);
+    Tray3->SetDamping(0,0.1);
+    TheWorld->GetActorManager()->AddActor(Tray3);
+    ActorRigid* Tray4 = new ActorRigid(TrayMass,"Tray4","tray.mesh",groupname);
+    PhysMan->ApplyPhysicsShape(Tray4,"TrayShape");
+    Tray4->SetLocation(169.6,-42.7,0);
+    Tray4->SetDamping(0,0.1);
+    TheWorld->GetActorManager()->AddActor(Tray4);
+    ActorRigid* Tray5 = new ActorRigid(TrayMass,"Tray5","tray.mesh",groupname);
+    PhysMan->ApplyPhysicsShape(Tray5,"TrayShape");
+    Tray5->SetLocation(71.5,55.4,0);
+    Tray5->SetDamping(0,0.1);
+    TheWorld->GetActorManager()->AddActor(Tray5);
+    ActorRigid* Tray6 = new ActorRigid(TrayMass,"Tray6","tray.mesh",groupname);
+    PhysMan->ApplyPhysicsShape(Tray6,"TrayShape");
+    Tray6->SetLocation(128.5,55.4,0);
+    Tray6->SetDamping(0,0.1);
+    TheWorld->GetActorManager()->AddActor(Tray6);
+    ActorRigid* Tray7 = new ActorRigid(TrayMass,"Tray7","tray.mesh",groupname);
+    PhysMan->ApplyPhysicsShape(Tray7,"TrayShape");
+    Tray7->SetLocation(71.5,-83.8,0);
+    Tray7->SetDamping(0,0.1);
+    TheWorld->GetActorManager()->AddActor(Tray7);
+    ActorRigid* Tray8 = new ActorRigid(TrayMass,"Tray8","tray.mesh",groupname);
+    PhysMan->ApplyPhysicsShape(Tray8,"TrayShape");
+    Tray8->SetLocation(128.5,-83.8,0);
+    Tray8->SetDamping(0,0.1);
+    TheWorld->GetActorManager()->AddActor(Tray8);// */
+
+    // Create world anchor for the wheel, which will allow it to spin.
+    HingeConstraint* WheelAnchor = new HingeConstraint(FerrisWheel,Vector3(0,0,0),Vector3(0,0,1),true);
+    PhysMan->AddConstraint(WheelAnchor,false);// */
+
+    // Create the series of hinges for connecting the 8 trays to the wheel
+    HingeConstraint* Tray1Anchor = new HingeConstraint(FerrisWheel,Tray1,Vector3(-69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    PhysMan->AddConstraint(Tray1Anchor,true);
+    HingeConstraint* Tray2Anchor = new HingeConstraint(FerrisWheel,Tray2,Vector3(69.6,28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    PhysMan->AddConstraint(Tray2Anchor,true);
+    HingeConstraint* Tray3Anchor = new HingeConstraint(FerrisWheel,Tray3,Vector3(-69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    PhysMan->AddConstraint(Tray3Anchor,true);
+    HingeConstraint* Tray4Anchor = new HingeConstraint(FerrisWheel,Tray4,Vector3(69.6,-28.5,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    PhysMan->AddConstraint(Tray4Anchor,true);
+    HingeConstraint* Tray5Anchor = new HingeConstraint(FerrisWheel,Tray5,Vector3(-28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    PhysMan->AddConstraint(Tray5Anchor,true);
+    HingeConstraint* Tray6Anchor = new HingeConstraint(FerrisWheel,Tray6,Vector3(28.5,69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    PhysMan->AddConstraint(Tray6Anchor,true);
+    HingeConstraint* Tray7Anchor = new HingeConstraint(FerrisWheel,Tray7,Vector3(-28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    PhysMan->AddConstraint(Tray7Anchor,true);
+    HingeConstraint* Tray8Anchor = new HingeConstraint(FerrisWheel,Tray8,Vector3(28.5,-69.6,0),Vector3(0,14.2,0),Vector3(0,0,1),Vector3(0,0,1),false);
+    PhysMan->AddConstraint(Tray8Anchor,true);// */
+
+    // Create some throwable objects
+    Real UraniumMass = 20.0;
+    Real LeadMass = 30.0;
+    Real ClayMass = 12.0;
+    ActorRigid* Uranium1 = new ActorRigid(UraniumMass,"Uranium1","uranium.mesh",groupname);
+    Uranium1->CreateShapeFromMeshDynamic(1);
+    Uranium1->SetLocation(25,40,0);
+    TheWorld->GetActorManager()->AddActor(Uranium1);
+    ActorRigid* Uranium2 = new ActorRigid(UraniumMass,"Uranium2","uranium.mesh",groupname);
+    Uranium2->CreateShapeFromMeshDynamic(1);
+    Uranium2->SetLocation(-25,40,0);
+    TheWorld->GetActorManager()->AddActor(Uranium2);// */
+    ActorRigid* Lead1 = new ActorRigid(LeadMass,"Lead1","lead.mesh",groupname);
+    Lead1->CreateShapeFromMeshDynamic(1);
+    Lead1->SetLocation(25,-0,0);
+    TheWorld->GetActorManager()->AddActor(Lead1);
+    ActorRigid* Lead2 = new ActorRigid(LeadMass,"Lead2","lead.mesh",groupname);
+    Lead2->CreateShapeFromMeshDynamic(1);
+    Lead2->SetLocation(-25,-0,0);
+    TheWorld->GetActorManager()->AddActor(Lead2);// */
+    ActorRigid* Clay1 = new ActorRigid(ClayMass,"Clay1","clay_pot.mesh",groupname);
+    Clay1->CreateShapeFromMeshDynamic(1);
+    Clay1->SetLocation(25,-40,0);
+    TheWorld->GetActorManager()->AddActor(Clay1);
+    ActorRigid* Clay2 = new ActorRigid(ClayMass,"Clay2","clay_pot.mesh",groupname);
+    Clay2->CreateShapeFromMeshDynamic(1);
+    Clay2->SetLocation(-25,-40,0);
+    TheWorld->GetActorManager()->AddActor(Clay2);// */
+
+    // Create the zones
+    PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    PlayZone->CreateBoxShape(Vector3(280,280,35));
+    PhysMan->AddAreaEffect(PlayZone);// */
+
+    StartZone = new StartingArea("StartArea",Vector3(-170,0,0));
+    StartZone->CreateBoxShape(Vector3(50,130,15));
+    StartZone->CreateGraphicsBox(ColourValue(0.1,0.8,0.1,0.2));
+    PhysMan->AddAreaEffect(StartZone);// */
+
+    ScoreZone = new ScoreArea("ScoreArea",Vector3(100,0,0));
+    ScoreZone->CreateBoxShape(Vector3(100,100,30));
+    ScoreZone->CreateGraphicsBox(ColourValue(0.2,0.2,0.8,0.2));
+    PhysMan->AddAreaEffect(ScoreZone);// */
 }
 
 void CatchApp::MakeGUI()
@@ -92,9 +230,6 @@ void CatchApp::MakeGUI()
     UI::Rectangle* ScoreText = HUD->CreateRectangle( Vector2(0.008, 0.006), Vector2(0.12, 0.06));
     ScoreText->SetBackgroundSprite("ScoreText");
     //End of HUD Layer
-
-    UI::MarkupText* TestMarkup = HUD->CreateMarkupText("TestMarkup",Vector2(0.4,0.64),26,"TestingMarkup");
-    TestMarkup->SetTextScale(0.7);
 
     //Build the ItemShop Layer
     UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", Vector2(0.25, 0.11), Vector2(0.5, 0.78125));
@@ -170,6 +305,9 @@ int CatchApp::GetCatchin()
     TheWorld->GetUIManager()->SetPreMainLoopItems(&CPreUI);
     TheWorld->GetUIManager()->SetPostMainLoopItems(&CPostUI);
 
+    //Set logging frequency
+    TheWorld->SetLoggingFrequency(World::LogNever);
+
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
 
@@ -182,18 +320,6 @@ int CatchApp::GetCatchin()
 
     //Generate the UI
     MakeGUI();
-
-    //Configure the wireframe Drawer
-    //TheWorld->GetPhysicsManager()->SetDebugPhysicsWireCount(0);
-    //TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0);
-
-    //Setup some light and configure the camera.
-    //TheWorld->GetCameraManager()->GetDefaultCamera()->SetCameraType(Camera::Orthographic);
-    TheWorld->GetSceneManager()->SetAmbientLight(1.0,1.0,1.0,1.0);
-
-    WorldNode* CameraNode = TheWorld->GetSceneManager()->CreateOrbitingNode( "Orbit1", Vector3(0,0,0), Vector3(0.0,0.0,-250.0), true );
-    CameraNode->AttachObject(TheWorld->GetCameraManager()->GetDefaultCamera());
-    CameraNode->LookAt(Vector3(0,0,0));
 
 	//Start the Main Loop
 	TheWorld->MainLoop();
@@ -211,6 +337,23 @@ bool CatchApp::PreInput()
 
 bool CatchApp::PostInput()
 {
+    CameraController* DefaultControl = TheWorld->GetCameraManager()->GetOrCreateCameraController(TheWorld->GetCameraManager()->GetDefaultCamera());
+    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_LEFT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_A))
+        DefaultControl->StrafeLeft(300 * (TheWorld->GetFrameTime() * 0.001));
+    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_D))
+        DefaultControl->StrafeRight(300 * (TheWorld->GetFrameTime() * 0.001));
+    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_UP) || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_W))
+        DefaultControl->MoveForward(300 * (TheWorld->GetFrameTime() * 0.001));
+    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_DOWN)  || InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_S))
+        DefaultControl->MoveBackward(300 * (TheWorld->GetFrameTime() * 0.001));
+    static bool MouseCam=false;
+    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_HOME) )
+        MouseCam=true;
+    if( InputQueryTool::IsKeyboardButtonPushed(MetaCode::KEY_END))
+        MouseCam=false;
+    Vector2 Offset = InputQueryTool::GetMousePrevFrameOffset();
+    if( MouseCam && Vector2(0,0) != Offset )
+        DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
     return true;
 }
 
@@ -229,12 +372,6 @@ bool CatchApp::PostUI()
     TheWorld->Log("Mouse location From WorldQueryTool X/Y");
     TheWorld->Log(InputQueryer->GetMouseX());
     TheWorld->Log(InputQueryer->GetMouseY());
-
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_LEFT) )
-        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(-0.01); }
-
-    if( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_RIGHT) )
-        { TheWorld->GetSceneManager()->GetNode("Orbit1")->IncrementOrbit(0.01); }
 
     //Resize the window
     static bool videobuttonpushed = false;
@@ -278,14 +415,14 @@ bool CatchApp::PostUI()
                     String ItemShopL = "ItemShopLayer";
                     UI::Layer* layer = UIMan->GetLayer(ItemShopL);
                     if(MetaCode::BUTTON_PRESSING == State)
-                        layer->SetVisible(!layer->GetVisible());
+                        layer->SetVisible(!layer->IsVisible());
                 }
                 else if("Menu" == MouseButton->GetName())
                 {
                     String MenuL = "MenuLayer";
                     UI::Layer* layer = UIMan->GetLayer(MenuL);
                     if(MetaCode::BUTTON_PRESSING == State)
-                        layer->SetVisible(!layer->GetVisible());
+                        layer->SetVisible(!layer->IsVisible());
                 }
                 else if("Return" == MouseButton->GetName())
                 {
@@ -336,7 +473,7 @@ bool CatchApp::PostUI()
                         {
                             Vector3 LocalPivot = ClickOnActor->Vector;
                             ActorRigid* rigid = static_cast<ActorRigid*>(ClickOnActor->Actor);
-                            rigid->DisableDeactivation();
+                            rigid->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
                             //Dragger = new Generic6DofConstraint(rigid, LocalPivot, Quaternion(0,0,0,1), false);
                             Dragger = new Point2PointConstraint(rigid, LocalPivot);
                             Dragger->SetTAU(0.001);
@@ -394,7 +531,7 @@ bool CatchApp::PostUI()
             TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
             delete Dragger;
             Dragger=NULL;
-            Act->RestoreActivation();
+            Act->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
         }
     }
     return true;
@@ -476,15 +613,7 @@ bool CatchApp::PostRender()
     CurFPS->SetText(CFPS);
     AvFPS->SetText(AFPS);
 
-    // Turn on the Wireframe
-    if (30000<gametime)
-        { TheWorld->GetPhysicsManager()->SetDebugPhysicsRendering(0); }
-
-    //IF the game has gone on for 150 or more seconds close it.
-	if (150000<gametime || (TheWorld->GetEventManager()->GetNextQuitEvent()!=0) )
-        { return false; }
-    /*
-    if(//Perform check to see if the last actor thrown is within the limits of the level)
+    /*if(//Perform check to see if the last actor thrown is within the limits of the level)
     {
         //If it's not within the limits
         LastActorThrown = NULL;

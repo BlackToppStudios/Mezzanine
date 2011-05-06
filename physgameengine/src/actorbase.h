@@ -151,7 +151,7 @@ namespace phys
             /// @details This will take a Vector3 and set the location of the actor within the graphical world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
             /// @param Place The Vector3 representing the location.
-            virtual void SetOgreLocation(Vector3 Place);
+            virtual void SetOgreLocation(const Vector3& Place);
 
             /// @brief Retrieves the location of the graphical body.
             /// @details This function will retrieve the location of the object within the graphical world. This should always match the physics world.
@@ -162,11 +162,11 @@ namespace phys
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the graphical world. @n
             /// This function is called on by the SetOrientation function, and shouldn't be called manually.
             /// @param Rotation The quaternion representing the rotation of the actor.
-            virtual void SetOgreOrientation(Quaternion Rotation);
+            virtual void SetOgreOrientation(const Quaternion& Rotation);
 
             /// @brief Gets the orientation of the graphical body.
             /// @return Returns a quaternion representing the rotation of the actor.
-            virtual Quaternion GetOgreOrientation();
+            virtual Quaternion GetOgreOrientation() const;
 
 //////////////////////////////////////////////////////////////////////////////
 // Bullet Management Functions
@@ -175,7 +175,7 @@ namespace phys
             /// @details This will take a Vector3 and set the location of the actor within the physics world. @n
             /// This function is called on by the SetLocation function, and shouldn't be called manually.
             /// @param Location The Vector3 representing the location.
-            virtual void SetBulletLocation (Vector3 Location);
+            virtual void SetBulletLocation (const Vector3& Location);
 
             /// @brief Retrieves the location of the physics body.
             /// @details This function will retrieve the location of the object within the physics world.
@@ -185,11 +185,11 @@ namespace phys
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
             /// This function is called on by the SetOrientation function, and shouldn't be called manually.
             /// @param Rotation The quaternion representing the rotation of the actor.
-            virtual void SetBulletOrientation (Quaternion Rotation);
+            virtual void SetBulletOrientation (const Quaternion& Rotation);
 
             /// @brief Gets the orientation of the graphical body.
             /// @return Returns a quaternion representing the rotation of the actor.
-            virtual Quaternion GetBulletOrientation();
+            virtual Quaternion GetBulletOrientation() const;
 
 //////////////////////////////////////////////////////////////////////////////
 // Other Management Functions
@@ -229,13 +229,13 @@ namespace phys
             /// @param x Location on the X vector.
             /// @param y Location on the Y vector.
             /// @param z Location on the Z vector.
-            virtual void SetLocation(Real x, Real y, Real z);
+            virtual void SetLocation(const Real& x, const Real& y, const Real& z);
 
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
             /// In most situations you won't want to use this function, and instead produce movement through physics functions.
             /// @param Place The Vector3 representing the location.
-            virtual void SetLocation(Vector3 Place);
+            virtual void SetLocation(const Vector3& Place);
 
             /// @brief Retrieves the location of the object.
             /// @details This function will retrieve the location of the object within the world.
@@ -247,16 +247,16 @@ namespace phys
             /// @param y Where the Y vector is rotated about.
             /// @param z Where the Z vector is rotated about.
             /// @param w How much to about the x, y, z.
-            virtual void SetOrientation(Real x, Real y, Real z, Real w);
+            virtual void SetOrientation(const Real& x, const Real& y, const Real& z, const Real& w);
 
             /// @brief Sets the orientation of the actor.
             /// @details Sets the orientation of the actor via a Quaternion.
             /// @param Rotation The Quaternion representing the Rotation.
-            virtual void SetOrientation(Quaternion Rotation);
+            virtual void SetOrientation(const Quaternion& Rotation);
 
             /// @brief Gets the orientation of the actor.
             /// @return Returns a quaternion representing the rotation of the actor.
-            virtual Quaternion GetOrientation();
+            virtual Quaternion GetOrientation() const;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Utility and Configuration
@@ -267,26 +267,26 @@ namespace phys
             /// @brief Gets the type of actor this class is.
             /// @details This function will get the type of class that you are working with for checking and casting.
             /// @return ActorTypeName The type of actor that this is.
-            virtual int GetType();
+            virtual int GetType() const;
 
             /// @brief Gets a WorldNode representing the position and orientation of this actor.
             /// @details The WorldNode returned by this function is not stored in the scene manasger.
             /// @return Returns a WorldNode pointer poiniting to this actor's world node.
-            virtual WorldNode* GetActorNode();
+            virtual WorldNode* GetActorNode() const;
 
             /// @brief Gets whether this actors current shape has been saved or not.
             /// @details This function will tell you if it's current physics shape has been saved for later use or not.
             /// @return Returns whether or not the shape of this actor has been saved.
-            virtual const bool GetShapeIsSaved();
+            virtual const bool GetShapeIsSaved() const;
 
             /// @brief Gets whether or not this object is currently in the world.
             /// @return Returns a bool indicating if this object has been added to the world.
-            virtual bool IsInWorld();
+            virtual bool IsInWorld() const;
 
             /// @brief Checks of the actor is static or kinematic.
             /// @details Checks of the actor is static or kinematic, returns true if it is either.
             /// @return Returns true if the actor is static or kinematic.
-            virtual bool IsStaticOrKinematic();
+            virtual bool IsStaticOrKinematic() const;
 
             /// @brief Sets the animation for this object.
             /// @details This function will get the specified animation for this object stored in the mesh file, and will loop the
@@ -294,7 +294,7 @@ namespace phys
             /// @param AnimationName Name of the stored animation to be loaded.
             /// @param Loop Whether or not you want the animation to loop.  For example, you would want an idle animation to loop,
             /// but not a death animation.
-            virtual void SetAnimation(ConstString &AnimationName, bool Loop);
+            virtual void SetAnimation(ConstString& AnimationName, bool Loop);
 
             /// @brief Enables the animation if one is set.
             /// @details This function will enable the animation if passed true, making the object animate.  If passed false will
@@ -305,12 +305,12 @@ namespace phys
             /// @brief Tells whether this actor is animated or not.
             /// @details This function will return true if the actor has an animation set and it is enabled.
             /// @return Returns true if an animation is set and enabled.
-            virtual bool IsAnimated();
+            virtual bool IsAnimated() const;
 
             /// @brief Advances the animation, making it animate.
             /// @details You need to call this every frame while the actor is to be animated, otherwise even with the animation
             /// enabled you will see no change in the animation.
-            virtual void AdvanceAnimation(Real Time);
+            virtual void AdvanceAnimation(const Real& Time);
 
             /// @brief Unloads a loaded animation.
             /// @details This function will remove the existing set animation.
@@ -319,7 +319,7 @@ namespace phys
             /// @brief Sets the scale of the actor.
             /// @details This function will alter the scaling/size of the actor with the given vector3.
             /// @param scale The vector3 by which to apply the scale.  Will scale each axis' accordingly.
-            virtual void SetActorScaling(Vector3 scale);
+            virtual void SetActorScaling(const Vector3& scale);
 
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
@@ -331,11 +331,11 @@ namespace phys
 
             /// @brief Gets the graphics settings class associated with this actor.
             /// @return Returns a pointer to the graphics settings class in use by this actor.
-            virtual ActorGraphicsSettings* GetGraphicsSettings();
+            virtual ActorGraphicsSettings* GetGraphicsSettings() const;
 
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.
-            virtual ActorBasePhysicsSettings* GetPhysicsSettings();
+            virtual ActorBasePhysicsSettings* GetPhysicsSettings() const;
 
 ///////////////////////////////////////////////////////////////////////////////
 // Working with the World
@@ -358,12 +358,12 @@ namespace phys
             /// @internal
             /// @brief Gets the internal physics object this actor is based on.
             /// @return Returns a pointer to the internal Bullet object.
-            virtual btCollisionObject* GetBaseBulletObject();
+            virtual btCollisionObject* GetBaseBulletObject() const;
 
             /// @internal
             /// @brief Gets the internal graphics object this actor is based on.
             /// @return Returns a pointer to the internal graphics object.
-            virtual Ogre::Entity* GetOgreObject();
+            virtual Ogre::Entity* GetOgreObject() const;
     };
 
 } // /phys

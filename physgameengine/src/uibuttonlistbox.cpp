@@ -223,7 +223,7 @@ namespace phys
 
         bool ButtonListBox::IsVisible()
         {
-            return Visible;
+            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
 
         void ButtonListBox::Show()
@@ -248,7 +248,7 @@ namespace phys
 
         bool ButtonListBox::CheckMouseHover()
         {
-            if(!Visible)
+            if(!IsVisible())
                 return false;
             for( std::vector<Button*>::iterator it = VisibleSelections.begin() ; it != VisibleSelections.end() ; it++ )
             {
@@ -256,7 +256,6 @@ namespace phys
                 {
                     HoveredSubWidget = NULL;
                     HoveredButton = (*it);
-                    //Update();
                     return true;
                 }
             }
@@ -264,14 +263,12 @@ namespace phys
             {
                 HoveredSubWidget = VertScroll;
                 HoveredButton = NULL;
-                //Update();
                 return true;
             }
             else if(BoxBack->CheckMouseHover())
             {
                 HoveredSubWidget = NULL;
                 HoveredButton = NULL;
-                //Update();
                 return true;
             }
             HoveredSubWidget = NULL;

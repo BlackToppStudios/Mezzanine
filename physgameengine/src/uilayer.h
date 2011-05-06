@@ -114,7 +114,7 @@ namespace phys
                 void SetVisible(bool Visible);
                 /// @brief Gets the layers' visability.
                 /// @return Returns a bool representing the visability of the layer.
-                bool GetVisible();
+                bool IsVisible();
                 /// @brief Forces the layer to be shown.
                 void Show();
                 /// @brief Forces the layer to hide.

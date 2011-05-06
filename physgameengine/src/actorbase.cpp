@@ -70,8 +70,6 @@ namespace phys{
         this->GraphicsNode = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
         this->ActorWorldNode = new WorldNode(GraphicsNode,GameWorld->GetSceneManager());
         this->Shape = new btEmptyShape();
-        //this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);
-        //this->BasePhysicsSettings = new ActorBasePhysicsSettings(this,CollisionObject);
     }
 
     ActorBase::~ActorBase()
@@ -94,7 +92,7 @@ namespace phys{
     ///////////////////////////////////
     // Ogre Management Functions
 
-    void ActorBase::SetOgreLocation(Vector3 Location)
+    void ActorBase::SetOgreLocation(const Vector3& Location)
     {
         this->GraphicsNode->setPosition(Location.GetOgreVector3());
     }
@@ -105,12 +103,12 @@ namespace phys{
         return temp;
     }
 
-    void ActorBase::SetOgreOrientation(Quaternion Rotation)
+    void ActorBase::SetOgreOrientation(const Quaternion& Rotation)
     {
         this->GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
     }
 
-    Quaternion ActorBase::GetOgreOrientation()
+    Quaternion ActorBase::GetOgreOrientation() const
     {
         Quaternion temp(GraphicsNode->getOrientation());
         return temp;
@@ -119,10 +117,11 @@ namespace phys{
     ///////////////////////////////////
     // Bullet Management Functions
 
-    void ActorBase::SetBulletLocation(Vector3 Location)
+    void ActorBase::SetBulletLocation(const Vector3& Location)
     {
         //btTransform* temp = this->CollisionObject->getWorldTransform();
         this->CollisionObject->getWorldTransform().setOrigin(Location.GetBulletVector3());
+        this->CollisionObject->getInterpolationWorldTransform().setOrigin(Location.GetBulletVector3());
     }
 
     Vector3 ActorBase::GetBulletLocation() const
@@ -131,12 +130,12 @@ namespace phys{
         return temp;
     }
 
-    void ActorBase::SetBulletOrientation(Quaternion Rotation)
+    void ActorBase::SetBulletOrientation(const Quaternion& Rotation)
     {
         this->CollisionObject->getWorldTransform().setRotation(Rotation.GetBulletQuaternion(true));
     }
 
-    Quaternion ActorBase::GetBulletOrientation()
+    Quaternion ActorBase::GetBulletOrientation() const
     {
         Quaternion temp(CollisionObject->getWorldTransform().getRotation());
         return temp;
@@ -162,13 +161,13 @@ namespace phys{
     ///////////////////////////////////
     // Creation, Destruction and Initialization
 
-    void ActorBase::SetLocation(Real x, Real y, Real z)
+    void ActorBase::SetLocation(const Real& x, const Real& y, const Real& z)
     {
         Vector3 temp(x,y,z);
         this->SetLocation(temp);
     }
 
-    void ActorBase::SetLocation(Vector3 Place)
+    void ActorBase::SetLocation(const Vector3& Place)
     {
         this->SetBulletLocation(Place);
         this->SetOgreLocation(Place);
@@ -179,19 +178,19 @@ namespace phys{
         return this->GetBulletLocation();
     }
 
-    void ActorBase::SetOrientation(Real x, Real y, Real z, Real w)
+    void ActorBase::SetOrientation(const Real& x, const Real& y, const Real& z, const Real& w)
     {
         Quaternion temp(x,y,z,w);
         this->SetOrientation(temp);
     }
 
-    void ActorBase::SetOrientation(Quaternion Rotation)
+    void ActorBase::SetOrientation(const Quaternion& Rotation)
     {
         this->SetBulletOrientation(Rotation);
         this->SetOgreOrientation(Rotation);
     }
 
-    Quaternion ActorBase::GetOrientation()
+    Quaternion ActorBase::GetOrientation() const
     {
         return this->GetBulletOrientation();
     }
@@ -199,32 +198,32 @@ namespace phys{
     ///////////////////////////////////
     // Utility and Configuration
 
-    int ActorBase::GetType()
+    int ActorBase::GetType() const
     {
         return this->ActorType;
     }
 
-    WorldNode* ActorBase::GetActorNode()
+    WorldNode* ActorBase::GetActorNode() const
     {
         return ActorWorldNode;
     }
 
-    const bool ActorBase::GetShapeIsSaved()
+    const bool ActorBase::GetShapeIsSaved() const
     {
         return ShapeIsSaved;
     }
 
-    bool ActorBase::IsInWorld()
+    bool ActorBase::IsInWorld() const
     {
         return CollisionObject->getBroadphaseHandle() != 0;
     }
 
-    bool ActorBase::IsStaticOrKinematic()
+    bool ActorBase::IsStaticOrKinematic() const
     {
         return BasePhysicsSettings->IsStaticOrKinematic();
     }
 
-    void ActorBase::SetAnimation(ConstString &AnimationName, bool Loop)
+    void ActorBase::SetAnimation(ConstString& AnimationName, bool Loop)
     {
         if(this->IsAnimated())
         {
@@ -242,7 +241,7 @@ namespace phys{
         }
     }
 
-    bool ActorBase::IsAnimated()
+    bool ActorBase::IsAnimated() const
     {
         if(Animation)
         {
@@ -252,7 +251,7 @@ namespace phys{
         }
     }
 
-    void ActorBase::AdvanceAnimation(Real Time)
+    void ActorBase::AdvanceAnimation(const Real& Time)
     {
         if(Animation)
         {
@@ -269,18 +268,18 @@ namespace phys{
         }
     }
 
-    void ActorBase::SetActorScaling(Vector3 scaling)
+    void ActorBase::SetActorScaling(const Vector3& scaling)
     {
         this->GraphicsNode->setScale(scaling.GetOgreVector3());
         this->Shape->setLocalScaling(scaling.GetBulletVector3());
     }
 
-    ActorGraphicsSettings* ActorBase::GetGraphicsSettings()
+    ActorGraphicsSettings* ActorBase::GetGraphicsSettings() const
     {
         return GraphicsSettings;
     }
 
-    ActorBasePhysicsSettings* ActorBase::GetPhysicsSettings()
+    ActorBasePhysicsSettings* ActorBase::GetPhysicsSettings() const
     {
         return BasePhysicsSettings;
     }
@@ -288,12 +287,12 @@ namespace phys{
     ///////////////////////////////////
     // Internal Object Access functions
 
-    btCollisionObject* ActorBase::GetBaseBulletObject()
+    btCollisionObject* ActorBase::GetBaseBulletObject() const
     {
         return CollisionObject;
     }
 
-    Ogre::Entity* ActorBase::GetOgreObject()
+    Ogre::Entity* ActorBase::GetOgreObject() const
     {
         return GraphicsObject;
     }

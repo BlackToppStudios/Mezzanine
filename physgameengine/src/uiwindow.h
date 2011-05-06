@@ -73,8 +73,25 @@ namespace phys
         class PHYS_LIB Window : public Widget
         {
             protected:
+                /// @internal
+                /// @enum ResizeMode
+                /// @brief Internal enum for handling a resizing via mouse.
+                enum ResizeMode
+                {
+                    RM_None,
+                    RM_TopLeft,
+                    RM_TopRight,
+                    RM_BottomLeft,
+                    RM_BottomRight,
+                    RM_Left,
+                    RM_Right,
+                    RM_Top,
+                    RM_Bottom,
+                };
                 Rectangle* WindowBack;
                 //Caption* WindowTitle;
+                Whole BorderWidth;
+                ResizeMode CurrentRM;
                 std::vector<OffsetButtonInfo> Buttons;
                 std::vector<OffsetRectangleInfo> Rectangles;
                 std::vector<OffsetCaptionInfo> Captions;
@@ -83,9 +100,11 @@ namespace phys
                 /// @brief For use with widget update/automation.
                 void Update(bool Force = false);
                 /// @brief Internal function for setting the location(position) of this widget.
-                void SetLocation(const Vector2 &Position);
+                void SetLocation(const Vector2& Position);
                 /// @brief Internal function for setting the area(size) of this widget.
-                void SetArea(const Vector2 &Size);
+                void SetArea(const Vector2& Size);
+                /// @brief Checks to see if a point is within the border of this window.
+                void BorderAreaCheck(const Vector2& ScreenLoc);
                 /// @brief Calculates a new offset for an individual element.
                 Vector2 CalculateOffset(const Vector2 NewSize, const Vector2 OldSize, const Vector2 EleOffset, UI::ResizeableAnchor Anchor);
                 /// @brief Calculates a new size for an individual element.
@@ -96,7 +115,7 @@ namespace phys
                 /// @param Position The position of the window.
                 /// @param Size The size of the window.
                 /// @param Layer The parent layer this window belongs to.
-                Window(ConstString& name, const Vector2 Position, const Vector2 Size, Layer* PLayer);
+                Window(ConstString& name, const Vector2& Position, const Vector2& Size, Layer* PLayer);
                 /// @brief Standard destructor.
                 virtual ~Window();
                 /// @brief Sets the visibility of this window.
