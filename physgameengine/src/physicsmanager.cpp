@@ -358,10 +358,10 @@ namespace phys
         GameWorld->Log();
 
         Real FloatTime = TimeElapsed;
-        FloatTime *= 0.0001;    //Convert from MilliSeconds to Seconds
+        FloatTime *= 0.001;    //Convert from MilliSeconds to Seconds
 
         Real IdealStep = this->GameWorld->GetTargetFrameTime();
-        IdealStep *= 0.0001;
+        IdealStep *= 0.001;
 
         //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
         int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe

@@ -16,26 +16,27 @@ StartingArea::~StartingArea()
 
 }
 
-void StartingArea::Initialize()
-{
-    ActorBase* Act = NULL;
-    for( std::list<ActorBase*>::iterator it = OverlappingActors.begin() ; it != OverlappingActors.end() ; it++ )
-    {
-        Act = (*it);
-        Act->GetPhysicsSettings()->DisableCollisionResponse();
-        TheWorld->GetPhysicsManager()->SetIndividualGravity(Act, Grav);
-    }
-}
-
 void StartingArea::ApplyEffect()
 {
     ActorBase* Act = NULL;
     PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
-    for( std::vector<ActorBase*>::iterator it = RemovedActors.begin() ; it != RemovedActors.end() ; it++ )
+    if(!AddedActors.empty())
     {
-        Act = (*it);
-        Act->GetPhysicsSettings()->EnableCollisionResponse();
-        PhysMan->SetIndividualGravity(Act, PhysMan->GetGravity());
+        for( std::vector<ActorBase*>::iterator it = AddedActors.begin() ; it != AddedActors.end() ; it++ )
+        {
+            Act = (*it);
+            Act->GetPhysicsSettings()->DisableCollisionResponse();
+            PhysMan->SetIndividualGravity(Act, Grav);
+        }
+    }
+    if(!RemovedActors.empty())
+    {
+        for( std::vector<ActorBase*>::iterator it = RemovedActors.begin() ; it != RemovedActors.end() ; it++ )
+        {
+            Act = (*it);
+            Act->GetPhysicsSettings()->EnableCollisionResponse();
+            PhysMan->SetIndividualGravity(Act, PhysMan->GetGravity());
+        }
     }
 }
 

@@ -62,8 +62,10 @@ namespace phys
 {
     namespace UI
     {
-        Window::Window(ConstString& name, const Vector2 Position, const Vector2 Size, Layer* PLayer)
-            : Widget(name,PLayer)
+        Window::Window(ConstString& name, const Vector2& Position, const Vector2& Size, Layer* PLayer)
+            : Widget(name,PLayer),
+              BorderWidth(0),
+              CurrentRM(RM_None)
         {
             RelPosition = Position;
             RelSize = Size;
@@ -201,6 +203,26 @@ namespace phys
                     (*it).Object->SetActualSize(CalculateSize(Size,OldSize,(*it).Object->GetActualSize(),(*it).Tether));
                 (*it).Object->SetActualPosition(Position+(*it).Offset);
             }
+        }
+
+        void Window::BorderAreaCheck(const Vector2& ScreenLoc)
+        {
+            if(!BorderWidth)
+                return;
+            Vector2 Size = WindowBack->GetActualSize();
+            Vector2 Position = WindowBack->GetActualPosition();
+            bool Left = ScreenLoc.X >= Position.X && ScreenLoc.X <= Position.X + BorderWidth;
+            bool Right = ScreenLoc.X >= Position.X + Size.X && ScreenLoc.X <= (Position.X + Size.X) - BorderWidth;
+            bool Top = ScreenLoc.Y >= Position.Y && ScreenLoc.Y <= Position.Y + BorderWidth;
+            bool Bottom = ScreenLoc.Y >= Position.Y + Size.Y && ScreenLoc.Y <= (Position.Y + Size.Y) - BorderWidth;
+            if( Top && Left ) CurrentRM = Window::RM_TopLeft;
+            else if( Top && Right ) CurrentRM = Window::RM_TopRight;
+            else if( Bottom && Left ) CurrentRM = Window::RM_BottomLeft;
+            else if( Bottom && Right ) CurrentRM = Window::RM_BottomRight;
+            else if( Left ) CurrentRM = Window::RM_Left;
+            else if( Right ) CurrentRM = Window::RM_BottomRight;
+            else if( Top ) CurrentRM = Window::RM_BottomRight;
+            else if( Bottom ) CurrentRM = Window::RM_BottomRight;
         }
 
         Vector2 Window::CalculateOffset(const Vector2 NewSize, const Vector2 OldSize, const Vector2 EleOffset, UI::ResizeableAnchor Anchor)
