@@ -128,6 +128,8 @@ namespace phys
         if(!RC)
             RC = (size_t)SDL_GL_CreateContext(this->SDLWindow);
 
+        RenderContext = RC;
+
         Ogre::NameValuePairList* Binder;
         Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,RC);
         Opts.insert(Binder->begin(),Binder->end());
@@ -349,6 +351,11 @@ namespace phys
     Real GameWindow::GetWorstFrameTime()
     {
         return OgreWindow->getWorstFrameTime();
+    }
+
+    size_t GameWindow::GetRenderContext()
+    {
+        return RenderContext;
     }
 
     Ogre::RenderWindow* GameWindow::GetOgreWindowPointer()

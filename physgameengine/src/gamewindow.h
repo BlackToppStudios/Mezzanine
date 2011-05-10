@@ -100,6 +100,8 @@ namespace phys
 
             GraphicsManager* Manager;
 
+            size_t RenderContext;
+
             void CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
             void CorrectViewportAndCamera(const Whole& Index);
             int IsLargerThenDesktop(const Whole& Width, const Whole& Height);
@@ -205,6 +207,10 @@ namespace phys
             /// @brief Gets the longest amount of time it's taken to render a frame.
             /// @return Returns a Real representing the worst time for rendering a frame.
             Real GetWorstFrameTime();
+
+            /// @brief Gets the render context being used by this window.
+            /// @return Returns a size_t that identifies the render context being used by this window.
+            size_t GetRenderContext();
 
             /// @internal
             /// @brief This will get a pointer to the Ogre RenderWindow.
