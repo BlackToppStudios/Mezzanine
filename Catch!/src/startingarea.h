@@ -13,6 +13,7 @@ class StartingArea : public AreaEffect
         StartingArea(const String &name, Vector3 Location);
         ~StartingArea();
         void ApplyEffect();
+        bool IsInside(ActorBase* Actor);
         bool IsEmpty();
 };
 

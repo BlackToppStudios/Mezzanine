@@ -18,6 +18,7 @@ class AreaOfPlay : public AreaEffect
         ~AreaOfPlay();
         void ApplyEffect();
         bool IsInside(ActorBase* Actor);
+        bool AllObjectsAtRest();
 };
 
 #endif

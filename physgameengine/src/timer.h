@@ -113,6 +113,8 @@ namespace phys
             virtual void Start() { Active = true; };
             /// @brief Deactivates the Timer.
             virtual void Stop() { Active = false; };
+            /// @brief Gets Whether or not this timer is currently running.
+            virtual bool IsStopped() { return !Active; };
             /// @brief Sets the current values to their initial values.
             virtual void Reset() = 0;
             /// @brief Gets the type of timer this is.

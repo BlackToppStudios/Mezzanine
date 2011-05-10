@@ -80,6 +80,7 @@ namespace phys
                 Vector2 Offset = Position - RelPosition;
                 OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
                 Buttons.push_back(backbuttonoff);
+                backbuttonoff.Object->SetVisible(IsVisible());
                 return BackButton;
             }
             return 0;
@@ -97,6 +98,7 @@ namespace phys
             OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(buttonoff);
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
+            buttonoff.Object->SetVisible(IsVisible());
             return buttonoff.Object;
         }
 

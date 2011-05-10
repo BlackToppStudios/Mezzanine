@@ -130,8 +130,13 @@ namespace phys
                 }else{
                     World::GetWorldPointer()->LogAndThrow("Failed to create SDL Binder.");
                 }
-            #else
+            #endif
+            #ifdef LINUX
                 (*misc)["currentGLContext"] = Ogre::String("True");
+            #endif
+            #ifdef MACOSX
+                (*misc)["currentGLContext"] = Ogre::String("True");
+                (*misc)["macAPI"] = Ogre::String("cocoa");
             #endif
 
             return misc;

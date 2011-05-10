@@ -30,4 +30,18 @@ bool AreaOfPlay::IsInside(ActorBase* Actor)
     }
 }
 
+bool AreaOfPlay::AllObjectsAtRest()
+{
+    ActorBase* Act = NULL;
+    if(OverlappingActors.empty())
+        return false;
+    for ( std::list<ActorBase*>::iterator it = OverlappingActors.begin() ; it != OverlappingActors.end() ; it++ )
+    {
+        Act = (*it);
+        if( Act->GetPhysicsSettings()->IsActive() )
+            return false;
+    }
+    return true;
+}
+
 #endif

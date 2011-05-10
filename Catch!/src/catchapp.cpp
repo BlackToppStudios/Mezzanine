@@ -12,6 +12,7 @@ CatchApp* CatchApp::TheRealCatchApp = 0;
 CatchApp::CatchApp(const Vector3 &WorldLowerBounds, const Vector3 &WorldUpperBounds, SceneManager::SceneManagerType SceneType, const unsigned short int &MaxPhysicsProxies)
     : CurrScore(0),
       LastActorThrown(NULL),
+      EndTimer(NULL),
       CurrentState(CatchApp::Catch_Loading),
       PlaneOfPlay(Plane(Vector3(2.0,1.0,0.0), Vector3(1.0,2.0,0.0), Vector3(1.0,1.0,0.0)))
 {
@@ -72,6 +73,7 @@ void CatchApp::LoadContent()
     ActorRigid* FerrisWheel = new ActorRigid (100.0,"FerrisWheel","wheel.mesh",groupname);
     TheWorld->GetResourceManager()->ImportShapeData(FerrisWheel,"ferris_wheel.bullet");
     FerrisWheel->SetLocation(100,0,0);
+    FerrisWheel->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(FerrisWheel);
 
     // Create the trayz
@@ -141,33 +143,46 @@ void CatchApp::LoadContent()
     PhysMan->AddConstraint(Tray8Anchor,true);// */
 
     // Create some throwable objects
-    Real UraniumMass = 20.0;
-    Real LeadMass = 30.0;
-    Real ClayMass = 12.0;
+    Real UraniumMass = 10.0;
+    Real GoldMass = 15.0;
+    Real LeadMass = 12.0;
+    Real ClayMass = 6.0;
     ActorRigid* Uranium1 = new ActorRigid(UraniumMass,"Uranium1","uranium.mesh",groupname);
-    Uranium1->CreateShapeFromMeshDynamic(1);
-    Uranium1->SetLocation(25,40,0);
+    Uranium1->CreateShapeFromMeshDynamic(2);
+    Uranium1->SetLocation(-145,40,0);
+    Uranium1->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Uranium1);
+    ThrownItems.push_back(Uranium1);
     ActorRigid* Uranium2 = new ActorRigid(UraniumMass,"Uranium2","uranium.mesh",groupname);
     Uranium2->CreateShapeFromMeshDynamic(1);
-    Uranium2->SetLocation(-25,40,0);
-    TheWorld->GetActorManager()->AddActor(Uranium2);// */
+    Uranium2->SetLocation(-195,40,0);
+    Uranium2->LimitMovementOnAxis(true,true,false);
+    TheWorld->GetActorManager()->AddActor(Uranium2);
+    ThrownItems.push_back(Uranium2);// */
     ActorRigid* Lead1 = new ActorRigid(LeadMass,"Lead1","lead.mesh",groupname);
     Lead1->CreateShapeFromMeshDynamic(1);
-    Lead1->SetLocation(25,-0,0);
+    Lead1->SetLocation(-145,0,0);
+    Lead1->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Lead1);
+    ThrownItems.push_back(Lead1);
     ActorRigid* Lead2 = new ActorRigid(LeadMass,"Lead2","lead.mesh",groupname);
     Lead2->CreateShapeFromMeshDynamic(1);
-    Lead2->SetLocation(-25,-0,0);
-    TheWorld->GetActorManager()->AddActor(Lead2);// */
-    ActorRigid* Clay1 = new ActorRigid(ClayMass,"Clay1","clay_pot.mesh",groupname);
+    Lead2->SetLocation(-195,0,0);
+    Lead2->LimitMovementOnAxis(true,true,false);
+    TheWorld->GetActorManager()->AddActor(Lead2);
+    ThrownItems.push_back(Lead2);// */
+    ActorRigid* Clay1 = new ActorRigid(ClayMass,"Clay1","clay.mesh",groupname);
     Clay1->CreateShapeFromMeshDynamic(1);
-    Clay1->SetLocation(25,-40,0);
+    Clay1->SetLocation(-145,-40,0);
+    Clay1->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Clay1);
-    ActorRigid* Clay2 = new ActorRigid(ClayMass,"Clay2","clay_pot.mesh",groupname);
+    ThrownItems.push_back(Clay1);
+    ActorRigid* Clay2 = new ActorRigid(ClayMass,"Clay2","clay.mesh",groupname);
     Clay2->CreateShapeFromMeshDynamic(1);
-    Clay2->SetLocation(-25,-40,0);
-    TheWorld->GetActorManager()->AddActor(Clay2);// */
+    Clay2->SetLocation(-195,-40,0);
+    Clay2->LimitMovementOnAxis(true,true,false);
+    TheWorld->GetActorManager()->AddActor(Clay2);
+    ThrownItems.push_back(Clay2);// */
 
     // Create the zones
     PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
@@ -193,12 +208,14 @@ void CatchApp::MakeGUI()
     String HUDLayer = "HUDLayer";
     String ItemShopLayer = "ItemShopLayer";
     String StatsLayer = "StatsLayer";
+    String ReportLayer = "ReportLayer";
     UIManager* GUI = TheWorld->GetUIManager();
     Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
     GUI->LoadGorilla("Catch!");
 
     UI::Screen* screen = GUI->CreateScreen(GameScreen, "Catch!", UIViewport);
     UI::Layer* Menu = screen->CreateLayer(MenuLayer, 10);
+    UI::Layer* Report = screen->CreateLayer(ReportLayer, 8);
     UI::Layer* ItemShop = screen->CreateLayer(ItemShopLayer, 4);
     UI::Layer* Stats = screen->CreateLayer(StatsLayer, 1);
     UI::Layer* HUD = screen->CreateLayer(HUDLayer, 0);
@@ -206,6 +223,7 @@ void CatchApp::MakeGUI()
     ColourValue Transparent(0.0,0.0,0.0,0.0);
     ColourValue Black(0.0,0.0,0.0,1.0);
     ColourValue TransBlack(0.0,0.0,0.0,0.3);
+    ColourValue Gray(0.2,0.2,0.2,1.0);
 
     //Build the Game Screen
     //Build the HUD layer
@@ -285,7 +303,57 @@ void CatchApp::MakeGUI()
     AvFPSText->SetBackgroundColour(Transparent);
     AvFPSText->HorizontallyAlign(UI::Txt_Left);
     //End of Stats Layer
+
+    //Build the Report Layer
+    UI::Window* LevelReport = Report->CreateWidgetWindow("LevelReport", Vector2(0.2, 0.2), Vector2(0.6, 0.6));
+    LevelReport->GetWindowBack()->SetBackgroundColour(Gray);
+    //TempCaption
+    UI::Caption* TempCapt = LevelReport->CreateCaption("TempWarning", Vector2(0.25, 0.3), Vector2(0.5, 0.3), 18, "Future spot of level reports.");
+    TempCapt->SetBackgroundColour(Transparent);
+    UI::TextButton* FinishButton = LevelReport->CreateTextButton("Finish", Vector2(0.42, 0.66), Vector2(0.16, 0.08), 14, "Finish");
+    FinishButton->SetBackgroundColour(TransBlack);
+    Report->Hide();
+    //End of Report Layer
     //End of Game Screen
+}
+
+void CatchApp::PopulateScoreValues()
+{
+    ItemScoreValues["Gold"] = 100;
+    ItemScoreValues["Iron"] = 50;
+    ItemScoreValues["Clay"] = 10;
+    ItemScoreValues["Uranium"] = 100;
+    ItemScoreValues["Rubber"] = 30;
+    ItemScoreValues["Lead"] = 30;
+    ItemScoreValues["Styrofoam"] = 10;
+    ItemScoreValues["Wood"] = 20;
+}
+
+void CatchApp::PopulateShopValues()
+{
+    ShopCostValues["Wooden Plank"] = 50;
+}
+
+bool CatchApp::CheckEndOfLevel()
+{
+    if(!EndTimer)
+    {
+        EndTimer = TheWorld->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
+        EndTimer->SetInitialTime(5 * 1000000);
+        EndTimer->SetCurrentTime(5 * 1000000);
+        EndTimer->SetGoalTime(0);
+        EndTimer->Start();
+    }
+    std::vector<ActorBase*>& FinalTest = ScoreZone->GetAddedActors();
+    for( Whole F = 0 ; F < FinalTest.size() ; F++ )
+    {
+        if(LastActorThrown == FinalTest[F])
+            EndTimer->Reset();
+    }
+    if(EndTimer->IsStopped())
+        return true;
+    else
+        return false;
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()
@@ -304,6 +372,9 @@ int CatchApp::GetCatchin()
     TheWorld->GetGraphicsManager()->SetPostMainLoopItems(&CPostRender);
     TheWorld->GetUIManager()->SetPreMainLoopItems(&CPreUI);
     TheWorld->GetUIManager()->SetPostMainLoopItems(&CPostUI);
+
+    PopulateScoreValues();
+    PopulateShopValues();
 
     //Set logging frequency
     TheWorld->SetLoggingFrequency(World::LogNever);
@@ -430,6 +501,10 @@ bool CatchApp::PostUI()
                     UI::Layer* layer = UIMan->GetLayer(MenuL);
                     layer->Hide();
                 }
+                else if("Finish" == MouseButton->GetName())
+                {
+                    return false;
+                }
                 else if("Exit" == MouseButton->GetName())
                 {
                     return false;
@@ -453,10 +528,14 @@ bool CatchApp::PostUI()
             //ActorBase *temp = ClickOnActor->Actor;
 
             bool firstframe=false;
-            if (0 == ClickOnActor || 0 == ClickOnActor->Actor)
+            if(0 == ClickOnActor || 0 == ClickOnActor->Actor)
             {
                 #ifdef PHYSDEBUG
                 TheWorld->Log("No Actor Clicked on");
+                #endif
+            }else if(!StartZone->IsInside(ClickOnActor->Actor)){
+                #ifdef PHYSDEBUG
+                TheWorld->Log("Actor is not in starting zone");
                 #endif
             }else{
                 #ifdef PHYSDEBUG
@@ -517,6 +596,15 @@ bool CatchApp::PostUI()
                 }
             }
 
+            if(Dragger && !StartZone->IsInside(LastActorThrown))
+            {
+                ActorRigid* Act = Dragger->GetActorA();
+                TheWorld->GetPhysicsManager()->RemoveConstraint(Dragger);
+                delete Dragger;
+                Dragger=NULL;
+                Act->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
+            }
+
             // Here we cleanup everything we needed for the clicking/dragging
             if ( DragTo )
                 { delete DragTo; }
@@ -547,6 +635,27 @@ bool CatchApp::PostPhysics()
     //// Updating functions to be used when a suitable mesh is found/created.
     //ActorSoft* ActS = static_cast< ActorSoft* > (TheWorld->Actors->FindActor("Column1"));
     //ActS->UpdateSoftBody();
+
+    std::vector<ActorBase*>& Added = ScoreZone->GetAddedActors();
+    std::vector<ActorBase*>& Removed = ScoreZone->GetRemovedActors();
+    for( Whole A = 0 ; A < Added.size() ; A++ )
+    {
+        String ItemName = Added[A]->GetName();
+        for( std::map<String,Whole>::iterator Ait = ItemScoreValues.begin() ; Ait != ItemScoreValues.end() ; Ait++ )
+        {
+            if(ItemName.find((*Ait).first) != String::npos)
+                CurrScore += (*Ait).second;
+        }
+    }
+    for( Whole R = 0 ; R < Removed.size() ; R++ )
+    {
+        String ItemName = Removed[R]->GetName();
+        for( std::map<String,Whole>::iterator Rit = ItemScoreValues.begin() ; Rit != ItemScoreValues.end() ; Rit++ )
+        {
+            if(ItemName.find((*Rit).first) != String::npos)
+                CurrScore -= (*Rit).second;
+        }
+    }
     return true;
 }
 
@@ -613,23 +722,15 @@ bool CatchApp::PostRender()
     CurFPS->SetText(CFPS);
     AvFPS->SetText(AFPS);
 
-    /*if(//Perform check to see if the last actor thrown is within the limits of the level)
-    {
-        //If it's not within the limits
-        LastActorThrown = NULL;
-    }
-
     if(StartZone->IsEmpty())
     {
-        if(NULL==LastActorThrown)
+        if(CheckEndOfLevel())
         {
-            if(ScoreZone->AllObjectsAtRest())
-            {
-                //end the game somehow, show the final score screen.
-            }
+            TheWorld->GetPhysicsManager()->PauseSimulation(true);
+            TheWorld->GetUIManager()->GetLayer("ReportLayer")->Show();
         }
     }
-    */
+
     return true;
 }
 

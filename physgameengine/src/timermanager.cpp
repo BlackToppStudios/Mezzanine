@@ -108,10 +108,10 @@ namespace phys
 
     void TimerManager::DoMainLoopItems()
     {
-        if(Timers.empty())
-            return;
         Whole Elapsed = MasterTimer->getMicroseconds();
         MasterTimer->reset();
+        if(Timers.empty())
+            return;
         for( std::vector<Timer*>::iterator it = Timers.begin() ; it != Timers.end() ; it++ )
         {
             (*it)->Update(Elapsed);

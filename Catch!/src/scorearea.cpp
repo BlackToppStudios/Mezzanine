@@ -19,6 +19,17 @@ void ScoreArea::ApplyEffect()
 
 }
 
+bool ScoreArea::IsInside(ActorBase* Actor)
+{
+    for( std::list<ActorBase*>::iterator it = OverlappingActors.begin() ; it != OverlappingActors.end() ; it++ )
+    {
+        if( Actor == (*it) )
+        {
+            return true;
+        }
+    }
+}
+
 bool ScoreArea::AllObjectsAtRest()
 {
     ActorBase* Act = NULL;
