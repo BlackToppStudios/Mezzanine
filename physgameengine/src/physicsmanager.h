@@ -86,6 +86,7 @@ namespace phys
             //Real PhysicsStepsize; // use this->GameWorld->TargetFrameLength instead
             unsigned short int CollisionAge;
             Real Impulse;
+            bool SimulationPaused;
             std::map< String, btCollisionShape* > PhysicsShapes;
             std::vector < AreaEffect* > AreaEffects;
 
@@ -136,6 +137,14 @@ namespace phys
             /// @brief Deconstructor
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
             virtual ~PhysicsManager();
+
+            /// @brief Pauses the simulation, preventing the physics world from taking action.
+            /// @param Pause Wether or not to pause the simulation.
+            void PauseSimulation(bool Pause);
+
+            /// @brief Gets Whether or not the simulation is currently paused.
+            /// @return Returns whether or not the simulation is paused.
+            bool SimulationIsPaused();
 
             /// @brief Sets the gravity.
             /// @details Sets the strength and direction of gravity within the world.

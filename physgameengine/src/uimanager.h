@@ -176,7 +176,7 @@ namespace phys
             void DestroyAllScreens();
             /// @brief Searches all screens and gets the named Layer.
             /// @return Returns the named layer if found, NULL if not.
-            UI::Layer* GetLayer(String& Name);
+            UI::Layer* GetLayer(const String& Name);
             /// @brief Searches all visible screens and layers to see if a button was clicked.
             /// @details This is called automatically once every frame.  Should only be called on manually if
             /// you need more then one check per frame.

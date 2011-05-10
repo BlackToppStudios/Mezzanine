@@ -316,6 +316,12 @@ namespace phys
             void SetMaxMotorImpulse(Real MaxMotorImpulse);
             void SetMotorTarget(Quaternion QuatAInB, Real Dt);
             void SetMotorTarget(Real TargetAngle, Real Dt);
+            /// @brief Sets the maximum angle limits of the constraint in radians.
+            /// @param Low The minimum angle limit for the constraint in radians.
+            /// @param High The maximum angle limit for the constraint in radians.
+            /// @param Softness Not currently used internally.
+            /// @param BiasFactor Multiplier for the constraint error, constraint appears more "soft" when closer to zero.
+            /// @param RelaxationFactor The amount of bounce to apply when the constraint reaches it's limit.  Range: 0.0-1.0.
             void SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
             /// @brief Sets the axis on which this constraint acts.
             /// @param AxisInA A vector3 representing the axis to be used with this constraint.

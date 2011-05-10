@@ -16,6 +16,17 @@ StartingArea::~StartingArea()
 
 }
 
+bool StartingArea::IsInside(ActorBase* Actor)
+{
+    for( std::list<ActorBase*>::iterator it = OverlappingActors.begin() ; it != OverlappingActors.end() ; it++ )
+    {
+        if( Actor == (*it) )
+        {
+            return true;
+        }
+    }
+}
+
 void StartingArea::ApplyEffect()
 {
     ActorBase* Act = NULL;

@@ -12,6 +12,7 @@ class ScoreArea : public AreaEffect
         ScoreArea(const String &name, Vector3 Location);
         ~ScoreArea();
         void ApplyEffect();
+        bool IsInside(ActorBase* Actor);
         bool AllObjectsAtRest();
 };
 

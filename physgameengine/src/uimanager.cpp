@@ -154,7 +154,7 @@ namespace phys
             }
             else if(MetaCode::BUTTON_LIFTING == State)
             {
-                if(HoveredWidget != WidgetFocus)
+                if(HoveredWidget != WidgetFocus && WidgetFocus)
                     WidgetFocus->Update(true);
                 WidgetFocus = NULL;
             }
@@ -350,7 +350,7 @@ namespace phys
         return;
     }
 
-    UI::Layer* UIManager::GetLayer(String& Name)
+    UI::Layer* UIManager::GetLayer(const String& Name)
     {
         for( Whole x=0 ; x < Screens.size() ; x++ )
         {

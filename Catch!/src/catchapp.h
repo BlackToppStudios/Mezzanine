@@ -28,9 +28,18 @@ class CatchApp
         AreaOfPlay* PlayZone;
         Whole CurrScore;
         CatchApp::GameState CurrentState;
+        std::map<String,Whole> ItemScoreValues;
+        std::map<String,Whole> ShopCostValues;
+        std::vector<ActorBase*> ThrownItems;
+
+        SimpleTimer* EndTimer;
 
         void LoadContent();
         void MakeGUI();
+        void PopulateScoreValues();
+        void PopulateShopValues();
+
+        bool CheckEndOfLevel();
     public:
         CatchApp(const Vector3 &WorldLowerBounds, const Vector3 &WorldUpperBounds, SceneManager::SceneManagerType SceneType, const unsigned short int &MaxPhysicsProxies);
         ~CatchApp();

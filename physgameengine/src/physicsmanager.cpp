@@ -296,6 +296,9 @@ namespace phys
     void PhysicsManager::Construct(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
     {
         this->Priority = -30;
+        this->CollisionAge = 1;
+        this->Impulse = 1.0;
+        this->SimulationPaused = false;
 
         //instantiate the Physics engine and related items
         //this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
@@ -330,9 +333,6 @@ namespace phys
         this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.Initialize();
 
         this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
-
-        this->CollisionAge=1;
-        this->Impulse=1.0;
     }
 
     void PhysicsManager::Initialize()
@@ -349,13 +349,29 @@ namespace phys
         this->DoMainLoopItems(this->GameWorld->GetFrameTime());
     }
 
+    void PhysicsManager::PauseSimulation(bool Pause)
+    {
+        SimulationPaused = Pause;
+    }
+
+    bool PhysicsManager::SimulationIsPaused()
+    {
+        return SimulationPaused;
+    }
+
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
+        if(SimulationPaused)
+            return;
+        #ifdef PHYSPROFILE
         static Ogre::Timer* Profiler = new Ogre::Timer();
         Profiler->reset();
+        #endif
         ProcessAllEffects();
+        #ifdef PHYSPROFILE
         GameWorld->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
+        #endif
 
         Real FloatTime = TimeElapsed;
         FloatTime *= 0.001;    //Convert from MilliSeconds to Seconds
@@ -365,28 +381,38 @@ namespace phys
 
         //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
         int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe
+        #ifdef PHYSPROFILE
         Profiler->reset();
+        #endif
         this->BulletDynamicsWorld->stepSimulation( FloatTime, MaxSteps, IdealStep);
+        #ifdef PHYSPROFILE
         GameWorld->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
+        #endif
 
         // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
         //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
 
+        #ifdef PHYSPROFILE
         Profiler->reset();
+        #endif
         if( this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
         {
             this->BulletDrawer->PrepareForRendering();
             this->BulletDynamicsWorld->debugDrawWorld();
         }
+        #ifdef PHYSPROFILE
         GameWorld->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
+        #endif
 
         #ifdef PHYSDEBUG
         this->GameWorld->Log("Checking for Collisions.");
         #endif
 
+        #ifdef PHYSPROFILE
         Profiler->reset();
+        #endif
         int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
         for (int i=0;i<numManifolds;i++)
         {
@@ -414,8 +440,10 @@ namespace phys
                 }
             }
         }
+        #ifdef PHYSPROFILE
         GameWorld->LogStream << "Contact Manifold Iteration took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
+        #endif
     }
 
     void PhysicsManager::SetGravity(Vector3 pgrav)

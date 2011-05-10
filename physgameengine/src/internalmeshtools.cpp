@@ -82,7 +82,7 @@ namespace phys{
         {
             Ogre::MeshPtr myMesh = TheEntity->getMesh();
             Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-            Ogre::VertexData* vertexData = subMesh->vertexData;
+            Ogre::VertexData* vertexData = subMesh->useSharedVertices ? myMesh->sharedVertexData : subMesh->vertexData;
 
             const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
             Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
@@ -140,7 +140,7 @@ namespace phys{
         {
             Ogre::MeshPtr myMesh = TheEntity->getMesh();
             Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-            Ogre::VertexData* vertexData = subMesh->vertexData;
+            Ogre::VertexData* vertexData = subMesh->useSharedVertices ? myMesh->sharedVertexData : subMesh->vertexData;
 
             const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_NORMAL);
             Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
@@ -163,7 +163,7 @@ namespace phys{
         {
             Ogre::MeshPtr myMesh = TheEntity->getMesh();
             Ogre::SubMesh* subMesh = myMesh->getSubMesh(0);
-            Ogre::VertexData* vertexData = subMesh->vertexData;
+            Ogre::VertexData* vertexData = subMesh->useSharedVertices ? myMesh->sharedVertexData : subMesh->vertexData;
 
             const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_TEXTURE_COORDINATES);
             Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
@@ -214,17 +214,18 @@ namespace phys{
             Whole IndiPrevSize = 0;
             Ogre::Vector3* vertices = NULL;
             unsigned long* indices = NULL;
+            bool SharedVerts = myMesh->getSubMesh(0)->useSharedVertices;
 
             if(UseAllSubmeshes)
             {
                 for( Whole X = 0 ; X < myMesh->getNumSubMeshes() ; X++ )
                 {
-                    vCount+=myMesh->getSubMesh(X)->vertexData->vertexCount;
-                    iCount+=myMesh->getSubMesh(X)->indexData->indexCount;
+                    vCount += SharedVerts ? myMesh->sharedVertexData->vertexCount : myMesh->getSubMesh(X)->vertexData->vertexCount;
+                    iCount += myMesh->getSubMesh(X)->indexData->indexCount;
                 }
             }else{
-                vCount+=myMesh->getSubMesh(0)->vertexData->vertexCount;
-                iCount+=myMesh->getSubMesh(0)->indexData->indexCount;
+                vCount += SharedVerts ? myMesh->sharedVertexData->vertexCount : myMesh->getSubMesh(0)->vertexData->vertexCount;
+                iCount += myMesh->getSubMesh(0)->indexData->indexCount;
             }
 
             vertices = new Ogre::Vector3[vCount];
@@ -235,10 +236,12 @@ namespace phys{
             {
                 if(!UseAllSubmeshes && (SubMeshIndex > 0))
                     break;
+                if(SharedVerts && (SubMeshIndex > 0))
+                    break;
 
                 subMesh = myMesh->getSubMesh(SubMeshIndex);
                 IndexData = subMesh->indexData;
-                VertexData = subMesh->vertexData;
+                VertexData = SharedVerts ? myMesh->sharedVertexData : myMesh->getSubMesh(SubMeshIndex)->vertexData;
 
                 // Get the position element
                 const Ogre::VertexElement* posElem = VertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
@@ -331,6 +334,7 @@ namespace phys{
             unsigned int iCount = 0;
             Whole VertPrevSize = 0;
             Whole IndiPrevSize = 0;
+            bool SharedVerts = myMesh->getSubMesh(0)->useSharedVertices;
 
             Whole* VertPerSubMesh = NULL;
 
@@ -339,13 +343,13 @@ namespace phys{
                 VertPerSubMesh = new Whole[myMesh->getNumSubMeshes()];
                 for( Whole X = 0 ; X < myMesh->getNumSubMeshes() ; X++ )
                 {
-                    vCount+=myMesh->getSubMesh(X)->vertexData->vertexCount;
-                    iCount+=myMesh->getSubMesh(X)->indexData->indexCount;
-                    VertPerSubMesh[X] = myMesh->getSubMesh(X)->vertexData->vertexCount;
+                    vCount += SharedVerts ? myMesh->sharedVertexData->vertexCount : myMesh->getSubMesh(X)->vertexData->vertexCount;
+                    iCount += myMesh->getSubMesh(X)->indexData->indexCount;
+                    VertPerSubMesh[X] = SharedVerts ? myMesh->sharedVertexData->vertexCount : myMesh->getSubMesh(X)->vertexData->vertexCount;
                 }
             }else{
-                vCount+=myMesh->getSubMesh(0)->vertexData->vertexCount;
-                iCount+=myMesh->getSubMesh(0)->indexData->indexCount;
+                vCount += SharedVerts ? myMesh->sharedVertexData->vertexCount : myMesh->getSubMesh(0)->vertexData->vertexCount;
+                iCount += myMesh->getSubMesh(0)->indexData->indexCount;
             }
 
             Ogre::Vector3* vertices = new Ogre::Vector3[vCount];
@@ -355,10 +359,12 @@ namespace phys{
             {
                 if(!UseAllSubmeshes && (SubMeshIndex > 0))
                     break;
+                if(SharedVerts && (SubMeshIndex > 0))
+                    break;
 
                 subMesh = myMesh->getSubMesh(SubMeshIndex);
                 indexData = subMesh->indexData;
-                vertexData = subMesh->vertexData;
+                vertexData = SharedVerts ? myMesh->sharedVertexData : myMesh->getSubMesh(SubMeshIndex)->vertexData;
 
                 const Ogre::VertexElement* posElem = vertexData->vertexDeclaration->findElementBySemantic(Ogre::VES_POSITION);
                 Ogre::HardwareVertexBufferSharedPtr vBuffer = vertexData->vertexBufferBinding->getBuffer(posElem->getSource());
