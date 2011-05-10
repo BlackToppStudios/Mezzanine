@@ -151,6 +151,13 @@ namespace Ogre {
 	//---------------------------------------------------------------------------------------------
 	void RenderSystem::useCustomRenderSystemCapabilities(RenderSystemCapabilities* capabilities)
 	{
+    if (mRealCapabilities != 0)
+    {
+      OGRE_EXCEPT(Exception::ERR_INTERNAL_ERROR, 
+          "Custom render capabilities must be set before the RenderSystem is initialised.",
+          "RenderSystem::useCustomRenderSystemCapabilities");
+    }
+
 		mCurrentCapabilities = capabilities;
 		mUseCustomCapabilities = true;
 	}
@@ -575,17 +582,12 @@ namespace Ogre {
 		}
     }
     //-----------------------------------------------------------------------
-	bool RenderSystem::getInvertVertexWinding(void)
-	{
-		return mInvertVertexWinding;
-	}
-    //-----------------------------------------------------------------------
     void RenderSystem::setInvertVertexWinding(bool invert)
     {
         mInvertVertexWinding = invert;
     }
 	//-----------------------------------------------------------------------
-	bool RenderSystem::getVertexWindingInverted(void) const
+	bool RenderSystem::getInvertVertexWinding(void) const
 	{
 		return mInvertVertexWinding;
 	}

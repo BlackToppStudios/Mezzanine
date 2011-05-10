@@ -40,13 +40,8 @@ endif()
 if (OGRE_BUILD_PLATFORM_IPHONE)
   # Force gcc <= 4.2 on iPhone
   include(CMakeForceCompiler)
-  CMAKE_FORCE_C_COMPILER(gcc-4.2 GNU)
-  CMAKE_FORCE_CXX_COMPILER(gcc-4.2 GNU)
-elseif (APPLE AND NOT OGRE_BUILD_PLATFORM_IPHONE)
-  # Force gcc <= 4.0 on Mac OS X because 4.2 is not supported prior to Mac OS X 10.5
-  include(CMakeForceCompiler)
-  CMAKE_FORCE_C_COMPILER(gcc-4.0 GNU)
-  CMAKE_FORCE_CXX_COMPILER(gcc-4.0 GNU)
+  CMAKE_FORCE_C_COMPILER(g++-4.2 GNU)
+  CMAKE_FORCE_CXX_COMPILER(g++-4.2 GNU)
 endif ()
 
 project(OGRE)
@@ -211,24 +206,21 @@ if (OGRE_BUILD_PLATFORM_IPHONE)
   set(OGRE_STATIC TRUE CACHE BOOL "Forcing static build for iPhone" FORCE)
   set(MACOSX_BUNDLE_GUI_IDENTIFIER "com.yourcompany.\${PRODUCT_NAME:rfc1034identifier}")
   set(OGRE_CONFIG_ENABLE_VIEWPORT_ORIENTATIONMODE TRUE CACHE BOOL "Forcing viewport orientation support for iPhone" FORCE)
-  set(CMAKE_OSX_ARCHITECTURES $(ARCHS_STANDARD_32_BIT))
 
-  add_definitions(-fno-regmove)
+  set(CMAKE_OSX_ARCHITECTURES $(ARCHS_STANDARD_32_BIT))
+  # armv7 only
+  #set(CMAKE_OSX_ARCHITECTURES $(ARCHS_UNIVERSAL_IPHONE_OS))
+
   remove_definitions(-msse)
 elseif (APPLE AND NOT OGRE_BUILD_PLATFORM_IPHONE)
 
-  # Set 10.4 as the base SDK by default
-  set(XCODE_ATTRIBUTE_SDKROOT macosx10.4)
+  # Set 10.5 as the base SDK by default
+  set(XCODE_ATTRIBUTE_SDKROOT macosx)
+  set(CMAKE_OSX_SYSROOT macosx)
+  set(CMAKE_OSX_DEPLOYMENT_TARGET 10.5)
 
   if (NOT CMAKE_OSX_ARCHITECTURES)
-    set(CMAKE_OSX_ARCHITECTURES "i386")
-  endif()
-  
-  # 10.6 sets x86_64 as the default architecture.
-  # Because Carbon isn't supported on 64-bit and we still need it, force the architectures to ppc and i386
-  if(CMAKE_OSX_ARCHITECTURES MATCHES "x86_64" OR CMAKE_OSX_ARCHITECTURES MATCHES "ppc64")
-    string(REPLACE "x86_64" "" CMAKE_OSX_ARCHITECTURES ${CMAKE_OSX_ARCHITECTURES})
-    string(REPLACE "ppc64" "" CMAKE_OSX_ARCHITECTURES ${CMAKE_OSX_ARCHITECTURES})
+    set(CMAKE_OSX_ARCHITECTURES $(ARCHS_STANDARD_32_64_BIT))
   endif()
 
   # Make sure that the OpenGL render system is selected for non-iPhone Apple builds
@@ -252,7 +244,7 @@ cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_D3D10 "Build Direct3D10 RenderSys
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_D3D11 "Build Direct3D11 RenderSystem [EXPERIMENTAL]" FALSE "WIN32;DirectX_D3D11_FOUND" FALSE)
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_GL "Build OpenGL RenderSystem" TRUE "OPENGL_FOUND;NOT OGRE_BUILD_PLATFORM_IPHONE" FALSE)
 cmake_dependent_option(OGRE_BUILD_RENDERSYSTEM_GLES "Build OpenGL ES RenderSystem" FALSE "OPENGLES_FOUND" FALSE)
-cmake_dependent_option(OGRE_BUILD_PLATFORM_IPHONE "Build Ogre for iPhone OS" FALSE "iPhoneSDK_FOUND;OPENGLES_FOUND" FALSE)
+cmake_dependent_option(OGRE_BUILD_PLATFORM_IPHONE "Build Ogre for iPhone OS" FALSE "APPLE;OPENGLES_FOUND" FALSE)
 option(OGRE_BUILD_PLUGIN_BSP "Build BSP SceneManager plugin" TRUE)
 option(OGRE_BUILD_PLUGIN_OCTREE "Build Octree SceneManager plugin" TRUE)
 option(OGRE_BUILD_PLUGIN_PCZ "Build PCZ SceneManager plugin" TRUE)

@@ -6,7 +6,7 @@
 LIPO=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin/lipo
 SDKBUILDDIR=`pwd`
 
-set IPHONEOS_DEPLOYMENT_TARGET 3.0
+set IPHONEOS_DEPLOYMENT_TARGET 4.0
 
 # Clean up files from previous builds
 echo Cleaning previous builds...
@@ -20,17 +20,13 @@ mkdir -p $SDKBUILDDIR/build
 pushd $SDKBUILDDIR/build
 cmake -DOGRE_BUILD_PLATFORM_IPHONE:BOOL=TRUE -DOGRE_INSTALL_DEPENDENCIES:BOOL=TRUE -DOGRE_INSTALL_SAMPLES_SOURCE:BOOL=TRUE -DOGRE_INSTALL_DOCS:BOOL=TRUE -G Xcode ../../..
 
-# Fix the linking paths
-#sed -f ../edit_linker_paths.sed OGRE.xcodeproj/project.pbxproj > tmp.pbxproj
-#mv tmp.pbxproj OGRE.xcodeproj/project.pbxproj
-
 # Read version number
 OGRE_VERSION=`cat version.txt`
 
 echo Building API docs...
 
 # Build docs explicitly since INSTALL doesn't include it
-xcodebuild -project OGRE.xcodeproj -target doc -configuration Release -sdk iphoneos
+xcodebuild -project OGRE.xcodeproj -target doc -configuration Release -sdk iphoneos IPHONEOS_DEPLOYMENT_TARGET=4.0 GCC_VERSION=com.apple.compilers.llvm.clang.1_0
 
 pushd api/html
 
@@ -54,12 +50,12 @@ echo API generation done.
 # location that the target expects them then copy them to the correct location
 
 echo Building for devices...
-xcodebuild -project OGRE.xcodeproj -target install -parallelizeTargets -configuration Release -sdk iphoneos
+xcodebuild -project OGRE.xcodeproj -target install -parallelizeTargets -configuration Release -sdk iphoneos IPHONEOS_DEPLOYMENT_TARGET=4.0 GCC_VERSION=com.apple.compilers.llvm.clang.1_0
 mkdir -p sdk/lib/Release-iphoneos
 mv -v lib/Release/*.a sdk/lib/Release-iphoneos
 
 echo Building for simulator...
-xcodebuild -project OGRE.xcodeproj -target install -parallelizeTargets -configuration Release -sdk iphonesimulator
+xcodebuild -project OGRE.xcodeproj -target install -parallelizeTargets -configuration Release -sdk iphonesimulator IPHONEOS_DEPLOYMENT_TARGET=4.0 GCC_VERSION=com.apple.compilers.llvm.clang.1_0
 mkdir -p sdk/lib/Release-iphonesimulator
 mv -v lib/Release/*.a sdk/lib/Release-iphonesimulator
 
@@ -83,8 +79,6 @@ echo Generating Samples Project...
 
 pushd sdk
 cmake -DOGRE_BUILD_PLATFORM_IPHONE:BOOL=TRUE -G Xcode .
-#sed -f ../../edit_linker_paths.sed OGRE.xcodeproj/project.pbxproj > tmp.pbxproj
-#mv tmp.pbxproj OGRE.xcodeproj/project.pbxproj
 rm CMakeCache.txt
 
 # Fix absolute paths
