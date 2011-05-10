@@ -165,6 +165,9 @@ namespace phys
             #else
                 Ogre::Root::getSingleton()._fireFrameStarted();
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
+                //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
+                //    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
+
                 for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
                 {
                     Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(true);

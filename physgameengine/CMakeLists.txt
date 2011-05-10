@@ -285,7 +285,7 @@ if(${UNIX})
 
 		#Autobuild SDL and ogre could go here
 	
-		set(OgreSoName libOgreMain.so.1.7.2)
+		set(OgreSoName libOgreMain.so.1.7.3)
 		file( COPY 
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/${OgreSoName}"
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
