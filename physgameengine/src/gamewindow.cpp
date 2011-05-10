@@ -68,7 +68,7 @@ namespace phys
         Manager = World::GetWorldPointer()->GetGraphicsManager();
         Settings.RenderWidth = Width;
         Settings.RenderHeight = Height;
-
+        RenderContext = 0;
         int SDLFlags = 0;
         Ogre::NameValuePairList Opts;
         if(WF_Fullscreen & Flags)
@@ -124,14 +124,12 @@ namespace phys
         SDLFlags|=SDL_WINDOW_SHOWN;
         SDLWindow = SDL_CreateWindow( WindowCaption.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDLFlags );
 
-        static size_t RC = 0;
-        if(!RC)
-            RC = (size_t)SDL_GL_CreateContext(this->SDLWindow);
-
-        RenderContext = RC;
+        if(!RenderContext)
+            { RenderContext = SDL_GL_CreateContext(this->SDLWindow); }
 
         Ogre::NameValuePairList* Binder;
-        Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,RC);
+
+        Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,(size_t)RenderContext);
         Opts.insert(Binder->begin(),Binder->end());
         OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);
         delete Binder;
@@ -353,9 +351,9 @@ namespace phys
         return OgreWindow->getWorstFrameTime();
     }
 
-    size_t GameWindow::GetRenderContext()
+    void* GameWindow::GetRenderContext()
     {
-        return RenderContext;
+        return (void*)RenderContext;
     }
 
     Ogre::RenderWindow* GameWindow::GetOgreWindowPointer()

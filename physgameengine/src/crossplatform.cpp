@@ -113,7 +113,7 @@ namespace phys
         //This returns a named parameter list with valid settings to use Ogre rendering
         //on a pre-existing SDL context
         //void* is always an ogre NameValuePairList
-        void* GetSDLOgreBinder(SDL_Window* window, size_t& winGlContext)
+        void* GetSDLOgreBinder(SDL_Window* window, const size_t& winGlContext)
         {
             Ogre::NameValuePairList *misc = new Ogre::NameValuePairList();
             #ifdef WINDOWS
@@ -167,7 +167,7 @@ namespace phys
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
                 for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
                 {
-                    SDL_GL_MakeCurrent(Graphics->GetGameWindow(X)->GetSDLWindowPointer(),0); /// @todo TODO: RenderPhysWorld needs the context on non-windows builds
+                    SDL_GL_MakeCurrent(Graphics->GetGameWindow(X)->GetSDLWindowPointer(),Graphics->GetGameWindow(X)->GetRenderContext()); /// @todo TODO: RenderPhysWorld needs the context on non-windows builds
                     Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(true);
                     SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
                 }

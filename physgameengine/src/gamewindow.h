@@ -100,7 +100,7 @@ namespace phys
 
             GraphicsManager* Manager;
 
-            size_t RenderContext;
+            void* RenderContext;
 
             void CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
             void CorrectViewportAndCamera(const Whole& Index);
@@ -210,7 +210,7 @@ namespace phys
 
             /// @brief Gets the render context being used by this window.
             /// @return Returns a size_t that identifies the render context being used by this window.
-            size_t GetRenderContext();
+            void* GetRenderContext();
 
             /// @internal
             /// @brief This will get a pointer to the Ogre RenderWindow.
