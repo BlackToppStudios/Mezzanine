@@ -298,6 +298,11 @@ namespace phys
             /// @return A World::LoggingFrequency containing the requested information.
             LoggingFrequency GetLoggingFrequency();
 
+            /// @brief Forces the log to commit to disk (or whereever)
+            /// @details Any outstanding log messages or entries into the logstream will be written in chronological order to
+            /// to the appropriate place.
+            void CommitLog();
+
             /// @brief Runtime event and message logging.
             /// @param Message This is what will be streamed to the log
             /// @details This also gathers any outstanding Log messages from any subsystem. Currently the Graphics subsystem (Ogre3d) and the sound subsystem (cAudio) are the

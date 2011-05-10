@@ -149,18 +149,21 @@ namespace phys
             /// @details This defaults to 512.  Sizes must be a power of 2.
             /// @param Size The size of all textures to be used with shadows, in KB(?).
             void SetShadowTextureSize(unsigned short Size);
+            /// @brief Retrieve the size of textures.
+            /// @return An unsigned short which is the size of the textures.
+            unsigned short GetShadowTextureSize() const;
             /// @brief Sets the maximum distance from the camera that shadows will be visible.
             /// @param FarDist The maximum distance from the camera shadows will be rendered.
             void SetShadowFarDistance(const Real& FarDist);
             /// @brief Gets the maximum distance from the camera that shadows will be visible.
             /// @return Returns a Real representing the maximum distance from the camera shadows will be rendered.
-            Real GetShadowFarDistance();
+            Real GetShadowFarDistance() const;
             /// @brief Sets the colour to be used when casting shadows.
             /// @param ShadowColour The colour desired to be used when rendering shadows.
             void SetShadowColour(const ColourValue& ShadowColour);
             /// @brief Gets the colour being used when casting shadows.
             /// @return Returns a ColourValue representing the colour used when casting shadows.
-            ColourValue GetShadowColour();
+            ColourValue GetShadowColour() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Sky Surface Management
@@ -248,8 +251,12 @@ namespace phys
             /// @param Blue The value representing the amount of blue color in the ambient light.
             /// @param Alpha The value representing the transparency of the color in the ambient light.
             void SetAmbientLight(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0);
-
-            /// @todo Add GetAmbientLight()
+            /// @brief Sets the ambient light for the scene, in a single value.
+            /// @param Red The value representing the amount of red color in the ambient light.
+            void SetAmbientLight(const ColourValue &LightColor);
+            /// @brief Retrieve the level of the ambient light
+            /// @return A ColourValue with the ambient light levels
+            ColourValue GetAmbientLight() const;
 
             /// @brief Creates a dynamic light.
             /// @param Name The name to be given to this light.
@@ -267,6 +274,23 @@ namespace phys
             /// @brief Deletes a light and removes all trace of it from the manager.
             /// @param light The light to be destroyed.
             void DestroyLight(Light* light);
+
+            /// @brief Used to make working with the Lights easier.
+            typedef std::vector< Light* >::iterator LightIterator;
+            /// @brief Used to make working with the Lights easier, and avoid the risk of accidentally changing them.
+            typedef std::vector< Light* >::const_iterator ConstLightIterator;
+            /// @brief Get a LightIterator to the first Light*
+            /// @return A LightIterator to the first Light*
+            LightIterator BeginLight();
+            /// @brief Get a LightIterator to one past the last Light*
+            /// @return A LightIterator to one past the last Light*
+            LightIterator EndLight();
+            /// @brief Get a ConstLightIterator to one past the last Light*
+            /// @return A ConstLightIterator to one past the last Light*
+            ConstLightIterator BeginLight() const;
+            /// @brief Get a ConstLightIterator to one past the last Light*
+            /// @return A ConstLightIterator to one past the last Light*
+            ConstLightIterator EndLight() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Particle Effect Management
@@ -289,6 +313,23 @@ namespace phys
             /// @brief Deletes a particle effect and removes all trace of it from the manager.
             /// @param particleeffect The particle effect to be destroyed.
             void DestroyParticleEffect(ParticleEffect* particleeffect);
+
+            /// @brief Used to make working with the Lights easier.
+            typedef std::vector< ParticleEffect* >::iterator ParticleEffectIterator;
+            /// @brief Used to make working with the Lights easier, and avoid the risk of accidentally changing them.
+            typedef std::vector< ParticleEffect* >::const_iterator ConstParticleEffectIterator;
+            /// @brief Get a ParticleEffectIterator to the first ParticleEffect*
+            /// @return A ParticleEffectIterator to the first ParticleEffect*
+            ParticleEffectIterator BeginParticleEffect();
+            /// @brief Get a ParticleEffectIterator to one past the last ParticleEffect*
+            /// @return A ParticleEffectIterator to one past the last ParticleEffect*
+            ParticleEffectIterator EndParticleEffect();
+            /// @brief Get a ConstParticleEffectIterator to one past the last ParticleEffect*
+            /// @return A ConstParticleEffectIterator to one past the last ParticleEffect*
+            ConstParticleEffectIterator BeginParticleEffect() const;
+            /// @brief Get a ConstParticleEffectIterator to one past the last ParticleEffect*
+            /// @return A ConstParticleEffectIterator to one past the last ParticleEffect*
+            ConstParticleEffectIterator EndParticleEffect() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // WorldNode Management
@@ -341,6 +382,23 @@ namespace phys
             /// @brief Deletes a node and removes all trace of it from the manager.
             /// @param node The node to be destroyed.
             void DestroyNode(WorldNode* node);
+
+            /// @brief Used to make working with the Lights easier.
+            typedef std::vector< WorldNode* >::iterator WorldNodeIterator;
+            /// @brief Used to make working with the Lights easier, and avoid the risk of accidentally changing them.
+            typedef std::vector< WorldNode* >::const_iterator ConstWorldNodeIterator;
+            /// @brief Get a WorldNodeIterator to the first WorldNode*
+            /// @return A WorldNodeIterator to the first WorldNode*
+            WorldNodeIterator BeginWorldNode();
+            /// @brief Get a WorldNodeIterator to one past the last WorldNode*
+            /// @return A WorldNodeIterator to one past the last WorldNode*
+            WorldNodeIterator EndWorldNode();
+            /// @brief Get a ConstWorldNodeIterator to one past the last WorldNode*
+            /// @return A ConstWorldNodeIterator to one past the last WorldNode*
+            ConstWorldNodeIterator BeginWorldNode() const;
+            /// @brief Get a ConstWorldNodeIterator to one past the last WorldNode*
+            /// @return A ConstWorldNodeIterator to one past the last WorldNode*
+            ConstWorldNodeIterator EndWorldNode() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Basic Functionality

@@ -84,10 +84,10 @@ namespace phys
             /// @brief Kinds of movement (or non-movement modes) a world node could have
             enum NodeType
             {
-                Free    = 0,     ///< Description Required
-                Center  = 1,     ///< Description Required
-                Orbit   = 2,     ///< Description Required
-                Stand   = 3      ///< Description Required
+                Free    = 0,     ///< Not bound by a any kind of movement
+                Center  = 1,     ///< Designed to be be rotate to simulate orbits in a simple way
+                Orbit   = 2,     ///< A node that orbits aroud a center
+                Stand   = 3      ///< Stationary/Standing
             };
         protected:
             /// @brief Pointer to the ogre scenenode from which this class gets it's functionality.
@@ -146,6 +146,7 @@ namespace phys
             /// that it's always facing the target node.
             /// @param node The node to be tracked.
             /// @param Offset A vector3 representing the offset from the nodes location to be tracked.
+            /// @todo TODO: The WorldNode Does not Correctly Serialize AutoTracking.
             void SetAutoTracking(WorldNode* node, Vector3 Offset=Vector3());
             /// @brief Makes this node autotrack an actor.
             /// @details This function will make this node update it's orientation every frame automatically so

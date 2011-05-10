@@ -47,47 +47,66 @@ class SceneManagerTests : public UnitTest
     public:
         virtual TestResult RunTests(bool RunAutomaticTests, bool RunInteractiveTests)
         {
-            TestResult temp=Failed;
-
-            AddTestResult("SceneManager::DisplaySkyPlane", Unknown);
-            AddTestResult("SceneManager::DisplaySkyBox", Unknown);
-            AddTestResult("SceneManager::DisplaySkyDome", Unknown);
-            if (RunAutomaticTests)
+            if (RunInteractiveTests)
             {
-                StartEngine();
-                TheMessage="Does It Look Like a SkyPlane?";
-                SceneManager* SM = TheWorld->GetSceneManager();
-                SM->SetAmbientLight(1,1,1,1);
-                //SM->CreateSkyPlane(Plane(Vector3(0,1,0),5),"Examples/CloudPlane","files");
-                SM->CreateSkyPlane(Plane(Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0)),"Examples/CloudPlane","files");
-                GetAnswer();
-                TheWorld->MainLoop();
-                GetAnswer();
-                TheWorld->MainLoop();
-                GetAnswer();
-                TheWorld->MainLoop();
-                StopEngine();
-                AddTestResult("SceneManager::DisplaySkyPlane", AnswerToQuestion, UnitTest::OverWrite);
+                SceneManager* SM = 0;
 
-                StartEngine();
-                TheMessage="Does It Look Like a SkyBox?";
-                SM = TheWorld->GetSceneManager();
-                SM->SetAmbientLight(1,1,1,1);
-                SM->CreateSkyBox("Examples/CloudBox","files",50);
-                GetAnswer();
-                TheWorld->MainLoop();
-                StopEngine();
-                AddTestResult("SceneManager::DisplaySkyBox", AnswerToQuestion, UnitTest::OverWrite);
+                AddTestResult("SceneManager::DisplaySkyPlane", Unknown);
+                try
+                {
+                    StartEngine();
+                    TheMessage="Does It Look Like a SkyPlane?";
+                    SM = TheWorld->GetSceneManager();
+                    SM->SetAmbientLight(1,1,1,1);
+                    //SM->CreateSkyPlane(Plane(Vector3(0,1,0),5),"Examples/CloudPlane","files");
+                    SM->CreateSkyPlane(Plane(Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0)),"Examples/CloudPlane","files");
+                    GetAnswer();
+                    TheWorld->MainLoop();
+                    GetAnswer();
+                    TheWorld->MainLoop();
+                    GetAnswer();
+                    TheWorld->MainLoop();
+                    StopEngine();
+                    AddTestResult("SceneManager::DisplaySkyPlane", AnswerToQuestion, UnitTest::OverWrite);
+                } catch (std::exception e) {
+                    cout << e.what();
+                    AddTestResult("SceneManager::DisplaySkyPlane", Failed, UnitTest::OverWrite);
+                }
 
-                StartEngine();
-                TheMessage="Does It Look Like a SkyDome?";
-                SM = TheWorld->GetSceneManager();
-                SM->SetAmbientLight(1,1,1,1);
-                SM->CreateSkyDome("Examples/CloudPlane","files",50);
-                GetAnswer();
-                TheWorld->MainLoop();
-                StopEngine();
-                AddTestResult("SceneManager::DisplaySkyDome", AnswerToQuestion, UnitTest::OverWrite);
+                try
+                {
+                    AddTestResult("SceneManager::DisplaySkyBox", Unknown);
+                    StartEngine();
+                    TheMessage="Does It Look Like a SkyBox?";
+                    SM = TheWorld->GetSceneManager();
+                    SM->SetAmbientLight(1,1,1,1);
+                    SM->CreateSkyBox("Examples/CloudBox","files",50);
+                    GetAnswer();
+                    TheWorld->MainLoop();
+                    StopEngine();
+                    AddTestResult("SceneManager::DisplaySkyBox", AnswerToQuestion, UnitTest::OverWrite);
+                } catch (std::exception e) {
+                    cout << e.what();
+                    AddTestResult("SceneManager::DisplaySkyBox", Failed, UnitTest::OverWrite);
+                }
+
+                try
+                {
+                    AddTestResult("SceneManager::DisplaySkyDome", Unknown);
+                    StartEngine();
+                    TheMessage="Does It Look Like a SkyDome?";
+                    SM = TheWorld->GetSceneManager();
+                    SM->SetAmbientLight(1,1,1,1);
+                    SM->CreateSkyDome("Examples/CloudPlane","files",50);
+                    GetAnswer();
+                    TheWorld->MainLoop();
+                    AddTestResult("SceneManager::DisplaySkyDome", AnswerToQuestion, UnitTest::OverWrite);
+                    StopEngine();
+                } catch (std::exception e) {
+                    cout << e.what();
+                    AddTestResult("SceneManager::DisplaySkyDome", Failed, UnitTest::OverWrite);
+                }
+
 
             }else{
                 AddTestResult("SceneManager::DisplaySkyPlane", Skipped);
@@ -95,16 +114,29 @@ class SceneManagerTests : public UnitTest
                 AddTestResult("SceneManager::DisplaySkyDome", Skipped);
             }
 
-
-            if (RunInteractiveTests)
+            if (RunAutomaticTests)
             {
 
-                //temp = GetTestAnswer( phys::StringCat(" (or other config tool)? "));
-                //AddTestResult("CompilerFlag::PHYSDEBUG", temp);
+                StartEngine();
+                SceneManager* SM = TheWorld->GetSceneManager();
+                SM->SetAmbientLight(1,1,1,1);
+                SM->CreateSkyDome("Examples/CloudPlane","files",50);
+                AddTestResult("SceneManager::operator<<", Failed);
+
+                stringstream SerializeTest("");
+                SerializeTest << *SM;
+                TheWorld->LogStream << SerializeTest.str();
+                if (""!=SerializeTest.str() )
+                {
+                    AddTestResult("SceneManager::operator<<", Success, UnitTest::OverWrite);
+                }
+                TheWorld->CommitLog();
+
+
+                StopEngine();
 
             }else{
-                //AddTestResult("CompilerFlag::PHYSDEBUG", Skipped);
-
+                AddTestResult("SceneManager::operator<<", Skipped);
             }
 
         }

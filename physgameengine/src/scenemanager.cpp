@@ -45,6 +45,7 @@
 #include "plane.h"
 #include "particleeffect.h"
 #include "worldnode.h"
+#include "world.h"
 #include <Ogre.h>
 
 namespace phys
@@ -77,6 +78,9 @@ namespace phys
             /// @internal
             /// @brief Used to describe a skyplane instead of orientation
             Plane SkyThePlane;
+
+            /// @brief The size
+            unsigned short ShadowTextureSize;
 
             /// @internal
             /// @brief Pointer for the Ogre Scenemanager, where this manager gets it's functionality.
@@ -127,7 +131,8 @@ namespace phys
                 SkyOrientation(0,0,0,0),
                 SkyMaterialName(""),
                 SkyMaterialGroupName(""),
-                SkyThePlane(Vector3(0,0,0),0)
+                SkyThePlane(Vector3(0,0,0),0),
+                ShadowTextureSize(512)
             {
 
             }
@@ -250,36 +255,30 @@ namespace phys
     }
 
     void SceneManager::SetShadowTextureCount(const Whole& Count)
-    {
-        this->SMD->OgreManager->setShadowTextureCount(Count);
-    }
+        { this->SMD->OgreManager->setShadowTextureCount(Count); }
 
     Whole SceneManager::GetShadowTextureCount() const
-    {
-        return this->SMD->OgreManager->getShadowTextureCount();
-    }
+        { return this->SMD->OgreManager->getShadowTextureCount(); }
 
     void SceneManager::SetShadowTextureSize(unsigned short Size)
     {
         this->SMD->OgreManager->setShadowTextureSize(Size);
+        this->SMD->ShadowTextureSize=Size;
     }
+
+    unsigned short SceneManager::GetShadowTextureSize() const
+        { return this->SMD->ShadowTextureSize; }
 
     void SceneManager::SetShadowFarDistance(const Real& FarDist)
-    {
-        this->SMD->OgreManager->setShadowFarDistance(FarDist);
-    }
+        { this->SMD->OgreManager->setShadowFarDistance(FarDist); }
 
-    Real SceneManager::GetShadowFarDistance()
-    {
-        return this->SMD->OgreManager->getShadowFarDistance();
-    }
+    Real SceneManager::GetShadowFarDistance() const
+        { return this->SMD->OgreManager->getShadowFarDistance(); }
 
     void SceneManager::SetShadowColour(const ColourValue& ShadowColour)
-    {
-        this->SMD->OgreManager->setShadowColour(ShadowColour.GetOgreColourValue());
-    }
+        { this->SMD->OgreManager->setShadowColour(ShadowColour.GetOgreColourValue()); }
 
-    ColourValue SceneManager::GetShadowColour()
+    ColourValue SceneManager::GetShadowColour() const
     {
         ColourValue Shadow(this->SMD->OgreManager->getShadowColour());
         return Shadow;
@@ -329,7 +328,6 @@ namespace phys
     {
         this->SMD->UpdateSkyCache();
         this->SMD->DisableSky(this);
-
     }
 
     SceneManager::SkyMethod SceneManager::WhichSky() const
@@ -341,6 +339,16 @@ namespace phys
     void SceneManager::SetAmbientLight(Real Red, Real Green, Real Blue, Real Alpha)
     {
         this->SMD->OgreManager->setAmbientLight(Ogre::ColourValue(Red, Green, Blue, Alpha));
+    }
+
+    void SceneManager::SetAmbientLight(const ColourValue &LightColor)
+    {
+        this->SMD->OgreManager->setAmbientLight(LightColor.GetOgreColourValue());
+    }
+
+    ColourValue SceneManager::GetAmbientLight() const
+    {
+        return ColourValue(this->SMD->OgreManager->getAmbientLight());
     }
 
     Light* SceneManager::CreateLight(const String& Name)
@@ -388,6 +396,18 @@ namespace phys
             }
         }
     }
+
+    SceneManager::LightIterator SceneManager::BeginLight()
+        { return this->Lights.begin(); }
+
+    SceneManager::LightIterator SceneManager::EndLight()
+        { return this->Lights.end(); }
+
+    SceneManager::ConstLightIterator SceneManager::BeginLight() const
+        { return this->Lights.begin(); }
+
+    SceneManager::ConstLightIterator SceneManager::EndLight() const
+        { return this->Lights.end(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // Particle Effect Management
@@ -437,6 +457,18 @@ namespace phys
             }
         }
     }
+
+    SceneManager::ParticleEffectIterator SceneManager::BeginParticleEffect()
+        { return this->Particles.begin(); }
+
+    SceneManager::ParticleEffectIterator SceneManager::EndParticleEffect()
+        { return this->Particles.end(); }
+
+    SceneManager::ConstParticleEffectIterator SceneManager::BeginParticleEffect() const
+        { return this->Particles.begin(); }
+
+    SceneManager::ConstParticleEffectIterator SceneManager::EndParticleEffect() const
+        { return this->Particles.end(); }
 
     ///////////////////////////////////////////////////////////////////////////////
     // WorldNode Management
@@ -553,6 +585,19 @@ namespace phys
         }
     }
 
+    SceneManager::WorldNodeIterator SceneManager::BeginWorldNode()
+        { return this->WorldNodes.begin(); }
+
+    SceneManager::WorldNodeIterator SceneManager::EndWorldNode()
+        { return this->WorldNodes.end(); }
+
+    SceneManager::ConstWorldNodeIterator SceneManager::BeginWorldNode() const
+        { return this->WorldNodes.begin(); }
+
+    SceneManager::ConstWorldNodeIterator SceneManager::EndWorldNode() const
+        { return this->WorldNodes.end(); }
+
+
     ///////////////////////////////////////////////////////////////////////////////
     // Basic Functionality
 
@@ -581,48 +626,105 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
 {
     stream      << "<SceneManager Version=\"1\" Name=\"" << Ev.GetName()
-                    //<< "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
-                    << "\" Type=\"" << Ev.GetType()
-// Tasks
-// -- << and >>
-// --     Particle
-// --
-// get function creation
-// --     which sky method
-// --     skyplane info
-// --     skydome info
-// --     skybox info
-//      ambient light
-//      num particles systems
-//      particles by index
-//      particle by name
-//
-// Iterators +const iterators
-//      Lights
-//      Particles
-//      WorldNodes
+                //<< "\" Type=\"" << Ev.GetType()
+                << "\" SceneShadowTechnique=\"" << Ev.GetSceneShadowTechnique()
+                << "\" ShadowTextureCount=\"" << Ev.GetShadowTextureCount()
+                << "\" ShadowTextureSize=\"" << Ev.GetShadowTextureSize()
+                << "\" ShadowFarDistance=\"" << Ev.GetShadowFarDistance()
+                << "\" SkyMethod=\"" << Ev.WhichSky()
+                << ">"
+                << "<ShadowColour>" << Ev.GetShadowColour() << "</ShadowColour>"
+                << "<AmbientLight>" << Ev.GetAmbientLight() << "</AmbientLight>";
 
-// name
-// shadow type
-// shadow Texture count
-// shadpw texture size
-// shadow distance
-// shadpw colour
-// Sky
-//      Disable
-//      Plane& SkyPlane, String& Material, String& Group, Real Scale=1000.0, Real Tiling=10.0, bool DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1
-//      SkyBox(String& Material, String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion());
-//      SkyDome(String& Material, String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, bool DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16);
-// Ambient light
-// iterate over
-//      lights
-//      particles
-//      Worldnodes
-//                << "\">"
-//                << "<Direction>" << Ev.GetDirection() << "</Direction>"
+                phys::internal::SceneManagerData* SMD = Ev.GetRawInternalDataPointer();
+                switch (Ev.WhichSky())
+                {
+                    case phys::SceneManager::SkyNone:
+                        // Nothing to do
+                        break;
+                    case phys::SceneManager::SkyPlane:{
+                        Ogre::SceneManager::SkyPlaneGenParameters Values=SMD->OgreManager->getSkyPlaneGenParameters();
+                        stream  << "<SkyPlane Version=\"1\" "
+                                << "\" MaterialName=\"" << SMD->SkyMaterialName
+                                << "\" MaterialGroupName=\"" << SMD->SkyMaterialGroupName
+                                << "\" DrawFirst=\"" << SMD->SkyDrawnFirst
+                                << "\" Scale=\"" << Values.skyPlaneScale
+                                << "\" Tiling=\"" << Values.skyPlaneTiling
+                                << "\" Bow=\"" << Values.skyPlaneBow
+                                << "\" XSegments=\"" << Values.skyPlaneXSegments
+                                << "\" YSegments=\"" << Values.skyPlaneYSegments
+                                << "\" >"
+                                << SMD->SkyThePlane
+                                << "</SkyPlane>";
+                            //const Plane& SkyPlane_, const String& Material, const String& Group, Real Scale, Real Tiling, bool DrawFirst, Real Bow, int XSegments, int YSegments
+                        }
+                        break;
+                    case phys::SceneManager::SkyBox:{
+                        Ogre::SceneManager::SkyBoxGenParameters Values = SMD->OgreManager->getSkyBoxGenParameters();
+                        stream  << "<SkyBox Version=\"1\" "
+                                << "\" MaterialName=\"" << SMD->SkyMaterialName
+                                << "\" MaterialGroupName=\"" << SMD->SkyMaterialGroupName
+                                << "\" DrawFirst=\"" << SMD->SkyDrawnFirst
+                                << "\" Distance=\"" << Values.skyBoxDistance
+                                << "\" >"
+                                << "<Orientation>" << SMD->SkyOrientation << "</Orientation>"
+                                << "</SkyBox>";
+                            //const String& Material, const String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion()
+                        }
+                        break;
+                    case phys::SceneManager::SkyDome:{
+                        Ogre::SceneManager::SkyDomeGenParameters Values=SMD->OgreManager->getSkyDomeGenParameters();
+                        stream  << "<SkyDome Version=\"1\" "
+                                << "\" MaterialName=\"" << SMD->SkyMaterialName
+                                << "\" MaterialGroupName=\"" << SMD->SkyMaterialGroupName
+                                << "\" DrawFirst=\"" << SMD->SkyDrawnFirst
+                                << "\" Distance=\"" << Values.skyDomeDistance
+                                << "\" Curvature=\"" << Values.skyDomeCurvature
+                                << "\" Tiling=\"" << Values.skyDomeTiling
+                                << "\" XSegments=\"" << Values.skyDomeXSegments
+                                << "\" YSegments=\"" << Values.skyDomeYSegments
+                                << "\" YSegments_keep=\"" << Values.skyDomeYSegments_keep
+                                << "\" >"
+                                << "<Orientation>" << SMD->SkyOrientation << "</Orientation>"
+                                << "</SkyDome>";
+                            //const String& Material, const String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, bool DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16
+                        }
+                        break;
+                }
+                /*  Sky Cache Member - String SkyMaterialName; Quaternion SkyOrientation; String SkyMaterialGroupName; bool SkyDrawnFirst; Plane SkyThePlane; */
+
+                for (phys::SceneManager::ConstLightIterator Iter = phys::World::GetWorldPointer()->GetSceneManager()->BeginLight();
+                        phys::World::GetWorldPointer()->GetSceneManager()->EndLight()!=Iter;
+                        ++Iter)
+                    { stream << **Iter; }
+                for (phys::SceneManager::ConstParticleEffectIterator Iter = phys::World::GetWorldPointer()->GetSceneManager()->BeginParticleEffect();
+                        phys::World::GetWorldPointer()->GetSceneManager()->EndParticleEffect()!=Iter;
+                        ++Iter)
+                    { stream << **Iter; }
+                for (phys::SceneManager::ConstWorldNodeIterator Iter = phys::World::GetWorldPointer()->GetSceneManager()->BeginWorldNode();
+                        phys::World::GetWorldPointer()->GetSceneManager()->EndWorldNode()!=Iter;
+                        ++Iter)
+                    { stream << **Iter; }
+    stream      << "</SceneManager>";
 
 
-                << "</SceneManager>";
+// --name
+// --shadow type
+// --shadow Texture count
+// --shadpw texture size
+// --shadow distance
+// --shadow colour
+// --Sky
+// --     Disable
+// --     Plane& SkyPlane, String& Material, String& Group, Real Scale=1000.0, Real Tiling=10.0, bool DrawFirst=true, Real Bow=0, int XSegments=1, int YSegments=1
+// --     SkyBox(String& Material, String& Group, Real Distance, bool DrawFirst=true, Quaternion Orientation=Quaternion());
+// --     SkyDome(String& Material, String& Group, Real Distance, Real Curvature=10.0, Real Tiling=8.0, bool DrawFirst=true, Quaternion Orientation=Quaternion(), int XSegments=16, int YSegments=16);
+// -- Ambient light
+// -- iterate over
+// --     lights
+// --     particles
+// --     Worldnodes
+
     return stream;
 }
 
@@ -640,71 +742,129 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
 {
     if ( phys::String(OneNode.Name())==phys::String("SceneManager") )
     {
-      /*  if(OneNode.GetAttribute("Version").AsInt() == 1)
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            Ev.SetType(static_cast<phys::SceneManager::SceneManagerType>(OneNode.GetAttribute("Type").AsInt()));
-            Ev.SetPowerScale(OneNode.GetAttribute("PowerScale").AsReal());
-            Ev.SetAttenuation(OneNode.GetAttribute("AttenuationRange").AsReal(), OneNode.GetAttribute("AttenuationConstant").AsReal(), OneNode.GetAttribute("AttenuationLinear").AsReal(), OneNode.GetAttribute("AttenuationQuadric").AsReal());
-            Ev.SetSpotSceneManagerInnerAngle(OneNode.GetAttribute("SpotSceneManagerInnerAngle").AsReal());
-            Ev.SetSpotSceneManagerOuterAngle(OneNode.GetAttribute("SpotSceneManagerOuterAngle").AsReal());
-            Ev.SetSpotSceneManagerFalloff(OneNode.GetAttribute("SpotSceneManagerFalloff").AsReal());
-            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
-            if (AttachPtr)
-                { AttachPtr->AttachObject(&Ev); }
-
-            phys::ColourValue TempColour(0,0,0,0);
-            phys::Vector3 TempVec(0,0,0);
+            //Ev.SetType(static_cast<phys::SceneManager::SceneManagerType>(OneNode.GetAttribute("Type").AsInt()));
+            Ev.SetSceneShadowTechnique((phys::SceneManager::SceneShadowTechnique)(OneNode.GetAttribute("SceneShadowTechnique").AsInt()));
+            Ev.SetShadowTextureCount(OneNode.GetAttribute("ShadowTextureCount").AsInt());
+            Ev.SetShadowTextureSize(OneNode.GetAttribute("ShadowTextureSize").AsInt());
+            Ev.SetShadowFarDistance(OneNode.GetAttribute("ShadowFarDistance").AsReal());
+            phys::SceneManager::SkyMethod DoubleCheck = (phys::SceneManager::SkyMethod)(OneNode.GetAttribute("SkyMethod").AsInt());
 
             for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
             {
                 phys::String Name(Child.Name());
                 switch(Name[0])
                 {
-                    case 'f':   //fDiffuseColour
-                        if(Name==phys::String("fDiffuseColour"))
+                    case 'L': // Light
+                        if(Name==phys::String("Light"))
                         {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetDiffuseColour(TempColour);
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element f-\"",Name,"\"")) );
-                        }
-                        break;
-                    case 'S':   //SpecularColour
-                        if(Name==phys::String("SpecularColour"))
-                        {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetSpecularColour(TempColour);
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element S-\"",Name,"\"")) );
-                        }
-                        break;
-                    case 'D':   //Direction
-                        if(Name==phys::String("Direction"))
-                        {
-                            Child.GetFirstChild() >> TempVec;
-                            Ev.SetDirection(TempVec);
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element D-\"",Name,"\"")) );
-                        }
-                        break;
-                    case 'L':   //Location
-                        if(Name==phys::String("Location"))
-                        {
-                            Child.GetFirstChild() >> TempVec;
-                            Ev.SetLocation(TempVec);
+                            phys::String ChildName(Child.GetAttribute("Name").AsString());
+                            if(0!=ChildName.length())
+                            {
+                                phys::Light* ChildLight = Ev.CreateLight(ChildName);
+                                Child >> *ChildLight;
+                            }else{
+                                throw( phys::Exception("Attemping to deserialize nameless light during deserialization of SceneManager but lights must have a name.") );
+                            }
                         }else{
                             throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element L-\"",Name,"\"")) );
                         }
                         break;
-                    default:
-                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element default-\"",Name,"\"")) );
+                    case 'P': // Particle Effect
+                        if(Name==phys::String("ParticleEffect"))
+                        {
+                            phys::String ChildName(Child.GetAttribute("Name").AsString());
+                            if(0!=ChildName.length())
+                            {
+                                phys::String ChildTemplate(Child.GetAttribute("Template").AsString());
+                                if(0!=ChildTemplate.length())
+                                {
+                                    phys::ParticleEffect* ChildPE = Ev.CreateParticleEffect(ChildName,ChildTemplate);
+                                    Child >> *ChildPE;
+                                }else{
+                                    throw( phys::Exception("Attemping to deserialize Templateless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a Template.") );
+                                }
+                            }else{
+                                throw( phys::Exception("Attemping to deserialize nameless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a name.") );
+                            }
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element P-\"",Name,"\"")) );
+                        }
                         break;
+
+                    case 'W': // WorldNode
+                        if(Name==phys::String("WorldNode"))
+                        {
+
+                            phys::String ChildName(Child.GetAttribute("Name").AsString());
+                            if(0!=ChildName.length())
+                            {
+                                phys::WorldNode* ChildNode = 0;
+                                switch(phys::WorldNode::NodeType(Child.GetAttribute("Template").AsWhole()))
+                                {
+                                    case phys::WorldNode::Free :
+                                        ChildNode = Ev.CreateFreeNode(ChildName,phys::Vector3(),phys::Vector3());
+                                        Child >> *ChildNode;
+                                        break;
+                                    case phys::WorldNode::Center :   //The orbitting node will handle this
+                                        break;
+                                    case phys::WorldNode::Orbit :
+                                        ChildNode = Ev.CreateOrbitingNode(ChildName,phys::Vector3(),phys::Vector3(),true);
+                                        Child >> *ChildNode;
+                                        break;
+                                    case phys::WorldNode::Stand :
+                                        ChildNode = Ev.CreateStandNode(ChildName,phys::Vector3(),phys::Vector3());
+                                        Child >> *ChildNode;
+                                        break;
+                                    default:
+                                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
+                                        break;
+                                }
+                            }else{
+                                throw( phys::Exception("Attemping to deserialize nameless WorldNode during deserialization of SceneManager but WorldNodes must have a name.") );
+                            }
+
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'S': // Sky of some kind
+                        switch(Name[3])
+                        {
+                            case 'B': // SkyBox
+                                if(Name==phys::String("SkyBox"))
+                                {
+
+                                }else{
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element SB-\"",Name,"\"")) );
+                                }
+                                break;
+                            case 'D': // SkyDome
+                                if(Name==phys::String("SkyDome"))
+                                {
+
+                                }else{
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element SD-\"",Name,"\"")) );
+                                }
+                                break;
+                            case 'P': // SkyPlane
+                                if(Name==phys::String("SkyPlane"))
+                                {
+
+                                }else{
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element SP-\"",Name,"\"")) );
+                                }
+                                break;
+                        }
+                        break;
+                        default:
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element def-\"",Name,"\"")) );
                 }
             }
-
         }else{
             throw( phys::Exception("Incompatible XML Version for SceneManager: Not Version 1"));
-        }*/
+        }
     }else{
         throw( phys::Exception(phys::StringCat("Attempting to deserialize a SceneManager, found a ", OneNode.Name())));
     }
