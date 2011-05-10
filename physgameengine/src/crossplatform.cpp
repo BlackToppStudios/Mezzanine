@@ -165,15 +165,14 @@ namespace phys
             #else
                 Ogre::Root::getSingleton()._fireFrameStarted();
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
-                //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
-                //    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
-
                 for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
                 {
+                    SDL_GL_MakeCurrent(Graphics->GetGameWindow(X)->GetSDLWindowPointer(),0); /// @todo TODO: RenderPhysWorld needs the context on non-windows builds
                     Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(true);
+                    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
                 }
                 //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
-                 //   Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
+                //   Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
                 Ogre::Root::getSingleton()._fireFrameEnded();
             #endif
             if( !Graphics->GetPrimaryGameWindow()->GetOgreWindowPointer()->isVisible() )
