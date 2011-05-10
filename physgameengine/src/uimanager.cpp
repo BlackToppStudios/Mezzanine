@@ -56,6 +56,12 @@
 
 #include <Ogre.h>
 
+namespace
+{
+    // used to work around the lack of ability to check for the existence or ogre singletons
+    bool HasSilverAlreadyBeenCreated = false;
+}
+
 namespace phys
 {
     UIManager::UIManager()
@@ -64,7 +70,12 @@ namespace phys
           WidgetFocus(NULL),
           ButtonAutoRegister(false)
     {
-        Silver = new Gorilla::Silverback();
+        if (HasSilverAlreadyBeenCreated)
+        {
+            Silver = Gorilla::Silverback::getSingletonPtr();
+        }else{
+            Silver = new Gorilla::Silverback();
+        }
         Priority = -35;
     }
 

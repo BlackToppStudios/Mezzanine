@@ -768,7 +768,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                 throw( phys::Exception("Attemping to deserialize nameless light during deserialization of SceneManager but lights must have a name.") );
                             }
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element L-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element L-\"",Name,"\"")) );
                         }
                         break;
                     case 'P': // Particle Effect
@@ -789,7 +789,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                 throw( phys::Exception("Attemping to deserialize nameless ParticleEffect during deserialization of SceneManager but ParticleEffects must have a name.") );
                             }
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element P-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element P-\"",Name,"\"")) );
                         }
                         break;
 
@@ -818,15 +818,14 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                         Child >> *ChildNode;
                                         break;
                                     default:
-                                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
+                                        throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
                                         break;
                                 }
                             }else{
                                 throw( phys::Exception("Attemping to deserialize nameless WorldNode during deserialization of SceneManager but WorldNodes must have a name.") );
                             }
-
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
                         }
                         break;
                     case 'S': // Sky of some kind
@@ -835,31 +834,84 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                             case 'B': // SkyBox
                                 if(Name==phys::String("SkyBox"))
                                 {
-
+                                    if(Child.GetAttribute("Version").AsInt() == 1)
+                                    {
+                                        phys::Quaternion Orientation;
+                                        if(Child.GetFirstChild().Name() == "Orientation")
+                                        {
+                                            Child.GetFirstChild() >> Orientation;
+                                        }else{
+                                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Orientation-\"",Name,"\"")) );
+                                        }
+                                        Ev.CreateSkyBox( Child.GetAttribute("MaterialName").AsString(),
+                                                         Child.GetAttribute("MaterialGroupName").AsString(),
+                                                         Child.GetAttribute("Distance").AsReal(),
+                                                         Child.GetAttribute("DrawFirst").AsBool(),
+                                                         Orientation);
+                                    }else{
+                                        throw( phys::Exception("Incompatible XML for SkyBox: Not Version 1"));
+                                    }
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element SB-\"",Name,"\"")) );
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element SB-\"",Name,"\"")) );
                                 }
                                 break;
                             case 'D': // SkyDome
                                 if(Name==phys::String("SkyDome"))
                                 {
+                                    if(Child.GetAttribute("Version").AsInt() == 1)
+                                    {
+                                        phys::Quaternion Orientation;
+                                        if(Child.GetFirstChild().Name() == "Orientation")
+                                        {
+                                            Child.GetFirstChild() >> Orientation;
+                                        }else{
+                                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Orientation-\"",Name,"\"")) );
+                                        }
+                                        Ev.CreateSkyDome( Child.GetAttribute("MaterialName").AsString(),
+                                                          Child.GetAttribute("MaterialGroupName").AsString(),
+                                                          Child.GetAttribute("Distance").AsReal(),
+                                                          Child.GetAttribute("Curvature").AsReal(),
+                                                          Child.GetAttribute("Tiling").AsReal(),
+                                                          Child.GetAttribute("DrawFirst").AsBool(),
+                                                          Orientation,
+                                                          Child.GetAttribute("XSegments").AsInt(),
+                                                          Child.GetAttribute("YSegments").AsInt());
 
+                                    }else{
+                                        throw( phys::Exception("Incompatible XML for SkyDome: Not Version 1"));
+                                    }
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element SD-\"",Name,"\"")) );
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element SD-\"",Name,"\"")) );
                                 }
                                 break;
                             case 'P': // SkyPlane
                                 if(Name==phys::String("SkyPlane"))
                                 {
+                                    phys::Plane SkyOrientation;
+                                    Child.GetFirstChild() >> SkyOrientation;
 
+                                    if(Child.GetAttribute("Version").AsInt() == 1)
+                                    {
+                                        Ev.CreateSkyPlane(  SkyOrientation,
+                                                            Child.GetAttribute("MaterialName").AsString(),
+                                                            Child.GetAttribute("MaterialGroupName").AsString(),
+                                                            Child.GetAttribute("Scale").AsReal(),
+                                                            Child.GetAttribute("Tiling").AsReal(),
+                                                            Child.GetAttribute("DrawFirst").AsBool(),
+                                                            Child.GetAttribute("Bow").AsBool(),
+                                                            Child.GetAttribute("XSegments").AsInt(),
+                                                            Child.GetAttribute("YSegments").AsInt());
+                                    }else{
+                                        throw( phys::Exception("Incompatible XML for SkyPlane: Not Version 1"));
+                                    }
                                 }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element SP-\"",Name,"\"")) );
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element SP-\"",Name,"\"")) );
                                 }
                                 break;
                         }
                         break;
                         default:
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for SceneManager: Includes unknown Element def-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element def-\"",Name,"\"")) );
                 }
             }
         }else{

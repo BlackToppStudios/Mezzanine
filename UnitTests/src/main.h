@@ -348,7 +348,10 @@ void UpdateMessage( String Message, String Message2)
 
 // Countdown callbacks
 bool PostTimerEnd()
-    { return false; }
+{
+    return false;
+    TheWorld->GetTimerManager()->SetPostMainLoopItems(0);
+}
 
 bool PostTimerUpdate()
     { UpdateMessage(TheMessage,ToString(int(ThisTimer->GetCurrentTime()/1000000))); return true; }
@@ -399,6 +402,7 @@ bool PostInputCheck()
         delete ThisInput;
         ThisInput = TheWorld->GetEventManager()->PopNextUserInputEvent();
     }
+
 
     if (Unknown==AnswerToQuestion)
         { return true; }

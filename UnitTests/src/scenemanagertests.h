@@ -51,6 +51,8 @@ class SceneManagerTests : public UnitTest
             {
                 SceneManager* SM = 0;
 
+
+
                 AddTestResult("SceneManager::DisplaySkyPlane", Unknown);
                 try
                 {
@@ -62,10 +64,6 @@ class SceneManagerTests : public UnitTest
                     SM->CreateSkyPlane(Plane(Vector3(2.0,1.0,-5.0), Vector3(1.0,2.0,-5.0), Vector3(1.0,1.0,-5.0)),"Examples/CloudPlane","files");
                     GetAnswer();
                     TheWorld->MainLoop();
-                    GetAnswer();
-                    TheWorld->MainLoop();
-                    GetAnswer();
-                    TheWorld->MainLoop();
                     StopEngine();
                     AddTestResult("SceneManager::DisplaySkyPlane", AnswerToQuestion, UnitTest::OverWrite);
                 } catch (std::exception e) {
@@ -75,8 +73,8 @@ class SceneManagerTests : public UnitTest
 
                 try
                 {
-                    AddTestResult("SceneManager::DisplaySkyBox", Unknown);
                     StartEngine();
+                    AddTestResult("SceneManager::DisplaySkyBox", Unknown);
                     TheMessage="Does It Look Like a SkyBox?";
                     SM = TheWorld->GetSceneManager();
                     SM->SetAmbientLight(1,1,1,1);
@@ -92,16 +90,16 @@ class SceneManagerTests : public UnitTest
 
                 try
                 {
-                    AddTestResult("SceneManager::DisplaySkyDome", Unknown);
                     StartEngine();
+                    AddTestResult("SceneManager::DisplaySkyDome", Unknown);
                     TheMessage="Does It Look Like a SkyDome?";
                     SM = TheWorld->GetSceneManager();
                     SM->SetAmbientLight(1,1,1,1);
                     SM->CreateSkyDome("Examples/CloudPlane","files",50);
                     GetAnswer();
                     TheWorld->MainLoop();
-                    AddTestResult("SceneManager::DisplaySkyDome", AnswerToQuestion, UnitTest::OverWrite);
                     StopEngine();
+                    AddTestResult("SceneManager::DisplaySkyDome", AnswerToQuestion, UnitTest::OverWrite);
                 } catch (std::exception e) {
                     cout << e.what();
                     AddTestResult("SceneManager::DisplaySkyDome", Failed, UnitTest::OverWrite);

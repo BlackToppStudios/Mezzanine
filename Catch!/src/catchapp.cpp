@@ -144,7 +144,7 @@ void CatchApp::LoadContent()
     Real UraniumMass = 20.0;
     Real LeadMass = 30.0;
     Real ClayMass = 12.0;
-    ActorRigid* Uranium1 = new ActorRigid(UraniumMass,"Uranium1","uranium.mesh",groupname);
+/*    ActorRigid* Uranium1 = new ActorRigid(UraniumMass,"Uranium1","uranium.mesh",groupname);
     Uranium1->CreateShapeFromMeshDynamic(1);
     Uranium1->SetLocation(25,40,0);
     TheWorld->GetActorManager()->AddActor(Uranium1);
@@ -152,7 +152,7 @@ void CatchApp::LoadContent()
     Uranium2->CreateShapeFromMeshDynamic(1);
     Uranium2->SetLocation(-25,40,0);
     TheWorld->GetActorManager()->AddActor(Uranium2);// */
-    ActorRigid* Lead1 = new ActorRigid(LeadMass,"Lead1","lead.mesh",groupname);
+ /*   ActorRigid* Lead1 = new ActorRigid(LeadMass,"Lead1","lead.mesh",groupname);
     Lead1->CreateShapeFromMeshDynamic(1);
     Lead1->SetLocation(25,-0,0);
     TheWorld->GetActorManager()->AddActor(Lead1);
@@ -160,7 +160,7 @@ void CatchApp::LoadContent()
     Lead2->CreateShapeFromMeshDynamic(1);
     Lead2->SetLocation(-25,-0,0);
     TheWorld->GetActorManager()->AddActor(Lead2);// */
-    ActorRigid* Clay1 = new ActorRigid(ClayMass,"Clay1","clay_pot.mesh",groupname);
+ /*   ActorRigid* Clay1 = new ActorRigid(ClayMass,"Clay1","clay_pot.mesh",groupname);
     Clay1->CreateShapeFromMeshDynamic(1);
     Clay1->SetLocation(25,-40,0);
     TheWorld->GetActorManager()->AddActor(Clay1);

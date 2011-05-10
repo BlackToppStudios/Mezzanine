@@ -112,6 +112,13 @@ namespace phys
         return TheRealWorld;
     }
 
+    namespace
+    {
+        // Since there doesn't seem to be anyway to check if the ogre root exists yet.
+        // if a you haven't made an ogre root, then Ogre::Root::getSingletonPtr(); appears to return gibberish rather that a zero.
+        Ogre::Root* OgreCore = 0;
+    }
+
     void World::Construct(  const Vector3 &GeographyLowerBounds_,
                                 const Vector3 &GeographyUpperbounds_,
                                 const unsigned short int &MaxPhysicsProxies_,
@@ -126,7 +133,12 @@ namespace phys
 
         this->SetLoggingFrequency(LogOncePerFrame);
 
-        Ogre::Root* OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName);
+
+        if ( 0 == OgreCore )
+            { OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName); }
+        else
+            { OgreCore = Ogre::Root::getSingletonPtr(); }
+
         World::TheRealWorld = this;
 
         //add each manager that was passed in to the manager list
@@ -198,6 +210,7 @@ namespace phys
         //All the pointers Ogre made should get taken care of by OGRE
         Ogre::Root::getSingleton().shutdown();
         delete Ogre::Root::getSingletonPtr();
+        OgreCore=0;
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -442,8 +455,8 @@ namespace phys
         }//End of main loop
 
         //Some after loop cleanup
-        Whole X = 0;
         //this->DestroyRenderWindow();
+        delete LoopTimer;
     }
 
     void World::DoMainLoopLogging()

@@ -164,8 +164,8 @@ namespace phys
                 {
                     Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(true);
                 }
-                for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
-                    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
+                //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
+                 //   Graphics->GetGameWindow(X)->GetOgreWindowPointer()->swapBuffers(false);
                 Ogre::Root::getSingleton()._fireFrameEnded();
             #endif
             if( !Graphics->GetPrimaryGameWindow()->GetOgreWindowPointer()->isVisible() )
