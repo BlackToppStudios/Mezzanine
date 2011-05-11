@@ -124,8 +124,10 @@ namespace phys
         SDLFlags|=SDL_WINDOW_SHOWN;
         SDLWindow = SDL_CreateWindow( WindowCaption.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDLFlags );
 
-        if(!RenderContext)
-            { RenderContext = SDL_GL_CreateContext(this->SDLWindow); }
+        static void* RC = 0;
+        if(!RC)
+            RC = SDL_GL_CreateContext(this->SDLWindow);
+        RenderContext = RC;
 
         Ogre::NameValuePairList* Binder;
 

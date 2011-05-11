@@ -56,7 +56,7 @@
 namespace phys{
     ///////////////////////////////////
     // ActorBase class fuctions
-    ActorBase::ActorBase(String name, String file, String group)
+    ActorBase::ActorBase(const String& name, const String& file, const String& group)
         : GraphicsObject(NULL),
           GraphicsSettings(NULL),
           BasePhysicsSettings(NULL),

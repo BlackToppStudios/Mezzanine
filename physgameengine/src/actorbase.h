@@ -213,7 +213,7 @@ namespace phys
             /// @param name The name of the actor.
             /// @param file The 3d mesh file that contains the 3d model the actor will use.
             /// @param group The resource group where the 3d mesh and other related files can be found.
-            ActorBase (String name, String file, String group);
+            ActorBase (const String& name, const String& file, const String& group);
 
             /// @brief Destructor.
             /// @details The class destructor.

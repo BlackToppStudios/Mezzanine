@@ -74,7 +74,7 @@ namespace phys
             /// @details Creates a rigid object to be placed in the physics world later. @n
             /// This is automaticly called by the Constructor and shouldn't be called manually.
             /// @param pmass "Real Mass" The mass of the object.
-            virtual void CreateRigidObject (Real pmass);
+            virtual void CreateRigidObject(const Real& pmass);
 
         public:
             /// @brief Descriptive constructor.
@@ -84,7 +84,7 @@ namespace phys
             /// @param name The name of the actor.
             /// @param file The 3d mesh file that contains the 3d model the actor will use.
             /// @param group The resource group where the 3d mesh and other related files can be found.
-            ActorRigid(Real mass, String name, String file, String group);
+            ActorRigid(const Real& mass, const String& name, const String& file, const String& group);
 
             /// @brief Destructor.
             /// @details The class destructor.
@@ -116,40 +116,6 @@ namespace phys
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.
             virtual ActorRigidPhysicsSettings* GetPhysicsSettings();
-
-            /// @brief Sets the Damping for this object.
-            /// @details Both of Linear Damping and Angular Damping default to zero.  This is usful if you wish to simulate
-            /// something like air resistance.  Values can range from 0.0 to 1.0.
-            /// @param LinDamping Real representing the amount of Linear Damping to be applied.
-            /// @param AngDamping Real representing the amount of Angular Damping to be applied.
-            virtual void SetDamping(Real LinDamping, Real AngDamping);
-
-            /// @brief Sets the Linear Velocity of this object.
-            /// @param LinVel Vector3 representing the Linear Velocity to be set.
-            virtual void SetLinearVelocity(Vector3 LinVel);
-
-            /// @brief Gets the Linear Velocity of this object.
-            /// @return Returns the currently set Linear Velocity of this object.
-            virtual Vector3 GetLinearVelocity();
-
-            /// @brief Sets the Angular Velocity of this object.
-            /// @param AngVel Vector3 representing the Angular Velocity to be set.
-            virtual void SetAngularVelocity(Vector3 AngVel);
-
-            /// @brief Gets the Angular Velocity of this object.
-            /// @return Returns the currently set Angular Velocity of this object.
-            virtual Vector3 GetAngularVelocity();
-
-            /// @brief Sets the gravity for only this object.
-            /// @details This value will override the world gravity.  Should be called after adding to the world.
-            /// When the object is added to the world the world gravity is applied to it.
-            /// @param Gravity Vector3 representing the direction and strength of gravity to be applied.
-            virtual void SetIndividualGravity(const Vector3& Gravity);
-
-            /// @brief Gets the gravity being applied to this object.
-            /// @details This is the gravity applied to this object, which may or may not be the same as the world gravity.
-            /// @return Returns a Vector3 representing the gravity currently being applied to this object.
-            virtual Vector3 GetIndividualGravity();
 
             /// @brief Restricts movement on the axis or axies of your choice.
             /// @details This function will lock any and all axies you define you want to be locked.
