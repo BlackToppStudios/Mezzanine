@@ -150,36 +150,42 @@ void CatchApp::LoadContent()
     ActorRigid* Uranium1 = new ActorRigid(UraniumMass,"Uranium1","uranium.mesh",groupname);
     Uranium1->CreateShapeFromMeshDynamic(2);
     Uranium1->SetLocation(-145,40,0);
+    Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Uranium1->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Uranium1);
     ThrownItems.push_back(Uranium1);
     ActorRigid* Uranium2 = new ActorRigid(UraniumMass,"Uranium2","uranium.mesh",groupname);
     Uranium2->CreateShapeFromMeshDynamic(1);
     Uranium2->SetLocation(-195,40,0);
+    Uranium2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Uranium2->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Uranium2);
     ThrownItems.push_back(Uranium2);// */
     ActorRigid* Lead1 = new ActorRigid(LeadMass,"Lead1","lead.mesh",groupname);
     Lead1->CreateShapeFromMeshDynamic(1);
     Lead1->SetLocation(-145,0,0);
+    Lead1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Lead1->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Lead1);
     ThrownItems.push_back(Lead1);
     ActorRigid* Lead2 = new ActorRigid(LeadMass,"Lead2","lead.mesh",groupname);
     Lead2->CreateShapeFromMeshDynamic(1);
     Lead2->SetLocation(-195,0,0);
+    Lead2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Lead2->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Lead2);
     ThrownItems.push_back(Lead2);// */
     ActorRigid* Clay1 = new ActorRigid(ClayMass,"Clay1","clay.mesh",groupname);
     Clay1->CreateShapeFromMeshDynamic(1);
     Clay1->SetLocation(-145,-40,0);
+    Clay1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Clay1->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Clay1);
     ThrownItems.push_back(Clay1);
     ActorRigid* Clay2 = new ActorRigid(ClayMass,"Clay2","clay.mesh",groupname);
     Clay2->CreateShapeFromMeshDynamic(1);
     Clay2->SetLocation(-195,-40,0);
+    Clay2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Clay2->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Clay2);
     ThrownItems.push_back(Clay2);// */
