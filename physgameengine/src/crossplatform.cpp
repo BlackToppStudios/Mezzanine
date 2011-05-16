@@ -168,7 +168,7 @@ namespace phys
                 for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
                 {
                     SDL_GL_MakeCurrent(Graphics->GetGameWindow(X)->GetSDLWindowPointer(),Graphics->GetGameWindow(X)->GetRenderContext()); /// @todo TODO: RenderPhysWorld needs the context on non-windows builds
-                    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(true);
+                    Graphics->GetGameWindow(X)->GetOgreWindowPointer()->update(false);
                     SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
                 }
                 //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )

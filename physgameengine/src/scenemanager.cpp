@@ -170,6 +170,7 @@ namespace phys
                 Type = Ogre::ST_GENERIC;
         }
         this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(Type);
+        this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
         //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
         //OgreManager->setShadowCameraSetup(ShadowCam);
     }
@@ -348,6 +349,7 @@ namespace phys
 
     ColourValue SceneManager::GetAmbientLight() const
     {
+
         return ColourValue(this->SMD->OgreManager->getAmbientLight());
     }
 
@@ -632,7 +634,7 @@ std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
                 << "\" ShadowTextureSize=\"" << Ev.GetShadowTextureSize()
                 << "\" ShadowFarDistance=\"" << Ev.GetShadowFarDistance()
                 << "\" SkyMethod=\"" << Ev.WhichSky()
-                << ">"
+                << "\">"
                 << "<ShadowColour>" << Ev.GetShadowColour() << "</ShadowColour>"
                 << "<AmbientLight>" << Ev.GetAmbientLight() << "</AmbientLight>";
 
@@ -644,7 +646,7 @@ std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
                         break;
                     case phys::SceneManager::SkyPlane:{
                         Ogre::SceneManager::SkyPlaneGenParameters Values=SMD->OgreManager->getSkyPlaneGenParameters();
-                        stream  << "<SkyPlane Version=\"1\" "
+                        stream  << "<SkyPlane Version=\"1"
                                 << "\" MaterialName=\"" << SMD->SkyMaterialName
                                 << "\" MaterialGroupName=\"" << SMD->SkyMaterialGroupName
                                 << "\" DrawFirst=\"" << SMD->SkyDrawnFirst
@@ -661,7 +663,7 @@ std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
                         break;
                     case phys::SceneManager::SkyBox:{
                         Ogre::SceneManager::SkyBoxGenParameters Values = SMD->OgreManager->getSkyBoxGenParameters();
-                        stream  << "<SkyBox Version=\"1\" "
+                        stream  << "<SkyBox Version=\"1"
                                 << "\" MaterialName=\"" << SMD->SkyMaterialName
                                 << "\" MaterialGroupName=\"" << SMD->SkyMaterialGroupName
                                 << "\" DrawFirst=\"" << SMD->SkyDrawnFirst
@@ -674,7 +676,7 @@ std::ostream& operator << (std::ostream& stream, const phys::SceneManager& Ev)
                         break;
                     case phys::SceneManager::SkyDome:{
                         Ogre::SceneManager::SkyDomeGenParameters Values=SMD->OgreManager->getSkyDomeGenParameters();
-                        stream  << "<SkyDome Version=\"1\" "
+                        stream  << "<SkyDome Version=\"1"
                                 << "\" MaterialName=\"" << SMD->SkyMaterialName
                                 << "\" MaterialGroupName=\"" << SMD->SkyMaterialGroupName
                                 << "\" DrawFirst=\"" << SMD->SkyDrawnFirst
@@ -756,6 +758,20 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                 phys::String Name(Child.Name());
                 switch(Name[0])
                 {
+                    case 'A': // AmbientLight
+                                if(Name==phys::String("AmbientLight"))
+                                {
+                                    if(Child.GetFirstChild().Name() == "ColourValue")
+                                    {
+                                        phys::ColourValue AllAroundUs;
+                                        Child.GetFirstChild() >> AllAroundUs;
+                                        Ev.SetAmbientLight(AllAroundUs);
+                                    }else{
+                                        throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element AmbientLight-\"",Name,"\"")) );
+                                    }
+                                }else{
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Sd-\"",Name,"\"")) );
+                                }
                     case 'L': // Light
                         if(Name==phys::String("Light"))
                         {
@@ -828,9 +844,28 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                             throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element W-\"",Name,"\"")) );
                         }
                         break;
-                    case 'S': // Sky of some kind
+                    case 'S': // Sky of some kind or "ShadowColor"
                         switch(Name[3])
                         {
+                            case 'd': // ShadowColour
+                                if(Name==phys::String("ShadowColour"))
+                                {
+                                    if(Child.GetFirstChild())
+                                    {
+                                        /*if(Child.GetFirstChild().Name() == "ColourValue")
+                                        {*/
+                                            phys::ColourValue InTheShade;
+                                            Child.GetFirstChild() >> InTheShade;
+                                            Ev.SetShadowColour(InTheShade);
+                                        /*}else{
+                                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element ShadowColour-\"",Child.GetFirstChild().Name(),"\"")) );
+                                        }*/
+                                    }else{
+                                        throw( phys::Exception("Incompatible XML for SceneManager: ShadowColour has no child"));
+                                    }
+                                }else{
+                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Sd-\"",Name,"\"")) );
+                                }
                             case 'B': // SkyBox
                                 if(Name==phys::String("SkyBox"))
                                 {

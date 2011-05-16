@@ -68,20 +68,21 @@ namespace phys
             /// @brief Value from 0.0 to 1.0 representing the transparency of the colours. 1.0 is opaque and 0.0 is clear.
             Real Alpha;
 
+/*
             /// @brief Non-Alpha constructor.
             /// @details This constructor assumes the alpha value to be 1.0 (completely opaque).
             /// @param red Real representing the amount of red present in the colour.
             /// @param green Real representing the amount of green present in the colour.
             /// @param blue Real representing the amount of blue present in the colour.
             ColourValue(Real red, Real green, Real blue);
-
-            /// @brief Alpha constructor.
-            /// @details This constructor allows you to set the alpha value.
+*/
+            /// @brief 4 Reals constructor.
+            /// @details This constructor allows you to set any values, if unset, they default to 1.0.
             /// @param red Real representing the amount of red present in the colour.
             /// @param green Real representing the amount of green present in the colour.
             /// @param blue Real representing the amount of blue present in the colour.
             /// @param alpha Real representing the transparency of the colours.
-            ColourValue(Real red, Real green, Real blue, Real alpha);
+            ColourValue(Real red=1.0, Real green=1.0, Real blue=1.0, Real alpha=1.0);
 
             /// @brief Ogre constructor.
             /// @details Internal use only.  Constructs a colourvalue class from an ogre colourvalue.

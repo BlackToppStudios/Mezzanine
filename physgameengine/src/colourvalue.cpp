@@ -47,13 +47,13 @@
 #include <memory>
 namespace phys
 {
-    ColourValue::ColourValue(Real red, Real green, Real blue)
+    /*ColourValue::ColourValue(Real red, Real green, Real blue)
     {
         this->Red = red;
         this->Green = green;
         this->Blue = blue;
         this->Alpha = 1.0;
-    }
+    }*/
 
     ColourValue::ColourValue(Real red, Real green, Real blue, Real alpha)
     {
