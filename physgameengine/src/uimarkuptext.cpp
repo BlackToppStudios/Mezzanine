@@ -52,7 +52,7 @@ namespace phys
 {
     namespace UI
     {
-        MarkupText::MarkupText(ConstString& name, const Vector2 Position, const Whole Glyph, String Text, Layer* PLayer)
+        MarkupText::MarkupText(ConstString& name, const Vector2& Position, const Whole& Glyph, const String& Text, Layer* PLayer)
             : Parent(PLayer),
               RelPosition(Position),
               RelSize(Vector2(0,0)),
@@ -61,7 +61,7 @@ namespace phys
             Manager = World::GetWorldPointer()->GetUIManager();
 
             Vector2 Window = Parent->GetParent()->GetViewportDimensions();
-            GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Position.X * Window.X,Position.Y * Window.Y,Text);
+            GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Position.X * Window.X,Position.Y * Window.Y,Text,Parent->GetParent()->GetPrimaryAtlas());
         }
 
         MarkupText::~MarkupText()
@@ -94,7 +94,7 @@ namespace phys
             return Name;
         }
 
-        void MarkupText::SetText(String& Text)
+        void MarkupText::SetText(const String& Text)
         {
             GMarkup->text(Text);
         }
@@ -104,7 +104,7 @@ namespace phys
             return GMarkup->text();
         }
 
-        void MarkupText::SetTextScale(Real Scale)
+        void MarkupText::SetTextScale(const Real& Scale)
         {
             GMarkup->SetCharScaling(Scale);
         }
@@ -114,7 +114,7 @@ namespace phys
             return GMarkup->GetCharScaling();
         }
 
-        void MarkupText::SetDefaultGlyphIndex(const Whole DefaultGlyphIndex)
+        void MarkupText::SetDefaultGlyphIndex(const Whole& DefaultGlyphIndex)
         {
             Glyphs = DefaultGlyphIndex;
             GMarkup->SetDefaultGlyphIndex(DefaultGlyphIndex);
@@ -165,7 +165,7 @@ namespace phys
             GMarkup->vertical_align(VA);
         }*/
 
-        void MarkupText::SetPosition(const Vector2 Position)
+        void MarkupText::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -178,7 +178,7 @@ namespace phys
             return RelPosition;
         }
 
-        void MarkupText::SetActualPosition(const Vector2 Position)
+        void MarkupText::SetActualPosition(const Vector2& Position)
         {
             GMarkup->left(Position.X);
             GMarkup->top(Position.Y);
@@ -190,7 +190,7 @@ namespace phys
             return Pos;
         }
 
-        void MarkupText::SetMaxSize(const Vector2 Size)
+        void MarkupText::SetMaxSize(const Vector2& Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -203,7 +203,7 @@ namespace phys
             return RelSize;
         }
 
-        void MarkupText::SetMaxActualSize(const Vector2 Size)
+        void MarkupText::SetMaxActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             GMarkup->width(Size.X);
@@ -216,7 +216,7 @@ namespace phys
             return Pos;
         }
 
-        void MarkupText::SetRenderPriority(UI::RenderPriority Priority)
+        void MarkupText::SetRenderPriority(const UI::RenderPriority& Priority)
         {
             Gorilla::RenderPriority RP;
             switch(Priority)
@@ -254,6 +254,16 @@ namespace phys
                     break;
             }
             return UI::RP_Medium;
+        }
+
+        void MarkupText::SetPrimaryAtlas(const String& Atlas)
+        {
+            GMarkup->SetNameFile(Atlas);
+        }
+
+        String MarkupText::GetPrimaryAtlas()
+        {
+            return *GMarkup->GetNameFile();
         }
     }//UI
 }//phys

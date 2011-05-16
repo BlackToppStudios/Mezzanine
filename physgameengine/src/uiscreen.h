@@ -75,28 +75,30 @@ namespace phys
                 UIManager* Manager;
                 Viewport* GameViewport;
                 String Name;
+                String PrimaryAtlas;
                 std::map<Whole,Layer*> Layers;
             public:
                 /// @brief Internal constructor.
                 /// @param name The name of this screen.
-                /// @param GScreen The Gorilla Screen this Screen is based on.
+                /// @param Atlas The name of the primary atlas to be assigned to this screen.
+                /// This can be overridden later, even by individual UI elements.
                 /// @param WindowViewport The Viewport to which this screen belongs.
-                Screen(const String& name, Gorilla::Screen* GScreen, Viewport* WindowViewport);
+                Screen(const String& name, const String& Atlas, Viewport* WindowViewport);
                 /// @brief Class destructor.
-                ~Screen();
+                virtual ~Screen();
                 /// @brief Gets the name of this screen.
                 /// @return Returns a string containing the name of this screen.
-                String& GetName();
+                virtual String& GetName();
                 /// @brief Sets the screens visability.
                 /// @param Visable A bool representing the visability of the screen.
-                void SetVisible(bool Visible);
+                virtual void SetVisible(bool Visible);
                 /// @brief Gets the screens visability.
                 /// @return Returns a bool representing the visability of the screen.
-                bool IsVisible();
+                virtual bool IsVisible();
                 /// @brief Forces the screen to be shown.
-                void Show();
+                virtual void Show();
                 /// @brief Forces the screen to hide.
-                void Hide();
+                virtual void Hide();
                 /// @brief Creates a layer in the GUI screen to place GUI objects in.
                 /// @details A GUI layer is exactly that, a layer of GUI objects.  You can have multiple GUI
                 /// layers per screen.  The Zorder of the layer determines it's visability if there are multiple
@@ -105,37 +107,43 @@ namespace phys
                 /// GUI object or objects.
                 /// @param Name The name to be given to the layer.
                 /// @param Zorder The layers Zorder, as explained above.
-                Layer* CreateLayer(const String& Name, Whole Zorder);
+                virtual Layer* CreateLayer(const String& Name, Whole Zorder);
                 /// @brief Gets an already created layer by name.
                 /// @return Returns a pointer to the layer of the specified name.
-                Layer* GetLayer(const String& Name);
+                virtual Layer* GetLayer(const String& Name);
                 /// @brief Gets an already created layer by it's index.
                 /// @return Returns a pointer to the layer at the specified index.
-                Layer* GetLayer(Whole Index);
+                virtual Layer* GetLayer(Whole Index);
                 /// @brief Gets an already created layer by it's Zorder.
                 /// @return Returns a pointer to the layer with the specified Zorder.
-                Layer* GetLayerbyZorder(Whole Zorder);
+                virtual Layer* GetLayerbyZorder(Whole Zorder);
                 /// @brief Gets the number of layers created and stored in this class.
                 /// @return Returns the number of layers this class is storing.
-                Whole GetNumLayers();
+                virtual Whole GetNumLayers();
                 /// @brief Destroy's a previously created layer.
                 /// @param ToBeDestroyed The layer to be destroyed.
-                void DestroyLayer(Layer* ToBeDestroyed);
+                virtual void DestroyLayer(Layer* ToBeDestroyed);
                 /// @brief Gets the current viewport dimensions.
                 /// @return Returns a Vector2 representing the current viewport dimensions.
-                Vector2 GetViewportDimensions();
+                virtual Vector2 GetViewportDimensions();
                 /// @brief Gets the button the mouse is over if any.
                 /// @details This function searches only the visable layers contained in this screen.
                 /// @return Returns the button the mouse is over, or NULL if there are none.
-                Button* CheckButtonMouseIsOver();
+                virtual Button* CheckButtonMouseIsOver();
                 /// @brief Gets the widget the mouse is over if any.
                 /// @details This function searches only the visable layers contained in this screen.
                 /// @return Returns the widget the mouse is over, or NULL if there are none.
-                Widget* CheckWidgetMouseIsOver();
+                virtual Widget* CheckWidgetMouseIsOver();
+                /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
+                /// @param Atlas The name of the atlas to be used.
+                virtual void SetPrimaryAtlas(const String& Atlas);
+                /// @brief Gets the currently set primary atlas.
+                /// @return Returns a string containing the name of the primary atlas that is set.
+                virtual String GetPrimaryAtlas();
                 /// @internal
                 /// @brief Gets the internal screen this screen is based on.
                 /// @return Returns a pointer to the Gorilla screen this screen is based on.
-                Gorilla::Screen* GetGorillaScreen();
+                virtual Gorilla::Screen* GetGorillaScreen();
         };//uiscreen
     }//ui
 }//phys

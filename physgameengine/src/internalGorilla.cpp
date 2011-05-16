@@ -22,6 +22,8 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
 
+	Modified by Ultimate and Prophet(al086)
+	Modification 1.0
 */
 
 // Keeps this file form being documented by doxygen
@@ -34,37 +36,38 @@
 
 template<> Gorilla::Silverback* Ogre::Singleton<Gorilla::Silverback>::ms_Singleton = 0;
 
-#define PUSH_VERTEX(VERTICES, VERTEX, X, Y, UV, COLOUR)   \
+#define PUSH_VERTEX(VERTICES, VERTEX, X, Y, UV, COLOUR,NAMEFILE)   \
   VERTEX.position.x = X;                                           \
   VERTEX.position.y = Y;                                           \
   VERTEX.position.z = 0;                                           \
   VERTEX.uv.x = UV.x;                                              \
   VERTEX.uv.y = UV.y;                                              \
   VERTEX.colour = COLOUR;                                          \
+  VERTEX.NameFile = NAMEFILE;                                          \
   VERTICES.push_back(VERTEX);
 
-#define PUSH_TRIANGLE(VERTICES, VERTEX, A, B, C, UV, COLOUR)       \
-  PUSH_VERTEX(VERTICES, VERTEX, A.x, A.y, UV, COLOUR) \
-  PUSH_VERTEX(VERTICES, VERTEX, B.x, B.y, UV, COLOUR) \
-  PUSH_VERTEX(VERTICES, VERTEX, C.x, C.y, UV, COLOUR)
+#define PUSH_TRIANGLE(VERTICES, VERTEX, A, B, C, UV, COLOUR,NAMEFILE)       \
+  PUSH_VERTEX(VERTICES, VERTEX, A.x, A.y, UV, COLOUR,NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, B.x, B.y, UV, COLOUR,NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, C.x, C.y, UV, COLOUR,NAMEFILE)
 
-#define PUSH_QUAD(VERTICES, VERTEX, POSITIONS, COLOURS, UV)   \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[3].x, POSITIONS[3].y, UV[3], COLOURS[3]) \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[1].x, POSITIONS[1].y, UV[1], COLOURS[1]) \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[0].x, POSITIONS[0].y, UV[0], COLOURS[0]) \
+#define PUSH_QUAD(VERTICES, VERTEX, POSITIONS, COLOURS, UV,NAMEFILE)   \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[3].x, POSITIONS[3].y, UV[3], COLOURS[3],NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[1].x, POSITIONS[1].y, UV[1], COLOURS[1],NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[0].x, POSITIONS[0].y, UV[0], COLOURS[0],NAMEFILE) \
      \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[3].x, POSITIONS[3].y, UV[3], COLOURS[3]) \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[2].x, POSITIONS[2].y, UV[2], COLOURS[2]) \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[1].x, POSITIONS[1].y, UV[1], COLOURS[1])
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[3].x, POSITIONS[3].y, UV[3], COLOURS[3],NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[2].x, POSITIONS[2].y, UV[2], COLOURS[2],NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[1].x, POSITIONS[1].y, UV[1], COLOURS[1],NAMEFILE)
 
-#define PUSH_QUAD2(VERTICES, VERTEX, POSITIONS, COLOUR, UV)   \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[3].x, POSITIONS[3].y, UV[3], COLOUR) \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[1].x, POSITIONS[1].y, UV[1], COLOUR) \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[0].x, POSITIONS[0].y, UV[0], COLOUR) \
+#define PUSH_QUAD2(VERTICES, VERTEX, POSITIONS, COLOUR, UV,NAMEFILE)   \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[3].x, POSITIONS[3].y, UV[3], COLOUR,NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[1].x, POSITIONS[1].y, UV[1], COLOUR,NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[0].x, POSITIONS[0].y, UV[0], COLOUR,NAMEFILE) \
      \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[3].x, POSITIONS[3].y, UV[3], COLOUR) \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[2].x, POSITIONS[2].y, UV[2], COLOUR) \
-  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[1].x, POSITIONS[1].y, UV[1], COLOUR)
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[3].x, POSITIONS[3].y, UV[3], COLOUR,NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[2].x, POSITIONS[2].y, UV[2], COLOUR,NAMEFILE) \
+  PUSH_VERTEX(VERTICES, VERTEX, POSITIONS[1].x, POSITIONS[1].y, UV[1], COLOUR,NAMEFILE)
 
 
 namespace Gorilla
@@ -149,7 +152,7 @@ namespace Gorilla
     _loadKerning(settings, glyphData);
    }
    else if (secName == "sprites")
-    _loadSprites(settings);
+    _loadSprites(settings,gorillaFile);
 
   }
 
@@ -369,7 +372,7 @@ namespace Gorilla
 
  }
 
- void  TextureAtlas::_loadSprites(Ogre::ConfigFile::SettingsMultiMap* settings)
+ void  TextureAtlas::_loadSprites(Ogre::ConfigFile::SettingsMultiMap* settings,const Ogre::String& gorillaFile)
  {
 
   Ogre::String sprite_name, data;
@@ -400,7 +403,7 @@ namespace Gorilla
    sprite->uvTop = Ogre::StringConverter::parseUnsignedInt(str_values[1]);
    sprite->spriteWidth = Ogre::StringConverter::parseUnsignedInt(str_values[2]);
    sprite->spriteHeight = Ogre::StringConverter::parseUnsignedInt(str_values[3]);
-
+   sprite->mNameFile = gorillaFile.substr(0,gorillaFile.find_first_of("."));
    mSprites[sprite_name] = sprite;
 
   }
@@ -465,6 +468,7 @@ namespace Gorilla
   m2DMaterial = createOrGet2DMasterMaterial()->clone(matName);
   m2DPass = m2DMaterial->getTechnique(0)->getPass(0);
   m2DPass->getTextureUnitState(0)->setTextureName(mTexture->getName());
+
 
  }
 
@@ -634,10 +638,9 @@ namespace Gorilla
   mAtlases[name] = atlas;
  }
 
- Screen* Silverback::createScreen(Ogre::Viewport* viewport, const Ogre::String& atlas_name)
+ Screen* Silverback::createScreen(Ogre::Viewport* viewport)
  {
-  TextureAtlas* atlas = (*mAtlases.find(atlas_name)).second;
-  Screen* screen = OGRE_NEW Screen(viewport, atlas);
+  Screen* screen = OGRE_NEW Screen(viewport);
   mScreens.push_back(screen);
   return screen;
  }
@@ -673,8 +676,8 @@ namespace Gorilla
   return true;
  }
 
- LayerContainer::LayerContainer(TextureAtlas* atlas)
- : mIndexRedrawAll(false), mAtlas(atlas)
+ LayerContainer::LayerContainer()
+ : mIndexRedrawAll(false)
  {
  }
 
@@ -685,7 +688,10 @@ namespace Gorilla
 
   _destroyVertexBuffer();
  }
-
+ std::map<Ogre::uint, IndexData*>* LayerContainer::GetMapIndexData()
+ {
+  return &mIndexData;
+ }
  Layer* LayerContainer::createLayer(Ogre::uint index)
  {
   Layer* layer = OGRE_NEW Layer(index, this);
@@ -921,27 +927,56 @@ namespace Gorilla
    knownVertexCount += (*it).second->mVertices.size();
 
   _resizeVertexBuffer(knownVertexCount);
-  //std::cout << "+++ Known Vertex Count is: " << knownVertexCount << "\n";
-  Vertex* writeIterator = (Vertex*) mVertexBuffer->lock(Ogre::HardwareBuffer::HBL_DISCARD);
-
+  Vertex2* writeIterator = (Vertex2*) mVertexBuffer->lock(Ogre::HardwareBuffer::HBL_DISCARD);
   size_t i = 0;
   IndexData* indexData = 0;
+	std::string currentName ="";
+   VectorTextureByVertex.clear();
+   size_t TailePrecedente =0;
+   NameFileAndPosition MyObjet;
+    MyObjet.NameFile = "";
+    MyObjet.number = 0;
   for(std::map<Ogre::uint, IndexData*>::iterator it = mIndexData.begin(); it != mIndexData.end();it++)
   {
    indexData = (*it).second;
    for (i=0;i < indexData->mVertices.size();i++)
    {
-    *writeIterator++ = indexData->mVertices[i];
+       if(indexData->mVertices[i].NameFile != NULL)
+       {
+           if((*indexData->mVertices[i].NameFile) != currentName)
+           {
+            if(i+TailePrecedente != 0)
+            {
+            MyObjet.number2 = i+TailePrecedente;
+            VectorTextureByVertex.push_back(MyObjet);
+            }
+
+           MyObjet.NameFile = (*indexData->mVertices[i].NameFile);
+           MyObjet.number = i+TailePrecedente;
+            currentName = (*indexData->mVertices[i].NameFile);
+           }
+
+
+       }
+       Vertex2 MonVertex;
+       MonVertex.position = indexData->mVertices[i].position;
+       MonVertex.colour = indexData->mVertices[i].colour;
+       MonVertex.uv = indexData->mVertices[i].uv;
+
+    *writeIterator++ = MonVertex;
    }
+   TailePrecedente += indexData->mVertices.size();
   }
+    MyObjet.number2 = knownVertexCount;
+    VectorTextureByVertex.push_back(MyObjet);
 
   mVertexBuffer->unlock();
   mRenderOpPtr->vertexData->vertexCount = knownVertexCount;
  }
 
 
- Screen::Screen(Ogre::Viewport* viewport, TextureAtlas* atlas)
- : LayerContainer(atlas), mViewport(viewport), mScale(1,1,1), mIsVisible(true), mCanRender(false)
+ Screen::Screen(Ogre::Viewport* viewport)
+ : mViewport(viewport), mIsVisible(true), mScale(1,1,1), mCanRender(false)
  {
   mRenderOpPtr = &mRenderOp;
   mSceneMgr = mViewport->getCamera()->getSceneManager();
@@ -985,7 +1020,7 @@ namespace Gorilla
   mRenderSystem->_setWorldMatrix( Ogre::Matrix4::IDENTITY );
   mRenderSystem->_setProjectionMatrix( Ogre::Matrix4::IDENTITY );
   mRenderSystem->_setViewMatrix( Ogre::Matrix4::IDENTITY );
-  mSceneMgr->_setPass(mAtlas->get2DPass());
+  mSceneMgr->_setPass(Silverback::getSingleton().getatlas("")->get2DPass());
  }
 
  void Screen::renderOnce()
@@ -1030,12 +1065,34 @@ namespace Gorilla
    force = true;
   }
 
+
   _renderVertices(force);
-  if (mRenderOp.vertexData->vertexCount)
-  {
-   _prepareRenderSystem();
-   mRenderSystem->_render(mRenderOp);
-  }
+      size_t knownVertexCount = 0;
+knownVertexCount = mRenderOpPtr->vertexData->vertexCount;
+ if (mRenderOp.vertexData->vertexCount)
+ {
+if(VectorTextureByVertex.size() == 0)
+{
+    NameFileAndPosition MyObjet;
+       MyObjet.NameFile = "";
+       MyObjet.number = 0;
+    VectorTextureByVertex.push_back(MyObjet);
+}
+     	_prepareRenderSystem();
+
+
+for(int i = 0;i <VectorTextureByVertex.size();i++)
+{
+	    if(VectorTextureByVertex[i].NameFile != "")
+	    {
+           Ogre::TexturePtr TextureUse = Silverback::getSingleton().getatlas(VectorTextureByVertex[i].NameFile)->getTexture();
+            mRenderSystem->_setTexture(0,true,TextureUse);
+	    }
+    mRenderOpPtr->vertexData->vertexCount = VectorTextureByVertex[i].number2-VectorTextureByVertex[i].number;
+    mRenderOpPtr->vertexData->vertexStart = VectorTextureByVertex[i].number;
+    mRenderSystem->_render(mRenderOp);
+}
+ }
  }
 
  void  Screen::_transform(buffer<Vertex>& vertices, size_t begin, size_t end)
@@ -1059,12 +1116,11 @@ namespace Gorilla
 
 
  ScreenRenderable::ScreenRenderable(const Ogre::Vector2& maxSize, TextureAtlas* atlas)
- : LayerContainer(atlas), mMaxSize(maxSize)
+ : mMaxSize(maxSize)
  {
   mRenderOpPtr = &mRenderOp;
 
   mBox.setInfinite();
-  setMaterial(mAtlas->get3DMaterialName());
 
   _createVertexBuffer();
  }
@@ -1137,6 +1193,44 @@ namespace Gorilla
   destroyAllQuadLists();
   destroyAllCaptions();
   destroyAllMarkupTexts();
+ }
+ void Layer::setIndex(Ogre::uint myIndex)
+ {
+
+  std::map<Ogre::uint, IndexData*>* mYIndexData = mParent->GetMapIndexData();
+  std::map<Ogre::uint, IndexData*>::iterator MyIterator = mYIndexData->find(myIndex);
+    if (MyIterator == mYIndexData->end())
+  {
+   mYIndexData->insert(std::pair<Ogre::uint, IndexData*>(myIndex,OGRE_NEW IndexData()));
+   MyIterator = mYIndexData->find(myIndex);
+  }
+  (*MyIterator).second->mLayers.push_back(this);
+  (*MyIterator).second->mRedrawNeeded = true;
+  mParent->_requestIndexRedraw(myIndex);
+  mParent->_requestIndexRedraw(mIndex);
+   MyIterator = mYIndexData->find(mIndex);
+    if (MyIterator != mYIndexData->end())
+  {
+  int j = -1;
+	for(int i =0;i < MyIterator->second->mLayers.size();i++)
+	{
+	if(MyIterator->second->mLayers[i] == this)
+	{
+		j = i;
+		break;
+	}
+	}
+
+	if( j != -1)
+	{
+		for(int k=j;k< MyIterator->second->mLayers.size()-1;k++)
+		{
+			MyIterator->second->mLayers[k] = MyIterator->second->mLayers[k+1];
+		}
+		MyIterator->second->mLayers.pop_back();
+	}
+  }
+  mIndex = myIndex;
  }
 
  void Layer::_markDirty()
@@ -1231,9 +1325,9 @@ namespace Gorilla
   mLineLists.clear();
  }
 
- QuadList* Layer::createQuadList()
+ QuadList* Layer::createQuadList(std::string& NameFile)
  {
-  QuadList* quadlist = OGRE_NEW QuadList(this);
+  QuadList* quadlist = OGRE_NEW QuadList(this,NameFile);
   mQuadLists.push_back(quadlist);
   return quadlist;
  }
@@ -1259,12 +1353,13 @@ namespace Gorilla
   mQuadLists.clear();
  }
 
- Caption* Layer::createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text)
+ Caption* Layer::createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text,const std::string& LeFileName)
  {
-  Caption* caption = OGRE_NEW Caption(glyphDataIndex,x, y, text, this);
+  Caption* caption = OGRE_NEW Caption(glyphDataIndex,x, y, text, this,LeFileName);
   mCaptions.push_back(caption);
   return caption;
  }
+
 
  void Layer::destroyCaption(Caption* caption)
  {
@@ -1287,9 +1382,9 @@ namespace Gorilla
   mCaptions.clear();
  }
 
- MarkupText* Layer::createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text)
+ MarkupText* Layer::createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text, const Ogre::String& NameFile)
  {
-  MarkupText* markuptext = OGRE_NEW MarkupText(defaultGlyphIndex, x, y, text, this);
+  MarkupText* markuptext = OGRE_NEW MarkupText(defaultGlyphIndex, x, y, text, this,NameFile);
   mMarkupTexts.push_back(markuptext);
   return markuptext;
  }
@@ -1421,6 +1516,7 @@ namespace Gorilla
 
  Rectangle::Rectangle(Ogre::Real left, Ogre::Real top, Ogre::Real width, Ogre::Real height, Layer* layer) : mLayer(layer)
  {
+  mNameFile = "";
   mDirty       = true;
   mVisible     = true;
   mLeft        = left;
@@ -1428,16 +1524,54 @@ namespace Gorilla
   mRight       = left + width;
   mBottom      = top + height;
   mBorderWidth = 0.0f;
+  mRadAngle	   = 0;
+  mRotCenter.x = 0;
+  mRotCenter.y = 0;
+  CustomRotCenter=false;
+
   mBackgroundColour[0] = mBackgroundColour[1] =  mBackgroundColour[2] = mBackgroundColour[3] = Ogre::ColourValue::White;
-  mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV();
+  mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV("");
   mPriority    = Gorilla::RP_Medium;
 
  }
+ void Rectangle::rotateDeg(Ogre::Real angle, const Ogre::Vector2& centre)
+ {
+	mRadAngle=Ogre::Math::DegreesToRadians(angle);
+	mRotCenter=centre;
+	mDirty=true;
+	mLayer->_markDirty();
+ }
 
+ void Rectangle::rotateRad(Ogre::Real angle, const Ogre::Vector2& centre)
+ {
+	mRadAngle=angle;
+	mRotCenter=centre;
+	mDirty=true;
+	mLayer->_markDirty();
+ }
+
+ Ogre::Real Rectangle::getDegRotAngle()
+ {
+	return Ogre::Math::RadiansToDegrees(mRadAngle);
+ }
+
+ Ogre::Real Rectangle::getRadRotAngle()
+ {
+	return mRadAngle;
+ }
+
+bool Rectangle::getCustomRotCenter()
+{
+	return CustomRotCenter;
+}
+
+void Rectangle::setCustomRotCenter(bool setting)
+{
+	CustomRotCenter = setting;
+}
 
  void  Rectangle::_redraw()
  {
-
   if (mDirty == false)
    return;
 
@@ -1456,6 +1590,53 @@ namespace Gorilla
   c.x = mLeft  + texelOffsetX; c.y = mBottom + texelOffsetY;
   d.x = mRight + texelOffsetX; d.y = mBottom + texelOffsetY;
 
+  //if (mRadAngle != 0)
+  //{
+	if (!CustomRotCenter)
+	{
+
+		mRotCenter.x=a.x+(d.x-a.x)/2;
+		mRotCenter.y=a.y+(d.y-a.y)/2;
+	}
+
+	a.x-=mRotCenter.x;
+	a.y-=mRotCenter.y;
+
+	b.x-=mRotCenter.x;
+	b.y-=mRotCenter.y;
+
+	c.x-=mRotCenter.x;
+	c.y-=mRotCenter.y;
+
+	d.x-=mRotCenter.x;
+	d.y-=mRotCenter.y;
+
+	Ogre::Vector2 a2=a,b2=b,c2=c,d2=d;
+	a.x=a2.x*Ogre::Math::Cos(mRadAngle)-a2.y*Ogre::Math::Sin(mRadAngle);
+	a.y=a2.x*Ogre::Math::Sin(mRadAngle)+a2.y*Ogre::Math::Cos(mRadAngle);
+
+	b.x=b2.x*Ogre::Math::Cos(mRadAngle)-b2.y*Ogre::Math::Sin(mRadAngle);
+	b.y=b2.x*Ogre::Math::Sin(mRadAngle)+b2.y*Ogre::Math::Cos(mRadAngle);
+
+	c.x=c2.x*Ogre::Math::Cos(mRadAngle)-c2.y*Ogre::Math::Sin(mRadAngle);
+	c.y=c2.x*Ogre::Math::Sin(mRadAngle)+c2.y*Ogre::Math::Cos(mRadAngle);
+
+	d.x=d2.x*Ogre::Math::Cos(mRadAngle)-d2.y*Ogre::Math::Sin(mRadAngle);
+	d.y=d2.x*Ogre::Math::Sin(mRadAngle)+d2.y*Ogre::Math::Cos(mRadAngle);
+
+	a.x+=mRotCenter.x;
+	a.y+=mRotCenter.y;
+
+	b.x+=mRotCenter.x;
+	b.y+=mRotCenter.y;
+
+	c.x+=mRotCenter.x;
+	c.y+=mRotCenter.y;
+
+	d.x+=mRotCenter.x;
+	d.y+=mRotCenter.y;
+  //}
+
   // Border
   if (mBorderWidth != 0)
   {
@@ -1465,24 +1646,58 @@ namespace Gorilla
     k.x -= mBorderWidth;    k.y += mBorderWidth;
     l.x += mBorderWidth;    l.y += mBorderWidth;
 
+	  //if (mRadAngle != 0)
+	  //{
+		if (!CustomRotCenter)
+		{
+			mRotCenter.x=1/(a.x+(b.x-a.x)/2);
+			mRotCenter.y=1/(a.y+(b.y-a.y)/2);
+		}
+
+		i.x-=mRotCenter.x;
+		i.y-=mRotCenter.y;
+
+		j.x-=mRotCenter.x;
+		j.y-=mRotCenter.y;
+
+		k.x-=mRotCenter.x;
+		k.y-=mRotCenter.y;
+
+		l.x-=mRotCenter.x;
+		l.y-=mRotCenter.y;
+
+		Ogre::Vector2 i2=i,j2=j,k2=k,l2=l;
+		i.x=i2.x*Ogre::Math::Cos(mRadAngle)-i2.y*Ogre::Math::Sin(mRadAngle);
+		i.y=i2.x*Ogre::Math::Sin(mRadAngle)+i2.y*Ogre::Math::Cos(mRadAngle);
+
+		j.x=j2.x*Ogre::Math::Cos(mRadAngle)-j2.y*Ogre::Math::Sin(mRadAngle);
+		j.y=j2.x*Ogre::Math::Sin(mRadAngle)+j2.y*Ogre::Math::Cos(mRadAngle);
+
+		k.x=k2.x*Ogre::Math::Cos(mRadAngle)-k2.y*Ogre::Math::Sin(mRadAngle);
+		k.y=k2.x*Ogre::Math::Sin(mRadAngle)+k2.y*Ogre::Math::Cos(mRadAngle);
+
+		l.x=l2.x*Ogre::Math::Cos(mRadAngle)-l2.y*Ogre::Math::Sin(mRadAngle);
+		l.y=l2.x*Ogre::Math::Sin(mRadAngle)+l2.y*Ogre::Math::Cos(mRadAngle);
+	  //}
+
     Vertex temp;
-    Ogre::Vector2 uv = mLayer->_getSolidUV();
+    Ogre::Vector2 uv = mLayer->_getSolidUV(mNameFile);
 
     // North
-    PUSH_TRIANGLE(mVertices, temp, a, j, i, uv, mBorderColour[Border_North])
-    PUSH_TRIANGLE(mVertices, temp, a, b, j, uv, mBorderColour[Border_North])
+    PUSH_TRIANGLE(mVertices, temp, a, j, i, uv, mBorderColour[Border_North],NULL)
+    PUSH_TRIANGLE(mVertices, temp, a, b, j, uv, mBorderColour[Border_North],NULL)
 
     // East
-    PUSH_TRIANGLE(mVertices, temp, d, j, b, uv, mBorderColour[Border_East])
-    PUSH_TRIANGLE(mVertices, temp, d, l, j, uv, mBorderColour[Border_East])
+    PUSH_TRIANGLE(mVertices, temp, d, j, b, uv, mBorderColour[Border_East],NULL)
+    PUSH_TRIANGLE(mVertices, temp, d, l, j, uv, mBorderColour[Border_East],NULL)
 
     // South
-    PUSH_TRIANGLE(mVertices, temp, k, d, c, uv, mBorderColour[Border_South])
-    PUSH_TRIANGLE(mVertices, temp, k, l, d, uv, mBorderColour[Border_South])
+    PUSH_TRIANGLE(mVertices, temp, k, d, c, uv, mBorderColour[Border_South],NULL)
+    PUSH_TRIANGLE(mVertices, temp, k, l, d, uv, mBorderColour[Border_South],NULL)
 
     // West
-    PUSH_TRIANGLE(mVertices, temp, k, a, i, uv, mBorderColour[Border_West])
-    PUSH_TRIANGLE(mVertices, temp, k, c, a, uv, mBorderColour[Border_West])
+    PUSH_TRIANGLE(mVertices, temp, k, a, i, uv, mBorderColour[Border_West],NULL)
+    PUSH_TRIANGLE(mVertices, temp, k, c, a, uv, mBorderColour[Border_West],NULL)
 
   }
 
@@ -1491,14 +1706,14 @@ namespace Gorilla
   {
    Vertex temp;
    // Triangle A
-   PUSH_VERTEX(mVertices, temp, c.x, c.y, mUV[3], mBackgroundColour[3]);    // Left/Bottom  3
-   PUSH_VERTEX(mVertices, temp, b.x, b.y, mUV[1], mBackgroundColour[1]);    // Right/Top    1
-   PUSH_VERTEX(mVertices, temp, a.x, a.y, mUV[0], mBackgroundColour[0]);    // Left/Top     0
+   PUSH_VERTEX(mVertices, temp, c.x, c.y, mUV[3], mBackgroundColour[3],&mNameFile);    // Left/Bottom  3
+   PUSH_VERTEX(mVertices, temp, b.x, b.y, mUV[1], mBackgroundColour[1],&mNameFile);    // Right/Top    1
+   PUSH_VERTEX(mVertices, temp, a.x, a.y, mUV[0], mBackgroundColour[0],&mNameFile);    // Left/Top     0
 
    // Triangle B
-   PUSH_VERTEX(mVertices, temp, c.x, c.y, mUV[3], mBackgroundColour[3]);    // Left/Bottom   3
-   PUSH_VERTEX(mVertices, temp, d.x, d.y, mUV[2], mBackgroundColour[2]);    // Right/Bottom  2
-   PUSH_VERTEX(mVertices, temp, b.x, b.y, mUV[1], mBackgroundColour[1]);    // Right/Top     1
+   PUSH_VERTEX(mVertices, temp, c.x, c.y, mUV[3], mBackgroundColour[3],&mNameFile);    // Left/Bottom   3
+   PUSH_VERTEX(mVertices, temp, d.x, d.y, mUV[2], mBackgroundColour[2],&mNameFile);    // Right/Bottom  2
+   PUSH_VERTEX(mVertices, temp, b.x, b.y, mUV[1], mBackgroundColour[1],&mNameFile);    // Right/Top     1
   }
 
   mDirty = false;
@@ -1508,6 +1723,7 @@ namespace Gorilla
 Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t sides, Layer* layer)
  : mLayer(layer), mSprite(0)
  {
+ mNameFile = "";
   mDirty        = true;
   mVisible      = true;
   mLayer->_markDirty();
@@ -1549,7 +1765,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
   {
 
    Ogre::Vector2 lastOuterVertex, outerVertex, thisVertex, uv;
-   uv = mLayer->_getSolidUV();
+   uv = mLayer->_getSolidUV("");
 
    lastOuterVertex.x = mLeft + ((mRadius + mBorderWidth) * cos(theta));
    lastOuterVertex.y = mTop + ((mRadius + mBorderWidth) * sin(theta));
@@ -1563,8 +1779,8 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
     outerVertex.x = mLeft + ((mRadius + mBorderWidth) * Ogre::Math::Cos(theta));
     outerVertex.y = mTop + ((mRadius + mBorderWidth) * Ogre::Math::Sin(theta));
 
-    PUSH_TRIANGLE(mVertices, temp, lastVertex, outerVertex, lastOuterVertex, uv, mBorderColour);
-    PUSH_TRIANGLE(mVertices, temp, lastVertex, thisVertex, outerVertex, uv, mBorderColour);
+    PUSH_TRIANGLE(mVertices, temp, lastVertex, outerVertex, lastOuterVertex, uv, mBorderColour,NULL);
+    PUSH_TRIANGLE(mVertices, temp, lastVertex, thisVertex, outerVertex, uv, mBorderColour,NULL);
 
     lastVertex = thisVertex;
     lastOuterVertex = outerVertex;
@@ -1578,7 +1794,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
       Ogre::Real xRadius = mSprite->spriteWidth * 0.5f;
       Ogre::Real yRadius = mSprite->spriteHeight * 0.5f;
 
-      Ogre::Vector2 centerUV, lastUV, thisUV, baseUV, texSize = mLayer->_getTextureSize();
+      Ogre::Vector2 centerUV, lastUV, thisUV, baseUV, texSize = mLayer->_getTextureSize(mSprite->mNameFile);
       baseUV.x = mSprite->uvLeft * texSize.x;
       baseUV.y = mSprite->uvTop * texSize.y;
       baseUV.x += xRadius;
@@ -1592,31 +1808,31 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
 
       for (size_t i=0;i < mSides;i++)
       {
-       PUSH_VERTEX(mVertices, temp, mLeft, mTop, centerUV, mBackgroundColour);
+       PUSH_VERTEX(mVertices, temp, mLeft, mTop, centerUV, mBackgroundColour,&mNameFile);
        theta += inc;
        thisVertex.x = mLeft + (mRadius * Ogre::Math::Cos(theta));
        thisVertex.y = mTop + (mRadius * Ogre::Math::Sin(theta));
        thisUV.x = baseUV.x + (xRadius * Ogre::Math::Cos(theta));
        thisUV.y = baseUV.y + (yRadius * Ogre::Math::Sin(theta));
        thisUV /= texSize;
-       PUSH_VERTEX(mVertices, temp, thisVertex.x, thisVertex.y, thisUV, mBackgroundColour);
-       PUSH_VERTEX(mVertices, temp, lastVertex.x, lastVertex.y, lastUV, mBackgroundColour);
+       PUSH_VERTEX(mVertices, temp, thisVertex.x, thisVertex.y, thisUV, mBackgroundColour,&mNameFile);
+       PUSH_VERTEX(mVertices, temp, lastVertex.x, lastVertex.y, lastUV, mBackgroundColour,&mNameFile);
        lastVertex = thisVertex;
        lastUV = thisUV;
       }
      }
      else
      {
-      Ogre::Vector2 uv = uv = mLayer->_getSolidUV();
+      Ogre::Vector2 uv = uv = mLayer->_getSolidUV("");
 
       for (size_t i=0;i < mSides;i++)
       {
-       PUSH_VERTEX(mVertices, temp, mLeft, mTop, uv, mBackgroundColour);
+       PUSH_VERTEX(mVertices, temp, mLeft, mTop, uv, mBackgroundColour,NULL);
        theta += inc;
        thisVertex.x = mLeft + (mRadius * Ogre::Math::Cos(theta));
        thisVertex.y = mTop + (mRadius * Ogre::Math::Sin(theta));
-       PUSH_VERTEX(mVertices, temp, thisVertex.x, thisVertex.y, uv, mBackgroundColour);
-       PUSH_VERTEX(mVertices, temp, lastVertex.x, lastVertex.y, uv, mBackgroundColour);
+       PUSH_VERTEX(mVertices, temp, thisVertex.x, thisVertex.y, uv, mBackgroundColour,NULL);
+       PUSH_VERTEX(mVertices, temp, lastVertex.x, lastVertex.y, uv, mBackgroundColour,NULL);
        lastVertex = thisVertex;
       }
      }
@@ -1679,7 +1895,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
 
   Ogre::Real halfThickness = mThickness * 0.5f;
 
-  Ogre::Vector2 perp, lastLeft, lastRight, thisLeft, thisRight, uv = mLayer->_getSolidUV();
+  Ogre::Vector2 perp, lastLeft, lastRight, thisLeft, thisRight, uv = mLayer->_getSolidUV("");
 
   size_t i = 1;
 
@@ -1693,13 +1909,13 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
    thisRight = mPositions[i] + perp * halfThickness;
 
    // Triangle A
-   PUSH_VERTEX(mVertices, temp, lastRight.x, lastRight.y, uv, mColour);       // Left/Bottom
-   PUSH_VERTEX(mVertices, temp, thisLeft.x, thisLeft.y, uv, mColour);         // Right/Top
-   PUSH_VERTEX(mVertices, temp, lastLeft.x, lastLeft.y, uv, mColour);          // Left/Top
+   PUSH_VERTEX(mVertices, temp, lastRight.x, lastRight.y, uv, mColour,NULL);       // Left/Bottom
+   PUSH_VERTEX(mVertices, temp, thisLeft.x, thisLeft.y, uv, mColour,NULL);         // Right/Top
+   PUSH_VERTEX(mVertices, temp, lastLeft.x, lastLeft.y, uv, mColour,NULL);          // Left/Top
    // Triangle B
-   PUSH_VERTEX(mVertices, temp, lastRight.x, lastRight.y, uv, mColour);       // Left/Bottom
-   PUSH_VERTEX(mVertices, temp, thisRight.x, thisRight.y, uv, mColour);      // Right/Bottom
-   PUSH_VERTEX(mVertices, temp, thisLeft.x, thisLeft.y, uv, mColour);         // Right/Top
+   PUSH_VERTEX(mVertices, temp, lastRight.x, lastRight.y, uv, mColour,NULL);       // Left/Bottom
+   PUSH_VERTEX(mVertices, temp, thisRight.x, thisRight.y, uv, mColour,NULL);      // Right/Bottom
+   PUSH_VERTEX(mVertices, temp, thisLeft.x, thisLeft.y, uv, mColour,NULL);         // Right/Top
 
   }
 
@@ -1713,22 +1929,22 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
    thisRight = mPositions[0] + perp * halfThickness;
 
    // Triangle A
-   PUSH_VERTEX(mVertices, temp, lastRight.x, lastRight.y, uv, mColour);       // Left/Bottom
-   PUSH_VERTEX(mVertices, temp, thisLeft.x, thisLeft.y, uv, mColour);         // Right/Top
-   PUSH_VERTEX(mVertices, temp, lastLeft.x, lastLeft.y, uv, mColour);          // Left/Top
+   PUSH_VERTEX(mVertices, temp, lastRight.x, lastRight.y, uv, mColour,NULL);       // Left/Bottom
+   PUSH_VERTEX(mVertices, temp, thisLeft.x, thisLeft.y, uv, mColour,NULL);         // Right/Top
+   PUSH_VERTEX(mVertices, temp, lastLeft.x, lastLeft.y, uv, mColour,NULL);          // Left/Top
    // Triangle B
-   PUSH_VERTEX(mVertices, temp, lastRight.x, lastRight.y, uv, mColour);       // Left/Bottom
-   PUSH_VERTEX(mVertices, temp, thisRight.x, thisRight.y, uv, mColour);      // Right/Bottom
-   PUSH_VERTEX(mVertices, temp, thisLeft.x, thisLeft.y, uv, mColour);         // Right/Top
+   PUSH_VERTEX(mVertices, temp, lastRight.x, lastRight.y, uv, mColour,NULL);       // Left/Bottom
+   PUSH_VERTEX(mVertices, temp, thisRight.x, thisRight.y, uv, mColour,NULL);      // Right/Bottom
+   PUSH_VERTEX(mVertices, temp, thisLeft.x, thisLeft.y, uv, mColour,NULL);         // Right/Top
 
   }
 
  }
 
- QuadList::QuadList(Layer* layer)
- : mLayer(layer)
+ QuadList::QuadList(Layer* layer,std::string& TheNameFile)
+ : mLayer(layer), mNameFile(TheNameFile)
  {
-  mWhiteUV = mLayer->_getSolidUV();
+  mWhiteUV = mLayer->_getSolidUV(TheNameFile);
   mPriority    = Gorilla::RP_Medium;
   mVisible     = true;
  }
@@ -1766,7 +1982,7 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
    q.mColour[0] = q.mColour[3] = colourA;
    q.mColour[1] = q.mColour[2] = colourB;
   }
-  else if (gradient == Gradient_Diagonal)
+  else if (gradient == Gradient_Diagonal_1)
   {
    Ogre::ColourValue avg;
    avg.r = (colourA.r + colourB.r) * 0.5f;
@@ -1776,6 +1992,17 @@ Polygon::Polygon(Ogre::Real left, Ogre::Real top, Ogre::Real radius, size_t side
    q.mColour[0] = colourA;
    q.mColour[1] = avg = q.mColour[3] = avg;
    q.mColour[2] = colourB;
+  }
+ else if (gradient == Gradient_Diagonal_2)
+  {
+   Ogre::ColourValue avg;
+   avg.r = (colourA.r + colourB.r) * 0.5f;
+   avg.g = (colourA.g + colourB.g) * 0.5f;
+   avg.b = (colourA.b + colourB.b) * 0.5f;
+   avg.a = (colourA.a + colourB.a) * 0.5f;
+   q.mColour[1] = colourA;
+   q.mColour[0] = avg = q.mColour[2] = avg;
+   q.mColour[3] = colourB;
   }
 
   q.mPosition[TopLeft].x = x; q.mPosition[TopLeft].y = y;
@@ -1827,7 +2054,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   l.x += thickness;    l.y += thickness;
 
   Vertex temp;
-  Ogre::Vector2 uv = mLayer->_getSolidUV();
+  Ogre::Vector2 uv = mLayer->_getSolidUV("");
 
   // North
   Quad q;
@@ -1869,7 +2096,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
  void  QuadList::glyph(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, unsigned char character, const Ogre::ColourValue& colour)
  {
-  GlyphData* glyphData = mLayer->_getGlyphData(glyphDataIndex);
+  GlyphData* glyphData = mLayer->_getGlyphData(glyphDataIndex,mNameFile);
   if (glyphData == 0)
   {
 #if GORILLA_USES_EXCEPTIONS == 1
@@ -1912,7 +2139,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
  void  QuadList::glyph(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, unsigned char character, const Ogre::ColourValue& colour)
  {
-  GlyphData* glyphData = mLayer->_getGlyphData(glyphDataIndex);
+  GlyphData* glyphData = mLayer->_getGlyphData(glyphDataIndex,mNameFile);
   if (glyphData == 0)
   {
 #if GORILLA_USES_EXCEPTIONS == 1
@@ -1976,17 +2203,18 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
   for (size_t i=0;i < mQuads.size();i++)
   {
-   PUSH_QUAD(mVertices, temp, mQuads[i].mPosition, mQuads[i].mColour, mQuads[i].mUV)
+   PUSH_QUAD(mVertices, temp, mQuads[i].mPosition, mQuads[i].mColour, mQuads[i].mUV,&mNameFile)
   }
 
   mDirty = false;
  }
 
 
- Caption::Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& caption, Layer* layer)
+ Caption::Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& caption, Layer* layer,const std::string& TheNameFile)
  : mLayer(layer)
  {
-  mGlyphData      = mLayer->_getGlyphData(glyphDataIndex);
+     mNameFile = TheNameFile;
+  mGlyphData      = Silverback::getSingleton().getatlas(mNameFile)->getGlyphData(glyphDataIndex);
   if (mGlyphData == 0)
   {
     mDirty        = false;
@@ -2064,7 +2292,8 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
   if (mDirty == false)
    return;
-
+	std::string* FILENAME = NULL;
+	FILENAME = &mNameFile;
   mVertices.remove_all();
 
   if(!mVisible)
@@ -2073,7 +2302,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
       return;
   }
 
-  Ogre::Vector2 uv = mLayer->_getSolidUV();
+  Ogre::Vector2 uv = mLayer->_getSolidUV(mNameFile);
 
   if (mBackground.a > 0)
   {
@@ -2083,8 +2312,8 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    c.x = mLeft;  c.y = mTop + mHeight;
    d.x = mLeft + mWidth; d.y = c.y = mTop + mHeight;
    Vertex temp;
-   PUSH_TRIANGLE(mVertices, temp, c, b, a, uv, mBackground);
-   PUSH_TRIANGLE(mVertices, temp, c, d, b, uv, mBackground);
+   PUSH_TRIANGLE(mVertices, temp, c, b, a, uv, mBackground,FILENAME);
+   PUSH_TRIANGLE(mVertices, temp, c, d, b, uv, mBackground,FILENAME);
   }
 
   Ogre::Real left = 0, top = 0, right = 0, bottom = 0, cursorX = 0, cursorY = 0, kerning = 0, texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
@@ -2200,14 +2429,14 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
    }
 
    // Triangle A
-   PUSH_VERTEX(mVertices, temp, left, bottom, glyph->texCoords[BottomLeft], mColour);  // Left/Bottom  3
-   PUSH_VERTEX(mVertices, temp, right, top, glyph->texCoords[TopRight], mColour);    // Right/Top    1
-   PUSH_VERTEX(mVertices, temp, left, top, glyph->texCoords[TopLeft], mColour);     // Left/Top     0
+   PUSH_VERTEX(mVertices, temp, left, bottom, glyph->texCoords[BottomLeft], mColour,FILENAME);  // Left/Bottom  3
+   PUSH_VERTEX(mVertices, temp, right, top, glyph->texCoords[TopRight], mColour,FILENAME);    // Right/Top    1
+   PUSH_VERTEX(mVertices, temp, left, top, glyph->texCoords[TopLeft], mColour,FILENAME);     // Left/Top     0
 
    // Triangle B
-   PUSH_VERTEX(mVertices, temp, left, bottom, glyph->texCoords[BottomLeft], mColour);  // Left/Bottom  3
-   PUSH_VERTEX(mVertices, temp, right, bottom, glyph->texCoords[BottomRight], mColour); // Right/Bottom 2
-   PUSH_VERTEX(mVertices, temp, right, top, glyph->texCoords[TopRight], mColour);    // Right/Top    1
+   PUSH_VERTEX(mVertices, temp, left, bottom, glyph->texCoords[BottomLeft], mColour,FILENAME);  // Left/Bottom  3
+   PUSH_VERTEX(mVertices, temp, right, bottom, glyph->texCoords[BottomRight], mColour,FILENAME); // Right/Bottom 2
+   PUSH_VERTEX(mVertices, temp, right, top, glyph->texCoords[TopRight], mColour,FILENAME);    // Right/Top    1
 
 
    cursorX  += (glyph->glyphAdvance + kerning) * mCharScaling;
@@ -2220,10 +2449,11 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
  }
 
 
- MarkupText::MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& text, Layer* parent)
+ MarkupText::MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& text, Layer* parent,const Ogre::String& NameFile)
  : mLayer(parent)
  {
-  mDefaultGlyphData = mLayer->_getGlyphData(defaultGlyphIndex);
+ mNameFile = NameFile;
+  mDefaultGlyphData = mLayer->_getGlyphData(defaultGlyphIndex,mNameFile);
 
   if (mDefaultGlyphData == 0)
   {
@@ -2262,7 +2492,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   mCharacters.remove_all();
 
   bool markupMode = false;
-  Ogre::ColourValue colour = mLayer->_getMarkupColour(0);
+  Ogre::ColourValue colour = mLayer->_getMarkupColour(0,mNameFile);
   bool fixedWidth = false;
 
   GlyphData* glyphData = mDefaultGlyphData;
@@ -2313,11 +2543,11 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
 
      if (thisChar >= '0' && thisChar <= '9')
      {
-      colour = mLayer->_getMarkupColour(thisChar - 48);
+      colour = mLayer->_getMarkupColour(thisChar - 48,mNameFile);
      }
      else if (thisChar == 'R' || thisChar == 'r')
      {
-      colour = mLayer->_getMarkupColour(0);
+      colour = mLayer->_getMarkupColour(0,mNameFile);
      }
      else if (thisChar == 'M' || thisChar == 'm')
      {
@@ -2342,7 +2572,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
        return;
 
       Ogre::uint index = Ogre::StringConverter::parseUnsignedInt(mText.substr(begin+1, i - begin - 1));
-      glyphData = mLayer->_getGlyphData(index);
+      glyphData = mLayer->_getGlyphData(index,mNameFile);
       if (glyphData == 0)
        return;
       // TODO: Check against line height?
@@ -2354,8 +2584,13 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
       markupMode = false;
       bool foundIt = false;
       size_t begin = i;
+	  size_t midle = 0;
       while(i < mText.size())
       {
+	  if(mText[i] == ',')
+	  {
+		midle = i;
+	  }
        if (mText[i] == '%')
        {
         foundIt = true;
@@ -2367,9 +2602,9 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
       if (foundIt == false)
        return;
 
-      Ogre::String sprite_name = mText.substr(begin+1, i - begin - 1);
-
-      Sprite* sprite = mLayer->_getSprite(sprite_name);
+      Ogre::String sprite_name = mText.substr(begin+1, midle - begin - 1);
+	Ogre::String sprite_nameFile = mText.substr(midle+1, i - midle - 1);
+      Sprite* sprite = mLayer->_getSprite(sprite_name,sprite_nameFile);
       if (sprite == 0)
        continue;
 
@@ -2467,7 +2702,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   Vertex temp;
   for (size_t i=0; i < mCharacters.size();i++)
   {
-   PUSH_QUAD2(mVertices, temp, mCharacters[i].mPosition, mCharacters[i].mColour, mCharacters[i].mUV);
+   PUSH_QUAD2(mVertices, temp, mCharacters[i].mPosition, mCharacters[i].mColour, mCharacters[i].mUV,&mNameFile);
   }
 
   mDirty = false;

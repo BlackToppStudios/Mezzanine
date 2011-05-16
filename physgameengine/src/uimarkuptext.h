@@ -83,7 +83,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
                 /// @param Layer Pointer to the layer that created this markup text.
-                MarkupText(ConstString& name, const Vector2 Position, const Whole Glyph, String Text, Layer* PLayer);
+                MarkupText(ConstString& name, const Vector2& Position, const Whole& Glyph, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~MarkupText();
                 /// @brief Sets the visibility of this markup text.
@@ -101,13 +101,13 @@ namespace phys
                 virtual String& GetName();
                 /// @brief Sets the text displayed within the markup text.
                 /// @param Text The text to be displayed.
-                virtual void SetText(String& Text);
+                virtual void SetText(const String& Text);
                 /// @brief Gets the text displayed within the markup text.
                 /// @return Returns the text being displayed.
                 virtual String GetText();
                 /// @brief Sets the scaling to be applied to the text being rendered.
                 /// @param Scale A Real value representing the scale to be applied.  <1.0 means smaller, >1.0 means larger.
-                virtual void SetTextScale(Real Scale);
+                virtual void SetTextScale(const Real& Scale);
                 /// @brief Gets the scaling currently being applied to the rendered text.
                 /// @return Returns a Real value representing the scale applied to the text in this caption.  <1.0 means smaller, >1.0 means larger.
                 virtual Real GetTextScale();
@@ -116,7 +116,7 @@ namespace phys
                 /// glyph is uses with it's markup language.  This simply defines which to use when one isn't
                 /// specified.
                 /// @param DefaultGlyphIndex The index of the glyph to use with this markup text.
-                virtual void SetDefaultGlyphIndex(const Whole DefaultGlyphIndex);
+                virtual void SetDefaultGlyphIndex(const Whole& DefaultGlyphIndex);
                 /// @brief Gets the Default glyph index in use by this markup text.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @return Returns a Whole representing the index of the glyph in use by this markup text.
@@ -129,35 +129,41 @@ namespace phys
                 void VerticallyAlign(UI::TextVerticalAlign Align);*/
                 /// @brief Sets the relative top left position of this markup text.
                 /// @param Position A Vector2 representing the location of this markup text.
-                virtual void SetPosition(const Vector2 Position);
+                virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative top left position of this markup text.
                 /// @return Returns a Vector2 representing the location of this markup text.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this markup text in pixels.
                 /// @param Position A Vector2 representing the location of this markup text.
-                virtual void SetActualPosition(const Vector2 Position);
+                virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Gets the top left position of this markup text in pixels.
                 /// @return Returns a Vector2 representing the location of this markup text.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the maximum relative size of this markup text.
                 /// @param Size A vector2 representing the maximum size of this markup text.
-                virtual void SetMaxSize(const Vector2 Size);
+                virtual void SetMaxSize(const Vector2& Size);
                 /// @brief Gets the maximum relative size of this markup text.
                 /// @return Returns a vector2 representing the maximum size of this markup text.
                 virtual Vector2 GetMaxSize();
                 /// @brief Sets the maximum size of this markup text in pixels.
                 /// @param Size A vector2 representing the maximum size of this markup text.
-                virtual void SetMaxActualSize(const Vector2 Size);
+                virtual void SetMaxActualSize(const Vector2& Size);
                 /// @brief Gets the maximum size of this markup text in pixels.
                 /// @return Returns a vector2 representing the maximum size of this markup text.
                 virtual Vector2 GetMaxActualSize();
                 /// @brief Sets the priority this markup text should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this markup text.
-                virtual void SetRenderPriority(UI::RenderPriority Priority);
+                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this markup text should be rendered with.
                 /// @return Returns an enum value representing this markup text's priority level.
                 virtual UI::RenderPriority GetRenderPriority();
+                /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
+                /// @param Atlas The name of the atlas to be used.
+                virtual void SetPrimaryAtlas(const String& Atlas);
+                /// @brief Gets the currently set primary atlas.
+                /// @return Returns a string containing the name of the primary atlas that is set.
+                virtual String GetPrimaryAtlas();
         };
     }//UI
 }//phys

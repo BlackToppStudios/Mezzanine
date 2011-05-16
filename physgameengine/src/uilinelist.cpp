@@ -85,27 +85,27 @@ namespace phys
             GLineList->Hide();
         }
 
-        void LineList::Begin(Whole Thickness, const ColourValue& Colour)
+        void LineList::Begin(const Whole& Thickness, const ColourValue& Colour)
         {
             GLineList->begin((Real)Thickness, Colour.GetOgreColourValue());
         }
 
-        void LineList::AddPoint(const Real X, const Real Y)
+        void LineList::AddPoint(const Real& X, const Real& Y)
         {
             AddPoint(Vector2(X,Y));
         }
 
-        void LineList::AddPoint(const Vector2 Position)
+        void LineList::AddPoint(const Vector2& Position)
         {
             GLineList->position((Position * Parent->GetParent()->GetViewportDimensions()).GetOgreVector2());
         }
 
-        void LineList::AddActualPoint(const Real X, const Real Y)
+        void LineList::AddActualPoint(const Real& X, const Real& Y)
         {
             AddActualPoint(Vector2(X,Y));
         }
 
-        void LineList::AddActualPoint(const Vector2 Position)
+        void LineList::AddActualPoint(const Vector2& Position)
         {
             GLineList->position(Position.GetOgreVector2());
         }
@@ -115,7 +115,7 @@ namespace phys
             GLineList->end(Closed);
         }
 
-        void LineList::SetRenderPriority(UI::RenderPriority Priority)
+        void LineList::SetRenderPriority(const UI::RenderPriority& Priority)
         {
             Gorilla::RenderPriority RP;
             switch(Priority)

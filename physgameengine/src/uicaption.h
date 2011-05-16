@@ -90,7 +90,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 /// @param Layer Pointer to the layer that created this caption.
-                Caption(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, Layer* PLayer);
+                Caption(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Caption();
                 /// @brief Sets the visibility of this caption.
@@ -121,7 +121,7 @@ namespace phys
                 virtual String GetText();
                 /// @brief Sets the scaling to be applied to the text being rendered.
                 /// @param Scale A Real value representing the scale to be applied.  <1.0 means smaller, >1.0 means larger.
-                virtual void SetTextScale(Real Scale);
+                virtual void SetTextScale(const Real& Scale);
                 /// @brief Gets the scaling currently being applied to the rendered text.
                 /// @return Returns a Real value representing the scale applied to the text in this caption.  <1.0 means smaller, >1.0 means larger.
                 virtual Real GetTextScale();
@@ -134,7 +134,12 @@ namespace phys
                 /// @brief Sets the glyph index to be used with this caption.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @param GlyphIndex The index of the glyph to use with this caption.
-                virtual void SetGlyphIndex(const Whole GlyphIndex);
+                virtual void SetGlyphIndex(const Whole& GlyphIndex);
+                /// @brief Sets the glyph index to be used with this caption from another atlas then the one currently set.
+                /// @details The glyph index is defined in your gorilla file.
+                /// @param GlyphIndex The index of the glyph to use with this caption.
+                /// @param Atlas The Atlas to load the glyphs from
+                virtual void SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas);
                 /// @brief Gets the glyph index in use by this caption.
                 /// @details The glyph index is defined in your gorilla file.
                 /// @param Returns a Whole representing the index of the glyph in use by this caption..
@@ -142,7 +147,7 @@ namespace phys
                 /// @brief Sets the number of pixels text should be offset from the side when rendering.
                 /// @details This doesn't apply when text is being rendered with a Middle alignment.
                 /// @param Offset The number of pixels from the side text should be offset.
-                virtual void SetCursorOffset(const Whole Offset);
+                virtual void SetCursorOffset(const Whole& Offset);
                 /// @brief Gets the number of pixels text should be offset from the side when rendering.
                 /// @return Returns a Whole representing the number of pixels text is currently being offset from the side.
                 virtual Whole GetCursorOffset();
@@ -152,45 +157,55 @@ namespace phys
                 /// @brief Sets the background image(if provided in the atlas) of the caption.
                 /// @param Name The name of the sprite to set as the background.
                 virtual void SetBackgroundSprite(const String& Name);
+                /// @brief Sets the background image(if provided in the atlas) of the caption from another atlas then the one currently set.
+                /// @param Name The name of the sprite to set as the background.
+                /// @param Atlas The Atlas to load the sprite from.
+                virtual void SetBackgroundSprite(const String& Name, const String& Atlas);
                 /// @brief Aligns the text of the caption.
                 /// @details Default value for this is UI::Txt_Middle.
                 /// @param Align The enum value representing the horizontal alignment to be set.
-                virtual void HorizontallyAlign(UI::TextHorizontalAlign Align);
+                virtual void HorizontallyAlign(const UI::TextHorizontalAlign& Align);
                 /// @brief Aligns the text of the caption.
                 /// @details Default value for this is UI::Txt_Center.
                 /// @param Align The enum value representing the vertical alignment to be set.
-                virtual void VerticallyAlign(UI::TextVerticalAlign Align);
+                virtual void VerticallyAlign(const UI::TextVerticalAlign& Align);
                 /// @brief Sets the relative top left position of this caption.
                 /// @param Position A Vector2 representing the location of this caption.
-                virtual void SetPosition(const Vector2 Position);
+                virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative top left position of this caption.
                 /// @return Returns a Vector2 representing the location of this caption.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this caption in pixels.
                 /// @param Position A Vector2 representing the location of this caption.
-                virtual void SetActualPosition(const Vector2 Position);
+                virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Gets the top left position of this caption in pixels.
                 /// @return Returns a Vector2 representing the location of this caption.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this caption.
                 /// @param Size A vector2 representing the size of this caption.
-                virtual void SetSize(const Vector2 Size);
+                virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this caption.
                 /// @return Returns a vector2 representing the size of this caption.
                 virtual Vector2 GetSize();
                 /// @brief Sets the size of this caption in pixels.
                 /// @param Size A vector2 representing the size of this caption.
-                virtual void SetActualSize(const Vector2 Size);
+                virtual void SetActualSize(const Vector2& Size);
                 /// @brief Gets the size of this caption in pixels.
                 /// @return Returns a vector2 representing the size of this caption.
                 virtual Vector2 GetActualSize();
                 /// @brief Sets the priority this caption should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this caption.
-                virtual void SetRenderPriority(UI::RenderPriority Priority);
+                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this caption should be rendered with.
                 /// @return Returns an enum value representing this caption's priority level.
                 virtual UI::RenderPriority GetRenderPriority();
+                /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
+                /// @param Atlas The name of the atlas to be used.
+                virtual void SetPrimaryAtlas(const String& Atlas);
+                /// @brief Gets the currently set primary atlas.
+                /// @return Returns a string containing the name of the primary atlas that is set.
+                virtual String GetPrimaryAtlas();
         };//caption
     }//UI
 }//phys

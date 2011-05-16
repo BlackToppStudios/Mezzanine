@@ -54,7 +54,7 @@ namespace phys
 {
     namespace UI
     {
-        Caption::Caption(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, Layer* PLayer)
+        Caption::Caption(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer)
             : Parent(PLayer),
               MouseHover(false),
               RelPosition(Position),
@@ -64,7 +64,7 @@ namespace phys
             Manager = World::GetWorldPointer()->GetUIManager();
 
             Vector2 Window = Parent->GetParent()->GetViewportDimensions();
-            GorillaCaption = Parent->GetGorillaLayer()->createCaption(Glyph, Position.X * Window.X, Position.Y * Window.Y, Text);
+            GorillaCaption = Parent->GetGorillaLayer()->createCaption(Glyph, Position.X * Window.X, Position.Y * Window.Y, Text, Parent->GetParent()->GetPrimaryAtlas());
             GorillaCaption->size(Size.X * Window.X, Size.Y * Window.Y);
             GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
             GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
@@ -135,7 +135,7 @@ namespace phys
             return GorillaCaption->text();
         }
 
-        void Caption::SetTextScale(Real Scale)
+        void Caption::SetTextScale(const Real& Scale)
         {
             GorillaCaption->SetCharScaling(Scale);
         }
@@ -156,10 +156,16 @@ namespace phys
             return Col;
         }
 
-        void Caption::SetGlyphIndex(const Whole GlyphIndex)
+        void Caption::SetGlyphIndex(const Whole& GlyphIndex)
         {
             Glyphs = GlyphIndex;
-            GorillaCaption->font(GlyphIndex);
+            GorillaCaption->font(GlyphIndex,*GorillaCaption->GetNameFile());
+        }
+
+        void Caption::SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas)
+        {
+            Glyphs = GlyphIndex;
+            GorillaCaption->font(GlyphIndex,Atlas);
         }
 
         Whole Caption::GetGlyphIndex()
@@ -167,7 +173,7 @@ namespace phys
             return Glyphs;
         }
 
-        void Caption::SetCursorOffset(Whole Offset)
+        void Caption::SetCursorOffset(const Whole& Offset)
         {
             GorillaCaption->SetCursorOffset((Real)Offset);
         }
@@ -184,12 +190,17 @@ namespace phys
 
         void Caption::SetBackgroundSprite(const String& Name)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaCaption->GetNameFile());
             GorillaRectangle->background_image(GSprite);
-            //GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
         }
 
-        void Caption::HorizontallyAlign(UI::TextHorizontalAlign Align)
+        void Caption::SetBackgroundSprite(const String& Name, const String& Atlas)
+        {
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
+            GorillaRectangle->background_image(GSprite);
+        }
+
+        void Caption::HorizontallyAlign(const UI::TextHorizontalAlign& Align)
         {
             Gorilla::TextAlignment HA;
             switch (Align)
@@ -209,7 +220,7 @@ namespace phys
             GorillaCaption->align(HA);
         }
 
-        void Caption::VerticallyAlign(UI::TextVerticalAlign Align)
+        void Caption::VerticallyAlign(const UI::TextVerticalAlign& Align)
         {
             Gorilla::VerticalAlignment VA;
             switch (Align)
@@ -229,7 +240,7 @@ namespace phys
             GorillaCaption->vertical_align(VA);
         }
 
-        void Caption::SetPosition(const Vector2 Position)
+        void Caption::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -244,7 +255,7 @@ namespace phys
             return RelPosition;
         }
 
-        void Caption::SetActualPosition(const Vector2 Position)
+        void Caption::SetActualPosition(const Vector2& Position)
         {
             GorillaCaption->left(Position.X);
             GorillaCaption->top(Position.Y);
@@ -258,7 +269,7 @@ namespace phys
             return Pos;
         }
 
-        void Caption::SetSize(const Vector2 Size)
+        void Caption::SetSize(const Vector2& Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -273,7 +284,7 @@ namespace phys
             return RelSize;
         }
 
-        void Caption::SetActualSize(const Vector2 Size)
+        void Caption::SetActualSize(const Vector2& Size)
         {
             GorillaCaption->width(Size.X);
             GorillaCaption->height(Size.Y);
@@ -287,7 +298,7 @@ namespace phys
             return Pos;
         }
 
-        void Caption::SetRenderPriority(UI::RenderPriority Priority)
+        void Caption::SetRenderPriority(const UI::RenderPriority& Priority)
         {
             Gorilla::RenderPriority RP;
             switch(Priority)
@@ -326,6 +337,16 @@ namespace phys
                     break;
             }
             return UI::RP_Medium;
+        }
+
+        void Caption::SetPrimaryAtlas(const String& Atlas)
+        {
+            GorillaCaption->SetNameFile(Atlas);
+        }
+
+        String Caption::GetPrimaryAtlas()
+        {
+            return *GorillaCaption->GetNameFile();
         }
     }//UT
 }//phys

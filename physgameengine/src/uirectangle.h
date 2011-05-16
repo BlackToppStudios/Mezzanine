@@ -79,7 +79,7 @@ namespace phys
                 /// @param Position The top left position of the rectangle.
                 /// @param Size The size of the rectangle.
                 /// @param Layer Pointer to the parent Layer that created this rectangle.
-                Rectangle(const Vector2 Position, const Vector2 Size, Layer* PLayer);
+                Rectangle(const Vector2& Position, const Vector2& Size, Layer* PLayer);
                 /// @brief Class destructor.
                 ~Rectangle();
                 /// @brief Sets the visibility of this rectangle.
@@ -105,42 +105,52 @@ namespace phys
                 /// @brief Sets the background image(if provided in the atlas) of the rectangle.
                 /// @param Name The name of the sprite to set as the background.
                 virtual void SetBackgroundSprite(const String& Name);
+                /// @brief Sets the background image(if provided in the atlas) of the rectangle.
+                /// @param Name The name of the sprite to set as the background.
+                /// @param Atlas The Atlas to load the sprite from.
+                virtual void SetBackgroundSprite(const String& Name, const String& Atlas);
                 /// @brief Enables a border and sets it's colour.
                 /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBorder(const Real Width, const ColourValue& Colour);
+                virtual void SetBorder(const Real& Width, const ColourValue& Colour);
                 /// @brief Disables any border set on this rectangle if one is currently set.
                 virtual void NoBorder();
                 /// @brief Sets the relative top left position of this rectangle.
                 /// @param Position A Vector2 representing the location of this rectangle.
-                virtual void SetPosition(const Vector2 Position);
+                virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative top left position of this rectangle.
                 /// @return Returns a Vector2 representing the location of this rectangle.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this rectangle in pixels.
                 /// @param Position A Vector2 representing the location of this rectangle.
-                virtual void SetActualPosition(const Vector2 Position);
+                virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Gets the top left position of this rectangle in pixels.
                 /// @return Returns a Vector2 representing the location of this rectangle.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this rectangle.
                 /// @param Size A vector2 representing the size of this rectangle.
-                virtual void SetSize(const Vector2 Size);
+                virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this rectangle.
                 /// @return Returns a vector2 representing the size of this rectangle.
                 virtual Vector2 GetSize();
                 /// @brief Sets the size of this rectangle in pixels.
                 /// @param Size A vector2 representing the size of this rectangle.
-                virtual void SetActualSize(const Vector2 Size);
+                virtual void SetActualSize(const Vector2& Size);
                 /// @brief Gets the size of this rectangle in pixels.
                 /// @return Returns a vector2 representing the size of this rectangle.
                 virtual Vector2 GetActualSize();
                 /// @brief Sets the priority this button should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this button.
-                virtual void SetRenderPriority(UI::RenderPriority Priority);
+                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
                 virtual UI::RenderPriority GetRenderPriority();
+                /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
+                /// @param Atlas The name of the atlas to be used.
+                virtual void SetPrimaryAtlas(const String& Atlas);
+                /// @brief Gets the currently set primary atlas.
+                /// @return Returns a string containing the name of the primary atlas that is set, or an empty string if none.
+                virtual String GetPrimaryAtlas();
         };//rectangle
     }//UI
 }//phys
