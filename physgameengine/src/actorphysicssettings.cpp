@@ -61,22 +61,22 @@ namespace phys
     {
     }
 
-    void ActorBasePhysicsSettings::SetFriction(Real Friction)
+    void ActorBasePhysicsSettings::SetFriction(const Real& Friction)
     {
         ActorCO->setFriction(Friction);
     }
 
-    Real ActorBasePhysicsSettings::GetFriction()
+    Real ActorBasePhysicsSettings::GetFriction() const
     {
         return ActorCO->getFriction();
     }
 
-    void ActorBasePhysicsSettings::SetRestitution(Real Restitution)
+    void ActorBasePhysicsSettings::SetRestitution(const Real& Restitution)
     {
         ActorCO->setRestitution(Restitution);
     }
 
-    Real ActorBasePhysicsSettings::GetRestitution()
+    Real ActorBasePhysicsSettings::GetRestitution() const
     {
         return ActorCO->getRestitution();
     }
@@ -91,7 +91,7 @@ namespace phys
         ActorCO->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
     }
 
-    bool ActorBasePhysicsSettings::IsStaticOrKinematic()
+    bool ActorBasePhysicsSettings::IsStaticOrKinematic() const
     {
         return ActorCO->isStaticOrKinematicObject();
     }
@@ -102,24 +102,9 @@ namespace phys
         switch (Parent->GetType())
         {
             case ActorBase::Actorrigid:
-            /*{
-                ActorRigid* Rigid = static_cast<ActorRigid*> (Parent);
-                Rigid->RemoveObjectFromWorld(GameWorld);
-                ActorCO->setCollisionFlags(CollisionObject->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Rigid->AddObjectToWorld(GameWorld);
-                break;
-            }// */
             case ActorBase::Actorsoft:
-            /*{
-                ActorSoft* Soft = static_cast<ActorSoft*> (Parent);
-                Soft->RemoveObjectFromWorld(GameWorld);
-                ActorCO->setCollisionFlags(CollisionObject->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Soft->AddObjectToWorld(GameWorld);
-                break;
-            }// */
             case ActorBase::Actorterrain:
             {
-                //ActorTerrain* Terrain = static_cast<ActorTerrain*> (Parent);
                 Parent->RemoveObjectFromWorld(GameWorld);
                 ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
                 Parent->AddObjectToWorld(GameWorld);
@@ -141,24 +126,9 @@ namespace phys
         switch (Parent->GetType())
         {
             case ActorBase::Actorrigid:
-            /*{
-                ActorRigid* Rigid = static_cast<ActorRigid*> (Parent);
-                Rigid->RemoveObjectFromWorld(GameWorld);
-                ActorCO->setCollisionFlags(CollisionObject->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Rigid->AddObjectToWorld(GameWorld);
-                break;
-            }// */
             case ActorBase::Actorsoft:
-            /*{
-                ActorSoft* Soft = static_cast<ActorSoft*> (Parent);
-                Soft->RemoveObjectFromWorld(GameWorld);
-                ActorCO->setCollisionFlags(CollisionObject->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Soft->AddObjectToWorld(GameWorld);
-                break;
-            }// */
             case ActorBase::Actorterrain:
             {
-                //ActorTerrain* Terrain = static_cast<ActorTerrain*> (Parent);
                 Parent->RemoveObjectFromWorld(GameWorld);
                 ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
                 Parent->AddObjectToWorld(GameWorld);
@@ -174,7 +144,7 @@ namespace phys
         }
     }
 
-    bool ActorBasePhysicsSettings::IsActive()
+    bool ActorBasePhysicsSettings::IsActive() const
     {
         int Activation = ActorCO->getActivationState();
         if( ACTIVE_TAG == Activation )
@@ -203,6 +173,44 @@ namespace phys
 
     ActorRigidPhysicsSettings::~ActorRigidPhysicsSettings()
     {
+    }
+
+    void ActorRigidPhysicsSettings::SetDamping(const Real& LinDamping, const Real& AngDamping)
+    {
+        ActorRB->setDamping(LinDamping, AngDamping);
+    }
+
+    void ActorRigidPhysicsSettings::SetLinearVelocity(const Vector3& LinVel)
+    {
+        ActorRB->setLinearVelocity(LinVel.GetBulletVector3());
+    }
+
+    Vector3 ActorRigidPhysicsSettings::GetLinearVelocity() const
+    {
+        Vector3 LinVel(ActorRB->getLinearVelocity());
+        return LinVel;
+    }
+
+    void ActorRigidPhysicsSettings::SetAngularVelocity(const Vector3& AngVel)
+    {
+        ActorRB->setAngularVelocity(AngVel.GetBulletVector3());
+    }
+
+    Vector3 ActorRigidPhysicsSettings::GetAngularVelocity() const
+    {
+        Vector3 AngVel(ActorRB->getAngularVelocity());
+        return AngVel;
+    }
+
+    void ActorRigidPhysicsSettings::SetIndividualGravity(const Vector3& Gravity)
+    {
+        ActorRB->setGravity(Gravity.GetBulletVector3());
+    }
+
+    Vector3 ActorRigidPhysicsSettings::GetIndividualGravity() const
+    {
+        Vector3 Grav(ActorRB->getGravity());
+        return Grav;
     }
 
 

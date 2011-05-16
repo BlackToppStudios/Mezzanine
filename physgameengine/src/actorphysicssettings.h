@@ -41,6 +41,7 @@
 #define _actorphysicssettings_h
 
 #include "datatypes.h"
+#include "vector3.h"
 #include "enumerations.h"
 
 class btCollisionObject;
@@ -81,22 +82,22 @@ namespace phys
             /// coefficient of friction.  Range is from 0.0 to 2.0.  Behavior in this regard is determined by the friction of both
             /// colliding bodies.  @n Default: 0.5
             /// @param Friction A Real that is the friction coefficient desired.
-            virtual void SetFriction(Real Friction);
+            virtual void SetFriction(const Real& Friction);
 
             /// @brief Gets the Actors' friction coefficient.
             /// @return Returns a Real representing the actors' friction coefficient.
-            virtual Real GetFriction();
+            virtual Real GetFriction() const;
 
             /// @brief Sets the Actors' restitution coefficient.
             /// @details Restitution determines how much energy is left after a collision with an object.
             /// Range is from 0.0 to 1.0.  Behavior in this regard is determined by the restitution of both colliding bodies.
             /// @n Default: 0.0
             /// @param Restitution A Real that is the restiturion coefficient desired.
-            virtual void SetRestitution(Real Restitution);
+            virtual void SetRestitution(const Real& Restitution);
 
             /// @brief Gets the Actors' restitution coefficient.
             /// @return Returns a Real representing the actors' restitution coefficient.
-            virtual Real GetRestitution();
+            virtual Real GetRestitution() const;
 
             /// @brief Sets the state of the object to Kinematic.
             /// @details This function will set the object to a Kinematic Object. @n
@@ -111,7 +112,7 @@ namespace phys
             /// @brief Checks of the actor is static or kinematic.
             /// @details Checks of the actor is static or kinematic, returns true if it is either.
             /// @return Returns true if the actor is static or kinematic.
-            virtual bool IsStaticOrKinematic();
+            virtual bool IsStaticOrKinematic() const;
 
             /// @brief Sets the actor to be able to collide with other objects in the world.
             /// @details By default collision response is enabled.  Only call this function if you have disabled collision response.
@@ -123,7 +124,7 @@ namespace phys
 
             /// @brief Checks if the object is active in the simulation.
             /// @return Returns true if the object is active, false if it's deactivated(at rest).
-            virtual bool IsActive();
+            virtual bool IsActive() const;
 
             /// @brief Sets the activation state of the actor.
             /// @param State The activation state to set for the actor.  See the ActorActivationState enum for more info.
@@ -153,7 +154,41 @@ namespace phys
             ActorRigidPhysicsSettings(ActorRigid* Actor, btRigidBody* PhysicsObject);
 
             /// @brief Class destructor.
-            ~ActorRigidPhysicsSettings();
+            virtual ~ActorRigidPhysicsSettings();
+
+            /// @brief Sets the Damping for this object.
+            /// @details Both of Linear Damping and Angular Damping default to zero.  This is usful if you wish to simulate
+            /// something like air resistance.  Values can range from 0.0 to 1.0.
+            /// @param LinDamping Real representing the amount of Linear Damping to be applied.
+            /// @param AngDamping Real representing the amount of Angular Damping to be applied.
+            virtual void SetDamping(const Real& LinDamping, const Real& AngDamping);
+
+            /// @brief Sets the Linear Velocity of this object.
+            /// @param LinVel Vector3 representing the Linear Velocity to be set.
+            virtual void SetLinearVelocity(const Vector3& LinVel);
+
+            /// @brief Gets the Linear Velocity of this object.
+            /// @return Returns the currently set Linear Velocity of this object.
+            virtual Vector3 GetLinearVelocity() const;
+
+            /// @brief Sets the Angular Velocity of this object.
+            /// @param AngVel Vector3 representing the Angular Velocity to be set.
+            virtual void SetAngularVelocity(const Vector3& AngVel);
+
+            /// @brief Gets the Angular Velocity of this object.
+            /// @return Returns the currently set Angular Velocity of this object.
+            virtual Vector3 GetAngularVelocity() const;
+
+            /// @brief Sets the gravity for only this object.
+            /// @details This value will override the world gravity.  Should be called after adding to the world.
+            /// When the object is added to the world the world gravity is applied to it.
+            /// @param Gravity Vector3 representing the direction and strength of gravity to be applied.
+            virtual void SetIndividualGravity(const Vector3& Gravity);
+
+            /// @brief Gets the gravity being applied to this object.
+            /// @details This is the gravity applied to this object, which may or may not be the same as the world gravity.
+            /// @return Returns a Vector3 representing the gravity currently being applied to this object.
+            virtual Vector3 GetIndividualGravity() const;
     };//actorrigidphysicssettings
 
     ///////////////////////////////////////////////////////////////////////////////

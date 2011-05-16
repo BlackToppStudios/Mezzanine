@@ -53,7 +53,7 @@ namespace phys
 {
     namespace UI
     {
-        Button::Button(ConstString& name, const Vector2 Position, const Vector2 Size, Layer* PLayer)
+        Button::Button(ConstString& name, const Vector2& Position, const Vector2& Size, Layer* PLayer)
             : Parent(PLayer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
@@ -70,6 +70,7 @@ namespace phys
 
             Vector2 Window = Parent->GetParent()->GetViewportDimensions();
             GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
+            GorillaRectangle->SetNameFile(Parent->GetParent()->GetPrimaryAtlas());
         }
 
         Button::~Button()
@@ -239,20 +240,39 @@ namespace phys
 
         void Button::SetBackgroundSprite(const String& Name)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaRectangle->GetNameFile());
+            NormalSprite = GSprite;
+            GorillaRectangle->background_image(GSprite);
+        }
+
+        void Button::SetBackgroundSprite(const String& Name, const String& Atlas)
+        {
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
             NormalSprite = GSprite;
             GorillaRectangle->background_image(GSprite);
         }
 
         void Button::SetHoveredSprite(const String& Name)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaRectangle->GetNameFile());
+            HoveredSprite = GSprite;
+        }
+
+        void Button::SetHoveredSprite(const String& Name, const String& Atlas)
+        {
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
             HoveredSprite = GSprite;
         }
 
         void Button::SetUserSprite(const String& Name)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GorillaRectangle->GetNameFile());
+            UserSprite = GSprite;
+        }
+
+        void Button::SetUserSprite(const String& Name, const String& Atlas)
+        {
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
             UserSprite = GSprite;
         }
 
@@ -266,7 +286,7 @@ namespace phys
             }
         }
 
-        void Button::SetBorder(const Real Width, const ColourValue& Colour)
+        void Button::SetBorder(const Real& Width, const ColourValue& Colour)
         {
             GorillaRectangle->border(Width, Colour.GetOgreColourValue());
         }
@@ -276,7 +296,7 @@ namespace phys
             GorillaRectangle->no_border();
         }
 
-        void Button::SetPosition(const Vector2 Position)
+        void Button::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -289,7 +309,7 @@ namespace phys
             return RelPosition;
         }
 
-        void Button::SetActualPosition(const Vector2 Position)
+        void Button::SetActualPosition(const Vector2& Position)
         {
             GorillaRectangle->left(Position.X);
             GorillaRectangle->top(Position.Y);
@@ -301,7 +321,7 @@ namespace phys
             return Pos;
         }
 
-        void Button::SetSize(const Vector2 Size)
+        void Button::SetSize(const Vector2& Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -314,7 +334,7 @@ namespace phys
             return RelSize;
         }
 
-        void Button::SetActualSize(const Vector2 Size)
+        void Button::SetActualSize(const Vector2& Size)
         {
             GorillaRectangle->width(Size.X);
             GorillaRectangle->height(Size.Y);
@@ -326,7 +346,7 @@ namespace phys
             return Pos;
         }
 
-        void Button::SetRenderPriority(UI::RenderPriority Priority)
+        void Button::SetRenderPriority(const UI::RenderPriority& Priority)
         {
             Gorilla::RenderPriority RP;
             switch(Priority)
@@ -364,6 +384,16 @@ namespace phys
                     break;
             }
             return UI::RP_Medium;
+        }
+
+        void Button::SetPrimaryAtlas(const String& Atlas)
+        {
+            GorillaRectangle->SetNameFile(Atlas);
+        }
+
+        String Button::GetPrimaryAtlas()
+        {
+            return *GorillaRectangle->GetNameFile();
         }
 
         std::vector<MetaCode::InputCode>* Button::GetKeyboardActivationKeys()

@@ -94,7 +94,7 @@ namespace phys
                 /// @param Position The top left position of the button.
                 /// @param Size The size of the Button.
                 /// @param Layer Pointer to the Layer that created this button.
-                Button(ConstString& name, const Vector2 Position, const Vector2 Size, Layer* PLayer);
+                Button(ConstString& name, const Vector2& Position, const Vector2& Size, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Button();
                 /// @brief Sets the visibility of this button.
@@ -163,52 +163,70 @@ namespace phys
                 /// @brief Sets the background image(if provided in the atlas) of the button.
                 /// @param Name The name of the sprite to set as the background.
                 virtual void SetBackgroundSprite(const String& Name);
+                /// @brief Sets the background image(if provided in the atlas) of the button from another atlas then the one currently set.
+                /// @param Name The name of the sprite to set as the background.
+                /// @param Atlas The Atlas to load the sprite from.
+                virtual void SetBackgroundSprite(const String& Name, const String& Atlas);
                 /// @brief Sets an alternate background image that will be applied when the mouse is over this button.
                 /// @param Name The name of the sprite to set as the alternate background.
                 virtual void SetHoveredSprite(const String& Name);
+                /// @brief Sets an alternate background image that will be applied when the mouse is over this button from another atlas then the one currently set.
+                /// @param Name The name of the sprite to set as the alternate background.
+                /// @param Atlas The Atlas to load the sprite from.
+                virtual void SetHoveredSprite(const String& Name, const String& Atlas);
                 /// @brief Sets an alternate background image that is stored and can be quickly swapped with the active sprite.
                 /// @param Name The name of the sprite to set as the alternate background.
                 virtual void SetUserSprite(const String& Name);
+                /// @brief Sets an alternate background image that is stored and can be quickly swapped with the active sprite from another atlas then the one currently set.
+                /// @param Name The name of the sprite to set as the alternate background.
+                /// @param Atlas The Atlas to load the sprite from.
+                virtual void SetUserSprite(const String& Name, const String& Atlas);
                 /// @brief Enables(or disables) the currently set User sprite.
                 /// @param Enable If true, this will swap the current sprite with the user sprite, if false
                 /// it will swap the User sprite for the normal sprite.
                 virtual void EnableUserSprite(bool Enable);
                 /// @brief Enables a border and sets it's colour.
                 /// @param Colour A colour value representing the colour to be set.
-                virtual void SetBorder(const Real Width, const ColourValue& Colour);
+                virtual void SetBorder(const Real& Width, const ColourValue& Colour);
                 /// @brief Disables any border set on this rectangle if one is currently set.
                 virtual void NoBorder();
                 /// @brief Sets the relative top left position of this button.
                 /// @param Position A Vector2 representing the location of this button.
-                virtual void SetPosition(const Vector2 Position);
+                virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative top left position of this button.
                 /// @return Returns a Vector2 representing the location of this button.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this button in pixels.
                 /// @param Position A Vector2 representing the location of this button.
-                virtual void SetActualPosition(const Vector2 Position);
+                virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Gets the top left position of this button in pixels.
                 /// @return Returns a Vector2 representing the location of this button.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this button.
                 /// @param Size A vector2 representing the size of this button.
-                virtual void SetSize(const Vector2 Size);
+                virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this button.
                 /// @return Returns a vector2 representing the size of this button.
                 virtual Vector2 GetSize();
                 /// @brief Sets the size of this button in pixels.
                 /// @param Size A vector2 representing the size of this button.
-                virtual void SetActualSize(const Vector2 Size);
+                virtual void SetActualSize(const Vector2& Size);
                 /// @brief Gets the size of this button in pixels.
                 /// @return Returns a vector2 representing the size of this button.
                 virtual Vector2 GetActualSize();
                 /// @brief Sets the priority this button should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this button.
-                virtual void SetRenderPriority(UI::RenderPriority Priority);
+                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
                 virtual UI::RenderPriority GetRenderPriority();
+                /// @brief Sets the Atlas to be assumed when one isn't provided for atlas related tasks.
+                /// @param Atlas The name of the atlas to be used.
+                virtual void SetPrimaryAtlas(const String& Atlas);
+                /// @brief Gets the currently set primary atlas.
+                /// @return Returns a string containing the name of the primary atlas that is set, or an empty string if none.
+                virtual String GetPrimaryAtlas();
                 /// @brief Gets a vector with all the keyboard input codes used to activate this button.
                 /// @return Returns a pointer to an std::vector containing all the keyboard keys that will activate this button.
                 virtual std::vector<MetaCode::InputCode>* GetKeyboardActivationKeys();

@@ -52,12 +52,14 @@ namespace phys
 {
     namespace UI
     {
-        Screen::Screen(const String& name, Gorilla::Screen* GScreen, Viewport* WindowViewport)
+        Screen::Screen(const String& name, const String& Atlas, Viewport* WindowViewport)
             : Name(name),
-              GorillaScreen(GScreen),
+              PrimaryAtlas(Atlas),
               GameViewport(WindowViewport)
         {
             Manager = World::GetWorldPointer()->GetUIManager();
+
+            GorillaScreen = Manager->GetSilverbackPointer()->createScreen(WindowViewport->GetOgreViewport());
         }
 
         Screen::~Screen()
@@ -194,6 +196,16 @@ namespace phys
                 }
             }
             return 0;
+        }
+
+        void Screen::SetPrimaryAtlas(const String& Atlas)
+        {
+            PrimaryAtlas = Atlas;
+        }
+
+        String Screen::GetPrimaryAtlas()
+        {
+            return PrimaryAtlas;
         }
 
         Gorilla::Screen* Screen::GetGorillaScreen()

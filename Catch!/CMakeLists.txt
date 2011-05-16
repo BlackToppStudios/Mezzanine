@@ -106,9 +106,11 @@ CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )
 # Windows File Copy Specific Items
 if(${WIN32})
 	message ("${PROJECT_NAME} - Begin Windows32/64 Specific File Copy Process")
+	CopyDemoFilesDuringBuild( windows/plugins.cfg data/windows/plugins.cfg )
+	CopyDemoFilesDuringBuild( windows/settings.cfg data/windows/settings.cfg )
+	CopyDemoFilesDuringBuild( windows/Plugin_CgProgramManager.dll data/windows/ogre/Plugin_CgProgramManager.dll )
+	
 	CopyFilesFromPhygameDuringBuild( data/windows/ogre/RenderSystem_GL.dll )
-	CopyFilesFromPhygameDuringBuild( data/windows/plugins.cfg )
-	CopyFilesFromPhygameDuringBuild( data/windows/settings.cfg )
 	CopyFilesFromPhygameDuringBuild( libphysgame.dll )
 	CopyFilesFromPhygameDuringBuild( OgreMain.dll )
 	CopyFilesFromPhygameDuringBuild( libboost_thread-mgw45-mt-1_44.dll )

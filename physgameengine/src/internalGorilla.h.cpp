@@ -22,6 +22,8 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
 
+	Modified by Ultimate and Prophet(al086)
+	Modification 1.0
 */
 
 #ifndef GORILLA_H_CPP
@@ -121,7 +123,12 @@ namespace Gorilla
    Fuchsia=0xff00ff,        MintCream=0xf5fffa,            YellowGreen=0x9acd32
   }; // Colour
  } // namespace Colours
-
+	struct NameFileAndPosition
+	{
+	std::string NameFile;
+	size_t number;
+	size_t number2;
+	};
  /*! function. rgb
      desc.
          Convert three/four RGBA values into an Ogre::ColourValue
@@ -142,7 +149,8 @@ namespace Gorilla
  {
   Gradient_NorthSouth,
   Gradient_WestEast,
-  Gradient_Diagonal
+  Gradient_Diagonal_1,
+  Gradient_Diagonal_2
  };
 
  /*! enum. Border
@@ -330,6 +338,13 @@ namespace Gorilla
   Ogre::Vector3 position;
   Ogre::ColourValue colour;
   Ogre::Vector2 uv;
+  Ogre::String* NameFile;
+ };
+  struct Vertex2
+ {
+  Ogre::Vector3 position;
+  Ogre::ColourValue colour;
+  Ogre::Vector2 uv;
  };
 
  /*! struct. Kerning
@@ -392,6 +407,7 @@ namespace Gorilla
 
    Ogre::Real uvTop, uvLeft, uvRight, uvBottom, spriteWidth, spriteHeight;
    Ogre::Vector2    texCoords[4];
+   Ogre::String mNameFile;
 
  };
 
@@ -436,7 +452,7 @@ namespace Gorilla
            Each screen is considered a new batch. To reduce your batch count in Gorilla,
            reduce the number of screens you use.
    */
-   Screen* createScreen(Ogre::Viewport*, const Ogre::String& atlas);
+   Screen* createScreen(Ogre::Viewport*);
 
    /*! function. destroyScreen
        desc.
@@ -458,8 +474,17 @@ namespace Gorilla
        desc.
            Call ScreenRenderable draw
    */
+
    bool frameStarted(const Ogre::FrameEvent& evt);
 
+	TextureAtlas* getatlas(const Ogre::String& NameFile)
+	{
+
+		if(NameFile != "")
+			return (*mAtlases.find(NameFile)).second;
+		if(NameFile == "")
+			return (*mAtlases.begin()).second;
+	}
   protected:
 
    std::map<Ogre::String, TextureAtlas*>  mAtlases;
@@ -631,7 +656,9 @@ namespace Gorilla
     */
     inline Ogre::Vector2 getTextureSize() const
     {
-     return Ogre::Vector2(Ogre::Real(mTexture->getWidth()), Ogre::Real(mTexture->getHeight()));
+     Ogre::Real w = mTexture->getWidth();
+     Ogre::Real h = mTexture->getHeight();
+     return Ogre::Vector2(w, h);
     }
 
     /*! function. getTextureSize
@@ -660,6 +687,11 @@ namespace Gorilla
     {
      return m2DPass;
     }
+
+	void setTexture(Ogre::TexturePtr newTexture)
+	{
+	 mTexture=newTexture;
+	}
 
     /*! function. getGlyphMonoWidth
         desc.
@@ -705,7 +737,7 @@ namespace Gorilla
     void  _loadTexture(Ogre::ConfigFile::SettingsMultiMap*);
     void  _loadGlyphs(Ogre::ConfigFile::SettingsMultiMap*, GlyphData*);
     void  _loadKerning(Ogre::ConfigFile::SettingsMultiMap*, GlyphData*);
-    void  _loadSprites(Ogre::ConfigFile::SettingsMultiMap*);
+    void  _loadSprites(Ogre::ConfigFile::SettingsMultiMap*,const Ogre::String& gorillaFile);
     void  _create2DMaterial();
     void  _create3DMaterial();
     void  _calculateCoordinates();
@@ -720,15 +752,23 @@ namespace Gorilla
     Ogre::ColourValue                 mMarkupColour[10];
 
   };
+    struct IndexData : public Ogre::GeneralAllocatedObject
+    {
+     std::vector<Layer*>    mLayers;
+     buffer<Vertex>         mVertices;
+     bool                   mRedrawNeeded;
+    };
 
   class LayerContainer
   {
 
    public:
 
-    LayerContainer(TextureAtlas*);
+    LayerContainer();
 
     virtual ~LayerContainer();
+
+	std::map<Ogre::uint, IndexData*>* GetMapIndexData();
 
     /*! function. createLayer
         desc.
@@ -750,11 +790,6 @@ namespace Gorilla
     */
     void   destroy(Layer* layer);
 
-    /*! function. getAtlas
-        desc.
-            Get atlas assigned to this LayerContainer
-    */
-    TextureAtlas* getAtlas() const { return mAtlas; }
 
     virtual Ogre::Real getTexelOffsetX() const { return 0.0f; }
 
@@ -829,15 +864,10 @@ namespace Gorilla
 
    protected:
 
+    std::vector<NameFileAndPosition> VectorTextureByVertex;
+
     /// mLayers -- Master copy of all layers of this Target.
     std::vector<Layer*>     mLayers;
-
-    struct IndexData : public Ogre::GeneralAllocatedObject
-    {
-     std::vector<Layer*>    mLayers;
-     buffer<Vertex>         mVertices;
-     bool                   mRedrawNeeded;
-    };
 
     /// mIndexes -- Copies pointers to Layers arranged their index.
     std::map< Ogre::uint, IndexData* >  mIndexData;
@@ -858,7 +888,6 @@ namespace Gorilla
     Ogre::RenderOperation*  mRenderOpPtr;
 
     /// Atlas assigned to this LayerContainer
-    TextureAtlas*  mAtlas;
 
   };
 
@@ -868,7 +897,7 @@ namespace Gorilla
    public:
 
     friend class Silverback;
-    friend class Layer;
+
 
     /*! desc. getTexelOffsetX
             Helper function to get horizontal texel offset.
@@ -930,7 +959,7 @@ namespace Gorilla
         desc.
             Use Silverback::createScreen
     */
-    Screen(Ogre::Viewport*, TextureAtlas*);
+    Screen(Ogre::Viewport*);
 
     /*! destructor. Screen
         desc.
@@ -959,6 +988,8 @@ namespace Gorilla
     Ogre::Viewport*       mViewport;
     Ogre::Real            mWidth, mHeight, mInvWidth, mInvHeight;
     Ogre::OrientationMode mOrientation;
+
+
 #if OGRE_NO_VIEWPORT_ORIENTATIONMODE == 1
     bool                  mOrientationChanged;
 #endif
@@ -1193,7 +1224,8 @@ namespace Gorilla
         desc.
             Creates a quad list.
     */
-    QuadList*         createQuadList();
+    QuadList*         createQuadList(std::string NameFile = std::string(""));
+    QuadList*         createQuadList(std::string& NameFile);
 
     /*! function. destroyQuadList
         desc.
@@ -1220,7 +1252,7 @@ namespace Gorilla
         desc.
             Creates a caption
     */
-    Caption*         createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text);
+    Caption*         createCaption(Ogre::uint glyphDataIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text,const std::string& LeFileName);
 
     /*! function. destroyCaption
         desc.
@@ -1247,7 +1279,7 @@ namespace Gorilla
         desc.
             Creates a markup text
     */
-    MarkupText*         createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text);
+    MarkupText*         createMarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real x, Ogre::Real y, const Ogre::String& text, const Ogre::String& NameFile);
 
     /*! function. destroyMarkupText
         desc.
@@ -1279,49 +1311,51 @@ namespace Gorilla
      return mIndex;
     }
 
+	void setIndex(Ogre::uint);
+
     /*! function. _getSolidUV
         desc.
             Helper function to get a white pixel in the TextureAtlas.
     */
-    inline Ogre::Vector2      _getSolidUV() const
+    inline Ogre::Vector2      _getSolidUV(const Ogre::String& NameFile) const
     {
-     return mParent->getAtlas()->getWhitePixel();
+     return Silverback::getSingleton().getatlas(NameFile)->getWhitePixel();
     }
 
     /*! function. _getSprite
         desc.
             Helper function to get a Sprite from the assigned texture atlas.
     */
-    inline Sprite*            _getSprite(const Ogre::String& sprite_name) const
+    inline Sprite*            _getSprite(const Ogre::String& sprite_name,const Ogre::String& FileName) const
     {
-     return mParent->getAtlas()->getSprite(sprite_name);
+	return Silverback::getSingleton().getatlas(FileName)->getSprite(sprite_name);
     }
 
     /*! function. _getGlyph
         desc.
             Helper function to get a Glyph from the assigned texture atlas.
     */
-    inline GlyphData*         _getGlyphData(Ogre::uint id) const
+    inline GlyphData*         _getGlyphData(Ogre::uint id,const Ogre::String& FileName) const
     {
-     return mParent->getAtlas()->getGlyphData(id);
+	return Silverback::getSingleton().getatlas(FileName)->getGlyphData(id);
     }
 
     /*! function. _getGlyph
         desc.
             Helper function to get the used texture size.
     */
-    inline Ogre::Vector2      _getTextureSize() const
+    inline Ogre::Vector2      _getTextureSize(const Ogre::String& FileName) const
     {
-     return mParent->getAtlas()->getTextureSize();
+	return Silverback::getSingleton().getatlas(FileName)->getTextureSize();
     }
 
     /*! function. _getAtlas
         desc.
             Helper function to get the used TextureAtlas.
     */
-    inline TextureAtlas*      _getAtlas() const
+    inline TextureAtlas*      _getAtlas(const Ogre::String& FileName) const
     {
-     return mParent->getAtlas();
+	return Silverback::getSingleton().getatlas(FileName);
     }
 
     /*! function. _getTexelX
@@ -1346,9 +1380,9 @@ namespace Gorilla
         desc.
             Helper function to get the markup colourvalue.
     */
-    inline Ogre::ColourValue  _getMarkupColour(Ogre::uint index) const
+    inline Ogre::ColourValue  _getMarkupColour(Ogre::uint index,const Ogre::String& FileName) const
     {
-     return mParent->getAtlas()->getMarkupColour(index);
+	return Silverback::getSingleton().getatlas(FileName)->getMarkupColour(index);
     }
 
     /*! function. _markDirty
@@ -1363,6 +1397,7 @@ namespace Gorilla
    protected:
 
     void _render(buffer<Vertex>&, bool force = false);
+
 
     Layer(Ogre::uint index, LayerContainer*);
 
@@ -1549,7 +1584,6 @@ namespace Gorilla
     {
      return mBackgroundColour[index];
     }
-
     /*! function. background_colour
         desc.
             Set a background colour to all corners.
@@ -1584,7 +1618,7 @@ namespace Gorilla
     */
     void  background_colour(QuadCorner index, const Ogre::ColourValue& colour)
     {
-     mBorderColour[index] = colour;
+     mBackgroundColour[index] = colour;
      mDirty = true;
      mLayer->_markDirty();
     }
@@ -1605,7 +1639,7 @@ namespace Gorilla
       mBackgroundColour[0] = mBackgroundColour[3] = colourA;
       mBackgroundColour[1] = mBackgroundColour[2] = colourB;
      }
-     else if (gradient == Gradient_Diagonal)
+     else if (gradient == Gradient_Diagonal_1)
      {
       Ogre::ColourValue avg;
       avg.r = (colourA.r + colourB.r) * 0.5f;
@@ -1615,6 +1649,17 @@ namespace Gorilla
       mBackgroundColour[0] = colourA;
       mBackgroundColour[1] = avg = mBackgroundColour[3] = avg;
       mBackgroundColour[2] = colourB;
+     }
+     else if (gradient == Gradient_Diagonal_2)
+     {
+      Ogre::ColourValue avg;
+      avg.r = (colourA.r + colourB.r) * 0.5f;
+      avg.g = (colourA.g + colourB.g) * 0.5f;
+      avg.b = (colourA.b + colourB.b) * 0.5f;
+      avg.a = (colourA.a + colourB.a) * 0.5f;
+      mBackgroundColour[1] = colourA;
+      mBackgroundColour[2] = avg = mBackgroundColour[0] = avg;
+      mBackgroundColour[3] = colourB;
      }
      mDirty = true;
      mLayer->_markDirty();
@@ -1630,7 +1675,7 @@ namespace Gorilla
     {
      if (sprite == 0)
      {
-      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV();
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(sprite->mNameFile);
      }
      else
      {
@@ -1643,13 +1688,14 @@ namespace Gorilla
 #endif
       }
       Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
-      texelOffsetX /= mLayer->_getTextureSize().x;
-      texelOffsetY /= mLayer->_getTextureSize().y;
+      texelOffsetX /= mLayer->_getTextureSize(sprite->mNameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(sprite->mNameFile).y;
       mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
       mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
       mUV[1].x = mUV[2].x = sprite->uvRight + texelOffsetX;
-      mUV[2].y = mUV[3].y = sprite->uvBottom + texelOffsetX;
+      mUV[2].y = mUV[3].y = sprite->uvBottom + texelOffsetY;
      }
+	 mNameFile = sprite->mNameFile;
      mDirty = true;
      mLayer->_markDirty();
     }
@@ -1671,7 +1717,7 @@ namespace Gorilla
     {
      if (sprite == 0)
      {
-      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV();
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(sprite->mNameFile);
      }
      else
      {
@@ -1684,13 +1730,14 @@ namespace Gorilla
 #endif
       }
       Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
-      texelOffsetX /= mLayer->_getTextureSize().x;
-      texelOffsetY /= mLayer->_getTextureSize().y;
+      texelOffsetX /= mLayer->_getTextureSize(sprite->mNameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(sprite->mNameFile).y;
       mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
       mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
       mUV[1].x = mUV[2].x = sprite->uvLeft + ( (sprite->uvRight - sprite->uvLeft) * widthClip ) + texelOffsetX;
       mUV[2].y = mUV[3].y = sprite->uvTop + ( (sprite->uvBottom - sprite->uvTop) * heightClip ) + texelOffsetY;
      }
+	 mNameFile = sprite->mNameFile;
      mDirty = true;
      mLayer->_markDirty();
     }
@@ -1708,15 +1755,15 @@ namespace Gorilla
         note.
             To remove the image pass on a null pointer.
     */
-    void  background_image(const Ogre::String& sprite_name_or_none, Ogre::Real widthClip, Ogre::Real heightClip)
+    void  background_image(const Ogre::String& sprite_name_or_none, Ogre::Real widthClip, Ogre::Real heightClip,const Ogre::String& NameFile)
     {
      if (sprite_name_or_none.length() == 0 || sprite_name_or_none == "none")
      {
-      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV();
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(NameFile);
      }
      else
      {
-      Sprite* sprite = mLayer->_getSprite(sprite_name_or_none);
+      Sprite* sprite = mLayer->_getSprite(sprite_name_or_none,NameFile);
       if (sprite == 0)
       {
 #if GORILLA_USES_EXCEPTIONS == 1
@@ -1726,13 +1773,14 @@ namespace Gorilla
 #endif
       }
       Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
-      texelOffsetX /= mLayer->_getTextureSize().x;
-      texelOffsetY /= mLayer->_getTextureSize().y;
+      texelOffsetX /= mLayer->_getTextureSize(NameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(NameFile).y;
       mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
       mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
       mUV[1].x = mUV[2].x = sprite->uvLeft + ( (sprite->uvRight - sprite->uvLeft) * widthClip ) + texelOffsetX;
       mUV[2].y = mUV[3].y = sprite->uvTop + ( (sprite->uvBottom - sprite->uvTop) * heightClip ) + texelOffsetY;
      }
+	 mNameFile = NameFile;
      mDirty = true;
      mLayer->_markDirty();
     }
@@ -1743,15 +1791,15 @@ namespace Gorilla
         note.
             To remove the image pass on "none" or a empty string
     */
-    void  background_image(const Ogre::String& sprite_name_or_none)
+    void  background_image(const Ogre::String& sprite_name_or_none,const Ogre::String& NameFile)
     {
      if (sprite_name_or_none.length() == 0 || sprite_name_or_none == "none")
      {
-      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV();
+      mUV[0] = mUV[1] = mUV[2] = mUV[3] = mLayer->_getSolidUV(NameFile);
      }
      else
      {
-      Sprite* sprite = mLayer->_getSprite(sprite_name_or_none);
+      Sprite* sprite = mLayer->_getSprite(sprite_name_or_none,NameFile);
       if (sprite == 0)
       {
 #if GORILLA_USES_EXCEPTIONS == 1
@@ -1762,13 +1810,14 @@ namespace Gorilla
       }
 
       Ogre::Real texelOffsetX = mLayer->_getTexelX(), texelOffsetY = mLayer->_getTexelY();
-      texelOffsetX /= mLayer->_getTextureSize().x;
-      texelOffsetY /= mLayer->_getTextureSize().y;
+      texelOffsetX /= mLayer->_getTextureSize(NameFile).x;
+      texelOffsetY /= mLayer->_getTextureSize(NameFile).y;
       mUV[0].x = mUV[3].x = sprite->uvLeft - texelOffsetX;
       mUV[0].y = mUV[1].y = sprite->uvTop - texelOffsetY;
       mUV[1].x = mUV[2].x = sprite->uvRight + texelOffsetX;
       mUV[2].y = mUV[3].y = sprite->uvBottom + texelOffsetY;
      }
+	 mNameFile = NameFile;
      mDirty = true;
      mLayer->_markDirty();
     }
@@ -1962,6 +2011,21 @@ namespace Gorilla
     */
     void _redraw();
 
+	void rotateDeg(Ogre::Real, const Ogre::Vector2& centre);
+	void rotateRad(Ogre::Real, const Ogre::Vector2& centre);
+	Ogre::Real getDegRotAngle();
+	Ogre::Real getRadRotAngle();
+	bool getCustomRotCenter();
+	void setCustomRotCenter(bool);
+
+	std::string* GetNameFile()
+	{
+	return &mNameFile;
+	}
+	void SetNameFile(const Ogre::String& NameFile)
+	{
+	 mNameFile = NameFile;
+	}
    protected:
 
     Rectangle(Ogre::Real left, Ogre::Real top, Ogre::Real width, Ogre::Real height, Layer* parent);
@@ -1978,7 +2042,11 @@ namespace Gorilla
     bool               mDirty;
     bool               mVisible;
     buffer<Vertex>     mVertices;
-    Gorilla::RenderPriority mPriority;
+	Gorilla::RenderPriority mPriority;
+	Ogre::Real	       mRadAngle;
+	Ogre::Vector2	   mRotCenter;
+	bool 			   CustomRotCenter;
+	Ogre::String mNameFile;
   };
 
   /*! class. Polygon
@@ -2114,6 +2182,8 @@ namespace Gorilla
      mSprite = sprite;
      mDirty = true;
      mLayer->_markDirty();
+	 mNameFile = sprite->mNameFile;
+
     }
 
     /*! function. background_image
@@ -2122,13 +2192,13 @@ namespace Gorilla
         note.
             Use a empty string or "none" to clear.
     */
-    void  background_image(const Ogre::String& name_or_none)
+    void  background_image(const Ogre::String& name_or_none,const Ogre::String& NameFile)
     {
      if (name_or_none.size() == 0 || name_or_none == "none")
       mSprite = 0;
      else
-      mSprite = mLayer->_getSprite(name_or_none);
-
+      mSprite = mLayer->_getSprite(name_or_none,NameFile);
+	mNameFile = NameFile;
      mDirty = true;
      mLayer->_markDirty();
     }
@@ -2273,7 +2343,6 @@ namespace Gorilla
      mDirty = true;
      mLayer->_markDirty();
     }
-
     void SetVisible(bool Vis)
     {
      if (mVisible == Vis)
@@ -2324,6 +2393,16 @@ namespace Gorilla
     */
     void  _redraw();
 
+	std::string* GetNameFile()
+	{
+	return &mNameFile;
+	}
+	void SetNameFile(Ogre::String NameFile)
+	{
+	 mNameFile = NameFile;
+	}
+
+
     protected:
 
 
@@ -2340,7 +2419,8 @@ namespace Gorilla
     bool               mDirty;
     bool               mVisible;
     buffer<Vertex>     mVertices;
-    Gorilla::RenderPriority mPriority;
+	Gorilla::RenderPriority mPriority;
+	Ogre::String mNameFile;
 
   };
 
@@ -2564,6 +2644,14 @@ namespace Gorilla
             Stop drawing and calculate vertices.
     */
     void  end();
+	std::string* GetNameFile()
+	{
+	return &mNameFile;
+	}
+	void SetNameFile(Ogre::String NameFile)
+	{
+	 mNameFile = NameFile;
+	}
 
     void SetVisible(bool Vis)
     {
@@ -2611,7 +2699,7 @@ namespace Gorilla
 
    protected:
 
-    QuadList(Layer*);
+    QuadList(Layer*,std::string&);
 
     ~QuadList() {}
 
@@ -2629,7 +2717,7 @@ namespace Gorilla
     bool                  mDirty;
     bool                  mVisible;
     Gorilla::RenderPriority mPriority;
-
+	Ogre::String mNameFile;
   };
 
   /* class. Caption
@@ -2649,9 +2737,10 @@ namespace Gorilla
         note.
              If the font index does not exist, an exception may be thrown.
     */
-    void font(size_t font_index)
+    void font(size_t font_index, std::string NameFile)
     {
-     mGlyphData      = mLayer->_getGlyphData(font_index);
+ 	 mNameFile = NameFile;
+	 mGlyphData      = Silverback::getSingleton().getatlas(mNameFile)->getGlyphData(font_index);
      if (mGlyphData == 0)
      {
        mDirty        = false;
@@ -2716,6 +2805,30 @@ namespace Gorilla
      mLayer->_markDirty();
     }
 
+	Ogre::Vector2 position()
+	{
+		Ogre::Vector2 pos;
+		pos.x=mLeft;
+		pos.y=mTop;
+		return pos;
+	}
+
+	void position(Ogre::Vector2 pos)
+	{
+		mLeft=pos.x;
+		mTop=pos.y;
+		mDirty=true;
+		mLayer->_markDirty();
+	}
+
+	void position(Ogre::Real left, Ogre::Real top)
+	{
+		mLeft=left;
+		mTop=top;
+		mDirty=true;
+		mLayer->_markDirty();
+	}
+
     /*! function. size
         desc.
             Set the maximum width and height of the text can draw into.
@@ -2736,6 +2849,8 @@ namespace Gorilla
     {
      return mWidth;
     }
+
+
 
     /*! function. width
         desc.
@@ -3005,11 +3120,52 @@ namespace Gorilla
     */
     void               _redraw();
 
+	std::string* GetNameFile()
+	{
+	return &mNameFile;
+	}
+
+	void SetNameFile(Ogre::String NameFile)
+	{
+	 mNameFile = NameFile;
+	}
+
+	Ogre::Real Textwidth()
+	{
+		Ogre::Real Large=0;
+		for(int i=0 ; i<mText.length()-1 ; i++)
+		{
+			unsigned char temp=mText[i];
+			Glyph* glyph = mGlyphData->getGlyph(temp);
+			Large+=glyph->glyphAdvance;
+		}
+		unsigned char temp =mText[mText.length()-1];
+		Glyph* glyph = mGlyphData->getGlyph(temp);
+		Large+=glyph->uvWidth;
+		//Large+=glyph->uvWidth;
+		return Large;
+	}
+	void setIndex(unsigned int value)
+	{
+		  mGlyphData      = Silverback::getSingleton().getatlas(mNameFile)->getGlyphData(value);
+		  if (mGlyphData == 0)
+		  {
+			mDirty        = false;
+		#if GORILLA_USES_EXCEPTIONS == 1
+			OGRE_EXCEPT( Ogre::Exception::ERR_ITEM_NOT_FOUND, "Glyph data not found", __FUNC__ );
+		#else
+			return;
+		#endif
+		  }
+		  mDirty        = true;
+		  mLayer->_markDirty();
+	}
+
    protected:
 
     void               _calculateDrawSize(Ogre::Vector2& size);
 
-    Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& caption, Layer* parent);
+    Caption(Ogre::uint glyphDataIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& caption, Layer* parent,const std::string& TheNameFile);
 
    ~Caption() {}
 
@@ -3029,6 +3185,7 @@ namespace Gorilla
     Gorilla::RenderPriority mPriority;
     Ogre::Real            mCursorOffset;
     Ogre::Real            mCharScaling;
+	Ogre::String		  mNameFile;
   };
 
   /* class. Caption
@@ -3228,7 +3385,7 @@ namespace Gorilla
 
     void SetDefaultGlyphIndex(Ogre::uint glyphDataIndex)
     {
-     mDefaultGlyphData = mLayer->_getGlyphData(glyphDataIndex);
+     mDefaultGlyphData = mLayer->_getGlyphData(glyphDataIndex,mNameFile);
      mDirty = true;
      mLayer->_markDirty();
     }
@@ -3265,10 +3422,17 @@ namespace Gorilla
     void               _redraw();
 
     void               _calculateCharacters();
-
+	std::string* GetNameFile()
+	{
+	return &mNameFile;
+	}
+	void SetNameFile(Ogre::String NameFile)
+	{
+	 mNameFile = NameFile;
+	}
    protected:
 
-    MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& text, Layer* parent);
+    MarkupText(Ogre::uint defaultGlyphIndex, Ogre::Real left, Ogre::Real top, const Ogre::String& text, Layer* parent,const Ogre::String& NameFile);
 
    ~MarkupText() {}
 
@@ -3294,6 +3458,7 @@ namespace Gorilla
     size_t                mClippedIndex;
     Gorilla::RenderPriority mPriority;
     Ogre::Real            mCharScaling;
+	Ogre::String		  mNameFile;
   };
 }
 

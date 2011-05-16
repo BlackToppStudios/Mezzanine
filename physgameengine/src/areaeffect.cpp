@@ -594,7 +594,7 @@ namespace phys{
                 if(ActorBase::Actorrigid != (*AA)->GetType())
                     continue;
                 ActRig = dynamic_cast<ActorRigid*>(*AA);
-                ActRig->SetIndividualGravity(Vector3());
+                ActRig->GetPhysicsSettings()->SetIndividualGravity(Vector3());
             }
         }
         if(!OverlappingActors.empty())
@@ -642,7 +642,7 @@ namespace phys{
                 if(ActorBase::Actorrigid != (*RA)->GetType())
                     continue;
                 ActRig = dynamic_cast<ActorRigid*>(*RA);
-                ActRig->SetIndividualGravity(WorldGrav);
+                ActRig->GetPhysicsSettings()->SetIndividualGravity(WorldGrav);
             }
         }
     }

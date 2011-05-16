@@ -292,9 +292,7 @@ namespace phys
 
     UI::Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport)
     {
-        Ogre::Viewport* OgrePort = WindowViewport->GetOgreViewport();
-        Gorilla::Screen* guiscreen = Silver->createScreen(OgrePort, Atlas);
-        UI::Screen* physscreen = new UI::Screen(ScreenName, guiscreen, WindowViewport);
+        UI::Screen* physscreen = new UI::Screen(ScreenName, Atlas, WindowViewport);
         Screens.push_back(physscreen);
         return physscreen;
     }

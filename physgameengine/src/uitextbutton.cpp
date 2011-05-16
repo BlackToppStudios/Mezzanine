@@ -50,10 +50,10 @@ namespace phys
 {
     namespace UI
     {
-        TextButton::TextButton(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, Layer* PLayer)
+        TextButton::TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer)
             : Button(name,Position,Size,PLayer)
         {
-            GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text);
+            GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text,*GorillaRectangle->GetNameFile());
             GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
             GorillaButton->background(Ogre::ColourValue(0,0,0,0));
             GorillaButton->align(Gorilla::TextAlign_Centre);
@@ -103,7 +103,7 @@ namespace phys
             return GorillaButton->text();
         }
 
-        void TextButton::HorizontallyAlign(UI::TextHorizontalAlign Align)
+        void TextButton::HorizontallyAlign(const UI::TextHorizontalAlign& Align)
         {
             Gorilla::TextAlignment HA;
             switch (Align)
@@ -123,7 +123,7 @@ namespace phys
             GorillaButton->align(HA);
         }
 
-        void TextButton::VerticallyAlign(UI::TextVerticalAlign Align)
+        void TextButton::VerticallyAlign(const UI::TextVerticalAlign& Align)
         {
             Gorilla::VerticalAlignment VA;
             switch (Align)
@@ -143,7 +143,7 @@ namespace phys
             GorillaButton->vertical_align(VA);
         }
 
-        void TextButton::SetPosition(const Vector2 Position)
+        void TextButton::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -158,7 +158,7 @@ namespace phys
             return RelPosition;
         }
 
-        void TextButton::SetActualPosition(const Vector2 Position)
+        void TextButton::SetActualPosition(const Vector2& Position)
         {
             GorillaButton->left(Position.X);
             GorillaButton->top(Position.Y);
@@ -172,7 +172,7 @@ namespace phys
             return Pos;
         }
 
-        void TextButton::SetSize(const Vector2 Size)
+        void TextButton::SetSize(const Vector2& Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -187,7 +187,7 @@ namespace phys
             return RelSize;
         }
 
-        void TextButton::SetActualSize(const Vector2 Size)
+        void TextButton::SetActualSize(const Vector2& Size)
         {
             GorillaButton->width(Size.X);
             GorillaButton->height(Size.Y);
@@ -201,7 +201,7 @@ namespace phys
             return Pos;
         }
 
-        void TextButton::SetRenderPriority(UI::RenderPriority Priority)
+        void TextButton::SetRenderPriority(const UI::RenderPriority& Priority)
         {
             Gorilla::RenderPriority RP;
             switch(Priority)

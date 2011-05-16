@@ -66,7 +66,7 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
                 /// @param Layer Pointer to the Layer that created this button.
-                TextButton(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text, Layer* PLayer);
+                TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 ~TextButton();
                 /// @brief Sets the visibility of this button.
@@ -91,39 +91,39 @@ namespace phys
                 /// @brief Aligns the text of the button.
                 /// @details Default value for this is UI::Txt_Middle.
                 /// @param Align The enum value representing the horizontal alignment to be set.
-                virtual void HorizontallyAlign(UI::TextHorizontalAlign Align);
+                virtual void HorizontallyAlign(const UI::TextHorizontalAlign& Align);
                 /// @brief Aligns the text of the button.
                 /// @details Default value for this is UI::Txt_Center.
                 /// @param Align The enum value representing the vertical alignment to be set.
-                virtual void VerticallyAlign(UI::TextVerticalAlign Align);
+                virtual void VerticallyAlign(const UI::TextVerticalAlign& Align);
                 /// @brief Sets the relative top left position of this button.
                 /// @param Position A Vector2 representing the location of this button.
-                virtual void SetPosition(const Vector2 Position);
+                virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative top left position of this button.
                 /// @return Returns a Vector2 representing the location of this button.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the top left position of this button in pixels.
                 /// @param Position A Vector2 representing the location of this button.
-                virtual void SetActualPosition(const Vector2 Position);
+                virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Gets the top left position of this button in pixels.
                 /// @return Returns a Vector2 representing the location of this button.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this button.
                 /// @param Size A vector2 representing the size of this button.
-                virtual void SetSize(const Vector2 Size);
+                virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this button.
                 /// @return Returns a vector2 representing the size of this button.
                 virtual Vector2 GetSize();
                 /// @brief Sets the size of this button in pixels.
                 /// @param Size A vector2 representing the size of this button.
-                virtual void SetActualSize(const Vector2 Size);
+                virtual void SetActualSize(const Vector2& Size);
                 /// @brief Gets the size of this button in pixels.
                 /// @return Returns a vector2 representing the size of this button.
                 virtual Vector2 GetActualSize();
                 /// @brief Sets the priority this button should be rendered with.
                 /// @details The default value for this is Medium.
                 /// @param Priority The priority level to be used when rendering this button.
-                virtual void SetRenderPriority(UI::RenderPriority Priority);
+                virtual void SetRenderPriority(const UI::RenderPriority& Priority);
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
                 virtual UI::RenderPriority GetRenderPriority();

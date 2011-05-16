@@ -73,7 +73,7 @@ void CatchApp::LoadContent()
     ActorRigid* FerrisWheel = new ActorRigid (100.0,"FerrisWheel","wheel.mesh",groupname);
     TheWorld->GetResourceManager()->ImportShapeData(FerrisWheel,"ferris_wheel.bullet");
     FerrisWheel->SetLocation(100,0,0);
-    FerrisWheel->SetDamping(0,0.1);
+    FerrisWheel->GetPhysicsSettings()->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(FerrisWheel);
 
     // Create the trayz
@@ -82,42 +82,42 @@ void CatchApp::LoadContent()
     TheWorld->GetResourceManager()->ImportShapeData(Tray1,"ferris_tray.bullet");
     PhysMan->StorePhysicsShape(Tray1,"TrayShape");
     Tray1->SetLocation(30.4,14.3,0);
-    Tray1->SetDamping(0,0.1);
+    Tray1->GetPhysicsSettings()->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(Tray1);
     ActorRigid* Tray2 = new ActorRigid(TrayMass,"Tray2","tray.mesh",groupname);
     PhysMan->ApplyPhysicsShape(Tray2,"TrayShape");
     Tray2->SetLocation(169.6,14.3,0);
-    Tray2->SetDamping(0,0.1);
+    Tray2->GetPhysicsSettings()->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(Tray2);
     ActorRigid* Tray3 = new ActorRigid(TrayMass,"Tray3","tray.mesh",groupname);
     PhysMan->ApplyPhysicsShape(Tray3,"TrayShape");
     Tray3->SetLocation(30.4,-42.7,0);
-    Tray3->SetDamping(0,0.1);
+    Tray3->GetPhysicsSettings()->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(Tray3);
     ActorRigid* Tray4 = new ActorRigid(TrayMass,"Tray4","tray.mesh",groupname);
     PhysMan->ApplyPhysicsShape(Tray4,"TrayShape");
     Tray4->SetLocation(169.6,-42.7,0);
-    Tray4->SetDamping(0,0.1);
+    Tray4->GetPhysicsSettings()->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(Tray4);
     ActorRigid* Tray5 = new ActorRigid(TrayMass,"Tray5","tray.mesh",groupname);
     PhysMan->ApplyPhysicsShape(Tray5,"TrayShape");
     Tray5->SetLocation(71.5,55.4,0);
-    Tray5->SetDamping(0,0.1);
+    Tray5->GetPhysicsSettings()->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(Tray5);
     ActorRigid* Tray6 = new ActorRigid(TrayMass,"Tray6","tray.mesh",groupname);
     PhysMan->ApplyPhysicsShape(Tray6,"TrayShape");
     Tray6->SetLocation(128.5,55.4,0);
-    Tray6->SetDamping(0,0.1);
+    Tray6->GetPhysicsSettings()->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(Tray6);
     ActorRigid* Tray7 = new ActorRigid(TrayMass,"Tray7","tray.mesh",groupname);
     PhysMan->ApplyPhysicsShape(Tray7,"TrayShape");
     Tray7->SetLocation(71.5,-83.8,0);
-    Tray7->SetDamping(0,0.1);
+    Tray7->GetPhysicsSettings()->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(Tray7);
     ActorRigid* Tray8 = new ActorRigid(TrayMass,"Tray8","tray.mesh",groupname);
     PhysMan->ApplyPhysicsShape(Tray8,"TrayShape");
     Tray8->SetLocation(128.5,-83.8,0);
-    Tray8->SetDamping(0,0.1);
+    Tray8->GetPhysicsSettings()->SetDamping(0,0.1);
     TheWorld->GetActorManager()->AddActor(Tray8);// */
 
     // Create world anchor for the wheel, which will allow it to spin.
@@ -150,36 +150,42 @@ void CatchApp::LoadContent()
     ActorRigid* Uranium1 = new ActorRigid(UraniumMass,"Uranium1","uranium.mesh",groupname);
     Uranium1->CreateShapeFromMeshDynamic(2);
     Uranium1->SetLocation(-145,40,0);
+    Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Uranium1->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Uranium1);
     ThrownItems.push_back(Uranium1);
     ActorRigid* Uranium2 = new ActorRigid(UraniumMass,"Uranium2","uranium.mesh",groupname);
     Uranium2->CreateShapeFromMeshDynamic(1);
     Uranium2->SetLocation(-195,40,0);
+    Uranium2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Uranium2->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Uranium2);
     ThrownItems.push_back(Uranium2);// */
     ActorRigid* Lead1 = new ActorRigid(LeadMass,"Lead1","lead.mesh",groupname);
     Lead1->CreateShapeFromMeshDynamic(1);
     Lead1->SetLocation(-145,0,0);
+    Lead1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Lead1->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Lead1);
     ThrownItems.push_back(Lead1);
     ActorRigid* Lead2 = new ActorRigid(LeadMass,"Lead2","lead.mesh",groupname);
     Lead2->CreateShapeFromMeshDynamic(1);
     Lead2->SetLocation(-195,0,0);
+    Lead2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Lead2->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Lead2);
     ThrownItems.push_back(Lead2);// */
     ActorRigid* Clay1 = new ActorRigid(ClayMass,"Clay1","clay.mesh",groupname);
     Clay1->CreateShapeFromMeshDynamic(1);
     Clay1->SetLocation(-145,-40,0);
+    Clay1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Clay1->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Clay1);
     ThrownItems.push_back(Clay1);
     ActorRigid* Clay2 = new ActorRigid(ClayMass,"Clay2","clay.mesh",groupname);
     Clay2->CreateShapeFromMeshDynamic(1);
     Clay2->SetLocation(-195,-40,0);
+    Clay2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Clay2->LimitMovementOnAxis(true,true,false);
     TheWorld->GetActorManager()->AddActor(Clay2);
     ThrownItems.push_back(Clay2);// */

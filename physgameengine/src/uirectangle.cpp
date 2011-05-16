@@ -54,7 +54,7 @@ namespace phys
 {
     namespace UI
     {
-        Rectangle::Rectangle(const Vector2 Position, const Vector2 Size, Layer* PLayer)
+        Rectangle::Rectangle(const Vector2& Position, const Vector2& Size, Layer* PLayer)
             : Parent(PLayer),
               MouseHover(false),
               RelPosition(Position),
@@ -64,6 +64,7 @@ namespace phys
 
             Vector2 Window = Parent->GetParent()->GetViewportDimensions();
             GRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
+            GRectangle->SetNameFile(Parent->GetParent()->GetPrimaryAtlas());
         }
 
         Rectangle::~Rectangle()
@@ -117,11 +118,17 @@ namespace phys
 
         void Rectangle::SetBackgroundSprite(const String& Name)
         {
-            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name);
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,*GRectangle->GetNameFile());
             GRectangle->background_image(GSprite);
         }
 
-        void Rectangle::SetBorder(const Real Width, const ColourValue& Colour)
+        void Rectangle::SetBackgroundSprite(const String& Name, const String& Atlas)
+        {
+            Gorilla::Sprite* GSprite = Parent->GetGorillaLayer()->_getSprite(Name,Atlas);
+            GRectangle->background_image(GSprite);
+        }
+
+        void Rectangle::SetBorder(const Real& Width, const ColourValue& Colour)
         {
             GRectangle->border(Width, Colour.GetOgreColourValue());
         }
@@ -131,7 +138,7 @@ namespace phys
             GRectangle->no_border();
         }
 
-        void Rectangle::SetPosition(const Vector2 Position)
+        void Rectangle::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -143,7 +150,7 @@ namespace phys
             return RelPosition;
         }
 
-        void Rectangle::SetActualPosition(const Vector2 Position)
+        void Rectangle::SetActualPosition(const Vector2& Position)
         {
             GRectangle->position(Position.GetOgreVector2());
         }
@@ -154,7 +161,7 @@ namespace phys
             return Pos;
         }
 
-        void Rectangle::SetSize(const Vector2 Size)
+        void Rectangle::SetSize(const Vector2& Size)
         {
             RelSize = Size;
             Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
@@ -167,7 +174,7 @@ namespace phys
             return RelSize;
         }
 
-        void Rectangle::SetActualSize(const Vector2 Size)
+        void Rectangle::SetActualSize(const Vector2& Size)
         {
             GRectangle->width(Size.X);
             GRectangle->height(Size.Y);
@@ -179,7 +186,7 @@ namespace phys
             return Pos;
         }
 
-        void Rectangle::SetRenderPriority(UI::RenderPriority Priority)
+        void Rectangle::SetRenderPriority(const UI::RenderPriority& Priority)
         {
             Gorilla::RenderPriority RP;
             switch(Priority)
@@ -217,6 +224,16 @@ namespace phys
                     break;
             }
             return UI::RP_Medium;
+        }
+
+        void Rectangle::SetPrimaryAtlas(const String& Atlas)
+        {
+            GRectangle->SetNameFile(Atlas);
+        }
+
+        String Rectangle::GetPrimaryAtlas()
+        {
+            return *GRectangle->GetNameFile();
         }
     }//UI
 }//phys

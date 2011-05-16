@@ -57,7 +57,7 @@ namespace phys{
     ///////////////////////////////////
     // ActorRigid class functions
 
-    ActorRigid::ActorRigid (Real mass, String name, String file, String group)
+    ActorRigid::ActorRigid(const Real& mass, const String& name, const String& file, const String& group)
         : ActorBase (name, file, group)
     {
         this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
@@ -69,16 +69,16 @@ namespace phys{
         ActorType=ActorBase::Actorrigid;
     }
 
-    ActorRigid::~ActorRigid ()
+    ActorRigid::~ActorRigid()
     {
         delete physrigidbody;
         CollisionObject = NULL;
     }
 
-    void ActorRigid::CreateRigidObject (Real pmass)
+    void ActorRigid::CreateRigidObject(const Real& pmass)
     {
         btScalar bmass=pmass;
-        this->physrigidbody = new btRigidBody (bmass, this->MotionState, this->Shape);
+        this->physrigidbody = new btRigidBody(bmass, this->MotionState, this->Shape);
         CollisionObject=physrigidbody;
         ObjectReference* ActorRef = new ObjectReference(phys::WOT_ActorRigid,this);
         Ogre::Any OgreRef(ActorRef);
@@ -90,21 +90,9 @@ namespace phys{
         }
     }
 
-    std::string ActorRigid::GetName () const
+    std::string ActorRigid::GetName() const
     {
         return this->GraphicsObject->getName();
-    }
-
-    void ActorRigid::AddObjectToWorld (World *TargetWorld)
-    {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody);
-        this->AttachToGraphics();
-    }
-
-    void ActorRigid::RemoveObjectFromWorld(World* TargetWorld)
-    {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeRigidBody(this->physrigidbody);
-        this->DetachFromGraphics();
     }
 
     void ActorRigid::CreateShapeFromMeshDynamic(short unsigned int Accuracy, bool UseAllSubmeshes)
@@ -267,42 +255,16 @@ namespace phys{
         return;
     }
 
-    void ActorRigid::SetDamping(Real LinDamping, Real AngDamping)
+    void ActorRigid::AddObjectToWorld(World *TargetWorld)
     {
-        this->physrigidbody->setDamping(LinDamping, AngDamping);
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody);
+        this->AttachToGraphics();
     }
 
-    void ActorRigid::SetLinearVelocity(Vector3 LinVel)
+    void ActorRigid::RemoveObjectFromWorld(World* TargetWorld)
     {
-        this->physrigidbody->setLinearVelocity(LinVel.GetBulletVector3());
-    }
-
-    Vector3 ActorRigid::GetLinearVelocity()
-    {
-        Vector3 LinVel(this->physrigidbody->getLinearVelocity());
-        return LinVel;
-    }
-
-    void ActorRigid::SetAngularVelocity(Vector3 AngVel)
-    {
-        this->physrigidbody->setAngularVelocity(AngVel.GetBulletVector3());
-    }
-
-    Vector3 ActorRigid::GetAngularVelocity()
-    {
-        Vector3 AngVel(this->physrigidbody->getAngularVelocity());
-        return AngVel;
-    }
-
-    void ActorRigid::SetIndividualGravity(const Vector3& Gravity)
-    {
-        physrigidbody->setGravity(Gravity.GetBulletVector3());
-    }
-
-    Vector3 ActorRigid::GetIndividualGravity()
-    {
-        Vector3 Grav(physrigidbody->getGravity());
-        return Grav;
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeRigidBody(this->physrigidbody);
+        this->DetachFromGraphics();
     }
 
     btRigidBody* ActorRigid::GetBulletObject()
