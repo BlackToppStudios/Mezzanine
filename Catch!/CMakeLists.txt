@@ -109,6 +109,7 @@ if(${WIN32})
 	CopyDemoFilesDuringBuild( windows/plugins.cfg data/windows/plugins.cfg )
 	CopyDemoFilesDuringBuild( windows/settings.cfg data/windows/settings.cfg )
 	CopyDemoFilesDuringBuild( windows/Plugin_CgProgramManager.dll data/windows/ogre/Plugin_CgProgramManager.dll )
+	CopyDemoFilesDuringBuild( windows/cg.dll data/windows/ogre/cg.dll )
 	
 	CopyFilesFromPhygameDuringBuild( data/windows/ogre/RenderSystem_GL.dll )
 	CopyFilesFromPhygameDuringBuild( libphysgame.dll )
