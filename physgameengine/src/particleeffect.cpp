@@ -106,8 +106,11 @@ namespace phys
         this->Pie->Template = Template;
     }
 
-    ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, SceneManager* manager)
-        { this->Pie = new internal::ParticleEffectInternalData(manager, System); }
+    ParticleEffect::ParticleEffect(Ogre::ParticleSystem* System, const String& Template, SceneManager* manager)
+    {
+        this->Pie = new internal::ParticleEffectInternalData(manager, System);
+        this->Pie->Template = Template;
+    }
 
     ParticleEffect::~ParticleEffect()
         { delete this->Pie; }

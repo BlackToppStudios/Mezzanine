@@ -122,13 +122,14 @@ class SceneManagerTests : public UnitTest
                 SM->CreateParticleEffect("SomeGreenParticles", "Examples/GreenyNimbus");
                 SM->CreateFreeNode("ASimpleFreeNode",phys::Vector3(1,1,1),phys::Vector3(2,2,2));
                 SerializeTest1 << *SM;
-                if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"0\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest1.str())
+                if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"0\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"Examples/GreenyNimbus\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest1.str())
                 {
                     AddTestResult("SceneManager::operator<< (No Sky)", Success, UnitTest::OverWrite);
                 }else{
                     AddTestResult("SceneManager::operator<< (No Sky)", Failed, UnitTest::OverWrite);
                 }
                 StopEngine();
+
                 StartEngine();
                 AddTestResult("SceneManager::operator>> (No Sky)", Unknown);
                 SM = TheWorld->GetSceneManager();
@@ -137,6 +138,7 @@ class SceneManagerTests : public UnitTest
                     SerializeTest1 >> *SM;
                     stringstream SerializeTest1a("");
                     SerializeTest1a << *SM;
+                    //TheWorld->LogStream << std::endl << SerializeTest1a.str() << "==" << SerializeTest1.str() << std::endl;
                     if ( SerializeTest1a.str() == SerializeTest1.str())
                     {
                         AddTestResult("SceneManager::operator>> (No Sky)", Success, UnitTest::OverWrite);
@@ -146,9 +148,7 @@ class SceneManagerTests : public UnitTest
                 }catch(Exception E){
                     AddTestResult("SceneManager::operator>> (No Sky)", Failed, UnitTest::OverWrite);
                     TheWorld->LogStream << endl << "SceneManager::operator>> (No Sky) - Failed With: " << E.what();
-                    TheWorld->CommitLog();
                 }
-
                 StopEngine();
 
 
@@ -162,13 +162,36 @@ class SceneManagerTests : public UnitTest
                 SM->CreateParticleEffect("SomeGreenParticles", "Examples/GreenyNimbus");
                 SM->CreateFreeNode("ASimpleFreeNode",phys::Vector3(1,1,1),phys::Vector3(2,2,2));
                 SerializeTest2 << *SM;
-                if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"3\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><SkyDome Version=\"1\" MaterialName=\"Examples/CloudPlane\" MaterialGroupName=\"files\" DrawFirst=\"1\" Distance=\"50\" Curvature=\"10\" Tiling=\"8\" XSegments=\"16\" YSegments=\"16\" YSegments_keep=\"-1\" ><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation></SkyDome><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest2.str())
+                if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"3\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><SkyDome Version=\"1\" MaterialName=\"Examples/CloudPlane\" MaterialGroupName=\"files\" DrawFirst=\"1\" Distance=\"50\" Curvature=\"10\" Tiling=\"8\" XSegments=\"16\" YSegments=\"16\" YSegments_keep=\"-1\" ><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation></SkyDome><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"Examples/GreenyNimbus\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest2.str())
                 {
                     AddTestResult("SceneManager::operator<< (SkyDome)", Success, UnitTest::OverWrite);
                 }else{
                     AddTestResult("SceneManager::operator<< (SkyDome)", Failed, UnitTest::OverWrite);
                 }
                 StopEngine();
+
+                StartEngine();
+                AddTestResult("SceneManager::operator>> (SkyDome)", Unknown);
+                SM = TheWorld->GetSceneManager();
+                try
+                {
+                    SerializeTest2 >> *SM;
+                    stringstream SerializeTest2a("");
+                    SerializeTest2a << *SM;
+                    //TheWorld->LogStream << std::endl << SerializeTest2a.str() << "==" << SerializeTest2.str() << std::endl;
+                    if ( SerializeTest2a.str() == SerializeTest2.str())
+                    {
+                        AddTestResult("SceneManager::operator>> (SkyDome)", Success, UnitTest::OverWrite);
+                    }else{
+                        AddTestResult("SceneManager::operator>> (SkyDome)", Failed, UnitTest::OverWrite);
+                    }
+                }catch(Exception E){
+                    AddTestResult("SceneManager::operator>> (SkyDome)", Failed, UnitTest::OverWrite);
+                    TheWorld->LogStream << endl << "SceneManager::operator>> (SkyDome) - Failed With: " << E.what();
+                }
+                StopEngine();
+
+
 
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (SkyPlane)", Unknown);
@@ -180,13 +203,35 @@ class SceneManagerTests : public UnitTest
                 SM->CreateParticleEffect("SomeGreenParticles", "Examples/GreenyNimbus");
                 SM->CreateFreeNode("ASimpleFreeNode",phys::Vector3(1,1,1),phys::Vector3(2,2,2));
                 SerializeTest3 << *SM;
-                if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"1\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><SkyPlane Version=\"1\" MaterialName=\"Examples/CloudPlane\" MaterialGroupName=\"files\" DrawFirst=\"1\" Scale=\"1000\" Tiling=\"10\" Bow=\"0\" XSegments=\"1\" YSegments=\"1\" ><Plane Version=\"1\" Distance=\"5\" ><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Plane></SkyPlane><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest3.str())
+                if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"1\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><SkyPlane Version=\"1\" MaterialName=\"Examples/CloudPlane\" MaterialGroupName=\"files\" DrawFirst=\"1\" Scale=\"1000\" Tiling=\"10\" Bow=\"0\" XSegments=\"1\" YSegments=\"1\" ><Plane Version=\"1\" Distance=\"5\" ><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Plane></SkyPlane><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"Examples/GreenyNimbus\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest3.str())
                 {
                     AddTestResult("SceneManager::operator<< (SkyPlane)", Success, UnitTest::OverWrite);
                 }else{
                     AddTestResult("SceneManager::operator<< (SkyPlane)", Failed, UnitTest::OverWrite);
                 }
                 StopEngine();
+
+                StartEngine();
+                AddTestResult("SceneManager::operator>> (SkyPlane)", Unknown);
+                SM = TheWorld->GetSceneManager();
+                try
+                {
+                    SerializeTest3 >> *SM;
+                    stringstream SerializeTest3a("");
+                    SerializeTest3a << *SM;
+                    //TheWorld->LogStream << std::endl << SerializeTest3a.str() << "==" << SerializeTest3.str() << std::endl;
+                    if ( SerializeTest3a.str() == SerializeTest3.str())
+                    {
+                        AddTestResult("SceneManager::operator>> (SkyPlane)", Success, UnitTest::OverWrite);
+                    }else{
+                        AddTestResult("SceneManager::operator>> (SkyPlane)", Failed, UnitTest::OverWrite);
+                    }
+                }catch(Exception E){
+                    AddTestResult("SceneManager::operator>> (SkyPlane)", Failed, UnitTest::OverWrite);
+                    TheWorld->LogStream << endl << "SceneManager::operator>> (SkyPlane) - Failed With: " << E.what();
+                }
+                StopEngine();
+
 
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (SkyBox)", Unknown);
@@ -198,15 +243,36 @@ class SceneManagerTests : public UnitTest
                 SM->CreateParticleEffect("SomeGreenParticles", "Examples/GreenyNimbus");
                 SM->CreateFreeNode("ASimpleFreeNode",phys::Vector3(1,1,1),phys::Vector3(2,2,2));
                 SerializeTest4 << *SM;
-                TheWorld->LogStream << *SM;
                 TheWorld->CommitLog();
-                if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"2\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><SkyBox Version=\"1\" MaterialName=\"Examples/CloudBox\" MaterialGroupName=\"files\" DrawFirst=\"1\" Distance=\"50\" ><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation></SkyBox><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest4.str())
+                if ("<SceneManager Version=\"1\" Name=\"SceneManagerInstance1\" SceneShadowTechnique=\"0\" ShadowTextureCount=\"1\" ShadowTextureSize=\"512\" ShadowFarDistance=\"0\" SkyMethod=\"2\"><ShadowColour><ColourValue Version=\"1\" Red=\"0.25\" Green=\"0.25\" Blue=\"0.25\" Alpha=\"1\" /></ShadowColour><AmbientLight><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></AmbientLight><SkyBox Version=\"1\" MaterialName=\"Examples/CloudBox\" MaterialGroupName=\"files\" DrawFirst=\"1\" Distance=\"50\" ><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation></SkyBox><Light Version=\"1\" Name=\"ADefaultLightWithNoChangesAtAll\" AttachedTo=\"\" Type=\"1\" PowerScale=\"1\" AttenuationRange=\"100000\" AttenuationConstant=\"1\" AttenuationQuadric=\"0\" AttenuationLinear=\"0\" SpotlightInnerAngle=\"0.523599\" SpotlightOuterAngle=\"0.698132\" SpotlightFalloff=\"1\"><Direction><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"1\"/></Direction><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location><SpecularColour><ColourValue Version=\"1\" Red=\"0\" Green=\"0\" Blue=\"0\" Alpha=\"1\" /></SpecularColour><fDiffuseColour><ColourValue Version=\"1\" Red=\"1\" Green=\"1\" Blue=\"1\" Alpha=\"1\" /></fDiffuseColour></Light><ParticleEffect Version=\"1\" Name=\"SomeGreenParticles\" AttachedTo=\"\" Enabled=\"0\" Template=\"Examples/GreenyNimbus\"><Orientation><Quaternion Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\" W=\"1\" /></Orientation><Location><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></Location></ParticleEffect><WorldNode Version=\"1\" Name=\"ASimpleFreeNode\" AttachedTo=\"\" StandingType=\"0\"><Orientation><Quaternion Version=\"1\" X=\"-0.325058\" Y=\"0.325058\" Z=\"0\" W=\"0.888074\" /></Orientation><Location><Vector3 Version=\"1\" X=\"2\" Y=\"2\" Z=\"2\"/></Location></WorldNode></SceneManager>" == SerializeTest4.str())
                 {
                     AddTestResult("SceneManager::operator<< (SkyBox)", Success, UnitTest::OverWrite);
                 }else{
                     AddTestResult("SceneManager::operator<< (SkyBox)", Failed, UnitTest::OverWrite);
                 }
                 StopEngine();
+
+                StartEngine();
+                AddTestResult("SceneManager::operator>> (SkyBox)", Unknown);
+                SM = TheWorld->GetSceneManager();
+                try
+                {
+                    SerializeTest4 >> *SM;
+                    stringstream SerializeTest4a("");
+                    SerializeTest4a << *SM;
+                    //TheWorld->LogStream << std::endl << SerializeTest4a.str() << "==" << SerializeTest4.str() << std::endl;
+                    if ( SerializeTest4a.str() == SerializeTest4.str())
+                    {
+                        AddTestResult("SceneManager::operator>> (SkyBox)", Success, UnitTest::OverWrite);
+                    }else{
+                        AddTestResult("SceneManager::operator>> (SkyBox)", Failed, UnitTest::OverWrite);
+                    }
+                }catch(Exception E){
+                    AddTestResult("SceneManager::operator>> (SkyBox)", Failed, UnitTest::OverWrite);
+                    TheWorld->LogStream << endl << "SceneManager::operator>> (SkyBox) - Failed With: " << E.what();
+                }
+                StopEngine();
+
 
             }else{
                 AddTestResult("SceneManager::operator<< (SkyDome)", Skipped);

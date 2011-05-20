@@ -92,8 +92,9 @@ namespace phys
             /// @brief Internal constructor.
             /// @details This constructor should not be called on manually.
             /// @param System Pointer to the Ogre ParticleSystem this class is based on.
+            /// @param Template Name of the particle script to be used in creating this particle effect.
             /// @param manager Pointer to the manager that this particle effect is to be used in.
-            ParticleEffect(Ogre::ParticleSystem* System, SceneManager* manager);
+            ParticleEffect(Ogre::ParticleSystem* System, const String& Template, SceneManager* manager);
 
             /// @brief Class destructor.
             ~ParticleEffect();

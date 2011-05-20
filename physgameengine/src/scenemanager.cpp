@@ -416,7 +416,7 @@ namespace phys
 
     ParticleEffect* SceneManager::CreateParticleEffect(const String& Name, const String& Template)
     {
-        ParticleEffect* Particle = new ParticleEffect(this->SMD->OgreManager->createParticleSystem(Name, Template), this);
+        ParticleEffect* Particle = new ParticleEffect(this->SMD->OgreManager->createParticleSystem(Name, Template), Template, this);
         Particles.push_back(Particle);
         return Particle;
     }
@@ -759,19 +759,20 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                 switch(Name[0])
                 {
                     case 'A': // AmbientLight
-                                if(Name==phys::String("AmbientLight"))
-                                {
-                                    if(Child.GetFirstChild().Name() == "ColourValue")
-                                    {
-                                        phys::ColourValue AllAroundUs;
-                                        Child.GetFirstChild() >> AllAroundUs;
-                                        Ev.SetAmbientLight(AllAroundUs);
-                                    }else{
-                                        throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element AmbientLight-\"",Name,"\"")) );
-                                    }
-                                }else{
-                                    throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Sd-\"",Name,"\"")) );
-                                }
+                        if(Name==phys::String("AmbientLight"))
+                        {
+                            if(phys::String(Child.GetFirstChild().Name()) == "ColourValue")
+                            {
+                                phys::ColourValue AllAroundUs;
+                                Child.GetFirstChild() >> AllAroundUs;
+                                Ev.SetAmbientLight(AllAroundUs);
+                            }else{
+                                throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element AmbientLight-\"",Name,"\"")) );
+                            }
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Sd-\"",Name,"\"")) );
+                        }
+                        break;
                     case 'L': // Light
                         if(Name==phys::String("Light"))
                         {
@@ -852,29 +853,30 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                 {
                                     if(Child.GetFirstChild())
                                     {
-                                        /*if(Child.GetFirstChild().Name() == "ColourValue")
-                                        {*/
+                                        if(phys::String(Child.GetFirstChild().Name()) == "ColourValue")
+                                        {
                                             phys::ColourValue InTheShade;
                                             Child.GetFirstChild() >> InTheShade;
                                             Ev.SetShadowColour(InTheShade);
-                                        /*}else{
+                                        }else{
                                             throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element ShadowColour-\"",Child.GetFirstChild().Name(),"\"")) );
-                                        }*/
+                                        }
                                     }else{
                                         throw( phys::Exception("Incompatible XML for SceneManager: ShadowColour has no child"));
                                     }
                                 }else{
                                     throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Sd-\"",Name,"\"")) );
                                 }
+                                break;
                             case 'B': // SkyBox
                                 if(Name==phys::String("SkyBox"))
                                 {
                                     if(Child.GetAttribute("Version").AsInt() == 1)
                                     {
                                         phys::Quaternion Orientation;
-                                        if(Child.GetFirstChild().Name() == "Orientation")
+                                        if(phys::String(Child.GetFirstChild().Name()) == "Orientation")
                                         {
-                                            Child.GetFirstChild() >> Orientation;
+                                            Child.GetFirstChild().GetFirstChild() >> Orientation;
                                         }else{
                                             throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Orientation-\"",Name,"\"")) );
                                         }
@@ -896,9 +898,9 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::SceneManager
                                     if(Child.GetAttribute("Version").AsInt() == 1)
                                     {
                                         phys::Quaternion Orientation;
-                                        if(Child.GetFirstChild().Name() == "Orientation")
+                                        if(phys::String(Child.GetFirstChild().Name()) == "Orientation")
                                         {
-                                            Child.GetFirstChild() >> Orientation;
+                                            Child.GetFirstChild().GetFirstChild() >> Orientation;
                                         }else{
                                             throw( phys::Exception(phys::StringCat("Incompatible XML for SceneManager: Includes unknown Element Orientation-\"",Name,"\"")) );
                                         }

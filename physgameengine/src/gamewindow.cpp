@@ -57,10 +57,17 @@ namespace phys
         CreateGameWindow(WindowCaption,Width,Height,Flags);
     }
 
+    namespace
+    {
+        // Stores a handle for the SDL rendering context
+        void* RC = 0;
+    }
+
     GameWindow::~GameWindow()
     {
         OgreWindow->destroy();
         SDL_DestroyWindow(SDLWindow);
+        RC=0;
     }
 
     void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
@@ -124,7 +131,6 @@ namespace phys
         SDLFlags|=SDL_WINDOW_SHOWN;
         SDLWindow = SDL_CreateWindow( WindowCaption.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, Settings.RenderWidth, Settings.RenderHeight, SDLFlags );
 
-        static void* RC = 0;
         if(!RC)
             RC = SDL_GL_CreateContext(this->SDLWindow);
         RenderContext = RC;
