@@ -46,7 +46,15 @@ void CatchApp::LoadContent()
 	DefCamera->LookAt(Vector3(0,0,0));
 
 	// Lights Setup
-    SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
+    Light* DLight = SceneMan->CreateLight("SceneLight");
+    DLight->SetType(Light::Directional);
+    Vector3 Loc(150,250,-200);
+    DLight->SetLocation(Loc);
+    Loc.Normalize();
+    DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
+    DLight->SetDiffuseColour(ColourValue(1,1,1,1));
+    DLight->SetSpecularColour(ColourValue(1,1,1,1));
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
