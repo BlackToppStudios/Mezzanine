@@ -82,7 +82,7 @@ namespace phys{
         internal::MeshTools::GetMeshTextures(GraphicsObject,CurMesh);
         internal::MeshTools::GetOtherMeshInfo(GraphicsObject,CurMesh);
 
-        this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh(this->GameWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
+        this->physsoftbody = btSoftBodyHelpers::CreateFromTriMesh(World::GetWorldPointer()->GetPhysicsManager()->GetPhysicsWorldPointer()->getWorldInfo(), &CurMesh.Verticies[0].x, &CurMesh.Indicies[0], CurMesh.ICount/3);
         CollisionObject=physsoftbody;
         ObjectReference* ActorRef = new ObjectReference(phys::WOT_ActorSoft,this);
         CollisionObject->setUserPointer(ActorRef);
@@ -96,7 +96,7 @@ namespace phys{
 
         CreateManualMesh(CurMesh);
 
-        this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
+        this->GraphicsObject = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(CurMesh.Name, CurMesh.Name + "M", CurMesh.Group);
         Ogre::Any OgreRef(ActorRef);
         GraphicsObject->setUserAny(OgreRef);
 

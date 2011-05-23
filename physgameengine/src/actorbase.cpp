@@ -66,9 +66,9 @@ namespace phys{
           ShapeIsSaved(false),
           ActorType(ActorBase::Actorbase)
     {
-        this->GameWorld = World::GetWorldPointer();
-        this->GraphicsNode = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
-        this->ActorWorldNode = new WorldNode(GraphicsNode,GameWorld->GetSceneManager());
+        //this->GameWorld = World::GetWorldPointer();
+        this->GraphicsNode = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->getRootSceneNode()->createChildSceneNode();
+        this->ActorWorldNode = new WorldNode(GraphicsNode,World::GetWorldPointer()->GetSceneManager());
         this->Shape = new btEmptyShape();
     }
 
@@ -81,7 +81,7 @@ namespace phys{
             delete Shape;
         }
         //delete GraphicsObject;
-        this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
+        World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->destroyEntity(GraphicsObject);
         delete ActorWorldNode;
         if(CollisionObject)
         {
@@ -283,6 +283,17 @@ namespace phys{
     {
         return BasePhysicsSettings;
     }
+
+    String ActorBase::GetSerialized() const
+    {
+
+    }
+
+    void ActorBase::Deserialize(const String&)
+    {
+
+    }
+
 
     ///////////////////////////////////
     // Internal Object Access functions

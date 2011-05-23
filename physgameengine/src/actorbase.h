@@ -108,7 +108,7 @@ namespace phys
 
         protected:
             /// @brief A pointer to the World the actor will reside.
-            World* GameWorld;
+            //World* GameWorld;
 
             //abstraction for other libraries
             /// @brief This class encapsulates the functionality of the Ogre::Entity using this
@@ -336,6 +336,10 @@ namespace phys
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.
             virtual ActorBasePhysicsSettings* GetPhysicsSettings() const;
+
+            String GetSerialized() const;
+
+            void Deserialize(const String&);
 
 ///////////////////////////////////////////////////////////////////////////////
 // Working with the World

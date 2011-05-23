@@ -60,7 +60,7 @@ namespace phys{
     ActorRigid::ActorRigid(const Real& mass, const String& name, const String& file, const String& group)
         : ActorBase (name, file, group)
     {
-        this->GraphicsObject = this->GameWorld->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
+        this->GraphicsObject = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);

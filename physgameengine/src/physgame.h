@@ -48,7 +48,6 @@
 /// care about the internals of our project.
 ///////////////////////////////////////////////////////////////////////////////
 
-
                                         // The remarks in Column 41 are use to help with serializing and deserializing
 
 // We put headers in our headers so we can include while we include
