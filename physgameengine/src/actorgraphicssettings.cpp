@@ -43,19 +43,64 @@
 #include "actorgraphicssettings.h"
 #include "actorbase.h"
 
+#include <map>
+
 #include <Ogre.h>
 
 namespace phys
 {
-    ActorGraphicsSettings::ActorGraphicsSettings(ActorBase* Actor, Ogre::Entity* GraphicsObject)
-        : Parent(Actor),
-          ActorEnt(GraphicsObject)
+    namespace internal
     {
+        /// @internal
+        /// @brief Used to store internal data about an actors.
+        class InternalActorGraphicsSettings
+        {
+        public:
+
+            /// @internal
+            /// @brief Graphics Object of the actor.
+            Ogre::Entity* ActorEnt;
+
+            /// @internal
+            /// @brief The Actor this belongs to.
+            ActorBase* Parent;
+
+            /// @internal
+            /// @brief Used for tracking ambient color on sub-meshes
+            std::map<Whole, ColourValue> Ambient;
+
+            /// @internal
+            /// @brief Used for tracking Diffuse color on sub-meshes
+            std::map<Whole, ColourValue> Diffuse;
+
+            /// @internal
+            /// @brief Used for tracking Specular color on sub-meshes
+            std::map<Whole, ColourValue> Specular;
+
+            InternalActorGraphicsSettings(ActorBase* Actor, Ogre::Entity* GraphicsObject)
+              : Parent(Actor),
+                ActorEnt(GraphicsObject)
+            {
+            }
+
+        };
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Construction
+
+    ActorGraphicsSettings::ActorGraphicsSettings(ActorBase* Actor, Ogre::Entity* GraphicsObject)
+    {
+        this->IAGS = new internal::InternalActorGraphicsSettings(Actor, GraphicsObject);
     }
 
     ActorGraphicsSettings::~ActorGraphicsSettings()
     {
+        delete this->IAGS;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Material Management
 
     Ogre::MaterialPtr ActorGraphicsSettings::GetMaterial(Whole Submesh)
     {
@@ -64,38 +109,53 @@ namespace phys
 
     void ActorGraphicsSettings::SetMaterial(String MatName, Whole Submesh)
     {
-        ActorEnt->getMesh()->getSubMesh(Submesh)->setMaterialName(MatName);
+        this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->setMaterialName(MatName);
     }
 
     ConstString& ActorGraphicsSettings::GetMaterialName(Whole Submesh)
     {
-        return ActorEnt->getMesh()->getSubMesh(Submesh)->getMaterialName();
+        return this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->getMaterialName();
     }
 
     bool ActorGraphicsSettings::HasMaterialSet(Whole Submesh)
     {
-        return ActorEnt->getMesh()->getSubMesh(Submesh)->isMatInitialised();
+        return this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->isMatInitialised();
     }
 
     Whole ActorGraphicsSettings::GetNumSubmeshes()
     {
-        return ActorEnt->getMesh()->getNumSubMeshes();
+        return this->IAGS->ActorEnt->getMesh()->getNumSubMeshes();
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    // Material Colors
 
     void ActorGraphicsSettings::SetMaterialAmbient(const ColourValue& Ambient, Whole Submesh)
     {
+        this->IAGS->Ambient[Submesh] = Ambient;
         GetMaterial(Submesh)->setAmbient(Ambient.GetOgreColourValue());
     }
 
     void ActorGraphicsSettings::SetMaterialSpecular(const ColourValue& Specular, Whole Submesh)
     {
+        this->IAGS->Specular[Submesh] = Specular;
         GetMaterial(Submesh)->setSpecular(Specular.GetOgreColourValue());
     }
 
     void ActorGraphicsSettings::SetMaterialDiffuse(const ColourValue& Diffuse, Whole Submesh)
     {
+        this->IAGS->Diffuse[Submesh] = Diffuse;
         GetMaterial(Submesh)->setDiffuse(Diffuse.GetOgreColourValue());
     }
+
+    ColourValue ActorGraphicsSettings::GetMaterialAmbient(Whole Submesh)
+        { return this->IAGS->Ambient[Submesh]; }
+
+    ColourValue ActorGraphicsSettings::GetMaterialSpecular(Whole Submesh)
+        { return this->IAGS->Specular[Submesh]; }
+
+    ColourValue ActorGraphicsSettings::GetMaterialDiffuse(Whole Submesh)
+        { return this->IAGS->Diffuse[Submesh]; }
 }
 
 #endif

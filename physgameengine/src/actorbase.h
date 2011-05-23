@@ -271,7 +271,7 @@ namespace phys
 
             /// @brief Gets a WorldNode representing the position and orientation of this actor.
             /// @details The WorldNode returned by this function is not stored in the scene manasger.
-            /// @return Returns a WorldNode pointer poiniting to this actor's world node.
+            /// @return Returns a WorldNode pointer pointing to this actor's world node.
             virtual WorldNode* GetActorNode() const;
 
             /// @brief Gets whether this actors current shape has been saved or not.

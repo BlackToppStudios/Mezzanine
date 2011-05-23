@@ -286,6 +286,34 @@ namespace phys{
 
     String ActorBase::GetSerialized() const
     {
+        //location
+        //orientation
+        //Name
+        //Actorscaling
+        //MeshFile
+        //ResourceGroup
+
+        //IsAnimated
+            //Animation Name?
+        //Actor Type
+
+        //Actor world node
+            //requires some changes to worldnode
+
+        //IsStaticOrKinematic
+        //is shape saved
+            //use in logic?
+
+        //Graphics settings
+            //Requires an Ogre::Entity, but since the actor only has one I think that it will be implied
+            //Submeshes
+                //Material Name
+                //Colours
+                    //specular
+                    //Diffuse
+                    //ambient
+        //Physics settings
+
 
     }
 

@@ -51,17 +51,17 @@
                                         // The remarks in Column 41 are use to help with serializing and deserializing
 
 // We put headers in our headers so we can include while we include
-#include "actorbase.h"
-#include "actorcontainerbase.h"
-#include "actorcontainervector.h"
-#include "actorgraphicssettings.h"
-#include "actorphysicssettings.h"
-#include "actorragdoll.h"
-#include "actorrigid.h"
-#include "actorsoft.h"
+#include "actorbase.h"                  //Target
+#include "actorcontainerbase.h"         //Target2
+#include "actorcontainervector.h"       //Target2
+#include "actorgraphicssettings.h"      //Target
+#include "actorphysicssettings.h"       //Target
+#include "actorragdoll.h"               //Pending completion
+#include "actorrigid.h"                 //Target
+#include "actorsoft.h"                  //Pending completion
 #include "actorterrain.h"
 #include "areaeffect.h"
-#include "attachable.h"                 // Target2 for output only
+#include "attachable.h"                 // Target3 for output only
 #include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"
 #include "cameramanager.h"
@@ -98,7 +98,7 @@
 #include "rayquerytool.h"               // nothing to do
 #include "resourceinputstream.h"
 #include "resourcemanager.h"
-#include "scenemanager.h"               // Target
+#include "scenemanager.h"               // Done
 #include "simpletimer.h"
 #include "sound.h"
 #include "soundlistener.h"

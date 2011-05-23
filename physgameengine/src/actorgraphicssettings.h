@@ -51,6 +51,10 @@ namespace Ogre
 
 namespace phys
 {
+    namespace internal
+    {
+        class InternalActorGraphicsSettings;
+    }
     class ActorBase;
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorGraphicsSettings
@@ -63,20 +67,27 @@ namespace phys
     {
         protected:
             /// @internal
-            /// @brief Graphics Object of the actor.
-            Ogre::Entity* ActorEnt;
-            /// @brief The Actor this belongs to.
-            ActorBase* Parent;
+            /// @brief Stores all the data to go with the
+            internal::InternalActorGraphicsSettings* IAGS;
+
             ///@internal
             /// @brief Material/textures for the actor
             Ogre::MaterialPtr GetMaterial(Whole Submesh = 0);
         public:
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Construction
+
             /// @brief Standard Constructor.
             /// @param Actor The actor this settings class configures.
             /// @param GraphicsObject The graphics object belonging to the actor this class configures.
             ActorGraphicsSettings(ActorBase* Actor, Ogre::Entity* GraphicsObject);
             /// @brief Class destructor.
             ~ActorGraphicsSettings();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Material Management
+
             /// @brief Sets the material of the specified submesh.
             /// @details The name of the material isn't the same as the name of the .material file.
             /// As a single material file can contain several material scripts.  The name this function
@@ -96,6 +107,10 @@ namespace phys
             /// @brief Gets the number of submeshes in the mesh of the graphics ohject.
             /// @return Returns a whole representing the number of submeshes in this objects mesh.
             Whole GetNumSubmeshes();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Material Colors
+
             /// @brief Sets the Ambient colour value of the material belonging to the specified submesh.
             /// @details The set value is applied to every technique of every pass in the material.
             /// @param Ambient The colour you wish to set as the material Ambient.
@@ -111,6 +126,25 @@ namespace phys
             /// @param Diffuse The colour you wish to set as the material Diffuse.
             /// @param Submesh The submesh you want to alter the material of.
             void SetMaterialDiffuse(const ColourValue& Diffuse, Whole Submesh = 0);
+
+            /// @brief Gets the Ambient colour value of the material belonging to the specified submesh.
+            /// @details If no Ambient colour was specified for a given submesh a default ColourValue is returned.
+            /// @param Submesh The submesh you want to alter the material of.
+            /// @return The colour that was as the material Ambient colour, OR a default colourvalue.
+            ColourValue GetMaterialAmbient(Whole Submesh = 0);
+            /// @brief Gets the Specular colour value of the material belonging to the specified submesh.
+            /// @details If no Specular colour was specified for a given submesh a default ColourValue is returned.
+            /// @param Submesh The submesh you want to alter the material of.
+            /// @return The colour that was as the material Specular colour, OR a default colourvalue.
+            ColourValue GetMaterialSpecular(Whole Submesh = 0);
+            /// @brief Gets the Diffuse colour value of the material belonging to the specified submesh.
+            /// @details If no Diffuse colour was specified for a given submesh a default ColourValue is returned.
+            /// @param Submesh The submesh you want to alter the material of.
+            /// @return The colour that was as the material Diffuse colour, OR a default colourvalue.
+            ColourValue GetMaterialDiffuse(Whole Submesh = 0);
+
+
+
     };//actorgraphicssettings
 }//phys
 
