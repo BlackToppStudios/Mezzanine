@@ -67,7 +67,8 @@ namespace phys
     {
         OgreWindow->destroy();
         SDL_DestroyWindow(SDLWindow);
-        RC=0;
+        if(this == Manager->GetPrimaryGameWindow())
+            RC = 0;
     }
 
     void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)

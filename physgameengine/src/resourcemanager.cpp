@@ -50,6 +50,7 @@
 #include "resourcemanager.h"
 #include "actorbase.h"
 #include "internalogredatastreambuf.h.cpp"
+#include "internalbulletfilemanager.h.cpp"
 
 #ifdef PHYSDEBUG
 #include "world.h"
@@ -61,6 +62,7 @@ namespace phys {
     {
         this->Priority = 20;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
+        internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
     }
 
     ResourceManager::~ResourceManager()
