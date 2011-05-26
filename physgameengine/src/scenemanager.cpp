@@ -170,7 +170,7 @@ namespace phys
                 Type = Ogre::ST_GENERIC;
         }
         this->SMD->OgreManager = Ogre::Root::getSingleton().createSceneManager(Type);
-        this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
+        //this->SetAmbientLight(ColourValue(0.0,0.0,0.0));
         //const Ogre::ShadowCameraSetupPtr ShadowCam = Ogre::ShadowCameraSetupPtr(new Ogre::DefaultShadowCameraSetup());
         //OgreManager->setShadowCameraSetup(ShadowCam);
     }
