@@ -142,10 +142,29 @@ namespace phys
             /// @param Submesh The submesh you want to alter the material of.
             /// @return The colour that was as the material Diffuse colour, OR a default colourvalue.
             ColourValue GetMaterialDiffuse(Whole Submesh = 0);
-
-
-
     };//actorgraphicssettings
 }//phys
+
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::ActorGraphicsSettings to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::ActorGraphicsSettings to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ActorGraphicsSettings& Ev);
+
+/// @brief Deserialize a phys::ActorGraphicsSettings
+/// @param stream The istream to get the xml from to (re)make the phys::ActorGraphicsSettings.
+/// @param Ev the phys::ActorGraphicsSettings to be deserialized.
+/// @return this returns the ostream, advanced past the phys::ActorGraphicsSettings that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorGraphicsSettings& Ev);
+
+/// @brief Set all values of a phys::ActorGraphicsSettings from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::ActorGraphicsSettings.
+/// @param Ev the phys::ActorGraphicsSettings to be reset.
+/// @return This returns thexml::Node that was passed in.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorGraphicsSettings& Ev);
+
+#endif // \PHYSXML
 
 #endif
