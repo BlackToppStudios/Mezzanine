@@ -42,6 +42,8 @@
 
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
+#include <sstream>
+
 
 #include "actorbase.h"
 #include "actorrigid.h"
@@ -284,8 +286,12 @@ namespace phys{
         return BasePhysicsSettings;
     }
 
+#ifdef PHYSXML
     String ActorBase::GetSerialized() const
     {
+        std::stringstream Output;
+        Output << *(GetGraphicsSettings());
+
         //location
         //orientation
         //Name
@@ -304,18 +310,18 @@ namespace phys{
         //is shape saved
             //use in logic?
 
-        //Graphics settings
+        //<<Graphics settings
             //Requires an Ogre::Entity, but since the actor only has one I think that it will be implied
-            //Submeshes
-                //Material Name
-                //Colours
-                    //specular
-                    //Diffuse
-                    //ambient
+            //<<Submeshes
+                //<<Material Name
+                //<<Colours
+                    //<<specular
+                    //<<Diffuse
+                    //<<ambient
         //Physics settings
-
-
+        return Output.str();
     }
+#endif
 
     void ActorBase::Deserialize(const String&)
     {
@@ -337,10 +343,14 @@ namespace phys{
     }
 }// /phys
 
+#ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::ActorBase& x)
 {
+    // add logic here to identify actor
+
     stream << "[" << x.GetName() << " at:" << x.GetLocation() << "]";
     return stream;
 }
+#endif
 
 #endif

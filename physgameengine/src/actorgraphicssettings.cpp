@@ -42,6 +42,7 @@
 
 #include "actorgraphicssettings.h"
 #include "actorbase.h"
+#include "datatypes.h"
 
 #include <map>
 
@@ -112,7 +113,7 @@ namespace phys
         this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->setMaterialName(MatName);
     }
 
-    ConstString& ActorGraphicsSettings::GetMaterialName(Whole Submesh)
+    ConstString& ActorGraphicsSettings::GetMaterialName(Whole Submesh) const
     {
         return this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->getMaterialName();
     }
@@ -122,7 +123,7 @@ namespace phys
         return this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->isMatInitialised();
     }
 
-    Whole ActorGraphicsSettings::GetNumSubmeshes()
+    Whole ActorGraphicsSettings::GetNumSubmeshes() const
     {
         return this->IAGS->ActorEnt->getMesh()->getNumSubMeshes();
     }
@@ -148,35 +149,32 @@ namespace phys
         GetMaterial(Submesh)->setDiffuse(Diffuse.GetOgreColourValue());
     }
 
-    ColourValue ActorGraphicsSettings::GetMaterialAmbient(Whole Submesh)
+    ColourValue ActorGraphicsSettings::GetMaterialAmbient(Whole Submesh) const
         { return this->IAGS->Ambient[Submesh]; }
 
-    ColourValue ActorGraphicsSettings::GetMaterialSpecular(Whole Submesh)
+    ColourValue ActorGraphicsSettings::GetMaterialSpecular(Whole Submesh) const
         { return this->IAGS->Specular[Submesh]; }
 
-    ColourValue ActorGraphicsSettings::GetMaterialDiffuse(Whole Submesh)
+    ColourValue ActorGraphicsSettings::GetMaterialDiffuse(Whole Submesh) const
         { return this->IAGS->Diffuse[Submesh]; }
 }
 #ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::ActorGraphicsSettings& Ev)
 {
-    stream      << "<ActorGraphicsSettings Version=\"1\""
-                   /* << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
-                    << "\" Type=\"" << Ev.GetType()
-                    << "\" PowerScale=\"" << Ev.GetPowerScale()
-                    << "\" AttenuationRange=\"" << Ev.GetAttenuationRange()
-                    << "\" AttenuationConstant=\"" << Ev.GetAttenuationConstant()
-                    << "\" AttenuationQuadric=\"" << Ev.GetAttenuationQuadric()
-                    << "\" AttenuationLinear=\"" << Ev.GetAttenuationLinear()
-                    << "\" SpotActorGraphicsSettingsInnerAngle=\"" << Ev.GetSpotActorGraphicsSettingsInnerAngle()
-                    << "\" SpotActorGraphicsSettingsOuterAngle=\"" << Ev.GetSpotActorGraphicsSettingsOuterAngle()
-                    << "\" SpotActorGraphicsSettingsFalloff=\"" << Ev.GetSpotActorGraphicsSettingsFalloff()*/
-                << "\">"
-                /*<< "<Direction>" << Ev.GetDirection() << "</Direction>"
-                << "<Location>" << Ev.GetLocation() << "</Location>"
-                << "<SpecularColour>" << Ev.GetSpecularColour() << "</SpecularColour>"
-                << "<fDiffuseColour>" << Ev.GetDiffuseColour() << "</fDiffuseColour>"*/
-                << "</ActorGraphicsSettings>";
+    stream      << "<ActorGraphicsSettings Version=\"1\">";
+        for(phys::Whole Counter = Ev.GetNumSubmeshes(); Counter!=0; --Counter)
+        {
+            if(Ev.GetMaterialAmbient()!=phys::ColourValue())
+                stream << "<AmbientMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialAmbient() << "</AmbientMaterial>";
+
+            if(Ev.GetMaterialSpecular()!=phys::ColourValue())
+                stream << "<SpecularMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialSpecular() << "</SpecularMaterial>";
+
+            if(Ev.GetMaterialDiffuse()!=phys::ColourValue())
+                stream << "<DiffuseMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialDiffuse() << "</DiffuseMaterial>";
+        }
+
+    stream      << "</ActorGraphicsSettings>";
     return stream;
 }
 
@@ -196,65 +194,45 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorGraphic
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            /*Ev.SetType(static_cast<phys::ActorGraphicsSettings::ActorGraphicsSettingsType>(OneNode.GetAttribute("Type").AsInt()));
-            Ev.SetPowerScale(OneNode.GetAttribute("PowerScale").AsReal());
-            Ev.SetAttenuation(OneNode.GetAttribute("AttenuationRange").AsReal(), OneNode.GetAttribute("AttenuationConstant").AsReal(), OneNode.GetAttribute("AttenuationLinear").AsReal(), OneNode.GetAttribute("AttenuationQuadric").AsReal());
-            Ev.SetSpotActorGraphicsSettingsInnerAngle(OneNode.GetAttribute("SpotActorGraphicsSettingsInnerAngle").AsReal());
-            Ev.SetSpotActorGraphicsSettingsOuterAngle(OneNode.GetAttribute("SpotActorGraphicsSettingsOuterAngle").AsReal());
-            Ev.SetSpotActorGraphicsSettingsFalloff(OneNode.GetAttribute("SpotActorGraphicsSettingsFalloff").AsReal());
-            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
-            if (AttachPtr)
-                { AttachPtr->AttachObject(&Ev); }
-
             phys::ColourValue TempColour(0,0,0,0);
-            phys::Vector3 TempVec(0,0,0);
 
             for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
             {
                 phys::String Name(Child.Name());
                 switch(Name[0])
                 {
-                    case 'f':   //fDiffuseColour
-                        if(Name==phys::String("fDiffuseColour"))
+                    case 'A':   //fDiffuseColour
+                        if(Name==phys::String("AmbientMaterial"))
                         {
                             Child.GetFirstChild() >> TempColour;
-                            Ev.SetDiffuseColour(TempColour);
+                            Ev.SetMaterialAmbient(TempColour, Child.GetAttribute("Submesh").AsWhole());
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element f-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element A-\"",Name,"\"")) );
                         }
                         break;
-                    case 'S':   //SpecularColour
-                        if(Name==phys::String("SpecularColour"))
+                    case 'S':   //fDiffuseColour
+                        if(Name==phys::String("SpecularMaterial"))
                         {
                             Child.GetFirstChild() >> TempColour;
-                            Ev.SetSpecularColour(TempColour);
+                            Ev.SetMaterialSpecular(TempColour, Child.GetAttribute("Submesh").AsWhole());
                         }else{
                             throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element S-\"",Name,"\"")) );
                         }
                         break;
-                    case 'D':   //Direction
-                        if(Name==phys::String("Direction"))
+                    case 'D':   //fDiffuseColour
+                        if(Name==phys::String("DiffuseMaterial"))
                         {
-                            Child.GetFirstChild() >> TempVec;
-                            Ev.SetDirection(TempVec);
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetMaterialDiffuse(TempColour, Child.GetAttribute("Submesh").AsWhole());
                         }else{
                             throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element D-\"",Name,"\"")) );
-                        }
-                        break;
-                    case 'L':   //Location
-                        if(Name==phys::String("Location"))
-                        {
-                            Child.GetFirstChild() >> TempVec;
-                            Ev.SetLocation(TempVec);
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element L-\"",Name,"\"")) );
                         }
                         break;
                     default:
                         throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorGraphicsSettings: Includes unknown Element default-\"",Name,"\"")) );
                         break;
                 }
-            }*/
+            }
 
         }else{
             throw( phys::Exception("Incompatible XML Version for ActorGraphicsSettings: Not Version 1"));

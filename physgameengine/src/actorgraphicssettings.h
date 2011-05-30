@@ -99,14 +99,14 @@ namespace phys
             /// @details Note the returned name isn't of the .material file, but the material script.
             /// @param Submesh The submesh you want to get the material name from.
             /// @return Returns a String containing the name of the material script in use.
-            ConstString& GetMaterialName(Whole Submesh = 0);
+            ConstString& GetMaterialName(Whole Submesh = 0) const;
             /// @brief Gets whether or not the specified submesh has a material script assigned to it.
             /// @param Submesh The submesh to check.
             /// @return Returns a bool indicating whether there is a material assigned to the specified submesh.
             bool HasMaterialSet(Whole Submesh = 0);
             /// @brief Gets the number of submeshes in the mesh of the graphics ohject.
             /// @return Returns a whole representing the number of submeshes in this objects mesh.
-            Whole GetNumSubmeshes();
+            Whole GetNumSubmeshes() const;
 
             ///////////////////////////////////////////////////////////////////////////////
             // Material Colors
@@ -131,17 +131,17 @@ namespace phys
             /// @details If no Ambient colour was specified for a given submesh a default ColourValue is returned.
             /// @param Submesh The submesh you want to alter the material of.
             /// @return The colour that was as the material Ambient colour, OR a default colourvalue.
-            ColourValue GetMaterialAmbient(Whole Submesh = 0);
+            ColourValue GetMaterialAmbient(Whole Submesh = 0) const;
             /// @brief Gets the Specular colour value of the material belonging to the specified submesh.
             /// @details If no Specular colour was specified for a given submesh a default ColourValue is returned.
             /// @param Submesh The submesh you want to alter the material of.
             /// @return The colour that was as the material Specular colour, OR a default colourvalue.
-            ColourValue GetMaterialSpecular(Whole Submesh = 0);
+            ColourValue GetMaterialSpecular(Whole Submesh = 0) const;
             /// @brief Gets the Diffuse colour value of the material belonging to the specified submesh.
             /// @details If no Diffuse colour was specified for a given submesh a default ColourValue is returned.
             /// @param Submesh The submesh you want to alter the material of.
             /// @return The colour that was as the material Diffuse colour, OR a default colourvalue.
-            ColourValue GetMaterialDiffuse(Whole Submesh = 0);
+            ColourValue GetMaterialDiffuse(Whole Submesh = 0) const;
     };//actorgraphicssettings
 }//phys
 
