@@ -32,7 +32,7 @@ set (physgame_LIBINCLUDE_DIR ${ProjectRootDir}/physgameengine/libincludes)
 set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/main.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/main.cpp"
-
+	"${${PROJECT_NAME}_SOURCE_DIR}/actortests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/compilerflagtests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/eventmanagertests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/particleeffecttests.h"
@@ -40,7 +40,6 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector2tests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/vector3tests.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/worldnodetests.h"
-
 )
 
 ###############################################################################
@@ -134,6 +133,10 @@ target_link_libraries( ${PROJECT_NAME} physgame )
 # File copies during all builds
 message ("${PROJECT_NAME} - Begin File Copy Process")
 
+
+CopyDemoFilesDuringBuild( common/r2skin.jpg data/common/r2skin.jpg )
+CopyDemoFilesDuringBuild( common/robot.mesh data/common/robot.mesh )
+CopyDemoFilesDuringBuild( common/robot.skeleton data/common/robot.skeleton )
 CopyDemoFilesDuringBuild( common/dejavu.png data/common/dejavu.png )
 CopyDemoFilesDuringBuild( common/dejavu.gorilla data/common/dejavu.gorilla )
 CopyDemoFilesDuringBuild( common/sounds/welcomefun-1.ogg data/ )
