@@ -55,7 +55,8 @@ class ActorTests : public UnitTest
                 StartEngine();
                 AddTestResult("SceneManager::operator<< (ActorGraphicsSetting-empty)", Unknown);
                 AddTestResult("SceneManager::operator<< (ActorGraphicsSetting-3colour)", Unknown);
-
+                AddTestResult("SceneManager::operator>> (ActorGraphicsSetting-empty)", Unknown);
+                AddTestResult("SceneManager::operator>> (ActorGraphicsSetting-3colour)", Unknown);
                 String groupname ("Group1");
                 String filerobot ("robot.mesh");
                 TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);
@@ -76,18 +77,51 @@ class ActorTests : public UnitTest
                 std::stringstream SerializeTest2;
                 SerializeTest2 << *(object1->GetGraphicsSettings());
 
-                /*if ("" == SerializeTest1.str())
+                String Test1("<ActorGraphicsSettings Version=\"1\"></ActorGraphicsSettings>");
+                if ( Test1 == SerializeTest1.str())
                 {
-                    AddTestResult("SceneManager::operator<< (ActorGraphicsSetting)", Success, UnitTest::OverWrite);
+                    AddTestResult("SceneManager::operator<< (ActorGraphicsSetting-empty)", Success, UnitTest::OverWrite);
                 }else{
-                    AddTestResult("SceneManager::operator<< (ActorGraphicsSetting)", Failed, UnitTest::OverWrite);
-                }*/
+                    AddTestResult("SceneManager::operator<< (ActorGraphicsSetting-empty)", Failed, UnitTest::OverWrite);
+                }
+
+                String Test2("<ActorGraphicsSettings Version=\"1\"><AmbientMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.1\" Green=\"0.2\" Blue=\"0.3\" Alpha=\"0.4\" /></AmbientMaterial><SpecularMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.2\" Green=\"0.3\" Blue=\"0.4\" Alpha=\"0.5\" /></SpecularMaterial><DiffuseMaterial Submesh=\"0\"><ColourValue Version=\"1\" Red=\"0.3\" Green=\"0.4\" Blue=\"0.5\" Alpha=\"0.6\" /></DiffuseMaterial></ActorGraphicsSettings>");
+                if (Test2 == SerializeTest2.str())
+                {
+                    AddTestResult("SceneManager::operator<< (ActorGraphicsSetting-3colour)", Success, UnitTest::OverWrite);
+                }else{
+                    AddTestResult("SceneManager::operator<< (ActorGraphicsSetting-3colour)", Failed, UnitTest::OverWrite);
+                }
+
+                SerializeTest1 >> *(object1->GetGraphicsSettings());
+                std::stringstream DeSerializeTest1;
+                DeSerializeTest1 << *(object1->GetGraphicsSettings());
+
+                SerializeTest2 >> *(object1->GetGraphicsSettings());
+                std::stringstream DeSerializeTest2;
+                DeSerializeTest2 << *(object1->GetGraphicsSettings());
+
+                if ( Test1 == DeSerializeTest1.str() )
+                {
+                    AddTestResult("SceneManager::operator>> (ActorGraphicsSetting-empty)", Success, UnitTest::OverWrite);
+                }else{
+                    AddTestResult("SceneManager::operator>> (ActorGraphicsSetting-empty)", Failed, UnitTest::OverWrite);
+                }
+
+                if ( Test2 == DeSerializeTest2.str() )
+                {
+                    AddTestResult("SceneManager::operator>> (ActorGraphicsSetting-3colour)", Success, UnitTest::OverWrite);
+                }else{
+                    AddTestResult("SceneManager::operator>> (ActorGraphicsSetting-3colour)", Failed, UnitTest::OverWrite);
+                }
                 StopEngine();
 
 
             }else{
                 AddTestResult("SceneManager::operator<< (ActorGraphicsSetting-empty)", Skipped);
                 AddTestResult("SceneManager::operator<< (ActorGraphicsSetting-3colour)", Skipped);
+                AddTestResult("SceneManager::operator>> (ActorGraphicsSetting-empty)", Skipped);
+                AddTestResult("SceneManager::operator>> (ActorGraphicsSetting-3colour)", Skipped);
 
             }
 

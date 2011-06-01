@@ -162,16 +162,16 @@ namespace phys
 std::ostream& operator << (std::ostream& stream, const phys::ActorGraphicsSettings& Ev)
 {
     stream      << "<ActorGraphicsSettings Version=\"1\">";
-        for(phys::Whole Counter = Ev.GetNumSubmeshes(); Counter!=0; --Counter)
+        for(phys::Whole Counter = 0; Ev.GetNumSubmeshes()>Counter; ++Counter)
         {
-            if(Ev.GetMaterialAmbient()!=phys::ColourValue())
-                stream << "<AmbientMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialAmbient() << "</AmbientMaterial>";
+            if(Ev.GetMaterialAmbient(Counter)!=phys::ColourValue())
+                stream << "<AmbientMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialAmbient(Counter) << "</AmbientMaterial>";
 
-            if(Ev.GetMaterialSpecular()!=phys::ColourValue())
-                stream << "<SpecularMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialSpecular() << "</SpecularMaterial>";
+            if(Ev.GetMaterialSpecular(Counter)!=phys::ColourValue())
+                stream << "<SpecularMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialSpecular(Counter) << "</SpecularMaterial>";
 
-            if(Ev.GetMaterialDiffuse()!=phys::ColourValue())
-                stream << "<DiffuseMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialDiffuse() << "</DiffuseMaterial>";
+            if(Ev.GetMaterialDiffuse(Counter)!=phys::ColourValue())
+                stream << "<DiffuseMaterial Submesh=\"" << Counter << "\">" << Ev.GetMaterialDiffuse(Counter) << "</DiffuseMaterial>";
         }
 
     stream      << "</ActorGraphicsSettings>";
@@ -188,13 +188,21 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorGraphicsSet
     return stream;
 }
 
+
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorGraphicsSettings& Ev)
 {
     if ( phys::String(OneNode.Name())==phys::String("ActorGraphicsSettings") )
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            phys::ColourValue TempColour(0,0,0,0);
+            phys::ColourValue TempColour;
+
+            for(phys::Whole Counter = 0; Ev.GetNumSubmeshes()>Counter; ++Counter)
+            {
+                Ev.SetMaterialAmbient(TempColour, Counter);
+                Ev.SetMaterialSpecular(TempColour, Counter);
+                Ev.SetMaterialDiffuse(TempColour, Counter);
+            }
 
             for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
             {
