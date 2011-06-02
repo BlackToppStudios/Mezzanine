@@ -295,6 +295,7 @@ if(${UNIX})
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/libOgreMain.so"
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/RenderSystem_GL.so"
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_ParticleFX.so"
+				"${${PROJECT_NAME}_LIBINCLUDE_DIR}${BuildPlatform}/ogresrc/ogre/lib/Plugin_CgProgramManager.so"
 			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/ogre"
 		)
 		include_directories(
@@ -459,6 +460,7 @@ if(${UNIX})
 		#CopyFilesDuringBuild( ${BuildPlatform}/sdl/${SDLLibName} ${SDLLibName})
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/RenderSystem_GL.so data/${BuildPlatform}/ogre/RenderSystem_GL.so)
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_ParticleFX.so data/${BuildPlatform}/ogre/Plugin_ParticleFX.so)
+		CopyFilesDuringBuild( ${BuildPlatform}/ogre/Plugin_CgProgramManager.so data/${BuildPlatform}/ogre/Plugin_CgProgramManager.so)
 		CopyFilesDuringBuild( ${BuildPlatform}/ogre/${OgreSoName} ${OgreSoName})
 		CreateSymlinkDuringBuild( ${OgreSoName} libOgreMain.so )
 
