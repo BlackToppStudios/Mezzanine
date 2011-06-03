@@ -337,9 +337,15 @@ namespace phys
             /// @return Returns a pointer to the physics settings class in use by this actor.
             virtual ActorBasePhysicsSettings* GetPhysicsSettings() const;
 
+#ifdef PHYSXML
+            /// @brief Gets the Serialized part an actor
+            /// @return A String Containing XML representing the common parts of all actors
             String GetSerialized() const;
 
-            void Deserialize(const String&);
+            /// @brief Change this actor Base as per the XML passed int
+            /// @param XMLText The string to  overwrite this actors settings with.
+            void Deserialize(const String& XMLText);
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 // Working with the World
@@ -372,6 +378,13 @@ namespace phys
 
 } // /phys
 
+#ifdef PHYSXML
+/// @brief This will correctly identify and serialize an actor.
+/// @param stream The Stream to send the actor too.
+/// @param x The Actor To be Serialized.
+/// @return The stream after the actor has been inserted.
 std::ostream& operator << (std::ostream& stream, const phys::ActorBase& x);
+#endif
+
 
 #endif

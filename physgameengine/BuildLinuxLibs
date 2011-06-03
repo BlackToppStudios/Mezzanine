@@ -1,10 +1,14 @@
 #!/bin/bash
 #this will build ogre and SDL and make sure their files wind up were CMake Expects them to be
-cd ogresrc/ogre
+cd libincludes/linux/ogresrc/ogre
 cmake -G"CodeBlocks - Unix Makefiles"
 make 
 cd ../../../common/sdlsrc/SDL/
 ./autogen.sh
+
+#this assumes that wish to compile with debug flags enabled.
 #./configure LDFLAGS=-fPIC CFLAGS=-O2
+
+#This is the optimized
 ./configure CFLAGS="-O2 -fPIC"
 make
