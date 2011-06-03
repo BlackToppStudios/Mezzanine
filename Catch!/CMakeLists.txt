@@ -42,10 +42,14 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}catchapp.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}levelloader.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}levelloader.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}scorearea.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}scorearea.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}startingarea.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}startingarea.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}throwablegenerator.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}throwablegenerator.h"
 )
 
 ##############################################################################
@@ -86,9 +90,7 @@ target_link_libraries( ${PROJECT_NAME} physgame )
 # File copies during all builds
 message ("${PROJECT_NAME} - Begin File Copy Process")
 
-CopyDemoFilesDuringBuild( common/Catch_1.png data/common/Catch_1.png )
-CopyDemoFilesDuringBuild( common/Catch!.gorilla data/common/Catch!.gorilla )
-CopyDemoFilesDuringBuild( common/sounds/welcomefun-1.ogg data/ )
+CopyDemoFilesDuringBuild( common/sounds/welcomefun-1.ogg data/welcomefun-1.ogg )
 CopyDemoFilesDuringBuild( common/ubuntu-font-family/ubuntu-font-licence-1.0.txt data/common/ubuntu-font-family/ubuntu-font-licence-1.0.txt )
 CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-B.ttf data/common/ubuntu-font-family/Ubuntu-B.ttf )
 CopyDemoFilesDuringBuild( common/ubuntu-font-family/Ubuntu-BI.ttf data/common/ubuntu-font-family/Ubuntu-BI.ttf )

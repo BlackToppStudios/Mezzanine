@@ -45,6 +45,7 @@
 #include "world.h"
 #include "vector3.h"
 #include "actorcontainerbase.h"
+#include "actormanager.h"
 #include "eventcollision.h"
 #include "vector3wactor.h"
 #include "areaeffect.h"
@@ -263,27 +264,22 @@ namespace phys
 
 
     PhysicsManager::PhysicsManager()
+        : BulletDrawer(NULL)
     {
         this->Construct(Vector3(-10.0,-10.0,-10.0), Vector3(10.0,10.0,10.0), 10);
     }
 
     PhysicsManager::PhysicsManager(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
+        : BulletDrawer(NULL)
     {
         this->Construct(GeographyLowerBounds_, GeographyUpperbounds_, MaxPhysicsProxies_);
     }
 
     PhysicsManager::~PhysicsManager()
     {
-        for( std::map< String, btCollisionShape* >::iterator it = PhysicsShapes.begin() ; it != PhysicsShapes.end() ; it++ )
-        {
-            delete (*it).second;
-        }
-        PhysicsShapes.clear();
-        for( std::vector< AreaEffect* >::iterator it2 = AreaEffects.begin() ; it2 != AreaEffects.end() ; it2++ )
-        {
-            delete (*it2);
-        }
-        AreaEffects.clear();
+        DestroyAllConstraints();
+        DestroyAllAreaEffects();
+        DestroyAllPhysicsShapes();
         //Destroy the physical world that we loved and cherished
         delete BulletDynamicsWorld;
         delete BulletDispatcher;
@@ -335,18 +331,16 @@ namespace phys
         this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
     }
 
-    void PhysicsManager::Initialize()
+    void PhysicsManager::ProcessAllEffects()
     {
-        // This came from the Game init function, and may need to go to a game init.
-        /// @todo Possibly restructure this so that it'll detect ogre first, preventing a crash.
-        /// At current this makes the physics manager depend on the graphicsmanager.
-        this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
-        this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
-    }
-
-    void PhysicsManager::DoMainLoopItems()
-    {
-        this->DoMainLoopItems(this->GameWorld->GetFrameTime());
+        if( !AreaEffects.empty() )
+        {
+            for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+            {
+                (*c)->UpdateActorList();
+                (*c)->ApplyEffect();
+            }
+        }
     }
 
     void PhysicsManager::PauseSimulation(bool Pause)
@@ -357,6 +351,229 @@ namespace phys
     bool PhysicsManager::SimulationIsPaused()
     {
         return SimulationPaused;
+    }
+
+    void PhysicsManager::SetGravity(Vector3 pgrav)
+    {
+        this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
+    }
+
+    Vector3 PhysicsManager::GetGravity()
+    {
+        Vector3 grav(this->BulletDynamicsWorld->getGravity());
+        return grav;
+    }
+
+    void PhysicsManager::SetSoftGravity(Vector3 sgrav)
+    {
+        this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3();
+    }
+
+    Vector3 PhysicsManager::GetSoftGravity()
+    {
+        Vector3 sgrav(this->BulletDynamicsWorld->getWorldInfo().m_gravity);
+        return sgrav;
+    }
+
+    void PhysicsManager::SetIndividualGravity(ActorBase* Actor, Vector3 igrav)
+    {
+        if (ActorBase::Actorrigid==Actor->GetType())
+        {
+            btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->CollisionObject);
+            Rigid->setGravity(igrav.GetBulletVector3());
+        }
+    }
+
+    void PhysicsManager::AddConstraint(TypedConstraint* Constraint, bool DisableCollisions)
+    {
+        this->BulletDynamicsWorld->addConstraint(Constraint->ConstraintBase, DisableCollisions);
+        Constraints.push_back(Constraint);
+    }
+
+    TypedConstraint* PhysicsManager::GetConstraint(Whole Index)
+    {
+        return Constraints[Index];
+    }
+
+    Whole PhysicsManager::GetNumConstraints()
+    {
+        return Constraints.size();
+    }
+
+    void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
+    {
+        this->BulletDynamicsWorld->removeConstraint(Constraint->ConstraintBase);
+        for( std::vector<TypedConstraint*>::iterator Con = Constraints.begin() ; Con < Constraints.end() ; Con++ )
+        {
+            if( (*Con) == Constraint )
+            {
+                Constraints.erase(Con);
+                return;
+            }
+        }
+    }
+
+    void PhysicsManager::DestroyAllConstraints()
+    {
+        for( std::vector<TypedConstraint*>::iterator Con = Constraints.begin() ; Con != Constraints.end() ; Con++ )
+            delete (*Con);
+        Constraints.clear();
+    }
+
+    void PhysicsManager::StorePhysicsShape(ActorBase* Actor, const String& ShapeName)
+    {
+        this->PhysicsShapes[ShapeName] = Actor->Shape;
+        Actor->ShapeIsSaved = true;
+    }
+
+    void PhysicsManager::ApplyPhysicsShape(ActorBase* Actor, const String& ShapeName)
+    {
+        int Type = Actor->GetType();
+        switch(Type)
+        {
+            case ActorBase::Actorrigid:
+            case ActorBase::Actorterrain:
+            {
+                btVector3 Inertia(0,0,0);
+                btRigidBody* ActorObject = btRigidBody::upcast(Actor->CollisionObject);
+                btCollisionShape* ActorShape = this->PhysicsShapes[ShapeName];
+                btScalar Mass = ActorObject->getInvMass();
+                if(0 != Mass)
+                    Mass=1/Mass;
+                ActorShape->calculateLocalInertia(Mass,Inertia);
+                ActorObject->setCollisionShape(ActorShape);
+                Actor->Shape = ActorShape;
+                ActorObject->setMassProps(Mass,Inertia);
+                ActorObject->updateInertiaTensor();
+                Actor->ShapeIsSaved = true;
+                return;
+            }
+            case ActorBase::Actorsoft:
+            default:
+                return;
+        }
+    }
+
+    void PhysicsManager::DestroyAllPhysicsShapes()
+    {
+        for( std::map<String,btCollisionShape*>::iterator PS = PhysicsShapes.begin() ; PS != PhysicsShapes.end() ; PS++ )
+            delete (*PS).second;
+        PhysicsShapes.clear();
+    }
+
+    void PhysicsManager::AddAreaEffect(AreaEffect* AE)
+    {
+        this->AreaEffects.push_back(AE);
+        this->BulletDynamicsWorld->addCollisionObject(AE->Ghost,btBroadphaseProxy::SensorTrigger,btBroadphaseProxy::AllFilter & ~btBroadphaseProxy::SensorTrigger);
+    }
+
+    AreaEffect* PhysicsManager::GetAreaEffect(String Name)
+    {
+        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        {
+            if ( Name == (*c)->GetName() )
+            {
+                return *c;
+            }
+        }
+        return NULL;
+    }
+
+    void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
+    {
+        this->BulletDynamicsWorld->removeCollisionObject(AE->Ghost);
+        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        {
+            if ( AE == *c )
+            {
+                c=AreaEffects.erase(c);
+            }
+        }
+    }
+
+    void PhysicsManager::DestroyAllAreaEffects()
+    {
+        for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
+            delete (*AE);
+        AreaEffects.clear();
+    }
+
+    void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)
+    {
+        CollisionAge=Age;
+        Impulse=Force;
+    }
+
+    unsigned short int PhysicsManager::GetCollisionAge()
+    {
+        return CollisionAge;
+    }
+
+    Real PhysicsManager::GetImpulse()
+    {
+        return Impulse;
+    }
+
+    //Bullet Debug Drawing
+    void PhysicsManager::SetDebugPhysicsRendering(int ToBeEnabled)
+    {
+        if(!BulletDrawer)
+        {
+            this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
+            this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
+        }
+
+        if(ToBeEnabled)
+        {
+            this->BulletDynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
+        }else{
+            this->BulletDynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_NoDebug);
+        }
+    }
+
+    int PhysicsManager::GetDebugPhysicsRendering()
+    {
+        if(!BulletDrawer)
+            return 0;
+
+        if(this->BulletDrawer->getDebugMode()==btIDebugDraw::DBG_DrawWireframe)
+        {
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
+    void PhysicsManager::SetDebugPhysicsWireCount(Whole WireFrameCount_)
+    {
+        if(!BulletDrawer)
+        {
+            this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
+            this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
+        }
+
+        this->BulletDrawer->SetWireFrameCount(WireFrameCount_);
+    }
+
+    Whole PhysicsManager::GetDebugPhysicsWireCount()
+    {
+        if(BulletDrawer)
+            return this->BulletDrawer->GetWireFrameCount();
+        else
+            return 0;
+    }
+
+    Vector3 PhysicsManager::GetActorOffset(const Vector3WActor &OffsetInfo)
+    {
+        if(ActorBase::Actorrigid==OffsetInfo.Actor->GetType())
+        {
+            btRigidBody* Rigid = static_cast< btRigidBody* > (OffsetInfo.Actor->CollisionObject);
+            Vector3 Offset(Rigid->getCenterOfMassTransform().inverse() * OffsetInfo.Vector.GetBulletVector3());
+            return Offset;
+        }else{
+            Vector3 Offset(0,0,0);
+            return Offset;
+        }
     }
 
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
@@ -396,7 +613,7 @@ namespace phys
         #ifdef PHYSPROFILE
         Profiler->reset();
         #endif
-        if( this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
+        if( this->BulletDrawer && this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
         {
             this->BulletDrawer->PrepareForRendering();
             this->BulletDynamicsWorld->debugDrawWorld();
@@ -425,8 +642,8 @@ namespace phys
                 {
                     btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
                     btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
-                    ActorBase* ActA = this->GameWorld->GetActorManager()->FindActor(objectA);
-                    ActorBase* ActB = this->GameWorld->GetActorManager()->FindActor(objectB);
+                    ActorBase* ActA = this->GameWorld->GetActorManager()->GetActorContainer()->FindActor(objectA);
+                    ActorBase* ActB = this->GameWorld->GetActorManager()->GetActorContainer()->FindActor(objectB);
                     Vector3 WorldLoc((pt.getPositionWorldOnA() + pt.getPositionWorldOnB()) * 0.5);
                     Vector3 ActALoc(pt.m_localPointA);
                     Vector3 ActBLoc(pt.m_localPointB);
@@ -446,191 +663,22 @@ namespace phys
         #endif
     }
 
-    void PhysicsManager::SetGravity(Vector3 pgrav)
-    {
-        this->BulletDynamicsWorld->setGravity(pgrav.GetBulletVector3());
-    }
-
-    Vector3 PhysicsManager::GetGravity()
-    {
-        Vector3 grav(this->BulletDynamicsWorld->getGravity());
-        return grav;
-    }
-
-    void PhysicsManager::SetSoftGravity(Vector3 sgrav)
-    {
-        this->BulletDynamicsWorld->getWorldInfo().m_gravity = sgrav.GetBulletVector3();
-    }
-
-    Vector3 PhysicsManager::GetSoftGravity()
-    {
-        Vector3 sgrav(this->BulletDynamicsWorld->getWorldInfo().m_gravity);
-        return sgrav;
-    }
-
-    void PhysicsManager::SetIndividualGravity(ActorBase* Actor, Vector3 igrav)
-    {
-        if (ActorBase::Actorrigid==Actor->GetType())
-        {
-            btRigidBody* Rigid = static_cast < btRigidBody* >(Actor->CollisionObject);
-            Rigid->setGravity(igrav.GetBulletVector3());
-        }
-    }
-
-    //Bullet Debug Drawing
-
-
-    void PhysicsManager::SetDebugPhysicsRendering(int ToBeEnabled)
-    {
-        if(ToBeEnabled)
-        {
-            this->BulletDynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_DrawWireframe);
-        }else{
-            this->BulletDynamicsWorld->getDebugDrawer()->setDebugMode(btIDebugDraw::DBG_NoDebug);
-        }
-    }
-
-    int PhysicsManager::GetDebugPhysicsRendering()
-    {
-        if(this->BulletDrawer->getDebugMode()==btIDebugDraw::DBG_DrawWireframe)
-        {
-            return 1;
-        }else{
-            return 0;
-        }
-    }
-
-    void PhysicsManager::SetDebugPhysicsWireCount(Whole WireFrameCount_)
-    {
-        this->BulletDrawer->SetWireFrameCount(WireFrameCount_);
-    }
-
-    Whole PhysicsManager::GetDebugPhysicsWireCount()
-    {
-        return this->BulletDrawer->GetWireFrameCount();
-    }
-
     btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()
     {
         return this->BulletDynamicsWorld;
     }
 
-    Vector3 PhysicsManager::GetActorOffset(const Vector3WActor &OffsetInfo)
-    {
-        if(ActorBase::Actorrigid==OffsetInfo.Actor->GetType())
-        {
-            btRigidBody* Rigid = static_cast< btRigidBody* > (OffsetInfo.Actor->CollisionObject);
-            Vector3 Offset(Rigid->getCenterOfMassTransform().inverse() * OffsetInfo.Vector.GetBulletVector3());
-            return Offset;
-        }else{
-            Vector3 Offset(0,0,0);
-            return Offset;
-        }
-    }
-
-    void PhysicsManager::AddConstraint(TypedConstraint* Constraint, bool DisableCollisions)
-    {
-        this->BulletDynamicsWorld->addConstraint(Constraint->ConstraintBase, DisableCollisions);
-    }
-
-    void PhysicsManager::RemoveConstraint(TypedConstraint* Constraint)
-    {
-        this->BulletDynamicsWorld->removeConstraint(Constraint->ConstraintBase);
-    }
-
-    void PhysicsManager::AddAreaEffect(AreaEffect* AE)
-    {
-        this->AreaEffects.push_back(AE);
-        this->BulletDynamicsWorld->addCollisionObject(AE->Ghost,btBroadphaseProxy::SensorTrigger,btBroadphaseProxy::AllFilter & ~btBroadphaseProxy::SensorTrigger);
-    }
-
-    void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
-    {
-        this->BulletDynamicsWorld->removeCollisionObject(AE->Ghost);
-        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
-        {
-            if ( AE == *c )
-            {
-                c=AreaEffects.erase(c);
-            }
-        }
-    }
-
-    AreaEffect* PhysicsManager::GetAreaEffect(String Name)
-    {
-        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
-        {
-            if ( Name == (*c)->GetName() )
-            {
-                return *c;
-            }
-        }
-        return NULL;
-    }
-
-    void PhysicsManager::ProcessAllEffects()
-    {
-        if( !AreaEffects.empty() )
-        {
-            for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
-            {
-                (*c)->UpdateActorList();
-                (*c)->ApplyEffect();
-            }
-        }
-    }
-
-    void PhysicsManager::StorePhysicsShape(ActorBase* Actor, const String& ShapeName)
-    {
-        this->PhysicsShapes[ShapeName] = Actor->Shape;
-        Actor->ShapeIsSaved = true;
-    }
-
-    void PhysicsManager::ApplyPhysicsShape(ActorBase* Actor, const String& ShapeName)
-    {
-        int Type = Actor->GetType();
-        switch(Type)
-        {
-            case ActorBase::Actorrigid:
-            case ActorBase::Actorterrain:
-            {
-                btVector3 Inertia(0,0,0);
-                btRigidBody* ActorObject = btRigidBody::upcast(Actor->CollisionObject);
-                btCollisionShape* ActorShape = this->PhysicsShapes[ShapeName];
-                btScalar Mass = ActorObject->getInvMass();
-                if(0 != Mass)
-                    Mass=1/Mass;
-                ActorShape->calculateLocalInertia(Mass,Inertia);
-                ActorObject->setCollisionShape(ActorShape);
-                Actor->Shape = ActorShape;
-                ActorObject->setMassProps(Mass,Inertia);
-                ActorObject->updateInertiaTensor();
-                Actor->ShapeIsSaved = true;
-                return;
-            }
-            case ActorBase::Actorsoft:
-            default:
-                return;
-        }
-    }
-
-    void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)
-    {
-        CollisionAge=Age;
-        Impulse=Force;
-    }
-
-    unsigned short int PhysicsManager::GetCollisionAge()
-    {
-        return CollisionAge;
-    }
-
-    Real PhysicsManager::GetImpulse()
-    {
-        return Impulse;
-    }
-
     //Inherited From ManagerBase
+    void PhysicsManager::Initialize()
+    {
+        // This came from the Game init function, and may need to go to a game init.
+    }
+
+    void PhysicsManager::DoMainLoopItems()
+    {
+        this->DoMainLoopItems(this->GameWorld->GetFrameTime());
+    }
+
     ManagerBase::ManagerTypeName PhysicsManager::GetType() const
         { return ManagerBase::PhysicsManager; }
 }// \phys

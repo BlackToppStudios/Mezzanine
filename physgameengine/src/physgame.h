@@ -52,11 +52,12 @@
 
 // We put headers in our headers so we can include while we include
 #include "actorbase.h"                  //Target
+#include "actorcharacter.h"             //Pending completion
 #include "actorcontainerbase.h"         //Target2
 #include "actorcontainervector.h"       //Target2
 #include "actorgraphicssettings.h"      //Target
+#include "actormanager.h"
 #include "actorphysicssettings.h"       //Target
-#include "actorragdoll.h"               //Pending completion
 #include "actorrigid.h"                 //Target
 #include "actorsoft.h"                  //Pending completion
 #include "actorterrain.h"

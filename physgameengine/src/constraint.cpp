@@ -218,7 +218,8 @@ namespace phys
 
     Generic6DofConstraint::~Generic6DofConstraint ()
     {
-        delete Generic6dof;
+        if(Generic6dof)
+            delete Generic6dof;
     }
 
     void Generic6DofConstraint::SetOffsetALocation (Vector3 Location)
@@ -306,7 +307,11 @@ namespace phys
 
     Generic6DofSpringConstraint::~Generic6DofSpringConstraint ()
     {
-        delete Generic6dofSpring;
+        if(Generic6dofSpring)
+        {
+            delete Generic6dofSpring;
+            Generic6dofSpring = NULL;
+        }
     }
 
     void Generic6DofSpringConstraint::SetStiffness(int Index, Real Stiffness)
@@ -363,7 +368,8 @@ namespace phys
 
     HingeConstraint::~HingeConstraint()
     {
-        delete Hinge;
+        if(Hinge)
+            delete Hinge;
     }
 
     void HingeConstraint::SetAPivotLocation(Vector3 Location)
@@ -457,6 +463,7 @@ namespace phys
     Hinge2Constraint::~Hinge2Constraint()
     {
         delete Hinge2;
+        Hinge2 = NULL;
     }
 
     void Hinge2Constraint::SetUpperLimit(Real Ang1Max)
@@ -754,6 +761,7 @@ namespace phys
     UniversalConstraint::~UniversalConstraint()
     {
         delete Universal;
+        Universal = NULL;
     }
 
     void UniversalConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)

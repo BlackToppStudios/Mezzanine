@@ -41,6 +41,7 @@
 #define eventcollision_cpp
 
 #include "actorcontainerbase.h"
+#include "actormanager.h"
 #include "eventcollision.h"
 #include "world.h"
 
@@ -115,8 +116,8 @@ void operator >> (const phys::xml::Node& OneNode, phys::EventCollision& Ev)
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
 
-            Ev.ActorA=phys::World::GetWorldPointer()->GetActorManager()->FindActor(OneNode.GetAttribute("ActorA").AsString());
-            Ev.ActorB=phys::World::GetWorldPointer()->GetActorManager()->FindActor(OneNode.GetAttribute("ActorB").AsString());
+            Ev.ActorA=phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorA").AsString());
+            Ev.ActorB=phys::World::GetWorldPointer()->GetActorManager()->GetActor(OneNode.GetAttribute("ActorB").AsString());
             Ev.Impulse=OneNode.GetAttribute("Impulse").AsReal();
 
             if(OneNode.GetFirstChild())

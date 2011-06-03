@@ -208,6 +208,12 @@ namespace phys
             return PrimaryAtlas;
         }
 
+        void Screen::RenderOnce()
+        {
+            if(IsVisible() && Layers.size())
+                GorillaScreen->renderOnce();
+        }
+
         Gorilla::Screen* Screen::GetGorillaScreen()
         {
             return GorillaScreen;

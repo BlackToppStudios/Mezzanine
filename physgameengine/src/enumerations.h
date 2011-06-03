@@ -65,7 +65,7 @@ namespace phys
         WOT_ActorBase = 1,
         WOT_ActorRigid = 2,
         WOT_ActorSoft = 4,
-        WOT_ActorRagdoll = 8,
+        WOT_ActorCharacter = 8,
         WOT_ActorTerrain = 16,
 
         // AE Fields

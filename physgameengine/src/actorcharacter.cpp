@@ -37,36 +37,27 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorragdoll_h
-#define _actorragdoll_h
+#ifndef _actorcharacter_cpp
+#define _actorcharacter_cpp
 
-#include "actorbase.h"
-#include "crossplatformexport.h"
+#include "btBulletDynamicsCommon.h"
+#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
-class btRigidBody;
+#include "actorcharacter.h"
 
 // Do not put in documentation until this is done
 /// @cond 0
 
 namespace phys
 {
-    typedef std::vector< btRigidBody* > BodyParts;
-    ///////////////////////////////////////////////////////////////////////////////
-    /// @class ActorRagDoll
-    /// @headerfile actorragdoll.h
-    /// @brief This is the ragdoll class for actors.
-    /// @details The other actor class cannot support ragdolls as they all work with only
-    /// a single physics body.  Ragdolls explicitly need to work with multiple physics
-    /// bodies(the limbs), and so ragdolls get their own class.
-    ///////////////////////////////////////
-    class PHYS_LIB ActorRagDoll : public ActorBase
+    ActorCharacter::ActorCharacter(String name, String file, String group)
+        : ActorBase(name, file, group)
     {
-        protected:
-            BodyParts* Limbs;
-        public:
-            ActorRagDoll(String name, String file, String group);
-            ~ActorRagDoll();
-    };
+    }
+
+    ActorCharacter::~ActorCharacter()
+    {
+    }
 }
 
 /// @endcond

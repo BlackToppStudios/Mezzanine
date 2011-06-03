@@ -62,10 +62,6 @@ namespace phys{
 
         PhysMotionState::~PhysMotionState()
         {
-            if (snode!=NULL)
-            {
-                delete snode;
-            }
         }
 
         void PhysMotionState::SetNode(Ogre::SceneNode* scenenode)

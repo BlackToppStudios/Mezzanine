@@ -274,6 +274,8 @@ namespace phys
             /// @brief Deletes a light and removes all trace of it from the manager.
             /// @param light The light to be destroyed.
             void DestroyLight(Light* light);
+            /// @brief Destroys all lights currently in the manager.
+            void DestroyAllLights();
 
             /// @brief Used to make working with the Lights easier.
             typedef std::vector< Light* >::iterator LightIterator;
@@ -313,6 +315,8 @@ namespace phys
             /// @brief Deletes a particle effect and removes all trace of it from the manager.
             /// @param particleeffect The particle effect to be destroyed.
             void DestroyParticleEffect(ParticleEffect* particleeffect);
+            /// @brief Destroys all particle effects currently in the manager.
+            void DestroyAllParticleEffects();
 
             /// @brief Used to make working with the Lights easier.
             typedef std::vector< ParticleEffect* >::iterator ParticleEffectIterator;
@@ -382,6 +386,8 @@ namespace phys
             /// @brief Deletes a node and removes all trace of it from the manager.
             /// @param node The node to be destroyed.
             void DestroyNode(WorldNode* node);
+            /// @brief Destroys all world nodes currently in the manager.
+            void DestroyAllWorldNodes();
 
             /// @brief Used to make working with the Lights easier.
             typedef std::vector< WorldNode* >::iterator WorldNodeIterator;

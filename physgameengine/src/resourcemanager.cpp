@@ -94,7 +94,7 @@ namespace phys {
             Rigid->setMassProps(mass,inertia);
             Rigid->updateInertiaTensor();
         }
-        if(ActorBase::Actorragdoll == Actor->GetType())
+        if(ActorBase::Actorcharacter == Actor->GetType())
         {
         }
         if(!Actor->ShapeIsSaved)

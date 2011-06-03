@@ -141,6 +141,9 @@ namespace phys
                 /// @return Returns a string containing the name of the primary atlas that is set.
                 virtual String GetPrimaryAtlas();
                 /// @internal
+                /// @brief Manually calls the UI system to render this screen.
+                virtual void RenderOnce();
+                /// @internal
                 /// @brief Gets the internal screen this screen is based on.
                 /// @return Returns a pointer to the Gorilla screen this screen is based on.
                 virtual Gorilla::Screen* GetGorillaScreen();

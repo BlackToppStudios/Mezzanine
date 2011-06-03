@@ -111,8 +111,8 @@ namespace phys
     {
         switch (this->GetType())
         {
-            case ManagerBase::ActorContainerBase:
-                return "ActorContainerBase Manager";
+            case ManagerBase::ActorManager:
+                return "ActorManager";
                 break;
             case ManagerBase::CameraManager:
                 return "CameraManager";

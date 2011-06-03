@@ -111,7 +111,9 @@ namespace phys
             /// @return Returns a pointer to the second actor this constraint applies to.
             ActorRigid* GetActorB();
             /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
+            /// ERP values adjust how fast the errors in the constraints are reduced. @n
+            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
             /// @param num The parameter to override.
             /// @param value The new value for the parameter.
             /// @param axis Optional axis.
@@ -157,7 +159,9 @@ namespace phys
             void EnableMotor(bool Enable);
             bool IsPassedSwingLimit();
             /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
+            /// ERP values adjust how fast the errors in the constraints are reduced. @n
+            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
             /// @param num The parameter to override.
             /// @param value The new value for the parameter.
             /// @param axis Optional axis.
@@ -209,7 +213,9 @@ namespace phys
             void SetLimit(int Axis, Real Low, Real High);
             void CalculateTransforms();
             /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
+            /// ERP values adjust how fast the errors in the constraints are reduced. @n
+            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
             /// @param num The parameter to override.
             /// @param value The new value for the parameter.
             /// @param axis Optional axis.
@@ -328,7 +334,9 @@ namespace phys
             void SetAxis(Vector3 AxisInA);
             void SetUseFrameOffset(bool FrameOffset);
             /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
+            /// ERP values adjust how fast the errors in the constraints are reduced. @n
+            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
             /// @param num The parameter to override.
             /// @param value The new value for the parameter.
             /// @param axis Optional axis.
@@ -393,7 +401,9 @@ namespace phys
             void SetImpulseClamping(Real Clamping);
             void SetTAU(Real TAU);
             /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
+            /// ERP values adjust how fast the errors in the constraints are reduced. @n
+            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
             /// @param num The parameter to override.
             /// @param value The new value for the parameter.
             /// @param axis Optional axis.
@@ -459,7 +469,9 @@ namespace phys
             void SetRestitutionOrthoAng(Real RestitutionOrthoAng);
             void SetDampingOrthoAng(Real DampingOrthoAng);
             /// @brief Provides override of constraint parameters.
-            /// @details Parameters such as ERP and CFM can be altered with this function.  Optionally provide axis.
+            /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
+            /// ERP values adjust how fast the errors in the constraints are reduced. @n
+            /// CFM values adds some small value to the main diagonal on the constraint matrix to prevent degenerate matrices.
             /// @param num The parameter to override.
             /// @param value The new value for the parameter.
             /// @param axis Optional axis.

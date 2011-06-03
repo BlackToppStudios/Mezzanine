@@ -33,12 +33,12 @@ message ("Putting complete binaries in: ${${PROJECT_NAME}_BINARY_DIR}")
 # A complete listing of our header files
 set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/actorcharacter.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainerbase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainervector.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorgraphicssettings.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}/actormanager.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorphysicssettings.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorragdoll.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorrigid.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorsoft.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorterrain.h"
@@ -129,11 +129,12 @@ set(${PROJECT_NAME}_sources
 # A complete listing of our source files
 
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorbase.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/actorcharacter.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainerbase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorcontainervector.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorgraphicssettings.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}/actormanager.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorphysicssettings.cpp"
-	"${${PROJECT_NAME}_SOURCE_DIR}/actorragdoll.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorrigid.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorsoft.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}/actorterrain.cpp"

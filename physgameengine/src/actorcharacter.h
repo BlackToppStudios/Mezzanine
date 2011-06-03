@@ -37,27 +37,35 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _actorragdoll_cpp
-#define _actorragdoll_cpp
+#ifndef _actorcharacter_h
+#define _actorcharacter_h
 
-#include "btBulletDynamicsCommon.h"
-#include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
+#include "actorbase.h"
+#include "crossplatformexport.h"
 
-#include "actorragdoll.h"
+class btRigidBody;
 
 // Do not put in documentation until this is done
 /// @cond 0
 
 namespace phys
 {
-    ActorRagDoll::ActorRagDoll(String name, String file, String group)
-        : ActorBase(name, file, group)
+    typedef std::vector< btRigidBody* > BodyParts;
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class ActorCharacter
+    /// @headerfile actorcharacter.h
+    /// @brief This is the character class for actors.
+    /// @details This class is a specialized actor intended for use as a controllable character
+    /// (AI or player) through a character controller.
+    ///////////////////////////////////////
+    class PHYS_LIB ActorCharacter : public ActorBase
     {
-    }
-
-    ActorRagDoll::~ActorRagDoll()
-    {
-    }
+        protected:
+            BodyParts* Limbs;
+        public:
+            ActorCharacter(String name, String file, String group);
+            ~ActorCharacter();
+    };
 }
 
 /// @endcond

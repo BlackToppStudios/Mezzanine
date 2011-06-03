@@ -88,7 +88,8 @@ namespace phys
             Real Impulse;
             bool SimulationPaused;
             std::map< String, btCollisionShape* > PhysicsShapes;
-            std::vector < AreaEffect* > AreaEffects;
+            std::vector< TypedConstraint* > Constraints;
+            std::vector< AreaEffect* > AreaEffects;
 
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
@@ -111,12 +112,10 @@ namespace phys
             /// @details This function is automatically called every step.
             void ProcessAllEffects();
         public:
-
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
             PhysicsManager();
-
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
@@ -124,128 +123,106 @@ namespace phys
             /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
             PhysicsManager(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
-
-            /// @brief This configures the Physics Manager to work with the Graphic settings
-            /// @details This configures the Physics manager to work with the existing graphics settings. This must
-            /// be called before the physics manager is used, but after the graphics have been initialized
-            virtual void Initialize();
-
-            /// @brief Physics stepping during the main loop
-            /// @details This increments the the physics world the required amount to keep it in sync with the Graphics/Timing.
-            virtual void DoMainLoopItems();
-
             /// @brief Deconstructor
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
             virtual ~PhysicsManager();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Simulation Management
+
             /// @brief Pauses the simulation, preventing the physics world from taking action.
             /// @param Pause Wether or not to pause the simulation.
             void PauseSimulation(bool Pause);
-
             /// @brief Gets Whether or not the simulation is currently paused.
             /// @return Returns whether or not the simulation is paused.
             bool SimulationIsPaused();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Gravity Management
 
             /// @brief Sets the gravity.
             /// @details Sets the strength and direction of gravity within the world.
             /// @param pgrav Vector3 representing the strength and direction of gravity.
             void SetGravity(Vector3 pgrav);
-
             /// @brief Gets the gravity.
             /// @details Gets the currently set world gravity.
             /// @return Returns the currently set world gravity.
             Vector3 GetGravity();
-
             /// @brief Sets the gravity for soft bodies.
             /// @details Gravity for soft bodies is stored separately from rigid bodies.  So if you plan to use soft bodies in your game/simulation
             /// you need to call this function otherwise they won't fall.
             /// @param sgrav Vector3 representing the strength and direction of gravity.
             void SetSoftGravity(Vector3 sgrav);
-
             /// @brief Gets the soft body gravity.
             /// @details Gets the currently set soft body world gravity.
             /// @return Returns the currently set soft body world gravity.
             Vector3 GetSoftGravity();
-
             /// @brief Sets the gravity to be applied to a single object.
             /// @details This function does not change the global gravity, only how gravity behaves for this specific object.  Note: This function only works on ActorRigid's.
             /// @param Actor The actor whos gravity is to be changed.
             /// @param igrav The value of the gravity to be applied.
             void SetIndividualGravity(ActorBase* Actor, Vector3 igrav);
 
-            /// @brief Enables and Disables Physics Debug Drawing
-            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics
-            /// subsytem pixel for pixel.
-            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control
-            void SetDebugPhysicsRendering(int ToBeEnabled);
-
-            /// @brief Is Physics Debug Drawing currently enabled?
-            /// @details lets you check if Physics Debug Drawing is enabled or not.
-            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features
-            int GetDebugPhysicsRendering();
-
-            /// @brief How many Wireframes do you want drawn from previous events
-            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount
-            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()
-            /// In conjunction with this to specify an amout of seconds worth of wireframes.
-            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate,
-            /// Any amount more than just a few seconds worth can be cumbersome.
-            void SetDebugPhysicsWireCount(Whole WireFrameCount_);
-
-            /// @brief This gets how many WireFrames are being drawn.
-            /// @details This will tell you how many frames worth of previous in game events are being drawn.
-            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .
-            Whole GetDebugPhysicsWireCount();
-
-            /// @brief This does all the work reuired for the main loop to process physics
-            /// @details
-            /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
-            void DoMainLoopItems(const Real &TimeElapsed);
-
-            /// @brief Gets the offset between a point and an actor.
-            /// @details This function will return the offset between the specified world point and the specified actors center of mass.
-            /// @param OffsetInfo The vector and actor to compare for offset data.
-            /// @return Returns the Vector3 representing the actors offset from the world point.
-            Vector3 GetActorOffset(const Vector3WActor &OffsetInfo);
+            ///////////////////////////////////////////////////////////////////////////////
+            // Constraint Management
 
             /// @brief Adds a constraint to the world.
             /// @details Adds the constraint to the world so that it can/will take effect.
             /// @param Constraint The constraint to be added.
             /// @param DisableCollisions Sets whether or not the linked bodies collide with each other.
             void AddConstraint(TypedConstraint* Constraint, bool DisableCollisions = false);
-
+            /// @brief Gets a constraint by index.
+            /// @param Index The index of the constraint you want.
+            /// @return Returns a pointer to the specified constraint.
+            TypedConstraint* GetConstraint(Whole Index);
+            /// @brief Gets the number of constraints currently in the world.
+            /// @return Returns a whole representing the number of constraints in the world.
+            Whole GetNumConstraints();
             /// @brief Removes a constraint from the world.
             /// @details Removes a constraint from the world so that it will have no effect.
             /// @param Constraint The constraint to be removed.
             void RemoveConstraint(TypedConstraint* Constraint);
+            /// @brief Destroys all constraints currently in the manager.
+            /// @details In practice it is cleaner to remove constraints from the world before removing any constrained actors.
+            void DestroyAllConstraints();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Physics Shape Management
 
             /// @brief Stores an already generated physics shape.
             /// @details This function will take an actors physics shape and store it for re-use in other actors, in case a shape is able to be re-used by other actors.
             /// @param Actor The actor from which to store the shape.
             /// @param ShapeName The name you wish to assign to the shape being stored.
             void StorePhysicsShape(ActorBase* Actor, const String& ShapeName);
-
             /// @brief Applies a previously stored shape.
             /// @details This function will take a stored shape and apply it to the actor provided.
             /// @param Actor The actor to which you want to apply the shape.
             /// @param ShapeName The name of the shape you wish to have applied to the actor.
             void ApplyPhysicsShape(ActorBase* Actor, const String& ShapeName);
+            /// @brief Destroys all physics shapes currently in the manager.
+            void DestroyAllPhysicsShapes();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // AreaEffect Management
 
             /// @brief Adds an area effect to the world.
             /// @details Adds an area effect to the world so that it can/will take effect.
             /// @param AE The area effect to be added.
             void AddAreaEffect(AreaEffect* AE);
-
-            /// @brief Removes an area effect from the world.
-            /// @details Removes an area effect from the world so that it will have no effect.
-            /// @param AE The area effect to be removed.
-            void RemoveAreaEffect(AreaEffect* AE);
-
             /// @brief Gets an Area Effect by name.
             /// @details This function will return the named area effect if it is stored.
             /// @param Name The name of the area effect to find.
             /// @return Returns a pointer to the named area effect.
             AreaEffect* GetAreaEffect(String Name);
+            /// @brief Removes an area effect from the world.
+            /// @details Removes an area effect from the world so that it will have no effect.
+            /// @param AE The area effect to be removed.
+            void RemoveAreaEffect(AreaEffect* AE);
+            /// @brief Destroys all area effects currently in the manager.
+            void DestroyAllAreaEffects();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Collision Event Filtering Management
 
             /// @brief Sets the Collision Parameters.
             /// @details Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events.  The lower these numbers, the more events will be generated.  @n
@@ -253,22 +230,63 @@ namespace phys
             /// @param Age The number of physics ticks the collision has to have existed to be used.  Usually you want 1 or 2.  Default: 1
             /// @param Force The amount of force applied in the collision to filter by.  This amount can vary more then the other param based on what you need.  Default: 1.0
             void SetCollisionParams(const unsigned short int Age, Real Force);
-
             /// @brief Gets the Collision Age limit.
             /// @details Gets the CollisionAge used in filtering out collision contacts used to make events.
             /// @return This function will return the number of physics ticks the collision has to have existed to be used.
             unsigned short int GetCollisionAge();
-
             /// @brief Gets the Collision Impulse limit.
             /// @details Gets the Collision Impulse used in filtering out collision contacts used to make events.
             /// @return This function will return the lower limit of the allowed force of the collision to generate an event.
             Real GetImpulse();
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Debug Management
+
+            /// @brief Enables and Disables Physics Debug Drawing
+            /// @details Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics
+            /// subsytem pixel for pixel.
+            /// @param ToBeEnabled 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control
+            void SetDebugPhysicsRendering(int ToBeEnabled);
+            /// @brief Is Physics Debug Drawing currently enabled?
+            /// @details lets you check if Physics Debug Drawing is enabled or not.
+            /// @return 1 for it is on, and 0 for it is not. The may be other options later for selectively cnacking certain features
+            int GetDebugPhysicsRendering();
+            /// @brief How many Wireframes do you want drawn from previous events
+            /// @details Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount
+            /// set this to 2, as the first wireframe is commonly entirely inside the  the rendered 3d mesh. You can use World::GetTargetFrameTime()
+            /// In conjunction with this to specify an amout of seconds worth of wireframes.
+            /// @param WireFrameCount_ This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate,
+            /// Any amount more than just a few seconds worth can be cumbersome.
+            void SetDebugPhysicsWireCount(Whole WireFrameCount_);
+            /// @brief This gets how many WireFrames are being drawn.
+            /// @details This will tell you how many frames worth of previous in game events are being drawn.
+            /// @return This returns either 2 or the last amount passed into World::SetDebugPhysicsWireCount .
+            Whole GetDebugPhysicsWireCount();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Utility
+
+            /// @brief Gets the offset between a point and an actor.
+            /// @details This function will return the offset between the specified world point and the specified actors center of mass.
+            /// @param OffsetInfo The vector and actor to compare for offset data.
+            /// @return Returns the Vector3 representing the actors offset from the world point.
+            Vector3 GetActorOffset(const Vector3WActor &OffsetInfo);
+            /// @brief This does all the work reuired for the main loop to process physics
+            /// @details
+            /// @param TimeElapsed This is a real that represents the amount of time we need to simulate
+            void DoMainLoopItems(const Real &TimeElapsed);
             /// @internal
             /// @brief This returns a pointer to the bullet physics world. This is for internal use only
             btSoftRigidDynamicsWorld* GetPhysicsWorldPointer();
 
-        //Inherited from ManagerBase
+            //Inherited from ManagerBase
+            /// @brief This configures the Physics Manager to work with the Graphic settings
+            /// @details This configures the Physics manager to work with the existing graphics settings. This must
+            /// be called before the physics manager is used, but after the graphics have been initialized
+            virtual void Initialize();
+            /// @brief Physics stepping during the main loop
+            /// @details This increments the the physics world the required amount to keep it in sync with the Graphics/Timing.
+            virtual void DoMainLoopItems();
             /// @brief This returns the type of this manager.
             /// @return This returns ManagerTypeName::PhysicsManager
             virtual ManagerTypeName GetType() const;

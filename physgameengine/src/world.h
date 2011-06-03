@@ -120,6 +120,7 @@
 namespace phys
 {
     class ActorBase;
+    class ActorManager;
     class ActorContainerBase;
     class EventManager;
     class CameraManager;
@@ -440,7 +441,7 @@ namespace phys
             /// @brief This gets the ActorManager from the manager list.
             /// @param WhichOne If you have multiple ActorManagers this will choose which one to return.
             /// @return This returns a pointer to a ActorManager, or a NULL pointer if no matching manager exists.
-            ActorContainerBase* GetActorManager(const short unsigned int &WhichOne=0);
+            ActorManager* GetActorManager(const short unsigned int &WhichOne=0);
 
             /// @brief This gets the CameraManager from the manager list.
             /// @param WhichOne If you have multiple CameraManagers this will choose which one to return.

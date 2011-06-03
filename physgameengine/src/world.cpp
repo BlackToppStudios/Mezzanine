@@ -147,7 +147,7 @@ namespace phys
 
         //Create and add any managers that have not been taken care of yet.
         if(this->GetActorManager()==0)
-            { this->AddManager(new ActorContainerVector()); }
+            { this->AddManager(new ActorManager()); }
         if(this->GetGraphicsManager()==0)
             { this->AddManager(new GraphicsManager()); }
         if(this->GetSoundManager()==0)
@@ -369,19 +369,15 @@ namespace phys
         this->Log("Created the Render Work");
         #endif
 
-        //Some managers depend on the functionality of other managers, so they must be initialized in order.
-        GetGraphicsManager()->Initialize();
-        GetPhysicsManager()->Initialize();
-
-        //Remaining Non-Critical managers get initialized.
         for (std::list< ManagerBase* >::iterator Iter=this->ManagerList.begin(); Iter!=this->ManagerList.end(); ++Iter )
         {
             this->LogStream << "Initializing " << (*Iter)->GetTypeName() << " Manager" << endl;
-            if((*Iter)->GetType() != ManagerBase::GraphicsManager && (*Iter)->GetType() != ManagerBase::PhysicsManager)
+            if((*Iter)->GetType() != ManagerBase::GraphicsManager)
             {
                 (*Iter)->Initialize();
             }
         }
+        GetGraphicsManager()->Initialize();
         HasSDLBeenInitialized = GetGraphicsManager()->HasSDLBeenInitialized();
 
         if(CallMainLoop)
@@ -649,9 +645,9 @@ namespace phys
         }
     }
 
-    ActorContainerBase* World::GetActorManager(const short unsigned int &WhichOne)
+    ActorManager* World::GetActorManager(const short unsigned int &WhichOne)
     {
-        return dynamic_cast<ActorContainerBase*> (this->GetManager(ManagerBase::ActorContainerBase, WhichOne));
+        return dynamic_cast<ActorManager*> (this->GetManager(ManagerBase::ActorManager, WhichOne));
     }
 
     CameraManager* World::GetCameraManager(const short unsigned int &WhichOne)

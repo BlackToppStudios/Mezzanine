@@ -79,6 +79,8 @@ namespace phys
 
             virtual void RemoveActorAtCursor();
 
+            virtual void RemoveAllActors();
+
             virtual Whole GetActorCount() const;
 
             virtual void CursorToFirst();
@@ -134,17 +136,12 @@ namespace phys
             /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove
             virtual void SetGameWorld( World* GameWorld_ , bool AddToWorld, bool RemoveFromWorld);
 
-            /// @brief Empty Initilizor
-            /// @details This class implements this for the sake of entension and compatibility this function does nothing
-            virtual void Initialize();
-
-            /// @brief Empty MainLoopItems
-            /// @details This class implements this for the sake of entension and compatibility this function does nothing
-            virtual void DoMainLoopItems();
-
         private:
             /// @brief This is used to implement LastActorAdded()
             ActorBase* RecentlyAdded;
+
+            /// @brief The world in which we are running.
+            World* GameWorld;
     };
 }
 

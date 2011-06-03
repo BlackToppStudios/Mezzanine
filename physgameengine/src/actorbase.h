@@ -80,7 +80,7 @@ namespace phys
     /// objects inside the World.  They serve as a binder between the physics and
     /// graphics for objects and have functions that allow the manipulation of objects
     /// loaded into the World.  Currently there are 5 actor classes: ActorBase,
-    /// ActorRigid, ActorSoft, ActorTerrain, ActorRagDoll. @n
+    /// ActorRigid, ActorSoft, ActorTerrain, ActorCharacter. @n
     /// ActorBase is a base class that serves as a template for the other four actor classes. @n
     /// ActorBase should never be created, as it lacks the functionality needed for most objects.
     ///////////////////////////////////////
@@ -100,7 +100,7 @@ namespace phys
             enum ActorTypeName
             {
                 Actorbase,
-                Actorragdoll,
+                Actorcharacter,
                 Actorrigid,
                 Actorsoft,
                 Actorterrain

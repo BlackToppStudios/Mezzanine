@@ -976,8 +976,10 @@ namespace Gorilla
     // Internal -- Prepares RenderSystem for rendering.
     void _prepareRenderSystem();
 
+   public:
     // Internal -- Renders mVertexData to screen.
     void renderOnce();
+   protected:
 
     // Internal -- Used to transform vertices using units of pixels into screen coordinates.
     void _transform(buffer<Vertex>& vertices, size_t begin, size_t end);

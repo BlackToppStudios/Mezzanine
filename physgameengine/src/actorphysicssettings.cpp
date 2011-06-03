@@ -110,7 +110,7 @@ namespace phys
                 Parent->AddObjectToWorld(GameWorld);
                 break;
             }
-            case ActorBase::Actorragdoll:
+            case ActorBase::Actorcharacter:
             {
                 return;
                 break;
@@ -134,7 +134,7 @@ namespace phys
                 Parent->AddObjectToWorld(GameWorld);
                 break;
             }
-            case ActorBase::Actorragdoll:
+            case ActorBase::Actorcharacter:
             {
                 return;
                 break;

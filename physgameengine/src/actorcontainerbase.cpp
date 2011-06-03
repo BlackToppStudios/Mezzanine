@@ -50,7 +50,7 @@ namespace phys
         @section actorcontaineroverview Actor Container Overview
     */
 
-    ActorContainerBase::ActorContainerBase() : ManagerBase()
+    ActorContainerBase::ActorContainerBase()
         {}
 
     ActorContainerBase::~ActorContainerBase()
@@ -61,21 +61,6 @@ namespace phys
 
     btCollisionObject* ActorContainerBase::GetCollisionObject(ActorBase* actor) const
         { return actor->CollisionObject; }
-
-    ManagerBase::ManagerTypeName ActorContainerBase::GetType() const
-        { return ManagerBase::ActorContainerBase; }
-
-    void ActorContainerBase::AddActor(ActorBase* ActorToAdd)
-    {
-        ActorToAdd->AddObjectToWorld(World::GetWorldPointer());
-    }
-
-    void ActorContainerBase::RemoveActor(ActorBase* ActorToAdd)
-    {
-        ActorToAdd->RemoveObjectFromWorld(World::GetWorldPointer());
-    }
-
-
 }// \phys
 
 

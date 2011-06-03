@@ -164,8 +164,8 @@ bool PostRender()
     timestream << "Catch!... " << gametime;
     TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption( timestream.str() );
 
-    ActorBase* Act1 = TheWorld->GetActorManager()->FindActor("RobotWayUpFrontLeft");
-    ActorBase* Act2 = TheWorld->GetActorManager()->FindActor("RobotWayUpFrontRight");
+    ActorBase* Act1 = TheWorld->GetActorManager()->GetActor("RobotWayUpFrontLeft");
+    ActorBase* Act2 = TheWorld->GetActorManager()->GetActor("RobotWayUpFrontRight");
     if (Act1->IsAnimated())
     {
         Act1->AdvanceAnimation((Real)0.001 * LastFrame);
@@ -226,7 +226,7 @@ bool PrePhysics()
 {
     TheWorld->Log("Object Locations");
     //Replace this with something that uses the actor container and logs the location of everything
-    TheWorld->Log(TheWorld->GetActorManager()->FindActor("MetalSphere2")->GetLocation());
+    TheWorld->Log(TheWorld->GetActorManager()->GetActor("MetalSphere2")->GetLocation());
     return true;
 }
 
@@ -936,45 +936,50 @@ void LoadContent()
 
     // Now Lets make some bowling pins
     Real PinSpacing=75.0;           //This is how far apart we want the pins
+    ActorRigid* ActRig = NULL;
     for(unsigned int c=0; c<4; c++)     //make the back row
     {
         std::stringstream namestream;
         namestream << robotprefix << c;
-        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
-        //TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
-        TheWorld->GetActorManager()->LastActorAdded()->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
+        ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
+        ActRig->CreateShapeFromMeshDynamic(2);
+        //TheWorld->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
+        ActRig->SetLocation(Vector3( (-2.0*PinSpacing)+(c*PinSpacing), -90.0, 0));
+        TheWorld->GetActorManager()->AddActor( ActRig );
     }
 
     for(unsigned int c=0; c<3; c++)     //the row with three pins
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+4);
-        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(2);
-        //TheWorld->GetResourceManager()->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "data/common/RobotDecomp3.bullet");
-        TheWorld->GetActorManager()->LastActorAdded()->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
+        ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
+        ActRig->CreateShapeFromMeshDynamic(2);
+        //TheWorld->GetResourceManager()->ImportShapeData(ActRig, "data/common/RobotDecomp3.bullet");
+        ActRig->SetLocation(Vector3( (-1.5*PinSpacing)+(c*PinSpacing), -66.0, -PinSpacing));
+        TheWorld->GetActorManager()->AddActor( ActRig );
     }
-    //TheWorld->Resources->ImportShapeData(TheWorld->GetActorManager()->LastActorAdded(), "RobotDecomp3.bullet");
+    //TheWorld->Resources->ImportShapeData(ActRig, "RobotDecomp3.bullet");
 
     for(unsigned int c=0; c<2; c++)     //the row with 2 pins
     {
         std::stringstream namestream;
         namestream << robotprefix << (c+7);
-        TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-        TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-        TheWorld->GetActorManager()->LastActorAdded()->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
+        ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
+        ActRig->CreateShapeFromMeshDynamic(1);
+        ActRig->SetLocation(Vector3( (-PinSpacing)+(c*PinSpacing), -30.0, -PinSpacing*2));
+        TheWorld->GetActorManager()->AddActor( ActRig );
         if (c+7==7)
-            {Robot7=TheWorld->GetActorManager()->LastActorAdded();}
+            {Robot7=TheWorld->GetActorManager()->GetActorContainer()->LastActorAdded();}
         if (c+7==8)
-            {Robot8=TheWorld->GetActorManager()->LastActorAdded();}
+            {Robot8=TheWorld->GetActorManager()->GetActorContainer()->LastActorAdded();}
     }
 
     std::stringstream namestream;           //make the front pin
     namestream << robotprefix << 9;
-    TheWorld->GetActorManager()->AddActor( new ActorRigid (mass,namestream.str(),filerobot,groupname) );
-    TheWorld->GetActorManager()->LastActorAdded()->CreateShapeFromMeshDynamic(1);
-    TheWorld->GetActorManager()->LastActorAdded()->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
+    ActRig = new ActorRigid (mass,namestream.str(),filerobot,groupname);
+    TheWorld->GetActorManager()->AddActor( ActRig );
+    ActRig->CreateShapeFromMeshDynamic(1);
+    ActRig->SetLocation(Vector3( (-0.5*PinSpacing), 0.0, -PinSpacing*3));
 
     //// The simulations soft body, to be used once a suitable mesh is found/created.
     /*MeshGenerator::CreateSphereMesh("SoftTest","SphereWood",70);
@@ -1065,7 +1070,7 @@ void LoadContent()
     TheWorld->GetSoundManager()->AddSoundToSoundSet("SoundTrack", music2);
 
     TheWorld->Log("Actor Count");
-    TheWorld->Log( TheWorld->GetActorManager()->GetActorCount() );
+    TheWorld->Log( TheWorld->GetActorManager()->GetNumActors() );
 
     TheWorld->GetPhysicsManager()->SetGravity(grav);
     TheWorld->GetPhysicsManager()->SetSoftGravity(grav);

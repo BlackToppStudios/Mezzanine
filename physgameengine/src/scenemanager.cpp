@@ -177,21 +177,9 @@ namespace phys
 
     SceneManager::~SceneManager()
     {
-        for( unsigned int x=0 ; x < Lights.size() ; x++ )
-        {
-            delete Lights[x];
-        }
-        Lights.clear();
-        for( unsigned int x=0 ; x < Particles.size() ; x++ )
-        {
-            delete Particles[x];
-        }
-        Particles.clear();
-        for( unsigned int x=0 ; x < WorldNodes.size() ; x++ )
-        {
-            delete WorldNodes[x];
-        }
-        WorldNodes.clear();
+        DestroyAllLights();
+        DestroyAllParticleEffects();
+        DestroyAllWorldNodes();
         delete SMD;
     }
 
@@ -399,6 +387,13 @@ namespace phys
         }
     }
 
+    void SceneManager::DestroyAllLights()
+    {
+        for( Whole X = 0 ; X < Lights.size() ; X++ )
+            delete Lights[X];
+        Lights.clear();
+    }
+
     SceneManager::LightIterator SceneManager::BeginLight()
         { return this->Lights.begin(); }
 
@@ -458,6 +453,13 @@ namespace phys
                 return;
             }
         }
+    }
+
+    void SceneManager::DestroyAllParticleEffects()
+    {
+        for( Whole X = 0 ; X < Particles.size() ; X++ )
+            delete Particles[X];
+        Particles.clear();
     }
 
     SceneManager::ParticleEffectIterator SceneManager::BeginParticleEffect()
@@ -585,6 +587,13 @@ namespace phys
                 return;
             }
         }
+    }
+
+    void SceneManager::DestroyAllWorldNodes()
+    {
+        for( Whole X = 0 ; X < WorldNodes.size() ; X++ )
+            delete WorldNodes[X];
+        WorldNodes.clear();
     }
 
     SceneManager::WorldNodeIterator SceneManager::BeginWorldNode()

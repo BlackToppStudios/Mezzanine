@@ -73,7 +73,7 @@ namespace phys
     /// movement functions. For the container that the phys::World keeps it should be assume that the
     /// cursor is used. For other containers you should manage you container carefully and/or use another
     /// iteration method, such as STL iterators.
-    class PHYS_LIB ActorContainerBase : public ManagerBase
+    class PHYS_LIB ActorContainerBase
     {
         protected:
             /// @internal
@@ -101,7 +101,7 @@ namespace phys
             /// That the actor involved is added to the Physics and graphics world. This method could be called from
             /// derived to accomplish that task
             /// @param ActorToAdd This is a pointer to the actor to add.
-            virtual void AddActor(ActorBase* ActorToAdd);
+            virtual void AddActor(ActorBase* ActorToAdd) = 0;
 
             /// @brief This provides an easy way to access the last Actor added to this container
             /// @details For many containers this will simply return a pointer to the last actorl
@@ -118,6 +118,9 @@ namespace phys
             /// Where the cursor goes is implementation dependent.
             /// @warning This will cause issues if used with a container attached to a valid phys::World. Use World::RemoveActor instead.
             virtual void RemoveActorAtCursor() = 0;
+
+            /// @brief Clears this container of all actors it is storing.
+            virtual void RemoveAllActors() = 0;
 
             /// @brief Returns how many actors this stores
             /// @return This returns a Whole number with the count of actors
@@ -201,15 +204,6 @@ namespace phys
             /// @param AddToWorld True to add AddActors if valid world pointer was supplied, false to not add
             /// @param RemoveFromWorld True to remove AddActors if valid world pointer was supplied, false to not remove
             virtual void SetGameWorld( World* GameWorld_, bool AddToWorld, bool RemoveFromWorld) = 0;
-
-            /// @brief This returns the type of this manager.
-            /// @return This returns ManagerTypeName::ActorContainerBase
-            virtual ManagerTypeName GetType() const;
-
-            // Inherited from ManagerBase
-            virtual void Initialize() = 0;
-            virtual void DoMainLoopItems() = 0;
-
     };
 }
 
