@@ -299,7 +299,7 @@ if(${UNIX})
 
 		file( COPY 
 				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/libSDL.a"
-			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"1
+			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
 		)
 	    	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
 		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
