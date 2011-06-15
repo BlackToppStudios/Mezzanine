@@ -114,6 +114,8 @@ class ActorTests : public UnitTest
                 }else{
                     AddTestResult("SceneManager::operator>> (ActorGraphicsSetting-3colour)", Failed, UnitTest::OverWrite);
                 }
+
+                cout << endl <<endl << *(object1->GetPhysicsSettings()) << endl << endl;
                 StopEngine();
 
 

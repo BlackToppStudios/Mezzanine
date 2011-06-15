@@ -44,6 +44,11 @@
 #include "vector3.h"
 #include "enumerations.h"
 
+#ifdef PHYSXML
+#include "xml.h"
+#include <iostream>
+#endif
+
 class btCollisionObject;
 class btRigidBody;
 class btSoftBody;
@@ -92,7 +97,7 @@ namespace phys
             /// @details Restitution determines how much energy is left after a collision with an object.
             /// Range is from 0.0 to 1.0.  Behavior in this regard is determined by the restitution of both colliding bodies.
             /// @n Default: 0.0
-            /// @param Restitution A Real that is the restiturion coefficient desired.
+            /// @param Restitution A Real that is the restitution coefficient desired.
             virtual void SetRestitution(const Real& Restitution);
 
             /// @brief Gets the Actors' restitution coefficient.
@@ -104,10 +109,18 @@ namespace phys
             /// Kinematic Objects are like Static Objects but are also able to be moved directly by character controllers.
             virtual void SetKinematic();
 
+            /// @brief Is the actir kinematic
+            /// @return True if the actor is kinematic false if it is not.
+            virtual bool GetKinematic() const;
+
             /// @brief Sets the state of the object to Static.
             /// @details This function will set the object to a Static Object. @n
             /// Static Objects don't move or have any force applied to them, but are cabable of exerting force on other objects.
             virtual void SetStatic();
+
+            /// @brief Is the actor static
+            /// @return True if the actor is Static false if it is not.
+            virtual bool GetStatic() const;
 
             /// @brief Checks of the actor is static or kinematic.
             /// @details Checks of the actor is static or kinematic, returns true if it is either.
@@ -122,6 +135,10 @@ namespace phys
             /// @details By default collision response is enabled.  Be sure to reactivate collision response if you want your objects to collide again.
             virtual void DisableCollisionResponse();
 
+            /// @brief Will this respond to 3d collisions.
+            /// @return False is it does not respond to collisions, True if it will
+            virtual bool GetCollisionResponse() const;
+
             /// @brief Checks if the object is active in the simulation.
             /// @return Returns true if the object is active, false if it's deactivated(at rest).
             virtual bool IsActive() const;
@@ -130,6 +147,7 @@ namespace phys
             /// @param State The activation state to set for the actor.  See the ActorActivationState enum for more info.
             /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the actor if this is set to false.
             virtual void SetActivationState(phys::ActorActivationState State, bool Force = false);
+
     };//actorbasephysicssettings
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -189,7 +207,9 @@ namespace phys
             /// @details This is the gravity applied to this object, which may or may not be the same as the world gravity.
             /// @return Returns a Vector3 representing the gravity currently being applied to this object.
             virtual Vector3 GetIndividualGravity() const;
+
     };//actorrigidphysicssettings
+
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorSoftPhysicsSettings
@@ -216,5 +236,46 @@ namespace phys
             ~ActorSoftPhysicsSettings();
     };//actorsoftphysicssettings
 }//phys
+
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::ActorBasePhysicsSettings to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::ActorBasePhysicsSettings to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ActorBasePhysicsSettings& Ev);
+
+/// @brief Deserialize a phys::ActorBasePhysicsSettings
+/// @param stream The istream to get the xml from to (re)make the phys::ActorBasePhysicsSettings.
+/// @param Ev the phys::ActorBasePhysicsSettings to be deserialized.
+/// @return this returns the ostream, advanced past the phys::ActorBasePhysicsSettings that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorBasePhysicsSettings& Ev);
+
+/// @brief Set all values of a phys::ActorBasePhysicsSettings from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::ActorBasePhysicsSettings.
+/// @param Ev the phys::ActorBasePhysicsSettings to be reset.
+/// @return This returns thexml::Node that was passed in.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhysicsSettings& Ev);
+
+/// @brief Serializes the passed phys::ActorRigidPhysicsSettings to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::ActorRigidPhysicsSettings to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ActorRigidPhysicsSettings& Ev);
+
+/// @brief Deserialize a phys::ActorRigidPhysicsSettings
+/// @param stream The istream to get the xml from to (re)make the phys::ActorRigidPhysicsSettings.
+/// @param Ev the phys::ActorRigidPhysicsSettings to be deserialized.
+/// @return this returns the ostream, advanced past the phys::ActorRigidPhysicsSettings that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorRigidPhysicsSettings& Ev);
+
+/// @brief Set all values of a phys::ActorRigidPhysicsSettings from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::ActorRigidPhysicsSettings.
+/// @param Ev the phys::ActorRigidPhysicsSettings to be reset.
+/// @return This returns thexml::Node that was passed in.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorRigidPhysicsSettings& Ev);
+
+#endif // \PHYSXML
+
 
 #endif

@@ -46,6 +46,10 @@
 #include "actorsoft.h"
 #include "world.h"
 
+#ifdef PHYSXML
+#include <memory>
+#endif
+
 #include "btBulletDynamicsCommon.h"
 #include "BulletSoftBody/btSoftRigidDynamicsWorld.h"
 
@@ -86,9 +90,19 @@ namespace phys
         ActorCO->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
     }
 
+    bool ActorBasePhysicsSettings::GetKinematic() const
+    {
+        return ActorCO->isKinematicObject();
+    }
+
     void ActorBasePhysicsSettings::SetStatic()
     {
         ActorCO->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+    }
+
+    bool ActorBasePhysicsSettings::GetStatic() const
+    {
+        return ActorCO->isStaticObject();
     }
 
     bool ActorBasePhysicsSettings::IsStaticOrKinematic() const
@@ -142,6 +156,11 @@ namespace phys
             default:
                 return;
         }
+    }
+
+    bool ActorBasePhysicsSettings::GetCollisionResponse() const
+    {
+        return ActorCO->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE;
     }
 
     bool ActorBasePhysicsSettings::IsActive() const
@@ -224,6 +243,135 @@ namespace phys
     ActorSoftPhysicsSettings::~ActorSoftPhysicsSettings()
     {
     }
+
 }
+
+#ifdef PHYSXML
+std::ostream& operator<< (std::ostream& stream, const phys::ActorBasePhysicsSettings& Ev)
+{
+    stream      << "<ActorBasePhysicsSettings Version=\"1\" "
+                << "Friction=\"" << Ev.GetFriction() << "\""
+                << "Restitution=\"" << Ev.GetRestitution() << "\""
+                << "Kinematic=\"" << Ev.GetKinematic() << "\""
+                << "Friction=\"" << Ev.GetStatic() << "\""
+                << "CollisionResponse=\"" << Ev.GetCollisionResponse() << "\""
+                << "Active=\"" << Ev.IsActive() << "\" />";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorBasePhysicsSettings& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "ActorBasePhysicsSettings", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhysicsSettings& Ev)
+{
+    /*if ( phys::String(OneNode.Name())==phys::String("ActorBasePhysicsSettings") )
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+
+        }else{
+            throw( phys::Exception("Incompatible XML Version for ActorBasePhysicsSettings: Not Version 1"));
+        }
+    }else{
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a ActorBasePhysicsSettings, found a ", OneNode.Name())));
+    }*/
+}
+
+std::ostream& operator << (std::ostream& stream, const phys::ActorRigidPhysicsSettings& Ev)
+{
+    stream      << "<ActorRigidPhysicsSettings Version=\"1\" "
+                << "Friction=\"" << Ev.GetFriction() << "\""
+                << "Restitution=\"" << Ev.GetRestitution() << "\""
+                << "Kinematic=\"" << Ev.GetKinematic() << "\""
+                << "Friction=\"" << Ev.GetStatic() << "\""
+                << ">";
+
+        operator<<(stream, static_cast<const phys::ActorBasePhysicsSettings>(Ev));
+
+    stream      << "</ActorRigidPhysicsSettings>";
+    return stream;
+}
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorRigidPhysicsSettings& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "ActorRigidPhysicsSettings", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorRigidPhysicsSettings& Ev)
+{
+    /*if ( phys::String(OneNode.Name())==phys::String("ActorRigidPhysicsSettings") )
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+            phys::ColourValue TempColour;
+
+            for(phys::Whole Counter = 0; Ev.GetNumSubmeshes()>Counter; ++Counter)
+            {
+                Ev.SetMaterialAmbient(TempColour, Counter);
+                Ev.SetMaterialSpecular(TempColour, Counter);
+                Ev.SetMaterialDiffuse(TempColour, Counter);
+            }
+
+            for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            {
+                phys::String Name(Child.Name());
+                switch(Name[0])
+                {
+                    case 'A':   //fDiffuseColour
+                        if(Name==phys::String("AmbientMaterial"))
+                        {
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetMaterialAmbient(TempColour, Child.GetAttribute("Submesh").AsWhole());
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element A-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'S':   //fDiffuseColour
+                        if(Name==phys::String("SpecularMaterial"))
+                        {
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetMaterialSpecular(TempColour, Child.GetAttribute("Submesh").AsWhole());
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element S-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'D':   //fDiffuseColour
+                        if(Name==phys::String("DiffuseMaterial"))
+                        {
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetMaterialDiffuse(TempColour, Child.GetAttribute("Submesh").AsWhole());
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element D-\"",Name,"\"")) );
+                        }
+                        break;
+                    default:
+                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element default-\"",Name,"\"")) );
+                        break;
+                }
+            }
+
+        }else{
+            throw( phys::Exception("Incompatible XML Version for ActorRigidPhysicsSettings: Not Version 1"));
+        }
+    }else{
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a ActorRigidPhysicsSettings, found a ", OneNode.Name())));
+    }*/
+}
+#endif // \PHYSXML
+
 
 #endif
