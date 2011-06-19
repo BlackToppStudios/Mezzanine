@@ -43,6 +43,9 @@
 #include "datatypes.h"
 #include "colourvalue.h"
 
+#ifdef PHYSXML
+#include "xml.h"
+#endif
 namespace Ogre
 {
     class Entity;

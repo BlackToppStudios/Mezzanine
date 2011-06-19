@@ -39,8 +39,8 @@ int main(int argc, char **argv)
     }
 
     //TheWorld->SetLoggingFrequency(World::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
-    //TheWorld->SetLoggingFrequency(World::LogOncePerXSeconds,5);
-    TheWorld->SetLoggingFrequency(World::LogNever);
+    TheWorld->SetLoggingFrequency(World::LogOncePerXSeconds,5);
+    //TheWorld->SetLoggingFrequency(World::LogNever);
 
     #ifdef PHYSDEBUG
     TheWorld->Log("World Created:");
@@ -673,6 +673,68 @@ void LoadContent()
 
     std::stringstream zipname;
     zipname << crossplatform::GetDataDirectory() << "test.zip";
+
+    World::GetWorldPointer()->GetLoggingFrequency();
+
+    //testing the directory listing feature
+    //please don;t delete this, this should be turned into a unit test.
+    World::GetWorldPointer()->LogStream << std::endl << "Checking content of data directory:" << crossplatform::GetDataDirectory() << std::endl;
+    std::set<String>* Listing = crossplatform::GetDirContents(crossplatform::GetDataDirectory());
+    for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
+    {
+        World::GetWorldPointer()->LogStream << *Iter << std::endl;
+    }
+    delete Listing;
+
+    World::GetWorldPointer()->LogStream << std::endl << "Checking content of working directory:" << crossplatform::GetWorkingDir() << std::endl;
+    Listing = crossplatform::GetDirContents(crossplatform::GetWorkingDir());
+    for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
+    {
+        World::GetWorldPointer()->LogStream << *Iter << std::endl;
+    }
+    delete Listing;
+
+    World::GetWorldPointer()->LogStream << std::endl << "Checking content of current directory:" << "." << std::endl;
+    Listing = crossplatform::GetDirContents(".");
+    for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
+    {
+        World::GetWorldPointer()->LogStream << *Iter << std::endl;
+    }
+    delete Listing;
+
+    World::GetWorldPointer()->LogStream << std::endl << "Checking content of parent directory:" << ".." << std::endl;
+    Listing = crossplatform::GetDirContents("..");
+    for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
+    {
+        World::GetWorldPointer()->LogStream << *Iter << std::endl;
+    }
+    delete Listing;
+
+    World::GetWorldPointer()->LogStream << std::endl << "Checking content of '/'" << std::endl;
+    Listing = crossplatform::GetDirContents("/");
+    if (NULL == Listing)
+    {
+        World::GetWorldPointer()->LogStream << "/ not a valid directory" << std::endl;
+    }else{
+        for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
+        {
+            World::GetWorldPointer()->LogStream << *Iter << std::endl;
+        }
+        delete Listing;
+    }
+
+    World::GetWorldPointer()->LogStream << std::endl << "Checking content of 'c:/'" << std::endl;
+    Listing = crossplatform::GetDirContents("c:/");
+    if (NULL == Listing)
+    {
+        World::GetWorldPointer()->LogStream << "c:/ not a valid directory" << std::endl;
+    }else{
+        for (std::set<String>::iterator Iter = Listing->begin(); Iter!=Listing->end(); ++Iter)
+        {
+            World::GetWorldPointer()->LogStream << *Iter << std::endl;
+        }
+        delete Listing;
+    }
 
     Real mass=15.0;
     TheWorld->GetResourceManager()->AddResourceLocation(crossplatform::GetDataDirectory(), "FileSystem", groupname, false);

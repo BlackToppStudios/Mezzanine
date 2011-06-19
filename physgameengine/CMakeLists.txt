@@ -269,7 +269,7 @@ endfunction(CopyLibraryDuringBuild)
 
 ###############################################################################
 # System Specific Build Items
-
+set(SDL SDL)
 #######################################
 # Windows Build Specific Items
 if(${WIN32})
@@ -278,14 +278,6 @@ if(${WIN32})
 
 	#required for cAudio
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
-
-	link_directories( "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl" )
-	set(SDLName SDL)
-
-	include_directories(
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/sdl"
-		"${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre"
-	)
 
 	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
@@ -317,17 +309,11 @@ if(${UNIX})
 		)
 		add_definitions( -DOGRE_GUI_GLX -DLINUX )
 
-		set(SDLName SDL)
-		set(SDLLibName libSDL.a)
 		file( COPY 
-				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/${SDLLibName}"
-			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/"
+				"${${PROJECT_NAME}_LIBINCLUDE_DIR}common/sdlsrc/SDL/build/.libs/libSDL.a"
+			DESTINATION "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/"
 		)
-		link_directories(${${PROJECT_NAME}_LIBBINARY_DIR}${BuildPlatform}/sdl/ ) 
-		include_directories(
-			"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include/"
-		)
-
+	    	set( SDL "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl/libSDL.a" )
 		message ("${PROJECT_NAME} - End Unix/Linux Specific Build Process")
 	endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif(${UNIX})
@@ -357,7 +343,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	find_package(OGRE REQUIRED)
         
 	include_directories(
-		${${PROJECT_NAME}_ROOT_DIR}/libincludes/common/sdlsrc/SDL/include
 		${OPENAL_INCLUDE_DIR}
 		"${OGRE_INCLUDE_DIR}"
 		${${PROJECT_NAME}_ROOT_DIR}/libincludes/macosx/ogresrc/boost_1_42
@@ -365,8 +350,6 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	)
 
 	link_directories("${OGRE_LIB_DIR}")
-
-	set(SDLName  SDL)
     
 
 	add_definitions( -DMACOSX)
@@ -377,6 +360,7 @@ endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 ###############################################################################
 #Common Library Configuration items
 include_directories( ${${PROJECT_NAME}_SOURCE_DIR}
+	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/sdlsrc/SDL/include"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/src/LinearMath"
 	"${${PROJECT_NAME}_LIBINCLUDE_DIR}/common/bulletsrc/bulletsvnsrc/Extras/ConvexDecomposition"
@@ -390,6 +374,7 @@ link_directories(
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/caudio"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/openal"
 	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/oggvorbis"
+	"${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
 )
 
 ###############################################################################
@@ -421,6 +406,7 @@ set( Bullet_LibraryNames
 
 if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	target_link_libraries(
+	    "${${PROJECT_NAME}_LIBBINARY_DIR}/${BuildPlatform}/sdl"
 	    ${PROJECT_NAME}
 	    "${OGRE_LIBRARIES}"
 	    ${Bullet_LibraryNames}
@@ -430,7 +416,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 	)
 
 else(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDLName} )
+	target_link_libraries( ${PROJECT_NAME} OgreMain ${Bullet_LibraryNames} cAudio ${SDL} )
 endif(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 
 ###############################################################################
