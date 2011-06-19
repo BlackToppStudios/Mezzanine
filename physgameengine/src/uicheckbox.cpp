@@ -54,7 +54,7 @@ namespace phys
 {
     namespace UI
     {
-        CheckBox::CheckBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString &LabelText, Layer* PLayer)
+        CheckBox::CheckBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString &LabelText, Layer* PLayer)
             : Widget(name,PLayer),
               GlyphIndex(Glyph),
               Checked(false),
@@ -180,14 +180,13 @@ namespace phys
             if(Box->CheckMouseHover())
             {
                 HoveredButton = Box;
-                //Update();
                 return true;
             }
             HoveredButton = NULL;
             return false;
         }
 
-        void CheckBox::SetLabelText(String &LabelText)
+        void CheckBox::SetLabelText(String& LabelText)
         {
             if(!Label)
             {
@@ -227,7 +226,7 @@ namespace phys
             //CheckedHovered = Hovered;
         }
 
-        void CheckBox::SetPosition(const Vector2 Position)
+        void CheckBox::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Box->SetPosition(Position);
@@ -244,9 +243,9 @@ namespace phys
             return RelPosition;
         }
 
-        void CheckBox::SetActualPosition(const Vector2 Position)
+        void CheckBox::SetActualPosition(const Vector2& Position)
         {
-            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();;
+            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             Box->SetActualPosition(Position);
             if(Label)
             {
@@ -258,10 +257,10 @@ namespace phys
 
         Vector2 CheckBox::GetActualPosition()
         {
-            return RelPosition * Parent->GetParent()->GetViewportDimensions();;
+            return RelPosition * Parent->GetParent()->GetViewportDimensions();
         }
 
-        void CheckBox::SetSize(const Vector2 Size)
+        void CheckBox::SetSize(const Vector2& Size)
         {
             RelSize = Size;
             Box->SetSize(Size);
@@ -278,9 +277,9 @@ namespace phys
             return RelSize;
         }
 
-        void CheckBox::SetActualSize(const Vector2 Size)
+        void CheckBox::SetActualSize(const Vector2& Size)
         {
-            RelSize = Size / Parent->GetParent()->GetViewportDimensions();;
+            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             Box->SetActualSize(Size);
             if(Label)
             {
@@ -292,7 +291,7 @@ namespace phys
 
         Vector2 CheckBox::GetActualSize()
         {
-            return RelSize * Parent->GetParent()->GetViewportDimensions();;
+            return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
         Button* CheckBox::GetCheckBoxButton()

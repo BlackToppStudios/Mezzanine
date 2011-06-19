@@ -54,16 +54,15 @@ namespace phys
 {
     namespace UI
     {
-        Menu::Menu(ConstString name, const Vector2 Position, const Vector2 Size, Layer* PLayer)
-            : Widget(name,PLayer),
-              HideSubWindows(true)
+        Menu::Menu(ConstString name, const Vector2& Position, const Vector2& Size, Layer* PLayer)
+            : Widget(name,PLayer)
         {
             Type = Widget::Menu;
             RelPosition = Vector2(0,0);
             RelSize = Vector2(0,0);
 
             ConstString NewName = name+"root";
-            RootWindow = new MenuWindow(NewName,Position,Size,this,Parent);
+            RootWindow = new UI::MenuWindow(NewName,Position,Size,this,Parent);
             MenuStack.push_back(RootWindow);
         }
 
@@ -81,17 +80,22 @@ namespace phys
             if(HoveredSubWidget)
             {
                 Button* button = HoveredSubWidget->GetHoveredButton();
-                if(button && State == MetaCode::BUTTON_PRESSING)
+                if(button && State == MetaCode::BUTTON_LIFTING)
                 {
-                    MenuWindow* MenWin = static_cast<MenuWindow*>(HoveredSubWidget);
-                    MenuWindow* ChildMenWin = MenWin->GetWindowOfAccessButton(button);
+                    UI::MenuWindow* MenWin = static_cast<UI::MenuWindow*>(HoveredSubWidget);
+                    UI::MenuWindow* ChildMenWin = MenWin->GetWindowOfAccessButton(button);
                     if(ChildMenWin)
                     {
-                        if(HideSubWindows)
-                            MenuStack.back()->Hide();
-                        MenuStack.push_back(ChildMenWin);
-                        ChildMenWin->Show();
-                        return;
+                        if(!ChildMenWin->IsVisible())
+                        {
+                            if(MenuStack.back()->GetAutoHide())
+                                MenuStack.back()->Hide();
+                            MenuStack.push_back(ChildMenWin);
+                            ChildMenWin->Show();
+                            return;
+                        }else{
+                            RollMenuBackToWindow(MenWin);
+                        }
                     }
                     else if(button == MenWin->GetBackButton())
                     {
@@ -121,14 +125,33 @@ namespace phys
             }
         }
 
+        void Menu::RollMenuBackToWindow(UI::MenuWindow* Win)
+        {
+            for( std::vector<UI::MenuWindow*>::reverse_iterator rit = MenuStack.rbegin() ; rit != MenuStack.rend() ; rit++ )
+            {
+                if(!(*rit)->IsVisible())
+                    (*rit)->Show();
+                if( RootWindow == (*rit) )
+                    break;
+                if( Win != (*rit))
+                {
+                    (*rit)->Hide();
+                    MenuStack.pop_back();
+                }else{
+                    return;
+                }
+            }
+        }
+
         void Menu::SetVisible(bool visible)
         {
-            if(HideSubWindows)
+            for( std::vector<UI::MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
             {
-                MenuStack.back()->SetVisible(visible);
-            }else{
-                for( std::vector<MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
+                if(visible)
                 {
+                    if(!(*it)->GetAutoHide())
+                        (*it)->SetVisible(visible);
+                }else{
                     (*it)->SetVisible(visible);
                 }
             }
@@ -142,51 +165,43 @@ namespace phys
 
         void Menu::Show()
         {
-            if(HideSubWindows)
+            for( std::vector<UI::MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
             {
-                MenuStack.back()->Show();
-            }else{
-                for( std::vector<MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
-                {
+                if(!(*it)->GetAutoHide())
                     (*it)->Show();
-                }
             }
             Visible = true;
         }
 
         void Menu::Hide()
         {
-            if(HideSubWindows)
+            for( std::vector<UI::MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
             {
-                MenuStack.back()->Hide();
-            }else{
-                for( std::vector<MenuWindow*>::iterator it = MenuStack.begin() ; it != MenuStack.end() ; it++ )
-                {
-                    (*it)->Hide();
-                }
+                (*it)->Hide();
             }
             Visible = false;
         }
 
-        void Menu::SetAutoHideSubWindows(bool AutoHide)
-        {
-            HideSubWindows = AutoHide;
-        }
-
         bool Menu::CheckMouseHover()
         {
-            if(MenuStack.back()->CheckMouseHover())
+            for( std::vector<UI::MenuWindow*>::reverse_iterator it = MenuStack.rbegin() ; it != MenuStack.rend() ; it++ )
             {
-                HoveredSubWidget = MenuStack.back();
-                HoveredButton = HoveredSubWidget->GetHoveredButton();
-                return true;
+                if((*it)->IsVisible())
+                {
+                    if((*it)->CheckMouseHover())
+                    {
+                        HoveredSubWidget = (*it);
+                        HoveredButton = HoveredSubWidget->GetHoveredButton();
+                        return true;
+                    }
+                }
             }
             HoveredSubWidget = NULL;
             HoveredButton = NULL;
             return false;
         }
 
-        void Menu::SetPosition(const Vector2 Position)
+        void Menu::SetPosition(const Vector2& Position)
         {
             MenuStack.back()->SetPosition(Position);
         }
@@ -196,7 +211,7 @@ namespace phys
             return MenuStack.back()->GetPosition();
         }
 
-        void Menu::SetActualPosition(const Vector2 Position)
+        void Menu::SetActualPosition(const Vector2& Position)
         {
             MenuStack.back()->SetActualPosition(Position);
         }
@@ -206,7 +221,7 @@ namespace phys
             return MenuStack.back()->GetActualPosition();
         }
 
-        void Menu::SetSize(const Vector2 Size)
+        void Menu::SetSize(const Vector2& Size)
         {
             MenuStack.back()->SetSize(Size);
         }
@@ -216,7 +231,7 @@ namespace phys
             return MenuStack.back()->GetSize();
         }
 
-        void Menu::SetActualSize(const Vector2 Size)
+        void Menu::SetActualSize(const Vector2& Size)
         {
             MenuStack.back()->SetActualSize(Size);
         }

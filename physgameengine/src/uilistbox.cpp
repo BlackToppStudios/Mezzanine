@@ -57,7 +57,7 @@ namespace phys
 {
     namespace UI
     {
-        ListBox::ListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, Layer* PLayer)
+        ListBox::ListBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
             : Widget(name,PLayer),
               Selected(NULL),
               AutoHideScroll(true),
@@ -357,7 +357,7 @@ namespace phys
             }
         }
 
-        void ListBox::SetSelectionDistance(const Real Dist)
+        void ListBox::SetSelectionDistance(const Real& Dist)
         {
             SelectionDist = Dist;
         }
@@ -369,7 +369,7 @@ namespace phys
                 VertScroll->Show();
         }
 
-        void ListBox::EnableBackgroundSelector(const ColourValue &Colour)
+        void ListBox::EnableBackgroundSelector(const ColourValue& Colour)
         {
             SelectColour = Colour;
         }
@@ -379,7 +379,7 @@ namespace phys
             SelectColour = ColourValue(1.0,1.0,1.0,1.0);
         }
 
-        void ListBox::SetPosition(const Vector2 Position)
+        void ListBox::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Vector2 ScrollOffset = VertScroll->GetPosition() - RelPosition;
@@ -393,7 +393,7 @@ namespace phys
             return RelPosition;
         }
 
-        void ListBox::SetActualPosition(const Vector2 Position)
+        void ListBox::SetActualPosition(const Vector2& Position)
         {
             RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Parent->GetParent()->GetViewportDimensions();
@@ -407,7 +407,7 @@ namespace phys
             return RelPosition * Parent->GetParent()->GetViewportDimensions();
         }
 
-        void ListBox::SetSize(const Vector2 Size)
+        void ListBox::SetSize(const Vector2& Size)
         {
             RelSize = Size;
             BoxBack->SetSize(Size);
@@ -424,7 +424,7 @@ namespace phys
             return RelSize;
         }
 
-        void ListBox::SetActualSize(const Vector2 Size)
+        void ListBox::SetActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             BoxBack->SetActualSize(Size);

@@ -78,7 +78,7 @@ namespace phys
                 /// @param Position The top left position of the checkbox.
                 /// @param Size The size of the checkbox.
                 /// @param Layer Pointer to the Layer that created this checkbox.
-                CheckBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString &LabelText, Layer* PLayer);
+                CheckBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString &LabelText, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~CheckBox();
                 /// @brief Sets the visibility of this checkbox.
@@ -104,7 +104,7 @@ namespace phys
                 /// @details If a label hasn't been set when this is called, this funtion will create a
                 /// new one and set it.
                 /// @param Label The text message to display with this checkbox.
-                virtual void SetLabelText(String &LabelText);
+                virtual void SetLabelText(String& LabelText);
                 /// @brief Gets the currently set label being displayed with this checkbox.
                 /// @return Returns a string containing the currently set label.  If no label is set this will
                 /// return an empty string.
@@ -122,28 +122,28 @@ namespace phys
                 /// @brief Sets the relative position of this checkbox.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this checkbox.
-                virtual void SetPosition(const Vector2 Position);
+                virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative position of this checkbox.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this checkbox.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this checkbox.
                 /// @param Position A vector2 representing the pixel position of this checkbox.
-                virtual void SetActualPosition(const Vector2 Position);
+                virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Sets the pixel position of this checkbox.
                 /// @return Returns a vector2 representing the pixel position of this checkbox.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this checkbox.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this checkbox.
-                virtual void SetSize(const Vector2 Size);
+                virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this checkbox.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this checkbox.
                 virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this checkbox.
                 /// @param Size A vector2 representing the pixel size of this checkbox.
-                virtual void SetActualSize(const Vector2 Size);
+                virtual void SetActualSize(const Vector2& Size);
                 /// @brief Sets the pixel size of this checkbox.
                 /// @return Returns a vector2 representing the pixel size of this checkbox.
                 virtual Vector2 GetActualSize();

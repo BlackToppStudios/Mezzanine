@@ -3,6 +3,7 @@
 
 #include "catchapp.h"
 #include "callbacks.h"
+#include "buttoncallbacks.h"
 #include <cassert>
 
 using namespace phys;
@@ -39,6 +40,11 @@ void CatchApp::MakeGUI()
     UIManager* GUI = TheWorld->GetUIManager();
     Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
 
+    ColourValue Transparent(0.0,0.0,0.0,0.0);
+    ColourValue Black(0.0,0.0,0.0,1.0);
+    ColourValue TransBlack(0.0,0.0,0.0,0.85);
+    ColourValue Gray(0.2,0.2,0.2,1.0);
+
     //Make the Main Menu screen and associated layers.
     GUI->LoadGorilla("Catch_Menu");
     UI::Screen* MainMenuScreen = GUI->CreateScreen("MainMenuScreen", "Catch_Menu", UIViewport);
@@ -48,7 +54,37 @@ void CatchApp::MakeGUI()
     UI::Rectangle* Background = MainMenuLayer->CreateRectangle( Vector2(0,0), Vector2(1,1));
     Background->SetBackgroundSprite("MainMenuBackground");
 
-    UI::Menu* MainMenuMenu = MainMenuLayer->CreateMenu( "MainMenuMenu", Vector2(0.3,0.25), Vector2(0.4,0.5));
+    UI::Menu* MainMenuMenu = MainMenuLayer->CreateMenu( "MS_Menu", Vector2(0.0,0.915), Vector2(1.0,0.086));
+    MainMenuMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MMBrickBackground");
+    MainMenuMenu->GetRootWindow()->SetAutoHide(false);
+
+    UI::TextButton* LevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", Vector2(0.05, 0.93), Vector2(0.22, 0.06), 16, "Level Select" );
+    LevelSelectAccess->SetBackgroundSprite("MMButton");
+    LevelSelectAccess->SetHoveredSprite("MMHoveredButton");
+    UI::MenuWindow* LevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelect", Vector2(0.02,0.02), Vector2(0.96,0.80), LevelSelectAccess);
+    LevelSelectWin->GetWindowBack()->SetBackgroundSprite("MMLSBackground");
+
+    UI::TextButton* OptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", Vector2(0.28, 0.93), Vector2(0.22, 0.06), 16, "Options" );
+    OptionsAccess->SetBackgroundSprite("MMButton");
+    OptionsAccess->SetHoveredSprite("MMHoveredButton");
+    UI::MenuWindow* OptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Options", Vector2(0.01,0.01), Vector2(0.01,0.01), OptionsAccess);
+
+    UI::TextButton* CreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", Vector2(0.51, 0.93), Vector2(0.22, 0.06), 16, "Credits" );
+    CreditsAccess->SetBackgroundSprite("MMButton");
+    CreditsAccess->SetHoveredSprite("MMHoveredButton");
+    UI::MenuWindow* CreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Credits", Vector2(0.01,0.01), Vector2(0.01,0.01), CreditsAccess);
+
+    UI::TextButton* AppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", Vector2(0.74, 0.93), Vector2(0.22, 0.06), 16, "Exit Game" );
+    AppExitAccess->SetBackgroundSprite("MMButton");
+    AppExitAccess->SetHoveredSprite("MMHoveredButton");
+    UI::MenuWindow* AppExitWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_AppExit", Vector2(0.25, 0.3), Vector2(0.5, 0.3), AppExitAccess);
+    AppExitWin->GetWindowBack()->SetBackgroundColour(TransBlack);
+    UI::Caption* AppExitWarn = AppExitWin->CreateCaption("MS_AppExitWarn", Vector2(0.25, 0.35), Vector2(0.5, 0.08), 16, "Are you sure you want to exit?");
+    AppExitWarn->SetBackgroundColour(Transparent);
+    UI::TextButton* AppExitConf = AppExitWin->CreateTextButton("MS_AppExitConf", Vector2(0.27, 0.45), Vector2(0.22, 0.08), 16, "Yes");
+    AppExitConf->SetBackgroundColour(Gray);
+    UI::TextButton* AppExitDeny = AppExitWin->CreateBackButton(/*"MS_AppExitDeny", */Vector2(0.51, 0.45), Vector2(0.22, 0.08), 16, "No");
+    AppExitDeny->SetBackgroundColour(Gray);
     //End of Main Menu Screen
 
     //Make the Game screen and associated layers.
@@ -60,29 +96,26 @@ void CatchApp::MakeGUI()
     UI::Layer* Stats = GameScreen->CreateLayer("StatsLayer", 1);
     UI::Layer* HUD = GameScreen->CreateLayer("HUDLayer", 0);
 
-    ColourValue Transparent(0.0,0.0,0.0,0.0);
-    ColourValue Black(0.0,0.0,0.0,1.0);
-    ColourValue TransBlack(0.0,0.0,0.0,0.3);
-    ColourValue Gray(0.2,0.2,0.2,1.0);
-
     //Build the Game Screen
     //Build the HUD layer
-    UI::Caption* Timer = HUD->CreateCaption( "Timer", Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), 20, "0:00");
+    UI::Caption* Timer = HUD->CreateCaption( "GS_Timer", Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), 20, "0:00");
     Timer->SetBackgroundSprite("TimerArea");
 
     UI::Rectangle* TIcon = HUD->CreateRectangle( Vector2(0.8515, 0.006), Vector2(0.0482, 0.06));
     TIcon->SetBackgroundSprite("TimerLogo");
 
-    UI::Button* MenuButton = HUD->CreateButton( "Menu", Vector2(0.008, 0.922), Vector2(0.16, 0.065));
+    UI::Button* MenuButton = HUD->CreateButton( "GS_Menu", Vector2(0.008, 0.922), Vector2(0.16, 0.065));
+    MenuButton->SetButtonCallback(new GSMenu(MenuButton));
     MenuButton->SetBackgroundSprite("MenuButtonHiRes");
 
-    UI::Button* StoreButton = HUD->CreateButton( "Store", Vector2(0.922, 0.922), Vector2(0.06, 0.065));
+    UI::Button* StoreButton = HUD->CreateButton( "GS_Store", Vector2(0.922, 0.922), Vector2(0.06, 0.065));
+    StoreButton->SetButtonCallback(new GSStore(StoreButton));
     StoreButton->SetBackgroundSprite("StoreButtonHiRes");
 
     UI::Rectangle* StoreText = HUD->CreateRectangle( Vector2(0.767, 0.922), Vector2(0.14, 0.065));
     StoreText->SetBackgroundSprite("StoreText");
 
-    UI::Caption* ScoreAmount = HUD->CreateCaption( "ScoreArea", Vector2(0.135, 0.006), Vector2(0.15, 0.065), 20, "0");
+    UI::Caption* ScoreAmount = HUD->CreateCaption( "GS_ScoreArea", Vector2(0.135, 0.006), Vector2(0.15, 0.065), 20, "0");
     ScoreAmount->SetBackgroundColour(Transparent);
 
     UI::Rectangle* ScoreText = HUD->CreateRectangle( Vector2(0.008, 0.006), Vector2(0.12, 0.06));
@@ -103,12 +136,13 @@ void CatchApp::MakeGUI()
     //Build the Menu Layer
     UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", Vector2(0.35, 0.27), Vector2(0.3, 0.45));
     GameMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MenuBack");
-    UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "Return", Vector2(0.37, 0.56), Vector2(0.26, 0.05));
+    UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "GS_Return", Vector2(0.37, 0.56), Vector2(0.26, 0.05));
+    ReturnButton->SetButtonCallback(new GSReturn(ReturnButton));
     ReturnButton->SetBackgroundSprite("ReturnButton");
-    UI::Button* ExitButton = GameMenu->GetRootWindow()->CreateButton( "Exit", Vector2(0.37, 0.64), Vector2(0.26, 0.05));
-    ExitButton->SetBackgroundSprite("ExitButton");
+    UI::Button* GameExitButton = GameMenu->GetRootWindow()->CreateButton( "GS_GameExit", Vector2(0.37, 0.64), Vector2(0.26, 0.05));
+    GameExitButton->SetBackgroundSprite("ExitButton");
 
-    UI::Button* VideoAccess = GameMenu->GetRootWindow()->CreateAccessorButton("VideoSettingsButton", Vector2(0.37, 0.32), Vector2(0.26, 0.05));
+    UI::Button* VideoAccess = GameMenu->GetRootWindow()->CreateAccessorButton("GS_VideoSettingsButton", Vector2(0.37, 0.32), Vector2(0.26, 0.05));
     UI::MenuWindow* VideoSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("VideoSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), VideoAccess);
     VideoSettings->GetWindowBack()->SetBackgroundSprite("WindowHoriBack");
     VideoAccess->SetBackgroundSprite("VideoSetButton");
@@ -116,7 +150,7 @@ void CatchApp::MakeGUI()
     UI::Button* VideoBack = VideoSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
     VideoBack->SetBackgroundColour(Black);
 
-    UI::Button* SoundAccess = GameMenu->GetRootWindow()->CreateAccessorButton("SoundSettingsButton", Vector2(0.37, 0.40), Vector2(0.26, 0.05));
+    UI::Button* SoundAccess = GameMenu->GetRootWindow()->CreateAccessorButton("GS_SoundSettingsButton", Vector2(0.37, 0.40), Vector2(0.26, 0.05));
     UI::MenuWindow* SoundSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("SoundSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), SoundAccess);
     SoundSettings->GetWindowBack()->SetBackgroundSprite("WindowHoriBack");
     SoundAccess->SetBackgroundSprite("SoundSetButton");
@@ -148,9 +182,9 @@ void CatchApp::MakeGUI()
     UI::Window* LevelReport = Report->CreateWidgetWindow("LevelReport", Vector2(0.2, 0.2), Vector2(0.6, 0.6));
     LevelReport->GetWindowBack()->SetBackgroundColour(Gray);
     //TempCaption
-    UI::Caption* TempCapt = LevelReport->CreateCaption("TempWarning", Vector2(0.25, 0.3), Vector2(0.5, 0.3), 18, "Future spot of level reports.");
+    UI::Caption* TempCapt = LevelReport->CreateCaption("GS_TempWarning", Vector2(0.25, 0.3), Vector2(0.5, 0.3), 18, "Future spot of level reports.");
     TempCapt->SetBackgroundColour(Transparent);
-    UI::TextButton* FinishButton = LevelReport->CreateTextButton("Finish", Vector2(0.42, 0.66), Vector2(0.16, 0.08), 14, "Finish");
+    UI::TextButton* FinishButton = LevelReport->CreateTextButton("GS_Finish", Vector2(0.42, 0.66), Vector2(0.16, 0.08), 14, "Finish");
     FinishButton->SetBackgroundColour(TransBlack);
     Report->Hide();
     //End of Report Layer
@@ -166,7 +200,6 @@ void CatchApp::CreateLoadingScreen()
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
     UI::Rectangle* Load = LoadLayer->CreateRectangle( Vector2(0, 0), Vector2(1, 1));
     Load->SetBackgroundSprite("LoadingBackground");
-    //Load->SetBackgroundColour(ColourValue(0.4,0.4,0.9,1.0));
     //LoadScreen->RenderOnce();
     crossplatform::RenderPhysWorld();
 }
@@ -204,37 +237,43 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
     if(CurrentState == StateToSet)
         return;
     UIManager* UIMan = TheWorld->GetUIManager();
-    if(CatchApp::Catch_GameScreen == StateToSet)
+    switch (StateToSet)
     {
-        for( Whole Screen = 0 ; Screen < UIMan->GetNumScreens() ; Screen++ )
+        case CatchApp::Catch_GameScreen:
         {
-            UI::Screen* CurrScreen = UIMan->GetScreen(Screen);
-            if("GameScreen" == CurrScreen->GetName())
-                CurrScreen->Show();
-            else
-                CurrScreen->Hide();
+            for( Whole Screen = 0 ; Screen < UIMan->GetNumScreens() ; Screen++ )
+            {
+                UI::Screen* CurrScreen = UIMan->GetScreen(Screen);
+                if("GameScreen" == CurrScreen->GetName())
+                    CurrScreen->Show();
+                else
+                    CurrScreen->Hide();
+            }
+            break;
         }
-    }
-    else if(CatchApp::Catch_Loading == StateToSet)
-    {
-        for( Whole Screen = 0 ; Screen < UIMan->GetNumScreens() ; Screen++ )
+        case CatchApp::Catch_Loading:
         {
-            UI::Screen* CurrScreen = UIMan->GetScreen(Screen);
-            if("LoadingScreen" == CurrScreen->GetName())
-                CurrScreen->Show();
-            else
-                CurrScreen->Hide();
+            for( Whole Screen = 0 ; Screen < UIMan->GetNumScreens() ; Screen++ )
+            {
+                UI::Screen* CurrScreen = UIMan->GetScreen(Screen);
+                if("LoadingScreen" == CurrScreen->GetName())
+                    CurrScreen->Show();
+                else
+                    CurrScreen->Hide();
+            }
+            break;
         }
-    }
-    else if(CatchApp::Catch_MenuScreen == StateToSet)
-    {
-        for( Whole Screen = 0 ; Screen < UIMan->GetNumScreens() ; Screen++ )
+        case CatchApp::Catch_MenuScreen:
         {
-            UI::Screen* CurrScreen = UIMan->GetScreen(Screen);
-            if("MainMenuScreen" == CurrScreen->GetName())
-                CurrScreen->Show();
-            else
-                CurrScreen->Hide();
+            for( Whole Screen = 0 ; Screen < UIMan->GetNumScreens() ; Screen++ )
+            {
+                UI::Screen* CurrScreen = UIMan->GetScreen(Screen);
+                if("MainMenuScreen" == CurrScreen->GetName())
+                    CurrScreen->Show();
+                else
+                    CurrScreen->Hide();
+            }
+            break;
         }
     }
     CurrentState = StateToSet;
@@ -320,6 +359,9 @@ int CatchApp::GetCatchin()
     //Set the Make the RenderWindow and load system stuff
 	TheWorld->GameInit(false);
 
+	TheWorld->GetUIManager()->EnableButtonAutoRegister(true);
+    TheWorld->GetUIManager()->AddAutoRegisterCode(MetaCode::MOUSEBUTTON_1);
+
     ConfigResources();
 	CreateLoadingScreen();
 	ChangeState(CatchApp::Catch_Loading);
@@ -334,22 +376,30 @@ int CatchApp::GetCatchin()
     TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->SetWindowCaption("Catch!");
     TheWorld->SetTargetFrameRate(60);
 
+    // Create the Timer
+    LevelTimer = TheWorld->GetTimerManager()->CreateSimpleTimer(Timer::Normal);
+
     //Generate the UI
     MakeGUI();
 
-    Loader->SetNextLevel("Ferris");
+    Loader->SetNextLevel("MainMenu");
     do{
+        ChangeState(CatchApp::Catch_Loading);
         //Actually Load the game stuff
         Loader->LoadLevel();
 
-        ChangeState(CatchApp::Catch_GameScreen);
-        LevelTimer = TheWorld->GetTimerManager()->CreateSimpleTimer(Timer::Normal);
+        if("MainMenu"==Loader->GetCurrentLevel())
+            ChangeState(CatchApp::Catch_MenuScreen);
+        else
+            ChangeState(CatchApp::Catch_GameScreen);
+        LevelTimer->Reset();
         LevelTimer->Start();
 
         //Start the Main Loop
         TheWorld->MainLoop();
 
         UnloadLevel();
+        LevelTimer->Stop();
     } while(Loader->HasALevelToLoad());
 
 	return 0;
@@ -402,28 +452,14 @@ bool CatchApp::PostUI()
     TheWorld->Log(InputQueryer->GetMouseY());
 
     //Resize the window
-    static bool videobuttonpushed = false;
-    if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_F) && !videobuttonpushed )
-    {
-        videobuttonpushed = true;
+    if ( InputQueryer->GetKeyboardButtonState(MetaCode::KEY_F) == MetaCode::BUTTON_LIFTING )
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(true);
-    }
-    else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_G)  && !videobuttonpushed )
-    {
-        videobuttonpushed = true;
+    else if ( InputQueryer->GetKeyboardButtonState(MetaCode::KEY_G) == MetaCode::BUTTON_LIFTING )
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setFullscreen(false);
-    }
-    else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_R)  && !videobuttonpushed )
-    {
-        videobuttonpushed = true;
+    else if ( InputQueryer->GetKeyboardButtonState(MetaCode::KEY_R) == MetaCode::BUTTON_LIFTING )
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(1024,768);
-    }
-    else if ( InputQueryer->IsKeyboardButtonPushed(MetaCode::KEY_T)  && !videobuttonpushed )
-    {
-        videobuttonpushed = true;
+    else if ( InputQueryer->GetKeyboardButtonState(MetaCode::KEY_T) == MetaCode::BUTTON_LIFTING )
         TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->setRenderResolution(800,600);
-    }
-    else { videobuttonpushed = false; }
 
     static Point2PointConstraint* Dragger=NULL;
 
@@ -438,31 +474,15 @@ bool CatchApp::PostUI()
             if(MouseButton)
             {
                 MetaCode::ButtonState State = InputQueryer->GetMouseButtonState(1);
-                if("Store" == MouseButton->GetName())
-                {
-                    String ItemShopL = "ItemShopLayer";
-                    UI::Layer* layer = UIMan->GetLayer(ItemShopL);
-                    if(MetaCode::BUTTON_PRESSING == State)
-                        layer->SetVisible(!layer->IsVisible());
-                }
-                else if("Menu" == MouseButton->GetName())
-                {
-                    String MenuL = "MenuLayer";
-                    UI::Layer* layer = UIMan->GetLayer(MenuL);
-                    if(MetaCode::BUTTON_PRESSING == State)
-                        layer->SetVisible(!layer->IsVisible());
-                }
-                else if("Return" == MouseButton->GetName())
-                {
-                    String MenuL = "MenuLayer";
-                    UI::Layer* layer = UIMan->GetLayer(MenuL);
-                    layer->Hide();
-                }
-                else if("Finish" == MouseButton->GetName())
+                if("GS_Finish" == MouseButton->GetName())
                 {
                     return false;
                 }
-                else if("Exit" == MouseButton->GetName())
+                else if("GS_GameExit" == MouseButton->GetName())
+                {
+                    return false;
+                }
+                else if("MS_AppExitConf" == MouseButton->GetName())
                 {
                     return false;
                 }
@@ -644,7 +664,7 @@ bool CatchApp::PostRender()
     }
 
     // Update the timer
-    UI::Caption* Timer = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("Timer");
+    UI::Caption* Timer = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("GS_Timer");
     std::stringstream time;
     Whole TotalSeconds = LevelTimer->GetCurrentTimeInMilli() / 1000;
     Whole Minutes = TotalSeconds / 60;
@@ -664,7 +684,7 @@ bool CatchApp::PostRender()
     Timer->SetText(time.str());
 
     // Update the score
-    UI::Caption* ScoreAmount = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("ScoreArea");
+    UI::Caption* ScoreAmount = TheWorld->GetUIManager()->GetScreen("GameScreen")->GetLayer("HUDLayer")->GetCaption("GS_ScoreArea");
     std::stringstream Score;
     Score << CurrScore;
     String ScoreOut = Score.str();

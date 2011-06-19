@@ -92,6 +92,8 @@ namespace phys
 
     MetaCode::ButtonState InputQueryTool::GetMouseButtonState(short unsigned int MouseButton)
         { return (MetaCode::ButtonState)CodeCache[MetaCode::GetMouseButtonCode(MouseButton)]; }
+    MetaCode::ButtonState InputQueryTool::GetMouseButtonState(const MetaCode::InputCode& MouseButton)
+        { return (MetaCode::ButtonState)CodeCache[MouseButton]; }
     MetaCode::ButtonState InputQueryTool::GetKeyboardButtonState(const MetaCode::InputCode& KeyboardButton)
         { return (MetaCode::ButtonState)CodeCache[KeyboardButton]; }
 

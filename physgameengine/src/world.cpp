@@ -201,9 +201,10 @@ namespace phys
     //tears the world down
     World::~World()
     {
-        for(std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); iter!= ManagerList.end(); iter++)
+        for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin() ; iter!= ManagerList.end() ; /*iter++*/ )
         {
             delete (*iter);
+            iter = ManagerList.erase(iter);
         }
         ManagerList.clear();
 

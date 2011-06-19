@@ -55,6 +55,9 @@
 #include "uilinelist.h"
 #include "uiwindow.h"
 #include "uimenu.h"
+#include "uispinner.h"
+#include "uiscrolledcellgrid.h"
+#include "uipagedcellgrid.h"
 
 #include "graphicsmanager.h"
 #include "world.h"
@@ -152,7 +155,7 @@ namespace phys
             {
                 std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
                 for( Whole X = 0 ; X < Codes->size() ; X++ )
-                    button->RegisterActivationKeyOrButton(Codes->at(X));
+                    button->BindActivationKeyOrButton(Codes->at(X));
             }
             return button;
         }
@@ -165,7 +168,7 @@ namespace phys
             {
                 std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
                 for( Whole X = 0 ; X < Codes->size() ; X++ )
-                    tbutton->RegisterActivationKeyOrButton(Codes->at(X));
+                    tbutton->BindActivationKeyOrButton(Codes->at(X));
             }
             return tbutton;
         }
@@ -352,6 +355,11 @@ namespace phys
             }
         }
 
+        void Layer::AddWidget(Widget* ToAdd)
+        {
+            Widgets.push_back(ToAdd);
+        }
+
         Widget* Layer::GetWidget(ConstString& Name)
         {
             for ( std::vector<Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
@@ -382,87 +390,73 @@ namespace phys
                 if ( ToBeDestroyed == (*it) )
                 {
                     delete ToBeDestroyed;
-                    /*Widget::WidgetType Type = ToBeDestroyed->GetType();
-                    switch (Type)
-                    {
-                        case Widget::Scrollbar:
-                        {
-                            Scrollbar* Scroll = static_cast<Scrollbar*> (ToBeDestroyed);
-                            delete Scroll;
-                            return;
-                        }
-                        case Widget::CheckBox:
-                        {
-                            CheckBox* Check = static_cast<CheckBox*> (ToBeDestroyed);
-                            delete Check;
-                            return;
-                        }
-                        case Widget::ButtonListBox:
-                        {
-                            ButtonListBox* ButtonList = static_cast<ButtonListBox*> (ToBeDestroyed);
-                            delete ButtonList;
-                            return;
-                        }
-                        case Widget::ListBox:
-                        {
-                            ListBox* List = static_cast<ListBox*> (ToBeDestroyed);
-                            delete List;
-                            return;
-                        }
-                        case Widget::Window:
-                        {
-                            Window* Win = static_cast<Window*> (ToBeDestroyed);
-                            delete Win;
-                            return;
-                        }
-                        default:
-                            return;
-                    }*/
                     Widgets.erase(it);
+                    return;
                 }
             }
         }
 
-        Scrollbar* Layer::CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::ScrollbarStyle Style)
+        Scrollbar* Layer::CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, UI::ScrollbarStyle Style)
         {
             Scrollbar* Scroll = new Scrollbar(Name,Position,Size,Style,this);
             Widgets.push_back(Scroll);
             return Scroll;
         }
 
-        CheckBox* Layer::CreateCheckBox(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText)
+        CheckBox* Layer::CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Whole Glyph, String &LabelText)
         {
             CheckBox* Check = new CheckBox(Name,Position,Size,Glyph,LabelText,this);
             Widgets.push_back(Check);
             return Check;
         }
 
-        ButtonListBox* Layer::CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+        ButtonListBox* Layer::CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
         {
             ButtonListBox* BLB = new ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,this);
             Widgets.push_back(BLB);
             return BLB;
         }
 
-        ListBox* Layer::CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+        ListBox* Layer::CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
         {
             ListBox* LB = new ListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,this);
             Widgets.push_back(LB);
             return LB;
         }
 
-        Window* Layer::CreateWidgetWindow(ConstString& Name, Vector2 Position, Vector2 Size)
+        Window* Layer::CreateWidgetWindow(ConstString& Name, const Vector2& Position, const Vector2& Size)
         {
             Window* Win = new Window(Name,Position,Size,this);
             Widgets.push_back(Win);
             return Win;
         }
 
-        Menu* Layer::CreateMenu(ConstString Name, Vector2 Position, Vector2 Size)
+        Menu* Layer::CreateMenu(ConstString& Name, const Vector2& Position, const Vector2& Size)
         {
             Menu* Men = new Menu(Name,Position,Size,this);
             Widgets.push_back(Men);
             return Men;
+        }
+
+        Spinner* Layer::CreateSpinner(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        {
+            Spinner* Spn = new Spinner(Name,Position,Size,SStyle,GlyphHeight,this);
+            Widgets.push_back(Spn);
+            return Spn;
+        }
+
+        ScrolledCellGrid* Layer::CreateScrolledCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& Thickness, const UI::ScrollbarStyle& Style)
+        {
+            ScrolledCellGrid* SCG = new ScrolledCellGrid(Name,Position,Size,Thickness,Style,this);
+            Widgets.push_back(SCG);
+            return SCG;
+        }
+
+        PagedCellGrid* Layer::CreatePagedCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        {
+            PagedCellGrid* PCG = new PagedCellGrid(Name,Position,Size,SpnPosition,SpnSize,SStyle,GlyphHeight,this);
+            Widgets.push_back(PCG);
+            return PCG;
         }
 
         Button* Layer::CheckButtonMouseIsOver()
@@ -489,6 +483,8 @@ namespace phys
         Widget* Layer::CheckWidgetMouseIsOver()
         {
             if(Widgets.empty())
+                return 0;
+            if(!IsVisible())
                 return 0;
             Widget* widget = NULL;
             for( std::vector<Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )

@@ -66,8 +66,11 @@ namespace phys
 {
     UIManager::UIManager()
         : HoveredButton(NULL),
+          HoveredWidgetButton(NULL),
           HoveredWidget(NULL),
           WidgetFocus(NULL),
+          InputCapture(NULL),
+          LastWidgetSelected(NULL),
           ButtonAutoRegister(false)
     {
         if (HasSilverAlreadyBeenCreated)
@@ -91,6 +94,8 @@ namespace phys
         {
             if(HoveredButton->CheckMouseHover())
             {
+                HoveredWidget = NULL;
+                HoveredWidgetButton = NULL;
                 MouseActivationCheck(HoveredButton);
                 return;
             }
@@ -99,7 +104,10 @@ namespace phys
         {
             if(HoveredWidget->CheckMouseHover())
             {
-                HoveredWidget->Update();
+                HoveredButton = NULL;
+                HoveredWidgetButton = HoveredWidget->GetHoveredButton();
+                if(HoveredWidgetButton)
+                    MouseActivationCheck(HoveredWidgetButton);
                 return;
             }
         }
@@ -107,39 +115,48 @@ namespace phys
         if(HoveredButton)
         {
             MouseActivationCheck(HoveredButton);
+            HoveredWidget = NULL;
+            HoveredWidgetButton = NULL;
         }else{
             HoveredWidget = CheckWidgetMouseIsOver();
             if(HoveredWidget)
-                HoveredWidget->Update();
-        }
-    }
-
-    void UIManager::HotKeyChecks()
-    {
-        if(HotKeys.empty())
-            return;
-        std::list<EventUserInput*>* InputList = GameWorld->GetEventManager()->GetAllUserInputEvents();
-        MetaCode::InputCode CurrCode;
-        Whole X = 0;
-        for( std::list<EventUserInput*>::iterator Ilit = InputList->begin() ; Ilit != InputList->end() ; Ilit++, X++ )
-        {
-            CurrCode = (*Ilit)->GetMetaCode(X).GetCode();
-            if( MetaCode::KEY_FIRST < CurrCode && MetaCode::KEY_LAST > CurrCode )
             {
-                std::pair<const std::multimap<MetaCode::InputCode,UI::Button*>::iterator,const std::multimap<MetaCode::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(CurrCode);
-                if( (*Result.first).first != CurrCode )
-                    continue;
-                for( std::multimap<MetaCode::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
-                {
-                    if((*It).second->IsVisible())
-                        (*It).second->SetActivation(true);
-                }
+                HoveredButton = NULL;
+                HoveredWidgetButton = HoveredWidget->GetHoveredButton();
+                if(HoveredWidgetButton)
+                    MouseActivationCheck(HoveredWidgetButton);
             }
         }
     }
 
-    void UIManager::WidgetFocusUpdate()
+    void UIManager::HotKeyAndInputCaptureChecks()
     {
+        if(HotKeys.empty())
+            return;
+        std::vector<MetaCode::InputCode> CapturedCodes;
+        std::list<EventUserInput*>* InputList = GameWorld->GetEventManager()->GetAllUserInputEvents();
+        MetaCode::InputCode CurrCode;
+        for( std::list<EventUserInput*>::iterator Ilit = InputList->begin() ; Ilit != InputList->end() ; Ilit++ )
+        {
+            for( Whole X = 0 ; X < (*Ilit)->size() ; X++ )
+            {
+                CurrCode = (*Ilit)->GetMetaCode(X).GetCode();
+                if(LastWidgetSelected && LastWidgetSelected->IsInputCaptureWidget())
+                {
+                    CapturedCodes.push_back(CurrCode);
+                }else{
+                    HotKeyActivationCheck(CurrCode);
+                }
+            }
+        }
+        if(!CapturedCodes.empty())
+            LastWidgetSelected->GetInputCaptureData()->UpdateCapturedInputs(CapturedCodes);
+    }
+
+    void UIManager::WidgetUpdates()
+    {
+        if(HoveredWidget)
+            HoveredWidget->Update();
         if(HoveredWidget || WidgetFocus)
         {
             MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
@@ -156,8 +173,16 @@ namespace phys
             {
                 if(HoveredWidget != WidgetFocus && WidgetFocus)
                     WidgetFocus->Update(true);
+                else if(HoveredWidget && HoveredWidget == WidgetFocus)
+                    LastWidgetSelected = HoveredWidget;
                 WidgetFocus = NULL;
             }
+        }
+        else if(!HoveredWidget && !WidgetFocus)
+        {
+            MetaCode::ButtonState State = InputQueryTool::GetMouseButtonState(1);
+            if(LastWidgetSelected && MetaCode::BUTTON_LIFTING == State)
+                LastWidgetSelected = NULL;
         }
     }
 
@@ -172,15 +197,33 @@ namespace phys
 
     void UIManager::MouseActivationCheck(UI::Button* ToCheck)
     {
+        if(!ToCheck)
+            return;
         std::vector<MetaCode::InputCode>* MouseCodes = ToCheck->GetMouseActivationButtons();
+        UI::ActivationCondition Condition = ToCheck->GetActivationCondition();
         MetaCode::InputCode Code;
         for( Whole X = 0 ; X < MouseCodes->size() ; X++ )
         {
             Code = MouseCodes->at(X);
-            if(InputQueryTool::IsMouseButtonPushed(Code))
+            if((Condition == UI::AC_OnLift ? MetaCode::BUTTON_LIFTING : MetaCode::BUTTON_PRESSING) == InputQueryTool::GetMouseButtonState(Code))
             {
                 ToCheck->SetActivation(true);
                 ActivatedButtons.push_back(ToCheck);
+            }
+        }
+    }
+
+    void UIManager::HotKeyActivationCheck(const MetaCode::InputCode& Code)
+    {
+        if( MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code )
+        {
+            std::pair<const std::multimap<MetaCode::InputCode,UI::Button*>::iterator,const std::multimap<MetaCode::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(Code);
+            if( (*Result.first).first != Code )
+                return;
+            for( std::multimap<MetaCode::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
+            {
+                if((*It).second->IsVisible())
+                    (*It).second->SetActivation(true);
             }
         }
     }
@@ -192,8 +235,10 @@ namespace phys
     void UIManager::DoMainLoopItems()
     {
         InputQueryTool::GatherEvents();
+        ClearButtonActivations();
         HoverChecks();
-        WidgetFocusUpdate();
+        HotKeyAndInputCaptureChecks();
+        WidgetUpdates();
     }
 
     void UIManager::LoadGorilla(const String& Name)
@@ -209,13 +254,13 @@ namespace phys
         }
     }
 
-    void UIManager::RegisterHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton)
+    void UIManager::BindHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton)
     {
         if( MetaCode::KEY_FIRST < HotKey && MetaCode::KEY_LAST > HotKey )
             HotKeys.insert(std::pair<MetaCode::InputCode,UI::Button*>(HotKey,BoundButton));
     }
 
-    void UIManager::UnregisterHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton)
+    void UIManager::UnbindHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton)
     {
         std::pair<const std::multimap<MetaCode::InputCode,UI::Button*>::iterator,const std::multimap<MetaCode::InputCode,UI::Button*>::iterator> Result = HotKeys.equal_range(HotKey);
         for( std::multimap<MetaCode::InputCode,UI::Button*>::iterator It = Result.first ; It != Result.second ; It++ )
@@ -280,6 +325,11 @@ namespace phys
         return HoveredButton;
     }
 
+    UI::Button* UIManager::GetHoveredWidgetButton()
+    {
+        return HoveredWidgetButton;
+    }
+
     UI::Widget* UIManager::GetHoveredWidget()
     {
         return HoveredWidget;
@@ -288,6 +338,11 @@ namespace phys
     UI::Widget* UIManager::GetWidgetFocus()
     {
         return WidgetFocus;
+    }
+
+    UI::Widget* UIManager::GetWidgetCapturingInput()
+    {
+        return InputCapture;
     }
 
     UI::Screen* UIManager::CreateScreen(const String& ScreenName, const String& Atlas, Viewport* WindowViewport)
@@ -399,6 +454,29 @@ namespace phys
         }else{
             return false;
         }
+    }
+
+    std::pair<Whole,Real> UIManager::SuggestGlyphIndex(const Whole& Height, const String& Atlas)
+    {
+        Gorilla::TextureAtlas* TheAtlas = Silver->getatlas(Atlas);
+        std::map<Ogre::uint,Gorilla::GlyphData*>& Glyphs = TheAtlas->GetGlyphs();
+        Whole BestMatch = 0;
+        Real BestHeight = 0;
+        Real BestMatchDiff = 1000000.f;
+
+        for( std::map<Ogre::uint,Gorilla::GlyphData*>::iterator it = Glyphs.begin() ; it != Glyphs.end() ; it++ )
+        {
+            Real Diff = (Real)Height > (*it).second->mLineHeight ? (Real)Height - (*it).second->mLineHeight : (*it).second->mLineHeight - (Real)Height;
+            if(Diff < BestMatchDiff)
+            {
+                BestMatch = (*it).first;
+                BestHeight = (*it).second->mLineHeight;
+                BestMatchDiff = Diff;
+            }
+        }
+
+        Real Scale = BestHeight / Height;
+        return std::pair<Whole,Real>(BestMatch,Scale);
     }
 
     ManagerBase::ManagerTypeName UIManager::GetType() const

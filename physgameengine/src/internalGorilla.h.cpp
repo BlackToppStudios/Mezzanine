@@ -726,6 +726,11 @@ namespace Gorilla
     */
     Ogre::ColourValue getMarkupColour(Ogre::uint colour_palette_index);
 
+    inline std::map<Ogre::uint, GlyphData*>& GetGlyphs()
+    {
+     return mGlyphData;
+    }
+
    protected:
 
     TextureAtlas(const Ogre::String& gorillaFile, const Ogre::String& group);

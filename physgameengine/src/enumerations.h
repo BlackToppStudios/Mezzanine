@@ -82,6 +82,16 @@ namespace phys
 
     namespace UI
     {
+        /// @enum ActivationCondition
+        /// @brief Used primarily by UI buttons to decide how/when a button is activated.
+        /// @details Essentially used to decide if a button should activate when it's activation button
+        /// is pressed or lifted.
+        enum ActivationCondition
+        {
+            AC_OnPress,
+            AC_OnLift
+        };
+
         /// @enum RenderPriority
         /// @brief Used by UI elements created by layers to determine z-ordering within a layer.
         /// @details This essentially means we're adding layers to our layers without the messy
@@ -129,6 +139,15 @@ namespace phys
             SB_Separate,
             SB_TogetherUpLeft,
             SB_TogetherDownRight
+        };
+        /// @enum SpinnerStyle
+        /// @brief Used by the spinner class to determine what styling should be used for the spinner.
+        /// @details In the case of the buttons being together, the increment button will be above the decrement button.
+        enum SpinnerStyle
+        {
+            Spn_Separate,
+            Spn_Together_Left,
+            Spn_Together_Right
         };
         /// @enum TextHorizontalAlign
         /// @brief Used by UI classes to determine the placement of text within a given area.

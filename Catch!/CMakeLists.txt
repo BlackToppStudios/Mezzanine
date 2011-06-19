@@ -32,10 +32,10 @@ message ("Base Directory for Executable binaries and data output: ${${PROJECT_NA
 ##############################################################################
 #A complete list of our source files and headers
 set(${PROJECT_NAME}_sources
-	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}areaofplay.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}areaofplay.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}buttoncallbacks.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}buttoncallbacks.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}callbacks.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}callbacks.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}catchapp.cpp"
