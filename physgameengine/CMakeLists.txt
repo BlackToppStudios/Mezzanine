@@ -267,7 +267,7 @@ if(${WIN32})
 	#required for cAudio
 	add_subdirectory ("${physgame_LIBINCLUDE_DIR}${BuildPlatform}/oggvorbis")
 
-	include_directories( "${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" 
+	include_directories( "${${PROJECT_NAME}_LIBINCLUDE_DIR}/${BuildPlatform}/ogre" )
 
 	add_definitions( -DWINDOWS -DEXPORTINGPHYSGAMEDLL )
 	message ("${PROJECT_NAME} - End Windows32/64 Specific Build Process")
