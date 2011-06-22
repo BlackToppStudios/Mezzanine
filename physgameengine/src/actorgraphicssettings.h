@@ -107,6 +107,10 @@ namespace phys
             /// @brief Gets the number of submeshes in the mesh of the graphics ohject.
             /// @return Returns a whole representing the number of submeshes in this objects mesh.
             Whole GetNumSubmeshes() const;
+            /// @brief Creates a copy of the material script of the graphics object and places it in the same resource group.
+            /// @param name of the cloned material script.
+            void CloneMaterial(const String& newName);
+
 
             ///////////////////////////////////////////////////////////////////////////////
             // Material Colors
