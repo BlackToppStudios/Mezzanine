@@ -43,6 +43,8 @@
 #include "actormanager.h"
 #include "actorcontainervector.h"
 
+#include <sstream>
+
 namespace phys
 {
     ActorManager::ActorManager()

@@ -100,6 +100,7 @@ namespace phys
                 enum WidgetType
                 {
                     ButtonListBox,
+                    Cell,
                     CellGrid,
                     CheckBox,
                     DropDownMenu,
@@ -196,6 +197,9 @@ namespace phys
                 /// @brief Gets the hovered sub-widget within this widget, if any.
                 /// @return Returns a pointer to the sub-widget within this widget the mouse is hovering over, or NULL if none.
                 virtual Widget* GetHoveredSubWidget();
+                /// @brief Gets the layer this widget belongs to.
+                /// @return Returns a pointer to the layer this eidget belongs to.
+                virtual Layer* GetLayer();
                 /// @brief Gets the data determining what input should be captured.
                 /// @return Returns a pointer to the InputCaptureData, or NULL if this widget doesn't capture data.
                 virtual InputCaptureData* GetInputCaptureData();

@@ -130,6 +130,7 @@ namespace phys
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
+        this->ManualLoopBreak = false;
 
         this->SetLoggingFrequency(LogOncePerFrame);
 
@@ -448,11 +449,13 @@ namespace phys
 
                 LogCommitFunc();
             }
-
+            if(ManualLoopBreak)
+                    break;
         }//End of main loop
 
         //Some after loop cleanup
         //this->DestroyRenderWindow();
+        ManualLoopBreak = false;
         delete LoopTimer;
     }
 
@@ -463,6 +466,11 @@ namespace phys
             Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
             this->LogStream.str("");
         }
+    }
+
+    void World::BreakMainLoop()
+    {
+        ManualLoopBreak = true;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

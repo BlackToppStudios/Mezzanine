@@ -83,15 +83,19 @@ namespace phys
                 {
                     if(Size.X > Size.Y * 2)
                     {
-                        Vector2 ASize = Size * Parent->GetParent()->GetViewportDimensions();
+                        Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+                        Vector2 APos = Position * WinDim;
+                        Vector2 ASize = Size * WinDim;
                         CalculateOffsets(ASize);
-                        CreateVerticalSpinner(Position,Size,GlyphHeight);
+                        CreateHorizontalSpinner(APos,ASize,GlyphHeight);
                     }
                     else if(Size.Y > Size.X * 2)
                     {
-                        Vector2 ASize = Size * Parent->GetParent()->GetViewportDimensions();
+                        Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+                        Vector2 APos = Position * WinDim;
+                        Vector2 ASize = Size * WinDim;
                         CalculateOffsets(ASize);
-                        CreateHorizontalSpinner(Position,Size,GlyphHeight);
+                        CreateVerticalSpinner(APos,ASize,GlyphHeight);
                     }
                     else
                     {
@@ -102,9 +106,11 @@ namespace phys
                 case UI::Spn_Together_Left:
                 case UI::Spn_Together_Right:
                 {
-                    Vector2 ASize = Size * Parent->GetParent()->GetViewportDimensions();
+                    Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+                    Vector2 APos = Position * WinDim;
+                    Vector2 ASize = Size * WinDim;
                     CalculateOffsets(ASize);
-                    CreateBoxSpinner(Position,Size,GlyphHeight);
+                    CreateBoxSpinner(APos,ASize,GlyphHeight);
                     break;
                 }
             }
@@ -126,34 +132,46 @@ namespace phys
 
         void Spinner::CreateHorizontalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
         {
-            Whole ActHeight = (Whole)(GlyphHeight * Parent->GetParent()->GetViewportDimensions().Y);
+            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+            Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
             std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,Parent->GetParent()->GetPrimaryAtlas());
-            Increment = new Button(Name+"Inc",Position + IncrementOffset,Vector2(Size.Y,Size.Y),Parent);
-            Decrement = new Button(Name+"Dec",Position + DecrementOffset,Vector2(Size.Y,Size.Y),Parent);
-            ValueDisplay = new Caption(Name+"Dis",Position + ValueDisplayOffset,Vector2(Size.X - (Size.Y * 2),Size.Y),GlyphInfo.first,GetValueAsText(),Parent);
-            if(GlyphInfo.second)
+            Vector2 IncPos = Position + IncrementOffset;
+            Vector2 DecPos = Position + DecrementOffset;
+            Vector2 ValPos = Position + ValueDisplayOffset;
+            Increment = new Button(Name+"Inc",IncPos / WinDim,Vector2(Size.Y,Size.Y) / WinDim,Parent);
+            Decrement = new Button(Name+"Dec",DecPos / WinDim,Vector2(Size.Y,Size.Y) / WinDim,Parent);
+            ValueDisplay = new Caption(Name+"Dis",ValPos / WinDim,Vector2(Size.X - (Size.Y * 2),Size.Y) / WinDim,GlyphInfo.first,GetValueAsText(),Parent);
+            if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
 
         void Spinner::CreateVerticalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
         {
-            Whole ActHeight = (Whole)(GlyphHeight * Parent->GetParent()->GetViewportDimensions().Y);
+            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+            Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
             std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,Parent->GetParent()->GetPrimaryAtlas());
-            Increment = new Button(Name+"Inc",Position + IncrementOffset,Vector2(Size.X,Size.X),Parent);
-            Decrement = new Button(Name+"Dec",Position + DecrementOffset,Vector2(Size.X,Size.X),Parent);
-            ValueDisplay = new Caption(Name+"Dis",Position + ValueDisplayOffset,Vector2(Size.X,Size.Y - (Size.X * 2)),GlyphInfo.first,GetValueAsText(),Parent);
-            if(GlyphInfo.second)
+            Vector2 IncPos = Position + IncrementOffset;
+            Vector2 DecPos = Position + DecrementOffset;
+            Vector2 ValPos = Position + ValueDisplayOffset;
+            Increment = new Button(Name+"Inc",IncPos / WinDim,Vector2(Size.X,Size.X) / WinDim,Parent);
+            Decrement = new Button(Name+"Dec",DecPos / WinDim,Vector2(Size.X,Size.X) / WinDim,Parent);
+            ValueDisplay = new Caption(Name+"Dis",ValPos / WinDim,Vector2(Size.X,Size.Y - (Size.X * 2)) / WinDim,GlyphInfo.first,GetValueAsText(),Parent);
+            if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
 
         void Spinner::CreateBoxSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
         {
-            Whole ActHeight = (Whole)(GlyphHeight * Parent->GetParent()->GetViewportDimensions().Y);
+            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+            Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
             std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,Parent->GetParent()->GetPrimaryAtlas());
-            Increment = new Button(Name+"Inc",Position + IncrementOffset,Vector2(Size.Y * 0.5,Size.Y * 0.5),Parent);
-            Decrement = new Button(Name+"Dec",Position + DecrementOffset,Vector2(Size.Y * 0.5,Size.Y * 0.5),Parent);
-            ValueDisplay = new Caption(Name+"Dis",Position + ValueDisplayOffset,Vector2(Size.X - (Size.Y * 0.5),Size.Y),GlyphInfo.first,GetValueAsText(),Parent);
-            if(GlyphInfo.second)
+            Vector2 IncPos = Position + IncrementOffset;
+            Vector2 DecPos = Position + DecrementOffset;
+            Vector2 ValPos = Position + ValueDisplayOffset;
+            Increment = new Button(Name+"Inc",IncPos / WinDim,Vector2(Size.Y * 0.5,Size.Y * 0.5) / WinDim,Parent);
+            Decrement = new Button(Name+"Dec",DecPos / WinDim,Vector2(Size.Y * 0.5,Size.Y * 0.5) / WinDim,Parent);
+            ValueDisplay = new Caption(Name+"Dis",ValPos / WinDim,Vector2(Size.X - (Size.Y * 0.5),Size.Y) / WinDim,GlyphInfo.first,GetValueAsText(),Parent);
+            if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
 
@@ -234,7 +252,7 @@ namespace phys
 
         void Spinner::CheckValueLimits()
         {
-            if(MinValue != 0 && MaxValue != 0)
+            if(MinValue != 0 || MaxValue != 0)
             {
                 if(Value < MinValue) Value = MinValue;
                 if(Value > MaxValue) Value = MaxValue;
@@ -354,6 +372,7 @@ namespace phys
         {
             Value = ValueToSet;
             CheckValueLimits();
+            ValueDisplay->SetText(GetValueAsText());
         }
 
         int Spinner::GetSpinnerValue()
@@ -454,6 +473,21 @@ namespace phys
         Vector2 Spinner::GetActualSize()
         {
             return RelSize * Parent->GetParent()->GetViewportDimensions();
+        }
+
+        Button* Spinner::GetIncrement()
+        {
+            return Increment;
+        }
+
+        Button* Spinner::GetDecrement()
+        {
+            return Decrement;
+        }
+
+        Caption* Spinner::GetValueDisplay()
+        {
+            return ValueDisplay;
         }
     }//ui
 }//phys

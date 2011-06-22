@@ -55,8 +55,8 @@ namespace phys
         PagedCellGrid::PagedCellGrid(const String& name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent)
             : CellGrid(name,Position,Size,parent),
               CurrentPage(1),
-              XCellsPerPage(0),
-              YCellsPerPage(0),
+              XCellsPerPage(1),
+              YCellsPerPage(1),
               MaxPages(1)
         {
             PageSpinner = new UI::Spinner(Name+"Spn",SpnPosition,SpnSize,SStyle,GlyphHeight,Parent);
@@ -72,8 +72,8 @@ namespace phys
         {
             Real XSpace = RelSize.X - (EdgeSpacing.X * 2);
             Real YSpace = RelSize.Y - (EdgeSpacing.Y * 2);
-            Real XCellsPerPage = 0;
-            Real YCellsPerPage = 0;
+            XCellsPerPage = 1;
+            YCellsPerPage = 1;
 
             Real XCursor = FixedCellSize.X;
             Real YCursor = FixedCellSize.Y;
@@ -140,7 +140,10 @@ namespace phys
                     page-=XPages;
                     RRow+=YCellsPerPage;
                 }else{
-                    RColumn+=(XCellsPerPage * page);
+                    //if(1==Page)
+                    //    RColumn = 0;
+                    //else
+                        RColumn+=((XCellsPerPage * page) - XCellsPerPage);
                     DoNotBreak = false;
                 }
             }
@@ -150,10 +153,12 @@ namespace phys
         void PagedCellGrid::DrawGrid()
         {
             RegenerateGrid();
+            for( Whole X = 0 ; X < VisibleCells.size() ; X++ )
+                VisibleCells[X]->Hide();
             VisibleCells.clear();
 
             std::pair<Whole,Whole> Result = FindTopLeftOfPage(CurrentPage);
-            PageSpinner->SetValueLimits(0,MaxPages);
+            PageSpinner->SetValueLimits(1,MaxPages);
             Whole CurrentRow = Result.first;
             Whole CurrentColumn = Result.second;
             const Whole StartRow = CurrentRow;
@@ -163,12 +168,14 @@ namespace phys
             Vector2 ActPos = GetActualPosition();
             Vector2 ActSize = GetActualSize();
             Vector2 ActEdge = EdgeSpacing * WinDim;
+            Vector2 ActCell = CellSpacing * WinDim;
+            Vector2 ActFixedSize = FixedCellSize * WinDim;
             Whole CursorXPos = (Whole)(ActPos.X + ActEdge.X);
             Whole CursorYPos = (Whole)(ActPos.Y + ActEdge.Y);
             const Whole StartXPos = CursorXPos;
             const Whole StartYPos = CursorYPos;
 
-            Cell* CurrentCell = NULL;
+            UI::Cell* CurrentCell = NULL;
             bool StillHasRoom = true;
 
             switch (Ordering)
@@ -176,14 +183,14 @@ namespace phys
                 case CG_Horizontal_Vertical_Ascending:
                 case CG_Horizontal_Vertical_Decending:
                 {
-                    if(ActSize.Y > (Real)FindTallestInRow(CurrentRow))
+                    if(ActSize.Y < (ActFixedSize.Y + (ActEdge.Y * 2)))
                         return;
                     while(StillHasRoom)
                     {
                         CurrentCell = GetCell(CurrentRow,CurrentColumn);
                         if(!CurrentCell)
                         {
-                            CursorYPos+=FindTallestInRow(CurrentRow);
+                            CursorYPos+=ActFixedSize.Y + ActCell.Y;
                             CurrentRow++;
                             CursorXPos = StartXPos;
                             CurrentColumn = StartColumn;
@@ -194,16 +201,19 @@ namespace phys
                         Vector2 CellSize = CurrentCell->GetActualSize();
                         if((Real)CursorXPos + CellSize.X > (ActPos.X + ActSize.X) - ActEdge.X)
                         {
-                            CursorYPos+=FindTallestInRow(CurrentRow);
+                            CursorYPos+=ActFixedSize.Y + ActCell.Y;
                             CurrentRow++;
                             CursorXPos = StartXPos;
                             CurrentColumn = StartColumn;
-                            if(CursorYPos+FindTallestInRow(CurrentRow) > (ActPos.Y + ActSize.Y) - ActEdge.Y)
+                            if(CursorYPos+ActFixedSize.Y > (ActPos.Y + ActSize.Y) - ActEdge.Y)
                                 StillHasRoom = false;
                             continue;
                         }
                         CurrentCell->SetActualPosition(Vector2((Real)CursorXPos,(Real)CursorYPos));
-                        CursorXPos+=(Whole)CellSize.X + (Whole)CellSpacing.X;
+                        if(Visible)
+                            CurrentCell->Show();
+                        VisibleCells.push_back(CurrentCell);
+                        CursorXPos+=(Whole)(CellSize.X + ActCell.X);
                         CurrentColumn++;
                     }
                     break;
@@ -211,34 +221,37 @@ namespace phys
                 case CG_Vertical_Horizontal_Ascending:
                 case CG_Vertical_Horizontal_Decending:
                 {
-                    if(ActSize.X > (Real)FindWidestInColumn(CurrentColumn))
+                    if(ActSize.X < (ActFixedSize.X + (ActEdge.X * 2)))
                         return;
                     while(StillHasRoom)
                     {
                         CurrentCell = GetCell(CurrentRow,CurrentColumn);
                         if(!CurrentCell)
                         {
-                            CursorXPos+=FindWidestInColumn(CurrentColumn);
+                            CursorXPos+=ActFixedSize.X + ActCell.X;
                             CurrentColumn++;
                             CursorYPos = StartYPos;
                             CurrentRow = StartRow;
-                            if(CurrentColumn >= GetMaxColumes())
+                            if(CurrentColumn >= GetMaxColumns())
                                 StillHasRoom = false;
                             continue;
                         }
                         Vector2 CellSize = CurrentCell->GetActualSize();
                         if((Real)CursorYPos + CellSize.Y > (ActPos.Y + ActSize.Y) - ActEdge.Y)
                         {
-                            CursorXPos+=FindWidestInColumn(CurrentColumn);
+                            CursorXPos+=ActFixedSize.X + ActCell.X;
                             CurrentColumn++;
                             CursorYPos = StartYPos;
                             CurrentRow = StartRow;
-                            if(CursorXPos+FindWidestInColumn(CurrentColumn) > (ActPos.X + ActSize.X) - ActEdge.X)
+                            if(CursorXPos+ActFixedSize.X > (ActPos.X + ActSize.X) - ActEdge.X)
                                 StillHasRoom = false;
                             continue;
                         }
                         CurrentCell->SetActualPosition(Vector2((Real)CursorXPos,(Real)CursorYPos));
-                        CursorYPos+=(Whole)CellSize.Y + (Whole)CellSpacing.Y;
+                        if(Visible)
+                            CurrentCell->Show();
+                        VisibleCells.push_back(CurrentCell);
+                        CursorYPos+=(Whole)(CellSize.Y + ActCell.Y);
                         CurrentRow++;
                     }
                     break;
@@ -248,7 +261,9 @@ namespace phys
 
         bool PagedCellGrid::GridNeedsRedraw()
         {
-            return CurrentPage != (Whole)PageSpinner->GetSpinnerValue();
+            if(TheGrid.empty())
+                return false;
+            return (int)CurrentPage != PageSpinner->GetSpinnerValue();
         }
 
         void PagedCellGrid::SetVisible(bool visible)

@@ -111,6 +111,8 @@ namespace phys
         void ScrolledCellGrid::DrawGrid()
         {
             RegenerateGrid();
+            for( Whole X = 0 ; X < VisibleCells.size() ; X++ )
+                VisibleCells[X]->Hide();
             VisibleCells.clear();
 
             HScrollVal = HorizontalScroll->GetScrollerValue();
@@ -125,12 +127,14 @@ namespace phys
             Vector2 ActPos = GetActualPosition();
             Vector2 ActSize = GetActualSize();
             Vector2 ActEdge = EdgeSpacing * WinDim;
+            Vector2 ActCell = CellSpacing * WinDim;
+            Vector2 ActFixedSize = FixedCellSize * WinDim;
             Whole CursorXPos = (Whole)(ActPos.X + ActEdge.X);
             Whole CursorYPos = (Whole)(ActPos.Y + ActEdge.Y);
             const Whole StartXPos = CursorXPos;
             const Whole StartYPos = CursorYPos;
 
-            Cell* CurrentCell = NULL;
+            UI::Cell* CurrentCell = NULL;
             bool StillHasRoom = true;
 
             switch (Ordering)
@@ -138,14 +142,14 @@ namespace phys
                 case CG_Horizontal_Vertical_Ascending:
                 case CG_Horizontal_Vertical_Decending:
                 {
-                    if(ActSize.Y > FixedCellSize.Y + (EdgeSpacing.Y * 2))
+                    if(ActSize.Y < (ActFixedSize.Y + (ActEdge.Y * 2)))
                         return;
                     while(StillHasRoom)
                     {
                         CurrentCell = GetCell(CurrentRow,CurrentColumn);
                         if(!CurrentCell)
                         {
-                            CursorYPos+=FixedCellSize.Y;
+                            CursorYPos+=ActFixedSize.Y + ActCell.Y;
                             CurrentRow++;
                             CursorXPos = StartXPos;
                             CurrentColumn = StartColumn;
@@ -156,16 +160,19 @@ namespace phys
                         Vector2 CellSize = CurrentCell->GetActualSize();
                         if((Real)CursorXPos + CellSize.X > (ActPos.X + ActSize.X) - ActEdge.X)
                         {
-                            CursorYPos+=FixedCellSize.Y;
+                            CursorYPos+=ActFixedSize.Y + ActCell.Y;
                             CurrentRow++;
                             CursorXPos = StartXPos;
                             CurrentColumn = StartColumn;
-                            if(CursorYPos+FixedCellSize.Y > (ActPos.Y + ActSize.Y) - ActEdge.Y)
+                            if(CursorYPos+ActFixedSize.Y > (ActPos.Y + ActSize.Y) - ActEdge.Y)
                                 StillHasRoom = false;
                             continue;
                         }
                         CurrentCell->SetActualPosition(Vector2((Real)CursorXPos,(Real)CursorYPos));
-                        CursorXPos+=(Whole)CellSize.X + (Whole)CellSpacing.X;
+                        if(Visible)
+                            CurrentCell->Show();
+                        VisibleCells.push_back(CurrentCell);
+                        CursorXPos+=(Whole)(CellSize.X + ActCell.X);
                         CurrentColumn++;
                     }
                     break;
@@ -173,34 +180,37 @@ namespace phys
                 case CG_Vertical_Horizontal_Ascending:
                 case CG_Vertical_Horizontal_Decending:
                 {
-                    if(ActSize.X > FixedCellSize.X + (EdgeSpacing.X * 2))
+                    if(ActSize.X < (ActFixedSize.X + (ActEdge.X * 2)))
                         return;
                     while(StillHasRoom)
                     {
                         CurrentCell = GetCell(CurrentRow,CurrentColumn);
                         if(!CurrentCell)
                         {
-                            CursorXPos+=FixedCellSize.X;
+                            CursorXPos+=ActFixedSize.X + ActCell.X;
                             CurrentColumn++;
                             CursorYPos = StartYPos;
                             CurrentRow = StartRow;
-                            if(CurrentColumn >= GetMaxColumes())
+                            if(CurrentColumn >= GetMaxColumns())
                                 StillHasRoom = false;
                             continue;
                         }
                         Vector2 CellSize = CurrentCell->GetActualSize();
                         if((Real)CursorYPos + CellSize.Y > (ActPos.Y + ActSize.Y) - ActEdge.Y)
                         {
-                            CursorXPos+=FixedCellSize.X;
+                            CursorXPos+=ActFixedSize.X + ActCell.X;
                             CurrentColumn++;
                             CursorYPos = StartYPos;
                             CurrentRow = StartRow;
-                            if(CursorXPos+FixedCellSize.X > (ActPos.X + ActSize.X) - ActEdge.X)
+                            if(CursorXPos+ActFixedSize.X > (ActPos.X + ActSize.X) - ActEdge.X)
                                 StillHasRoom = false;
                             continue;
                         }
                         CurrentCell->SetActualPosition(Vector2((Real)CursorXPos,(Real)CursorYPos));
-                        CursorYPos+=(Whole)CellSize.Y + (Whole)CellSpacing.Y;
+                        if(Visible)
+                            CurrentCell->Show();
+                        VisibleCells.push_back(CurrentCell);
+                        CursorYPos+=(Whole)(CellSize.Y + ActCell.Y);
                         CurrentRow++;
                     }
                     break;
@@ -210,10 +220,9 @@ namespace phys
 
         bool ScrolledCellGrid::GridNeedsRedraw()
         {
-            if(HScrollVal != HorizontalScroll->GetScrollerValue() || VScrollVal != VerticalScroll->GetScrollerValue())
-                return true;
-            else
+            if(TheGrid.empty())
                 return false;
+            return (HScrollVal != HorizontalScroll->GetScrollerValue() || VScrollVal != VerticalScroll->GetScrollerValue());
         }
 
         void ScrolledCellGrid::SetVisible(bool visible)

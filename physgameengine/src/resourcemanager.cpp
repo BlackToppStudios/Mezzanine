@@ -173,6 +173,19 @@ namespace phys {
         AddResourceGroupName(Group);
     }
 
+    void ResourceManager::DestroyResourceGroup(const String& GroupName)
+    {
+        this->OgreResource->destroyResourceGroup(GroupName);
+        for( std::vector<String>::iterator it = ResourceGroups.begin() ; it != ResourceGroups.end() ; it++ )
+        {
+            if(GroupName == (*it))
+            {
+                ResourceGroups.erase(it);
+                return;
+            }
+        }
+    }
+
     void ResourceManager::DeclareResource(const String& Name, const String& Type, const String& Group)
     {
         this->OgreResource->declareResource(Name, Type, Group);

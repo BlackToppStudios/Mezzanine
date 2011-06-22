@@ -150,6 +150,11 @@ namespace phys
             return HoveredSubWidget;
         }
 
+        Layer* Widget::GetLayer()
+        {
+            return Parent;
+        }
+
         InputCaptureData* Widget::GetInputCaptureData()
         {
             return CaptureData;

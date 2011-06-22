@@ -46,7 +46,7 @@ namespace phys
 {
     namespace UI
     {
-        class Cell : public Widget
+        class PHYS_LIB Cell : public Widget
         {
             protected:
                 Whole SortPriority;

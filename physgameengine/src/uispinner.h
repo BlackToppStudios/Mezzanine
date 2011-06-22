@@ -174,6 +174,15 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize();
+                /// @brief Gets the increment button of this widget.
+                /// @return Returns a pointer to the increment button.
+                virtual Button* GetIncrement();
+                /// @brief Gets the decrement button of this widget.
+                /// @return Returns a pointer to the decrement button.
+                virtual Button* GetDecrement();
+                /// @brief Gets the value display caption of this widget.
+                /// @return Returns a pointer to the value display caption.
+                virtual Caption* GetValueDisplay();
         };//spinner
     }//ui
 }//phys

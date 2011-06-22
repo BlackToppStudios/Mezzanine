@@ -84,6 +84,7 @@ namespace phys
             WorkAreaLimits = Size * Parent->GetParent()->GetViewportDimensions();
 
             GridBack = new Rectangle(Position,Size,Parent);
+            CreateOrDestroyRow(0);
         }
 
         CellGrid::~CellGrid()
@@ -100,7 +101,7 @@ namespace phys
             return TheGrid.size();
         }
 
-        Whole CellGrid::GetMaxColumes()
+        Whole CellGrid::GetMaxColumns()
         {
             Whole CurrentBest = 0;
             for( std::vector<CellVector*>::iterator it = TheGrid.begin() ; it != TheGrid.end() ; it++ )
@@ -134,7 +135,7 @@ namespace phys
             {
                 if((*it)->size() >= ColumnIndex)
                 {
-                    Cell* CurrCell = (*it)->at(ColumnIndex);
+                    UI::Cell* CurrCell = (*it)->at(ColumnIndex);
                     Whole CellWidth = CurrCell->GetActualSize().X;
                     if(CellWidth > CurrentBest)
                         CurrentBest = CellWidth;
@@ -175,19 +176,22 @@ namespace phys
             if(!GridDirty)
                 return;
             ClearGrid();
-            Vector2 CGPosition = GridBack->GetActualPosition();
-            Vector2 WindowSize = Parent->GetParent()->GetViewportDimensions();
+            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+            Vector2 ActPos = GridBack->GetActualPosition();
+            Vector2 ActEdge = EdgeSpacing * WinDim;
+            Vector2 ActCell = CellSpacing * WinDim;
+            Vector2 ActFixedSize = FixedCellSize * WinDim;
 
             Whole CurrentColumn = 0;
             Whole CurrentRow = 0;
-            Whole CurrentXposition = (Whole)CGPosition.X + (Whole)(EdgeSpacing.X * WindowSize.X);
-            Whole CurrentYposition = (Whole)CGPosition.Y + (Whole)(EdgeSpacing.Y * WindowSize.Y);
+            Whole CurrentXposition = (Whole)ActPos.X + (Whole)(ActEdge.X);
+            Whole CurrentYposition = (Whole)ActPos.Y + (Whole)(ActEdge.Y);
             Whole StartXposition = CurrentXposition;
             Whole StartYposition = CurrentYposition;
-            Whole RemainingRow = (Whole)(WorkAreaLimits.X - ((EdgeSpacing.X * WindowSize.X) * 2));
-            Whole RemainingColumn = (Whole)(WorkAreaLimits.Y - ((EdgeSpacing.Y * WindowSize.Y) * 2));
+            Whole RowLimit = (Whole)((ActPos.X + WorkAreaLimits.X) - ActEdge.X * 2);
+            Whole ColumnLimit = (Whole)((ActPos.Y + WorkAreaLimits.Y) - ActEdge.Y * 2);
 
-            Cell* CurrCell = NULL;
+            UI::Cell* CurrCell = NULL;
 
             if( CellGrid::CG_Horizontal_Vertical_Ascending == Ordering || CellGrid::CG_Horizontal_Vertical_Decending == Ordering )
             {
@@ -195,20 +199,32 @@ namespace phys
                 {
                     CurrCell = (*it);
                     Vector2 CellSize = CurrCell->GetActualSize();
-                    if(RemainingRow < CellSize.X + EdgeSpacing.X)
+                    if(RowLimit >= CurrentXposition + (Whole)(CellSize.X + ActCell.X))
                     {
-                        if(RemainingColumn < CellSize.Y + EdgeSpacing.Y)
+                        TheGrid.at(CurrentRow)->push_back(CurrCell);
+                        CurrentXposition+=CellSize.X + ActCell.X;
+                        CurrentColumn++;
+                    }
+                    else if(RowLimit >= CurrentXposition + (Whole)CellSize.X)
+                    {
+                        TheGrid.at(CurrentRow)->push_back(CurrCell);
+                        CurrentXposition+=CellSize.X + ActCell.X;
+                        CurrentColumn++;
+                    }
+                    else
+                    {
+                        if(ColumnLimit < CurrentYposition + (Whole)(CellSize.Y + ActCell.Y))
                             break;
                         CurrentXposition = StartXposition;
                         CurrentColumn = 0;
-                        CurrentYposition+=FixedCellSize.Y;
+                        CurrentYposition+=(Whole)(ActFixedSize.Y + ActCell.Y);
                         CurrentRow++;
-                        if(CurrentRow > TheGrid.size())
+                        if(CurrentRow >= TheGrid.size())
                             CreateOrDestroyRow(0);
+
+                        TheGrid.at(CurrentRow)->push_back(CurrCell);
+                        CurrentColumn++;
                     }
-                    TheGrid.at(CurrentRow)->push_back(CurrCell);
-                    CurrentXposition+=CellSize.X + CellSpacing.X;
-                    CurrentColumn++;
                 }
             }
             else if( CellGrid::CG_Vertical_Horizontal_Ascending == Ordering || CellGrid::CG_Vertical_Horizontal_Decending == Ordering )
@@ -217,22 +233,39 @@ namespace phys
                 {
                     CurrCell = (*it);
                     Vector2 CellSize = CurrCell->GetActualSize();
-                    if(RemainingColumn < CellSize.Y + EdgeSpacing.Y)
+                    if(ColumnLimit >= CurrentYposition + (Whole)(CellSize.Y + ActCell.Y))
                     {
-                        if(RemainingRow < CellSize.X + EdgeSpacing.X)
+                        TheGrid.at(CurrentRow)->push_back(CurrCell);
+                        CurrentYposition+=CellSize.Y + ActCell.Y;
+                        CurrentRow++;
+                        if(CurrentRow >= TheGrid.size())
+                            CreateOrDestroyRow(0);
+                    }
+                    else if(ColumnLimit >= CurrentYposition + (Whole)CellSize.Y)
+                    {
+                        TheGrid.at(CurrentRow)->push_back(CurrCell);
+                        CurrentYposition+=CellSize.Y + ActCell.Y;
+                        CurrentRow++;
+                        if(CurrentRow >= TheGrid.size())
+                            CreateOrDestroyRow(0);
+                    }
+                    else
+                    {
+                        if(RowLimit < CurrentXposition + (Whole)(CellSize.X + ActCell.X))
                             break;
                         CurrentYposition = StartYposition;
                         CurrentRow = 0;
-                        CurrentXposition+=FixedCellSize.X;
+                        CurrentXposition+=(Whole)(ActFixedSize.X + ActCell.X);
                         CurrentColumn++;
+
+                        TheGrid.at(CurrentRow)->push_back(CurrCell);
+                        CurrentRow++;
+                        if(CurrentRow >= TheGrid.size())
+                            CreateOrDestroyRow(0);
                     }
-                    TheGrid.at(CurrentRow)->push_back(CurrCell);
-                    CurrentYposition+=CellSize.Y + CellSpacing.Y;
-                    CurrentRow++;
-                    if(CurrentRow > TheGrid.size())
-                        CreateOrDestroyRow(0);
                 }
             }
+            GridDirty = false;
         }
 
         void CellGrid::Update(bool Force)
@@ -248,8 +281,11 @@ namespace phys
                 }
                 else if(MetaCode::BUTTON_LIFTING == State)
                 {
-                    Selected = static_cast<Cell*>(HoveredSubWidget);
-                    Selected->DoSelectedItems();
+                    if(Widget::Cell == HoveredSubWidget->GetType())
+                    {
+                        Selected = static_cast<UI::Cell*>(HoveredSubWidget);
+                        Selected->DoSelectedItems();
+                    }
                 }
             }
             if(SubWidgetFocus && (SubWidgetFocus != HoveredSubWidget))
@@ -313,18 +349,19 @@ namespace phys
             return FixedCellSize;
         }
 
-        void CellGrid::AddCell(Cell* ToBeAdded)
+        void CellGrid::AddCell(UI::Cell* ToBeAdded)
         {
             ToBeAdded->SetSize(FixedCellSize);
+            ToBeAdded->Hide();
             Cells.push_back(ToBeAdded);
             GridDirty = true;
         }
 
-        Cell* CellGrid::GetCell(const String& Name)
+        UI::Cell* CellGrid::GetCell(const String& Name)
         {
             if(Cells.empty())
                 return 0;
-            Cell* CurrCell = NULL;
+            UI::Cell* CurrCell = NULL;
             for( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
             {
                 CurrCell = (*it);
@@ -334,20 +371,20 @@ namespace phys
             return 0;
         }
 
-        Cell* CellGrid::GetCell(const Whole& Row, const Whole& Column)
+        UI::Cell* CellGrid::GetCell(const Whole& Row, const Whole& Column)
         {
-            if(Row > TheGrid.size())
+            if(Row >= TheGrid.size())
                 return 0;
 
             CellVector* CellRow = TheGrid.at(Row);
 
-            if(Column > CellRow->size())
+            if(Column >= CellRow->size())
                 return 0;
 
             return CellRow->at(Column);
         }
 
-        void CellGrid::RemoveCell(Cell* ToBeRemoved)
+        void CellGrid::RemoveCell(UI::Cell* ToBeRemoved)
         {
             GridDirty = true;
         }
@@ -367,7 +404,8 @@ namespace phys
         {
             if(!GridDirty)
                 return;
-            RegenerateGrid();
+            //RegenerateGrid();
+            DrawGrid();
         }
 
         void CellGrid::SetWorkAreaLimits(const Vector2& AreaLimit)
@@ -495,7 +533,7 @@ namespace phys
             return GridBack;
         }
 
-        Cell* CellGrid::GetSelected()
+        UI::Cell* CellGrid::GetSelected()
         {
             return Selected;
         }

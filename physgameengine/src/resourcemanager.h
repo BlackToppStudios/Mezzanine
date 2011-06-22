@@ -105,6 +105,9 @@ namespace phys
             /// @param Group The name of the group the resources at this location belong to.
             /// @param recursive Whether or not to search sub-directories.
             void AddResourceLocation(const String &Location, const String &Type, const String &Group, const bool &recursive=false);
+            /// @brief Destroys a resource group, unloading all of it's resources.
+            /// @param GroupName The name of the resource group to destroy.
+            void DestroyResourceGroup(const String& GroupName);
             /// @brief Prepares the resource for use.
             /// @details This function can be thought of as a preloader.  This will prepare the defined
             /// resource located on the disk for use.

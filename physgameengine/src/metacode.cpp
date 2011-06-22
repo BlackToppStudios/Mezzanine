@@ -51,6 +51,7 @@
 
 #include <assert.h>
 #include <ostream>
+#include <cstring>
 #include <memory>
 
 #include "SDL.h"

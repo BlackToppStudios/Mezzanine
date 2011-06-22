@@ -50,6 +50,7 @@ namespace phys
             : Widget(name,parent),
               SortPriority(0)
         {
+            Type = Widget::Cell;
         }
 
         Cell::~Cell()

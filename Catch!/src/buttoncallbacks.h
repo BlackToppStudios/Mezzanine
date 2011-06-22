@@ -32,4 +32,24 @@ class GSReturn : public UI::ButtonCallback
         virtual void DoActivateItems();
 };
 
+class GSMMReturn : public UI::ButtonCallback
+{
+    public:
+        GSMMReturn(UI::Button* caller);
+        virtual ~GSMMReturn();
+        virtual void DoHoverItems();
+        virtual void DoActivateItems();
+};
+
+class MSStart : public UI::ButtonCallback
+{
+    protected:
+        UI::PagedCellGrid* TheGrid;
+    public:
+        MSStart(UI::Button* caller, UI::PagedCellGrid* LevelGrid);
+        virtual ~MSStart();
+        virtual void DoHoverItems();
+        virtual void DoActivateItems();
+};
+
 #endif

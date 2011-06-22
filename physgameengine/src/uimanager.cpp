@@ -463,6 +463,7 @@ namespace phys
         Whole BestMatch = 0;
         Real BestHeight = 0;
         Real BestMatchDiff = 1000000.f;
+        Real RequestedHeight = (Real)Height;
 
         for( std::map<Ogre::uint,Gorilla::GlyphData*>::iterator it = Glyphs.begin() ; it != Glyphs.end() ; it++ )
         {
@@ -475,7 +476,7 @@ namespace phys
             }
         }
 
-        Real Scale = BestHeight / Height;
+        Real Scale = BestHeight / RequestedHeight;
         return std::pair<Whole,Real>(BestMatch,Scale);
     }
 

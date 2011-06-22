@@ -4,7 +4,9 @@
 #include "catchapp.h"
 #include "callbacks.h"
 #include "buttoncallbacks.h"
+#include "levelselectcell.h"
 #include <cassert>
+#include <set>
 
 using namespace phys;
 
@@ -58,33 +60,47 @@ void CatchApp::MakeGUI()
     MainMenuMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MMBrickBackground");
     MainMenuMenu->GetRootWindow()->SetAutoHide(false);
 
-    UI::TextButton* LevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", Vector2(0.05, 0.93), Vector2(0.22, 0.06), 16, "Level Select" );
+    std::pair<Whole,Real> MainMenuText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
+    UI::TextButton* LevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", Vector2(0.05, 0.93), Vector2(0.22, 0.06), MainMenuText.first, "Level Select" );
     LevelSelectAccess->SetBackgroundSprite("MMButton");
     LevelSelectAccess->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* LevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelect", Vector2(0.02,0.02), Vector2(0.96,0.80), LevelSelectAccess);
+    UI::MenuWindow* LevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelect", Vector2(0.05,0.02), Vector2(0.90,0.84), LevelSelectAccess);
     LevelSelectWin->GetWindowBack()->SetBackgroundSprite("MMLSBackground");
+    UI::PagedCellGrid* LevelSelectGrid = LevelSelectWin->CreatePagedCellGrid("MS_LevelGrid", Vector2(0.14,0.14), Vector2(0.72,0.66), Vector2(0.60,0.85), Vector2(0.24,0.06), UI::Spn_Separate, 0.05);
+    LevelSelectGrid->GetGridBack()->SetBackgroundColour(Transparent);
+    LevelSelectGrid->GetPageSpinner()->GetIncrement()->SetBackgroundSprite("MMIncrementPage");
+    LevelSelectGrid->GetPageSpinner()->GetDecrement()->SetBackgroundSprite("MMDecrementPage");
+    LevelSelectGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("MMPageBox");
+    PopulateLevelList(LevelSelectGrid);
+    LevelSelectGrid->GenerateGrid();
+    UI::TextButton* LevelStart = LevelSelectWin->CreateTextButton("MS_LevelStart", Vector2(0.42,0.85), Vector2(0.16,0.07),18,"Start");
+    LevelStart->SetButtonCallback(new MSStart(LevelStart,LevelSelectGrid));
+    LevelStart->SetBackgroundSprite("MMLevelStart");
 
-    UI::TextButton* OptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", Vector2(0.28, 0.93), Vector2(0.22, 0.06), 16, "Options" );
+    UI::TextButton* OptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", Vector2(0.28, 0.93), Vector2(0.22, 0.06), MainMenuText.first, "Options" );
     OptionsAccess->SetBackgroundSprite("MMButton");
     OptionsAccess->SetHoveredSprite("MMHoveredButton");
     UI::MenuWindow* OptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Options", Vector2(0.01,0.01), Vector2(0.01,0.01), OptionsAccess);
 
-    UI::TextButton* CreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", Vector2(0.51, 0.93), Vector2(0.22, 0.06), 16, "Credits" );
+    UI::TextButton* CreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", Vector2(0.51, 0.93), Vector2(0.22, 0.06), MainMenuText.first, "Credits" );
     CreditsAccess->SetBackgroundSprite("MMButton");
     CreditsAccess->SetHoveredSprite("MMHoveredButton");
     UI::MenuWindow* CreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Credits", Vector2(0.01,0.01), Vector2(0.01,0.01), CreditsAccess);
 
-    UI::TextButton* AppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", Vector2(0.74, 0.93), Vector2(0.22, 0.06), 16, "Exit Game" );
+    UI::TextButton* AppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", Vector2(0.74, 0.93), Vector2(0.22, 0.06), MainMenuText.first, "Exit Game" );
     AppExitAccess->SetBackgroundSprite("MMButton");
     AppExitAccess->SetHoveredSprite("MMHoveredButton");
     UI::MenuWindow* AppExitWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_AppExit", Vector2(0.25, 0.3), Vector2(0.5, 0.3), AppExitAccess);
-    AppExitWin->GetWindowBack()->SetBackgroundColour(TransBlack);
-    UI::Caption* AppExitWarn = AppExitWin->CreateCaption("MS_AppExitWarn", Vector2(0.25, 0.35), Vector2(0.5, 0.08), 16, "Are you sure you want to exit?");
-    AppExitWarn->SetBackgroundColour(Transparent);
-    UI::TextButton* AppExitConf = AppExitWin->CreateTextButton("MS_AppExitConf", Vector2(0.27, 0.45), Vector2(0.22, 0.08), 16, "Yes");
-    AppExitConf->SetBackgroundColour(Gray);
-    UI::TextButton* AppExitDeny = AppExitWin->CreateBackButton(/*"MS_AppExitDeny", */Vector2(0.51, 0.45), Vector2(0.22, 0.08), 16, "No");
-    AppExitDeny->SetBackgroundColour(Gray);
+    AppExitWin->GetWindowBack()->SetBackgroundSprite("MMAppExitBackground");
+    std::pair<Whole,Real> AppExitText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
+    UI::Caption* AppExitWarn = AppExitWin->CreateCaption("MS_AppExitWarn", Vector2(0.32, 0.35), Vector2(0.36, 0.07), AppExitText.first, "Are you sure you want to exit?");
+    AppExitWarn->SetBackgroundSprite("MMAppExitText");
+    UI::TextButton* AppExitConf = AppExitWin->CreateTextButton("MS_AppExitConf", Vector2(0.30, 0.47), Vector2(0.18, 0.06), AppExitText.first, "Yes");
+    AppExitConf->SetBackgroundSprite("MMAppExitButton");
+    AppExitConf->SetHoveredSprite("MMAppExitHoveredButton");
+    UI::TextButton* AppExitDeny = AppExitWin->CreateBackButton(/*"MS_AppExitDeny", */Vector2(0.52, 0.47), Vector2(0.18, 0.06), AppExitText.first, "No");
+    AppExitDeny->SetBackgroundSprite("MMAppExitButton");
+    AppExitDeny->SetHoveredSprite("MMAppExitHoveredButton");
     //End of Main Menu Screen
 
     //Make the Game screen and associated layers.
@@ -185,6 +201,7 @@ void CatchApp::MakeGUI()
     UI::Caption* TempCapt = LevelReport->CreateCaption("GS_TempWarning", Vector2(0.25, 0.3), Vector2(0.5, 0.3), 18, "Future spot of level reports.");
     TempCapt->SetBackgroundColour(Transparent);
     UI::TextButton* FinishButton = LevelReport->CreateTextButton("GS_Finish", Vector2(0.42, 0.66), Vector2(0.16, 0.08), 14, "Finish");
+    FinishButton->SetButtonCallback(new GSMMReturn(FinishButton));
     FinishButton->SetBackgroundColour(TransBlack);
     Report->Hide();
     //End of Report Layer
@@ -199,9 +216,10 @@ void CatchApp::CreateLoadingScreen()
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
     UI::Rectangle* Load = LoadLayer->CreateRectangle( Vector2(0, 0), Vector2(1, 1));
-    Load->SetBackgroundSprite("LoadingBackground");
+    Load->SetBackgroundSprite("BTSBanner");
     //LoadScreen->RenderOnce();
     crossplatform::RenderPhysWorld();
+    Load->SetBackgroundSprite("LoadingBackground");
 }
 
 void CatchApp::ConfigResources()
@@ -212,6 +230,7 @@ void CatchApp::ConfigResources()
     ResourceMan->AddResourceLocation(datadir, "FileSystem", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"Common.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation(datadir+"AdvThrowables.zip", "Zip", CommonGroup, false);
+    ResourceMan->AddResourceLocation("Previews/", "FileSystem", CommonGroup, false);
     ResourceMan->InitResourceGroup(CommonGroup);
 }
 
@@ -230,6 +249,51 @@ void CatchApp::PopulateScoreValues()
 void CatchApp::PopulateShopValues()
 {
     ShopCostValues["Wooden Plank"] = 50;
+}
+
+void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
+{
+    ResourceManager* ResourceMan = World::GetWorldPointer()->GetResourceManager();
+    UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
+    ResourceMan->AddResourceLocation("/Previews","FileSystem","Previews",false);
+    ResourceMan->InitResourceGroup("Previews");
+    Vector2 CellPosition(0.1,0.1);
+    Vector2 CellSize(0.33,0.11);
+    Vector2 CellSpacing(0.06,0.04);
+    Grid->SetFixedCellSize(CellSize);
+    Grid->SetCellSpacing(CellSpacing);
+    UI::Layer* ParentLayer = Grid->GetLayer();
+
+    std::set<String>* Files = crossplatform::GetDirContents("./Levels");
+    if(Files->empty())
+        return;
+    std::set<String>* Previews = crossplatform::GetDirContents("./Previews");
+    for( std::set<String>::iterator it = Files->begin() ; it != Files->end() ; it++ )
+    {
+        const String& FileName = (*it);
+        if(String::npos == FileName.find(".lvl"))
+            continue;
+
+        String LevelName = FileName.substr(0,(*it).size() - 4);
+        LevelSelectCell* CurrCell = new LevelSelectCell(LevelName,CellPosition,CellSize,ParentLayer);
+        CurrCell->GetCellBack()->SetBackgroundSprite("MMLevelCellBack");
+        CurrCell->GetPreviewBorder()->SetBackgroundSprite("MMLevelPreviewBox");
+        CurrCell->GetLevelTitle()->SetText(LevelName);
+        CurrCell->GetLevelTitle()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
+        /// @todo Here's where we would get existing scores and put them in the cells.
+        /*String Score;
+        String MaxScore;
+        String EarnedScore;
+        Score+=(EarnedScore+"/"+MaxScore);
+        CurrCell->GetEarnedMaxScore()->SetText(Score);// */
+        CurrCell->GetEarnedMaxScore()->SetBackgroundColour(ColourValue(0.0,0.0,0.0,0.0));
+        if(Previews->count(LevelName+".gorilla"))
+        {
+            UIMan->LoadGorilla(LevelName);
+            CurrCell->GetPreviewImage()->SetBackgroundSprite("LevelPreview",LevelName);
+        }
+        Grid->AddCell(CurrCell);
+    }
 }
 
 void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
@@ -281,6 +345,8 @@ void CatchApp::ChangeState(const CatchApp::GameState &StateToSet)
 
 bool CatchApp::CheckEndOfLevel()
 {
+    if(ScoreAreas.empty())
+        return false;
     if(!EndTimer)
     {
         EndTimer = TheWorld->GetTimerManager()->CreateSimpleTimer(Timer::StopWatch);
@@ -306,6 +372,8 @@ bool CatchApp::CheckEndOfLevel()
 
 bool CatchApp::AllStartZonesEmpty()
 {
+    if(StartAreas.empty())
+        return false;
     for( Whole X = 0 ; X < StartAreas.size() ; X++ )
     {
         if(!StartAreas[X]->IsEmpty())
@@ -316,6 +384,8 @@ bool CatchApp::AllStartZonesEmpty()
 
 bool CatchApp::IsInsideAnyStartZone(ActorBase* Actor)
 {
+    if(StartAreas.empty())
+        return false;
     for( Whole X = 0 ; X < StartAreas.size() ; X++ )
     {
         if(StartAreas[X]->IsInside(Actor))
@@ -326,17 +396,34 @@ bool CatchApp::IsInsideAnyStartZone(ActorBase* Actor)
 
 void CatchApp::UnloadLevel()
 {
+    if("MainMenu"==Loader->GetCurrentLevel())
+        return;
     PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
+    ResourceManager* ResMan = TheWorld->GetResourceManager();
     SceneManager* SceneMan = TheWorld->GetSceneManager();
     ActorManager* ActorMan = TheWorld->GetActorManager();
+    TimerManager* TimeMan = TheWorld->GetTimerManager();
+    UIManager* UIMan = TheWorld->GetUIManager();
 
     PhysMan->DestroyAllConstraints();
+    ActorMan->DestroyAllActors();
     PhysMan->DestroyAllAreaEffects();
     PhysMan->DestroyAllPhysicsShapes();
     SceneMan->DestroyAllLights();
     SceneMan->DestroyAllParticleEffects();
     SceneMan->DestroyAllWorldNodes();
-    ActorMan->DestroyAllActors();
+    SceneMan->DisableSky();
+    //ActorMan->DestroyAllActors();
+    StartAreas.clear();
+    ScoreAreas.clear();
+    PlayZone = NULL;
+
+    ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
+    CurrScore = 0;
+    TimeMan->DestroyTimer(EndTimer);
+    EndTimer = NULL;
+    UIMan->GetLayer("ReportLayer")->Hide();
+    PhysMan->PauseSimulation(false);
 }
 
 CatchApp* CatchApp::GetCatchAppPointer()
@@ -385,6 +472,7 @@ int CatchApp::GetCatchin()
     Loader->SetNextLevel("MainMenu");
     do{
         ChangeState(CatchApp::Catch_Loading);
+        crossplatform::RenderPhysWorld();
         //Actually Load the game stuff
         Loader->LoadLevel();
 
@@ -395,9 +483,11 @@ int CatchApp::GetCatchin()
         LevelTimer->Reset();
         LevelTimer->Start();
 
+        //if("Ferris"==Loader->GetCurrentLevel())
+        //    TheWorld->GetUIManager()->GetScreen("GameScreen")->Hide();
+
         //Start the Main Loop
         TheWorld->MainLoop();
-
         UnloadLevel();
         LevelTimer->Stop();
     } while(Loader->HasALevelToLoad());
@@ -474,11 +564,7 @@ bool CatchApp::PostUI()
             if(MouseButton)
             {
                 MetaCode::ButtonState State = InputQueryer->GetMouseButtonState(1);
-                if("GS_Finish" == MouseButton->GetName())
-                {
-                    return false;
-                }
-                else if("GS_GameExit" == MouseButton->GetName())
+                if("GS_GameExit" == MouseButton->GetName())
                 {
                     return false;
                 }
@@ -809,6 +895,11 @@ void CatchApp::RegisterStartArea(StartingArea* Start)
 void CatchApp::AddThrowable(ActorBase* Throwable)
 {
     ThrownItems.push_back(Throwable);
+}
+
+LevelLoader* CatchApp::GetLevelLoader()
+{
+    return Loader;
 }
 
 #endif

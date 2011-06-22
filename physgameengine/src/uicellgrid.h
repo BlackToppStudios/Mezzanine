@@ -77,8 +77,8 @@ namespace phys
                     CG_Vertical_Horizontal_Decending  ///<--- Objects on the grid will be ordered based on their priority from top to bottom, left to right, in decreasing order.
                 };
             protected:
-                typedef std::list<Cell*> CellList;
-                typedef std::vector<Cell*> CellVector;
+                typedef std::list<UI::Cell*> CellList;
+                typedef std::vector<UI::Cell*> CellVector;
                 Rectangle* GridBack;
                 bool GridDirty;
                 Vector2 FixedCellSize;
@@ -87,14 +87,14 @@ namespace phys
                 Vector2 WorkAreaLimits;
                 CellGrid::PageStyle Paging;
                 CellGrid::OrderingStyle Ordering;
-                Cell* Selected;
+                UI::Cell* Selected;
                 CellList Cells;
                 CellVector VisibleCells;
                 std::vector<CellVector*> TheGrid;
                 /// @brief Gets the max number of rows in the grid.
                 virtual Whole GetMaxRows();
                 /// @brief Gest the max number of columns in the grid.
-                virtual Whole GetMaxColumes();
+                virtual Whole GetMaxColumns();
                 /// @brief Finds the Tallest cell in a row.
                 virtual Whole FindTallestInRow(const Whole& RowIndex);
                 /// @brief Finds the Widest cell in a column.
@@ -138,19 +138,19 @@ namespace phys
                 virtual Vector2 GetFixedCellSize();
                 /// @brief Addes a Cell to this widget that will be rendered.
                 /// @param ToBeAdded The Cell to be added to this widget.
-                virtual void AddCell(Cell* ToBeAdded);
+                virtual void AddCell(UI::Cell* ToBeAdded);
                 /// @brief Gets a Cell on the grid by name.
                 /// @param Name The name of the Cell to get.
                 /// @return Returns a pointer to the Cell requested, or NULL if not found.
-                virtual Cell* GetCell(const String& Name);
+                virtual UI::Cell* GetCell(const String& Name);
                 /// @brief Gets a Cell at the specified row/column.
                 /// @param Row The Row to check.  Specified a point on the grid when used along side "Column" param.
                 /// @param Column The Column to check.  Specifies a point on the grid when used along side "Row" param.
                 /// @return Returns a pointer to the cell requested, or NULL if nothing is at the requested row/column.
-                virtual Cell* GetCell(const Whole& Row, const Whole& Column);
+                virtual UI::Cell* GetCell(const Whole& Row, const Whole& Column);
                 /// @brief Removes a Cell from this widget.
                 /// @param ToBeRemoved The Cell to be removed from this widget.
-                virtual void RemoveCell(Cell* ToBeRemoved);
+                virtual void RemoveCell(UI::Cell* ToBeRemoved);
                 /// @brief Destroys all Cells currently stored within this widget.
                 virtual void DestroyAllCells();
                 /// @brief Forces a reconstruction of the grid.
@@ -217,7 +217,7 @@ namespace phys
                 virtual Rectangle* GetGridBack();
                 /// @brief Gets the currently selected Cell.
                 /// @return Returns a pointer to the selected Cell.
-                virtual Cell* GetSelected();
+                virtual UI::Cell* GetSelected();
         };//cellgrid
     }//ui
 }//phys
