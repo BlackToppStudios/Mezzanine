@@ -416,7 +416,10 @@ namespace phys
     void PhysicsManager::DestroyAllConstraints()
     {
         for( std::vector<TypedConstraint*>::iterator Con = Constraints.begin() ; Con != Constraints.end() ; Con++ )
+        {
+            this->BulletDynamicsWorld->removeConstraint((*Con)->ConstraintBase);
             delete (*Con);
+        }
         Constraints.clear();
     }
 
@@ -494,7 +497,10 @@ namespace phys
     void PhysicsManager::DestroyAllAreaEffects()
     {
         for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
+        {
+            this->BulletDynamicsWorld->removeCollisionObject((*AE)->Ghost);
             delete (*AE);
+        }
         AreaEffects.clear();
     }
 

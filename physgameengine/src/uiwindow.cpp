@@ -54,6 +54,9 @@
 #include "uilistbox.h"
 #include "uibuttonlistbox.h"
 #include "uicheckbox.h"
+#include "uispinner.h"
+#include "uiscrolledcellgrid.h"
+#include "uipagedcellgrid.h"
 #include "inputquerytool.h"
 #include "metacode.h"
 #include "world.h"
@@ -67,9 +70,9 @@ namespace phys
               BorderWidth(0),
               CurrentRM(RM_None)
         {
+            Type = Widget::Window;
             RelPosition = Position;
             RelSize = Size;
-            Type = Widget::Window;
 
             WindowBack = new Rectangle(Position,Size,Parent);
         }
@@ -138,7 +141,7 @@ namespace phys
             }
         }
 
-        void Window::SetLocation(const Vector2 &Position)
+        void Window::SetLocation(const Vector2& Position)
         {
             WindowBack->SetActualPosition(Position);
             for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
@@ -163,7 +166,7 @@ namespace phys
             }
         }
 
-        void Window::SetArea(const Vector2 &Size)
+        void Window::SetArea(const Vector2& Size)
         {
             Vector2 OldSize = WindowBack->GetActualSize();
             Vector2 Position = WindowBack->GetActualPosition();
@@ -461,7 +464,7 @@ namespace phys
             return false;
         }
 
-        void Window::SetPosition(const Vector2 Position)
+        void Window::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Vector2 ActPos = Position * Parent->GetParent()->GetViewportDimensions();
@@ -473,7 +476,7 @@ namespace phys
             return RelPosition;
         }
 
-        void Window::SetActualPosition(const Vector2 Position)
+        void Window::SetActualPosition(const Vector2& Position)
         {
             RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             SetLocation(Position);
@@ -484,7 +487,7 @@ namespace phys
             return RelPosition * Parent->GetParent()->GetViewportDimensions();
         }
 
-        void Window::SetSize(const Vector2 Size)
+        void Window::SetSize(const Vector2& Size)
         {
             RelSize = Size;
             Vector2 ActSize = Size * Parent->GetParent()->GetViewportDimensions();
@@ -496,7 +499,7 @@ namespace phys
             return RelSize;
         }
 
-        void Window::SetActualSize(const Vector2 Size)
+        void Window::SetActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             SetArea(Size);
@@ -507,7 +510,7 @@ namespace phys
             return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
-        Button* Window::CreateButton(ConstString& Name, const Vector2 Position, const Vector2 Size)
+        Button* Window::CreateButton(ConstString& Name, const Vector2& Position, const Vector2& Size)
         {
             Vector2 Offset = Position - RelPosition;
             OffsetButtonInfo buttoninfo(new Button(Name, Position, Size, Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
@@ -516,12 +519,13 @@ namespace phys
             {
                 std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
                 for( Whole X = 0 ; X < Codes->size() ; X++ )
-                    buttoninfo.Object->RegisterActivationKeyOrButton(Codes->at(X));
+                    buttoninfo.Object->BindActivationKeyOrButton(Codes->at(X));
             }
+            buttoninfo.Object->SetVisible(Visible);
             return buttoninfo.Object;
         }
 
-        TextButton* Window::CreateTextButton(ConstString& Name, const Vector2 Position, const Vector2 Size, const Whole Glyph, ConstString Text)
+        TextButton* Window::CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString& Text)
         {
             Vector2 Offset = Position - RelPosition;
             TextButton* tbutton = new TextButton(Name, Position, Size, Glyph, Text, Parent);
@@ -531,8 +535,9 @@ namespace phys
             {
                 std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
                 for( Whole X = 0 ; X < Codes->size() ; X++ )
-                    tbutton->RegisterActivationKeyOrButton(Codes->at(X));
+                    tbutton->BindActivationKeyOrButton(Codes->at(X));
             }
+            tbutton->SetVisible(Visible);
             return tbutton;
         }
 
@@ -549,7 +554,7 @@ namespace phys
             return 0;
         }
 
-        Button* Window::GetButton(const Whole Index)
+        Button* Window::GetButton(const Whole& Index)
         {
             return Buttons[Index].Object;
         }
@@ -567,7 +572,7 @@ namespace phys
             return 0;
         }
 
-        OffsetButtonInfo* Window::GetOffsetButtonInfo(const Whole Index)
+        OffsetButtonInfo* Window::GetOffsetButtonInfo(const Whole& Index)
         {
             OffsetButtonInfo* Offset = &Buttons[Index];
             return Offset;
@@ -591,20 +596,21 @@ namespace phys
             }
         }
 
-        Rectangle* Window::CreateRectangle(const Vector2 Position, const Vector2 Size)
+        Rectangle* Window::CreateRectangle(const Vector2& Position, const Vector2& Size)
         {
             Vector2 Offset = Position - RelPosition;
             OffsetRectangleInfo rectangle(new Rectangle(Position,Size,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Rectangles.push_back(rectangle);
+            rectangle.Object->SetVisible(Visible);
             return rectangle.Object;
         }
 
-        Rectangle* Window::GetRectangle(const Whole Index)
+        Rectangle* Window::GetRectangle(const Whole& Index)
         {
             return Rectangles[Index].Object;
         }
 
-        OffsetRectangleInfo* Window::GetOffsetRectangleInfo(const Whole Index)
+        OffsetRectangleInfo* Window::GetOffsetRectangleInfo(const Whole& Index)
         {
             OffsetRectangleInfo* Offset = &Rectangles[Index];
             return Offset;
@@ -628,11 +634,12 @@ namespace phys
             }
         }
 
-        Caption* Window::CreateCaption(ConstString& Name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String Text)
+        Caption* Window::CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
         {
             Vector2 Offset = Position - RelPosition;
             OffsetCaptionInfo caption(new Caption(Name,Position,Size,Glyph,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Captions.push_back(caption);
+            caption.Object->SetVisible(Visible);
             return caption.Object;
         }
 
@@ -649,7 +656,7 @@ namespace phys
             return 0;
         }
 
-        Caption* Window::GetCaption(const Whole Index)
+        Caption* Window::GetCaption(const Whole& Index)
         {
             return Captions[Index].Object;
         }
@@ -667,7 +674,7 @@ namespace phys
             return 0;
         }
 
-        OffsetCaptionInfo* Window::GetOffsetCaptionInfo(const Whole Index)
+        OffsetCaptionInfo* Window::GetOffsetCaptionInfo(const Whole& Index)
         {
             OffsetCaptionInfo* Offset = &Captions[Index];
             return Offset;
@@ -691,12 +698,13 @@ namespace phys
             }
         }
 
-        MarkupText* Window::CreateMarkupText(ConstString& Name, const Vector2 Position, const Whole Glyph, String Text)
+        MarkupText* Window::CreateMarkupText(ConstString& Name, const Vector2& Position, const Whole& Glyph, const String& Text)
         {
             Vector2 Offset = Position - RelPosition;
             MarkupText* markup = new MarkupText(Name,Position,Glyph,Text,Parent);
             OffsetMarkupTextInfo markupinfo(markup,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             MarkupTexts.push_back(markupinfo);
+            markupinfo.Object->SetVisible(Visible);
             return markupinfo.Object;
         }
 
@@ -713,7 +721,7 @@ namespace phys
             return 0;
         }
 
-        MarkupText* Window::GetMarkupText(const Whole Index)
+        MarkupText* Window::GetMarkupText(const Whole& Index)
         {
             return MarkupTexts[Index].Object;
         }
@@ -731,7 +739,7 @@ namespace phys
             return 0;
         }
 
-        OffsetMarkupTextInfo* Window::GetOffsetMarkupTextInfo(const Whole Index)
+        OffsetMarkupTextInfo* Window::GetOffsetMarkupTextInfo(const Whole& Index)
         {
             OffsetMarkupTextInfo* Offset = &MarkupTexts[Index];
             return Offset;
@@ -768,7 +776,7 @@ namespace phys
             return 0;
         }
 
-        Widget* Window::GetWidget(const Whole Index)
+        Widget* Window::GetWidget(const Whole& Index)
         {
             return Widgets[Index].Object;
         }
@@ -786,7 +794,7 @@ namespace phys
             return 0;
         }
 
-        OffsetWidgetInfo* Window::GetOffsetWidgetInfo(const Whole Index)
+        OffsetWidgetInfo* Window::GetOffsetWidgetInfo(const Whole& Index)
         {
             OffsetWidgetInfo* Offset = &Widgets[Index];
             return Offset;
@@ -804,75 +812,80 @@ namespace phys
                 if ( ToBeDestroyed == (*it).Object )
                 {
                     delete (*it).Object;
-                    /*Widget::WidgetType Type = ToBeDestroyed->GetType();
-                    switch (Type)
-                    {
-                        case Widget::Scrollbar:
-                        {
-                            UI::Scrollbar* Scroll = static_cast<UI::Scrollbar*> (ToBeDestroyed);
-                            delete Scroll;
-                            return;
-                        }
-                        case Widget::CheckBox:
-                        {
-                            UI::CheckBox* Check = static_cast<UI::CheckBox*> (ToBeDestroyed);
-                            delete Check;
-                            return;
-                        }
-                        case Widget::ButtonListBox:
-                        {
-                            UI::ButtonListBox* ButtonList = static_cast<UI::ButtonListBox*> (ToBeDestroyed);
-                            delete ButtonList;
-                            return;
-                        }
-                        case Widget::ListBox:
-                        {
-                            UI::ListBox* List = static_cast<UI::ListBox*> (ToBeDestroyed);
-                            delete List;
-                            return;
-                        }
-                        default:
-                            return;
-                    }*/
                     Widgets.erase(it);
+                    return;
                 }
             }
         }
 
-        UI::Scrollbar* Window::CreateScrollbar(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::ScrollbarStyle Style)
+        UI::Scrollbar* Window::CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style)
         {
             Vector2 Offset = Position - RelPosition;
             UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Position,Size,Style,Parent);
             OffsetWidgetInfo ScrollInfo(Scroll,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(ScrollInfo);
+            Scroll->SetVisible(Visible);
             return Scroll;
         }
 
-        UI::CheckBox* Window::CreateCheckBox(ConstString& Name, const Vector2 Position, const Vector2 Size, const Whole Glyph, String &LabelText)
+        UI::CheckBox* Window::CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, String &LabelText)
         {
             Vector2 Offset = Position - RelPosition;
             UI::CheckBox* Check = new UI::CheckBox(Name,Position,Size,Glyph,LabelText,Parent);
             OffsetWidgetInfo CheckInfo(Check,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(CheckInfo);
+            Check->SetVisible(Visible);
             return Check;
         }
 
-        UI::ButtonListBox* Window::CreateButtonListBox(ConstString& Name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+        UI::ButtonListBox* Window::CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
             Vector2 Offset = Position - RelPosition;
             UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
             OffsetWidgetInfo BLBInfo(BLB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(BLBInfo);
+            BLB->SetVisible(Visible);
             return BLB;
         }
 
-        UI::ListBox* Window::CreateListBox(ConstString& Name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+        UI::ListBox* Window::CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
             Vector2 Offset = Position - RelPosition;
             UI::ListBox* LB = new UI::ListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
             OffsetWidgetInfo LBInfo(LB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(LBInfo);
+            LB->SetVisible(Visible);
             return LB;
+        }
+
+        UI::Spinner* Window::CreateSpinner(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        {
+            Vector2 Offset = Position - RelPosition;
+            UI::Spinner* Spn = new UI::Spinner(Name,Position,Size,SStyle,GlyphHeight,Parent);
+            OffsetWidgetInfo SpnInfo(Spn,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Widgets.push_back(SpnInfo);
+            Spn->SetVisible(Visible);
+            return Spn;
+        }
+
+        UI::ScrolledCellGrid* Window::CreateScrolledCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& Thickness, const UI::ScrollbarStyle& Style)
+        {
+            Vector2 Offset = Position - RelPosition;
+            UI::ScrolledCellGrid* SCG = new UI::ScrolledCellGrid(Name,Position,Size,Thickness,Style,Parent);
+            OffsetWidgetInfo SCGInfo(SCG,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Widgets.push_back(SCGInfo);
+            SCG->SetVisible(Visible);
+            return SCG;
+        }
+
+        UI::PagedCellGrid* Window::CreatePagedCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        {
+            Vector2 Offset = Position - RelPosition;
+            UI::PagedCellGrid* PCG = new UI::PagedCellGrid(Name,Position,Size,SpnPosition,SpnSize,SStyle,GlyphHeight,Parent);
+            OffsetWidgetInfo PCGInfo(PCG,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Widgets.push_back(PCGInfo);
+            PCG->SetVisible(Visible);
+            return PCG;
         }
     }//UI
 }//phys

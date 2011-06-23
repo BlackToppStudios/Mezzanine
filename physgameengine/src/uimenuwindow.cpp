@@ -43,18 +43,21 @@
 #include "uimenuwindow.h"
 #include "uimenu.h"
 #include "uibutton.h"
+#include "uitextbutton.h"
 #include "uilayer.h"
 
 namespace phys
 {
     namespace UI
     {
-        MenuWindow::MenuWindow(ConstString& Name, const Vector2 Position, const Vector2 Size, UI::Menu* TheMenu,Layer* PLayer)
+        MenuWindow::MenuWindow(ConstString& Name, const Vector2& Position, const Vector2& Size, UI::Menu* TheMenu,Layer* PLayer)
             : Window(Name,Position,Size,PLayer),
               BackButton(NULL),
               ParentWindow(NULL),
-              MasterMenu(TheMenu)
+              MasterMenu(TheMenu),
+              AutoHideWindow(true)
         {
+            Type = Widget::MenuWindow;
         }
 
         MenuWindow::~MenuWindow()
@@ -67,12 +70,22 @@ namespace phys
             }
         }
 
+        void MenuWindow::SetAutoHide(bool AutoHide)
+        {
+            AutoHideWindow = AutoHide;
+        }
+
+        bool MenuWindow::GetAutoHide()
+        {
+            return AutoHideWindow;
+        }
+
         MenuWindow* MenuWindow::GetParentWindow()
         {
             return ParentWindow;
         }
 
-        Button* MenuWindow::CreateBackButton(const Vector2 Position, const Vector2 Size)
+        Button* MenuWindow::CreateBackButton(const Vector2& Position, const Vector2& Size)
         {
             if(!BackButton && ParentWindow)
             {
@@ -86,12 +99,26 @@ namespace phys
             return 0;
         }
 
+        TextButton* MenuWindow::CreateBackButton(const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
+        {
+            if(!BackButton && ParentWindow)
+            {
+                BackButton = new TextButton(Name+"back",Position,Size,Glyph,Text,Parent);
+                Vector2 Offset = Position - RelPosition;
+                OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+                Buttons.push_back(backbuttonoff);
+                backbuttonoff.Object->SetVisible(IsVisible());
+                return (TextButton*)BackButton;
+            }
+            return 0;
+        }
+
         Button* MenuWindow::GetBackButton()
         {
             return BackButton;
         }
 
-        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const Vector2 Position, const Vector2 Size)
+        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const Vector2& Position, const Vector2& Size)
         {
             Vector2 Offset = Position - RelPosition;
             Button* AccBut = this->CreateButton(Name,Position,Size);
@@ -100,6 +127,17 @@ namespace phys
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
             buttonoff.Object->SetVisible(IsVisible());
             return buttonoff.Object;
+        }
+
+        TextButton* MenuWindow::CreateAccessorButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
+        {
+            Vector2 Offset = Position - RelPosition;
+            TextButton* AccBut = this->CreateTextButton(Name,Position,Size,Glyph,Text);
+            OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Buttons.push_back(buttonoff);
+            ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
+            buttonoff.Object->SetVisible(IsVisible());
+            return AccBut;
         }
 
         Button* MenuWindow::GetAccessorButton(ConstString& Name)
@@ -158,7 +196,7 @@ namespace phys
             return 0;
         }
 
-        MenuWindow* MenuWindow::GetChildMenuWindow(const Whole Index)
+        MenuWindow* MenuWindow::GetChildMenuWindow(const Whole& Index)
         {
             return ChildWindows[Index].second;
         }

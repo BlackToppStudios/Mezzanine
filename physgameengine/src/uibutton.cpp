@@ -62,6 +62,7 @@ namespace phys
               MouseHover(false),
               Activated(false),
               MultipleActivations(false),
+              ActCond(UI::AC_OnLift),
               RelPosition(Position),
               RelSize(Size),
               Name(name)
@@ -127,7 +128,7 @@ namespace phys
             Callback = Call;
         }
 
-        void Button::RegisterActivationKeyOrButton(const MetaCode::InputCode& Code)
+        void Button::BindActivationKeyOrButton(const MetaCode::InputCode& Code)
         {
             if(MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code)
             {
@@ -151,7 +152,7 @@ namespace phys
             }
         }
 
-        void Button::UnregisterActivationKeyOrButton(const MetaCode::InputCode& Code)
+        void Button::UnbindActivationKeyOrButton(const MetaCode::InputCode& Code)
         {
             if(MetaCode::KEY_FIRST < Code && MetaCode::KEY_LAST > Code)
             {
@@ -177,20 +178,30 @@ namespace phys
             }
         }
 
-        void Button::RemoveAllKeyboardActivationKeys()
+        void Button::UnbindAllKeyboardActivationKeys()
         {
             KeyboardActivationKeys.clear();
         }
 
-        void Button::RemoveAllMouseActivationButtons()
+        void Button::UnbindAllMouseActivationButtons()
         {
             MouseActivationButtons.clear();
         }
 
-        void Button::RemoveAllActivationKeysAndButtons()
+        void Button::UnbindAllActivationKeysAndButtons()
         {
-            RemoveAllKeyboardActivationKeys();
-            RemoveAllMouseActivationButtons();
+            UnbindAllKeyboardActivationKeys();
+            UnbindAllMouseActivationButtons();
+        }
+
+        void Button::SetActivationCondition(const UI::ActivationCondition& Condition)
+        {
+            ActCond = Condition;
+        }
+
+        UI::ActivationCondition Button::GetActivationCondition()
+        {
+            return ActCond;
         }
 
         void Button::SetActivation(bool Activate)

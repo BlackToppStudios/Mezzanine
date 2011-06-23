@@ -40,9 +40,10 @@
 #ifndef _uiwidget_h
 #define _uiwidget_h
 
-#include "crossplatformexport.h"
-#include "datatypes.h"
 #include "vector2.h"
+#include "metacode.h"
+
+#include <set>
 
 namespace phys
 {
@@ -51,6 +52,42 @@ namespace phys
     {
         class Button;
         class Layer;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class InputCaptureData
+        /// @headerfile uiwidget.h
+        /// @brief This class contains all the utilities necessary for capturing input.
+        /// @details This is commonly used for Text-based widgets, such as TextBox's, Spinners, and InputBox's.
+        ///////////////////////////////////////
+        class InputCaptureData : public std::set<MetaCode::InputCode>
+        {
+            protected:
+                std::vector<MetaCode::InputCode> CapturedCodes;
+            public:
+                /// @brief Class constructor.
+                InputCaptureData();
+                /// @brief Class destructor.
+                ~InputCaptureData();
+                /// @brief Adds a single input code to the list of codes to be captured.
+                /// @param Code The code to be captured.
+                void AddInput(const MetaCode::InputCode& Code);
+                /// @brief Adds a range of input codes to the list of codes to be captured.
+                /// @details This function will fail silently if the lower code is higher then the upper code.
+                /// @param Lower The first input code in the range to be entered.
+                /// @param Upper The last input code in the range to be entered.
+                void AddInputRange(const MetaCode::InputCode& Lower, const MetaCode::InputCode& Upper);
+                /// @brief Gets the number of input codes this class is currently set to capture.
+                /// @return Returns a Whole representing the number of input codes set to be captured.
+                Whole GetNumCapturedInputs();
+                /// @brief Gets a vector of inputs that have been captured this frame.
+                /// @return Returns a pointer to the vector containing all the input codes captured this frame.
+                std::vector<MetaCode::InputCode>* GetCapturedInputs();
+                /// @brief Checks this class to see if the provided code is set to be captured.
+                /// @param Code The input code to check for.
+                bool IsInputToBeCaptured(const MetaCode::InputCode& Code);
+                /// @brief Updates the list of captured inputs for the frame.
+                /// @param InputCodes Vector of input codes to update the widget with.
+                void UpdateCapturedInputs(std::vector<MetaCode::InputCode>& InputCodes);
+        };//inputcapturedata
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Widget
         /// @headerfile uiwidget.h
@@ -63,10 +100,13 @@ namespace phys
                 enum WidgetType
                 {
                     ButtonListBox,
+                    Cell,
+                    CellGrid,
                     CheckBox,
                     DropDownMenu,
                     ListBox,
                     Menu,
+                    MenuWindow,
                     RadioButton,
                     Scrollbar,
                     Spinner,
@@ -77,6 +117,7 @@ namespace phys
                 friend class phys::UIManager;
                 UIManager* Manager;
                 Layer* Parent;
+                InputCaptureData* CaptureData;
                 UI::Button* HoveredButton;
                 UI::Widget* HoveredSubWidget;
                 UI::Widget* SubWidgetFocus;
@@ -91,6 +132,8 @@ namespace phys
                 virtual void SubWidgetUpdate(bool Force = false);
                 /// @brief For use with sub-widget update/automation when the mouse isn't hovered.
                 virtual void SubWidgetFocusUpdate(bool Force = false);
+                /// @brief Processes the captured inputs.  This is an empty function and should be overridden if making an input capturing widget.
+                virtual void ProcessCapturedInputs();
             public:
                 /// @brief Standard initialization constructor.
                 /// @param parent The parent layer that created this widget.
@@ -111,6 +154,9 @@ namespace phys
                 /// @brief Gets the type of widget this is.
                 /// @return Returns an enum value representing the type of widget this is.
                 WidgetType GetType() const;
+                /// @brief Checks if this is an input capturing widget.
+                /// @return Returns a bool indicating whether or not this widget will capture input.
+                virtual bool IsInputCaptureWidget();
                 /// @brief Gets the name of this widget.
                 /// @return Returns a String containing the name of this widget.
                 virtual String& GetName();
@@ -120,28 +166,28 @@ namespace phys
                 /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.
-                virtual void SetPosition(const Vector2 Position) = 0;
+                virtual void SetPosition(const Vector2& Position) = 0;
                 /// @brief Gets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this widget.
                 virtual Vector2 GetPosition() = 0;
                 /// @brief Sets the pixel position of this widget.
                 /// @param Position A vector2 representing the pixel position of this widget.
-                virtual void SetActualPosition(const Vector2 Position) = 0;
+                virtual void SetActualPosition(const Vector2& Position) = 0;
                 /// @brief Sets the pixel position of this widget.
                 /// @return Returns a vector2 representing the pixel position of this widget.
                 virtual Vector2 GetActualPosition() = 0;
                 /// @brief Sets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
-                virtual void SetSize(const Vector2 Size) = 0;
+                virtual void SetSize(const Vector2& Size) = 0;
                 /// @brief Gets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this widget.
                 virtual Vector2 GetSize() = 0;
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
-                virtual void SetActualSize(const Vector2 Size) = 0;
+                virtual void SetActualSize(const Vector2& Size) = 0;
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize() = 0;
@@ -151,6 +197,12 @@ namespace phys
                 /// @brief Gets the hovered sub-widget within this widget, if any.
                 /// @return Returns a pointer to the sub-widget within this widget the mouse is hovering over, or NULL if none.
                 virtual Widget* GetHoveredSubWidget();
+                /// @brief Gets the layer this widget belongs to.
+                /// @return Returns a pointer to the layer this eidget belongs to.
+                virtual Layer* GetLayer();
+                /// @brief Gets the data determining what input should be captured.
+                /// @return Returns a pointer to the InputCaptureData, or NULL if this widget doesn't capture data.
+                virtual InputCaptureData* GetInputCaptureData();
         };//widget
     }//UI
 }//phys

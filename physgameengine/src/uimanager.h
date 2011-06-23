@@ -83,14 +83,18 @@ namespace phys
             std::vector< MetaCode::InputCode > AutoRegisterCodes;
             std::multimap< MetaCode::InputCode, UI::Button* > HotKeys;
             UI::Button* HoveredButton;
+            UI::Button* HoveredWidgetButton;
             UI::Widget* HoveredWidget;
             UI::Widget* WidgetFocus;
+            UI::Widget* InputCapture;
+            UI::Widget* LastWidgetSelected;
             bool ButtonAutoRegister;
             void HoverChecks();
-            void HotKeyChecks();
-            void WidgetFocusUpdate();
+            void HotKeyAndInputCaptureChecks();
+            void WidgetUpdates();
             void ClearButtonActivations();
             void MouseActivationCheck(UI::Button* ToCheck);
+            void HotKeyActivationCheck(const MetaCode::InputCode& Code);
         public:
             /// @brief Class Constructor.
             /// @details Standard class initialization constructor.
@@ -112,11 +116,11 @@ namespace phys
             /// @details This function allows buttons to behave like they are pressed without mouse input.
             /// @param HotKey The key or button (on the input device) to activate the button.
             /// @param BoundButton The button being bound to the hotkey.
-            void RegisterHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton);
+            void BindHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton);
             /// @brief Removes a previously set hotkey binding.
             /// @param HotKey The key or button (on the input device) to activate the button.
             /// @param BoundButton The button currently bound to the hotkey.
-            void UnregisterHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton);
+            void UnbindHotKey(const MetaCode::InputCode& HotKey, UI::Button* BoundButton);
             /// @brief Clears all registered hotkeys.
             void RemoveAllHotKeys();
             /// @brief Enables whether or not to automatically set the activation key or button for UI buttons.
@@ -140,9 +144,13 @@ namespace phys
             /// @return Returns a pointer to the vector containing all the codes to be auto-registered with every UI button.
             std::vector<MetaCode::InputCode>* GetAutoRegisteredCodes();
             /// @brief Gets the button the mouse is hovering over.
-            /// @details This check will look through both standalone buttons and widget buttons.
+            /// @details This function will report only standalone buttons, not widget buttons.
             /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
             UI::Button* GetHoveredButton();
+            /// @brief Gets the button the mouse is hovering over, if the button is inside a widget.
+            /// @details This function will report only widget buttons, not standalone buttons.
+            /// @return Returns a pointer to the button, or NULL if it's not over any visable buttons.
+            UI::Button* GetHoveredWidgetButton();
             /// @brief Gets the Widget the mouse is hovering over.
             /// @details If the widget found during widget checks belongs to a widget, this will get that widget.
             /// @return Returns a pointer to the widget, or NULL if it's not over any visable buttons.
@@ -152,6 +160,10 @@ namespace phys
             /// currently hovering over them, such as the click and drag action of scrollbars and resizing windows.
             /// @return Returns a pointer to the currently controlled widget, or NULL if none are being controlled this frame.
             UI::Widget* GetWidgetFocus();
+            /// @brief Gets the widget that is currently capturing input.
+            /// @details A widget that is currently capturing input will prevent hotkeys from working while active.
+            /// @return Returns a pointer to the widget that currently capturing input, or NULL if no widget is capturing input.
+            UI::Widget* GetWidgetCapturingInput();
             /// @brief Creates an internal HUD screen.
             /// @details Screens are the base set of renderable UI you can use, allowing you to switch entire sets of UI's
             /// on the fly if needed.  For performance reasons you should always keep the number of screens you create to a minimum.
@@ -191,6 +203,11 @@ namespace phys
             /// @details This should only be called on after this manager does it's main loop items for best results.
             /// @return Returns true if the mouse is over a visable UI element, false if not.
             bool MouseIsInUISystem();
+            /// @brief Suggests a glyph index based on the desired actual height.
+            /// @param Height The desired Height of the glyph wanted in pixels.
+            /// @param Atlas The altas to search.
+            /// @return Returns a std::pair, First is a whole for the Glyph index and second is a Real for the scaling that should be provided to it.
+            std::pair<Whole,Real> SuggestGlyphIndex(const Whole& Height, const String& Atlas);
             /// @brief Gets the type of manager that this manager is.
             /// @return Returns an enum value representing the type of manager that this manager is.
             ManagerBase::ManagerTypeName GetType() const;

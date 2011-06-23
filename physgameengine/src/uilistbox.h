@@ -95,7 +95,7 @@ namespace phys
                 /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this List Box belongs to.
-                ListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, Layer* PLayer);
+                ListBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer);
                 /// @brief Standard destructor.
                 ~ListBox();
                 /// @brief Sets the visibility of this List Box.
@@ -147,41 +147,41 @@ namespace phys
                 /// @brief Sets the distance apart(and from the sides of box) the Selections will be from each other.
                 /// @details This function expects a relative value to the screen size(0.0 to 1.0).  This value defaults to 0.
                 /// @param Dist A relative value for the distance to be used when determining the positions of Selections.
-                virtual void SetSelectionDistance(const Real Dist);
+                virtual void SetSelectionDistance(const Real& Dist);
                 /// @brief Eanbles or disables the scrollbar autohide.
                 /// @param AutoHide A bool indicating whether or not to auto hide the scrollbar.
                 virtual void SetAutoHideScroll(bool AutoHide);
                 /// @brief Enables the setting of a background colour or sprite on the caption you select.
                 /// @details The background colour of captions default to white.
                 /// @param Colour The colour of the border.
-                virtual void EnableBackgroundSelector(const ColourValue &Colour);
+                virtual void EnableBackgroundSelector(const ColourValue& Colour);
                 /// @brief Disables borders on currently selected buttons if one was enabled.
                 virtual void DisableBackgroundSelector();
                 /// @brief Sets the relative position of this List Box.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this List Box.
-                virtual void SetPosition(const Vector2 Position);
+                virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative position of this List Box.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this List Box.
                 virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this List Box.
                 /// @param Position A vector2 representing the pixel position of this List Box.
-                virtual void SetActualPosition(const Vector2 Position);
+                virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Sets the pixel position of this List Box.
                 /// @return Returns a vector2 representing the pixel position of this List Box.
                 virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this List Box.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this List Box.
-                virtual void SetSize(const Vector2 Size);
+                virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this List Box.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this List Box.
                 virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this List Box.
                 /// @param Size A vector2 representing the pixel size of this List Box.
-                virtual void SetActualSize(const Vector2 Size);
+                virtual void SetActualSize(const Vector2& Size);
                 /// @brief Sets the pixel size of this List Box.
                 /// @return Returns a vector2 representing the pixel size of this List Box.
                 virtual Vector2 GetActualSize();

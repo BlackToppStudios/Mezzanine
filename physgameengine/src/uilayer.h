@@ -72,6 +72,9 @@ namespace phys
         class LineList;
         class Window;
         class Menu;
+        class Spinner;
+        class ScrolledCellGrid;
+        class PagedCellGrid;
         class Screen;
         ///////////////////////////////////////////////////////////////////////////////
         /// @class UILayer
@@ -220,6 +223,10 @@ namespace phys
                 ///////////////////////////////////////////////////////////////////////////////
                 // Working with all Widgets
                 ///////////////////////////////////////
+                /// @brief Adds a widget to this layer.
+                /// @details This function is necessary when creating custom widgets in game logic.
+                /// @param ToAdd The widget to be added.
+                void AddWidget(Widget* ToAdd);
                 /// @brief Gets an already created widget by name.
                 /// @return Returns a pointer to the widget of the specified name.
                 Widget* GetWidget(ConstString& Name);
@@ -242,7 +249,7 @@ namespace phys
                 /// @param Position The top left position of the Scrollbar.
                 /// @param Size The size of the Scrollbar.
                 /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                Scrollbar* CreateScrollbar(ConstString& Name, Vector2 Position, Vector2 Size, UI::ScrollbarStyle Style);
+                Scrollbar* CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, UI::ScrollbarStyle Style);
                 /// @brief Creates a CheckBox within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created CheckBox.
@@ -253,7 +260,7 @@ namespace phys
                 /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
                 /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
                 /// create a label after construction.
-                CheckBox* CreateCheckBox(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String &LabelText);
+                CheckBox* CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Whole Glyph, String &LabelText);
                 /// @brief Creates a Button List Box within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Button List Box.
@@ -262,7 +269,7 @@ namespace phys
                 /// @param Size The size of the Button List Box.
                 /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
                 /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                ButtonListBox* CreateButtonListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
+                ButtonListBox* CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
                 /// @brief Creates a List Box within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created List Box.
@@ -271,21 +278,51 @@ namespace phys
                 /// @param Size The size of the List Box.
                 /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
                 /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                ListBox* CreateListBox(ConstString& Name, Vector2 Position, Vector2 Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
+                ListBox* CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
                 /// @brief Creates a Window within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Window.
                 /// @param Name The name of the Window.
                 /// @param Position The top left position of the Window.
                 /// @param Size The size of the Window.
-                Window* CreateWidgetWindow(ConstString& Name, Vector2 Position, Vector2 Size);
+                Window* CreateWidgetWindow(ConstString& Name, const Vector2& Position, const Vector2& Size);
                 /// @brief Creates a Menu within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Menu.
                 /// @param Name The name of the Menu.
                 /// @param Position The top left position of the Menu.
                 /// @param Size The size of the Menu.
-                Menu* CreateMenu(ConstString Name, Vector2 Position, Vector2 Size);
+                Menu* CreateMenu(ConstString& Name, const Vector2& Position, const Vector2& Size);
+                /// @brief Creates a Spinner within this layer.
+                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @return Returns a pointer to the created Spinner.
+                /// @param Name The Name for the Widget.
+                /// @param Position The position of the widget.
+                /// @param Size The size of the widget.
+                /// @param SStyle The layout of buttons this widget will have.  See SpinnerStyle enum or class description for more details.
+                /// @param GlyphHeight The desired relative height of the text you want.
+                Spinner* CreateSpinner(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
+                /// @brief Creates a scrolled cell grid within this layer.
+                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @return Returns a pointer to the created ScrolledCellGrid.
+                /// @param Name The name of the widget.
+                /// @param Position The position of the widget.
+                /// @param Size The size of the widget.
+                /// @param Thickness The width of the vertical scrollbar in relative units.  The same amount of actual pixels is used
+                /// to determine the height of the horizontal scrollbar.
+                /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
+                ScrolledCellGrid* CreateScrolledCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& Thickness, const UI::ScrollbarStyle& Style);
+                /// @brief Creates a paged cell grid within this layer.
+                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @return Returns a pointer to the created PagedCellGrid.
+                /// @param Name The name of the widget.
+                /// @param Position The position of the widget.
+                /// @param Size The size of the widget.
+                /// @param SpnPosition The position of the spinner created alongside this widget.
+                /// @param SpnSize The size of the spinner created alongside this widget.
+                /// @param SStyle The style of spinner to create.
+                /// @param GlyphHeight The desired lineheight of the glyphs to be used with the spinner.
+                PagedCellGrid* CreatePagedCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
                 ///////////////////////////////////////////////////////////////////////////////
                 // UI Element and Widget Checks
                 ///////////////////////////////////////

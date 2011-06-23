@@ -48,11 +48,55 @@ namespace phys
 {
     namespace UI
     {
+        InputCaptureData::InputCaptureData()
+        {
+        }
+
+        InputCaptureData::~InputCaptureData()
+        {
+        }
+
+        void InputCaptureData::AddInput(const MetaCode::InputCode& Code)
+        {
+            this->insert(Code);
+        }
+
+        void InputCaptureData::AddInputRange(const MetaCode::InputCode& Lower, const MetaCode::InputCode& Upper)
+        {
+            for( MetaCode::InputCode Code = Lower ; Code > Upper ; Code + 1 )
+                this->insert(Code);
+        }
+
+        Whole InputCaptureData::GetNumCapturedInputs()
+        {
+            return this->size();
+        }
+
+        std::vector<MetaCode::InputCode>* InputCaptureData::GetCapturedInputs()
+        {
+            return &CapturedCodes;
+        }
+
+        bool InputCaptureData::IsInputToBeCaptured(const MetaCode::InputCode& Code)
+        {
+            std::set<MetaCode::InputCode>::iterator it = this->find(Code);
+            return it != this->end();
+        }
+
+        void InputCaptureData::UpdateCapturedInputs(std::vector<MetaCode::InputCode>& InputCodes)
+        {
+            CapturedCodes.clear();
+            CapturedCodes.swap(InputCodes);
+        }
+
+        //-----------------------------------------------------
+
         Widget::Widget(const String& name, Layer* parent)
             : Parent(parent),
               HoveredButton(NULL),
               HoveredSubWidget(NULL),
               SubWidgetFocus(NULL),
+              CaptureData(NULL),
               Visible(true),
               RelPosition(Vector2(0,0)),
               RelSize(Vector2(0,0)),
@@ -77,9 +121,18 @@ namespace phys
                 SubWidgetFocus->Update(Force);
         }
 
+        void Widget::ProcessCapturedInputs()
+        {
+        }
+
         Widget::WidgetType Widget::GetType() const
         {
             return Type;
+        }
+
+        bool Widget::IsInputCaptureWidget()
+        {
+            return NULL != CaptureData;
         }
 
         String& Widget::GetName()
@@ -95,6 +148,16 @@ namespace phys
         Widget* Widget::GetHoveredSubWidget()
         {
             return HoveredSubWidget;
+        }
+
+        Layer* Widget::GetLayer()
+        {
+            return Parent;
+        }
+
+        InputCaptureData* Widget::GetInputCaptureData()
+        {
+            return CaptureData;
         }
     }//UI
 }//phys

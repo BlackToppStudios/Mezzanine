@@ -58,7 +58,7 @@ namespace phys
 {
     namespace UI
     {
-        ButtonListBox::ButtonListBox(ConstString& name, const Vector2 Position, const Vector2 Size, const Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, Layer* PLayer)
+        ButtonListBox::ButtonListBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
             : Widget(name,PLayer),
               Selected(NULL),
               AutoHideScroll(true),
@@ -347,7 +347,7 @@ namespace phys
             }
         }
 
-        void ButtonListBox::SetSelectionDistance(const Real Dist)
+        void ButtonListBox::SetSelectionDistance(const Real& Dist)
         {
             SelectionDist = Dist;
         }
@@ -359,7 +359,7 @@ namespace phys
                 VertScroll->Show();
         }
 
-        void ButtonListBox::EnableBorderSelector(const Real Width, const ColourValue &Colour)
+        void ButtonListBox::EnableBorderSelector(const Real& Width, const ColourValue& Colour)
         {
             BorderWidth = Width;
             BorderColour = Colour;
@@ -371,7 +371,7 @@ namespace phys
             BorderColour = ColourValue(0,0,0,0);
         }
 
-        void ButtonListBox::SetPosition(const Vector2 Position)
+        void ButtonListBox::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Vector2 ScrollOffset = VertScroll->GetPosition() - RelPosition;
@@ -385,7 +385,7 @@ namespace phys
             return RelPosition;
         }
 
-        void ButtonListBox::SetActualPosition(const Vector2 Position)
+        void ButtonListBox::SetActualPosition(const Vector2& Position)
         {
             RelPosition = Position / Parent->GetParent()->GetViewportDimensions();;
             Vector2 ScrollOffset = VertScroll->GetActualPosition() - RelPosition * Parent->GetParent()->GetViewportDimensions();;
@@ -399,7 +399,7 @@ namespace phys
             return RelPosition * Parent->GetParent()->GetViewportDimensions();;
         }
 
-        void ButtonListBox::SetSize(const Vector2 Size)
+        void ButtonListBox::SetSize(const Vector2& Size)
         {
             RelSize = Size;
             BoxBack->SetSize(Size);
@@ -416,7 +416,7 @@ namespace phys
             return RelSize;
         }
 
-        void ButtonListBox::SetActualSize(const Vector2 Size)
+        void ButtonListBox::SetActualSize(const Vector2& Size)
         {
             RelSize = Size / Parent->GetParent()->GetViewportDimensions();;
             BoxBack->SetActualSize(Size);

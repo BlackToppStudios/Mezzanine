@@ -47,12 +47,13 @@
 #include "uibutton.h"
 #include "uirectangle.h"
 #include "inputquerytool.h"
+#include "world.h"
 
 namespace phys
 {
     namespace UI
     {
-        Scrollbar::Scrollbar(ConstString& name, const Vector2 Position, const Vector2 Size, UI::ScrollbarStyle Style, Layer* parent)
+        Scrollbar::Scrollbar(ConstString& name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style, Layer* parent)
             : Widget(name, parent),
               UpLeftButton(NULL),
               DownRightButton(NULL),
@@ -63,9 +64,9 @@ namespace phys
               UpLeftLock(true),
               DownRightLock(true)
         {
+            Type = Widget::Scrollbar;
             RelPosition = Position;
             RelSize = Size;
-            Type = Widget::Scrollbar;
             ScrollStyle = Style;
             if(Size.Y > Size.X * 2)
             {
@@ -81,7 +82,7 @@ namespace phys
             }
             else
             {
-                //World::GetWorldPointer()->LogAndThrow("Scrollbar dimensions incompatible with this widget.");
+                World::GetWorldPointer()->LogAndThrow("Scrollbar dimensions incompatible with this widget.");
             }
         }
 
@@ -93,7 +94,7 @@ namespace phys
             delete DownRightButton;
         }
 
-        void Scrollbar::CreateHorizontalScrollbar(const Vector2 Position, const Vector2 Size)
+        void Scrollbar::CreateHorizontalScrollbar(const Vector2& Position, const Vector2& Size)
         {
             Horizontal = true;
             //Get the size for all items involved
@@ -153,7 +154,7 @@ namespace phys
             CalculateScrollLimits();
         }
 
-        void Scrollbar::CreateVerticalScrollbar(const Vector2 Position, const Vector2 Size)
+        void Scrollbar::CreateVerticalScrollbar(const Vector2& Position, const Vector2& Size)
         {
             Horizontal = false;
             //Get the size for all items involved
@@ -213,7 +214,7 @@ namespace phys
             CalculateScrollLimits();
         }
 
-        bool Scrollbar::IsValidDimensions(const Vector2 &Size)
+        bool Scrollbar::IsValidDimensions(const Vector2& Size)
         {
             if(Size.X > Size.Y * 2)
             {
@@ -226,7 +227,7 @@ namespace phys
             return false;
         }
 
-        void Scrollbar::SetHorizontal(const Vector2 &Size)
+        void Scrollbar::SetHorizontal(const Vector2& Size)
         {
             if(Size.X > Size.Y * 2)
             {
@@ -238,7 +239,7 @@ namespace phys
             }
         }
 
-        void Scrollbar::CalculateOffsets(const Vector2 &Size)
+        void Scrollbar::CalculateOffsets(const Vector2& Size)
         {
             if(Horizontal)
             {
@@ -308,7 +309,7 @@ namespace phys
             ScrollerValue = RelPos / RelLimit;
         }
 
-        void Scrollbar::SetToWithinLimits(Real &Coord)
+        void Scrollbar::SetToWithinLimits(Real& Coord)
         {
             Real SizeOffset = 0;
             if(Horizontal)
@@ -327,7 +328,7 @@ namespace phys
             }
         }
 
-        void Scrollbar::SetLocation(const Vector2 &Position)
+        void Scrollbar::SetLocation(const Vector2& Position)
         {
             ScrollBack->SetActualPosition(Position + ScrollBackOffset);
             CalculateScrollLimits();
@@ -349,7 +350,7 @@ namespace phys
             }
         }
 
-        void Scrollbar::SetArea(const Vector2 &Size)
+        void Scrollbar::SetArea(const Vector2& Size)
         {
             if(Horizontal)
             {
@@ -597,13 +598,6 @@ namespace phys
                 //Update();
                 return true;
             }
-            //else
-            //{
-            //    HoveredButton = NULL;
-            //    HoveredBack = NULL;
-            //    Update();
-            //    return false;
-            //}
             HoveredButton = NULL;
             HoveredBack = NULL;
             return false;
@@ -614,12 +608,12 @@ namespace phys
             return ScrollerValue;
         }
 
-        void Scrollbar::SetIncrementDistance(const Real IncDist)
+        void Scrollbar::SetIncrementDistance(const Real& IncDist)
         {
             IncrementDistance = IncDist;
         }
 
-        void Scrollbar::SetScrollerSize(const Real Size)
+        void Scrollbar::SetScrollerSize(const Real& Size)
         {
             if(Size > 1 || Size < 0)
                 return;
@@ -635,7 +629,7 @@ namespace phys
             }
         }
 
-        void Scrollbar::SetPosition(const Vector2 Position)
+        void Scrollbar::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
             Vector2 Adjusted = Position * Parent->GetParent()->GetViewportDimensions();
@@ -647,7 +641,7 @@ namespace phys
             return RelPosition;
         }
 
-        void Scrollbar::SetActualPosition(const Vector2 Position)
+        void Scrollbar::SetActualPosition(const Vector2& Position)
         {
             RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             SetLocation(Position);
@@ -658,7 +652,7 @@ namespace phys
             return (RelPosition * Parent->GetParent()->GetViewportDimensions());
         }
 
-        void Scrollbar::SetSize(const Vector2 Size)
+        void Scrollbar::SetSize(const Vector2& Size)
         {
             if(!IsValidDimensions(Size))
                 return;
@@ -681,7 +675,7 @@ namespace phys
             return RelSize;
         }
 
-        void Scrollbar::SetActualSize(const Vector2 Size)
+        void Scrollbar::SetActualSize(const Vector2& Size)
         {
             if(!IsValidDimensions(Size))
                 return;

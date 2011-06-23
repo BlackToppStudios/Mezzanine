@@ -75,6 +75,7 @@ namespace phys{
         delete Ghost;
         if(Shape)
             delete Shape;
+        PreGraphicsMeshCreate();
     }
 
     void AreaEffect::CreateGhostObject(const Vector3 Location)

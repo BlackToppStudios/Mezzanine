@@ -44,6 +44,7 @@ class CatchApp
 
         void PopulateScoreValues();
         void PopulateShopValues();
+        void PopulateLevelList(UI::PagedCellGrid* Grid);
         void ChangeState(const CatchApp::GameState &StateToSet);
 
         bool CheckEndOfLevel();
@@ -71,6 +72,7 @@ class CatchApp
         void RegisterScoreArea(ScoreArea* Score);
         void RegisterStartArea(StartingArea* Start);
         void AddThrowable(ActorBase* Throwable);
+        LevelLoader* GetLevelLoader();
 };
 
 #endif

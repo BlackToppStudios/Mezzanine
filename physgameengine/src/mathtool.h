@@ -75,35 +75,56 @@ namespace phys
             /// @return Returns a real representing Pi * 0.5.
             static Real GetHalfPi();
 
+            /// @brief Rounds a Real up.
+            /// @param Val The value to be rounded.
+            /// @return Returns the result of the rounding.
+            static Real Ceil(const Real& Val);
+
+            /// @brief Rounds a Real down.
+            /// @param Val The value to be rounded.
+            /// @return Returns the result of the rounding.
+            static Real Floor(const Real& Val);
+
+            /// @brief Gets the absolute value of a Real.
+            /// @param Val The value to get the absolute value of.
+            /// @return Returns the absolute value of the Real.
+            static Real Fabs(const Real& Val);
+
+            /// @brief Modulo, for Reals.  Returns the remainder of the division between two Reals.
+            /// @param Numerator The number on top.
+            /// @param Denominator The number on bottom.
+            /// @return Returns the remainder of division between the two Reals passed in.
+            static Real Fmod(const Real& Numerator, const Real& Denominator);
+
             /// @brief Calculates the Cosine of an angle.
             /// @param Radians The angle to be computed in Radians.
             /// @return Returns a Real representing the Cosine of the angle provided.
-            static Real Cos(Real Radians);
+            static Real Cos(const Real& Radians);
 
             /// @brief Calculates the Sine of an angle.
             /// @param Radians The angle to be computed in Radians.
             /// @return Returns a Real representing the Sine of the angle provided.
-            static Real Sin(Real Radians);
+            static Real Sin(const Real& Radians);
 
             /// @brief Calculates the Tangent of an angle.
             /// @param Radians The angle to be computed in Radians.
             /// @return Returns a Real representing the Tangent of the angle provided.
-            static Real Tan(Real Radians);
+            static Real Tan(const Real& Radians);
 
             /// @brief Calculates the principal value of the arc Cosine of an angle.
             /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
             /// @return Returns a Real representing the principal value of the arc Cosine of the angle provided in Radians.
-            static Real ACos(Real Interval);
+            static Real ACos(const Real& Interval);
 
             /// @brief Calculates the principal value of the arc Sine of an angle.
             /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
             /// @return Returns a Real representing the principal value of the arc Sine of the angle provided in Radians.
-            static Real ASin(Real Interval);
+            static Real ASin(const Real& Interval);
 
             /// @brief Calculates the principal value of the arc Tangent of an angle.
             /// @param Interval The Interval to calculate the arc Cosine.  Range is -1.0 to 1.0.
             /// @return Returns a Real representing the principal value of the arc Tangent of the angle provided in Radians.
-            static Real ATan(Real Interval);
+            static Real ATan(const Real& Interval);
     };//mathtool
 }//phys
 

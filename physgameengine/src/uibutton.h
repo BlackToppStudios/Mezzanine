@@ -87,6 +87,7 @@ namespace phys
                 String Name;
                 std::vector<MetaCode::InputCode> KeyboardActivationKeys;
                 std::vector<MetaCode::InputCode> MouseActivationButtons;
+                UI::ActivationCondition ActCond;
                 void SetHovered(bool Hovered);
             public:
                 /// @brief Internal constructor
@@ -120,16 +121,24 @@ namespace phys
                 /// @brief Registers a keyboard key or mouse button that can activate this button.
                 /// @details In the case of a mouse button, the hover check has to return true to activate the button.
                 /// @param Code The input code to register that will trigger activation.
-                virtual void RegisterActivationKeyOrButton(const MetaCode::InputCode& Code);
+                virtual void BindActivationKeyOrButton(const MetaCode::InputCode& Code);
                 /// @brief Removes a previously registered activation key or button.
                 /// @param Code The input code to remove.
-                virtual void UnregisterActivationKeyOrButton(const MetaCode::InputCode& Code);
+                virtual void UnbindActivationKeyOrButton(const MetaCode::InputCode& Code);
                 /// @brief Clears all keyboard input codes from the list of activation keys.
-                virtual void RemoveAllKeyboardActivationKeys();
+                virtual void UnbindAllKeyboardActivationKeys();
                 /// @brief Clears all mouse input codes from the list of activation buttons.
-                virtual void RemoveAllMouseActivationButtons();
+                virtual void UnbindAllMouseActivationButtons();
                 /// @brief Clears all keyboard and mouse input codes from the list of activators.
-                virtual void RemoveAllActivationKeysAndButtons();
+                virtual void UnbindAllActivationKeysAndButtons();
+                /// @brief Sets the condition for activation for this button.
+                /// @details See the ActivationCondition enum for more details.
+                /// @param Condition The condition to be set.
+                virtual void SetActivationCondition(const UI::ActivationCondition& Condition);
+                /// @brief Gets the condition for activation for this button.
+                /// @details See the ActivationCondition enum for more details.
+                /// @return Returns an enum value indicating the condition for activation for this button.
+                virtual UI::ActivationCondition GetActivationCondition();
                 /// @brief Sets the button as activated, also calling any set callbacks.
                 /// @details This shouldn't be called on manually unless you know exactly what you are doing.
                 /// @param Activate The state of activation to be applied.

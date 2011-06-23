@@ -115,6 +115,11 @@ namespace phys
         this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->setMaterialName(MatName);
     }
 
+    void ActorGraphicsSettings::CloneMaterial(const String& newName)
+    {
+         this->GetMaterial()->clone(newName);
+    }
+
     ConstString& ActorGraphicsSettings::GetMaterialName(Whole Submesh) const
     {
         return this->IAGS->ActorEnt->getMesh()->getSubMesh(Submesh)->getMaterialName();

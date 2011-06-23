@@ -263,7 +263,8 @@ namespace phys{
 
     void ActorRigid::RemoveObjectFromWorld(World* TargetWorld)
     {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->removeRigidBody(this->physrigidbody);
+        btSoftRigidDynamicsWorld* BWorld = TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer();
+        BWorld->removeRigidBody(this->physrigidbody);
         this->DetachFromGraphics();
     }
 

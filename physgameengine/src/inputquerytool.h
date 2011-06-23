@@ -144,6 +144,13 @@ namespace phys
             /// @return Returns a button state enum representing the button state.
             static MetaCode::ButtonState GetMouseButtonState(short unsigned int MouseButton);
 
+            /// @brief Gets the button state of the provided mouse button ID.
+            /// @param MouseButton The mouse button ID(up to 16) you wish to query.
+            /// @details Far from all mice have 16 buttons, be sure you know how many buttons the mouse has
+            /// As this function doesn't perform that check.
+            /// @return Returns a button state enum representing the button state.
+            static MetaCode::ButtonState GetMouseButtonState(const MetaCode::InputCode& MouseButton);
+
             /// @brief Gets the button state of the provided keyboard button ID.
             /// @param KeyboardButton The Input code for the keyboard button you wish to query.
             /// @return Returns a button state enum representing the button state.

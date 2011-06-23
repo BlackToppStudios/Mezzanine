@@ -49,8 +49,8 @@ void LevelLoader::LoadFerris()
     // Assuming all distances are in metric cm.
     String CommonGroup("Common");
     String FerrisGroup("Ferris");
-    String datadir = crossplatform::GetDataDirectory();
-    ResourceMan->AddResourceLocation(datadir+"Ferris.zip", "Zip", FerrisGroup, false);
+    String datadir = "Levels/";
+    ResourceMan->AddResourceLocation(datadir+"Ferris.lvl", "Zip", FerrisGroup, false);
     ResourceMan->InitResourceGroup(FerrisGroup);
 
     // Create the background

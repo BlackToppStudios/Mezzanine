@@ -37,91 +37,46 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mathtool_cpp
-#define _mathtool_cpp
+#ifndef _uicell_cpp
+#define _uicell_cpp
 
-#include "mathtool.h"
-
-#include <cmath>
+#include "uicell.h"
 
 namespace phys
 {
-    const Real MathTool::Pi = Real(4.0 * atan(1.0));
-    const Real MathTool::TwoPi = Real(2.0 * Pi);
-    const Real MathTool::HalfPi = Real(0.5 * Pi);
-
-    MathTool::MathTool()
+    namespace UI
     {
-    }
+        Cell::Cell(const String& name, Layer* parent)
+            : Widget(name,parent),
+              SortPriority(0)
+        {
+            Type = Widget::Cell;
+        }
 
-    MathTool::~MathTool()
-    {
-    }
+        Cell::~Cell()
+        {
+        }
 
-    Real MathTool::GetPi()
-    {
-        return Pi;
-    }
+        void Cell::SetPriority(const Whole& Priority)
+        {
+            SortPriority = Priority;
+        }
 
-    Real MathTool::GetTwoPi()
-    {
-        return TwoPi;
-    }
+        Whole Cell::GetPriority()
+        {
+            return SortPriority;
+        }
 
-    Real MathTool::GetHalfPi()
-    {
-        return HalfPi;
-    }
+        bool Cell::operator<(Cell* Other)
+        {
+            return SortPriority < Other->GetPriority();
+        }
 
-    Real MathTool::Ceil(const Real& Val)
-    {
-        return ceil(Val);
-    }
-
-    Real MathTool::Floor(const Real& Val)
-    {
-        return floor(Val);
-    }
-
-    Real MathTool::Fabs(const Real& Val)
-    {
-        return fabs(Val);
-    }
-
-    Real MathTool::Fmod(const Real& Numerator, const Real& Denominator)
-    {
-        return fmod(Numerator,Denominator);
-    }
-
-    Real MathTool::Cos(const Real& Radians)
-    {
-        return cos(Radians);
-    }
-
-    Real MathTool::Sin(const Real& Radians)
-    {
-        return sin(Radians);
-    }
-
-    Real MathTool::Tan(const Real& Radians)
-    {
-        return tan(Radians);
-    }
-
-    Real MathTool::ACos(const Real& Interval)
-    {
-        return acos(Interval);
-    }
-
-    Real MathTool::ASin(const Real& Interval)
-    {
-        return asin(Interval);
-    }
-
-    Real MathTool::ATan(const Real& Interval)
-    {
-        return atan(Interval);
-    }
+        bool Cell::operator>(Cell* Other)
+        {
+            return SortPriority > Other->GetPriority();
+        }
+    }//ui
 }//phys
 
 #endif

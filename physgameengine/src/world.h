@@ -181,6 +181,9 @@ namespace phys
             //SDL Object
             bool HasSDLBeenInitialized;
 
+            //Used to break the mainloop
+            bool ManualLoopBreak;
+
             //Try to retrieve ogre settinss
             void LoadOgreSettings();
 
@@ -397,6 +400,10 @@ namespace phys
             /// @brief This commits the log stream to the log
             /// @details This is called automatically at the end of each main loop iteration. You only need to call it if you are using your own main loop.
             void DoMainLoopLogging();
+
+            /// @brief This makes the main loop end after it's current iteration.
+            /// @details If called while not in the main loop, it will simply cause the next call to the main loop to do a single iteration and then exit.
+            void BreakMainLoop();
 
         ///////////////////////////////////////////////////////////////////////////////
         // Upper Management

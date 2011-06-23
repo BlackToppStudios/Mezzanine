@@ -130,6 +130,7 @@ namespace phys
         this->TargetFrameLength=16;
         this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
+        this->ManualLoopBreak = false;
 
         this->SetLoggingFrequency(LogOncePerFrame);
 
@@ -201,9 +202,10 @@ namespace phys
     //tears the world down
     World::~World()
     {
-        for(std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); iter!= ManagerList.end(); iter++)
+        for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin() ; iter!= ManagerList.end() ; /*iter++*/ )
         {
             delete (*iter);
+            iter = ManagerList.erase(iter);
         }
         ManagerList.clear();
 
@@ -447,11 +449,13 @@ namespace phys
 
                 LogCommitFunc();
             }
-
+            if(ManualLoopBreak)
+                    break;
         }//End of main loop
 
         //Some after loop cleanup
         //this->DestroyRenderWindow();
+        ManualLoopBreak = false;
         delete LoopTimer;
     }
 
@@ -462,6 +466,11 @@ namespace phys
             Ogre::LogManager::getSingleton().logMessage(this->LogStream.str());
             this->LogStream.str("");
         }
+    }
+
+    void World::BreakMainLoop()
+    {
+        ManualLoopBreak = true;
     }
 
     ///////////////////////////////////////////////////////////////////////////////

@@ -32,10 +32,10 @@ message ("Base Directory for Executable binaries and data output: ${${PROJECT_NA
 ##############################################################################
 #A complete list of our source files and headers
 set(${PROJECT_NAME}_sources
-	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.h"
-	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}areaofplay.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}areaofplay.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}buttoncallbacks.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}buttoncallbacks.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}callbacks.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}callbacks.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}catchapp.cpp"
@@ -44,6 +44,8 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}gamebase.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}levelloader.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}levelloader.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}levelselectcell.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}levelselectcell.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}scorearea.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}scorearea.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}startingarea.cpp"
@@ -77,6 +79,17 @@ function(CopyFilesFromPhygameDuringBuild FileName)
 	)
 endfunction(CopyFilesFromPhygameDuringBuild)
 
+function(CreateLevelDirectory)
+	add_custom_command(
+		TARGET ${PROJECT_NAME}
+		PRE_LINK
+		COMMAND ${CMAKE_COMMAND} -E echo "Creating Levels and Previews Directories"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${${PROJECT_NAME}_BINARY_DIR}/Levels"
+		COMMAND ${CMAKE_COMMAND} -E make_directory "${${PROJECT_NAME}_BINARY_DIR}/Previews"
+		VERBATIM
+	)
+endfunction(CreateLevelDirectory)
+
 ##############################################################################
 #define the executable and say it requires physgame
 include_directories( ${${PROJECT_NAME}_SOURCE_DIR} ${${PROJECT_NAME}_PHYSGAME_BIN_SRC} )
@@ -101,6 +114,8 @@ CopyDemoFilesDuringBuild( common/music/cAudioTheme2.ogg data/common/music/cAudio
 
 CopyFilesFromPhygameDuringBuild( data/common/Ogre-lgpl-3.0.txt )
 CopyFilesFromPhygameDuringBuild( data/common/PugiXML-MITLicense.txt )
+
+CreateLevelDirectory(  )
 
 ##############################################################################
 #Copy System Dependant files during build time

@@ -43,10 +43,13 @@
 #include "actormanager.h"
 #include "actorcontainervector.h"
 
+#include <sstream>
+
 namespace phys
 {
     ActorManager::ActorManager()
     {
+        Priority = -25;
         Actors = new ActorContainerVector();
     }
 
@@ -84,6 +87,8 @@ namespace phys
 
     void ActorManager::RemoveAllActors()
     {
+        if( 0 == Actors->GetActorCount() )
+            return;
         ActorBase* Act = NULL;
         Actors->CursorToFirst();
         for( Whole ActCur = 0 ; ActCur < Actors->GetActorCount() ; ActCur++ )
@@ -106,6 +111,8 @@ namespace phys
 
     void ActorManager::DestroyAllActors()
     {
+        if( 0 == Actors->GetActorCount() )
+            return;
         ActorBase* Act = NULL;
         Actors->CursorToFirst();
         for( Whole ActCur = 0 ; ActCur < Actors->GetActorCount() ; ActCur++ )

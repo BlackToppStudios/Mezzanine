@@ -37,91 +37,28 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _mathtool_cpp
-#define _mathtool_cpp
+#ifndef _stringtool_h
+#define _stringtool_h
 
-#include "mathtool.h"
-
-#include <cmath>
+#include "datatypes.h"
+#include "metacode.h"
 
 namespace phys
 {
-    const Real MathTool::Pi = Real(4.0 * atan(1.0));
-    const Real MathTool::TwoPi = Real(2.0 * Pi);
-    const Real MathTool::HalfPi = Real(0.5 * Pi);
-
-    MathTool::MathTool()
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class StringTool
+    /// @headerfile stringtool.h
+    /// @brief This is a utility to help perform all kinds of string related tasks.
+    /// @details
+    ///////////////////////////////////////
+    class StringTool
     {
-    }
-
-    MathTool::~MathTool()
-    {
-    }
-
-    Real MathTool::GetPi()
-    {
-        return Pi;
-    }
-
-    Real MathTool::GetTwoPi()
-    {
-        return TwoPi;
-    }
-
-    Real MathTool::GetHalfPi()
-    {
-        return HalfPi;
-    }
-
-    Real MathTool::Ceil(const Real& Val)
-    {
-        return ceil(Val);
-    }
-
-    Real MathTool::Floor(const Real& Val)
-    {
-        return floor(Val);
-    }
-
-    Real MathTool::Fabs(const Real& Val)
-    {
-        return fabs(Val);
-    }
-
-    Real MathTool::Fmod(const Real& Numerator, const Real& Denominator)
-    {
-        return fmod(Numerator,Denominator);
-    }
-
-    Real MathTool::Cos(const Real& Radians)
-    {
-        return cos(Radians);
-    }
-
-    Real MathTool::Sin(const Real& Radians)
-    {
-        return sin(Radians);
-    }
-
-    Real MathTool::Tan(const Real& Radians)
-    {
-        return tan(Radians);
-    }
-
-    Real MathTool::ACos(const Real& Interval)
-    {
-        return acos(Interval);
-    }
-
-    Real MathTool::ASin(const Real& Interval)
-    {
-        return asin(Interval);
-    }
-
-    Real MathTool::ATan(const Real& Interval)
-    {
-        return atan(Interval);
-    }
+        protected:
+        public:
+            StringTool();
+            ~StringTool();
+            static String ConvertInputCodeToString(const MetaCode::InputCode& Code, bool ShiftPressed);
+    };//stringtool
 }//phys
 
 #endif
