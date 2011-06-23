@@ -52,6 +52,8 @@
 
 #include <Ogre.h>
 
+#include <memory>
+
 /// @file worldnode.cpp
 /// @brief The implementation of the WorldNode, A class to facilitate navigation in 3d environment
 

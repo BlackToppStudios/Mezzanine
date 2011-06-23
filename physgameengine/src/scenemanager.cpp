@@ -46,6 +46,9 @@
 #include "particleeffect.h"
 #include "worldnode.h"
 #include "world.h"
+
+#include <memory>
+
 #include <Ogre.h>
 
 namespace phys

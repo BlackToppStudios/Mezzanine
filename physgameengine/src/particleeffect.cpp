@@ -45,6 +45,7 @@
 #include "world.h"
 #include "worldnode.h"
 
+#include <memory>
 
 #include <Ogre.h>
 

@@ -44,6 +44,7 @@
 #include "btBulletDynamicsCommon.h"
 
 #include <cmath>
+#include <memory>
 
 #include "quaternion.h"
 #include "vector3.h"
