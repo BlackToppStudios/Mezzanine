@@ -45,6 +45,7 @@
 #include "quaternion.h"
 #include "vector3.h"
 #include "colourvalue.h"
+#include "enumerations.h"
 
 #include <list>
 
@@ -107,13 +108,13 @@ namespace phys{
             std::vector < ActorBase* > RemovedActors;
             /// @brief Constructor Function.
             /// @param Location The location of the AE field.
-            virtual void CreateGhostObject(const Vector3 Location);
+            virtual void CreateGhostObject(const Vector3& Location);
             /// @brief Creates a basic material in code using the provided colour.
             virtual Ogre::MaterialPtr CreateColouredMaterial(const ColourValue& Colour);
             /// @brief Convenience function for the common starting steps in making a graphics object.
             virtual void PreGraphicsMeshCreate();
             /// @brief Convenience function for the common final steps in making a graphics object.
-            virtual void PostGraphicsMeshCreate(String& GroupName);
+            virtual void PostGraphicsMeshCreate(const String& GroupName);
             /// @brief Helper function for adding actors to relevant lists.
             virtual void AddActorToList(ActorBase* Actor);
             /// @brief Helper function for adding actors to relevant lists.
@@ -123,7 +124,7 @@ namespace phys{
             /// @details Basic initialization constructor.
             /// @param name The name of the field.
             /// @param Location The location of the AE field.
-            AreaEffect(const String &name, const Vector3 Location);
+            AreaEffect(const String &name, const Vector3& Location);
             /// @brief Destructor.
             /// @details Class destructor.
             virtual ~AreaEffect();
@@ -137,54 +138,64 @@ namespace phys{
             virtual void UpdateActorList();
             /// @brief Creates a Sphere shape for the field.
             /// @param Radius The radius of the sphere you want to create.
-            void CreateSphereShape(const Real Radius);
+            virtual void CreateSphereShape(const Real& Radius);
             /// @brief Creates a Cylinder shape for the field that is alligned on the X axis.
             /// @details When making the vector to be passed in, remember the layout should be as such: (width*0.5, radius, radius),
             /// with the second radius perpendicular to the first.
             /// @param HalfExtents The vector representing the size of the shape.
-            void CreateCylinderShapeX(const Vector3 HalfExtents);
+            virtual void CreateCylinderShapeX(const Vector3& HalfExtents);
             /// @brief Creates a Cylinder shape for the field that is alligned on the Y axis.
             /// @details When making the vector to be passed in, remember the layout should be as such: (radius, height*0.5, radius),
             /// with the second radius perpendicular to the first.
             /// @param HalfExtents The vector representing the size of the shape.
-            void CreateCylinderShapeY(const Vector3 HalfExtents);
+            virtual void CreateCylinderShapeY(const Vector3& HalfExtents);
             /// @brief Creates a Cylinder shape for the field that is alligned on the Z axis.
             /// @details When making the vector to be passed in, remember the layout should be as such: (radius, radius, length*0.5),
             /// with the second radius perpendicular to the first.
             /// @param HalfExtents The vector representing the size of the shape.
-            void CreateCylinderShapeZ(const Vector3 HalfExtents);
+            virtual void CreateCylinderShapeZ(const Vector3& HalfExtents);
             /// @brief Creates a Box shape for the field.
             /// @details When making the vector to be passed in, remember to pass in only half values of what you want the actual
             /// size to be.
             /// @param HalfExtents The vector representing the size of the shape.
-            void CreateBoxShape(const Vector3 HalfExtents);
+            virtual void CreateBoxShape(const Vector3& HalfExtents);
             /// @brief Creates a shape from a .mesh model for the field.
             /// @param Filename The name of the .mesh file to be used.
             /// @param Group The resource group where the mesh can be found.
             /// @param MakeVisible If true, this function will create a visual representation from the same mesh provided.
-            void CreateShapeFromMesh(String Filename, String Group, bool MakeVisible);
+            virtual void CreateShapeFromMesh(const String& Filename, const String& Group, bool MakeVisible);
             /// @brief Sets the scale of the shape of the field.
             /// @details The default scale is 1.0.
             /// @param Scale The vector3 representing the scale you wish to apply to each axis of the field shape.
-            void ScaleFieldShape(const Vector3 Scale);
+            virtual void ScaleFieldShape(const Vector3& Scale);
             /// @brief Gets the scale of the shape of the field.
             /// @details The default scale is 1.0.
             /// @return Returns the current scale applied to the fields shape.
-            Vector3 GetFieldShapeScale();
+            virtual Vector3 GetFieldShapeScale() const;
             /// @brief Sets the origin for the area effect.
             /// @details In most cases you won't want to call this, with the exception of when you want a field to follow/track an actor.
             /// @param Location The updated location of the origin for the field.
-            void SetLocation(const Vector3 Location);
+            virtual void SetLocation(const Vector3& Location);
             /// @brief Gets the origin for the area effect.
             /// @details This function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location.
             /// @return Returns the vector3 representing the location of the area effect.
-            Vector3 GetLocation();
+            virtual Vector3 GetLocation() const;
             /// @brief Gets the Area Effects name.
             /// @return Returns the name of the Area Effect.
-            ConstString& GetName();
+            virtual ConstString& GetName() const;
             /// @brief Gets the current shape type in use by this class.
             /// @return Returns an enum value representing the type of shape being used by this class.
-            AreaEffect::AEShapeType GetShapeType();
+            virtual AreaEffect::AEShapeType GetShapeType() const;
+            /// @brief Checks to see if the ghost object is currently in the world.
+            /// @return Returns a bool indication whether or not this object is currently in the world.
+            virtual bool IsInWorld() const;
+            /// @brief Sets(or un-sets) this AE as a static object.
+            /// @details Default: true.
+            /// @param Static Whether or not to set this as static.
+            virtual void SetStatic(bool Static);
+            /// @brief Gets whether or not this AR is static.
+            /// @return Returns a bool indicating if this object is static.
+            virtual bool IsStatic() const;
             /// @brief Creates a sphere mesh based on the physics shape for this area effect.
             /// @details This function will create a material script on the fly for you to use with your AR field.
             /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
@@ -199,30 +210,30 @@ namespace phys{
             /// This along with the segments parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
             /// @param Segments The number of vertical rings the sphere is to be comprised of.
             /// This along with the rings parameter controls the overall resolution of the sphere.  Less then 16 is not recommended.
-            virtual void CreateGraphicsSphere(String& MaterialName, const Whole Rings = 16, const Whole Segments = 16);
+            virtual void CreateGraphicsSphere(const String& MaterialName, const Whole Rings = 16, const Whole Segments = 16);
             /// @brief Creates a cylinder mesh based on the physics shape for this area effect.
             /// @details This function will create a material script on the fly for you to use with your AR field.
             /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
             virtual void CreateGraphicsCylinder(const ColourValue& Colour);
             /// @brief Creates a cylinder mesh based on the physics shape for this area effect.
             /// @param MaterialName The name of the material script to be applied to the graphics object that is created.  Must be valid.
-            virtual void CreateGraphicsCylinder(String& MaterialName);
+            virtual void CreateGraphicsCylinder(const String& MaterialName);
             /// @brief Creates a box mesh based on the physics shape for this area effect.
             /// @details This function will create a material script on the fly for you to use with your AR field.
             /// @param Colour The colour to put into the custom created material script.  This will be the final colour of the graphics object.
             virtual void CreateGraphicsBox(const ColourValue& Colour);
             /// @brief Creates a box mesh based on the physics shape for this area effect.
             /// @param MaterialName The name of the material script to be applied to the graphics object that is created.  Must be valid.
-            virtual void CreateGraphicsBox(String& MaterialName);
+            virtual void CreateGraphicsBox(const String& MaterialName);
             /// @brief Gets the list of actors within this field.
             /// @return Returns the list of actors contained within this field.
-            std::list<ActorBase*>& GetOverlappingActors();
+            virtual std::list<ActorBase*>& GetOverlappingActors();
             /// @brief Gets the list of actors that have been added to the list since the last simulation step.
             /// @return Returns the vector storing all the actors that have been added to the list since the last simulation step.
-            std::vector<ActorBase*>& GetAddedActors();
+            virtual std::vector<ActorBase*>& GetAddedActors();
             /// @brief Gets the list of actors that have been removed from the list since the last simulation step.
             /// @return Returns the vector storing all the actors that have been removed from the list since the last simulation step.
-            std::vector<ActorBase*>& GetRemovedActors();
+            virtual std::vector<ActorBase*>& GetRemovedActors();
     };//areaeffect
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -237,10 +248,10 @@ namespace phys{
             /// @details Basic initialization constructor.
             /// @param name The name of the field.
             /// @param Location The location of the AE field.
-            TestAE(const String &name, Vector3 Location);
+            TestAE(const String& name, const Vector3& Location);
             /// @brief Destructor.
             /// @details Class destructor.
-            ~TestAE();
+            virtual ~TestAE();
             /// @brief Applies the effect this field has to object inside.
             /// @details This function defines the behavior for the class.
             virtual void ApplyEffect();
@@ -263,21 +274,21 @@ namespace phys{
             /// @details Basic initialization constructor.
             /// @param name The name of the field.
             /// @param Location The location of the AE field.
-            GravityField(const String &name, Vector3 Location);
+            GravityField(const String &name, const Vector3& Location);
             /// @brief Destructor.
             /// @details Class destructor.
-            ~GravityField();
+            virtual ~GravityField();
             /// @brief Applies the effect this field has to object inside.
             /// @details This function defines the behavior for the class.
             virtual void ApplyEffect();
             /// @brief Sets the gravity force for this field.
             /// @details Sets the strength and direction of gravity this field will have.
             /// @param Gravity The vector3 representing the force and direction of gravity this field will have.
-            void SetFieldGravity(Vector3 Gravity);
+            virtual void SetFieldGravity(const Vector3& Gravity);
             /// @brief Gets the gravity of this field.
             /// @details Gets the strength and direction of gravity this field has.
             /// @return Returns a vector3 representing the force and direction of gravity this field has.
-            Vector3 GetFieldGravity();
+            virtual Vector3 GetFieldGravity() const;
     };//GravityField
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -290,26 +301,13 @@ namespace phys{
     ///////////////////////////////////////
     class PHYS_LIB GravityWell : public AreaEffect
     {
-        public:
-            /// @brief These values represent the kind of attenuation applied to the field strength
-            /// over a distance.  None is the default, where the force is constant in all area's of the
-            /// field.  Linear is where the force applied drops by the attenuation value times the distance
-            /// (strength - (attenuation amount * distance to AE center)).  Quadratic is where the force
-            /// applied drops by the attenuation value times the distance squared (strength -
-            /// (attenuation amount * distance to AE center * distance to AE center)).
-            enum AttenuationStyle
-            {
-                GW_Att_None,        ///< No Attentuation, Equal strength through.
-                GW_Att_Linear,      ///< Linear attentuation, Strength weaker farther from center.
-                GW_Att_Quadratic    ///< Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.
-            };
         protected:
             /// @brief The amount of force exerted on other objects
             Real Strength;
             /// @brief Should world gravity ne ignored
             bool AllowWorldGrav;
             /// @brief How does gravity
-            AttenuationStyle AttenStyle;
+            phys::AttenuationStyle AttenStyle;
             /// @brief how much does the Gravity attenuate.
             Real AttenAmount;
         public:
@@ -317,10 +315,10 @@ namespace phys{
             /// @details Basic initialization constructor.
             /// @param name The name of the field.
             /// @param Location The location of the AE field.
-            GravityWell(const String &name, Vector3 Location);
+            GravityWell(const String &name, const Vector3& Location);
             /// @brief Destructor.
             /// @details Class destructor.
-            ~GravityWell();
+            virtual ~GravityWell();
             /// @brief Applies the effect this field has to object inside.
             /// @details This function defines the behavior for the class.
             virtual void ApplyEffect();
@@ -328,10 +326,10 @@ namespace phys{
             /// @details The direction of the field is based on the current position of the object in the field.
             /// Once that direction is calculated it will be multiplied by this value to determine the force the field will apply to the object.
             /// @param FieldStrength The strength the field will have when exerting force onto other objects.
-            virtual void SetFieldStrength(const Real FieldStrength);
+            virtual void SetFieldStrength(const Real& FieldStrength);
             /// @brief Gets the strength of the field.
             /// @return Returns a Real representing the value that is being multiplied by the direction to determine force appied to objects.
-            virtual Real GetFieldStrength();
+            virtual Real GetFieldStrength() const;
             /// @brief Sets whether or not world gravity should be removed for objects in this field.
             /// @remarks Changing this value while the field is in the world and active is not recommended.
             /// @param WorldGravity If true, then forces exerted by this field will be added to the world gravity, otherwise
@@ -339,20 +337,84 @@ namespace phys{
             virtual void SetAllowWorldGravity(bool WorldGravity);
             /// @brief Gets whether or not world gravity is is removed for objects inside this field.
             /// @return Returns a bool indicating whether objects inside are affected by world gravity.
-            virtual bool GetAllowWorldGravity();
+            virtual bool GetAllowWorldGravity() const;
             /// @brief Sets the attenuation for this field.
             /// @param Amount The amount of force that is dropped off per 1 unit of distance objects are from the AE center.
             /// @param Style The style of attenuation to apply, see the AttenuationStyle enum for more details.
-            virtual void SetAttenuation(Real Amount, AttenuationStyle Style);
+            virtual void SetAttenuation(const Real& Amount, const phys::AttenuationStyle& Style);
             /// @brief Gets the Style of attenuation applied.
             /// @details See the AttenuationStyle enum for more details.
             /// @return Returns the style of attenuation currently being used by this field.
-            virtual AttenuationStyle GetAttenuationStyle();
+            virtual phys::AttenuationStyle GetAttenuationStyle() const;
             /// @brief Gets the amount force is attenuated over distance.
             /// @details See SetAttenuation() for more details.
             /// @return Returns a Real value
-            virtual Real GetAttenuationAmount();
+            virtual Real GetAttenuationAmount() const;
     };//GravityWell
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class FieldOfForce
+    /// @headerfile areaeffect.h
+    /// @brief This is field that applies force in a direction, and doesn't tamper with gravity.
+    /// @details This class is similiar to a gravity well in that it can attenuate, but different in
+    /// that the direction is constant, the source of force(for calculating attenuation) can be outside the
+    /// field itself, and the direction is constant.  @n
+    /// Placing the source of attenuation inside the field will cause the object to accelerate as it gets close
+    /// to the source, and then will be applied less force(but in the same direction) as it moves from the source.
+    /// This behavior makes this class good for creating a booster-like AE.
+    ///////////////////////////////////////
+    class FieldOfForce : public AreaEffect
+    {
+        protected:
+            /// @brief The amount of force exerted on other objects
+            Real Strength;
+            /// @brief The direction the force is applied.
+            Vector3 Direction;
+            /// @brief How gravity weakens over distance, if at all.
+            phys::AttenuationStyle AttenStyle;
+            /// @brief How much the Gravity weakens over distance.
+            Real AttenAmount;
+            /// @brief The user defined source if enabled.
+            Vector3 AttenSource;
+        public:
+            /// @brief Class Constructor.
+            /// @param name The name of the field.
+            /// @param Location The location of the AE field.
+            FieldOfForce(const String &name, const Vector3& Location);
+            /// @brief Class Destructor
+            ~FieldOfForce();
+            /// @brief Applies the effect this field has to object inside.
+            /// @details This function defines the behavior for the class.
+            virtual void ApplyEffect();
+            /// @brief Sets the strenth of the field.
+            /// @param FieldStrength The strength the field will have when exerting force onto other objects.
+            virtual void SetFieldStrength(const Real& FieldStrength);
+            /// @brief Gets the strength of the field.
+            /// @return Returns a Real representing the value that is being multiplied by the direction to determine force appied to objects.
+            virtual Real GetFieldStrength() const;
+            /// @brief Sets the direction force is to be applied within this field.
+            /// @param ForceDirection A vector3 representing the direction force is to be applied.
+            virtual void SetDirectionOfForce(const Vector3& ForceDirection);
+            /// @brief Gets the currenly set direction force is to be applied.
+            /// @return Returns a vector3 representing the direction of force in this field.
+            virtual Vector3 GetDirectionOfForce();
+            /// @brief Sets the attenuation for this field.
+            /// @param Amount The amount of force that is dropped off per 1 unit of distance objects are from the AE source.
+            /// @param Style The style of attenuation to apply, see the AttenuationStyle enum for more details.
+            /// @param Source A vector3 representing the source of force to use when calculating attenuation.
+            virtual void SetAttenuation(const Real& Amount, const phys::AttenuationStyle& Style, const Vector3& Source);
+            /// @brief Gets the Style of attenuation applied.
+            /// @details See the AttenuationStyle enum for more details.
+            /// @return Returns the style of attenuation currently being used by this field.
+            virtual phys::AttenuationStyle GetAttenuationStyle() const;
+            /// @brief Gets the amount force is attenuated over distance.
+            /// @details See SetAttenuation() for more details.
+            /// @return Returns a Real value
+            virtual Real GetAttenuationAmount() const;
+            /// @brief Gets the source of the force for calculating attenuation.
+            /// @return Returns a Vector3 representing the source of the attenuating force.
+            virtual Vector3 GetAttenuationSource() const;
+    };//feildofforce
 }//phys
 
 #endif

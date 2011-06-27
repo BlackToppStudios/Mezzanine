@@ -56,6 +56,21 @@ namespace phys
         AAS_DisableSimulation = 5
     };
 
+    /// @enum AttenuationStyle
+    /// @brief These values represent the kind of attenuation applied to the field strength
+    /// over a distance.
+    /// @details None is the default, where the force is constant in all area's of the
+    /// field.  Linear is where the force applied drops by the attenuation value times the distance
+    /// (strength - (attenuation amount * distance to AE center)).  Quadratic is where the force
+    /// applied drops by the attenuation value times the distance squared (strength -
+    /// (attenuation amount * distance to AE center * distance to AE center)).
+    enum AttenuationStyle
+    {
+        Att_None,        ///< No Attentuation, Equal strength through.
+        Att_Linear,      ///< Linear attentuation, Strength weaker farther from center.
+        Att_Quadratic    ///< Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.
+    };
+
     /// @enum WorldObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This is mostly used internally for casting void pointers.
@@ -91,7 +106,6 @@ namespace phys
             AC_OnPress,
             AC_OnLift
         };
-
         /// @enum RenderPriority
         /// @brief Used by UI elements created by layers to determine z-ordering within a layer.
         /// @details This essentially means we're adding layers to our layers without the messy

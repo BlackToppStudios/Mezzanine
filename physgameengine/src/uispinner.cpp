@@ -349,7 +349,7 @@ namespace phys
 
         bool Spinner::IsVisible()
         {
-            return Visible;
+            return Visible && Parent->IsVisible() && Parent->GetParent()->IsVisible();
         }
 
         void Spinner::Show()
@@ -404,7 +404,7 @@ namespace phys
 
         bool Spinner::CheckMouseHover()
         {
-            if(!Visible)
+            if(!IsVisible())
                 return false;
             if(Increment->CheckMouseHover())
             {

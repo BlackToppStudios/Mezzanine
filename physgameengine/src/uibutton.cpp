@@ -77,6 +77,8 @@ namespace phys
         Button::~Button()
         {
             Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
+            if(Callback)
+                delete Callback;
         }
 
         void Button::SetHovered(bool Hovered)
@@ -230,7 +232,7 @@ namespace phys
 
         bool Button::CheckMouseHover()
         {
-            if(!GorillaRectangle->IsVisible())
+            if(!IsVisible())
                 return false;
             Vector2 MouseLoc = InputQueryTool::GetMouseCoordinates();
             bool Hovered = GorillaRectangle->intersects(MouseLoc.GetOgreVector2());

@@ -6,9 +6,6 @@
 
 StartingArea::StartingArea(const String &name, Vector3 Location) : AreaEffect(name, Location)
 {
-    Grav.X = 0;
-    Grav.Y = 0;
-    Grav.Z = 0;
 }
 
 StartingArea::~StartingArea()
@@ -29,6 +26,7 @@ bool StartingArea::IsInside(ActorBase* Actor)
 
 void StartingArea::ApplyEffect()
 {
+    Vector3 Grav(0,0,0);
     ActorBase* Act = NULL;
     PhysicsManager* PhysMan = TheWorld->GetPhysicsManager();
     if(!AddedActors.empty())

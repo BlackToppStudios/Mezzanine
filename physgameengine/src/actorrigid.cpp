@@ -87,6 +87,8 @@ namespace phys{
         if(0.0 == bmass)
         {
             CollisionObject->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
+        }else{
+            CollisionObject->setCollisionFlags(CollisionObject->getCollisionFlags() & (~btCollisionObject::CF_STATIC_OBJECT));
         }
     }
 

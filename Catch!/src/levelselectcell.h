@@ -44,4 +44,15 @@ class LevelSelectCell : public UI::Cell
         virtual UI::Caption* GetEarnedMaxScore();
 };
 
+class LevelSelectCB : public UI::CellCallback
+{
+    protected:
+        LevelSelectCell* LevelCell;
+    public:
+        LevelSelectCB(LevelSelectCell* CallerCell);
+        ~LevelSelectCB();
+        virtual void DoSelectedItems();
+        virtual void DoUnselectedItems();
+};
+
 #endif

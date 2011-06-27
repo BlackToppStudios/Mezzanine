@@ -73,12 +73,39 @@ THE SOFTWARE.
 
 namespace phys
 {
+    std::vector<String> MeshGenerator::GeneratedMeshNames;
+
     MeshGenerator::MeshGenerator()
     {
     }
 
     MeshGenerator::~MeshGenerator()
     {
+    }
+
+    Whole MeshGenerator::GetNumGeneratedMeshes()
+    {
+        return GeneratedMeshNames.size();
+    }
+
+    void MeshGenerator::DestroyGeneratedMesh(const String& MeshName)
+    {
+        for( std::vector<String>::iterator it = GeneratedMeshNames.begin() ; it != GeneratedMeshNames.end() ; it++ )
+        {
+            if(MeshName == (*it))
+            {
+                Ogre::MeshManager::getSingletonPtr()->remove((*it));
+                GeneratedMeshNames.erase(it);
+                return;
+            }
+        }
+    }
+
+    void MeshGenerator::DestroyAllGeneratedMeshes()
+    {
+        for( std::vector<String>::iterator it = GeneratedMeshNames.begin() ; it != GeneratedMeshNames.end() ; it++ )
+            Ogre::MeshManager::getSingletonPtr()->remove((*it));
+        GeneratedMeshNames.clear();
     }
 
     void MeshGenerator::CreateBoxMesh(const String& MeshName, const String& MaterialName, const Vector3& HalfExtents)
@@ -133,6 +160,7 @@ namespace phys
         Real FirstCheck = Half.X > Half.Y ? Half.X : Half.Y;
         Real Largest = FirstCheck > Half.Z ? FirstCheck : Half.Z;
         boxmesh->_setBoundingSphereRadius(1.4 * Largest);
+        GeneratedMeshNames.push_back(MeshName);
         delete box;
     }
 
@@ -231,6 +259,7 @@ namespace phys
         Real FirstCheck = Half.X > Half.Y ? Half.X : Half.Y;
         Real Largest = FirstCheck > Half.Z ? FirstCheck : Half.Z;
         cylindermesh->_setBoundingSphereRadius(1.4 * Largest);
+        GeneratedMeshNames.push_back(MeshName);
         delete cylinder;
 /// End of MIT(Ogre Proceadural) License ///
     }
@@ -278,6 +307,7 @@ namespace phys
         Ogre::MeshPtr spheremesh = sphere->convertToMesh(MeshName, GroupName);
         spheremesh->_setBounds(Ogre::AxisAlignedBox(-Radius,-Radius,-Radius,Radius,Radius,Radius));
         spheremesh->_setBoundingSphereRadius(Radius);
+        GeneratedMeshNames.push_back(MeshName);
         delete sphere;
     }
 }

@@ -184,6 +184,8 @@ namespace phys
 
         bool Menu::CheckMouseHover()
         {
+            if(!IsVisible())
+                return false;
             for( std::vector<UI::MenuWindow*>::reverse_iterator it = MenuStack.rbegin() ; it != MenuStack.rend() ; it++ )
             {
                 if((*it)->IsVisible())

@@ -568,7 +568,7 @@ namespace phys
 
         bool Scrollbar::CheckMouseHover()
         {
-            if(!Visible)
+            if(!IsVisible())
                 return false;
             if(Scroller->CheckMouseHover())
             {

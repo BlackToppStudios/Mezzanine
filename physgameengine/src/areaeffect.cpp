@@ -59,7 +59,7 @@
 
 namespace phys{
 
-    AreaEffect::AreaEffect(const String &name, const Vector3 Location)
+    AreaEffect::AreaEffect(const String &name, const Vector3& Location)
         : Name (name),
           Shape (NULL),
           GraphicsNode(NULL),
@@ -78,10 +78,10 @@ namespace phys{
         PreGraphicsMeshCreate();
     }
 
-    void AreaEffect::CreateGhostObject(const Vector3 Location)
+    void AreaEffect::CreateGhostObject(const Vector3& Location)
     {
         Ghost = new btPairCachingGhostObject();
-        Ghost->setCollisionFlags(Ghost->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
+        Ghost->setCollisionFlags(Ghost->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
         ObjectReference* ActorRef = new ObjectReference(phys::WOT_AreaEffect,this);
         Ghost->setUserPointer(ActorRef);
@@ -118,7 +118,7 @@ namespace phys{
         }
     }
 
-    void AreaEffect::PostGraphicsMeshCreate(String& GroupName)
+    void AreaEffect::PostGraphicsMeshCreate(const String& GroupName)
     {
         Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
         GraphicsObject = OgreManager->createEntity(Name,Name + "Mesh", GroupName);
@@ -215,42 +215,42 @@ namespace phys{
         }
     }
 
-    void AreaEffect::CreateSphereShape(const Real Radius)
+    void AreaEffect::CreateSphereShape(const Real& Radius)
     {
         Shape = new btSphereShape(Radius);
         Ghost->setCollisionShape(Shape);
         ShapeType = AE_Sphere;
     }
 
-    void AreaEffect::CreateCylinderShapeX(const Vector3 HalfExtents)
+    void AreaEffect::CreateCylinderShapeX(const Vector3& HalfExtents)
     {
         Shape = new btCylinderShapeX(HalfExtents.GetBulletVector3());
         Ghost->setCollisionShape(Shape);
         ShapeType = AE_CylinderX;
     }
 
-    void AreaEffect::CreateCylinderShapeY(const Vector3 HalfExtents)
+    void AreaEffect::CreateCylinderShapeY(const Vector3& HalfExtents)
     {
         Shape = new btCylinderShape(HalfExtents.GetBulletVector3());
         Ghost->setCollisionShape(Shape);
         ShapeType = AE_CylinderY;
     }
 
-    void AreaEffect::CreateCylinderShapeZ(const Vector3 HalfExtents)
+    void AreaEffect::CreateCylinderShapeZ(const Vector3& HalfExtents)
     {
         Shape = new btCylinderShapeZ(HalfExtents.GetBulletVector3());
         Ghost->setCollisionShape(Shape);
         ShapeType = AE_CylinderZ;
     }
 
-    void AreaEffect::CreateBoxShape(const Vector3 HalfExtents)
+    void AreaEffect::CreateBoxShape(const Vector3& HalfExtents)
     {
         Shape = new btBoxShape(HalfExtents.GetBulletVector3());
         Ghost->setCollisionShape(Shape);
         ShapeType = AE_Box;
     }
 
-    void AreaEffect::CreateShapeFromMesh(String Filename, String Group, bool MakeVisible)
+    void AreaEffect::CreateShapeFromMesh(const String& Filename, const String& Group, bool MakeVisible)
     {
         Ogre::SceneManager* OgreManager = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer();
         PreGraphicsMeshCreate();
@@ -334,38 +334,62 @@ namespace phys{
         ShapeType = AE_Custom;
     }
 
-    void AreaEffect::ScaleFieldShape(const Vector3 Scale)
+    void AreaEffect::ScaleFieldShape(const Vector3& Scale)
     {
         Ghost->getCollisionShape()->setLocalScaling(Scale.GetBulletVector3());
     }
 
-    Vector3 AreaEffect::GetFieldShapeScale()
+    Vector3 AreaEffect::GetFieldShapeScale() const
     {
         Vector3 Scale(Ghost->getCollisionShape()->getLocalScaling());
         return Scale;
     }
 
-    void AreaEffect::SetLocation(const Vector3 Location)
+    void AreaEffect::SetLocation(const Vector3& Location)
     {
         Ghost->getWorldTransform().setOrigin(Location.GetBulletVector3());
         if(GraphicsNode)
             GraphicsNode->setPosition(Location.GetOgreVector3());
     }
 
-    Vector3 AreaEffect::GetLocation()
+    Vector3 AreaEffect::GetLocation() const
     {
         Vector3 Loc(Ghost->getWorldTransform().getOrigin());
         return Loc;
     }
 
-    ConstString& AreaEffect::GetName()
+    ConstString& AreaEffect::GetName() const
     {
         return Name;
     }
 
-    AreaEffect::AEShapeType AreaEffect::GetShapeType()
+    AreaEffect::AEShapeType AreaEffect::GetShapeType() const
     {
         return ShapeType;
+    }
+
+    bool AreaEffect::IsInWorld() const
+    {
+        return 0 != Ghost->getBroadphaseHandle();
+    }
+
+    void AreaEffect::SetStatic(bool Static)
+    {
+        if(IsInWorld())
+        {
+            World::GetWorldPointer()->GetPhysicsManager()->RemoveAreaEffect(this);
+            short flags = Static ? btCollisionObject::CF_STATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE : btCollisionObject::CF_NO_CONTACT_RESPONSE;
+            Ghost->setCollisionFlags(flags);
+            World::GetWorldPointer()->GetPhysicsManager()->AddAreaEffect(this);
+        }else{
+            short flags = Static ? btCollisionObject::CF_STATIC_OBJECT | btCollisionObject::CF_NO_CONTACT_RESPONSE : btCollisionObject::CF_NO_CONTACT_RESPONSE;
+            Ghost->setCollisionFlags(flags);
+        }
+    }
+
+    bool AreaEffect::IsStatic() const
+    {
+        return Ghost->getCollisionFlags() & btCollisionObject::CF_STATIC_OBJECT;
     }
 
     void AreaEffect::CreateGraphicsSphere(const ColourValue& Colour, const Whole Rings, const Whole Segments)
@@ -379,7 +403,7 @@ namespace phys{
         CreateGraphicsSphere(MatName,Rings,Segments);
     }
 
-    void AreaEffect::CreateGraphicsSphere(String& MaterialName, const Whole Rings, const Whole Segments)
+    void AreaEffect::CreateGraphicsSphere(const String& MaterialName, const Whole Rings, const Whole Segments)
     {
         if(AreaEffect::AE_Sphere != ShapeType)
         {
@@ -405,7 +429,7 @@ namespace phys{
         CreateGraphicsCylinder(MatName);
     }
 
-    void AreaEffect::CreateGraphicsCylinder(String& MaterialName)
+    void AreaEffect::CreateGraphicsCylinder(const String& MaterialName)
     {
         if(AreaEffect::AE_CylinderX != ShapeType && AreaEffect::AE_CylinderY != ShapeType && AreaEffect::AE_CylinderZ != ShapeType)
         {
@@ -444,7 +468,7 @@ namespace phys{
         CreateGraphicsBox(MatName);
     }
 
-    void AreaEffect::CreateGraphicsBox(String& MaterialName)
+    void AreaEffect::CreateGraphicsBox(const String& MaterialName)
     {
         if(AreaEffect::AE_Box != ShapeType)
         {
@@ -478,7 +502,7 @@ namespace phys{
     ///////////////////////////////////
     // TestAE functions
 
-    TestAE::TestAE(const String &name, const Vector3 Location) : AreaEffect(name, Location)
+    TestAE::TestAE(const String& name, const Vector3& Location) : AreaEffect(name, Location)
     {
     }
 
@@ -524,7 +548,7 @@ namespace phys{
     ///////////////////////////////////
     // GravityField functions
 
-    GravityField::GravityField(const String &name, Vector3 Location) : AreaEffect(name, Location)
+    GravityField::GravityField(const String &name, const Vector3& Location) : AreaEffect(name, Location)
     {
     }
 
@@ -556,12 +580,12 @@ namespace phys{
         }
     }
 
-    void GravityField::SetFieldGravity(Vector3 Gravity)
+    void GravityField::SetFieldGravity(const Vector3& Gravity)
     {
         Grav = Gravity;
     }
 
-    Vector3 GravityField::GetFieldGravity()
+    Vector3 GravityField::GetFieldGravity() const
     {
         return Grav;
     }
@@ -569,12 +593,12 @@ namespace phys{
     ///////////////////////////////////
     // GravityWell functions
 
-    GravityWell::GravityWell(const String &name, Vector3 Location)
+    GravityWell::GravityWell(const String &name, const Vector3& Location)
         : AreaEffect(name, Location),
           AllowWorldGrav(true),
           Strength(0),
           AttenAmount(0),
-          AttenStyle(GW_Att_None)
+          AttenStyle(phys::Att_None)
     {
     }
 
@@ -613,10 +637,10 @@ namespace phys{
                 Direction = (GhostLoc - ActorLoc) / Distance;
                 switch(AttenStyle)
                 {
-                    case GW_Att_Linear:
+                    case phys::Att_Linear:
                         AppliedStrength = Strength - (AttenAmount * Distance);
                         break;
-                    case GW_Att_Quadratic:
+                    case phys::Att_Quadratic:
                         AppliedStrength = Strength - (AttenAmount * (Distance * Distance));
                         break;
                     default:
@@ -648,12 +672,12 @@ namespace phys{
         }
     }
 
-    void GravityWell::SetFieldStrength(const Real FieldStrength)
+    void GravityWell::SetFieldStrength(const Real& FieldStrength)
     {
         Strength = FieldStrength;
     }
 
-    Real GravityWell::GetFieldStrength()
+    Real GravityWell::GetFieldStrength() const
     {
         return Strength;
     }
@@ -663,25 +687,134 @@ namespace phys{
         AllowWorldGrav = WorldGravity;
     }
 
-    bool GravityWell::GetAllowWorldGravity()
+    bool GravityWell::GetAllowWorldGravity() const
     {
         return AllowWorldGrav;
     }
 
-    void GravityWell::SetAttenuation(Real Amount, AttenuationStyle Style)
+    void GravityWell::SetAttenuation(const Real& Amount, const phys::AttenuationStyle& Style)
     {
         AttenAmount = Amount;
         AttenStyle = Style;
     }
 
-    GravityWell::AttenuationStyle GravityWell::GetAttenuationStyle()
+    phys::AttenuationStyle GravityWell::GetAttenuationStyle() const
     {
         return AttenStyle;
     }
 
-    Real GravityWell::GetAttenuationAmount()
+    Real GravityWell::GetAttenuationAmount() const
     {
         return AttenAmount;
+    }
+
+    ///////////////////////////////////
+    // FieldOfForce functions
+
+    FieldOfForce::FieldOfForce(const String &name, const Vector3& Location)
+        : AreaEffect(name, Location),
+          Strength(0),
+          AttenAmount(0),
+          AttenStyle(phys::Att_None),
+          AttenSource(Vector3(0,0,0)),
+          Direction(Vector3(0,1,0))
+    {
+    }
+
+    FieldOfForce::~FieldOfForce()
+    {
+    }
+
+    void FieldOfForce::ApplyEffect()
+    {
+        if(0 == Strength)
+            return;
+        ActorBase* Act = NULL;
+        ActorRigid* ActRig = NULL;
+        if(!OverlappingActors.empty())
+        {
+            Vector3 ActorLoc;
+            Real Distance, AppliedStrength, InvMass;
+            for ( std::list<ActorBase*>::iterator OA = OverlappingActors.begin() ; OA != OverlappingActors.end() ; OA++ )
+            {
+                if(ActorBase::Actorrigid != (*OA)->GetType())
+                    continue;
+                ActorLoc = (*OA)->GetLocation();
+                switch(AttenStyle)
+                {
+                    case phys::Att_Linear:
+                    {
+                        Distance = ActorLoc.Distance(AttenSource);
+                        AppliedStrength = Strength - (AttenAmount * Distance);
+                        break;
+                    }
+                    case phys::Att_Quadratic:
+                    {
+                        Distance = ActorLoc.Distance(AttenSource);
+                        AppliedStrength = Strength - (AttenAmount * (Distance * Distance));
+                        break;
+                    }
+                    case phys::Att_None:
+                    {
+                        AppliedStrength = Strength;
+                        break;
+                    }
+                }
+                //Collect necessary data
+                ActRig = static_cast<ActorRigid*>(*OA);
+                InvMass = ActRig->GetBulletObject()->getInvMass();
+                if(0 != InvMass)
+                    AppliedStrength *= (1 / ActRig->GetBulletObject()->getInvMass());
+                else
+                    AppliedStrength = 0;
+                if(0 > AppliedStrength)
+                    AppliedStrength = 0;
+                //Apply the Force
+                ActRig->GetBulletObject()->applyCentralForce((Direction * AppliedStrength).GetBulletVector3());
+            }
+        }
+    }
+
+    void FieldOfForce::SetFieldStrength(const Real& FieldStrength)
+    {
+        Strength = FieldStrength;
+    }
+
+    Real FieldOfForce::GetFieldStrength() const
+    {
+        return Strength;
+    }
+
+    void FieldOfForce::SetDirectionOfForce(const Vector3& ForceDirection)
+    {
+        Direction = ForceDirection;
+    }
+
+    Vector3 FieldOfForce::GetDirectionOfForce()
+    {
+        return Direction;
+    }
+
+    void FieldOfForce::SetAttenuation(const Real& Amount, const phys::AttenuationStyle& Style, const Vector3& Source)
+    {
+        AttenAmount = Amount;
+        AttenStyle = Style;
+        AttenSource = Source;
+    }
+
+    phys::AttenuationStyle FieldOfForce::GetAttenuationStyle() const
+    {
+        return AttenStyle;
+    }
+
+    Real FieldOfForce::GetAttenuationAmount() const
+    {
+        return AttenAmount;
+    }
+
+    Vector3 FieldOfForce::GetAttenuationSource() const
+    {
+        return AttenSource;
     }
 }
 

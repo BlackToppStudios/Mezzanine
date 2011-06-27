@@ -175,7 +175,7 @@ namespace phys
 
         bool CheckBox::CheckMouseHover()
         {
-            if(!Visible)
+            if(!IsVisible())
                 return false;
             if(Box->CheckMouseHover())
             {

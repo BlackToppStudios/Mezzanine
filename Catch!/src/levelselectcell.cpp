@@ -77,9 +77,12 @@ void LevelSelectCell::Hide()
 
 bool LevelSelectCell::CheckMouseHover()
 {
-    if(PreviewImage->CheckMouseHover()) return true;
+    if(!Visible)
+        return false;
     if(CellBack->CheckMouseHover()) return true;
-    return false;
+    else if(PreviewImage->CheckMouseHover()) return true;
+    else if(PreviewBorder->CheckMouseHover()) return true;
+    else return false;
 }
 
 void LevelSelectCell::SetPosition(const Vector2& Position)
@@ -160,6 +163,26 @@ UI::Caption* LevelSelectCell::GetLevelTitle()
 UI::Caption* LevelSelectCell::GetEarnedMaxScore()
 {
     return EarnedMaxScore;
+}
+
+LevelSelectCB::LevelSelectCB(LevelSelectCell* CallerCell)
+    : UI::CellCallback(CallerCell),
+      LevelCell(CallerCell)
+{
+}
+
+LevelSelectCB::~LevelSelectCB()
+{
+}
+
+void LevelSelectCB::DoSelectedItems()
+{
+    LevelCell->GetCellBack()->SetBackgroundSprite("MMLevelCellBackSelected");
+}
+
+void LevelSelectCB::DoUnselectedItems()
+{
+    LevelCell->GetCellBack()->SetBackgroundSprite("MMLevelCellBack");
 }
 
 #endif
