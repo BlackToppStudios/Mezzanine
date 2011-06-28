@@ -181,6 +181,8 @@ namespace phys
                 virtual bool CellsOffGrid();
                 /// @brief Sorts the grid based on the priority set in the cells.
                 virtual void SortGrid();
+                /// @brief Sets the selected pointer to NULL, so no cells are selected.
+                virtual void ClearSelected();
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
                 virtual bool CheckMouseHover();

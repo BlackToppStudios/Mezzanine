@@ -467,7 +467,9 @@ namespace phys
     void PhysicsManager::AddAreaEffect(AreaEffect* AE)
     {
         this->AreaEffects.push_back(AE);
-        this->BulletDynamicsWorld->addCollisionObject(AE->Ghost,btBroadphaseProxy::SensorTrigger,btBroadphaseProxy::AllFilter & ~btBroadphaseProxy::SensorTrigger);
+        short CollisionGroup = btBroadphaseProxy::SensorTrigger;
+        short CollisionMask = AE->IsStatic() ? btBroadphaseProxy::AllFilter ^ (btBroadphaseProxy::SensorTrigger|btBroadphaseProxy::StaticFilter) : btBroadphaseProxy::AllFilter ^ btBroadphaseProxy::SensorTrigger;
+        this->BulletDynamicsWorld->addCollisionObject(AE->Ghost,CollisionGroup,CollisionMask);
     }
 
     AreaEffect* PhysicsManager::GetAreaEffect(String Name)

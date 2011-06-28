@@ -310,14 +310,16 @@ namespace phys
 
         bool PagedCellGrid::CheckMouseHover()
         {
-            if(CellGrid::CheckMouseHover())
-                return true;
+            if(!IsVisible())
+                return false;
             if(PageSpinner->CheckMouseHover())
             {
                 HoveredSubWidget = PageSpinner;
                 HoveredButton = NULL;
                 return true;
             }
+            if(CellGrid::CheckMouseHover())
+                return true;
             return false;
         }
 

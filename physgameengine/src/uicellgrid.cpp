@@ -281,10 +281,15 @@ namespace phys
                 }
                 else if(MetaCode::BUTTON_LIFTING == State)
                 {
-                    if(Widget::Cell == HoveredSubWidget->GetType())
+                    if(Widget::Cell == HoveredSubWidget->GetType() && HoveredSubWidget != Selected)
                     {
+                        if(Selected)
+                        {
+                            Selected->SetSelected(false);
+                            Selected = NULL;
+                        }
                         Selected = static_cast<UI::Cell*>(HoveredSubWidget);
-                        Selected->DoSelectedItems();
+                        Selected->SetSelected(true);
                     }
                 }
             }
@@ -453,9 +458,15 @@ namespace phys
                 Cells.reverse();
         }
 
+        void CellGrid::ClearSelected()
+        {
+            Selected->SetSelected(false);
+            Selected = NULL;
+        }
+
         bool CellGrid::CheckMouseHover()
         {
-            if(!Visible)
+            if(!IsVisible())
                 return false;
             for( CellVector::iterator it = VisibleCells.begin() ; it != VisibleCells.end() ; it++ )
             {

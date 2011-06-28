@@ -259,6 +259,8 @@ namespace phys
 
         bool ScrolledCellGrid::CheckMouseHover()
         {
+            if(!IsVisible())
+                return false;
             if(CellGrid::CheckMouseHover())
                 return true;
             if(HorizontalScroll->CheckMouseHover())

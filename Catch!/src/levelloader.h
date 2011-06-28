@@ -15,7 +15,11 @@ class LevelLoader
         String LevelToLoad;
         String CurrentLevel;
 
+        /// @todo Once levels are finalized, their create functions need to be removed.
         void LoadFerris();
+        void LoadBigCurve();
+        void LoadBlowsNotSucks();
+        void LoadJustice();
     public:
         LevelLoader();
         ~LevelLoader();

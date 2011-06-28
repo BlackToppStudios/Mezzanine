@@ -48,13 +48,17 @@ namespace phys
     {
         Cell::Cell(const String& name, Layer* parent)
             : Widget(name,parent),
-              SortPriority(0)
+              SortPriority(0),
+              Selected(false),
+              Callback(NULL)
         {
             Type = Widget::Cell;
         }
 
         Cell::~Cell()
         {
+            if(Callback)
+                delete Callback;
         }
 
         void Cell::SetPriority(const Whole& Priority)
@@ -67,6 +71,29 @@ namespace phys
             return SortPriority;
         }
 
+        void Cell::SetSelected(bool Select)
+        {
+            if(Select)
+            {
+                if(Callback)
+                    Callback->DoSelectedItems();
+            }else{
+                if(Callback)
+                    Callback->DoUnselectedItems();
+            }
+            Selected = Select;
+        }
+
+        bool Cell::IsSelected()
+        {
+            return Selected;
+        }
+
+        void Cell::SetCellCallback(CellCallback* CB)
+        {
+            Callback = CB;
+        }
+
         bool Cell::operator<(Cell* Other)
         {
             return SortPriority < Other->GetPriority();
@@ -75,6 +102,15 @@ namespace phys
         bool Cell::operator>(Cell* Other)
         {
             return SortPriority > Other->GetPriority();
+        }
+
+        CellCallback::CellCallback(Cell* CallerCell)
+            : Caller(CallerCell)
+        {
+        }
+
+        CellCallback::~CellCallback()
+        {
         }
     }//ui
 }//phys

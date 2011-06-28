@@ -250,7 +250,7 @@ namespace phys
 
         bool ListBox::CheckMouseHover()
         {
-            if(!Visible)
+            if(!IsVisible())
                 return false;
             for( std::vector<Caption*>::iterator it = VisibleSelections.begin() ; it != VisibleSelections.end() ; it++ )
             {

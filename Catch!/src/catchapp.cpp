@@ -76,6 +76,7 @@ void CatchApp::MakeGUI()
     UI::TextButton* LevelStart = LevelSelectWin->CreateTextButton("MS_LevelStart", Vector2(0.42,0.85), Vector2(0.16,0.07),18,"Start");
     LevelStart->SetButtonCallback(new MSStart(LevelStart,LevelSelectGrid));
     LevelStart->SetBackgroundSprite("MMLevelStart");
+    LevelStart->SetHoveredSprite("MMLevelStartHovered");
 
     UI::TextButton* OptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", Vector2(0.28, 0.93), Vector2(0.22, 0.06), MainMenuText.first, "Options" );
     OptionsAccess->SetBackgroundSprite("MMButton");
@@ -292,6 +293,7 @@ void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
             UIMan->LoadGorilla(LevelName);
             CurrCell->GetPreviewImage()->SetBackgroundSprite("LevelPreview",LevelName);
         }
+        CurrCell->SetCellCallback(new LevelSelectCB(CurrCell));
         Grid->AddCell(CurrCell);
     }
 }
@@ -419,6 +421,7 @@ void CatchApp::UnloadLevel()
     PlayZone = NULL;
 
     ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
+    MeshGenerator::DestroyAllGeneratedMeshes();
     CurrScore = 0;
     TimeMan->DestroyTimer(EndTimer);
     EndTimer = NULL;

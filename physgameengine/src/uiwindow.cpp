@@ -423,7 +423,7 @@ namespace phys
 
         bool Window::CheckMouseHover()
         {
-            if(!Visible)
+            if(!IsVisible())
                 return false;
             if(HoveredButton)
             {

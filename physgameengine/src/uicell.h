@@ -46,10 +46,20 @@ namespace phys
 {
     namespace UI
     {
+        class CellCallback;
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class Cell
+        /// @headerfile uicell.h
+        /// @brief This class is a base class to be used with the CellGrid class.
+        /// @details This class is intended to be inherited from, like the Widget class, but simply adds
+        /// some functionality to ease it's use and placement on a CellGrid.
+        ///////////////////////////////////////
         class PHYS_LIB Cell : public Widget
         {
             protected:
                 Whole SortPriority;
+                bool Selected;
+                CellCallback* Callback;
                 /// @brief For use with widget update/automation.
                 virtual void Update(bool Force = false) = 0;
             public:
@@ -63,6 +73,16 @@ namespace phys
                 /// @brief Gets the currently set priority of this Cell.
                 /// @return Returns a Whole representing the current priority of this Cell.
                 virtual Whole GetPriority();
+                /// @brief Sets whether or not this Cell is currently selected.
+                /// @param Select Whether or not this Cell should be activated.
+                virtual void SetSelected(bool Select);
+                /// @brief Gets whether or not this Cell is currently selected.
+                /// @return Returns a bool indicating whether or not this Cell is currently selected.
+                virtual bool IsSelected();
+                /// @brief Sets a callback for this Cell.
+                /// @details You can pass in a null pointer to disable the callback of a Cell.
+                /// @param CB The callback to be attached to this Cell.
+                virtual void SetCellCallback(CellCallback* CB);
                 /// @brief Sets the visibility of this widget.
                 /// @param visible Bool determining whether or not this widget should be visible.
                 virtual void SetVisible(bool visible) = 0;
@@ -104,10 +124,6 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize() = 0;
-                /// @brief Called when a cell is selected on a grid.
-                /// @details This function doesn't have to have anything in it, it's an optional callback
-                /// (does still need to be implemented though).
-                virtual void DoSelectedItems() = 0;
                 /// @brief Overloaded Less-Than operator used for sorting on the grid.
                 /// @param Other The other Cell to be compared to this one.
                 virtual bool operator<(Cell* Other);
@@ -115,6 +131,31 @@ namespace phys
                 /// @param Other The other Cell to be compared to this one.
                 virtual bool operator>(Cell* Other);
         };//Cell
+
+        ///////////////////////////////////////////////////////////////////////////////
+        /// @class ButtonCallback
+        /// @headerfile uibutton.h
+        /// @brief This class provides customizable functionality to the button class.
+        /// @details This is a pure virtual class that must be inherited from for use with specialized
+        /// behaviors when working with buttons.
+        ///////////////////////////////////////
+        class PHYS_LIB CellCallback
+        {
+            protected:
+                Cell* Caller;
+            public:
+                /// @brief Class constructor.
+                /// @param CallerButton The Cell to which this callback belongs.
+                CellCallback(Cell* CallerCell);
+                /// @brief Class Destructor.
+                ~CellCallback();
+                /// @brief The hover function for this callback.  This will be called every time the
+                /// Cell is hovered over by the mouse.
+                virtual void DoSelectedItems() = 0;
+                /// @brief The activation function for this callback.  This will be called every time the
+                /// Cell is activated by the mouse or keyboard.
+                virtual void DoUnselectedItems() = 0;
+        };//cellcallback
     }//ui
 }//phys
 
