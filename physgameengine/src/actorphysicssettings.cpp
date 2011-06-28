@@ -182,6 +182,9 @@ namespace phys
             ActorCO->setActivationState(State);
     }
 
+    phys::ActorActivationState ActorBasePhysicsSettings::GetActivationState() const
+        { return (phys::ActorActivationState)ActorCO->getActivationState(); }
+
 
     ActorRigidPhysicsSettings::ActorRigidPhysicsSettings(ActorRigid* Actor, btRigidBody* PhysicsObject)
         : ActorBasePhysicsSettings(Actor,PhysicsObject),
@@ -253,9 +256,9 @@ std::ostream& operator<< (std::ostream& stream, const phys::ActorBasePhysicsSett
                 << "Friction=\"" << Ev.GetFriction() << "\""
                 << "Restitution=\"" << Ev.GetRestitution() << "\""
                 << "Kinematic=\"" << Ev.GetKinematic() << "\""
-                << "Friction=\"" << Ev.GetStatic() << "\""
+                << "Static=\"" << Ev.GetStatic() << "\""
                 << "CollisionResponse=\"" << Ev.GetCollisionResponse() << "\""
-                << "Active=\"" << Ev.IsActive() << "\" />";
+                << "ActivationState=\"" << Ev.GetActivationState() << "\" />";
     return stream;
 }
 
@@ -272,17 +275,24 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorBasePhysics
 
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhysicsSettings& Ev)
 {
-    /*if ( phys::String(OneNode.Name())==phys::String("ActorBasePhysicsSettings") )
+    if ( phys::String(OneNode.Name())==phys::String("ActorBasePhysicsSettings") )
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
+            Ev.SetFriction(OneNode.GetAttribute("Friction").AsReal());
+            Ev.SetRestitution(OneNode.GetAttribute("Restitution").AsReal());
+            if (OneNode.GetAttribute("Kinematic").AsBool())
+                { Ev.SetKinematic(); }
+            if (OneNode.GetAttribute("Static").AsBool())
+                { Ev.SetStatic(); }
+            Ev.SetActivationState((phys::ActorActivationState)OneNode.GetAttribute("ActivationState").AsInt());
 
         }else{
             throw( phys::Exception("Incompatible XML Version for ActorBasePhysicsSettings: Not Version 1"));
         }
     }else{
         throw( phys::Exception(phys::StringCat("Attempting to deserialize a ActorBasePhysicsSettings, found a ", OneNode.Name())));
-    }*/
+    }
 }
 
 std::ostream& operator << (std::ostream& stream, const phys::ActorRigidPhysicsSettings& Ev)

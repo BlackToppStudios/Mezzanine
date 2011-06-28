@@ -148,6 +148,10 @@ namespace phys
             /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the actor if this is set to false.
             virtual void SetActivationState(phys::ActorActivationState State, bool Force = false);
 
+            /// @brief How activated or deactivated is the object.
+            /// @return A phys::ActorActivationState that describes whether the actor is part of the calculated simulation or not.
+            virtual phys::ActorActivationState GetActivationState() const;
+
     };//actorbasephysicssettings
 
     ///////////////////////////////////////////////////////////////////////////////
