@@ -3,6 +3,7 @@
 
 #include "levelloader.h"
 #include "catchapp.h"
+#include "throwablegenerator.h"
 
 LevelLoader::LevelLoader()
     : LevelToLoad("")
@@ -42,8 +43,8 @@ void LevelLoader::LoadFerris()
     DLight->SetLocation(Loc);
     Loc.Normalize();
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
-    DLight->SetDiffuseColour(ColourValue(1,1,1,1));
-    DLight->SetSpecularColour(ColourValue(1,1,1,1));
+    DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
@@ -133,46 +134,45 @@ void LevelLoader::LoadFerris()
     PhysMan->AddConstraint(Tray8Anchor,true);// */
 
     // Create some throwable objects
-    Real UraniumMass = 10.0;
-    Real GoldMass = 15.0;
-    Real LeadMass = 12.0;
-    Real ClayMass = 6.0;
-    ActorRigid* Uranium1 = new ActorRigid(UraniumMass,"Uranium1","uranium.mesh",CommonGroup);
+    ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");
+    ThrowableData* LeadData = ThrowableGenerator::GetThrowableData("Lead");
+    ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
+    ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
     Uranium1->CreateShapeFromMeshDynamic(1);
     Uranium1->SetLocation(-145,40,0);
     Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Uranium1->LimitMovementOnAxis(true,true,false);
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
-    ActorRigid* Uranium2 = new ActorRigid(UraniumMass,"Uranium2","uranium.mesh",CommonGroup);
+    ActorRigid* Uranium2 = new ActorRigid(UraniumData->Mass,"Uranium2",UraniumData->MeshName,CommonGroup);
     Uranium2->CreateShapeFromMeshDynamic(1);
     Uranium2->SetLocation(-195,40,0);
     Uranium2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Uranium2->LimitMovementOnAxis(true,true,false);
     ActMan->AddActor(Uranium2);
     GameApp->AddThrowable(Uranium2);// */
-    ActorRigid* Lead1 = new ActorRigid(LeadMass,"Lead1","lead.mesh",CommonGroup);
+    ActorRigid* Lead1 = new ActorRigid(LeadData->Mass,"Lead1",LeadData->MeshName,CommonGroup);
     Lead1->CreateShapeFromMeshDynamic(1);
     Lead1->SetLocation(-145,0,0);
     Lead1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Lead1->LimitMovementOnAxis(true,true,false);
     ActMan->AddActor(Lead1);
     GameApp->AddThrowable(Lead1);
-    ActorRigid* Lead2 = new ActorRigid(LeadMass,"Lead2","lead.mesh",CommonGroup);
+    ActorRigid* Lead2 = new ActorRigid(LeadData->Mass,"Lead2",LeadData->MeshName,CommonGroup);
     Lead2->CreateShapeFromMeshDynamic(1);
     Lead2->SetLocation(-195,0,0);
     Lead2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Lead2->LimitMovementOnAxis(true,true,false);
     ActMan->AddActor(Lead2);
     GameApp->AddThrowable(Lead2);// */
-    ActorRigid* Clay1 = new ActorRigid(ClayMass,"Clay1","clay.mesh",CommonGroup);
+    ActorRigid* Clay1 = new ActorRigid(ClayData->Mass,"Clay1",ClayData->MeshName,CommonGroup);
     Clay1->CreateShapeFromMeshDynamic(1);
     Clay1->SetLocation(-145,-40,0);
     Clay1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Clay1->LimitMovementOnAxis(true,true,false);
     ActMan->AddActor(Clay1);
     GameApp->AddThrowable(Clay1);
-    ActorRigid* Clay2 = new ActorRigid(ClayMass,"Clay2","clay.mesh",CommonGroup);
+    ActorRigid* Clay2 = new ActorRigid(ClayData->Mass,"Clay2",ClayData->MeshName,CommonGroup);
     Clay2->CreateShapeFromMeshDynamic(1);
     Clay2->SetLocation(-195,-40,0);
     Clay2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
@@ -222,12 +222,12 @@ void LevelLoader::LoadBigCurve()
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
     Light* DLight = SceneMan->CreateLight("SceneLight");
     DLight->SetType(Light::Directional);
-    Vector3 Loc(150,200,-200);
+    Vector3 Loc(150,200,200);
     DLight->SetLocation(Loc);
     Loc.Normalize();
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
-    DLight->SetDiffuseColour(ColourValue(1,1,1,1));
-    DLight->SetSpecularColour(ColourValue(1,1,1,1));
+    DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
@@ -251,15 +251,15 @@ void LevelLoader::LoadBigCurve()
     ActMan->AddActor(CurveCave);
 
     // Create some throwable objects
-    Real UraniumMass = 10.0;
-    ActorRigid* Uranium1 = new ActorRigid(UraniumMass,"Uranium1","uranium.mesh",CommonGroup);
+    ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
+    ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
     Uranium1->CreateShapeFromMeshDynamic(1);
     Uranium1->SetLocation(-155,0,0);
     Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Uranium1->LimitMovementOnAxis(true,true,false);
     ActMan->AddActor(Uranium1);
     GameApp->AddThrowable(Uranium1);
-    ActorRigid* Uranium2 = new ActorRigid(UraniumMass,"Uranium2","uranium.mesh",CommonGroup);
+    ActorRigid* Uranium2 = new ActorRigid(UraniumData->Mass,"Uranium2",UraniumData->MeshName,CommonGroup);
     Uranium2->CreateShapeFromMeshDynamic(1);
     Uranium2->SetLocation(-205,0,0);
     Uranium2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
@@ -309,12 +309,12 @@ void LevelLoader::LoadBlowsNotSucks()
     //SceneMan->SetAmbientLight(1.0,1.0,1.0,1.0);
     Light* DLight = SceneMan->CreateLight("SceneLight");
     DLight->SetType(Light::Directional);
-    Vector3 Loc(150,200,-200);
+    Vector3 Loc(-150,200,200);
     DLight->SetLocation(Loc);
     Loc.Normalize();
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
-    DLight->SetDiffuseColour(ColourValue(1,1,1,1));
-    DLight->SetSpecularColour(ColourValue(1,1,1,1));
+    DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
@@ -332,18 +332,21 @@ void LevelLoader::LoadBlowsNotSucks()
 
     // Create the fan
     ActorRigid* Fan = new ActorRigid(0,"Fan","fan.mesh",BlowsNotSucksGroup);
-    Fan->CreateShapeFromMeshDynamic(3);
-    Fan->SetLocation(Vector3(110,0,0));
+    Fan->CreateShapeFromMeshDynamic(1);
+    Fan->SetLocation(Vector3(85,-70,0));
+    //Fan->SetActorScaling(Vector3(1.4,1.4,1.4));
     ActMan->AddActor(Fan);
 
-    ActorRigid* FanBody = new ActorRigid(0,"FanBody","fan.mesh",BlowsNotSucksGroup);
-    FanBody->CreateShapeFromMeshDynamic(3);
-    FanBody->SetLocation(Vector3(110,0,0));
+    ActorRigid* FanBody = new ActorRigid(0,"FanBody","body.mesh",BlowsNotSucksGroup);
+    FanBody->CreateShapeFromMeshStatic();
+    FanBody->SetLocation(Vector3(85,-70,0));
+    //FanBody->SetActorScaling(Vector3(1.4,1.4,1.4));
     ActMan->AddActor(FanBody);
 
     ActorRigid* FanButton = new ActorRigid(0,"FanButton","button.mesh",BlowsNotSucksGroup);
-    FanButton->CreateShapeFromMeshDynamic(3);
-    FanButton->SetLocation(Vector3(110,0,0));
+    FanButton->CreateShapeFromMeshDynamic(1);
+    FanButton->SetLocation(Vector3(85,-70,0));
+    //FanButton->SetActorScaling(Vector3(1.4,1.4,1.4));
     ActMan->AddActor(FanButton);
 
     // Create the goal tray
@@ -380,8 +383,8 @@ void LevelLoader::LoadJustice()
     DLight->SetLocation(Loc);
     Loc.Normalize();
     DLight->SetDirection(Vector3(-Loc.X,-Loc.Y,-Loc.Z));
-    DLight->SetDiffuseColour(ColourValue(1,1,1,1));
-    DLight->SetSpecularColour(ColourValue(1,1,1,1));
+    DLight->SetDiffuseColour(ColourValue(0.3,0.3,0.3,1));
+    DLight->SetSpecularColour(ColourValue(0.3,0.3,0.3,1));
 
     // Physics Setup
     PhysMan->SetGravity(Vector3(0,-1000,0));
@@ -400,20 +403,119 @@ void LevelLoader::LoadJustice()
     // Create Lady Justice
     ActorRigid* LadyJustice = new ActorRigid(0,"LadyJustice","lady.mesh",JusticeGroup);
     LadyJustice->CreateShapeFromMeshStatic();
-    LadyJustice->SetLocation(Vector3(100,-40,-103.35));
+    LadyJustice->SetLocation(Vector3(70,-40,-103.35));
     ActMan->AddActor(LadyJustice);
 
-    // Create the scale objects
-    ActorRigid* JusticeScale = new ActorRigid(50,"JusticeScale","scale.mesh",JusticeGroup);
+    // Create the scale object
+    Real ScaleMass = 50.0;
+    ActorRigid* JusticeScale = new ActorRigid(ScaleMass,"JusticeScale","scale.mesh",JusticeGroup);
     ResourceMan->ImportShapeData(JusticeScale,"justice_scale.bullet");
-    JusticeScale->SetLocation(Vector3(88,47.4,0));
+    JusticeScale->SetLocation(Vector3(58,47.4,0));
     ActMan->AddActor(JusticeScale);
 
+    // Create the union objects
+    Real UnionMass = 5.0;
+    ActorRigid* Union1 = new ActorRigid(UnionMass,"Union1","union.mesh",JusticeGroup);
+    Union1->CreateShapeFromMeshDynamic(1);
+    Union1->SetLocation(Vector3(-80.9,2.4,-16.4));
+    ActMan->AddActor(Union1);
+    ActorRigid* Union2 = new ActorRigid(UnionMass,"Union2","union.mesh",JusticeGroup);
+    Union2->CreateShapeFromMeshDynamic(1);
+    Union2->SetLocation(Vector3(-29.1,2.4,-16.4));// -42.9,2.4,-16.4
+    Union2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    ActMan->AddActor(Union2);
+    ActorRigid* Union3 = new ActorRigid(UnionMass,"Union3","union.mesh",JusticeGroup);
+    Union3->CreateShapeFromMeshDynamic(1);
+    Union3->SetLocation(Vector3(-80.9,2.4,16.4));
+    ActMan->AddActor(Union3);
+    ActorRigid* Union4 = new ActorRigid(UnionMass,"Union4","union.mesh",JusticeGroup);
+    Union4->CreateShapeFromMeshDynamic(1);
+    Union4->SetLocation(Vector3(-29.1,2.4,16.4));// -42.9,2.4,16.4
+    Union4->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    ActMan->AddActor(Union4);
+    ActorRigid* Union5 = new ActorRigid(UnionMass,"Union5","union.mesh",JusticeGroup);
+    Union5->CreateShapeFromMeshDynamic(1);
+    Union5->SetLocation(Vector3(196.9,2.4,-16.4));// 181.1,2.4,-16.4
+    Union5->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    ActMan->AddActor(Union5);
+    ActorRigid* Union6 = new ActorRigid(UnionMass,"Union6","union.mesh",JusticeGroup);
+    Union6->CreateShapeFromMeshDynamic(1);
+    Union6->SetLocation(Vector3(145.1,2.4,-16.4));
+    ActMan->AddActor(Union6);
+    ActorRigid* Union7 = new ActorRigid(UnionMass,"Union7","union.mesh",JusticeGroup);
+    Union7->CreateShapeFromMeshDynamic(1);
+    Union7->SetLocation(Vector3(196.9,2.4,16.4));//181.1,2.4,16.4
+    Union7->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    ActMan->AddActor(Union7);
+    ActorRigid* Union8 = new ActorRigid(UnionMass,"Union8","union.mesh",JusticeGroup);
+    Union8->CreateShapeFromMeshDynamic(1);
+    Union8->SetLocation(Vector3(145.1,2.4,16.4));
+    ActMan->AddActor(Union8);
+
+    // Create the trays
+    Real TrayMass = 25.0;
+    ActorRigid* Tray1 = new ActorRigid(TrayMass,"Tray1","tray.mesh",JusticeGroup);
+    ResourceMan->ImportShapeData(Tray1,"justice_tray.bullet");
+    Tray1->SetLocation(Vector3(-55,-61.3,0));
+    ActMan->AddActor(Tray1);
+    ActorRigid* Tray2 = new ActorRigid(TrayMass,"Tray2","tray.mesh",JusticeGroup);
+    ResourceMan->ImportShapeData(Tray2,"justice_tray.bullet");
+    Tray2->SetLocation(Vector3(171,-61.3,0));
+    ActMan->AddActor(Tray2);
+
     // Create the series of constraints for connecting all the pieces of the scale together
+    // Starting with creating the anchor for the scale
     HingeConstraint* ScaleAnchor = new HingeConstraint(LadyJustice,JusticeScale,Vector3(-12,127.4,103.35),Vector3(0,40,0),Vector3(0,0,1),Vector3(0,0,1),false);
     PhysMan->AddConstraint(ScaleAnchor,true);
 
+    // Original X distance from pivot on scale is 112.7, but space was needed to prevent collsions.
+    // Create the scale-to-union constraints
+    Point2PointConstraint* U1S = new Point2PointConstraint(JusticeScale,Union1,Vector3(-116.0,-8.4,-16.4),Vector3(22.9,45,0));
+    PhysMan->AddConstraint(U1S,true);
+    Point2PointConstraint* U2S = new Point2PointConstraint(JusticeScale,Union2,Vector3(-110.0,-8.4,-16.4),Vector3(22.9,45,0));
+    PhysMan->AddConstraint(U2S,true);
+    Point2PointConstraint* U3S = new Point2PointConstraint(JusticeScale,Union3,Vector3(-116.0,-8.4,16.4),Vector3(22.9,45,0));
+    PhysMan->AddConstraint(U3S,true);
+    Point2PointConstraint* U4S = new Point2PointConstraint(JusticeScale,Union4,Vector3(-110.0,-8.4,16.4),Vector3(22.9,45,0));
+    PhysMan->AddConstraint(U4S,true);
+    Point2PointConstraint* U5S = new Point2PointConstraint(JusticeScale,Union5,Vector3(116.0,-8.4,-16.4),Vector3(22.9,45,0));
+    PhysMan->AddConstraint(U5S,true);
+    Point2PointConstraint* U6S = new Point2PointConstraint(JusticeScale,Union6,Vector3(110.0,-8.4,-16.4),Vector3(22.9,45,0));
+    PhysMan->AddConstraint(U6S,true);
+    Point2PointConstraint* U7S = new Point2PointConstraint(JusticeScale,Union7,Vector3(116.0,-8.4,16.4),Vector3(22.9,45,0));
+    PhysMan->AddConstraint(U7S,true);
+    Point2PointConstraint* U8S = new Point2PointConstraint(JusticeScale,Union8,Vector3(110.0,-8.4,16.4),Vector3(22.9,45,0));
+    PhysMan->AddConstraint(U8S,true);
+
+    // Create the union-to-tray constraints
+    Point2PointConstraint* U1T = new Point2PointConstraint(Union1,Tray1,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,-16.4));// -50.9,2.4,-16.4 // -73.8,-42.6,-16.4 // -25,-61.3,0
+    PhysMan->AddConstraint(U1T,true);
+    Point2PointConstraint* U2T = new Point2PointConstraint(Union2,Tray1,Vector3(-22.9,-45,0),Vector3(46.6,18.7,-16.4));// 0.9,2.4,-16.4 // 23.8,-42.6,-16.4 // -25,-61.3,0
+    PhysMan->AddConstraint(U2T,true);
+    Point2PointConstraint* U3T = new Point2PointConstraint(Union3,Tray1,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,16.4));// -50.9,2.4,16.4 // -73.8,-42.6,16.4 // -25,-61.3,0
+    PhysMan->AddConstraint(U3T,true);
+    Point2PointConstraint* U4T = new Point2PointConstraint(Union4,Tray1,Vector3(-22.9,-45,0),Vector3(46.6,18.7,16.4));// 0.9,2.4,16.4 // 23.8,-42.6,16.4 // -25,-61.3,0
+    PhysMan->AddConstraint(U4T,true);
+    Point2PointConstraint* U5T = new Point2PointConstraint(Union5,Tray2,Vector3(-22.9,-45,0),Vector3(46.6,18.7,-16.4));// 226.9,2.4,-16.4 // 249.8,-42.6,-16.4 // -25,-61.3,0
+    PhysMan->AddConstraint(U5T,true);
+    Point2PointConstraint* U6T = new Point2PointConstraint(Union6,Tray2,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,-16.4));// 175.1,2.4,-16.4 // 152.2,-42.6,-16.4 // -25,-61.3,0
+    PhysMan->AddConstraint(U6T,true);
+    Point2PointConstraint* U7T = new Point2PointConstraint(Union7,Tray2,Vector3(-22.9,-45,0),Vector3(46.6,18.7,16.4));// 226.9,2.4,16.4 // 249.8,-42.6,16.4 // -25,-61.3,0
+    PhysMan->AddConstraint(U7T,true);
+    Point2PointConstraint* U8T = new Point2PointConstraint(Union8,Tray2,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,16.4));// 175.1,2.4,16.4 // 152.2,-42.6,16.4 // -25,-61.3,0
+    PhysMan->AddConstraint(U8T,true);
+
     // Create some throwable objects
+    ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");
+    ThrowableData* LeadData = ThrowableGenerator::GetThrowableData("Lead");
+    ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
+    ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
+    Uranium1->CreateShapeFromMeshDynamic(1);
+    Uranium1->SetLocation(-155,-40,0);
+    Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Uranium1->LimitMovementOnAxis(true,true,false);
+    ActMan->AddActor(Uranium1);
+    GameApp->AddThrowable(Uranium1);
 
     // Create the zones
     AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
@@ -421,17 +523,22 @@ void LevelLoader::LoadJustice()
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
 
-    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-180,-40,0));
-    StartZone->CreateBoxShape(Vector3(50,80,15));
+    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,-70,0));
+    StartZone->CreateBoxShape(Vector3(50,60,15));
     StartZone->CreateGraphicsBox(ColourValue(0.1,0.8,0.1,0.2));
     PhysMan->AddAreaEffect(StartZone);
     GameApp->RegisterStartArea(StartZone);// */
 
-    /*ScoreArea* ScoreZone = new ScoreArea("ScoreArea",Vector3(120,-20,-10));
-    ScoreZone->CreateBoxShape(Vector3(50,40,35));
-    ScoreZone->CreateGraphicsBox(ColourValue(0.2,0.2,0.8,0.2));
-    PhysMan->AddAreaEffect(ScoreZone);
-    GameApp->RegisterScoreArea(ScoreZone);// */
+    ScoreArea* ScoreZone1 = new ScoreArea("ScoreArea1",Vector3(-55,-66.3,0));
+    ScoreZone1->CreateBoxShape(Vector3(52,25,18));
+    ScoreZone1->CreateGraphicsBox(ColourValue(0.2,0.2,0.8,0.2));
+    PhysMan->AddAreaEffect(ScoreZone1);
+    GameApp->RegisterScoreArea(ScoreZone1);// */
+    ScoreArea* ScoreZone2 = new ScoreArea("ScoreArea2",Vector3(171,-66.3,0));
+    ScoreZone2->CreateBoxShape(Vector3(52,25,18));
+    ScoreZone2->CreateGraphicsBox(ColourValue(0.2,0.2,0.8,0.2));
+    PhysMan->AddAreaEffect(ScoreZone2);
+    GameApp->RegisterScoreArea(ScoreZone2);// */
 }
 
 bool LevelLoader::HasALevelToLoad()

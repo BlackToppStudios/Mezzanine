@@ -5,6 +5,7 @@
 #include "callbacks.h"
 #include "buttoncallbacks.h"
 #include "levelselectcell.h"
+#include "throwablegenerator.h"
 #include <cassert>
 #include <set>
 
@@ -207,6 +208,7 @@ void CatchApp::MakeGUI()
     Report->Hide();
     //End of Report Layer
     //End of Game Screen
+    GameScreen->Hide();
 }
 
 void CatchApp::CreateLoadingScreen()
@@ -233,6 +235,8 @@ void CatchApp::ConfigResources()
     ResourceMan->AddResourceLocation(datadir+"AdvThrowables.zip", "Zip", CommonGroup, false);
     ResourceMan->AddResourceLocation("Previews/", "FileSystem", CommonGroup, false);
     ResourceMan->InitResourceGroup(CommonGroup);
+    /// @todo Change this to parse an actual file
+    ThrowableGenerator::ParseThrowables("");
 }
 
 void CatchApp::PopulateScoreValues()
@@ -488,7 +492,7 @@ int CatchApp::GetCatchin()
 
         //if("Ferris"==Loader->GetCurrentLevel())
         //    TheWorld->GetUIManager()->GetScreen("GameScreen")->Hide();
-
+        //TheWorld->GetPhysicsManager()->PauseSimulation(true);
         //Start the Main Loop
         TheWorld->MainLoop();
         UnloadLevel();
@@ -525,6 +529,7 @@ bool CatchApp::PostInput()
     Vector2 Offset = InputQueryTool::GetMousePrevFrameOffset();
     if( MouseCam && Vector2(0,0) != Offset )
         DefaultControl->Rotate(Offset.X * 0.01,Offset.Y * 0.01,0);
+
     return true;
 }
 
@@ -725,6 +730,7 @@ bool CatchApp::PostPhysics()
             }
         }
     }
+
     return true;
 }
 

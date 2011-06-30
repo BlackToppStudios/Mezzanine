@@ -50,6 +50,7 @@
 #include "vector3wactor.h"
 #include "areaeffect.h"
 #include "eventmanager.h"
+#include "trigger.h"
 
 #include <queue>
 
@@ -335,10 +336,22 @@ namespace phys
     {
         if( !AreaEffects.empty() )
         {
-            for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+            for( std::vector<AreaEffect*>::iterator AE = AreaEffects.begin() ; AE != AreaEffects.end() ; AE++ )
             {
-                (*c)->UpdateActorList();
-                (*c)->ApplyEffect();
+                (*AE)->UpdateActorList();
+                (*AE)->ApplyEffect();
+            }
+        }
+    }
+
+    void PhysicsManager::ProcessAllTriggers()
+    {
+        if( !Triggers.empty() )
+        {
+            for( std::vector<Trigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
+            {
+                if((*Trig)->ConditionsAreMet())
+                    (*Trig)->ApplyTrigger();
             }
         }
     }
@@ -472,9 +485,9 @@ namespace phys
         this->BulletDynamicsWorld->addCollisionObject(AE->Ghost,CollisionGroup,CollisionMask);
     }
 
-    AreaEffect* PhysicsManager::GetAreaEffect(String Name)
+    AreaEffect* PhysicsManager::GetAreaEffect(const String& Name)
     {
-        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        for( vector<AreaEffect*>::iterator c = AreaEffects.begin() ; c != AreaEffects.end() ; c++ )
         {
             if ( Name == (*c)->GetName() )
             {
@@ -487,11 +500,12 @@ namespace phys
     void PhysicsManager::RemoveAreaEffect(AreaEffect* AE)
     {
         this->BulletDynamicsWorld->removeCollisionObject(AE->Ghost);
-        for( vector<AreaEffect*>::iterator c=AreaEffects.begin(); c!=AreaEffects.end(); c++)
+        for( vector<AreaEffect*>::iterator c = AreaEffects.begin() ; c != AreaEffects.end() ; c++ )
         {
             if ( AE == *c )
             {
-                c=AreaEffects.erase(c);
+                AreaEffects.erase(c);
+                return;
             }
         }
     }
@@ -504,6 +518,42 @@ namespace phys
             delete (*AE);
         }
         AreaEffects.clear();
+    }
+
+    void PhysicsManager::AddTrigger(Trigger* Trig)
+    {
+        Triggers.push_back(Trig);
+    }
+
+    Trigger* PhysicsManager::GetTrigger(const String& Name)
+    {
+        for( vector<Trigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
+        {
+            if ( Name == (*Trig)->GetName() )
+            {
+                return *Trig;
+            }
+        }
+        return NULL;
+    }
+
+    void PhysicsManager::RemoveTrigger(Trigger* Trig)
+    {
+        for( vector<Trigger*>::iterator T = Triggers.begin() ; T != Triggers.end() ; T++ )
+        {
+            if ( Trig == (*T) )
+            {
+                Triggers.erase(T);
+                return;
+            }
+        }
+    }
+
+    void PhysicsManager::DestroyAllTriggers()
+    {
+        for( std::vector<Trigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
+            delete (*Trig);
+        Triggers.clear();
     }
 
     void PhysicsManager::SetCollisionParams(unsigned short int Age, Real Force)
@@ -667,6 +717,13 @@ namespace phys
         }
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "Contact Manifold Iteration took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->Log();
+
+        Profiler->reset();
+        #endif
+        ProcessAllTriggers();
+        #ifdef PHYSPROFILE
+        GameWorld->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
         #endif
     }
