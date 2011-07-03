@@ -321,6 +321,10 @@ namespace phys
             /// @param scale The vector3 by which to apply the scale.  Will scale each axis' accordingly.
             virtual void SetActorScaling(const Vector3& scale);
 
+            /// @brief Gets the current scaling being applied to the actor.
+            /// @return Returns a vector3 representing the scaling being applied on all axes of this actor.
+            virtual Vector3 GetActorScaling() const;
+
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to
             /// construct a triangle mesh shape and attach it to this objects collision shape.  This shoiuld

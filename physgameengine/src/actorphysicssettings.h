@@ -73,6 +73,8 @@ namespace phys
             btCollisionObject* ActorCO;
             /// @brief The Actor this belongs to.
             ActorBase* Parent;
+            Whole CollisionGroup;
+            Whole CollisionMask;
         public:
             /// @brief Standard Constructor.
             /// @param Actor The actor this settings class configures.
@@ -81,6 +83,20 @@ namespace phys
 
             /// @brief Class destructor.
             virtual ~ActorBasePhysicsSettings();
+
+            /// @brief Set the collision group and mask for the actor to determine what it should collide with.
+            /// @details These values are automatically calculated for you with some sane default values.  Only edit these if you know what you are doing.
+            /// @param Group The group to which this actor belongs.
+            /// @param Mask The other groups to which this actor should collide with.
+            virtual void SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask);
+
+            /// @brief Gets the actors collision group.
+            /// @return Returns a Whole representing the collision group this actor is set to.
+            virtual Whole GetCollisionGroup() const;
+
+            /// @brief Gets the actors collision mask.
+            /// @return Returns a Whole representing what other collision groups this actor should collide with.
+            virtual Whole GetCollisionMask() const;
 
             /// @brief Sets the Actors' friction coefficient.
             /// @details Higher values will resist sliding across surfaces.  This number is the
@@ -111,7 +127,7 @@ namespace phys
 
             /// @brief Is the actir kinematic
             /// @return True if the actor is kinematic false if it is not.
-            virtual bool GetKinematic() const;
+            virtual bool IsKinematic() const;
 
             /// @brief Sets the state of the object to Static.
             /// @details This function will set the object to a Static Object. @n
@@ -120,7 +136,7 @@ namespace phys
 
             /// @brief Is the actor static
             /// @return True if the actor is Static false if it is not.
-            virtual bool GetStatic() const;
+            virtual bool IsStatic() const;
 
             /// @brief Checks of the actor is static or kinematic.
             /// @details Checks of the actor is static or kinematic, returns true if it is either.

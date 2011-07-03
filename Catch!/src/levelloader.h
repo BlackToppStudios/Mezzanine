@@ -20,6 +20,7 @@ class LevelLoader
         void LoadBigCurve();
         void LoadBlowsNotSucks();
         void LoadJustice();
+        void LoadRollers();
     public:
         LevelLoader();
         ~LevelLoader();

@@ -81,6 +81,8 @@ namespace phys
         if(NULL != RayQuery)          //Double check that the Rayquery is valid
         {
             RayQuery->setRay(Ooray);
+            //RayQuery->setSortByDistance(true);
+            RayQuery->setQueryMask(-1);
             if( RayQuery->execute().size() <= 0 ) //Did we hit anything
             {
                 return NULL;
@@ -163,7 +165,8 @@ namespace phys
 
         //Change the closest point into a point relative to the Actor
         if (ClosestActor->Actor != NULL)
-            { ClosestActor->Vector = closest_result - ClosestActor->Actor->GetLocation(); }
+            //{ ClosestActor->Vector = closest_result - ClosestActor->Actor->GetLocation(); }
+            { ClosestActor->Vector = ClosestActor->Actor->GetOrientation() * ((closest_result - ClosestActor->Actor->GetLocation()) * ClosestActor->Actor->GetActorScaling()); }
         return ClosestActor;
     }
 
@@ -352,6 +355,10 @@ namespace phys
                                 const Ogre::Quaternion &orient,
                                 const Ogre::Vector3 &scale)
     {
+        std::stringstream QuatLog;
+        QuatLog << "Actor Orientation - X: " << orient.x << ", Y: " << orient.y << ", Z: " << orient.z << ", W: " << orient.w;
+        Ogre::LogManager::getSingleton().logMessage(QuatLog.str());
+
         bool added_shared = false;
         size_t current_offset = 0;
         size_t shared_offset = 0;

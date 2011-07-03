@@ -66,7 +66,7 @@ namespace phys
     /// @details This class contains functions for the configuring of graphics specific settings of an actor.
     /// This class can only configure the actors graphics.  For configuring actor physics, see ActorBasePhysicsSettings.
     ///////////////////////////////////////
-    class ActorGraphicsSettings
+    class PHYS_LIB ActorGraphicsSettings
     {
         protected:
             /// @internal

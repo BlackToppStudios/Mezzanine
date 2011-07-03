@@ -333,19 +333,19 @@ void LevelLoader::LoadBlowsNotSucks()
     // Create the fan
     ActorRigid* Fan = new ActorRigid(0,"Fan","fan.mesh",BlowsNotSucksGroup);
     Fan->CreateShapeFromMeshDynamic(1);
-    Fan->SetLocation(Vector3(85,-70,0));
+    Fan->SetLocation(Vector3(0,0,0));
     //Fan->SetActorScaling(Vector3(1.4,1.4,1.4));
     ActMan->AddActor(Fan);
 
     ActorRigid* FanBody = new ActorRigid(0,"FanBody","body.mesh",BlowsNotSucksGroup);
     FanBody->CreateShapeFromMeshStatic();
-    FanBody->SetLocation(Vector3(85,-70,0));
+    FanBody->SetLocation(Vector3(0,0,0));
     //FanBody->SetActorScaling(Vector3(1.4,1.4,1.4));
     ActMan->AddActor(FanBody);
 
     ActorRigid* FanButton = new ActorRigid(0,"FanButton","button.mesh",BlowsNotSucksGroup);
     FanButton->CreateShapeFromMeshDynamic(1);
-    FanButton->SetLocation(Vector3(85,-70,0));
+    FanButton->SetLocation(Vector3(0,0,0));
     //FanButton->SetActorScaling(Vector3(1.4,1.4,1.4));
     ActMan->AddActor(FanButton);
 
@@ -390,8 +390,8 @@ void LevelLoader::LoadJustice()
     PhysMan->SetGravity(Vector3(0,-1000,0));
 
     //Configure the wireframe Drawer
-    PhysMan->SetDebugPhysicsWireCount(2);
-    PhysMan->SetDebugPhysicsRendering(1);
+    //PhysMan->SetDebugPhysicsWireCount(2);
+    //PhysMan->SetDebugPhysicsRendering(1);
 
     // Assuming all mass amounts are in metric kg.
     // Assuming all distances are in metric cm.
@@ -418,38 +418,46 @@ void LevelLoader::LoadJustice()
     ActorRigid* Union1 = new ActorRigid(UnionMass,"Union1","union.mesh",JusticeGroup);
     Union1->CreateShapeFromMeshDynamic(1);
     Union1->SetLocation(Vector3(-80.9,2.4,-16.4));
+    Union1->GetPhysicsSettings()->DisableCollisionResponse();
     ActMan->AddActor(Union1);
     ActorRigid* Union2 = new ActorRigid(UnionMass,"Union2","union.mesh",JusticeGroup);
     Union2->CreateShapeFromMeshDynamic(1);
     Union2->SetLocation(Vector3(-29.1,2.4,-16.4));// -42.9,2.4,-16.4
     Union2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Union2->GetPhysicsSettings()->DisableCollisionResponse();
     ActMan->AddActor(Union2);
     ActorRigid* Union3 = new ActorRigid(UnionMass,"Union3","union.mesh",JusticeGroup);
     Union3->CreateShapeFromMeshDynamic(1);
     Union3->SetLocation(Vector3(-80.9,2.4,16.4));
+    Union3->GetPhysicsSettings()->DisableCollisionResponse();
     ActMan->AddActor(Union3);
     ActorRigid* Union4 = new ActorRigid(UnionMass,"Union4","union.mesh",JusticeGroup);
     Union4->CreateShapeFromMeshDynamic(1);
     Union4->SetLocation(Vector3(-29.1,2.4,16.4));// -42.9,2.4,16.4
     Union4->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Union4->GetPhysicsSettings()->DisableCollisionResponse();
     ActMan->AddActor(Union4);
     ActorRigid* Union5 = new ActorRigid(UnionMass,"Union5","union.mesh",JusticeGroup);
     Union5->CreateShapeFromMeshDynamic(1);
     Union5->SetLocation(Vector3(196.9,2.4,-16.4));// 181.1,2.4,-16.4
     Union5->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Union5->GetPhysicsSettings()->DisableCollisionResponse();
     ActMan->AddActor(Union5);
     ActorRigid* Union6 = new ActorRigid(UnionMass,"Union6","union.mesh",JusticeGroup);
     Union6->CreateShapeFromMeshDynamic(1);
     Union6->SetLocation(Vector3(145.1,2.4,-16.4));
+    Union6->GetPhysicsSettings()->DisableCollisionResponse();
     ActMan->AddActor(Union6);
     ActorRigid* Union7 = new ActorRigid(UnionMass,"Union7","union.mesh",JusticeGroup);
     Union7->CreateShapeFromMeshDynamic(1);
     Union7->SetLocation(Vector3(196.9,2.4,16.4));//181.1,2.4,16.4
     Union7->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Union7->GetPhysicsSettings()->DisableCollisionResponse();
     ActMan->AddActor(Union7);
     ActorRigid* Union8 = new ActorRigid(UnionMass,"Union8","union.mesh",JusticeGroup);
     Union8->CreateShapeFromMeshDynamic(1);
     Union8->SetLocation(Vector3(145.1,2.4,16.4));
+    Union8->GetPhysicsSettings()->DisableCollisionResponse();
     ActMan->AddActor(Union8);
 
     // Create the trays
@@ -488,21 +496,21 @@ void LevelLoader::LoadJustice()
     PhysMan->AddConstraint(U8S,true);
 
     // Create the union-to-tray constraints
-    Point2PointConstraint* U1T = new Point2PointConstraint(Union1,Tray1,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,-16.4));// -50.9,2.4,-16.4 // -73.8,-42.6,-16.4 // -25,-61.3,0
+    Point2PointConstraint* U1T = new Point2PointConstraint(Union1,Tray1,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,-16.4));
     PhysMan->AddConstraint(U1T,true);
-    Point2PointConstraint* U2T = new Point2PointConstraint(Union2,Tray1,Vector3(-22.9,-45,0),Vector3(46.6,18.7,-16.4));// 0.9,2.4,-16.4 // 23.8,-42.6,-16.4 // -25,-61.3,0
+    Point2PointConstraint* U2T = new Point2PointConstraint(Union2,Tray1,Vector3(-22.9,-45,0),Vector3(46.6,18.7,-16.4));
     PhysMan->AddConstraint(U2T,true);
-    Point2PointConstraint* U3T = new Point2PointConstraint(Union3,Tray1,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,16.4));// -50.9,2.4,16.4 // -73.8,-42.6,16.4 // -25,-61.3,0
+    Point2PointConstraint* U3T = new Point2PointConstraint(Union3,Tray1,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,16.4));
     PhysMan->AddConstraint(U3T,true);
-    Point2PointConstraint* U4T = new Point2PointConstraint(Union4,Tray1,Vector3(-22.9,-45,0),Vector3(46.6,18.7,16.4));// 0.9,2.4,16.4 // 23.8,-42.6,16.4 // -25,-61.3,0
+    Point2PointConstraint* U4T = new Point2PointConstraint(Union4,Tray1,Vector3(-22.9,-45,0),Vector3(46.6,18.7,16.4));
     PhysMan->AddConstraint(U4T,true);
-    Point2PointConstraint* U5T = new Point2PointConstraint(Union5,Tray2,Vector3(-22.9,-45,0),Vector3(46.6,18.7,-16.4));// 226.9,2.4,-16.4 // 249.8,-42.6,-16.4 // -25,-61.3,0
+    Point2PointConstraint* U5T = new Point2PointConstraint(Union5,Tray2,Vector3(-22.9,-45,0),Vector3(46.6,18.7,-16.4));
     PhysMan->AddConstraint(U5T,true);
-    Point2PointConstraint* U6T = new Point2PointConstraint(Union6,Tray2,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,-16.4));// 175.1,2.4,-16.4 // 152.2,-42.6,-16.4 // -25,-61.3,0
+    Point2PointConstraint* U6T = new Point2PointConstraint(Union6,Tray2,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,-16.4));
     PhysMan->AddConstraint(U6T,true);
-    Point2PointConstraint* U7T = new Point2PointConstraint(Union7,Tray2,Vector3(-22.9,-45,0),Vector3(46.6,18.7,16.4));// 226.9,2.4,16.4 // 249.8,-42.6,16.4 // -25,-61.3,0
+    Point2PointConstraint* U7T = new Point2PointConstraint(Union7,Tray2,Vector3(-22.9,-45,0),Vector3(46.6,18.7,16.4));
     PhysMan->AddConstraint(U7T,true);
-    Point2PointConstraint* U8T = new Point2PointConstraint(Union8,Tray2,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,16.4));// 175.1,2.4,16.4 // 152.2,-42.6,16.4 // -25,-61.3,0
+    Point2PointConstraint* U8T = new Point2PointConstraint(Union8,Tray2,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,16.4));
     PhysMan->AddConstraint(U8T,true);
 
     // Create some throwable objects
@@ -511,7 +519,7 @@ void LevelLoader::LoadJustice()
     ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
     ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
     Uranium1->CreateShapeFromMeshDynamic(1);
-    Uranium1->SetLocation(-155,-40,0);
+    Uranium1->SetLocation(-155,50,0);
     Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
     Uranium1->LimitMovementOnAxis(true,true,false);
     ActMan->AddActor(Uranium1);
@@ -523,7 +531,7 @@ void LevelLoader::LoadJustice()
     PhysMan->AddAreaEffect(PlayZone);
     GameApp->SetPlayArea(PlayZone);// */
 
-    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,-70,0));
+    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,80,0));
     StartZone->CreateBoxShape(Vector3(50,60,15));
     StartZone->CreateGraphicsBox(ColourValue(0.1,0.8,0.1,0.2));
     PhysMan->AddAreaEffect(StartZone);
@@ -539,6 +547,11 @@ void LevelLoader::LoadJustice()
     ScoreZone2->CreateGraphicsBox(ColourValue(0.2,0.2,0.8,0.2));
     PhysMan->AddAreaEffect(ScoreZone2);
     GameApp->RegisterScoreArea(ScoreZone2);// */
+}
+
+void LevelLoader::LoadRollers()
+{
+
 }
 
 bool LevelLoader::HasALevelToLoad()
@@ -572,6 +585,8 @@ void LevelLoader::LoadLevel()
         LoadBlowsNotSucks();
     else if("Justice" == LevelToLoad)
         LoadJustice();
+    else if("Rollers" == LevelToLoad)
+        LoadRollers();
 
     CurrentLevel = LevelToLoad;
     LevelToLoad = "";
