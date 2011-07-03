@@ -76,14 +76,10 @@ namespace phys
     }
 
     void ActorBasePhysicsSettings::SetRestitution(const Real& Restitution)
-    {
-        ActorCO->setRestitution(Restitution);
-    }
+        { ActorCO->setRestitution(Restitution); }
 
     Real ActorBasePhysicsSettings::GetRestitution() const
-    {
-        return ActorCO->getRestitution();
-    }
+        { return ActorCO->getRestitution(); }
 
     void ActorBasePhysicsSettings::SetKinematic()
     {
@@ -182,6 +178,10 @@ namespace phys
             ActorCO->setActivationState(State);
     }
 
+    ActorBasePhysicsSettings* ActorBasePhysicsSettings::GetBasePointer()
+        { return dynamic_cast<ActorBasePhysicsSettings*>(this); }
+
+
     phys::ActorActivationState ActorBasePhysicsSettings::GetActivationState() const
         { return (phys::ActorActivationState)ActorCO->getActivationState(); }
 
@@ -198,14 +198,17 @@ namespace phys
     }
 
     void ActorRigidPhysicsSettings::SetDamping(const Real& LinDamping, const Real& AngDamping)
-    {
-        ActorRB->setDamping(LinDamping, AngDamping);
-    }
+        { ActorRB->setDamping(LinDamping, AngDamping); }
+
+    Real ActorRigidPhysicsSettings::GetLinearDamping() const
+        { return ActorRB->getLinearDamping(); }
+
+    Real ActorRigidPhysicsSettings::GetAngularDamping() const
+        { return ActorRB->getAngularDamping(); }
 
     void ActorRigidPhysicsSettings::SetLinearVelocity(const Vector3& LinVel)
     {
-        ActorRB->setLinearVelocity(LinVel.GetBulletVector3());
-    }
+        ActorRB->setLinearVelocity(LinVel.GetBulletVector3()); }
 
     Vector3 ActorRigidPhysicsSettings::GetLinearVelocity() const
     {
@@ -234,6 +237,20 @@ namespace phys
         Vector3 Grav(ActorRB->getGravity());
         return Grav;
     }
+
+    Vector3 ActorRigidPhysicsSettings::GetForce() const
+        { return Vector3(ActorRB->getTotalForce()); }
+
+    Vector3 ActorRigidPhysicsSettings::GetTorque() const
+        { return Vector3(ActorRB->getTotalTorque()); }
+
+    void ActorRigidPhysicsSettings::ApplyForce(const Vector3& Force)
+        { ActorRB->applyCentralForce(Force.GetBulletVector3()); }
+
+    void ActorRigidPhysicsSettings::ApplyTorque(const Vector3& Torque)
+        { ActorRB->applyTorque(Torque.GetBulletVector3()); }
+
+
 
 
     ActorSoftPhysicsSettings::ActorSoftPhysicsSettings(ActorSoft* Actor, btSoftBody* PhysicsObject)
@@ -298,11 +315,17 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhy
 std::ostream& operator << (std::ostream& stream, const phys::ActorRigidPhysicsSettings& Ev)
 {
     stream      << "<ActorRigidPhysicsSettings Version=\"1\" "
-                << "Friction=\"" << Ev.GetFriction() << "\""
-                << "Restitution=\"" << Ev.GetRestitution() << "\""
-                << "Kinematic=\"" << Ev.GetKinematic() << "\""
-                << "Friction=\"" << Ev.GetStatic() << "\""
-                << ">";
+                << "AngularDamping=\"" << Ev.GetAngularDamping() << "\""
+                << "LinearDamping=\"" << Ev.GetLinearDamping() << "\">"
+                << "<AngularVelocity>" << Ev.GetAngularVelocity() << "</AngularVelocity>"
+                << "<LinearVelocity>" << Ev.GetLinearVelocity() << "</LinearVelocity>"
+                << "<IndividualGravity>" << Ev.GetIndividualGravity() << "</IndividualGravity>"
+                << "<TotalTorque>" << Ev.GetTorque() << "</TotalTorque>"
+                << "<TotalForce>" << Ev.GetForce() << "</TotalForce>";
+
+                //Ideally there would be some option that would be checked to determine if the object should be serialized completely or if we should load from a file on disk.
+                //btRigidBody* ActorRB;0
+                //ActorRigid* RigidParent;
 
         operator<<(stream, static_cast<const phys::ActorBasePhysicsSettings>(Ev));
 
@@ -320,66 +343,69 @@ std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorRigidPhysic
     return stream;
 }
 
-
 phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorRigidPhysicsSettings& Ev)
 {
-    /*if ( phys::String(OneNode.Name())==phys::String("ActorRigidPhysicsSettings") )
+    if ( phys::String(OneNode.Name())==phys::String("ActorRigidPhysicsSettings") )
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            phys::ColourValue TempColour;
+            Ev.SetDamping(OneNode.GetAttribute("LinearDamping").AsReal(),OneNode.GetAttribute("AngularDamping").AsReal());
 
-            for(phys::Whole Counter = 0; Ev.GetNumSubmeshes()>Counter; ++Counter)
-            {
-                Ev.SetMaterialAmbient(TempColour, Counter);
-                Ev.SetMaterialSpecular(TempColour, Counter);
-                Ev.SetMaterialDiffuse(TempColour, Counter);
-            }
+            phys::Vector3 TempVec;
 
             for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
             {
                 phys::String Name(Child.Name());
-                switch(Name[0])
+                switch(Name[2])
                 {
-                    case 'A':   //fDiffuseColour
-                        if(Name==phys::String("AmbientMaterial"))
+                    case 't':   //ActorBasePhysicsSettings
+                        if(Name==phys::String("ActorBasePhysicsSettings"))
                         {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetMaterialAmbient(TempColour, Child.GetAttribute("Submesh").AsWhole());
+                            Child.GetFirstChild() >> *(Ev.GetBasePointer());
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element A-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element t-\"",Name,"\"")) );
                         }
                         break;
-                    case 'S':   //fDiffuseColour
-                        if(Name==phys::String("SpecularMaterial"))
+                    case 'g':   //AngularVelocity
+                        if(Name==phys::String("AngularVelocity"))
                         {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetMaterialSpecular(TempColour, Child.GetAttribute("Submesh").AsWhole());
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetAngularVelocity(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element S-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element g-\"",Name,"\"")) );
                         }
                         break;
-                    case 'D':   //fDiffuseColour
-                        if(Name==phys::String("DiffuseMaterial"))
+                    case 'n':   //LinearVelocity
+                        if(Name==phys::String("LinearVelocity"))
                         {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetMaterialDiffuse(TempColour, Child.GetAttribute("Submesh").AsWhole());
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetLinearVelocity(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element D-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element n-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'd':   //IndividualGravity
+                        if(Name==phys::String("IndividualGravity"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetIndividualGravity(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element d-\"",Name,"\"")) );
                         }
                         break;
                     default:
-                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element default-\"",Name,"\"")) );
+                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for Light: Includes unknown Element default-\"",Name,"\"")) );
                         break;
                 }
             }
+
 
         }else{
             throw( phys::Exception("Incompatible XML Version for ActorRigidPhysicsSettings: Not Version 1"));
         }
     }else{
         throw( phys::Exception(phys::StringCat("Attempting to deserialize a ActorRigidPhysicsSettings, found a ", OneNode.Name())));
-    }*/
+    }
 }
 #endif // \PHYSXML
 
