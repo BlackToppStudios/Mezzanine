@@ -501,6 +501,28 @@ namespace phys
             return 0;
         }
 
+        void Layer::ViewportUpdate(const Vector2& NewViewportSize)
+        {
+            for ( std::vector<Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+            {
+            }
+            for ( std::vector<Rectangle*>::iterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
+            {
+            }
+            for ( std::vector<Caption*>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
+            {
+            }
+            for ( std::vector<MarkupText*>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+            {
+            }
+            for ( std::vector<LineList*>::iterator it = LineLists.begin() ; it != LineLists.end() ; it++ )
+            {
+            }
+            for( std::vector<Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+            {
+            }
+        }
+
         Gorilla::Layer* Layer::GetGorillaLayer()
         {
             return GorillaLayer;

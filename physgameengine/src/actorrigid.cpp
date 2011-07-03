@@ -240,7 +240,7 @@ namespace phys{
         btBvhTriangleMeshShape *tmpshape = new btBvhTriangleMeshShape(internal::MeshTools::CreateBulletTrimesh(GraphicsObject,UseAllSubmeshes),true);
         this->Shape=tmpshape;
         ShapeIsSaved = false;
-        this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
+        //this->Shape->setLocalScaling(btVector3(1.0,1.0,1.0));
         this->physrigidbody->setCollisionShape(this->Shape);
         this->physrigidbody->updateInertiaTensor();
     }
@@ -259,7 +259,7 @@ namespace phys{
 
     void ActorRigid::AddObjectToWorld(World *TargetWorld)
     {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody);
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addRigidBody(this->physrigidbody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
         this->AttachToGraphics();
     }
 

@@ -276,6 +276,12 @@ namespace phys{
         this->Shape->setLocalScaling(scaling.GetBulletVector3());
     }
 
+    Vector3 ActorBase::GetActorScaling() const
+    {
+        Vector3 Scale(this->Shape->getLocalScaling());
+        return Scale;
+    }
+
     ActorGraphicsSettings* ActorBase::GetGraphicsSettings() const
     {
         return GraphicsSettings;

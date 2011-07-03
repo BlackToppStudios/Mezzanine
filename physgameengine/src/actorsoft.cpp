@@ -259,7 +259,7 @@ namespace phys{
 
     void ActorSoft::AddObjectToWorld (World *TargetWorld)
     {
-        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody);
+        TargetWorld->GetPhysicsManager()->GetPhysicsWorldPointer()->addSoftBody(this->physsoftbody,PhysicsSettings->GetCollisionGroup(),PhysicsSettings->GetCollisionMask());
         this->AttachToGraphics();
     }
 

@@ -93,6 +93,7 @@ namespace phys
             void HotKeyAndInputCaptureChecks();
             void WidgetUpdates();
             void ClearButtonActivations();
+            void ViewportUpdateChecks();
             void MouseActivationCheck(UI::Button* ToCheck);
             void HotKeyActivationCheck(const MetaCode::InputCode& Code);
         public:

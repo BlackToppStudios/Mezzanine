@@ -195,6 +195,12 @@ namespace phys
         ActivatedButtons.clear();
     }
 
+    void UIManager::ViewportUpdateChecks()
+    {
+        for( Whole x=0 ; x < Screens.size() ; x++ )
+            Screens[x]->CheckViewportSize();
+    }
+
     void UIManager::MouseActivationCheck(UI::Button* ToCheck)
     {
         if(!ToCheck)
@@ -235,6 +241,7 @@ namespace phys
     void UIManager::DoMainLoopItems()
     {
         InputQueryTool::GatherEvents();
+        ViewportUpdateChecks();
         ClearButtonActivations();
         HoverChecks();
         HotKeyAndInputCaptureChecks();

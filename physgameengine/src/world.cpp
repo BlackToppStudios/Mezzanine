@@ -227,7 +227,9 @@ namespace phys
         void SetupXSecondTimer();
 
         void Never()
-            {}
+        {
+            World::GetWorldPointer()->LogStream.str("");
+        }
 
         void EachFrame()
         {

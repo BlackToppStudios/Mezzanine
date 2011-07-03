@@ -334,6 +334,10 @@ namespace phys
                 /// @details This function searches only the widgets contained in this layer.
                 /// @return Returns the widget the mouse is over, or NULL if there are none.
                 Widget* CheckWidgetMouseIsOver();
+                /// @brief Updates UI elements positions and sizes after a change in the viewport size.
+                /// @details This function is called automatically, and shouldn't need to be called manually.
+                /// @param NewViewportSize The updated size of the viewport this layer belongs to.
+                void ViewportUpdate(const Vector2& NewViewportSize);
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Functions
                 ///////////////////////////////////////

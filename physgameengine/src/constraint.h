@@ -106,10 +106,10 @@ namespace phys
             TypedConstraint(ActorRigid* bodya);
             /// @brief Gets the first actor this constraint applies to.
             /// @return Returns a pointer to the first actor this constraint applies to.
-            ActorRigid* GetActorA();
+            virtual ActorRigid* GetActorA();
             /// @brief Gets the second actor this constraint applies to.
             /// @return Returns a pointer to the second actor this constraint applies to.
-            ActorRigid* GetActorB();
+            virtual ActorRigid* GetActorB();
             /// @brief Provides override of constraint parameters.
             /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
             /// ERP values adjust how fast the errors in the constraints are reduced. @n
@@ -147,17 +147,17 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~ConeTwistConstraint();
-            void SetAngularOnly(bool AngularOnly);
-            void SetLimit(int LimitIndex, Real LimitValue);
-            void SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
-            void SetDamping(Real Damping);
-            void SetMaxMotorImpulse(Real MaxMotorImpulse);
-            void SetMaxMotorImpulseNormalized(Real MaxMotorImpulse);
-            void SetFixThresh(Real FixThresh);
-            void SetMotorTarget(Quaternion Quat);
-            void SetMotorTargetInConstraintSpace(Quaternion Quat);
-            void EnableMotor(bool Enable);
-            bool IsPassedSwingLimit();
+            virtual void SetAngularOnly(bool AngularOnly);
+            virtual void SetLimit(int LimitIndex, Real LimitValue);
+            virtual void SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan, Real Softness=1.0, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
+            virtual void SetDamping(Real Damping);
+            virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
+            virtual void SetMaxMotorImpulseNormalized(Real MaxMotorImpulse);
+            virtual void SetFixThresh(Real FixThresh);
+            virtual void SetMotorTarget(Quaternion Quat);
+            virtual void SetMotorTargetInConstraintSpace(Quaternion Quat);
+            virtual void EnableMotor(bool Enable);
+            virtual bool IsPassedSwingLimit();
             /// @brief Provides override of constraint parameters.
             /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
             /// ERP values adjust how fast the errors in the constraints are reduced. @n
@@ -203,15 +203,15 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Generic6DofConstraint();
-            void SetOffsetALocation(Vector3 Location);
-            void SetOffsetBLocation(Vector3 Location);
-            void SetLinearUpperLimit(Vector3 Limit);
-            void SetLinearLowerLimit(Vector3 Limit);
-            void SetAngularUpperLimit(Vector3 Limit);
-            void SetAngularLowerLimit(Vector3 Limit);
-            void SetUseFrameOffset(bool UseOffset);
-            void SetLimit(int Axis, Real Low, Real High);
-            void CalculateTransforms();
+            virtual void SetOffsetALocation(Vector3 Location);
+            virtual void SetOffsetBLocation(Vector3 Location);
+            virtual void SetLinearUpperLimit(Vector3 Limit);
+            virtual void SetLinearLowerLimit(Vector3 Limit);
+            virtual void SetAngularUpperLimit(Vector3 Limit);
+            virtual void SetAngularLowerLimit(Vector3 Limit);
+            virtual void SetUseFrameOffset(bool UseOffset);
+            virtual void SetLimit(int Axis, Real Low, Real High);
+            virtual void CalculateTransforms();
             /// @brief Provides override of constraint parameters.
             /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
             /// ERP values adjust how fast the errors in the constraints are reduced. @n
@@ -253,11 +253,11 @@ namespace phys
             Generic6DofSpringConstraint(btGeneric6DofSpringConstraint* Constraint);
             /// @brief Class destructor.
             /// @details The class destructor.
-            ~Generic6DofSpringConstraint();
-            void SetStiffness(int Index, Real Stiffness);
-            void SetDamping(int Index, Real Damping);
-            void SetEquilibriumPoint(int Index);
-            void EnableSpring(int Index, bool Enable);
+            virtual ~Generic6DofSpringConstraint();
+            virtual void SetStiffness(int Index, Real Stiffness);
+            virtual void SetDamping(int Index, Real Damping);
+            virtual void SetEquilibriumPoint(int Index);
+            virtual void EnableSpring(int Index, bool Enable);
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -275,8 +275,8 @@ namespace phys
             /// @brief
             /// @param ActorA The first actor to apply this constraint to.
             /// @param ActorB The second actor to apply this constraint to.
-            /// @param PivotInA
-            /// @param PivotInB
+            /// @param PivotA The location in ActorA's local space to apply the constraint to.
+            /// @param PivotB The location in ActorB's local space to apply the constraint to.
             /// @param AxisInA The axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param AxisInB The axis(for ActorB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
@@ -306,33 +306,33 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~HingeConstraint();
-            void SetAPivotLocation(Vector3 Location);
-            void SetBPivotLocation(Vector3 Location);
-            void SetAngularOnly(bool AngularOnly);
+            virtual void SetAPivotLocation(Vector3 Location);
+            virtual void SetBPivotLocation(Vector3 Location);
+            virtual void SetAngularOnly(bool AngularOnly);
             /// @brief Enables(or Disables) the motor on the hinge and sets it's parameters.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
             /// @param TargetVelocity The desired velocity of rotation the motor will have.  This may or may not be achieved based on obstructions in the simulation.
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
-            void EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
+            virtual void EnableAngularMotor(bool EnableMotor, Real TargetVelocity, Real MaxMotorImpulse);
             /// @brief Enables(or Disables) the motor on the hinge.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
-            void EnableMotor(bool EnableMotor);
+            virtual void EnableMotor(bool EnableMotor);
             /// @brief Sets the maximum amount of force the motor is to apply.
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
-            void SetMaxMotorImpulse(Real MaxMotorImpulse);
-            void SetMotorTarget(Quaternion QuatAInB, Real Dt);
-            void SetMotorTarget(Real TargetAngle, Real Dt);
+            virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
+            virtual void SetMotorTarget(Quaternion QuatAInB, Real Dt);
+            virtual void SetMotorTarget(Real TargetAngle, Real Dt);
             /// @brief Sets the maximum angle limits of the constraint in radians.
             /// @param Low The minimum angle limit for the constraint in radians.
             /// @param High The maximum angle limit for the constraint in radians.
             /// @param Softness Not currently used internally.
             /// @param BiasFactor Multiplier for the constraint error, constraint appears more "soft" when closer to zero.
             /// @param RelaxationFactor The amount of bounce to apply when the constraint reaches it's limit.  Range: 0.0-1.0.
-            void SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
+            virtual void SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
             /// @brief Sets the axis on which this constraint acts.
             /// @param AxisInA A vector3 representing the axis to be used with this constraint.
-            void SetAxis(Vector3 AxisInA);
-            void SetUseFrameOffset(bool FrameOffset);
+            virtual void SetAxis(Vector3 AxisInA);
+            virtual void SetUseFrameOffset(bool FrameOffset);
             /// @brief Provides override of constraint parameters.
             /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
             /// ERP values adjust how fast the errors in the constraints are reduced. @n
@@ -368,9 +368,9 @@ namespace phys
             Hinge2Constraint(btHinge2Constraint* Constraint);
             /// @brief Class destructor.
             /// @details The class destructor.
-            ~Hinge2Constraint();
-            void SetUpperLimit(Real Ang1Max);
-            void SetLowerLimit(Real Ang1Min);
+            virtual ~Hinge2Constraint();
+            virtual void SetUpperLimit(Real Ang1Max);
+            virtual void SetLowerLimit(Real Ang1Min);
     };
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -385,7 +385,15 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btPoint2PointConstraint* Point2Point;
         public:
+            /// @brief Double body constructor.  Binds the two bodies.
+            /// @param ActorA The first actor to apply this constraint to.
+            /// @param ActorB The second actor to apply this constraint to.
+            /// @param PivotA The location in ActorA's local space to apply the constraint to.
+            /// @param PivotB The location in ActorB's local space to apply the constraint to.
             Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotA, Vector3 PivotB);
+            /// @brief Single body constructor.  Binds the body to world space.
+            /// @param ActorA The actor to apply this constraint to.
+            /// @param PivotA
             Point2PointConstraint(ActorRigid* ActorA, Vector3 PivotA);
             /// @brief Internal constructor.
             /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.
@@ -394,12 +402,12 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Point2PointConstraint();
-            void SetPivotA(Vector3 PivotA);
-            void SetPivotB(Vector3 PivotB);
-            Vector3 GetPivotInA();
-            Vector3 GetPivotInB();
-            void SetImpulseClamping(Real Clamping);
-            void SetTAU(Real TAU);
+            virtual void SetPivotA(Vector3 PivotA);
+            virtual void SetPivotB(Vector3 PivotB);
+            virtual Vector3 GetPivotInA();
+            virtual Vector3 GetPivotInB();
+            virtual void SetImpulseClamping(Real Clamping);
+            virtual void SetTAU(Real TAU);
             /// @brief Provides override of constraint parameters.
             /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
             /// ERP values adjust how fast the errors in the constraints are reduced. @n
@@ -437,37 +445,37 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~SliderConstraint();
-            void SetFrameOffsetALocation(Vector3 Location);
-            void SetFrameOffsetBLocation(Vector3 Location);
-            void SetUpperLinLimit(Real UpperLimit);
-            void SetUpperAngLimit(Real UpperLimit);
-            void SetLowerLinLimit(Real LowerLimit);
-            void SetLowerAngLimit(Real LowerLimit);
-            void SetPoweredLinMotor(bool OnOff);
-            void SetTargetLinMotorVelocity(Real TargetLinMotorVelocity);
-            void SetMaxLinMotorForce(Real MaxLinMotorForce);
-            void SetPoweredAngMotor(bool OnOff);
-            void SetTargetAngMotorVelocity(Real TargetAngMotorVelocity);
-            void SetMaxAngMotorForce(Real MaxAngMotorForce);
-            void SetUseFrameOffset(bool FrameOffset);
-            void SetSoftnessDirLin(Real SoftnessDirLin);
-            void SetRestitutionDirLin(Real RestitutionDirLin);
-            void SetDampingDirLin(Real DampingDirLin);
-            void SetSoftnessDirAng(Real SoftnessDirAng);
-            void SetRestitutionDirAng(Real RestitutionDirAng);
-            void SetDampingDirAng(Real DampingDirAng);
-            void SetSoftnessLimLin(Real SoftnessLimLin);
-            void SetRestitutionLimLin(Real RestitutionLimLin);
-            void SetDampingLimLin(Real DampingLimLin);
-            void SetSoftnessLimAng(Real SoftnessLimAng);
-            void SetRestitutionLimAng(Real RestitutionLimAng);
-            void SetDampingLimAng(Real DampingLimAng);
-            void SetSoftnessOrthoLin(Real SoftnessOrthoLin);
-            void SetRestitutionOrthoLin(Real RestitutionOrthoLin);
-            void SetDampingOrthoLin(Real DampingOrthoLin);
-            void SetSoftnessOrthoAng(Real SoftnessOrthoAng);
-            void SetRestitutionOrthoAng(Real RestitutionOrthoAng);
-            void SetDampingOrthoAng(Real DampingOrthoAng);
+            virtual void SetFrameOffsetALocation(Vector3 Location);
+            virtual void SetFrameOffsetBLocation(Vector3 Location);
+            virtual void SetUpperLinLimit(Real UpperLimit);
+            virtual void SetUpperAngLimit(Real UpperLimit);
+            virtual void SetLowerLinLimit(Real LowerLimit);
+            virtual void SetLowerAngLimit(Real LowerLimit);
+            virtual void SetPoweredLinMotor(bool OnOff);
+            virtual void SetTargetLinMotorVelocity(Real TargetLinMotorVelocity);
+            virtual void SetMaxLinMotorForce(Real MaxLinMotorForce);
+            virtual void SetPoweredAngMotor(bool OnOff);
+            virtual void SetTargetAngMotorVelocity(Real TargetAngMotorVelocity);
+            virtual void SetMaxAngMotorForce(Real MaxAngMotorForce);
+            virtual void SetUseFrameOffset(bool FrameOffset);
+            virtual void SetSoftnessDirLin(Real SoftnessDirLin);
+            virtual void SetRestitutionDirLin(Real RestitutionDirLin);
+            virtual void SetDampingDirLin(Real DampingDirLin);
+            virtual void SetSoftnessDirAng(Real SoftnessDirAng);
+            virtual void SetRestitutionDirAng(Real RestitutionDirAng);
+            virtual void SetDampingDirAng(Real DampingDirAng);
+            virtual void SetSoftnessLimLin(Real SoftnessLimLin);
+            virtual void SetRestitutionLimLin(Real RestitutionLimLin);
+            virtual void SetDampingLimLin(Real DampingLimLin);
+            virtual void SetSoftnessLimAng(Real SoftnessLimAng);
+            virtual void SetRestitutionLimAng(Real RestitutionLimAng);
+            virtual void SetDampingLimAng(Real DampingLimAng);
+            virtual void SetSoftnessOrthoLin(Real SoftnessOrthoLin);
+            virtual void SetRestitutionOrthoLin(Real RestitutionOrthoLin);
+            virtual void SetDampingOrthoLin(Real DampingOrthoLin);
+            virtual void SetSoftnessOrthoAng(Real SoftnessOrthoAng);
+            virtual void SetRestitutionOrthoAng(Real RestitutionOrthoAng);
+            virtual void SetDampingOrthoAng(Real DampingOrthoAng);
             /// @brief Provides override of constraint parameters.
             /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
             /// ERP values adjust how fast the errors in the constraints are reduced. @n
@@ -503,9 +511,9 @@ namespace phys
             UniversalConstraint(btUniversalConstraint* Constraint);
             /// @brief Class destructor.
             /// @details The class destructor.
-            ~UniversalConstraint();
-            void SetUpperLimit(Real Ang1Max, Real Ang2Max);
-            void SetLowerLimit(Real Ang1Min, Real Ang2Min);
+            virtual ~UniversalConstraint();
+            virtual void SetUpperLimit(Real Ang1Max, Real Ang2Max);
+            virtual void SetLowerLimit(Real Ang1Min, Real Ang2Min);
     };
 }//phys
 

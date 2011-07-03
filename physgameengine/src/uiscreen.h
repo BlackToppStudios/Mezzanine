@@ -76,6 +76,7 @@ namespace phys
                 Viewport* GameViewport;
                 String Name;
                 String PrimaryAtlas;
+                Vector2 KnownViewportSize;
                 std::map<Whole,Layer*> Layers;
             public:
                 /// @brief Internal constructor.
@@ -140,9 +141,11 @@ namespace phys
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set.
                 virtual String GetPrimaryAtlas();
+                /// @brief Checks to see if the viewport has changed in size.  If so it updates all the UI elements on the screen.
+                virtual void CheckViewportSize();
                 /// @internal
                 /// @brief Manually calls the UI system to render this screen.
-                virtual void RenderOnce();
+                //virtual void RenderOnce();
                 /// @internal
                 /// @brief Gets the internal screen this screen is based on.
                 /// @return Returns a pointer to the Gorilla screen this screen is based on.

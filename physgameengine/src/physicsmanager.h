@@ -66,6 +66,7 @@ namespace phys
     class ActorBase;
     class Vector3WActor;
     class AreaEffect;
+    class Trigger;
     namespace debug {
         class InternalDebugDrawer;
     }
@@ -90,6 +91,7 @@ namespace phys
             std::map< String, btCollisionShape* > PhysicsShapes;
             std::vector< TypedConstraint* > Constraints;
             std::vector< AreaEffect* > AreaEffects;
+            std::vector< Trigger* > Triggers;
 
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
@@ -108,9 +110,13 @@ namespace phys
             /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
             void Construct(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
 
-            /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect instance.
+            /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect.
             /// @details This function is automatically called every step.
             void ProcessAllEffects();
+
+            /// @brief Calls the ConditionsAreMet() and ApplyTrigger() functions of every stored trigger.
+            /// @details This function is automatically called every step.
+            void ProcessAllTriggers();
         public:
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
@@ -210,16 +216,32 @@ namespace phys
             /// @param AE The area effect to be added.
             void AddAreaEffect(AreaEffect* AE);
             /// @brief Gets an Area Effect by name.
-            /// @details This function will return the named area effect if it is stored.
             /// @param Name The name of the area effect to find.
-            /// @return Returns a pointer to the named area effect.
-            AreaEffect* GetAreaEffect(String Name);
+            /// @return Returns a pointer to the named area effect, or NULL if it doesn't exist.
+            AreaEffect* GetAreaEffect(const String& Name);
             /// @brief Removes an area effect from the world.
             /// @details Removes an area effect from the world so that it will have no effect.
             /// @param AE The area effect to be removed.
             void RemoveAreaEffect(AreaEffect* AE);
             /// @brief Destroys all area effects currently in the manager.
             void DestroyAllAreaEffects();
+
+            ///////////////////////////////////////////////////////////////////////////////
+            // Trigger Management
+            /// @brief Adds a trigger to the world.
+            /// @details Adds a trigger to the world so that it can/will take effect.
+            /// @param Trig The trigger to be added.
+            void AddTrigger(Trigger* Trig);
+            /// @brief Gets a trigger by name.
+            /// @param Name The name of the trigger to find.
+            /// @return Returns a pointer to the named trigger, or NULL if it doesn't exist.
+            Trigger* GetTrigger(const String& Name);
+            /// @brief Removes a trigger from the world.
+            /// @details Removes a trigger from the world so that it will have no effect.
+            /// @param Trig The trigger to be removed.
+            void RemoveTrigger(Trigger* Trig);
+            /// @brief Destroys all triggers currently in the manager.
+            void DestroyAllTriggers();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Event Filtering Management

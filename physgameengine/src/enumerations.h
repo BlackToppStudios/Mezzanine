@@ -71,6 +71,33 @@ namespace phys
         Att_Quadratic    ///< Quadratic/Exponential Attentuation, similar to real gravity, it tapers of more the further from the center you get.
     };
 
+    /// @enum CollisionFilter
+    /// @brief These are the various filters that can be applied to all physics accelerated world objects to limit what they collide with.
+    /// @details You can create your own groups on top of the ones that exist here, but they have to be powers of 2, and not overlap with
+    /// any of the existing groups defined here.  Simply pass in the Whole where appropriate.
+    enum CollisionFilter
+    {
+        // Standard base filters
+        CF_GenericFilter = 1,
+        CF_StaticFilter = 2,
+        CF_KinematicFilter = 4,
+        CF_DebrisFilter = 8,
+        CF_SensorFilter = 16,
+        CF_CharacterFilter = 32,
+        CF_AllFilter = -1
+    };
+
+    /// @enum ConstraintParams
+    /// @brief Used by constraints for setting some parameters.
+    /// @details See the constraint class documentation for more details.
+    enum ConstraintParams
+    {
+        Con_ERP = 1,
+        Con_Stop_ERP,
+        Con_CFM,
+        Con_Stop_CFM
+    };
+
     /// @enum WorldObjectType
     /// @brief Used by various classes to help identify what class an object is.
     /// @details This is mostly used internally for casting void pointers.

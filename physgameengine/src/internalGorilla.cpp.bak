@@ -1,14 +1,9 @@
 /*
     Gorilla
     -------
-    
+
     Copyright (c) 2010 Robin Southern
 
-    Additional contributions by:
-
-    - Murat Sari
-    - Nigel Atkinson
-                                                                                  
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
@@ -155,7 +150,6 @@ namespace Gorilla
 
     _loadGlyphs(settings, glyphData);
     _loadKerning(settings, glyphData);
-    _loadVerticalOffsets(settings, glyphData);
    }
    else if (secName == "sprites")
     _loadSprites(settings,gorillaFile);
@@ -373,42 +367,9 @@ namespace Gorilla
 
 
    glyphData->mGlyphs[right_glyph_id - glyphData->mRangeBegin]->kerning.push_back(Kerning(left_glyph_id, kerning));
-   
-  }
-  
- }
 
- void  TextureAtlas::_loadVerticalOffsets(Ogre::ConfigFile::SettingsMultiMap* settings, GlyphData* glyphData)
- {
-  
-  Ogre::String left_name, data;
-  Ogre::ConfigFile::SettingsMultiMap::iterator i;
-  Ogre::uint glyph_id;
-  int verticalOffset;
-  
-  for (i = settings->begin(); i != settings->end(); ++i)
-  {
-   
-   left_name = i->first;
-   data = i->second;
-   Ogre::StringUtil::toLowerCase(left_name);
-   
-   if (left_name.substr(0,15) != "verticaloffset_")
-    continue;
-   
-   size_t comment = data.find_first_of('#');
-   if (comment != std::string::npos)
-    data = data.substr(0, comment);
-   
-   left_name = left_name.substr(15); // chop of verticalOffset_
-   glyph_id = Ogre::StringConverter::parseUnsignedInt(left_name);
-   
-   verticalOffset = Ogre::StringConverter::parseInt(data);
-   
-   glyphData->getGlyph(glyph_id)->verticalOffset = verticalOffset;
-   
   }
-  
+
  }
 
  void  TextureAtlas::_loadSprites(Ogre::ConfigFile::SettingsMultiMap* settings,const Ogre::String& gorillaFile)
@@ -454,23 +415,7 @@ namespace Gorilla
  {
   Ogre::MaterialPtr d2Material = Ogre::MaterialManager::getSingletonPtr()->getByName("Gorilla2D");
   if (d2Material.isNull() == false)
-  {
-    Ogre::Pass* pass = d2Material->getTechnique(0)->getPass(0);
-
-    if(pass->hasVertexProgram())
-    {
-      Ogre::GpuProgramPtr gpuPtr = pass->getVertexProgram();
-      gpuPtr->load();
-    }
-
-    if(pass->hasFragmentProgram())
-    {
-      Ogre::GpuProgramPtr gpuPtr = pass->getFragmentProgram();
-      gpuPtr->load();
-    }
-
-    return d2Material;
-  }
+   return d2Material;
 
   d2Material = Ogre::MaterialManager::getSingletonPtr()->create("Gorilla2D", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
   Ogre::Pass* pass = d2Material->getTechnique(0)->getPass(0);
@@ -492,23 +437,7 @@ namespace Gorilla
 
   Ogre::MaterialPtr d3Material = Ogre::MaterialManager::getSingletonPtr()->getByName("Gorilla3D");
   if (d3Material.isNull() == false)
-  {
-    Ogre::Pass* pass = d3Material->getTechnique(0)->getPass(0);
-
-    if(pass->hasVertexProgram())
-    {
-      Ogre::GpuProgramPtr gpuPtr = pass->getVertexProgram();
-      gpuPtr->load();
-    }
-
-    if(pass->hasFragmentProgram())
-    {
-      Ogre::GpuProgramPtr gpuPtr = pass->getFragmentProgram();
-      gpuPtr->load();
-    }
-
-    return d3Material;
-  }
+   return d3Material;
 
   d3Material = Ogre::MaterialManager::getSingletonPtr()->create("Gorilla3D", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
   Ogre::Pass* pass = d3Material->getTechnique(0)->getPass(0);
@@ -2181,8 +2110,6 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   if (glyph == 0)
    return;
 
-  y += glyph->verticalOffset;
-  
   Quad q;
   q.mPosition[TopLeft].x = x;
   q.mPosition[TopLeft].y = y;
@@ -2226,8 +2153,6 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   if (glyph == 0)
    return;
 
-  y += glyph->verticalOffset;
-  
   Quad q;
   q.mPosition[TopLeft].x = x;
   q.mPosition[TopLeft].y = y;
@@ -2475,7 +2400,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
     kerning = mGlyphData->mLetterSpacing;
 
    left = cursorX - texelOffsetX;
-   top = cursorY - texelOffsetY + glyph->verticalOffset;
+   top = cursorY - texelOffsetY;
    right = left + (glyph->glyphWidth * mCharScaling) + texelOffsetX;
    bottom = top + (glyph->glyphHeight * mCharScaling) + texelOffsetY;
 
@@ -2564,8 +2489,6 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
   unsigned int thisChar = 0, lastChar = 0;
   Glyph* glyph = 0;
 
-  mMaxTextWidth = 0;
-  
   mCharacters.remove_all();
 
   bool markupMode = false;
@@ -2686,7 +2609,7 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
        continue;
 
       left = cursorX - texelOffsetX;
-      top = cursorY - texelOffsetY + glyph->verticalOffset;
+      top = cursorY - texelOffsetY;
       right = left + (sprite->spriteWidth * mCharScaling) + texelOffsetX;
       bottom = top + (sprite->spriteHeight * mCharScaling) + texelOffsetY;
 
@@ -2729,18 +2652,17 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
     if (kerning == 0)
      kerning = glyphData->mLetterSpacing;
    }
-   left = cursorX;
-   top = cursorY + glyph->verticalOffset;
+
    right = cursorX + (glyph->glyphWidth * mCharScaling) + texelOffsetX;
-   bottom = top + (glyph->glyphHeight * mCharScaling) + texelOffsetY;
+   bottom = cursorY + (glyph->glyphHeight * mCharScaling) + texelOffsetY;
 
    Character c;
    c.mIndex = i;
-   c.mPosition[TopLeft].x = left;
-   c.mPosition[TopLeft].y = top;
+   c.mPosition[TopLeft].x = cursorX;
+   c.mPosition[TopLeft].y = cursorY;
    c.mPosition[TopRight].x = right;
-   c.mPosition[TopRight].y = top;
-   c.mPosition[BottomLeft].x = left;
+   c.mPosition[TopRight].y = cursorY;
+   c.mPosition[BottomLeft].x = cursorX;
    c.mPosition[BottomLeft].y = bottom;
    c.mPosition[BottomRight].x = right;
    c.mPosition[BottomRight].y = bottom;
@@ -2756,14 +2678,10 @@ void  QuadList::border(Ogre::Real x, Ogre::Real y, Ogre::Real w, Ogre::Real h, O
      cursorX += glyphData->mMonoWidth;
    else
      cursorX += (glyph->glyphAdvance + kerning) * mCharScaling;
-   if( cursorX > mMaxTextWidth )
-       mMaxTextWidth = cursorX;
 
    lastChar = thisChar;
   }
 
-  mMaxTextWidth -= mLeft;
-  
   mTextDirty = false;
  }
 

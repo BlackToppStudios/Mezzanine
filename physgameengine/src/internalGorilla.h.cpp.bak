@@ -1,24 +1,19 @@
 /*
     Gorilla
     -------
-    
+
     Copyright (c) 2010 Robin Southern
 
-    Additional contributions by:
-
-    - Murat Sari
-    - Nigel Atkinson
-                                                                                  
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
     to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
-                                                                                  
+
     The above copyright notice and this permission notice shall be included in
     all copies or substantial portions of the Software.
-                                                                                  
+
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -371,14 +366,14 @@ namespace Gorilla
  {
 
   public:
-   
-   Glyph() : uvTop(0), uvBottom(0), uvWidth(0), uvHeight(0), uvLeft(0), uvRight(0), glyphWidth(0), glyphHeight(0), glyphAdvance(0), verticalOffset(0) {}
-   
+
+   Glyph() : uvTop(0), uvBottom(0), uvWidth(0), uvHeight(0), uvLeft(0), uvRight(0), glyphWidth(0), glyphHeight(0), glyphAdvance(0) {}
+
   ~Glyph() {}
 
    Ogre::Vector2    texCoords[4];
    Ogre::Real uvTop, uvBottom, uvWidth, uvHeight, uvLeft, uvRight,
-                       glyphWidth, glyphHeight, glyphAdvance, verticalOffset;
+                       glyphWidth, glyphHeight, glyphAdvance;
    buffer<Kerning> kerning;
 
    // Get kerning value of a character to the right of another.
@@ -747,7 +742,6 @@ namespace Gorilla
     void  _loadTexture(Ogre::ConfigFile::SettingsMultiMap*);
     void  _loadGlyphs(Ogre::ConfigFile::SettingsMultiMap*, GlyphData*);
     void  _loadKerning(Ogre::ConfigFile::SettingsMultiMap*, GlyphData*);
-	void  _loadVerticalOffsets(Ogre::ConfigFile::SettingsMultiMap*, GlyphData*);
     void  _loadSprites(Ogre::ConfigFile::SettingsMultiMap*,const Ogre::String& gorillaFile);
     void  _create2DMaterial();
     void  _create3DMaterial();
@@ -3233,7 +3227,6 @@ namespace Gorilla
     {
      mLeft = left;
      mDirty = true;
-     mTextDirty = true;
      mLayer->_markDirty();
     }
 
@@ -3254,7 +3247,6 @@ namespace Gorilla
     {
      mTop = top;
      mDirty = true;
-     mTextDirty = true;
      mLayer->_markDirty();
     }
 
@@ -3309,16 +3301,6 @@ namespace Gorilla
      mHeight = height;
      mDirty = true;
      mLayer->_markDirty();
-    }
-    
-    /*! function. maxTextWidth
-        desc.
-            Get the width of the text once drawn.
-    */
-    Ogre::Real maxTextWidth()
-    {
-     _calculateCharacters();
-     return mMaxTextWidth;
     }
 
     /*! function. caption
@@ -3474,7 +3456,6 @@ namespace Gorilla
     Layer*                mLayer;
     GlyphData*            mDefaultGlyphData;
     Ogre::Real            mLeft, mTop, mWidth, mHeight;
-    Ogre::Real            mMaxTextWidth;
     Ogre::String          mText;
     Ogre::ColourValue     mBackground;
     bool                  mDirty, mTextDirty;

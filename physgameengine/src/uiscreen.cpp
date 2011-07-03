@@ -60,6 +60,7 @@ namespace phys
             Manager = World::GetWorldPointer()->GetUIManager();
 
             GorillaScreen = Manager->GetSilverbackPointer()->createScreen(WindowViewport->GetOgreViewport());
+            KnownViewportSize = Vector2((Real)GameViewport->GetActualWidth(),(Real)GameViewport->GetActualHeight());
         }
 
         Screen::~Screen()
@@ -162,8 +163,7 @@ namespace phys
 
         Vector2 Screen::GetViewportDimensions()
         {
-            Vector2 viewport((Real)GameViewport->GetActualWidth(),(Real)GameViewport->GetActualHeight());
-            return viewport;
+            return KnownViewportSize;
         }
 
         Button* Screen::CheckButtonMouseIsOver()
@@ -208,11 +208,24 @@ namespace phys
             return PrimaryAtlas;
         }
 
-        void Screen::RenderOnce()
+        void Screen::CheckViewportSize()
+        {
+            Vector2 CurrentSize((Real)GameViewport->GetActualWidth(),(Real)GameViewport->GetActualHeight());
+            if(KnownViewportSize == CurrentSize)
+                return;
+
+            for( std::map<Whole,Layer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
+            {
+                (*it).second->ViewportUpdate(CurrentSize);
+            }
+            KnownViewportSize = CurrentSize;
+        }
+
+        /*void Screen::RenderOnce()
         {
             if(IsVisible() && Layers.size())
                 GorillaScreen->renderOnce();
-        }
+        }*/
 
         Gorilla::Screen* Screen::GetGorillaScreen()
         {

@@ -105,6 +105,7 @@ void MSStart::DoActivateItems()
     if(!Select)
         return;
     CatchApp::GetCatchAppPointer()->GetLevelLoader()->SetNextLevel(Select->GetName());
+    TheGrid->ClearSelected();
     World::GetWorldPointer()->BreakMainLoop();
 }
 

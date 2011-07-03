@@ -57,12 +57,36 @@ namespace phys
 {
     ActorBasePhysicsSettings::ActorBasePhysicsSettings(ActorBase* Actor, btCollisionObject* PhysicsObject)
         : Parent(Actor),
-          ActorCO(PhysicsObject)
+          ActorCO(PhysicsObject),
+          CollisionGroup(0),
+          CollisionMask(0)
     {
     }
 
     ActorBasePhysicsSettings::~ActorBasePhysicsSettings()
     {
+    }
+
+    void ActorBasePhysicsSettings::SetCollisionGroupAndMask(const Whole& Group, const Whole& Mask)
+    {
+        CollisionGroup = Group;
+        CollisionMask = Mask;
+        if(Parent->IsInWorld())
+        {
+            World* GameWorld = World::GetWorldPointer();
+            Parent->RemoveObjectFromWorld(GameWorld);
+            Parent->AddObjectToWorld(GameWorld);
+        }
+    }
+
+    Whole ActorBasePhysicsSettings::GetCollisionGroup() const
+    {
+        return CollisionGroup;
+    }
+
+    Whole ActorBasePhysicsSettings::GetCollisionMask() const
+    {
+        return CollisionMask;
     }
 
     void ActorBasePhysicsSettings::SetFriction(const Real& Friction)
@@ -86,7 +110,7 @@ namespace phys
         ActorCO->setCollisionFlags(btCollisionObject::CF_KINEMATIC_OBJECT);
     }
 
-    bool ActorBasePhysicsSettings::GetKinematic() const
+    bool ActorBasePhysicsSettings::IsKinematic() const
     {
         return ActorCO->isKinematicObject();
     }
@@ -96,7 +120,7 @@ namespace phys
         ActorCO->setCollisionFlags(btCollisionObject::CF_STATIC_OBJECT);
     }
 
-    bool ActorBasePhysicsSettings::GetStatic() const
+    bool ActorBasePhysicsSettings::IsStatic() const
     {
         return ActorCO->isStaticObject();
     }
@@ -115,9 +139,14 @@ namespace phys
             case ActorBase::Actorsoft:
             case ActorBase::Actorterrain:
             {
-                Parent->RemoveObjectFromWorld(GameWorld);
-                ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Parent->AddObjectToWorld(GameWorld);
+                if(Parent->IsInWorld())
+                {
+                    Parent->RemoveObjectFromWorld(GameWorld);
+                    ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                    Parent->AddObjectToWorld(GameWorld);
+                }else{
+                    ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                }
                 break;
             }
             case ActorBase::Actorcharacter:
@@ -139,9 +168,14 @@ namespace phys
             case ActorBase::Actorsoft:
             case ActorBase::Actorterrain:
             {
-                Parent->RemoveObjectFromWorld(GameWorld);
-                ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                Parent->AddObjectToWorld(GameWorld);
+                if(Parent->IsInWorld())
+                {
+                    Parent->RemoveObjectFromWorld(GameWorld);
+                    ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                    Parent->AddObjectToWorld(GameWorld);
+                }else{
+                    ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
+                }
                 break;
             }
             case ActorBase::Actorcharacter:
@@ -156,7 +190,7 @@ namespace phys
 
     bool ActorBasePhysicsSettings::GetCollisionResponse() const
     {
-        return ActorCO->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE;
+        return !(ActorCO->getCollisionFlags() & btCollisionObject::CF_NO_CONTACT_RESPONSE);
     }
 
     bool ActorBasePhysicsSettings::IsActive() const
@@ -191,6 +225,9 @@ namespace phys
           RigidParent(Actor),
           ActorRB(PhysicsObject)
     {
+        bool Dynamic = !IsStaticOrKinematic();
+        CollisionGroup = Dynamic ? phys::CF_GenericFilter : phys::CF_StaticFilter;
+        CollisionMask = Dynamic ? phys::CF_AllFilter : phys::CF_AllFilter ^ phys::CF_StaticFilter;
     }
 
     ActorRigidPhysicsSettings::~ActorRigidPhysicsSettings()
@@ -258,6 +295,8 @@ namespace phys
           SoftParent(Actor),
           ActorSB(PhysicsObject)
     {
+        CollisionGroup = phys::CF_GenericFilter;
+        CollisionMask = phys::CF_AllFilter;
     }
 
     ActorSoftPhysicsSettings::~ActorSoftPhysicsSettings()
@@ -323,9 +362,7 @@ std::ostream& operator << (std::ostream& stream, const phys::ActorRigidPhysicsSe
                 << "<TotalTorque>" << Ev.GetTorque() << "</TotalTorque>"
                 << "<TotalForce>" << Ev.GetForce() << "</TotalForce>";
 
-                //Ideally there would be some option that would be checked to determine if the object should be serialized completely or if we should load from a file on disk.
-                //btRigidBody* ActorRB;0
-                //ActorRigid* RigidParent;
+
 
         operator<<(stream, static_cast<const phys::ActorBasePhysicsSettings>(Ev));
 

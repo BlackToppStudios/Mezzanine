@@ -66,6 +66,7 @@
 #include "camera.h"                     // done, must review after Mar27 upgrades
 #include "cameracontroller.h"
 #include "cameramanager.h"
+#include "collisionshapegenerator.h"
 #include "colourvalue.h"                // done
 #include "constraint.h"
 #include "crossplatform.h"              // nothing to do
@@ -107,6 +108,7 @@
 #include "stringtool.h"
 #include "timer.h"
 #include "timermanager.h"
+#include "trigger.h"
 #include "uibutton.h"
 #include "uibuttonlistbox.h"
 #include "uicaption.h"
