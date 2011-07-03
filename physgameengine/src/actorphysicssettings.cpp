@@ -311,8 +311,8 @@ std::ostream& operator<< (std::ostream& stream, const phys::ActorBasePhysicsSett
     stream      << "<ActorBasePhysicsSettings Version=\"1\" "
                 << "Friction=\"" << Ev.GetFriction() << "\""
                 << "Restitution=\"" << Ev.GetRestitution() << "\""
-                << "Kinematic=\"" << Ev.GetKinematic() << "\""
-                << "Static=\"" << Ev.GetStatic() << "\""
+                << "Kinematic=\"" << Ev.IsKinematic() << "\""
+                << "Static=\"" << Ev.IsStatic() << "\""
                 << "CollisionResponse=\"" << Ev.GetCollisionResponse() << "\""
                 << "ActivationState=\"" << Ev.GetActivationState() << "\" />";
     return stream;
