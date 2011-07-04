@@ -73,9 +73,8 @@ namespace phys
         CollisionMask = Mask;
         if(Parent->IsInWorld())
         {
-            World* GameWorld = World::GetWorldPointer();
-            Parent->RemoveObjectFromWorld(GameWorld);
-            Parent->AddObjectToWorld(GameWorld);
+            Parent->RemoveObjectFromWorld(World::GetWorldPointer());
+            Parent->AddObjectToWorld(World::GetWorldPointer());
         }
     }
 
@@ -309,11 +308,13 @@ namespace phys
 std::ostream& operator<< (std::ostream& stream, const phys::ActorBasePhysicsSettings& Ev)
 {
     stream      << "<ActorBasePhysicsSettings Version=\"1\" "
-                << "Friction=\"" << Ev.GetFriction() << "\""
-                << "Restitution=\"" << Ev.GetRestitution() << "\""
-                << "Kinematic=\"" << Ev.IsKinematic() << "\""
-                << "Static=\"" << Ev.IsStatic() << "\""
-                << "CollisionResponse=\"" << Ev.GetCollisionResponse() << "\""
+                << "Friction=\"" << Ev.GetFriction() << "\" "
+                << "Restitution=\"" << Ev.GetRestitution() << "\" "
+                << "Kinematic=\"" << Ev.IsKinematic() << "\" "
+                << "Static=\"" << Ev.IsStatic() << "\" "
+                << "CollisionResponse=\"" << Ev.GetCollisionResponse() << "\" "
+                << "CollisionGroup=\"" << Ev.GetCollisionGroup() << "\" "
+                << "CollisionMask=\"" << Ev.GetCollisionMask() << "\" "
                 << "ActivationState=\"" << Ev.GetActivationState() << "\" />";
     return stream;
 }
@@ -341,6 +342,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhy
                 { Ev.SetKinematic(); }
             if (OneNode.GetAttribute("Static").AsBool())
                 { Ev.SetStatic(); }
+            Ev.SetCollisionGroupAndMask(OneNode.GetAttribute("CollisionGroup").AsWhole(),OneNode.GetAttribute("CollisionMask").AsWhole());
             Ev.SetActivationState((phys::ActorActivationState)OneNode.GetAttribute("ActivationState").AsInt());
 
         }else{
@@ -354,7 +356,7 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorBasePhy
 std::ostream& operator << (std::ostream& stream, const phys::ActorRigidPhysicsSettings& Ev)
 {
     stream      << "<ActorRigidPhysicsSettings Version=\"1\" "
-                << "AngularDamping=\"" << Ev.GetAngularDamping() << "\""
+                << "AngularDamping=\"" << Ev.GetAngularDamping() << "\" "
                 << "LinearDamping=\"" << Ev.GetLinearDamping() << "\">"
                 << "<AngularVelocity>" << Ev.GetAngularVelocity() << "</AngularVelocity>"
                 << "<LinearVelocity>" << Ev.GetLinearVelocity() << "</LinearVelocity>"
@@ -393,41 +395,59 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorRigidPh
             for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
             {
                 phys::String Name(Child.Name());
-                switch(Name[2])
+                switch(Name[5])
                 {
-                    case 't':   //ActorBasePhysicsSettings
+                    case 'B':   //ActorBasePhysicsSettings
                         if(Name==phys::String("ActorBasePhysicsSettings"))
                         {
-                            Child.GetFirstChild() >> *(Ev.GetBasePointer());
+                            Child >> *(Ev.GetBasePointer());
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element t-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element B-\"",Name,"\"")) );
                         }
                         break;
-                    case 'g':   //AngularVelocity
+                    case 'a':   //AngularVelocity
                         if(Name==phys::String("AngularVelocity"))
                         {
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetAngularVelocity(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element g-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element a-\"",Name,"\"")) );
                         }
                         break;
-                    case 'n':   //LinearVelocity
+                    case 'r':   //LinearVelocity
                         if(Name==phys::String("LinearVelocity"))
                         {
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetLinearVelocity(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element n-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element r-\"",Name,"\"")) );
                         }
                         break;
-                    case 'd':   //IndividualGravity
+                    case 'i':   //IndividualGravity
                         if(Name==phys::String("IndividualGravity"))
                         {
                             Child.GetFirstChild() >> TempVec;
                             Ev.SetIndividualGravity(TempVec);
                         }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element d-\"",Name,"\"")) );
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element i-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'T':   //TotalTorque
+                        if(Name==phys::String("TotalTorque"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.ApplyTorque(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element T-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'F':   //TotalForce
+                        if(Name==phys::String("TotalForce"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.ApplyForce(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorRigidPhysicsSettings: Includes unknown Element F-\"",Name,"\"")) );
                         }
                         break;
                     default:

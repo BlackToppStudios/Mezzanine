@@ -60,7 +60,7 @@ class ActorTests : public UnitTest
                 AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-empty)", Unknown);
                 AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-populated)", Unknown);
                 AddTestResult("Actor::operator>> (ActorRigidPhysicsSettings-empty)", Unknown);
-                AddTestResult("Actor::operator>> (ActorRigidPhysicsSettings-3colour)", Unknown);
+                AddTestResult("Actor::operator>> (ActorRigidPhysicsSettings-populated)", Unknown);
 
                 String groupname ("Group1");
                 String filerobot ("robot.mesh");
@@ -73,10 +73,8 @@ class ActorTests : public UnitTest
                 object1->SetAnimation("Idle", true);
                 object1->EnableAnimation(true);
 
-                std::stringstream SerializeTest1;
+                std::stringstream SerializeTest1, SerializeTestp1;
                 SerializeTest1 << *(object1->GetGraphicsSettings());
-
-                std::stringstream SerializeTestp1;
                 SerializeTestp1 << *(object1->GetPhysicsSettings());
 
                 object1->GetGraphicsSettings()->SetMaterialAmbient(phys::ColourValue(0.1,0.2,0.3,0.4));
@@ -84,9 +82,13 @@ class ActorTests : public UnitTest
                 object1->GetGraphicsSettings()->SetMaterialDiffuse(phys::ColourValue(0.3,0.4,0.5,0.6));
                 object1->GetPhysicsSettings()->SetDamping(0.9,0.01);
                 object1->GetPhysicsSettings()->SetIndividualGravity(phys::Vector3(0.9,9.8,0.0));
+                object1->GetPhysicsSettings()->SetFriction(0.01);
                 std::stringstream SerializeTest2, SerializeTestp2;
                 SerializeTest2 << *(object1->GetGraphicsSettings());
                 SerializeTestp2 << *(object1->GetPhysicsSettings());
+
+                cout << endl << endl << SerializeTestp1.str() << endl << endl << SerializeTestp2.str() << endl <<endl;
+
 
                 String Test1("<ActorGraphicsSettings Version=\"1\"></ActorGraphicsSettings>");
                 if ( Test1 == SerializeTest1.str())
@@ -104,7 +106,7 @@ class ActorTests : public UnitTest
                     AddTestResult("Actor::operator<< (ActorGraphicsSetting-3colour)", Failed, UnitTest::OverWrite);
                 }
 
-                String Testp1("");
+                String Testp1("<ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0\" LinearDamping=\"0\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></TotalForce><ActorBasePhysicsSettings Version=\"1\" Friction=\"0.5\" Restitution=\"0\" Kinematic=\"0\" Static=\"0\" CollisionResponse=\"1\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" /></ActorRigidPhysicsSettings>");
                 if ( Testp1 == SerializeTestp1.str())
                 {
                     AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-empty)", Success, UnitTest::OverWrite);
@@ -112,7 +114,7 @@ class ActorTests : public UnitTest
                     AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-empty)", Failed, UnitTest::OverWrite);
                 }
 
-                String Testp2("");
+                String Testp2("<ActorRigidPhysicsSettings Version=\"1\" AngularDamping=\"0.01\" LinearDamping=\"0.9\"><AngularVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></AngularVelocity><LinearVelocity><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></LinearVelocity><IndividualGravity><Vector3 Version=\"1\" X=\"0.9\" Y=\"9.8\" Z=\"0\"/></IndividualGravity><TotalTorque><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></TotalTorque><TotalForce><Vector3 Version=\"1\" X=\"0\" Y=\"0\" Z=\"0\"/></TotalForce><ActorBasePhysicsSettings Version=\"1\" Friction=\"0.01\" Restitution=\"0\" Kinematic=\"0\" Static=\"0\" CollisionResponse=\"1\" CollisionGroup=\"1\" CollisionMask=\"18446744073709551615\" ActivationState=\"1\" /></ActorRigidPhysicsSettings>");
                 if (Testp2 == SerializeTestp2.str())
                 {
                     AddTestResult("Actor::operator<< (ActorRigidPhysicsSettings-populated)", Success, UnitTest::OverWrite);
@@ -142,7 +144,30 @@ class ActorTests : public UnitTest
                     AddTestResult("Actor::operator>> (ActorGraphicsSetting-3colour)", Failed, UnitTest::OverWrite);
                 }
 
-                cout << endl << endl << *(object1->GetPhysicsSettings()) << endl << endl;
+                SerializeTestp1 >> *(object1->GetPhysicsSettings());
+                std::stringstream DeSerializeTestp1;
+                DeSerializeTestp1 << *(object1->GetPhysicsSettings());
+
+                SerializeTestp2 >> *(object1->GetPhysicsSettings());
+                std::stringstream DeSerializeTestp2;
+                DeSerializeTestp2 << *(object1->GetPhysicsSettings());
+
+                cout << endl << endl << DeSerializeTestp1.str() << endl << endl << DeSerializeTestp2.str() << endl <<endl;
+
+                if ( Testp1 == DeSerializeTestp1.str() )
+                {
+                    AddTestResult("Actor::operator>> (ActorRigidPhysicsSettings-empty)", Success, UnitTest::OverWrite);
+                }else{
+                    AddTestResult("Actor::operator>> (ActorRigidPhysicsSettings-empty)", Failed, UnitTest::OverWrite);
+                }
+
+                if ( Testp2 == DeSerializeTestp2.str() )
+                {
+                    AddTestResult("Actor::operator>> (ActorRigidPhysicsSettings-populated)", Success, UnitTest::OverWrite);
+                }else{
+                    AddTestResult("Actor::operator>> (ActorRigidPhysicsSettings-populated)", Failed, UnitTest::OverWrite);
+                }
+
                 StopEngine();
 
             }else{
