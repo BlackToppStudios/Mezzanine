@@ -510,9 +510,40 @@ namespace phys
             return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
+        void Window::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            WindowBack->UpdateDimensions();
+            for( std::vector<OffsetButtonInfo>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
+            {
+                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
+                (*it).Object->UpdateDimensions();
+            }
+            for( std::vector<OffsetRectangleInfo>::iterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
+            {
+                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
+                (*it).Object->UpdateDimensions();
+            }
+            for( std::vector<OffsetCaptionInfo>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
+            {
+                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
+                (*it).Object->UpdateDimensions();
+            }
+            for( std::vector<OffsetMarkupTextInfo>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
+            {
+                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
+                (*it).Object->UpdateDimensions();
+            }
+            for( std::vector<OffsetWidgetInfo>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
+            {
+                (*it).Offset = ((*it).Offset / OldViewportSize) * WinDim;
+                (*it).Object->UpdateDimensions(OldViewportSize);
+            }
+        }
+
         Button* Window::CreateButton(ConstString& Name, const Vector2& Position, const Vector2& Size)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             OffsetButtonInfo buttoninfo(new Button(Name, Position, Size, Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(buttoninfo);
             if(Manager->ButtonAutoRegisterEnabled())
@@ -527,8 +558,24 @@ namespace phys
 
         TextButton* Window::CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString& Text)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             TextButton* tbutton = new TextButton(Name, Position, Size, Glyph, Text, Parent);
+            OffsetButtonInfo tbuttoninfo(tbutton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Buttons.push_back(tbuttoninfo);
+            if(Manager->ButtonAutoRegisterEnabled())
+            {
+                std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
+                for( Whole X = 0 ; X < Codes->size() ; X++ )
+                    tbutton->BindActivationKeyOrButton(Codes->at(X));
+            }
+            tbutton->SetVisible(Visible);
+            return tbutton;
+        }
+
+        TextButton* Window::CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, ConstString& Text)
+        {
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            TextButton* tbutton = new TextButton(Name, Position, Size, LineHeight, Text, Parent);
             OffsetButtonInfo tbuttoninfo(tbutton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(tbuttoninfo);
             if(Manager->ButtonAutoRegisterEnabled())
@@ -598,7 +645,7 @@ namespace phys
 
         Rectangle* Window::CreateRectangle(const Vector2& Position, const Vector2& Size)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             OffsetRectangleInfo rectangle(new Rectangle(Position,Size,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Rectangles.push_back(rectangle);
             rectangle.Object->SetVisible(Visible);
@@ -636,8 +683,17 @@ namespace phys
 
         Caption* Window::CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             OffsetCaptionInfo caption(new Caption(Name,Position,Size,Glyph,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Captions.push_back(caption);
+            caption.Object->SetVisible(Visible);
+            return caption.Object;
+        }
+
+        Caption* Window::CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text)
+        {
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            OffsetCaptionInfo caption(new Caption(Name,Position,Size,LineHeight,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Captions.push_back(caption);
             caption.Object->SetVisible(Visible);
             return caption.Object;
@@ -700,8 +756,18 @@ namespace phys
 
         MarkupText* Window::CreateMarkupText(ConstString& Name, const Vector2& Position, const Whole& Glyph, const String& Text)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             MarkupText* markup = new MarkupText(Name,Position,Glyph,Text,Parent);
+            OffsetMarkupTextInfo markupinfo(markup,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            MarkupTexts.push_back(markupinfo);
+            markupinfo.Object->SetVisible(Visible);
+            return markupinfo.Object;
+        }
+
+        MarkupText* Window::CreateMarkupText(ConstString& Name, const Vector2& Position, const Real& LineHeight, const String& Text)
+        {
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            MarkupText* markup = new MarkupText(Name,Position,LineHeight,Text,Parent);
             OffsetMarkupTextInfo markupinfo(markup,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             MarkupTexts.push_back(markupinfo);
             markupinfo.Object->SetVisible(Visible);
@@ -820,7 +886,7 @@ namespace phys
 
         UI::Scrollbar* Window::CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Position,Size,Style,Parent);
             OffsetWidgetInfo ScrollInfo(Scroll,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(ScrollInfo);
@@ -828,9 +894,9 @@ namespace phys
             return Scroll;
         }
 
-        UI::CheckBox* Window::CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, String &LabelText)
+        UI::CheckBox* Window::CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String &LabelText)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             UI::CheckBox* Check = new UI::CheckBox(Name,Position,Size,Glyph,LabelText,Parent);
             OffsetWidgetInfo CheckInfo(Check,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(CheckInfo);
@@ -840,7 +906,7 @@ namespace phys
 
         UI::ButtonListBox* Window::CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
             OffsetWidgetInfo BLBInfo(BLB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(BLBInfo);
@@ -850,7 +916,7 @@ namespace phys
 
         UI::ListBox* Window::CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             UI::ListBox* LB = new UI::ListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
             OffsetWidgetInfo LBInfo(LB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(LBInfo);
@@ -860,7 +926,7 @@ namespace phys
 
         UI::Spinner* Window::CreateSpinner(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             UI::Spinner* Spn = new UI::Spinner(Name,Position,Size,SStyle,GlyphHeight,Parent);
             OffsetWidgetInfo SpnInfo(Spn,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(SpnInfo);
@@ -870,7 +936,7 @@ namespace phys
 
         UI::ScrolledCellGrid* Window::CreateScrolledCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& Thickness, const UI::ScrollbarStyle& Style)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             UI::ScrolledCellGrid* SCG = new UI::ScrolledCellGrid(Name,Position,Size,Thickness,Style,Parent);
             OffsetWidgetInfo SCGInfo(SCG,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(SCGInfo);
@@ -880,7 +946,7 @@ namespace phys
 
         UI::PagedCellGrid* Window::CreatePagedCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
-            Vector2 Offset = Position - RelPosition;
+            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
             UI::PagedCellGrid* PCG = new UI::PagedCellGrid(Name,Position,Size,SpnPosition,SpnSize,SStyle,GlyphHeight,Parent);
             OffsetWidgetInfo PCGInfo(PCG,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(PCGInfo);

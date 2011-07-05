@@ -68,6 +68,8 @@ namespace phys
                 virtual Whole FindLeftColumn(const Real& ScrollPos);
                 /// @brief Draws the grid, used for updating after any change.
                 virtual void DrawGrid();
+                /// @brief Draws the grid, used for updating after any change.
+                virtual void DrawGrid(const Vector2& WinDim);
                 /// @brief Determines whether or not the grid needs to be redrawn.
                 virtual bool GridNeedsRedraw();
             public:
@@ -112,6 +114,10 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
                 virtual void SetActualSize(const Vector2& Size);
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param OldViewportSize The old size of the viewport.
+                virtual void UpdateDimensions(const Vector2& OldViewportSize);
                 /// @brief Gets the horizontal scrollbar of this grid, if present.
                 /// @return Returns a pointer to the horizontal scrollbar of this Grid, or NULL if it's paged.
                 virtual UI::Scrollbar* GetHorizontalScroll();

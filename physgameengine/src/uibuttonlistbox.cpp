@@ -430,7 +430,7 @@ namespace phys
 
         Vector2 ButtonListBox::GetActualSize()
         {
-            return RelSize * Parent->GetParent()->GetViewportDimensions();;
+            return RelSize * Parent->GetParent()->GetViewportDimensions();
         }
 
         Button* ButtonListBox::GetSelected()

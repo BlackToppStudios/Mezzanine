@@ -83,7 +83,7 @@ namespace phys
                 {
                     if(Size.X > Size.Y * 2)
                     {
-                        Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+                        const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
                         Vector2 APos = Position * WinDim;
                         Vector2 ASize = Size * WinDim;
                         CalculateOffsets(ASize);
@@ -91,7 +91,7 @@ namespace phys
                     }
                     else if(Size.Y > Size.X * 2)
                     {
-                        Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+                        const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
                         Vector2 APos = Position * WinDim;
                         Vector2 ASize = Size * WinDim;
                         CalculateOffsets(ASize);
@@ -106,7 +106,7 @@ namespace phys
                 case UI::Spn_Together_Left:
                 case UI::Spn_Together_Right:
                 {
-                    Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+                    const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
                     Vector2 APos = Position * WinDim;
                     Vector2 ASize = Size * WinDim;
                     CalculateOffsets(ASize);
@@ -132,7 +132,7 @@ namespace phys
 
         void Spinner::CreateHorizontalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
         {
-            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
             Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
             std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,Parent->GetParent()->GetPrimaryAtlas());
             Vector2 IncPos = Position + IncrementOffset;
@@ -147,7 +147,7 @@ namespace phys
 
         void Spinner::CreateVerticalSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
         {
-            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
             Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
             std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,Parent->GetParent()->GetPrimaryAtlas());
             Vector2 IncPos = Position + IncrementOffset;
@@ -162,7 +162,7 @@ namespace phys
 
         void Spinner::CreateBoxSpinner(const Vector2& Position, const Vector2& Size, const Real& GlyphHeight)
         {
-            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
             Whole ActHeight = (Whole)(GlyphHeight * WinDim.Y);
             std::pair<Whole,Real> GlyphInfo = Manager->SuggestGlyphIndex(ActHeight,Parent->GetParent()->GetPrimaryAtlas());
             Vector2 IncPos = Position + IncrementOffset;

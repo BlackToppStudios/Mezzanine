@@ -161,7 +161,7 @@ namespace phys
             }
         }
 
-        Vector2 Screen::GetViewportDimensions()
+        const Vector2& Screen::GetViewportDimensions()
         {
             return KnownViewportSize;
         }
@@ -214,11 +214,12 @@ namespace phys
             if(KnownViewportSize == CurrentSize)
                 return;
 
+            Vector2 OldViewportSize = KnownViewportSize;
+            KnownViewportSize = CurrentSize;
             for( std::map<Whole,Layer*>::iterator it = Layers.begin() ; it != Layers.end() ; it++ )
             {
-                (*it).second->ViewportUpdate(CurrentSize);
+                (*it).second->ViewportUpdate(OldViewportSize);
             }
-            KnownViewportSize = CurrentSize;
         }
 
         /*void Screen::RenderOnce()

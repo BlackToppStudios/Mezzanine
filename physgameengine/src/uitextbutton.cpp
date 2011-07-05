@@ -53,11 +53,27 @@ namespace phys
         TextButton::TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer)
             : Button(name,Position,Size,PLayer)
         {
+            AutoScaleText = false;
+            RelLineHeight = 0.0;
             GorillaButton = Parent->GetGorillaLayer()->createCaption(Glyph,GorillaRectangle->left(),GorillaRectangle->top(),Text,*GorillaRectangle->GetNameFile());
             GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
             GorillaButton->background(Ogre::ColourValue(0,0,0,0));
             GorillaButton->align(Gorilla::TextAlign_Centre);
             GorillaButton->vertical_align(Gorilla::VerticalAlign_Middle);
+        }
+
+        TextButton::TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text, Layer* PLayer)
+            : Button(name,Position,Size,PLayer)
+        {
+            AutoScaleText = true;
+            RelLineHeight = LineHeight;
+            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(LineHeight * Parent->GetParent()->GetViewportDimensions().Y,*GorillaRectangle->GetNameFile());
+            GorillaButton = Parent->GetGorillaLayer()->createCaption(Result.first,GorillaRectangle->left(),GorillaRectangle->top(),Text,*GorillaRectangle->GetNameFile());
+            GorillaButton->size(GorillaRectangle->width(),GorillaRectangle->height());
+            GorillaButton->background(Ogre::ColourValue(0,0,0,0));
+            GorillaButton->align(Gorilla::TextAlign_Centre);
+            GorillaButton->vertical_align(Gorilla::VerticalAlign_Middle);
+            SetTextScale(Result.second);
         }
 
         TextButton::~TextButton()
@@ -103,6 +119,33 @@ namespace phys
             return GorillaButton->text();
         }
 
+        void TextButton::SetTextScale(const Real& Scale)
+        {
+            GorillaButton->SetCharScaling(Scale);
+        }
+
+        Real TextButton::GetTextScale()
+        {
+            return GorillaButton->GetCharScaling();
+        }
+
+        void TextButton::SetGlyphIndex(const Whole& GlyphIndex)
+        {
+            Glyphs = GlyphIndex;
+            GorillaButton->font(GlyphIndex,*GorillaButton->GetNameFile());
+        }
+
+        void TextButton::SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas)
+        {
+            Glyphs = GlyphIndex;
+            GorillaButton->font(GlyphIndex,Atlas);
+        }
+
+        Whole TextButton::GetGlyphIndex()
+        {
+            return Glyphs;
+        }
+
         void TextButton::HorizontallyAlign(const UI::TextHorizontalAlign& Align)
         {
             Gorilla::TextAlignment HA;
@@ -146,11 +189,11 @@ namespace phys
         void TextButton::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
-            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaButton->left(CurrDim.X * RelPosition.X);
-            GorillaButton->top(CurrDim.Y * RelPosition.Y);
-            GorillaRectangle->left(CurrDim.X * RelPosition.X);
-            GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GorillaButton->left(WinDim.X * RelPosition.X);
+            GorillaButton->top(WinDim.Y * RelPosition.Y);
+            GorillaRectangle->left(WinDim.X * RelPosition.X);
+            GorillaRectangle->top(WinDim.Y * RelPosition.Y);
         }
 
         Vector2 TextButton::GetPosition()
@@ -175,11 +218,11 @@ namespace phys
         void TextButton::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaButton->left(CurrDim.X * RelSize.X);
-            GorillaButton->top(CurrDim.Y * RelSize.Y);
-            GorillaRectangle->left(CurrDim.X * RelSize.X);
-            GorillaRectangle->top(CurrDim.Y * RelSize.Y);
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GorillaButton->left(WinDim.X * RelSize.X);
+            GorillaButton->top(WinDim.Y * RelSize.Y);
+            GorillaRectangle->left(WinDim.X * RelSize.X);
+            GorillaRectangle->top(WinDim.Y * RelSize.Y);
         }
 
         Vector2 TextButton::GetSize()
@@ -240,6 +283,27 @@ namespace phys
                     break;
             }
             return UI::RP_Medium;
+        }
+
+        void TextButton::SetAutoScaleText(bool Enable)
+        {
+            AutoScaleText = Enable;
+        }
+
+        bool TextButton::GetAutoScaleText()
+        {
+            return AutoScaleText;
+        }
+
+        void TextButton::UpdateDimensions()
+        {
+            Button::UpdateDimensions();
+            if(AutoScaleText)
+            {
+                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * Parent->GetParent()->GetViewportDimensions().Y,GetPrimaryAtlas());
+                SetGlyphIndex(Result.first);
+                SetTextScale(Result.second);
+            }
         }
     }
 }

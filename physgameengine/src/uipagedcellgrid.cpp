@@ -152,6 +152,12 @@ namespace phys
 
         void PagedCellGrid::DrawGrid()
         {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            DrawGrid(WinDim);
+        }
+
+        void PagedCellGrid::DrawGrid(const Vector2& WinDim)
+        {
             RegenerateGrid();
             for( Whole X = 0 ; X < VisibleCells.size() ; X++ )
                 VisibleCells[X]->Hide();
@@ -164,7 +170,6 @@ namespace phys
             const Whole StartRow = CurrentRow;
             const Whole StartColumn = CurrentColumn;
 
-            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
             Vector2 ActPos = GetActualPosition();
             Vector2 ActSize = GetActualSize();
             Vector2 ActEdge = EdgeSpacing * WinDim;
@@ -321,6 +326,16 @@ namespace phys
             if(CellGrid::CheckMouseHover())
                 return true;
             return false;
+        }
+
+        void PagedCellGrid::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            CellGrid::UpdateDimensions(OldViewportSize);
+            PageSpinner->UpdateDimensions(OldViewportSize);
+            GridDirty = true;
+            RegenerateGrid(WinDim);
+            DrawGrid(WinDim);
         }
 
         Spinner* PagedCellGrid::GetPageSpinner()

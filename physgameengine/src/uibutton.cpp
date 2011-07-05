@@ -69,8 +69,8 @@ namespace phys
         {
             Manager = World::GetWorldPointer()->GetUIManager();
 
-            Vector2 Window = Parent->GetParent()->GetViewportDimensions();
-            GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * WinDim).GetOgreVector2(),(Size * WinDim).GetOgreVector2());
             GorillaRectangle->SetNameFile(Parent->GetParent()->GetPrimaryAtlas());
         }
 
@@ -312,9 +312,9 @@ namespace phys
         void Button::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
-            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaRectangle->left(CurrDim.X * RelPosition.X);
-            GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GorillaRectangle->left(WinDim.X * RelPosition.X);
+            GorillaRectangle->top(WinDim.Y * RelPosition.Y);
         }
 
         Vector2 Button::GetPosition()
@@ -324,6 +324,7 @@ namespace phys
 
         void Button::SetActualPosition(const Vector2& Position)
         {
+            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             GorillaRectangle->left(Position.X);
             GorillaRectangle->top(Position.Y);
         }
@@ -337,9 +338,9 @@ namespace phys
         void Button::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaRectangle->width(CurrDim.X * RelSize.X);
-            GorillaRectangle->height(CurrDim.Y * RelSize.Y);
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GorillaRectangle->width(WinDim.X * RelSize.X);
+            GorillaRectangle->height(WinDim.Y * RelSize.Y);
         }
 
         Vector2 Button::GetSize()
@@ -349,6 +350,7 @@ namespace phys
 
         void Button::SetActualSize(const Vector2& Size)
         {
+            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             GorillaRectangle->width(Size.X);
             GorillaRectangle->height(Size.Y);
         }
@@ -417,6 +419,12 @@ namespace phys
         std::vector<MetaCode::InputCode>* Button::GetMouseActivationButtons()
         {
             return &MouseActivationButtons;
+        }
+
+        void Button::UpdateDimensions()
+        {
+            this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
+            this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
         }
 
         ButtonCallback::ButtonCallback(Button* CallerButton)

@@ -75,7 +75,10 @@ namespace phys
                 Whole Glyphs;
                 Vector2 RelPosition;
                 Vector2 RelSize;
+                bool AutoScaleText;
+                Real RelLineHeight;
                 String Name;
+                void ConstructMarkupText(const Vector2& Position, const Whole& Glyph, const String& Text);
             public:
                 /// @brief Internal constructor
                 /// @param name The name of this markup text.
@@ -84,6 +87,13 @@ namespace phys
                 /// @param Text Any text you want printed on the markup text.
                 /// @param Layer Pointer to the layer that created this markup text.
                 MarkupText(ConstString& name, const Vector2& Position, const Whole& Glyph, const String& Text, Layer* PLayer);
+                /// @brief Internal constructor
+                /// @param name The name of this markup text.
+                /// @param Position The top left position of the markup text.
+                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
+                /// @param Text Any text you want printed on the markup text.
+                /// @param Layer Pointer to the layer that created this markup text.
+                MarkupText(ConstString& name, const Vector2& Position, const Real& LineHeight, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~MarkupText();
                 /// @brief Sets the visibility of this markup text.
@@ -164,6 +174,15 @@ namespace phys
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set.
                 virtual String GetPrimaryAtlas();
+                /// @brief Enables or disables scaling the text automatically on a screen size change.
+                /// @param Enable Enables or disables automatic text scaling.
+                virtual void SetAutoScaleText(bool Enable);
+                /// @brief Gets whether or not text from this caption will automatically scale on a screen size change.
+                /// @return Returns a bool indicating whether or not this caption will automatically scale it's text.
+                virtual bool GetAutoScaleText();
+                /// @brief Updates the dimensions of this markup text to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions();
         };
     }//UI
 }//phys

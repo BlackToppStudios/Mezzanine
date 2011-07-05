@@ -42,6 +42,8 @@
 
 #include "uiwidget.h"
 #include "uibutton.h"
+#include "uilayer.h"
+#include "uiscreen.h"
 #include "world.h"
 
 namespace phys
@@ -138,6 +140,13 @@ namespace phys
         String& Widget::GetName()
         {
             return Name;
+        }
+
+        void Widget::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            this->SetActualPosition(RelPosition * WinDim);
+            this->SetActualSize(RelSize * WinDim);
         }
 
         Button* Widget::GetHoveredButton()

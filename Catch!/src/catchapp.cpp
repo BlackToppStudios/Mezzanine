@@ -61,8 +61,9 @@ void CatchApp::MakeGUI()
     MainMenuMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MMBrickBackground");
     MainMenuMenu->GetRootWindow()->SetAutoHide(false);
 
-    std::pair<Whole,Real> MainMenuText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
-    UI::TextButton* LevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", Vector2(0.05, 0.93), Vector2(0.22, 0.06), MainMenuText.first, "Level Select" );
+    Real MMTextLineHeight = 0.04;
+    //std::pair<Whole,Real> MainMenuText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
+    UI::TextButton* LevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", Vector2(0.05, 0.93), Vector2(0.22, 0.06), MMTextLineHeight, "Level Select" );
     LevelSelectAccess->SetBackgroundSprite("MMButton");
     LevelSelectAccess->SetHoveredSprite("MMHoveredButton");
     UI::MenuWindow* LevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelect", Vector2(0.05,0.02), Vector2(0.90,0.84), LevelSelectAccess);
@@ -74,22 +75,22 @@ void CatchApp::MakeGUI()
     LevelSelectGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("MMPageBox");
     PopulateLevelList(LevelSelectGrid);
     LevelSelectGrid->GenerateGrid();
-    UI::TextButton* LevelStart = LevelSelectWin->CreateTextButton("MS_LevelStart", Vector2(0.42,0.85), Vector2(0.16,0.07),18,"Start");
+    UI::TextButton* LevelStart = LevelSelectWin->CreateTextButton("MS_LevelStart", Vector2(0.42,0.85), Vector2(0.16,0.07),Whole(18),"Start");
     LevelStart->SetButtonCallback(new MSStart(LevelStart,LevelSelectGrid));
     LevelStart->SetBackgroundSprite("MMLevelStart");
     LevelStart->SetHoveredSprite("MMLevelStartHovered");
 
-    UI::TextButton* OptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", Vector2(0.28, 0.93), Vector2(0.22, 0.06), MainMenuText.first, "Options" );
+    UI::TextButton* OptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", Vector2(0.28, 0.93), Vector2(0.22, 0.06), MMTextLineHeight, "Options" );
     OptionsAccess->SetBackgroundSprite("MMButton");
     OptionsAccess->SetHoveredSprite("MMHoveredButton");
     UI::MenuWindow* OptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Options", Vector2(0.01,0.01), Vector2(0.01,0.01), OptionsAccess);
 
-    UI::TextButton* CreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", Vector2(0.51, 0.93), Vector2(0.22, 0.06), MainMenuText.first, "Credits" );
+    UI::TextButton* CreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", Vector2(0.51, 0.93), Vector2(0.22, 0.06), MMTextLineHeight, "Credits" );
     CreditsAccess->SetBackgroundSprite("MMButton");
     CreditsAccess->SetHoveredSprite("MMHoveredButton");
     UI::MenuWindow* CreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Credits", Vector2(0.01,0.01), Vector2(0.01,0.01), CreditsAccess);
 
-    UI::TextButton* AppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", Vector2(0.74, 0.93), Vector2(0.22, 0.06), MainMenuText.first, "Exit Game" );
+    UI::TextButton* AppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", Vector2(0.74, 0.93), Vector2(0.22, 0.06), MMTextLineHeight, "Exit Game" );
     AppExitAccess->SetBackgroundSprite("MMButton");
     AppExitAccess->SetHoveredSprite("MMHoveredButton");
     UI::MenuWindow* AppExitWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_AppExit", Vector2(0.25, 0.3), Vector2(0.5, 0.3), AppExitAccess);
@@ -116,7 +117,7 @@ void CatchApp::MakeGUI()
 
     //Build the Game Screen
     //Build the HUD layer
-    UI::Caption* Timer = HUD->CreateCaption( "GS_Timer", Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), 20, "0:00");
+    UI::Caption* Timer = HUD->CreateCaption( "GS_Timer", Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), Whole(20), "0:00");
     Timer->SetBackgroundSprite("TimerArea");
 
     UI::Rectangle* TIcon = HUD->CreateRectangle( Vector2(0.8515, 0.006), Vector2(0.0482, 0.06));
@@ -133,7 +134,7 @@ void CatchApp::MakeGUI()
     UI::Rectangle* StoreText = HUD->CreateRectangle( Vector2(0.767, 0.922), Vector2(0.14, 0.065));
     StoreText->SetBackgroundSprite("StoreText");
 
-    UI::Caption* ScoreAmount = HUD->CreateCaption( "GS_ScoreArea", Vector2(0.135, 0.006), Vector2(0.15, 0.065), 20, "0");
+    UI::Caption* ScoreAmount = HUD->CreateCaption( "GS_ScoreArea", Vector2(0.135, 0.006), Vector2(0.15, 0.065), Whole(20), "0");
     ScoreAmount->SetBackgroundColour(Transparent);
 
     UI::Rectangle* ScoreText = HUD->CreateRectangle( Vector2(0.008, 0.006), Vector2(0.12, 0.06));
@@ -179,19 +180,19 @@ void CatchApp::MakeGUI()
     //End of Menu Layer
 
     //Build the Stats Layer
-    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", Vector2(0.16, 0.06), Vector2(0.06, 0.065), 14, "0.0");
+    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", Vector2(0.16, 0.06), Vector2(0.06, 0.065), Whole(14), "0.0");
     CurFPS->SetBackgroundColour(Transparent);
     CurFPS->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", Vector2(0.008, 0.06), Vector2(0.15, 0.065), 14, "Current FPS: ");
+    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", Vector2(0.008, 0.06), Vector2(0.15, 0.065), Whole(14), "Current FPS: ");
     CurFPSText->SetBackgroundColour(Transparent);
     CurFPSText->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", Vector2(0.16, 0.105), Vector2(0.06, 0.065), 14, "0.0");
+    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", Vector2(0.16, 0.105), Vector2(0.06, 0.065), Whole(14), "0.0");
     AvFPS->SetBackgroundColour(Transparent);
     AvFPS->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), 14, "Average FPS: ");
+    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), Whole(14), "Average FPS: ");
     AvFPSText->SetBackgroundColour(Transparent);
     AvFPSText->HorizontallyAlign(UI::Txt_Left);
     //End of Stats Layer
@@ -200,9 +201,9 @@ void CatchApp::MakeGUI()
     UI::Window* LevelReport = Report->CreateWidgetWindow("LevelReport", Vector2(0.2, 0.2), Vector2(0.6, 0.6));
     LevelReport->GetWindowBack()->SetBackgroundColour(Gray);
     //TempCaption
-    UI::Caption* TempCapt = LevelReport->CreateCaption("GS_TempWarning", Vector2(0.25, 0.3), Vector2(0.5, 0.3), 18, "Future spot of level reports.");
+    UI::Caption* TempCapt = LevelReport->CreateCaption("GS_TempWarning", Vector2(0.25, 0.3), Vector2(0.5, 0.3), Whole(18), "Future spot of level reports.");
     TempCapt->SetBackgroundColour(Transparent);
-    UI::TextButton* FinishButton = LevelReport->CreateTextButton("GS_Finish", Vector2(0.42, 0.66), Vector2(0.16, 0.08), 14, "Finish");
+    UI::TextButton* FinishButton = LevelReport->CreateTextButton("GS_Finish", Vector2(0.42, 0.66), Vector2(0.16, 0.08), Whole(14), "Finish");
     FinishButton->SetButtonCallback(new GSMMReturn(FinishButton));
     FinishButton->SetBackgroundColour(TransBlack);
     Report->Hide();

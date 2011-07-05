@@ -147,7 +147,7 @@ namespace phys
             GorillaLayer->hide();
         }
 
-        Button* Layer::CreateButton(ConstString& Name, Vector2 Position, Vector2 Size)
+        Button* Layer::CreateButton(ConstString& Name, const Vector2& Position, const Vector2& Size)
         {
             Button* button = new Button(Name, Position, Size, this);
             Buttons.push_back(button);
@@ -160,9 +160,22 @@ namespace phys
             return button;
         }
 
-        TextButton* Layer::CreateTextButton(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString Text)
+        TextButton* Layer::CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString& Text)
         {
             TextButton* tbutton = new TextButton(Name, Position, Size, Glyph, Text, this);
+            Buttons.push_back(tbutton);
+            if(Manager->ButtonAutoRegisterEnabled())
+            {
+                std::vector<MetaCode::InputCode>* Codes = Manager->GetAutoRegisteredCodes();
+                for( Whole X = 0 ; X < Codes->size() ; X++ )
+                    tbutton->BindActivationKeyOrButton(Codes->at(X));
+            }
+            return tbutton;
+        }
+
+        TextButton* Layer::CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, ConstString& Text)
+        {
+            TextButton* tbutton = new TextButton(Name, Position, Size, LineHeight, Text, this);
             Buttons.push_back(tbutton);
             if(Manager->ButtonAutoRegisterEnabled())
             {
@@ -186,7 +199,7 @@ namespace phys
             return 0;
         }
 
-        Button* Layer::GetButton(Whole Index)
+        Button* Layer::GetButton(const Whole& Index)
         {
             return Buttons[Index];
         }
@@ -209,14 +222,14 @@ namespace phys
             }
         }
 
-        Rectangle* Layer::CreateRectangle(Vector2 Position, Vector2 Size)
+        Rectangle* Layer::CreateRectangle(const Vector2& Position, const Vector2& Size)
         {
             Rectangle* rectangle = new Rectangle(Position,Size, this);
             Rectangles.push_back(rectangle);
             return rectangle;
         }
 
-        Rectangle* Layer::GetRectangle(Whole Index)
+        Rectangle* Layer::GetRectangle(const Whole& Index)
         {
             return Rectangles[Index];
         }
@@ -239,9 +252,16 @@ namespace phys
             }
         }
 
-        Caption* Layer::CreateCaption(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text)
+        Caption* Layer::CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
         {
             Caption* caption = new Caption(Name,Position,Size,Glyph,Text,this);
+            Captions.push_back(caption);
+            return caption;
+        }
+
+        Caption* Layer::CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text)
+        {
+            Caption* caption = new Caption(Name,Position,Size,LineHeight,Text,this);
             Captions.push_back(caption);
             return caption;
         }
@@ -259,7 +279,7 @@ namespace phys
             return 0;
         }
 
-        Caption* Layer::GetCaption(Whole Index)
+        Caption* Layer::GetCaption(const Whole& Index)
         {
             return Captions[Index];
         }
@@ -282,9 +302,16 @@ namespace phys
             }
         }
 
-        MarkupText* Layer::CreateMarkupText(ConstString& Name, Vector2 Position, Whole Glyph, String Text)
+        MarkupText* Layer::CreateMarkupText(ConstString& Name, const Vector2& Position, const Whole& Glyph, const String& Text)
         {
             MarkupText* markup = new MarkupText(Name,Position,Glyph,Text,this);
+            MarkupTexts.push_back(markup);
+            return markup;
+        }
+
+        MarkupText* Layer::CreateMarkupText(ConstString& Name, const Vector2& Position, const Real& LineHeight, const String& Text)
+        {
+            MarkupText* markup = new MarkupText(Name,Position,LineHeight,Text,this);
             MarkupTexts.push_back(markup);
             return markup;
         }
@@ -302,7 +329,7 @@ namespace phys
             return 0;
         }
 
-        MarkupText* Layer::GetMarkupText(Whole Index)
+        MarkupText* Layer::GetMarkupText(const Whole& Index)
         {
             return MarkupTexts[Index];
         }
@@ -332,7 +359,7 @@ namespace phys
             return linelist;
         }
 
-        LineList* Layer::GetLineList(Whole Index)
+        LineList* Layer::GetLineList(const Whole& Index)
         {
             return LineLists[Index];
         }
@@ -396,28 +423,28 @@ namespace phys
             }
         }
 
-        Scrollbar* Layer::CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, UI::ScrollbarStyle Style)
+        Scrollbar* Layer::CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style)
         {
             Scrollbar* Scroll = new Scrollbar(Name,Position,Size,Style,this);
             Widgets.push_back(Scroll);
             return Scroll;
         }
 
-        CheckBox* Layer::CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Whole Glyph, String &LabelText)
+        CheckBox* Layer::CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String &LabelText)
         {
             CheckBox* Check = new CheckBox(Name,Position,Size,Glyph,LabelText,this);
             Widgets.push_back(Check);
             return Check;
         }
 
-        ButtonListBox* Layer::CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+        ButtonListBox* Layer::CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
             ButtonListBox* BLB = new ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,this);
             Widgets.push_back(BLB);
             return BLB;
         }
 
-        ListBox* Layer::CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollStyle)
+        ListBox* Layer::CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
             ListBox* LB = new ListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,this);
             Widgets.push_back(LB);
@@ -501,25 +528,31 @@ namespace phys
             return 0;
         }
 
-        void Layer::ViewportUpdate(const Vector2& NewViewportSize)
+        void Layer::ViewportUpdate(const Vector2& OldViewportSize)
         {
             for ( std::vector<Button*>::iterator it = Buttons.begin() ; it != Buttons.end() ; it++ )
             {
+                (*it)->UpdateDimensions();
             }
             for ( std::vector<Rectangle*>::iterator it = Rectangles.begin() ; it != Rectangles.end() ; it++ )
             {
+                (*it)->UpdateDimensions();
             }
             for ( std::vector<Caption*>::iterator it = Captions.begin() ; it != Captions.end() ; it++ )
             {
+                (*it)->UpdateDimensions();
             }
             for ( std::vector<MarkupText*>::iterator it = MarkupTexts.begin() ; it != MarkupTexts.end() ; it++ )
             {
+                (*it)->UpdateDimensions();
             }
-            for ( std::vector<LineList*>::iterator it = LineLists.begin() ; it != LineLists.end() ; it++ )
-            {
-            }
+            //for ( std::vector<LineList*>::iterator it = LineLists.begin() ; it != LineLists.end() ; it++ )
+            //{
+            //    (*it)->
+            //}
             for( std::vector<Widget*>::iterator it = Widgets.begin() ; it != Widgets.end() ; it++ )
             {
+                (*it)->UpdateDimensions(OldViewportSize);
             }
         }
 

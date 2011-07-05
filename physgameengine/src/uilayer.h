@@ -131,7 +131,7 @@ namespace phys
                 /// @param Name The name of the button.
                 /// @param Position The top left position of the button.
                 /// @param Size The size of the Button.
-                Button* CreateButton(ConstString& Name, Vector2 Position, Vector2 Size);
+                Button* CreateButton(ConstString& Name, const Vector2& Position, const Vector2& Size);
                 /// @brief Creates a text button within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created button.
@@ -140,13 +140,22 @@ namespace phys
                 /// @param Size The size of the Button.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
-                TextButton* CreateTextButton(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, ConstString Text);
+                TextButton* CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString& Text);
+                /// @brief Creates a text button within this layer.
+                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @return Returns a pointer to the created button.
+                /// @param Name The name of the button.
+                /// @param Position The top left position of the button.
+                /// @param Size The size of the Button.
+                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
+                /// @param Text Any text you want printed on the button.
+                TextButton* CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, ConstString& Text);
                 /// @brief Gets an already created button by name.
                 /// @return Returns a pointer to the button of the specified name.
                 Button* GetButton(ConstString& Name);
                 /// @brief Gets an already created button by index.
                 /// @return Returns a pointer to the button at the specified index.
-                Button* GetButton(Whole Index);
+                Button* GetButton(const Whole& Index);
                 /// @brief Gets the number of buttons created and stored in this class.
                 /// @return Returns the number of buttons this class is storing.
                 Whole GetNumButtons();
@@ -158,10 +167,10 @@ namespace phys
                 /// Rectangles are innately put behind all captions, so z-order is not necessary.
                 /// @param Position The top left position of the button.
                 /// @param Size The size of the Button.
-                Rectangle* CreateRectangle(Vector2 Position, Vector2 Size);
+                Rectangle* CreateRectangle(const Vector2& Position, const Vector2& Size);
                 /// @brief Gets an already created rectangle by index.
                 /// @return Returns a pointer to the rectangle at the specified index.
-                Rectangle* GetRectangle(Whole Index);
+                Rectangle* GetRectangle(const Whole& Index);
                 /// @brief Gets the number of rectangles created and stored in this class.
                 /// @return Returns the number of rectangles this class is storing.
                 Whole GetNumRectangles();
@@ -176,13 +185,22 @@ namespace phys
                 /// @param Size The size of the Button.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
-                Caption* CreateCaption(ConstString& Name, Vector2 Position, Vector2 Size, Whole Glyph, String Text);
+                Caption* CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text);
+                /// @brief Creates a caption within this layer.
+                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @return Returns a pointer to the created caption.
+                /// @param Name The name of this caption.
+                /// @param Position The top left position of the caption.
+                /// @param Size The size of the Button.
+                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
+                /// @param Text Any text you want printed on the caption.
+                Caption* CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text);
                 /// @brief Gets an already created caption by name.
                 /// @return Returns a pointer to the caption of the specified name.
                 Caption* GetCaption(ConstString& Name);
                 /// @brief Gets an already created caption by index.
                 /// @return Returns a pointer to the caption at the specified index.
-                Caption* GetCaption(Whole Index);
+                Caption* GetCaption(const Whole& Index);
                 /// @brief Gets the number of captions created and stored in this class.
                 /// @return Returns the number of captions this class is storing.
                 Whole GetNumCaptions();
@@ -196,13 +214,21 @@ namespace phys
                 /// @param Position The top left position of the markup text.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
-                MarkupText* CreateMarkupText(ConstString& Name, Vector2 Position, Whole Glyph, String Text);
+                MarkupText* CreateMarkupText(ConstString& Name, const Vector2& Position, const Whole& Glyph, const String& Text);
+                /// @brief Creates a markup text within this layer.
+                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @return Returns a pointer to the created markup text.
+                /// @param Name The name of this markup text.
+                /// @param Position The top left position of the markup text.
+                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
+                /// @param Text Any text you want printed on the markup text.
+                MarkupText* CreateMarkupText(ConstString& Name, const Vector2& Position, const Real& LineHeight, const String& Text);
                 /// @brief Gets an already created markup text by name.
                 /// @return Returns a pointer to the markup text of the specified name.
                 MarkupText* GetMarkupText(ConstString& Name);
                 /// @brief Gets an already created markup text by index.
                 /// @return Returns a pointer to the markup text at the specified index.
-                MarkupText* GetMarkupText(Whole Index);
+                MarkupText* GetMarkupText(const Whole& Index);
                 /// @brief Gets the number of markup texts created and stored in this class.
                 /// @return Returns the number of markup texts this class is storing.
                 Whole GetNumMarkupTexts();
@@ -213,7 +239,7 @@ namespace phys
                 LineList* CreateLineList();
                 /// @brief Gets an already created line list by index.
                 /// @return Returns a pointer to the line list at the specified index.
-                LineList* GetLineList(Whole Index);
+                LineList* GetLineList(const Whole& Index);
                 /// @brief Gets the number of line lists created and stored in this class.
                 /// @return Returns the number of line lists this class is storing.
                 Whole GetNumLineLists();
@@ -249,7 +275,7 @@ namespace phys
                 /// @param Position The top left position of the Scrollbar.
                 /// @param Size The size of the Scrollbar.
                 /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                Scrollbar* CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, UI::ScrollbarStyle Style);
+                Scrollbar* CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style);
                 /// @brief Creates a CheckBox within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created CheckBox.
@@ -260,7 +286,7 @@ namespace phys
                 /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
                 /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
                 /// create a label after construction.
-                CheckBox* CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Whole Glyph, String &LabelText);
+                CheckBox* CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String &LabelText);
                 /// @brief Creates a Button List Box within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Button List Box.
@@ -269,7 +295,7 @@ namespace phys
                 /// @param Size The size of the Button List Box.
                 /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
                 /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                ButtonListBox* CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
+                ButtonListBox* CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollbarStyle);
                 /// @brief Creates a List Box within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created List Box.
@@ -278,7 +304,7 @@ namespace phys
                 /// @param Size The size of the List Box.
                 /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
                 /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                ListBox* CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, Real ScrollbarWidth, UI::ScrollbarStyle ScrollbarStyle);
+                ListBox* CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollbarStyle);
                 /// @brief Creates a Window within this layer.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Window.
@@ -336,8 +362,8 @@ namespace phys
                 Widget* CheckWidgetMouseIsOver();
                 /// @brief Updates UI elements positions and sizes after a change in the viewport size.
                 /// @details This function is called automatically, and shouldn't need to be called manually.
-                /// @param NewViewportSize The updated size of the viewport this layer belongs to.
-                void ViewportUpdate(const Vector2& NewViewportSize);
+                /// @param OldViewportSize The updated size of the viewport this layer belongs to.
+                void ViewportUpdate(const Vector2& OldViewportSize);
                 ///////////////////////////////////////////////////////////////////////////////
                 // Internal Functions
                 ///////////////////////////////////////

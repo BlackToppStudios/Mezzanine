@@ -58,6 +58,9 @@ namespace phys
         {
             protected:
                 Gorilla::Caption* GorillaButton;
+                bool AutoScaleText;
+                Real RelLineHeight;
+                Whole Glyphs;
             public:
                 /// @brief Internal constructor
                 /// @param name The name of the button.
@@ -67,8 +70,16 @@ namespace phys
                 /// @param Text Any text you want printed on the button.
                 /// @param Layer Pointer to the Layer that created this button.
                 TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer);
+                /// @brief Internal constructor
+                /// @param name The name of the button.
+                /// @param Position The top left position of the button.
+                /// @param Size The size of the Button.
+                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
+                /// @param Text Any text you want printed on the button.
+                /// @param Layer Pointer to the Layer that created this button.
+                TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
-                ~TextButton();
+                virtual ~TextButton();
                 /// @brief Sets the visibility of this button.
                 /// @param Visible Bool determining whether or not this button should be visible.
                 virtual void SetVisible(bool Visible);
@@ -88,6 +99,25 @@ namespace phys
                 /// @brief Gets the text displayed within the button.
                 /// @return Returns the text being displayed.
                 virtual String GetText();
+                /// @brief Sets the scaling to be applied to the text being rendered.
+                /// @param Scale A Real value representing the scale to be applied.  <1.0 means smaller, >1.0 means larger.
+                virtual void SetTextScale(const Real& Scale);
+                /// @brief Gets the scaling currently being applied to the rendered text.
+                /// @return Returns a Real value representing the scale applied to the text in this button.  <1.0 means smaller, >1.0 means larger.
+                virtual Real GetTextScale();
+                /// @brief Sets the glyph index to be used with this button.
+                /// @details The glyph index is defined in your gorilla file.
+                /// @param GlyphIndex The index of the glyph to use with this button.
+                virtual void SetGlyphIndex(const Whole& GlyphIndex);
+                /// @brief Sets the glyph index to be used with this button from another atlas then the one currently set.
+                /// @details The glyph index is defined in your gorilla file.
+                /// @param GlyphIndex The index of the glyph to use with this button.
+                /// @param Atlas The Atlas to load the glyphs from
+                virtual void SetGlyphIndex(const Whole& GlyphIndex, const String& Atlas);
+                /// @brief Gets the glyph index in use by this button.
+                /// @details The glyph index is defined in your gorilla file.
+                /// @param Returns a Whole representing the index of the glyph in use by this button..
+                virtual Whole GetGlyphIndex();
                 /// @brief Aligns the text of the button.
                 /// @details Default value for this is UI::Txt_Middle.
                 /// @param Align The enum value representing the horizontal alignment to be set.
@@ -127,6 +157,15 @@ namespace phys
                 /// @brief Gets the priority this button should be rendered with.
                 /// @return Returns an enum value representing this button's priority level.
                 virtual UI::RenderPriority GetRenderPriority();
+                /// @brief Enables or disables scaling the text automatically on a screen size change.
+                /// @param Enable Enables or disables automatic text scaling.
+                virtual void SetAutoScaleText(bool Enable);
+                /// @brief Gets whether or not text from this caption will automatically scale on a screen size change.
+                /// @return Returns a bool indicating whether or not this caption will automatically scale it's text.
+                virtual bool GetAutoScaleText();
+                /// @brief Updates the dimensions of this caption to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions();
         };
     }//UI
 }//phys
