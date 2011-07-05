@@ -41,6 +41,9 @@
 #define _vector2_cpp
 
 #include "vector2.h"
+
+#include <memory>
+
 #include <Ogre.h>
 
 namespace phys

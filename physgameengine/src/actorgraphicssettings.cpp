@@ -46,6 +46,8 @@
 
 #include <map>
 
+#include <memory>
+
 #include <Ogre.h>
 
 namespace phys

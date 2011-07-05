@@ -162,7 +162,16 @@ namespace phys
             /// @brief Sets the activation state of the actor.
             /// @param State The activation state to set for the actor.  See the ActorActivationState enum for more info.
             /// @param Force Whether or not you want to force the state.  Some states may not apply based on the condition of the actor if this is set to false.
-            virtual void SetActivationState(phys::ActorActivationState State, bool Force = false);
+            virtual void SetActivationState(ActorActivationState State, bool Force = false);
+
+            /// @brief How activated or deactivated is the object.
+            /// @return A phys::ActorActivationState that describes whether the actor is part of the calculated simulation or not.
+            virtual ActorActivationState GetActivationState() const;
+
+            /// @internal
+            /// @brief Get a pointer to this class of type ActorBasePhysicsSettings
+            /// @return A pointer ActorBasePhysicsSettings
+            ActorBasePhysicsSettings* GetBasePointer();
 
     };//actorbasephysicssettings
 
@@ -191,11 +200,19 @@ namespace phys
             virtual ~ActorRigidPhysicsSettings();
 
             /// @brief Sets the Damping for this object.
-            /// @details Both of Linear Damping and Angular Damping default to zero.  This is usful if you wish to simulate
+            /// @details Both of Linear Damping and Angular Damping default to zero.  This is useful if you wish to simulate
             /// something like air resistance.  Values can range from 0.0 to 1.0.
-            /// @param LinDamping Real representing the amount of Linear Damping to be applied.
-            /// @param AngDamping Real representing the amount of Angular Damping to be applied.
+            /// @param LinDamping Real representing the amount of Linear Damping(Movement) to be applied.
+            /// @param AngDamping Real representing the amount of Angular Damping(Rotation) to be applied.
             virtual void SetDamping(const Real& LinDamping, const Real& AngDamping);
+
+            /// @brief Get the linear damping
+            /// @return A Real that has the Linear damping.
+            virtual Real GetLinearDamping() const;
+
+            /// @brief Get the Angular damping
+            /// @return A Real that has the Angular damping.
+            virtual Real GetAngularDamping() const;
 
             /// @brief Sets the Linear Velocity of this object.
             /// @param LinVel Vector3 representing the Linear Velocity to be set.
@@ -205,6 +222,7 @@ namespace phys
             /// @return Returns the currently set Linear Velocity of this object.
             virtual Vector3 GetLinearVelocity() const;
 
+
             /// @brief Sets the Angular Velocity of this object.
             /// @param AngVel Vector3 representing the Angular Velocity to be set.
             virtual void SetAngularVelocity(const Vector3& AngVel);
@@ -212,6 +230,7 @@ namespace phys
             /// @brief Gets the Angular Velocity of this object.
             /// @return Returns the currently set Angular Velocity of this object.
             virtual Vector3 GetAngularVelocity() const;
+
 
             /// @brief Sets the gravity for only this object.
             /// @details This value will override the world gravity.  Should be called after adding to the world.
@@ -223,6 +242,22 @@ namespace phys
             /// @details This is the gravity applied to this object, which may or may not be the same as the world gravity.
             /// @return Returns a Vector3 representing the gravity currently being applied to this object.
             virtual Vector3 GetIndividualGravity() const;
+
+            /// @brief Get the total Force/Movement on the actor
+            /// @return A Vector3 with the force of the entire Actor
+            virtual Vector3 GetForce() const;
+
+            /// @brief Get the Torque/Rotation
+            /// @return A Vector3 with the Torque
+            virtual Vector3 GetTorque() const;
+
+            /// @brief Push/Apply force to an object.
+            /// @param Force The amount and direction of the force in a Vector3
+            virtual void ApplyForce(const Vector3& Force);
+
+            /// @brief Spin/Apply Torque to an object.
+            /// @param Torque The amount and direction of the torque in a Vector3
+            virtual void ApplyTorque(const Vector3& Torque);
 
     };//actorrigidphysicssettings
 

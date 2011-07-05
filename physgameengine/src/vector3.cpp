@@ -44,6 +44,8 @@
 #include "btBulletDynamicsCommon.h"
 #include <cAudio.h>
 
+#include <memory>
+
 #include "vector3.h"
 #include "exception.h"
 #include "world.h"          // Needed for Error logging in streaming
