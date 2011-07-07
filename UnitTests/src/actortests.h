@@ -87,9 +87,6 @@ class ActorTests : public UnitTest
                 SerializeTest2 << *(object1->GetGraphicsSettings());
                 SerializeTestp2 << *(object1->GetPhysicsSettings());
 
-                cout << endl << endl << SerializeTestp1.str() << endl << endl << SerializeTestp2.str() << endl <<endl;
-
-
                 String Test1("<ActorGraphicsSettings Version=\"1\"></ActorGraphicsSettings>");
                 if ( Test1 == SerializeTest1.str())
                 {
@@ -151,8 +148,6 @@ class ActorTests : public UnitTest
                 SerializeTestp2 >> *(object1->GetPhysicsSettings());
                 std::stringstream DeSerializeTestp2;
                 DeSerializeTestp2 << *(object1->GetPhysicsSettings());
-
-                cout << endl << endl << DeSerializeTestp1.str() << endl << endl << DeSerializeTestp2.str() << endl <<endl;
 
                 if ( Testp1 == DeSerializeTestp1.str() )
                 {

@@ -353,6 +353,24 @@ namespace phys{
 std::ostream& operator << (std::ostream& stream, const phys::ActorBase& x)
 {
     // add logic here to identify actor
+    //Location
+    //orientation
+    //Shapeissaved
+    //graphicssettings
+    //physicssettings
+    //name
+    //Scaling
+
+    //createshapefrommesh
+
+    //soundset
+
+    //iss in world
+
+    //animation?
+
+
+    //Actor worldnode name
 
     stream << "[" << x.GetName() << " at:" << x.GetLocation() << "]";
     return stream;
