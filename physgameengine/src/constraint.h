@@ -83,11 +83,15 @@ namespace phys
             /// @brief Second rigid body the constraint applies to(if applicable).
             btRigidBody* BodyB;
             /// @brief First Actor the constraint applies to.
-            ActorRigid* ActorA;
+            ActorRigid* ActA;
             /// @brief Second Actor the constraint applies to.
-            ActorRigid* ActorB;
+            ActorRigid* ActB;
             /// @brief Bullet constraint that this class encapsulates.
             btTypedConstraint* ConstraintBase;
+            /// @brief Sets the Internal actor pointers.
+            void SetBodies(ActorRigid* Act1, ActorRigid* Act2);
+            /// @brief Sets the Internal actor pointers.
+            void SetBodies(ActorRigid* Act1);
         public:
             /// @brief No initialization constructor.
             /// @details The no initialization class constructor.
@@ -95,15 +99,6 @@ namespace phys
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~TypedConstraint();
-            /// @brief Two body constructor.
-            /// @details This constructor is used when the applicable constraint is applied to two bodies, as opposed to a point a world space.
-            /// @param bodya First actor to be applied to.
-            /// @param bodyb Second actor to be applied to.
-            TypedConstraint(ActorRigid* bodya, ActorRigid* bodyb);
-            /// @brief One body constructor.
-            /// @details This constructor is used when the applicable constraint is applied to a body and a point in world space.
-            /// @param bodya The actor to be constraint to a point in world space.
-            TypedConstraint(ActorRigid* bodya);
             /// @brief Gets the first actor this constraint applies to.
             /// @return Returns a pointer to the first actor this constraint applies to.
             virtual ActorRigid* GetActorA();
@@ -138,12 +133,8 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btConeTwistConstraint* ConeTwist;
         public:
-            ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 Vectorb, Quaternion QuaternionA, Quaternion QuaternionB);
-            ConeTwistConstraint(ActorRigid* ActorA, Vector3 VectorA, Quaternion QuaternionA);
-            /// @brief Internal constructor.
-            /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.
-            /// @param Constraint The constraint to be constructed around.
-            ConeTwistConstraint(btConeTwistConstraint* Constraint);
+            ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& Vectorb, const Quaternion& QuaternionA, const Quaternion& QuaternionB);
+            ConeTwistConstraint(ActorRigid* ActorA, const Vector3& VectorA, const Quaternion& QuaternionA);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~ConeTwistConstraint();
@@ -154,8 +145,8 @@ namespace phys
             virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
             virtual void SetMaxMotorImpulseNormalized(Real MaxMotorImpulse);
             virtual void SetFixThresh(Real FixThresh);
-            virtual void SetMotorTarget(Quaternion Quat);
-            virtual void SetMotorTargetInConstraintSpace(Quaternion Quat);
+            virtual void SetMotorTarget(const Quaternion& Quat);
+            virtual void SetMotorTargetInConstraintSpace(const Quaternion& Quat);
             virtual void EnableMotor(bool Enable);
             virtual bool IsPassedSwingLimit();
             /// @brief Provides override of constraint parameters.
@@ -186,29 +177,20 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btGeneric6DofConstraint* Generic6dof;
         public:
-            /// @brief No initialization constructor.
-            /// @details The no initialization class constructor.
+            /// @brief Inheritance Constructor.
+            /// @details This is only called by derived classes, and shouldn't be called manually.
             Generic6DofConstraint();
-            /// @brief Inheritance constructor.
-            /// @details This constructor exists for passing values down the inheritance tree from derived classes.  Should not be called on manually.
-            /// @param ActorA First actor to have the constraint applied to.
-            /// @param ActorB Second actor to have the constraint applied to.
-            Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB);
-            Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA);
-            Generic6DofConstraint(ActorRigid* ActorB, Vector3 Vectorb, Quaternion QuaternionB, bool UseLinearReferenceB);
-            /// @brief Internal constructor.
-            /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.
-            /// @param Constraint The constraint to be constructed around.
-            Generic6DofConstraint(btGeneric6DofConstraint* Constraint);
+            Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA);
+            Generic6DofConstraint(ActorRigid* ActorB, const Vector3& Vectorb, const Quaternion& QuaternionB, bool UseLinearReferenceB);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Generic6DofConstraint();
-            virtual void SetOffsetALocation(Vector3 Location);
-            virtual void SetOffsetBLocation(Vector3 Location);
-            virtual void SetLinearUpperLimit(Vector3 Limit);
-            virtual void SetLinearLowerLimit(Vector3 Limit);
-            virtual void SetAngularUpperLimit(Vector3 Limit);
-            virtual void SetAngularLowerLimit(Vector3 Limit);
+            virtual void SetOffsetALocation(const Vector3& Location);
+            virtual void SetOffsetBLocation(const Vector3& Location);
+            virtual void SetLinearUpperLimit(const Vector3& Limit);
+            virtual void SetLinearLowerLimit(const Vector3& Limit);
+            virtual void SetAngularUpperLimit(const Vector3& Limit);
+            virtual void SetAngularLowerLimit(const Vector3& Limit);
             virtual void SetUseFrameOffset(bool UseOffset);
             virtual void SetLimit(int Axis, Real Low, Real High);
             virtual void CalculateTransforms();
@@ -231,8 +213,14 @@ namespace phys
     ///////////////////////////////////////////////////////////////////////////////
     /// @class Generic6DofSpringConstraint
     /// @headerfile constraint.h
-    /// @brief
-    /// @details
+    /// @brief Creates a constraint as configurable as the 6Dof constraint, but has added support for spring motion.
+    /// @details When using functions of this class that require you to specify the index, the springs are arranged like so: @n
+    /// 0: Translation X @n
+    /// 1: Translation Y @n
+    /// 2: Translation Z @n
+    /// 3: Rotation X @n
+    /// 4: Rotation Y @n
+    /// 5: Rotation Z
     ///////////////////////////////////////
     class PHYS_LIB Generic6DofSpringConstraint : public Generic6DofConstraint
     {
@@ -240,17 +228,10 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btGeneric6DofSpringConstraint* Generic6dofSpring;
         public:
+            /// @brief Inheritance Constructor.
+            /// @details This is only called by derived classes, and shouldn't be called manually.
             Generic6DofSpringConstraint();
-            /// @brief Inheritance constructor.
-            /// @details This constructor exists for passing values down the inheritance tree from derived classes.  Should not be called on manually.
-            /// @param ActorA First actor to have the constraint applied to.
-            /// @param ActorB Second actor to have the constraint applied to.
-            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB);
-            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA);
-            /// @brief Internal constructor.
-            /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.
-            /// @param Constraint The constraint to be constructed around.
-            Generic6DofSpringConstraint(btGeneric6DofSpringConstraint* Constraint);
+            Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Generic6DofSpringConstraint();
@@ -272,7 +253,7 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btHingeConstraint* Hinge;
         public:
-            /// @brief
+            /// @brief Creates a Hinge constraint that will connect two actors together by their offsets.
             /// @param ActorA The first actor to apply this constraint to.
             /// @param ActorB The second actor to apply this constraint to.
             /// @param PivotA The location in ActorA's local space to apply the constraint to.
@@ -281,14 +262,14 @@ namespace phys
             /// @param AxisInB The axis(for ActorB) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
             /// This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, bool UseReferenceA=false);
+            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceA=false);
             /// @brief Creates a Hinge constraint that will attach an actor to a point in world space.
             /// @param ActorA The actor to apply this constraint to.
             /// @param PivotInA The point in the object's(ActorA) local space where the constraint is to be attached to world space.
             /// @param AxisInA The axis(for ActorA) on which the hinge is to act.  For example, a door hinge would be (0.0,1.0,0.0), aka the positive Y axis.
             /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
             /// This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA=false);
+            HingeConstraint(ActorRigid* ActorA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceA=false);
             /// @brief
             /// @param ActorA The first actor to apply this constraint to.
             /// @param ActorB The second actor to apply this constraint to.
@@ -298,16 +279,12 @@ namespace phys
             /// @param QuaternionB
             /// @param UseReferenceA By default, this constraint uses ActorB's local space as the reference for certain values, such as the rotational limits.
             /// This simply controls whether or not it should use ActorA's local space instead.
-            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA=false);
-            /// @brief Internal constructor.
-            /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.
-            /// @param Constraint The constraint to be constructed around.
-            HingeConstraint(btHingeConstraint* Constraint);
+            HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceA=false);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~HingeConstraint();
-            virtual void SetAPivotLocation(Vector3 Location);
-            virtual void SetBPivotLocation(Vector3 Location);
+            virtual void SetAPivotLocation(const Vector3& Location);
+            virtual void SetBPivotLocation(const Vector3& Location);
             virtual void SetAngularOnly(bool AngularOnly);
             /// @brief Enables(or Disables) the motor on the hinge and sets it's parameters.
             /// @param EnableMotor Sets whether or not the motor on this constraint is enabled.
@@ -320,9 +297,9 @@ namespace phys
             /// @brief Sets the maximum amount of force the motor is to apply.
             /// @param MaxMotorImpulse The maximum amount of force the motor is to apply to try and reach it's target velocity.
             virtual void SetMaxMotorImpulse(Real MaxMotorImpulse);
-            virtual void SetMotorTarget(Quaternion QuatAInB, Real Dt);
+            virtual void SetMotorTarget(const Quaternion& QuatAInB, Real Dt);
             virtual void SetMotorTarget(Real TargetAngle, Real Dt);
-            /// @brief Sets the maximum angle limits of the constraint in radians.
+            /// @brief Sets the angle limits of the constraint in radians.
             /// @param Low The minimum angle limit for the constraint in radians.
             /// @param High The maximum angle limit for the constraint in radians.
             /// @param Softness Not currently used internally.
@@ -331,7 +308,7 @@ namespace phys
             virtual void SetLimit(Real Low, Real High, Real Softness=0.9, Real BiasFactor=0.3, Real RelaxationFactor=1.0);
             /// @brief Sets the axis on which this constraint acts.
             /// @param AxisInA A vector3 representing the axis to be used with this constraint.
-            virtual void SetAxis(Vector3 AxisInA);
+            virtual void SetAxis(const Vector3& AxisInA);
             virtual void SetUseFrameOffset(bool FrameOffset);
             /// @brief Provides override of constraint parameters.
             /// @details Parameters such as ERP(Error Reduction Parameter) and CFM(Constraint Force Mixing) can be altered with this function.  Optionally provide axis. @n
@@ -361,11 +338,7 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btHinge2Constraint* Hinge2;
         public:
-            Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2);
-            /// @brief Internal constructor.
-            /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.
-            /// @param Constraint The constraint to be constructed around.
-            Hinge2Constraint(btHinge2Constraint* Constraint);
+            Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Hinge2Constraint();
@@ -390,20 +363,16 @@ namespace phys
             /// @param ActorB The second actor to apply this constraint to.
             /// @param PivotA The location in ActorA's local space to apply the constraint to.
             /// @param PivotB The location in ActorB's local space to apply the constraint to.
-            Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotA, Vector3 PivotB);
+            Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotA, const Vector3& PivotB);
             /// @brief Single body constructor.  Binds the body to world space.
             /// @param ActorA The actor to apply this constraint to.
             /// @param PivotA
-            Point2PointConstraint(ActorRigid* ActorA, Vector3 PivotA);
-            /// @brief Internal constructor.
-            /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.
-            /// @param Constraint The constraint to be constructed around.
-            Point2PointConstraint(btPoint2PointConstraint* Constraint);
+            Point2PointConstraint(ActorRigid* ActorA, const Vector3& PivotA);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~Point2PointConstraint();
-            virtual void SetPivotA(Vector3 PivotA);
-            virtual void SetPivotB(Vector3 PivotB);
+            virtual void SetPivotA(const Vector3& PivotA);
+            virtual void SetPivotB(const Vector3& PivotB);
             virtual Vector3 GetPivotInA();
             virtual Vector3 GetPivotInB();
             virtual void SetImpulseClamping(Real Clamping);
@@ -436,17 +405,13 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btSliderConstraint* Slider;
         public:
-            SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA);
-            SliderConstraint(ActorRigid* ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA);
-            /// @brief Internal constructor.
-            /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.
-            /// @param Constraint The constraint to be constructed around.
-            SliderConstraint(btSliderConstraint* Constraint);
+            SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA);
+            SliderConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~SliderConstraint();
-            virtual void SetFrameOffsetALocation(Vector3 Location);
-            virtual void SetFrameOffsetBLocation(Vector3 Location);
+            virtual void SetFrameOffsetALocation(const Vector3& Location);
+            virtual void SetFrameOffsetBLocation(const Vector3& Location);
             virtual void SetUpperLinLimit(Real UpperLimit);
             virtual void SetUpperAngLimit(Real UpperLimit);
             virtual void SetLowerLinLimit(Real LowerLimit);
@@ -504,11 +469,7 @@ namespace phys
             /// @brief Bullet constraint that this class encapsulates.
             btUniversalConstraint* Universal;
         public:
-            UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2);
-            /// @brief Internal constructor.
-            /// @details Constructs this class around a pre-built bullet constraint.  This is an internal only constructor and shouldn't be called manually.
-            /// @param Constraint The constraint to be constructed around.
-            UniversalConstraint(btUniversalConstraint* Constraint);
+            UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2);
             /// @brief Class destructor.
             /// @details The class destructor.
             virtual ~UniversalConstraint();

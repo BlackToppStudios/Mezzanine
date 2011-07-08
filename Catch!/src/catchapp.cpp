@@ -99,6 +99,7 @@ void CatchApp::MakeGUI()
     UI::Caption* AppExitWarn = AppExitWin->CreateCaption("MS_AppExitWarn", Vector2(0.32, 0.35), Vector2(0.36, 0.07), AppExitText.first, "Are you sure you want to exit?");
     AppExitWarn->SetBackgroundSprite("MMAppExitText");
     UI::TextButton* AppExitConf = AppExitWin->CreateTextButton("MS_AppExitConf", Vector2(0.30, 0.47), Vector2(0.18, 0.06), AppExitText.first, "Yes");
+    AppExitConf->SetButtonCallback(new AllAppExit(AppExitConf));
     AppExitConf->SetBackgroundSprite("MMAppExitButton");
     AppExitConf->SetHoveredSprite("MMAppExitHoveredButton");
     UI::TextButton* AppExitDeny = AppExitWin->CreateBackButton(/*"MS_AppExitDeny", */Vector2(0.52, 0.47), Vector2(0.18, 0.06), AppExitText.first, "No");
@@ -159,6 +160,7 @@ void CatchApp::MakeGUI()
     ReturnButton->SetButtonCallback(new GSReturn(ReturnButton));
     ReturnButton->SetBackgroundSprite("ReturnButton");
     UI::Button* GameExitButton = GameMenu->GetRootWindow()->CreateButton( "GS_GameExit", Vector2(0.37, 0.64), Vector2(0.26, 0.05));
+    GameExitButton->SetButtonCallback(new GSMMReturn(GameExitButton));
     GameExitButton->SetBackgroundSprite("ExitButton");
 
     UI::Button* VideoAccess = GameMenu->GetRootWindow()->CreateAccessorButton("GS_VideoSettingsButton", Vector2(0.37, 0.32), Vector2(0.26, 0.05));
@@ -243,7 +245,7 @@ void CatchApp::ConfigResources()
 void CatchApp::PopulateScoreValues()
 {
     ItemScoreValues["Gold"] = 100;
-    ItemScoreValues["Iron"] = 50;
+    ItemScoreValues["Pyrite"] = 50;
     ItemScoreValues["Clay"] = 10;
     ItemScoreValues["Uranium"] = 100;
     ItemScoreValues["Rubber"] = 30;
@@ -431,6 +433,7 @@ void CatchApp::UnloadLevel()
     TimeMan->DestroyTimer(EndTimer);
     EndTimer = NULL;
     UIMan->GetLayer("ReportLayer")->Hide();
+    UIMan->GetLayer("MenuLayer")->Hide();
     PhysMan->PauseSimulation(false);
 }
 
@@ -564,25 +567,8 @@ bool CatchApp::PostUI()
 
     if( InputQueryer->IsMouseButtonPushed(1) )
     {
-        if(TheWorld->GetUIManager()->MouseIsInUISystem())
+        if(!TheWorld->GetUIManager()->MouseIsInUISystem())
         {
-            UIManager* UIMan = TheWorld->GetUIManager();
-            UI::Button* MouseButton = UIMan->GetHoveredButton();
-            if(!MouseButton && UIMan->GetHoveredWidget())
-                MouseButton = UIMan->GetHoveredWidget()->GetHoveredButton();
-            if(MouseButton)
-            {
-                MetaCode::ButtonState State = InputQueryer->GetMouseButtonState(1);
-                if("GS_GameExit" == MouseButton->GetName())
-                {
-                    return false;
-                }
-                else if("MS_AppExitConf" == MouseButton->GetName())
-                {
-                    return false;
-                }
-            }
-        }else{
             #ifdef PHYSDEBUG
             TheWorld->Log("Gamebase CLICK:");
             TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetLocation() << endl;

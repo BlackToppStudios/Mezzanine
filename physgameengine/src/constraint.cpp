@@ -51,134 +51,131 @@ namespace phys
     /////////////////////////////////////////
     // TypedConstraint Functions
 
-    TypedConstraint::TypedConstraint ()
+    TypedConstraint::TypedConstraint()
+        : ConstraintBase(NULL)
     {
     }
 
-    TypedConstraint::TypedConstraint (ActorRigid* bodya, ActorRigid* bodyb)
+    TypedConstraint::~TypedConstraint()
     {
-        ActorA=bodya;
-        ActorB=bodyb;
-        BodyA=bodya->physrigidbody;
-        BodyB=bodyb->physrigidbody;
-        ConstraintBase=NULL;
     }
 
-    TypedConstraint::TypedConstraint (ActorRigid* bodya)
+    void TypedConstraint::SetBodies(ActorRigid* Act1, ActorRigid* Act2)
     {
-        ActorA=bodya;
-        ActorB=NULL;
-        BodyA=bodya->physrigidbody;
-        BodyB=NULL;
-        ConstraintBase=NULL;
+        ActA = Act1;
+        ActB = Act2;
+        BodyA = Act1->physrigidbody;
+        BodyB = Act2->physrigidbody;
     }
 
-    TypedConstraint::~TypedConstraint ()
+    void TypedConstraint::SetBodies(ActorRigid* Act1)
     {
+        ActA = Act1;
+        ActB = NULL;
+        BodyA = Act1->physrigidbody;
+        BodyB = NULL;
     }
 
     ActorRigid* TypedConstraint::GetActorA()
     {
-        return ActorA;
+        return ActA;
     }
 
     ActorRigid* TypedConstraint::GetActorB()
     {
-        return ActorB;
+        return ActB;
     }
 
     /////////////////////////////////////////
     // ConeTwist Constraint Functions
 
-    ConeTwistConstraint::ConeTwistConstraint (ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA,
-                                              Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB) : TypedConstraint (ActorA, ActorB)
+    ConeTwistConstraint::ConeTwistConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA,
+                                              const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB)
     {
+        SetBodies(ActorA,ActorB);
+
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         ConeTwist = new btConeTwistConstraint (*BodyA, *BodyB, transa, transb);
         ConstraintBase = ConeTwist;
     }
 
-    ConeTwistConstraint::ConeTwistConstraint (ActorRigid* ActorA, Vector3 VectorA, Quaternion QuaternionA) : TypedConstraint (ActorA)
+    ConeTwistConstraint::ConeTwistConstraint(ActorRigid* ActorA, const Vector3& VectorA, const Quaternion& QuaternionA)
     {
+        SetBodies(ActorA);
+
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         ConeTwist = new btConeTwistConstraint (*BodyA, transa);
         ConstraintBase = ConeTwist;
     }
 
-    ConeTwistConstraint::ConeTwistConstraint (btConeTwistConstraint* Constraint)
-    {
-        ConeTwist = Constraint;
-        ConstraintBase = Constraint;
-    }
-
-    ConeTwistConstraint::~ConeTwistConstraint ()
+    ConeTwistConstraint::~ConeTwistConstraint()
     {
         delete ConeTwist;
     }
 
-    void ConeTwistConstraint::SetAngularOnly (bool AngularOnly)
+    void ConeTwistConstraint::SetAngularOnly(bool AngularOnly)
     {
         this->ConeTwist->setAngularOnly(AngularOnly);
     }
 
-    void ConeTwistConstraint::SetLimit (int LimitIndex, Real LimitValue)
+    void ConeTwistConstraint::SetLimit(int LimitIndex, Real LimitValue)
     {
         this->ConeTwist->setLimit(LimitIndex, LimitValue);
     }
 
-    void ConeTwistConstraint::SetLimit (Real SwingSpan1, Real SwingSpan2, Real Twistspan,
-                                        Real Softness, Real BiasFactor, Real RelaxationFactor)
+    void ConeTwistConstraint::SetLimit(Real SwingSpan1, Real SwingSpan2, Real Twistspan,
+                                       Real Softness, Real BiasFactor, Real RelaxationFactor)
     {
         this->ConeTwist->setLimit(SwingSpan1, SwingSpan2, Twistspan, Softness, BiasFactor, RelaxationFactor);
     }
 
-    void ConeTwistConstraint::SetDamping (Real Damping)
+    void ConeTwistConstraint::SetDamping(Real Damping)
     {
         this->ConeTwist->setDamping(Damping);
     }
 
-    void ConeTwistConstraint::SetMaxMotorImpulse (Real MaxMotorImpulse)
+    void ConeTwistConstraint::SetMaxMotorImpulse(Real MaxMotorImpulse)
     {
         this->ConeTwist->setMaxMotorImpulse(MaxMotorImpulse);
     }
 
-    void ConeTwistConstraint::SetMaxMotorImpulseNormalized (Real MaxMotorImpulse)
+    void ConeTwistConstraint::SetMaxMotorImpulseNormalized(Real MaxMotorImpulse)
     {
         this->ConeTwist->setMaxMotorImpulseNormalized(MaxMotorImpulse);
     }
 
-    void ConeTwistConstraint::SetFixThresh (Real FixThresh)
+    void ConeTwistConstraint::SetFixThresh(Real FixThresh)
     {
         this->ConeTwist->setFixThresh(FixThresh);
     }
 
-    void ConeTwistConstraint::SetMotorTarget (Quaternion Quat)
+    void ConeTwistConstraint::SetMotorTarget(const Quaternion& Quat)
     {
         this->ConeTwist->setMotorTarget(Quat.GetBulletQuaternion());
     }
 
-    void ConeTwistConstraint::SetMotorTargetInConstraintSpace (Quaternion Quat)
+    void ConeTwistConstraint::SetMotorTargetInConstraintSpace(const Quaternion& Quat)
     {
         this->ConeTwist->setMotorTargetInConstraintSpace(Quat.GetBulletQuaternion());
     }
 
-    void ConeTwistConstraint::EnableMotor (bool Enable)
+    void ConeTwistConstraint::EnableMotor(bool Enable)
     {
         this->ConeTwist->enableMotor(Enable);
     }
 
-    bool ConeTwistConstraint::IsPassedSwingLimit ()
+    bool ConeTwistConstraint::IsPassedSwingLimit()
     {
         return this->ConeTwist->isPastSwingLimit();
     }
 
-    void ConeTwistConstraint::SetParam (int num, Real value, int axis)
+    void ConeTwistConstraint::SetParam(int num, Real value, int axis)
     {
         this->ConeTwist->setParam(num, value, axis);
     }
 
-    Real ConeTwistConstraint::GetParam (int num, int axis)
+    Real ConeTwistConstraint::GetParam(int num, int axis)
     {
         return this->ConeTwist->getParam(num, axis);
     }
@@ -186,93 +183,87 @@ namespace phys
     /////////////////////////////////////////
     // Generic6Dof Constraint Functions
 
-    Generic6DofConstraint::Generic6DofConstraint ()
+    Generic6DofConstraint::Generic6DofConstraint()
     {
     }
 
-    Generic6DofConstraint::Generic6DofConstraint (ActorRigid* ActorA, ActorRigid* ActorB) : TypedConstraint (ActorA, ActorB)
+    Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA,
+                                                  const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
     {
-    }
+        SetBodies(ActorA,ActorB);
 
-    Generic6DofConstraint::Generic6DofConstraint (ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA,
-                                                  Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) : TypedConstraint (ActorA, ActorB)
-    {
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Generic6dof = new btGeneric6DofConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
         ConstraintBase = Generic6dof;
     }
 
-    Generic6DofConstraint::Generic6DofConstraint (ActorRigid* ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceB) : TypedConstraint (ActorB)
+    Generic6DofConstraint::Generic6DofConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceB)
     {
+        SetBodies(ActorB);
+
         btTransform transa(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Generic6dof = new btGeneric6DofConstraint(*BodyA, transa, UseLinearReferenceB);
         ConstraintBase = Generic6dof;
     }
 
-    Generic6DofConstraint::Generic6DofConstraint (btGeneric6DofConstraint* Constraint)
-    {
-        Generic6dof = Constraint;
-        ConstraintBase = Constraint;
-    }
-
-    Generic6DofConstraint::~Generic6DofConstraint ()
+    Generic6DofConstraint::~Generic6DofConstraint()
     {
         if(Generic6dof)
             delete Generic6dof;
     }
 
-    void Generic6DofConstraint::SetOffsetALocation (Vector3 Location)
+    void Generic6DofConstraint::SetOffsetALocation(const Vector3& Location)
     {
         this->Generic6dof->getFrameOffsetA().setOrigin(Location.GetBulletVector3());
     }
 
-    void Generic6DofConstraint::SetOffsetBLocation (Vector3 Location)
+    void Generic6DofConstraint::SetOffsetBLocation(const Vector3& Location)
     {
         this->Generic6dof->getFrameOffsetB().setOrigin(Location.GetBulletVector3());
     }
 
-    void Generic6DofConstraint::SetLinearUpperLimit (Vector3 Limit)
+    void Generic6DofConstraint::SetLinearUpperLimit(const Vector3& Limit)
     {
         this->Generic6dof->setLinearUpperLimit(Limit.GetBulletVector3());
     }
 
-    void Generic6DofConstraint::SetLinearLowerLimit (Vector3 Limit)
+    void Generic6DofConstraint::SetLinearLowerLimit(const Vector3& Limit)
     {
         this->Generic6dof->setLinearLowerLimit(Limit.GetBulletVector3());
     }
 
-    void Generic6DofConstraint::SetAngularUpperLimit (Vector3 Limit)
+    void Generic6DofConstraint::SetAngularUpperLimit(const Vector3& Limit)
     {
         this->Generic6dof->setAngularUpperLimit(Limit.GetBulletVector3());
     }
 
-    void Generic6DofConstraint::SetAngularLowerLimit (Vector3 Limit)
+    void Generic6DofConstraint::SetAngularLowerLimit(const Vector3& Limit)
     {
         this->Generic6dof->setAngularLowerLimit(Limit.GetBulletVector3());
     }
 
-    void Generic6DofConstraint::SetUseFrameOffset (bool UseOffset)
+    void Generic6DofConstraint::SetUseFrameOffset(bool UseOffset)
     {
         this->Generic6dof->setUseFrameOffset(UseOffset);
     }
 
-    void Generic6DofConstraint::SetLimit (int Axis, Real Low, Real High)
+    void Generic6DofConstraint::SetLimit(int Axis, Real Low, Real High)
     {
         this->Generic6dof->setLimit(Axis, Low, High);
     }
 
-    void Generic6DofConstraint::CalculateTransforms ()
+    void Generic6DofConstraint::CalculateTransforms()
     {
         this->Generic6dof->calculateTransforms();
     }
 
-    void Generic6DofConstraint::SetParam (int num, Real value, int axis)
+    void Generic6DofConstraint::SetParam(int num, Real value, int axis)
     {
         this->Generic6dof->setParam(num, value, axis);
     }
 
-    Real Generic6DofConstraint::GetParam (int num, int axis)
+    Real Generic6DofConstraint::GetParam(int num, int axis)
     {
         return this->Generic6dof->getParam (num, axis);
     }
@@ -280,17 +271,15 @@ namespace phys
     /////////////////////////////////////////
     // Generic6Dof Spring Constraint Functions
 
-    Generic6DofSpringConstraint::Generic6DofSpringConstraint ()
+    Generic6DofSpringConstraint::Generic6DofSpringConstraint()
     {
     }
 
-    Generic6DofSpringConstraint::Generic6DofSpringConstraint (ActorRigid* ActorA, ActorRigid* ActorB) : Generic6DofConstraint (ActorA, ActorB)
+    Generic6DofSpringConstraint::Generic6DofSpringConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA,
+                                                              const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
     {
-    }
+        SetBodies(ActorA,ActorB);
 
-    Generic6DofSpringConstraint::Generic6DofSpringConstraint (ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA,
-                                                              Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) : Generic6DofConstraint (ActorA, ActorB)
-    {
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Generic6dofSpring = new btGeneric6DofSpringConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
@@ -298,19 +287,13 @@ namespace phys
         ConstraintBase = Generic6dofSpring;
     }
 
-    Generic6DofSpringConstraint::Generic6DofSpringConstraint (btGeneric6DofSpringConstraint* Constraint)
-    {
-        Generic6dofSpring = Constraint;
-        Generic6dof = Constraint;
-        ConstraintBase = Constraint;
-    }
-
-    Generic6DofSpringConstraint::~Generic6DofSpringConstraint ()
+    Generic6DofSpringConstraint::~Generic6DofSpringConstraint()
     {
         if(Generic6dofSpring)
         {
             delete Generic6dofSpring;
             Generic6dofSpring = NULL;
+            Generic6dof = NULL;
         }
     }
 
@@ -337,33 +320,33 @@ namespace phys
     /////////////////////////////////////////
     // Hinge Constraint Functions
 
-    HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotInA, Vector3 PivotInB, Vector3 AxisInA, Vector3 AxisInB, bool UseReferenceA) : TypedConstraint (ActorA, ActorB)
+    HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotInA, const Vector3& PivotInB, const Vector3& AxisInA, const Vector3& AxisInB, bool UseReferenceA)
     {
+        SetBodies(ActorA,ActorB);
+
         btVector3 tempA(AxisInA.GetBulletVector3());
         btVector3 tempB(AxisInB.GetBulletVector3());
         Hinge = new btHingeConstraint(*BodyA, *BodyB, PivotInA.GetBulletVector3(), PivotInB.GetBulletVector3(), tempA, tempB, bool(UseReferenceA));
         ConstraintBase = Hinge;
     }
 
-    HingeConstraint::HingeConstraint(ActorRigid* ActorA, Vector3 PivotInA, Vector3 AxisInA, bool UseReferenceA) : TypedConstraint (ActorA)
+    HingeConstraint::HingeConstraint(ActorRigid* ActorA, const Vector3& PivotInA, const Vector3& AxisInA, bool UseReferenceA)
     {
+        SetBodies(ActorA);
+
         btVector3 tempA(AxisInA.GetBulletVector3());
         Hinge = new btHingeConstraint(*BodyA, PivotInA.GetBulletVector3(), tempA, bool(UseReferenceA));
         ConstraintBase = Hinge;
     }
 
-    HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseReferenceA) : TypedConstraint (ActorA, ActorB)
+    HingeConstraint::HingeConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseReferenceA)
     {
+        SetBodies(ActorA,ActorB);
+
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Hinge = new btHingeConstraint(*BodyA, *BodyB, transa, transb, UseReferenceA);
         ConstraintBase = Hinge;
-    }
-
-    HingeConstraint::HingeConstraint(btHingeConstraint* Constraint)
-    {
-        Hinge = Constraint;
-        ConstraintBase = Constraint;
     }
 
     HingeConstraint::~HingeConstraint()
@@ -372,12 +355,12 @@ namespace phys
             delete Hinge;
     }
 
-    void HingeConstraint::SetAPivotLocation(Vector3 Location)
+    void HingeConstraint::SetAPivotLocation(const Vector3& Location)
     {
         this->Hinge->getAFrame().setOrigin(Location.GetBulletVector3());
     }
 
-    void HingeConstraint::SetBPivotLocation(Vector3 Location)
+    void HingeConstraint::SetBPivotLocation(const Vector3& Location)
     {
         this->Hinge->getBFrame().setOrigin(Location.GetBulletVector3());
     }
@@ -402,7 +385,7 @@ namespace phys
         this->Hinge->setMaxMotorImpulse(MaxMotorImpulse);
     }
 
-    void HingeConstraint::SetMotorTarget(Quaternion QuatAInB, Real Dt)
+    void HingeConstraint::SetMotorTarget(const Quaternion& QuatAInB, Real Dt)
     {
         this->Hinge->setMotorTarget(QuatAInB.GetBulletQuaternion(), Dt);
     }
@@ -417,7 +400,7 @@ namespace phys
         this->Hinge->setLimit(Low, High, Softness, BiasFactor, RelaxationFactor);
     }
 
-    void HingeConstraint::SetAxis(Vector3 AxisInA)
+    void HingeConstraint::SetAxis(const Vector3& AxisInA)
     {
         btVector3 temp(AxisInA.GetBulletVector3());
         this->Hinge->setAxis(temp);
@@ -441,8 +424,10 @@ namespace phys
     /////////////////////////////////////////
     // Hinge2 Constraint Functions
 
-    Hinge2Constraint::Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) : Generic6DofSpringConstraint(ActorA, ActorB)
+    Hinge2Constraint::Hinge2Constraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
     {
+        SetBodies(ActorA,ActorB);
+
         btVector3 temp1(Anchor.GetBulletVector3());
         btVector3 temp2(Axis1.GetBulletVector3());
         btVector3 temp3(Axis2.GetBulletVector3());
@@ -452,18 +437,12 @@ namespace phys
         ConstraintBase = Hinge2;
     }
 
-    Hinge2Constraint::Hinge2Constraint(btHinge2Constraint* Constraint)
-    {
-        Hinge2 = Constraint;
-        Generic6dofSpring = Constraint;
-        Generic6dof = Constraint;
-        ConstraintBase = Constraint;
-    }
-
     Hinge2Constraint::~Hinge2Constraint()
     {
         delete Hinge2;
         Hinge2 = NULL;
+        Generic6dofSpring = NULL;
+        Generic6dof = NULL;
     }
 
     void Hinge2Constraint::SetUpperLimit(Real Ang1Max)
@@ -479,22 +458,20 @@ namespace phys
     /////////////////////////////////////////
     // Point2Point Constraint Functions
 
-    Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 PivotA, Vector3 PivotB) : TypedConstraint(ActorA, ActorB)
+    Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& PivotA, const Vector3& PivotB)
     {
+        SetBodies(ActorA,ActorB);
+
         Point2Point = new btPoint2PointConstraint(*BodyA, *BodyB, PivotA.GetBulletVector3(), PivotB.GetBulletVector3());
         ConstraintBase = Point2Point;
     }
 
-    Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, Vector3 PivotA) : TypedConstraint(ActorA)
+    Point2PointConstraint::Point2PointConstraint(ActorRigid* ActorA, const Vector3& PivotA)
     {
+        SetBodies(ActorA);
+
         Point2Point = new btPoint2PointConstraint(*BodyA, PivotA.GetBulletVector3());
         ConstraintBase = Point2Point;
-    }
-
-    Point2PointConstraint::Point2PointConstraint(btPoint2PointConstraint* Constraint)
-    {
-        Point2Point = Constraint;
-        ConstraintBase = Constraint;
     }
 
     Point2PointConstraint::~Point2PointConstraint()
@@ -502,12 +479,12 @@ namespace phys
         delete Point2Point;
     }
 
-    void Point2PointConstraint::SetPivotA(Vector3 PivotA)
+    void Point2PointConstraint::SetPivotA(const Vector3& PivotA)
     {
         this->Point2Point->setPivotA(PivotA.GetBulletVector3());
     }
 
-    void Point2PointConstraint::SetPivotB(Vector3 PivotB)
+    void Point2PointConstraint::SetPivotB(const Vector3& PivotB)
     {
         this->Point2Point->setPivotB(PivotB.GetBulletVector3());
     }
@@ -547,24 +524,22 @@ namespace phys
     /////////////////////////////////////////
     // Slider Constraint Functions
 
-    SliderConstraint::SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 VectorA, Vector3 VectorB, Quaternion QuaternionA, Quaternion QuaternionB, bool UseLinearReferenceA) : TypedConstraint(ActorA, ActorB)
+    SliderConstraint::SliderConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& VectorA, const Vector3& VectorB, const Quaternion& QuaternionA, const Quaternion& QuaternionB, bool UseLinearReferenceA)
     {
+        SetBodies(ActorA,ActorB);
+
         btTransform transa(QuaternionA.GetBulletQuaternion(), VectorA.GetBulletVector3());
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Slider = new btSliderConstraint(*BodyA, *BodyB, transa, transb, UseLinearReferenceA);
         ConstraintBase = Slider;
     }
 
-    SliderConstraint::SliderConstraint(ActorRigid* ActorB, Vector3 VectorB, Quaternion QuaternionB, bool UseLinearReferenceA) : TypedConstraint(ActorB)
+    SliderConstraint::SliderConstraint(ActorRigid* ActorB, const Vector3& VectorB, const Quaternion& QuaternionB, bool UseLinearReferenceA)
     {
+        SetBodies(ActorB);
+
         btTransform transb(QuaternionB.GetBulletQuaternion(), VectorB.GetBulletVector3());
         Slider = new btSliderConstraint(*BodyA, transb, UseLinearReferenceA);
-        ConstraintBase = Slider;
-    }
-
-    SliderConstraint::SliderConstraint(btSliderConstraint* Constraint)
-    {
-        Slider = Constraint;
         ConstraintBase = Slider;
     }
 
@@ -573,12 +548,12 @@ namespace phys
         delete Slider;
     }
 
-    void SliderConstraint::SetFrameOffsetALocation(Vector3 Location)
+    void SliderConstraint::SetFrameOffsetALocation(const Vector3& Location)
     {
         this->Slider->getFrameOffsetA().setOrigin(Location.GetBulletVector3());
     }
 
-    void SliderConstraint::SetFrameOffsetBLocation(Vector3 Location)
+    void SliderConstraint::SetFrameOffsetBLocation(const Vector3& Location)
     {
         this->Slider->getFrameOffsetB().setOrigin(Location.GetBulletVector3());
     }
@@ -741,8 +716,10 @@ namespace phys
     /////////////////////////////////////////
     // Universal Constraint Functions
 
-    UniversalConstraint::UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, Vector3 Anchor, Vector3 Axis1, Vector3 Axis2) : Generic6DofConstraint(ActorA, ActorB)
+    UniversalConstraint::UniversalConstraint(ActorRigid* ActorA, ActorRigid* ActorB, const Vector3& Anchor, const Vector3& Axis1, const Vector3& Axis2)
     {
+        SetBodies(ActorA,ActorB);
+
         btVector3 temp1(Anchor.GetBulletVector3());
         btVector3 temp2(Axis1.GetBulletVector3());
         btVector3 temp3(Axis2.GetBulletVector3());
@@ -751,17 +728,11 @@ namespace phys
         ConstraintBase = Universal;
     }
 
-    UniversalConstraint::UniversalConstraint(btUniversalConstraint* Constraint)
-    {
-        Universal = Constraint;
-        Generic6dof = Constraint;
-        ConstraintBase = Constraint;
-    }
-
     UniversalConstraint::~UniversalConstraint()
     {
         delete Universal;
         Universal = NULL;
+        Generic6dof = NULL;
     }
 
     void UniversalConstraint::SetUpperLimit(Real Ang1Max, Real Ang2Max)

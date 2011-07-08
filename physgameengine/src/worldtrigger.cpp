@@ -37,23 +37,23 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _trigger_cpp
-#define _trigger_cpp
+#ifndef _worldtrigger_cpp
+#define _worldtrigger_cpp
 
-#include "trigger.h"
+#include "worldtrigger.h"
 
 namespace phys
 {
-    Trigger::Trigger(const String& name)
+    WorldTrigger::WorldTrigger(const String& name)
         : Name(name)
     {
     }
 
-    Trigger::~Trigger()
+    WorldTrigger::~WorldTrigger()
     {
     }
 
-    String Trigger::GetName()
+    String WorldTrigger::GetName()
     {
         return Name;
     }

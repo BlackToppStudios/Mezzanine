@@ -50,7 +50,7 @@
 #include "vector3wactor.h"
 #include "areaeffect.h"
 #include "eventmanager.h"
-#include "trigger.h"
+#include "worldtrigger.h"
 
 #include <queue>
 
@@ -348,7 +348,7 @@ namespace phys
     {
         if( !Triggers.empty() )
         {
-            for( std::vector<Trigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
+            for( std::vector<WorldTrigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
             {
                 if((*Trig)->ConditionsAreMet())
                     (*Trig)->ApplyTrigger();
@@ -520,14 +520,14 @@ namespace phys
         AreaEffects.clear();
     }
 
-    void PhysicsManager::AddTrigger(Trigger* Trig)
+    void PhysicsManager::AddWorldTrigger(WorldTrigger* Trig)
     {
         Triggers.push_back(Trig);
     }
 
-    Trigger* PhysicsManager::GetTrigger(const String& Name)
+    WorldTrigger* PhysicsManager::GetWorldTrigger(const String& Name)
     {
-        for( vector<Trigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
+        for( vector<WorldTrigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
         {
             if ( Name == (*Trig)->GetName() )
             {
@@ -537,9 +537,9 @@ namespace phys
         return NULL;
     }
 
-    void PhysicsManager::RemoveTrigger(Trigger* Trig)
+    void PhysicsManager::RemoveWorldTrigger(WorldTrigger* Trig)
     {
-        for( vector<Trigger*>::iterator T = Triggers.begin() ; T != Triggers.end() ; T++ )
+        for( vector<WorldTrigger*>::iterator T = Triggers.begin() ; T != Triggers.end() ; T++ )
         {
             if ( Trig == (*T) )
             {
@@ -549,9 +549,9 @@ namespace phys
         }
     }
 
-    void PhysicsManager::DestroyAllTriggers()
+    void PhysicsManager::DestroyAllWorldTriggers()
     {
-        for( std::vector<Trigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
+        for( std::vector<WorldTrigger*>::iterator Trig = Triggers.begin() ; Trig != Triggers.end() ; Trig++ )
             delete (*Trig);
         Triggers.clear();
     }

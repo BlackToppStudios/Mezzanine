@@ -37,29 +37,29 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _trigger_h
-#define _trigger_h
+#ifndef _worldtrigger_h
+#define _worldtrigger_h
 
 #include "datatypes.h"
 
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class Trigger
-    /// @headerfile trigger.h
+    /// @class WorldTrigger
+    /// @headerfile worldtrigger.h
     /// @brief This is an abstract class for creating in-game triggers.
     /// @details
     ///////////////////////////////////////
-    class PHYS_LIB Trigger
+    class PHYS_LIB WorldTrigger
     {
         protected:
             String Name;
         public:
             /// @brief Class constructor.
             /// @param name The unique name to be given to this trigger.
-            Trigger(const String& name);
+            WorldTrigger(const String& name);
             /// @brief Class destructor.
-            virtual ~Trigger();
+            virtual ~WorldTrigger();
             /// @brief Gets the name of this trigger.
             /// @return Returns a string containing the name of this trigger.
             virtual String GetName();

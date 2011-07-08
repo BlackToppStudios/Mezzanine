@@ -84,7 +84,11 @@ namespace phys
         CF_DebrisFilter = 8,
         CF_SensorFilter = 16,
         CF_CharacterFilter = 32,
-        CF_AllFilter = -1
+        CF_AllFilter = -1,
+
+        // Non-Standard Filters
+        CF_UserFilter1 = 64,
+        CF_UserFilter2 = 128
     };
 
     /// @enum ConstraintParams

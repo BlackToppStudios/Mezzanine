@@ -46,6 +46,8 @@ set(${PROJECT_NAME}_sources
 	"${${PROJECT_NAME}_SOURCE_DIR}levelloader.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}levelselectcell.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}levelselectcell.h"
+	"${${PROJECT_NAME}_SOURCE_DIR}leveltriggers.cpp"
+	"${${PROJECT_NAME}_SOURCE_DIR}leveltriggers.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}scorearea.cpp"
 	"${${PROJECT_NAME}_SOURCE_DIR}scorearea.h"
 	"${${PROJECT_NAME}_SOURCE_DIR}startingarea.cpp"
