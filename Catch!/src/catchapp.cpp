@@ -34,8 +34,9 @@ CatchApp::CatchApp(const Vector3 &WorldLowerBounds, const Vector3 &WorldUpperBou
 
 CatchApp::~CatchApp()
 {
+    delete TheWorld;
+    delete Loader;
     CatchApp::TheRealCatchApp = NULL;
-    //delete TheWorld;
 }
 
 void CatchApp::MakeGUI()
