@@ -138,7 +138,7 @@ namespace phys
                     (*rit)->Hide();
                     MenuStack.pop_back();
                 }else{
-                    return;
+                    break;
                 }
             }
         }
@@ -241,6 +241,11 @@ namespace phys
         Vector2 Menu::GetActualSize()
         {
             return MenuStack.back()->GetActualSize();
+        }
+
+        void Menu::UpdateDimensions(const Vector2& NewViewportSize)
+        {
+            RootWindow->UpdateDimensions(NewViewportSize);
         }
 
         MenuWindow* Menu::GetRootWindow()

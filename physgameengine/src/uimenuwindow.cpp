@@ -113,6 +113,20 @@ namespace phys
             return 0;
         }
 
+        TextButton* MenuWindow::CreateBackButton(const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text)
+        {
+            if(!BackButton && ParentWindow)
+            {
+                BackButton = new TextButton(Name+"back",Position,Size,LineHeight,Text,Parent);
+                Vector2 Offset = Position - RelPosition;
+                OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+                Buttons.push_back(backbuttonoff);
+                backbuttonoff.Object->SetVisible(IsVisible());
+                return (TextButton*)BackButton;
+            }
+            return 0;
+        }
+
         Button* MenuWindow::GetBackButton()
         {
             return BackButton;
@@ -122,21 +136,32 @@ namespace phys
         {
             Vector2 Offset = Position - RelPosition;
             Button* AccBut = this->CreateButton(Name,Position,Size);
-            OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-            Buttons.push_back(buttonoff);
+            //OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            //Buttons.push_back(buttonoff);
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
-            buttonoff.Object->SetVisible(IsVisible());
-            return buttonoff.Object;
+            AccBut->SetVisible(IsVisible());
+            return AccBut;
         }
 
         TextButton* MenuWindow::CreateAccessorButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
         {
             Vector2 Offset = Position - RelPosition;
             TextButton* AccBut = this->CreateTextButton(Name,Position,Size,Glyph,Text);
-            OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-            Buttons.push_back(buttonoff);
+            //OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            //Buttons.push_back(buttonoff);
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
-            buttonoff.Object->SetVisible(IsVisible());
+            AccBut->SetVisible(IsVisible());
+            return AccBut;
+        }
+
+        TextButton* MenuWindow::CreateAccessorButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text)
+        {
+            Vector2 Offset = Position - RelPosition;
+            TextButton* AccBut = this->CreateTextButton(Name,Position,Size,LineHeight,Text);
+            //OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            //Buttons.push_back(buttonoff);
+            ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
+            AccBut->SetVisible(IsVisible());
             return AccBut;
         }
 
@@ -218,6 +243,15 @@ namespace phys
                     ChildWindows.erase(it);
                     return;
                 }
+            }
+        }
+
+        void MenuWindow::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+            Window::UpdateDimensions(OldViewportSize);
+            for( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
+            {
+                (*it).second->UpdateDimensions(OldViewportSize);
             }
         }
     }

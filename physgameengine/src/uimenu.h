@@ -119,6 +119,10 @@ namespace phys
                 /// @brief Sets the pixel size of this menu.
                 /// @return Returns a vector2 representing the pixel size of this menu.
                 virtual Vector2 GetActualSize();
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param NewViewportSize The new size of the viewport.
+                virtual void UpdateDimensions(const Vector2& NewViewportSize);
                 /// @brief Gets the Root window of this menu.
                 /// @return Returns a pointer to the Root window of this menu.
                 virtual UI::MenuWindow* GetRootWindow();

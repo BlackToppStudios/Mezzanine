@@ -242,6 +242,9 @@ namespace phys
                 /// @brief Gets a vector with all the mouse input codes used to activate this button.
                 /// @return Returns a pointer to an std::vector containing all the mouse buttons that will activate this button.
                 virtual std::vector<MetaCode::InputCode>* GetMouseActivationButtons();
+                /// @brief Updates the dimensions of this button to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions();
         };//button
 
         ///////////////////////////////////////////////////////////////////////////////
@@ -260,7 +263,7 @@ namespace phys
                 /// @param CallerButton The button to which this callback belongs.
                 ButtonCallback(Button* CallerButton);
                 /// @brief Class Destructor.
-                ~ButtonCallback();
+                virtual ~ButtonCallback();
                 /// @brief The hover function for this callback.  This will be called every time the
                 /// button is hovered over by the mouse.
                 virtual void DoHoverItems() = 0;

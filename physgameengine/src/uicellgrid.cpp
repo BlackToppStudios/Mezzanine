@@ -173,10 +173,15 @@ namespace phys
 
         void CellGrid::RegenerateGrid()
         {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            RegenerateGrid(WinDim);
+        }
+
+        void CellGrid::RegenerateGrid(const Vector2& WinDim)
+        {
             if(!GridDirty)
                 return;
             ClearGrid();
-            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
             Vector2 ActPos = GridBack->GetActualPosition();
             Vector2 ActEdge = EdgeSpacing * WinDim;
             Vector2 ActCell = CellSpacing * WinDim;
@@ -223,6 +228,7 @@ namespace phys
                             CreateOrDestroyRow(0);
 
                         TheGrid.at(CurrentRow)->push_back(CurrCell);
+                        CurrentXposition+=CellSize.X + ActCell.X;
                         CurrentColumn++;
                     }
                 }
@@ -537,6 +543,16 @@ namespace phys
         Vector2 CellGrid::GetActualSize()
         {
             return RelSize * Parent->GetParent()->GetViewportDimensions();
+        }
+
+        void CellGrid::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+            GridBack->UpdateDimensions();
+            WorkAreaLimits = (WorkAreaLimits / OldViewportSize) * Parent->GetParent()->GetViewportDimensions();
+            for( CellList::iterator it = Cells.begin() ; it != Cells.end() ; it++ )
+            {
+                (*it)->UpdateDimensions(OldViewportSize);
+            }
         }
 
         Rectangle* CellGrid::GetGridBack()

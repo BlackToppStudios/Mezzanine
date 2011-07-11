@@ -126,7 +126,7 @@ namespace phys
                 virtual void DestroyLayer(Layer* ToBeDestroyed);
                 /// @brief Gets the current viewport dimensions.
                 /// @return Returns a Vector2 representing the current viewport dimensions.
-                virtual Vector2 GetViewportDimensions();
+                virtual const Vector2& GetViewportDimensions();
                 /// @brief Gets the button the mouse is over if any.
                 /// @details This function searches only the visable layers contained in this screen.
                 /// @return Returns the button the mouse is over, or NULL if there are none.

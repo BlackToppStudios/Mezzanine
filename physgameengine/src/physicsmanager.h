@@ -66,7 +66,7 @@ namespace phys
     class ActorBase;
     class Vector3WActor;
     class AreaEffect;
-    class Trigger;
+    class WorldTrigger;
     namespace debug {
         class InternalDebugDrawer;
     }
@@ -91,7 +91,7 @@ namespace phys
             std::map< String, btCollisionShape* > PhysicsShapes;
             std::vector< TypedConstraint* > Constraints;
             std::vector< AreaEffect* > AreaEffects;
-            std::vector< Trigger* > Triggers;
+            std::vector< WorldTrigger* > Triggers;
 
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
@@ -231,17 +231,17 @@ namespace phys
             /// @brief Adds a trigger to the world.
             /// @details Adds a trigger to the world so that it can/will take effect.
             /// @param Trig The trigger to be added.
-            void AddTrigger(Trigger* Trig);
+            void AddWorldTrigger(WorldTrigger* Trig);
             /// @brief Gets a trigger by name.
             /// @param Name The name of the trigger to find.
             /// @return Returns a pointer to the named trigger, or NULL if it doesn't exist.
-            Trigger* GetTrigger(const String& Name);
+            WorldTrigger* GetWorldTrigger(const String& Name);
             /// @brief Removes a trigger from the world.
             /// @details Removes a trigger from the world so that it will have no effect.
             /// @param Trig The trigger to be removed.
-            void RemoveTrigger(Trigger* Trig);
+            void RemoveWorldTrigger(WorldTrigger* Trig);
             /// @brief Destroys all triggers currently in the manager.
-            void DestroyAllTriggers();
+            void DestroyAllWorldTriggers();
 
             ///////////////////////////////////////////////////////////////////////////////
             // Collision Event Filtering Management

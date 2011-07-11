@@ -165,6 +165,10 @@ namespace phys
                 /// @brief Sets the pixel size of this window.
                 /// @return Returns a vector2 representing the pixel size of this window.
                 virtual Vector2 GetActualSize();
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param OldViewportSize The old size of the viewport.
+                virtual void UpdateDimensions(const Vector2& OldViewportSize);
                 ///////////////////////////////////////////////////////////////////////////////
                 // Creating and working with All Basic UI Elements
                 ///////////////////////////////////////
@@ -184,6 +188,15 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
                 virtual TextButton* CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString& Text);
+                /// @brief Creates a text button within this layer.
+                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @return Returns a pointer to the created button.
+                /// @param Name The name of the button.
+                /// @param Position The top left position of the button.
+                /// @param Size The size of the Button.
+                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
+                /// @param Text Any text you want printed on the button.
+                virtual TextButton* CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, ConstString& Text);
                 /// @brief Gets an already created button by name.
                 /// @return Returns a pointer to the button of the specified name.
                 virtual Button* GetButton(ConstString& Name);
@@ -229,6 +242,15 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 virtual Caption* CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text);
+                /// @brief Creates a caption within this layer.
+                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @return Returns a pointer to the created caption.
+                /// @param Name The name of this caption.
+                /// @param Position The top left position of the caption.
+                /// @param Size The size of the Button.
+                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
+                /// @param Text Any text you want printed on the caption.
+                virtual Caption* CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text);
                 /// @brief Gets an already created caption by name.
                 /// @return Returns a pointer to the caption of the specified name.
                 virtual Caption* GetCaption(ConstString& Name);
@@ -255,6 +277,14 @@ namespace phys
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
                 virtual MarkupText* CreateMarkupText(ConstString& Name, const Vector2& Position, const Whole& Glyph, const String& Text);
+                /// @brief Creates a markup text within this layer.
+                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @return Returns a pointer to the created markup text.
+                /// @param Name The name of this markup text.
+                /// @param Position The top left position of the markup text.
+                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
+                /// @param Text Any text you want printed on the markup text.
+                virtual MarkupText* CreateMarkupText(ConstString& Name, const Vector2& Position, const Real& LineHeight, const String& Text);
                 /// @brief Gets an already created markup text by name.
                 /// @return Returns a pointer to the markup text of the specified name.
                 virtual MarkupText* GetMarkupText(ConstString& Name);
@@ -315,7 +345,7 @@ namespace phys
                 /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
                 /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
                 /// create a label after construction.
-                virtual UI::CheckBox* CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, String &LabelText);
+                virtual UI::CheckBox* CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String &LabelText);
                 /// @brief Creates a Button List Box within this Window.
                 /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Button List Box.

@@ -58,11 +58,11 @@ namespace phys
         {
             Paging = CG_Scrolled;
 
-            Vector2 WindowDim = Parent->GetParent()->GetViewportDimensions();
-            Real ActThick = Thickness * WindowDim.X;
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            Real ActThick = Thickness * WinDim.X;
 
-            Vector2 VertSize(Thickness,RelSize.Y - (ActThick / WindowDim.Y));
-            Vector2 HoriSize(RelSize.X - (ActThick / WindowDim.X),ActThick / WindowDim.Y);
+            Vector2 VertSize(Thickness,RelSize.Y - (ActThick / WinDim.Y));
+            Vector2 HoriSize(RelSize.X - (ActThick / WinDim.X),ActThick / WinDim.Y);
             Vector2 VertPosition((RelPosition.X + RelSize.X) - VertSize.X,RelPosition.Y);
             Vector2 HoriPosition(RelPosition.X,(RelPosition.Y + RelSize.Y) - HoriSize.Y);
 
@@ -110,6 +110,12 @@ namespace phys
 
         void ScrolledCellGrid::DrawGrid()
         {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            DrawGrid(WinDim);
+        }
+
+        void ScrolledCellGrid::DrawGrid(const Vector2& WinDim)
+        {
             RegenerateGrid();
             for( Whole X = 0 ; X < VisibleCells.size() ; X++ )
                 VisibleCells[X]->Hide();
@@ -123,7 +129,6 @@ namespace phys
             const Whole StartRow = CurrentRow;
             const Whole StartColumn = CurrentColumn;
 
-            Vector2 WinDim = Parent->GetParent()->GetViewportDimensions();
             Vector2 ActPos = GetActualPosition();
             Vector2 ActSize = GetActualSize();
             Vector2 ActEdge = EdgeSpacing * WinDim;
@@ -328,6 +333,17 @@ namespace phys
             VerticalScroll->SetActualSize(VScrollS);
 
             CellGrid::SetActualSize(Size);
+        }
+
+        void ScrolledCellGrid::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            CellGrid::UpdateDimensions(OldViewportSize);
+            HorizontalScroll->UpdateDimensions(OldViewportSize);
+            VerticalScroll->UpdateDimensions(OldViewportSize);
+            GridDirty = true;
+            RegenerateGrid(WinDim);
+            DrawGrid(WinDim);
         }
 
         UI::Scrollbar* ScrolledCellGrid::GetHorizontalScroll()

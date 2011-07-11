@@ -109,4 +109,24 @@ void MSStart::DoActivateItems()
     World::GetWorldPointer()->BreakMainLoop();
 }
 
+//--------------------------------------------------------------
+
+AllAppExit::AllAppExit(UI::Button* caller) : UI::ButtonCallback(caller)
+{
+}
+
+AllAppExit::~AllAppExit()
+{
+}
+
+void AllAppExit::DoHoverItems()
+{
+}
+
+void AllAppExit::DoActivateItems()
+{
+    CatchApp::GetCatchAppPointer()->GetLevelLoader()->SetNextLevel("");
+    World::GetWorldPointer()->BreakMainLoop();
+}
+
 #endif

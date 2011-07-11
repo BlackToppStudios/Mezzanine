@@ -113,6 +113,13 @@ Vector2 LevelSelectCell::GetActualPosition()
 void LevelSelectCell::SetSize(const Vector2& Size)
 {
     RelSize = Size;
+    CellBack->SetSize(Size);
+    PreviewImage->SetSize(Vector2(Size.Y * 1.05,Size.Y * 1.05));
+    PreviewBorder->SetSize(Vector2(Size.Y * 1.15,Size.Y * 1.15));
+    LevelTitle->SetSize(Vector2(Size.X * 0.6,Size.Y * 0.36));
+    EarnedMaxScore->SetSize(Vector2(Size.X * 0.4,Size.Y * 0.36));
+
+    SetPosition(RelPosition);
 }
 
 Vector2 LevelSelectCell::GetSize()
@@ -122,7 +129,15 @@ Vector2 LevelSelectCell::GetSize()
 
 void LevelSelectCell::SetActualSize(const Vector2& Size)
 {
-    SetSize(Size / Parent->GetParent()->GetViewportDimensions());
+    const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+    RelSize = Size / WinDim;
+    CellBack->SetActualSize(Size);
+    PreviewImage->SetActualSize(Vector2(Size.Y * 1.05,Size.Y * 1.05));
+    PreviewBorder->SetActualSize(Vector2(Size.Y * 1.15,Size.Y * 1.15));
+    LevelTitle->SetActualSize(Vector2(Size.X * 0.6,Size.Y * 0.36));
+    EarnedMaxScore->SetActualSize(Vector2(Size.X * 0.4,Size.Y * 0.36));
+    //SetSize(Size / WinDim);
+    SetPosition(RelPosition);
 }
 
 Vector2 LevelSelectCell::GetActualSize()

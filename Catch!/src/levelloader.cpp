@@ -331,29 +331,62 @@ void LevelLoader::LoadBlowsNotSucks()
     SceneMan->CreateSkyPlane(SkyPlane, "Backgrounds/Grassy", CommonGroup, 3, 3);
 
     // Create the fan
-    ActorRigid* Fan = new ActorRigid(0,"Fan","fan.mesh",BlowsNotSucksGroup);
+    ActorRigid* Fan = new ActorRigid(25,"Fan","fan.mesh",BlowsNotSucksGroup);
     Fan->CreateShapeFromMeshDynamic(1);
     Fan->SetLocation(Vector3(0,0,0));
-    //Fan->SetActorScaling(Vector3(1.4,1.4,1.4));
+    Fan->SetOrientation(Quaternion(MathTool::GetHalfPi() * 0.5,Vector3(0,0,1)));
+    Fan->GetPhysicsSettings()->SetActivationState(phys::AAS_DisableDeactivation);
     ActMan->AddActor(Fan);
 
     ActorRigid* FanBody = new ActorRigid(0,"FanBody","body.mesh",BlowsNotSucksGroup);
     FanBody->CreateShapeFromMeshStatic();
-    FanBody->SetLocation(Vector3(0,0,0));
-    //FanBody->SetActorScaling(Vector3(1.4,1.4,1.4));
+    FanBody->SetLocation(Vector3(132.5,-70,25));
     ActMan->AddActor(FanBody);
 
-    ActorRigid* FanButton = new ActorRigid(0,"FanButton","button.mesh",BlowsNotSucksGroup);
+    ActorRigid* FanButton = new ActorRigid(5,"FanButton","button.mesh",BlowsNotSucksGroup);
     FanButton->CreateShapeFromMeshDynamic(1);
     FanButton->SetLocation(Vector3(0,0,0));
-    //FanButton->SetActorScaling(Vector3(1.4,1.4,1.4));
     ActMan->AddActor(FanButton);
+
+    // Create the series of constraints for assembling the fan
+    HingeConstraint* FanToBody = new HingeConstraint(FanBody,Fan,Vector3(-12,-6,-17.48),Vector3(0,-24.2,0),Vector3(-1,1,0).Normalize(),Vector3(0,1,0),false);
+    PhysMan->AddConstraint(FanToBody,true);
+    FanToBody->EnableAngularMotor(true,2000.f,200.0f);
+    FanToBody->SetLimit(1.0,-1.0);
+
+    Generic6DofSpringConstraint* ButtonToBody = new Generic6DofSpringConstraint(FanBody,FanButton,Vector3(-128,-33.5,-25.5),Vector3(0,0,0),Quaternion(0,0,0,1),Quaternion(0,0,0,1),true);
+    ButtonToBody->SetLinearUpperLimit(Vector3(0,0,0));
+    ButtonToBody->SetLinearLowerLimit(Vector3(0,-10,0));
+    ButtonToBody->SetAngularUpperLimit(Vector3(0,0,0));
+    ButtonToBody->SetAngularLowerLimit(Vector3(0,0,0));
+    ButtonToBody->EnableSpring(1,true);
+    ButtonToBody->SetStiffness(1,0.1f);
+    ButtonToBody->SetEquilibriumPoint(1);
+    PhysMan->AddConstraint(ButtonToBody,true);
 
     // Create the goal tray
 
     // Create some throwable objects
+    ThrowableData* UraniumData = ThrowableGenerator::GetThrowableData("Uranium");
+    ActorRigid* Uranium1 = new ActorRigid(UraniumData->Mass,"Uranium1",UraniumData->MeshName,CommonGroup);
+    Uranium1->CreateShapeFromMeshDynamic(1);
+    Uranium1->SetLocation(-155,50,0);
+    Uranium1->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    Uranium1->LimitMovementOnAxis(true,true,false);
+    ActMan->AddActor(Uranium1);
+    GameApp->AddThrowable(Uranium1);
 
     // Create the zones
+    AreaOfPlay* PlayZone = new AreaOfPlay("PlayArea",Vector3(0,0,0));
+    PlayZone->CreateBoxShape(Vector3(280,280,35));
+    PhysMan->AddAreaEffect(PlayZone);
+    GameApp->SetPlayArea(PlayZone);// */
+
+    StartingArea* StartZone = new StartingArea("StartArea",Vector3(-170,80,0));
+    StartZone->CreateBoxShape(Vector3(50,60,15));
+    StartZone->CreateGraphicsBox(ColourValue(0.1,0.8,0.1,0.2));
+    PhysMan->AddAreaEffect(StartZone);
+    GameApp->RegisterStartArea(StartZone);// */
 }
 
 void LevelLoader::LoadJustice()
@@ -418,46 +451,46 @@ void LevelLoader::LoadJustice()
     ActorRigid* Union1 = new ActorRigid(UnionMass,"Union1","union.mesh",JusticeGroup);
     Union1->CreateShapeFromMeshDynamic(1);
     Union1->SetLocation(Vector3(-80.9,2.4,-16.4));
-    Union1->GetPhysicsSettings()->DisableCollisionResponse();
+    Union1->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union1);
     ActorRigid* Union2 = new ActorRigid(UnionMass,"Union2","union.mesh",JusticeGroup);
     Union2->CreateShapeFromMeshDynamic(1);
     Union2->SetLocation(Vector3(-29.1,2.4,-16.4));// -42.9,2.4,-16.4
     Union2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Union2->GetPhysicsSettings()->DisableCollisionResponse();
+    Union2->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union2);
     ActorRigid* Union3 = new ActorRigid(UnionMass,"Union3","union.mesh",JusticeGroup);
     Union3->CreateShapeFromMeshDynamic(1);
     Union3->SetLocation(Vector3(-80.9,2.4,16.4));
-    Union3->GetPhysicsSettings()->DisableCollisionResponse();
+    Union3->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union3);
     ActorRigid* Union4 = new ActorRigid(UnionMass,"Union4","union.mesh",JusticeGroup);
     Union4->CreateShapeFromMeshDynamic(1);
     Union4->SetLocation(Vector3(-29.1,2.4,16.4));// -42.9,2.4,16.4
     Union4->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Union4->GetPhysicsSettings()->DisableCollisionResponse();
+    Union4->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union4);
     ActorRigid* Union5 = new ActorRigid(UnionMass,"Union5","union.mesh",JusticeGroup);
     Union5->CreateShapeFromMeshDynamic(1);
     Union5->SetLocation(Vector3(196.9,2.4,-16.4));// 181.1,2.4,-16.4
     Union5->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Union5->GetPhysicsSettings()->DisableCollisionResponse();
+    Union5->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union5);
     ActorRigid* Union6 = new ActorRigid(UnionMass,"Union6","union.mesh",JusticeGroup);
     Union6->CreateShapeFromMeshDynamic(1);
     Union6->SetLocation(Vector3(145.1,2.4,-16.4));
-    Union6->GetPhysicsSettings()->DisableCollisionResponse();
+    Union6->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union6);
     ActorRigid* Union7 = new ActorRigid(UnionMass,"Union7","union.mesh",JusticeGroup);
     Union7->CreateShapeFromMeshDynamic(1);
     Union7->SetLocation(Vector3(196.9,2.4,16.4));//181.1,2.4,16.4
     Union7->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Union7->GetPhysicsSettings()->DisableCollisionResponse();
+    Union7->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union7);
     ActorRigid* Union8 = new ActorRigid(UnionMass,"Union8","union.mesh",JusticeGroup);
     Union8->CreateShapeFromMeshDynamic(1);
     Union8->SetLocation(Vector3(145.1,2.4,16.4));
-    Union8->GetPhysicsSettings()->DisableCollisionResponse();
+    Union8->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union8);
 
     // Create the trays

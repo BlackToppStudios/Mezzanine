@@ -52,4 +52,13 @@ class MSStart : public UI::ButtonCallback
         virtual void DoActivateItems();
 };
 
+class AllAppExit : public UI::ButtonCallback
+{
+    public:
+        AllAppExit(UI::Button* caller);
+        virtual ~AllAppExit();
+        virtual void DoHoverItems();
+        virtual void DoActivateItems();
+};
+
 #endif

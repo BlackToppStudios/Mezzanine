@@ -62,20 +62,41 @@ namespace phys
               Name(name)
         {
             Manager = World::GetWorldPointer()->GetUIManager();
+            AutoScaleText = false;
+            RelLineHeight = 0.0;
+            ConstructCaption(Position,Size,Glyph,Text);
+        }
 
-            Vector2 Window = Parent->GetParent()->GetViewportDimensions();
-            GorillaCaption = Parent->GetGorillaLayer()->createCaption(Glyph, Position.X * Window.X, Position.Y * Window.Y, Text, Parent->GetParent()->GetPrimaryAtlas());
-            GorillaCaption->size(Size.X * Window.X, Size.Y * Window.Y);
-            GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
-            GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
-            GorillaCaption->align(Gorilla::TextAlign_Centre);
-            GorillaCaption->vertical_align(Gorilla::VerticalAlign_Middle);
+        Caption::Caption(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text, Layer* PLayer)
+            : Parent(PLayer),
+              MouseHover(false),
+              RelPosition(Position),
+              RelSize(Size),
+              Name(name)
+        {
+            Manager = World::GetWorldPointer()->GetUIManager();
+            AutoScaleText = true;
+            RelLineHeight = LineHeight;
+            std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * Parent->GetParent()->GetViewportDimensions().Y),Parent->GetParent()->GetPrimaryAtlas());
+            ConstructCaption(Position,Size,Result.first,Text);
+            SetTextScale(Result.second);
         }
 
         Caption::~Caption()
         {
             Parent->GetGorillaLayer()->destroyCaption(GorillaCaption);
             Parent->GetGorillaLayer()->destroyRectangle(GorillaRectangle);
+        }
+
+        void Caption::ConstructCaption(const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
+        {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GorillaCaption = Parent->GetGorillaLayer()->createCaption(Glyph, Position.X * WinDim.X, Position.Y * WinDim.Y, Text, Parent->GetParent()->GetPrimaryAtlas());
+            GorillaCaption->size(Size.X * WinDim.X, Size.Y * WinDim.Y);
+            GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * WinDim).GetOgreVector2(),(Size * WinDim).GetOgreVector2());
+            GorillaCaption->background(Ogre::ColourValue(0,0,0,0));
+            GorillaCaption->align(Gorilla::TextAlign_Centre);
+            GorillaCaption->vertical_align(Gorilla::VerticalAlign_Middle);
         }
 
         void Caption::SetVisible(bool Visible)
@@ -243,11 +264,11 @@ namespace phys
         void Caption::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
-            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaCaption->left(CurrDim.X * RelPosition.X);
-            GorillaCaption->top(CurrDim.Y * RelPosition.Y);
-            GorillaRectangle->left(CurrDim.X * RelPosition.X);
-            GorillaRectangle->top(CurrDim.Y * RelPosition.Y);
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GorillaCaption->left(WinDim.X * RelPosition.X);
+            GorillaCaption->top(WinDim.Y * RelPosition.Y);
+            GorillaRectangle->left(WinDim.X * RelPosition.X);
+            GorillaRectangle->top(WinDim.Y * RelPosition.Y);
         }
 
         Vector2 Caption::GetPosition()
@@ -272,11 +293,11 @@ namespace phys
         void Caption::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaCaption->width(CurrDim.X * RelSize.X);
-            GorillaCaption->height(CurrDim.Y * RelSize.Y);
-            GorillaRectangle->width(CurrDim.X * RelSize.X);
-            GorillaRectangle->height(CurrDim.Y * RelSize.Y);
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GorillaCaption->width(WinDim.X * RelSize.X);
+            GorillaCaption->height(WinDim.Y * RelSize.Y);
+            GorillaRectangle->width(WinDim.X * RelSize.X);
+            GorillaRectangle->height(WinDim.Y * RelSize.Y);
         }
 
         Vector2 Caption::GetSize()
@@ -348,7 +369,29 @@ namespace phys
         {
             return *GorillaCaption->GetNameFile();
         }
-    }//UT
+
+        void Caption::SetAutoScaleText(bool Enable)
+        {
+            AutoScaleText = Enable;
+        }
+
+        bool Caption::GetAutoScaleText()
+        {
+            return AutoScaleText;
+        }
+
+        void Caption::UpdateDimensions()
+        {
+            this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
+            this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
+            if(AutoScaleText)
+            {
+                std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(RelLineHeight * Parent->GetParent()->GetViewportDimensions().Y,GetPrimaryAtlas());
+                SetGlyphIndex(Result.first);
+                SetTextScale(Result.second);
+            }
+        }
+    }//UI
 }//phys
 
 #endif

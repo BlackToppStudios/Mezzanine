@@ -260,7 +260,7 @@ namespace phys
         return this->X * Vec.X + this->Y * Vec.Y + this->Z * Vec.Z;
     }
 
-    void Vector3::Normalize()
+    Vector3& Vector3::Normalize()
     {
         Real TempLength = this->Distance(Vector3(0.0f,0.0f,0.0f));
         if (0!=TempLength)
@@ -269,6 +269,7 @@ namespace phys
         }else{
             throw (phys::Exception ("Cannot Normalize Vector3(0,0,0)"));
         }
+        return *this;
     }
 
     Vector3 Vector3::GetNormal() const

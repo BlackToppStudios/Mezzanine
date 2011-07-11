@@ -336,7 +336,8 @@ namespace phys
 
         /// @brief This will change this point into it's own normal relative to the origin
         /// @details This will change this vector into one that is the same direction from the origin, but only one unit a away.
-        void Normalize();
+        /// @return Returns a reference to the normalized vector.
+        Vector3& Normalize();
 
         /// @brief This returns the normal for this relative to the origin
         /// @details This will return a vector that is 1 unit in away from the origin, if a line were starting and the origin it would pass through

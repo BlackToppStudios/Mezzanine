@@ -79,9 +79,12 @@ namespace phys
                 UIManager* Manager;
                 Whole Glyphs;
                 bool MouseHover;
+                bool AutoScaleText;
+                Real RelLineHeight;
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 String Name;
+                void ConstructCaption(const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text);
             public:
                 /// @brief Internal constructor
                 /// @param Name The name of this caption.
@@ -91,6 +94,14 @@ namespace phys
                 /// @param Text Any text you want printed on the caption.
                 /// @param Layer Pointer to the layer that created this caption.
                 Caption(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer);
+                /// @brief Internal constructor
+                /// @param Name The name of this caption.
+                /// @param Position The top left position of the caption.
+                /// @param Size The size of the Button.
+                /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
+                /// @param Text Any text you want printed on the caption.
+                /// @param Layer Pointer to the layer that created this caption.
+                Caption(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Caption();
                 /// @brief Sets the visibility of this caption.
@@ -206,6 +217,15 @@ namespace phys
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set.
                 virtual String GetPrimaryAtlas();
+                /// @brief Enables or disables scaling the text automatically on a screen size change.
+                /// @param Enable Enables or disables automatic text scaling.
+                virtual void SetAutoScaleText(bool Enable);
+                /// @brief Gets whether or not text from this caption will automatically scale on a screen size change.
+                /// @return Returns a bool indicating whether or not this caption will automatically scale it's text.
+                virtual bool GetAutoScaleText();
+                /// @brief Updates the dimensions of this caption to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions();
         };//caption
     }//UI
 }//phys

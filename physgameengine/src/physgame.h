@@ -108,7 +108,6 @@
 #include "stringtool.h"
 #include "timer.h"
 #include "timermanager.h"
-#include "trigger.h"
 #include "uibutton.h"
 #include "uibuttonlistbox.h"
 #include "uicaption.h"
@@ -139,6 +138,7 @@
 #include "world.h"
 #include "worldgetset.h"
 #include "worldnode.h"                  // done
+#include "worldtrigger.h"
 #include "xml.h"                        // nothing to do
 #include "xmldoc.h"                     // nothing to do
 

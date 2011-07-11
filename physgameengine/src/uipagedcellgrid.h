@@ -68,6 +68,8 @@ namespace phys
                 virtual std::pair<Whole,Whole> FindTopLeftOfPage(const Whole& Page);
                 /// @brief Draws the grid, used for updating after any change.
                 virtual void DrawGrid();
+                /// @brief Draws the grid, used for updating after any change.
+                virtual void DrawGrid(const Vector2& WinDim);
                 /// @brief Determines whether or not the grid needs to be redrawn.
                 virtual bool GridNeedsRedraw();
             public:
@@ -108,6 +110,10 @@ namespace phys
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
                 virtual bool CheckMouseHover();
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param OldViewportSize The old size of the viewport.
+                virtual void UpdateDimensions(const Vector2& OldViewportSize);
                 /// @brief Gets the spinner in use by this widget.
                 /// @return Returns a pointer to the spinner being used by this widget.
                 virtual UI::Spinner* GetPageSpinner();

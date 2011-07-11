@@ -62,8 +62,8 @@ namespace phys
         {
             Manager = World::GetWorldPointer()->GetUIManager();
 
-            Vector2 Window = Parent->GetParent()->GetViewportDimensions();
-            GRectangle = Parent->GetGorillaLayer()->createRectangle((Position * Window).GetOgreVector2(),(Size * Window).GetOgreVector2());
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GRectangle = Parent->GetGorillaLayer()->createRectangle((Position * WinDim).GetOgreVector2(),(Size * WinDim).GetOgreVector2());
             GRectangle->SetNameFile(Parent->GetParent()->GetPrimaryAtlas());
         }
 
@@ -141,8 +141,8 @@ namespace phys
         void Rectangle::SetPosition(const Vector2& Position)
         {
             RelPosition = Position;
-            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
-            GRectangle->position((CurrDim * RelPosition).GetOgreVector2());
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GRectangle->position((WinDim * RelPosition).GetOgreVector2());
         }
 
         Vector2 Rectangle::GetPosition()
@@ -152,6 +152,7 @@ namespace phys
 
         void Rectangle::SetActualPosition(const Vector2& Position)
         {
+            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
             GRectangle->position(Position.GetOgreVector2());
         }
 
@@ -164,9 +165,9 @@ namespace phys
         void Rectangle::SetSize(const Vector2& Size)
         {
             RelSize = Size;
-            Vector2 CurrDim = Parent->GetParent()->GetViewportDimensions();
-            GRectangle->width(CurrDim.X * RelSize.X);
-            GRectangle->height(CurrDim.Y * RelSize.Y);
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            GRectangle->width(WinDim.X * RelSize.X);
+            GRectangle->height(WinDim.Y * RelSize.Y);
         }
 
         Vector2 Rectangle::GetSize()
@@ -176,6 +177,7 @@ namespace phys
 
         void Rectangle::SetActualSize(const Vector2& Size)
         {
+            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
             GRectangle->width(Size.X);
             GRectangle->height(Size.Y);
         }
@@ -234,6 +236,12 @@ namespace phys
         String Rectangle::GetPrimaryAtlas()
         {
             return *GRectangle->GetNameFile();
+        }
+
+        void Rectangle::UpdateDimensions()
+        {
+            this->SetActualPosition(RelPosition * Parent->GetParent()->GetViewportDimensions());
+            this->SetActualSize(RelSize * Parent->GetParent()->GetViewportDimensions());
         }
     }//UI
 }//phys

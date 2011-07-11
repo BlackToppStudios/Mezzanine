@@ -151,6 +151,9 @@ namespace phys
                 /// @brief Gets the currently set primary atlas.
                 /// @return Returns a string containing the name of the primary atlas that is set, or an empty string if none.
                 virtual String GetPrimaryAtlas();
+                /// @brief Updates the dimensions of this rectangle to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                virtual void UpdateDimensions();
         };//rectangle
     }//UI
 }//phys

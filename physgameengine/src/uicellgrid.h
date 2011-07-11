@@ -105,6 +105,8 @@ namespace phys
                 virtual void ClearGrid();
                 /// @brief Re-populates the grid and the positions of it's elements.
                 virtual void RegenerateGrid();
+                /// @brief Re-populates the grid and the positions of it's elements.
+                virtual void RegenerateGrid(const Vector2& WinDim);
                 /// @brief Draws the grid, used for updating after any change.
                 virtual void DrawGrid() = 0;
                 /// @brief Determines whether or not the grid needs to be redrawn.
@@ -214,6 +216,10 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize();
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param OldViewportSize The old size of the viewport.
+                virtual void UpdateDimensions(const Vector2& OldViewportSize);
                 /// @brief Gets the background to this Grid.
                 /// @return Returns a pointer to the background of this grid.
                 virtual Rectangle* GetGridBack();
