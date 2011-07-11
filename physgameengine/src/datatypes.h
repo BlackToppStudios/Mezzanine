@@ -109,11 +109,6 @@ namespace phys
     /// @details This is a typedef to SDL_Event. See the SDL Documentation for more details
     typedef SDL_Event RawEvent;
 
-    /// @typedef SoundSet
-    /// @brief This is a vector that stores sounds.
-    /// @details This is a vector and can be use to store sounds that can be grouped together
-    /// for similiar purposes or similiar content for easy tracking.
-    typedef std::vector< Sound* > SoundSet;
 
     ///////////////////////////////////////////////////////////////////////////////
     // Simple conversion functions

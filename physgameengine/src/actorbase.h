@@ -67,6 +67,8 @@ namespace phys
     class World;
     class ActorGraphicsSettings;
     class ActorBasePhysicsSettings;
+    class SoundSet;
+
     namespace internal
     {
         class PhysMotionState;
@@ -341,15 +343,6 @@ namespace phys
             /// @return Returns a pointer to the physics settings class in use by this actor.
             virtual ActorBasePhysicsSettings* GetPhysicsSettings() const;
 
-#ifdef PHYSXML
-            /// @brief Gets the Serialized part an actor
-            /// @return A String Containing XML representing the common parts of all actors
-            String GetSerialized() const;
-
-            /// @brief Change this actor Base as per the XML passed int
-            /// @param XMLText The string to  overwrite this actors settings with.
-            void Deserialize(const String& XMLText);
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 // Working with the World
@@ -389,6 +382,34 @@ namespace phys
 /// @return The stream after the actor has been inserted.
 std::ostream& operator << (std::ostream& stream, const phys::ActorBase& x);
 #endif
+
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+
+/// @brief Serializes the passed phys::ActorBase to XML
+/// @param stream The ostream to send the xml to.
+/// @param Ev the phys::ActorBase to be serialized
+/// @return this returns the ostream, now with the serialized data
+std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ActorBase& Ev);
+
+/// @brief Deserialize a phys::ActorBase
+/// @param stream The istream to get the xml from to (re)make the phys::ActorBase.
+/// @param Ev the phys::ActorBase to be deserialized.
+/// @return this returns the ostream, advanced past the phys::ActorBase that was recreated onto Ev.
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorBase& Ev);
+
+/// @brief Set all values of a phys::ActorBase from parsed xml.
+/// @param OneNode The istream to get the xml from to (re)make the phys::ActorBase.
+/// @param Ev the phys::ActorBase to be reset.
+/// @return This returns thexml::Node that was passed in.
+/// @warning This does not attempt to de-serialize the Mesh or PhysicsShape of the ActorBase. The Appropriate Mesh must be available (most likely in a directory specified by the resource manager).
+/// @warning This does not throw an exception if the ActorBase could not be attached an appropriate constraint. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
+phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorBase& Ev);
+
+#endif // \PHYSXML
+
+
 
 
 #endif

@@ -43,7 +43,7 @@
 #include <Ogre.h>
 #include "btBulletDynamicsCommon.h"
 #include <sstream>
-
+#include <memory>
 
 #include "actorbase.h"
 #include "actorrigid.h"
@@ -51,7 +51,9 @@
 #include "actorsoft.h"
 #include "actorgraphicssettings.h"
 #include "actorphysicssettings.h"
+#include "soundmanager.h"
 #include "world.h"
+#include "xml.h"
 #include "internalmotionstate.h.cpp"
 #include "internalmeshtools.h.cpp"
 
@@ -292,49 +294,6 @@ namespace phys{
         return BasePhysicsSettings;
     }
 
-#ifdef PHYSXML
-    String ActorBase::GetSerialized() const
-    {
-        std::stringstream Output;
-        Output << *(GetGraphicsSettings());
-
-        //location
-        //orientation
-        //Name
-        //Actorscaling
-        //MeshFile
-        //ResourceGroup
-
-        //IsAnimated
-            //Animation Name?
-        //Actor Type
-
-        //Actor world node
-            //requires some changes to worldnode
-
-        //IsStaticOrKinematic
-        //is shape saved
-            //use in logic?
-
-        //<<Graphics settings
-            //Requires an Ogre::Entity, but since the actor only has one I think that it will be implied
-            //<<Submeshes
-                //<<Material Name
-                //<<Colours
-                    //<<specular
-                    //<<Diffuse
-                    //<<ambient
-        //Physics settings
-        return Output.str();
-    }
-#endif
-
-    void ActorBase::Deserialize(const String&)
-    {
-
-    }
-
-
     ///////////////////////////////////
     // Internal Object Access functions
 
@@ -349,32 +308,136 @@ namespace phys{
     }
 }// /phys
 
-#ifdef PHYSXML
-std::ostream& operator << (std::ostream& stream, const phys::ActorBase& x)
-{
+
     // add logic here to identify actor
     //Location
     //orientation
-    //Shapeissaved
     //graphicssettings
     //physicssettings
     //name
     //Scaling
 
-    //createshapefrommesh
+    //Constructor Items
 
     //soundset
 
-    //iss in world
 
+    //Shapeissaved
+    //createshapefrommesh
+    //is in world
     //animation?
-
 
     //Actor worldnode name
 
-    stream << "[" << x.GetName() << " at:" << x.GetLocation() << "]";
+///////////////////////////////////////////////////////////////////////////////
+// Class External << Operators for streaming or assignment
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::ActorBase& Ev)
+{
+    stream      << ""; /*<ActorBase Version=\"1\" Name=\"" << Ev.GetName()
+                    << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
+                    << "\" Type=\"" << Ev.GetType()
+                    << "\" PowerScale=\"" << Ev.GetPowerScale()
+                    << "\" AttenuationRange=\"" << Ev.GetAttenuationRange()
+                    << "\" AttenuationConstant=\"" << Ev.GetAttenuationConstant()
+                    << "\" AttenuationQuadric=\"" << Ev.GetAttenuationQuadric()
+                    << "\" AttenuationLinear=\"" << Ev.GetAttenuationLinear()
+                    << "\" SpotActorBaseInnerAngle=\"" << Ev.GetSpotActorBaseInnerAngle()
+                    << "\" SpotActorBaseOuterAngle=\"" << Ev.GetSpotActorBaseOuterAngle()
+                    << "\" SpotActorBaseFalloff=\"" << Ev.GetSpotActorBaseFalloff()
+                << "\">"
+                << "<Direction>" << Ev.GetDirection() << "</Direction>"
+                << "<Location>" << Ev.GetLocation() << "</Location>"
+                << "<Orientation>" << Ev.GetLocation() << "</Orientation>"
+                << "</ActorBase>";*/
     return stream;
 }
-#endif
+
+std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorBase& Ev)
+{
+    phys::String OneTag( phys::xml::GetOneTag(stream) );
+    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "ActorBase", OneTag) );
+
+    Doc->GetFirstChild() >> Ev;
+
+    return stream;
+}
+
+phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorBase& Ev)
+{
+    if ( phys::String(OneNode.Name())==phys::String("ActorBase") )
+    {
+        if(OneNode.GetAttribute("Version").AsInt() == 1)
+        {
+        /*    Ev.SetType(static_cast<phys::ActorBase::ActorBaseType>(OneNode.GetAttribute("Type").AsInt()));
+            Ev.SetPowerScale(OneNode.GetAttribute("PowerScale").AsReal());
+            Ev.SetAttenuation(OneNode.GetAttribute("AttenuationRange").AsReal(), OneNode.GetAttribute("AttenuationConstant").AsReal(), OneNode.GetAttribute("AttenuationLinear").AsReal(), OneNode.GetAttribute("AttenuationQuadric").AsReal());
+            Ev.SetSpotActorBaseInnerAngle(OneNode.GetAttribute("SpotActorBaseInnerAngle").AsReal());
+            Ev.SetSpotActorBaseOuterAngle(OneNode.GetAttribute("SpotActorBaseOuterAngle").AsReal());
+            Ev.SetSpotActorBaseFalloff(OneNode.GetAttribute("SpotActorBaseFalloff").AsReal());
+            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
+            if (AttachPtr)
+                { AttachPtr->AttachObject(&Ev); }
+
+            phys::ColourValue TempColour(0,0,0,0);
+            phys::Vector3 TempVec(0,0,0);
+
+            for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
+            {
+                phys::String Name(Child.Name());
+                switch(Name[0])
+                {
+                    case 'f':   //fDiffuseColour
+                        if(Name==phys::String("fDiffuseColour"))
+                        {
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetDiffuseColour(TempColour);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element f-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'S':   //SpecularColour
+                        if(Name==phys::String("SpecularColour"))
+                        {
+                            Child.GetFirstChild() >> TempColour;
+                            Ev.SetSpecularColour(TempColour);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element S-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'D':   //Direction
+                        if(Name==phys::String("Direction"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetDirection(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element D-\"",Name,"\"")) );
+                        }
+                        break;
+                    case 'L':   //Location
+                        if(Name==phys::String("Location"))
+                        {
+                            Child.GetFirstChild() >> TempVec;
+                            Ev.SetLocation(TempVec);
+                        }else{
+                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element L-\"",Name,"\"")) );
+                        }
+                        break;
+                    default:
+                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element default-\"",Name,"\"")) );
+                        break;
+                }
+            }
+*/
+        }else{
+            throw( phys::Exception("Incompatible XML Version for ActorBase: Not Version 1"));
+        }
+    }else{
+        throw( phys::Exception(phys::StringCat("Attempting to deserialize a ActorBase, found a ", OneNode.Name())));
+    }
+}
+#endif // \PHYSXML
+
+
 
 #endif

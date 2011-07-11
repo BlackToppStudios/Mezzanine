@@ -59,6 +59,36 @@ namespace cAudio
 
 namespace phys
 {
+    /// @typedef SoundSet
+    /// @brief This is a vector that stores sounds.
+    /// @details This is a vector and can be use to store sounds that can be grouped together
+    /// for similiar purposes or similiar content for easy tracking.
+    class SoundSet : public std::vector< Sound* >
+    {
+        private:
+            /// @brief The name of the sound
+            String Name;
+        public:
+            /// @brief a Simple counter to insure unique names of soundsets
+            static Whole UnnamedInstanceCount;
+
+            /// @brief Default constructor
+            SoundSet()
+                { Name = StringCat("SoundSet",ToString(UnnamedInstanceCount++)); } // Name the First "SoundSet0" then the next "SoundSet1" and then "SoundSet2"...
+
+            /// @brief Default constructor
+            explicit SoundSet(const String& _Name) : Name(_Name)
+                { }
+
+            /// @brief Get the name of the SoundSet
+            const String& GetName() const
+                { return Name; }
+    };
+    //typedef std::vector< Sound* > SoundSet;
+    /// Todo de/serialize sound set
+
+
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class SoundManager
     /// @headerfile soundmanager.h

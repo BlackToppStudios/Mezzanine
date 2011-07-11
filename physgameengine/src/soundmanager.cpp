@@ -46,6 +46,8 @@
 
 namespace phys
 {
+    Whole SoundSet::UnnamedInstanceCount = 0;
+
     SoundManager::SoundManager(bool DefaultSettings)
     {
         AudioManager = cAudio::createAudioManager(DefaultSettings);
