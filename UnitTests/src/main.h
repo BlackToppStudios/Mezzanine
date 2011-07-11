@@ -321,17 +321,17 @@ void StartEngine()
     phys::UI::Screen *TheScreen = TheWorld->GetUIManager()->CreateScreen("Screen","dejavu",TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0));
     phys::UI::Layer *TheLayer = TheScreen->CreateLayer("Layer",0);
 
-    TheTextB1 = TheLayer->CreateCaption(ConstString("TheTextB1"),Vector2(0.0016,0.603),Vector2(1,0.25),24, TheMessage);
+    TheTextB1 = TheLayer->CreateCaption(ConstString("TheTextB1"),Vector2(0.0016,0.603),Vector2(1,0.25), (Whole)24, TheMessage);
     TheTextB1->SetTextColour(ColourValue::GetBlack());
     TheTextB1->SetBackgroundColour(ColourValue::GetBlank());
-    TheTextW1 = TheLayer->CreateCaption(ConstString("TheTextW1"),Vector2(0,0.6),Vector2(1,0.25),24, TheMessage);
+    TheTextW1 = TheLayer->CreateCaption(ConstString("TheTextW1"),Vector2(0,0.6),Vector2(1,0.25), (Whole)24, TheMessage);
     TheTextW1->SetTextColour(ColourValue::GetWhite());
     TheTextW1->SetBackgroundColour(ColourValue::GetBlank());
 
-    TheTextB2 = TheLayer->CreateCaption(ConstString("TheTextB2"),Vector2(0.0016,0.753),Vector2(1.0,0.25),24, TheMessage2);
+    TheTextB2 = TheLayer->CreateCaption(ConstString("TheTextB2"),Vector2(0.0016,0.753),Vector2(1.0,0.25), (Whole)24, TheMessage2);
     TheTextB2->SetTextColour(ColourValue::GetBlack());
     TheTextB2->SetBackgroundColour(ColourValue::GetBlank());
-    TheTextW2 = TheLayer->CreateCaption(ConstString("TheTextW2"),Vector2(0,0.75),Vector2(1.0,0.25),24, TheMessage2);
+    TheTextW2 = TheLayer->CreateCaption(ConstString("TheTextW2"),Vector2(0,0.75),Vector2(1.0,0.25), (Whole)24, TheMessage2);
     TheTextW2->SetTextColour(ColourValue::GetWhite());
     TheTextW2->SetBackgroundColour(ColourValue::GetBlank());
 

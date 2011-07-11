@@ -1162,7 +1162,7 @@ void MakeGUI()
     //Build the HUD layer
     UI::TextButton* MenuButton = HUD->CreateTextButton( "Menu", Vector2(0.0, 0.92),
                                             Vector2(0.2, 0.08),
-                                            24, "Menu");
+                                            (Whole)24, "Menu");
     MenuButton->HorizontallyAlign(UI::Txt_Middle);
     MenuButton->VerticallyAlign(UI::Txt_Center);
     ColourValue MenuColour(0.1,0.3,0.8,1.0);
@@ -1179,7 +1179,7 @@ void MakeGUI()
 
     UI::TextButton* ReturnButton = Menu->CreateTextButton( "Return", Vector2(0.30, 0.61),
                                             Vector2(0.4, 0.08),
-                                            24, "Return to Game");
+                                            (Whole)24, "Return to Game");
     ReturnButton->HorizontallyAlign(UI::Txt_Middle);
     ReturnButton->VerticallyAlign(UI::Txt_Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
@@ -1187,7 +1187,7 @@ void MakeGUI()
 
     UI::TextButton* ExitButton = Menu->CreateTextButton( "Exit", Vector2(0.30, 0.73),
                                             Vector2(0.4, 0.08),
-                                            24, "Exit Game");
+                                            (Whole)24, "Exit Game");
     ExitButton->HorizontallyAlign(UI::Txt_Middle);
     ExitButton->VerticallyAlign(UI::Txt_Center);
     Colours = ColourValue(0.6,0.2,0.2,1.0);
@@ -1195,35 +1195,35 @@ void MakeGUI()
     Menu->Hide();
 
     //Build the Stats Layer
-    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", Vector2(0.16, 0.06), Vector2(0.06, 0.065), 14, "0.0");
+    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", Vector2(0.16, 0.06), Vector2(0.06, 0.065), (Whole)14, "0.0");
     CurFPS->SetBackgroundColour(Transparent);
     CurFPS->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", Vector2(0.008, 0.06), Vector2(0.15, 0.065), 14, "Current FPS: ");
+    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", Vector2(0.008, 0.06), Vector2(0.15, 0.065), (Whole)14, "Current FPS: ");
     CurFPSText->SetBackgroundColour(Transparent);
     CurFPSText->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", Vector2(0.16, 0.105), Vector2(0.06, 0.065), 14, "0.0");
+    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", Vector2(0.16, 0.105), Vector2(0.06, 0.065), (Whole)14, "0.0");
     AvFPS->SetBackgroundColour(Transparent);
     AvFPS->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), 14, "Average FPS: ");
+    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), (Whole)14, "Average FPS: ");
     AvFPSText->SetBackgroundColour(Transparent);
     AvFPSText->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* WMPos = Stats->CreateCaption( "WMPos", Vector2(0.16, 0.15), Vector2(0.12, 0.065), 14, "0,0");
+    UI::Caption* WMPos = Stats->CreateCaption( "WMPos", Vector2(0.16, 0.15), Vector2(0.12, 0.065), (Whole)14, "0,0");
     WMPos->SetBackgroundColour(Transparent);
     WMPos->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* WMPosText = Stats->CreateCaption( "WMPosText", Vector2(0.008, 0.15), Vector2(0.15, 0.065), 14, "World M Pos: ");
+    UI::Caption* WMPosText = Stats->CreateCaption( "WMPosText", Vector2(0.008, 0.15), Vector2(0.15, 0.065), (Whole)14, "World M Pos: ");
     WMPosText->SetBackgroundColour(Transparent);
     WMPosText->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* IMPos = Stats->CreateCaption( "IMPos", Vector2(0.16, 0.195), Vector2(0.12, 0.065), 14, "0,0");
+    UI::Caption* IMPos = Stats->CreateCaption( "IMPos", Vector2(0.16, 0.195), Vector2(0.12, 0.065), (Whole)14, "0,0");
     IMPos->SetBackgroundColour(Transparent);
     IMPos->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* IMPosText = Stats->CreateCaption( "IMPosText", Vector2(0.008, 0.195), Vector2(0.15, 0.065), 14, "Input M Pos: ");
+    UI::Caption* IMPosText = Stats->CreateCaption( "IMPosText", Vector2(0.008, 0.195), Vector2(0.15, 0.065), (Whole)14, "Input M Pos: ");
     IMPosText->SetBackgroundColour(Transparent);
     IMPosText->HorizontallyAlign(UI::Txt_Left);
     //End of Stats Layer
