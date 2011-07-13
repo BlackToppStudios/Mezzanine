@@ -51,6 +51,7 @@
 #include "actorsoft.h"
 #include "actorgraphicssettings.h"
 #include "actorphysicssettings.h"
+#include "serializable.h"
 #include "soundmanager.h"
 #include "world.h"
 #include "xml.h"

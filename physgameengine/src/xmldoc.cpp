@@ -129,7 +129,31 @@ namespace phys
             }
         }
 
-
+        String EscapeXML(const String& XMLText)
+        {
+            String Results;
+            for(Whole Counter=0; Counter<XMLText.size(); ++Counter)
+            {
+                switch(XMLText.at(Counter))
+                {
+                    case '"':
+                        Results.append("&quot;");
+                        break;
+                    case '&':
+                        Results.append("&amp;");
+                        break;
+                    case '<':
+                        Results.append("&lt;");
+                        break;
+                    case '>':
+                        Results.append("&gt;");
+                        break;
+                    default:
+                        Results.append(1,XMLText.at(Counter));
+                }
+            }
+            return Results;
+        }
 
     } // \xml
 }   // \phys
