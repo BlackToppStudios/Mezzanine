@@ -142,6 +142,24 @@ namespace phys
             return Name;
         }
 
+        void Widget::SetRect(const RenderableRect& Rect)
+        {
+            if(Rect.Relative)
+            {
+                SetPosition(Rect.Position);
+                SetSize(Rect.Size);
+            }else{
+                SetActualPosition(Rect.Position);
+                SetActualSize(Rect.Size);
+            }
+        }
+
+        RenderableRect Widget::GetRect(bool Relative)
+        {
+            if(Relative) return RenderableRect(GetPosition(),GetSize(),Relative);
+            else return RenderableRect(GetActualPosition(),GetActualSize(),Relative);
+        }
+
         void Widget::UpdateDimensions(const Vector2& OldViewportSize)
         {
             const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();

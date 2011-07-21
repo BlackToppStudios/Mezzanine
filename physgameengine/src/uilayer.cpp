@@ -147,9 +147,9 @@ namespace phys
             GorillaLayer->hide();
         }
 
-        Button* Layer::CreateButton(ConstString& Name, const Vector2& Position, const Vector2& Size)
+        Button* Layer::CreateButton(ConstString& Name, const RenderableRect& Rect)
         {
-            Button* button = new Button(Name, Position, Size, this);
+            Button* button = new Button(Name,Rect,this);
             Buttons.push_back(button);
             if(Manager->ButtonAutoRegisterEnabled())
             {
@@ -160,9 +160,9 @@ namespace phys
             return button;
         }
 
-        TextButton* Layer::CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString& Text)
+        TextButton* Layer::CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text)
         {
-            TextButton* tbutton = new TextButton(Name, Position, Size, Glyph, Text, this);
+            TextButton* tbutton = new TextButton(Name,Rect,Glyph,Text,this);
             Buttons.push_back(tbutton);
             if(Manager->ButtonAutoRegisterEnabled())
             {
@@ -173,9 +173,9 @@ namespace phys
             return tbutton;
         }
 
-        TextButton* Layer::CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, ConstString& Text)
+        TextButton* Layer::CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, ConstString& Text)
         {
-            TextButton* tbutton = new TextButton(Name, Position, Size, LineHeight, Text, this);
+            TextButton* tbutton = new TextButton(Name,Rect,LineHeight,Text,this);
             Buttons.push_back(tbutton);
             if(Manager->ButtonAutoRegisterEnabled())
             {
@@ -222,9 +222,9 @@ namespace phys
             }
         }
 
-        Rectangle* Layer::CreateRectangle(const Vector2& Position, const Vector2& Size)
+        Rectangle* Layer::CreateRectangle(const RenderableRect& Rect)
         {
-            Rectangle* rectangle = new Rectangle(Position,Size, this);
+            Rectangle* rectangle = new Rectangle(Rect, this);
             Rectangles.push_back(rectangle);
             return rectangle;
         }
@@ -252,16 +252,16 @@ namespace phys
             }
         }
 
-        Caption* Layer::CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
+        Caption* Layer::CreateCaption(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
-            Caption* caption = new Caption(Name,Position,Size,Glyph,Text,this);
+            Caption* caption = new Caption(Name,Rect,Glyph,Text,this);
             Captions.push_back(caption);
             return caption;
         }
 
-        Caption* Layer::CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text)
+        Caption* Layer::CreateCaption(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text)
         {
-            Caption* caption = new Caption(Name,Position,Size,LineHeight,Text,this);
+            Caption* caption = new Caption(Name,Rect,LineHeight,Text,this);
             Captions.push_back(caption);
             return caption;
         }
@@ -302,16 +302,16 @@ namespace phys
             }
         }
 
-        MarkupText* Layer::CreateMarkupText(ConstString& Name, const Vector2& Position, const Whole& Glyph, const String& Text)
+        MarkupText* Layer::CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
-            MarkupText* markup = new MarkupText(Name,Position,Glyph,Text,this);
+            MarkupText* markup = new MarkupText(Name,Rect,Glyph,Text,this);
             MarkupTexts.push_back(markup);
             return markup;
         }
 
-        MarkupText* Layer::CreateMarkupText(ConstString& Name, const Vector2& Position, const Real& LineHeight, const String& Text)
+        MarkupText* Layer::CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text)
         {
-            MarkupText* markup = new MarkupText(Name,Position,LineHeight,Text,this);
+            MarkupText* markup = new MarkupText(Name,Rect,LineHeight,Text,this);
             MarkupTexts.push_back(markup);
             return markup;
         }
@@ -423,65 +423,65 @@ namespace phys
             }
         }
 
-        Scrollbar* Layer::CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style)
+        Scrollbar* Layer::CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style)
         {
-            Scrollbar* Scroll = new Scrollbar(Name,Position,Size,Style,this);
+            Scrollbar* Scroll = new Scrollbar(Name,Rect,Style,this);
             Widgets.push_back(Scroll);
             return Scroll;
         }
 
-        CheckBox* Layer::CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String &LabelText)
+        CheckBox* Layer::CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String &LabelText)
         {
-            CheckBox* Check = new CheckBox(Name,Position,Size,Glyph,LabelText,this);
+            CheckBox* Check = new CheckBox(Name,Rect,Glyph,LabelText,this);
             Widgets.push_back(Check);
             return Check;
         }
 
-        ButtonListBox* Layer::CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
+        ButtonListBox* Layer::CreateButtonListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
-            ButtonListBox* BLB = new ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,this);
+            ButtonListBox* BLB = new ButtonListBox(Name,Rect,ScrollbarWidth,ScrollStyle,this);
             Widgets.push_back(BLB);
             return BLB;
         }
 
-        ListBox* Layer::CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
+        ListBox* Layer::CreateListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
-            ListBox* LB = new ListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,this);
+            ListBox* LB = new ListBox(Name,Rect,ScrollbarWidth,ScrollStyle,this);
             Widgets.push_back(LB);
             return LB;
         }
 
-        Window* Layer::CreateWidgetWindow(ConstString& Name, const Vector2& Position, const Vector2& Size)
+        Window* Layer::CreateWidgetWindow(ConstString& Name, const RenderableRect& Rect)
         {
-            Window* Win = new Window(Name,Position,Size,this);
+            Window* Win = new Window(Name,Rect,this);
             Widgets.push_back(Win);
             return Win;
         }
 
-        Menu* Layer::CreateMenu(ConstString& Name, const Vector2& Position, const Vector2& Size)
+        Menu* Layer::CreateMenu(ConstString& Name, const RenderableRect& Rect)
         {
-            Menu* Men = new Menu(Name,Position,Size,this);
+            Menu* Men = new Menu(Name,Rect,this);
             Widgets.push_back(Men);
             return Men;
         }
 
-        Spinner* Layer::CreateSpinner(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        Spinner* Layer::CreateSpinner(ConstString& Name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
-            Spinner* Spn = new Spinner(Name,Position,Size,SStyle,GlyphHeight,this);
+            Spinner* Spn = new Spinner(Name,Rect,SStyle,GlyphHeight,this);
             Widgets.push_back(Spn);
             return Spn;
         }
 
-        ScrolledCellGrid* Layer::CreateScrolledCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& Thickness, const UI::ScrollbarStyle& Style)
+        ScrolledCellGrid* Layer::CreateScrolledCellGrid(ConstString& Name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style)
         {
-            ScrolledCellGrid* SCG = new ScrolledCellGrid(Name,Position,Size,Thickness,Style,this);
+            ScrolledCellGrid* SCG = new ScrolledCellGrid(Name,Rect,Thickness,Style,this);
             Widgets.push_back(SCG);
             return SCG;
         }
 
-        PagedCellGrid* Layer::CreatePagedCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        PagedCellGrid* Layer::CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
-            PagedCellGrid* PCG = new PagedCellGrid(Name,Position,Size,SpnPosition,SpnSize,SStyle,GlyphHeight,this);
+            PagedCellGrid* PCG = new PagedCellGrid(Name,Rect,SpnRect,SStyle,GlyphHeight,this);
             Widgets.push_back(PCG);
             return PCG;
         }

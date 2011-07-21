@@ -69,7 +69,7 @@ namespace phys
             }
         };
 
-        CellGrid::CellGrid(const String& name, const Vector2& Position, const Vector2& Size, Layer* parent)
+        CellGrid::CellGrid(const String& name, const RenderableRect& Rect, Layer* parent)
             : Widget(name,parent),
               EdgeSpacing(Vector2(0,0)),
               CellSpacing(Vector2(0.01,0.01)),
@@ -79,11 +79,20 @@ namespace phys
               Selected(NULL)
         {
             Type = Widget::CellGrid;
-            RelPosition = Position;
-            RelSize = Size;
-            WorkAreaLimits = Size * Parent->GetParent()->GetViewportDimensions();
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
 
-            GridBack = new Rectangle(Position,Size,Parent);
+                WorkAreaLimits = Rect.Size * Parent->GetParent()->GetViewportDimensions();
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+
+                WorkAreaLimits = Rect.Size;
+            }
+
+            GridBack = new Rectangle(Rect,Parent);
             CreateOrDestroyRow(0);
         }
 

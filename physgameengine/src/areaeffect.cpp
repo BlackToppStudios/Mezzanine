@@ -151,14 +151,158 @@ namespace phys{
 
     void AreaEffect::UpdateActorList()
     {
-        if ( !(AddedActors.empty()) )
+        if ( !AddedActors.empty() )
             AddedActors.clear();
-        if ( !(RemovedActors.empty()) )
+        if ( !RemovedActors.empty() )
             RemovedActors.clear();
         btSoftRigidDynamicsWorld* PhysWorld = TheWorld->GetPhysicsManager()->GetPhysicsWorldPointer();
-        //PhysWorld->getDispatcher()->dispatchAllCollisionPairs(Ghost->getOverlappingPairCache(), PhysWorld->getDispatchInfo(), PhysWorld->getDispatcher());
 
-        int OverlappingPairs = Ghost->getOverlappingPairCache()->getNumOverlappingPairs();
+        std::list<ActorBase*>::iterator it = OverlappingActors.begin();
+        // Make a bool vector to keep track of which actors to keep when updating.
+        std::vector<bool> Tracker;
+        Tracker.resize(OverlappingActors.size());
+        std::vector<bool>::iterator bit;
+        for ( bit = Tracker.begin() ; bit != Tracker.end() ; bit++ )
+        {
+            (*bit) = false;
+        }
+
+        btManifoldArray manifoldArray;
+        btBroadphasePairArray& pairArray = Ghost->getOverlappingPairCache()->getOverlappingPairArray();
+        int numPairs = pairArray.size();
+        for (int i=0;i<numPairs;i++)
+        {
+            manifoldArray.clear();
+            const btBroadphasePair& pair = pairArray[i];
+            btBroadphasePair* collisionPair = PhysWorld->getPairCache()->findPair(pair.m_pProxy0,pair.m_pProxy1);
+            if (!collisionPair)
+                continue;
+            if (collisionPair->m_algorithm)
+                collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
+            for (int j=0;j<manifoldArray.size();j++)
+            {
+                btPersistentManifold* manifold = manifoldArray[j];
+                for (int p=0;p<manifold->getNumContacts();p++)
+                {
+                    const btManifoldPoint& pt = manifold->getContactPoint(p);
+                    if(pt.m_distance1 > 0)
+                        continue;
+                    btCollisionObject* ColObj = manifold->getBody0() != Ghost ? (btCollisionObject*)(manifold->getBody0()) : (btCollisionObject*)(manifold->getBody1());
+
+                    ObjectReference* ActorRef = (ObjectReference*)(ColObj->getUserPointer());
+                    ActorBase* Actor = NULL;
+                    if(phys::WOT_AreaEffect > ActorRef->GetType())
+                        Actor = (ActorBase*)ActorRef->GetObject();
+                    else
+                        continue;
+                    // Check list for the actor in the pair.
+                    for( it = OverlappingActors.begin(), bit = Tracker.begin() ; it != OverlappingActors.end() ; it++, bit++ )
+                    {
+                        if ( Actor == (*it) )
+                        {
+                            (*bit) = true;
+                            break;
+                        }
+                    }
+                    if ( it == OverlappingActors.end() )
+                    {
+                        AddActorToList(Actor);
+                        Tracker.push_back(true);
+                    }
+                }
+            }
+        }
+
+        // Verify they are the same size.  Then remove items from the list as necessary.
+        if ( OverlappingActors.size() == Tracker.size() )
+        {
+            std::list<ActorBase*>::iterator sit = OverlappingActors.begin();
+            for ( bit = Tracker.begin() ; bit != Tracker.end() ; )
+            {
+                if ( (*bit) == false )
+                {
+                    bit = Tracker.erase(bit);
+                    ActorBase* Act = (*sit);
+                    RemovedActors.push_back(Act);
+                    sit = OverlappingActors.erase(sit);
+                }else{
+                    sit++;
+                    bit++;
+                }
+            }
+        }// */
+
+        /// New-ish way using the dispatcher.  Gives inconsistent results at startup.
+        /*std::list<ActorBase*>::iterator it = OverlappingActors.begin();
+        // Make a bool vector to keep track of which actors to keep when updating.
+        std::vector<bool> Tracker;
+        Tracker.resize(OverlappingActors.size());
+        std::vector<bool>::iterator bit;
+        for ( bit = Tracker.begin() ; bit != Tracker.end() ; bit++ )
+        {
+            (*bit) = false;
+        }
+
+        // Iterate over the contact manifolds to check for real shape collisions.
+        int numManifolds = PhysWorld->getDispatcher()->getNumManifolds();
+        for (int i=0;i<numManifolds;i++)
+        {
+            btPersistentManifold* contactManifold = PhysWorld->getDispatcher()->getManifoldByIndexInternal(i);
+            if( contactManifold->getBody0() != Ghost && contactManifold->getBody1() != Ghost)
+                continue;
+            int numContacts = contactManifold->getNumContacts();
+            for (int j=0;j<numContacts;j++)
+            {
+                btManifoldPoint& pt = contactManifold->getContactPoint(j);
+                if(pt.m_distance1 > 0)
+                    continue;
+
+                // Get the non-ghost object from a given pair and cast it to a usable pointer.
+                btCollisionObject* ColObj = contactManifold->getBody0() != Ghost ? (btCollisionObject*)(contactManifold->getBody0()) : (btCollisionObject*)(contactManifold->getBody1());
+                ObjectReference* ActorRef = (ObjectReference*)(ColObj->getUserPointer());
+                ActorBase* Actor = NULL;
+                if(phys::WOT_AreaEffect > ActorRef->GetType())
+                    Actor = (ActorBase*)ActorRef->GetObject();
+                else
+                    continue;
+                // Check list for the actor in the pair.
+                for( it = OverlappingActors.begin(), bit = Tracker.begin() ; it != OverlappingActors.end() ; it++, bit++ )
+                {
+                    if ( Actor == (*it) )
+                    {
+                        (*bit) = true;
+                        break;
+                    }
+                }
+                if ( it == OverlappingActors.end() )
+                {
+                    AddActorToList(Actor);
+                    Tracker.push_back(true);
+                }
+            }
+        }
+
+        // Verify they are the same size.  Then remove items from the list as necessary.
+        if ( OverlappingActors.size() == Tracker.size() )
+        {
+            std::list<ActorBase*>::iterator sit = OverlappingActors.begin();
+            for ( bit = Tracker.begin() ; bit != Tracker.end() ; )
+            {
+                if ( (*bit) == false )
+                {
+                    bit = Tracker.erase(bit);
+                    ActorBase* Act = (*sit);
+                    RemovedActors.push_back(Act);
+                    sit = OverlappingActors.erase(sit);
+                }else{
+                    sit++;
+                    bit++;
+                }
+            }
+        }// */
+
+        /// Old way, checks AABB's only...as it turns out.
+        /*int OverlappingPairs = Ghost->getOverlappingPairCache()->getNumOverlappingPairs();
         btBroadphasePair* Pair = Ghost->getOverlappingPairCache()->getOverlappingPairArrayPtr();
         std::list<ActorBase*>::iterator it = OverlappingActors.begin();
         // Make a bool vector to keep track of which actors to keep when updating.
@@ -212,7 +356,7 @@ namespace phys{
                     bit++;
                 }
             }
-        }
+        }// */
     }
 
     void AreaEffect::CreateSphereShape(const Real& Radius)
@@ -356,6 +500,19 @@ namespace phys{
     {
         Vector3 Loc(Ghost->getWorldTransform().getOrigin());
         return Loc;
+    }
+
+    void AreaEffect::SetOrientation(const Quaternion& Rotation)
+    {
+        Ghost->getWorldTransform().setRotation(Rotation.GetBulletQuaternion());
+        if(GraphicsNode)
+            GraphicsNode->setOrientation(Rotation.GetOgreQuaternion());
+    }
+
+    Quaternion AreaEffect::GetOrientation()
+    {
+        Quaternion Rot(Ghost->getWorldTransform().getRotation());
+        return Rot;
     }
 
     ConstString& AreaEffect::GetName() const

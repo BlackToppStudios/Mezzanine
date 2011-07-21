@@ -43,7 +43,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "managerbase.h"
-#include "vector2.h"
+#include "uirenderablerect.h"
 #include "metacode.h"
 
 #include <map>

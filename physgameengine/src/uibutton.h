@@ -45,7 +45,7 @@
 #include "datatypes.h"
 #include "enumerations.h"
 #include "metacode.h"
-#include "vector2.h"
+#include "uirenderablerect.h"
 
 namespace Gorilla
 {
@@ -92,10 +92,9 @@ namespace phys
             public:
                 /// @brief Internal constructor
                 /// @param name The name of the button.
-                /// @param Position The top left position of the button.
-                /// @param Size The size of the Button.
+                /// @param Rect The Rect representing the position and size of the button.
                 /// @param Layer Pointer to the Layer that created this button.
-                Button(ConstString& name, const Vector2& Position, const Vector2& Size, Layer* PLayer);
+                Button(ConstString& name, const RenderableRect& Rect, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Button();
                 /// @brief Sets the visibility of this button.

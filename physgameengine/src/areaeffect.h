@@ -180,6 +180,12 @@ namespace phys{
             /// @details This function is particularly useful when making fields such as gravity wells, that have continuous effects centering on one location.
             /// @return Returns the vector3 representing the location of the area effect.
             virtual Vector3 GetLocation() const;
+            /// @brief Sets the orientation of the area effect.
+            /// @param Rotation The Quaternion representing the Rotation.
+            virtual void SetOrientation(const Quaternion& Rotation);
+            /// @brief Gets the orientation of the area effect.
+            /// @return Returns a quaternion representing the rotation of the area effect.
+            virtual Quaternion GetOrientation();
             /// @brief Gets the Area Effects name.
             /// @return Returns the name of the Area Effect.
             virtual ConstString& GetName() const;
@@ -363,7 +369,7 @@ namespace phys{
     /// to the source, and then will be applied less force(but in the same direction) as it moves from the source.
     /// This behavior makes this class good for creating a booster-like AE.
     ///////////////////////////////////////
-    class FieldOfForce : public AreaEffect
+    class PHYS_LIB FieldOfForce : public AreaEffect
     {
         protected:
             /// @brief The amount of force exerted on other objects
@@ -382,7 +388,7 @@ namespace phys{
             /// @param Location The location of the AE field.
             FieldOfForce(const String &name, const Vector3& Location);
             /// @brief Class Destructor
-            ~FieldOfForce();
+            virtual ~FieldOfForce();
             /// @brief Applies the effect this field has to object inside.
             /// @details This function defines the behavior for the class.
             virtual void ApplyEffect();

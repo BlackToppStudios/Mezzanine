@@ -52,9 +52,8 @@ namespace phys
 {
     namespace UI
     {
-        MarkupText::MarkupText(ConstString& name, const Vector2& Position, const Whole& Glyph, const String& Text, Layer* PLayer)
+        MarkupText::MarkupText(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer)
             : Parent(PLayer),
-              RelPosition(Position),
               RelSize(Vector2(0,0)),
               Name(name)
         {
@@ -62,12 +61,11 @@ namespace phys
 
             AutoScaleText = false;
             RelLineHeight = 0.0;
-            ConstructMarkupText(Position,Glyph,Text);
+            ConstructMarkupText(Rect,Glyph,Text);
         }
 
-        MarkupText::MarkupText(ConstString& name, const Vector2& Position, const Real& LineHeight, const String& Text, Layer* PLayer)
+        MarkupText::MarkupText(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer)
             : Parent(PLayer),
-              RelPosition(Position),
               RelSize(Vector2(0,0)),
               Name(name)
         {
@@ -76,7 +74,7 @@ namespace phys
             AutoScaleText = true;
             RelLineHeight = LineHeight;
             std::pair<Whole,Real> Result = Manager->SuggestGlyphIndex(LineHeight * Parent->GetParent()->GetViewportDimensions().Y,Parent->GetParent()->GetPrimaryAtlas());
-            ConstructMarkupText(Position,Result.first,Text);
+            ConstructMarkupText(Rect,Result.first,Text);
             SetTextScale(Result.second);
         }
 
@@ -85,10 +83,19 @@ namespace phys
             Parent->GetGorillaLayer()->destroyMarkupText(GMarkup);
         }
 
-        void MarkupText::ConstructMarkupText(const Vector2& Position, const Whole& Glyph, const String& Text)
+        void MarkupText::ConstructMarkupText(const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Position.X * WinDim.X,Position.Y * WinDim.Y,Text,Parent->GetParent()->GetPrimaryAtlas());
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+
+                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+                GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Rect.Position.X * WinDim.X,Rect.Position.Y * WinDim.Y,Text,Parent->GetParent()->GetPrimaryAtlas());
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+
+                GMarkup = Parent->GetGorillaLayer()->createMarkupText(Glyph,Rect.Position.X,Rect.Position.Y,Text,Parent->GetParent()->GetPrimaryAtlas());
+            }
         }
 
         void MarkupText::SetVisible(bool Visible)

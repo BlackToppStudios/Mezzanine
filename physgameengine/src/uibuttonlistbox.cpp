@@ -58,7 +58,7 @@ namespace phys
 {
     namespace UI
     {
-        ButtonListBox::ButtonListBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
+        ButtonListBox::ButtonListBox(ConstString& name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
             : Widget(name,PLayer),
               Selected(NULL),
               AutoHideScroll(true),
@@ -69,14 +69,27 @@ namespace phys
               BorderColour(ColourValue(0,0,0,0))
         {
             Type = Widget::ButtonListBox;
-            RelPosition = Position;
-            RelSize = Size;
+            RenderableRect ScrollRect;
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
 
-            BoxBack = new Rectangle(Position,Size,Parent);
-            Vector2 ScrollP((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
-            Vector2 ScrollS(ScrollbarWidth,RelSize.Y);
+                ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
+                ScrollRect.Size = Vector2(ScrollbarWidth,RelSize.Y);
+                ScrollRect.Relative = Rect.Relative;
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+
+                ScrollRect.Position = Vector2((Rect.Position.X + Rect.Size.X) - ScrollbarWidth,Rect.Position.Y);
+                ScrollRect.Size = Vector2(ScrollbarWidth,Rect.Size.Y);
+                ScrollRect.Relative = Rect.Relative;
+            }
+
+            BoxBack = new Rectangle(Rect,Parent);
             /// @todo Fourth instance of needing to include the namespace in the declaration seemingly needlessly.
-            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollStyle,Parent);
+            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,Parent);
             VertScroll->Hide();
         }
 
@@ -291,9 +304,11 @@ namespace phys
             Button* Select = NULL;
             if(TextLabel.empty())
             {
-                Select = new Button(name,GetPosition(),TSize,Parent);
+                RenderableRect SelectionRect(GetPosition(),TSize,true);
+                Select = new Button(name,SelectionRect,Parent);
             }else{
-                Select = new TextButton(name,GetPosition(),TSize,TGlyph,TextLabel,Parent);
+                RenderableRect SelectionRect(GetPosition(),TSize,true);
+                Select = new TextButton(name,SelectionRect,TGlyph,TextLabel,Parent);
             }
             if(!BackgroundSprite.empty())
             {

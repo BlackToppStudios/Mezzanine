@@ -50,8 +50,8 @@ namespace phys
 {
     namespace UI
     {
-        MenuWindow::MenuWindow(ConstString& Name, const Vector2& Position, const Vector2& Size, UI::Menu* TheMenu,Layer* PLayer)
-            : Window(Name,Position,Size,PLayer),
+        MenuWindow::MenuWindow(ConstString& Name, const RenderableRect& Rect, UI::Menu* TheMenu,Layer* PLayer)
+            : Window(Name,Rect,PLayer),
               BackButton(NULL),
               ParentWindow(NULL),
               MasterMenu(TheMenu),
@@ -85,43 +85,49 @@ namespace phys
             return ParentWindow;
         }
 
-        Button* MenuWindow::CreateBackButton(const Vector2& Position, const Vector2& Size)
+        Button* MenuWindow::CreateBackButton(const RenderableRect& Rect)
         {
             if(!BackButton && ParentWindow)
             {
-                BackButton = new Button(Name+"back",Position,Size,Parent);
-                Vector2 Offset = Position - RelPosition;
-                OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-                Buttons.push_back(backbuttonoff);
-                backbuttonoff.Object->SetVisible(IsVisible());
+                //Vector2 Offset;
+                //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+                //else Offset = Rect.Position - GetActualPosition();
+                BackButton = this->CreateButton(Name+"back",Rect);
+                //OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+                //Buttons.push_back(backbuttonoff);
+                BackButton->SetVisible(IsVisible());
                 return BackButton;
             }
             return 0;
         }
 
-        TextButton* MenuWindow::CreateBackButton(const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
+        TextButton* MenuWindow::CreateBackButton(const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
             if(!BackButton && ParentWindow)
             {
-                BackButton = new TextButton(Name+"back",Position,Size,Glyph,Text,Parent);
-                Vector2 Offset = Position - RelPosition;
-                OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-                Buttons.push_back(backbuttonoff);
-                backbuttonoff.Object->SetVisible(IsVisible());
+                //Vector2 Offset;
+                //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+                //else Offset = Rect.Position - GetActualPosition();
+                BackButton = this->CreateTextButton(Name+"back",Rect,Glyph,Text);
+                //OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+                //Buttons.push_back(backbuttonoff);
+                BackButton->SetVisible(IsVisible());
                 return (TextButton*)BackButton;
             }
             return 0;
         }
 
-        TextButton* MenuWindow::CreateBackButton(const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text)
+        TextButton* MenuWindow::CreateBackButton(const RenderableRect& Rect, const Real& LineHeight, const String& Text)
         {
             if(!BackButton && ParentWindow)
             {
-                BackButton = new TextButton(Name+"back",Position,Size,LineHeight,Text,Parent);
-                Vector2 Offset = Position - RelPosition;
-                OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
-                Buttons.push_back(backbuttonoff);
-                backbuttonoff.Object->SetVisible(IsVisible());
+                //Vector2 Offset;
+                //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+                //else Offset = Rect.Position - GetActualPosition();
+                BackButton = this->CreateTextButton(Name+"back",Rect,LineHeight,Text);
+                //OffsetButtonInfo backbuttonoff(BackButton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+                //Buttons.push_back(backbuttonoff);
+                BackButton->SetVisible(IsVisible());
                 return (TextButton*)BackButton;
             }
             return 0;
@@ -132,10 +138,12 @@ namespace phys
             return BackButton;
         }
 
-        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const Vector2& Position, const Vector2& Size)
+        Button* MenuWindow::CreateAccessorButton(ConstString& Name, const RenderableRect& Rect)
         {
-            Vector2 Offset = Position - RelPosition;
-            Button* AccBut = this->CreateButton(Name,Position,Size);
+            //Vector2 Offset;
+            //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            //else Offset = Rect.Position - GetActualPosition();
+            Button* AccBut = this->CreateButton(Name,Rect);
             //OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             //Buttons.push_back(buttonoff);
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
@@ -143,10 +151,12 @@ namespace phys
             return AccBut;
         }
 
-        TextButton* MenuWindow::CreateAccessorButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
+        TextButton* MenuWindow::CreateAccessorButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
-            Vector2 Offset = Position - RelPosition;
-            TextButton* AccBut = this->CreateTextButton(Name,Position,Size,Glyph,Text);
+            //Vector2 Offset;
+            //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            //else Offset = Rect.Position - GetActualPosition();
+            TextButton* AccBut = this->CreateTextButton(Name,Rect,Glyph,Text);
             //OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             //Buttons.push_back(buttonoff);
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
@@ -154,10 +164,12 @@ namespace phys
             return AccBut;
         }
 
-        TextButton* MenuWindow::CreateAccessorButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text)
+        TextButton* MenuWindow::CreateAccessorButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text)
         {
-            Vector2 Offset = Position - RelPosition;
-            TextButton* AccBut = this->CreateTextButton(Name,Position,Size,LineHeight,Text);
+            //Vector2 Offset;
+            //if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            //else Offset = Rect.Position - GetActualPosition();
+            TextButton* AccBut = this->CreateTextButton(Name,Rect,LineHeight,Text);
             //OffsetButtonInfo buttonoff(AccBut,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             //Buttons.push_back(buttonoff);
             ChildWindows.push_back(std::pair<Button*,MenuWindow*>(AccBut,NULL));
@@ -191,7 +203,7 @@ namespace phys
             return 0;
         }
 
-        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, const Vector2 Position, const Vector2 Size, Button* Accessor)
+        MenuWindow* MenuWindow::CreateChildMenuWindow(ConstString& Name, const RenderableRect& Rect, Button* Accessor)
         {
             std::pair<Button*,MenuWindow*>* AccessorPair = NULL;
             for( std::vector<std::pair<Button*,MenuWindow*> >::iterator it = ChildWindows.begin() ; it != ChildWindows.end() ; it++ )
@@ -201,7 +213,7 @@ namespace phys
             }
             if(NULL==AccessorPair)
                 return 0;
-            MenuWindow* MenWin = new MenuWindow(Name,Position,Size,MasterMenu,Parent);
+            MenuWindow* MenWin = new MenuWindow(Name,Rect,MasterMenu,Parent);
             MenWin->ParentWindow = this;
             AccessorPair->second = MenWin;
             MenWin->Hide();

@@ -75,13 +75,13 @@ namespace phys
             public:
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
-                /// @param Position The position of the widget.
-                /// @param Size The size of the widget.
-                /// @param Thickness The width of the vertical scrollbar in relative units.  The same amount of actual pixels is used
+                /// @param Rect The Rect representing the position and size of the widget.
+                /// @param Thickness The width of the vertical scrollbar.  The same amount of actual pixels is used
                 /// to determine the height of the horizontal scrollbar.
+                /// If the Rect passed in is relative, this will expect Thickness to be relative as well.
                 /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
                 /// @param parent The parent layer this widget belongs to.
-                ScrolledCellGrid(const String& name, const Vector2& Position, const Vector2& Size, const Real& Thickness, const UI::ScrollbarStyle& Style, Layer* parent);
+                ScrolledCellGrid(const String& name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style, Layer* parent);
                 /// @brief Class destructor.
                 virtual ~ScrolledCellGrid();
                 /// @brief Sets the visibility of this widget.

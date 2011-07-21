@@ -50,24 +50,37 @@ namespace phys
 {
     namespace UI
     {
-        ScrolledCellGrid::ScrolledCellGrid(const String& name, const Vector2& Position, const Vector2& Size, const Real& Thickness, const UI::ScrollbarStyle& Style, Layer* parent)
-            : CellGrid(name,Position,Size,parent),
+        ScrolledCellGrid::ScrolledCellGrid(const String& name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style, Layer* parent)
+            : CellGrid(name,Rect,parent),
               HScrollVal(0.0),
               VScrollVal(0.0),
               AutoHide(true)
         {
             Paging = CG_Scrolled;
+            RenderableRect HoriRect;
+            RenderableRect VertRect;
+            if(Rect.Relative)
+            {
+                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+                Real ActThick = Thickness * WinDim.X;
 
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            Real ActThick = Thickness * WinDim.X;
+                HoriRect.Position = Vector2(RelPosition.X,(RelPosition.Y + RelSize.Y) - ActThick / WinDim.Y);
+                HoriRect.Size = Vector2(RelSize.X - (ActThick / WinDim.X),ActThick / WinDim.Y);
+                HoriRect.Relative = Rect.Relative;
+                VertRect.Position = Vector2((RelPosition.X + RelSize.X) - Thickness,RelPosition.Y);
+                VertRect.Size = Vector2(Thickness,RelSize.Y - (ActThick / WinDim.Y));
+                VertRect.Relative = Rect.Relative;
+            }else{
+                HoriRect.Position = Vector2(Rect.Position.X,(Rect.Position.Y + Rect.Size.Y) - Thickness);
+                HoriRect.Size = Vector2(Rect.Size.X - Thickness,Thickness);
+                HoriRect.Relative = Rect.Relative;
+                VertRect.Position = Vector2((Rect.Position.X + Rect.Size.X) - Thickness,Rect.Position.Y);
+                VertRect.Size = Vector2(Thickness,Rect.Size.Y - Thickness);
+                VertRect.Relative = Rect.Relative;
+            }
 
-            Vector2 VertSize(Thickness,RelSize.Y - (ActThick / WinDim.Y));
-            Vector2 HoriSize(RelSize.X - (ActThick / WinDim.X),ActThick / WinDim.Y);
-            Vector2 VertPosition((RelPosition.X + RelSize.X) - VertSize.X,RelPosition.Y);
-            Vector2 HoriPosition(RelPosition.X,(RelPosition.Y + RelSize.Y) - HoriSize.Y);
-
-            HorizontalScroll = new UI::Scrollbar(Name+"HoriScr",HoriPosition,HoriSize,Style,Parent);
-            VerticalScroll = new UI::Scrollbar(Name+"VertScr",VertPosition,VertSize,Style,Parent);
+            HorizontalScroll = new UI::Scrollbar(Name+"HoriScr",HoriRect,Style,Parent);
+            VerticalScroll = new UI::Scrollbar(Name+"VertScr",VertRect,Style,Parent);
             HorizontalScroll->Hide();
             VerticalScroll->Hide();
         }

@@ -8,12 +8,13 @@ using namespace phys;
 class StartingArea : public AreaEffect
 {
     protected:
+        bool Init;
     public:
         StartingArea(const String &name, Vector3 Location);
-        ~StartingArea();
-        void ApplyEffect();
-        bool IsInside(ActorBase* Actor);
-        bool IsEmpty();
+        virtual ~StartingArea();
+        virtual void ApplyEffect();
+        virtual bool IsInside(ActorBase* Actor);
+        virtual bool IsEmpty();
 };
 
 #endif

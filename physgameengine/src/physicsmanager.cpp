@@ -642,18 +642,11 @@ namespace phys
         static Ogre::Timer* Profiler = new Ogre::Timer();
         Profiler->reset();
         #endif
-        ProcessAllEffects();
-        #ifdef PHYSPROFILE
-        GameWorld->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->Log();
-        #endif
 
         Real FloatTime = TimeElapsed;
         FloatTime *= 0.001;    //Convert from MilliSeconds to Seconds
-
         Real IdealStep = this->GameWorld->GetTargetFrameTime();
         IdealStep *= 0.001;
-
         //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
         int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe
         #ifdef PHYSPROFILE
@@ -663,23 +656,28 @@ namespace phys
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
-        #endif
-
-        // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
-        //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
+        #endif // */
 
         #ifdef PHYSPROFILE
         Profiler->reset();
         #endif
-        if( this->BulletDrawer && this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
-        {
-            this->BulletDrawer->PrepareForRendering();
-            this->BulletDynamicsWorld->debugDrawWorld();
-        }
+        ProcessAllEffects();
         #ifdef PHYSPROFILE
-        GameWorld->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
+        #endif // */
+
+        #ifdef PHYSPROFILE
+        Profiler->reset();
         #endif
+        ProcessAllTriggers();
+        #ifdef PHYSPROFILE
+        GameWorld->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->Log();
+        #endif // */
+
+        // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
+        //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
 
         #ifdef PHYSDEBUG
         this->GameWorld->Log("Checking for Collisions.");
@@ -696,12 +694,17 @@ namespace phys
             for (int j=0;j<numContacts;j++)
             {
                 btManifoldPoint& pt = contactManifold->getContactPoint(j);
-                if (pt.m_lifeTime==CollisionAge && pt.m_appliedImpulse>=Impulse)
+                if (pt.m_lifeTime == CollisionAge && pt.m_appliedImpulse >= Impulse && pt.m_distance1 < 0)
                 {
+                    /// @todo This chunk of code won't take the upcoming terrain system into account, and should be modified accordingly
                     btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
                     btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
                     ActorBase* ActA = this->GameWorld->GetActorManager()->GetActorContainer()->FindActor(objectA);
                     ActorBase* ActB = this->GameWorld->GetActorManager()->GetActorContainer()->FindActor(objectB);
+
+                    if( !ActA || !ActB )
+                        continue;
+
                     Vector3 WorldLoc((pt.getPositionWorldOnA() + pt.getPositionWorldOnB()) * 0.5);
                     Vector3 ActALoc(pt.m_localPointA);
                     Vector3 ActBLoc(pt.m_localPointB);
@@ -718,14 +721,20 @@ namespace phys
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "Contact Manifold Iteration took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
+        #endif // */
 
+        #ifdef PHYSPROFILE
         Profiler->reset();
         #endif
-        ProcessAllTriggers();
+        if( this->BulletDrawer && this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
+        {
+            this->BulletDrawer->PrepareForRendering();
+            this->BulletDynamicsWorld->debugDrawWorld();
+        }
         #ifdef PHYSPROFILE
-        GameWorld->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
-        #endif
+        #endif // */
     }
 
     btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()

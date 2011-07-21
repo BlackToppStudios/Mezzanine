@@ -83,16 +83,16 @@ namespace phys
             public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the Button List Box.
-                /// @param Position The position of the Button List Box.
-                /// @param Size The size of the Button List Box.
-                /// @param ScrollbarWidth The relative(to screensize) width of the vertical scrollbar.
+                /// @param Rect The Rect representing the position and size of the Button List Box.
+                /// @param ScrollbarWidth The width of the vertical scrollbar.
+                /// If the Rect passed in is relative, this will expect Scrollwidth to be relative as well.
                 /// If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look.
                 /// @param ScrollStyle The style of the scrollbar you want for this Button List Box.  See Scrollbar
                 /// class for more information.
                 /// @param Layer The parent layer this Button List Box belongs to.
-                ButtonListBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer);
+                ButtonListBox(ConstString& name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer);
                 /// @brief Standard destructor.
-                ~ButtonListBox();
+                virtual ~ButtonListBox();
                 /// @brief Sets the visibility of this Button List Box.
                 /// @param visible Bool determining whether or not this Button List Box should be visible.
                 virtual void SetVisible(bool visible);

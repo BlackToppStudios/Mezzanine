@@ -20,7 +20,7 @@ class LevelSelectCell : public UI::Cell
         /// @brief For use with widget update/automation.
         virtual void Update(bool Force = false);
     public:
-        LevelSelectCell(const String& name, const Vector2& Position, const Vector2& Size, UI::Layer* parent);
+        LevelSelectCell(const String& name, const UI::RenderableRect& Rect, UI::Layer* parent);
         virtual ~LevelSelectCell();
         virtual void SetVisible(bool visible);
         virtual bool IsVisible();

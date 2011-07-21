@@ -66,7 +66,7 @@ namespace phys
                 /// @brief Class constructor.
                 Cell(const String& name, Layer* parent);
                 /// @brief Class destructor.
-                ~Cell();
+                virtual ~Cell();
                 /// @brief Sets the priority of this cell for use in sorting on the cell grid.
                 /// @param Priority The priority to be set.
                 virtual void SetPriority(const Whole& Priority);

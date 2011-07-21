@@ -88,10 +88,10 @@ namespace phys
                 bool DownRightLock;
                 /// @internal
                 /// @brief Constructor helper function for creating a horizontally aligned scrollbar.
-                virtual void CreateHorizontalScrollbar(const Vector2& Position, const Vector2& Size);
+                virtual void CreateHorizontalScrollbar(const RenderableRect& Rect);
                 /// @internal
                 /// @brief Constructor helper function for creating a vertically aligned scrollbar.
-                virtual void CreateVerticalScrollbar(const Vector2& Position, const Vector2& Size);
+                virtual void CreateVerticalScrollbar(const RenderableRect& Rect);
                 /// @internal
                 /// @brief Determines if the dimensions passed into this object are valid and can be used.
                 virtual bool IsValidDimensions(const Vector2& Size);
@@ -131,11 +131,10 @@ namespace phys
             public:
                 /// @brief Standard initialization constructor.
                 /// @param Name The name of this scrollbar.
-                /// @param Position A vector2 representing the top left position for this widget to be placed on screen.
-                /// @param Size A vector2 representing the size of this widget.
+                /// @param Rect The Rect representing the position and size of the scrollbar.
                 /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
                 /// @param parent The Layer that created this scrollbar.
-                Scrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style, Layer* parent);
+                Scrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style, Layer* parent);
                 /// @brief Standard class destructor.
                 virtual ~Scrollbar();
                 /// @brief Sets the visibility of this scrollbar.

@@ -43,7 +43,7 @@
 #include "datatypes.h"
 #include "enumerations.h"
 #include "colourvalue.h"
-#include "vector2.h"
+#include "uirenderablerect.h"
 
 namespace Gorilla
 {
@@ -78,22 +78,24 @@ namespace phys
                 bool AutoScaleText;
                 Real RelLineHeight;
                 String Name;
-                void ConstructMarkupText(const Vector2& Position, const Whole& Glyph, const String& Text);
+                void ConstructMarkupText(const RenderableRect& Rect, const Whole& Glyph, const String& Text);
             public:
-                /// @brief Internal constructor
+                /// @brief Internal constructor.
+                /// @details The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size.
                 /// @param name The name of this markup text.
-                /// @param Position The top left position of the markup text.
+                /// @param Rect The Rect representing the position and size of the markup text.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
                 /// @param Layer Pointer to the layer that created this markup text.
-                MarkupText(ConstString& name, const Vector2& Position, const Whole& Glyph, const String& Text, Layer* PLayer);
-                /// @brief Internal constructor
+                MarkupText(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer);
+                /// @brief Internal constructor.
+                /// @details The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size.
                 /// @param name The name of this markup text.
-                /// @param Position The top left position of the markup text.
+                /// @param Rect The Rect representing the position and size of the markup text.
                 /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
                 /// @param Text Any text you want printed on the markup text.
                 /// @param Layer Pointer to the layer that created this markup text.
-                MarkupText(ConstString& name, const Vector2& Position, const Real& LineHeight, const String& Text, Layer* PLayer);
+                MarkupText(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~MarkupText();
                 /// @brief Sets the visibility of this markup text.

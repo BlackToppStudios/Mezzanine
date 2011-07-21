@@ -57,7 +57,7 @@ namespace phys
 {
     namespace UI
     {
-        ListBox::ListBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
+        ListBox::ListBox(ConstString& name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
             : Widget(name,PLayer),
               Selected(NULL),
               AutoHideScroll(true),
@@ -71,14 +71,27 @@ namespace phys
               SelectColour(ColourValue(1.0,1.0,1.0,1.0))
         {
             Type = Widget::ListBox;
-            RelPosition = Position;
-            RelSize = Size;
+            RenderableRect ScrollRect;
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
 
-            BoxBack = new Rectangle(Position,Size,Parent);
-            Vector2 ScrollP((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
-            Vector2 ScrollS(ScrollbarWidth,RelSize.Y);
+                ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
+                ScrollRect.Size = Vector2(ScrollbarWidth,RelSize.Y);
+                ScrollRect.Relative = Rect.Relative;
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+
+                ScrollRect.Position = Vector2((Rect.Position.X + Rect.Size.X) - ScrollbarWidth,Rect.Position.Y);
+                ScrollRect.Size = Vector2(ScrollbarWidth,Rect.Size.Y);
+                ScrollRect.Relative = Rect.Relative;
+            }
+
+            BoxBack = new Rectangle(Rect,Parent);
             /// @todo Fourth instance of needing to include the namespace in the declaration seemingly needlessly.
-            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollStyle,Parent);
+            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,Parent);
             VertScroll->Hide();
         }
 
@@ -301,7 +314,8 @@ namespace phys
 
         Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
-            Caption* Select = new Caption(name,GetPosition(),TSize,TGlyph,Text,Parent);
+            RenderableRect SelectionRect(GetPosition(),TSize,true);
+            Caption* Select = new Caption(name,SelectionRect,TGlyph,Text,Parent);
             if(!BackgroundSprite.empty())
                 Select->SetBackgroundSprite(BackgroundSprite);
             if(TBGColour != ColourValue(1.0,1.0,1.0,1.0))

@@ -355,10 +355,6 @@ namespace phys
                                 const Ogre::Quaternion &orient,
                                 const Ogre::Vector3 &scale)
     {
-        std::stringstream QuatLog;
-        QuatLog << "Actor Orientation - X: " << orient.x << ", Y: " << orient.y << ", Z: " << orient.z << ", W: " << orient.w;
-        Ogre::LogManager::getSingleton().logMessage(QuatLog.str());
-
         bool added_shared = false;
         size_t current_offset = 0;
         size_t shared_offset = 0;

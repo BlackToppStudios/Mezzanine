@@ -54,7 +54,7 @@ namespace phys
 {
     namespace UI
     {
-        Menu::Menu(ConstString name, const Vector2& Position, const Vector2& Size, Layer* PLayer)
+        Menu::Menu(ConstString name, const RenderableRect& Rect, Layer* PLayer)
             : Widget(name,PLayer)
         {
             Type = Widget::Menu;
@@ -62,7 +62,7 @@ namespace phys
             RelSize = Vector2(0,0);
 
             ConstString NewName = name+"root";
-            RootWindow = new UI::MenuWindow(NewName,Position,Size,this,Parent);
+            RootWindow = new UI::MenuWindow(NewName,Rect,this,Parent);
             MenuStack.push_back(RootWindow);
         }
 

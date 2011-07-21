@@ -177,7 +177,7 @@ namespace phys
         String GroupName = TheMaterial->getGroup();
 
         Real deltaAngle = (Ogre::Math::TWO_PI / CircleRes);
-        Real deltaHeight = (Half.X * 2)/(Real)Segments;
+        Real deltaHeight = (Half.Y * 2)/(Real)Segments;
         Real radius = Half.X;
         Whole offset = 0;
 
@@ -196,10 +196,21 @@ namespace phys
 
                 if (i != Segments)
                 {
-                    cylinder->index(offset + CircleRes + 1);
+                    /// @todo These if/elses aren't really a long term solution
+                    /// as they won't work for any more then 1 segment.  This needs to be addressed.
+                    if(offset + CircleRes + 1 == CircleRes * 2)
+                        cylinder->index(CircleRes);
+                    else
+                        cylinder->index(offset + CircleRes + 1);
+
                     cylinder->index(offset);
                     cylinder->index(offset + CircleRes);
-                    cylinder->index(offset + CircleRes + 1);
+
+                    if(offset + CircleRes + 1 == CircleRes * 2)
+                        cylinder->index(0);
+                    else
+                        cylinder->index(offset + CircleRes + 1);
+
                     cylinder->index(offset + 1);
                     cylinder->index(offset);
                 }
