@@ -40,64 +40,16 @@
 #ifndef _serializable_cpp
 #define _serializable_cpp
 
-#include "serializable.h"
+#include "serialization.h"
+
 #include <memory>
 
 namespace phys
 {
-    xml::Node SerializableNode::Serialize() const
+    void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD)
     {
-        xml::Node Results;
-        for(vector<Serializable*>::iterator Iter = ToSerialize.begin(); Iter!=ToSerialize.end(); ++Iter )
-        {
-            switch((*Iter)->GetType())
-            {
-                case Serializable::Node:
-                    Results.AppendCopy((static_cast<SerializableNode*>(*Iter))->Serialize());
-                    break;
-                case Serializable::Attribute:
-                    Results.AppendCopy((static_cast<SerializableAttribute*>(*Iter))->Serialize());
-                    break;
-                default:
-                    throw phys::Exception("Could not properly deserialize item of unknown type.");
-            }
-        }
-        return Results;
+        throw(Exception(StringCat("Could not ", FailedTo, " during ", ClassName, SOrD? "":"De","Serialization.")));
     }
-
-    String SerializableNode::GetValue() const
-    {
-        GatherRequirements();
-        stringstream Results;
-        xml::Node ProtoSerialized = Serialize(); //Actually get a DOM of the current state of this and all object that this requires for Serialization
-
-        for (xml::Node Iter = ProtoSerialized.GetFirstChild(); Iter; Iter = Iter.GetNextSibling())
-            { Results << Iter; }            // This will Serialize this nodes children, but not this node itself.
-        return Results.str();
-    }
-
 }
-
-
-#ifdef PHYSXML
-std::ostream& operator << (std::ostream& Stream, const phys::Serializable& Outy)
-    { return Outy.Serialize(Stream); }
-
-
-void operator >> (const phys::xml::Node& OneNode, phys::SerializableNode& Iny)
-    { Iny.DeSerialize(OneNode); }
-
-std::istream& operator >> (std::istream& Stream, phys::SerializableNode& Iny)
-{
-    phys::String OneTag( phys::xml::GetOneTag(Stream) );
-    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", Iny.GetName(), OneTag) );
-
-    Doc->GetFirstChild() >> Iny;
-
-    return Stream;
-}
-
-
-#endif // \PHYSXML
 
 #endif

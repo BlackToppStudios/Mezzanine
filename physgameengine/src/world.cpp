@@ -127,8 +127,9 @@ namespace phys
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
         //Set some sane Defaults for some values
+        //SDLSystemsInitialized=0;
         this->TargetFrameLength=16;
-        this->HasSDLBeenInitialized=false;
+        //this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
         this->ManualLoopBreak = false;
 
@@ -202,12 +203,21 @@ namespace phys
     //tears the world down
     World::~World()
     {
-        for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin() ; iter!= ManagerList.end() ; /*iter++*/ )
+        ManagerBase* Current;
+        //for( std::list<ManagerBase*>::iterator iter = --this->ManagerList.end(); !ManagerList.empty(); iter = --this->ManagerList.end() ) //Backward
+        for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); !ManagerList.empty(); iter = this->ManagerList.begin() ) //forward
         {
-            delete (*iter);
-            iter = ManagerList.erase(iter);
+            #ifdef PHYSDEBUG
+            std::cout << "Deleting " << (*iter)->GetTypeName() << std::endl; //Be careful using this. Because the UImanager is deleted during scenemanager deconstruction, it may not be obvious when that memory is freed.
+            #endif
+            Current = (*iter);
+            delete Current;
+            RemoveManager(Current);
         }
-        ManagerList.clear();
+
+        SDL_Quit();
+//        SDL_QuitSubSystem(SDL_WasInit(0));
+//        SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
 
         //All the pointers Ogre made should get taken care of by OGRE
         Ogre::Root::getSingleton().shutdown();
@@ -382,7 +392,6 @@ namespace phys
             }
         }
         GetGraphicsManager()->Initialize();
-        HasSDLBeenInitialized = GetGraphicsManager()->HasSDLBeenInitialized();
 
         if(CallMainLoop)
         {

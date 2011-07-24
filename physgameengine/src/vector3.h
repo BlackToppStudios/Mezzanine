@@ -394,6 +394,24 @@ namespace phys
         /// @return This returns a Real number which is the distance.
         Real Distance(const Vector3 &OtherVec) const;
 
+        ///////////////////////////////////////////////////////////////////////////////
+        // Serialization
+#ifdef PHYSXML
+        // Serializable
+        /// @brief Convert this class to an xml::Node ready for serialization
+        /// @return An xml::Node
+        virtual xml::Node ProtoSerialize() const;
+
+        // DeSerializable
+        /// @brief Take the data stored in an XML and overwrite this instance of this object with it
+        /// @param OneNode and xml::Node containing the data.
+        virtual void ProtoDeSerialize(const xml::Node& OneNode);
+
+        /// @brief Get the name of the the XML tag this class will leave behind as its instances are serialized.
+        /// @return A string containing "Vector3"
+        String SerializableName() const;
+#endif
+
     };
 }// /phys
 

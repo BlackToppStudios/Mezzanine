@@ -51,7 +51,7 @@
 #include "actorsoft.h"
 #include "actorgraphicssettings.h"
 #include "actorphysicssettings.h"
-#include "serializable.h"
+#include "serialization.h"
 #include "soundmanager.h"
 #include "world.h"
 #include "xml.h"
@@ -61,7 +61,7 @@
 namespace phys{
     ///////////////////////////////////
     // ActorBase class fuctions
-    ActorBase::ActorBase(const String& name, const String& file, const String& group)
+    ActorBase::ActorBase()
         : GraphicsObject(NULL),
           GraphicsSettings(NULL),
           BasePhysicsSettings(NULL),
@@ -307,6 +307,93 @@ namespace phys{
     {
         return GraphicsObject;
     }
+
+///////////////////////////////////////////////////////////////////////////////
+// Serialization
+///////////////////////////////////////
+#ifdef PHYSXML
+    void ActorBase::ThrowSerialError(const String& Fail) const
+        { SerializeError(Fail, "ActorBase"); }
+
+    xml::Node ActorBase::ProtoSerialize() const
+    {
+        phys::xml::Document Doc;
+        Doc.Load("");
+
+        xml::Node ActorNode = Doc.AppendChild("ActorBase");
+        if (!ActorNode) { ThrowSerialError("create ActorNode");}
+
+        xml::Node LocationNode = ActorNode.AppendChild("Location");
+        if (!LocationNode) { ThrowSerialError("create LocationNode"); }
+        if (!LocationNode.AppendCopy(this->GetLocation().ProtoSerialize())) { ThrowSerialError("create LocationNode Data"); }
+
+        xml::Node ScalingNode = ActorNode.AppendChild("Scaling");
+        if (!ScalingNode) { ThrowSerialError("create ScalingNode"); }
+        if (!ScalingNode.AppendCopy(this->GetActorScaling().ProtoSerialize())) { ThrowSerialError("create ScalingNode Data"); }
+
+        xml::Node OrientationNode =ActorNode.AppendChild("Orientation");
+        if(!OrientationNode)  { ThrowSerialError("create OrientationNode"); }
+        if(!OrientationNode.AppendCopy(SloppyProtoSerialize(this->GetOrientation()))) { ThrowSerialError("create OrientationNode Data"); };
+
+        if(!ActorNode.AppendCopy(SloppyProtoSerialize( *(this->GetGraphicsSettings()) )))
+            { ThrowSerialError("create GraphicsSettings"); };
+
+        if(!ActorNode.AppendCopy(SloppyProtoSerialize( *(this->GetPhysicsSettings()) )))
+            { ThrowSerialError("create GraphicsSettings"); };
+
+        xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
+            ActorName.SetValue(this->GetName());
+        xml::Attribute ActorVersion = ActorNode.AppendAttribute("Version");
+            ActorVersion.SetValue(1);
+        xml::Attribute ActorIsInWorld = ActorNode.AppendAttribute("IsInWorld");
+            ActorIsInWorld.SetValue(this->IsInWorld());
+        xml::Attribute ActorSoundSetName = ActorNode.AppendAttribute("SoundSet");
+        if(this->ActorSounds)
+        {
+            ActorSoundSetName.SetValue(this->ActorSounds->GetName());
+        }else{
+            ActorSoundSetName.SetValue("");
+        }
+        xml::Attribute ActorShapeIsSaved = ActorNode.AppendAttribute("ShapeIsSaved");
+            ActorShapeIsSaved.SetValue(this->GetShapeIsSaved());
+
+        // if actor node is in scenemanager just save a name
+        if( World::GetWorldPointer()->GetSceneManager(0)->GetNode( this->ActorWorldNode->GetName() ) )
+        {
+            xml::Attribute ActorWorldNode = ActorNode.AppendAttribute("WorldNode");
+            if(!ActorWorldNode.SetValue(this->ActorWorldNode->GetName()))
+                {ThrowSerialError("store WorldNode Name");}
+        }else{
+            if( !ActorNode.AppendCopy(SloppyProtoSerialize( *(this->ActorWorldNode) )) );
+                { ThrowSerialError("create WorldNode"); }
+        }
+
+
+            // add logic here to identify actor
+                //Location
+                //orientation
+                //graphicssettings
+                //physicssettings
+                //name
+                //Scaling
+                //soundset
+    //Constructor Items
+
+
+
+
+            //Shapeissaved
+    //createshapefrommesh
+                //is in world
+                //animation?
+
+                //Actor worldnode name
+
+
+
+    }
+
+#endif
 }// /phys
 
 
@@ -329,116 +416,6 @@ namespace phys{
     //animation?
 
     //Actor worldnode name
-
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-#ifdef PHYSXML
-std::ostream& operator << (std::ostream& stream, const phys::ActorBase& Ev)
-{
-    stream      << ""; /*<ActorBase Version=\"1\" Name=\"" << Ev.GetName()
-                    << "\" AttachedTo=\"" << ( Ev.GetAttachedTo() ? Ev.GetAttachedTo()->GetName() : "" )
-                    << "\" Type=\"" << Ev.GetType()
-                    << "\" PowerScale=\"" << Ev.GetPowerScale()
-                    << "\" AttenuationRange=\"" << Ev.GetAttenuationRange()
-                    << "\" AttenuationConstant=\"" << Ev.GetAttenuationConstant()
-                    << "\" AttenuationQuadric=\"" << Ev.GetAttenuationQuadric()
-                    << "\" AttenuationLinear=\"" << Ev.GetAttenuationLinear()
-                    << "\" SpotActorBaseInnerAngle=\"" << Ev.GetSpotActorBaseInnerAngle()
-                    << "\" SpotActorBaseOuterAngle=\"" << Ev.GetSpotActorBaseOuterAngle()
-                    << "\" SpotActorBaseFalloff=\"" << Ev.GetSpotActorBaseFalloff()
-                << "\">"
-                << "<Direction>" << Ev.GetDirection() << "</Direction>"
-                << "<Location>" << Ev.GetLocation() << "</Location>"
-                << "<Orientation>" << Ev.GetLocation() << "</Orientation>"
-                << "</ActorBase>";*/
-    return stream;
-}
-
-std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorBase& Ev)
-{
-    phys::String OneTag( phys::xml::GetOneTag(stream) );
-    std::auto_ptr<phys::xml::Document> Doc( phys::xml::PreParseClassFromSingleTag("phys::", "ActorBase", OneTag) );
-
-    Doc->GetFirstChild() >> Ev;
-
-    return stream;
-}
-
-phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ActorBase& Ev)
-{
-    if ( phys::String(OneNode.Name())==phys::String("ActorBase") )
-    {
-        if(OneNode.GetAttribute("Version").AsInt() == 1)
-        {
-        /*    Ev.SetType(static_cast<phys::ActorBase::ActorBaseType>(OneNode.GetAttribute("Type").AsInt()));
-            Ev.SetPowerScale(OneNode.GetAttribute("PowerScale").AsReal());
-            Ev.SetAttenuation(OneNode.GetAttribute("AttenuationRange").AsReal(), OneNode.GetAttribute("AttenuationConstant").AsReal(), OneNode.GetAttribute("AttenuationLinear").AsReal(), OneNode.GetAttribute("AttenuationQuadric").AsReal());
-            Ev.SetSpotActorBaseInnerAngle(OneNode.GetAttribute("SpotActorBaseInnerAngle").AsReal());
-            Ev.SetSpotActorBaseOuterAngle(OneNode.GetAttribute("SpotActorBaseOuterAngle").AsReal());
-            Ev.SetSpotActorBaseFalloff(OneNode.GetAttribute("SpotActorBaseFalloff").AsReal());
-            phys::WorldNode * AttachPtr = phys::World::GetWorldPointer()->GetSceneManager()->GetNode( OneNode.GetAttribute("AttachedTo").AsString() );
-            if (AttachPtr)
-                { AttachPtr->AttachObject(&Ev); }
-
-            phys::ColourValue TempColour(0,0,0,0);
-            phys::Vector3 TempVec(0,0,0);
-
-            for(phys::xml::Node Child = OneNode.GetFirstChild(); Child!=0; Child = Child.GetNextSibling())
-            {
-                phys::String Name(Child.Name());
-                switch(Name[0])
-                {
-                    case 'f':   //fDiffuseColour
-                        if(Name==phys::String("fDiffuseColour"))
-                        {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetDiffuseColour(TempColour);
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element f-\"",Name,"\"")) );
-                        }
-                        break;
-                    case 'S':   //SpecularColour
-                        if(Name==phys::String("SpecularColour"))
-                        {
-                            Child.GetFirstChild() >> TempColour;
-                            Ev.SetSpecularColour(TempColour);
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element S-\"",Name,"\"")) );
-                        }
-                        break;
-                    case 'D':   //Direction
-                        if(Name==phys::String("Direction"))
-                        {
-                            Child.GetFirstChild() >> TempVec;
-                            Ev.SetDirection(TempVec);
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element D-\"",Name,"\"")) );
-                        }
-                        break;
-                    case 'L':   //Location
-                        if(Name==phys::String("Location"))
-                        {
-                            Child.GetFirstChild() >> TempVec;
-                            Ev.SetLocation(TempVec);
-                        }else{
-                            throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element L-\"",Name,"\"")) );
-                        }
-                        break;
-                    default:
-                        throw( phys::Exception(phys::StringCat("Incompatible XML Version for ActorBase: Includes unknown Element default-\"",Name,"\"")) );
-                        break;
-                }
-            }
-*/
-        }else{
-            throw( phys::Exception("Incompatible XML Version for ActorBase: Not Version 1"));
-        }
-    }else{
-        throw( phys::Exception(phys::StringCat("Attempting to deserialize a ActorBase, found a ", OneNode.Name())));
-    }
-}
-#endif // \PHYSXML
-
 
 
 #endif

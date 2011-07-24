@@ -228,13 +228,34 @@ namespace phys
     /// @return A string containing the other Strings passed attached end to end
     String PHYS_LIB StringCat(const String& Front, const String& Middle, const String& Back);
 
-    /// @brief Concatenates 3 Strings
+    /// @brief Concatenates 4 Strings
     /// @param Front The first String
     /// @param Middle1 The second string
     /// @param Middle2 The third string
     /// @param Back The last String
     /// @return A string containing the other Strings passed attached end to end
     String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Back);
+
+    /// @brief Concatenates 5 Strings
+    /// @param Front The first String
+    /// @param Middle1 The second string
+    /// @param Middle2 The third string
+    /// @param Middle3 The fourth string
+    /// @param Back The last String
+    /// @return A string containing the other Strings passed attached end to end
+    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back);
+
+    /// @brief Concatenates 6 Strings
+    /// @param Front The first String
+    /// @param Middle1 The second string
+    /// @param Middle2 The third string
+    /// @param Middle3 The fourth string
+    /// @param Middle4 The fifth string
+    /// @param Back The last String
+    /// @return A string containing the other Strings passed attached end to end
+    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back);
+
+
 
 } // \phys
 

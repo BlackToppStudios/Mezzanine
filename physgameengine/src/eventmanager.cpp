@@ -250,6 +250,7 @@ namespace phys
     {
         this->Priority=-40;
         this->_Data = new internal::EventManagerInternalData;
+
         SDL_InitSubSystem(SDL_INIT_JOYSTICK);
         this->DetectJoysticks();
 

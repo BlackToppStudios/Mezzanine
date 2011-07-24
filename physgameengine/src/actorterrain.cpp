@@ -55,7 +55,7 @@
 namespace phys
 {
     ActorTerrain::ActorTerrain(Vector3 InitPosition, String name, String file, String group)
-        : ActorBase(name, file, group)
+        : ActorBase()
     {
         this->GraphicsObject = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);

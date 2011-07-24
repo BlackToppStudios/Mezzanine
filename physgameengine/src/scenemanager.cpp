@@ -40,10 +40,12 @@
 #ifndef _scenemanager_cpp
 #define _scenemanager_cpp
 
+#include "cameramanager.h"
 #include "scenemanager.h"
 #include "light.h"
 #include "plane.h"
 #include "particleeffect.h"
+#include "uimanager.h"
 #include "worldnode.h"
 #include "world.h"
 
@@ -60,6 +62,10 @@ namespace phys
         class SceneManagerData
         {
             public:
+
+            /// @internal
+            /// @brief A Pointer to the scenemanager this works with
+            SceneManager* SM;
 
             /// @internal
             /// @brief The currently active sky, if set to anything other than SkyNone, then the 5 other skycache variable may have meaning
@@ -127,7 +133,8 @@ namespace phys
                 SkyThePlane=FreshSkyThePlane;
             }
 
-            SceneManagerData():
+            SceneManagerData(SceneManager* _SM):
+                SM(_SM),
                 ActiveSky(SceneManager::SkyNone),
                 OgreManager(0),
                 SkyDrawnFirst(false),
@@ -142,6 +149,20 @@ namespace phys
 
             ~SceneManagerData()
             {
+
+                while(World::GetWorldPointer()->GetCameraManager())
+                {
+                    if(World::GetWorldPointer()->GetCameraManager()->SManager == this->SM )
+                        { World::GetWorldPointer()->GetCameraManager()->SManager = 0; }
+                }
+
+
+                while(World::GetWorldPointer()->GetUIManager())
+                {
+                    World::GetWorldPointer()->RemoveManager(World::GetWorldPointer()->GetUIManager());
+                    delete World::GetWorldPointer()->GetUIManager();
+                }
+
                 Ogre::Root::getSingleton().destroySceneManager(OgreManager);
                 //delete OgreManager;
             }
@@ -153,7 +174,7 @@ namespace phys
 
     SceneManager::SceneManager(SceneManager::SceneManagerType ManagerType)
     {
-        this->SMD = new internal::SceneManagerData();
+        this->SMD = new internal::SceneManagerData(this);
         Ogre::SceneType Type;
         switch (ManagerType)
         {
@@ -628,7 +649,7 @@ namespace phys
         { return ManagerBase::SceneManager; }
 
     Ogre::SceneManager* SceneManager::GetGraphicsWorldPointer() const
-        { return this->SMD->OgreManager; }
+        { return (this->SMD && this->SMD->OgreManager) ? this->SMD->OgreManager : 0; }
 
     internal::SceneManagerData* SceneManager::GetRawInternalDataPointer() const
         { return this->SMD; }

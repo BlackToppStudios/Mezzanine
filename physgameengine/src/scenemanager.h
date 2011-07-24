@@ -79,10 +79,10 @@ namespace phys
             /// @brief Needs to be documented.
             enum SceneManagerType
             {
-                Generic             = 0,        ///< Documatation Required
-                Exterior            = 1,        ///< Documatation Required
-                ExteriorRealFar     = 2,        ///< Documatation Required
-                Interior            = 3         ///< Documatation Required
+                Generic             = 0,        ///< Documentation Required
+                Exterior            = 1,        ///< Documentation Required
+                ExteriorRealFar     = 2,        ///< Documentation Required
+                Interior            = 3         ///< Documentation Required
             };
 
             /// @brief needs to be documented

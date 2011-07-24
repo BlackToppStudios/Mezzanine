@@ -49,6 +49,7 @@
 #include "resourcemanager.h"
 #include "uimanager.h"
 #include "camera.h"
+#include "cameramanager.h"
 #include "crossplatform.h"
 #include "gamewindow.h"
 #include "viewport.h"
@@ -65,15 +66,13 @@ namespace phys
     // Creation and Deletion functions
     ///////////////////////////////////
     GraphicsManager::GraphicsManager()
-        : SDLBeenInitialized(false),
-          OgreBeenInitialized(false)
+        : OgreBeenInitialized(false)
     {
         Construct( 800, 600, false );
     }
 
     GraphicsManager::GraphicsManager( const Whole &Width, const Whole &Height, const bool &FullScreen )
-        : SDLBeenInitialized(false),
-          OgreBeenInitialized(false)
+        : OgreBeenInitialized(false)
     {
         Construct( Width, Height, FullScreen );
     }
@@ -81,7 +80,15 @@ namespace phys
     GraphicsManager::~GraphicsManager()
     {
         DestroyAllGameWindows(false);
-        ShutdownSDL();
+
+        Whole x = 0;
+        while(World::GetWorldPointer()->GetCameraManager(x) != 0)
+        {
+            World::GetWorldPointer()->GetCameraManager(x)->SManager = 0;
+            x++;
+        }
+
+        //ShutdownSDL(); //Now this is down in ~World()
     }
 
     void GraphicsManager::Construct(const Whole &Width, const Whole &Height, const bool &FullScreen )
@@ -95,11 +102,9 @@ namespace phys
 
     void GraphicsManager::InitSDL()
     {
-        /// @todo TODO set multithreaded SDL so it will the run event manager in another thread
-        if(!SDLBeenInitialized)
+        if(!SDL_WasInit(SDL_INIT_VIDEO))
         {
             SDL_Init(SDL_INIT_VIDEO);
-            SDLBeenInitialized = true;
             //atexit(SDL_Quit);
         }
         #ifdef PHYSDEBUG
@@ -158,7 +163,7 @@ namespace phys
 
     GameWindow* GraphicsManager::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
     {
-        if(!SDLBeenInitialized) InitSDL();
+        if(!HasSDLBeenInitialized()) InitSDL();
         if(!OgreBeenInitialized) InitOgre();
         //http://wiki.libsdl.org/moin.cgi/SDL_Init?highlight=%28\bCategoryAPI\b%29|%28SDLFunctionTemplate%29 // for more flags
         GameWindow* NewWindow = new GameWindow(WindowCaption,Width,Height,Flags);
@@ -221,7 +226,7 @@ namespace phys
 
     bool GraphicsManager::HasSDLBeenInitialized()
     {
-        return SDLBeenInitialized;
+        return SDL_WasInit(0);
     }
 
     bool GraphicsManager::HasOgreBeenInitialized()

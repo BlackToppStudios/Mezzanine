@@ -58,7 +58,7 @@ namespace phys{
     // ActorRigid class functions
 
     ActorRigid::ActorRigid(const Real& mass, const String& name, const String& file, const String& group)
-        : ActorBase (name, file, group)
+        : ActorBase ()
     {
         this->GraphicsObject = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);

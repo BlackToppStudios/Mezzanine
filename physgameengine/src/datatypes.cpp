@@ -71,5 +71,19 @@ namespace phys
         return Adder.str();
     }
 
+    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Back)
+    {
+        std::stringstream Adder;
+        Adder << Front  << Middle1 << Middle2 << Middle3 << Back;
+        return Adder.str();
+    }
+
+    String PHYS_LIB StringCat(const String& Front, const String& Middle1, const String& Middle2, const String& Middle3, const String& Middle4, const String& Back)
+    {
+        std::stringstream Adder;
+        Adder << Front  << Middle1 << Middle2 << Middle3 << Middle4 << Back;
+        return Adder.str();
+    }
+
 } // \phys
 #endif

@@ -58,7 +58,7 @@ namespace phys{
     // ActorSoft class functions
 
     ActorSoft::ActorSoft (Real mass, String name, String file, String group)
-        : ActorBase (name, file, group)
+        : ActorBase ()
     {
         CreateSoftObject(mass);
         this->GraphicsSettings = new ActorGraphicsSettings(this,GraphicsObject);

@@ -51,7 +51,7 @@
 namespace phys
 {
     ActorCharacter::ActorCharacter(String name, String file, String group)
-        : ActorBase(name, file, group)
+        : ActorBase()
     {
     }
 

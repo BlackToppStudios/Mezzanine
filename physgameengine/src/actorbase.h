@@ -212,10 +212,10 @@ namespace phys
 ///////////////////////////////////////
             /// @brief Descriptive constructor.
             /// @details This constructor contains the basic information needed to make an actor.
-            /// @param name The name of the actor.
-            /// @param file The 3d mesh file that contains the 3d model the actor will use.
-            /// @param group The resource group where the 3d mesh and other related files can be found.
-            ActorBase (const String& name, const String& file, const String& group);
+            // @param name The name of the actor.
+            // @param file The 3d mesh file that contains the 3d model the actor will use.
+            // @param group The resource group where the 3d mesh and other related files can be found.
+            ActorBase ();
 
             /// @brief Destructor.
             /// @details The class destructor.
@@ -343,7 +343,6 @@ namespace phys
             /// @return Returns a pointer to the physics settings class in use by this actor.
             virtual ActorBasePhysicsSettings* GetPhysicsSettings() const;
 
-
 ///////////////////////////////////////////////////////////////////////////////
 // Working with the World
 ///////////////////////////////////////
@@ -371,45 +370,25 @@ namespace phys
             /// @brief Gets the internal graphics object this actor is based on.
             /// @return Returns a pointer to the internal graphics object.
             virtual Ogre::Entity* GetOgreObject() const;
+
+///////////////////////////////////////////////////////////////////////////////
+// Serialization
+///////////////////////////////////////
+#ifdef PHYSXML
+        private:
+            /// @internal
+            /// @brief a Helper function that assembles strings and throws an exception
+            /// @param Fail The item that failed.
+            virtual void ThrowSerialError(const String& Fail) const;
+
+        public:
+            /// @brief Get all the this in an xml::Node.
+            /// @return This returns an xml:Node that should contain a complete description of this.
+            virtual xml::Node ProtoSerialize() const;
+#endif
     };
 
 } // /phys
-
-#ifdef PHYSXML
-/// @brief This will correctly identify and serialize an actor.
-/// @param stream The Stream to send the actor too.
-/// @param x The Actor To be Serialized.
-/// @return The stream after the actor has been inserted.
-std::ostream& operator << (std::ostream& stream, const phys::ActorBase& x);
-#endif
-
-///////////////////////////////////////////////////////////////////////////////
-// Class External << Operators for streaming or assignment
-#ifdef PHYSXML
-
-/// @brief Serializes the passed phys::ActorBase to XML
-/// @param stream The ostream to send the xml to.
-/// @param Ev the phys::ActorBase to be serialized
-/// @return this returns the ostream, now with the serialized data
-std::ostream& PHYS_LIB operator << (std::ostream& stream, const phys::ActorBase& Ev);
-
-/// @brief Deserialize a phys::ActorBase
-/// @param stream The istream to get the xml from to (re)make the phys::ActorBase.
-/// @param Ev the phys::ActorBase to be deserialized.
-/// @return this returns the ostream, advanced past the phys::ActorBase that was recreated onto Ev.
-std::istream& PHYS_LIB operator >> (std::istream& stream, phys::ActorBase& Ev);
-
-/// @brief Set all values of a phys::ActorBase from parsed xml.
-/// @param OneNode The istream to get the xml from to (re)make the phys::ActorBase.
-/// @param Ev the phys::ActorBase to be reset.
-/// @return This returns thexml::Node that was passed in.
-/// @warning This does not attempt to de-serialize the Mesh or PhysicsShape of the ActorBase. The Appropriate Mesh must be available (most likely in a directory specified by the resource manager).
-/// @warning This does not throw an exception if the ActorBase could not be attached an appropriate constraint. It is assumed that the worldnode will be able to adjust the pointer on this if it is deserialized second.
-phys::xml::Node& PHYS_LIB operator >> (const phys::xml::Node& OneNode, phys::ActorBase& Ev);
-
-#endif // \PHYSXML
-
-
 
 
 #endif

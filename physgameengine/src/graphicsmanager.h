@@ -95,7 +95,8 @@ namespace phys
             GameWindow* PrimaryGameWindow;
 
             Whole FrameDelay;
-            bool SDLBeenInitialized;
+
+            //bool SDLBeenInitialized;
             bool OgreBeenInitialized;
             bool GraphicsInitialized;
 
