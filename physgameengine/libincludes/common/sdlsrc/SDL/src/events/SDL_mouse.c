@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 #include "SDL_config.h"
 
@@ -360,24 +359,15 @@ SDL_CreateCursor(const Uint8 * data, const Uint8 * mask,
     const Uint32 white = 0xFFFFFFFF;
     const Uint32 transparent = 0x00000000;
 
-    if (!mouse->CreateCursor) {
-        SDL_SetError("Cursors are not currently supported");
-        return NULL;
-    }
-
-    /* Sanity check the hot spot */
-    if ((hot_x < 0) || (hot_y < 0) || (hot_x >= w) || (hot_y >= h)) {
-        SDL_SetError("Cursor hot spot doesn't lie within cursor");
-        return NULL;
-    }
-
     /* Make sure the width is a multiple of 8 */
     w = ((w + 7) & ~7);
 
     /* Create the surface from a bitmap */
-    surface =
-        SDL_CreateRGBSurface(0, w, h, 32, 0x00FF0000, 0x0000FF00, 0x000000FF,
-                             0xFF000000);
+    surface = SDL_CreateRGBSurface(0, w, h, 32,
+                                   0x00FF0000,
+                                   0x0000FF00,
+                                   0x000000FF,
+                                   0xFF000000);
     if (!surface) {
         return NULL;
     }
@@ -398,13 +388,54 @@ SDL_CreateCursor(const Uint8 * data, const Uint8 * mask,
         }
     }
 
+    cursor = SDL_CreateColorCursor(surface, hot_x, hot_y);
+
+    SDL_FreeSurface(surface);
+
+    return cursor;
+}
+
+SDL_Cursor *
+SDL_CreateColorCursor(SDL_Surface *surface, int hot_x, int hot_y)
+{
+    SDL_Mouse *mouse = SDL_GetMouse();
+    SDL_Surface *temp = NULL;
+    SDL_Cursor *cursor;
+
+    if (!surface) {
+        SDL_SetError("Passed NULL cursor surface");
+        return NULL;
+    }
+
+    if (!mouse->CreateCursor) {
+        SDL_SetError("Cursors are not currently supported");
+        return NULL;
+    }
+
+    /* Sanity check the hot spot */
+    if ((hot_x < 0) || (hot_y < 0) ||
+        (hot_x >= surface->w) || (hot_y >= surface->h)) {
+        SDL_SetError("Cursor hot spot doesn't lie within cursor");
+        return NULL;
+    }
+
+    if (surface->format->format != SDL_PIXELFORMAT_ARGB8888) {
+        temp = SDL_ConvertSurfaceFormat(surface, SDL_PIXELFORMAT_ARGB8888, 0);
+        if (!temp) {
+            return NULL;
+        }
+        surface = temp;
+    }
+
     cursor = mouse->CreateCursor(surface, hot_x, hot_y);
     if (cursor) {
         cursor->next = mouse->cursors;
         mouse->cursors = cursor;
     }
 
-    SDL_FreeSurface(surface);
+    if (temp) {
+        SDL_FreeSurface(temp);
+    }
 
     return cursor;
 }

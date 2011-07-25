@@ -155,6 +155,9 @@ data/VisualC/tests/testalpha/testalpha_VS2010.vcxproj.i
 data/VisualC/tests/testatomic/testatomic_VS2005.vcproj.i
 data/VisualC/tests/testatomic/testatomic_VS2008.vcproj.i
 data/VisualC/tests/testatomic/testatomic_VS2010.vcxproj.i
+data/VisualC/tests/testcursor/testcursor_VS2005.vcproj.i
+data/VisualC/tests/testcursor/testcursor_VS2008.vcproj.i
+data/VisualC/tests/testcursor/testcursor_VS2010.vcxproj.i
 data/VisualC/tests/testdraw2/testdraw2.vcproj.i
 data/VisualC/tests/testdraw2/testdraw2.vcxproj.i
 data/VisualC/tests/testdraw2/testdraw2.vcxproj.user.i
@@ -1316,6 +1319,7 @@ data/src/SDL_fatal.c.i
 data/src/SDL_fatal.h.i
 data/src/SDL_getenv.c.i
 data/src/SDL_hints.c.i
+data/src/SDL_hints_c.h.i
 data/src/SDL_loadso.c.i
 data/src/SDL_loadso.h.i
 data/src/SDL_log.c.i
@@ -1790,6 +1794,7 @@ data/src/render/SDL_yuv_sw_c.h.i
 data/src/render/direct3d/SDL_d3drender.c.i
 data/src/render/direct3d/SDL_render_d3d.c.i
 data/src/render/mmx.h.i
+data/src/render/nds/SDL_ndsrender.c.i
 data/src/render/opengl/SDL_glfuncs.h.i
 data/src/render/opengl/SDL_render_gl.c.i
 data/src/render/opengl/SDL_renderer_gl.c.i
@@ -2214,6 +2219,8 @@ data/src/video/directfb/SDL_DirectFB_opengl.c.i
 data/src/video/directfb/SDL_DirectFB_opengl.h.i
 data/src/video/directfb/SDL_DirectFB_render.c.i
 data/src/video/directfb/SDL_DirectFB_render.h.i
+data/src/video/directfb/SDL_DirectFB_shape.c.i
+data/src/video/directfb/SDL_DirectFB_shape.h.i
 data/src/video/directfb/SDL_DirectFB_video.c.i
 data/src/video/directfb/SDL_DirectFB_video.h.i
 data/src/video/directfb/SDL_DirectFB_window.c.i
@@ -2365,6 +2372,8 @@ data/src/video/nds/SDL_ndsrender.c.i
 data/src/video/nds/SDL_ndsrender_c.h.i
 data/src/video/nds/SDL_ndsvideo.c.i
 data/src/video/nds/SDL_ndsvideo.h.i
+data/src/video/nds/SDL_ndswindow.c.i
+data/src/video/nds/SDL_ndswindow.h.i
 data/src/video/os2fslib/.cvsignore.i
 data/src/video/os2fslib/Makefile.am.i
 data/src/video/os2fslib/SDL_os2fslib.c.i
@@ -2793,6 +2802,9 @@ data/test/nds-test-progs/sprite2/icon.bmp.i
 data/test/nds-test-progs/sprite2/source/common.c.i
 data/test/nds-test-progs/sprite2/source/common.h.i
 data/test/nds-test-progs/sprite2/source/testsprite2.c.i
+data/test/nds-test-progs/testscale/Makefile.i
+data/test/nds-test-progs/testsprite2/Makefile.i
+data/test/nds-test-progs/testspriteminimal/Makefile.i
 data/test/nds-test/Makefile.i
 data/test/nds-test/build/main.d.i
 data/test/nds-test/build/main.i.i
@@ -2988,6 +3000,7 @@ data/test/testsprite.c.i
 data/test/testsprite2.c.i
 data/test/testspriteminimal.c.i
 data/test/teststreaming.c.i
+data/test/testthread.c.i
 data/test/testtimer.c.i
 data/test/testtypes.c.i
 data/test/testver.c.i

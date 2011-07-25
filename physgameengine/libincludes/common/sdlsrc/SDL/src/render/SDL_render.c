@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 #include "SDL_config.h"
 
@@ -29,6 +28,8 @@
 #include "SDL_sysrender.h"
 #include "software/SDL_render_sw_c.h"
 
+
+#define SDL_WINDOWRENDERDATA    "_SDL_WindowRenderData"
 
 #define CHECK_RENDERER_MAGIC(renderer, retval) \
     if (!renderer || renderer->magic != &renderer_magic) { \
@@ -59,6 +60,9 @@ static const SDL_RenderDriver *render_drivers[] = {
 #endif
 #if SDL_VIDEO_RENDER_DIRECTFB
     &DirectFB_RenderDriver,
+#endif
+#if SDL_VIDEO_RENDER_NDS
+    &NDS_RenderDriver,
 #endif
     &SW_RenderDriver
 #endif /* !SDL_RENDER_DISABLED */
@@ -120,6 +124,16 @@ SDL_CreateRenderer(SDL_Window * window, int index, Uint32 flags)
     int n = SDL_GetNumRenderDrivers();
     const char *hint;
 
+    if (!window) {
+        SDL_SetError("Invalid window");
+        return NULL;
+    }
+
+    if (SDL_GetRenderer(window)) {
+        SDL_SetError("Renderer already associated with window");
+        return NULL;
+    }
+
     hint = SDL_GetHint(SDL_HINT_RENDER_VSYNC);
     if (hint) {
         if (*hint == '0') {
@@ -175,6 +189,8 @@ SDL_CreateRenderer(SDL_Window * window, int index, Uint32 flags)
         renderer->magic = &renderer_magic;
         renderer->window = window;
 
+        SDL_SetWindowData(window, SDL_WINDOWRENDERDATA, renderer);
+
         SDL_RenderSetViewport(renderer, NULL);
 
         SDL_AddEventWatch(SDL_RendererEventWatch, renderer);
@@ -203,6 +219,12 @@ SDL_CreateSoftwareRenderer(SDL_Surface * surface)
     SDL_SetError("SDL not built with rendering support");
     return NULL;
 #endif /* !SDL_RENDER_DISABLED */
+}
+
+SDL_Renderer *
+SDL_GetRenderer(SDL_Window * window)
+{
+    return (SDL_Renderer *)SDL_GetWindowData(window, SDL_WINDOWRENDERDATA);
 }
 
 int
@@ -1073,8 +1095,8 @@ SDL_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
         format = SDL_GetWindowPixelFormat(window);
     }
 
-    real_rect.x = 0;
-    real_rect.y = 0;
+    real_rect.x = renderer->viewport.x;
+    real_rect.y = renderer->viewport.y;
     real_rect.w = renderer->viewport.w;
     real_rect.h = renderer->viewport.h;
     if (rect) {
@@ -1085,7 +1107,7 @@ SDL_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
             pixels = (Uint8 *)pixels + pitch * (real_rect.y - rect->y);
         }
         if (real_rect.x > rect->x) {
-            int bpp = SDL_BYTESPERPIXEL(SDL_GetWindowPixelFormat(window));
+            int bpp = SDL_BYTESPERPIXEL(format);
             pixels = (Uint8 *)pixels + bpp * (real_rect.x - rect->x);
         }
     }
@@ -1145,6 +1167,8 @@ SDL_DestroyRenderer(SDL_Renderer * renderer)
     while (renderer->textures) {
         SDL_DestroyTexture(renderer->textures);
     }
+
+    SDL_SetWindowData(renderer->window, SDL_WINDOWRENDERDATA, NULL);
 
     /* It's no longer magical... */
     renderer->magic = NULL;

@@ -74,7 +74,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msimg32.lib winmm.lib imm32.lib version.lib"
+				AdditionalDependencies="winmm.lib imm32.lib version.lib"
 				OutputFile="$(IntDir)\SDL.dll"
 				SuppressStartupBanner="true"
 				IgnoreAllDefaultLibraries="true"
@@ -136,7 +136,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\include"
-				PreprocessorDefinitions="_DEBUG;_WINDOWS;_WIN32_WINNT=0x0400;__SSE__;__SSE2__"
+				PreprocessorDefinitions="_DEBUG;_WINDOWS"
 				RuntimeLibrary="2"
 				BufferSecurityCheck="false"
 				WarningLevel="3"
@@ -158,7 +158,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msimg32.lib winmm.lib imm32.lib version.lib"
+				AdditionalDependencies="winmm.lib imm32.lib version.lib"
 				OutputFile="$(IntDir)\SDL.dll"
 				SuppressStartupBanner="true"
 				IgnoreAllDefaultLibraries="true"
@@ -246,7 +246,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msimg32.lib winmm.lib imm32.lib version.lib"
+				AdditionalDependencies="winmm.lib imm32.lib version.lib"
 				OutputFile="$(IntDir)\SDL.dll"
 				SuppressStartupBanner="true"
 				IgnoreAllDefaultLibraries="true"
@@ -308,7 +308,7 @@
 				InlineFunctionExpansion="1"
 				EnableIntrinsicFunctions="false"
 				AdditionalIncludeDirectories="..\..\include"
-				PreprocessorDefinitions="NDEBUG;_WINDOWS;_WIN32_WINNT=0x0400;__SSE__;__SSE2__"
+				PreprocessorDefinitions="NDEBUG;_WINDOWS"
 				StringPooling="true"
 				RuntimeLibrary="2"
 				BufferSecurityCheck="false"
@@ -331,7 +331,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="msimg32.lib winmm.lib imm32.lib version.lib"
+				AdditionalDependencies="winmm.lib imm32.lib version.lib"
 				OutputFile="$(IntDir)\SDL.dll"
 				SuppressStartupBanner="true"
 				IgnoreAllDefaultLibraries="true"
@@ -617,6 +617,10 @@
 			>
 		</File>
 		<File
+			RelativePath=".\resource.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\libm\s_atan.c"
 			>
 		</File>
@@ -893,6 +897,10 @@
 			>
 		</File>
 		<File
+			RelativePath="..\..\src\SDL_hints_c.h"
+			>
+		</File>
+		<File
 			RelativePath="..\..\src\stdlib\SDL_iconv.c"
 			>
 		</File>
@@ -922,30 +930,6 @@
 		</File>
 		<File
 			RelativePath="..\..\src\audio\SDL_mixer.c"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\audio\SDL_mixer_m68k.c"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\audio\SDL_mixer_m68k.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\audio\SDL_mixer_MMX.c"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\audio\SDL_mixer_MMX.h"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\audio\SDL_mixer_MMX_VC.c"
-			>
-		</File>
-		<File
-			RelativePath="..\..\src\audio\SDL_mixer_MMX_VC.h"
 			>
 		</File>
 		<File
@@ -1290,6 +1274,10 @@
 		</File>
 		<File
 			RelativePath="..\..\src\render\SDL_yuv_sw_c.h"
+			>
+		</File>
+		<File
+			RelativePath=".\Version.rc"
 			>
 		</File>
 		<File

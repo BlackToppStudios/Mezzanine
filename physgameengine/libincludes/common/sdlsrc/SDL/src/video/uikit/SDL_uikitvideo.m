@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 
 #import <UIKit/UIKit.h>
@@ -119,6 +118,32 @@ The main screen should list a AxB mode for portrait orientation, and then
 
 */
 
+static CGSize
+UIKit_ForcePortrait(const CGSize size)
+{
+    CGSize retval;
+    if (size.width < size.height) { // portrait
+        retval = size;
+    } else {  // landscape
+        retval.width = size.height;
+        retval.height = size.width;
+    }
+    return retval;
+}
+
+static CGSize
+UIKit_ForceLandscape(const CGSize size)
+{
+    CGSize retval;
+    if (size.width > size.height) { // landscape
+        retval = size;
+    } else {  // portrait
+        retval.width = size.height;
+        retval.height = size.width;
+    }
+    return retval;
+}
+
 static void
 UIKit_GetDisplayModes(_THIS, SDL_VideoDisplay * display)
 {
@@ -136,28 +161,48 @@ UIKit_GetDisplayModes(_THIS, SDL_VideoDisplay * display)
         mode.refresh_rate = 0;
         mode.driverdata = NULL;
         SDL_AddDisplayMode(display, &mode);
+        mode.w = (int) rect.size.height;  // swap the orientation, add again.
+        mode.h = (int) rect.size.width;
+        SDL_AddDisplayMode(display, &mode);
         return;
     }
 
+    const int ismain = (uiscreen == [UIScreen mainScreen]);
     const NSArray *modes = [uiscreen availableModes];
     const NSUInteger mode_count = [modes count];
     NSUInteger i;
     for (i = 0; i < mode_count; i++) {
         UIScreenMode *uimode = (UIScreenMode *) [modes objectAtIndex:i];
-        const CGSize size = [uimode size];
+        CGSize size = [uimode size];
         mode.format = SDL_PIXELFORMAT_ABGR8888;
-        mode.w = (int) size.width;
-        mode.h = (int) size.height;
         mode.refresh_rate = 0;
         mode.driverdata = uimode;
-        [uimode retain];
-        SDL_AddDisplayMode(display, &mode);
+        mode.w = (int) size.width;
+        mode.h = (int) size.height;
+        if (SDL_AddDisplayMode(display, &mode))
+            [uimode retain];
+
+        if (ismain) {
+            // Add the mode twice, flipped to portrait and landscape.
+            //  SDL_AddDisplayMode() will ignore duplicates.
+            size = UIKit_ForcePortrait([uimode size]);
+            mode.w = (int) size.width;
+            mode.h = (int) size.height;
+            if (SDL_AddDisplayMode(display, &mode))
+                [uimode retain];
+
+            size = UIKit_ForceLandscape(size);
+            mode.w = (int) size.width;
+            mode.h = (int) size.height;
+            if (SDL_AddDisplayMode(display, &mode))
+                [uimode retain];
+        }
     }
 }
 
 
 static void
-UIKit_AddDisplay(UIScreen *uiscreen, int w, int h)
+UIKit_AddDisplay(UIScreen *uiscreen, UIScreenMode *uimode, int w, int h)
 {
     SDL_VideoDisplay display;
     SDL_DisplayMode mode;
@@ -166,6 +211,9 @@ UIKit_AddDisplay(UIScreen *uiscreen, int w, int h)
     mode.w = w;
     mode.h = h;
     mode.refresh_rate = 0;
+    
+    [uimode retain];
+    mode.driverdata = uimode;
 
     SDL_zero(display);
     display.desktop_mode = mode;
@@ -193,8 +241,9 @@ UIKit_VideoInit(_THIS)
     if (!SDL_UIKit_supports_multiple_displays) {
         // Just give 'em the whole main screen.
         UIScreen *uiscreen = [UIScreen mainScreen];
+        UIScreenMode *uiscreenmode = [uiscreen currentMode];
         const CGRect rect = [uiscreen bounds];
-        UIKit_AddDisplay(uiscreen, (int)rect.size.width, (int)rect.size.height);
+        UIKit_AddDisplay(uiscreen, uiscreenmode, (int)rect.size.width, (int)rect.size.height);
     } else {
         const NSArray *screens = [UIScreen screens];
         const NSUInteger screen_count = [screens count];
@@ -202,8 +251,9 @@ UIKit_VideoInit(_THIS)
         for (i = 0; i < screen_count; i++) {
             // the main screen is the first element in the array.
             UIScreen *uiscreen = (UIScreen *) [screens objectAtIndex:i];
+            UIScreenMode *uiscreenmode = [uiscreen currentMode];
             const CGSize size = [[uiscreen currentMode] size];
-            UIKit_AddDisplay(uiscreen, (int) size.width, (int) size.height);
+            UIKit_AddDisplay(uiscreen, uiscreenmode, (int)size.width, (int)size.height);
         }
     }
 

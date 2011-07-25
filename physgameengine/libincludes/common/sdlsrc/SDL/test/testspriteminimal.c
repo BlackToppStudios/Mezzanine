@@ -1,3 +1,14 @@
+/*
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely.
+*/
 /* Simple program:  Move N sprites around on the screen as fast as possible */
 
 #include <stdlib.h>
@@ -6,8 +17,13 @@
 
 #include "SDL.h"
 
+#ifdef __NDS__
+#define WINDOW_WIDTH    256
+#define WINDOW_HEIGHT   (2*192)
+#else
 #define WINDOW_WIDTH    640
 #define WINDOW_HEIGHT   480
+#endif
 #define NUM_SPRITES     100
 #define MAX_SPEED       1
 

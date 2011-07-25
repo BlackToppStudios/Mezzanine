@@ -1,25 +1,26 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 #include "SDL_config.h"
+
+#if SDL_VIDEO_DRIVER_X11
 
 #include "../SDL_sysvideo.h"
 #include "../SDL_pixels_c.h"
@@ -175,6 +176,7 @@ SetupWindowData(_THIS, SDL_Window * window, Window w, BOOL created)
             window->flags &= ~SDL_WINDOW_SHOWN;
         }
         data->visual = attrib.visual;
+        data->colormap = attrib.colormap;
     }
 
     {
@@ -316,7 +318,88 @@ X11_CreateWindow(_THIS, SDL_Window * window)
     xattr.override_redirect = False;
     xattr.background_pixel = 0;
     xattr.border_pixel = 0;
-    xattr.colormap = XCreateColormap(display, RootWindow(display, screen), visual, AllocNone);
+
+    if (visual->class == DirectColor) {
+        Status status;
+        XColor *colorcells;
+        int i;
+        int ncolors;
+        int rmax, gmax, bmax;
+        int rmask, gmask, bmask;
+        int rshift, gshift, bshift;
+
+        xattr.colormap =
+            XCreateColormap(display, RootWindow(display, screen),
+                            visual, AllocAll);
+
+        /* If we can't create a colormap, then we must die */
+        if (!xattr.colormap) {
+            SDL_SetError("Could not create writable colormap");
+            return -1;
+        }
+
+        /* OK, we got a colormap, now fill it in as best as we can */
+        colorcells = SDL_malloc(visual->map_entries * sizeof(XColor));
+        if (!colorcells) {
+            SDL_OutOfMemory();
+            return -1;
+        }
+        ncolors = visual->map_entries;
+        rmax = 0xffff;
+        gmax = 0xffff;
+        bmax = 0xffff;
+
+        rshift = 0;
+        rmask = visual->red_mask;
+        while (0 == (rmask & 1)) {
+            rshift++;
+            rmask >>= 1;
+        }
+
+        gshift = 0;
+        gmask = visual->green_mask;
+        while (0 == (gmask & 1)) {
+            gshift++;
+            gmask >>= 1;
+        }
+
+        bshift = 0;
+        bmask = visual->blue_mask;
+        while (0 == (bmask & 1)) {
+            bshift++;
+            bmask >>= 1;
+        }
+
+        /* build the color table pixel values */
+        for (i = 0; i < ncolors; i++) {
+            Uint32 red = (rmax * i) / (ncolors - 1);
+            Uint32 green = (gmax * i) / (ncolors - 1);
+            Uint32 blue = (bmax * i) / (ncolors - 1);
+
+            Uint32 rbits = (rmask * i) / (ncolors - 1);
+            Uint32 gbits = (gmask * i) / (ncolors - 1);
+            Uint32 bbits = (bmask * i) / (ncolors - 1);
+
+            Uint32 pix =
+                (rbits << rshift) | (gbits << gshift) | (bbits << bshift);
+
+            colorcells[i].pixel = pix;
+
+            colorcells[i].red = red;
+            colorcells[i].green = green;
+            colorcells[i].blue = blue;
+
+            colorcells[i].flags = DoRed | DoGreen | DoBlue;
+        }
+
+        XStoreColors(display, xattr.colormap, colorcells, ncolors);
+
+        SDL_free(colorcells);
+    } else {
+        xattr.colormap =
+            XCreateColormap(display, RootWindow(display, screen),
+                            visual, AllocNone);
+    }
 
     w = XCreateWindow(display, RootWindow(display, screen),
                       window->x, window->y, window->w, window->h,
@@ -674,27 +757,9 @@ X11_SetWindowPosition(_THIS, SDL_Window * window)
 {
     SDL_WindowData *data = (SDL_WindowData *) window->driverdata;
     Display *display = data->videodata->display;
-    SDL_bool oldstyle_fullscreen;
     int x, y;
 
-    /* ICCCM2.0-compliant window managers can handle fullscreen windows */
-    oldstyle_fullscreen = X11_IsWindowOldFullscreen(_this, window);
-
-    if (oldstyle_fullscreen
-        || SDL_WINDOWPOS_ISCENTERED(window->x)) {
-        X11_GetDisplaySize(_this, window, &x, NULL);
-        x = (x - window->w) / 2;
-    } else {
-        x = window->x;
-    }
-    if (oldstyle_fullscreen
-        || SDL_WINDOWPOS_ISCENTERED(window->y)) {
-        X11_GetDisplaySize(_this, window, NULL, &y);
-        y = (y - window->h) / 2;
-    } else {
-        y = window->y;
-    }
-    XMoveWindow(display, data->xwindow, x, y);
+    XMoveWindow(display, data->xwindow, window->x, window->y);
     XFlush(display);
 }
 
@@ -706,7 +771,22 @@ X11_SetWindowSize(_THIS, SDL_Window * window)
 
     if (SDL_IsShapedWindow(window))
         X11_ResizeWindowShape(window);
-    XResizeWindow(display, data->xwindow, window->w, window->h);
+    if (!(window->flags & SDL_WINDOW_RESIZABLE)) {
+         /* Apparently, if the X11 Window is set to a 'non-resizable' window, you cannot resize it using the XResizeWindow, thus
+            we must set the size hints to adjust the window size.*/
+         XSizeHints *sizehints = XAllocSizeHints();
+         long userhints;
+
+         XGetWMNormalHints(display, data->xwindow, sizehints, &userhints);
+
+         sizehints->min_width = sizehints->max_height = window->w;
+         sizehints->min_height = sizehints->max_height = window->h;
+
+         XSetWMNormalHints(display, data->xwindow, sizehints);
+
+         XFree(sizehints);
+    } else
+        XResizeWindow(display, data->xwindow, window->w, window->h);
     XFlush(display);
 }
 
@@ -861,6 +941,75 @@ X11_SetWindowFullscreen(_THIS, SDL_Window * window, SDL_VideoDisplay * _display,
     XFlush(display);
 }
 
+int
+X11_SetWindowGammaRamp(_THIS, SDL_Window * window, const Uint16 * ramp)
+{
+    SDL_WindowData *data = (SDL_WindowData *) window->driverdata;
+    Display *display = data->videodata->display;
+    Visual *visual = data->visual;
+    Colormap colormap = data->colormap;
+    XColor *colorcells;
+    int ncolors;
+    int rmask, gmask, bmask;
+    int rshift, gshift, bshift;
+    int i, j;
+
+    if (visual->class != DirectColor) {
+        SDL_SetError("Window doesn't have DirectColor visual");
+        return -1;
+    }
+
+    ncolors = visual->map_entries;
+    colorcells = SDL_malloc(ncolors * sizeof(XColor));
+    if (!colorcells) {
+        SDL_OutOfMemory();
+        return -1;
+    }
+
+    rshift = 0;
+    rmask = visual->red_mask;
+    while (0 == (rmask & 1)) {
+        rshift++;
+        rmask >>= 1;
+    }
+
+    gshift = 0;
+    gmask = visual->green_mask;
+    while (0 == (gmask & 1)) {
+        gshift++;
+        gmask >>= 1;
+    }
+
+    bshift = 0;
+    bmask = visual->blue_mask;
+    while (0 == (bmask & 1)) {
+        bshift++;
+        bmask >>= 1;
+    }
+
+    /* build the color table pixel values */
+    for (i = 0; i < ncolors; i++) {
+        Uint32 rbits = (rmask * i) / (ncolors - 1);
+        Uint32 gbits = (gmask * i) / (ncolors - 1);
+        Uint32 bbits = (bmask * i) / (ncolors - 1);
+        Uint32 pix = (rbits << rshift) | (gbits << gshift) | (bbits << bshift);
+
+        colorcells[i].pixel = pix;
+
+        colorcells[i].red = ramp[(0 * 256) + i];
+        colorcells[i].green = ramp[(1 * 256) + i];
+        colorcells[i].blue = ramp[(2 * 256) + i];
+
+        colorcells[i].flags = DoRed | DoGreen | DoBlue;
+    }
+
+    XStoreColors(display, colormap, colorcells, ncolors);
+    XFlush(display);
+    SDL_free(colorcells);
+
+    return 0;
+}
+
 void
 X11_SetWindowGrab(_THIS, SDL_Window * window)
 {
@@ -950,5 +1099,7 @@ X11_GetWindowWMInfo(_THIS, SDL_Window * window, SDL_SysWMinfo * info)
         return SDL_FALSE;
     }
 }
+
+#endif /* SDL_VIDEO_DRIVER_X11 */
 
 /* vi: set ts=4 sw=4 expandtab: */

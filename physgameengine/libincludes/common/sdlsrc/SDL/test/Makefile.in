@@ -23,13 +23,14 @@ TARGETS = \
 	testerror$(EXE) \
 	testfile$(EXE) \
 	testfill$(EXE) \
+	testgamma$(EXE) \
 	testgesture$(EXE) \
 	testgl$(EXE) \
 	testgl2$(EXE) \
 	testgles$(EXE) \
 	testhaptic$(EXE) \
-   testrumble$(EXE) \
-	testhread$(EXE) \
+	testrumble$(EXE) \
+	testthread$(EXE) \
 	testiconv$(EXE) \
 	testime$(EXE) \
 	testintersections$(EXE) \
@@ -119,6 +120,9 @@ testfile$(EXE): $(srcdir)/testfile.c
 testfill$(EXE): $(srcdir)/testfill.c
 	$(CC) -o $@ $? $(CFLAGS) $(LIBS)
 
+testgamma$(EXE): $(srcdir)/testgamma.c
+	$(CC) -o $@ $? $(CFLAGS) $(LIBS)
+ 
 testgesture$(EXE): $(srcdir)/testgesture.c
 	$(CC) -o $@ $? $(CFLAGS) $(LIBS) @MATHLIB@
  
@@ -137,7 +141,7 @@ testhaptic$(EXE): $(srcdir)/testhaptic.c
 testrumble$(EXE): $(srcdir)/testrumble.c
 	$(CC) -o $@ $? $(CFLAGS) $(LIBS)
 
-testhread$(EXE): $(srcdir)/testhread.c
+testthread$(EXE): $(srcdir)/testthread.c
 	$(CC) -o $@ $? $(CFLAGS) $(LIBS)
 
 testiconv$(EXE): $(srcdir)/testiconv.c

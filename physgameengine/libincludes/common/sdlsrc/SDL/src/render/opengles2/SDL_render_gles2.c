@@ -1,29 +1,28 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
-    Copyright (C) 2010 itsnotabigtruck.
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 #include "SDL_config.h"
 
 #if SDL_VIDEO_RENDER_OGL_ES2 && !SDL_RENDER_DISABLED
 
+#include "SDL_hints.h"
 #include "SDL_opengles2.h"
 #include "../SDL_sysrender.h"
 #include "SDL_shaders_gles2.h"
@@ -58,7 +57,6 @@ typedef struct GLES2_TextureData
     GLenum pixel_type;
     void *pixel_data;
     size_t pitch;
-    GLenum scaleMode;
 } GLES2_TextureData;
 
 typedef struct GLES2_ShaderCacheEntry
@@ -121,7 +119,6 @@ typedef struct GLES2_DriverContext
     SDL_GLContext *context;
     struct {
         int blendMode;
-        GLenum scaleMode;
         SDL_bool tex_coords;
     } current;
 
@@ -234,12 +231,25 @@ static void GLES2_UnlockTexture(SDL_Renderer *renderer, SDL_Texture *texture);
 static int GLES2_UpdateTexture(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *rect,
                                const void *pixels, int pitch);
 
+static GLenum
+GetScaleQuality(void)
+{
+    const char *hint = SDL_GetHint(SDL_HINT_RENDER_SCALE_QUALITY);
+
+    if (!hint || *hint == '0' || SDL_strcasecmp(hint, "nearest") == 0) {
+        return GL_NEAREST;
+    } else {
+        return GL_LINEAR;
+    }
+}
+
 static int
 GLES2_CreateTexture(SDL_Renderer *renderer, SDL_Texture *texture)
 {
     GLES2_TextureData *tdata;
     GLenum format;
     GLenum type;
+    GLenum scaleMode;
 
     GLES2_ActivateRenderer(renderer);
 
@@ -266,7 +276,7 @@ GLES2_CreateTexture(SDL_Renderer *renderer, SDL_Texture *texture)
     tdata->texture_type = GL_TEXTURE_2D;
     tdata->pixel_format = format;
     tdata->pixel_type = type;
-    tdata->scaleMode = GL_LINEAR;
+    scaleMode = GetScaleQuality();
 
     /* Allocate a blob for image data */
     if (texture->access == SDL_TEXTUREACCESS_STREAMING)
@@ -286,8 +296,8 @@ GLES2_CreateTexture(SDL_Renderer *renderer, SDL_Texture *texture)
     glGenTextures(1, &tdata->texture);
     glActiveTexture(GL_TEXTURE0);
     glBindTexture(tdata->texture_type, tdata->texture);
-    glTexParameteri(tdata->texture_type, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(tdata->texture_type, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(tdata->texture_type, GL_TEXTURE_MIN_FILTER, scaleMode);
+    glTexParameteri(tdata->texture_type, GL_TEXTURE_MAG_FILTER, scaleMode);
     glTexParameteri(tdata->texture_type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(tdata->texture_type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
     glTexImage2D(tdata->texture_type, 0, format, texture->w, texture->h, 0, format, type, NULL);
@@ -996,14 +1006,6 @@ GLES2_RenderCopy(SDL_Renderer *renderer, SDL_Texture *texture, const SDL_Rect *s
     glBindTexture(tdata->texture_type, tdata->texture);
     glUniform1i(locTexture, 0);
 
-    if (tdata->scaleMode != rdata->current.scaleMode) {
-        glTexParameteri(tdata->texture_type, GL_TEXTURE_MIN_FILTER,
-                        tdata->scaleMode);
-        glTexParameteri(tdata->texture_type, GL_TEXTURE_MAG_FILTER,
-                        tdata->scaleMode);
-        rdata->current.scaleMode = tdata->scaleMode;
-    }
-
     /* Configure color modulation */
     locModulation = rdata->current_program->uniform_locations[GLES2_UNIFORM_MODULATION];
     glUniform4f(locModulation,
@@ -1072,7 +1074,6 @@ GLES2_ResetState(SDL_Renderer *renderer)
     }
 
     rdata->current.blendMode = -1;
-    rdata->current.scaleMode = 0;
     rdata->current.tex_coords = SDL_FALSE;
 
     glEnableVertexAttribArray(GLES2_ATTRIBUTE_POSITION);

@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 #include "SDL_config.h"
 
@@ -115,6 +114,7 @@ static __inline__ void ConvertNSRect(NSRect *r)
 - (void)windowDidMove:(NSNotification *)aNotification
 {
     int x, y;
+    SDL_VideoDevice *device = SDL_GetVideoDevice();
     SDL_Window *window = _data->window;
     NSWindow *nswindow = _data->nswindow;
     NSRect rect = [nswindow contentRectForFrameRect:[nswindow frame]];
@@ -137,17 +137,28 @@ static __inline__ void ConvertNSRect(NSRect *r)
 
     x = (int)rect.origin.x;
     y = (int)rect.origin.y;
+
+    if (window == device->current_glwin) {
+        [((NSOpenGLContext *) device->current_glctx) update];
+    }
+
     SDL_SendWindowEvent(window, SDL_WINDOWEVENT_MOVED, x, y);
 }
 
 - (void)windowDidResize:(NSNotification *)aNotification
 {
+    SDL_VideoDevice *device = SDL_GetVideoDevice();
     int w, h;
     NSRect rect = [_data->nswindow contentRectForFrameRect:[_data->nswindow frame]];
     w = (int)rect.size.width;
     h = (int)rect.size.height;
     if (SDL_IsShapedWindow(_data->window))
         Cocoa_ResizeWindowShape(_data->window);
+
+    if (_data->window == device->current_glwin) {
+        [((NSOpenGLContext *) device->current_glctx) update];
+    }
+
     SDL_SendWindowEvent(_data->window, SDL_WINDOWEVENT_RESIZED, w, h);
 }
 
@@ -670,26 +681,24 @@ Cocoa_SetWindowPosition(_THIS, SDL_Window * window)
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSWindow *nswindow = ((SDL_WindowData *) window->driverdata)->nswindow;
-    SDL_VideoDisplay *display = SDL_GetDisplayForWindow(window);
     NSRect rect;
-    SDL_Rect bounds;
+    Uint32 moveHack;
 
-    Cocoa_GetDisplayBounds(_this, display, &bounds);
-    if (SDL_WINDOWPOS_ISCENTERED(window->x)) {
-        rect.origin.x = bounds.x + (bounds.w - window->w) / 2;
-    } else {
-        rect.origin.x = window->x;
-    }
-    if (SDL_WINDOWPOS_ISCENTERED(window->y)) {
-        rect.origin.y = bounds.y + (bounds.h - window->h) / 2;
-    } else {
-        rect.origin.y = window->y;
-    }
+    rect.origin.x = window->x;
+    rect.origin.y = window->y;
     rect.size.width = window->w;
     rect.size.height = window->h;
     ConvertNSRect(&rect);
-    rect = [nswindow frameRectForContentRect:rect];
+
+    moveHack = s_moveHack;
+    s_moveHack = 0;
     [nswindow setFrameOrigin:rect.origin];
+    s_moveHack = moveHack;
+
+    if (window == _this->current_glwin) {
+        [((NSOpenGLContext *) _this->current_glctx) update];
+    }
+
     [pool release];
 }
 
@@ -697,12 +706,18 @@ void
 Cocoa_SetWindowSize(_THIS, SDL_Window * window)
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSWindow *nswindow = ((SDL_WindowData *) window->driverdata)->nswindow;
+    SDL_WindowData *windata = (SDL_WindowData *) window->driverdata;
+    NSWindow *nswindow = windata->nswindow;
     NSSize size;
 
     size.width = window->w;
     size.height = window->h;
     [nswindow setContentSize:size];
+
+    if (window == _this->current_glwin) {
+        [((NSOpenGLContext *) _this->current_glctx) update];
+    }
+
     [pool release];
 }
 
@@ -745,6 +760,11 @@ Cocoa_MaximizeWindow(_THIS, SDL_Window * window)
     NSWindow *nswindow = ((SDL_WindowData *) window->driverdata)->nswindow;
 
     [nswindow zoom:nil];
+
+    if (window == _this->current_glwin) {
+        [((NSOpenGLContext *) _this->current_glctx) update];
+    }
+
     [pool release];
 }
 
@@ -798,6 +818,11 @@ Cocoa_SetWindowFullscreen(_THIS, SDL_Window * window, SDL_VideoDisplay * display
     NSWindow *nswindow = data->nswindow;
     NSRect rect;
 
+    /* The view responder chain gets messed with during setStyleMask */
+    if ([[nswindow contentView] nextResponder] == data->listener) {
+        [[nswindow contentView] setNextResponder:nil];
+    }
+
     if (fullscreen) {
         SDL_Rect bounds;
 
@@ -833,6 +858,11 @@ Cocoa_SetWindowFullscreen(_THIS, SDL_Window * window, SDL_VideoDisplay * display
         }
     }
 
+    /* The view responder chain gets messed with during setStyleMask */
+    if ([[nswindow contentView] nextResponder] != data->listener) {
+        [[nswindow contentView] setNextResponder:data->listener];
+    }
+
     s_moveHack = 0;
     [nswindow setFrameOrigin:rect.origin];
     [nswindow setContentSize:rect.size];
@@ -853,10 +883,65 @@ Cocoa_SetWindowFullscreen(_THIS, SDL_Window * window, SDL_VideoDisplay * display
 #endif
     [nswindow makeKeyAndOrderFront:nil];
 
+    if (window == _this->current_glwin) {
+        [((NSOpenGLContext *) _this->current_glctx) update];
+    }
+
     [pool release];
 }
 
-NSPoint origin;
+int
+Cocoa_SetWindowGammaRamp(_THIS, SDL_Window * window, const Uint16 * ramp)
+{
+    SDL_VideoDisplay *display = SDL_GetDisplayForWindow(window);
+    CGDirectDisplayID display_id = ((SDL_DisplayData *)display->driverdata)->display;
+    const uint32_t tableSize = 256;
+    CGGammaValue redTable[tableSize];
+    CGGammaValue greenTable[tableSize];
+    CGGammaValue blueTable[tableSize];
+    uint32_t i;
+    float inv65535 = 1.0f / 65535.0f;
+
+    /* Extract gamma values into separate tables, convert to floats between 0.0 and 1.0 */
+    for (i = 0; i < 256; i++) {
+        redTable[i] = ramp[0*256+i] * inv65535;
+        greenTable[i] = ramp[1*256+i] * inv65535;
+        blueTable[i] = ramp[2*256+i] * inv65535;
+    }
+
+    if (CGSetDisplayTransferByTable(display_id, tableSize,
+                                    redTable, greenTable, blueTable) != CGDisplayNoErr) {
+        SDL_SetError("CGSetDisplayTransferByTable()");
+        return -1;
+    }
+    return 0;
+}
+
+int
+Cocoa_GetWindowGammaRamp(_THIS, SDL_Window * window, Uint16 * ramp)
+{
+    SDL_VideoDisplay *display = SDL_GetDisplayForWindow(window);
+    CGDirectDisplayID display_id = ((SDL_DisplayData *)display->driverdata)->display;
+    const uint32_t tableSize = 256;
+    CGGammaValue redTable[tableSize];
+    CGGammaValue greenTable[tableSize];
+    CGGammaValue blueTable[tableSize];
+    uint32_t i, tableCopied;
+
+    if (CGGetDisplayTransferByTable(display_id, tableSize,
+                                    redTable, greenTable, blueTable, &tableCopied) != CGDisplayNoErr) {
+        SDL_SetError("CGGetDisplayTransferByTable()");
+        return -1;
+    }
+
+    for (i = 0; i < tableCopied; i++) {
+        ramp[0*256+i] = (Uint16)(redTable[i] * 65535.0f);
+        ramp[1*256+i] = (Uint16)(greenTable[i] * 65535.0f);
+        ramp[2*256+i] = (Uint16)(blueTable[i] * 65535.0f);
+    }
+    return 0;
+}
+
 void
 Cocoa_SetWindowGrab(_THIS, SDL_Window * window)
 {

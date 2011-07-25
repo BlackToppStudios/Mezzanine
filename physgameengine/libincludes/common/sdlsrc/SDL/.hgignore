@@ -72,10 +72,10 @@ test/testmmousetablet
 test/testmultiaudio
 test/testoverlay
 test/testoverlay2
-test/testpalette
 test/testplatform
 test/testpower
 test/testresample
+test/testrumble
 test/testscale
 test/testsem
 test/testshader

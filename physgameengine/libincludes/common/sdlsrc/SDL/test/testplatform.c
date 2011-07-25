@@ -1,3 +1,14 @@
+/*
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely.
+*/
 
 #include <stdio.h>
 
@@ -40,18 +51,12 @@ TestTypes(SDL_bool verbose)
                    (unsigned int)sizeof(Uint32));
         ++error;
     }
-#ifdef SDL_HAS_64BIT_TYPE
     if (badsize(sizeof(Uint64), 8)) {
         if (verbose)
             printf("sizeof(Uint64) != 8, instead = %u\n",
                    (unsigned int)sizeof(Uint64));
         ++error;
     }
-#else
-    if (verbose) {
-        printf("WARNING: No 64-bit datatype on this platform\n");
-    }
-#endif
     if (verbose && !error)
         printf("All data types are the expected size.\n");
 
@@ -68,15 +73,14 @@ TestEndian(SDL_bool verbose)
     Uint16 swapped16 = 0xABCD;
     Uint32 value32 = 0xEFBEADDE;
     Uint32 swapped32 = 0xDEADBEEF;
-#ifdef SDL_HAS_64BIT_TYPE
     Uint64 value64, swapped64;
+
     value64 = 0xEFBEADDE;
     value64 <<= 32;
     value64 |= 0xCDAB3412;
     swapped64 = 0x1234ABCD;
     swapped64 <<= 32;
     swapped64 |= 0xDEADBEEF;
-#endif
 
     if (verbose) {
         printf("Detected a %s endian machine.\n",
@@ -114,7 +118,6 @@ TestEndian(SDL_bool verbose)
         }
         ++error;
     }
-#ifdef SDL_HAS_64BIT_TYPE
     if (verbose) {
 #ifdef _MSC_VER
         printf("Value 64 = 0x%I64X, swapped = 0x%I64X\n", value64,
@@ -130,7 +133,6 @@ TestEndian(SDL_bool verbose)
         }
         ++error;
     }
-#endif
     return (error ? 1 : 0);
 }
 
@@ -170,6 +172,16 @@ TestAssertions(SDL_bool verbose)
     SDL_assert_release(0 && "This is a test");
 #endif
 
+    {
+        const SDL_assert_data *item = SDL_GetAssertionReport();
+        while (item) {
+            printf("'%s', %s (%s:%d), triggered %u times, always ignore: %s.\n",
+                item->condition, item->function, item->filename,
+                item->linenum, item->trigger_count,
+                item->always_ignore ? "yes" : "no");
+            item = item->next;
+        }
+    }
     return (0);
 }
 

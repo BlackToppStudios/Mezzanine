@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 #include "SDL_config.h"
 
@@ -1018,6 +1017,17 @@ SDL_GetWindowPixelFormat(SDL_Window * window)
 }
 
 static void
+SDL_RestoreMousePosition(SDL_Window *window)
+{
+    int x, y;
+
+    if (window == SDL_GetMouseFocus()) {
+        SDL_GetMouseState(&x, &y);
+        SDL_WarpMouseInWindow(window, x, y);
+    }
+}
+
+static void
 SDL_UpdateFullscreenMode(SDL_Window * window, SDL_bool fullscreen)
 {
     SDL_VideoDisplay *display = SDL_GetDisplayForWindow(window);
@@ -1070,6 +1080,8 @@ SDL_UpdateFullscreenMode(SDL_Window * window, SDL_bool fullscreen)
                 } else {
                     SDL_OnWindowResized(other);
                 }
+
+                SDL_RestoreMousePosition(other);
                 return;
             }
         }
@@ -1085,6 +1097,9 @@ SDL_UpdateFullscreenMode(SDL_Window * window, SDL_bool fullscreen)
 
     /* Generate a mode change event here */
     SDL_OnWindowResized(window);
+
+    /* Restore the cursor position */
+    SDL_RestoreMousePosition(window);
 }
 
 #define CREATE_FLAGS \
@@ -1161,6 +1176,7 @@ SDL_CreateWindow(const char *title, int x, int y, int w, int h, Uint32 flags)
         }
     }
     window->flags = ((flags & CREATE_FLAGS) | SDL_WINDOW_HIDDEN);
+    window->brightness = 1.0f;
     window->next = _this->windows;
     if (_this->windows) {
         _this->windows->prev = window;
@@ -1193,6 +1209,7 @@ SDL_CreateWindowFrom(const void *data)
     window->magic = &_this->window_magic;
     window->id = _this->next_object_id++;
     window->flags = SDL_WINDOW_FOREIGN;
+    window->brightness = 1.0f;
     window->next = _this->windows;
     if (_this->windows) {
         _this->windows->prev = window;
@@ -1410,6 +1427,20 @@ SDL_SetWindowPosition(SDL_Window * window, int x, int y)
     }
     if (!SDL_WINDOWPOS_ISUNDEFINED(y)) {
         window->y = y;
+    }
+    if (SDL_WINDOWPOS_ISCENTERED(x) || SDL_WINDOWPOS_ISCENTERED(y)) {
+        SDL_VideoDisplay *display = SDL_GetDisplayForWindow(window);
+        int displayIndex;
+        SDL_Rect bounds;
+
+        displayIndex = SDL_GetIndexOfDisplay(display);
+        SDL_GetDisplayBounds(displayIndex, &bounds);
+        if (SDL_WINDOWPOS_ISCENTERED(x)) {
+            window->x = bounds.x + (bounds.w - window->w) / 2;
+        }
+        if (SDL_WINDOWPOS_ISCENTERED(y)) {
+            window->y = bounds.y + (bounds.h - window->h) / 2;
+        }
     }
     if (!(window->flags & SDL_WINDOW_FULLSCREEN)) {
         if (_this->SetWindowPosition) {
@@ -1675,6 +1706,110 @@ SDL_UpdateWindowSurfaceRects(SDL_Window * window, SDL_Rect * rects,
     return _this->UpdateWindowFramebuffer(_this, window, rects, numrects);
 }
 
+int
+SDL_SetWindowBrightness(SDL_Window * window, float brightness)
+{
+    Uint16 ramp[256];
+    int status;
+
+    CHECK_WINDOW_MAGIC(window, -1);
+
+    SDL_CalculateGammaRamp(brightness, ramp);
+    status = SDL_SetWindowGammaRamp(window, ramp, ramp, ramp);
+    if (status == 0) {
+        window->brightness = brightness;
+    }
+    return status;
+}
+
+float
+SDL_GetWindowBrightness(SDL_Window * window)
+{
+    CHECK_WINDOW_MAGIC(window, 1.0f);
+
+    return window->brightness;
+}
+
+int
+SDL_SetWindowGammaRamp(SDL_Window * window, const Uint16 * red,
+                                            const Uint16 * green,
+                                            const Uint16 * blue)
+{
+    CHECK_WINDOW_MAGIC(window, -1);
+
+    if (!_this->SetWindowGammaRamp) {
+        SDL_Unsupported();
+        return -1;
+    }
+
+    if (!window->gamma) {
+        if (SDL_GetWindowGammaRamp(window, NULL, NULL, NULL) < 0) {
+            return -1;
+        }
+    }
+
+    if (red) {
+        SDL_memcpy(&window->gamma[0*256], red, 256*sizeof(Uint16));
+    }
+    if (green) {
+        SDL_memcpy(&window->gamma[1*256], green, 256*sizeof(Uint16));
+    }
+    if (blue) {
+        SDL_memcpy(&window->gamma[2*256], blue, 256*sizeof(Uint16));
+    }
+    if (window->flags & SDL_WINDOW_INPUT_FOCUS) {
+        return _this->SetWindowGammaRamp(_this, window, window->gamma);
+    } else {
+        return 0;
+    }
+}
+
+int
+SDL_GetWindowGammaRamp(SDL_Window * window, Uint16 * red,
+                                            Uint16 * green,
+                                            Uint16 * blue)
+{
+    CHECK_WINDOW_MAGIC(window, -1);
+
+    if (!window->gamma) {
+        int i;
+
+        window->gamma = (Uint16 *)SDL_malloc(256*6*sizeof(Uint16));
+        if (!window->gamma) {
+            SDL_OutOfMemory();
+            return -1;
+        }
+        window->saved_gamma = window->gamma + 3*256;
+
+        if (_this->GetWindowGammaRamp) {
+            if (_this->GetWindowGammaRamp(_this, window, window->gamma) < 0) {
+                return -1;
+            }
+        } else {
+            /* Create an identity gamma ramp */
+            for (i = 0; i < 256; ++i) {
+                Uint16 value = (Uint16)((i << 8) | i);
+
+                window->gamma[0*256+i] = value;
+                window->gamma[1*256+i] = value;
+                window->gamma[2*256+i] = value;
+            }
+        }
+        SDL_memcpy(window->saved_gamma, window->gamma, 3*256*sizeof(Uint16));
+    }
+
+    if (red) {
+        SDL_memcpy(red, &window->gamma[0*256], 256*sizeof(Uint16));
+    }
+    if (green) {
+        SDL_memcpy(green, &window->gamma[1*256], 256*sizeof(Uint16));
+    }
+    if (blue) {
+        SDL_memcpy(blue, &window->gamma[2*256], 256*sizeof(Uint16));
+    }
+    return 0;
+}
+
 static void
 SDL_UpdateWindowGrab(SDL_Window * window)
 {
@@ -1702,7 +1837,7 @@ SDL_SetWindowGrab(SDL_Window * window, SDL_bool grabbed)
 SDL_bool
 SDL_GetWindowGrab(SDL_Window * window)
 {
-    CHECK_WINDOW_MAGIC(window, 0);
+    CHECK_WINDOW_MAGIC(window, SDL_FALSE);
 
     return ((window->flags & SDL_WINDOW_INPUT_GRABBED) != 0);
 }
@@ -1745,8 +1880,12 @@ SDL_OnWindowRestored(SDL_Window * window)
 void
 SDL_OnWindowFocusGained(SDL_Window * window)
 {
-    if ((window->flags & (SDL_WINDOW_INPUT_GRABBED | SDL_WINDOW_FULLSCREEN))
-        && _this->SetWindowGrab) {
+    if (window->gamma && _this->SetWindowGammaRamp) {
+        _this->SetWindowGammaRamp(_this, window, window->gamma);
+    }
+
+    if ((window->flags & (SDL_WINDOW_INPUT_GRABBED | SDL_WINDOW_FULLSCREEN)) &&
+        _this->SetWindowGrab) {
         _this->SetWindowGrab(_this, window);
     }
 }
@@ -1754,15 +1893,18 @@ SDL_OnWindowFocusGained(SDL_Window * window)
 void
 SDL_OnWindowFocusLost(SDL_Window * window)
 {
-    /* If we're fullscreen on a single-head system and lose focus, minimize */
-    if ((window->flags & SDL_WINDOW_FULLSCREEN) &&
-        _this->num_displays == 1) {
-        SDL_MinimizeWindow(window);
+    if (window->gamma && _this->SetWindowGammaRamp) {
+        _this->SetWindowGammaRamp(_this, window, window->saved_gamma);
     }
 
-    if ((window->flags & (SDL_WINDOW_INPUT_GRABBED | SDL_WINDOW_FULLSCREEN))
-        && _this->SetWindowGrab) {
+    if ((window->flags & (SDL_WINDOW_INPUT_GRABBED | SDL_WINDOW_FULLSCREEN)) &&
+        _this->SetWindowGrab) {
         _this->SetWindowGrab(_this, window);
+    }
+
+    /* If we're fullscreen on a single-head system and lose focus, minimize */
+    if ((window->flags & SDL_WINDOW_FULLSCREEN) && _this->num_displays == 1) {
+        SDL_MinimizeWindow(window);
     }
 }
 
@@ -1788,6 +1930,13 @@ SDL_DestroyWindow(SDL_Window * window)
     SDL_VideoDisplay *display;
 
     CHECK_WINDOW_MAGIC(window, );
+
+    /* make no context current if this is the current context window. */
+    if (window->flags & SDL_WINDOW_OPENGL) {
+        if (_this->current_glwin == window) {
+            SDL_GL_MakeCurrent(NULL, NULL);
+        }
+    }
 
     /* Restore video mode, etc. */
     SDL_HideWindow(window);
@@ -1817,6 +1966,9 @@ SDL_DestroyWindow(SDL_Window * window)
     /* Free memory associated with the window */
     if (window->title) {
         SDL_free(window->title);
+    }
+    if (window->gamma) {
+        SDL_free(window->gamma);
     }
     while (window->data) {
         SDL_WindowUserData *data = window->data;
@@ -2307,28 +2459,49 @@ SDL_GL_GetAttribute(SDL_GLattr attr, int *value)
 SDL_GLContext
 SDL_GL_CreateContext(SDL_Window * window)
 {
+    SDL_GLContext ctx = NULL;
     CHECK_WINDOW_MAGIC(window, NULL);
 
     if (!(window->flags & SDL_WINDOW_OPENGL)) {
         SDL_SetError("The specified window isn't an OpenGL window");
         return NULL;
     }
-    return _this->GL_CreateContext(_this, window);
+
+    ctx = _this->GL_CreateContext(_this, window);
+
+    /* Creating a context is assumed to make it current in the SDL driver. */
+    _this->current_glwin = window;
+    _this->current_glctx = ctx;
+
+    return ctx;
 }
 
 int
-SDL_GL_MakeCurrent(SDL_Window * window, SDL_GLContext context)
+SDL_GL_MakeCurrent(SDL_Window * window, SDL_GLContext ctx)
 {
+    int retval;
+
     CHECK_WINDOW_MAGIC(window, -1);
 
     if (!(window->flags & SDL_WINDOW_OPENGL)) {
         SDL_SetError("The specified window isn't an OpenGL window");
         return -1;
     }
-    if (!context) {
+    if (!ctx) {
         window = NULL;
     }
-    return _this->GL_MakeCurrent(_this, window, context);
+
+    if ((window == _this->current_glwin) && (ctx == _this->current_glctx)) {
+        retval = 0;  /* we're already current. */
+    } else {
+        retval = _this->GL_MakeCurrent(_this, window, ctx);
+        if (retval == 0) {
+            _this->current_glwin = window;
+            _this->current_glctx = ctx;
+        }
+    }
+
+    return retval;
 }
 
 int
@@ -2337,8 +2510,10 @@ SDL_GL_SetSwapInterval(int interval)
     if (!_this) {
         SDL_UninitializedVideo();
         return -1;
-    }
-    if (_this->GL_SetSwapInterval) {
+    } else if (_this->current_glctx == NULL) {
+        SDL_SetError("No OpenGL context has been made current");
+        return -1;
+    } else if (_this->GL_SetSwapInterval) {
         return _this->GL_SetSwapInterval(_this, interval);
     } else {
         SDL_SetError("Setting the swap interval is not supported");
@@ -2352,8 +2527,10 @@ SDL_GL_GetSwapInterval(void)
     if (!_this) {
         SDL_UninitializedVideo();
         return -1;
-    }
-    if (_this->GL_GetSwapInterval) {
+    } else if (_this->current_glctx == NULL) {
+        SDL_SetError("No OpenGL context has been made current");
+        return -1;
+    } else if (_this->GL_GetSwapInterval) {
         return _this->GL_GetSwapInterval(_this);
     } else {
         SDL_SetError("Getting the swap interval is not supported");
