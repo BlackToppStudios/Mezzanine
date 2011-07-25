@@ -129,6 +129,9 @@ namespace phys
             }
         }
 
+        Document* PreParseClassFromSingleTag(const String& ClassName, const String& OneTag)
+            { return PreParseClassFromSingleTag("",ClassName,OneTag); }
+
         String EscapeXML(const String& XMLText)
         {
             String Results;
