@@ -234,7 +234,7 @@ namespace phys
         /// @brief This flag determines if character and entity references are expanded during parsing. This flag is on by default.
 
         /// @var ParseEol
-        /// @brief This flag determines if EOL characters are normalized (converted to #xA) during parsing. This flag is on by default.
+        /// @brief This flag determines if EOL characters are normalized (converted to \#xA) during parsing. This flag is on by default.
 
         /// @var ParseWconvAttribute
         /// @brief This flag determines if attribute values are normalized using CDATA normalization rules during parsing. This flag is on by default.
@@ -676,21 +676,8 @@ namespace phys
         /// @brief Creates a Node and makes it a child of this one, and puts at the middle of the Child Nodes.
         /// @param Type The NodeType of the Node to be added, just after another specific node.
         /// @param node The specific node to add the new one after.
+        /// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
         /// @return A Node representing the freshly added Node, or an empty Node if there was an error.
-		/// @todo Not all nodes can be added to other nodes, we need to figure it out and put it here.
-
-		/// @fn Node::PrependChild(const char_t* Name);
-		/// @brief Creates an element Node as a child of this Node, with the given name at the beginning of the children
-		/// @param Name The name of the Node to be created.
-        /// @details Calls @ref Node::PrependChild(NodeType); using NodeElement as the NodeType.
-        /// @return The desired Node on success, an empty Node on failure.
-
-		/// @fn Node::InsertChildBefore(const char_t* Name, const Node& node);
-		/// @brief Creates an element Node as a child of this Node, with the given name at the middle of the children
-		/// @param Name The name of the Node to be created.
-		/// @param node The node just after were the Create node is to be placed.
-        /// @details Calls Node::InsertChildBefore(NodeType, Node); using NodeElement as the NodeType.
-        /// @return The desired Node on success, an empty Node on failure.
 
 		/// @fn Node::RemoveAttribute(const Attribute& a);
 		/// @brief Remove specified Attribute.
@@ -713,6 +700,7 @@ namespace phys
         /// @param AttrName The name of the matching Attribute.
         /// @param AttrValue The value of the matching Attribute.
         /// @details Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive.
+        /// @return The First matching xml::Node
 
         /// @fn Node::Path(char_t delimiter = '/') const;
         /// @brief Get the absolute path to this Node
@@ -942,12 +930,14 @@ namespace phys
         /// @brief Virtual deconstructor. Tears down a TreeWalker
 
         /// @fn TreeWalker::begin(Node& node);
-        /// @brief Called on the root Node of the xml subtree when traversal begins.
+        /// @brief Called by the root Node of the xml subtree when traversal begins.
+        /// @param node The first node the Tree to traverse
         /// @details By default this simply returns true, but is expected to be overridden with any desired behavior
         /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
 
         /// @fn TreeWalker::for_each(Node& node);
         /// @brief A Pure Virtual function that is expected to be implemented to create the desired behavior.
+        /// @param node The curren node being trraversed.
         /// @details This is called on every Node that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches
         /// of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching
         /// many nodes.
@@ -955,6 +945,7 @@ namespace phys
 
         /// @fn TreeWalker::end(Node& node);
         /// @brief Called on the root Node of the xml subtree when traversal ends.
+        /// @param node The last node the Tree to traverse
         /// @details By default this simply returns true, but is expected to be overridden with any desired behavior
         /// @return True by default. If it returns false, then traversal ends and the Node::Traverse() that was called is expected to return false.
 
@@ -994,15 +985,6 @@ namespace phys
         /// @brief Load XML from a Character array.
         /// @param contents A pointer to the Null terminated array of Characters.
         /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-        /// @return A ParseResult that stores the the outcome of attempting to load the document.
-
-		/// @fn Document::LoadBufferInplace(void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
-		/// @brief Load document from buffer, using the buffer for in-place parsing (the buffer is modified and used for storage of document data).
-		/// @details You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed.
-        /// @param contents A pointer to buffer containing the xml document to be parsed, that must remain for the lifecycle of the xml::Document.
-        /// @param size The size of the buffer.
-        /// @param options A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault.
-        /// @param DocumentEncoding What kind of text is in the stream, this defaults to Encoding::EncodingAuto
         /// @return A ParseResult that stores the the outcome of attempting to load the document.
 
         /// @fn Document::LoadBuffer(const void* contents, size_t size, unsigned int options = ParseDefault, Encoding DocumentEncoding = EncodingAuto);
@@ -1100,6 +1082,8 @@ namespace phys
 
         /// @fn XPathVariableSet::Add(const char_t* Name, XPathValueType Type);
         /// @brief Add a new variable or get the existing one, if the Types match
+        /// @param Name The name of variable to add.
+        /// @param Type The Type of the new value to add as an XPathValueType.
         /// @return A pointer to the XPathVariable you referenced or just created.
 
         /// @fn XPathVariableSet::Set(const char_t* Name, bool Value);

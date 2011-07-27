@@ -104,12 +104,14 @@ namespace phys
             virtual void AddActor(ActorBase* ActorToAdd) = 0;
 
             /// @brief This provides an easy way to access the last Actor added to this container
-            /// @details For many containers this will simply return a pointer to the last actorl
+            /// @details For many containers this will simply return a pointer to the last actor.
+            /// @return This returns a pointer to the last Actor that was added.
             virtual ActorBase* LastActorAdded() = 0;
 
             /// @brief Remove an Actor
             /// @details Remove all references of the actor pointed from the container. Will throw an exception when attempting to remove
             /// and no match could be found.
+            /// @param ActorToRemove A pointer to the actor to remove.
             /// @warning This will cause issues if used with a container attached to a valid phys::World. Use World::RemoveActor instead.
             virtual void RemoveActor(ActorBase* ActorToRemove) = 0;
 

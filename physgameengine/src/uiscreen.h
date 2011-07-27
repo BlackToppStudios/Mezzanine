@@ -61,7 +61,6 @@ namespace phys
         class Widget;
         class Layer;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class UIScreen
         /// @headerfile uiscreen.h
         /// @brief This class is a helper class for creating UI's.  It is responsible for storing and keeping
         /// track of all the elements of a single UI screen.

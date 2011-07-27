@@ -59,7 +59,6 @@ namespace cAudio
 
 namespace phys
 {
-    /// @typedef SoundSet
     /// @brief This is a vector that stores sounds.
     /// @details This is a vector and can be use to store sounds that can be grouped together
     /// for similiar purposes or similiar content for easy tracking.
@@ -81,15 +80,20 @@ namespace phys
                 { }
 
             /// @brief Get the name of the SoundSet
+            /// @return The Name of this SoundSet
             const String& GetName() const
                 { return Name; }
 
-            //Serializable
+            /// @brief Create an xml::Node describing this
+            /// @return An xml::Node
             xml::Node ProtoSerialize() const;
 
+            /// @brief Create an xml::Node describing this
+            /// @return An xml::Node
             void ProtoDeSerialize(const xml::Node&);
 
             String SerializableName() const;
+
     };
     //typedef std::vector< Sound* > SoundSet;
     /// Todo de/serialize sound set

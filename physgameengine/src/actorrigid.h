@@ -91,8 +91,8 @@ namespace phys
             virtual ~ActorRigid();
 
             /// @brief Retrieves the name of the object.
-            /// @details This function will retrieve the name of the object,
-            virtual std::string GetName() const;
+            /// @return This function will return the name of the object in a String
+            virtual String GetName() const;
 
             /// @brief Creates a collision shape from mesh file.
             /// @details This function will read the location of every verticy in the mesh file and use that to

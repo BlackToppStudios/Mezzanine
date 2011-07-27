@@ -106,6 +106,7 @@ namespace phys
             virtual void SetBulletLocation (Vector3 Location);
             /// @brief Retrieves the location of the physics body.
             /// @details This function will retrieve the location of the object within the physics world.
+            /// @return A Vector3 with the location in the physics system.
             virtual Vector3 GetBulletLocation() const;
             /// @brief Sets the orientation of the physics body.
             /// @details This will take a PhysQuaternion and set the orientation of the actor within the physics world. @n
@@ -130,8 +131,8 @@ namespace phys
             void UpdateSoftBody();
 
             /// @brief Retrieves the name of the object.
-            /// @details This function will retrieve the name of the object,
-            std::string GetName() const;
+            /// @return A String with the name of this Actor
+            String GetName() const;
 
             /// @brief Gets the physics settings class associated with this actor.
             /// @return Returns a pointer to the physics settings class in use by this actor.
@@ -170,6 +171,7 @@ namespace phys
 
             /// @brief Retrieves the location of the object.
             /// @details This function will retrieve the location of the object within the world.
+            /// @return A Vector3 with the actual locaiton of this Actor.
             virtual Vector3 GetLocation() const;
 
             /// @brief Sets the orientation of the actor.

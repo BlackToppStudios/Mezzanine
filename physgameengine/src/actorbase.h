@@ -181,6 +181,7 @@ namespace phys
 
             /// @brief Retrieves the location of the physics body.
             /// @details This function will retrieve the location of the object within the physics world.
+            /// @return a phys::Vector3.
             virtual Vector3 GetBulletLocation() const;
 
             /// @brief Sets the orientation of the physics body.
@@ -222,8 +223,9 @@ namespace phys
             virtual ~ActorBase ();
 
             /// @brief Retrieves the name of the object.
-            /// @details This function will retrieve the name of the object,
-            virtual std::string GetName() const = 0;
+            /// @details This function will retrieve the name of the object.
+            /// @return This should return a String containing the Name
+            virtual String GetName() const = 0;
 
             /// @brief Manually sets the location of the actor.
             /// @details Calling this function prior to adding it to the World will have no effect. @n
@@ -241,6 +243,7 @@ namespace phys
 
             /// @brief Retrieves the location of the object.
             /// @details This function will retrieve the location of the object within the world.
+            /// @return A phys::Vector3 containing the location.
             virtual Vector3 GetLocation() const;
 
             /// @brief Sets the orientation of the actor.
@@ -310,6 +313,7 @@ namespace phys
             virtual bool IsAnimated() const;
 
             /// @brief Advances the animation, making it animate.
+            /// @param Time The amount of time to advance the animation.
             /// @details You need to call this every frame while the actor is to be animated, otherwise even with the animation
             /// enabled you will see no change in the animation.
             virtual void AdvanceAnimation(const Real& Time);

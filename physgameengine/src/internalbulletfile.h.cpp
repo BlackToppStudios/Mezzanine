@@ -122,6 +122,7 @@ namespace phys{
                 btTriangleInfoMap* GetTriangleInfoMap(String Name);
         };//bulletfile
 
+        /// @internal
         class BulletFilePtr : public Ogre::SharedPtr<BulletFile>
         {
             protected:

@@ -45,7 +45,6 @@
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////
-    /// @class CollisionShapeGenerator
     /// @headerfile collisionshapegenerator.h
     /// @brief
     /// @details

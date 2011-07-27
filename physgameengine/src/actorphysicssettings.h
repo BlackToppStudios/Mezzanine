@@ -73,7 +73,13 @@ namespace phys
             btCollisionObject* ActorCO;
             /// @brief The Actor this belongs to.
             ActorBase* Parent;
+
+            /// @internal
+            /// @brief A number of actors will use this in conjuction with the physics system
             Whole CollisionGroup;
+
+            /// @internal
+            /// @brief Stores the kind of actors that can collide with each other.
             Whole CollisionMask;
         public:
             /// @brief Standard Constructor.

@@ -133,7 +133,6 @@ namespace phys
         };//Cell
 
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class ButtonCallback
         /// @headerfile uibutton.h
         /// @brief This class provides customizable functionality to the button class.
         /// @details This is a pure virtual class that must be inherited from for use with specialized
