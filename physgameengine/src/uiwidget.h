@@ -103,6 +103,7 @@ namespace phys
                     Cell,
                     CellGrid,
                     CheckBox,
+                    DropDownList,
                     DropDownMenu,
                     ListBox,
                     Menu,

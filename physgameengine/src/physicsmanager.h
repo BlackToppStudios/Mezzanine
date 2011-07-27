@@ -51,6 +51,7 @@ class btCollisionShape;
 class btSoftBodyRigidBodyCollisionConfiguration;
 class btGhostPairCallback;
 class btBroadphaseInterface;
+class btCollisionConfiguration;
 
 #include <map>
 #include <vector>
@@ -70,6 +71,56 @@ namespace phys
     namespace debug {
         class InternalDebugDrawer;
     }
+
+    ///////////////////////////////////////////////////////////////////////////////
+    /// @class PhysicsConstructionInfo
+    /// @headerfile physicsmanager.h
+    /// @brief
+    /// @details
+    ///////////////////////////////////////
+    class PHYS_LIB PhysicsConstructionInfo
+    {
+        public:
+            /// @enum PhysicsConstructionFlags
+            /// @brief This is an enum used by the physics manager to determine what internal
+            /// classes should be used when creating the world.
+            enum PhysicsConstructionFlags
+            {
+                //World type flags
+                PCF_SoftRigidWorld = 1,
+
+                //broadphase flags
+                PCF_LimitlessWorld = 2,
+            };
+
+            /// @brief Class constructor.
+            PhysicsConstructionInfo();
+            /// @brief Class destructor.
+            ~PhysicsConstructionInfo();
+            /// @brief Assignment Operator.
+            /// @param Other The other PhysicsConstructionInfo to be copied.
+            /// @return Returns a reference to this.
+            PhysicsConstructionInfo& operator=(const PhysicsConstructionInfo& Other);
+
+            /// @brief The flags to initialize the physics system with.
+            Whole PhysicsFlags;
+            /// @brief The lower limits of the worlds AABB.
+            /// @note This member is ignored if the "PCF_LimitlessWorld" flag is passed in.
+            Vector3 GeographyLowerBounds;
+            /// @brief The upper limits of the worlds AABB.
+            /// @note This member is ignored if the "PCF_LimitlessWorld" flag is passed in.
+            Vector3 GeographyUpperBounds;
+            /// @brief The maximum number of Actors and Area Effects you expect to have in the world at one time.
+            /// @note This member is ignored if the "PCF_LimitlessWorld" flag is passed in.
+            Whole MaxProxies;
+            /// @brief The gravity to set for the world.
+            Vector3 Gravity;
+            /// @brief The age a collision contact has to have(number of simulation steps) to generate an event for it.
+            Whole EventFilterAge;
+            /// @brief The amount of force a collision has to have to generate an event for it.
+            Real EventFilterImpulse;
+    };
+
     ///////////////////////////////////////////////////////////////////////////////
     /// @class PhysicsManager
     /// @headerfile physicsmanager.h
@@ -77,14 +128,12 @@ namespace phys
     /// @details This is a place for storing items related to Debug physics
     /// drawing, Adding constraints, screwing with gravity and doing other physics
     /// Related features.
+    ///////////////////////////////////////
     class PHYS_LIB PhysicsManager : public ManagerBase
     {
         private:
             //Some Data Items
-            Vector3 GeographyLowerBounds;
-            Vector3 GeographyUpperBounds;
-            unsigned short int  MaxPhysicsProxies;
-            //Real PhysicsStepsize; // use this->GameWorld->TargetFrameLength instead
+            PhysicsConstructionInfo WorldConstructionInfo;
             unsigned short int CollisionAge;
             Real Impulse;
             bool SimulationPaused;
@@ -96,8 +145,7 @@ namespace phys
             // Some Items bullet requires
             btGhostPairCallback* GhostCallback;
             btBroadphaseInterface* BulletBroadphase;
-            //btDefaultCollisionConfiguration* BulletCollisionConfiguration;
-            btSoftBodyRigidBodyCollisionConfiguration* BulletCollisionConfiguration;
+            btCollisionConfiguration* BulletCollisionConfiguration;
             btCollisionDispatcher* BulletDispatcher;
             btSequentialImpulseConstraintSolver* BulletSolver;
             btSoftRigidDynamicsWorld* BulletDynamicsWorld;
@@ -105,10 +153,8 @@ namespace phys
 
             /// @brief This takes care of all the real work in contructing this
             /// @details This method is called by all the constructors to insure consistent behavior.
-            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world
-            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
-            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
-            void Construct(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
+            /// @param Info The construction info class with all the settings you wish the world to have.
+            void Construct(const PhysicsConstructionInfo& Info);
 
             /// @brief Calls the ApplyEffects() and UpdateActorList() function of every stored AreaEffect.
             /// @details This function is automatically called every step.
@@ -125,10 +171,8 @@ namespace phys
             /// @brief Simple Constructor
             /// @details This constructor will assign some sane default values and will create a physics
             /// world that can be used immediately
-            /// @param GeographyLowerBounds_ This Vector3 will loosely represent the lower right conrer of the world
-            /// @param GeographyUpperbounds_ This Vector3 will loosely represent the upper left conrer of the world
-            /// @param MaxPhysicsProxies_ This approximates the maximum amount of items allowed in the physics world
-            PhysicsManager(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_);
+            /// @param Info The construction info class with all the settings you wish the world to have.
+            PhysicsManager(const PhysicsConstructionInfo& Info);
             /// @brief Deconstructor
             /// @details This deletes all those crazy pointers that Bullet, the physics subsystem need.
             virtual ~PhysicsManager();
@@ -293,6 +337,14 @@ namespace phys
             /// @param OffsetInfo The vector and actor to compare for offset data.
             /// @return Returns the Vector3 representing the actors offset from the world point.
             Vector3 GetActorOffset(const Vector3WActor &OffsetInfo);
+            /// @brief Resets all the internal physics structures in this manager.
+            /// @warning This should only be called while the world is emtpy and objects have be unloaded from it.
+            /// @param Info If you want to change the configuration of the world when restarting, you can optionally
+            /// provide a new set of parameters to build the world with.
+            void ResetPhysicsWorld(PhysicsConstructionInfo* Info = 0);
+            /// @brief Clears all data relating to actors and other simulation objects from the physics world.
+            /// @details This is best used with simulation cleanup.
+            void ClearPhysicsMetaData();
             /// @brief This does all the work reuired for the main loop to process physics
             /// @details
             /// @param TimeElapsed This is a real that represents the amount of time we need to simulate

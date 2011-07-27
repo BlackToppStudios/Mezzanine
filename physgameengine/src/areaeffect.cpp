@@ -179,14 +179,15 @@ namespace phys{
                 continue;
             if (collisionPair->m_algorithm)
                 collisionPair->m_algorithm->getAllContactManifolds(manifoldArray);
+
             for (int j=0;j<manifoldArray.size();j++)
             {
                 btPersistentManifold* manifold = manifoldArray[j];
                 for (int p=0;p<manifold->getNumContacts();p++)
                 {
                     const btManifoldPoint& pt = manifold->getContactPoint(p);
-                    if(pt.m_distance1 > 0)
-                        continue;
+                    //if(pt.m_distance1 > 0)
+                    //    continue;
                     btCollisionObject* ColObj = manifold->getBody0() != Ghost ? (btCollisionObject*)(manifold->getBody0()) : (btCollisionObject*)(manifold->getBody1());
 
                     ObjectReference* ActorRef = (ObjectReference*)(ColObj->getUserPointer());

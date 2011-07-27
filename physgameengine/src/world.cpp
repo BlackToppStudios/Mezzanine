@@ -68,38 +68,29 @@ namespace phys
     // Physworld constructors
     World::World()
     {
-        Vector3 Lbounds(-1000.0,-1000.0,-1000.0);
-        Vector3 Ubounds(1000.0,1000.0,1000.0);
+        PhysicsConstructionInfo PhysicsInfo;
         std::vector <ManagerBase*> temp;
 
-        this->Construct(Lbounds, Ubounds, 10, SceneManager::Generic, "Physgame.log", temp);
+        this->Construct(PhysicsInfo, SceneManager::Generic, "Physgame.log", temp);
     }
 
-    World::World(   const Vector3 &GeographyLowerBounds_,
-                    const Vector3 &GeographyUpperbounds_,
+    World::World(   const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
-                    const unsigned short int  &MaxPhysicsProxies_,
                     std::string LogFileName)
     {
         std::vector <ManagerBase*> temp;
-        this->Construct(GeographyLowerBounds_,
-                        GeographyUpperbounds_,
-                        MaxPhysicsProxies_,
+        this->Construct(PhysicsInfo,
                         SceneType,
                         LogFileName,
                         temp );
     }
 
-    World::World(  const Vector3 &GeographyLowerBounds_,
-            const Vector3 &GeographyUpperbounds_,
-            const unsigned short int &MaxPhysicsProxies_,
+    World::World(  const PhysicsConstructionInfo& PhysicsInfo,
             SceneManager::SceneManagerType SceneType,
             const std::string &LogFileName,
             const std::vector <ManagerBase*> &ManagerToBeAdded)
     {
-        this->Construct(GeographyLowerBounds_,
-                        GeographyUpperbounds_,
-                        MaxPhysicsProxies_,
+        this->Construct(PhysicsInfo,
                         SceneType,
                         LogFileName,
                         ManagerToBeAdded );
@@ -119,9 +110,7 @@ namespace phys
         Ogre::Root* OgreCore = 0;
     }
 
-    void World::Construct(  const Vector3 &GeographyLowerBounds_,
-                                const Vector3 &GeographyUpperbounds_,
-                                const unsigned short int &MaxPhysicsProxies_,
+    void World::Construct(  const PhysicsConstructionInfo& PhysicsInfo,
                                 SceneManager::SceneManagerType SceneType,
                                 std::string LogFileName,
                                 std::vector <ManagerBase*> ManagerToBeAdded)
@@ -158,7 +147,7 @@ namespace phys
         if(this->GetEventManager()==0)
             { this->AddManager(new EventManager()); }
         if(this->GetPhysicsManager()==0)
-            { this->AddManager(new PhysicsManager(GeographyLowerBounds_,GeographyUpperbounds_,MaxPhysicsProxies_)); }
+            { this->AddManager(new PhysicsManager(PhysicsInfo)); }
         if(this->GetSceneManager()==0)
             { this->AddManager(new SceneManager(SceneType)); }
         if(this->GetUIManager()==0)

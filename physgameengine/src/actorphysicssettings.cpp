@@ -138,14 +138,14 @@ namespace phys
             case ActorBase::Actorsoft:
             case ActorBase::Actorterrain:
             {
-                if(Parent->IsInWorld())
+                /*if(Parent->IsInWorld())
                 {
                     Parent->RemoveObjectFromWorld(GameWorld);
                     ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
                     Parent->AddObjectToWorld(GameWorld);
-                }else{
+                }else{*/
                     ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() - btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                }
+                //}
                 break;
             }
             case ActorBase::Actorcharacter:
@@ -167,14 +167,14 @@ namespace phys
             case ActorBase::Actorsoft:
             case ActorBase::Actorterrain:
             {
-                if(Parent->IsInWorld())
+                /*if(Parent->IsInWorld())
                 {
                     Parent->RemoveObjectFromWorld(GameWorld);
                     ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
                     Parent->AddObjectToWorld(GameWorld);
-                }else{
+                }else{*/
                     ActorCO->setCollisionFlags(ActorCO->getCollisionFlags() + btCollisionObject::CF_NO_CONTACT_RESPONSE);
-                }
+                //}
                 break;
             }
             case ActorBase::Actorcharacter:

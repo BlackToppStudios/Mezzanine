@@ -146,11 +146,11 @@ namespace phys
         {
             if(Rect.Relative)
             {
-                SetPosition(Rect.Position);
                 SetSize(Rect.Size);
+                SetPosition(Rect.Position);
             }else{
-                SetActualPosition(Rect.Position);
                 SetActualSize(Rect.Size);
+                SetActualPosition(Rect.Position);
             }
         }
 

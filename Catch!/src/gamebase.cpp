@@ -9,7 +9,7 @@
 
 int main(int argc, char **argv)
 {
-    CatchApp* Catch = new CatchApp(Vector3(-1000.0,-1000.0,-1000.0), Vector3(1000.0,1000.0,1000.0), SceneManager::Generic, 50);
+    CatchApp* Catch = new CatchApp();
     Catch->GetCatchin();
     delete Catch;
 	return 0;

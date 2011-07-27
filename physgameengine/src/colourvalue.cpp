@@ -55,28 +55,28 @@ namespace phys
         this->Alpha = 1.0;
     }*/
 
-    ColourValue::ColourValue(Real red, Real green, Real blue, Real alpha)
+    ColourValue::ColourValue(Real Red, Real Green, Real Blue, Real Alpha)
     {
-        this->Red = red;
-        this->Green = green;
-        this->Blue = blue;
-        this->Alpha = alpha;
+        this->R = Red;
+        this->G = Green;
+        this->B = Blue;
+        this->A = Alpha;
     }
 
     ColourValue::ColourValue(const Ogre::ColourValue& OgreValues)
     {
-        this->Red = OgreValues.r;
-        this->Green = OgreValues.g;
-        this->Blue = OgreValues.b;
-        this->Alpha = OgreValues.a;
+        this->R = OgreValues.r;
+        this->G = OgreValues.g;
+        this->B = OgreValues.b;
+        this->A = OgreValues.a;
     }
 
     ColourValue::ColourValue(const ColourValue& OtherColour)
     {
-        this->Red = OtherColour.Red;
-        this->Green = OtherColour.Green;
-        this->Blue = OtherColour.Blue;
-        this->Alpha = OtherColour.Alpha;
+        this->R = OtherColour.R;
+        this->G = OtherColour.G;
+        this->B = OtherColour.B;
+        this->A = OtherColour.A;
     }
 
     ColourValue::~ColourValue()
@@ -86,16 +86,16 @@ namespace phys
     Ogre::ColourValue ColourValue::GetOgreColourValue() const
     {
         Ogre::ColourValue OgreColour;
-        OgreColour.r = this->Red;
-        OgreColour.g = this->Green;
-        OgreColour.b = this->Blue;
-        OgreColour.a = this->Alpha;
+        OgreColour.r = this->R;
+        OgreColour.g = this->G;
+        OgreColour.b = this->B;
+        OgreColour.a = this->A;
         return OgreColour;
     }
 
     bool ColourValue::operator== (const ColourValue &Colour)
     {
-        return ( Colour.Red == this->Red && Colour.Green == this->Green && Colour.Blue == this->Blue && Colour.Alpha == this->Alpha );
+        return ( Colour.R == this->R && Colour.G == this->G && Colour.B == this->B && Colour.A == this->A );
         /*if ( Colour.Red == this->Red && Colour.Green == this->Green && Colour.Blue == this->Blue && Colour.Alpha == this->Alpha )
             { return true; }
         return false;*/
@@ -103,7 +103,7 @@ namespace phys
 
     bool ColourValue::operator!= (const ColourValue &Colour)
     {
-        return ( Colour.Red != this->Red || Colour.Green != this->Green || Colour.Blue != this->Blue || Colour.Alpha != this->Alpha );
+        return ( Colour.R != this->R || Colour.G != this->G || Colour.B != this->B || Colour.A != this->A );
         /*if ( Colour.Red != this->Red || Colour.Green != this->Green || Colour.Blue != this->Blue || Colour.Alpha != this->Alpha )
             { return true; }
         return false;*/
@@ -111,61 +111,61 @@ namespace phys
 
     void ColourValue::operator= (const ColourValue &OtherColour)
     {
-        this->Red = OtherColour.Red;
-        this->Green = OtherColour.Green;
-        this->Blue = OtherColour.Blue;
-        this->Alpha = OtherColour.Alpha;
+        this->R = OtherColour.R;
+        this->G = OtherColour.G;
+        this->B = OtherColour.B;
+        this->A = OtherColour.A;
     }
 
-    ColourValue ColourValue::GetBlank()
+    ColourValue ColourValue::Transparent()
     {
         ColourValue Colour(0.0,0.0,0.0,0.0);
         return Colour;
     }
 
-    ColourValue ColourValue::GetWhite()
+    ColourValue ColourValue::White()
     {
         ColourValue Colour(1.0,1.0,1.0,1.0);
         return Colour;
     }
 
-    ColourValue ColourValue::GetBlack()
+    ColourValue ColourValue::Black()
     {
         ColourValue Colour(0.0,0.0,0.0,1.0);
         return Colour;
     }
 
-    ColourValue ColourValue::GetRed()
+    ColourValue ColourValue::Red()
     {
         ColourValue Colour(1.0,0.0,0.0,1.0);
         return Colour;
     }
 
-    ColourValue ColourValue::GetGreen()
+    ColourValue ColourValue::Green()
     {
         ColourValue Colour(0.0,1.0,0.0,1.0);
         return Colour;
     }
 
-    ColourValue ColourValue::GetBlue()
+    ColourValue ColourValue::Blue()
     {
         ColourValue Colour(0.0,0.0,1.0,1.0);
         return Colour;
     }
 
-    ColourValue ColourValue::GetYellow()
+    ColourValue ColourValue::Yellow()
     {
         ColourValue Colour(1.0,1.0,0.0,1.0);
         return Colour;
     }
 
-    ColourValue ColourValue::GetCyan()
+    ColourValue ColourValue::Cyan()
     {
         ColourValue Colour(0.0,1.0,1.0,1.0);
         return Colour;
     }
 
-    ColourValue ColourValue::GetMagenta()
+    ColourValue ColourValue::Magenta()
     {
         ColourValue Colour(1.0,0.0,1.0,1.0);
         return Colour;
@@ -177,7 +177,7 @@ namespace phys
 #ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::ColourValue& Ev)
 {
-    stream << "<ColourValue Version=\"1\" Red=\"" << Ev.Red << "\" Green=\"" << Ev.Green << "\" Blue=\"" << Ev.Blue << "\" Alpha=\"" << Ev.Alpha << "\" />";
+    stream << "<ColourValue Version=\"1\" Red=\"" << Ev.R << "\" Green=\"" << Ev.G << "\" Blue=\"" << Ev.B << "\" Alpha=\"" << Ev.A << "\" />";
     return stream;
 }
 
@@ -197,10 +197,10 @@ phys::xml::Node& operator >> (const phys::xml::Node& OneNode, phys::ColourValue&
     {
         if(OneNode.GetAttribute("Version").AsInt() == 1)
         {
-            Ev.Red      = OneNode.GetAttribute("Red").AsReal();
-            Ev.Green    = OneNode.GetAttribute("Green").AsReal();
-            Ev.Blue     = OneNode.GetAttribute("Blue").AsReal();
-            Ev.Alpha    = OneNode.GetAttribute("Alpha").AsReal();
+            Ev.R    = OneNode.GetAttribute("Red").AsReal();
+            Ev.G    = OneNode.GetAttribute("Green").AsReal();
+            Ev.B    = OneNode.GetAttribute("Blue").AsReal();
+            Ev.A    = OneNode.GetAttribute("Alpha").AsReal();
         }else{
             throw( phys::Exception("Incompatible XML Version for ColourValue: Not Version 1"));
         }

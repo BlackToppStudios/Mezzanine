@@ -44,15 +44,37 @@
 #include "uilistbox.h"
 #include "uicaption.h"
 #include "uibutton.h"
+#include "uilayer.h"
+#include "uiscreen.h"
+#include "uimanager.h"
 
 namespace phys
 {
     namespace UI
     {
-        DropDownList::DropDownList(const String& name, Layer* parent)
-            : Widget(name,parent)
+        DropDownList::DropDownList(const String& name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle, Layer* parent)
+            : Widget(name,parent),
+              ToggleActivated(false)
         {
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            std::pair<Whole,Real> Result;
+            if(Rect.Relative) Result = Manager->SuggestGlyphIndex((Whole)(LineHeight * WinDim.Y),Parent->GetParent()->GetPrimaryAtlas());
+            else Result = Manager->SuggestGlyphIndex((Whole)LineHeight,Parent->GetParent()->GetPrimaryAtlas());
 
+            ConstructDropDownList(Rect,Result.first,ScrollStyle);
+
+            if(1.f != Result.second)
+            {
+                Selection->SetTextScale(Result.second);
+                SelectionList->SetTemplateTextScale(Result.second);
+            }
+        }
+
+        DropDownList::DropDownList(const String& name, const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Layer* parent)
+            : Widget(name,parent),
+              ToggleActivated(false)
+        {
+            ConstructDropDownList(Rect,Glyph,ScrollStyle);
         }
 
         DropDownList::~DropDownList()
@@ -61,6 +83,140 @@ namespace phys
             delete ListToggle;
             delete SelectionList;
         }
+
+        void DropDownList::ConstructDropDownList(const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle)
+        {
+            Type = Widget::DropDownList;
+            RenderableRect SelectionRect, ListToggleRect, SelectionListRect;
+            Real ScrollbarWidth;
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
+                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+
+                SelectionRect.Position = Rect.Position;
+                SelectionRect.Size.X = Rect.Size.X - ((Rect.Size.Y * WinDim.Y) / WinDim.X);
+                SelectionRect.Size.Y = Rect.Size.Y;
+                SelectionRect.Relative = Rect.Relative;
+
+                ListToggleRect.Position.X = Rect.Position.X + SelectionRect.Size.X;
+                ListToggleRect.Position.Y = Rect.Position.Y;
+                ListToggleRect.Size.X = (Rect.Size.Y * WinDim.Y) / WinDim.X;
+                ListToggleRect.Size.Y = Rect.Size.Y;
+                ListToggleRect.Relative = Rect.Relative;
+
+                ScrollbarWidth = (Rect.Size.Y * WinDim.Y) / WinDim.X;
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+
+                SelectionRect.Position = Rect.Position;
+                SelectionRect.Size.X = Rect.Size.X - Rect.Size.Y;
+                SelectionRect.Size.Y = Rect.Size.Y;
+                SelectionRect.Relative = Rect.Relative;
+
+                ListToggleRect.Position.X = Rect.Position.X + SelectionRect.Size.X;
+                ListToggleRect.Position.Y = Rect.Position.Y;
+                ListToggleRect.Size.X = Rect.Size.Y;
+                ListToggleRect.Size.Y = Rect.Size.Y;
+                ListToggleRect.Relative = Rect.Relative;
+
+                ScrollbarWidth = Rect.Size.Y;
+            }
+            SelectionListRect.Position.X = Rect.Position.X;
+            SelectionListRect.Position.Y = Rect.Position.Y + SelectionRect.Size.Y;
+            SelectionListRect.Size.X = Rect.Size.X;
+            SelectionListRect.Size.Y = Rect.Size.Y * 2;
+            SelectionListRect.Relative = Rect.Relative;
+
+            Selection = new Caption(Name+"Select",SelectionRect,Glyph,"",Parent);
+            ListToggle = new Button(Name+"Toggle",ListToggleRect,Parent);
+            SelectionList = new UI::ListBox(Name+"List",SelectionListRect,ScrollbarWidth,ScrollStyle,Parent);
+
+            SelectionList->SetTemplateSize(Selection->GetSize(),true).SetTemplateGlyphIndex(Glyph);
+        }
+
+        void DropDownList::SetVisible(bool visible)
+        {
+            if(Visible==visible) return;
+            Selection->SetVisible(visible);
+            ListToggle->SetVisible(visible);
+            if(ToggleActivated)
+                SelectionList->SetVisible(visible);
+            Visible = visible;
+        }
+
+        bool DropDownList::IsVisible()
+        {
+            return Visible;
+        }
+
+        void DropDownList::Show()
+        {
+            if(Visible) return;
+            Selection->Show();
+            ListToggle->Show();
+            if(ToggleActivated)
+                SelectionList->Show();
+            Visible = true;
+        }
+
+        void DropDownList::Hide()
+        {
+            if(!Visible) return;
+            Selection->Hide();
+            ListToggle->Hide();
+            if(ToggleActivated)
+                SelectionList->Hide();
+            Visible = false;
+        }
+
+        bool DropDownList::CheckMouseHover()
+        {
+
+        }
+
+        void DropDownList::SetPosition(const Vector2& Position)
+        {
+
+        }
+
+        Vector2 DropDownList::GetPosition()
+        {
+            return RelPosition;
+        }
+
+        void DropDownList::SetActualPosition(const Vector2& Position)
+        {
+
+        }
+
+        Vector2 DropDownList::GetActualPosition()
+        {
+            return RelPosition / Parent->GetParent()->GetViewportDimensions();
+        }
+
+        void DropDownList::SetSize(const Vector2& Size)
+        {
+
+        }
+
+        Vector2 DropDownList::GetSize()
+        {
+            return RelSize;
+        }
+
+        void DropDownList::SetActualSize(const Vector2& Size)
+        {
+
+        }
+
+        Vector2 DropDownList::GetActualSize()
+        {
+            return RelSize / Parent->GetParent()->GetViewportDimensions();
+        }
+
     }//ui
 }//phys
 

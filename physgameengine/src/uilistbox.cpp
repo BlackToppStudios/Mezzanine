@@ -64,13 +64,17 @@ namespace phys
               LastScrollValue(0),
               NumVisible(0),
               SelectionDist(0.0),
-              THAlign(UI::Txt_Middle),
-              TVAlign(UI::Txt_Center),
-              TTColour(ColourValue(0.0,0.0,0.0,1.0)),
-              TBGColour(ColourValue(1.0,1.0,1.0,1.0)),
               SelectColour(ColourValue(1.0,1.0,1.0,1.0))
         {
             Type = Widget::ListBox;
+
+            // Set some sane template defaults
+            SelectionTemplate.BackgroundColour = ColourValue(1.0,1.0,1.0,1.0);
+            SelectionTemplate.TextColour = ColourValue(0.0,0.0,0.0,1.0);
+            SelectionTemplate.TextScale = 1.f;
+            SelectionTemplate.HorizontalAlign = UI::Txt_Middle;
+            SelectionTemplate.VerticalAlign = UI::Txt_Center;
+
             RenderableRect ScrollRect;
             if(Rect.Relative)
             {
@@ -111,7 +115,7 @@ namespace phys
 
         void ListBox::CalculateVisibleSelections()
         {
-            NumVisible = (Whole)(RelSize.Y / (TSize.Y + SelectionDist));
+            NumVisible = (Whole)(RelSize.Y / (SelectionTemplate.Size.Y + SelectionDist));
             if(Selections.size() > NumVisible)
             {
                 //if(Selections.size() > 0)
@@ -134,25 +138,25 @@ namespace phys
             if(VertScroll->IsVisible())
             {
                 Real MaxWidth = RelSize.X - (VertScroll->GetSize().X + SelectionDist);
-                if(TSize.X > MaxWidth)
+                if(SelectionTemplate.Size.X > MaxWidth)
                 {
                     NewSize.X = MaxWidth;
-                    NewSize.Y = TSize.Y;
+                    NewSize.Y = SelectionTemplate.Size.Y;
                 }
             }else{
-                if(TSize.X > Selections[0]->GetSize().X)
+                if(SelectionTemplate.Size.X > Selections[0]->GetSize().X)
                 {
-                    NewSize = TSize;
+                    NewSize = SelectionTemplate.Size;
                 }
             }
             VisibleSelections.clear();
-            Real One = 1;
+            //Real One = 1;
             Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)Selections.size();
-            Real Remainder = fmod(ToBeRounded,One);
-            Whole FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (One - Remainder) : ToBeRounded - Remainder);
+            Real Remainder = fmod(ToBeRounded,1.f);
+            Whole FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (1.f - Remainder) : ToBeRounded - Remainder);
             Vector2 SelectionPos = GetActualPosition();
             Real ActualDist = SelectionDist * Parent->GetParent()->GetViewportDimensions().Y;
-            Real ActualInc = ActualDist + (TSize.Y * Parent->GetParent()->GetViewportDimensions().Y);
+            Real ActualInc = ActualDist + (SelectionTemplate.Size.Y * Parent->GetParent()->GetViewportDimensions().Y);
             SelectionPos.X+=ActualDist;
             SelectionPos.Y+=ActualDist;
             for( Whole w = 0 ; w < FirstCaption ; w++ )
@@ -194,7 +198,7 @@ namespace phys
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
                     if(Selected)
-                        Selected->SetBackgroundColour(TBGColour);
+                        Selected->SetBackgroundColour(SelectionTemplate.BackgroundColour);
                     if(SelectColour != ColourValue(1.0,1.0,1.0,1.0))
                         HoveredCaption->SetBackgroundColour(SelectColour);
                     Selected = HoveredCaption;
@@ -294,35 +298,60 @@ namespace phys
             return false;
         }
 
-        void ListBox::SetBasicTemplateParameters(Vector2 Size, const Whole Glyph)
+        ListBox& ListBox::SetTemplateSize(const Vector2& Size, bool Relative)
         {
-            if(Size.X > RelSize.X)
-                Size.X = RelSize.X;
-            if(Size.Y > RelSize.Y)
-                Size.Y = RelSize.Y;
-            TSize = Size;
-            TGlyph = Glyph;
+            if(Relative) this->SelectionTemplate.Size = Size;
+            else this->SelectionTemplate.Size = Size / Parent->GetParent()->GetViewportDimensions();
+            return *this;
         }
 
-        void ListBox::SetMoreTemplateParameters(const ColourValue& TextColour, const ColourValue& BackgroundColour, UI::TextHorizontalAlign HorAlign, UI::TextVerticalAlign VertAlign)
+        ListBox& ListBox::SetTemplateGlyphIndex(const Whole& Glyph)
         {
-            TTColour = TextColour;
-            TBGColour = BackgroundColour;
-            THAlign = HorAlign;
-            TVAlign = VertAlign;
+            this->SelectionTemplate.GlyphIndex = Glyph;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateTextColour(const ColourValue& TextColour)
+        {
+            this->SelectionTemplate.TextColour = TextColour;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateTextScale(const Real& Scale)
+        {
+            this->SelectionTemplate.TextScale = Scale;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateBackgroundColour(const ColourValue& BackgroundColour)
+        {
+            this->SelectionTemplate.BackgroundColour = BackgroundColour;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateHorizontalAlign(const UI::TextHorizontalAlign& HorAlign)
+        {
+            this->SelectionTemplate.HorizontalAlign = HorAlign;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateVerticalAlign(const UI::TextVerticalAlign& VertAlign)
+        {
+            this->SelectionTemplate.VerticalAlign = VertAlign;
+            return *this;
         }
 
         Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
-            RenderableRect SelectionRect(GetPosition(),TSize,true);
-            Caption* Select = new Caption(name,SelectionRect,TGlyph,Text,Parent);
+            RenderableRect SelectionRect(GetPosition(),SelectionTemplate.Size,true);
+            Caption* Select = new Caption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text,Parent);
             if(!BackgroundSprite.empty())
                 Select->SetBackgroundSprite(BackgroundSprite);
-            if(TBGColour != ColourValue(1.0,1.0,1.0,1.0))
-                Select->SetBackgroundColour(TBGColour);
-            Select->SetTextColour(TTColour);
-            Select->HorizontallyAlign(THAlign);
-            Select->VerticallyAlign(TVAlign);
+            if(SelectionTemplate.BackgroundColour != ColourValue(1.0,1.0,1.0,1.0))
+                Select->SetBackgroundColour(SelectionTemplate.BackgroundColour);
+            Select->SetTextColour(SelectionTemplate.TextColour);
+            Select->HorizontallyAlign(SelectionTemplate.HorizontalAlign);
+            Select->VerticallyAlign(SelectionTemplate.VerticalAlign);
             Select->Hide();
             Selections.push_back(Select);
             CalculateVisibleSelections();

@@ -52,7 +52,7 @@ class CatchApp
         bool IsInsideAnyStartZone(ActorBase* Actor);
         void UnloadLevel();
     public:
-        CatchApp(const Vector3 &WorldLowerBounds, const Vector3 &WorldUpperBounds, SceneManager::SceneManagerType SceneType, const unsigned short int &MaxPhysicsProxies);
+        CatchApp();
         ~CatchApp();
 
         static CatchApp* GetCatchAppPointer();

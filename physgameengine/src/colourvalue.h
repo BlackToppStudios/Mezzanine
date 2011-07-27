@@ -60,13 +60,13 @@ namespace phys
     {
         public:
             /// @brief Value from 0.0 to 1.0 representing the amount of red present in the colour. 1.0 if very red, 0.0 is no red.
-            Real Red;
+            Real R;
             /// @brief Value from 0.0 to 1.0 representing the amount of green present in the colour. 1.0 if very green, 0.0 is no green.
-            Real Green;
+            Real G;
             /// @brief Value from 0.0 to 1.0 representing the amount of blue present in the colour. 1.0 if very blue, 0.0 is no blue.
-            Real Blue;
+            Real B;
             /// @brief Value from 0.0 to 1.0 representing the transparency of the colours. 1.0 is opaque and 0.0 is clear.
-            Real Alpha;
+            Real A;
 
 /*
             /// @brief Non-Alpha constructor.
@@ -82,7 +82,7 @@ namespace phys
             /// @param green Real representing the amount of green present in the colour.
             /// @param blue Real representing the amount of blue present in the colour.
             /// @param alpha Real representing the transparency of the colours.
-            ColourValue(Real red=1.0, Real green=1.0, Real blue=1.0, Real alpha=1.0);
+            ColourValue(Real Red=1.0, Real Green=1.0, Real Blue=1.0, Real Alpha=1.0);
 
             /// @brief Ogre constructor.
             /// @details Internal use only.  Constructs a colourvalue class from an ogre colourvalue.
@@ -113,35 +113,38 @@ namespace phys
             /// @param OtherColour The colour values you want to overwrite this colour's values with.
             void operator= (const ColourValue &OtherColour);
 
+            ///////////////////////////////////////////////////////////////////////////////
+            // Prefab Colour fetchers
+
             /// @brief Creates a ColourValue representing no colour.
             /// @return Returns the created ColourValue.
-            static ColourValue GetBlank();
+            static ColourValue Transparent();
             /// @brief Creates a ColourValue representing the colour White.
             /// @return Returns the created ColourValue.
-            static ColourValue GetWhite();
+            static ColourValue White();
             /// @brief Creates a ColourValue representing the colour Black.
             /// @return Returns the created ColourValue.
-            static ColourValue GetBlack();
+            static ColourValue Black();
 
             /// @brief Creates a ColourValue representing the colour Red.
             /// @return Returns the created ColourValue.
-            static ColourValue GetRed();
+            static ColourValue Red();
             /// @brief Creates a ColourValue representing the colour Green.
             /// @return Returns the created ColourValue.
-            static ColourValue GetGreen();
+            static ColourValue Green();
             /// @brief Creates a ColourValue representing the colour Blue.
             /// @return Returns the created ColourValue.
-            static ColourValue GetBlue();
+            static ColourValue Blue();
 
             /// @brief Creates a ColourValue representing the colour Yellow.
             /// @return Returns the created ColourValue.
-            static ColourValue GetYellow();
+            static ColourValue Yellow();
             /// @brief Creates a ColourValue representing the colour Cyan.
             /// @return Returns the created ColourValue.
-            static ColourValue GetCyan();
+            static ColourValue Cyan();
             /// @brief Creates a ColourValue representing the colour Magenta.
             /// @return Returns the created ColourValue.
-            static ColourValue GetMagenta();
+            static ColourValue Magenta();
     };//colorvalue
 }//phys
 

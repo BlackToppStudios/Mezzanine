@@ -13,7 +13,7 @@ using namespace phys;
 
 CatchApp* CatchApp::TheRealCatchApp = 0;
 
-CatchApp::CatchApp(const Vector3 &WorldLowerBounds, const Vector3 &WorldUpperBounds, SceneManager::SceneManagerType SceneType, const unsigned short int &MaxPhysicsProxies)
+CatchApp::CatchApp()
     : CurrScore(0),
       LastActorThrown(NULL),
       EndTimer(NULL),
@@ -25,7 +25,9 @@ CatchApp::CatchApp(const Vector3 &WorldLowerBounds, const Vector3 &WorldUpperBou
 
     try
     {
-        TheWorld = new World( WorldLowerBounds, WorldUpperBounds, SceneType, MaxPhysicsProxies);
+        PhysicsConstructionInfo Info;
+        Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
+        TheWorld = new World( Info, SceneManager::Generic );
     }catch( exception x){
         //could not create world
     }
@@ -454,6 +456,7 @@ void CatchApp::UnloadLevel()
     PlayZone = NULL;
 
     ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
+    PhysMan->ResetPhysicsWorld();
     MeshGenerator::DestroyAllGeneratedMeshes();
     CurrScore = 0;
     TimeMan->DestroyTimer(EndTimer);
