@@ -139,7 +139,7 @@ namespace phys
         if ( 0 == OgreCore )
             { OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName); }
         else
-            { OgreCore = Ogre::Root::getSingletonPtr(); }
+            { OgreCore = Ogre::Root::getSingletonPtr();}
 
         World::TheRealWorld = this;
 
@@ -216,13 +216,11 @@ namespace phys
         }
 
         SDL_Quit();
-//        SDL_QuitSubSystem(SDL_WasInit(0));
-//        SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
 
-        //All the pointers Ogre made should get taken care of by OGRE
         Ogre::Root::getSingleton().shutdown();
-        delete Ogre::Root::getSingletonPtr();
+        delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
         OgreCore=0;
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////

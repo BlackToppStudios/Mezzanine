@@ -70,6 +70,9 @@ namespace phys
 
     SoundManager::~SoundManager()
     {
+        #ifdef PHYSDEBUG
+        this->GameWorld->Log("Destructing Sound Manager");
+        #endif
         cAudio::destroyAudioManager(AudioManager);
     }
 
