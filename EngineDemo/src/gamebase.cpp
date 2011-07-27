@@ -39,8 +39,8 @@ int main(int argc, char **argv)
     }
 
     //TheWorld->SetLoggingFrequency(World::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
-    TheWorld->SetLoggingFrequency(World::LogOncePerXSeconds,5);
-    //TheWorld->SetLoggingFrequency(World::LogNever);
+    //TheWorld->SetLoggingFrequency(World::LogOncePerXSeconds,5);
+    TheWorld->SetLoggingFrequency(World::LogNever);
 
     #ifdef PHYSDEBUG
     TheWorld->Log("World Created:");

@@ -197,7 +197,7 @@ namespace cAudio
 								audioSources.push_back(audio);
 
 								getLogger()->logInfo("AudioManager", "Audio Source (%s) created from file %s from Data Source %s.", audioName.c_str(), path.c_str(), dataSourcePriorityList[i].second.c_str());
-								
+
 								return audio;
 							}
 							getLogger()->logError("AudioManager", "Failed to create Audio Source (%s): Error creating audio source.", audioName.c_str());
@@ -256,7 +256,7 @@ namespace cAudio
 									audioSources.push_back(audio);
 
 									getLogger()->logInfo("AudioManager", "Audio Source (%s) successfully created from memory.", audioName.c_str());
-									
+
 									return audio;
 								}
 								audio->drop();
@@ -320,7 +320,7 @@ namespace cAudio
 									audioSources.push_back(audio);
 
 									getLogger()->logInfo("AudioManager", "Audio Source (%s) successfully created from raw data.", audioName.c_str());
-									
+
 									return audio;
 								}
 								audio->drop();
@@ -492,15 +492,15 @@ namespace cAudio
 		{
 			switch(sevent)
 			{
-				case ON_INIT: 
-					
+				case ON_INIT:
+
 					for(it; it != eventHandlerList.end(); it++)
 					{
 						(*it)->onInit();
 					}
 
 					break;
-				
+
 				case ON_UPDATE:
 
 					for(it; it != eventHandlerList.end(); it++)
@@ -631,7 +631,7 @@ namespace cAudio
 			alcCloseDevice(Device);
 			Device = NULL;
 			Initialized = false;
-			getLogger()->logInfo("AudioManager", "Manager successfully shutdown.");
+			//getLogger()->logInfo("AudioManager", "Manager successfully shutdown.");
 		}
     }
 
@@ -771,10 +771,12 @@ namespace cAudio
 	{
 		if(manager)
 		{
+		    //getLogger()->logInfo("AudioManager", "Manager beginning shutdown.");
 #ifdef CAUDIO_USE_INTERNAL_THREAD
 			AudioManagerObjectsMutex.lock();
 			AudioManagerObjects.erase(manager);
 
+            //getLogger()->logInfo("AudioManager", "Manager Mark Thread for Termination.");
 			//Kill the thread if there are no objects to process anymore
 			if(RunAudioManagerThread && AudioManagerObjects.empty())
 				RunAudioManagerThread = false;
@@ -782,16 +784,21 @@ namespace cAudio
 #endif
 
 #ifdef CAUDIO_COMPILE_WITH_PLUGIN_SUPPORT
+            //getLogger()->logInfo("AudioManager", "Manager unloading plugins");
 			cAudioVector<IAudioPlugin*>::Type plugins = cPluginManager::Instance()->getPluginList();
 			for(unsigned int i = 0; i < plugins.size(); ++i)
 			{
 				plugins[i]->onDestroyAudioManager(manager);
 			}
 #endif
-
+			//getLogger()->logInfo("AudioManager", "Manager unregistering Audio Decoders.");
 			manager->unRegisterAllAudioDecoders();
+			//getLogger()->logInfo("AudioManager", "Manager unregistering Data Sources.");
 			manager->unRegisterAllDataSources();
+			//getLogger()->logInfo("AudioManager", "Manager unregistering Event Handlers.");
 			manager->unRegisterAllEventHandlers();
+			//getLogger()->logInfo("AudioManager", "Manager unregistration complete.");
+			//getLogger()->logInfo("AudioManager", "Manager shutdown finalizing.");
 			manager->shutDown();
 
 			CAUDIO_DELETE manager;

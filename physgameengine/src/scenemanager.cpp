@@ -149,11 +149,14 @@ namespace phys
 
             ~SceneManagerData()
             {
-
-                while(World::GetWorldPointer()->GetCameraManager())
+                Whole Counter = 0;
+                while(World::GetWorldPointer()->GetCameraManager(Counter))
                 {
                     if(World::GetWorldPointer()->GetCameraManager()->SManager == this->SM )
-                        { World::GetWorldPointer()->GetCameraManager()->SManager = 0; }
+                    {
+                        World::GetWorldPointer()->GetCameraManager()->SManager = 0;
+                        ++Counter;
+                    }
                 }
 
 
