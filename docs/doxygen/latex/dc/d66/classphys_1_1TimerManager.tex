@@ -74,7 +74,7 @@ Definition at line 62 of file timermanager.h.
 \index{CreateExtendedTimer@{CreateExtendedTimer}!phys::TimerManager@{phys::TimerManager}}
 \paragraph[{CreateExtendedTimer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ExtendedTimer} $\ast$ phys::TimerManager::CreateExtendedTimer (
 \begin{DoxyParamCaption}
-\item[{const {\bf Timer::TimerStyle}}]{ Style}
+\item[{const {\bf Timer::TimerStyle}}]{Style}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{dc/d66/classphys_1_1TimerManager_a44ba4749b2ca6c31994813e97f88ec79}
@@ -87,17 +87,19 @@ Returns a pointer to the created timer.
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Style}]The style of timer you wish to create. \end{DoxyParams}
+{\em Style} & The style of timer you wish to create. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 73 of file timermanager.cpp.
+Definition at line 71 of file timermanager.cpp.
 
 \hypertarget{classphys_1_1TimerManager_a7d666a65aee80dd354dfdd6de671e186}{
 \index{phys::TimerManager@{phys::TimerManager}!CreateSimpleTimer@{CreateSimpleTimer}}
 \index{CreateSimpleTimer@{CreateSimpleTimer}!phys::TimerManager@{phys::TimerManager}}
 \paragraph[{CreateSimpleTimer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SimpleTimer} $\ast$ phys::TimerManager::CreateSimpleTimer (
 \begin{DoxyParamCaption}
-\item[{const {\bf Timer::TimerStyle}}]{ Style}
+\item[{const {\bf Timer::TimerStyle}}]{Style}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{dc/d66/classphys_1_1TimerManager_a7d666a65aee80dd354dfdd6de671e186}
@@ -110,17 +112,19 @@ Returns a pointer to the created timer.
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Style}]The style of timer you wish to create. \end{DoxyParams}
+{\em Style} & The style of timer you wish to create. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 66 of file timermanager.cpp.
+Definition at line 64 of file timermanager.cpp.
 
 \hypertarget{classphys_1_1TimerManager_ae2dc6385cf9997aacd61ea5a0f9f1c66}{
 \index{phys::TimerManager@{phys::TimerManager}!DestroyTimer@{DestroyTimer}}
 \index{DestroyTimer@{DestroyTimer}!phys::TimerManager@{phys::TimerManager}}
 \paragraph[{DestroyTimer}]{\setlength{\rightskip}{0pt plus 5cm}void phys::TimerManager::DestroyTimer (
 \begin{DoxyParamCaption}
-\item[{{\bf Timer} $\ast$}]{ ToBeDestroyed}
+\item[{{\bf Timer} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{dc/d66/classphys_1_1TimerManager_ae2dc6385cf9997aacd61ea5a0f9f1c66}
@@ -130,10 +134,12 @@ Destroys a timer within this manager.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em ToBeDestroyed}]A pointer to the timer class to be destroyed. \end{DoxyParams}
+{\em ToBeDestroyed} & A pointer to the timer class to be destroyed. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 90 of file timermanager.cpp.
+Definition at line 88 of file timermanager.cpp.
 
 \hypertarget{classphys_1_1TimerManager_a98b7e74fe1e3eff7aee506477abe2a9c}{
 \index{phys::TimerManager@{phys::TimerManager}!DoMainLoopItems@{DoMainLoopItems}}
@@ -154,7 +160,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7
 
 
 
-Definition at line 111 of file timermanager.cpp.
+Definition at line 109 of file timermanager.cpp.
 
 \hypertarget{classphys_1_1TimerManager_a70ea3a58c3b71cd79a3e9a8b0f069dd5}{
 \index{phys::TimerManager@{phys::TimerManager}!GetNumTimers@{GetNumTimers}}
@@ -174,14 +180,14 @@ Returns the number of Timers this manager is storing.
 \end{DoxyReturn}
 
 
-Definition at line 85 of file timermanager.cpp.
+Definition at line 83 of file timermanager.cpp.
 
 \hypertarget{classphys_1_1TimerManager_a5e2912df5f17cd8af1ab8457b95c5a75}{
 \index{phys::TimerManager@{phys::TimerManager}!GetTimer@{GetTimer}}
 \index{GetTimer@{GetTimer}!phys::TimerManager@{phys::TimerManager}}
 \paragraph[{GetTimer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Timer} $\ast$ phys::TimerManager::GetTimer (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole}}]{ Index}
+\item[{const {\bf Whole}}]{Index}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{dc/d66/classphys_1_1TimerManager_a5e2912df5f17cd8af1ab8457b95c5a75}
@@ -194,7 +200,7 @@ Returns a pointer to the \hyperlink{classphys_1_1Timer}{Timer} at the specified 
 \end{DoxyReturn}
 
 
-Definition at line 80 of file timermanager.cpp.
+Definition at line 78 of file timermanager.cpp.
 
 \hypertarget{classphys_1_1TimerManager_a716811f51cb9e97ed6e9db310f34e9dc}{
 \index{phys::TimerManager@{phys::TimerManager}!GetType@{GetType}}
@@ -218,7 +224,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 123 of file timermanager.cpp.
+Definition at line 121 of file timermanager.cpp.
 
 \hypertarget{classphys_1_1TimerManager_ab6ee47352a406682178b4496544bcf6f}{
 \index{phys::TimerManager@{phys::TimerManager}!Initialize@{Initialize}}
@@ -239,7 +245,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed
 
 
 
-Definition at line 107 of file timermanager.cpp.
+Definition at line 105 of file timermanager.cpp.
 
 
 

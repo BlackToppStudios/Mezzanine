@@ -35,11 +35,9 @@ virtual int \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d74
 
 
 \subsubsection{Detailed Description}
-This is used to draw wireframse for the Physics subsystem. \begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
+This is used to draw wireframse for the Physics subsystem. 
 
-
-Definition at line 76 of file physicsmanager.cpp.
+Definition at line 78 of file physicsmanager.cpp.
 
 
 
@@ -49,8 +47,8 @@ Definition at line 76 of file physicsmanager.cpp.
 \index{InternalDebugDrawer@{InternalDebugDrawer}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
 \paragraph[{InternalDebugDrawer}]{\setlength{\rightskip}{0pt plus 5cm}phys::debug::InternalDebugDrawer::InternalDebugDrawer (
 \begin{DoxyParamCaption}
-\item[{{\bf phys::World} $\ast$}]{ ParentWorld\_\-, }
-\item[{{\bf Whole}}]{ WireFrameCount\_\- = {\ttfamily 2}}
+\item[{{\bf phys::World} $\ast$}]{ParentWorld\_\-, }
+\item[{{\bf Whole}}]{WireFrameCount\_\- = {\ttfamily 2}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a0e701e00e1080fdadfcf35e9051789a3}
@@ -58,14 +56,16 @@ Definition at line 76 of file physicsmanager.cpp.
 
 Basic Constructor. 
 
-\begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em ParentWorld\_\-}]This is a Pointer to the world to be rendered \item[{\em WireFrameCount\_\-}]This sets the amount of previous Wireframes to be rendered, see \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{InternalDebugDrawer::SetWireFrameCount} for details.\end{DoxyParams}
-This creates a basic Debug Drawer which works with the \hyperlink{classphys_1_1World}{phys::World} that was passed. With a new \end{DoxyInternal}
+{\em ParentWorld\_\-} & This is a Pointer to the world to be rendered \\
+\hline
+{\em WireFrameCount\_\-} & This sets the amount of previous Wireframes to be rendered, see \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{InternalDebugDrawer::SetWireFrameCount} for details.\\
+\hline
+\end{DoxyParams}
+This creates a basic Debug Drawer which works with the \hyperlink{classphys_1_1World}{phys::World} that was passed. With a new 
 
-
-Definition at line 175 of file physicsmanager.cpp.
+Definition at line 177 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a9b5cb5ec48541effddb305de12508323}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!$\sim$InternalDebugDrawer@{$\sim$InternalDebugDrawer}}
@@ -80,11 +80,9 @@ Definition at line 175 of file physicsmanager.cpp.
 
 Destructor. 
 
-\begin{DoxyInternal}{For internal use only.}
-This deletes all the Wireframes and will stop wireframe rendering \end{DoxyInternal}
+This deletes all the Wireframes and will stop wireframe rendering 
 
-
-Definition at line 186 of file physicsmanager.cpp.
+Definition at line 188 of file physicsmanager.cpp.
 
 
 
@@ -94,8 +92,8 @@ Definition at line 186 of file physicsmanager.cpp.
 \index{draw3dText@{draw3dText}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
 \paragraph[{draw3dText}]{\setlength{\rightskip}{0pt plus 5cm}void phys::debug::InternalDebugDrawer::draw3dText (
 \begin{DoxyParamCaption}
-\item[{const btVector3 \&}]{ location, }
-\item[{const char $\ast$}]{ textString}
+\item[{const btVector3 \&}]{location, }
+\item[{const char $\ast$}]{textString}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a1266d3fad8868ade2d515e9c92e76b4a}
@@ -103,25 +101,27 @@ Definition at line 186 of file physicsmanager.cpp.
 
 Currently Unused. 
 
-\begin{DoxyInternal}{For internal use only.}
 Currently Unused 
 \begin{DoxyParams}{Parameters}
-\item[{\em location}]Currently Unused \item[{\em textString}]Currently Unused \end{DoxyParams}
-\end{DoxyInternal}
+{\em location} & Currently Unused \\
+\hline
+{\em textString} & Currently Unused \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 218 of file physicsmanager.cpp.
+Definition at line 220 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a8b912aaff8dfd9f4e97ffb2d867121b2}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!drawContactPoint@{drawContactPoint}}
 \index{drawContactPoint@{drawContactPoint}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
 \paragraph[{drawContactPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::debug::InternalDebugDrawer::drawContactPoint (
 \begin{DoxyParamCaption}
-\item[{const btVector3 \&}]{ PointOnB, }
-\item[{const btVector3 \&}]{ normalOnB, }
-\item[{btScalar}]{ distance, }
-\item[{int}]{ lifeTime, }
-\item[{const btVector3 \&}]{ color}
+\item[{const btVector3 \&}]{PointOnB, }
+\item[{const btVector3 \&}]{normalOnB, }
+\item[{btScalar}]{distance, }
+\item[{int}]{lifeTime, }
+\item[{const btVector3 \&}]{color}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a8b912aaff8dfd9f4e97ffb2d867121b2}
@@ -129,23 +129,31 @@ Definition at line 218 of file physicsmanager.cpp.
 
 Currently Unused. 
 
-\begin{DoxyInternal}{For internal use only.}
 Currently Unused 
 \begin{DoxyParams}{Parameters}
-\item[{\em PointOnB}]Currently Unused \item[{\em normalOnB}]Currently Unused \item[{\em distance}]Currently Unused \item[{\em lifeTime}]Currently Unused \item[{\em color}]Currently Unused \end{DoxyParams}
-\end{DoxyInternal}
+{\em PointOnB} & Currently Unused \\
+\hline
+{\em normalOnB} & Currently Unused \\
+\hline
+{\em distance} & Currently Unused \\
+\hline
+{\em lifeTime} & Currently Unused \\
+\hline
+{\em color} & Currently Unused \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 207 of file physicsmanager.cpp.
+Definition at line 209 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!drawLine@{drawLine}}
 \index{drawLine@{drawLine}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
 \paragraph[{drawLine}]{\setlength{\rightskip}{0pt plus 5cm}void phys::debug::InternalDebugDrawer::drawLine (
 \begin{DoxyParamCaption}
-\item[{const btVector3 \&}]{ from, }
-\item[{const btVector3 \&}]{ to, }
-\item[{const btVector3 \&}]{ color}
+\item[{const btVector3 \&}]{from, }
+\item[{const btVector3 \&}]{to, }
+\item[{const btVector3 \&}]{color}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a8a35c3c80fddaaec8e21f737ed1b3938}
@@ -153,14 +161,18 @@ Definition at line 207 of file physicsmanager.cpp.
 
 This will prepare a line segment for being drawn. 
 
-\begin{DoxyInternal}{For internal use only.}
 This adds the points for a line to the internal list of points to be rendered. 
 \begin{DoxyParams}{Parameters}
-\item[{\em from}]The first point of the line \item[{\em to}]The second point of the line \item[{\em color}]Currently ignored \end{DoxyParams}
-\end{DoxyInternal}
+{\em from} & The first point of the line \\
+\hline
+{\em to} & The second point of the line \\
+\hline
+{\em color} & Currently ignored \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 195 of file physicsmanager.cpp.
+Definition at line 197 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_aba329861569d741e970ce5aafb668e84}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!getDebugMode@{getDebugMode}}
@@ -175,14 +187,12 @@ Definition at line 195 of file physicsmanager.cpp.
 
 This will return the current debug mode. 
 
-\begin{DoxyInternal}{For internal use only.}
 Currently this can only return btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe \begin{DoxyReturn}{Returns}
 Returns the Current debug mode, currently either btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe 
 \end{DoxyReturn}
-\end{DoxyInternal}
 
 
-Definition at line 226 of file physicsmanager.cpp.
+Definition at line 228 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_aa1666e636e6ff81813c0b1a85d7bc157}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!GetWireFrameCount@{GetWireFrameCount}}
@@ -197,14 +207,12 @@ Definition at line 226 of file physicsmanager.cpp.
 
 This returns the amount of wireframes to be drawn. 
 
-\begin{DoxyInternal}{For internal use only.}
 This returns either 2 or the amount last set by \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{InternalDebugDrawer::SetWireFrameCount} . \begin{DoxyReturn}{Returns}
 This returns a whole number with the wireframe limit. 
 \end{DoxyReturn}
-\end{DoxyInternal}
 
 
-Definition at line 255 of file physicsmanager.cpp.
+Definition at line 257 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!PrepareForRendering@{PrepareForRendering}}
@@ -219,18 +227,16 @@ Definition at line 255 of file physicsmanager.cpp.
 
 This add all the rendering information to the graphics subsystem. 
 
-\begin{DoxyInternal}{For internal use only.}
-This sends all the points in the list of lines to the rendering subsystem(currently ogre), where they will stay until deleted \end{DoxyInternal}
+This sends all the points in the list of lines to the rendering subsystem(currently ogre), where they will stay until deleted 
 
-
-Definition at line 231 of file physicsmanager.cpp.
+Definition at line 233 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a4e3b4cbc861f76696b4d32f0cf068ea6}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!reportErrorWarning@{reportErrorWarning}}
 \index{reportErrorWarning@{reportErrorWarning}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
 \paragraph[{reportErrorWarning}]{\setlength{\rightskip}{0pt plus 5cm}void phys::debug::InternalDebugDrawer::reportErrorWarning (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{ warningString}
+\item[{const char $\ast$}]{warningString}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a4e3b4cbc861f76696b4d32f0cf068ea6}
@@ -238,21 +244,21 @@ Definition at line 231 of file physicsmanager.cpp.
 
 Used by the physics subsystem to report errors using the renderer. 
 
-\begin{DoxyInternal}{For internal use only.}
 We $\ast$Believe$\ast$ that this is used by the physics subsystem to report errors about rendering to the developer/user. As such, we Have redirected all input from this function to the \hyperlink{classphys_1_1World_a4ab573bc3b060d6b3f58483bab04fca2}{World::Log} function. 
 \begin{DoxyParams}{Parameters}
-\item[{\em warningString}]We $\ast$Believe$\ast$ These are messagesfrom the physics subsystem, and that this should not directly called otherwise \end{DoxyParams}
-\end{DoxyInternal}
+{\em warningString} & We $\ast$Believe$\ast$ These are messagesfrom the physics subsystem, and that this should not directly called otherwise \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 212 of file physicsmanager.cpp.
+Definition at line 214 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a63059b273ed6031a393b2d994b820bcc}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!setDebugMode@{setDebugMode}}
 \index{setDebugMode@{setDebugMode}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
 \paragraph[{setDebugMode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::debug::InternalDebugDrawer::setDebugMode (
 \begin{DoxyParamCaption}
-\item[{int}]{ debugMode}
+\item[{int}]{debugMode}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a63059b273ed6031a393b2d994b820bcc}
@@ -260,21 +266,21 @@ Definition at line 212 of file physicsmanager.cpp.
 
 This is used to decide how much the debug render should draw. 
 
-\begin{DoxyInternal}{For internal use only.}
 Currently this accepts btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe and setting these will either start or stop Wireframe rendering. All other btIDebugDraw values are ignored. 
 \begin{DoxyParams}{Parameters}
-\item[{\em debugMode}]An Int which contains either btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe \end{DoxyParams}
-\end{DoxyInternal}
+{\em debugMode} & An Int which contains either btIDebugDraw::DBG\_\-NoDebug or btIDebugDraw::DBG\_\-DrawWireframe \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 221 of file physicsmanager.cpp.
+Definition at line 223 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}{
 \index{phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}!SetWireFrameCount@{SetWireFrameCount}}
 \index{SetWireFrameCount@{SetWireFrameCount}!phys::debug::InternalDebugDrawer@{phys::debug::InternalDebugDrawer}}
 \paragraph[{SetWireFrameCount}]{\setlength{\rightskip}{0pt plus 5cm}void phys::debug::InternalDebugDrawer::SetWireFrameCount (
 \begin{DoxyParamCaption}
-\item[{{\bf Whole}}]{ WireFrameCount\_\-}
+\item[{{\bf Whole}}]{WireFrameCount\_\-}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{db/d27/classphys_1_1debug_1_1InternalDebugDrawer_a76922fda7bb3b59d301e50d67e4f3c72}
@@ -282,14 +288,14 @@ Definition at line 221 of file physicsmanager.cpp.
 
 Sets the amount of previous wireframes to leave visible. 
 
-\begin{DoxyInternal}{For internal use only.}
 This will limit the amount of previous wireframes drawn. Setting this will cause all the extra wireframes to be deleted \hyperlink{classphys_1_1debug_1_1InternalDebugDrawer_a1002293d223ca20e5bccc3c3412ce262}{InternalDebugDrawer::PrepareForRendering()} is next called, which should happen just before everything is rendered. 
 \begin{DoxyParams}{Parameters}
-\item[{\em WireFrameCount\_\-}]This is a whole number which is limit. \end{DoxyParams}
-\end{DoxyInternal}
+{\em WireFrameCount\_\-} & This is a whole number which is limit. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 250 of file physicsmanager.cpp.
+Definition at line 252 of file physicsmanager.cpp.
 
 
 

@@ -1,0 +1,313 @@
+\hypertarget{classphys_1_1FieldOfForce}{
+\subsection{phys::FieldOfForce Class Reference}
+\label{d5/d59/classphys_1_1FieldOfForce}\index{phys::FieldOfForce@{phys::FieldOfForce}}
+}
+
+
+This is field that applies force in a direction, and doesn't tamper with gravity.  
+
+
+
+
+{\ttfamily \#include $<$areaeffect.h$>$}
+
+Inheritance diagram for phys::FieldOfForce:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d5/d59/classphys_1_1FieldOfForce}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1FieldOfForce_a0e9496af8a6c8cb0d79ebe40bbe223f2}{FieldOfForce} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1FieldOfForce_a263efed38a423130a2b3271db6fcbb88}{
+\hyperlink{classphys_1_1FieldOfForce_a263efed38a423130a2b3271db6fcbb88}{$\sim$FieldOfForce} ()}
+\label{d5/d59/classphys_1_1FieldOfForce_a263efed38a423130a2b3271db6fcbb88}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1FieldOfForce_a625da808c9e77eafa47553854dc61c0c}{ApplyEffect} ()
+\begin{DoxyCompactList}\small\item\em Applies the effect this field has to object inside. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1FieldOfForce_ad7d83cc9b16a8a735051cf991c893d71}{SetFieldStrength} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&FieldStrength)
+\begin{DoxyCompactList}\small\item\em Sets the strenth of the field. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1FieldOfForce_a28bc735f6a0b3d2e1851e66d6877a041}{GetFieldStrength} () const 
+\begin{DoxyCompactList}\small\item\em Gets the strength of the field. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1FieldOfForce_a3236fd171fd1998e0f4b30e5440e88bc}{SetDirectionOfForce} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&ForceDirection)
+\begin{DoxyCompactList}\small\item\em Sets the direction force is to be applied within this field. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1FieldOfForce_a1c0ad14cd3b9dc76157ca50e7e26327e}{GetDirectionOfForce} ()
+\begin{DoxyCompactList}\small\item\em Gets the currenly set direction force is to be applied. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1FieldOfForce_a62c35223c61405fac5f2e3ccaf6cd3e8}{SetAttenuation} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Amount, const \hyperlink{namespacephys_ad4ce7ee5c1cc164f2ea3d5f28211739f}{phys::AttenuationStyle} \&Style, const \hyperlink{classphys_1_1Vector3}{Vector3} \&Source)
+\begin{DoxyCompactList}\small\item\em Sets the attenuation for this field. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_ad4ce7ee5c1cc164f2ea3d5f28211739f}{phys::AttenuationStyle} \hyperlink{classphys_1_1FieldOfForce_adebea1a14be7602fe358586890372211}{GetAttenuationStyle} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Style of attenuation applied. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1FieldOfForce_a172a581eb1db6269e62764389fbde98c}{GetAttenuationAmount} () const 
+\begin{DoxyCompactList}\small\item\em Gets the amount force is attenuated over distance. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1FieldOfForce_a254e3ec97983aeeb9f3af7a656c9e7c5}{GetAttenuationSource} () const 
+\begin{DoxyCompactList}\small\item\em Gets the source of the force for calculating attenuation. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1FieldOfForce_a7ad1fb95b5f855561502b7c13c54d527}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1FieldOfForce_a7ad1fb95b5f855561502b7c13c54d527}{Strength}}
+\label{d5/d59/classphys_1_1FieldOfForce_a7ad1fb95b5f855561502b7c13c54d527}
+
+\begin{DoxyCompactList}\small\item\em The amount of force exerted on other objects. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1FieldOfForce_a47e991aa91723c6ebe335578c4701ca2}{
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1FieldOfForce_a47e991aa91723c6ebe335578c4701ca2}{Direction}}
+\label{d5/d59/classphys_1_1FieldOfForce_a47e991aa91723c6ebe335578c4701ca2}
+
+\begin{DoxyCompactList}\small\item\em The direction the force is applied. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1FieldOfForce_a601b2518f0c36f562febb26cf40aedd8}{
+\hyperlink{namespacephys_ad4ce7ee5c1cc164f2ea3d5f28211739f}{phys::AttenuationStyle} \hyperlink{classphys_1_1FieldOfForce_a601b2518f0c36f562febb26cf40aedd8}{AttenStyle}}
+\label{d5/d59/classphys_1_1FieldOfForce_a601b2518f0c36f562febb26cf40aedd8}
+
+\begin{DoxyCompactList}\small\item\em How gravity weakens over distance, if at all. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1FieldOfForce_a7dc0c22f0b6732469f4edd03cd30a099}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1FieldOfForce_a7dc0c22f0b6732469f4edd03cd30a099}{AttenAmount}}
+\label{d5/d59/classphys_1_1FieldOfForce_a7dc0c22f0b6732469f4edd03cd30a099}
+
+\begin{DoxyCompactList}\small\item\em How much the Gravity weakens over distance. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1FieldOfForce_afb00123721372156b99495c4724b1a41}{
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1FieldOfForce_afb00123721372156b99495c4724b1a41}{AttenSource}}
+\label{d5/d59/classphys_1_1FieldOfForce_afb00123721372156b99495c4724b1a41}
+
+\begin{DoxyCompactList}\small\item\em The user defined source if enabled. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is field that applies force in a direction, and doesn't tamper with gravity. This class is similiar to a gravity well in that it can attenuate, but different in that the direction is constant, the source of force(for calculating attenuation) can be outside the field itself, and the direction is constant. \par
+ Placing the source of attenuation inside the field will cause the object to accelerate as it gets close to the source, and then will be applied less force(but in the same direction) as it moves from the source. This behavior makes this class good for creating a booster-\/like AE. 
+
+Definition at line 366 of file areaeffect.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1FieldOfForce_a0e9496af8a6c8cb0d79ebe40bbe223f2}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!FieldOfForce@{FieldOfForce}}
+\index{FieldOfForce@{FieldOfForce}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{FieldOfForce}]{\setlength{\rightskip}{0pt plus 5cm}phys::FieldOfForce::FieldOfForce (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_a0e9496af8a6c8cb0d79ebe40bbe223f2}
+
+
+Class Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the field. \\
+\hline
+{\em Location} & The location of the AE field. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 716 of file areaeffect.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1FieldOfForce_a625da808c9e77eafa47553854dc61c0c}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!ApplyEffect@{ApplyEffect}}
+\index{ApplyEffect@{ApplyEffect}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{ApplyEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::FieldOfForce::ApplyEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_a625da808c9e77eafa47553854dc61c0c}
+
+
+Applies the effect this field has to object inside. 
+
+This function defines the behavior for the class. 
+
+Implements \hyperlink{classphys_1_1AreaEffect_a3b285ecfcf9c9200662d510e48dd222a}{phys::AreaEffect}.
+
+
+
+Definition at line 730 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1FieldOfForce_a172a581eb1db6269e62764389fbde98c}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!GetAttenuationAmount@{GetAttenuationAmount}}
+\index{GetAttenuationAmount@{GetAttenuationAmount}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{GetAttenuationAmount}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::FieldOfForce::GetAttenuationAmount (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_a172a581eb1db6269e62764389fbde98c}
+
+
+Gets the amount force is attenuated over distance. 
+
+See \hyperlink{classphys_1_1FieldOfForce_a62c35223c61405fac5f2e3ccaf6cd3e8}{SetAttenuation()} for more details. \begin{DoxyReturn}{Returns}
+Returns a Real value 
+\end{DoxyReturn}
+
+
+Definition at line 812 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1FieldOfForce_a254e3ec97983aeeb9f3af7a656c9e7c5}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!GetAttenuationSource@{GetAttenuationSource}}
+\index{GetAttenuationSource@{GetAttenuationSource}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{GetAttenuationSource}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::FieldOfForce::GetAttenuationSource (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_a254e3ec97983aeeb9f3af7a656c9e7c5}
+
+
+Gets the source of the force for calculating attenuation. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing the source of the attenuating force. 
+\end{DoxyReturn}
+
+
+Definition at line 817 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1FieldOfForce_adebea1a14be7602fe358586890372211}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!GetAttenuationStyle@{GetAttenuationStyle}}
+\index{GetAttenuationStyle@{GetAttenuationStyle}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{GetAttenuationStyle}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::AttenuationStyle} phys::FieldOfForce::GetAttenuationStyle (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_adebea1a14be7602fe358586890372211}
+
+
+Gets the Style of attenuation applied. 
+
+See the AttenuationStyle enum for more details. \begin{DoxyReturn}{Returns}
+Returns the style of attenuation currently being used by this field. 
+\end{DoxyReturn}
+
+
+Definition at line 807 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1FieldOfForce_a1c0ad14cd3b9dc76157ca50e7e26327e}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!GetDirectionOfForce@{GetDirectionOfForce}}
+\index{GetDirectionOfForce@{GetDirectionOfForce}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{GetDirectionOfForce}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::FieldOfForce::GetDirectionOfForce (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_a1c0ad14cd3b9dc76157ca50e7e26327e}
+
+
+Gets the currenly set direction force is to be applied. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector3 representing the direction of force in this field. 
+\end{DoxyReturn}
+
+
+Definition at line 795 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1FieldOfForce_a28bc735f6a0b3d2e1851e66d6877a041}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!GetFieldStrength@{GetFieldStrength}}
+\index{GetFieldStrength@{GetFieldStrength}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{GetFieldStrength}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::FieldOfForce::GetFieldStrength (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_a28bc735f6a0b3d2e1851e66d6877a041}
+
+
+Gets the strength of the field. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the value that is being multiplied by the direction to determine force appied to objects. 
+\end{DoxyReturn}
+
+
+Definition at line 785 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1FieldOfForce_a62c35223c61405fac5f2e3ccaf6cd3e8}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!SetAttenuation@{SetAttenuation}}
+\index{SetAttenuation@{SetAttenuation}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{SetAttenuation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::FieldOfForce::SetAttenuation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Amount, }
+\item[{const {\bf phys::AttenuationStyle} \&}]{Style, }
+\item[{const {\bf Vector3} \&}]{Source}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_a62c35223c61405fac5f2e3ccaf6cd3e8}
+
+
+Sets the attenuation for this field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Amount} & The amount of force that is dropped off per 1 unit of distance objects are from the AE source. \\
+\hline
+{\em Style} & The style of attenuation to apply, see the AttenuationStyle enum for more details. \\
+\hline
+{\em Source} & A vector3 representing the source of force to use when calculating attenuation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 800 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1FieldOfForce_a3236fd171fd1998e0f4b30e5440e88bc}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!SetDirectionOfForce@{SetDirectionOfForce}}
+\index{SetDirectionOfForce@{SetDirectionOfForce}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{SetDirectionOfForce}]{\setlength{\rightskip}{0pt plus 5cm}void phys::FieldOfForce::SetDirectionOfForce (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{ForceDirection}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_a3236fd171fd1998e0f4b30e5440e88bc}
+
+
+Sets the direction force is to be applied within this field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ForceDirection} & A vector3 representing the direction force is to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 790 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1FieldOfForce_ad7d83cc9b16a8a735051cf991c893d71}{
+\index{phys::FieldOfForce@{phys::FieldOfForce}!SetFieldStrength@{SetFieldStrength}}
+\index{SetFieldStrength@{SetFieldStrength}!phys::FieldOfForce@{phys::FieldOfForce}}
+\paragraph[{SetFieldStrength}]{\setlength{\rightskip}{0pt plus 5cm}void phys::FieldOfForce::SetFieldStrength (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{FieldStrength}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d5/d59/classphys_1_1FieldOfForce_ad7d83cc9b16a8a735051cf991c893d71}
+
+
+Sets the strenth of the field. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FieldStrength} & The strength the field will have when exerting force onto other objects. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 780 of file areaeffect.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+areaeffect.h\item 
+areaeffect.cpp\end{DoxyCompactItemize}

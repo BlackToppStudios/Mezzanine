@@ -4,7 +4,7 @@
 }
 
 
-This is intended to convey the message that quitting needs to happen.  
+Convey the message that Something happened to a game window.  
 
 
 
@@ -82,12 +82,15 @@ static \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hype
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData} $\ast$ \hyperlink{classphys_1_1EventGameWindow_aa5ceefae0b4ef7a017425cbd3ee08600}{Data}
+\hypertarget{classphys_1_1EventGameWindow_aa5ceefae0b4ef7a017425cbd3ee08600}{
+\hyperlink{classphys_1_1EventGameWindowData}{EventGameWindowData} $\ast$ \hyperlink{classphys_1_1EventGameWindow_aa5ceefae0b4ef7a017425cbd3ee08600}{Data}}
+\label{d4/d0f/classphys_1_1EventGameWindow_aa5ceefae0b4ef7a017425cbd3ee08600}
+
 \begin{DoxyCompactList}\small\item\em Holds all internal data. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
-This is intended to convey the message that quitting needs to happen. 
+Convey the message that Something happened to a game window. 
 
 Definition at line 61 of file eventgamewindow.h.
 
@@ -189,7 +192,7 @@ Definition at line 65 of file eventgamewindow.h.
 \index{EventGameWindow@{EventGameWindow}!phys::EventGameWindow@{phys::EventGameWindow}}
 \paragraph[{EventGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventGameWindow::EventGameWindow (
 \begin{DoxyParamCaption}
-\item[{{\bf RawEvent}}]{ Raw\_\-}
+\item[{{\bf RawEvent}}]{Raw\_\-}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
 \label{d4/d0f/classphys_1_1EventGameWindow_aca917d4cf8ee17dd5253c294aac75bb8}
@@ -199,7 +202,9 @@ Creates an \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} from a Rawe
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Raw\_\-}]The RawEvent to decompose to use for the values of this \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} \end{DoxyParams}
+{\em Raw\_\-} & The RawEvent to decompose to use for the values of this \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 73 of file eventgamewindow.cpp.
@@ -209,9 +214,9 @@ Definition at line 73 of file eventgamewindow.cpp.
 \index{EventGameWindow@{EventGameWindow}!phys::EventGameWindow@{phys::EventGameWindow}}
 \paragraph[{EventGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventGameWindow::EventGameWindow (
 \begin{DoxyParamCaption}
-\item[{{\bf EventGameWindow::GameWindowEventID}}]{ GWEventID = {\ttfamily GAME\_\-WINDOW\_\-NONE}, }
-\item[{int}]{ First = {\ttfamily 0}, }
-\item[{int}]{ Second = {\ttfamily 0}}
+\item[{{\bf EventGameWindow::GameWindowEventID}}]{GWEventID = {\ttfamily GAME\_\-WINDOW\_\-NONE}, }
+\item[{int}]{First = {\ttfamily 0}, }
+\item[{int}]{Second = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
 \label{d4/d0f/classphys_1_1EventGameWindow_aa9d3325376d97c6426c3f98e180352e9}
@@ -221,7 +226,13 @@ Creates an \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} from manual
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em GWEventID}]What kind of change happened \item[{\em First}]A parameter that is dependant on the kind of change to the game window \item[{\em Second}]A parameter that is dependant on the kind of change to the game window \end{DoxyParams}
+{\em GWEventID} & What kind of change happened \\
+\hline
+{\em First} & A parameter that is dependant on the kind of change to the game window \\
+\hline
+{\em Second} & A parameter that is dependant on the kind of change to the game window \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 76 of file eventgamewindow.cpp.
@@ -231,7 +242,7 @@ Definition at line 76 of file eventgamewindow.cpp.
 \index{EventGameWindow@{EventGameWindow}!phys::EventGameWindow@{phys::EventGameWindow}}
 \paragraph[{EventGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventGameWindow::EventGameWindow (
 \begin{DoxyParamCaption}
-\item[{const {\bf EventGameWindow} \&}]{ Other}
+\item[{const {\bf EventGameWindow} \&}]{Other}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d4/d0f/classphys_1_1EventGameWindow_a4011621e2c6fc55a9c89a489f90dc1c8}
@@ -241,7 +252,9 @@ Copy constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Other}]The Other \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} to use in the creation on this \end{DoxyParams}
+{\em Other} & The Other \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} to use in the creation on this \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 79 of file eventgamewindow.cpp.
@@ -254,7 +267,7 @@ Definition at line 79 of file eventgamewindow.cpp.
 \index{GameWindowEventIDToString@{GameWindowEventIDToString}!phys::EventGameWindow@{phys::EventGameWindow}}
 \paragraph[{GameWindowEventIDToString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::EventGameWindow::GameWindowEventIDToString (
 \begin{DoxyParamCaption}
-\item[{{\bf EventGameWindow::GameWindowEventID}}]{ GWEventID}
+\item[{{\bf EventGameWindow::GameWindowEventID}}]{GWEventID}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
 \label{d4/d0f/classphys_1_1EventGameWindow_a643c70f9137ea6812e53fa0993cd783a}
@@ -264,7 +277,9 @@ Converts GameWindowEventID To Strings.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em GWEventID}]the GameWindowEventID to get as a string \end{DoxyParams}
+{\em GWEventID} & the GameWindowEventID to get as a string \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 This returns a string containg the GameWindowEventID in a string as a developer would have typed it. 
 \end{DoxyReturn}
@@ -366,11 +381,9 @@ Definition at line 86 of file eventgamewindow.cpp.
 
 Used to help determine if this Event is valid by checking the contents of the GameWindowEventID. 
 
-\begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
 True if the event if is between GAME\_\-WINDOW\_\-FIRST and GAME\_\-WINDOW\_\-LAST, false otherwise 
 \end{DoxyReturn}
-\end{DoxyInternal}
 
 
 Definition at line 154 of file eventgamewindow.cpp.
@@ -380,7 +393,7 @@ Definition at line 154 of file eventgamewindow.cpp.
 \index{operator=@{operator=}!phys::EventGameWindow@{phys::EventGameWindow}}
 \paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::EventGameWindow::operator= (
 \begin{DoxyParamCaption}
-\item[{const {\bf EventGameWindow} \&}]{ Other}
+\item[{const {\bf EventGameWindow} \&}]{Other}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d4/d0f/classphys_1_1EventGameWindow_a730e2b5fd13cc23cdc56351880895f04}
@@ -390,7 +403,9 @@ Assignment of a this \hyperlink{classphys_1_1EventGameWindowData}{EventGameWindo
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Other}]the other \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} to overwite this one. \end{DoxyParams}
+{\em Other} & the other \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} to overwite this one. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 157 of file eventgamewindow.cpp.
@@ -400,7 +415,7 @@ Definition at line 157 of file eventgamewindow.cpp.
 \index{operator==@{operator==}!phys::EventGameWindow@{phys::EventGameWindow}}
 \paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::EventGameWindow::operator== (
 \begin{DoxyParamCaption}
-\item[{const {\bf GameWindowEventID} \&}]{ Other}
+\item[{const {\bf GameWindowEventID} \&}]{Other}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d4/d0f/classphys_1_1EventGameWindow_abd3028a9c35ca2f5fd24e6b901054f24}
@@ -410,7 +425,9 @@ Equality comparison of this \hyperlink{classphys_1_1EventGameWindowData}{EventGa
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Other}]the other GameWindowEventID to compare to the one stored in this. \end{DoxyParams}
+{\em Other} & the other GameWindowEventID to compare to the one stored in this. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the GameWindowEventID in this event matches the Other, false if otherwise. 
 \end{DoxyReturn}
@@ -423,7 +440,7 @@ Definition at line 172 of file eventgamewindow.cpp.
 \index{operator==@{operator==}!phys::EventGameWindow@{phys::EventGameWindow}}
 \paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::EventGameWindow::operator== (
 \begin{DoxyParamCaption}
-\item[{const {\bf EventGameWindow} \&}]{ Other}
+\item[{const {\bf EventGameWindow} \&}]{Other}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d4/d0f/classphys_1_1EventGameWindow_a5b73127941980949fe3be1ded2a4cd34}
@@ -433,31 +450,15 @@ Equality comparison of two \hyperlink{classphys_1_1EventGameWindowData}{EventGam
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Other}]the other \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} to compare to this one \end{DoxyParams}
+{\em Other} & the other \hyperlink{classphys_1_1EventGameWindow}{EventGameWindow} to compare to this one \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if identical, false if otherwise. 
 \end{DoxyReturn}
 
 
 Definition at line 166 of file eventgamewindow.cpp.
-
-
-
-\subsubsection{Member Data Documentation}
-\hypertarget{classphys_1_1EventGameWindow_aa5ceefae0b4ef7a017425cbd3ee08600}{
-\index{phys::EventGameWindow@{phys::EventGameWindow}!Data@{Data}}
-\index{Data@{Data}!phys::EventGameWindow@{phys::EventGameWindow}}
-\paragraph[{Data}]{\setlength{\rightskip}{0pt plus 5cm}{\bf EventGameWindowData}$\ast$ {\bf phys::EventGameWindow::Data}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d4/d0f/classphys_1_1EventGameWindow_aa5ceefae0b4ef7a017425cbd3ee08600}
-
-
-Holds all internal data. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 157 of file eventgamewindow.h.
 
 
 

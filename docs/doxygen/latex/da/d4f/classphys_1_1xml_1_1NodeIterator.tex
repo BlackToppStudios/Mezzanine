@@ -4,7 +4,7 @@
 }
 
 
-Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node}).  
+Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node})  
 
 
 
@@ -79,13 +79,13 @@ class {\bfseries Node}}
 
 
 \subsubsection{Detailed Description}
-Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node}). \hyperlink{classphys_1_1xml_1_1Node_a39a71c0c078f648de0e716ed59a0446a}{Node::begin()} and \hyperlink{classphys_1_1xml_1_1Node_a9ede8da51d334d31167a6740e233c103}{Node::attributes\_\-begin()} return iterators that point to the first node/attribute, respectively; \hyperlink{classphys_1_1xml_1_1Node_a1f083209c52d7af4a354db2b3f198cf8}{Node::end()} and \hyperlink{classphys_1_1xml_1_1Node_ac2535dd3ebc22454993f09fb66ace134}{Node::attributes\_\-end()} return past-\/the-\/end iterator for node/attribute list, respectively -\/ this iterator can't be dereferenced, but decrementing it results in an iterator pointing to the last element in the list (except for empty lists, where decrementing past-\/the-\/end iterator results in undefined behavior). Past-\/the-\/end iterator is commonly used as a termination value for iteration loops. If you want to get an iterator that points to an existing handle, you can construct the iterator with the handle as a single constructor argument, like so: xml\_\-node\_\-iterator(node). For xml\_\-attribute\_\-iterator, you'll have to provide both an attribute and its parent node.\par
+Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node}) \hyperlink{classphys_1_1xml_1_1Node_a39a71c0c078f648de0e716ed59a0446a}{Node::begin()} and \hyperlink{classphys_1_1xml_1_1Node_a9ede8da51d334d31167a6740e233c103}{Node::attributes\_\-begin()} return iterators that point to the first node/attribute, respectively; \hyperlink{classphys_1_1xml_1_1Node_a1f083209c52d7af4a354db2b3f198cf8}{Node::end()} and \hyperlink{classphys_1_1xml_1_1Node_ac2535dd3ebc22454993f09fb66ace134}{Node::attributes\_\-end()} return past-\/the-\/end iterator for node/attribute list, respectively -\/ this iterator can't be dereferenced, but decrementing it results in an iterator pointing to the last element in the list (except for empty lists, where decrementing past-\/the-\/end iterator results in undefined behavior). Past-\/the-\/end iterator is commonly used as a termination value for iteration loops. If you want to get an iterator that points to an existing handle, you can construct the iterator with the handle as a single constructor argument, like so: xml\_\-node\_\-iterator(node). For xml\_\-attribute\_\-iterator, you'll have to provide both an attribute and its parent node.\par
 \par
  \hyperlink{classphys_1_1xml_1_1Node_a39a71c0c078f648de0e716ed59a0446a}{Node::begin()} and \hyperlink{classphys_1_1xml_1_1Node_a1f083209c52d7af4a354db2b3f198cf8}{Node::end()} return equal iterators if called on null \hyperlink{classphys_1_1xml_1_1Node}{Node}; such iterators can't be dereferenced. \hyperlink{classphys_1_1xml_1_1Node_a9ede8da51d334d31167a6740e233c103}{Node::attributes\_\-begin()} and \hyperlink{classphys_1_1xml_1_1Node_ac2535dd3ebc22454993f09fb66ace134}{Node::attributes\_\-end()} behave the same way. For correct iterator usage this means that child node/attribute collections of null nodes appear to be empty.\par
 \par
  Both types of iterators have bidirectional iterator semantics (i.e. they can be incremented and decremented, but efficient random access is not supported) and support all usual iterator operations -\/ comparison, dereference, etc. The iterators are invalidated if the node/attribute objects they're pointing to are removed from the tree; adding nodes/attributes does not invalidate any iterators. 
 
-Definition at line 833 of file xml.h.
+Definition at line 843 of file xml.h.
 
 
 
@@ -95,7 +95,7 @@ Definition at line 833 of file xml.h.
 \index{NodeIterator@{NodeIterator}!phys::xml::NodeIterator@{phys::xml::NodeIterator}}
 \paragraph[{NodeIterator}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::NodeIterator::NodeIterator (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ node}
+\item[{const {\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{da/d4f/classphys_1_1xml_1_1NodeIterator_abb8a4e6882e921fa57e309c28a5f7fe9}
@@ -105,7 +105,9 @@ Construct an iterator which points to the specified node.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em node}]A \hyperlink{classphys_1_1xml_1_1Node}{Node} that this iterator will point to. \end{DoxyParams}
+{\em node} & A \hyperlink{classphys_1_1xml_1_1Node}{Node} that this iterator will point to. \\
+\hline
+\end{DoxyParams}
 
 
 \subsubsection{Member Function Documentation}
@@ -114,7 +116,7 @@ Construct an iterator which points to the specified node.
 \index{operator!=@{operator!=}!phys::xml::NodeIterator@{phys::xml::NodeIterator}}
 \paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::NodeIterator::operator!= (
 \begin{DoxyParamCaption}
-\item[{const {\bf NodeIterator} \&}]{ rhs}
+\item[{const {\bf NodeIterator} \&}]{rhs}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{da/d4f/classphys_1_1xml_1_1NodeIterator_a357923a57edc54937743fb865be7c3b3}
@@ -124,7 +126,9 @@ Compares this \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator} to anot
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The Right Hand Side \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator}. \end{DoxyParams}
+{\em rhs} & The Right Hand Side \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator}. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 False if the internal data stored in \hyperlink{classphys_1_1xml_1_1Node}{Node} this \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator} refers to is the same as the metadata in the other NodeIterator's \hyperlink{classphys_1_1xml_1_1Node}{Node}, True otherwise. 
 \end{DoxyReturn}
@@ -213,7 +217,7 @@ A pointer to the \hyperlink{classphys_1_1xml_1_1Node}{Node} this \hyperlink{clas
 \index{operator==@{operator==}!phys::xml::NodeIterator@{phys::xml::NodeIterator}}
 \paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::NodeIterator::operator== (
 \begin{DoxyParamCaption}
-\item[{const {\bf NodeIterator} \&}]{ rhs}
+\item[{const {\bf NodeIterator} \&}]{rhs}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{da/d4f/classphys_1_1xml_1_1NodeIterator_a5c8ad72fbdbf0ae621fb041fef422a5e}
@@ -223,7 +227,9 @@ Compares this \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator} to anot
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The Right Hand Side \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator} \end{DoxyParams}
+{\em rhs} & The Right Hand Side \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator} \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the internal data stored in \hyperlink{classphys_1_1xml_1_1Node}{Node} this \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator} refers to is the same as the metadata in the other NodeIterator's \hyperlink{classphys_1_1xml_1_1Node}{Node}, false otherwise. 
 \end{DoxyReturn}

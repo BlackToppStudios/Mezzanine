@@ -10,103 +10,48 @@ used to store internal data and functions for the \hyperlink{classphys_1_1Partic
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a1f27a535244583b3f2fdd13ff811b5d5}{
-{\bfseries ParticleEffectInternalData} (\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)}
-\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a1f27a535244583b3f2fdd13ff811b5d5}
+\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_aa2020347e2755e1476c11f3bc190af57}{
+\hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_aa2020347e2755e1476c11f3bc190af57}{ParticleEffectInternalData} (\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager, Ogre::ParticleSystem $\ast$System)}
+\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_aa2020347e2755e1476c11f3bc190af57}
 
-\item 
-\hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_a42dbfeea2d498ef1b023cebe4e5d4257}{$\sim$ParticleEffectInternalData} ()
+\begin{DoxyCompactList}\small\item\em Functionally, this constructs the whole \hyperlink{classphys_1_1ParticleEffect}{ParticleEffect}. \item\end{DoxyCompactList}\item 
+\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a42dbfeea2d498ef1b023cebe4e5d4257}{
+\hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_a42dbfeea2d498ef1b023cebe4e5d4257}{$\sim$ParticleEffectInternalData} ()}
+\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a42dbfeea2d498ef1b023cebe4e5d4257}
+
 \begin{DoxyCompactList}\small\item\em Cleans up after the Particle Effect. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-Ogre::ParticleSystem $\ast$ \hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_a2a9776a843e39608d4a4583e4558a2c0}{OgreParticle}
+\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a2a9776a843e39608d4a4583e4558a2c0}{
+Ogre::ParticleSystem $\ast$ \hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_a2a9776a843e39608d4a4583e4558a2c0}{OgreParticle}}
+\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a2a9776a843e39608d4a4583e4558a2c0}
+
 \begin{DoxyCompactList}\small\item\em Pointer to the ogre ParticleSystem from which this class gets it's functionality. \item\end{DoxyCompactList}\item 
-Ogre::SceneNode $\ast$ \hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_a339dac2408197459041f2524badc619e}{OgreNode}
+\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a339dac2408197459041f2524badc619e}{
+Ogre::SceneNode $\ast$ \hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_a339dac2408197459041f2524badc619e}{OgreNode}}
+\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a339dac2408197459041f2524badc619e}
+
 \begin{DoxyCompactList}\small\item\em Pointer to the ogre Scenenode to which this object is attached. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ \hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_a6e039c2445dcaac7f9a586863affe030}{Manager}
-\begin{DoxyCompactList}\small\item\em Pointer to the manager that created this class. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a6e039c2445dcaac7f9a586863affe030}{
+\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ \hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_a6e039c2445dcaac7f9a586863affe030}{Manager}}
+\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a6e039c2445dcaac7f9a586863affe030}
+
+\begin{DoxyCompactList}\small\item\em Pointer to the manager that created this class. \item\end{DoxyCompactList}\item 
+\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a5c9857e01d36e5957887c1853042bcf2}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData_a5c9857e01d36e5957887c1853042bcf2}{Template}}
+\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a5c9857e01d36e5957887c1853042bcf2}
+
+\begin{DoxyCompactList}\small\item\em Stores the template, primarily for serializatino. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
-used to store internal data and functions for the \hyperlink{classphys_1_1ParticleEffect}{ParticleEffect}; \begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
+used to store internal data and functions for the \hyperlink{classphys_1_1ParticleEffect}{ParticleEffect}; 
 
-
-Definition at line 47 of file particleeffect.cpp.
-
-
-
-\subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a42dbfeea2d498ef1b023cebe4e5d4257}{
-\index{phys::internal::ParticleEffectInternalData@{phys::internal::ParticleEffectInternalData}!$\sim$ParticleEffectInternalData@{$\sim$ParticleEffectInternalData}}
-\index{$\sim$ParticleEffectInternalData@{$\sim$ParticleEffectInternalData}!phys::internal::ParticleEffectInternalData@{phys::internal::ParticleEffectInternalData}}
-\paragraph[{$\sim$ParticleEffectInternalData}]{\setlength{\rightskip}{0pt plus 5cm}phys::internal::ParticleEffectInternalData::$\sim$ParticleEffectInternalData (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
-\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a42dbfeea2d498ef1b023cebe4e5d4257}
-
-
-Cleans up after the Particle Effect. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 64 of file particleeffect.cpp.
-
-
-
-\subsubsection{Member Data Documentation}
-\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a6e039c2445dcaac7f9a586863affe030}{
-\index{phys::internal::ParticleEffectInternalData@{phys::internal::ParticleEffectInternalData}!Manager@{Manager}}
-\index{Manager@{Manager}!phys::internal::ParticleEffectInternalData@{phys::internal::ParticleEffectInternalData}}
-\paragraph[{Manager}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SceneManager}$\ast$ {\bf phys::internal::ParticleEffectInternalData::Manager}}\hfill}
-\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a6e039c2445dcaac7f9a586863affe030}
-
-
-Pointer to the manager that created this class. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 55 of file particleeffect.cpp.
-
-\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a339dac2408197459041f2524badc619e}{
-\index{phys::internal::ParticleEffectInternalData@{phys::internal::ParticleEffectInternalData}!OgreNode@{OgreNode}}
-\index{OgreNode@{OgreNode}!phys::internal::ParticleEffectInternalData@{phys::internal::ParticleEffectInternalData}}
-\paragraph[{OgreNode}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::SceneNode$\ast$ {\bf phys::internal::ParticleEffectInternalData::OgreNode}}\hfill}
-\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a339dac2408197459041f2524badc619e}
-
-
-Pointer to the ogre Scenenode to which this object is attached. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 51 of file particleeffect.cpp.
-
-\hypertarget{structphys_1_1internal_1_1ParticleEffectInternalData_a2a9776a843e39608d4a4583e4558a2c0}{
-\index{phys::internal::ParticleEffectInternalData@{phys::internal::ParticleEffectInternalData}!OgreParticle@{OgreParticle}}
-\index{OgreParticle@{OgreParticle}!phys::internal::ParticleEffectInternalData@{phys::internal::ParticleEffectInternalData}}
-\paragraph[{OgreParticle}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::ParticleSystem$\ast$ {\bf phys::internal::ParticleEffectInternalData::OgreParticle}}\hfill}
-\label{d6/d85/structphys_1_1internal_1_1ParticleEffectInternalData_a2a9776a843e39608d4a4583e4558a2c0}
-
-
-Pointer to the ogre ParticleSystem from which this class gets it's functionality. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 47 of file particleeffect.cpp.
+Definition at line 61 of file particleeffect.cpp.
 
 
 
 The documentation for this struct was generated from the following file:\begin{DoxyCompactItemize}
 \item 
-particleeffect.cpp\end{DoxyCompactItemize}
+\hyperlink{particleeffect_8cpp}{particleeffect.cpp}\end{DoxyCompactItemize}

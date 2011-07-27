@@ -73,8 +73,8 @@ Definition at line 58 of file plane.cpp.
 \index{Plane@{Plane}!phys::Plane@{phys::Plane}}
 \paragraph[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Normal\_\-, }
-\item[{{\bf Real}}]{ Distance\_\-}
+\item[{{\bf Vector3}}]{Normal\_\-, }
+\item[{{\bf Real}}]{Distance\_\-}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d0c/classphys_1_1Plane_a921d5668dfee52875ba025528604182f}
@@ -84,7 +84,11 @@ Thorough constructor.
 
 This accepts 2 Vector3s and uses them to build the ray 
 \begin{DoxyParams}{Parameters}
-\item[{\em Normal\_\-}]The rotation of the plane \item[{\em Distance\_\-}]Distance from origin to the plane \end{DoxyParams}
+{\em Normal\_\-} & The rotation of the plane \\
+\hline
+{\em Distance\_\-} & Distance from origin to the plane \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 61 of file plane.cpp.
@@ -94,7 +98,7 @@ Definition at line 61 of file plane.cpp.
 \index{Plane@{Plane}!phys::Plane@{phys::Plane}}
 \paragraph[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
 \begin{DoxyParamCaption}
-\item[{Ogre::Plane}]{ Plane\_\-}
+\item[{Ogre::Plane}]{Plane\_\-}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
 \label{d1/d0c/classphys_1_1Plane_aa6c075364461a2996a6575fb022c47a9}
@@ -104,7 +108,9 @@ Compatibily constructor.
 
 This accepts an Ogre \hyperlink{classphys_1_1Plane}{Plane}, (graphics subsystem) to make this \hyperlink{classphys_1_1Plane}{Plane} 
 \begin{DoxyParams}{Parameters}
-\item[{\em Plane\_\-}]This is the Ogre::Plane \end{DoxyParams}
+{\em Plane\_\-} & This is the Ogre::Plane \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 64 of file plane.cpp.
@@ -114,9 +120,9 @@ Definition at line 64 of file plane.cpp.
 \index{Plane@{Plane}!phys::Plane@{phys::Plane}}
 \paragraph[{Plane}]{\setlength{\rightskip}{0pt plus 5cm}phys::Plane::Plane (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector3} \&}]{ rkPoint0, }
-\item[{const {\bf Vector3} \&}]{ rkPoint1, }
-\item[{const {\bf Vector3} \&}]{ rkPoint2}
+\item[{const {\bf Vector3} \&}]{rkPoint0, }
+\item[{const {\bf Vector3} \&}]{rkPoint1, }
+\item[{const {\bf Vector3} \&}]{rkPoint2}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d0c/classphys_1_1Plane_a9b0fde4e97a7391259b2e659e46b3c30}
@@ -126,7 +132,13 @@ Triangle constructor.
 
 This determines the plane the triangle this resides on and uses that plane here 
 \begin{DoxyParams}{Parameters}
-\item[{\em rkPoint0}]This is one point in the triangle \item[{\em rkPoint1}]This is another point in the triangle \item[{\em rkPoint2}]This is one point in the triangle \end{DoxyParams}
+{\em rkPoint0} & This is one point in the triangle \\
+\hline
+{\em rkPoint1} & This is another point in the triangle \\
+\hline
+{\em rkPoint2} & This is one point in the triangle \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 67 of file plane.cpp.
@@ -139,7 +151,7 @@ Definition at line 67 of file plane.cpp.
 \index{ExtractOgrePlane@{ExtractOgrePlane}!phys::Plane@{phys::Plane}}
 \paragraph[{ExtractOgrePlane}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Plane::ExtractOgrePlane (
 \begin{DoxyParamCaption}
-\item[{const Ogre::Plane \&}]{ Plane2}
+\item[{const Ogre::Plane \&}]{Plane2}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d0c/classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}
@@ -149,7 +161,9 @@ Changes this \hyperlink{classphys_1_1Plane}{Plane} to match the Ogre \hyperlink{
 
 Used to aid interopability, this will result in this \hyperlink{classphys_1_1Plane}{Plane} exactly matching the Ogre::Plane 
 \begin{DoxyParams}{Parameters}
-\item[{\em Plane2}]The Ogre::Plane to copy \end{DoxyParams}
+{\em Plane2} & The Ogre::Plane to copy \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 81 of file plane.cpp.
@@ -179,7 +193,7 @@ Definition at line 78 of file plane.cpp.
 \index{operator=@{operator=}!phys::Plane@{phys::Plane}}
 \paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Plane::operator= (
 \begin{DoxyParamCaption}
-\item[{const Ogre::Plane \&}]{ Plane2}
+\item[{const Ogre::Plane \&}]{Plane2}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d0c/classphys_1_1Plane_ac045b7b0aac024a5fe771786d0c433f7}
@@ -189,7 +203,9 @@ The assignment operator from Ogre::Plane to \hyperlink{classphys_1_1Plane}{phys:
 
 this simply call \hyperlink{classphys_1_1Plane_a84b2378666a0e1c791f4f72d8df52c84}{phys::Plane::ExtractOgrePlane} 
 \begin{DoxyParams}{Parameters}
-\item[{\em Plane2}]The Ogre::Plane to take data from. \end{DoxyParams}
+{\em Plane2} & The Ogre::Plane to take data from. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 87 of file plane.cpp.

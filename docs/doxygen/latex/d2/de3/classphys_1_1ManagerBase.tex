@@ -21,7 +21,7 @@ Inheritance diagram for phys::ManagerBase:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 enum \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \{ \par
-{\bfseries ActorContainerBase}, 
+{\bfseries ActorManager}, 
 {\bfseries CameraManager}, 
 {\bfseries EventManager}, 
 {\bfseries GraphicsManager}, 
@@ -31,6 +31,7 @@ enum \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{Mana
 {\bfseries SceneManager}, 
 {\bfseries SoundManager}, 
 \par
+{\bfseries TerrainManager}, 
 {\bfseries TimerManager}, 
 {\bfseries UIManager}, 
 \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5a3239296e554feede76c4bcb6f824c66c}{UserCreated}
@@ -92,11 +93,20 @@ std::string \hyperlink{classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af475
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1ManagerBase_ae2f158b4b2fef1bf2bee2524e0236c7b}{GameWorld}
+\hypertarget{classphys_1_1ManagerBase_ae2f158b4b2fef1bf2bee2524e0236c7b}{
+\hyperlink{classphys_1_1World}{World} $\ast$ \hyperlink{classphys_1_1ManagerBase_ae2f158b4b2fef1bf2bee2524e0236c7b}{GameWorld}}
+\label{d2/de3/classphys_1_1ManagerBase_ae2f158b4b2fef1bf2bee2524e0236c7b}
+
 \begin{DoxyCompactList}\small\item\em The actual pointer to the world. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{PreMainLoop}
+\hypertarget{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{
+\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{PreMainLoop}}
+\label{d2/de3/classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}
+
 \begin{DoxyCompactList}\small\item\em This is a function pointer to the function that should be called before running Main Loop Items. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{PostMainLoop}
+\hypertarget{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{
+\hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{Callback} \hyperlink{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{PostMainLoop}}
+\label{d2/de3/classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}
+
 \begin{DoxyCompactList}\small\item\em This is a function pointer to the function that should be called after running Main Loop Items. \item\end{DoxyCompactList}\item 
 short int \hyperlink{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}{Priority}
 \begin{DoxyCompactList}\small\item\em This is a weighting used by the main loop to decide what order the managers should be called in. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -171,7 +181,7 @@ The main loop calls this once per frame.
 
 This is where each manager is expected to put anything that needs to be run each iteration of the main loop 
 
-Implemented in \hyperlink{classphys_1_1ActorContainerBase_a67fbde6a61602253f66fecd0416bdc2f}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_a883e59ac1674421bac143088a6cf07c8}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_aca8fb3d285484dcdb943824bf11f3596}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_a27a3f6b21e15f628642b1cad524f1a18}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{phys::SoundManager}, \hyperlink{classphys_1_1TimerManager_a98b7e74fe1e3eff7aee506477abe2a9c}{phys::TimerManager}, and \hyperlink{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{phys::UIManager}.
+Implemented in \hyperlink{classphys_1_1ActorManager_abafe749a5ef6f750c6f3bbf2804c186e}{phys::ActorManager}, \hyperlink{classphys_1_1CameraManager_aaae22266bccc43f6efa66d2735d7d1d3}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_aca8fb3d285484dcdb943824bf11f3596}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_a27a3f6b21e15f628642b1cad524f1a18}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a577b228753ea19856b8476ab831e547e}{phys::SoundManager}, \hyperlink{classphys_1_1TimerManager_a98b7e74fe1e3eff7aee506477abe2a9c}{phys::TimerManager}, and \hyperlink{classphys_1_1UIManager_a972abedcd4343dc5966580f2f82494a8}{phys::UIManager}.
 
 \hypertarget{classphys_1_1ManagerBase_addfd62fbc444ca4c2aba40768d1b284e}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetGameWorld@{GetGameWorld}}
@@ -189,10 +199,6 @@ This gets the \hyperlink{classphys_1_1World}{World} that this manager is working
 \begin{DoxyReturn}{Returns}
 This returns a \hyperlink{classphys_1_1World}{phys::World}$\ast$ that is the same as the one store in this Manager 
 \end{DoxyReturn}
-
-
-Reimplemented in \hyperlink{classphys_1_1ActorContainerBase_a479e6c7434f2611b0cfe6ca1fd4ebdd1}{phys::ActorContainerBase}, and \hyperlink{classphys_1_1ActorContainerVector_a5519eb0000073a2f397e158bfc368349}{phys::ActorContainerVector}.
-
 
 
 Definition at line 64 of file managerbase.cpp.
@@ -275,7 +281,7 @@ This returns a ManagerTypeName to identify what this can be safely cast to.
 \end{DoxyReturn}
 
 
-Implemented in \hyperlink{classphys_1_1ActorContainerBase_aa86380fd1b18d660f68b60f075967cf8}{phys::ActorContainerBase}, \hyperlink{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_af2b4f6bc50d40ffe06f6172c3d1dd02d}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{phys::SoundManager}, \hyperlink{classphys_1_1TimerManager_a716811f51cb9e97ed6e9db310f34e9dc}{phys::TimerManager}, and \hyperlink{classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}{phys::UIManager}.
+Implemented in \hyperlink{classphys_1_1ActorManager_a7f529913ac6d7c74adfade5c383eeb25}{phys::ActorManager}, \hyperlink{classphys_1_1CameraManager_a8412ea634307aa280b615a3cc7c9b739}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a194890f7f8be5d45aa98623481482696}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_af2b4f6bc50d40ffe06f6172c3d1dd02d}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_a6815f78a6170b119e2d1d24e862ffbf8}{phys::SoundManager}, \hyperlink{classphys_1_1TimerManager_a716811f51cb9e97ed6e9db310f34e9dc}{phys::TimerManager}, and \hyperlink{classphys_1_1UIManager_ab8fe74564ca5dc09cbe4b1cc2c007e79}{phys::UIManager}.
 
 \hypertarget{classphys_1_1ManagerBase_a5b4c1105696b868b7858c59541af4756}{
 \index{phys::ManagerBase@{phys::ManagerBase}!GetTypeName@{GetTypeName}}
@@ -314,7 +320,7 @@ If you are using the \hyperlink{classphys_1_1World}{phys::World} this is called 
 \par
  Yes we know it is spelled wrong, but are Zs cooler anyway. 
 
-Implemented in \hyperlink{classphys_1_1ActorContainerBase_af36d5866e0ee9f6f450a4e62642e0928}{phys::ActorContainerBase}, \hyperlink{classphys_1_1ActorContainerVector_adcebf4329a587669f74e1eacc1e6912c}{phys::ActorContainerVector}, \hyperlink{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_aa13b380a4e38f706a1977237fc4b165e}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{phys::SoundManager}, \hyperlink{classphys_1_1TimerManager_ab6ee47352a406682178b4496544bcf6f}{phys::TimerManager}, and \hyperlink{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{phys::UIManager}.
+Implemented in \hyperlink{classphys_1_1ActorManager_a231586ede5669da350ced7f5dcd0bee2}{phys::ActorManager}, \hyperlink{classphys_1_1CameraManager_a5e956b61fa341ae576d8d160da518488}{phys::CameraManager}, \hyperlink{classphys_1_1EventManager_a51afdd83f44f461dfac5c9eca5883ea0}{phys::EventManager}, \hyperlink{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{phys::GraphicsManager}, \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{phys::PhysicsManager}, \hyperlink{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{phys::ResourceManager}, \hyperlink{classphys_1_1SceneManager_aa13b380a4e38f706a1977237fc4b165e}{phys::SceneManager}, \hyperlink{classphys_1_1SoundManager_ae6d3957f965b54e06ec540e903cec68d}{phys::SoundManager}, \hyperlink{classphys_1_1TimerManager_ab6ee47352a406682178b4496544bcf6f}{phys::TimerManager}, and \hyperlink{classphys_1_1UIManager_af04e60c4f09c114ec3bf32babdb64ab7}{phys::UIManager}.
 
 \hypertarget{classphys_1_1ManagerBase_afc3572602f96bdeb8215c386ff870820}{
 \index{phys::ManagerBase@{phys::ManagerBase}!PostMainLoopItems@{PostMainLoopItems}}
@@ -367,7 +373,7 @@ Definition at line 76 of file managerbase.cpp.
 \index{SetGameWorld@{SetGameWorld}!phys::ManagerBase@{phys::ManagerBase}}
 \paragraph[{SetGameWorld}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetGameWorld (
 \begin{DoxyParamCaption}
-\item[{{\bf World} $\ast$}]{ GameWorld\_\-}
+\item[{{\bf World} $\ast$}]{GameWorld\_\-}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d2/de3/classphys_1_1ManagerBase_a97eb1e77c1f7a0925fc623836368a262}
@@ -379,10 +385,6 @@ It is expected that this won't change very much, and for some managers changing 
 \par
  For managers that can be moved it is expected that this function will change the pointer on the \hyperlink{classphys_1_1World}{phys::World} for the appropriate manager to point to this manager. This simplifies the calls that will naturally come next. To detach a Manager from the world pass this method a NULL pointer. If the manager cannot be removed or detached it should throw and exception using \hyperlink{classphys_1_1World_a372ee96d395d735531f755fc0a72de4a}{World::LogAndThrow}, and it must not fail to attach to a world (that means it must internally handle all exception raised by the attaching process or throw an \char`\"{}Unrecoverable Error\char`\"{}) 
 
-Reimplemented in \hyperlink{classphys_1_1ActorContainerBase_ae0cb5c288f17507247dd98d3a2466876}{phys::ActorContainerBase}, and \hyperlink{classphys_1_1ActorContainerVector_ab4c1394254057465f7a2f89b87dc49aa}{phys::ActorContainerVector}.
-
-
-
 Definition at line 67 of file managerbase.cpp.
 
 \hypertarget{classphys_1_1ManagerBase_a673b3adef73c467f4d90514a5133bf7c}{
@@ -390,7 +392,7 @@ Definition at line 67 of file managerbase.cpp.
 \index{SetPostMainLoopItems@{SetPostMainLoopItems}!phys::ManagerBase@{phys::ManagerBase}}
 \paragraph[{SetPostMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPostMainLoopItems (
 \begin{DoxyParamCaption}
-\item[{{\bf ManagerBase::Callback}}]{ PostMainCallback}
+\item[{{\bf ManagerBase::Callback}}]{PostMainCallback}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d2/de3/classphys_1_1ManagerBase_a673b3adef73c467f4d90514a5133bf7c}
@@ -400,7 +402,9 @@ This assigns a function to be the callback function to run prior to the main loo
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em PostMainCallback}]This is a pointer to a function that returns a bool and accepts no arguments, this is in the form of a \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{ManagerBase::Callback}. If SetPosMainLoopItems is passed 0, NULL or a null pointer, the callback will be forgetten and will not attempt to be called. \end{DoxyParams}
+{\em PostMainCallback} & This is a pointer to a function that returns a bool and accepts no arguments, this is in the form of a \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{ManagerBase::Callback}. If SetPosMainLoopItems is passed 0, NULL or a null pointer, the callback will be forgetten and will not attempt to be called. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 92 of file managerbase.cpp.
@@ -410,7 +414,7 @@ Definition at line 92 of file managerbase.cpp.
 \index{SetPreMainLoopItems@{SetPreMainLoopItems}!phys::ManagerBase@{phys::ManagerBase}}
 \paragraph[{SetPreMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPreMainLoopItems (
 \begin{DoxyParamCaption}
-\item[{{\bf ManagerBase::Callback}}]{ PreMainCallback}
+\item[{{\bf ManagerBase::Callback}}]{PreMainCallback}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d2/de3/classphys_1_1ManagerBase_a3fcf207a451d0047f884babadd0bc53e}
@@ -420,7 +424,9 @@ This assigns a function to be the callback function to run prior to the main loo
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em PreMainCallback}]This is a pointer to a function that returns a bool and accepts no arguments, this is in the form of a \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{ManagerBase::Callback}. If SetPreMainLoopItems is passed 0, NULL or a null pointer, the callback will be forgetten and will not attempt to be called. \end{DoxyParams}
+{\em PreMainCallback} & This is a pointer to a function that returns a bool and accepts no arguments, this is in the form of a \hyperlink{classphys_1_1ManagerBase_a753f5f0127131529767beab2502f480b}{ManagerBase::Callback}. If SetPreMainLoopItems is passed 0, NULL or a null pointer, the callback will be forgetten and will not attempt to be called. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 73 of file managerbase.cpp.
@@ -430,7 +436,7 @@ Definition at line 73 of file managerbase.cpp.
 \index{SetPriority@{SetPriority}!phys::ManagerBase@{phys::ManagerBase}}
 \paragraph[{SetPriority}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ManagerBase::SetPriority (
 \begin{DoxyParamCaption}
-\item[{short int}]{ Priority\_\-}
+\item[{short int}]{Priority\_\-}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d2/de3/classphys_1_1ManagerBase_a6e30dc5f2a9c64f95efb2ef4428b0f98}
@@ -448,51 +454,6 @@ Definition at line 158 of file managerbase.cpp.
 
 
 \subsubsection{Member Data Documentation}
-\hypertarget{classphys_1_1ManagerBase_ae2f158b4b2fef1bf2bee2524e0236c7b}{
-\index{phys::ManagerBase@{phys::ManagerBase}!GameWorld@{GameWorld}}
-\index{GameWorld@{GameWorld}!phys::ManagerBase@{phys::ManagerBase}}
-\paragraph[{GameWorld}]{\setlength{\rightskip}{0pt plus 5cm}{\bf World}$\ast$ {\bf phys::ManagerBase::GameWorld}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d2/de3/classphys_1_1ManagerBase_ae2f158b4b2fef1bf2bee2524e0236c7b}
-
-
-The actual pointer to the world. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 192 of file managerbase.h.
-
-\hypertarget{classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}{
-\index{phys::ManagerBase@{phys::ManagerBase}!PostMainLoop@{PostMainLoop}}
-\index{PostMainLoop@{PostMainLoop}!phys::ManagerBase@{phys::ManagerBase}}
-\paragraph[{PostMainLoop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Callback} {\bf phys::ManagerBase::PostMainLoop}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d2/de3/classphys_1_1ManagerBase_aa1e80a30f151c07e06d1f4650f315da5}
-
-
-This is a function pointer to the function that should be called after running Main Loop Items. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 200 of file managerbase.h.
-
-\hypertarget{classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}{
-\index{phys::ManagerBase@{phys::ManagerBase}!PreMainLoop@{PreMainLoop}}
-\index{PreMainLoop@{PreMainLoop}!phys::ManagerBase@{phys::ManagerBase}}
-\paragraph[{PreMainLoop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Callback} {\bf phys::ManagerBase::PreMainLoop}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d2/de3/classphys_1_1ManagerBase_a93eb2f1a30d913a4e99180b0965eb5db}
-
-
-This is a function pointer to the function that should be called before running Main Loop Items. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 196 of file managerbase.h.
-
 \hypertarget{classphys_1_1ManagerBase_a28e2690fbcf644a7780a53b81821d8ef}{
 \index{phys::ManagerBase@{phys::ManagerBase}!Priority@{Priority}}
 \index{Priority@{Priority}!phys::ManagerBase@{phys::ManagerBase}}
@@ -504,7 +465,7 @@ This is a weighting used by the main loop to decide what order the managers shou
 
 A lower number gets called earlier in the Main loop. By default rendering the graphics occurs at priority 0. 
 
-Definition at line 205 of file managerbase.h.
+Definition at line 206 of file managerbase.h.
 
 
 

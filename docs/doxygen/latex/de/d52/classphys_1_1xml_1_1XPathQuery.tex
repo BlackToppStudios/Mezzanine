@@ -34,7 +34,7 @@ size\_\-t \hyperlink{classphys_1_1xml_1_1XPathQuery_ac9f4705c639cbd7f3aef8266fa6
 \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} \hyperlink{classphys_1_1xml_1_1XPathQuery_af00ba3d0346ccc01f249274947191333}{EvaluateNodeSet} (const \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} \&n) const 
 \begin{DoxyCompactList}\small\item\em Evaluate expression as node set in the specified context. \item\end{DoxyCompactList}\item 
 const \hyperlink{structphys_1_1xml_1_1XPathParseResult}{XPathParseResult} \& \hyperlink{classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}{Result} () const 
-\begin{DoxyCompactList}\small\item\em Get parsing Result (used to get compilation errors when XML\_\-NO\_\-EXCEPTIONS is enabled). \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get parsing Result (used to get compilation errors when XML\_\-NO\_\-EXCEPTIONS is enabled) \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1XPathQuery_a1c6a8e78133a177792ade031f4ed0a89}{operator unspecified\_\-bool\_\-type} () const 
 \begin{DoxyCompactList}\small\item\em Used to convert this to a boolean value in a safe way. \item\end{DoxyCompactList}\item 
 bool \hyperlink{classphys_1_1xml_1_1XPathQuery_afe0b62e0ab607855f5267b0690bda33b}{operator!} () const 
@@ -59,7 +59,7 @@ When you call select\_\-nodes with an expression string as an argument, a query 
  To evaluate an XPath expression there are a few EvaluatedType functions. According to XPath specification, value of any type can be converted to boolean, number or string value, but no type other than node set can be converted to node set. Because of this, \hyperlink{classphys_1_1xml_1_1XPathQuery_a44fed594a458aa4b6cf4f3d12d5089a8}{XPathQuery::EvaluateBoolean()}, \hyperlink{classphys_1_1xml_1_1XPathQuery_aacfcff30901ce20b92de56ec0e2d70e5}{XPathQuery::EvaluateNumber()} and \hyperlink{classphys_1_1xml_1_1XPathQuery_ab7084be2e608b38872167fe3321554b9}{XPathQuery::EvaluateString()} always return a result, but EvaluateNodeSet results in an error if the return type is not node set. 
 \end{DoxyItemize}
 
-Definition at line 1225 of file xml.h.
+Definition at line 1242 of file xml.h.
 
 
 
@@ -69,8 +69,8 @@ Definition at line 1225 of file xml.h.
 \index{XPathQuery@{XPathQuery}!phys::xml::XPathQuery@{phys::xml::XPathQuery}}
 \paragraph[{XPathQuery}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathQuery::XPathQuery (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ query, }
-\item[{{\bf XPathVariableSet} $\ast$}]{ variables = {\ttfamily 0}}
+\item[{const {\bf char\_\-t} $\ast$}]{query, }
+\item[{{\bf XPathVariableSet} $\ast$}]{variables = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
 \label{de/d52/classphys_1_1xml_1_1XPathQuery_a1a63135370ef4999f3dd27540c9009a2}
@@ -80,10 +80,16 @@ Construct a compiled object from XPath expression.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em query}]The query in the form of a c-\/string style char\_\-t array. \item[{\em variables}]Any extra data the query might need, passing a null pointer simply omits passing any arguments. \end{DoxyParams}
+{\em query} & The query in the form of a c-\/string style char\_\-t array. \\
+\hline
+{\em variables} & Any extra data the query might need, passing a null pointer simply omits passing any arguments. \\
+\hline
+\end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-\item[{\em If}]XML\_\-NO\_\-EXCEPTIONS is not defined (which is the default), throws \hyperlink{classphys_1_1xml_1_1XPathException}{XPathException} on compilation errors. \end{DoxyExceptions}
+{\em If} & XML\_\-NO\_\-EXCEPTIONS is not defined (which is the default), throws \hyperlink{classphys_1_1xml_1_1XPathException}{XPathException} on compilation errors. \\
+\hline
+\end{DoxyExceptions}
 
 
 \subsubsection{Member Function Documentation}
@@ -92,7 +98,7 @@ Construct a compiled object from XPath expression.
 \index{EvaluateBoolean@{EvaluateBoolean}!phys::xml::XPathQuery@{phys::xml::XPathQuery}}
 \paragraph[{EvaluateBoolean}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathQuery::EvaluateBoolean (
 \begin{DoxyParamCaption}
-\item[{const {\bf XPathNode} \&}]{ n}
+\item[{const {\bf XPathNode} \&}]{n}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{de/d52/classphys_1_1xml_1_1XPathQuery_a44fed594a458aa4b6cf4f3d12d5089a8}
@@ -102,13 +108,15 @@ Evaluate expression as boolean value in the specified context; performs Type con
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em n}]The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that will serve as the context for the query. \end{DoxyParams}
+{\em n} & The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that will serve as the context for the query. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1xml_1_1XPathQuery_af00ba3d0346ccc01f249274947191333}{
 \index{phys::xml::XPathQuery@{phys::xml::XPathQuery}!EvaluateNodeSet@{EvaluateNodeSet}}
 \index{EvaluateNodeSet@{EvaluateNodeSet}!phys::xml::XPathQuery@{phys::xml::XPathQuery}}
 \paragraph[{EvaluateNodeSet}]{\setlength{\rightskip}{0pt plus 5cm}{\bf XPathNodeSet} phys::xml::XPathQuery::EvaluateNodeSet (
 \begin{DoxyParamCaption}
-\item[{const {\bf XPathNode} \&}]{ n}
+\item[{const {\bf XPathNode} \&}]{n}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{de/d52/classphys_1_1xml_1_1XPathQuery_af00ba3d0346ccc01f249274947191333}
@@ -118,10 +126,14 @@ Evaluate expression as node set in the specified context.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em n}]The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that with serve as the context for the query. \end{DoxyParams}
+{\em n} & The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that with serve as the context for the query. \\
+\hline
+\end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-\item[{\em If}]XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws throws \hyperlink{classphys_1_1xml_1_1XPathException}{XPathException} on Type mismatch and std::bad\_\-alloc on out of memory errors. If XML\_\-NO\_\-EXCEPTIONS is defined, returns empty node set instead. \end{DoxyExceptions}
+{\em If} & XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws throws \hyperlink{classphys_1_1xml_1_1XPathException}{XPathException} on Type mismatch and std::bad\_\-alloc on out of memory errors. If XML\_\-NO\_\-EXCEPTIONS is defined, returns empty node set instead. \\
+\hline
+\end{DoxyExceptions}
 \begin{DoxyReturn}{Returns}
 An \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet}. 
 \end{DoxyReturn}
@@ -130,7 +142,7 @@ An \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet}.
 \index{EvaluateNumber@{EvaluateNumber}!phys::xml::XPathQuery@{phys::xml::XPathQuery}}
 \paragraph[{EvaluateNumber}]{\setlength{\rightskip}{0pt plus 5cm}double phys::xml::XPathQuery::EvaluateNumber (
 \begin{DoxyParamCaption}
-\item[{const {\bf XPathNode} \&}]{ n}
+\item[{const {\bf XPathNode} \&}]{n}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{de/d52/classphys_1_1xml_1_1XPathQuery_aacfcff30901ce20b92de56ec0e2d70e5}
@@ -140,10 +152,14 @@ Evaluate expression as double value in the specified context; performs Type conv
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em n}]The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that will serve as the context for the query. \end{DoxyParams}
+{\em n} & The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that will serve as the context for the query. \\
+\hline
+\end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-\item[{\em If}]XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. \end{DoxyExceptions}
+{\em If} & XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. \\
+\hline
+\end{DoxyExceptions}
 \begin{DoxyReturn}{Returns}
 A result as a double from evaluating the expression. 
 \end{DoxyReturn}
@@ -152,7 +168,7 @@ A result as a double from evaluating the expression.
 \index{EvaluateString@{EvaluateString}!phys::xml::XPathQuery@{phys::xml::XPathQuery}}
 \paragraph[{EvaluateString}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::xml::XPathQuery::EvaluateString (
 \begin{DoxyParamCaption}
-\item[{const {\bf XPathNode} \&}]{ n}
+\item[{const {\bf XPathNode} \&}]{n}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{de/d52/classphys_1_1xml_1_1XPathQuery_ab7084be2e608b38872167fe3321554b9}
@@ -162,10 +178,14 @@ Evaluate expression as string value in the specified context; performs Type conv
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em n}]The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that will serve as the context for the query. \end{DoxyParams}
+{\em n} & The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that will serve as the context for the query. \\
+\hline
+\end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-\item[{\em If}]XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. \end{DoxyExceptions}
+{\em If} & XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. \\
+\hline
+\end{DoxyExceptions}
 \begin{DoxyReturn}{Returns}
 A result as a String from evaluating the expression. 
 \end{DoxyReturn}
@@ -174,9 +194,9 @@ A result as a String from evaluating the expression.
 \index{EvaluateString@{EvaluateString}!phys::xml::XPathQuery@{phys::xml::XPathQuery}}
 \paragraph[{EvaluateString}]{\setlength{\rightskip}{0pt plus 5cm}size\_\-t phys::xml::XPathQuery::EvaluateString (
 \begin{DoxyParamCaption}
-\item[{{\bf char\_\-t} $\ast$}]{ buffer, }
-\item[{size\_\-t}]{ capacity, }
-\item[{const {\bf XPathNode} \&}]{ n}
+\item[{{\bf char\_\-t} $\ast$}]{buffer, }
+\item[{size\_\-t}]{capacity, }
+\item[{const {\bf XPathNode} \&}]{n}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{de/d52/classphys_1_1xml_1_1XPathQuery_ac9f4705c639cbd7f3aef8266fa683cc2}
@@ -186,10 +206,18 @@ Evaluate expression as string value in the specified context; performs Type conv
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em buffer}]The place to store the c-\/style Character array \item[{\em capacity}]At most capacity characters are written to the destination buffer. \item[{\em n}]The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that with serve as the context for the query. \end{DoxyParams}
+{\em buffer} & The place to store the c-\/style Character array \\
+\hline
+{\em capacity} & At most capacity characters are written to the destination buffer. \\
+\hline
+{\em n} & The \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} that with serve as the context for the query. \\
+\hline
+\end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
-\item[{\em If}]XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. If XML\_\-NO\_\-EXCEPTIONS is defined, this returns empty set instead. \end{DoxyExceptions}
+{\em If} & XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. If XML\_\-NO\_\-EXCEPTIONS is defined, this returns empty set instead. \\
+\hline
+\end{DoxyExceptions}
 \begin{DoxyReturn}{Returns}
 Full result size is returned (includes terminating zero). 
 \end{DoxyReturn}
@@ -238,11 +266,13 @@ A bool that is the opposite of evaluatig this as a bool normally.
 \label{de/d52/classphys_1_1xml_1_1XPathQuery_a83f2039e91105c9cd0dcc7d524359198}
 
 
-Get parsing Result (used to get compilation errors when XML\_\-NO\_\-EXCEPTIONS is enabled). 
+Get parsing Result (used to get compilation errors when XML\_\-NO\_\-EXCEPTIONS is enabled) 
 
 
 \begin{DoxyExceptions}{Exceptions}
-\item[{\em If}]XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. \end{DoxyExceptions}
+{\em If} & XML\_\-NO\_\-EXCEPTIONS is not defined (by default it is not defined), throws std::bad\_\-alloc on out of memory errors. \\
+\hline
+\end{DoxyExceptions}
 \begin{DoxyReturn}{Returns}
 A bool result of evaluating the expression. 
 \end{DoxyReturn}

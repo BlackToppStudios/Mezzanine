@@ -122,11 +122,11 @@ bool \hyperlink{classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}{SetV
 \begin{DoxyCompactList}\small\item\em Creates a \hyperlink{classphys_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the middle of the Child Nodes. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a7e9b4518e4d12517bc5ff756054e7395}{AppendChild} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)
 \begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classphys_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classphys_1_1xml_1_1Node}{Node}, with the given name. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a643a7e8d8cbee41647e4e1121660b5d0}{PrependChild} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)
+\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a0956c7a882dcca4d19f0b5e3f6e4f89f}{PrependChild} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name)
 \begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classphys_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classphys_1_1xml_1_1Node}{Node}, with the given name at the beginning of the children. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a3a2bfe2c267c3ceb96dc4bdae6651a33}{InsertChildAfter} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
 \begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classphys_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classphys_1_1xml_1_1Node}{Node}, with the given name at the middle of the children. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a8602cbfd1272b3c42c0ca1675076f3b2}{InsertChildBefore} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
+\hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a613bf3df8709b58edaf12caab04796f4}{InsertChildBefore} (const \hyperlink{namespacephys_1_1xml_afc87705cd1c2917d87b879715a2d8f6e}{char\_\-t} $\ast$Name, const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
 \begin{DoxyCompactList}\small\item\em Creates an element \hyperlink{classphys_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classphys_1_1xml_1_1Node}{Node}, with the given name at the middle of the children. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1Node}{Node} \hyperlink{classphys_1_1xml_1_1Node_a8b7872e4baf76dd5d19aa4f8d2b1a44d}{AppendCopy} (const \hyperlink{classphys_1_1xml_1_1Node}{Node} \&proto)
 \begin{DoxyCompactList}\small\item\em Copies a \hyperlink{classphys_1_1xml_1_1Node}{Node} and puts the copy at the end of the list of this Nodes Childrem. \item\end{DoxyCompactList}\item 
@@ -182,21 +182,30 @@ void \hyperlink{classphys_1_1xml_1_1Node_ac705b62114dbc65a204ed2197891322c}{Prin
 \begin{DoxyCompactList}\small\item\em Get an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} iterator that references the first \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1xml_1_1AttributeIterator}{attribute\_\-iterator} \hyperlink{classphys_1_1xml_1_1Node_ac2535dd3ebc22454993f09fb66ace134}{attributes\_\-end} () const 
 \begin{DoxyCompactList}\small\item\em Get an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} iterator that references the one past the last \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item\end{DoxyCompactList}\item 
-ptrdiff\_\-t \hyperlink{classphys_1_1xml_1_1Node_add5c56d3e9bef050c774b9aa97240e98}{OffSetDebug} () const 
+\hypertarget{classphys_1_1xml_1_1Node_add5c56d3e9bef050c774b9aa97240e98}{
+ptrdiff\_\-t \hyperlink{classphys_1_1xml_1_1Node_add5c56d3e9bef050c774b9aa97240e98}{OffSetDebug} () const }
+\label{d7/d0a/classphys_1_1xml_1_1Node_add5c56d3e9bef050c774b9aa97240e98}
+
 \begin{DoxyCompactList}\small\item\em Get node Offset in parsed file/string (in char\_\-t units) for debugging purposes. \item\end{DoxyCompactList}\item 
 size\_\-t \hyperlink{classphys_1_1xml_1_1Node_a830a1833c4b4b012f1b4481e91ccb1ca}{HashValue} () const 
-\begin{DoxyCompactList}\small\item\em Get hash Value (unique for handles to the same object). \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Get hash Value (unique for handles to the same object) \item\end{DoxyCompactList}\item 
 \hyperlink{classNodeStruct}{NodeStruct} $\ast$ \hyperlink{classphys_1_1xml_1_1Node_a0d2c64c909e7545d01b586fe9d0bd9d4}{InternalObject} () const 
 \begin{DoxyCompactList}\small\item\em Get internal pointer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Types}
 \begin{DoxyCompactItemize}
 \item 
-typedef \hyperlink{classNodeStruct}{NodeStruct} $\ast$Node::$\ast$ \hyperlink{classphys_1_1xml_1_1Node_abace2c2c7e70431d920579917417c1e4}{unspecified\_\-bool\_\-type}
+\hypertarget{classphys_1_1xml_1_1Node_a038a36ae32b13b5da7882099bba139fb}{
+typedef \hyperlink{classNodeStruct}{NodeStruct} $\ast$Node:: \hyperlink{classphys_1_1xml_1_1Node_a038a36ae32b13b5da7882099bba139fb}{unspecified\_\-bool\_\-type}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a038a36ae32b13b5da7882099bba139fb}
+
 \begin{DoxyCompactList}\small\item\em Used when testing an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} as a bool. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classNodeStruct}{NodeStruct} $\ast$ \hyperlink{classphys_1_1xml_1_1Node_acfef549b712d4599e579ed5495037acd}{\_\-GetRoot}
+\hypertarget{classphys_1_1xml_1_1Node_acfef549b712d4599e579ed5495037acd}{
+\hyperlink{classNodeStruct}{NodeStruct} $\ast$ \hyperlink{classphys_1_1xml_1_1Node_acfef549b712d4599e579ed5495037acd}{\_\-GetRoot}}
+\label{d7/d0a/classphys_1_1xml_1_1Node_acfef549b712d4599e579ed5495037acd}
+
 \begin{DoxyCompactList}\small\item\em Stores pointers to the \hyperlink{classphys_1_1xml_1_1Node}{Node} data and some metadata. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -220,31 +229,13 @@ Definition at line 468 of file xml.h.
 
 
 
-\subsubsection{Member Typedef Documentation}
-\hypertarget{classphys_1_1xml_1_1Node_abace2c2c7e70431d920579917417c1e4}{
-\index{phys::xml::Node@{phys::xml::Node}!unspecified\_\-bool\_\-type@{unspecified\_\-bool\_\-type}}
-\index{unspecified\_\-bool\_\-type@{unspecified\_\-bool\_\-type}!phys::xml::Node@{phys::xml::Node}}
-\paragraph[{unspecified\_\-bool\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}typedef {\bf NodeStruct}$\ast$ Node::$\ast$ {\bf phys::xml::Node::unspecified\_\-bool\_\-type}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d7/d0a/classphys_1_1xml_1_1Node_abace2c2c7e70431d920579917417c1e4}
-
-
-Used when testing an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} as a bool. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 478 of file xml.h.
-
-
-
 \subsubsection{Constructor \& Destructor Documentation}
 \hypertarget{classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}{
 \index{phys::xml::Node@{phys::xml::Node}!Node@{Node}}
 \index{Node@{Node}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{Node}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Node (
 \begin{DoxyParamCaption}
-\item[{{\bf NodeStruct} $\ast$}]{ p}
+\item[{{\bf NodeStruct} $\ast$}]{p}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}explicit\mbox{]}}}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_aaefbe98a05a7bf304612c3e7f7556f42}
@@ -254,7 +245,9 @@ Constructs node from internal pointer.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em p}]An internal node pointer. \end{DoxyParams}
+{\em p} & An internal node pointer. \\
+\hline
+\end{DoxyParams}
 
 
 \subsubsection{Member Function Documentation}
@@ -263,7 +256,7 @@ Constructs node from internal pointer.
 \index{AppendAttribute@{AppendAttribute}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{AppendAttribute}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} phys::xml::Node::AppendAttribute (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a09ae0a1499b13de2db447fc95dd3b747}
@@ -273,7 +266,9 @@ Creates an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and puts it at t
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the New attribute to be created\end{DoxyParams}
+{\em Name} & The name of the New attribute to be created\\
+\hline
+\end{DoxyParams}
 This attempts to create an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and stick it at the end of the list of attribute on the current \hyperlink{classphys_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
 The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on Failure. 
 \end{DoxyReturn}
@@ -282,7 +277,7 @@ The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hy
 \index{AppendChild@{AppendChild}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{AppendChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::AppendChild (
 \begin{DoxyParamCaption}
-\item[{{\bf NodeType}}]{ Type = {\ttfamily NodeElement}}
+\item[{{\bf NodeType}}]{Type = {\ttfamily NodeElement}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_aef276a1af2f747e56072173c18e8382d}
@@ -292,18 +287,20 @@ Creates a \hyperlink{classphys_1_1xml_1_1Node}{Node} and makes it a child of thi
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Type}]The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added to list of child Nodes. \end{DoxyParams}
+{\em Type} & The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added to list of child Nodes. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{classphys_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classphys_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} if there was an error. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000043}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+\item[\hyperlink{todo__todo000040}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
 \hypertarget{classphys_1_1xml_1_1Node_a7e9b4518e4d12517bc5ff756054e7395}{
 \index{phys::xml::Node@{phys::xml::Node}!AppendChild@{AppendChild}}
 \index{AppendChild@{AppendChild}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{AppendChild}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::AppendChild (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a7e9b4518e4d12517bc5ff756054e7395}
@@ -313,7 +310,9 @@ Creates an element \hyperlink{classphys_1_1xml_1_1Node}{Node} as a child of this
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be created.\end{DoxyParams}
+{\em Name} & The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be created.\\
+\hline
+\end{DoxyParams}
 Calls \hyperlink{classphys_1_1xml_1_1Node_aef276a1af2f747e56072173c18e8382d}{Node::AppendChild(NodeType)}; using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
 The desired \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -322,7 +321,7 @@ The desired \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyp
 \index{AppendCopy@{AppendCopy}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{AppendCopy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} phys::xml::Node::AppendCopy (
 \begin{DoxyParamCaption}
-\item[{const {\bf Attribute} \&}]{ proto}
+\item[{const {\bf Attribute} \&}]{proto}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a33de8cdb7ed8694acac79aedc81523c9}
@@ -332,7 +331,9 @@ Copies an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and puts the copy
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em proto}]The attribute to be copied.\end{DoxyParams}
+{\em proto} & The attribute to be copied.\\
+\hline
+\end{DoxyParams}
 This attempts to create a copy of an attribute \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and stick it at the end of the list of attribute on the current \hyperlink{classphys_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
 The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on Failure. 
 \end{DoxyReturn}
@@ -341,7 +342,7 @@ The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hy
 \index{AppendCopy@{AppendCopy}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{AppendCopy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::AppendCopy (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ proto}
+\item[{const {\bf Node} \&}]{proto}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a8b7872e4baf76dd5d19aa4f8d2b1a44d}
@@ -351,7 +352,9 @@ Copies a \hyperlink{classphys_1_1xml_1_1Node}{Node} and puts the copy at the end
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em proto}]The \hyperlink{classphys_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \end{DoxyParams}
+{\em proto} & The \hyperlink{classphys_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The copied \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -424,7 +427,7 @@ This will return the Value of the first available PCDATA node.
 \index{ChildValue@{ChildValue}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{ChildValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::ChildValue (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_aa8ce075bf47cb586b586800576569744}
@@ -434,7 +437,9 @@ Get the PCDATA of a given child. The same a calling \char`\"{}GetChild(Name).Chi
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The Name of the desired child node. \end{DoxyParams}
+{\em Name} & The Name of the desired child node. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 This will return the Value of the first available matching PCDATA node. 
 \end{DoxyReturn}
@@ -475,7 +480,7 @@ A Node::Iterator that reference the last child \hyperlink{classphys_1_1xml_1_1No
 \index{FindAttribute@{FindAttribute}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FindAttribute}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Predicate $>$ {\bf Attribute} phys::xml::Node::FindAttribute (
 \begin{DoxyParamCaption}
-\item[{Predicate}]{ pred}
+\item[{Predicate}]{pred}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_ab1ad6ee2e78ddd3f591faffe675ed910}
@@ -485,20 +490,22 @@ Search for an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} using a funct
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em pred}]a pointer to a function that accepts an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}, and returns bool.\end{DoxyParams}
+{\em pred} & a pointer to a function that accepts an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}, and returns bool.\\
+\hline
+\end{DoxyParams}
 This iterates through each \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this node, from begining to end and calls the Predicate function passing an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} to it. If the Predicate returns true the \hyperlink{classphys_1_1xml_1_1Node}{Node} it was just passed is returned. If Precdicate never returns true, it is called on every \hyperlink{classphys_1_1xml_1_1Node}{Node} and a blank \hyperlink{classphys_1_1xml_1_1Node}{Node} is returned. The Predicate is never called with a null value. \begin{DoxyReturn}{Returns}
 This returns the first \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that causes Predicate to return true. 
 \end{DoxyReturn}
 
 
-Definition at line 674 of file xml.h.
+Definition at line 683 of file xml.h.
 
 \hypertarget{classphys_1_1xml_1_1Node_a1041d264f8927adb691c47ccacff28d4}{
 \index{phys::xml::Node@{phys::xml::Node}!FindChild@{FindChild}}
 \index{FindChild@{FindChild}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FindChild}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Predicate $>$ {\bf Node} phys::xml::Node::FindChild (
 \begin{DoxyParamCaption}
-\item[{Predicate}]{ pred}
+\item[{Predicate}]{pred}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a1041d264f8927adb691c47ccacff28d4}
@@ -508,22 +515,24 @@ Search for an child ( only direct children ) \hyperlink{classphys_1_1xml_1_1Node
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em pred}]a pointer to a function that accepts an \hyperlink{classphys_1_1xml_1_1Node}{Node}, and returns bool.\end{DoxyParams}
+{\em pred} & a pointer to a function that accepts an \hyperlink{classphys_1_1xml_1_1Node}{Node}, and returns bool.\\
+\hline
+\end{DoxyParams}
 This iterates through all immediate children of this \hyperlink{classphys_1_1xml_1_1Node}{Node} and calls the Predicate function passing a \hyperlink{classphys_1_1xml_1_1Node}{Node} to it. If the Predicate returns true the \hyperlink{classphys_1_1xml_1_1Node}{Node} it was just passed is returned. If Predicate never returns true, it is called on every \hyperlink{classphys_1_1xml_1_1Node}{Node} and a blank \hyperlink{classphys_1_1xml_1_1Node}{Node} is returned. The Predicate is never called with a null value. \begin{DoxyReturn}{Returns}
 This returns the first \hyperlink{classphys_1_1xml_1_1Node}{Node} that causes Predicate to return true. 
 \end{DoxyReturn}
 
 
-Definition at line 692 of file xml.h.
+Definition at line 701 of file xml.h.
 
 \hypertarget{classphys_1_1xml_1_1Node_a8a362455b50e54454f145f9109a85e49}{
 \index{phys::xml::Node@{phys::xml::Node}!FindChildbyAttribute@{FindChildbyAttribute}}
 \index{FindChildbyAttribute@{FindChildbyAttribute}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FindChildbyAttribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::FindChildbyAttribute (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name, }
-\item[{const {\bf char\_\-t} $\ast$}]{ AttrName, }
-\item[{const {\bf char\_\-t} $\ast$}]{ AttrValue}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf char\_\-t} $\ast$}]{AttrName, }
+\item[{const {\bf char\_\-t} $\ast$}]{AttrValue}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a8a362455b50e54454f145f9109a85e49}
@@ -533,14 +542,23 @@ Find a \hyperlink{classphys_1_1xml_1_1Node}{Node} by an \hyperlink{classphys_1_1
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the matching \hyperlink{classphys_1_1xml_1_1Node}{Node}. \item[{\em AttrName}]The name of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. \item[{\em AttrValue}]The value of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\end{DoxyParams}
-Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive. \hypertarget{classphys_1_1xml_1_1Node_aa39ea17d1d1b25edeca148ab00bb4b87}{
+{\em Name} & The name of the matching \hyperlink{classphys_1_1xml_1_1Node}{Node}. \\
+\hline
+{\em AttrName} & The name of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. \\
+\hline
+{\em AttrValue} & The value of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\\
+\hline
+\end{DoxyParams}
+Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive. \begin{DoxyReturn}{Returns}
+The First matching \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1xml_1_1Node_aa39ea17d1d1b25edeca148ab00bb4b87}{
 \index{phys::xml::Node@{phys::xml::Node}!FindChildbyAttribute@{FindChildbyAttribute}}
 \index{FindChildbyAttribute@{FindChildbyAttribute}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FindChildbyAttribute}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::FindChildbyAttribute (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ AttrName, }
-\item[{const {\bf char\_\-t} $\ast$}]{ AttrValue}
+\item[{const {\bf char\_\-t} $\ast$}]{AttrName, }
+\item[{const {\bf char\_\-t} $\ast$}]{AttrValue}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_aa39ea17d1d1b25edeca148ab00bb4b87}
@@ -550,13 +568,20 @@ Find a \hyperlink{classphys_1_1xml_1_1Node}{Node} by an \hyperlink{classphys_1_1
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em AttrName}]The name of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. \item[{\em AttrValue}]The value of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\end{DoxyParams}
-Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive. \hypertarget{classphys_1_1xml_1_1Node_ab2311cefdf1d7f4886cbebd7350d7731}{
+{\em AttrName} & The name of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. \\
+\hline
+{\em AttrValue} & The value of the matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\\
+\hline
+\end{DoxyParams}
+Any Null pointers instead of character arrays passed in will cause undefined behavior. All Matching is Case sensitive. \begin{DoxyReturn}{Returns}
+The First matching \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1xml_1_1Node_ab2311cefdf1d7f4886cbebd7350d7731}{
 \index{phys::xml::Node@{phys::xml::Node}!FindNode@{FindNode}}
 \index{FindNode@{FindNode}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FindNode}]{\setlength{\rightskip}{0pt plus 5cm}template$<$typename Predicate $>$ {\bf Node} phys::xml::Node::FindNode (
 \begin{DoxyParamCaption}
-\item[{Predicate}]{ pred}
+\item[{Predicate}]{pred}
 \end{DoxyParamCaption}
 ) const\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_ab2311cefdf1d7f4886cbebd7350d7731}
@@ -566,20 +591,22 @@ Search for any \hyperlink{classphys_1_1xml_1_1Node}{Node} descended from this \h
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em pred}]a pointer to a function that accepts an \hyperlink{classphys_1_1xml_1_1Node}{Node}, and returns bool.\end{DoxyParams}
+{\em pred} & a pointer to a function that accepts an \hyperlink{classphys_1_1xml_1_1Node}{Node}, and returns bool.\\
+\hline
+\end{DoxyParams}
 This iterates through all children of this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and their children ( and so on), and calls the Predicate function passing each \hyperlink{classphys_1_1xml_1_1Node}{Node} to it. This iterates through all Nodes using a depth first algorithm. If the Predicate returns true the \hyperlink{classphys_1_1xml_1_1Node}{Node} it was just passed is returned. If Predicate never returns true, it is called on every \hyperlink{classphys_1_1xml_1_1Node}{Node} and a blank \hyperlink{classphys_1_1xml_1_1Node}{Node} is returned. The Predicate is never called with a null value. \begin{DoxyReturn}{Returns}
 This returns the first \hyperlink{classphys_1_1xml_1_1Node}{Node} that causes Predicate to return true. 
 \end{DoxyReturn}
 
 
-Definition at line 710 of file xml.h.
+Definition at line 719 of file xml.h.
 
 \hypertarget{classphys_1_1xml_1_1Node_a466766bf750da2a04acd8a32d2b8a458}{
 \index{phys::xml::Node@{phys::xml::Node}!FindNodes@{FindNodes}}
 \index{FindNodes@{FindNodes}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FindNodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf XPathNodeSet} phys::xml::Node::FindNodes (
 \begin{DoxyParamCaption}
-\item[{const {\bf XPathQuery} \&}]{ query}
+\item[{const {\bf XPathQuery} \&}]{query}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a466766bf750da2a04acd8a32d2b8a458}
@@ -589,20 +616,24 @@ Select a group of nodes by evaluating an XPath query.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em query}]The XPath query \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \end{DoxyParams}
+{\em query} & The XPath query \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 An \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} with the Matchs of the XPath query. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em query}]The XPath query \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \end{DoxyParams}
+{\em query} & The XPath query \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1xml_1_1Node_a7390ba1c09b83544365abc7bf8ec5b8f}{
 \index{phys::xml::Node@{phys::xml::Node}!FindNodes@{FindNodes}}
 \index{FindNodes@{FindNodes}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FindNodes}]{\setlength{\rightskip}{0pt plus 5cm}{\bf XPathNodeSet} phys::xml::Node::FindNodes (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ query, }
-\item[{{\bf XPathVariableSet} $\ast$}]{ variables = {\ttfamily 0}}
+\item[{const {\bf char\_\-t} $\ast$}]{query, }
+\item[{{\bf XPathVariableSet} $\ast$}]{variables = {\ttfamily 0}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a7390ba1c09b83544365abc7bf8ec5b8f}
@@ -612,7 +643,11 @@ Select a group of nodes by evaluating an XPath query.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em query}]The XPath query as a c-\/string to be evaluated. \item[{\em variables}]undocumented. \end{DoxyParams}
+{\em query} & The XPath query as a c-\/string to be evaluated. \\
+\hline
+{\em variables} & undocumented. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 An \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} with the Matchs of the XPath query. 
 \end{DoxyReturn}
@@ -621,7 +656,7 @@ An \hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet} with the Matchs of
 \index{FindSingleNode@{FindSingleNode}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FindSingleNode}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::FindSingleNode (
 \begin{DoxyParamCaption}
-\item[{const {\bf XPathQuery} \&}]{ query}
+\item[{const {\bf XPathQuery} \&}]{query}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a13b958f663f9605061e5e47dfd8e1966}
@@ -631,7 +666,9 @@ Select single node by evaluating an XPath query. Returns first node from the res
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em query}]The XPath query \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \end{DoxyParams}
+{\em query} & The XPath query \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPathQuery} class instance. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} The first matching XPath node. 
 \end{DoxyReturn}
@@ -640,8 +677,8 @@ Select single node by evaluating an XPath query. Returns first node from the res
 \index{FindSingleNode@{FindSingleNode}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FindSingleNode}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::FindSingleNode (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ query, }
-\item[{{\bf XPathVariableSet} $\ast$}]{ variables = {\ttfamily 0}}
+\item[{const {\bf char\_\-t} $\ast$}]{query, }
+\item[{{\bf XPathVariableSet} $\ast$}]{variables = {\ttfamily 0}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a11966aa8afdfa586404393ebae9b07f5}
@@ -651,7 +688,11 @@ Select single node by evaluating an XPath query. Returns first node from the res
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em query}]The XPath query as a c-\/string to be evaluated. \item[{\em variables}]undocumented. \end{DoxyParams}
+{\em query} & The XPath query as a c-\/string to be evaluated. \\
+\hline
+{\em variables} & undocumented. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} The first matching XPath node. 
 \end{DoxyReturn}
@@ -660,8 +701,8 @@ Select single node by evaluating an XPath query. Returns first node from the res
 \index{FirstElementByPath@{FirstElementByPath}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{FirstElementByPath}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::FirstElementByPath (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Path, }
-\item[{{\bf char\_\-t}}]{ delimiter = {\ttfamily '/'}}
+\item[{const {\bf char\_\-t} $\ast$}]{Path, }
+\item[{{\bf char\_\-t}}]{delimiter = {\ttfamily '/'}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_af2a9ac5c4e3252dca0e17720de093a9a}
@@ -670,10 +711,14 @@ Select single node by evaluating an XPath query. Returns first node from the res
 Search for a node by Path consisting of node names and . or .. elements. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000052}{Todo}]Investigate this more deeply. \end{Desc}
+\item[\hyperlink{todo__todo000049}{Todo}]Investigate this more deeply. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Path}]The path to search for. \item[{\em delimiter}]The character to use as a pathname separator, this defaults to '/'. \end{DoxyParams}
+{\em Path} & The path to search for. \\
+\hline
+{\em delimiter} & The character to use as a pathname separator, this defaults to '/'. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The matching \hyperlink{classphys_1_1xml_1_1Node}{Node}, of an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -682,7 +727,7 @@ The matching \hyperlink{classphys_1_1xml_1_1Node}{Node}, of an empty \hyperlink{
 \index{GetAttribute@{GetAttribute}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{GetAttribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::GetAttribute (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a338eeb27d2a0cf39823f228abb5d936c}
@@ -692,7 +737,9 @@ Attempt to get an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the desired \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. \end{DoxyParams}
+{\em Name} & The name of the desired \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents the first matching \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}, or an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on failure. 
 \end{DoxyReturn}
@@ -701,7 +748,7 @@ An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents the firs
 \index{GetChild@{GetChild}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{GetChild}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::GetChild (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a4d3f74c2c2613c84376b1ab6f3ed19c9}
@@ -711,7 +758,9 @@ Attempt to get a child \hyperlink{classphys_1_1xml_1_1Node}{Node} with a given n
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the desired child \hyperlink{classphys_1_1xml_1_1Node}{Node}. \end{DoxyParams}
+{\em Name} & The name of the desired child \hyperlink{classphys_1_1xml_1_1Node}{Node}. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{classphys_1_1xml_1_1Node}{Node} that represents the first desired child, or an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -800,7 +849,7 @@ A \hyperlink{classphys_1_1xml_1_1Node}{Node} that represents a sibling, or an em
 \index{GetNextSibling@{GetNextSibling}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{GetNextSibling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::GetNextSibling (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_abd5e18e840cbfc2f8336c20782bec488}
@@ -810,7 +859,9 @@ Attempt to retrieve the next sibling of this \hyperlink{classphys_1_1xml_1_1Node
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]A c-\/string that has the name of the node you to find.\end{DoxyParams}
+{\em Name} & A c-\/string that has the name of the node you to find.\\
+\hline
+\end{DoxyParams}
 A sibling of a \hyperlink{classphys_1_1xml_1_1Node}{Node} is another \hyperlink{classphys_1_1xml_1_1Node}{Node} that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that \hyperlink{classphys_1_1xml_1_1Node}{Node}, otherwise this return an empty \hyperlink{classphys_1_1xml_1_1Node}{Node}. \begin{DoxyReturn}{Returns}
 A \hyperlink{classphys_1_1xml_1_1Node}{Node} that represents a sibling with a matching name, or an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -851,7 +902,7 @@ A \hyperlink{classphys_1_1xml_1_1Node}{Node} that represents a sibling, or an em
 \index{GetPreviousSibling@{GetPreviousSibling}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{GetPreviousSibling}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::GetPreviousSibling (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_adaf337574156c86bbdb76264c5451c8d}
@@ -861,7 +912,9 @@ Attempt to retrieve the first previous sibling of this \hyperlink{classphys_1_1x
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]A c-\/string that has the name of the node you to find.\end{DoxyParams}
+{\em Name} & A c-\/string that has the name of the node you to find.\\
+\hline
+\end{DoxyParams}
 A sibling of a \hyperlink{classphys_1_1xml_1_1Node}{Node} is another \hyperlink{classphys_1_1xml_1_1Node}{Node} that shares the same parent. If this is and the sibling nodes are valid, this iterates through Nodes until a sibling with a Matching name is found or all siblings are checked. If a Match is found this retrieves that \hyperlink{classphys_1_1xml_1_1Node}{Node}, otherwise this return an empty \hyperlink{classphys_1_1xml_1_1Node}{Node}. \begin{DoxyReturn}{Returns}
 A \hyperlink{classphys_1_1xml_1_1Node}{Node} that represents a sibling with a matching name, or an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -892,23 +945,20 @@ A \hyperlink{classphys_1_1xml_1_1Node}{Node} that represents the root of the XML
 \label{d7/d0a/classphys_1_1xml_1_1Node_a830a1833c4b4b012f1b4481e91ccb1ca}
 
 
-Get hash Value (unique for handles to the same object). 
+Get hash Value (unique for handles to the same object) 
 
 \begin{DoxyReturn}{Returns}
-ptrdiff\_\-t 
-\end{DoxyReturn}
-\begin{DoxyInternal}{For internal use only.}
-\begin{DoxyReturn}{Returns}
+ptrdiff\_\-t
+
 A size\_\-t that uniquely identifies this node. 
 \end{DoxyReturn}
-\end{DoxyInternal}
 \hypertarget{classphys_1_1xml_1_1Node_a8444ca5b7b7411fb9fc4c002ea7beb9e}{
 \index{phys::xml::Node@{phys::xml::Node}!InsertAttributeAfter@{InsertAttributeAfter}}
 \index{InsertAttributeAfter@{InsertAttributeAfter}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{InsertAttributeAfter}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::InsertAttributeAfter (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name, }
-\item[{const {\bf Attribute} \&}]{ attr}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf Attribute} \&}]{attr}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a8444ca5b7b7411fb9fc4c002ea7beb9e}
@@ -918,7 +968,11 @@ Creates an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and puts it into
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the New attribute to be created \item[{\em attr}]An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and is just before where you want the new \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\end{DoxyParams}
+{\em Name} & The name of the New attribute to be created \\
+\hline
+{\em attr} & An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and is just before where you want the new \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\\
+\hline
+\end{DoxyParams}
 This attempts to create an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and stick it in the list of attributes, Just after another \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}, on the current \hyperlink{classphys_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
 The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on Failure. 
 \end{DoxyReturn}
@@ -927,8 +981,8 @@ The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hy
 \index{InsertAttributeBefore@{InsertAttributeBefore}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{InsertAttributeBefore}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::InsertAttributeBefore (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name, }
-\item[{const {\bf Attribute} \&}]{ attr}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf Attribute} \&}]{attr}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a0e4f1d13d8fb9c29068c01d8a0ac4217}
@@ -938,7 +992,11 @@ Creates an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and puts it into
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the New attribute to be created \item[{\em attr}]An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and is just after where you want the new \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\end{DoxyParams}
+{\em Name} & The name of the New attribute to be created \\
+\hline
+{\em attr} & An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and is just after where you want the new \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}.\\
+\hline
+\end{DoxyParams}
 This attempts to create an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and stick it in the list of attributes, Just before another \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}, on the current \hyperlink{classphys_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
 The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on Failure. 
 \end{DoxyReturn}
@@ -947,8 +1005,8 @@ The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hy
 \index{InsertChildAfter@{InsertChildAfter}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{InsertChildAfter}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::InsertChildAfter (
 \begin{DoxyParamCaption}
-\item[{{\bf NodeType}}]{ Type, }
-\item[{const {\bf Node} \&}]{ node}
+\item[{{\bf NodeType}}]{Type, }
+\item[{const {\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_affc4d9cc0ea7c89bac58d91a432af2ef}
@@ -957,10 +1015,16 @@ The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hy
 Creates a \hyperlink{classphys_1_1xml_1_1Node}{Node} and makes it a child of this one, and puts at the middle of the Child Nodes. 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000050}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+\item[\hyperlink{todo__todo000047}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Type}]The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added, just after another specific node. \item[{\em node}]The specific node to add the new one after. \end{DoxyParams}
+{\em Type} & The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added, just after another specific node. \\
+\hline
+{\em node} & The specific node to add the new one after. \\
+\hline
+\end{DoxyParams}
+\begin{Desc}
+\item[\hyperlink{todo__todo000048}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{classphys_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classphys_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} if there was an error. 
 \end{DoxyReturn}
@@ -969,8 +1033,8 @@ A \hyperlink{classphys_1_1xml_1_1Node}{Node} representing the freshly added \hyp
 \index{InsertChildAfter@{InsertChildAfter}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{InsertChildAfter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::InsertChildAfter (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name, }
-\item[{const {\bf Node} \&}]{ node}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a3a2bfe2c267c3ceb96dc4bdae6651a33}
@@ -980,7 +1044,11 @@ Creates an element \hyperlink{classphys_1_1xml_1_1Node}{Node} as a child of this
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be created. \item[{\em node}]The node just before were the Create node is to be placed.\end{DoxyParams}
+{\em Name} & The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be created. \\
+\hline
+{\em node} & The node just before were the Create node is to be placed.\\
+\hline
+\end{DoxyParams}
 Calls Node::InsertChildAfter(NodeType, Node); using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
 The desired \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -989,8 +1057,8 @@ The desired \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyp
 \index{InsertChildBefore@{InsertChildBefore}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{InsertChildBefore}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::InsertChildBefore (
 \begin{DoxyParamCaption}
-\item[{{\bf NodeType}}]{ Type, }
-\item[{const {\bf Node} \&}]{ node}
+\item[{{\bf NodeType}}]{Type, }
+\item[{const {\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a691684896ab5d29a634415e745aaec7a}
@@ -1000,39 +1068,47 @@ Creates a \hyperlink{classphys_1_1xml_1_1Node}{Node} and makes it a child of thi
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Type}]The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added, just before another specific node. \item[{\em node}]The specific node to add the new one before. \end{DoxyParams}
+{\em Type} & The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added, just before another specific node. \\
+\hline
+{\em node} & The specific node to add the new one before. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{classphys_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classphys_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} if there was an error. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000044}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
-\hypertarget{classphys_1_1xml_1_1Node_a8602cbfd1272b3c42c0ca1675076f3b2}{
+\item[\hyperlink{todo__todo000041}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
+\hypertarget{classphys_1_1xml_1_1Node_a613bf3df8709b58edaf12caab04796f4}{
 \index{phys::xml::Node@{phys::xml::Node}!InsertChildBefore@{InsertChildBefore}}
 \index{InsertChildBefore@{InsertChildBefore}!phys::xml::Node@{phys::xml::Node}}
-\paragraph[{InsertChildBefore}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::InsertChildBefore (
+\paragraph[{InsertChildBefore}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::InsertChildBefore (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name, }
-\item[{const {\bf Node} \&}]{ node}
+\item[{const {\bf char\_\-t} $\ast$}]{Name, }
+\item[{const {\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d7/d0a/classphys_1_1xml_1_1Node_a8602cbfd1272b3c42c0ca1675076f3b2}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a613bf3df8709b58edaf12caab04796f4}
 
 
 Creates an element \hyperlink{classphys_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classphys_1_1xml_1_1Node}{Node}, with the given name at the middle of the children. 
 
-Calls \hyperlink{classphys_1_1xml_1_1Node_a959da20ad42a837b64889008247a5c21}{Node::PrependChild(NodeType)}; using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
-The desired \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
-\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be created. \item[{\em node}]The node just after were the Create node is to be placed. \end{DoxyParams}
+{\em Name} & The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be created. \\
+\hline
+{\em node} & The node just after were the Create node is to be placed.\\
+\hline
+\end{DoxyParams}
+Calls Node::InsertChildBefore(NodeType, Node); using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
+The desired \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
 \hypertarget{classphys_1_1xml_1_1Node_ae866210535227753bcd02aac8bac9e9e}{
 \index{phys::xml::Node@{phys::xml::Node}!InsertCopyAfter@{InsertCopyAfter}}
 \index{InsertCopyAfter@{InsertCopyAfter}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{InsertCopyAfter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} phys::xml::Node::InsertCopyAfter (
 \begin{DoxyParamCaption}
-\item[{const {\bf Attribute} \&}]{ proto, }
-\item[{const {\bf Attribute} \&}]{ attr}
+\item[{const {\bf Attribute} \&}]{proto, }
+\item[{const {\bf Attribute} \&}]{attr}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_ae866210535227753bcd02aac8bac9e9e}
@@ -1042,7 +1118,11 @@ Copies an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and puts the copy
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em proto}]The attribute to be copied. \item[{\em attr}]An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and is just before where you want the new copy of proto.\end{DoxyParams}
+{\em proto} & The attribute to be copied. \\
+\hline
+{\em attr} & An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and is just before where you want the new copy of proto.\\
+\hline
+\end{DoxyParams}
 This attempts to create a copy of an attribute \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and stick it in the middle of the list of attributes, just after a selected attribute, on the current \hyperlink{classphys_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
 The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on Failure. 
 \end{DoxyReturn}
@@ -1051,8 +1131,8 @@ The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hy
 \index{InsertCopyAfter@{InsertCopyAfter}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{InsertCopyAfter}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::InsertCopyAfter (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ proto, }
-\item[{const {\bf Node} \&}]{ node}
+\item[{const {\bf Node} \&}]{proto, }
+\item[{const {\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a335c643bed6d4527191234fa773450e4}
@@ -1062,7 +1142,11 @@ Copies a \hyperlink{classphys_1_1xml_1_1Node}{Node} and puts the copy in the mid
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em proto}]The \hyperlink{classphys_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \item[{\em node}]The \hyperlink{classphys_1_1xml_1_1Node}{Node} just before the desired place in the list of children to insert the copied node. \end{DoxyParams}
+{\em proto} & The \hyperlink{classphys_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \\
+\hline
+{\em node} & The \hyperlink{classphys_1_1xml_1_1Node}{Node} just before the desired place in the list of children to insert the copied node. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The copied \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -1071,8 +1155,8 @@ The copied \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hype
 \index{InsertCopyBefore@{InsertCopyBefore}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{InsertCopyBefore}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::InsertCopyBefore (
 \begin{DoxyParamCaption}
-\item[{const {\bf Attribute} \&}]{ proto, }
-\item[{const {\bf Attribute} \&}]{ attr}
+\item[{const {\bf Attribute} \&}]{proto, }
+\item[{const {\bf Attribute} \&}]{attr}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a1491dda93107e3b3ea095e717698e587}
@@ -1082,7 +1166,11 @@ Copies an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and puts the copy
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em proto}]The attribute to be copied. \item[{\em attr}]An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and is just after where you want the new copy of proto.\end{DoxyParams}
+{\em proto} & The attribute to be copied. \\
+\hline
+{\em attr} & An \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} that represents an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on this \hyperlink{classphys_1_1xml_1_1Node}{Node}, and is just after where you want the new copy of proto.\\
+\hline
+\end{DoxyParams}
 This attempts to create a copy of an attribute \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and stick it in the middle of the list of attributes, just before a selected attribute, on the current \hyperlink{classphys_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
 The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on Failure. 
 \end{DoxyReturn}
@@ -1091,8 +1179,8 @@ The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hy
 \index{InsertCopyBefore@{InsertCopyBefore}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{InsertCopyBefore}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::InsertCopyBefore (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ proto, }
-\item[{const {\bf Node} \&}]{ node}
+\item[{const {\bf Node} \&}]{proto, }
+\item[{const {\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a97aec2d259e46d180ef1cde6554b0b73}
@@ -1102,7 +1190,11 @@ Copies a \hyperlink{classphys_1_1xml_1_1Node}{Node} and puts the copy in the mid
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em proto}]The \hyperlink{classphys_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \item[{\em node}]The \hyperlink{classphys_1_1xml_1_1Node}{Node} just after the desired place in the list of children to insert the copied node. \end{DoxyParams}
+{\em proto} & The \hyperlink{classphys_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \\
+\hline
+{\em node} & The \hyperlink{classphys_1_1xml_1_1Node}{Node} just after the desired place in the list of children to insert the copied node. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The copied \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -1119,11 +1211,9 @@ The copied \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hype
 
 Get internal pointer. 
 
-\begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
 A NodeStruct$\ast$ that points to the internal data of this \hyperlink{classphys_1_1xml_1_1Node}{Node} 
 \end{DoxyReturn}
-\end{DoxyInternal}
 \hypertarget{classphys_1_1xml_1_1Node_a53facd97d76240a3f3fffc86caacdc24}{
 \index{phys::xml::Node@{phys::xml::Node}!Name@{Name}}
 \index{Name@{Name}!phys::xml::Node@{phys::xml::Node}}
@@ -1143,21 +1233,6 @@ Returns A pointer to a const c-\/style array of the the character type (usually 
 \begin{DoxyWarning}{Warning}
 returns \char`\"{}\char`\"{} if \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. 
 \end{DoxyWarning}
-\hypertarget{classphys_1_1xml_1_1Node_add5c56d3e9bef050c774b9aa97240e98}{
-\index{phys::xml::Node@{phys::xml::Node}!OffSetDebug@{OffSetDebug}}
-\index{OffSetDebug@{OffSetDebug}!phys::xml::Node@{phys::xml::Node}}
-\paragraph[{OffSetDebug}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::OffSetDebug (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-) const}\hfill}
-\label{d7/d0a/classphys_1_1xml_1_1Node_add5c56d3e9bef050c774b9aa97240e98}
-
-
-Get node Offset in parsed file/string (in char\_\-t units) for debugging purposes. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
 \hypertarget{classphys_1_1xml_1_1Node_a29f5bb83e99bd9d09c0b78fd5a39c370}{
 \index{phys::xml::Node@{phys::xml::Node}!operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}}
 \index{operator unspecified\_\-bool\_\-type@{operator unspecified\_\-bool\_\-type}!phys::xml::Node@{phys::xml::Node}}
@@ -1195,7 +1270,7 @@ Returns false if the internal pointer \hyperlink{classNodeStruct}{NodeStruct} is
 \index{operator!=@{operator!=}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator!= (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
+\item[{const {\bf Node} \&}]{r}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a2fdcc611f72c98bc18ef25c9be5dc8ef}
@@ -1205,7 +1280,9 @@ Compares the internal values to check inequality.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+{\em r} & The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
 Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
 Returns true if any of the internal values don't match between this and the other \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
 \end{DoxyReturn}
@@ -1214,7 +1291,7 @@ Returns true if any of the internal values don't match between this and the othe
 \index{operator$<$@{operator$<$}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{operator$<$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$<$ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
+\item[{const {\bf Node} \&}]{r}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a509304b9bcc6e7891c6b4daa16168f94}
@@ -1224,7 +1301,9 @@ Compares the internal values to check for inequality.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+{\em r} & The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
 Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
 Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is greater than this one as per sequential comparison of internal pointers. 
 \end{DoxyReturn}
@@ -1233,7 +1312,7 @@ Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is greater 
 \index{operator$<$=@{operator$<$=}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{operator$<$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$<$= (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
+\item[{const {\bf Node} \&}]{r}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a01986a425fb67bb6157aea7f861f8729}
@@ -1243,7 +1322,9 @@ Compares the internal values to check for inequality.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+{\em r} & The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
 Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
 Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is greater than or equal to this one as per sequential comparison of internal pointers. 
 \end{DoxyReturn}
@@ -1252,7 +1333,7 @@ Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is greater 
 \index{operator==@{operator==}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator== (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
+\item[{const {\bf Node} \&}]{r}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a5ae85504c26f8494c0ba048dc2370ac2}
@@ -1262,7 +1343,9 @@ Compares the internal values to check equality.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+{\em r} & The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
 Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
 Returns true if all the internal values match between this and the other \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
 \end{DoxyReturn}
@@ -1271,7 +1354,7 @@ Returns true if all the internal values match between this and the other \hyperl
 \index{operator$>$@{operator$>$}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{operator$>$}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$>$ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
+\item[{const {\bf Node} \&}]{r}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a7fc3bf84e390269a115e546babf89dfd}
@@ -1281,7 +1364,9 @@ Compares the internal values to check for inequality.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+{\em r} & The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
 Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
 Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is less than this one as per sequential comparison of internal pointers. 
 \end{DoxyReturn}
@@ -1290,7 +1375,7 @@ Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is less tha
 \index{operator$>$=@{operator$>$=}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{operator$>$=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::operator$>$= (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ r}
+\item[{const {\bf Node} \&}]{r}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a444f80194136237ebc7c971b1c837155}
@@ -1300,7 +1385,9 @@ Compares the internal values to check for inequality.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em r}]The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\end{DoxyParams}
+{\em r} & The other \hyperlink{classphys_1_1xml_1_1Node}{Node} this is being compared to.\\
+\hline
+\end{DoxyParams}
 Many of the internal values are pointers, and it is the addresses of these that are being compared. \begin{DoxyReturn}{Returns}
 Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is less than or equal to this one as per sequential comparison of internal pointers. 
 \end{DoxyReturn}
@@ -1309,7 +1396,7 @@ Returns True if the other \hyperlink{classphys_1_1xml_1_1Node}{Node} is less tha
 \index{Path@{Path}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{Path}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Path (
 \begin{DoxyParamCaption}
-\item[{{\bf char\_\-t}}]{ delimiter = {\ttfamily '/'}}
+\item[{{\bf char\_\-t}}]{delimiter = {\ttfamily '/'}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a0bf85dc0820ba204e7c9498c6651aec8}
@@ -1319,7 +1406,9 @@ Get the absolute path to this \hyperlink{classphys_1_1xml_1_1Node}{Node}.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em delimiter}]The character to use as a pathname separator, this defaults to '/'. \end{DoxyParams}
+{\em delimiter} & The character to use as a pathname separator, this defaults to '/'. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A String containing an path 
 \end{DoxyReturn}
@@ -1328,7 +1417,7 @@ A String containing an path
 \index{PrependAttribute@{PrependAttribute}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{PrependAttribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::PrependAttribute (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_aa64f2de951032177731e8cba7282529d}
@@ -1338,34 +1427,39 @@ Creates an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and puts it at t
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the New attribute to be created\end{DoxyParams}
+{\em Name} & The name of the New attribute to be created\\
+\hline
+\end{DoxyParams}
 This attempts to create an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and stick it at the beginning of the list of attributes on the current \hyperlink{classphys_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
 The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on Failure. 
 \end{DoxyReturn}
-\hypertarget{classphys_1_1xml_1_1Node_a643a7e8d8cbee41647e4e1121660b5d0}{
+\hypertarget{classphys_1_1xml_1_1Node_a0956c7a882dcca4d19f0b5e3f6e4f89f}{
 \index{phys::xml::Node@{phys::xml::Node}!PrependChild@{PrependChild}}
 \index{PrependChild@{PrependChild}!phys::xml::Node@{phys::xml::Node}}
-\paragraph[{PrependChild}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::PrependChild (
+\paragraph[{PrependChild}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::PrependChild (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d7/d0a/classphys_1_1xml_1_1Node_a643a7e8d8cbee41647e4e1121660b5d0}
+\label{d7/d0a/classphys_1_1xml_1_1Node_a0956c7a882dcca4d19f0b5e3f6e4f89f}
 
 
 Creates an element \hyperlink{classphys_1_1xml_1_1Node}{Node} as a child of this \hyperlink{classphys_1_1xml_1_1Node}{Node}, with the given name at the beginning of the children. 
 
-\begin{Desc}
-\item[\hyperlink{todo__todo000051}{Todo}]Not all nodes can be added to other nodes, we need to figure it out and put it here. \end{Desc}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be created. \end{DoxyParams}
+{\em Name} & The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be created.\\
+\hline
+\end{DoxyParams}
+Calls \hyperlink{classphys_1_1xml_1_1Node_a959da20ad42a837b64889008247a5c21}{Node::PrependChild(NodeType)}; using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
+The desired \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
+\end{DoxyReturn}
 \hypertarget{classphys_1_1xml_1_1Node_a959da20ad42a837b64889008247a5c21}{
 \index{phys::xml::Node@{phys::xml::Node}!PrependChild@{PrependChild}}
 \index{PrependChild@{PrependChild}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{PrependChild}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::PrependChild (
 \begin{DoxyParamCaption}
-\item[{{\bf NodeType}}]{ Type = {\ttfamily NodeElement}}
+\item[{{\bf NodeType}}]{Type = {\ttfamily NodeElement}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a959da20ad42a837b64889008247a5c21}
@@ -1375,7 +1469,9 @@ Creates a \hyperlink{classphys_1_1xml_1_1Node}{Node} and makes it a child of thi
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Type}]The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added to the beginning list of child Nodes. \end{DoxyParams}
+{\em Type} & The NodeType of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to be added to the beginning list of child Nodes. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{classphys_1_1xml_1_1Node}{Node} representing the freshly added \hyperlink{classphys_1_1xml_1_1Node}{Node}, or an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} if there was an error. 
 \end{DoxyReturn}
@@ -1384,7 +1480,7 @@ A \hyperlink{classphys_1_1xml_1_1Node}{Node} representing the freshly added \hyp
 \index{PrependCopy@{PrependCopy}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{PrependCopy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attribute} phys::xml::Node::PrependCopy (
 \begin{DoxyParamCaption}
-\item[{const {\bf Attribute} \&}]{ proto}
+\item[{const {\bf Attribute} \&}]{proto}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_ae5bd358ec34b0c49c6e8caea073bcde6}
@@ -1394,7 +1490,9 @@ Copies an \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and puts the copy
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em proto}]The attribute to be copied.\end{DoxyParams}
+{\em proto} & The attribute to be copied.\\
+\hline
+\end{DoxyParams}
 This attempts to create a copy of an attribute \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} and stick it at the beginning of the list of attribute on the current \hyperlink{classphys_1_1xml_1_1Node}{Node}. This will fail and return an Empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is neither an Element nor a Declaration. This will fail and return an empty attribute if this \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. \begin{DoxyReturn}{Returns}
 The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} on Failure. 
 \end{DoxyReturn}
@@ -1403,7 +1501,7 @@ The created \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} or an empty \hy
 \index{PrependCopy@{PrependCopy}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{PrependCopy}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Node} phys::xml::Node::PrependCopy (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ proto}
+\item[{const {\bf Node} \&}]{proto}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a39b55aafd5a79bcd8dc5fdaed1a0ef10}
@@ -1413,7 +1511,9 @@ Copies a \hyperlink{classphys_1_1xml_1_1Node}{Node} and puts the copy at the sta
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em proto}]The \hyperlink{classphys_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \end{DoxyParams}
+{\em proto} & The \hyperlink{classphys_1_1xml_1_1Node}{Node} to be copied. If this is emptry, no work is performed. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 The copied \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
 \end{DoxyReturn}
@@ -1422,11 +1522,11 @@ The copied \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hype
 \index{Print@{Print}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Node::Print (
 \begin{DoxyParamCaption}
-\item[{{\bf Writer} \&}]{ WriterInstance, }
-\item[{const {\bf char\_\-t} $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
-\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}, }
-\item[{unsigned int}]{ Depth = {\ttfamily 0}}
+\item[{{\bf Writer} \&}]{WriterInstance, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}, }
+\item[{unsigned int}]{Depth = {\ttfamily 0}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}
@@ -1436,16 +1536,26 @@ Output the XML document using a \hyperlink{classphys_1_1xml_1_1Writer}{Writer}.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em WriterInstance}]The \hyperlink{classphys_1_1xml_1_1Writer}{Writer} that will be used to output the xml text. \item[{\em indent}]The Character(s) used to represent a tab in the output, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \item[{\em DocumentEncoding}]The \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{xml::Encoding} of the document, whichs defaults to EncodingAuto \item[{\em Depth}]This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\end{DoxyParams}
+{\em WriterInstance} & The \hyperlink{classphys_1_1xml_1_1Writer}{Writer} that will be used to output the xml text. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the output, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \\
+\hline
+{\em DocumentEncoding} & The \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{xml::Encoding} of the document, whichs defaults to EncodingAuto \\
+\hline
+{\em Depth} & This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\\
+\hline
+\end{DoxyParams}
 This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration. \hypertarget{classphys_1_1xml_1_1Node_ac705b62114dbc65a204ed2197891322c}{
 \index{phys::xml::Node@{phys::xml::Node}!Print@{Print}}
 \index{Print@{Print}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Node::Print (
 \begin{DoxyParamCaption}
-\item[{std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{ os, }
-\item[{const {\bf char\_\-t} $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
-\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
-\item[{unsigned int}]{ Depth = {\ttfamily 0}}
+\item[{std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{os, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{unsigned int}]{Depth = {\ttfamily 0}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_ac705b62114dbc65a204ed2197891322c}
@@ -1455,17 +1565,25 @@ Output the XML document using a Output Stream.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em os}]An output stream to send xml text to. \item[{\em indent}]The Character(s) used to represent a tab in the outpput, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault} \item[{\em Depth}]This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\end{DoxyParams}
+{\em os} & An output stream to send xml text to. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the outpput, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault} \\
+\hline
+{\em Depth} & This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\\
+\hline
+\end{DoxyParams}
 This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration. \hypertarget{classphys_1_1xml_1_1Node_aa4076d6ea0db2e5f5c720770bf02349e}{
 \index{phys::xml::Node@{phys::xml::Node}!Print@{Print}}
 \index{Print@{Print}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{Print}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Node::Print (
 \begin{DoxyParamCaption}
-\item[{std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{ os, }
-\item[{const {\bf char\_\-t} $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
-\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}, }
-\item[{unsigned int}]{ Depth = {\ttfamily 0}}
+\item[{std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{os, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}, }
+\item[{unsigned int}]{Depth = {\ttfamily 0}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_aa4076d6ea0db2e5f5c720770bf02349e}
@@ -1475,13 +1593,23 @@ Output the XML document using a Output Stream.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em os}]An output stream to send xml text to. \item[{\em indent}]The Character(s) used to represent a tab in the outpput, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault} \item[{\em DocumentEncoding}]The \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{xml::Encoding} of the document, whichs defaults to EncodingAuto \item[{\em Depth}]This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\end{DoxyParams}
+{\em os} & An output stream to send xml text to. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the outpput, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault} \\
+\hline
+{\em DocumentEncoding} & The \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{xml::Encoding} of the document, whichs defaults to EncodingAuto \\
+\hline
+{\em Depth} & This defaults to 0. The amount of times to prepend the indentation to the beginning of each output line.\\
+\hline
+\end{DoxyParams}
 This will never write a Byte Order Mark(BOM), and will default to not outputing a document declaration. \hypertarget{classphys_1_1xml_1_1Node_ab166876c5dd5a43a16eb0a4c110be7ca}{
 \index{phys::xml::Node@{phys::xml::Node}!RemoveAttribute@{RemoveAttribute}}
 \index{RemoveAttribute@{RemoveAttribute}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{RemoveAttribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::RemoveAttribute (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_ab166876c5dd5a43a16eb0a4c110be7ca}
@@ -1491,7 +1619,9 @@ Remove \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} as specified by name
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} to remove. \end{DoxyParams}
+{\em Name} & The name of the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} to remove. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the removal was successful, false otherwise. 
 \end{DoxyReturn}
@@ -1500,7 +1630,7 @@ True if the removal was successful, false otherwise.
 \index{RemoveAttribute@{RemoveAttribute}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{RemoveAttribute}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::RemoveAttribute (
 \begin{DoxyParamCaption}
-\item[{const {\bf Attribute} \&}]{ a}
+\item[{const {\bf Attribute} \&}]{a}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a9a0bec16ad12b7e0f7ed4cfd7c05a1f4}
@@ -1508,12 +1638,11 @@ True if the removal was successful, false otherwise.
 
 Remove specified \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}. 
 
-Calls Node::InsertChildBefore(NodeType, Node); using NodeElement as the NodeType. \begin{DoxyReturn}{Returns}
-The desired \hyperlink{classphys_1_1xml_1_1Node}{Node} on success, an empty \hyperlink{classphys_1_1xml_1_1Node}{Node} on failure. 
-\end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em a}]The \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} to look for. If the given \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} doesn't belong to this \hyperlink{classphys_1_1xml_1_1Node}{Node} then this will fail \end{DoxyParams}
+{\em a} & The \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} to look for. If the given \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} doesn't belong to this \hyperlink{classphys_1_1xml_1_1Node}{Node} then this will fail \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the removal was successful, false otherwise 
 \end{DoxyReturn}
@@ -1522,7 +1651,7 @@ True if the removal was successful, false otherwise
 \index{RemoveChild@{RemoveChild}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{RemoveChild}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::RemoveChild (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ n}
+\item[{const {\bf Node} \&}]{n}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a946bb656b94c9d3a561200cd2cd3ee11}
@@ -1532,7 +1661,9 @@ Remove specified child element.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em n}]The \hyperlink{classphys_1_1xml_1_1Node}{Node} to look for. If the given \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} doesn't belong to this \hyperlink{classphys_1_1xml_1_1Node}{Node} then this will fail \end{DoxyParams}
+{\em n} & The \hyperlink{classphys_1_1xml_1_1Node}{Node} to look for. If the given \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} doesn't belong to this \hyperlink{classphys_1_1xml_1_1Node}{Node} then this will fail \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the removal was successful, false otherwise 
 \end{DoxyReturn}
@@ -1541,7 +1672,7 @@ True if the removal was successful, false otherwise
 \index{RemoveChild@{RemoveChild}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{RemoveChild}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Node::RemoveChild (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ Name}
+\item[{const {\bf char\_\-t} $\ast$}]{Name}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a2612e301caa54ac6af135b8fb11b2e25}
@@ -1551,7 +1682,9 @@ Remove child element as specified by name.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to remove. \end{DoxyParams}
+{\em Name} & The name of the \hyperlink{classphys_1_1xml_1_1Node}{Node} to remove. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the removal was successful, false otherwise 
 \end{DoxyReturn}
@@ -1560,7 +1693,7 @@ True if the removal was successful, false otherwise
 \index{SetName@{SetName}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{SetName}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::SetName (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ rhs}
+\item[{const {\bf char\_\-t} $\ast$}]{rhs}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a81ae067921c4a37fae118c76c2af375f}
@@ -1570,7 +1703,9 @@ Set the name of this \hyperlink{classphys_1_1xml_1_1Node}{Node}.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The desired name of the \hyperlink{classphys_1_1xml_1_1Node}{Node}. \end{DoxyParams}
+{\em rhs} & The desired name of the \hyperlink{classphys_1_1xml_1_1Node}{Node}. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Node}{Node} cannot store a name or there is not enough memory. 
 \end{DoxyReturn}
@@ -1579,7 +1714,7 @@ True if successful, returns false if \hyperlink{classphys_1_1xml_1_1Node}{Node} 
 \index{SetValue@{SetValue}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{SetValue}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Node::SetValue (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ rhs}
+\item[{const {\bf char\_\-t} $\ast$}]{rhs}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a50ff9948dac721339561ed3442fb7034}
@@ -1589,12 +1724,14 @@ Set the value of this.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The new Value. \end{DoxyParams}
+{\em rhs} & The new Value. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if successful, returns false if this is empty or there is not enough memory. 
 \end{DoxyReturn}
 \begin{Desc}
-\item[\hyperlink{todo__todo000042}{Todo}]update this to make the error return code redundant and use an exception instead. 
+\item[\hyperlink{todo__todo000039}{Todo}]update this to make the error return code redundant and use an exception instead. 
 
 Review for possiblity of buffer overflow. \end{Desc}
 \hypertarget{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{
@@ -1602,7 +1739,7 @@ Review for possiblity of buffer overflow. \end{Desc}
 \index{Traverse@{Traverse}!phys::xml::Node@{phys::xml::Node}}
 \paragraph[{Traverse}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Node::Traverse (
 \begin{DoxyParamCaption}
-\item[{{\bf TreeWalker} \&}]{ walker}
+\item[{{\bf TreeWalker} \&}]{walker}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/d0a/classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}
@@ -1612,7 +1749,9 @@ Perform sophisticated (or whatever) algorithms on this and all descendant Nodes 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em walker}]Any class that fully implement xml::Treewalker. This is where the algorithm to be run is located. \end{DoxyParams}
+{\em walker} & Any class that fully implement xml::Treewalker. This is where the algorithm to be run is located. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if every descendant \hyperlink{classphys_1_1xml_1_1Node}{Node} of this \hyperlink{classphys_1_1xml_1_1Node}{Node} was iterated through, false if it didn't go through every \hyperlink{classphys_1_1xml_1_1Node}{Node}. 
 \end{DoxyReturn}
@@ -1654,24 +1793,6 @@ Returns A pointer to a const c-\/style array of the the character type (usually 
 \begin{DoxyWarning}{Warning}
 returns \char`\"{}\char`\"{} if \hyperlink{classphys_1_1xml_1_1Node}{Node} is empty. 
 \end{DoxyWarning}
-
-
-\subsubsection{Member Data Documentation}
-\hypertarget{classphys_1_1xml_1_1Node_acfef549b712d4599e579ed5495037acd}{
-\index{phys::xml::Node@{phys::xml::Node}!\_\-GetRoot@{\_\-GetRoot}}
-\index{\_\-GetRoot@{\_\-GetRoot}!phys::xml::Node@{phys::xml::Node}}
-\paragraph[{\_\-GetRoot}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::Node::\_\-GetRoot}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d7/d0a/classphys_1_1xml_1_1Node_acfef549b712d4599e579ed5495037acd}
-
-
-Stores pointers to the \hyperlink{classphys_1_1xml_1_1Node}{Node} data and some metadata. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 474 of file xml.h.
-
 
 
 The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}

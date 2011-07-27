@@ -86,15 +86,15 @@ Default Constructor.
 
 Basic all zero initialization constructor. 
 
-Definition at line 48 of file vector2.cpp.
+Definition at line 51 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_ae8d3c95a5a60d12e706739cbadf01ffb}{
 \index{phys::Vector2@{phys::Vector2}!Vector2@{Vector2}}
 \index{Vector2@{Vector2}!phys::Vector2@{phys::Vector2}}
 \paragraph[{Vector2}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector2::Vector2 (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ x, }
-\item[{{\bf Real}}]{ y}
+\item[{{\bf Real}}]{x, }
+\item[{{\bf Real}}]{y}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_ae8d3c95a5a60d12e706739cbadf01ffb}
@@ -104,17 +104,21 @@ Real value Constructor.
 
 Constructor that sets both vectors. 
 \begin{DoxyParams}{Parameters}
-\item[{\em x}]Coordinate on the X vector. \item[{\em y}]Coordinate on the Y vector. \end{DoxyParams}
+{\em x} & Coordinate on the X vector. \\
+\hline
+{\em y} & Coordinate on the Y vector. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 54 of file vector2.cpp.
+Definition at line 57 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_af3dbb91ef994e19b68c84e4e26eafac3}{
 \index{phys::Vector2@{phys::Vector2}!Vector2@{Vector2}}
 \index{Vector2@{Vector2}!phys::Vector2@{phys::Vector2}}
 \paragraph[{Vector2}]{\setlength{\rightskip}{0pt plus 5cm}phys::Vector2::Vector2 (
 \begin{DoxyParamCaption}
-\item[{Ogre::Vector2}]{ Vec}
+\item[{Ogre::Vector2}]{Vec}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_af3dbb91ef994e19b68c84e4e26eafac3}
@@ -124,10 +128,12 @@ Ogre Value Constructor.
 
 Constructor that sets all values to match the Ogre vector. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Vec}]The vector to be copied to make this vector. \end{DoxyParams}
+{\em Vec} & The vector to be copied to make this vector. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 60 of file vector2.cpp.
+Definition at line 63 of file vector2.cpp.
 
 
 
@@ -137,7 +143,7 @@ Definition at line 60 of file vector2.cpp.
 \index{ExtractOgreVector2@{ExtractOgreVector2}!phys::Vector2@{phys::Vector2}}
 \paragraph[{ExtractOgreVector2}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector2::ExtractOgreVector2 (
 \begin{DoxyParamCaption}
-\item[{Ogre::Vector2}]{ Ours}
+\item[{Ogre::Vector2}]{Ours}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_af12824b786ce4b91443b5dbd700dfd58}
@@ -147,10 +153,12 @@ Copies an existing Ogre vector2.
 
 This function will copy the values stored in an existing Ogre vector2 and set the values of this class to be the same. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Ours}]The vector2 to be extracted. \end{DoxyParams}
+{\em Ours} & The vector2 to be extracted. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 73 of file vector2.cpp.
+Definition at line 76 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_adc6efedbdfdca596b719decc87ee2e4b}{
 \index{phys::Vector2@{phys::Vector2}!GetOgreVector2@{GetOgreVector2}}
@@ -167,14 +175,14 @@ Gets a Ogre vector2.
 
 Creates a Ogre vector2 with values equal to this class and returns it. 
 
-Definition at line 65 of file vector2.cpp.
+Definition at line 68 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a074ca2a4d54925f745dbb9effd5c7e19}{
 \index{phys::Vector2@{phys::Vector2}!operator!=@{operator!=}}
 \index{operator!=@{operator!=}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector2::operator!= (
 \begin{DoxyParamCaption}
-\item[{const {\bf phys::Vector2} \&}]{ Vec2}
+\item[{const {\bf phys::Vector2} \&}]{Vec2}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a074ca2a4d54925f745dbb9effd5c7e19}
@@ -184,17 +192,19 @@ Equality Comparison Operator.
 
 Returns true if X!=X or Y!=Y. If any of those do not match this returns false. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2}. \end{DoxyParams}
+{\em Vec2} & This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2}. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 89 of file vector2.cpp.
+Definition at line 92 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a186c1da597e1471a9ee5b07cc8bb9fb8}{
 \index{phys::Vector2@{phys::Vector2}!operator!=@{operator!=}}
 \index{operator!=@{operator!=}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector2::operator!= (
 \begin{DoxyParamCaption}
-\item[{const Ogre::Vector2 \&}]{ Vec2}
+\item[{const Ogre::Vector2 \&}]{Vec2}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a186c1da597e1471a9ee5b07cc8bb9fb8}
@@ -204,17 +214,19 @@ Equality Comparison Operator.
 
 Returns true if X!=X or Y!=Y. If any of those do not match this returns false. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Vec2}]This is the other Ogre::Vector2. \end{DoxyParams}
+{\em Vec2} & This is the other Ogre::Vector2. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 103 of file vector2.cpp.
+Definition at line 106 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a6a253bb2507b9254a102c0793bf0f215}{
 \index{phys::Vector2@{phys::Vector2}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator$\ast$ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Vec2}
+\item[{const {\bf Vector2} \&}]{Vec2}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a6a253bb2507b9254a102c0793bf0f215}
@@ -224,17 +236,19 @@ Multiplaction Operator.
 
 Allows for multiplaction from a \hyperlink{classphys_1_1Vector2}{phys::Vector2} 
 \begin{DoxyParams}{Parameters}
-\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \end{DoxyParams}
+{\em Vec2} & This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 161 of file vector2.cpp.
+Definition at line 164 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a59fa4aaadcccd04bf6de8fcd84b31c6d}{
 \index{phys::Vector2@{phys::Vector2}!operator$\ast$@{operator$\ast$}}
 \index{operator$\ast$@{operator$\ast$}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator$\ast$ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{ scalar}
+\item[{const {\bf Real} \&}]{scalar}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a59fa4aaadcccd04bf6de8fcd84b31c6d}
@@ -242,22 +256,24 @@ Definition at line 161 of file vector2.cpp.
 
 Scaling by multiplication. 
 
-This Multiplies X, Y and Z by scalar \begin{DoxyReturn}{Returns}
+This Multiplies X and Y by scalar \begin{DoxyReturn}{Returns}
 This returns a \hyperlink{classphys_1_1Vector2}{Vector2} that has been scaled 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by \end{DoxyParams}
+{\em scalar} & This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 112 of file vector2.cpp.
+Definition at line 115 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a0b1555274551eb9bdea20d762c446e99}{
 \index{phys::Vector2@{phys::Vector2}!operator$\ast$=@{operator$\ast$=}}
 \index{operator$\ast$=@{operator$\ast$=}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator$\ast$=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector2::operator$\ast$= (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{ scalar}
+\item[{const {\bf Real} \&}]{scalar}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a0b1555274551eb9bdea20d762c446e99}
@@ -265,19 +281,21 @@ Definition at line 112 of file vector2.cpp.
 
 Scaling by multiplication. 
 
-This Multiplies X, Y and Z by scalar and stores the changes in this \hyperlink{classphys_1_1Vector2}{Vector2}. 
+This Multiplies X and Y by scalar and stores the changes in this \hyperlink{classphys_1_1Vector2}{Vector2}. 
 \begin{DoxyParams}{Parameters}
-\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by. \end{DoxyParams}
+{\em scalar} & This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 130 of file vector2.cpp.
+Definition at line 133 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a62102e9d75364c6be43723867cec3df8}{
 \index{phys::Vector2@{phys::Vector2}!operator+@{operator+}}
 \index{operator+@{operator+}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator+ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Vec2}
+\item[{const {\bf Vector2} \&}]{Vec2}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a62102e9d75364c6be43723867cec3df8}
@@ -287,17 +305,19 @@ Addition Operator.
 
 Allows for addition from a \hyperlink{classphys_1_1Vector2}{phys::Vector2} 
 \begin{DoxyParams}{Parameters}
-\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \end{DoxyParams}
+{\em Vec2} & This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 145 of file vector2.cpp.
+Definition at line 148 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a0aef47f873ef5a78707dd850d7d59504}{
 \index{phys::Vector2@{phys::Vector2}!operator-\/@{operator-\/}}
 \index{operator-\/@{operator-\/}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator-\/ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Vec2}
+\item[{const {\bf Vector2} \&}]{Vec2}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a0aef47f873ef5a78707dd850d7d59504}
@@ -307,17 +327,19 @@ Subraction Operator.
 
 Allows for subtraction from a \hyperlink{classphys_1_1Vector2}{phys::Vector2} 
 \begin{DoxyParams}{Parameters}
-\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \end{DoxyParams}
+{\em Vec2} & This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 153 of file vector2.cpp.
+Definition at line 156 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a51f7d8ce03f7ab05137b277532edf93b}{
 \index{phys::Vector2@{phys::Vector2}!operator/@{operator/}}
 \index{operator/@{operator/}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator/ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{ scalar}
+\item[{const {\bf Real} \&}]{scalar}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a51f7d8ce03f7ab05137b277532edf93b}
@@ -325,22 +347,24 @@ Definition at line 153 of file vector2.cpp.
 
 Scaling by Division. 
 
-This Diisionn X, Y and Z by scalar \begin{DoxyReturn}{Returns}
+This Diisionn X and Y by scalar \begin{DoxyReturn}{Returns}
 This returns a \hyperlink{classphys_1_1Vector2}{Vector2} that has been scaled 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by \end{DoxyParams}
+{\em scalar} & This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 120 of file vector2.cpp.
+Definition at line 123 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a3e4afe212ce1c739942aa8385c8f71e9}{
 \index{phys::Vector2@{phys::Vector2}!operator/@{operator/}}
 \index{operator/@{operator/}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::Vector2::operator/ (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Vec2}
+\item[{const {\bf Vector2} \&}]{Vec2}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a3e4afe212ce1c739942aa8385c8f71e9}
@@ -350,17 +374,19 @@ Division Operator.
 
 Allows for division from a \hyperlink{classphys_1_1Vector2}{phys::Vector2} 
 \begin{DoxyParams}{Parameters}
-\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \end{DoxyParams}
+{\em Vec2} & This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2} \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 169 of file vector2.cpp.
+Definition at line 172 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a27a0da5b4cfa49ea92dd16107692775b}{
 \index{phys::Vector2@{phys::Vector2}!operator/=@{operator/=}}
 \index{operator/=@{operator/=}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator/=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Vector2::operator/= (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{ scalar}
+\item[{const {\bf Real} \&}]{scalar}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a27a0da5b4cfa49ea92dd16107692775b}
@@ -368,19 +394,21 @@ Definition at line 169 of file vector2.cpp.
 
 Scaling by Division. 
 
-This Division X, Y and Z by scalar and and stores the changes in this \hyperlink{classphys_1_1Vector2}{Vector2}. 
+This Division X and Y by scalar and and stores the changes in this \hyperlink{classphys_1_1Vector2}{Vector2}. 
 \begin{DoxyParams}{Parameters}
-\item[{\em scalar}]This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by \end{DoxyParams}
+{\em scalar} & This is the amount to scale the \hyperlink{classphys_1_1Vector2}{Vector2} by \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 136 of file vector2.cpp.
+Definition at line 139 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a2fe433e9401748547b19cc5be891ed52}{
 \index{phys::Vector2@{phys::Vector2}!operator==@{operator==}}
 \index{operator==@{operator==}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector2::operator== (
 \begin{DoxyParamCaption}
-\item[{const Ogre::Vector2 \&}]{ Vec2}
+\item[{const Ogre::Vector2 \&}]{Vec2}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a2fe433e9401748547b19cc5be891ed52}
@@ -390,17 +418,19 @@ Equality Comparison Operator.
 
 Returns true if X==X and Y==Y. If any of those do not match this returns false. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Vec2}]This is the other Ogre::Vector2. \end{DoxyParams}
+{\em Vec2} & This is the other Ogre::Vector2. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 96 of file vector2.cpp.
+Definition at line 99 of file vector2.cpp.
 
 \hypertarget{classphys_1_1Vector2_a89874b6def8107146ca7079a2de49360}{
 \index{phys::Vector2@{phys::Vector2}!operator==@{operator==}}
 \index{operator==@{operator==}!phys::Vector2@{phys::Vector2}}
 \paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::Vector2::operator== (
 \begin{DoxyParamCaption}
-\item[{const {\bf phys::Vector2} \&}]{ Vec2}
+\item[{const {\bf phys::Vector2} \&}]{Vec2}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d2c/classphys_1_1Vector2_a89874b6def8107146ca7079a2de49360}
@@ -410,10 +440,12 @@ Equality Comparison Operator.
 
 Returns true if X==X and Y==Y. If any of those do not match this returns false. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Vec2}]This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2}. \end{DoxyParams}
+{\em Vec2} & This is the other \hyperlink{classphys_1_1Vector2}{phys::Vector2}. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 82 of file vector2.cpp.
+Definition at line 85 of file vector2.cpp.
 
 
 

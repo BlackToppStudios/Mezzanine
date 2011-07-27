@@ -1,0 +1,740 @@
+\hypertarget{classphys_1_1UI_1_1Spinner}{
+\subsection{phys::UI::Spinner Class Reference}
+\label{d7/d81/classphys_1_1UI_1_1Spinner}\index{phys::UI::Spinner@{phys::UI::Spinner}}
+}
+
+
+This is a simple widget for a numeric variable in a box.  
+
+
+
+
+{\ttfamily \#include $<$uispinner.h$>$}
+
+Inheritance diagram for phys::UI::Spinner:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d7/d81/classphys_1_1UI_1_1Spinner}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UI_1_1Spinner_ab82a06990b7422d1c028069608b32d85}{Spinner} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const UI::SpinnerStyle \&SStyle, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_adc7629a1ef57ef62a4e453ce3c66d808}{
+\hyperlink{classphys_1_1UI_1_1Spinner_adc7629a1ef57ef62a4e453ce3c66d808}{$\sim$Spinner} ()}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_adc7629a1ef57ef62a4e453ce3c66d808}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a4fddc28f38174c4a89761efa00ae88c3}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Spinner_a3bb14ddd6426debf035e65b9885bc25b}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_ac30c60ae55de67078a09c2d996a694fa}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_ac30c60ae55de67078a09c2d996a694fa}{Show} ()}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_ac30c60ae55de67078a09c2d996a694fa}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_adcf8000c6d6eea51b52bac0d7f05bfd2}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_adcf8000c6d6eea51b52bac0d7f05bfd2}{Hide} ()}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_adcf8000c6d6eea51b52bac0d7f05bfd2}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a7943087a7b61ec2ac7dcb7acab0e5345}{SetSpinnerValue} (const int \&ValueToSet)
+\begin{DoxyCompactList}\small\item\em Sets the current value of this widget. \item\end{DoxyCompactList}\item 
+virtual int \hyperlink{classphys_1_1UI_1_1Spinner_ae08a2762eb31aa28fcccf044973a2395}{GetSpinnerValue} ()
+\begin{DoxyCompactList}\small\item\em Gets the current value stored in this spinner. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a933ec4a012ee5406b5ec576b0585a9c9}{SetValueLimits} (const int \&Lower, const int \&Upper)
+\begin{DoxyCompactList}\small\item\em Sets limits on what the value contained in this widget can be. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_abc02184e58175e363e2dfc1148ebd4d7}{SetEditable} (bool Edit)
+\begin{DoxyCompactList}\small\item\em Sets whether or not this widget should be allowed to be edited directly. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Spinner_a32005fcea4898c07cd469aa70cad3016}{GetEditable} ()
+\begin{DoxyCompactList}\small\item\em Gets whether or not this widget is currently editable. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a66719b7ef5896598a12942b6dc148b21}{EnableDecimalDisplay} (bool Enable, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Places=1)
+\begin{DoxyCompactList}\small\item\em Enables the display of Reals for the value rather then Wholes. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1Spinner_ae594a38213702563841f5817609c492e}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a7b520a5aa26772bd15e880887d174fa6}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Spinner_a0cfed1bd9532351eac373b0f23495225}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a66bc26a2252cacd71e8c409e35672909}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Spinner_a7ee24e3f5c11550950696a2c9094d716}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a01641c5ed2b360307f3056f142964bf4}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Spinner_a670d8ff577a8feb6df6f507843f08756}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a564782cd7135a708295c51e722f22716}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Spinner_af2843083a652f2d7ca6e929582f501fd}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Spinner_a2263f427c90b21a208bf0a6bfb3d2201}{GetIncrement} ()
+\begin{DoxyCompactList}\small\item\em Gets the increment button of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ \hyperlink{classphys_1_1UI_1_1Spinner_af6f05d36565da18b8a57c3f50f8eb73d}{GetDecrement} ()
+\begin{DoxyCompactList}\small\item\em Gets the decrement button of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ \hyperlink{classphys_1_1UI_1_1Spinner_a65497e1c3cb290172dfedcb6ecbc9e8f}{GetValueDisplay} ()
+\begin{DoxyCompactList}\small\item\em Gets the value display caption of this widget. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a74fd8b5185cae46beef77599fe6ef44f}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a74fd8b5185cae46beef77599fe6ef44f}{CreateHorizontalSpinner} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight)}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a74fd8b5185cae46beef77599fe6ef44f}
+
+\begin{DoxyCompactList}\small\item\em Constructor helper function for creating a horizontally aligned spinner. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_aea2fe91287c9757abb6758a9b0c129cb}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_aea2fe91287c9757abb6758a9b0c129cb}{CreateVerticalSpinner} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight)}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_aea2fe91287c9757abb6758a9b0c129cb}
+
+\begin{DoxyCompactList}\small\item\em Constructor helper function for creating a vertically aligned spinner. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_aeca447d00d7165acb9f6f4cd253607e5}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_aeca447d00d7165acb9f6f4cd253607e5}{CreateBoxSpinner} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&GlyphHeight)}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_aeca447d00d7165acb9f6f4cd253607e5}
+
+\begin{DoxyCompactList}\small\item\em Constructor helper function for creating a box shaped spinner with buttons together. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_abbbdba70d318c15564e120136d472ae9}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_abbbdba70d318c15564e120136d472ae9}{CalculateOffsets} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_abbbdba70d318c15564e120136d472ae9}
+
+\begin{DoxyCompactList}\small\item\em Calculates the relative offsets for the UI elements that make up this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a27c0c8ab2d9dd70df0a2a4536718bbe8}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a27c0c8ab2d9dd70df0a2a4536718bbe8}{SetLocation} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a27c0c8ab2d9dd70df0a2a4536718bbe8}
+
+\begin{DoxyCompactList}\small\item\em Internal function for setting the location(position) of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a79840ed511ddc21d4281dc145504916e}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a79840ed511ddc21d4281dc145504916e}{SetArea} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a79840ed511ddc21d4281dc145504916e}
+
+\begin{DoxyCompactList}\small\item\em Internal function for setting the area(size) of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_aa39b1f3c2b0ac1bfe6824f6423915918}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_aa39b1f3c2b0ac1bfe6824f6423915918}{CheckValueLimits} ()}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_aa39b1f3c2b0ac1bfe6824f6423915918}
+
+\begin{DoxyCompactList}\small\item\em Checks to ensure the value is within it's limits. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_ac9cc6fde628120156d187b9d283579be}{
+virtual \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1UI_1_1Spinner_ac9cc6fde628120156d187b9d283579be}{GetValueAsText} ()}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_ac9cc6fde628120156d187b9d283579be}
+
+\begin{DoxyCompactList}\small\item\em Gets the current value of this spinner as text, for use with updating the caption. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a9f19c47509ab45d47807d25b919f8af2}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_a9f19c47509ab45d47807d25b919f8af2}{Update} (bool Force=false)}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a9f19c47509ab45d47807d25b919f8af2}
+
+\begin{DoxyCompactList}\small\item\em For use with widget update/automation. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_acefea149af0d9e9afa06cd5f5559a546}{
+virtual void \hyperlink{classphys_1_1UI_1_1Spinner_acefea149af0d9e9afa06cd5f5559a546}{ProcessCapturedInputs} ()}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_acefea149af0d9e9afa06cd5f5559a546}
+
+\begin{DoxyCompactList}\small\item\em Processes the captured inputs. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a2dc35aa5066ea7f4af22f51f20acab93}{
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ {\bfseries Increment}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a2dc35aa5066ea7f4af22f51f20acab93}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_ab33c3820178dc12cd617747e8287bc32}{
+\hyperlink{classphys_1_1UI_1_1Button}{Button} $\ast$ {\bfseries Decrement}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_ab33c3820178dc12cd617747e8287bc32}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_ac4bc2bfd4686babfabf98cc8789c4a90}{
+\hyperlink{classphys_1_1UI_1_1Caption}{Caption} $\ast$ {\bfseries ValueDisplay}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_ac4bc2bfd4686babfabf98cc8789c4a90}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_ad6701f959d56ddeb868cd21ca2c58fef}{
+bool {\bfseries DecimalDisplay}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_ad6701f959d56ddeb868cd21ca2c58fef}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_af2cf15ef2cb951dbc88a7759b86644b2}{
+bool {\bfseries Editable}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_af2cf15ef2cb951dbc88a7759b86644b2}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_adb04a25026f70dbcaba9d7380ac87569}{
+bool {\bfseries IncrementLock}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_adb04a25026f70dbcaba9d7380ac87569}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a04a718e03b3f68367ec335ef883dc12d}{
+bool {\bfseries DecrementLock}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a04a718e03b3f68367ec335ef883dc12d}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a6d7fcdd0d6db3ea34f695cedba26dfc8}{
+int {\bfseries Value}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a6d7fcdd0d6db3ea34f695cedba26dfc8}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a36629c08efd1cd554ae91d2b73e5791a}{
+int {\bfseries MaxValue}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a36629c08efd1cd554ae91d2b73e5791a}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a615c7f96fd2267247a7537043d521a08}{
+int {\bfseries MinValue}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a615c7f96fd2267247a7537043d521a08}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a52fded30d32953017aebee4eaf11477a}{
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} {\bfseries DecimalPlaces}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a52fded30d32953017aebee4eaf11477a}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a9d9d8a835f927a1ad747331f034cbcba}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} {\bfseries EditCache}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a9d9d8a835f927a1ad747331f034cbcba}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a9e46f97ce5d56a7595ee49071dcf29bc}{
+UI::SpinnerStyle {\bfseries SpinLayout}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a9e46f97ce5d56a7595ee49071dcf29bc}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_ad023b770c4ef4fff72ebae0e5d29836a}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries IncrementOffset}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_ad023b770c4ef4fff72ebae0e5d29836a}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_aa8daf18f7da42d29bc12bd449a285a10}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries DecrementOffset}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_aa8daf18f7da42d29bc12bd449a285a10}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1Spinner_a528269192dd2e2b85b31c8aa8b0552c8}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries ValueDisplayOffset}}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a528269192dd2e2b85b31c8aa8b0552c8}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a simple widget for a numeric variable in a box. Like the \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} \hyperlink{classphys_1_1UI_1_1Widget}{Widget}, the size provided will be for the area of all the elements of this widget combined. In the case of separate format, if horizontal, the width of the increment and decrement buttons will be the same as the height or if vertical the height will be the same as the width provided. In either case making the two buttons perfectly square in size, with the remaining space going to the display caption. \par
+ In the case of the together format, then half of the height is taken and that is used for both the width and height, and then they are placed on the appropriate side. 
+
+Definition at line 64 of file uispinner.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UI_1_1Spinner_ab82a06990b7422d1c028069608b32d85}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!Spinner@{Spinner}}
+\index{Spinner@{Spinner}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{Spinner}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Spinner::Spinner (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const UI::SpinnerStyle \&}]{SStyle, }
+\item[{const {\bf Real} \&}]{GlyphHeight, }
+\item[{{\bf Layer} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_ab82a06990b7422d1c028069608b32d85}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The Name for the \hyperlink{classphys_1_1UI_1_1Widget}{Widget}. \\
+\hline
+{\em Position} & The position of the widget. \\
+\hline
+{\em Size} & The size of the widget. \\
+\hline
+{\em SStyle} & The layout of buttons this widget will have. See SpinnerStyle enum or class description for more details. \\
+\hline
+{\em GlyphHeight} & The desired relative height of the text you want. \\
+\hline
+{\em parent} & The parent layer that created this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 59 of file uispinner.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1UI_1_1Spinner_ae594a38213702563841f5817609c492e}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!CheckMouseHover@{CheckMouseHover}}
+\index{CheckMouseHover@{CheckMouseHover}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Spinner::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_ae594a38213702563841f5817609c492e}
+
+
+Checks to see if the current mouse position is over this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool value, true if the mouse is over this widget, false if it's not. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259dc}{phys::UI::Widget}.
+
+
+
+Definition at line 405 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a66719b7ef5896598a12942b6dc148b21}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!EnableDecimalDisplay@{EnableDecimalDisplay}}
+\index{EnableDecimalDisplay@{EnableDecimalDisplay}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{EnableDecimalDisplay}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Spinner::EnableDecimalDisplay (
+\begin{DoxyParamCaption}
+\item[{bool}]{Enable, }
+\item[{const {\bf Whole} \&}]{Places = {\ttfamily 1}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a66719b7ef5896598a12942b6dc148b21}
+
+
+Enables the display of Reals for the value rather then Wholes. 
+
+Internally it is still storing wholes, just they are converted before being displayed. 
+\begin{DoxyParams}{Parameters}
+{\em Enable} & Whether or not to enable this feature. \\
+\hline
+{\em DecimalPlaces} & The number of places passed the decimal you wish to display. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 399 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a7ee24e3f5c11550950696a2c9094d716}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Spinner::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a7ee24e3f5c11550950696a2c9094d716}
+
+
+Sets the pixel position of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel position of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e7}{phys::UI::Widget}.
+
+
+
+Definition at line 446 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_af2843083a652f2d7ca6e929582f501fd}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Spinner::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_af2843083a652f2d7ca6e929582f501fd}
+
+
+Sets the pixel size of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel size of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed2}{phys::UI::Widget}.
+
+
+
+Definition at line 473 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_af6f05d36565da18b8a57c3f50f8eb73d}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!GetDecrement@{GetDecrement}}
+\index{GetDecrement@{GetDecrement}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{GetDecrement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::Spinner::GetDecrement (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_af6f05d36565da18b8a57c3f50f8eb73d}
+
+
+Gets the decrement button of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the decrement button. 
+\end{DoxyReturn}
+
+
+Definition at line 483 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a32005fcea4898c07cd469aa70cad3016}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!GetEditable@{GetEditable}}
+\index{GetEditable@{GetEditable}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{GetEditable}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Spinner::GetEditable (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a32005fcea4898c07cd469aa70cad3016}
+
+
+Gets whether or not this widget is currently editable. 
+
+\begin{DoxyReturn}{Returns}
+Return Returns a bool indicating whether or not this widget is editable. 
+\end{DoxyReturn}
+
+
+Definition at line 394 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a2263f427c90b21a208bf0a6bfb3d2201}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!GetIncrement@{GetIncrement}}
+\index{GetIncrement@{GetIncrement}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{GetIncrement}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Button} $\ast$ phys::UI::Spinner::GetIncrement (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a2263f427c90b21a208bf0a6bfb3d2201}
+
+
+Gets the increment button of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the increment button. 
+\end{DoxyReturn}
+
+
+Definition at line 478 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a0cfed1bd9532351eac373b0f23495225}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Spinner::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a0cfed1bd9532351eac373b0f23495225}
+
+
+Gets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative position of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{phys::UI::Widget}.
+
+
+
+Definition at line 435 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a670d8ff577a8feb6df6f507843f08756}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::Spinner::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a670d8ff577a8feb6df6f507843f08756}
+
+
+Gets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative size of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{phys::UI::Widget}.
+
+
+
+Definition at line 460 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_ae08a2762eb31aa28fcccf044973a2395}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!GetSpinnerValue@{GetSpinnerValue}}
+\index{GetSpinnerValue@{GetSpinnerValue}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{GetSpinnerValue}]{\setlength{\rightskip}{0pt plus 5cm}int phys::UI::Spinner::GetSpinnerValue (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_ae08a2762eb31aa28fcccf044973a2395}
+
+
+Gets the current value stored in this spinner. 
+
+\begin{DoxyReturn}{Returns}
+Returns an int, which is the current value within this spinner. 
+\end{DoxyReturn}
+
+
+Definition at line 378 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a65497e1c3cb290172dfedcb6ecbc9e8f}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!GetValueDisplay@{GetValueDisplay}}
+\index{GetValueDisplay@{GetValueDisplay}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{GetValueDisplay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::Spinner::GetValueDisplay (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a65497e1c3cb290172dfedcb6ecbc9e8f}
+
+
+Gets the value display caption of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the value display caption. 
+\end{DoxyReturn}
+
+
+Definition at line 488 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a3bb14ddd6426debf035e65b9885bc25b}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Spinner::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a3bb14ddd6426debf035e65b9885bc25b}
+
+
+Gets the visibility of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}{phys::UI::Widget}.
+
+
+
+Definition at line 350 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a66bc26a2252cacd71e8c409e35672909}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Spinner::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a66bc26a2252cacd71e8c409e35672909}
+
+
+Sets the pixel position of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the pixel position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{phys::UI::Widget}.
+
+
+
+Definition at line 440 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a564782cd7135a708295c51e722f22716}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Spinner::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a564782cd7135a708295c51e722f22716}
+
+
+Sets the pixel size of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the pixel size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120d}{phys::UI::Widget}.
+
+
+
+Definition at line 465 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_abc02184e58175e363e2dfc1148ebd4d7}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!SetEditable@{SetEditable}}
+\index{SetEditable@{SetEditable}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{SetEditable}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Spinner::SetEditable (
+\begin{DoxyParamCaption}
+\item[{bool}]{Edit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_abc02184e58175e363e2dfc1148ebd4d7}
+
+
+Sets whether or not this widget should be allowed to be edited directly. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Edit} & Whether or not this widget should be editable. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 389 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a7b520a5aa26772bd15e880887d174fa6}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Spinner::SetPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a7b520a5aa26772bd15e880887d174fa6}
+
+
+Sets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the relative position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d00}{phys::UI::Widget}.
+
+
+
+Definition at line 428 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a01641c5ed2b360307f3056f142964bf4}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Spinner::SetSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a01641c5ed2b360307f3056f142964bf4}
+
+
+Sets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the relative size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24d}{phys::UI::Widget}.
+
+
+
+Definition at line 451 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a7943087a7b61ec2ac7dcb7acab0e5345}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!SetSpinnerValue@{SetSpinnerValue}}
+\index{SetSpinnerValue@{SetSpinnerValue}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{SetSpinnerValue}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Spinner::SetSpinnerValue (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{ValueToSet}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a7943087a7b61ec2ac7dcb7acab0e5345}
+
+
+Sets the current value of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ValueToSet} & The value to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 371 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a933ec4a012ee5406b5ec576b0585a9c9}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!SetValueLimits@{SetValueLimits}}
+\index{SetValueLimits@{SetValueLimits}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{SetValueLimits}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Spinner::SetValueLimits (
+\begin{DoxyParamCaption}
+\item[{const int \&}]{Lower, }
+\item[{const int \&}]{Upper}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a933ec4a012ee5406b5ec576b0585a9c9}
+
+
+Sets limits on what the value contained in this widget can be. 
+
+Setting a limit of zero for both means no limits will be enforced. 
+\begin{DoxyParams}{Parameters}
+{\em Lower} & The Minimum allowed limit. \\
+\hline
+{\em Upper} & The Maximum allowed limit. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 383 of file uispinner.cpp.
+
+\hypertarget{classphys_1_1UI_1_1Spinner_a4fddc28f38174c4a89761efa00ae88c3}{
+\index{phys::UI::Spinner@{phys::UI::Spinner}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!phys::UI::Spinner@{phys::UI::Spinner}}
+\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Spinner::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d7/d81/classphys_1_1UI_1_1Spinner_a4fddc28f38174c4a89761efa00ae88c3}
+
+
+Sets the visibility of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em visible} & Bool determining whether or not this widget should be visible. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{phys::UI::Widget}.
+
+
+
+Definition at line 342 of file uispinner.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uispinner.h\item 
+uispinner.cpp\end{DoxyCompactItemize}

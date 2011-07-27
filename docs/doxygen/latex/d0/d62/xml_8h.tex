@@ -16,7 +16,7 @@ This is where bulk of the XML subsystem is declare, there are numerous class tha
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classphys_1_1xml_1_1Writer}{phys::xml::Writer}
-\begin{DoxyCompactList}\small\item\em Interface for node printing (see \hyperlink{classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}{Node::Print}). \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Interface for node printing (see \hyperlink{classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}{Node::Print}) \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1WriterFile}{phys::xml::WriterFile}
 \begin{DoxyCompactList}\small\item\em An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing to FILEs as defined in stdio. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1WriterStream}{phys::xml::WriterStream}
@@ -26,7 +26,7 @@ class \hyperlink{classphys_1_1xml_1_1Attribute}{phys::xml::Attribute}
 class \hyperlink{classphys_1_1xml_1_1Node}{phys::xml::Node}
 \begin{DoxyCompactList}\small\item\em A light-\/weight handle for manipulating nodes in DOM tree. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1NodeIterator}{phys::xml::NodeIterator}
-\begin{DoxyCompactList}\small\item\em Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node}). \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node}) \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1AttributeIterator}{phys::xml::AttributeIterator}
 \begin{DoxyCompactList}\small\item\em \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}). \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1TreeWalker}{phys::xml::TreeWalker}
@@ -67,16 +67,25 @@ namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
 \subsubsection*{Defines}
 \begin{DoxyCompactItemize}
 \item 
-\#define \hyperlink{xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}{\_\-XML\_\-H}
+\hypertarget{xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}{
+\#define \hyperlink{xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}{\_\-XML\_\-H}}
+\label{d0/d62/xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}
+
 \begin{DoxyCompactList}\small\item\em Prevents accidental loading of the file \hyperlink{xml_8h}{xml.h} multiple times. \item\end{DoxyCompactList}\item 
 \hypertarget{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{
 \#define \hyperlink{xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}{XML\_\-DEPRECATED}}
 \label{d0/d62/xml_8h_a60d2d7f2bb8f028815ac45dfd648c66c}
 
 \begin{DoxyCompactList}\small\item\em Used to mark XML internals as deprecated at the compiler level. \item\end{DoxyCompactList}\item 
-\#define \hyperlink{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{XML\_\-TEXT}(t)~t
+\hypertarget{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{
+\#define \hyperlink{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{XML\_\-TEXT}(t)~t}
+\label{d0/d62/xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}
+
 \begin{DoxyCompactList}\small\item\em Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time. \item\end{DoxyCompactList}\item 
-\#define \hyperlink{xml_8h_a75d691145d9a12b8a9ea795964a0c917}{XML\_\-CHAR}~char
+\hypertarget{xml_8h_a75d691145d9a12b8a9ea795964a0c917}{
+\#define \hyperlink{xml_8h_a75d691145d9a12b8a9ea795964a0c917}{XML\_\-CHAR}~char}
+\label{d0/d62/xml_8h_a75d691145d9a12b8a9ea795964a0c917}
+
 \begin{DoxyCompactList}\small\item\em Links the Pugi character datatype to match the Physgame phys::Characterdatatype. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Typedefs}
 \begin{DoxyCompactItemize}
@@ -204,7 +213,7 @@ const unsigned int \hyperlink{namespacephys_1_1xml_a6463412ba9e404b6890e4721255c
 const unsigned int \hyperlink{namespacephys_1_1xml_a52af747730d2b3a313eebed4cf49a333}{phys::xml::ParseEol} = 0x0020}
 \label{d9/d27/namespacephys_1_1xml_a52af747730d2b3a313eebed4cf49a333}
 
-\begin{DoxyCompactList}\small\item\em This flag determines if EOL characters are normalized (converted to xA) during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This flag determines if EOL characters are normalized (converted to \#xA) during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}{
 const unsigned int \hyperlink{namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}{phys::xml::ParseWconvAttribute} = 0x0040}
 \label{d9/d27/namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}
@@ -233,7 +242,7 @@ const unsigned int \hyperlink{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a524
 const unsigned int \hyperlink{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{phys::xml::FormatIndent} = 0x01}
 \label{d9/d27/namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}
 
-\begin{DoxyCompactList}\small\item\em Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_a76a253f60deb94ef39c255064afb6040}{
 const unsigned int \hyperlink{namespacephys_1_1xml_a76a253f60deb94ef39c255064afb6040}{phys::xml::FormatWriteBom} = 0x02}
 \label{d9/d27/namespacephys_1_1xml_a76a253f60deb94ef39c255064afb6040}
@@ -243,14 +252,17 @@ const unsigned int \hyperlink{namespacephys_1_1xml_a76a253f60deb94ef39c255064afb
 const unsigned int \hyperlink{namespacephys_1_1xml_a6f6696cbdc48011817adad7978e83976}{phys::xml::FormatRaw} = 0x04}
 \label{d9/d27/namespacephys_1_1xml_a6f6696cbdc48011817adad7978e83976}
 
-\begin{DoxyCompactList}\small\item\em Use raw output mode (no indentation and no line breaks are written). This flag is off by default. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Use raw output mode (no indentation and no line breaks are written). This flag is on by default. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_aee4ccb3535945d4808a0cf6abe4cb050}{
 const unsigned int \hyperlink{namespacephys_1_1xml_aee4ccb3535945d4808a0cf6abe4cb050}{phys::xml::FormatNoDeclaration} = 0x08}
 \label{d9/d27/namespacephys_1_1xml_aee4ccb3535945d4808a0cf6abe4cb050}
 
 \begin{DoxyCompactList}\small\item\em Omit default XML declaration even if there is no declaration in the document. This flag is off by default. \item\end{DoxyCompactList}\item 
-const unsigned int \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{phys::xml::FormatDefault} = FormatIndent
-\begin{DoxyCompactList}\small\item\em The default set of formatting flags. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{phys::xml::FormatDefault} = FormatRaw}
+\label{d9/d27/namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}
+
+\begin{DoxyCompactList}\small\item\em The default set of formatting flags. Only FormatRaw is enabled. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -258,43 +270,3 @@ This is where bulk of the XML subsystem is declare, there are numerous class tha
 
 Definition in file \hyperlink{xml_8h_source}{xml.h}.
 
-
-
-\subsubsection{Define Documentation}
-\hypertarget{xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}{
-\index{xml.h@{xml.h}!\_\-XML\_\-H@{\_\-XML\_\-H}}
-\index{\_\-XML\_\-H@{\_\-XML\_\-H}!xml.h@{xml.h}}
-\paragraph[{\_\-XML\_\-H}]{\setlength{\rightskip}{0pt plus 5cm}\#define \_\-XML\_\-H}\hfill}
-\label{d0/d62/xml_8h_a18cfd9eafeb7e99a44f25ab761ed4897}
-
-
-Prevents accidental loading of the file \hyperlink{xml_8h}{xml.h} multiple times. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-\hypertarget{xml_8h_a75d691145d9a12b8a9ea795964a0c917}{
-\index{xml.h@{xml.h}!XML\_\-CHAR@{XML\_\-CHAR}}
-\index{XML\_\-CHAR@{XML\_\-CHAR}!xml.h@{xml.h}}
-\paragraph[{XML\_\-CHAR}]{\setlength{\rightskip}{0pt plus 5cm}\#define XML\_\-CHAR~char}\hfill}
-\label{d0/d62/xml_8h_a75d691145d9a12b8a9ea795964a0c917}
-
-
-Links the Pugi character datatype to match the Physgame phys::Characterdatatype. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-\hypertarget{xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}{
-\index{xml.h@{xml.h}!XML\_\-TEXT@{XML\_\-TEXT}}
-\index{XML\_\-TEXT@{XML\_\-TEXT}!xml.h@{xml.h}}
-\paragraph[{XML\_\-TEXT}]{\setlength{\rightskip}{0pt plus 5cm}\#define XML\_\-TEXT(
-\begin{DoxyParamCaption}
-\item[{}]{t}
-\end{DoxyParamCaption}
-)~t}\hfill}
-\label{d0/d62/xml_8h_a98c5d1b3853d93a60bcc08bd92b1a71b}
-
-
-Used before the inclusion of string literal in the Pugi XML code, to allow the determination of the character type at compile time. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}

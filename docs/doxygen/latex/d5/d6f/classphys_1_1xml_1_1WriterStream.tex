@@ -41,7 +41,7 @@ Definition at line 323 of file xml.h.
 \index{WriterStream@{WriterStream}!phys::xml::WriterStream@{phys::xml::WriterStream}}
 \paragraph[{WriterStream}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::WriterStream::WriterStream (
 \begin{DoxyParamCaption}
-\item[{std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{ stream}
+\item[{std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{stream}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d5/d6f/classphys_1_1xml_1_1WriterStream_ae170ab7c429b6f7149d3540243329dfa}
@@ -51,13 +51,15 @@ A constructor that accepts a stream of characters.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em stream}]A stream to send stuff to. \end{DoxyParams}
+{\em stream} & A stream to send stuff to. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1xml_1_1WriterStream_aaebcd545af8e44cf6556a46077f0a366}{
 \index{phys::xml::WriterStream@{phys::xml::WriterStream}!WriterStream@{WriterStream}}
 \index{WriterStream@{WriterStream}!phys::xml::WriterStream@{phys::xml::WriterStream}}
 \paragraph[{WriterStream}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::WriterStream::WriterStream (
 \begin{DoxyParamCaption}
-\item[{std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{ stream}
+\item[{std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{stream}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d5/d6f/classphys_1_1xml_1_1WriterStream_aaebcd545af8e44cf6556a46077f0a366}
@@ -67,7 +69,9 @@ A constructor that accepts a stream of wide characters.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em stream}]A stream to send stuff to. \end{DoxyParams}
+{\em stream} & A stream to send stuff to. \\
+\hline
+\end{DoxyParams}
 
 
 \subsubsection{Member Function Documentation}
@@ -76,8 +80,8 @@ A constructor that accepts a stream of wide characters.
 \index{Write@{Write}!phys::xml::WriterStream@{phys::xml::WriterStream}}
 \paragraph[{Write}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::xml::WriterStream::Write (
 \begin{DoxyParamCaption}
-\item[{const void $\ast$}]{ data, }
-\item[{size\_\-t}]{ size}
+\item[{const void $\ast$}]{data, }
+\item[{size\_\-t}]{size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d5/d6f/classphys_1_1xml_1_1WriterStream_a743c3f41a010df17f54054031fdc4891}
@@ -87,7 +91,11 @@ This will be used to output xml to an external source such as a file or stream.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em data}]This is a pointer to something that will get written to the output \item[{\em size}]The size in bytes of whatever was passed in. \end{DoxyParams}
+{\em data} & This is a pointer to something that will get written to the output \\
+\hline
+{\em size} & The size in bytes of whatever was passed in. \\
+\hline
+\end{DoxyParams}
 
 
 Implements \hyperlink{classphys_1_1xml_1_1Writer_ab6d4758ab53743f236eb64d5b2dd7e9e}{phys::xml::Writer}.

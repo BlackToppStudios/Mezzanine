@@ -87,7 +87,7 @@ This behaves very similar to \hyperlink{classphys_1_1xml_1_1NodeIterator}{xml::N
 \end{DoxySeeAlso}
 
 
-Definition at line 875 of file xml.h.
+Definition at line 885 of file xml.h.
 
 
 
@@ -97,8 +97,8 @@ Definition at line 875 of file xml.h.
 \index{AttributeIterator@{AttributeIterator}!phys::xml::AttributeIterator@{phys::xml::AttributeIterator}}
 \paragraph[{AttributeIterator}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AttributeIterator::AttributeIterator (
 \begin{DoxyParamCaption}
-\item[{const {\bf Attribute} \&}]{ attr, }
-\item[{const {\bf Node} \&}]{ GetParent}
+\item[{const {\bf Attribute} \&}]{attr, }
+\item[{const {\bf Node} \&}]{GetParent}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{de/d78/classphys_1_1xml_1_1AttributeIterator_a175551035493cea0c9a56e36adcbac23}
@@ -108,7 +108,11 @@ Construct an iterator which points to the specified node.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em GetParent}]A \hyperlink{classphys_1_1xml_1_1Node}{Node} that contains the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this iterator will point to. \item[{\em attr}]The \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this iterator points to. \end{DoxyParams}
+{\em GetParent} & A \hyperlink{classphys_1_1xml_1_1Node}{Node} that contains the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this iterator will point to. \\
+\hline
+{\em attr} & The \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this iterator points to. \\
+\hline
+\end{DoxyParams}
 
 
 \subsubsection{Member Function Documentation}
@@ -117,7 +121,7 @@ Construct an iterator which points to the specified node.
 \index{operator!=@{operator!=}!phys::xml::AttributeIterator@{phys::xml::AttributeIterator}}
 \paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AttributeIterator::operator!= (
 \begin{DoxyParamCaption}
-\item[{const {\bf AttributeIterator} \&}]{ rhs}
+\item[{const {\bf AttributeIterator} \&}]{rhs}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{de/d78/classphys_1_1xml_1_1AttributeIterator_a600802085aa88e41bcb2611f8044af59}
@@ -127,7 +131,9 @@ Compares this \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterato
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The Right Hand Side \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator}. \end{DoxyParams}
+{\em rhs} & The Right Hand Side \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator}. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 False if the internal data stored in \hyperlink{classphys_1_1xml_1_1Node}{Node} this \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} refers to is the same as the metadata in the other AttributeIterator's \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}, True otherwise. 
 \end{DoxyReturn}
@@ -216,7 +222,7 @@ A pointer to the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this \hype
 \index{operator==@{operator==}!phys::xml::AttributeIterator@{phys::xml::AttributeIterator}}
 \paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AttributeIterator::operator== (
 \begin{DoxyParamCaption}
-\item[{const {\bf AttributeIterator} \&}]{ rhs}
+\item[{const {\bf AttributeIterator} \&}]{rhs}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{de/d78/classphys_1_1xml_1_1AttributeIterator_a0eb472612438f4541ad27390ce74f6f4}
@@ -226,7 +232,9 @@ Compares this \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterato
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em rhs}]The Right Hand Side \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \end{DoxyParams}
+{\em rhs} & The Right Hand Side \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the internal data stored in the \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} this \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator} refers to is the same as the metadata in the other AttributeIterator's \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}, false otherwise. 
 \end{DoxyReturn}

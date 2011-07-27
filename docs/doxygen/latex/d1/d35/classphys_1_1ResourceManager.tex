@@ -30,6 +30,8 @@ bool \hyperlink{classphys_1_1ResourceManager_a6fb3434f5d7be221e7a474765c625ad9}{
 \begin{DoxyCompactList}\small\item\em Imports serialized shape data from the disk to be used in an Actor. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ResourceManager_a0d7d3adce2ad4c70a3e867396e17b090}{AddResourceLocation} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Location, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Type, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group, const bool \&recursive=false)
 \begin{DoxyCompactList}\small\item\em Adds a location for graphical resources. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ResourceManager_afa5d686ad3b4c863580050994169cb6b}{DestroyResourceGroup} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&GroupName)
+\begin{DoxyCompactList}\small\item\em Destroys a resource group, unloading all of it's resources. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ResourceManager_a6ac7835a02dff32e60a73320f9c9dabb}{DeclareResource} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Type, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Group)
 \begin{DoxyCompactList}\small\item\em Prepares the resource for use. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1ResourceManager_aa2f44129dfc3dc0b0ee332a2bba6078d}{InitResourceGroup} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
@@ -126,10 +128,10 @@ Definition at line 68 of file resourcemanager.cpp.
 \index{AddResourceLocation@{AddResourceLocation}!phys::ResourceManager@{phys::ResourceManager}}
 \paragraph[{AddResourceLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ResourceManager::AddResourceLocation (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{ Location, }
-\item[{const {\bf String} \&}]{ Type, }
-\item[{const {\bf String} \&}]{ Group, }
-\item[{const bool \&}]{ recursive = {\ttfamily false}}
+\item[{const {\bf String} \&}]{Location, }
+\item[{const {\bf String} \&}]{Type, }
+\item[{const {\bf String} \&}]{Group, }
+\item[{const bool \&}]{recursive = {\ttfamily false}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d35/classphys_1_1ResourceManager_a0d7d3adce2ad4c70a3e867396e17b090}
@@ -139,20 +141,28 @@ Adds a location for graphical resources.
 
 This function will add a location on the disk to find files needed to create and manipulate graphical objects. Once a resource is added it must be initalized using ResourceManager::InitResourceGroup(String Group). 
 \begin{DoxyParams}{Parameters}
-\item[{\em Location}]The location on the file system the resource can be found. \item[{\em Type}]The kind of file system the location can be found in. \par
- Options are: filesystem, zip. \item[{\em Group}]The name of the group the resources at this location belong to. \item[{\em recursive}]Whether or not to search sub-\/directories. \end{DoxyParams}
+{\em Location} & The location on the file system the resource can be found. \\
+\hline
+{\em Type} & The kind of file system the location can be found in. \par
+ Options are: filesystem, zip. \\
+\hline
+{\em Group} & The name of the group the resources at this location belong to. \\
+\hline
+{\em recursive} & Whether or not to search sub-\/directories. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 168 of file resourcemanager.cpp.
+Definition at line 170 of file resourcemanager.cpp.
 
 \hypertarget{classphys_1_1ResourceManager_a6ac7835a02dff32e60a73320f9c9dabb}{
 \index{phys::ResourceManager@{phys::ResourceManager}!DeclareResource@{DeclareResource}}
 \index{DeclareResource@{DeclareResource}!phys::ResourceManager@{phys::ResourceManager}}
 \paragraph[{DeclareResource}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ResourceManager::DeclareResource (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{ Name, }
-\item[{const {\bf String} \&}]{ Type, }
-\item[{const {\bf String} \&}]{ Group}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{Type, }
+\item[{const {\bf String} \&}]{Group}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d35/classphys_1_1ResourceManager_a6ac7835a02dff32e60a73320f9c9dabb}
@@ -162,11 +172,39 @@ Prepares the resource for use.
 
 This function can be thought of as a preloader. This will prepare the defined resource located on the disk for use. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]Name of the file/resource to be 'prepared'. \item[{\em Type}]The type of resource that the file is. \par
- Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture. \item[{\em Group}]Name of the group the resource belongs to. \end{DoxyParams}
+{\em Name} & Name of the file/resource to be 'prepared'. \\
+\hline
+{\em Type} & The type of resource that the file is. \par
+ Options are: Font, GpuProgram, HighLevelGpuProgram, Material, Mesh, Skeleton, Texture. \\
+\hline
+{\em Group} & Name of the group the resource belongs to. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 174 of file resourcemanager.cpp.
+Definition at line 189 of file resourcemanager.cpp.
+
+\hypertarget{classphys_1_1ResourceManager_afa5d686ad3b4c863580050994169cb6b}{
+\index{phys::ResourceManager@{phys::ResourceManager}!DestroyResourceGroup@{DestroyResourceGroup}}
+\index{DestroyResourceGroup@{DestroyResourceGroup}!phys::ResourceManager@{phys::ResourceManager}}
+\paragraph[{DestroyResourceGroup}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ResourceManager::DestroyResourceGroup (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{GroupName}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d1/d35/classphys_1_1ResourceManager_afa5d686ad3b4c863580050994169cb6b}
+
+
+Destroys a resource group, unloading all of it's resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em GroupName} & The name of the resource group to destroy. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 176 of file resourcemanager.cpp.
 
 \hypertarget{classphys_1_1ResourceManager_a2114714999441c095bc28d3673c2490e}{
 \index{phys::ResourceManager@{phys::ResourceManager}!DoMainLoopItems@{DoMainLoopItems}}
@@ -187,15 +225,15 @@ Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7
 
 
 
-Definition at line 215 of file resourcemanager.cpp.
+Definition at line 230 of file resourcemanager.cpp.
 
 \hypertarget{classphys_1_1ResourceManager_a9511ec29e5c732602b1495173abf56ef}{
 \index{phys::ResourceManager@{phys::ResourceManager}!ExportShapeData@{ExportShapeData}}
 \index{ExportShapeData@{ExportShapeData}!phys::ResourceManager@{phys::ResourceManager}}
 \paragraph[{ExportShapeData}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ResourceManager::ExportShapeData (
 \begin{DoxyParamCaption}
-\item[{{\bf ActorBase} $\ast$}]{ Actor, }
-\item[{const {\bf String} \&}]{ FileName}
+\item[{{\bf ActorBase} $\ast$}]{Actor, }
+\item[{const {\bf String} \&}]{FileName}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d35/classphys_1_1ResourceManager_a9511ec29e5c732602b1495173abf56ef}
@@ -205,17 +243,21 @@ Exports an actors shape data to a file.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em FileName}]The Filename to save the data too. Remember to include a \char`\"{}.bullet\char`\"{} extension to the filename when serializing. \item[{\em Actor}]The Actor's Shape to save \end{DoxyParams}
+{\em FileName} & The Filename to save the data too. Remember to include a \char`\"{}.bullet\char`\"{} extension to the filename when serializing. \\
+\hline
+{\em Actor} & The Actor's Shape to save \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 106 of file resourcemanager.cpp.
+Definition at line 108 of file resourcemanager.cpp.
 
 \hypertarget{classphys_1_1ResourceManager_a13f0aef080b9a353fe6c910c2781de50}{
 \index{phys::ResourceManager@{phys::ResourceManager}!GetResourceStream@{GetResourceStream}}
 \index{GetResourceStream@{GetResourceStream}!phys::ResourceManager@{phys::ResourceManager}}
 \paragraph[{GetResourceStream}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ResourceInputStream} $\ast$ phys::ResourceManager::GetResourceStream (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{ FileName}
+\item[{const {\bf String} \&}]{FileName}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d35/classphys_1_1ResourceManager_a13f0aef080b9a353fe6c910c2781de50}
@@ -225,13 +267,15 @@ Get a stream to read from the specified file.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em FileName}]The name of the File you want to stream data from \end{DoxyParams}
+{\em FileName} & The name of the File you want to stream data from \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 An derivative of std::istream a \hyperlink{classphys_1_1ResourceInputStream}{ResourceInputStream} that will pull it's data from the desired resource
 \end{DoxyReturn}
 The returned \hyperlink{classphys_1_1ResourceInputStream}{ResourceInputStream} is the Caller's responsibility to deal with. If it is not deleted it is a memory leak. 
 
-Definition at line 197 of file resourcemanager.cpp.
+Definition at line 212 of file resourcemanager.cpp.
 
 \hypertarget{classphys_1_1ResourceManager_a9e5468e5428f5c108c7b3c01e94eba46}{
 \index{phys::ResourceManager@{phys::ResourceManager}!GetType@{GetType}}
@@ -255,15 +299,15 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 219 of file resourcemanager.cpp.
+Definition at line 234 of file resourcemanager.cpp.
 
 \hypertarget{classphys_1_1ResourceManager_a6fb3434f5d7be221e7a474765c625ad9}{
 \index{phys::ResourceManager@{phys::ResourceManager}!ImportShapeData@{ImportShapeData}}
 \index{ImportShapeData@{ImportShapeData}!phys::ResourceManager@{phys::ResourceManager}}
 \paragraph[{ImportShapeData}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ResourceManager::ImportShapeData (
 \begin{DoxyParamCaption}
-\item[{{\bf ActorBase} $\ast$}]{ Actor, }
-\item[{const {\bf String} \&}]{ FileName}
+\item[{{\bf ActorBase} $\ast$}]{Actor, }
+\item[{const {\bf String} \&}]{FileName}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d35/classphys_1_1ResourceManager_a6fb3434f5d7be221e7a474765c625ad9}
@@ -273,10 +317,14 @@ Imports serialized shape data from the disk to be used in an Actor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em FileName}]The Filename to load the data from. Remember to include a \char`\"{}.bullet\char`\"{} extension to the filename when serializing. \item[{\em Actor}]The Actor's Shape to restore from file \end{DoxyParams}
+{\em FileName} & The Filename to load the data from. Remember to include a \char`\"{}.bullet\char`\"{} extension to the filename when serializing. \\
+\hline
+{\em Actor} & The Actor's Shape to restore from file \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 126 of file resourcemanager.cpp.
+Definition at line 128 of file resourcemanager.cpp.
 
 \hypertarget{classphys_1_1ResourceManager_a9be3250f1f1153c9e079f82736eb00a8}{
 \index{phys::ResourceManager@{phys::ResourceManager}!Initialize@{Initialize}}
@@ -299,14 +347,14 @@ Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed
 
 
 
-Definition at line 211 of file resourcemanager.cpp.
+Definition at line 226 of file resourcemanager.cpp.
 
 \hypertarget{classphys_1_1ResourceManager_aa2f44129dfc3dc0b0ee332a2bba6078d}{
 \index{phys::ResourceManager@{phys::ResourceManager}!InitResourceGroup@{InitResourceGroup}}
 \index{InitResourceGroup@{InitResourceGroup}!phys::ResourceManager@{phys::ResourceManager}}
 \paragraph[{InitResourceGroup}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ResourceManager::InitResourceGroup (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{ Name}
+\item[{const {\bf String} \&}]{Name}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d35/classphys_1_1ResourceManager_aa2f44129dfc3dc0b0ee332a2bba6078d}
@@ -316,10 +364,12 @@ Makes a resource group ready to use.
 
 After adding all of your resources and declaring them as nessessary, this function is the final step. After calling this function any and all resources within the defined group will be ready to use. Do not initialize any more groups then you need to however, as that will take up memory and drop performance. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]Name of the resource group. \end{DoxyParams}
+{\em Name} & Name of the resource group. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 179 of file resourcemanager.cpp.
+Definition at line 194 of file resourcemanager.cpp.
 
 
 

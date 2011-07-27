@@ -169,8 +169,8 @@ The Class costructor. Should not be called manually, use the sound manager inste
 \index{Sound@{Sound}!phys::Sound@{phys::Sound}}
 \paragraph[{Sound}]{\setlength{\rightskip}{0pt plus 5cm}phys::Sound::Sound (
 \begin{DoxyParamCaption}
-\item[{cAudio::IAudioSource $\ast$}]{ Source, }
-\item[{cAudio::IAudioManager $\ast$}]{ manager}
+\item[{cAudio::IAudioSource $\ast$}]{Source, }
+\item[{cAudio::IAudioManager $\ast$}]{manager}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a0452d6079bcb201f9d2f3b2742eb21b6}
@@ -180,7 +180,9 @@ Class Constructor. Internal use only.
 
 The Class costructor. Should not be called manually, use the sound manager instead. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Source}]Pointer to the sound source. \end{DoxyParams}
+{\em Source} & Pointer to the sound source. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 48 of file sound.cpp.
@@ -730,7 +732,7 @@ Definition at line 134 of file sound.cpp.
 \index{Loop@{Loop}!phys::Sound@{phys::Sound}}
 \paragraph[{Loop}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::Loop (
 \begin{DoxyParamCaption}
-\item[{bool}]{ ToLoop}
+\item[{bool}]{ToLoop}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_afd5645195ac744de62c5eefc01dbf0d0}
@@ -740,7 +742,9 @@ Sets whether this sound should loop.
 
 Sets whether this sound should restart once it's done playing. 
 \begin{DoxyParams}{Parameters}
-\item[{\em ToLoop}]Whether or not this sound should restart \end{DoxyParams}
+{\em ToLoop} & Whether or not this sound should restart \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 84 of file sound.cpp.
@@ -750,7 +754,7 @@ Definition at line 84 of file sound.cpp.
 \index{Move@{Move}!phys::Sound@{phys::Sound}}
 \paragraph[{Move}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::Move (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Position}
+\item[{{\bf Vector3}}]{Position}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a62075a732f25c0a07b428c09c6232814}
@@ -760,7 +764,9 @@ Moves the sound source.
 
 This function will set both the position and velocity of the sound source. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]The new position of the sound source. \end{DoxyParams}
+{\em Position} & The new position of the sound source. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 224 of file sound.cpp.
@@ -800,7 +806,7 @@ Definition at line 59 of file sound.cpp.
 \index{Play2d@{Play2d}!phys::Sound@{phys::Sound}}
 \paragraph[{Play2d}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::Play2d (
 \begin{DoxyParamCaption}
-\item[{bool}]{ Loop = {\ttfamily false}}
+\item[{bool}]{Loop = {\ttfamily false}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a853bb9a2c1b41cd82a385608614861e7}
@@ -810,7 +816,9 @@ Plays the sound in 2D mode.
 
 This will play the sound without altering it by it's position in 3D space. Ideal for music and ambient sounds. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Loop}]Whether or not the sound should restart once it's done playing. \end{DoxyParams}
+{\em Loop} & Whether or not the sound should restart once it's done playing. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 64 of file sound.cpp.
@@ -820,9 +828,9 @@ Definition at line 64 of file sound.cpp.
 \index{Play3d@{Play3d}!phys::Sound@{phys::Sound}}
 \paragraph[{Play3d}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::Play3d (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Position, }
-\item[{{\bf Real}}]{ SoundStrength = {\ttfamily 1.0}, }
-\item[{bool}]{ Loop = {\ttfamily false}}
+\item[{{\bf Vector3}}]{Position, }
+\item[{{\bf Real}}]{SoundStrength = {\ttfamily 1.0}, }
+\item[{bool}]{Loop = {\ttfamily false}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_adbb79c9d1a37bf541bfb259551c6067f}
@@ -832,7 +840,13 @@ Plays the sound in 3D mode.
 
 This will play the sound and alter it's properties based on it's location in 3D space. Sounds can sound like they are coming more from one direction then another, etc.. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]The location in 3D space where the sound originates. \item[{\em SoundStrength}]The higher the sound strength, the further away you can hear the sound, not the same as volume. \item[{\em Loop}]Whether or not the sound should restart once it's done playing. \end{DoxyParams}
+{\em Position} & The location in 3D space where the sound originates. \\
+\hline
+{\em SoundStrength} & The higher the sound strength, the further away you can hear the sound, not the same as volume. \\
+\hline
+{\em Loop} & Whether or not the sound should restart once it's done playing. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 69 of file sound.cpp.
@@ -842,8 +856,8 @@ Definition at line 69 of file sound.cpp.
 \index{Seek@{Seek}!phys::Sound@{phys::Sound}}
 \paragraph[{Seek}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::Seek (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ Seconds, }
-\item[{bool}]{ Relative}
+\item[{{\bf Real}}]{Seconds, }
+\item[{bool}]{Relative}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a8dfc3b7e9419a3c50c0ac6ecf6ece096}
@@ -853,7 +867,11 @@ Allows you to go to a specific point in the sound.
 
 This function will allow you to jump ahead or rewind to any specific point in the sound. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Seconds}]How many seconds into the sound you want to jump to. \item[{\em Relative}]Whether or not you want the jump to be relative to where the sound is at the time of calling this function. \end{DoxyParams}
+{\em Seconds} & How many seconds into the sound you want to jump to. \\
+\hline
+{\em Relative} & Whether or not you want the jump to be relative to where the sound is at the time of calling this function. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 89 of file sound.cpp.
@@ -863,7 +881,7 @@ Definition at line 89 of file sound.cpp.
 \index{SetDirection@{SetDirection}!phys::Sound@{phys::Sound}}
 \paragraph[{SetDirection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetDirection (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Direction}
+\item[{{\bf Vector3}}]{Direction}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_af2d6aa7e1b3b2e9f60b8dbbe8aa2d381}
@@ -873,7 +891,9 @@ Sets the direction the sound source is facing.
 
 This function will set the direction the sound source is facing to be used with the sound in 3D mode. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Direction}]The new direction of the sound source. \end{DoxyParams}
+{\em Direction} & The new direction of the sound source. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 154 of file sound.cpp.
@@ -883,7 +903,7 @@ Definition at line 154 of file sound.cpp.
 \index{SetDopplerStrength@{SetDopplerStrength}!phys::Sound@{phys::Sound}}
 \paragraph[{SetDopplerStrength}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetDopplerStrength (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ DopStr}
+\item[{{\bf Real}}]{DopStr}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a159a5ac92577b55e86a8fc2dbf8bc806}
@@ -893,7 +913,9 @@ Sets the doppler strength, which impacts the doppler effect.
 
 This function will set the doppler strength of the sound source, which can enhance or diminish the doppler effect given off by this sound source. Default: 1.0 
 \begin{DoxyParams}{Parameters}
-\item[{\em DopStr}]The doppler strength to be applied to this sound source. \end{DoxyParams}
+{\em DopStr} & The doppler strength to be applied to this sound source. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 214 of file sound.cpp.
@@ -903,7 +925,7 @@ Definition at line 214 of file sound.cpp.
 \index{SetDopplerVelocity@{SetDopplerVelocity}!phys::Sound@{phys::Sound}}
 \paragraph[{SetDopplerVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetDopplerVelocity (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Velocity}
+\item[{{\bf Vector3}}]{Velocity}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a5a7f337dbc533f49269f736f51d25b85}
@@ -913,7 +935,9 @@ Sets the doppler velocity vector.
 
 In most cases you shouldn't need to call this as this is handled by the engine. Is called every time position, velocity, or direction is altered. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Velocity}]A vector3 representing the doppler velocity to be applied. \end{DoxyParams}
+{\em Velocity} & A vector3 representing the doppler velocity to be applied. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 219 of file sound.cpp.
@@ -923,7 +947,7 @@ Definition at line 219 of file sound.cpp.
 \index{SetInnerConeAngle@{SetInnerConeAngle}!phys::Sound@{phys::Sound}}
 \paragraph[{SetInnerConeAngle}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetInnerConeAngle (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ InnerAngle}
+\item[{{\bf Real}}]{InnerAngle}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_ae231936d44db727eb48f9ff259ae0dd6}
@@ -933,7 +957,9 @@ Sets the inner cone angle of the sound source if you want the sound to be projec
 
 This function will set the angle for the inner cone which the sound will be projected. The cone will open up in the direction set by \hyperlink{classphys_1_1Sound_af2d6aa7e1b3b2e9f60b8dbbe8aa2d381}{SetDirection()}. Sounds are at their loudest only if the listener is within the inner cone. 
 \begin{DoxyParams}{Parameters}
-\item[{\em InnerAngle}]The angle of the inner cone. Range is: 0.0 to 360.0. Default: 360.0 (broadcast) \end{DoxyParams}
+{\em InnerAngle} & The angle of the inner cone. Range is: 0.0 to 360.0. Default: 360.0 (broadcast) \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 199 of file sound.cpp.
@@ -943,7 +969,7 @@ Definition at line 199 of file sound.cpp.
 \index{SetMaxDistance@{SetMaxDistance}!phys::Sound@{phys::Sound}}
 \paragraph[{SetMaxDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetMaxDistance (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ MaxDistance}
+\item[{{\bf Real}}]{MaxDistance}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a54d04549f0851b00736fdab18a81ec70}
@@ -953,7 +979,9 @@ Sets the distance from the sound source where attenuation will stop.
 
 This function will set the distance from the sound source where attenuation effects will stop being applied. 
 \begin{DoxyParams}{Parameters}
-\item[{\em MaxDistance}]The distance at which attenuation effects stop being applied. \end{DoxyParams}
+{\em MaxDistance} & The distance at which attenuation effects stop being applied. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 174 of file sound.cpp.
@@ -963,7 +991,7 @@ Definition at line 174 of file sound.cpp.
 \index{SetMaxVolume@{SetMaxVolume}!phys::Sound@{phys::Sound}}
 \paragraph[{SetMaxVolume}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetMaxVolume (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ MaxVolume}
+\item[{{\bf Real}}]{MaxVolume}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a04994399e336c8a0726c5da9f6349545}
@@ -973,7 +1001,9 @@ Sets the maximum volume the sound source can achieve.
 
 This function will set the maximum volume the sound source can achieve after effects(like attenuation) have been applied. 
 \begin{DoxyParams}{Parameters}
-\item[{\em MaxVolume}]The maximum volume allowed for the sound source. \end{DoxyParams}
+{\em MaxVolume} & The maximum volume allowed for the sound source. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 194 of file sound.cpp.
@@ -983,7 +1013,7 @@ Definition at line 194 of file sound.cpp.
 \index{SetMinDistance@{SetMinDistance}!phys::Sound@{phys::Sound}}
 \paragraph[{SetMinDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetMinDistance (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ MinDistance}
+\item[{{\bf Real}}]{MinDistance}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_ae32d4c4b8a09bfbdcfea68cfa71aa354}
@@ -993,7 +1023,9 @@ Sets the distance from the sound source where attenuation will start.
 
 This function will set the distance from the sound source where attenuation effects will start being applied. 
 \begin{DoxyParams}{Parameters}
-\item[{\em MinDistance}]The distance at which attenuation effects start being applied. \end{DoxyParams}
+{\em MinDistance} & The distance at which attenuation effects start being applied. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 169 of file sound.cpp.
@@ -1003,7 +1035,7 @@ Definition at line 169 of file sound.cpp.
 \index{SetMinVolume@{SetMinVolume}!phys::Sound@{phys::Sound}}
 \paragraph[{SetMinVolume}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetMinVolume (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ MinVolume}
+\item[{{\bf Real}}]{MinVolume}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a76a487c8a455556ba4307c99cc41ea80}
@@ -1013,7 +1045,9 @@ Sets the minimum volume the sound source can achieve.
 
 This function will set the minimum volume the sound source can achieve after effects(like attenuation) have been applied. 
 \begin{DoxyParams}{Parameters}
-\item[{\em MinVolume}]The minimum volume allowed for the sound source. \end{DoxyParams}
+{\em MinVolume} & The minimum volume allowed for the sound source. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 189 of file sound.cpp.
@@ -1023,7 +1057,7 @@ Definition at line 189 of file sound.cpp.
 \index{SetOuterConeAngle@{SetOuterConeAngle}!phys::Sound@{phys::Sound}}
 \paragraph[{SetOuterConeAngle}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetOuterConeAngle (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ OuterAngle}
+\item[{{\bf Real}}]{OuterAngle}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a4fc7d07d303ddb97acc15524950d0442}
@@ -1033,7 +1067,9 @@ Sets the outer cone angle of the sound source if you want the sound to be projec
 
 This function will set the angle for the outer cone which the sound will be projected. The cone will open up in the direction set by \hyperlink{classphys_1_1Sound_af2d6aa7e1b3b2e9f60b8dbbe8aa2d381}{SetDirection()}. Sounds connot be heard if the listener is outside the outer cone. 
 \begin{DoxyParams}{Parameters}
-\item[{\em OuterAngle}]The angle of the outer cone. Range is: 0.0 to 360.0. Default: 360.0 (broadcast) \end{DoxyParams}
+{\em OuterAngle} & The angle of the outer cone. Range is: 0.0 to 360.0. Default: 360.0 (broadcast) \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 204 of file sound.cpp.
@@ -1043,7 +1079,7 @@ Definition at line 204 of file sound.cpp.
 \index{SetOuterConeVolume@{SetOuterConeVolume}!phys::Sound@{phys::Sound}}
 \paragraph[{SetOuterConeVolume}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetOuterConeVolume (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ OuterVolume}
+\item[{{\bf Real}}]{OuterVolume}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a55b0eadd492fc1a5fbae9848f5682ac9}
@@ -1053,7 +1089,9 @@ Sets how much the volume is scaled in the outer cone.
 
 This function will set how much the volume is scaled by for sounds in the outer cone of the sound source. 
 \begin{DoxyParams}{Parameters}
-\item[{\em OuterVolume}]The scale for volume for sounds in the outer cone. \end{DoxyParams}
+{\em OuterVolume} & The scale for volume for sounds in the outer cone. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 209 of file sound.cpp.
@@ -1063,7 +1101,7 @@ Definition at line 209 of file sound.cpp.
 \index{SetPitch@{SetPitch}!phys::Sound@{phys::Sound}}
 \paragraph[{SetPitch}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetPitch (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ Pitch}
+\item[{{\bf Real}}]{Pitch}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a4c7eac57c162f264d8c0868c4f360aab}
@@ -1073,7 +1111,9 @@ Sets the pitch of the sound source.
 
 This function will set the pitch of the sound source. Note: higher values will speed up the playback of the sound. Default: 1.0 
 \begin{DoxyParams}{Parameters}
-\item[{\em Pitch}]The new pitch of the sound. \end{DoxyParams}
+{\em Pitch} & The new pitch of the sound. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 179 of file sound.cpp.
@@ -1083,7 +1123,7 @@ Definition at line 179 of file sound.cpp.
 \index{SetPosition@{SetPosition}!phys::Sound@{phys::Sound}}
 \paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetPosition (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Position}
+\item[{{\bf Vector3}}]{Position}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a245bc4d760bcf30e9520aee00cf40c61}
@@ -1093,7 +1133,9 @@ Sets the position of the sound source.
 
 This function will set the position of the source to be used with the sound in 3D mode. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]The new position of the sound source. \end{DoxyParams}
+{\em Position} & The new position of the sound source. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 144 of file sound.cpp.
@@ -1103,7 +1145,7 @@ Definition at line 144 of file sound.cpp.
 \index{SetRolloffFactor@{SetRolloffFactor}!phys::Sound@{phys::Sound}}
 \paragraph[{SetRolloffFactor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetRolloffFactor (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ Rolloff}
+\item[{{\bf Real}}]{Rolloff}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a56e657013dc4d561dbc3b0c5d12d542d}
@@ -1113,7 +1155,9 @@ Sets the Rolloff factor used to attenuate the sound over a distance.
 
 This function will set how much the sound source will attenuate over a distance. Larger values will make the sound attenuate faster/shorter distnaces, smaller values will make the sound carry better. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Rolloff}]The factor at which the sound will attenuate. \end{DoxyParams}
+{\em Rolloff} & The factor at which the sound will attenuate. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 159 of file sound.cpp.
@@ -1123,7 +1167,7 @@ Definition at line 159 of file sound.cpp.
 \index{SetStrength@{SetStrength}!phys::Sound@{phys::Sound}}
 \paragraph[{SetStrength}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetStrength (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ SoundStrength}
+\item[{{\bf Real}}]{SoundStrength}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a44d6c066fad6f09553e47892a14bf5ef}
@@ -1133,7 +1177,9 @@ Sets the strength of the sound source.
 
 This function will set the strength of the sound, which will determine how well the sound from this sound source will carry over a distance. 
 \begin{DoxyParams}{Parameters}
-\item[{\em SoundStrength}]The strength of the sound. Default: 1.0 \end{DoxyParams}
+{\em SoundStrength} & The strength of the sound. Default: 1.0 \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 164 of file sound.cpp.
@@ -1143,7 +1189,7 @@ Definition at line 164 of file sound.cpp.
 \index{SetVelocity@{SetVelocity}!phys::Sound@{phys::Sound}}
 \paragraph[{SetVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetVelocity (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Velocity}
+\item[{{\bf Vector3}}]{Velocity}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a673a0ab44fa32fdcd15180e813b7b02b}
@@ -1153,7 +1199,9 @@ Sets the velocity of the sound source.
 
 This function will set the velocity of the source to be used with the sound in 3D mode. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Velocity}]The new velocity of the sound source. \end{DoxyParams}
+{\em Velocity} & The new velocity of the sound source. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 149 of file sound.cpp.
@@ -1163,7 +1211,7 @@ Definition at line 149 of file sound.cpp.
 \index{SetVolume@{SetVolume}!phys::Sound@{phys::Sound}}
 \paragraph[{SetVolume}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Sound::SetVolume (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ Volume}
+\item[{{\bf Real}}]{Volume}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d2f/classphys_1_1Sound_a62438fb7916e1e7e9abe66722de83821}
@@ -1173,7 +1221,9 @@ Sets the current volume of the sound source before effects.
 
 This function will set the current volume of the sound source before effects (like attenuation) are applied. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Volume}]The current volume of the sound source to be applied. \end{DoxyParams}
+{\em Volume} & The current volume of the sound source to be applied. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 184 of file sound.cpp.

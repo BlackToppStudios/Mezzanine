@@ -11,7 +11,7 @@ This is where bulk of the XML subsystem resides, there are numerous class that a
 \begin{DoxyCompactItemize}
 \item 
 class \hyperlink{classphys_1_1xml_1_1Writer}{Writer}
-\begin{DoxyCompactList}\small\item\em Interface for node printing (see \hyperlink{classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}{Node::Print}). \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Interface for node printing (see \hyperlink{classphys_1_1xml_1_1Node_adbe10968a804a94552e1dc8223744406}{Node::Print}) \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1WriterFile}{WriterFile}
 \begin{DoxyCompactList}\small\item\em An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing to FILEs as defined in stdio. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1WriterStream}{WriterStream}
@@ -21,7 +21,7 @@ class \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}
 class \hyperlink{classphys_1_1xml_1_1Node}{Node}
 \begin{DoxyCompactList}\small\item\em A light-\/weight handle for manipulating nodes in DOM tree. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1NodeIterator}{NodeIterator}
-\begin{DoxyCompactList}\small\item\em Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node}). \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Child node iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Node}{Node}) \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1AttributeIterator}{AttributeIterator}
 \begin{DoxyCompactList}\small\item\em \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute} iterator (a bidirectional iterator over a collection of \hyperlink{classphys_1_1xml_1_1Attribute}{Attribute}). \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker}
@@ -139,10 +139,14 @@ void PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f9
 \begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_1_1xml_af98b1cb6640aa712180aad89a1c776d8}{deAllocationFunction} PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a1a2ff3e010e4627424a65a2e584e441e}{GetMemoryDeallocationFunction} ()
 \begin{DoxyCompactList}\small\item\em Get the current allocation funciton. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \hyperlink{namespacephys_1_1xml_a9d912900518f0d84d323d1514dfb93a2}{GetOneTag} (std::istream \&stream)
+\hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2b175958ac1d39cc297c24e3f377739b}{GetOneTag} (std::istream \&stream)
 \begin{DoxyCompactList}\small\item\em Gets the first tag out of the Stream and returns it as a String. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1xml_1_1Document}{Document} $\ast$ \hyperlink{namespacephys_1_1xml_a61f614191fad81859f2aa87a80f6bb36}{PreParseClassFromSingleTag} (const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&NameSpace, const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&ClassName, const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&OneTag)
-\begin{DoxyCompactList}\small\item\em Perform a basic series of checks for extracting meaning from a single xml tag. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{classphys_1_1xml_1_1Document}{Document} $\ast$PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_ab5e51b3ea3a6e61bf4c8368005232210}{PreParseClassFromSingleTag} (const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&NameSpace, const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&ClassName, const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&OneTag)
+\begin{DoxyCompactList}\small\item\em Perform a basic series of checks for extracting meaning from a single xml tag. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1Document}{Document} $\ast$PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_ad6253962e86b5e7c149aef36662d17e1}{PreParseClassFromSingleTag} (const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&ClassName, const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&OneTag)
+\begin{DoxyCompactList}\small\item\em Calls PreParseClassFromSingleTag passing a \char`\"{}\char`\"{} as the Namespace. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_abdfe44958945865c471158d8c071f727}{EscapeXML} (const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&XMLText)
+\begin{DoxyCompactList}\small\item\em Convert $<$ $>$ \& and " in text to $<$, $>$, \& and \&quote so text can safely be stored in XML. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -174,7 +178,7 @@ const unsigned int \hyperlink{namespacephys_1_1xml_a6463412ba9e404b6890e4721255c
 const unsigned int \hyperlink{namespacephys_1_1xml_a52af747730d2b3a313eebed4cf49a333}{ParseEol} = 0x0020}
 \label{d9/d27/namespacephys_1_1xml_a52af747730d2b3a313eebed4cf49a333}
 
-\begin{DoxyCompactList}\small\item\em This flag determines if EOL characters are normalized (converted to xA) during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em This flag determines if EOL characters are normalized (converted to \#xA) during parsing. This flag is on by default. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}{
 const unsigned int \hyperlink{namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}{ParseWconvAttribute} = 0x0040}
 \label{d9/d27/namespacephys_1_1xml_af9f7575e3cb8a0d8ad9a7ceee5e26983}
@@ -203,7 +207,7 @@ const unsigned int \hyperlink{namespacephys_1_1xml_af1c356f1eb063a63efebd6c8a524
 const unsigned int \hyperlink{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{FormatIndent} = 0x01}
 \label{d9/d27/namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}
 
-\begin{DoxyCompactList}\small\item\em Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is off by default. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_a76a253f60deb94ef39c255064afb6040}{
 const unsigned int \hyperlink{namespacephys_1_1xml_a76a253f60deb94ef39c255064afb6040}{FormatWriteBom} = 0x02}
 \label{d9/d27/namespacephys_1_1xml_a76a253f60deb94ef39c255064afb6040}
@@ -213,14 +217,17 @@ const unsigned int \hyperlink{namespacephys_1_1xml_a76a253f60deb94ef39c255064afb
 const unsigned int \hyperlink{namespacephys_1_1xml_a6f6696cbdc48011817adad7978e83976}{FormatRaw} = 0x04}
 \label{d9/d27/namespacephys_1_1xml_a6f6696cbdc48011817adad7978e83976}
 
-\begin{DoxyCompactList}\small\item\em Use raw output mode (no indentation and no line breaks are written). This flag is off by default. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Use raw output mode (no indentation and no line breaks are written). This flag is on by default. \item\end{DoxyCompactList}\item 
 \hypertarget{namespacephys_1_1xml_aee4ccb3535945d4808a0cf6abe4cb050}{
 const unsigned int \hyperlink{namespacephys_1_1xml_aee4ccb3535945d4808a0cf6abe4cb050}{FormatNoDeclaration} = 0x08}
 \label{d9/d27/namespacephys_1_1xml_aee4ccb3535945d4808a0cf6abe4cb050}
 
 \begin{DoxyCompactList}\small\item\em Omit default XML declaration even if there is no declaration in the document. This flag is off by default. \item\end{DoxyCompactList}\item 
-const unsigned int \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault} = \hyperlink{namespacephys_1_1xml_afaad0b8f59b5f103218ed5cb39b1bbde}{FormatIndent}
-\begin{DoxyCompactList}\small\item\em The default set of formatting flags. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{
+const unsigned int \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{FormatDefault} = \hyperlink{namespacephys_1_1xml_a6f6696cbdc48011817adad7978e83976}{FormatRaw}}
+\label{d9/d27/namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}
+
+\begin{DoxyCompactList}\small\item\em The default set of formatting flags. Only FormatRaw is enabled. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -308,7 +315,7 @@ EncodingUTF32}
 \hypertarget{namespacephys_1_1xml_a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef}{
 Encodingwchar\_\-t}
 \label{d9/d27/namespacephys_1_1xml_a420f5de782438f88160321385bea2015a2bc9c8d42796901c8feaa25e17c56cef}
-}]The same document encoding wchar\_\-t has (usually either UTF16 or UTF32). \end{description}
+}]The same document encoding wchar\_\-t has (usually either UTF16 or UTF32) \end{description}
 \end{Desc}
 
 
@@ -447,7 +454,7 @@ StatusEndElementMismatch}
 
 
 
-Definition at line 943 of file xml.h.
+Definition at line 953 of file xml.h.
 
 \hypertarget{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575d}{
 \index{phys::xml@{phys::xml}!XPathValueType@{XPathValueType}}
@@ -465,11 +472,11 @@ Definition at line 943 of file xml.h.
 \hypertarget{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575dabf243ef424b79e9da4f5e52fca25bbe5}{
 XPathTypeNone}
 \label{d9/d27/namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575dabf243ef424b79e9da4f5e52fca25bbe5}
-}]Unknown Type (query failed to compile). \index{XPathTypeNodeSet@{XPathTypeNodeSet}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!XPathTypeNodeSet@{XPathTypeNodeSet}}\item[{\em 
+}]Unknown Type (query failed to compile) \index{XPathTypeNodeSet@{XPathTypeNodeSet}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!XPathTypeNodeSet@{XPathTypeNodeSet}}\item[{\em 
 \hypertarget{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba}{
 XPathTypeNodeSet}
 \label{d9/d27/namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575dacb1f770045b8cfe7634feb3c2745b0ba}
-}]\hyperlink{classphys_1_1xml_1_1Node}{Node} set (\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet}). \index{XPathTypeNumber@{XPathTypeNumber}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!XPathTypeNumber@{XPathTypeNumber}}\item[{\em 
+}]\hyperlink{classphys_1_1xml_1_1Node}{Node} set (\hyperlink{classphys_1_1xml_1_1XPathNodeSet}{XPathNodeSet}) \index{XPathTypeNumber@{XPathTypeNumber}!phys::xml@{phys::xml}}\index{phys::xml@{phys::xml}!XPathTypeNumber@{XPathTypeNumber}}\item[{\em 
 \hypertarget{namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575da5503130cd89cdb7f6c9f0cc72091a06c}{
 XPathTypeNumber}
 \label{d9/d27/namespacephys_1_1xml_a339b9eef674ba44100110e5524bc575da5503130cd89cdb7f6c9f0cc72091a06c}
@@ -486,7 +493,7 @@ XPathTypeBoolean}
 
 
 
-Definition at line 1105 of file xml.h.
+Definition at line 1122 of file xml.h.
 
 
 
@@ -496,7 +503,7 @@ Definition at line 1105 of file xml.h.
 \index{AsUtf8@{AsUtf8}!phys::xml@{phys::xml}}
 \paragraph[{AsUtf8}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AsUtf8 (
 \begin{DoxyParamCaption}
-\item[{const wchar\_\-t $\ast$}]{ str}
+\item[{const wchar\_\-t $\ast$}]{str}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d9/d27/namespacephys_1_1xml_a2d4bf28045544dc7350827f568cad46f}
@@ -504,20 +511,20 @@ Definition at line 1105 of file xml.h.
 
 Convert a c-\/style string of wchar\_\-t to std::string containing UTF8. 
 
-\begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em str}]The string to convert \end{DoxyParams}
+{\em str} & The string to convert \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A std::basic\_\-string$<$char, std::char\_\-traits$<$char$>$, std::allocator$<$char$>$ $>$ containing the converted data 
 \end{DoxyReturn}
-\end{DoxyInternal}
 \hypertarget{namespacephys_1_1xml_aa3d160a2965f60bc3b2f019be6c7d038}{
 \index{phys::xml@{phys::xml}!AsUtf8@{AsUtf8}}
 \index{AsUtf8@{AsUtf8}!phys::xml@{phys::xml}}
 \paragraph[{AsUtf8}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AsUtf8 (
 \begin{DoxyParamCaption}
-\item[{const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&}]{ str}
+\item[{const std::basic\_\-string$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$, std::allocator$<$ wchar\_\-t $>$ $>$ \&}]{str}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d9/d27/namespacephys_1_1xml_aa3d160a2965f60bc3b2f019be6c7d038}
@@ -525,20 +532,20 @@ A std::basic\_\-string$<$char, std::char\_\-traits$<$char$>$, std::allocator$<$c
 
 Convert a std::wstring to a UTF8 std::string. 
 
-\begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em str}]The string to convert. \end{DoxyParams}
+{\em str} & The string to convert. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A std::basic\_\-string$<$char, std::char\_\-traits$<$char$>$, std::allocator$<$char$>$ $>$ containing the converted data 
 \end{DoxyReturn}
-\end{DoxyInternal}
 \hypertarget{namespacephys_1_1xml_a7ca79461d40476ea4cde4f54dadffff4}{
 \index{phys::xml@{phys::xml}!AsWide@{AsWide}}
 \index{AsWide@{AsWide}!phys::xml@{phys::xml}}
 \paragraph[{AsWide}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AsWide (
 \begin{DoxyParamCaption}
-\item[{const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&}]{ str}
+\item[{const std::basic\_\-string$<$ char, std::char\_\-traits$<$ char $>$, std::allocator$<$ char $>$ $>$ \&}]{str}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d9/d27/namespacephys_1_1xml_a7ca79461d40476ea4cde4f54dadffff4}
@@ -546,20 +553,20 @@ A std::basic\_\-string$<$char, std::char\_\-traits$<$char$>$, std::allocator$<$c
 
 Convert a Convert a std::string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). 
 
-\begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em str}]The string to convert. \end{DoxyParams}
+{\em str} & The string to convert. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A std::basic\_\-string$<$wchar\_\-t, std::char\_\-traits$<$wchar\_\-t$>$, std::allocator$<$wchar\_\-t$>$ $>$ containing the converted data 
 \end{DoxyReturn}
-\end{DoxyInternal}
 \hypertarget{namespacephys_1_1xml_a0a57ef612f499a03733ca18d0e4f0c4f}{
 \index{phys::xml@{phys::xml}!AsWide@{AsWide}}
 \index{AsWide@{AsWide}!phys::xml@{phys::xml}}
 \paragraph[{AsWide}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::AsWide (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{ str}
+\item[{const char $\ast$}]{str}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d9/d27/namespacephys_1_1xml_a0a57ef612f499a03733ca18d0e4f0c4f}
@@ -567,14 +574,35 @@ A std::basic\_\-string$<$wchar\_\-t, std::char\_\-traits$<$wchar\_\-t$>$, std::a
 
 Convert a Convert a c-\/style string to std::wstring containing native encoding (Usually UCS2 on windows and UTF32 on Linux/Mac). 
 
-\begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em str}]The string to convert. \end{DoxyParams}
+{\em str} & The string to convert. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A std::basic\_\-string$<$wchar\_\-t, std::char\_\-traits$<$wchar\_\-t$>$, std::allocator$<$wchar\_\-t$>$ $>$ containing the converted data 
 \end{DoxyReturn}
-\end{DoxyInternal}
+\hypertarget{namespacephys_1_1xml_abdfe44958945865c471158d8c071f727}{
+\index{phys::xml@{phys::xml}!EscapeXML@{EscapeXML}}
+\index{EscapeXML@{EscapeXML}!phys::xml@{phys::xml}}
+\paragraph[{EscapeXML}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} PHYS\_\-LIB phys::xml::EscapeXML (
+\begin{DoxyParamCaption}
+\item[{const String \&}]{XMLText}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/d27/namespacephys_1_1xml_abdfe44958945865c471158d8c071f727}
+
+
+Convert $<$ $>$ \& and " in text to $<$, $>$, \& and \&quote so text can safely be stored in XML. 
+
+Usually this is not required. Entering text into an \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} or and \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} with correctly escape it. Use this when you will be creating raw xml want to safely escape these characters. 
+\begin{DoxyParams}{Parameters}
+{\em XMLText} & The Text to convert to xml safe text \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+a String containing the escaped version of XMLText 
+\end{DoxyReturn}
 \hypertarget{namespacephys_1_1xml_a0537fb34f1fa41afd138deead1455a5b}{
 \index{phys::xml@{phys::xml}!GetMemoryAllocationFunction@{GetMemoryAllocationFunction}}
 \index{GetMemoryAllocationFunction@{GetMemoryAllocationFunction}!phys::xml@{phys::xml}}
@@ -588,11 +616,9 @@ A std::basic\_\-string$<$wchar\_\-t, std::char\_\-traits$<$wchar\_\-t$>$, std::a
 
 Get the current allocation funciton. 
 
-\begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
 A function to the current allocation function 
 \end{DoxyReturn}
-\end{DoxyInternal}
 \hypertarget{namespacephys_1_1xml_a1a2ff3e010e4627424a65a2e584e441e}{
 \index{phys::xml@{phys::xml}!GetMemoryDeallocationFunction@{GetMemoryDeallocationFunction}}
 \index{GetMemoryDeallocationFunction@{GetMemoryDeallocationFunction}!phys::xml@{phys::xml}}
@@ -606,63 +632,98 @@ A function to the current allocation function
 
 Get the current allocation funciton. 
 
-\begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
 A function to the current allocation function 
 \end{DoxyReturn}
-\end{DoxyInternal}
-\hypertarget{namespacephys_1_1xml_a9d912900518f0d84d323d1514dfb93a2}{
+\hypertarget{namespacephys_1_1xml_a2b175958ac1d39cc297c24e3f377739b}{
 \index{phys::xml@{phys::xml}!GetOneTag@{GetOneTag}}
 \index{GetOneTag@{GetOneTag}!phys::xml@{phys::xml}}
-\paragraph[{GetOneTag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} phys::xml::GetOneTag (
+\paragraph[{GetOneTag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf String} PHYS\_\-LIB phys::xml::GetOneTag (
 \begin{DoxyParamCaption}
-\item[{std::istream \&}]{ stream}
+\item[{std::istream \&}]{stream}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d9/d27/namespacephys_1_1xml_a9d912900518f0d84d323d1514dfb93a2}
+\label{d9/d27/namespacephys_1_1xml_a2b175958ac1d39cc297c24e3f377739b}
 
 
 Gets the first tag out of the Stream and returns it as a String. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em stream}]An std::ostream that contains atleast one xml tag \end{DoxyParams}
+{\em stream} & An std::ostream that contains atleast one xml tag \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 This gets one XML tag, its closing tage, and all subtags. 
 \end{DoxyReturn}
-\hypertarget{namespacephys_1_1xml_a61f614191fad81859f2aa87a80f6bb36}{
+\hypertarget{namespacephys_1_1xml_ad6253962e86b5e7c149aef36662d17e1}{
 \index{phys::xml@{phys::xml}!PreParseClassFromSingleTag@{PreParseClassFromSingleTag}}
 \index{PreParseClassFromSingleTag@{PreParseClassFromSingleTag}!phys::xml@{phys::xml}}
-\paragraph[{PreParseClassFromSingleTag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Document}$\ast$ phys::xml::PreParseClassFromSingleTag (
+\paragraph[{PreParseClassFromSingleTag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Document}$\ast$ PHYS\_\-LIB phys::xml::PreParseClassFromSingleTag (
 \begin{DoxyParamCaption}
-\item[{const String \&}]{ NameSpace, }
-\item[{const String \&}]{ ClassName, }
-\item[{const String \&}]{ OneTag}
+\item[{const String \&}]{ClassName, }
+\item[{const String \&}]{OneTag}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d9/d27/namespacephys_1_1xml_a61f614191fad81859f2aa87a80f6bb36}
+\label{d9/d27/namespacephys_1_1xml_ad6253962e86b5e7c149aef36662d17e1}
+
+
+Calls PreParseClassFromSingleTag passing a \char`\"{}\char`\"{} as the Namespace. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ClassName} & This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages. \\
+\hline
+{\em OneTag} & One XML tag/elements worth of text to deserialize. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to \hyperlink{classphys_1_1xml_1_1Document}{xml::Document} that you are now the owner of and must delete, that has the data parse and ready to access. 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em This} & can throw a phys::exception in the event that the xml cannot be parsed. \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{namespacephys_1_1xml_ab5e51b3ea3a6e61bf4c8368005232210}{
+\index{phys::xml@{phys::xml}!PreParseClassFromSingleTag@{PreParseClassFromSingleTag}}
+\index{PreParseClassFromSingleTag@{PreParseClassFromSingleTag}!phys::xml@{phys::xml}}
+\paragraph[{PreParseClassFromSingleTag}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Document}$\ast$ PHYS\_\-LIB phys::xml::PreParseClassFromSingleTag (
+\begin{DoxyParamCaption}
+\item[{const String \&}]{NameSpace, }
+\item[{const String \&}]{ClassName, }
+\item[{const String \&}]{OneTag}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d9/d27/namespacephys_1_1xml_ab5e51b3ea3a6e61bf4c8368005232210}
 
 
 Perform a basic series of checks for extracting meaning from a single xml tag. 
 
-\begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em NameSpace}]Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example \char`\"{}phys::\char`\"{} \item[{\em ClassName}]This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages. \item[{\em OneTag}]One XML tag/elements worth of text to deserialize. \end{DoxyParams}
+{\em NameSpace} & Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example \char`\"{}phys::\char`\"{} \\
+\hline
+{\em ClassName} & This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages. \\
+\hline
+{\em OneTag} & One XML tag/elements worth of text to deserialize. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-An pointer to \hyperlink{classphys_1_1xml_1_1Document}{xml::Document} that you are now the owner of and must delete, that has the data parse and ready to access. 
+A pointer to \hyperlink{classphys_1_1xml_1_1Document}{xml::Document} that you are now the owner of and must delete, that has the data parse and ready to access. 
 \end{DoxyReturn}
 
 \begin{DoxyExceptions}{Exceptions}
-\item[{\em This}]can throw a phys::exception in the event that the xml cannot be parsed. \end{DoxyExceptions}
-\end{DoxyInternal}
+{\em This} & can throw a phys::exception in the event that the xml cannot be parsed. \\
+\hline
+\end{DoxyExceptions}
 \hypertarget{namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f983}{
 \index{phys::xml@{phys::xml}!SetMemory\_\-management\_\-functions@{SetMemory\_\-management\_\-functions}}
 \index{SetMemory\_\-management\_\-functions@{SetMemory\_\-management\_\-functions}!phys::xml@{phys::xml}}
 \paragraph[{SetMemory\_\-management\_\-functions}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::SetMemory\_\-management\_\-functions (
 \begin{DoxyParamCaption}
-\item[{AllocationFunction}]{ allocate, }
-\item[{deAllocationFunction}]{ deallocate}
+\item[{AllocationFunction}]{allocate, }
+\item[{deAllocationFunction}]{deallocate}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d9/d27/namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f983}
@@ -670,27 +731,16 @@ An pointer to \hyperlink{classphys_1_1xml_1_1Document}{xml::Document} that you a
 
 Override default memory management functions. All subsequent allocations/deallocations will be performed via supplied functions. 
 
-\begin{DoxyInternal}{For internal use only.}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em allocate}]The new memory allocator \item[{\em deallocate}]The new memory deallocator \end{DoxyParams}
-\end{DoxyInternal}
+{\em allocate} & The new memory allocator \\
+\hline
+{\em deallocate} & The new memory deallocator \\
+\hline
+\end{DoxyParams}
 
 
 \subsubsection{Variable Documentation}
-\hypertarget{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{
-\index{phys::xml@{phys::xml}!FormatDefault@{FormatDefault}}
-\index{FormatDefault@{FormatDefault}!phys::xml@{phys::xml}}
-\paragraph[{FormatDefault}]{\setlength{\rightskip}{0pt plus 5cm}{\bf phys::xml::FormatDefault} = {\bf FormatIndent}}\hfill}
-\label{d9/d27/namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}
-
-
-The default set of formatting flags. 
-
-Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none. 
-
-Definition at line 275 of file xml.h.
-
 \hypertarget{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{
 \index{phys::xml@{phys::xml}!ParseDefault@{ParseDefault}}
 \index{ParseDefault@{ParseDefault}!phys::xml@{phys::xml}}

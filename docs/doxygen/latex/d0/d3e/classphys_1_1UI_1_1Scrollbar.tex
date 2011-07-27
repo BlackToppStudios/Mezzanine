@@ -20,7 +20,7 @@ Inheritance diagram for phys::UI::Scrollbar:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1Scrollbar_a25d95bba23d00bd2e377258068e4a0bb}{Scrollbar} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size, UI::ScrollbarStyle Style, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$parent)
+\hyperlink{classphys_1_1UI_1_1Scrollbar_a881584c25e2d1a29daeb324d4b8a017d}{Scrollbar} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&Name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const UI::ScrollbarStyle \&Style, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
 \begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_af9fb189c7856353a930c0a228fc0cf42}{
 virtual \hyperlink{classphys_1_1UI_1_1Scrollbar_af9fb189c7856353a930c0a228fc0cf42}{$\sim$Scrollbar} ()}
@@ -45,23 +45,23 @@ virtual bool \hyperlink{classphys_1_1UI_1_1Scrollbar_a8afdd63e36a7fdc15bd8660d98
 \begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1UI_1_1Scrollbar_abd70ba640ef9475a77334aa209121812}{GetScrollerValue} ()
 \begin{DoxyCompactList}\small\item\em Get the currnent scroll position represented by a value between 0 and 1. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_ac2d5081e3d91f0bc02b935b64a5316f9}{SetIncrementDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} IncDist)
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a238097181d00ac3bbff0d31d2dc0b237}{SetIncrementDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&IncDist)
 \begin{DoxyCompactList}\small\item\em Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a7191e819a7d06e5523ebc9d3f253f60a}{SetScrollerSize} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Size)
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4bd103fd17411e5abc6a8c731ccb9183}{SetScrollerSize} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the length(or height) of the scroller based on the relative size of it's background. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a6a61740b90f640463fff1ebe46ca68e9}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4a87f32e31e8e4443c4aaec46307864e}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative position of this widget in pixels. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_ad049af26ff2247cfcd988cb5639fa003}{GetPosition} ()
 \begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a6070857488f05d0349b48f249edf813f}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a93dfa3232185d72f274462636a833465}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_a73337985c0f1f173e253c88705ae5d6e}{GetActualPosition} ()
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_af4c4061cf2ddeb783ee52acb805f0cfb}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a5581675d3f250ed7270018e184b02b1d}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_aff97ce371ee21fcf3b648dcf8b38e055}{GetSize} ()
 \begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_ae21108cb65871ba59da2984542eab1a1}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_aabdb8b727f1f84712a5f7c1fca6e830f}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1Scrollbar_a2b3d791cbbe4c787f284d8b12a0edf27}{GetActualSize} ()
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
@@ -76,33 +76,75 @@ virtual \hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{cl
 \subsubsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_af1d5ab4a11a71a1d0c5e6feb4cc88843}{CreateHorizontalScrollbar} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a47fac0a138c92b56f61681799e76cc27}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a47fac0a138c92b56f61681799e76cc27}{CreateHorizontalScrollbar} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a47fac0a138c92b56f61681799e76cc27}
+
 \begin{DoxyCompactList}\small\item\em Constructor helper function for creating a horizontally aligned scrollbar. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_a337378d76c9d1c05606c0498e16dac4d}{CreateVerticalScrollbar} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a7e703aee21212630777f151005498997}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a7e703aee21212630777f151005498997}{CreateVerticalScrollbar} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a7e703aee21212630777f151005498997}
+
 \begin{DoxyCompactList}\small\item\em Constructor helper function for creating a vertically aligned scrollbar. \item\end{DoxyCompactList}\item 
-bool \hyperlink{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}{IsValidDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}{
+virtual bool \hyperlink{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}{IsValidDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}
+
 \begin{DoxyCompactList}\small\item\em Determines if the dimensions passed into this object are valid and can be used. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}{SetHorizontal} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}{SetHorizontal} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}
+
 \begin{DoxyCompactList}\small\item\em Sets the horizontal perameter as necessary based on the size provided for the widget. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4621d6713a059196f1a358a23b9ad5ae}{CalculateOffsets} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a4621d6713a059196f1a358a23b9ad5ae}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a4621d6713a059196f1a358a23b9ad5ae}{CalculateOffsets} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a4621d6713a059196f1a358a23b9ad5ae}
+
 \begin{DoxyCompactList}\small\item\em Calculates the relative offsets for the UI elements that make up this widget. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_aa59e2c0662ac13fac037164c86f829f5}{CalculateScrollLimits} ()
+\hypertarget{classphys_1_1UI_1_1Scrollbar_aa59e2c0662ac13fac037164c86f829f5}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_aa59e2c0662ac13fac037164c86f829f5}{CalculateScrollLimits} ()}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_aa59e2c0662ac13fac037164c86f829f5}
+
 \begin{DoxyCompactList}\small\item\em Calculates the limits by which the scroller is allowed to move. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_afc9eb290c8dcf3935e2b3046063989e9}{CalculateScrollValue} ()
+\hypertarget{classphys_1_1UI_1_1Scrollbar_afc9eb290c8dcf3935e2b3046063989e9}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_afc9eb290c8dcf3935e2b3046063989e9}{CalculateScrollValue} ()}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_afc9eb290c8dcf3935e2b3046063989e9}
+
 \begin{DoxyCompactList}\small\item\em Calculates the scrollbar value based on the scrollers current position. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}{SetToWithinLimits} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Coord)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}{SetToWithinLimits} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Coord)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}
+
 \begin{DoxyCompactList}\small\item\em Checks if a provided coordinate is within the defined limits, and adjusts it if not. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}{SetLocation} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}{SetLocation} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}
+
 \begin{DoxyCompactList}\small\item\em Internal function for setting the location(position) of this widget. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}{SetArea} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}{SetArea} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}
+
 \begin{DoxyCompactList}\small\item\em Internal function for setting the area(size) of this widget. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}{ButtonScroll} (bool UpLeft)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}{ButtonScroll} (bool UpLeft)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}
+
 \begin{DoxyCompactList}\small\item\em Scrolls the scroller either up/left or down/right, based on the parameter. For use with buttons. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_ac50a2cd5b85c8b2ff0cabf22b898a0fa}{MouseScroll} (\hyperlink{classphys_1_1Vector2}{Vector2} \&Scroll)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_ac50a2cd5b85c8b2ff0cabf22b898a0fa}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_ac50a2cd5b85c8b2ff0cabf22b898a0fa}{MouseScroll} (\hyperlink{classphys_1_1Vector2}{Vector2} \&Scroll)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_ac50a2cd5b85c8b2ff0cabf22b898a0fa}
+
 \begin{DoxyCompactList}\small\item\em Scrolls the scroller either up/left or down/right. For use with the mouse. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1Scrollbar_a1c6ca6b135d09d284b31fda2230c9286}{ScrollBackScroll} ()
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a1c6ca6b135d09d284b31fda2230c9286}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a1c6ca6b135d09d284b31fda2230c9286}{ScrollBackScroll} ()}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a1c6ca6b135d09d284b31fda2230c9286}
+
 \begin{DoxyCompactList}\small\item\em Scrolls the scroller either up/left or down/right. For use with the scrollback. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d5c62a0}{Update} (bool Force=false)
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d5c62a0}{
+virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d5c62a0}{Update} (bool Force=false)}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d5c62a0}
+
 \begin{DoxyCompactList}\small\item\em Performs all the necessary update and automation processes for this widget. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
@@ -125,11 +167,6 @@ virtual void \hyperlink{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a3c5a881c5b752320687729e363e3c829}{
 \hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries DownRightButton}}
 \label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a3c5a881c5b752320687729e363e3c829}
-
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a0b07b8f9553df84788df6b12ef68eb2b}{
-\hyperlink{classphys_1_1UI_1_1Button}{UI::Button} $\ast$ {\bfseries HoveredButton}}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a0b07b8f9553df84788df6b12ef68eb2b}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_ac87b0be84fa48e36cdfa25473d0c720f}{
@@ -202,14 +239,6 @@ bool {\bfseries DownRightLock}}
 \label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a133c6d99a33147a62826f0e0c925fcec}
 
 \end{DoxyCompactItemize}
-\subsubsection*{Friends}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a4b52bf8c4d934bf192ccfc8198b55394}{
-class \hyperlink{classphys_1_1UI_1_1Scrollbar_a4b52bf8c4d934bf192ccfc8198b55394}{phys::UIManager}}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a4b52bf8c4d934bf192ccfc8198b55394}
-
-\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}
@@ -221,109 +250,43 @@ Definition at line 68 of file uiscrollbar.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a25d95bba23d00bd2e377258068e4a0bb}{
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a881584c25e2d1a29daeb324d4b8a017d}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!Scrollbar@{Scrollbar}}
 \index{Scrollbar@{Scrollbar}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
 \paragraph[{Scrollbar}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::Scrollbar::Scrollbar (
 \begin{DoxyParamCaption}
-\item[{{\bf ConstString} \&}]{ Name, }
-\item[{const {\bf Vector2}}]{ Position, }
-\item[{const {\bf Vector2}}]{ Size, }
-\item[{UI::ScrollbarStyle}]{ Style, }
-\item[{{\bf UILayer} $\ast$}]{ parent}
+\item[{{\bf ConstString} \&}]{Name, }
+\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const UI::ScrollbarStyle \&}]{Style, }
+\item[{{\bf Layer} $\ast$}]{parent}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a25d95bba23d00bd2e377258068e4a0bb}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a881584c25e2d1a29daeb324d4b8a017d}
 
 
 Standard initialization constructor. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of this scrollbar. \item[{\em Position}]A vector2 representing the top left position for this widget to be placed on screen. \item[{\em Size}]A vector2 representing the size of this widget. \item[{\em Style}]An enum value representing how you want your scrollbar constructed. See class details for more info. \item[{\em parent}]The Layer that created this scrollbar. \end{DoxyParams}
+{\em Name} & The name of this scrollbar. \\
+\hline
+{\em Position} & A vector2 representing the top left position for this widget to be placed on screen. \\
+\hline
+{\em Size} & A vector2 representing the size of this widget. \\
+\hline
+{\em Style} & An enum value representing how you want your scrollbar constructed. See class details for more info. \\
+\hline
+{\em parent} & The \hyperlink{classphys_1_1UI_1_1Layer}{Layer} that created this scrollbar. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 55 of file uiscrollbar.cpp.
+Definition at line 56 of file uiscrollbar.cpp.
 
 
 
 \subsubsection{Member Function Documentation}
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!ButtonScroll@{ButtonScroll}}
-\index{ButtonScroll@{ButtonScroll}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{ButtonScroll}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::ButtonScroll (
-\begin{DoxyParamCaption}
-\item[{bool}]{ UpLeft}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a31a2e11f27f087154fd61d7cc2cd6dc1}
-
-
-Scrolls the scroller either up/left or down/right, based on the parameter. For use with buttons. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 379 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a4621d6713a059196f1a358a23b9ad5ae}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!CalculateOffsets@{CalculateOffsets}}
-\index{CalculateOffsets@{CalculateOffsets}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{CalculateOffsets}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::CalculateOffsets (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a4621d6713a059196f1a358a23b9ad5ae}
-
-
-Calculates the relative offsets for the UI elements that make up this widget. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 241 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_aa59e2c0662ac13fac037164c86f829f5}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!CalculateScrollLimits@{CalculateScrollLimits}}
-\index{CalculateScrollLimits@{CalculateScrollLimits}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{CalculateScrollLimits}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::CalculateScrollLimits (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_aa59e2c0662ac13fac037164c86f829f5}
-
-
-Calculates the limits by which the scroller is allowed to move. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 285 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_afc9eb290c8dcf3935e2b3046063989e9}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!CalculateScrollValue@{CalculateScrollValue}}
-\index{CalculateScrollValue@{CalculateScrollValue}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{CalculateScrollValue}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::CalculateScrollValue (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_afc9eb290c8dcf3935e2b3046063989e9}
-
-
-Calculates the scrollbar value based on the scrollers current position. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 297 of file uiscrollbar.cpp.
-
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a8afdd63e36a7fdc15bd8660d9800f2c5}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!CheckMouseHover@{CheckMouseHover}}
 \index{CheckMouseHover@{CheckMouseHover}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
@@ -346,47 +309,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259d
 
 
 
-Definition at line 568 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_af1d5ab4a11a71a1d0c5e6feb4cc88843}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!CreateHorizontalScrollbar@{CreateHorizontalScrollbar}}
-\index{CreateHorizontalScrollbar@{CreateHorizontalScrollbar}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{CreateHorizontalScrollbar}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::CreateHorizontalScrollbar (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Position, }
-\item[{const {\bf Vector2}}]{ Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_af1d5ab4a11a71a1d0c5e6feb4cc88843}
-
-
-Constructor helper function for creating a horizontally aligned scrollbar. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 96 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a337378d76c9d1c05606c0498e16dac4d}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!CreateVerticalScrollbar@{CreateVerticalScrollbar}}
-\index{CreateVerticalScrollbar@{CreateVerticalScrollbar}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{CreateVerticalScrollbar}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::CreateVerticalScrollbar (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Position, }
-\item[{const {\bf Vector2}}]{ Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a337378d76c9d1c05606c0498e16dac4d}
-
-
-Constructor helper function for creating a vertically aligned scrollbar. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 156 of file uiscrollbar.cpp.
+Definition at line 569 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a73337985c0f1f173e253c88705ae5d6e}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!GetActualPosition@{GetActualPosition}}
@@ -410,7 +333,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e
 
 
 
-Definition at line 656 of file uiscrollbar.cpp.
+Definition at line 650 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a2b3d791cbbe4c787f284d8b12a0edf27}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!GetActualSize@{GetActualSize}}
@@ -434,7 +357,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed
 
 
 
-Definition at line 701 of file uiscrollbar.cpp.
+Definition at line 695 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_abf733d00087050d575fca1abc2d4ba0e}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!GetDownRightButton@{GetDownRightButton}}
@@ -454,7 +377,7 @@ Returns a pointer to the DownRight button within this widget, or NULL if none.
 \end{DoxyReturn}
 
 
-Definition at line 716 of file uiscrollbar.cpp.
+Definition at line 710 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_ad049af26ff2247cfcd988cb5639fa003}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!GetPosition@{GetPosition}}
@@ -478,7 +401,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c3
 
 
 
-Definition at line 645 of file uiscrollbar.cpp.
+Definition at line 639 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a1c24fbb88f9d86aff1b2f0abc033116a}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!GetScrollBack@{GetScrollBack}}
@@ -498,7 +421,7 @@ Returns a pointer to the Scroller background within this widget.
 \end{DoxyReturn}
 
 
-Definition at line 721 of file uiscrollbar.cpp.
+Definition at line 715 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a28024d2f3a017e4ed3c2a4df62a1e8be}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!GetScroller@{GetScroller}}
@@ -518,7 +441,7 @@ Returns a pointer to the Scroller button within this widget.
 \end{DoxyReturn}
 
 
-Definition at line 706 of file uiscrollbar.cpp.
+Definition at line 700 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_abd70ba640ef9475a77334aa209121812}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!GetScrollerValue@{GetScrollerValue}}
@@ -539,7 +462,7 @@ Returns the stored scroll position.
 \end{DoxyReturn}
 
 
-Definition at line 612 of file uiscrollbar.cpp.
+Definition at line 606 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_aff97ce371ee21fcf3b648dcf8b38e055}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!GetSize@{GetSize}}
@@ -563,7 +486,7 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a
 
 
 
-Definition at line 679 of file uiscrollbar.cpp.
+Definition at line 673 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_ab298f9747da2eed451ddce8b1a416c15}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!GetUpLeftButton@{GetUpLeftButton}}
@@ -583,26 +506,7 @@ Returns a pointer to the UpLeft button within this widget, or NULL if none.
 \end{DoxyReturn}
 
 
-Definition at line 711 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!IsValidDimensions@{IsValidDimensions}}
-\index{IsValidDimensions@{IsValidDimensions}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{IsValidDimensions}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::Scrollbar::IsValidDimensions (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a4953ac8c0b711ed9c1be468897e09ce8}
-
-
-Determines if the dimensions passed into this object are valid and can be used. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 216 of file uiscrollbar.cpp.
+Definition at line 705 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a213c946ccadd3b689f59e2761a1d1848}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!IsVisible@{IsVisible}}
@@ -626,180 +530,91 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7a
 
 
 
-Definition at line 541 of file uiscrollbar.cpp.
+Definition at line 542 of file uiscrollbar.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_ac50a2cd5b85c8b2ff0cabf22b898a0fa}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!MouseScroll@{MouseScroll}}
-\index{MouseScroll@{MouseScroll}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{MouseScroll}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::MouseScroll (
-\begin{DoxyParamCaption}
-\item[{{\bf Vector2} \&}]{ Scroll}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_ac50a2cd5b85c8b2ff0cabf22b898a0fa}
-
-
-Scrolls the scroller either up/left or down/right. For use with the mouse. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 401 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a1c6ca6b135d09d284b31fda2230c9286}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!ScrollBackScroll@{ScrollBackScroll}}
-\index{ScrollBackScroll@{ScrollBackScroll}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{ScrollBackScroll}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::ScrollBackScroll (
-\begin{DoxyParamCaption}
-{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a1c6ca6b135d09d284b31fda2230c9286}
-
-
-Scrolls the scroller either up/left or down/right. For use with the scrollback. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 420 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a6070857488f05d0349b48f249edf813f}{
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a93dfa3232185d72f274462636a833465}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetActualPosition@{SetActualPosition}}
 \index{SetActualPosition@{SetActualPosition}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
 \paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetActualPosition (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2} \&}]{Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a6070857488f05d0349b48f249edf813f}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a93dfa3232185d72f274462636a833465}
 
 
 Sets the pixel position of this widget. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]A vector2 representing the pixel position of this widget. \end{DoxyParams}
+{\em Position} & A vector2 representing the pixel position of this widget. \\
+\hline
+\end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_acba334c000c21f477238e961cd3ab2ce}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{phys::UI::Widget}.
 
 
 
-Definition at line 650 of file uiscrollbar.cpp.
+Definition at line 644 of file uiscrollbar.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_ae21108cb65871ba59da2984542eab1a1}{
+\hypertarget{classphys_1_1UI_1_1Scrollbar_aabdb8b727f1f84712a5f7c1fca6e830f}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetActualSize@{SetActualSize}}
 \index{SetActualSize@{SetActualSize}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
 \paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetActualSize (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2} \&}]{Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_ae21108cb65871ba59da2984542eab1a1}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_aabdb8b727f1f84712a5f7c1fca6e830f}
 
 
 Sets the pixel size of this widget. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Size}]A vector2 representing the pixel size of this widget. \end{DoxyParams}
+{\em Size} & A vector2 representing the pixel size of this widget. \\
+\hline
+\end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_a8c942355474d0b250dfadd4dac4ae400}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120d}{phys::UI::Widget}.
 
 
 
-Definition at line 684 of file uiscrollbar.cpp.
+Definition at line 678 of file uiscrollbar.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetArea@{SetArea}}
-\index{SetArea@{SetArea}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{SetArea}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetArea (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a82ee692ee5215893d31dab0dd76374ba}
-
-
-Internal function for setting the area(size) of this widget. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 352 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetHorizontal@{SetHorizontal}}
-\index{SetHorizontal@{SetHorizontal}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{SetHorizontal}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetHorizontal (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Size}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_acb5622bfb508d54f7802811e5dda4704}
-
-
-Sets the horizontal perameter as necessary based on the size provided for the widget. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 229 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_ac2d5081e3d91f0bc02b935b64a5316f9}{
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a238097181d00ac3bbff0d31d2dc0b237}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetIncrementDistance@{SetIncrementDistance}}
 \index{SetIncrementDistance@{SetIncrementDistance}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
 \paragraph[{SetIncrementDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetIncrementDistance (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real}}]{ IncDist}
+\item[{const {\bf Real} \&}]{IncDist}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_ac2d5081e3d91f0bc02b935b64a5316f9}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a238097181d00ac3bbff0d31d2dc0b237}
 
 
 Sets the relative distance the scrollbar will move when the up/left or down/right buttons are pressed. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em IncDist}]A real representing the amount to increment. Can be negative. \end{DoxyParams}
+{\em IncDist} & A real representing the amount to increment. Can be negative. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 617 of file uiscrollbar.cpp.
+Definition at line 611 of file uiscrollbar.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetLocation@{SetLocation}}
-\index{SetLocation@{SetLocation}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetLocation (
-\begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Position}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_add3d5f729e542fe17eda663fce86d3a3}
-
-
-Internal function for setting the location(position) of this widget. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 330 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a6a61740b90f640463fff1ebe46ca68e9}{
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a4a87f32e31e8e4443c4aaec46307864e}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetPosition@{SetPosition}}
 \index{SetPosition@{SetPosition}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
 \paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetPosition (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2} \&}]{Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a6a61740b90f640463fff1ebe46ca68e9}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a4a87f32e31e8e4443c4aaec46307864e}
 
 
 Sets the relative position of this widget in pixels. 
@@ -807,84 +622,71 @@ Sets the relative position of this widget in pixels.
 The position is relative to the screen size. Values range from 0.0 to 1.0. \par
  The top and the left are considered the origin, thus values of 0 represent one of these points. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]A vector2 representing the relative position of this widget. \end{DoxyParams}
+{\em Position} & A vector2 representing the relative position of this widget. \\
+\hline
+\end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_a3f1cd1ce55660c7de4859983bac1ab7c}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d00}{phys::UI::Widget}.
 
 
 
-Definition at line 638 of file uiscrollbar.cpp.
+Definition at line 632 of file uiscrollbar.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a7191e819a7d06e5523ebc9d3f253f60a}{
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a4bd103fd17411e5abc6a8c731ccb9183}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetScrollerSize@{SetScrollerSize}}
 \index{SetScrollerSize@{SetScrollerSize}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
 \paragraph[{SetScrollerSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetScrollerSize (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real}}]{ Size}
+\item[{const {\bf Real} \&}]{Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a7191e819a7d06e5523ebc9d3f253f60a}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a4bd103fd17411e5abc6a8c731ccb9183}
 
 
 Sets the length(or height) of the scroller based on the relative size of it's background. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Size}]The relative size you with to set the scroller to. Values range from 0.0 to 1.0. \end{DoxyParams}
+{\em Size} & The relative size you with to set the scroller to. Values range from 0.0 to 1.0. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 622 of file uiscrollbar.cpp.
+Definition at line 616 of file uiscrollbar.cpp.
 
-\hypertarget{classphys_1_1UI_1_1Scrollbar_af4c4061cf2ddeb783ee52acb805f0cfb}{
+\hypertarget{classphys_1_1UI_1_1Scrollbar_a5581675d3f250ed7270018e184b02b1d}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetSize@{SetSize}}
 \index{SetSize@{SetSize}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
 \paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetSize (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2} \&}]{Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_af4c4061cf2ddeb783ee52acb805f0cfb}
+\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a5581675d3f250ed7270018e184b02b1d}
 
 
 Sets the relative size of this widget. 
 
 The size is relative to the screen size. Values range from 0.0 to 1.0. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Size}]A vector2 representing the relative size of this widget. \end{DoxyParams}
+{\em Size} & A vector2 representing the relative size of this widget. \\
+\hline
+\end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_a3fe0b767fea59e1d120ed37b26c99044}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24d}{phys::UI::Widget}.
 
 
 
-Definition at line 661 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetToWithinLimits@{SetToWithinLimits}}
-\index{SetToWithinLimits@{SetToWithinLimits}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{SetToWithinLimits}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetToWithinLimits (
-\begin{DoxyParamCaption}
-\item[{{\bf Real} \&}]{ Coord}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a2048345c29ba15b8820971492f2bdea1}
-
-
-Checks if a provided coordinate is within the defined limits, and adjusts it if not. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Definition at line 311 of file uiscrollbar.cpp.
+Definition at line 655 of file uiscrollbar.cpp.
 
 \hypertarget{classphys_1_1UI_1_1Scrollbar_a2d8997e0bbbb1c17af5128fea98fb1e4}{
 \index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!SetVisible@{SetVisible}}
 \index{SetVisible@{SetVisible}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
 \paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::SetVisible (
 \begin{DoxyParamCaption}
-\item[{bool}]{ visible}
+\item[{bool}]{visible}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a2d8997e0bbbb1c17af5128fea98fb1e4}
@@ -894,37 +696,16 @@ Sets the visibility of this scrollbar.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em visible}]Bool determining whether or not this scrollbar should be visible. \end{DoxyParams}
+{\em visible} & Bool determining whether or not this scrollbar should be visible. \\
+\hline
+\end{DoxyParams}
 
 
 Implements \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{phys::UI::Widget}.
 
 
 
-Definition at line 530 of file uiscrollbar.cpp.
-
-\hypertarget{classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d5c62a0}{
-\index{phys::UI::Scrollbar@{phys::UI::Scrollbar}!Update@{Update}}
-\index{Update@{Update}!phys::UI::Scrollbar@{phys::UI::Scrollbar}}
-\paragraph[{Update}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::Scrollbar::Update (
-\begin{DoxyParamCaption}
-\item[{bool}]{ Force = {\ttfamily false}}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily  \mbox{[}protected, virtual\mbox{]}}}\hfill}
-\label{d0/d3e/classphys_1_1UI_1_1Scrollbar_a628999b4caa32f3c273d45e64d5c62a0}
-
-
-Performs all the necessary update and automation processes for this widget. 
-
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
-
-
-Implements \hyperlink{classphys_1_1UI_1_1Widget_a1806425fcd684c2f0d50cd0ef4a6b0da}{phys::UI::Widget}.
-
-
-
-Definition at line 454 of file uiscrollbar.cpp.
+Definition at line 531 of file uiscrollbar.cpp.
 
 
 

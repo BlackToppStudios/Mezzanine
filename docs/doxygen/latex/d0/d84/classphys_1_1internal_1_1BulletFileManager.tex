@@ -1,0 +1,127 @@
+\hypertarget{classphys_1_1internal_1_1BulletFileManager}{
+\subsection{phys::internal::BulletFileManager Class Reference}
+\label{d0/d84/classphys_1_1internal_1_1BulletFileManager}\index{phys::internal::BulletFileManager@{phys::internal::BulletFileManager}}
+}
+
+
+This is an internal resource manager class that allows the integration of the .bullet file format into the Ogre resource system.  
+
+
+
+
+{\ttfamily \#include $<$internalbulletfilemanager.h.cpp$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1internal_1_1BulletFileManager_a93e2849b098764ef30b2933da5da9696}{
+\hyperlink{classphys_1_1internal_1_1BulletFileManager_a93e2849b098764ef30b2933da5da9696}{BulletFileManager} ()}
+\label{d0/d84/classphys_1_1internal_1_1BulletFileManager_a93e2849b098764ef30b2933da5da9696}
+
+\begin{DoxyCompactList}\small\item\em Class Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1BulletFileManager_a1554959d6fcbc1cbb23c7f09bffef023}{
+\hyperlink{classphys_1_1internal_1_1BulletFileManager_a1554959d6fcbc1cbb23c7f09bffef023}{$\sim$BulletFileManager} ()}
+\label{d0/d84/classphys_1_1internal_1_1BulletFileManager_a1554959d6fcbc1cbb23c7f09bffef023}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1internal_1_1BulletFilePtr}{BulletFilePtr} \hyperlink{classphys_1_1internal_1_1BulletFileManager_a7c2dff7475d112bd525c29882f731603}{load} (const Ogre::String \&name, const Ogre::String \&group)
+\begin{DoxyCompactList}\small\item\em Loads a bulletfile resource to be used. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classphys_1_1internal_1_1BulletFileManager}{BulletFileManager} \& \hyperlink{classphys_1_1internal_1_1BulletFileManager_afb9193c8a399cb6d0bd52c89574144a1}{getSingleton} ()
+\begin{DoxyCompactList}\small\item\em Gets this manager by reference. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1internal_1_1BulletFileManager}{BulletFileManager} $\ast$ \hyperlink{classphys_1_1internal_1_1BulletFileManager_a588e9652601e019fca6c8901591a9f3b}{getSingletonPtr} ()
+\begin{DoxyCompactList}\small\item\em Gets this manager by pointer. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1internal_1_1BulletFileManager_abeaeeb48d6b4772650be3916835c4972}{
+Ogre::Resource $\ast$ {\bfseries createImpl} (const Ogre::String \&name, Ogre::ResourceHandle handle, const Ogre::String \&group, bool isManual, Ogre::ManualResourceLoader $\ast$loader, const Ogre::NameValuePairList $\ast$createParams)}
+\label{d0/d84/classphys_1_1internal_1_1BulletFileManager_abeaeeb48d6b4772650be3916835c4972}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is an internal resource manager class that allows the integration of the .bullet file format into the Ogre resource system. Using this class (and it's accompanying resource), it should be possible to enable .bullet files to be loaded in the background through Ogre's resource system. 
+
+Definition at line 62 of file internalbulletfilemanager.h.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1internal_1_1BulletFileManager_afb9193c8a399cb6d0bd52c89574144a1}{
+\index{phys::internal::BulletFileManager@{phys::internal::BulletFileManager}!getSingleton@{getSingleton}}
+\index{getSingleton@{getSingleton}!phys::internal::BulletFileManager@{phys::internal::BulletFileManager}}
+\paragraph[{getSingleton}]{\setlength{\rightskip}{0pt plus 5cm}{\bf BulletFileManager} \& phys::internal::BulletFileManager::getSingleton (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{d0/d84/classphys_1_1internal_1_1BulletFileManager_afb9193c8a399cb6d0bd52c89574144a1}
+
+
+Gets this manager by reference. 
+
+\begin{DoxyReturn}{Returns}
+Returns a reference to this manager. 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file internalbulletfilemanager.cpp.
+
+\hypertarget{classphys_1_1internal_1_1BulletFileManager_a588e9652601e019fca6c8901591a9f3b}{
+\index{phys::internal::BulletFileManager@{phys::internal::BulletFileManager}!getSingletonPtr@{getSingletonPtr}}
+\index{getSingletonPtr@{getSingletonPtr}!phys::internal::BulletFileManager@{phys::internal::BulletFileManager}}
+\paragraph[{getSingletonPtr}]{\setlength{\rightskip}{0pt plus 5cm}{\bf BulletFileManager} $\ast$ phys::internal::BulletFileManager::getSingletonPtr (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{d0/d84/classphys_1_1internal_1_1BulletFileManager_a588e9652601e019fca6c8901591a9f3b}
+
+
+Gets this manager by pointer. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to this manager. 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file internalbulletfilemanager.cpp.
+
+\hypertarget{classphys_1_1internal_1_1BulletFileManager_a7c2dff7475d112bd525c29882f731603}{
+\index{phys::internal::BulletFileManager@{phys::internal::BulletFileManager}!load@{load}}
+\index{load@{load}!phys::internal::BulletFileManager@{phys::internal::BulletFileManager}}
+\paragraph[{load}]{\setlength{\rightskip}{0pt plus 5cm}{\bf BulletFilePtr} phys::internal::BulletFileManager::load (
+\begin{DoxyParamCaption}
+\item[{const Ogre::String \&}]{name, }
+\item[{const Ogre::String \&}]{group}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d0/d84/classphys_1_1internal_1_1BulletFileManager_a7c2dff7475d112bd525c29882f731603}
+
+
+Loads a bulletfile resource to be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the .bullet file. \\
+\hline
+{\em group} & The resource group the .bullet file can be found in. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1internal_1_1BulletFile}{BulletFile} shared pointer pointing to the loaded resource. 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file internalbulletfilemanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+internalbulletfilemanager.h.cpp\item 
+internalbulletfilemanager.cpp\end{DoxyCompactItemize}

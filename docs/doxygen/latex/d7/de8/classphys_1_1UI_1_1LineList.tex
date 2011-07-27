@@ -14,7 +14,7 @@ This is an object comprised of a series of lines.
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1LineList_a0de86be9d9ecbd6f903cc15e6f44e135}{LineList} (\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\hyperlink{classphys_1_1UI_1_1LineList_a4eb08071252e1bddf1237d6a4018a86c}{LineList} (\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1LineList_ae962ca10492137ed85f7b66a79d4887e}{
 virtual \hyperlink{classphys_1_1UI_1_1LineList_ae962ca10492137ed85f7b66a79d4887e}{$\sim$LineList} ()}
@@ -35,19 +35,19 @@ virtual void \hyperlink{classphys_1_1UI_1_1LineList_a4e1d09adc4ed6947d93ae6030e0
 \label{d7/de8/classphys_1_1UI_1_1LineList_a4e1d09adc4ed6947d93ae6030e00263e}
 
 \begin{DoxyCompactList}\small\item\em Forces this rectangle to hide. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1LineList_a2f172bef99b94fa0e1d2f819b00fd8d4}{Begin} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Thickness, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
+void \hyperlink{classphys_1_1UI_1_1LineList_adb0f29fc8f83baeec9f36f4e99e04a53}{Begin} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Thickness, const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&Colour)
 \begin{DoxyCompactList}\small\item\em Starts a new line list. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1LineList_aa7987e39f5fcf6e6351e710f1c6922ba}{AddPoint} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} X, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Y)
+void \hyperlink{classphys_1_1UI_1_1LineList_a9e706df0f3c6419b64cf136b688fe5aa}{AddPoint} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&X, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Y)
 \begin{DoxyCompactList}\small\item\em Adds a new point/line to the list via 2 reals. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1LineList_a5988b99342c7ed5d3aba5d4c33df7ed4}{AddPoint} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
+void \hyperlink{classphys_1_1UI_1_1LineList_a586b848c2eeebeead80d3f5f3fd05ad5}{AddPoint} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Adds a new point/line to the list via a vector2. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1LineList_a6fdb46f6c8527d994bb6f37a764e5543}{AddActualPoint} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} X, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Y)
+void \hyperlink{classphys_1_1UI_1_1LineList_a2bb72fa96c9ed9ea64c78eb8286fd713}{AddActualPoint} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&X, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Y)
 \begin{DoxyCompactList}\small\item\em Adds a new point/line to the list via 2 reals. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1UI_1_1LineList_ab867e29dafa4e512f2ab655388214a96}{AddActualPoint} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
+void \hyperlink{classphys_1_1UI_1_1LineList_a298919a32f4b41ce9414c47f26122778}{AddActualPoint} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Adds a new point/line to the list via a vector2. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1UI_1_1LineList_a8ea40817665ec539b4ff97a64b73317f}{End} (bool Closed=false)
 \begin{DoxyCompactList}\small\item\em Finalizes the list and prepares it for rendering. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1LineList_aa108c16282875850e5a6c01353977e97}{SetRenderPriority} (UI::RenderPriority Priority)
+virtual void \hyperlink{classphys_1_1UI_1_1LineList_aaa62a555258c3572f3d994de38028f01}{SetRenderPriority} (const UI::RenderPriority \&Priority)
 \begin{DoxyCompactList}\small\item\em Sets the priority this button should be rendered with. \item\end{DoxyCompactList}\item 
 virtual UI::RenderPriority \hyperlink{classphys_1_1UI_1_1LineList_a95aa150344304a49d8f6c6024d6a5351}{GetRenderPriority} ()
 \begin{DoxyCompactList}\small\item\em Gets the priority this button should be rendered with. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -59,9 +59,9 @@ Gorilla::LineList $\ast$ {\bfseries GLineList}}
 \label{d7/de8/classphys_1_1UI_1_1LineList_a54a208c0128b59d2b55887eaee077604}
 
 \item 
-\hypertarget{classphys_1_1UI_1_1LineList_a5f2c27676c660c06bb94c71f70de7546}{
-\hyperlink{classphys_1_1UILayer}{UILayer} $\ast$ {\bfseries Parent}}
-\label{d7/de8/classphys_1_1UI_1_1LineList_a5f2c27676c660c06bb94c71f70de7546}
+\hypertarget{classphys_1_1UI_1_1LineList_a68c3c706579e3f4cd9d828c54bcce968}{
+\hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$ {\bfseries Parent}}
+\label{d7/de8/classphys_1_1UI_1_1LineList_a68c3c706579e3f4cd9d828c54bcce968}
 
 \item 
 \hypertarget{classphys_1_1UI_1_1LineList_a8e4a1ff5e1918871b6be7bb48c6a161d}{
@@ -79,22 +79,24 @@ Definition at line 66 of file uilinelist.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1LineList_a0de86be9d9ecbd6f903cc15e6f44e135}{
+\hypertarget{classphys_1_1UI_1_1LineList_a4eb08071252e1bddf1237d6a4018a86c}{
 \index{phys::UI::LineList@{phys::UI::LineList}!LineList@{LineList}}
 \index{LineList@{LineList}!phys::UI::LineList@{phys::UI::LineList}}
 \paragraph[{LineList}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::LineList::LineList (
 \begin{DoxyParamCaption}
-\item[{{\bf UILayer} $\ast$}]{ Layer}
+\item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d7/de8/classphys_1_1UI_1_1LineList_a0de86be9d9ecbd6f903cc15e6f44e135}
+\label{d7/de8/classphys_1_1UI_1_1LineList_a4eb08071252e1bddf1237d6a4018a86c}
 
 
 Class constructor. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Layer}]Pointer to the parent Layer that created this rectangle. \end{DoxyParams}
+{\em \hyperlink{classphys_1_1UI_1_1Layer}{Layer}} & Pointer to the parent \hyperlink{classphys_1_1UI_1_1Layer}{Layer} that created this rectangle. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 55 of file uilinelist.cpp.
@@ -102,105 +104,121 @@ Definition at line 55 of file uilinelist.cpp.
 
 
 \subsubsection{Member Function Documentation}
-\hypertarget{classphys_1_1UI_1_1LineList_a6fdb46f6c8527d994bb6f37a764e5543}{
+\hypertarget{classphys_1_1UI_1_1LineList_a2bb72fa96c9ed9ea64c78eb8286fd713}{
 \index{phys::UI::LineList@{phys::UI::LineList}!AddActualPoint@{AddActualPoint}}
 \index{AddActualPoint@{AddActualPoint}!phys::UI::LineList@{phys::UI::LineList}}
 \paragraph[{AddActualPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::LineList::AddActualPoint (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real}}]{ X, }
-\item[{const {\bf Real}}]{ Y}
+\item[{const {\bf Real} \&}]{X, }
+\item[{const {\bf Real} \&}]{Y}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d7/de8/classphys_1_1UI_1_1LineList_a6fdb46f6c8527d994bb6f37a764e5543}
+\label{d7/de8/classphys_1_1UI_1_1LineList_a2bb72fa96c9ed9ea64c78eb8286fd713}
 
 
 Adds a new point/line to the list via 2 reals. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em X}]Coordinate on the X vector. \item[{\em Y}]Coordinate on the Y vector. \end{DoxyParams}
+{\em X} & Coordinate on the X vector. \\
+\hline
+{\em Y} & Coordinate on the Y vector. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 103 of file uilinelist.cpp.
 
-\hypertarget{classphys_1_1UI_1_1LineList_ab867e29dafa4e512f2ab655388214a96}{
+\hypertarget{classphys_1_1UI_1_1LineList_a298919a32f4b41ce9414c47f26122778}{
 \index{phys::UI::LineList@{phys::UI::LineList}!AddActualPoint@{AddActualPoint}}
 \index{AddActualPoint@{AddActualPoint}!phys::UI::LineList@{phys::UI::LineList}}
 \paragraph[{AddActualPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::LineList::AddActualPoint (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2} \&}]{Position}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d7/de8/classphys_1_1UI_1_1LineList_ab867e29dafa4e512f2ab655388214a96}
+\label{d7/de8/classphys_1_1UI_1_1LineList_a298919a32f4b41ce9414c47f26122778}
 
 
 Adds a new point/line to the list via a vector2. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]A vector2 representing the position on screen. \end{DoxyParams}
+{\em Position} & A vector2 representing the position on screen. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 108 of file uilinelist.cpp.
 
-\hypertarget{classphys_1_1UI_1_1LineList_aa7987e39f5fcf6e6351e710f1c6922ba}{
+\hypertarget{classphys_1_1UI_1_1LineList_a9e706df0f3c6419b64cf136b688fe5aa}{
 \index{phys::UI::LineList@{phys::UI::LineList}!AddPoint@{AddPoint}}
 \index{AddPoint@{AddPoint}!phys::UI::LineList@{phys::UI::LineList}}
 \paragraph[{AddPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::LineList::AddPoint (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real}}]{ X, }
-\item[{const {\bf Real}}]{ Y}
+\item[{const {\bf Real} \&}]{X, }
+\item[{const {\bf Real} \&}]{Y}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d7/de8/classphys_1_1UI_1_1LineList_aa7987e39f5fcf6e6351e710f1c6922ba}
+\label{d7/de8/classphys_1_1UI_1_1LineList_a9e706df0f3c6419b64cf136b688fe5aa}
 
 
 Adds a new point/line to the list via 2 reals. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em X}]Relative coordinate on the X vector. \item[{\em Y}]Relative coordinate on the Y vector. \end{DoxyParams}
+{\em X} & Relative coordinate on the X vector. \\
+\hline
+{\em Y} & Relative coordinate on the Y vector. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 93 of file uilinelist.cpp.
 
-\hypertarget{classphys_1_1UI_1_1LineList_a5988b99342c7ed5d3aba5d4c33df7ed4}{
+\hypertarget{classphys_1_1UI_1_1LineList_a586b848c2eeebeead80d3f5f3fd05ad5}{
 \index{phys::UI::LineList@{phys::UI::LineList}!AddPoint@{AddPoint}}
 \index{AddPoint@{AddPoint}!phys::UI::LineList@{phys::UI::LineList}}
 \paragraph[{AddPoint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::LineList::AddPoint (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2} \&}]{Position}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d7/de8/classphys_1_1UI_1_1LineList_a5988b99342c7ed5d3aba5d4c33df7ed4}
+\label{d7/de8/classphys_1_1UI_1_1LineList_a586b848c2eeebeead80d3f5f3fd05ad5}
 
 
 Adds a new point/line to the list via a vector2. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]A vector2 representing the relative position on screen. \end{DoxyParams}
+{\em Position} & A vector2 representing the relative position on screen. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 98 of file uilinelist.cpp.
 
-\hypertarget{classphys_1_1UI_1_1LineList_a2f172bef99b94fa0e1d2f819b00fd8d4}{
+\hypertarget{classphys_1_1UI_1_1LineList_adb0f29fc8f83baeec9f36f4e99e04a53}{
 \index{phys::UI::LineList@{phys::UI::LineList}!Begin@{Begin}}
 \index{Begin@{Begin}!phys::UI::LineList@{phys::UI::LineList}}
 \paragraph[{Begin}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::LineList::Begin (
 \begin{DoxyParamCaption}
-\item[{{\bf Whole}}]{ Thickness, }
-\item[{const {\bf ColourValue} \&}]{ Colour}
+\item[{const {\bf Whole} \&}]{Thickness, }
+\item[{const {\bf ColourValue} \&}]{Colour}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d7/de8/classphys_1_1UI_1_1LineList_a2f172bef99b94fa0e1d2f819b00fd8d4}
+\label{d7/de8/classphys_1_1UI_1_1LineList_adb0f29fc8f83baeec9f36f4e99e04a53}
 
 
 Starts a new line list. 
 
 If this function is called while lines have already been defined, it will clear the current list of lines and start a new list. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Thickness}]The thickness of the line to draw in pixels. \item[{\em Colour}]The colour of the line. \end{DoxyParams}
+{\em Thickness} & The thickness of the line to draw in pixels. \\
+\hline
+{\em Colour} & The colour of the line. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 88 of file uilinelist.cpp.
@@ -210,7 +228,7 @@ Definition at line 88 of file uilinelist.cpp.
 \index{End@{End}!phys::UI::LineList@{phys::UI::LineList}}
 \paragraph[{End}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::LineList::End (
 \begin{DoxyParamCaption}
-\item[{bool}]{ Closed = {\ttfamily false}}
+\item[{bool}]{Closed = {\ttfamily false}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d7/de8/classphys_1_1UI_1_1LineList_a8ea40817665ec539b4ff97a64b73317f}
@@ -220,7 +238,9 @@ Finalizes the list and prepares it for rendering.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Closed}]Whether or not the line list connects back to it's starting position. If true this will create one last line connecting the last provided position with the first. \end{DoxyParams}
+{\em Closed} & Whether or not the line list connects back to it's starting position. If true this will create one last line connecting the last provided position with the first. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 113 of file uilinelist.cpp.
@@ -265,22 +285,24 @@ Returns a bool representing the visibility of this rectangle.
 
 Definition at line 73 of file uilinelist.cpp.
 
-\hypertarget{classphys_1_1UI_1_1LineList_aa108c16282875850e5a6c01353977e97}{
+\hypertarget{classphys_1_1UI_1_1LineList_aaa62a555258c3572f3d994de38028f01}{
 \index{phys::UI::LineList@{phys::UI::LineList}!SetRenderPriority@{SetRenderPriority}}
 \index{SetRenderPriority@{SetRenderPriority}!phys::UI::LineList@{phys::UI::LineList}}
 \paragraph[{SetRenderPriority}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::LineList::SetRenderPriority (
 \begin{DoxyParamCaption}
-\item[{UI::RenderPriority}]{ Priority}
+\item[{const UI::RenderPriority \&}]{Priority}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d7/de8/classphys_1_1UI_1_1LineList_aa108c16282875850e5a6c01353977e97}
+\label{d7/de8/classphys_1_1UI_1_1LineList_aaa62a555258c3572f3d994de38028f01}
 
 
 Sets the priority this button should be rendered with. 
 
 The default value for this is Medium. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Priority}]The priority level to be used when rendering this button. \end{DoxyParams}
+{\em Priority} & The priority level to be used when rendering this button. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 118 of file uilinelist.cpp.
@@ -290,7 +312,7 @@ Definition at line 118 of file uilinelist.cpp.
 \index{SetVisible@{SetVisible}!phys::UI::LineList@{phys::UI::LineList}}
 \paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::LineList::SetVisible (
 \begin{DoxyParamCaption}
-\item[{bool}]{ Visible}
+\item[{bool}]{Visible}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d7/de8/classphys_1_1UI_1_1LineList_acecf11c133825233afd73d55ba9e4c1d}
@@ -300,7 +322,9 @@ Sets the visibility of this rectangle.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Visible}]Bool determining whether or not this rectangle should be visible. \end{DoxyParams}
+{\em Visible} & Bool determining whether or not this rectangle should be visible. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 68 of file uilinelist.cpp.
