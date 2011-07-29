@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 
 /**
@@ -466,15 +465,23 @@ extern DECLSPEC int SDLCALL SDL_SoftStretch(SDL_Surface * src,
                                             SDL_Surface * dst,
                                             const SDL_Rect * dstrect);
 
+#define SDL_BlitScaled SDL_UpperBlitScaled
+
 /**
- *  \brief Perform a fast, low quality, stretch blit between two surfaces of the
- *         different pixel formats.
- *  
- *  \note This function calls SDL_SoftStretch or SDL_LowerBlit.
+ *  This is the public scaled blit function, SDL_BlitScaled(), and it performs
+ *  rectangle validation and clipping before passing it to SDL_LowerBlitScaled()
  */
-extern DECLSPEC int SDLCALL SDL_BlitScaled
+extern DECLSPEC int SDLCALL SDL_UpperBlitScaled
     (SDL_Surface * src, const SDL_Rect * srcrect,
-    SDL_Surface * dst, const SDL_Rect * dstrect);
+    SDL_Surface * dst, SDL_Rect * dstrect);
+
+/**
+ *  This is a semi-private blit function and it performs low-level surface
+ *  scaled blitting only.
+ */
+extern DECLSPEC int SDLCALL SDL_LowerBlitScaled
+    (SDL_Surface * src, SDL_Rect * srcrect,
+    SDL_Surface * dst, SDL_Rect * dstrect);
 
 
 /* Ends C function definitions when using C++ */

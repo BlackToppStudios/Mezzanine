@@ -1,28 +1,28 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 #include "SDL_config.h"
 
 #if SDL_VIDEO_RENDER_OGL_ES && !SDL_RENDER_DISABLED
 
+#include "SDL_hints.h"
 #include "SDL_opengles.h"
 #include "../SDL_sysrender.h"
 
@@ -87,7 +87,6 @@ typedef struct
     struct {
         Uint32 color;
         int blendMode;
-        GLenum scaleMode;
         SDL_bool tex_coords;
     } current;
 
@@ -105,7 +104,6 @@ typedef struct
     GLenum formattype;
     void *pixels;
     int pitch;
-    GLenum scaleMode;
 } GLES_TextureData;
 
 static void
@@ -174,7 +172,6 @@ GLES_ResetState(SDL_Renderer *renderer)
 
     data->current.color = 0;
     data->current.blendMode = -1;
-    data->current.scaleMode = 0;
     data->current.tex_coords = SDL_FALSE;
 
     glDisable(GL_DEPTH_TEST);
@@ -292,6 +289,18 @@ power_of_2(int input)
     return value;
 }
 
+static GLenum
+GetScaleQuality(void)
+{
+    const char *hint = SDL_GetHint(SDL_HINT_RENDER_SCALE_QUALITY);
+
+    if (!hint || *hint == '0' || SDL_strcasecmp(hint, "nearest") == 0) {
+        return GL_NEAREST;
+    } else {
+        return GL_LINEAR;
+    }
+}
+
 static int
 GLES_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
 {
@@ -299,6 +308,7 @@ GLES_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
     GLint internalFormat;
     GLenum format, type;
     int texture_w, texture_h;
+    GLenum scaleMode;
     GLenum result;
 
     GLES_ActivateRenderer(renderer);
@@ -345,8 +355,10 @@ GLES_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
 
     data->format = format;
     data->formattype = type;
-    data->scaleMode = GL_LINEAR;
+    scaleMode = GetScaleQuality();
     glBindTexture(data->type, data->texture);
+    glTexParameteri(data->type, GL_TEXTURE_MIN_FILTER, scaleMode);
+    glTexParameteri(data->type, GL_TEXTURE_MAG_FILTER, scaleMode);
     glTexParameteri(data->type, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(data->type, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
@@ -660,14 +672,6 @@ GLES_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
     glEnable(GL_TEXTURE_2D);
 
     glBindTexture(texturedata->type, texturedata->texture);
-
-    if (texturedata->scaleMode != data->current.scaleMode) {
-        glTexParameteri(texturedata->type, GL_TEXTURE_MIN_FILTER,
-                        texturedata->scaleMode);
-        glTexParameteri(texturedata->type, GL_TEXTURE_MAG_FILTER,
-                        texturedata->scaleMode);
-        data->current.scaleMode = texturedata->scaleMode;
-    }
 
     if (texture->modMode) {
         GLES_SetColor(data, texture->r, texture->g, texture->b, texture->a);

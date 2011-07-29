@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 #include "SDL_config.h"
 
@@ -30,6 +29,56 @@
 #include "SDL_pixels_c.h"
 #include "SDL_RLEaccel_c.h"
 
+
+/* Lookup tables to expand partial bytes to the full 0..255 range */
+
+static Uint8 lookup_0[] = {
+0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158, 159, 160, 161, 162, 163, 164, 165, 166, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 182, 183, 184, 185, 186, 187, 188, 189, 190, 191, 192, 193, 194, 195, 196, 197, 198, 199, 200, 201, 202, 203, 204, 205, 206, 207, 208, 209, 210, 211, 212, 213, 214, 215, 216, 217, 218, 219, 220, 221, 222, 223, 224, 225, 226, 227, 228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 246, 247, 248, 249, 250, 251, 252, 253, 254, 255
+};
+
+static Uint8 lookup_1[] = {
+0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 68, 70, 72, 74, 76, 78, 80, 82, 84, 86, 88, 90, 92, 94, 96, 98, 100, 102, 104, 106, 108, 110, 112, 114, 116, 118, 120, 122, 124, 126, 128, 130, 132, 134, 136, 138, 140, 142, 144, 146, 148, 150, 152, 154, 156, 158, 160, 162, 164, 166, 168, 170, 172, 174, 176, 178, 180, 182, 184, 186, 188, 190, 192, 194, 196, 198, 200, 202, 204, 206, 208, 210, 212, 214, 216, 218, 220, 222, 224, 226, 228, 230, 232, 234, 236, 238, 240, 242, 244, 246, 248, 250, 252, 255
+};
+
+static Uint8 lookup_2[] = {
+0, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80, 85, 89, 93, 97, 101, 105, 109, 113, 117, 121, 125, 129, 133, 137, 141, 145, 149, 153, 157, 161, 165, 170, 174, 178, 182, 186, 190, 194, 198, 202, 206, 210, 214, 218, 222, 226, 230, 234, 238, 242, 246, 250, 255
+};
+
+static Uint8 lookup_3[] = {
+0, 8, 16, 24, 32, 41, 49, 57, 65, 74, 82, 90, 98, 106, 115, 123, 131, 139, 148, 156, 164, 172, 180, 189, 197, 205, 213, 222, 230, 238, 246, 255
+};
+
+static Uint8 lookup_4[] = {
+0, 17, 34, 51, 68, 85, 102, 119, 136, 153, 170, 187, 204, 221, 238, 255
+};
+
+static Uint8 lookup_5[] = {
+0, 36, 72, 109, 145, 182, 218, 255
+};
+
+static Uint8 lookup_6[] = {
+0, 85, 170, 255
+};
+
+static Uint8 lookup_7[] = {
+0, 255
+};
+
+static Uint8 lookup_8[] = {
+255
+};
+
+Uint8* SDL_expand_byte[9] = {
+    lookup_0,
+    lookup_1,
+    lookup_2,
+    lookup_3,
+    lookup_4,
+    lookup_5,
+    lookup_6,
+    lookup_7,
+    lookup_8
+};
 
 /* Helper functions */
 
@@ -83,6 +132,12 @@ SDL_PixelFormatEnumToMasks(Uint32 format, int *bpp, Uint32 * Rmask,
 {
     Uint32 masks[4];
 
+    /* This function doesn't work with FourCC pixel formats */
+    if (SDL_ISPIXELFORMAT_FOURCC(format)) {
+        SDL_SetError("FOURCC pixel formats are not supported");
+        return SDL_FALSE;
+    }
+ 
     /* Initialize the values here */
     if (SDL_BYTESPERPIXEL(format) <= 2) {
         *bpp = SDL_BITSPERPIXEL(format);
@@ -235,6 +290,12 @@ SDL_MasksToPixelFormatEnum(int bpp, Uint32 Rmask, Uint32 Gmask, Uint32 Bmask,
                            Uint32 Amask)
 {
     switch (bpp) {
+    case 1:
+        /* SDL defaults to MSB ordering */
+        return SDL_PIXELFORMAT_INDEX1MSB;
+    case 4:
+        /* SDL defaults to MSB ordering */
+        return SDL_PIXELFORMAT_INDEX4MSB;
     case 8:
         if (Rmask == 0) {
             return SDL_PIXELFORMAT_INDEX8;
@@ -412,11 +473,6 @@ SDL_AllocFormat(Uint32 pixel_format)
 {
     SDL_PixelFormat *format;
 
-    if (SDL_ISPIXELFORMAT_FOURCC(pixel_format)) {
-        SDL_SetError("FOURCC pixel formats are not supported");
-        return NULL;
-    }
-
     /* Look it up in our list of previously allocated formats */
     for (format = formats; format; format = format->next) {
         if (pixel_format == format->format) {
@@ -429,9 +485,12 @@ SDL_AllocFormat(Uint32 pixel_format)
     format = SDL_malloc(sizeof(*format));
     if (format == NULL) {
         SDL_OutOfMemory();
-        return (NULL);
+        return NULL;
     }
-    SDL_InitFormat(format, pixel_format);
+    if (SDL_InitFormat(format, pixel_format) < 0) {
+        SDL_free(format);
+        return NULL;
+    }
 
     if (!SDL_ISPIXELFORMAT_INDEXED(pixel_format)) {
         /* Cache the RGB formats */
@@ -450,7 +509,6 @@ SDL_InitFormat(SDL_PixelFormat * format, Uint32 pixel_format)
 
     if (!SDL_PixelFormatEnumToMasks(pixel_format, &bpp,
                                     &Rmask, &Gmask, &Bmask, &Amask)) {
-        SDL_SetError("Unknown pixel format");
         return -1;
     }
 
@@ -459,71 +517,47 @@ SDL_InitFormat(SDL_PixelFormat * format, Uint32 pixel_format)
     format->format = pixel_format;
     format->BitsPerPixel = bpp;
     format->BytesPerPixel = (bpp + 7) / 8;
-    if (Rmask || Bmask || Gmask) {      /* Packed pixels with custom mask */
-        format->Rshift = 0;
-        format->Rloss = 8;
-        if (Rmask) {
-            for (mask = Rmask; !(mask & 0x01); mask >>= 1)
-                ++format->Rshift;
-            for (; (mask & 0x01); mask >>= 1)
-                --format->Rloss;
-        }
-        format->Gshift = 0;
-        format->Gloss = 8;
-        if (Gmask) {
-            for (mask = Gmask; !(mask & 0x01); mask >>= 1)
-                ++format->Gshift;
-            for (; (mask & 0x01); mask >>= 1)
-                --format->Gloss;
-        }
-        format->Bshift = 0;
-        format->Bloss = 8;
-        if (Bmask) {
-            for (mask = Bmask; !(mask & 0x01); mask >>= 1)
-                ++format->Bshift;
-            for (; (mask & 0x01); mask >>= 1)
-                --format->Bloss;
-        }
-        format->Ashift = 0;
-        format->Aloss = 8;
-        if (Amask) {
-            for (mask = Amask; !(mask & 0x01); mask >>= 1)
-                ++format->Ashift;
-            for (; (mask & 0x01); mask >>= 1)
-                --format->Aloss;
-        }
-        format->Rmask = Rmask;
-        format->Gmask = Gmask;
-        format->Bmask = Bmask;
-        format->Amask = Amask;
-    } else if (bpp > 8) {       /* Packed pixels with standard mask */
-        /* R-G-B */
-        if (bpp > 24)
-            bpp = 24;
-        format->Rloss = 8 - (bpp / 3);
-        format->Gloss = 8 - (bpp / 3) - (bpp % 3);
-        format->Bloss = 8 - (bpp / 3);
-        format->Rshift = ((bpp / 3) + (bpp % 3)) + (bpp / 3);
-        format->Gshift = (bpp / 3);
-        format->Bshift = 0;
-        format->Rmask = ((0xFF >> format->Rloss) << format->Rshift);
-        format->Gmask = ((0xFF >> format->Gloss) << format->Gshift);
-        format->Bmask = ((0xFF >> format->Bloss) << format->Bshift);
-    } else {
-        /* Palettized formats have no mask info */
-        format->Rloss = 8;
-        format->Gloss = 8;
-        format->Bloss = 8;
-        format->Aloss = 8;
-        format->Rshift = 0;
-        format->Gshift = 0;
-        format->Bshift = 0;
-        format->Ashift = 0;
-        format->Rmask = 0;
-        format->Gmask = 0;
-        format->Bmask = 0;
-        format->Amask = 0;
+
+    format->Rmask = Rmask;
+    format->Rshift = 0;
+    format->Rloss = 8;
+    if (Rmask) {
+        for (mask = Rmask; !(mask & 0x01); mask >>= 1)
+            ++format->Rshift;
+        for (; (mask & 0x01); mask >>= 1)
+            --format->Rloss;
     }
+
+    format->Gmask = Gmask;
+    format->Gshift = 0;
+    format->Gloss = 8;
+    if (Gmask) {
+        for (mask = Gmask; !(mask & 0x01); mask >>= 1)
+            ++format->Gshift;
+        for (; (mask & 0x01); mask >>= 1)
+            --format->Gloss;
+    }
+
+    format->Bmask = Bmask;
+    format->Bshift = 0;
+    format->Bloss = 8;
+    if (Bmask) {
+        for (mask = Bmask; !(mask & 0x01); mask >>= 1)
+            ++format->Bshift;
+        for (; (mask & 0x01); mask >>= 1)
+            --format->Bloss;
+    }
+
+    format->Amask = Amask;
+    format->Ashift = 0;
+    format->Aloss = 8;
+    if (Amask) {
+        for (mask = Amask; !(mask & 0x01); mask >>= 1)
+            ++format->Ashift;
+        for (; (mask & 0x01); mask >>= 1)
+            --format->Aloss;
+    }
+
     format->palette = NULL;
     format->refcount = 1;
     format->next = NULL;
@@ -773,25 +807,21 @@ SDL_GetRGB(Uint32 pixel, const SDL_PixelFormat * format, Uint8 * r, Uint8 * g,
            Uint8 * b)
 {
     if (format->palette == NULL) {
-        /*
-         * This makes sure that the result is mapped to the
-         * interval [0..255], and the maximum value for each
-         * component is 255. This is important to make sure
-         * that white is indeed reported as (255, 255, 255).
-         * This only works for RGB bit fields at least 4 bit
-         * wide, which is almost always the case.
-         */
         unsigned v;
         v = (pixel & format->Rmask) >> format->Rshift;
-        *r = (v << format->Rloss) + (v >> (8 - (format->Rloss << 1)));
+        *r = SDL_expand_byte[format->Rloss][v];
         v = (pixel & format->Gmask) >> format->Gshift;
-        *g = (v << format->Gloss) + (v >> (8 - (format->Gloss << 1)));
+        *g = SDL_expand_byte[format->Gloss][v];
         v = (pixel & format->Bmask) >> format->Bshift;
-        *b = (v << format->Bloss) + (v >> (8 - (format->Bloss << 1)));
+        *b = SDL_expand_byte[format->Bloss][v];
     } else {
-        *r = format->palette->colors[pixel].r;
-        *g = format->palette->colors[pixel].g;
-        *b = format->palette->colors[pixel].b;
+        if (pixel < (unsigned)format->palette->ncolors) {
+            *r = format->palette->colors[pixel].r;
+            *g = format->palette->colors[pixel].g;
+            *b = format->palette->colors[pixel].b;
+        } else {
+            *r = *g = *b = 0;
+        }
     }
 }
 
@@ -800,33 +830,24 @@ SDL_GetRGBA(Uint32 pixel, const SDL_PixelFormat * format,
             Uint8 * r, Uint8 * g, Uint8 * b, Uint8 * a)
 {
     if (format->palette == NULL) {
-        /*
-         * This makes sure that the result is mapped to the
-         * interval [0..255], and the maximum value for each
-         * component is 255. This is important to make sure
-         * that white is indeed reported as (255, 255, 255),
-         * and that opaque alpha is 255.
-         * This only works for RGB bit fields at least 4 bit
-         * wide, which is almost always the case.
-         */
         unsigned v;
         v = (pixel & format->Rmask) >> format->Rshift;
-        *r = (v << format->Rloss) + (v >> (8 - (format->Rloss << 1)));
+        *r = SDL_expand_byte[format->Rloss][v];
         v = (pixel & format->Gmask) >> format->Gshift;
-        *g = (v << format->Gloss) + (v >> (8 - (format->Gloss << 1)));
+        *g = SDL_expand_byte[format->Gloss][v];
         v = (pixel & format->Bmask) >> format->Bshift;
-        *b = (v << format->Bloss) + (v >> (8 - (format->Bloss << 1)));
-        if (format->Amask) {
-            v = (pixel & format->Amask) >> format->Ashift;
-            *a = (v << format->Aloss) + (v >> (8 - (format->Aloss << 1)));
-        } else {
-            *a = SDL_ALPHA_OPAQUE;
-        }
+        *b = SDL_expand_byte[format->Bloss][v];
+        v = (pixel & format->Amask) >> format->Ashift;
+        *a = SDL_expand_byte[format->Aloss][v];
     } else {
-        *r = format->palette->colors[pixel].r;
-        *g = format->palette->colors[pixel].g;
-        *b = format->palette->colors[pixel].b;
-        *a = SDL_ALPHA_OPAQUE;
+        if (pixel < (unsigned)format->palette->ncolors) {
+            *r = format->palette->colors[pixel].r;
+            *g = format->palette->colors[pixel].g;
+            *b = format->palette->colors[pixel].b;
+            *a = SDL_ALPHA_OPAQUE;
+        } else {
+            *r = *g = *b = *a = 0;
+        }
     }
 }
 
@@ -1016,6 +1037,38 @@ SDL_FreeBlitMap(SDL_BlitMap * map)
     if (map) {
         SDL_InvalidateMap(map);
         SDL_free(map);
+    }
+}
+
+void
+SDL_CalculateGammaRamp(float gamma, Uint16 * ramp)
+{
+    int i;
+
+    /* 0.0 gamma is all black */
+    if (gamma <= 0.0f) {
+        for (i = 0; i < 256; ++i) {
+            ramp[i] = 0;
+        }
+        return;
+    } else if (gamma == 1.0f) {
+        /* 1.0 gamma is identity */
+        for (i = 0; i < 256; ++i) {
+            ramp[i] = (i << 8) | i;
+        }
+        return;
+    } else {
+        /* Calculate a real gamma ramp */
+        int value;
+        gamma = 1.0f / gamma;
+        for (i = 0; i < 256; ++i) {
+            value =
+                (int) (SDL_pow((double) i / 256.0, gamma) * 65535.0 + 0.5);
+            if (value > 65535) {
+                value = 65535;
+            }
+            ramp[i] = (Uint16) value;
+        }
     }
 }
 

@@ -179,9 +179,6 @@ namespace phys
         private:
             //friend class PhysicsManager;
 
-            //SDL Object
-            bool HasSDLBeenInitialized;
-
             //Used to break the mainloop
             bool ManualLoopBreak;
 

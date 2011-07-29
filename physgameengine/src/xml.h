@@ -272,8 +272,8 @@ namespace phys
 
 	// The default set of formatting flags.
 	// Nodes are indented depending on their Depth in DOM tree, a default declaration is output if document has none.
-	const unsigned int FormatDefault = FormatIndent;
-
+	//const unsigned int FormatDefault = FormatIndent;
+    const unsigned int FormatDefault = FormatRaw;
 	// Forward declarations
 	struct AttributeStruct;
 	struct NodeStruct;

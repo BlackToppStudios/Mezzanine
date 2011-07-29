@@ -712,7 +712,7 @@ class Vector3Tests : public UnitTest
                 stringstream XMLstream;
                 XMLstream<<Vec;
                 phys::String Actual(XMLstream.str());
-                phys::String Ideal("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\"/>");
+                phys::String Ideal("<Vector3 Version=\"1\" X=\"3\" Y=\"4\" Z=\"5\" />");
                 if(Actual==Ideal)
                     { temp=Success; }
                 else

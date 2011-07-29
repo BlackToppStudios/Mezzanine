@@ -75,12 +75,16 @@ namespace phys
             friend class GraphicsManager;
             friend class World;
             friend class Camera;
-            phys::SceneManager* SManager;
+
             Camera* DefaultCamera;
             std::vector< Camera* > Cameras;
             std::map< Camera* , CameraController* > CameraControllers;
             Camera* FindCamera(String Name);
         public:
+            /// @internal
+            /// @brief Used to reference the appropriate scene
+            phys::SceneManager* SManager;
+
             /// @brief Class Constructor.
             /// @details This is the class constructor.  This is automatcally called in the World.CreateRenderWindow()
             /// function and should never need to be called manually.

@@ -62,7 +62,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3WActor& x)
 {
     if (x.Actor != NULL)
     {
-        stream << "( Actor:" << *(x.Actor) << " Vector:" << x.Vector << ")";
+        stream << "( Actor:" << x.Actor->ProtoSerialize() << " Vector:" << x.Vector << ")";
     }else{
         stream << "( Actor: NULL" << " Vector:" << x.Vector << ")";
     }

@@ -48,6 +48,19 @@ namespace phys
 {
     Whole SoundSet::UnnamedInstanceCount = 0;
 
+    xml::Node SoundSet::ProtoSerialize() const
+    {
+
+    }
+
+    void SoundSet::ProtoDeSerialize(const xml::Node&)
+    {
+
+    }
+
+    String SoundSet::SerializableName() const
+        { return String("SoundSet"); }
+
     SoundManager::SoundManager(bool DefaultSettings)
     {
         AudioManager = cAudio::createAudioManager(DefaultSettings);
@@ -57,6 +70,9 @@ namespace phys
 
     SoundManager::~SoundManager()
     {
+        #ifdef PHYSDEBUG
+        this->GameWorld->Log("Destructing Sound Manager");
+        #endif
         cAudio::destroyAudioManager(AudioManager);
     }
 

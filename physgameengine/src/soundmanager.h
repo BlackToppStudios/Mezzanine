@@ -83,6 +83,13 @@ namespace phys
             /// @brief Get the name of the SoundSet
             const String& GetName() const
                 { return Name; }
+
+            //Serializable
+            xml::Node ProtoSerialize() const;
+
+            void ProtoDeSerialize(const xml::Node&);
+
+            String SerializableName() const;
     };
     //typedef std::vector< Sound* > SoundSet;
     /// Todo de/serialize sound set

@@ -116,8 +116,9 @@ namespace phys
                                 std::vector <ManagerBase*> ManagerToBeAdded)
     {
         //Set some sane Defaults for some values
+        //SDLSystemsInitialized=0;
         this->TargetFrameLength=16;
-        this->HasSDLBeenInitialized=false;
+        //this->HasSDLBeenInitialized=false;
         this->FrameTime = 0;
         this->ManualLoopBreak = false;
 
@@ -127,7 +128,7 @@ namespace phys
         if ( 0 == OgreCore )
             { OgreCore = new Ogre::Root(crossplatform::GetPluginsDotCFG(),crossplatform::GetSettingsDotCFG(),LogFileName); }
         else
-            { OgreCore = Ogre::Root::getSingletonPtr(); }
+            { OgreCore = Ogre::Root::getSingletonPtr();}
 
         World::TheRealWorld = this;
 
@@ -191,17 +192,24 @@ namespace phys
     //tears the world down
     World::~World()
     {
-        for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin() ; iter!= ManagerList.end() ; /*iter++*/ )
+        ManagerBase* Current;
+        //for( std::list<ManagerBase*>::iterator iter = --this->ManagerList.end(); !ManagerList.empty(); iter = --this->ManagerList.end() ) //Backward
+        for( std::list<ManagerBase*>::iterator iter = this->ManagerList.begin(); !ManagerList.empty(); iter = this->ManagerList.begin() ) //forward
         {
-            delete (*iter);
-            iter = ManagerList.erase(iter);
+            #ifdef PHYSDEBUG
+            std::cout << "Deleting " << (*iter)->GetTypeName() << std::endl; //Be careful using this. Because the UImanager is deleted during scenemanager deconstruction, it may not be obvious when that memory is freed.
+            #endif
+            Current = (*iter);
+            delete Current;
+            RemoveManager(Current);
         }
-        ManagerList.clear();
 
-        //All the pointers Ogre made should get taken care of by OGRE
+        SDL_Quit();
+
         Ogre::Root::getSingleton().shutdown();
-        delete Ogre::Root::getSingletonPtr();
+        delete Ogre::Root::getSingletonPtr(); // This should be done by the shutdown method shouldn't it?
         OgreCore=0;
+
     }
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -371,7 +379,6 @@ namespace phys
             }
         }
         GetGraphicsManager()->Initialize();
-        HasSDLBeenInitialized = GetGraphicsManager()->HasSDLBeenInitialized();
 
         if(CallMainLoop)
         {

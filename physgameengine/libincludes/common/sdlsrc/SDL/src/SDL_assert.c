@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 
 #include "SDL.h"
@@ -45,8 +44,7 @@ SDL_PromptAssertion(const SDL_assert_data *data, void *userdata);
  * We keep all triggered assertions in a singly-linked list so we can
  *  generate a report later.
  */
-static SDL_assert_data assertion_list_terminator = { 0, 0, 0, 0, 0, 0, 0 };
-static SDL_assert_data *triggered_assertions = &assertion_list_terminator;
+static SDL_assert_data *triggered_assertions = NULL;
 
 static SDL_mutex *assertion_mutex = NULL;
 static SDL_AssertionHandler assertion_handler = SDL_PromptAssertion;
@@ -218,7 +216,8 @@ static void SDL_AddAssertionToReport(SDL_assert_data *data)
 {
     /* (data) is always a static struct defined with the assert macros, so
        we don't have to worry about copying or allocating them. */
-    if (data->next == NULL) {  /* not yet added? */
+    data->trigger_count++;
+    if (data->trigger_count == 1) {  /* not yet added? */
         data->next = triggered_assertions;
         triggered_assertions = data;
     }
@@ -227,19 +226,14 @@ static void SDL_AddAssertionToReport(SDL_assert_data *data)
 
 static void SDL_GenerateAssertionReport(void)
 {
-    const SDL_assert_data *item;
+    const SDL_assert_data *item = triggered_assertions;
 
     /* only do this if the app hasn't assigned an assertion handler. */
-    if (assertion_handler != SDL_PromptAssertion)
-        return;
-
-    item = SDL_GetAssertionReport();
-    if (item->condition)
-    {
+    if ((item != NULL) && (assertion_handler != SDL_PromptAssertion)) {
         debug_print("\n\nSDL assertion report.\n");
         debug_print("All SDL assertions between last init/quit:\n\n");
 
-        while (item->condition) {
+        while (item != NULL) {
             debug_print(
                 "'%s'\n"
                 "    * %s (%s:%d)\n"
@@ -343,16 +337,16 @@ SDL_PromptAssertion(const SDL_assert_data *data, void *userdata)
         if (SDL_strcmp(buf, "a") == 0) {
             state = SDL_ASSERTION_ABORT;
             break;
-        } else if (SDL_strcmp(envr, "b") == 0) {
+        } else if (SDL_strcmp(buf, "b") == 0) {
             state = SDL_ASSERTION_BREAK;
             break;
-        } else if (SDL_strcmp(envr, "r") == 0) {
+        } else if (SDL_strcmp(buf, "r") == 0) {
             state = SDL_ASSERTION_RETRY;
             break;
-        } else if (SDL_strcmp(envr, "i") == 0) {
+        } else if (SDL_strcmp(buf, "i") == 0) {
             state = SDL_ASSERTION_IGNORE;
             break;
-        } else if (SDL_strcmp(envr, "A") == 0) {
+        } else if (SDL_strcmp(buf, "A") == 0) {
             state = SDL_ASSERTION_ALWAYS_IGNORE;
             break;
         }
@@ -398,8 +392,6 @@ SDL_ReportAssertion(SDL_assert_data *data, const char *func, const char *file,
     }
 
     SDL_AddAssertionToReport(data);
-
-    data->trigger_count++;
 
     assertion_running++;
     if (assertion_running > 1) {   /* assert during assert! Abort. */
@@ -473,16 +465,16 @@ const SDL_assert_data *SDL_GetAssertionReport(void)
 
 void SDL_ResetAssertionReport(void)
 {
-    SDL_assert_data *item = triggered_assertions;
     SDL_assert_data *next = NULL;
-    for (item = triggered_assertions; item->condition; item = next) {
+    SDL_assert_data *item;
+    for (item = triggered_assertions; item != NULL; item = next) {
         next = (SDL_assert_data *) item->next;
         item->always_ignore = SDL_FALSE;
         item->trigger_count = 0;
         item->next = NULL;
     }
 
-    triggered_assertions = &assertion_list_terminator;
+    triggered_assertions = NULL;
 }
 
 /* vi: set ts=4 sw=4 expandtab: */

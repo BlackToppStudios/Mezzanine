@@ -79,7 +79,8 @@ namespace phys
 
     Camera::~Camera()
     {
-        CamManager->SManager->GetGraphicsWorldPointer()->destroyCamera(Cam);
+        if (CamManager->SManager && CamManager->SManager->GetGraphicsWorldPointer())
+            { CamManager->SManager->GetGraphicsWorldPointer()->destroyCamera(Cam); }
     }
 
     ConstString& Camera::GetName() const

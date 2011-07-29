@@ -149,7 +149,7 @@ int main (int argc, char** argv)
         }
     }
 
-    if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running all all test if no type of test is specified
+    if (RunAutomaticTests==RunInteractiveTests && RunInteractiveTests==false)   // enforce running all tests if no type of test is specified
         { RunAutomaticTests=true; RunInteractiveTests=true; }
 
     Runner.RunTests(RunAutomaticTests,RunInteractiveTests);

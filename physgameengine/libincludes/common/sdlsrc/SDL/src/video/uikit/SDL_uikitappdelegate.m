@@ -1,26 +1,28 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 
 #import "../SDL_sysvideo.h"
+#import "SDL_assert.h"
+#import "SDL_hints.h"
+#import "../../SDL_hints_c.h"
 
 #import "SDL_uikitappdelegate.h"
 #import "SDL_uikitopenglview.h"
@@ -50,10 +52,17 @@ int main(int argc, char **argv) {
     forward_argv[i] = NULL;
 
     /* Give over control to run loop, SDLUIKitDelegate will handle most things from here */
-    UIApplicationMain(argc, argv, NULL, @"SDLUIKitDelegate");
+    UIApplicationMain(argc, argv, NULL, [SDLUIKitDelegate getAppDelegateClassName]);
     
     [pool release];
     return 0;
+}
+
+static void SDL_IdleTimerDisabledChanged(const char *name, const char *oldValue, const char *newValue) {
+    SDL_assert(SDL_strcmp(name, SDL_HINT_IDLE_TIMER_DISABLED) == 0);
+    
+    BOOL disable = (*newValue != '0');
+    [UIApplication sharedApplication].idleTimerDisabled = disable;
 }
 
 @implementation SDLUIKitDelegate
@@ -64,12 +73,22 @@ int main(int argc, char **argv) {
     return (SDLUIKitDelegate *)[[UIApplication sharedApplication] delegate];
 }
 
++(NSString *)getAppDelegateClassName {
+    /* subclassing notice: when you subclass this appdelegate, make sure to add a category to override
+       this method and return the actual name of the delegate */
+    return @"SDLUIKitDelegate";
+}
+
 - (id)init {
     self = [super init];
     return self;
 }
 
 - (void)postFinishLaunch {
+    
+    /* register a callback for the idletimer hint */
+    SDL_SetHint(SDL_HINT_IDLE_TIMER_DISABLED, "0");
+    SDL_RegisterHintChangedCb(SDL_HINT_IDLE_TIMER_DISABLED, &SDL_IdleTimerDisabledChanged);
 
     /* run the user's application, passing argc and argv */
     int exit_status = SDL_main(forward_argc, forward_argv);
@@ -85,13 +104,14 @@ int main(int argc, char **argv) {
     exit(exit_status);
 }
 
-- (void)applicationDidFinishLaunching:(UIApplication *)application {
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
             
     /* Set working directory to resource path */
     [[NSFileManager defaultManager] changeCurrentDirectoryPath: [[NSBundle mainBundle] resourcePath]];
     
-    [self performSelector:@selector(postFinishLaunch) withObject:nil
-afterDelay:0.0];
+    [self performSelector:@selector(postFinishLaunch) withObject:nil afterDelay:0.0];
+
+    return YES;
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
@@ -111,7 +131,7 @@ afterDelay:0.0];
         return;
     }
 	
-	SDL_Window *window;
+    SDL_Window *window;
     for (window = _this->windows; window != nil; window = window->next) {
         SDL_SendWindowEvent(window, SDL_WINDOWEVENT_MINIMIZED, 0, 0);
     }

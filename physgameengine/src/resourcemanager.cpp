@@ -62,7 +62,8 @@ namespace phys {
     {
         this->Priority = 20;
         OgreResource = Ogre::ResourceGroupManager::getSingletonPtr();
-        internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
+        internal::BulletFileManager* BulletFileMan = internal::BulletFileManager::getSingletonPtr();
+        //internal::BulletFileManager* BulletFileMan = new internal::BulletFileManager();
     }
 
     ResourceManager::~ResourceManager()

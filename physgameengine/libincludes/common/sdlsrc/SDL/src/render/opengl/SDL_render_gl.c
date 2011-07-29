@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 #include "SDL_config.h"
 
@@ -91,7 +90,6 @@ typedef struct
         GL_Shader shader;
         Uint32 color;
         int blendMode;
-        GLenum scaleMode;
     } current;
 
     /* OpenGL functions */
@@ -119,7 +117,6 @@ typedef struct
     GLenum formattype;
     void *pixels;
     int pitch;
-    int scaleMode;
     SDL_Rect locked_rect;
 
     /* YV12 texture support */
@@ -220,7 +217,6 @@ GL_ResetState(SDL_Renderer *renderer)
     data->current.shader = SHADER_NONE;
     data->current.color = 0;
     data->current.blendMode = -1;
-    data->current.scaleMode = 0;
 
     data->glDisable(GL_DEPTH_TEST);
     data->glDisable(GL_CULL_FACE);
@@ -393,6 +389,18 @@ convert_format(GL_RenderData *renderdata, Uint32 pixel_format,
     return SDL_TRUE;
 }
 
+static GLenum
+GetScaleQuality(void)
+{
+    const char *hint = SDL_GetHint(SDL_HINT_RENDER_SCALE_QUALITY);
+
+    if (!hint || *hint == '0' || SDL_strcasecmp(hint, "nearest") == 0) {
+        return GL_NEAREST;
+    } else {
+        return GL_LINEAR;
+    }
+}
+
 static int
 GL_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
 {
@@ -401,6 +409,7 @@ GL_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
     GLint internalFormat;
     GLenum format, type;
     int texture_w, texture_h;
+    GLenum scaleMode;
     GLenum result;
 
     GL_ActivateRenderer(renderer);
@@ -455,9 +464,11 @@ GL_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
 
     data->format = format;
     data->formattype = type;
-    data->scaleMode = GL_LINEAR;
+    scaleMode = GetScaleQuality();
     renderdata->glEnable(data->type);
     renderdata->glBindTexture(data->type, data->texture);
+    renderdata->glTexParameteri(data->type, GL_TEXTURE_MIN_FILTER, scaleMode);
+    renderdata->glTexParameteri(data->type, GL_TEXTURE_MAG_FILTER, scaleMode);
     renderdata->glTexParameteri(data->type, GL_TEXTURE_WRAP_S,
                                 GL_CLAMP_TO_EDGE);
     renderdata->glTexParameteri(data->type, GL_TEXTURE_WRAP_T,
@@ -512,6 +523,10 @@ GL_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
         renderdata->glEnable(data->type);
 
         renderdata->glBindTexture(data->type, data->utexture);
+        renderdata->glTexParameteri(data->type, GL_TEXTURE_MIN_FILTER,
+                                    scaleMode);
+        renderdata->glTexParameteri(data->type, GL_TEXTURE_MAG_FILTER,
+                                    scaleMode);
         renderdata->glTexParameteri(data->type, GL_TEXTURE_WRAP_S,
                                     GL_CLAMP_TO_EDGE);
         renderdata->glTexParameteri(data->type, GL_TEXTURE_WRAP_T,
@@ -520,6 +535,10 @@ GL_CreateTexture(SDL_Renderer * renderer, SDL_Texture * texture)
                                  texture_h/2, 0, format, type, NULL);
 
         renderdata->glBindTexture(data->type, data->vtexture);
+        renderdata->glTexParameteri(data->type, GL_TEXTURE_MIN_FILTER,
+                                    scaleMode);
+        renderdata->glTexParameteri(data->type, GL_TEXTURE_MAG_FILTER,
+                                    scaleMode);
         renderdata->glTexParameteri(data->type, GL_TEXTURE_WRAP_S,
                                     GL_CLAMP_TO_EDGE);
         renderdata->glTexParameteri(data->type, GL_TEXTURE_WRAP_T,
@@ -843,33 +862,13 @@ GL_RenderCopy(SDL_Renderer * renderer, SDL_Texture * texture,
     if (texturedata->yuv) {
         data->glActiveTextureARB(GL_TEXTURE2_ARB);
         data->glBindTexture(texturedata->type, texturedata->vtexture);
-        if (texturedata->scaleMode != data->current.scaleMode) {
-            data->glTexParameteri(texturedata->type, GL_TEXTURE_MIN_FILTER,
-                                  texturedata->scaleMode);
-            data->glTexParameteri(texturedata->type, GL_TEXTURE_MAG_FILTER,
-                                  texturedata->scaleMode);
-        }
 
         data->glActiveTextureARB(GL_TEXTURE1_ARB);
         data->glBindTexture(texturedata->type, texturedata->utexture);
-        if (texturedata->scaleMode != data->current.scaleMode) {
-            data->glTexParameteri(texturedata->type, GL_TEXTURE_MIN_FILTER,
-                                  texturedata->scaleMode);
-            data->glTexParameteri(texturedata->type, GL_TEXTURE_MAG_FILTER,
-                                  texturedata->scaleMode);
-        }
 
         data->glActiveTextureARB(GL_TEXTURE0_ARB);
     }
     data->glBindTexture(texturedata->type, texturedata->texture);
-
-    if (texturedata->scaleMode != data->current.scaleMode) {
-        data->glTexParameteri(texturedata->type, GL_TEXTURE_MIN_FILTER,
-                              texturedata->scaleMode);
-        data->glTexParameteri(texturedata->type, GL_TEXTURE_MAG_FILTER,
-                              texturedata->scaleMode);
-        data->current.scaleMode = texturedata->scaleMode;
-    }
 
     if (texture->modMode) {
         GL_SetColor(data, texture->r, texture->g, texture->b, texture->a);
@@ -921,44 +920,56 @@ GL_RenderReadPixels(SDL_Renderer * renderer, const SDL_Rect * rect,
 {
     GL_RenderData *data = (GL_RenderData *) renderer->driverdata;
     SDL_Window *window = renderer->window;
+    Uint32 temp_format = SDL_PIXELFORMAT_ARGB8888;
+    void *temp_pixels;
+    int temp_pitch;
     GLint internalFormat;
     GLenum format, type;
     Uint8 *src, *dst, *tmp;
     int w, h, length, rows;
+    int status;
 
     GL_ActivateRenderer(renderer);
 
-    if (!convert_format(data, pixel_format, &internalFormat, &format, &type)) {
-        /* FIXME: Do a temp copy to a format that is supported */
-        SDL_SetError("Unsupported pixel format");
+    temp_pitch = rect->w * SDL_BYTESPERPIXEL(temp_format);
+    temp_pixels = SDL_malloc(rect->h * temp_pitch);
+    if (!temp_pixels) {
+        SDL_OutOfMemory();
         return -1;
     }
+
+    convert_format(data, temp_format, &internalFormat, &format, &type);
 
     SDL_GetWindowSize(window, &w, &h);
 
     data->glPixelStorei(GL_PACK_ALIGNMENT, 1);
     data->glPixelStorei(GL_PACK_ROW_LENGTH,
-                        (pitch / SDL_BYTESPERPIXEL(pixel_format)));
+                        (temp_pitch / SDL_BYTESPERPIXEL(temp_format)));
 
     data->glReadPixels(rect->x, (h-rect->y)-rect->h, rect->w, rect->h,
-                       format, type, pixels);
+                       format, type, temp_pixels);
 
     /* Flip the rows to be top-down */
-    length = rect->w * SDL_BYTESPERPIXEL(pixel_format);
-    src = (Uint8*)pixels + (rect->h-1)*pitch;
-    dst = (Uint8*)pixels;
+    length = rect->w * SDL_BYTESPERPIXEL(temp_format);
+    src = (Uint8*)temp_pixels + (rect->h-1)*temp_pitch;
+    dst = (Uint8*)temp_pixels;
     tmp = SDL_stack_alloc(Uint8, length);
     rows = rect->h / 2;
     while (rows--) {
         SDL_memcpy(tmp, dst, length);
         SDL_memcpy(dst, src, length);
         SDL_memcpy(src, tmp, length);
-        dst += pitch;
-        src -= pitch;
+        dst += temp_pitch;
+        src -= temp_pitch;
     }
     SDL_stack_free(tmp);
 
-    return 0;
+    status = SDL_ConvertPixels(rect->w, rect->h,
+                               temp_format, temp_pixels, temp_pitch,
+                               pixel_format, pixels, pitch);
+    SDL_free(temp_pixels);
+
+    return status;
 }
 
 static void
@@ -1000,6 +1011,9 @@ GL_DestroyRenderer(SDL_Renderer * renderer)
     GL_RenderData *data = (GL_RenderData *) renderer->driverdata;
 
     if (data) {
+        if (data->shaders) {
+            GL_DestroyShaderContext(data->shaders);
+        }
         if (data->context) {
             /* SDL_GL_MakeCurrent(0, NULL); *//* doesn't do anything */
             SDL_GL_DeleteContext(data->context);

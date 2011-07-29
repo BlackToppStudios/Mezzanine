@@ -1,3 +1,14 @@
+/*
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely.
+*/
 
 /* A simple test program framework */
 
@@ -23,7 +34,11 @@ CommonCreateState(char **argv, Uint32 flags)
     /* Initialize some defaults */
     state->argv = argv;
     state->flags = flags;
+#ifdef __NDS__
+    state->window_title = "";
+#else
     state->window_title = argv[0];
+#endif
     state->window_flags = 0;
     state->window_x = SDL_WINDOWPOS_UNDEFINED;
     state->window_y = SDL_WINDOWPOS_UNDEFINED;
@@ -61,6 +76,10 @@ int
 CommonArg(CommonState * state, int index)
 {
     char **argv = state->argv;
+
+#ifdef __NDS__
+    return 0;
+#endif
 
     if (SDL_strcasecmp(argv[index], "--video") == 0) {
         ++index;
@@ -977,6 +996,41 @@ PrintEvent(SDL_Event * event)
     fprintf(stderr, "\n");
 }
 
+static void
+ScreenShot(SDL_Renderer *renderer)
+{
+    SDL_Rect viewport;
+    SDL_Surface *surface;
+
+    if (!renderer) {
+        return;
+    }
+
+    SDL_RenderGetViewport(renderer, &viewport);
+    surface = SDL_CreateRGBSurface(0, viewport.w, viewport.h, 24,
+#if SDL_BYTEORDER == SDL_LIL_ENDIAN
+                    0x00FF0000, 0x0000FF00, 0x000000FF,
+#else
+                    0x000000FF, 0x0000FF00, 0x00FF0000,
+#endif
+                    0x00000000);
+    if (!surface) {
+        fprintf(stderr, "Couldn't create surface: %s\n", SDL_GetError());
+        return;
+    }
+
+    if (SDL_RenderReadPixels(renderer, NULL, surface->format->format,
+                             surface->pixels, surface->pitch) < 0) {
+        fprintf(stderr, "Couldn't read screen: %s\n", SDL_GetError());
+        return;
+    }
+
+    if (SDL_SaveBMP(surface, "screenshot.bmp") < 0) {
+        fprintf(stderr, "Couldn't save screenshot.bmp: %s\n", SDL_GetError());
+        return;
+    }
+}
+
 void
 CommonEvent(CommonState * state, SDL_Event * event, int *done)
 {
@@ -991,9 +1045,9 @@ CommonEvent(CommonState * state, SDL_Event * event, int *done)
         switch (event->window.event) {
         case SDL_WINDOWEVENT_CLOSE:
 			{
-				SDL_Window *pWindow = SDL_GetWindowFromID(event->window.windowID);
-				if ( pWindow ) {
-					SDL_DestroyWindow( pWindow );
+                SDL_Window *window = SDL_GetWindowFromID(event->window.windowID);
+                if (window) {
+					SDL_DestroyWindow(window);
 				}
 			}
             break;
@@ -1002,6 +1056,17 @@ CommonEvent(CommonState * state, SDL_Event * event, int *done)
     case SDL_KEYDOWN:
         switch (event->key.keysym.sym) {
             /* Add hotkeys here */
+        case SDLK_PRINTSCREEN: {
+                SDL_Window *window = SDL_GetWindowFromID(event->key.windowID);
+                if (window) {
+                    for (i = 0; i < state->num_windows; ++i) {
+                        if (window == state->windows[i]) {
+                            ScreenShot(state->renderers[i]);
+                        }
+                    }
+                }
+            }
+            break;
         case SDLK_c:
             if (event->key.keysym.mod & KMOD_CTRL) {
                 /* Ctrl-C copy awesome text! */

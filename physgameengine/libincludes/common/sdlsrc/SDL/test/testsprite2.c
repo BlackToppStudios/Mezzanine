@@ -1,3 +1,14 @@
+/*
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
+
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
+
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely.
+*/
 /* Simple program:  Move N sprites around on the screen as fast as possible */
 
 #include <stdlib.h>
@@ -219,6 +230,9 @@ main(int argc, char *argv[])
     if (!state) {
         return 1;
     }
+
+    state->window_flags |= SDL_WINDOW_RESIZABLE;
+
     for (i = 1; i < argc;) {
         int consumed;
 

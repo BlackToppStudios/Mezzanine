@@ -1,26 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
-
-    SDL1.3 DirectFB driver by couriersud@arcor.de
-	
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 
 #include "SDL_DirectFB_video.h"
@@ -62,26 +58,8 @@ DirectFB_CreateWindow(_THIS, SDL_Window * window)
 		bshaped = 1;
 	
     /* Fill the window description. */
-    if (SDL_WINDOWPOS_ISCENTERED(window->x)) {
-        x = (dispdata->cw - window->w) / 2;
-    } else if (SDL_WINDOWPOS_ISUNDEFINED(window->x)) {
-        x = 0;
-    } else {
-        x = window->x;
-    }
-    
-    if (SDL_WINDOWPOS_ISCENTERED(window->y)) {
-        y = (dispdata->ch - window->h) / 2;
-    } else if (SDL_WINDOWPOS_ISUNDEFINED(window->y)) {
-        y = 0;
-    } else {
-        y = window->y;
-    }
-    
-    if (window->flags & SDL_WINDOW_FULLSCREEN) {
-        x = 0;
-        y = 0;
-    }
+    x = window->x;
+    y = window->y;
 
     DirectFB_WM_AdjustWindowLayout(window, window->flags, window->w, window->h);
 
@@ -260,29 +238,11 @@ void
 DirectFB_SetWindowPosition(_THIS, SDL_Window * window)
 {
     SDL_DFB_WINDOWDATA(window);
-    SDL_DFB_DISPLAYDATA(window);
     int x, y;
 
-    if (SDL_WINDOWPOS_ISCENTERED(window->x)) {
-        x = (dispdata->cw - window->w) / 2;
-    } else if (SDL_WINDOWPOS_ISUNDEFINED(window->x)) {
-        x = 0;
-    } else {
-        x = window->x;
-    }
-    
-    if (SDL_WINDOWPOS_ISCENTERED(window->y)) {
-        y = (dispdata->ch - window->h) / 2;
-    } else if (SDL_WINDOWPOS_ISUNDEFINED(window->y)) {
-        y = 0;
-    } else {
-        y = window->y;
-    }
+    x = window->x;
+    y = window->y;
 
-    if (window->flags & SDL_WINDOW_FULLSCREEN) {
-        x = 0;
-        y = 0;
-    }
     DirectFB_WM_AdjustWindowLayout(window, window->flags, window->w, window->h);
     SDL_DFB_CHECK(windata->dfbwin->MoveTo(windata->dfbwin, x, y));
 }

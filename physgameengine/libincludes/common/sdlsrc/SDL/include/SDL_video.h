@@ -1,23 +1,22 @@
 /*
-    SDL - Simple DirectMedia Layer
-    Copyright (C) 1997-2011 Sam Lantinga
+  Simple DirectMedia Layer
+  Copyright (C) 1997-2011 Sam Lantinga <slouken@libsdl.org>
 
-    This library is free software; you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public
-    License as published by the Free Software Foundation; either
-    version 2.1 of the License, or (at your option) any later version.
+  This software is provided 'as-is', without any express or implied
+  warranty.  In no event will the authors be held liable for any damages
+  arising from the use of this software.
 
-    This library is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-    Lesser General Public License for more details.
+  Permission is granted to anyone to use this software for any purpose,
+  including commercial applications, and to alter it and redistribute it
+  freely, subject to the following restrictions:
 
-    You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-
-    Sam Lantinga
-    slouken@libsdl.org
+  1. The origin of this software must not be misrepresented; you must not
+     claim that you wrote the original software. If you use this software
+     in a product, an acknowledgment in the product documentation would be
+     appreciated but is not required.
+  2. Altered source versions must be plainly marked as such, and must not be
+     misrepresented as being the original software.
+  3. This notice may not be removed or altered from any source distribution.
 */
 
 /**
@@ -552,9 +551,12 @@ extern DECLSPEC int SDLCALL SDL_SetWindowFullscreen(SDL_Window * window,
                                                     SDL_bool fullscreen);
 
 /**
- *  \brief Get an SDL surface associated with the window.
+ *  \brief Get the SDL surface associated with the window.
  *
- *  \return A surface in the optimal format for the window, or NULL on error.
+ *  \return The window's framebuffer surface, or NULL on error. 
+ *
+ *  A new surface will be created with the optimal format for the window,
+ *  if necessary. This surface will be freed when the window is destroyed.
  *
  *  \note You may not combine this with 3D or the rendering API on this window.
  *
@@ -603,6 +605,66 @@ extern DECLSPEC void SDLCALL SDL_SetWindowGrab(SDL_Window * window,
  *  \sa SDL_SetWindowGrab()
  */
 extern DECLSPEC SDL_bool SDLCALL SDL_GetWindowGrab(SDL_Window * window);
+
+/**
+ *  \brief Set the brightness (gamma correction) for a window.
+ *  
+ *  \return 0 on success, or -1 if setting the brightness isn't supported.
+ *  
+ *  \sa SDL_GetWindowBrightness()
+ *  \sa SDL_SetWindowGammaRamp()
+ */
+extern DECLSPEC int SDLCALL SDL_SetWindowBrightness(SDL_Window * window, float brightness);
+
+/**
+ *  \brief Get the brightness (gamma correction) for a window.
+ *  
+ *  \return The last brightness value passed to SDL_SetWindowBrightness()
+ *  
+ *  \sa SDL_SetWindowBrightness()
+ */
+extern DECLSPEC float SDLCALL SDL_GetWindowBrightness(SDL_Window * window);
+
+/**
+ *  \brief Set the gamma ramp for a window.
+ *  
+ *  \param red The translation table for the red channel, or NULL.
+ *  \param green The translation table for the green channel, or NULL.
+ *  \param blue The translation table for the blue channel, or NULL.
+ *  
+ *  \return 0 on success, or -1 if gamma ramps are unsupported.
+ *  
+ *  Set the gamma translation table for the red, green, and blue channels
+ *  of the video hardware.  Each table is an array of 256 16-bit quantities,
+ *  representing a mapping between the input and output for that channel.
+ *  The input is the index into the array, and the output is the 16-bit
+ *  gamma value at that index, scaled to the output color precision.
+ *
+ *  \sa SDL_GetWindowGammaRamp()
+ */
+extern DECLSPEC int SDLCALL SDL_SetWindowGammaRamp(SDL_Window * window,
+                                                   const Uint16 * red,
+                                                   const Uint16 * green,
+                                                   const Uint16 * blue);
+
+/**
+ *  \brief Get the gamma ramp for a window.
+ *  
+ *  \param red   A pointer to a 256 element array of 16-bit quantities to hold 
+ *               the translation table for the red channel, or NULL.
+ *  \param green A pointer to a 256 element array of 16-bit quantities to hold 
+ *               the translation table for the green channel, or NULL.
+ *  \param blue  A pointer to a 256 element array of 16-bit quantities to hold 
+ *               the translation table for the blue channel, or NULL.
+ *   
+ *  \return 0 on success, or -1 if gamma ramps are unsupported.
+ *  
+ *  \sa SDL_SetWindowGammaRamp()
+ */
+extern DECLSPEC int SDLCALL SDL_GetWindowGammaRamp(SDL_Window * window,
+                                                   Uint16 * red,
+                                                   Uint16 * green,
+                                                   Uint16 * blue);
 
 /**
  *  \brief Destroy a window.

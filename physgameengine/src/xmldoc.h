@@ -264,20 +264,19 @@ namespace phys
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @var FormatIndent
-        /// @brief Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is on by default.
+        /// @brief Indent the nodes that are written to output stream with as many indentation strings as deep the node is in DOM tree. This flag is off by default.
 
         /// @var FormatWriteBom
         /// @brief Write encoding-specific Byte Order Mark (BOM) to the output stream. This flag is off by default.
 
         /// @var FormatRaw
-        /// @brief Use raw output mode (no indentation and no line breaks are written). This flag is off by default.
+        /// @brief Use raw output mode (no indentation and no line breaks are written). This flag is on by default.
 
         /// @var FormatNoDeclaration
         /// @brief Omit default XML declaration even if there is no declaration in the document. This flag is off by default.
 
         /// @var FormatDefault
-        /// @brief The default set of formatting flags.
-        /// @details Nodes are indented depending on their depth in DOM tree, a default declaration is output if document has none.
+        /// @brief The default set of formatting flags. Only FormatRaw is enabled.
 
         ///////////////////////////////////////////////////////////////////////////////
         /// @class Writer
@@ -1304,16 +1303,31 @@ namespace phys
         /// @brief Gets the first tag out of the Stream and returns it as a String
         /// @param stream An std::ostream that contains atleast one xml tag
         /// @return This gets one XML tag, its closing tage, and all subtags.
-        String GetOneTag(std::istream& stream);
+        String PHYS_LIB GetOneTag(std::istream& stream);
 
         /// @internal
         /// @brief Perform a basic series of checks for extracting meaning from a single xml tag.
         /// @param NameSpace Used when throwing exceptions, this is a string containing the namespace and colons of a class to be deserialized for example "phys::"
         /// @param ClassName This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages.
         /// @param OneTag One XML tag/elements worth of text to deserialize.
-        /// @return An pointer to xml::Document that you are now the owner of and must delete, that has the data parse and ready to access.
+        /// @return A pointer to xml::Document that you are now the owner of and must delete, that has the data parse and ready to access.
         /// @throw This can throw a phys::exception in the event that the xml cannot be parsed.
-        Document* PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag);
+        Document* PHYS_LIB PreParseClassFromSingleTag(const String& NameSpace, const String& ClassName, const String& OneTag);
+
+        /// @internal
+        /// @brief Calls PreParseClassFromSingleTag passing a "" as the Namespace
+        /// @param ClassName This will be used to identify the main xml element/tag you are attempting to deserialize. This will also be used in error messages.
+        /// @param OneTag One XML tag/elements worth of text to deserialize.
+        /// @return A pointer to xml::Document that you are now the owner of and must delete, that has the data parse and ready to access.
+        /// @throw This can throw a phys::exception in the event that the xml cannot be parsed.
+        Document* PHYS_LIB PreParseClassFromSingleTag(const String& ClassName, const String& OneTag);
+
+        /// @brief Convert < > & and " in text to &lt;, &gt;, &amp; and &quote so text can safely be stored in XML
+        /// @details Usually this is not required. Entering text into an xml::Attribute or and xml::Node with correctly escape it.
+        /// Use this when you will be creating raw xml want to safely escape these characters.
+        /// @param XMLText The Text to convert to xml safe text
+        /// @return a String containing the escaped version of XMLText
+        String PHYS_LIB EscapeXML(const String& XMLText);
 
     }
 }
