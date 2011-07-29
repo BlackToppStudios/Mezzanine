@@ -31,7 +31,12 @@ int main(int argc, char **argv)
 {
     try
     {
-        TheWorld = new World( Vector3(-30000.0,-30000.0,-30000.0), Vector3(30000.0,30000.0,30000.0), SceneManager::Generic, 30);
+        PhysicsConstructionInfo Info;
+        Info.PhysicsFlags = PhysicsConstructionInfo::PCF_SoftRigidWorld;
+        Info.GeographyLowerBounds = Vector3(-30000.0,-30000.0,-30000.0);
+        Info.GeographyUpperBounds = Vector3(30000.0,30000.0,30000.0);
+        Info.MaxProxies = 60;
+        TheWorld = new World( Info, SceneManager::Generic );
     }catch( exception x){
         cerr << "Could not create world: " << x.what();
         return 1;

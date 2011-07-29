@@ -60,6 +60,18 @@ namespace phys
         ///////////////////////////////////////
         class PHYS_LIB ListBox : public Widget
         {
+            public:
+                struct TemplateParams
+                {
+                    UI::TextHorizontalAlign HorizontalAlign;
+                    UI::TextVerticalAlign VerticalAlign;
+                    Whole GlyphIndex;
+                    Whole CursorOffset;
+                    Real TextScale;
+                    Vector2 Size;
+                    ColourValue TextColour;
+                    ColourValue BackgroundColour;
+                };
             protected:
                 Rectangle* BoxBack;
                 /// @todo Third instance of needing to include the namespace in the declaration seemingly needlessly.
@@ -70,19 +82,9 @@ namespace phys
                 std::vector<Caption*> VisibleSelections;
                 bool AutoHideScroll;
                 Real LastScrollValue;
-                Real SelectionDist;
+                Whole MaxDisplay;
                 Whole NumVisible;
-                ColourValue SelectColour;
-                struct TemplateParams
-                {
-                    UI::TextHorizontalAlign HorizontalAlign;
-                    UI::TextVerticalAlign VerticalAlign;
-                    Whole GlyphIndex;
-                    Real TextScale;
-                    Vector2 Size;
-                    ColourValue TextColour;
-                    ColourValue BackgroundColour;
-                } SelectionTemplate;
+                TemplateParams SelectionTemplate;
                 /// @brief Determines how many items can be displayed in the box at once.
                 virtual void CalculateVisibleSelections();
                 /// @brief Updates the list of Visible buttons and hides the rest.
@@ -138,6 +140,11 @@ namespace phys
                 /// @param Scale The scale you wish to apply to the text in all created selections.
                 /// @return Returns a reference to this List Box.
                 virtual ListBox& SetTemplateTextScale(const Real& Scale);
+                /// @brief Set the cursor offset to be applied to all created Selections.
+                /// @details Optional parameter.
+                /// @param Offset The offset in pixels to adjust where text starts appearing in the caption.
+                /// @return Returns a reference to this List Box.
+                virtual ListBox& SetTemplateCursorOffset(const Whole& Offset);
                 /// @brief Sets the background colour to be applied to all created Selections.
                 /// @details Optional parameter.
                 /// @param BackgroundColour The colour to set for the captions background.  This defaults to white.
@@ -153,6 +160,9 @@ namespace phys
                 /// @param VertAlign The Vertical text alignment.  This defaults to UI::Center.
                 /// @return Returns a reference to this List Box.
                 virtual ListBox& SetTemplateVerticalAlign(const UI::TextVerticalAlign& VertAlign);
+                /// @brief Gets the struct containing all the current template parameters used when creating a new selections.
+                /// @return Returns a const reference to the structure containing all the template parameters.
+                virtual const ListBox::TemplateParams& GetTemplateInfo();
                 /// @brief Adds a selectable caption to the list to be displayed.
                 /// @details If a colour other then white was set as the template and you try to set a background sprite, it will
                 /// attempt to blend the colour and sprite.  Pure white colour will cause the sprite to look normal.
@@ -170,19 +180,13 @@ namespace phys
                 /// @brief Destroys a selectable caption.
                 /// @param ToBeDestroyed A string naming the caption you want destroyed and removed from this list.
                 virtual void DestroySelection(String& ToBeDestroyed);
-                /// @brief Sets the distance apart(and from the sides of box) the Selections will be from each other.
-                /// @details This function expects a relative value to the screen size(0.0 to 1.0).  This value defaults to 0.
-                /// @param Dist A relative value for the distance to be used when determining the positions of Selections.
-                virtual void SetSelectionDistance(const Real& Dist);
+                /// @brief Sets the maximum number of selections to display at once before the scrollbar appears.
+                /// @param MaxSelections The maximum number of selections to display at once before requiring a scrollbar.
+                /// This indirectly controls the max size of this widget.
+                virtual void SetMaxDisplayedSelections(const Whole& MaxSelections);
                 /// @brief Eanbles or disables the scrollbar autohide.
                 /// @param AutoHide A bool indicating whether or not to auto hide the scrollbar.
                 virtual void SetAutoHideScroll(bool AutoHide);
-                /// @brief Enables the setting of a background colour or sprite on the caption you select.
-                /// @details The background colour of captions default to white.
-                /// @param Colour The colour of the border.
-                virtual void EnableBackgroundSelector(const ColourValue& Colour);
-                /// @brief Disables borders on currently selected buttons if one was enabled.
-                virtual void DisableBackgroundSelector();
                 /// @brief Sets the relative position of this List Box.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this List Box.

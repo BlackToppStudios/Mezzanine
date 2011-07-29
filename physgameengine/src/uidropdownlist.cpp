@@ -137,6 +137,11 @@ namespace phys
             SelectionList->SetTemplateSize(Selection->GetSize(),true).SetTemplateGlyphIndex(Glyph);
         }
 
+        void DropDownList::Update(bool Force)
+        {
+
+        }
+
         void DropDownList::SetVisible(bool visible)
         {
             if(Visible==visible) return;
@@ -179,7 +184,11 @@ namespace phys
 
         void DropDownList::SetPosition(const Vector2& Position)
         {
-
+            RelPosition = Position;
+            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+            Selection->SetPosition(Position);
+            ListToggle->SetActualPosition(Position + Vector2(RelSize.X - ((RelSize.Y * WinDim.Y) / WinDim.X),0));
+            SelectionList->SetActualPosition(Position + Vector2(0,RelSize.Y));
         }
 
         Vector2 DropDownList::GetPosition()
@@ -189,7 +198,11 @@ namespace phys
 
         void DropDownList::SetActualPosition(const Vector2& Position)
         {
-
+            RelPosition = Position / Parent->GetParent()->GetViewportDimensions();
+            Vector2 CurrSize = GetActualSize();
+            Selection->SetActualPosition(Position);
+            ListToggle->SetActualPosition(Position + Vector2(CurrSize.X - CurrSize.Y,0));
+            SelectionList->SetActualPosition(Position + Vector2(0,CurrSize.Y));
         }
 
         Vector2 DropDownList::GetActualPosition()
@@ -209,7 +222,12 @@ namespace phys
 
         void DropDownList::SetActualSize(const Vector2& Size)
         {
+            RelSize = Size / Parent->GetParent()->GetViewportDimensions();
+            Selection->SetActualSize(Vector2(Size.X - Size.Y,Size.Y));
+            ListToggle->SetActualSize(Vector2(Size.Y,Size.Y));
 
+            const ListBox::TemplateParams& ListInfo = SelectionList->GetTemplateInfo();
+            SelectionList->SetActualSize(Vector2(Size.X,SelectionList->GetActualSize().Y));
         }
 
         Vector2 DropDownList::GetActualSize()
@@ -217,6 +235,25 @@ namespace phys
             return RelSize / Parent->GetParent()->GetViewportDimensions();
         }
 
+        void DropDownList::UpdateDimensions(const Vector2& OldViewportSize)
+        {
+
+        }
+
+        Caption* DropDownList::GetSelection()
+        {
+            return Selection;
+        }
+
+        Button* DropDownList::GetListToggle()
+        {
+            return ListToggle;
+        }
+
+        UI::ListBox* DropDownList::GetSelectionList()
+        {
+            return SelectionList;
+        }
     }//ui
 }//phys
 

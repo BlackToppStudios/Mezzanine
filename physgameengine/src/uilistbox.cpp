@@ -63,15 +63,20 @@ namespace phys
               AutoHideScroll(true),
               LastScrollValue(0),
               NumVisible(0),
-              SelectionDist(0.0),
-              SelectColour(ColourValue(1.0,1.0,1.0,1.0))
+              MaxDisplay(2)
         {
+            /// @todo Currently this class has little support for a border around the selections.
+            /// Ideally when the UI system is more complete we'll be able to seemlessly move
+            /// objects around different layers and thus have more control over z-order.  When
+            /// that happens we should add a rect to this class be be placed over the selections
+            /// for use with a border or other kind of decoration.
             Type = Widget::ListBox;
 
             // Set some sane template defaults
             SelectionTemplate.BackgroundColour = ColourValue(1.0,1.0,1.0,1.0);
             SelectionTemplate.TextColour = ColourValue(0.0,0.0,0.0,1.0);
-            SelectionTemplate.TextScale = 1.f;
+            SelectionTemplate.TextScale = 1.0;
+            SelectionTemplate.CursorOffset = 0.0;
             SelectionTemplate.HorizontalAlign = UI::Txt_Middle;
             SelectionTemplate.VerticalAlign = UI::Txt_Center;
 
@@ -115,7 +120,7 @@ namespace phys
 
         void ListBox::CalculateVisibleSelections()
         {
-            NumVisible = (Whole)(RelSize.Y / (SelectionTemplate.Size.Y + SelectionDist));
+            NumVisible = (Whole)(RelSize.Y / SelectionTemplate.Size.Y);
             if(Selections.size() > NumVisible)
             {
                 //if(Selections.size() > 0)
@@ -137,7 +142,7 @@ namespace phys
             Vector2 NewSize;
             if(VertScroll->IsVisible())
             {
-                Real MaxWidth = RelSize.X - (VertScroll->GetSize().X + SelectionDist);
+                Real MaxWidth = RelSize.X - VertScroll->GetSize().X;
                 if(SelectionTemplate.Size.X > MaxWidth)
                 {
                     NewSize.X = MaxWidth;
@@ -150,15 +155,12 @@ namespace phys
                 }
             }
             VisibleSelections.clear();
-            //Real One = 1;
             Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)Selections.size();
-            Real Remainder = fmod(ToBeRounded,1.f);
-            Whole FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (1.f - Remainder) : ToBeRounded - Remainder);
+            Real Remainder = fmod(ToBeRounded,(Real)1.0);
+            Whole FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (1.0 - Remainder) : ToBeRounded - Remainder);
             Vector2 SelectionPos = GetActualPosition();
-            Real ActualDist = SelectionDist * Parent->GetParent()->GetViewportDimensions().Y;
-            Real ActualInc = ActualDist + (SelectionTemplate.Size.Y * Parent->GetParent()->GetViewportDimensions().Y);
-            SelectionPos.X+=ActualDist;
-            SelectionPos.Y+=ActualDist;
+            Real ActualInc = SelectionTemplate.Size.Y * Parent->GetParent()->GetViewportDimensions().Y;
+
             for( Whole w = 0 ; w < FirstCaption ; w++ )
             {
                 Selections[w]->SetPosition(GetPosition());
@@ -197,10 +199,6 @@ namespace phys
             {
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
-                    if(Selected)
-                        Selected->SetBackgroundColour(SelectionTemplate.BackgroundColour);
-                    if(SelectColour != ColourValue(1.0,1.0,1.0,1.0))
-                        HoveredCaption->SetBackgroundColour(SelectColour);
                     Selected = HoveredCaption;
                 }
             }
@@ -275,7 +273,6 @@ namespace phys
                 {
                     HoveredSubWidget = NULL;
                     HoveredCaption = (*it);
-                    //Update();
                     return true;
                 }
             }
@@ -283,14 +280,12 @@ namespace phys
             {
                 HoveredSubWidget = VertScroll;
                 HoveredCaption = NULL;
-                //Update();
                 return true;
             }
             else if(BoxBack->CheckMouseHover())
             {
                 HoveredSubWidget = NULL;
                 HoveredCaption = NULL;
-                //Update();
                 return true;
             }
             HoveredSubWidget = NULL;
@@ -323,6 +318,12 @@ namespace phys
             return *this;
         }
 
+        ListBox& ListBox::SetTemplateCursorOffset(const Whole& Offset)
+        {
+            this->SelectionTemplate.CursorOffset = Offset;
+            return *this;
+        }
+
         ListBox& ListBox::SetTemplateBackgroundColour(const ColourValue& BackgroundColour)
         {
             this->SelectionTemplate.BackgroundColour = BackgroundColour;
@@ -341,6 +342,11 @@ namespace phys
             return *this;
         }
 
+        const ListBox::TemplateParams& ListBox::GetTemplateInfo()
+        {
+            return this->SelectionTemplate;
+        }
+
         Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
             RenderableRect SelectionRect(GetPosition(),SelectionTemplate.Size,true);
@@ -349,6 +355,10 @@ namespace phys
                 Select->SetBackgroundSprite(BackgroundSprite);
             if(SelectionTemplate.BackgroundColour != ColourValue(1.0,1.0,1.0,1.0))
                 Select->SetBackgroundColour(SelectionTemplate.BackgroundColour);
+            if(SelectionTemplate.CursorOffset != 0)
+                Select->SetCursorOffset(SelectionTemplate.CursorOffset);
+            if(SelectionTemplate.TextScale != 1)
+                Select->SetTextScale(SelectionTemplate.TextScale);
             Select->SetTextColour(SelectionTemplate.TextColour);
             Select->HorizontallyAlign(SelectionTemplate.HorizontalAlign);
             Select->VerticallyAlign(SelectionTemplate.VerticalAlign);
@@ -400,9 +410,9 @@ namespace phys
             }
         }
 
-        void ListBox::SetSelectionDistance(const Real& Dist)
+        void ListBox::SetMaxDisplayedSelections(const Whole& MaxSelections)
         {
-            SelectionDist = Dist;
+            MaxDisplay = MaxSelections;
         }
 
         void ListBox::SetAutoHideScroll(bool AutoHide)
@@ -410,16 +420,6 @@ namespace phys
             AutoHideScroll = AutoHide;
             if(!AutoHide)
                 VertScroll->Show();
-        }
-
-        void ListBox::EnableBackgroundSelector(const ColourValue& Colour)
-        {
-            SelectColour = Colour;
-        }
-
-        void ListBox::DisableBackgroundSelector()
-        {
-            SelectColour = ColourValue(1.0,1.0,1.0,1.0);
         }
 
         void ListBox::SetPosition(const Vector2& Position)
@@ -473,8 +473,8 @@ namespace phys
             BoxBack->SetActualSize(Size);
             Vector2 ScrollP((GetActualPosition().X + Size.X) - VertScroll->GetActualSize().X,GetActualPosition().Y);
             Vector2 ScrollS(VertScroll->GetActualSize().X,Size.Y);
-            VertScroll->SetPosition(ScrollP);
-            VertScroll->SetSize(ScrollS);
+            VertScroll->SetActualPosition(ScrollP);
+            VertScroll->SetActualSize(ScrollS);
             CalculateVisibleSelections();
             DrawList();
         }

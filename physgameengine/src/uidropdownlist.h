@@ -67,7 +67,7 @@ namespace phys
                 /// @brief Internal construction function.
                 void ConstructDropDownList(const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle);
                 /// @brief For use with widget update/automation.
-                virtual void Update(bool Force = false) = 0;
+                virtual void Update(bool Force = false);
             public:
                 /// @brief Class constructor.
                 /// @param name The Name for the Widget.
@@ -129,6 +129,19 @@ namespace phys
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
                 virtual Vector2 GetActualSize();
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param OldViewportSize The old size of the viewport.
+                virtual void UpdateDimensions(const Vector2& OldViewportSize);
+                /// @brief Gets the caption showing the current selection in this widget.
+                /// @return Returns a pointer to the caption showing the current selection.
+                virtual Caption* GetSelection();
+                /// @brief Gets the button that toggles the appearance of the listbox in this widget.
+                /// @return Returns a pointer to the button controlling the visibility of the listbox.
+                virtual Button* GetListToggle();
+                /// @brief Gets the listbox showing all the selections in this widget.
+                /// @return Returns a pointer to the listbox containing the possible choices.
+                virtual UI::ListBox* GetSelectionList();
         };//dropdownlist
     }//ui
 }//phys
