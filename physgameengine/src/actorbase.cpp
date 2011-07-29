@@ -315,31 +315,25 @@ namespace phys{
     void ActorBase::ThrowSerialError(const String& Fail) const
         { SerializeError(Fail, "ActorBase"); }
 
-    xml::Node ActorBase::ProtoSerialize() const
+    void ActorBase::ProtoSerialize(xml::Node& CurrentRoot) const
     {
-        phys::xml::Document Doc;
-        Doc.Load("");
-
-        xml::Node ActorNode = Doc.AppendChild("ActorBase");
+        xml::Node ActorNode = CurrentRoot.AppendChild("ActorBase");
         if (!ActorNode) { ThrowSerialError("create ActorNode");}
 
         xml::Node LocationNode = ActorNode.AppendChild("Location");
         if (!LocationNode) { ThrowSerialError("create LocationNode"); }
-        if (!LocationNode.AppendCopy(this->GetLocation().ProtoSerialize())) { ThrowSerialError("create LocationNode Data"); }
+        this->GetLocation().ProtoSerialize(LocationNode);
 
         xml::Node ScalingNode = ActorNode.AppendChild("Scaling");
         if (!ScalingNode) { ThrowSerialError("create ScalingNode"); }
-        if (!ScalingNode.AppendCopy(this->GetActorScaling().ProtoSerialize())) { ThrowSerialError("create ScalingNode Data"); }
+        this->GetActorScaling().ProtoSerialize(ScalingNode);
 
         xml::Node OrientationNode =ActorNode.AppendChild("Orientation");
         if(!OrientationNode)  { ThrowSerialError("create OrientationNode"); }
-        if(!OrientationNode.AppendCopy(SloppyProtoSerialize(this->GetOrientation()))) { ThrowSerialError("create OrientationNode Data"); };
 
-        if(!ActorNode.AppendCopy(SloppyProtoSerialize( *(this->GetGraphicsSettings()) )))
-            { ThrowSerialError("create GraphicsSettings"); };
-
-        if(!ActorNode.AppendCopy(SloppyProtoSerialize( *(this->GetPhysicsSettings()) )))
-            { ThrowSerialError("create GraphicsSettings"); };
+        SloppyProtoSerialize(this->GetOrientation(),OrientationNode);
+        SloppyProtoSerialize( *(this->GetGraphicsSettings()), ActorNode );
+        SloppyProtoSerialize( *(this->GetPhysicsSettings()), ActorNode );
 
         xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
             ActorName.SetValue(this->GetName());
@@ -364,8 +358,7 @@ namespace phys{
             if(!ActorWorldNode.SetValue(this->ActorWorldNode->GetName()))
                 {ThrowSerialError("store WorldNode Name");}
         }else{
-            if( !ActorNode.AppendCopy(SloppyProtoSerialize( *(this->ActorWorldNode) )) );
-                { ThrowSerialError("create WorldNode"); }
+            SloppyProtoSerialize( *(this->ActorWorldNode),ActorNode);
         }
 
 

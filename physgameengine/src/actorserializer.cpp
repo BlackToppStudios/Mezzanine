@@ -37,17 +37,17 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _serialization_cpp
-#define _serialization_cpp
+#ifndef _actorserializer_cpp
+#define _actorserializer_cpp
 
 #include "serialization.h"
 
+
+
 namespace phys
 {
-    void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD)
-    {
-        throw(Exception(StringCat("Could not ", FailedTo, " during ", ClassName, SOrD? "":"De","Serialization.")));
-    }
+
+
 }
 
 #endif

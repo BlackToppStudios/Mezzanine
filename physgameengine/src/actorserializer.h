@@ -37,17 +37,25 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _serialization_cpp
-#define _serialization_cpp
+#ifndef _actorserializer_h
+#define _actorserializer_h
 
-#include "serialization.h"
+#include "datatypes.h"
+#include "xml.h"
+#include "xmldoc.h"
+
+#include <memory>
 
 namespace phys
 {
-    void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD)
-    {
-        throw(Exception(StringCat("Could not ", FailedTo, " during ", ClassName, SOrD? "":"De","Serialization.")));
-    }
+
 }
+
+#ifdef PHYSXML
+
+#endif // \PHYSXML
+
+
+
 
 #endif

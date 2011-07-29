@@ -362,12 +362,9 @@ namespace phys
 
 #ifdef PHYSXML
         // Serializable
-        xml::Node Vector3::ProtoSerialize() const
+        void Vector3::ProtoSerialize(xml::Node& CurrentRoot) const
         {
-            phys::xml::Document Doc;
-            Doc.Load("");           // This sets the encoding to UTF8 ?!
-
-            phys::xml::Node VecNode = Doc.AppendChild("Vector3");
+            phys::xml::Node VecNode = CurrentRoot.AppendChild("Vector3");
             VecNode.SetName("Vector3");
 
             phys::xml::Attribute VersionAttr = VecNode.AppendAttribute("Version");
@@ -385,7 +382,6 @@ namespace phys
             }else{
                 throw(Exception("Could not Stream Vector3 XML Attribute Names."));
             }
-            return VecNode;
         }
 
         // DeSerializable

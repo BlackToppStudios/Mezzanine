@@ -387,8 +387,8 @@ namespace phys
 
         public:
             /// @brief Get all the this in an xml::Node.
-            /// @return This returns an xml:Node that should contain a complete description of this.
-            virtual xml::Node ProtoSerialize() const;
+            /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
 #endif
     };
 

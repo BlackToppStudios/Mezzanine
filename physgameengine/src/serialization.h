@@ -37,8 +37,8 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _serializable_h
-#define _serializable_h
+#ifndef _serialization_h
+#define _serialization_h
 
 #include "datatypes.h"
 #include "xml.h"
@@ -51,7 +51,7 @@ namespace phys
 
     /// @section Serialization
     /// The following functions are expected to be implemented on every serializable and deserializable:\n
-    /// xml::Node ProtoSerialize() const; \n
+    /// void ProtoSerialize(xml::Node& CurrentRoot) const; \n
     /// void ProtoDeSerialize(const xml::Node&); \n
     /// String SerializableName() const; \n
     /// Implementing these will allow them to work with the Serialize and Deserialize templates defined in
@@ -75,14 +75,18 @@ namespace phys
         /// specific to the required tasks. It is expected to produced an xml::Node
         /// containing the entirety of the data required to reconstitute the serialized
         /// class.
-        virtual xml::Node ProtoSerializeAll() const = 0;
+        /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+        virtual void ProtoSerializeAll(xml::Node& CurrentRoot) const = 0;
         /// @brief Output to a stream the complete serialized data.
         /// @param Stream The std::ostream to send the data into.
         /// @details By default this is implemented in using ProtoSerializeAll().
         /// @return the modified ostream.
         virtual std::ostream& SerializeAll(std::ostream& Stream) const
         {
-            ProtoSerializeAll().Print(Stream);
+            phys::xml::Document Doc;
+            Doc.Load("");
+            ProtoSerializeAll(Doc);
+            Doc.Print(Stream);
             return Stream;
         }
 
@@ -107,8 +111,8 @@ namespace phys
         /// @brief Get all the one data about one Submember in an xml::Node
         /// @param Name The name of the Serialize item to serialize
         /// @details This is not implemented by default.
-        /// @return This returns an xml:Node that should contain a description of the specified class instance.
-        virtual xml::Node ProtoSerialize(const String& Name) = 0;
+        /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+        virtual void ProtoSerialize(const String& Name, xml::Node& CurrentRoot) = 0;
         /// @brief Output the specified member to a stream
         /// @param Name The name of the Serialize item to serialize
         /// @param Stream The std::ostream to send the data into.
@@ -116,7 +120,10 @@ namespace phys
         /// @return The std::ostream that was passed in.
         virtual std::ostream& Serialize(std::ostream& Stream, const String& Name)
         {
-            ProtoSerialize(Name).Print(Stream);
+            phys::xml::Document Doc;
+            Doc.Load("");
+            ProtoSerialize(Name,Doc);
+            Doc.Print(Stream);
             return Stream;
         }
 
@@ -134,15 +141,18 @@ namespace phys
     };
 
     /// @brief Convert any class that supports serialization or has a serializer to a string of chars in a stream
-    /// @details Any Class will work with this template as long as it implements the method "xml::Node ProtoSerialize() const"
+    /// @details Any Class will work with this template as long as it implements the method "xml::Node ProtoSerialize(xml::Document&) const"
     /// @param Stream The ostream to put the serializable into.
-    /// @param Converted The item to be serialized, which must have a "xml::Node ProtoSerialize() const" method.
+    /// @param Converted The item to be serialized, which must have a "xml::Node ProtoSerialize(xml::Node& CurrentRoot) const" method.
     /// @param Indent Defaults to nothing but can be set to "/t" to get normal
     /// @return A the stream that was passed and now contains the serialized object.
     template <class T>
     std::ostream& Serialize(std::ostream& Stream, const T& Converted, const String& Indent = String("") )
     {
-        Converted.ProtoSerialize().Print(Stream, Indent.c_str());
+        phys::xml::Document Doc;
+        Doc.Load("");           // This sets the encoding to UTF8 ?!
+        Converted.ProtoSerialize(Doc);
+        Doc.Print(Stream, Indent.c_str());
         return Stream;
     }
 
@@ -170,13 +180,14 @@ namespace phys
     /// @param Converted The class implementing older serialization code
     /// @return This returns an xml::Node.
     template <class T>
-    xml::Node SloppyProtoSerialize(T Converted)
+    void SloppyProtoSerialize(T Converted, xml::Node& CurrentRoot)
     {
-        stringstream Depot;
-        xml::Document Staging;
-        Depot << Converted;
-        Staging.Load(Depot);
-        return Staging.GetFirstChild();
+        stringstream Depot;         //Make a place to store serialized XML
+        xml::Document Staging;      //Make a place to convert from XML to an xml node
+        Depot << Converted;         //Use old conversion tools to convert to serialized XML as if writing to a file
+        Staging.Load(Depot);        //Load To the staging area as if loading XML form a file or whatever.
+
+        CurrentRoot.AppendCopy(Staging); //Append our work as an xml::node to the desired place in the xml Hierarchy.
     }
 
     /// @brief Simply does some string concatenation, then throws an Exception
@@ -186,19 +197,6 @@ namespace phys
     /// @throw A phys::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization."
     void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD = true);
 
-/*  //We will try using >> first, The older code is similar to the current design for DeSerializing
-    /// @internal
-    /// @brief Used to interface with a previous version of the serialization code.
-    /// @details The older serialization was implemented entirely in streaming operators. This uses those, however inneficient to get the xml::Node that
-    /// the current serialization solution is centered around.
-    /// @param Converted The class implementing older serialization code
-    /// @param OneTag
-    template <class T>
-    void SloppyProtoDeserialSerialize(xml::Node& OneTag, T& Converted)
-    {
-        OneNode >> Converted;
-    }
-*/
 }
 
 #ifdef PHYSXML
