@@ -461,47 +461,19 @@ void LevelLoader::LoadJustice()
     ActorRigid* Union1 = new ActorRigid(UnionMass,"Union1","union.mesh",JusticeGroup);
     Union1->CreateShapeFromMeshDynamic(1);
     Union1->SetLocation(Vector3(-80.9,2.4,-16.4));
-    Union1->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union1);
     ActorRigid* Union2 = new ActorRigid(UnionMass,"Union2","union.mesh",JusticeGroup);
     Union2->CreateShapeFromMeshDynamic(1);
     Union2->SetLocation(Vector3(-29.1,2.4,-16.4));// -42.9,2.4,-16.4
-    Union2->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Union2->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union2);
     ActorRigid* Union3 = new ActorRigid(UnionMass,"Union3","union.mesh",JusticeGroup);
     Union3->CreateShapeFromMeshDynamic(1);
     Union3->SetLocation(Vector3(-80.9,2.4,16.4));
-    Union3->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union3);
     ActorRigid* Union4 = new ActorRigid(UnionMass,"Union4","union.mesh",JusticeGroup);
     Union4->CreateShapeFromMeshDynamic(1);
     Union4->SetLocation(Vector3(-29.1,2.4,16.4));// -42.9,2.4,16.4
-    Union4->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Union4->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
     ActMan->AddActor(Union4);
-    ActorRigid* Union5 = new ActorRigid(UnionMass,"Union5","union.mesh",JusticeGroup);
-    Union5->CreateShapeFromMeshDynamic(1);
-    Union5->SetLocation(Vector3(196.9,2.4,-16.4));// 181.1,2.4,-16.4
-    Union5->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Union5->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
-    ActMan->AddActor(Union5);
-    ActorRigid* Union6 = new ActorRigid(UnionMass,"Union6","union.mesh",JusticeGroup);
-    Union6->CreateShapeFromMeshDynamic(1);
-    Union6->SetLocation(Vector3(145.1,2.4,-16.4));
-    Union6->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
-    ActMan->AddActor(Union6);
-    ActorRigid* Union7 = new ActorRigid(UnionMass,"Union7","union.mesh",JusticeGroup);
-    Union7->CreateShapeFromMeshDynamic(1);
-    Union7->SetLocation(Vector3(196.9,2.4,16.4));//181.1,2.4,16.4
-    Union7->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
-    Union7->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
-    ActMan->AddActor(Union7);
-    ActorRigid* Union8 = new ActorRigid(UnionMass,"Union8","union.mesh",JusticeGroup);
-    Union8->CreateShapeFromMeshDynamic(1);
-    Union8->SetLocation(Vector3(145.1,2.4,16.4));
-    Union8->GetPhysicsSettings()->SetCollisionGroupAndMask(phys::CF_UserFilter1,phys::CF_AllFilter^phys::CF_UserFilter1);
-    ActMan->AddActor(Union8);
 
     // Create the trays
     Real TrayMass = 5.0;
@@ -521,40 +493,24 @@ void LevelLoader::LoadJustice()
 
     // Original X distance from pivot on scale is 112.7, but space was needed to prevent collsions.
     // Create the scale-to-union constraints
-    Point2PointConstraint* U1S = new Point2PointConstraint(JusticeScale,Union1,Vector3(-116.0,-8.4,-16.4),Vector3(22.9,45,0));
+    Point2PointConstraint* U1S = new Point2PointConstraint(JusticeScale,Union1,Vector3(-112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,-16.4
     PhysMan->AddConstraint(U1S,true);
-    Point2PointConstraint* U2S = new Point2PointConstraint(JusticeScale,Union2,Vector3(-110.0,-8.4,-16.4),Vector3(22.9,45,0));
+    Point2PointConstraint* U2S = new Point2PointConstraint(JusticeScale,Union2,Vector3(-112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // -54,27.4,16.4
     PhysMan->AddConstraint(U2S,true);
-    Point2PointConstraint* U3S = new Point2PointConstraint(JusticeScale,Union3,Vector3(-116.0,-8.4,16.4),Vector3(22.9,45,0));
+    Point2PointConstraint* U3S = new Point2PointConstraint(JusticeScale,Union3,Vector3(112.0,-20,-16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,-16.4
     PhysMan->AddConstraint(U3S,true);
-    Point2PointConstraint* U4S = new Point2PointConstraint(JusticeScale,Union4,Vector3(-110.0,-8.4,16.4),Vector3(22.9,45,0));
+    Point2PointConstraint* U4S = new Point2PointConstraint(JusticeScale,Union4,Vector3(112.0,-20,16.4),Vector3(0,17.2,0));//58,47.4,0 // 170,27.4,16.4
     PhysMan->AddConstraint(U4S,true);
-    Point2PointConstraint* U5S = new Point2PointConstraint(JusticeScale,Union5,Vector3(116.0,-8.4,-16.4),Vector3(22.9,45,0));
-    PhysMan->AddConstraint(U5S,true);
-    Point2PointConstraint* U6S = new Point2PointConstraint(JusticeScale,Union6,Vector3(110.0,-8.4,-16.4),Vector3(22.9,45,0));
-    PhysMan->AddConstraint(U6S,true);
-    Point2PointConstraint* U7S = new Point2PointConstraint(JusticeScale,Union7,Vector3(116.0,-8.4,16.4),Vector3(22.9,45,0));
-    PhysMan->AddConstraint(U7S,true);
-    Point2PointConstraint* U8S = new Point2PointConstraint(JusticeScale,Union8,Vector3(110.0,-8.4,16.4),Vector3(22.9,45,0));
-    PhysMan->AddConstraint(U8S,true);
 
     // Create the union-to-tray constraints
-    Point2PointConstraint* U1T = new Point2PointConstraint(Union1,Tray1,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,-16.4));
+    Point2PointConstraint* U1T = new Point2PointConstraint(Union1,Tray1,Vector3(0,-17.2,0),Vector3(0,18,-16.4));
     PhysMan->AddConstraint(U1T,true);
-    Point2PointConstraint* U2T = new Point2PointConstraint(Union2,Tray1,Vector3(-22.9,-45,0),Vector3(46.6,18.7,-16.4));
+    Point2PointConstraint* U2T = new Point2PointConstraint(Union2,Tray1,Vector3(0,-17.2,0),Vector3(0,18,16.4));
     PhysMan->AddConstraint(U2T,true);
-    Point2PointConstraint* U3T = new Point2PointConstraint(Union3,Tray1,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,16.4));
+    Point2PointConstraint* U3T = new Point2PointConstraint(Union3,Tray2,Vector3(0,-17.2,0),Vector3(0,18,-16.4));
     PhysMan->AddConstraint(U3T,true);
-    Point2PointConstraint* U4T = new Point2PointConstraint(Union4,Tray1,Vector3(-22.9,-45,0),Vector3(46.6,18.7,16.4));
+    Point2PointConstraint* U4T = new Point2PointConstraint(Union4,Tray2,Vector3(0,-17.2,0),Vector3(0,18,16.4));
     PhysMan->AddConstraint(U4T,true);
-    Point2PointConstraint* U5T = new Point2PointConstraint(Union5,Tray2,Vector3(-22.9,-45,0),Vector3(46.6,18.7,-16.4));
-    PhysMan->AddConstraint(U5T,true);
-    Point2PointConstraint* U6T = new Point2PointConstraint(Union6,Tray2,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,-16.4));
-    PhysMan->AddConstraint(U6T,true);
-    Point2PointConstraint* U7T = new Point2PointConstraint(Union7,Tray2,Vector3(-22.9,-45,0),Vector3(46.6,18.7,16.4));
-    PhysMan->AddConstraint(U7T,true);
-    Point2PointConstraint* U8T = new Point2PointConstraint(Union8,Tray2,Vector3(-22.9,-45,0),Vector3(-46.6,18.7,16.4));
-    PhysMan->AddConstraint(U8T,true);
 
     // Create some throwable objects
     ThrowableData* ClayData = ThrowableGenerator::GetThrowableData("Clay");

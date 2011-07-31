@@ -62,7 +62,6 @@
 
 #include "SDL.h"
 
-
 //#include <boost/thread/thread.hpp> //will use this when this becomes multithreaded
 
 namespace phys
@@ -640,7 +639,10 @@ namespace phys
         {}
 
     void EventManager::DoMainLoopItems()
-        { this->UpdateEvents(); InputQueryTool::GatherEvents(); }
+    {
+        this->UpdateEvents();
+        InputQueryTool::GatherEvents();
+    }
 
     ManagerBase::ManagerTypeName EventManager::GetType() const
         { return ManagerBase::EventManager; }

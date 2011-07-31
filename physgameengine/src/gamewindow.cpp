@@ -141,11 +141,11 @@ namespace phys
         Ogre::NameValuePairList* Binder;
 
         Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,(size_t)RenderContext);
-        Opts.insert(Binder->begin(),Binder->end());
+        Opts.insert(Binder->begin(),Binder->end());// */
         OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);
 
         /*#ifdef WINDOWS
-        HWND Data = 0;
+        size_t Data = 0;
         OgreWindow->getCustomAttribute("WINDOW",&Data);
 
         std::stringstream stream;
@@ -164,7 +164,8 @@ namespace phys
         NSWindow* Data = 0;
         OgreWindow->getCustomAttribute("WINDOW",Data);
         SDLWindow = SDL_CreateWindowFrom(Data);
-        #endif*/
+        #endif// */
+        //SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
         delete Binder;
     }
 
