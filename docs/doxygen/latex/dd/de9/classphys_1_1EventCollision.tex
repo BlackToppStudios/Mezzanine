@@ -81,12 +81,12 @@ Definition at line 55 of file eventcollision.h.
 \index{EventCollision@{EventCollision}!phys::EventCollision@{phys::EventCollision}}
 \paragraph[{EventCollision}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventCollision::EventCollision (
 \begin{DoxyParamCaption}
-\item[{{\bf ActorBase} $\ast$}]{ actora, }
-\item[{{\bf ActorBase} $\ast$}]{ actorb, }
-\item[{{\bf Vector3}}]{ localAlocation, }
-\item[{{\bf Vector3}}]{ localBlocation, }
-\item[{{\bf Vector3}}]{ worldlocation, }
-\item[{{\bf Real}}]{ impulse}
+\item[{{\bf ActorBase} $\ast$}]{actora, }
+\item[{{\bf ActorBase} $\ast$}]{actorb, }
+\item[{{\bf Vector3}}]{localAlocation, }
+\item[{{\bf Vector3}}]{localBlocation, }
+\item[{{\bf Vector3}}]{worldlocation, }
+\item[{{\bf Real}}]{impulse}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/de9/classphys_1_1EventCollision_a0f5a0862cde3b7db4482be6984434742}
@@ -96,17 +96,29 @@ Class Constructor.
 
 This will construct a basic event class with the minimum data needed. 
 \begin{DoxyParams}{Parameters}
-\item[{\em actora}]The first Actor involved in the collision. \item[{\em actorb}]The second Actor invovled in the collision. \item[{\em localAlocation}]The location in ActorA's local space where the collision occured. \item[{\em localBlocation}]The location in ActorB's local space where the collision occured. \item[{\em worldlocation}]The location in the world where the collision occured. \item[{\em impulse}]The amount of force of the collision. \end{DoxyParams}
+{\em actora} & The first Actor involved in the collision. \\
+\hline
+{\em actorb} & The second Actor invovled in the collision. \\
+\hline
+{\em localAlocation} & The location in ActorA's local space where the collision occured. \\
+\hline
+{\em localBlocation} & The location in ActorB's local space where the collision occured. \\
+\hline
+{\em worldlocation} & The location in the world where the collision occured. \\
+\hline
+{\em impulse} & The amount of force of the collision. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 60 of file eventcollision.cpp.
+Definition at line 61 of file eventcollision.cpp.
 
 \hypertarget{classphys_1_1EventCollision_a85c999154866380d232ddcdfd9534c85}{
 \index{phys::EventCollision@{phys::EventCollision}!EventCollision@{EventCollision}}
 \index{EventCollision@{EventCollision}!phys::EventCollision@{phys::EventCollision}}
 \paragraph[{EventCollision}]{\setlength{\rightskip}{0pt plus 5cm}phys::EventCollision::EventCollision (
 \begin{DoxyParamCaption}
-\item[{const {\bf EventCollision} \&}]{ Other}
+\item[{const {\bf EventCollision} \&}]{Other}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/de9/classphys_1_1EventCollision_a85c999154866380d232ddcdfd9534c85}
@@ -116,10 +128,12 @@ Copy Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Other}]The other \hyperlink{classphys_1_1EventCollision}{EventCollision} to copy \end{DoxyParams}
+{\em Other} & The other \hyperlink{classphys_1_1EventCollision}{EventCollision} to copy \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 70 of file eventcollision.cpp.
+Definition at line 71 of file eventcollision.cpp.
 
 \hypertarget{classphys_1_1EventCollision_afcbf057fc955ce6c05b21c08325b1822}{
 \index{phys::EventCollision@{phys::EventCollision}!$\sim$EventCollision@{$\sim$EventCollision}}
@@ -136,7 +150,7 @@ Class Destructor.
 
 Basic Class Destructor. 
 
-Definition at line 80 of file eventcollision.cpp.
+Definition at line 81 of file eventcollision.cpp.
 
 
 
@@ -160,7 +174,7 @@ Implements \hyperlink{classphys_1_1EventBase_a1b3d29b6ecf30f18cc3e1825a515c508}{
 
 
 
-Definition at line 84 of file eventcollision.cpp.
+Definition at line 85 of file eventcollision.cpp.
 
 
 

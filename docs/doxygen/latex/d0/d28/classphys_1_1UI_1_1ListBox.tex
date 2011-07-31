@@ -20,7 +20,7 @@ Inheritance diagram for phys::UI::ListBox:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1UI_1_1ListBox_a0bf957f875c9a7c5361c26b5001ce821}{ListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} Position, const \hyperlink{classphys_1_1Vector2}{Vector2} Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} ScrollbarWidth, UI::ScrollbarStyle ScrollStyle, \hyperlink{classphys_1_1UILayer}{UILayer} $\ast$Layer)
+\hyperlink{classphys_1_1UI_1_1ListBox_a2cda27f0fd7392a5e0293af644a215ef}{ListBox} (\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&ScrollbarWidth, const UI::ScrollbarStyle \&ScrollStyle, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$PLayer)
 \begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1UI_1_1ListBox_a582423223a2e310afc2a32c84d937502}{
 \hyperlink{classphys_1_1UI_1_1ListBox_a582423223a2e310afc2a32c84d937502}{$\sim$ListBox} ()}
@@ -55,7 +55,7 @@ virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a295acf830ed17c78a59e5ba871a5
 \begin{DoxyCompactList}\small\item\em Destroys a selectable caption. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a3aa3bfaee473b7590692e8707dada68d}{DestroySelection} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ToBeDestroyed)
 \begin{DoxyCompactList}\small\item\em Destroys a selectable caption. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a436882336e5630d97f569b10273e7f0d}{SetSelectionDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Dist)
+virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a884c17a0462c95dfcad3f8f6b7671e15}{SetSelectionDistance} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Dist)
 \begin{DoxyCompactList}\small\item\em Sets the distance apart(and from the sides of box) the Selections will be from each other. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a60fc5c1907df6d83217b25c2c8f15f48}{SetAutoHideScroll} (bool AutoHide)
 \begin{DoxyCompactList}\small\item\em Eanbles or disables the scrollbar autohide. \item\end{DoxyCompactList}\item 
@@ -66,19 +66,19 @@ virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a05191b1f2515dead89abbcd6bd63
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a05191b1f2515dead89abbcd6bd63b4d0}
 
 \begin{DoxyCompactList}\small\item\em Disables borders on currently selected buttons if one was enabled. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_ac7e4d02b6be093bd31f9904d6c0ef88f}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
+virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a0c4c7141142caca342157ce4460b907d}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the relative position of this List Box. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1ListBox_af688db0628a5588865a890584f754b02}{GetPosition} ()
 \begin{DoxyCompactList}\small\item\em Gets the relative position of this List Box. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_afa7daa798bf8702bcc3e7c4cd9dcfdf4}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} Position)
+virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a4bf1911c639429c783915ba8a543fec3}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this List Box. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1ListBox_a44046453283fb2c54e10dc868705352a}{GetActualPosition} ()
 \begin{DoxyCompactList}\small\item\em Sets the pixel position of this List Box. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a73f4526ffb4d35a431bb62c816257169}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a2e1f6514f83be768dad7e357beb6ac98}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the relative size of this List Box. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1ListBox_a7af2cced185d63be6a62d5122c700d81}{GetSize} ()
 \begin{DoxyCompactList}\small\item\em Gets the relative size of this List Box. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1UI_1_1ListBox_abb26f02d8ab44b9ebd6add14a9ba809c}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} Size)
+virtual void \hyperlink{classphys_1_1UI_1_1ListBox_a742810da75f2b3889794498f05af8860}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this List Box. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1ListBox_a23133ed4a98994d838acee4c6a981e04}{GetActualSize} ()
 \begin{DoxyCompactList}\small\item\em Sets the pixel size of this List Box. \item\end{DoxyCompactList}\item 
@@ -201,31 +201,43 @@ Definition at line 61 of file uilistbox.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1UI_1_1ListBox_a0bf957f875c9a7c5361c26b5001ce821}{
+\hypertarget{classphys_1_1UI_1_1ListBox_a2cda27f0fd7392a5e0293af644a215ef}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!ListBox@{ListBox}}
 \index{ListBox@{ListBox}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{ListBox}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::ListBox::ListBox (
 \begin{DoxyParamCaption}
-\item[{{\bf ConstString} \&}]{ name, }
-\item[{const {\bf Vector2}}]{ Position, }
-\item[{const {\bf Vector2}}]{ Size, }
-\item[{const {\bf Real}}]{ ScrollbarWidth, }
-\item[{UI::ScrollbarStyle}]{ ScrollStyle, }
-\item[{{\bf UILayer} $\ast$}]{ Layer}
+\item[{{\bf ConstString} \&}]{name, }
+\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf Vector2} \&}]{Size, }
+\item[{const {\bf Real} \&}]{ScrollbarWidth, }
+\item[{const UI::ScrollbarStyle \&}]{ScrollStyle, }
+\item[{{\bf Layer} $\ast$}]{PLayer}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d0/d28/classphys_1_1UI_1_1ListBox_a0bf957f875c9a7c5361c26b5001ce821}
+\label{d0/d28/classphys_1_1UI_1_1ListBox_a2cda27f0fd7392a5e0293af644a215ef}
 
 
 Standard initialization constructor. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em name}]The name of the List Box. \item[{\em Position}]The position of the List Box. \item[{\em Size}]The size of the List Box. \item[{\em ScrollbarWidth}]The relative(to screensize) width of the vertical scrollbar. If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look. \item[{\em ScrollStyle}]The style of the scrollbar you want for this List Box. See \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} class for more information. \item[{\em Layer}]The parent layer this List Box belongs to. \end{DoxyParams}
+{\em name} & The name of the List Box. \\
+\hline
+{\em Position} & The position of the List Box. \\
+\hline
+{\em Size} & The size of the List Box. \\
+\hline
+{\em ScrollbarWidth} & The relative(to screensize) width of the vertical scrollbar. If a horizontal scrollbar is needed it'll use the equal value in pixels(to avoid the stretched look. \\
+\hline
+{\em ScrollStyle} & The style of the scrollbar you want for this List Box. See \hyperlink{classphys_1_1UI_1_1Scrollbar}{Scrollbar} class for more information. \\
+\hline
+{\em \hyperlink{classphys_1_1UI_1_1Layer}{Layer}} & The parent layer this List Box belongs to. \\
+\hline
+\end{DoxyParams}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000023}{Todo}]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
+\item[\hyperlink{todo__todo000027}{Todo}]Fourth instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
 
 
 
@@ -240,9 +252,9 @@ Definition at line 60 of file uilistbox.cpp.
 \index{AddSelection@{AddSelection}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{AddSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::ListBox::AddSelection (
 \begin{DoxyParamCaption}
-\item[{{\bf ConstString} \&}]{ name, }
-\item[{{\bf ConstString} \&}]{ Text, }
-\item[{{\bf ConstString} \&}]{ BackgroundSprite = {\ttfamily \char`\"{}\char`\"{}}}
+\item[{{\bf ConstString} \&}]{name, }
+\item[{{\bf ConstString} \&}]{Text, }
+\item[{{\bf ConstString} \&}]{BackgroundSprite = {\ttfamily \char`\"{}\char`\"{}}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_aa6069fc3690e09142033886d9d7b0b3a}
@@ -252,7 +264,13 @@ Adds a selectable caption to the list to be displayed.
 
 If a colour other then white was set as the template and you try to set a background sprite, it will attempt to blend the colour and sprite. Pure white colour will cause the sprite to look normal. 
 \begin{DoxyParams}{Parameters}
-\item[{\em name}]A name for the selection. \item[{\em Text}]The text to be displayed within the created caption. \item[{\em BackgroundSprite}]Optional, name of the sprite to set as it's background. Ignored if the string is empty. \end{DoxyParams}
+{\em name} & A name for the selection. \\
+\hline
+{\em Text} & The text to be displayed within the created caption. \\
+\hline
+{\em BackgroundSprite} & Optional, name of the sprite to set as it's background. Ignored if the string is empty. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 302 of file uilistbox.cpp.
@@ -286,7 +304,7 @@ Definition at line 251 of file uilistbox.cpp.
 \index{DestroySelection@{DestroySelection}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::DestroySelection (
 \begin{DoxyParamCaption}
-\item[{{\bf Caption} $\ast$}]{ ToBeDestroyed}
+\item[{{\bf Caption} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a295acf830ed17c78a59e5ba871a5a234}
@@ -296,7 +314,9 @@ Destroys a selectable caption.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em ToBeDestroyed}]A pointer to the caption you want destroyed and removed from this list. \end{DoxyParams}
+{\em ToBeDestroyed} & A pointer to the caption you want destroyed and removed from this list. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 332 of file uilistbox.cpp.
@@ -306,7 +326,7 @@ Definition at line 332 of file uilistbox.cpp.
 \index{DestroySelection@{DestroySelection}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{DestroySelection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::DestroySelection (
 \begin{DoxyParamCaption}
-\item[{{\bf String} \&}]{ ToBeDestroyed}
+\item[{{\bf String} \&}]{ToBeDestroyed}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a3aa3bfaee473b7590692e8707dada68d}
@@ -316,7 +336,9 @@ Destroys a selectable caption.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em ToBeDestroyed}]A string naming the caption you want destroyed and removed from this list. \end{DoxyParams}
+{\em ToBeDestroyed} & A string naming the caption you want destroyed and removed from this list. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 346 of file uilistbox.cpp.
@@ -326,7 +348,7 @@ Definition at line 346 of file uilistbox.cpp.
 \index{EnableBackgroundSelector@{EnableBackgroundSelector}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{EnableBackgroundSelector}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::EnableBackgroundSelector (
 \begin{DoxyParamCaption}
-\item[{const {\bf ColourValue} \&}]{ Colour}
+\item[{const {\bf ColourValue} \&}]{Colour}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a2f3612cc6062a279f0b6f69a1b2fc4eb}
@@ -336,7 +358,9 @@ Enables the setting of a background colour or sprite on the caption you select.
 
 The background colour of captions default to white. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Colour}]The colour of the border. \end{DoxyParams}
+{\em Colour} & The colour of the border. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 372 of file uilistbox.cpp.
@@ -458,7 +482,7 @@ Definition at line 444 of file uilistbox.cpp.
 \index{GetSelection@{GetSelection}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{GetSelection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Caption} $\ast$ phys::UI::ListBox::GetSelection (
 \begin{DoxyParamCaption}
-\item[{{\bf ConstString} \&}]{ Name}
+\item[{{\bf ConstString} \&}]{Name}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a1a5f9c44430387cc96744411bea9e978}
@@ -468,7 +492,9 @@ Gets a caption by name.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the selectable caption you want to get. \end{DoxyParams}
+{\em Name} & The name of the selectable caption you want to get. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns a pointer to the named caption. 
 \end{DoxyReturn}
@@ -544,49 +570,53 @@ Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7a
 
 Definition at line 226 of file uilistbox.cpp.
 
-\hypertarget{classphys_1_1UI_1_1ListBox_afa7daa798bf8702bcc3e7c4cd9dcfdf4}{
+\hypertarget{classphys_1_1UI_1_1ListBox_a4bf1911c639429c783915ba8a543fec3}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetActualPosition@{SetActualPosition}}
 \index{SetActualPosition@{SetActualPosition}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetActualPosition (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2} \&}]{Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d28/classphys_1_1UI_1_1ListBox_afa7daa798bf8702bcc3e7c4cd9dcfdf4}
+\label{d0/d28/classphys_1_1UI_1_1ListBox_a4bf1911c639429c783915ba8a543fec3}
 
 
 Sets the pixel position of this List Box. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]A vector2 representing the pixel position of this List Box. \end{DoxyParams}
+{\em Position} & A vector2 representing the pixel position of this List Box. \\
+\hline
+\end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_acba334c000c21f477238e961cd3ab2ce}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{phys::UI::Widget}.
 
 
 
 Definition at line 396 of file uilistbox.cpp.
 
-\hypertarget{classphys_1_1UI_1_1ListBox_abb26f02d8ab44b9ebd6add14a9ba809c}{
+\hypertarget{classphys_1_1UI_1_1ListBox_a742810da75f2b3889794498f05af8860}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetActualSize@{SetActualSize}}
 \index{SetActualSize@{SetActualSize}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetActualSize (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2} \&}]{Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d28/classphys_1_1UI_1_1ListBox_abb26f02d8ab44b9ebd6add14a9ba809c}
+\label{d0/d28/classphys_1_1UI_1_1ListBox_a742810da75f2b3889794498f05af8860}
 
 
 Sets the pixel size of this List Box. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Size}]A vector2 representing the pixel size of this List Box. \end{DoxyParams}
+{\em Size} & A vector2 representing the pixel size of this List Box. \\
+\hline
+\end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_a8c942355474d0b250dfadd4dac4ae400}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120d}{phys::UI::Widget}.
 
 
 
@@ -597,7 +627,7 @@ Definition at line 427 of file uilistbox.cpp.
 \index{SetAutoHideScroll@{SetAutoHideScroll}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{SetAutoHideScroll}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetAutoHideScroll (
 \begin{DoxyParamCaption}
-\item[{bool}]{ AutoHide}
+\item[{bool}]{AutoHide}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a60fc5c1907df6d83217b25c2c8f15f48}
@@ -607,7 +637,9 @@ Eanbles or disables the scrollbar autohide.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em AutoHide}]A bool indicating whether or not to auto hide the scrollbar. \end{DoxyParams}
+{\em AutoHide} & A bool indicating whether or not to auto hide the scrollbar. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 365 of file uilistbox.cpp.
@@ -617,8 +649,8 @@ Definition at line 365 of file uilistbox.cpp.
 \index{SetBasicTemplateParameters@{SetBasicTemplateParameters}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{SetBasicTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetBasicTemplateParameters (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector2}}]{ Size, }
-\item[{const {\bf Whole}}]{ Glyph}
+\item[{{\bf Vector2}}]{Size, }
+\item[{const {\bf Whole}}]{Glyph}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a093415bd4d69dfdb0b1ffa3f868fe4f5}
@@ -628,7 +660,11 @@ Sets the desired size and glyph set provided to all captions created within this
 
 This function needs to be called before adding any selections to this widget. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Size}]The size for all captions in this widget. \item[{\em Glyph}]The Glyph set to be used for all captions created. Glyphs are defined in your .gorilla file. \end{DoxyParams}
+{\em Size} & The size for all captions in this widget. \\
+\hline
+{\em Glyph} & The Glyph set to be used for all captions created. Glyphs are defined in your .gorilla file. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 284 of file uilistbox.cpp.
@@ -638,10 +674,10 @@ Definition at line 284 of file uilistbox.cpp.
 \index{SetMoreTemplateParameters@{SetMoreTemplateParameters}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{SetMoreTemplateParameters}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetMoreTemplateParameters (
 \begin{DoxyParamCaption}
-\item[{const {\bf ColourValue} \&}]{ TextColour = {\ttfamily {\bf ColourValue}(0.0,0.0,0.0,1.0)}, }
-\item[{const {\bf ColourValue} \&}]{ BackgroundColour = {\ttfamily {\bf ColourValue}(1.0,1.0,1.0,1.0)}, }
-\item[{UI::TextHorizontalAlign}]{ HorAlign = {\ttfamily UI::Txt\_\-Middle}, }
-\item[{UI::TextVerticalAlign}]{ VertAlign = {\ttfamily UI::Txt\_\-Center}}
+\item[{const {\bf ColourValue} \&}]{TextColour = {\ttfamily {\bf ColourValue}(0.0,0.0,0.0,1.0)}, }
+\item[{const {\bf ColourValue} \&}]{BackgroundColour = {\ttfamily {\bf ColourValue}(1.0,1.0,1.0,1.0)}, }
+\item[{UI::TextHorizontalAlign}]{HorAlign = {\ttfamily UI::Txt\_\-Middle}, }
+\item[{UI::TextVerticalAlign}]{VertAlign = {\ttfamily UI::Txt\_\-Center}}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_a8396c55be0de8fd33d8ce35b83781540}
@@ -651,74 +687,88 @@ Sets additional optional perameters to the creation of each caption.
 
 This function does not need to be called before creating captions, but if you plan to use this, it would be a good idea to call this function prior to any creation. 
 \begin{DoxyParams}{Parameters}
-\item[{\em TextColour}]The Colour of the text. \item[{\em BackgroundColour}]The colour to set for the captions background. \item[{\em HorAlign}]The horizontal text alignment. This defaults to UI::Middle. \item[{\em VertAlign}]The Vertical text alignment. This defaults to UI::Center. \end{DoxyParams}
+{\em TextColour} & The Colour of the text. \\
+\hline
+{\em BackgroundColour} & The colour to set for the captions background. \\
+\hline
+{\em HorAlign} & The horizontal text alignment. This defaults to UI::Middle. \\
+\hline
+{\em VertAlign} & The Vertical text alignment. This defaults to UI::Center. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 294 of file uilistbox.cpp.
 
-\hypertarget{classphys_1_1UI_1_1ListBox_ac7e4d02b6be093bd31f9904d6c0ef88f}{
+\hypertarget{classphys_1_1UI_1_1ListBox_a0c4c7141142caca342157ce4460b907d}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetPosition@{SetPosition}}
 \index{SetPosition@{SetPosition}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetPosition (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Position}
+\item[{const {\bf Vector2} \&}]{Position}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d28/classphys_1_1UI_1_1ListBox_ac7e4d02b6be093bd31f9904d6c0ef88f}
+\label{d0/d28/classphys_1_1UI_1_1ListBox_a0c4c7141142caca342157ce4460b907d}
 
 
 Sets the relative position of this List Box. 
 
 The position is relative to the screen size. Values range from 0.0 to 1.0. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]A vector2 representing the relative position of this List Box. \end{DoxyParams}
+{\em Position} & A vector2 representing the relative position of this List Box. \\
+\hline
+\end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_a3f1cd1ce55660c7de4859983bac1ab7c}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d00}{phys::UI::Widget}.
 
 
 
 Definition at line 382 of file uilistbox.cpp.
 
-\hypertarget{classphys_1_1UI_1_1ListBox_a436882336e5630d97f569b10273e7f0d}{
+\hypertarget{classphys_1_1UI_1_1ListBox_a884c17a0462c95dfcad3f8f6b7671e15}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetSelectionDistance@{SetSelectionDistance}}
 \index{SetSelectionDistance@{SetSelectionDistance}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{SetSelectionDistance}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetSelectionDistance (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real}}]{ Dist}
+\item[{const {\bf Real} \&}]{Dist}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d28/classphys_1_1UI_1_1ListBox_a436882336e5630d97f569b10273e7f0d}
+\label{d0/d28/classphys_1_1UI_1_1ListBox_a884c17a0462c95dfcad3f8f6b7671e15}
 
 
 Sets the distance apart(and from the sides of box) the Selections will be from each other. 
 
 This function expects a relative value to the screen size(0.0 to 1.0). This value defaults to 0. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Dist}]A relative value for the distance to be used when determining the positions of Selections. \end{DoxyParams}
+{\em Dist} & A relative value for the distance to be used when determining the positions of Selections. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 360 of file uilistbox.cpp.
 
-\hypertarget{classphys_1_1UI_1_1ListBox_a73f4526ffb4d35a431bb62c816257169}{
+\hypertarget{classphys_1_1UI_1_1ListBox_a2e1f6514f83be768dad7e357beb6ac98}{
 \index{phys::UI::ListBox@{phys::UI::ListBox}!SetSize@{SetSize}}
 \index{SetSize@{SetSize}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetSize (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2}}]{ Size}
+\item[{const {\bf Vector2} \&}]{Size}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
-\label{d0/d28/classphys_1_1UI_1_1ListBox_a73f4526ffb4d35a431bb62c816257169}
+\label{d0/d28/classphys_1_1UI_1_1ListBox_a2e1f6514f83be768dad7e357beb6ac98}
 
 
 Sets the relative size of this List Box. 
 
 The size is relative to the screen size. Values range from 0.0 to 1.0. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Size}]A vector2 representing the relative size of this List Box. \end{DoxyParams}
+{\em Size} & A vector2 representing the relative size of this List Box. \\
+\hline
+\end{DoxyParams}
 
 
-Implements \hyperlink{classphys_1_1UI_1_1Widget_a3fe0b767fea59e1d120ed37b26c99044}{phys::UI::Widget}.
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24d}{phys::UI::Widget}.
 
 
 
@@ -729,7 +779,7 @@ Definition at line 410 of file uilistbox.cpp.
 \index{SetVisible@{SetVisible}!phys::UI::ListBox@{phys::UI::ListBox}}
 \paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::ListBox::SetVisible (
 \begin{DoxyParamCaption}
-\item[{bool}]{ visible}
+\item[{bool}]{visible}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_abb3c87bf6669100296c1fa4f4913ea33}
@@ -739,7 +789,9 @@ Sets the visibility of this List Box.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em visible}]Bool determining whether or not this List Box should be visible. \end{DoxyParams}
+{\em visible} & Bool determining whether or not this List Box should be visible. \\
+\hline
+\end{DoxyParams}
 
 
 Implements \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{phys::UI::Widget}.
@@ -757,7 +809,7 @@ Definition at line 216 of file uilistbox.cpp.
 \paragraph[{VertScroll}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Scrollbar}$\ast$ {\bf phys::UI::ListBox::VertScroll}\hspace{0.3cm}{\ttfamily  \mbox{[}protected\mbox{]}}}\hfill}
 \label{d0/d28/classphys_1_1UI_1_1ListBox_ab2b012b345ff4bb1a5b228fef88d895c}
 \begin{Desc}
-\item[\hyperlink{todo__todo000024}{Todo}]Third instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
+\item[\hyperlink{todo__todo000028}{Todo}]Third instance of needing to include the namespace in the declaration seemingly needlessly. \end{Desc}
 
 
 Definition at line 66 of file uilistbox.h.

@@ -14,10 +14,8 @@ This is a simple class for holding 4 reals representing the colour any give obje
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1ColourValue_ac63b5fbf1b35b1855330ed5737fc16e0}{ColourValue} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} red, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} green, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} blue)
-\begin{DoxyCompactList}\small\item\em Non-\/Alpha constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1ColourValue_a28ee2493cd6a7bb8bc4104d223e3e709}{ColourValue} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} red, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} green, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} blue, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} alpha)
-\begin{DoxyCompactList}\small\item\em Alpha constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ColourValue_a5470d004419e18f52f520560328abf51}{ColourValue} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} red=1.0, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} green=1.0, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} blue=1.0, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} alpha=1.0)
+\begin{DoxyCompactList}\small\item\em 4 Reals constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ColourValue_ac814df9f1709186fa6aeadbca8e0ed9f}{ColourValue} (const Ogre::ColourValue \&OgreValues)
 \begin{DoxyCompactList}\small\item\em Ogre constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1ColourValue_add6b3ac7e9809dce240cd584b94e8c67}{ColourValue} (const \hyperlink{classphys_1_1ColourValue}{ColourValue} \&OtherColour)
@@ -89,47 +87,33 @@ Definition at line 59 of file colourvalue.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1ColourValue_ac63b5fbf1b35b1855330ed5737fc16e0}{
+\hypertarget{classphys_1_1ColourValue_a5470d004419e18f52f520560328abf51}{
 \index{phys::ColourValue@{phys::ColourValue}!ColourValue@{ColourValue}}
 \index{ColourValue@{ColourValue}!phys::ColourValue@{phys::ColourValue}}
 \paragraph[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ red, }
-\item[{{\bf Real}}]{ green, }
-\item[{{\bf Real}}]{ blue}
+\item[{{\bf Real}}]{red = {\ttfamily 1.0}, }
+\item[{{\bf Real}}]{green = {\ttfamily 1.0}, }
+\item[{{\bf Real}}]{blue = {\ttfamily 1.0}, }
+\item[{{\bf Real}}]{alpha = {\ttfamily 1.0}}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d3/db0/classphys_1_1ColourValue_ac63b5fbf1b35b1855330ed5737fc16e0}
+\label{d3/db0/classphys_1_1ColourValue_a5470d004419e18f52f520560328abf51}
 
 
-Non-\/Alpha constructor. 
+4 Reals constructor. 
 
-This constructor assumes the alpha value to be 1.0 (completely opaque). 
+This constructor allows you to set any values, if unset, they default to 1.0. 
 \begin{DoxyParams}{Parameters}
-\item[{\em red}]Real representing the amount of red present in the colour. \item[{\em green}]Real representing the amount of green present in the colour. \item[{\em blue}]Real representing the amount of blue present in the colour. \end{DoxyParams}
-
-
-Definition at line 50 of file colourvalue.cpp.
-
-\hypertarget{classphys_1_1ColourValue_a28ee2493cd6a7bb8bc4104d223e3e709}{
-\index{phys::ColourValue@{phys::ColourValue}!ColourValue@{ColourValue}}
-\index{ColourValue@{ColourValue}!phys::ColourValue@{phys::ColourValue}}
-\paragraph[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (
-\begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ red, }
-\item[{{\bf Real}}]{ green, }
-\item[{{\bf Real}}]{ blue, }
-\item[{{\bf Real}}]{ alpha}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{d3/db0/classphys_1_1ColourValue_a28ee2493cd6a7bb8bc4104d223e3e709}
-
-
-Alpha constructor. 
-
-This constructor allows you to set the alpha value. 
-\begin{DoxyParams}{Parameters}
-\item[{\em red}]Real representing the amount of red present in the colour. \item[{\em green}]Real representing the amount of green present in the colour. \item[{\em blue}]Real representing the amount of blue present in the colour. \item[{\em alpha}]Real representing the transparency of the colours. \end{DoxyParams}
+{\em red} & Real representing the amount of red present in the colour. \\
+\hline
+{\em green} & Real representing the amount of green present in the colour. \\
+\hline
+{\em blue} & Real representing the amount of blue present in the colour. \\
+\hline
+{\em alpha} & Real representing the transparency of the colours. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 58 of file colourvalue.cpp.
@@ -139,7 +123,7 @@ Definition at line 58 of file colourvalue.cpp.
 \index{ColourValue@{ColourValue}!phys::ColourValue@{phys::ColourValue}}
 \paragraph[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (
 \begin{DoxyParamCaption}
-\item[{const Ogre::ColourValue \&}]{ OgreValues}
+\item[{const Ogre::ColourValue \&}]{OgreValues}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/db0/classphys_1_1ColourValue_ac814df9f1709186fa6aeadbca8e0ed9f}
@@ -149,7 +133,9 @@ Ogre constructor.
 
 Internal use only. Constructs a colourvalue class from an ogre colourvalue. 
 \begin{DoxyParams}{Parameters}
-\item[{\em OgreValues}]The Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class to base this class on. \end{DoxyParams}
+{\em OgreValues} & The Ogre \hyperlink{classphys_1_1ColourValue}{ColourValue} class to base this class on. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 66 of file colourvalue.cpp.
@@ -159,7 +145,7 @@ Definition at line 66 of file colourvalue.cpp.
 \index{ColourValue@{ColourValue}!phys::ColourValue@{phys::ColourValue}}
 \paragraph[{ColourValue}]{\setlength{\rightskip}{0pt plus 5cm}phys::ColourValue::ColourValue (
 \begin{DoxyParamCaption}
-\item[{const {\bf ColourValue} \&}]{ OtherColour}
+\item[{const {\bf ColourValue} \&}]{OtherColour}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/db0/classphys_1_1ColourValue_add6b3ac7e9809dce240cd584b94e8c67}
@@ -169,7 +155,9 @@ Copy Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em OtherColour}]\end{DoxyParams}
+{\em OtherColour} & \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 74 of file colourvalue.cpp.
@@ -382,7 +370,7 @@ Definition at line 156 of file colourvalue.cpp.
 \index{operator!=@{operator!=}!phys::ColourValue@{phys::ColourValue}}
 \paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ColourValue::operator!= (
 \begin{DoxyParamCaption}
-\item[{const {\bf ColourValue} \&}]{ Colour}
+\item[{const {\bf ColourValue} \&}]{Colour}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/db0/classphys_1_1ColourValue_a06b52ce51b723ea733f2b067b03530a5}
@@ -392,7 +380,9 @@ Inequality Comparison Operator.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Colour}]This is another \hyperlink{classphys_1_1ColourValue}{ColourValue} to compare with. \end{DoxyParams}
+{\em Colour} & This is another \hyperlink{classphys_1_1ColourValue}{ColourValue} to compare with. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 False if the colors match perfectly, True otherwise 
 \end{DoxyReturn}
@@ -405,7 +395,7 @@ Definition at line 104 of file colourvalue.cpp.
 \index{operator=@{operator=}!phys::ColourValue@{phys::ColourValue}}
 \paragraph[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ColourValue::operator= (
 \begin{DoxyParamCaption}
-\item[{const {\bf ColourValue} \&}]{ OtherColour}
+\item[{const {\bf ColourValue} \&}]{OtherColour}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/db0/classphys_1_1ColourValue_af6df730e4a222be3caeca83db91a56ec}
@@ -415,7 +405,9 @@ Assignment operator.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em OtherColour}]The colour values you want to overwrite this colour's values with. \end{DoxyParams}
+{\em OtherColour} & The colour values you want to overwrite this colour's values with. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 112 of file colourvalue.cpp.
@@ -425,7 +417,7 @@ Definition at line 112 of file colourvalue.cpp.
 \index{operator==@{operator==}!phys::ColourValue@{phys::ColourValue}}
 \paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ColourValue::operator== (
 \begin{DoxyParamCaption}
-\item[{const {\bf ColourValue} \&}]{ Colour}
+\item[{const {\bf ColourValue} \&}]{Colour}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/db0/classphys_1_1ColourValue_a4615835cadb51c814ef87377ac2fbc8c}
@@ -435,7 +427,9 @@ Equality Comparison Operator.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Colour}]This is another \hyperlink{classphys_1_1ColourValue}{ColourValue} to compare with. \end{DoxyParams}
+{\em Colour} & This is another \hyperlink{classphys_1_1ColourValue}{ColourValue} to compare with. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if the colors match perfectly, false otherwise 
 \end{DoxyReturn}

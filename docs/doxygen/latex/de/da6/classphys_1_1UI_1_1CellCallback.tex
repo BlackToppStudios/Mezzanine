@@ -1,0 +1,79 @@
+\hypertarget{classphys_1_1UI_1_1CellCallback}{
+\subsection{phys::UI::CellCallback Class Reference}
+\label{de/da6/classphys_1_1UI_1_1CellCallback}\index{phys::UI::CellCallback@{phys::UI::CellCallback}}
+}
+
+
+This class provides customizable functionality to the button class.  
+
+
+
+
+{\ttfamily \#include $<$uibutton.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UI_1_1CellCallback_aec625f93fd825617c7e265f5529516ba}{CellCallback} (\hyperlink{classphys_1_1UI_1_1Cell}{Cell} $\ast$CallerCell)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellCallback_a15a79254993a90a50e7c6efe60a2089a}{
+\hyperlink{classphys_1_1UI_1_1CellCallback_a15a79254993a90a50e7c6efe60a2089a}{$\sim$CellCallback} ()}
+\label{de/da6/classphys_1_1UI_1_1CellCallback_a15a79254993a90a50e7c6efe60a2089a}
+
+\begin{DoxyCompactList}\small\item\em Class Destructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellCallback_a7412178ba0954b416418f1ba574957b4}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellCallback_a7412178ba0954b416418f1ba574957b4}{DoSelectedItems} ()=0}
+\label{de/da6/classphys_1_1UI_1_1CellCallback_a7412178ba0954b416418f1ba574957b4}
+
+\begin{DoxyCompactList}\small\item\em The hover function for this callback. This will be called every time the \hyperlink{classphys_1_1UI_1_1Cell}{Cell} is hovered over by the mouse. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellCallback_ae395358b35ba72c7195e1b2704543fb1}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellCallback_ae395358b35ba72c7195e1b2704543fb1}{DoUnselectedItems} ()=0}
+\label{de/da6/classphys_1_1UI_1_1CellCallback_ae395358b35ba72c7195e1b2704543fb1}
+
+\begin{DoxyCompactList}\small\item\em The activation function for this callback. This will be called every time the \hyperlink{classphys_1_1UI_1_1Cell}{Cell} is activated by the mouse or keyboard. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1CellCallback_a01af2368383527f6e3a26b16bad59c8f}{
+\hyperlink{classphys_1_1UI_1_1Cell}{Cell} $\ast$ {\bfseries Caller}}
+\label{de/da6/classphys_1_1UI_1_1CellCallback_a01af2368383527f6e3a26b16bad59c8f}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class provides customizable functionality to the button class. This is a pure virtual class that must be inherited from for use with specialized behaviors when working with buttons. 
+
+Definition at line 141 of file uicell.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UI_1_1CellCallback_aec625f93fd825617c7e265f5529516ba}{
+\index{phys::UI::CellCallback@{phys::UI::CellCallback}!CellCallback@{CellCallback}}
+\index{CellCallback@{CellCallback}!phys::UI::CellCallback@{phys::UI::CellCallback}}
+\paragraph[{CellCallback}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::CellCallback::CellCallback (
+\begin{DoxyParamCaption}
+\item[{{\bf Cell} $\ast$}]{CallerCell}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{de/da6/classphys_1_1UI_1_1CellCallback_aec625f93fd825617c7e265f5529516ba}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em CallerButton} & The \hyperlink{classphys_1_1UI_1_1Cell}{Cell} to which this callback belongs. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 107 of file uicell.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uicell.h\item 
+uicell.cpp\end{DoxyCompactItemize}

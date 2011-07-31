@@ -33,13 +33,15 @@ enum \hyperlink{classphys_1_1GameWindow_ae4c6f1cc436ac9f20e43bd21a99885f5}{Windo
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1GameWindow_aaee0ba09b4bcc0af54ef3dc8c704f26c}{GameWindow} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&WindowCaption, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Flags)
+\hyperlink{classphys_1_1GameWindow_ad7b69b7f128ca12ed18bcaca4c638a4e}{GameWindow} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&WindowCaption, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Flags)
 \begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1GameWindow_a2bda2adad1b64d1f85593cdcc74ece54}{
 \hyperlink{classphys_1_1GameWindow_a2bda2adad1b64d1f85593cdcc74ece54}{$\sim$GameWindow} ()}
 \label{dc/d4f/classphys_1_1GameWindow_a2bda2adad1b64d1f85593cdcc74ece54}
 
 \begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1GameWindow_a95a0f35d2546c36d5698e835902f010c}{SetWindowCaption} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&NewCaption)
+\begin{DoxyCompactList}\small\item\em This can set the the Text in the titlebar. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Viewport}{Viewport} $\ast$ \hyperlink{classphys_1_1GameWindow_a85802f1c30d43bb2992f95ac58683961}{CreateViewport} (\hyperlink{classphys_1_1Camera}{Camera} $\ast$ViewportCamera, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&ZOrder=0)
 \begin{DoxyCompactList}\small\item\em Creates an additional \hyperlink{classphys_1_1Viewport}{Viewport} within a created render window. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Viewport}{Viewport} $\ast$ \hyperlink{classphys_1_1GameWindow_a048bdd313420da1902bdc5226d14ae47}{GetViewport} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
@@ -78,6 +80,8 @@ void \hyperlink{classphys_1_1GameWindow_a430e91d4aeb6d1eb62ae84f498310593}{setRe
 \begin{DoxyCompactList}\small\item\em Gets the shortest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1GameWindow_a3e8bcceb201cc2e319fba6b6bf34ee93}{GetWorstFrameTime} ()
 \begin{DoxyCompactList}\small\item\em Gets the longest amount of time it's taken to render a frame. \item\end{DoxyCompactList}\item 
+void $\ast$ \hyperlink{classphys_1_1GameWindow_ad2d4163536db5b6e61147c5acf3d5b4f}{GetRenderContext} ()
+\begin{DoxyCompactList}\small\item\em Gets the render context being used by this window. \item\end{DoxyCompactList}\item 
 Ogre::RenderWindow $\ast$ \hyperlink{classphys_1_1GameWindow_ad94dbdf063bd5dd9a285a7803928aede}{GetOgreWindowPointer} ()
 \begin{DoxyCompactList}\small\item\em This will get a pointer to the Ogre RenderWindow. \item\end{DoxyCompactList}\item 
 SDL\_\-Window $\ast$ \hyperlink{classphys_1_1GameWindow_aefddde0d6790e9e71687310b0328b043}{GetSDLWindowPointer} ()
@@ -127,6 +131,11 @@ std::vector$<$ \hyperlink{classphys_1_1Viewport}{Viewport} $\ast$ $>$ {\bfseries
 \hyperlink{classphys_1_1GraphicsManager}{GraphicsManager} $\ast$ {\bfseries Manager}}
 \label{dc/d4f/classphys_1_1GameWindow_aace5dc5e9cf498b22b9a905af66a7a4f}
 
+\item 
+\hypertarget{classphys_1_1GameWindow_a0a16b6a49ffaac90ad9368793ea2d26f}{
+void $\ast$ {\bfseries RenderContext}}
+\label{dc/d4f/classphys_1_1GameWindow_a0a16b6a49ffaac90ad9368793ea2d26f}
+
 \end{DoxyCompactItemize}
 
 
@@ -166,28 +175,36 @@ Definition at line 80 of file gamewindow.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1GameWindow_aaee0ba09b4bcc0af54ef3dc8c704f26c}{
+\hypertarget{classphys_1_1GameWindow_ad7b69b7f128ca12ed18bcaca4c638a4e}{
 \index{phys::GameWindow@{phys::GameWindow}!GameWindow@{GameWindow}}
 \index{GameWindow@{GameWindow}!phys::GameWindow@{phys::GameWindow}}
-\paragraph[{GameWindow}]{\setlength{\rightskip}{0pt plus 5cm}phys::GameWindow::GameWindow (
+\paragraph[{GameWindow}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame physgameengine src gamewindow cpp phys::GameWindow::GameWindow (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{ WindowCaption, }
-\item[{const {\bf Whole} \&}]{ Width, }
-\item[{const {\bf Whole} \&}]{ Height, }
-\item[{const {\bf Whole} \&}]{ Flags}
+\item[{const {\bf String} \&}]{WindowCaption, }
+\item[{const {\bf Whole} \&}]{Width, }
+\item[{const {\bf Whole} \&}]{Height, }
+\item[{const {\bf Whole} \&}]{Flags}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{dc/d4f/classphys_1_1GameWindow_aaee0ba09b4bcc0af54ef3dc8c704f26c}
+\label{dc/d4f/classphys_1_1GameWindow_ad7b69b7f128ca12ed18bcaca4c638a4e}
 
 
 Class constructor. 
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em WindowCaption}]The caption to be set in the window titlebar. \item[{\em Width}]The desired width in pixels. \item[{\em Height}]The desired height in pixels. \item[{\em Flags}]Additional misc parameters, see WindowFlags enum for more info. \end{DoxyParams}
+{\em WindowCaption} & The caption to be set in the window titlebar. \\
+\hline
+{\em Width} & The desired width in pixels. \\
+\hline
+{\em Height} & The desired height in pixels. \\
+\hline
+{\em Flags} & Additional misc parameters, see WindowFlags enum for more info. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 47 of file gamewindow.cpp.
+Definition at line 56 of file gamewindow.cpp.
 
 
 
@@ -197,8 +214,8 @@ Definition at line 47 of file gamewindow.cpp.
 \index{CreateViewport@{CreateViewport}!phys::GameWindow@{phys::GameWindow}}
 \paragraph[{CreateViewport}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Viewport} $\ast$ phys::GameWindow::CreateViewport (
 \begin{DoxyParamCaption}
-\item[{{\bf Camera} $\ast$}]{ ViewportCamera, }
-\item[{const {\bf Whole} \&}]{ ZOrder = {\ttfamily 0}}
+\item[{{\bf Camera} $\ast$}]{ViewportCamera, }
+\item[{const {\bf Whole} \&}]{ZOrder = {\ttfamily 0}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d4f/classphys_1_1GameWindow_a85802f1c30d43bb2992f95ac58683961}
@@ -208,17 +225,21 @@ Creates an additional \hyperlink{classphys_1_1Viewport}{Viewport} within a creat
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em VeiwportCamera}]The camera that is to be attached to this \hyperlink{classphys_1_1Viewport}{Viewport}. \item[{\em ZOrder}]The render order of this viewport relative to other viewports in this window. 0 means it'll use the current viewport count to determine the ZOrder. \end{DoxyParams}
+{\em VeiwportCamera} & The camera that is to be attached to this \hyperlink{classphys_1_1Viewport}{Viewport}. \\
+\hline
+{\em ZOrder} & The render order of this viewport relative to other viewports in this window. 0 means it'll use the current viewport count to determine the ZOrder. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 147 of file gamewindow.cpp.
+Definition at line 172 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_ac9c359317e9a1612fbc5fef886de4040}{
 \index{phys::GameWindow@{phys::GameWindow}!DestroyViewport@{DestroyViewport}}
 \index{DestroyViewport@{DestroyViewport}!phys::GameWindow@{phys::GameWindow}}
 \paragraph[{DestroyViewport}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GameWindow::DestroyViewport (
 \begin{DoxyParamCaption}
-\item[{{\bf Viewport} $\ast$}]{ ToBeDestroyed}
+\item[{{\bf Viewport} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d4f/classphys_1_1GameWindow_ac9c359317e9a1612fbc5fef886de4040}
@@ -228,10 +249,12 @@ Destroys a viewport within this window.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em ToBeDestroyed}]The viewport that will be destroyed. \end{DoxyParams}
+{\em ToBeDestroyed} & The viewport that will be destroyed. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 165 of file gamewindow.cpp.
+Definition at line 190 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a3ec29af7b989701e3c14409f34497a15}{
 \index{phys::GameWindow@{phys::GameWindow}!GetAverageFPS@{GetAverageFPS}}
@@ -251,7 +274,7 @@ Returns a Real representing the average framerate.
 \end{DoxyReturn}
 
 
-Definition at line 314 of file gamewindow.cpp.
+Definition at line 339 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_ab0fbfc031d5ace19cd79d8c3e6c8f4aa}{
 \index{phys::GameWindow@{phys::GameWindow}!GetBestFPS@{GetBestFPS}}
@@ -271,7 +294,7 @@ Returns a Real representing the best framerate.
 \end{DoxyReturn}
 
 
-Definition at line 319 of file gamewindow.cpp.
+Definition at line 344 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a128723e10c8a3ab778b30da38d351fc4}{
 \index{phys::GameWindow@{phys::GameWindow}!GetBestFrameTime@{GetBestFrameTime}}
@@ -291,7 +314,7 @@ Returns a Real representing the best time for rendering a frame.
 \end{DoxyReturn}
 
 
-Definition at line 329 of file gamewindow.cpp.
+Definition at line 354 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a05ab7d5525e73f5eecf1f6ef6d3598ab}{
 \index{phys::GameWindow@{phys::GameWindow}!getFullscreen@{getFullscreen}}
@@ -311,7 +334,7 @@ This returns a bool, true if fullscreen is set, false otherwise
 \end{DoxyReturn}
 
 
-Definition at line 186 of file gamewindow.cpp.
+Definition at line 211 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_ab2b0d9150f394aa1b71f001768c6b011}{
 \index{phys::GameWindow@{phys::GameWindow}!GetLastFPS@{GetLastFPS}}
@@ -331,7 +354,7 @@ Returns a Real representing the framerate.
 \end{DoxyReturn}
 
 
-Definition at line 309 of file gamewindow.cpp.
+Definition at line 334 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a4b97aaa248a2382b78520b1623dc2978}{
 \index{phys::GameWindow@{phys::GameWindow}!GetNumViewports@{GetNumViewports}}
@@ -351,7 +374,7 @@ Returns a Whole representing the number of viewports within this window.
 \end{DoxyReturn}
 
 
-Definition at line 160 of file gamewindow.cpp.
+Definition at line 185 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_ad94dbdf063bd5dd9a285a7803928aede}{
 \index{phys::GameWindow@{phys::GameWindow}!GetOgreWindowPointer@{GetOgreWindowPointer}}
@@ -366,14 +389,32 @@ Definition at line 160 of file gamewindow.cpp.
 
 This will get a pointer to the Ogre RenderWindow. 
 
-\begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
 Returns a pointer to the Ogre RenderWindow class in use. 
 \end{DoxyReturn}
-\end{DoxyInternal}
 
 
-Definition at line 339 of file gamewindow.cpp.
+Definition at line 369 of file gamewindow.cpp.
+
+\hypertarget{classphys_1_1GameWindow_ad2d4163536db5b6e61147c5acf3d5b4f}{
+\index{phys::GameWindow@{phys::GameWindow}!GetRenderContext@{GetRenderContext}}
+\index{GetRenderContext@{GetRenderContext}!phys::GameWindow@{phys::GameWindow}}
+\paragraph[{GetRenderContext}]{\setlength{\rightskip}{0pt plus 5cm}void $\ast$ phys::GameWindow::GetRenderContext (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{dc/d4f/classphys_1_1GameWindow_ad2d4163536db5b6e61147c5acf3d5b4f}
+
+
+Gets the render context being used by this window. 
+
+\begin{DoxyReturn}{Returns}
+Returns a size\_\-t that identifies the render context being used by this window. 
+\end{DoxyReturn}
+
+
+Definition at line 364 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a9c4d207a8889453ac5f35e7925fd13ef}{
 \index{phys::GameWindow@{phys::GameWindow}!getRenderHeight@{getRenderHeight}}
@@ -393,7 +434,7 @@ This returns the Height of the Rendering Area
 \end{DoxyReturn}
 
 
-Definition at line 236 of file gamewindow.cpp.
+Definition at line 261 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a77e2ec6f64b7a7d1229aca32de57c872}{
 \index{phys::GameWindow@{phys::GameWindow}!getRenderWidth@{getRenderWidth}}
@@ -413,7 +454,7 @@ This returns the Width of the Rendering Area
 \end{DoxyReturn}
 
 
-Definition at line 241 of file gamewindow.cpp.
+Definition at line 266 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_aefddde0d6790e9e71687310b0328b043}{
 \index{phys::GameWindow@{phys::GameWindow}!GetSDLWindowPointer@{GetSDLWindowPointer}}
@@ -428,14 +469,12 @@ Definition at line 241 of file gamewindow.cpp.
 
 This will get a pointer to the SDL Window. 
 
-\begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
 Returns a pointer to the SDL Window class in use. 
 \end{DoxyReturn}
-\end{DoxyInternal}
 
 
-Definition at line 344 of file gamewindow.cpp.
+Definition at line 374 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a9f74d3e37c8ad83727c050175927bdc1}{
 \index{phys::GameWindow@{phys::GameWindow}!GetSettings@{GetSettings}}
@@ -452,17 +491,19 @@ Gets the current window settings.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Returns}]a \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} struct with the current window settings. \end{DoxyParams}
+{\em Returns} & a \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} struct with the current window settings. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 178 of file gamewindow.cpp.
+Definition at line 203 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a048bdd313420da1902bdc5226d14ae47}{
 \index{phys::GameWindow@{phys::GameWindow}!GetViewport@{GetViewport}}
 \index{GetViewport@{GetViewport}!phys::GameWindow@{phys::GameWindow}}
 \paragraph[{GetViewport}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Viewport} $\ast$ phys::GameWindow::GetViewport (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Index}
+\item[{const {\bf Whole} \&}]{Index}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d4f/classphys_1_1GameWindow_a048bdd313420da1902bdc5226d14ae47}
@@ -475,7 +516,7 @@ Returns a pointer to the viewport requested.
 \end{DoxyReturn}
 
 
-Definition at line 155 of file gamewindow.cpp.
+Definition at line 180 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a26518aba7a4edbc6628d9f777b62bcaa}{
 \index{phys::GameWindow@{phys::GameWindow}!GetWorstFPS@{GetWorstFPS}}
@@ -495,7 +536,7 @@ Returns a Real representing the worst framerate.
 \end{DoxyReturn}
 
 
-Definition at line 324 of file gamewindow.cpp.
+Definition at line 349 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a3e8bcceb201cc2e319fba6b6bf34ee93}{
 \index{phys::GameWindow@{phys::GameWindow}!GetWorstFrameTime@{GetWorstFrameTime}}
@@ -515,14 +556,14 @@ Returns a Real representing the worst time for rendering a frame.
 \end{DoxyReturn}
 
 
-Definition at line 334 of file gamewindow.cpp.
+Definition at line 359 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a3c710c93a4fca54b5249de09bd4335dc}{
 \index{phys::GameWindow@{phys::GameWindow}!setFullscreen@{setFullscreen}}
 \index{setFullscreen@{setFullscreen}!phys::GameWindow@{phys::GameWindow}}
 \paragraph[{setFullscreen}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GameWindow::setFullscreen (
 \begin{DoxyParamCaption}
-\item[{const bool \&}]{ Fullscreen}
+\item[{const bool \&}]{Fullscreen}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d4f/classphys_1_1GameWindow_a3c710c93a4fca54b5249de09bd4335dc}
@@ -532,17 +573,19 @@ Set the Fullscreen Setting.
 
 Set the Fullscreen Setting 
 \begin{DoxyParams}{Parameters}
-\item[{\em Fullscreen}]This accepts a bool. True for fullscreen, false for windowed \end{DoxyParams}
+{\em Fullscreen} & This accepts a bool. True for fullscreen, false for windowed \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 192 of file gamewindow.cpp.
+Definition at line 217 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a92e705ba782ff87dacd9ce487141fcab}{
 \index{phys::GameWindow@{phys::GameWindow}!setRenderHeight@{setRenderHeight}}
 \index{setRenderHeight@{setRenderHeight}!phys::GameWindow@{phys::GameWindow}}
 \paragraph[{setRenderHeight}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GameWindow::setRenderHeight (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Height}
+\item[{const {\bf Whole} \&}]{Height}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d4f/classphys_1_1GameWindow_a92e705ba782ff87dacd9ce487141fcab}
@@ -552,23 +595,25 @@ Sets the Height.
 
 Set the Render Height inside the window in windowed mode, set the resolution of the screen in fullscreen 
 \begin{DoxyParams}{Parameters}
-\item[{\em Height}]This accepts a Whole. \end{DoxyParams}
+{\em Height} & This accepts a Whole. \\
+\hline
+\end{DoxyParams}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000008}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
+\item[\hyperlink{todo__todo000010}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
 
 
 
 
-Definition at line 246 of file gamewindow.cpp.
+Definition at line 271 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a430e91d4aeb6d1eb62ae84f498310593}{
 \index{phys::GameWindow@{phys::GameWindow}!setRenderOptions@{setRenderOptions}}
 \index{setRenderOptions@{setRenderOptions}!phys::GameWindow@{phys::GameWindow}}
 \paragraph[{setRenderOptions}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GameWindow::setRenderOptions (
 \begin{DoxyParamCaption}
-\item[{const {\bf GraphicsSettings} \&}]{ NewSettings}
+\item[{const {\bf GraphicsSettings} \&}]{NewSettings}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d4f/classphys_1_1GameWindow_a430e91d4aeb6d1eb62ae84f498310593}
@@ -578,15 +623,15 @@ Changes the X Resolution, Y Resolution, and fullscreen at the same time.
 
 This should be useful in situations where it is not possible to update all of the options separately. 
 
-Definition at line 301 of file gamewindow.cpp.
+Definition at line 326 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a35ecbf1cb77037d33671e0f879f46a30}{
 \index{phys::GameWindow@{phys::GameWindow}!setRenderResolution@{setRenderResolution}}
 \index{setRenderResolution@{setRenderResolution}!phys::GameWindow@{phys::GameWindow}}
 \paragraph[{setRenderResolution}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GameWindow::setRenderResolution (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Width, }
-\item[{const {\bf Whole} \&}]{ Height}
+\item[{const {\bf Whole} \&}]{Width, }
+\item[{const {\bf Whole} \&}]{Height}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d4f/classphys_1_1GameWindow_a35ecbf1cb77037d33671e0f879f46a30}
@@ -596,23 +641,27 @@ Changes the X and Y Resolution at the same time.
 
 This should be useful in situations where it is not possible to update the width and height separately. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Width}]The new desired Width for the rendering area as a whole number \item[{\em Height}]The new desired Width for the rendering area as a whole number \end{DoxyParams}
+{\em Width} & The new desired Width for the rendering area as a whole number \\
+\hline
+{\em Height} & The new desired Width for the rendering area as a whole number \\
+\hline
+\end{DoxyParams}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000010}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
+\item[\hyperlink{todo__todo000012}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
 
 
 
 
-Definition at line 260 of file gamewindow.cpp.
+Definition at line 285 of file gamewindow.cpp.
 
 \hypertarget{classphys_1_1GameWindow_a4a6087112f5a958d153fc74bc03897ba}{
 \index{phys::GameWindow@{phys::GameWindow}!setRenderWidth@{setRenderWidth}}
 \index{setRenderWidth@{setRenderWidth}!phys::GameWindow@{phys::GameWindow}}
 \paragraph[{setRenderWidth}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GameWindow::setRenderWidth (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Width}
+\item[{const {\bf Whole} \&}]{Width}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dc/d4f/classphys_1_1GameWindow_a4a6087112f5a958d153fc74bc03897ba}
@@ -622,16 +671,40 @@ Sets the Width.
 
 Set the Render Width inside the window in windowed mode, set the resolution of the screen in fullscreen 
 \begin{DoxyParams}{Parameters}
-\item[{\em Width}]This accepts a Whole. \end{DoxyParams}
+{\em Width} & This accepts a Whole. \\
+\hline
+\end{DoxyParams}
 
 
 \begin{Desc}
-\item[\hyperlink{todo__todo000009}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
+\item[\hyperlink{todo__todo000011}{Todo}]TODO: Need to attempt to update resolution here \end{Desc}
 
 
 
 
-Definition at line 253 of file gamewindow.cpp.
+Definition at line 278 of file gamewindow.cpp.
+
+\hypertarget{classphys_1_1GameWindow_a95a0f35d2546c36d5698e835902f010c}{
+\index{phys::GameWindow@{phys::GameWindow}!SetWindowCaption@{SetWindowCaption}}
+\index{SetWindowCaption@{SetWindowCaption}!phys::GameWindow@{phys::GameWindow}}
+\paragraph[{SetWindowCaption}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GameWindow::SetWindowCaption (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{NewCaption}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{dc/d4f/classphys_1_1GameWindow_a95a0f35d2546c36d5698e835902f010c}
+
+
+This can set the the Text in the titlebar. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em NewName} & This is the new text to be used in the titlebar. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 167 of file gamewindow.cpp.
 
 
 

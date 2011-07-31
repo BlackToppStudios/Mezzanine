@@ -36,11 +36,11 @@ virtual \hyperlink{classphys_1_1SimpleTimer}{SimpleTimer} \& \hyperlink{classphy
 \begin{DoxyCompactList}\small\item\em Sets whether or not the \hyperlink{classphys_1_1Timer}{Timer} should reset if it reaches it's goal. \par
  Ex. If a stopwatch reaches 0. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1SimpleTimer}{SimpleTimer} \& \hyperlink{classphys_1_1SimpleTimer_a1c874c4e367d582ab0006e7cdb8be0d5}{SetCurrentTime} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Current)
-\begin{DoxyCompactList}\small\item\em Sets the current time. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sets the current time in Microseconds. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1SimpleTimer}{SimpleTimer} \& \hyperlink{classphys_1_1SimpleTimer_a09ad426a36971257d2f800075f562eda}{SetGoalTime} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Goal)
-\begin{DoxyCompactList}\small\item\em Sets the goal time. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sets the goal time in Microseconds. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1SimpleTimer}{SimpleTimer} \& \hyperlink{classphys_1_1SimpleTimer_a00bf7f837c8ed515a65bd8dbf6d9d593}{SetInitialTime} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Initial)
-\begin{DoxyCompactList}\small\item\em Sets the initial time. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Sets the initial time in Microseconds. The time that resetting sets the timer to. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_aa0cda0797bfb501240016177ff1450a5}{GetCurrentTime} ()
 \begin{DoxyCompactList}\small\item\em Gets the Current time in Microseconds. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1SimpleTimer_a37b29b36164f5538988df955fd46e89b}{GetGoalTime} ()
@@ -114,7 +114,7 @@ Definition at line 54 of file simpletimer.h.
 \index{SimpleTimer@{SimpleTimer}!phys::SimpleTimer@{phys::SimpleTimer}}
 \paragraph[{SimpleTimer}]{\setlength{\rightskip}{0pt plus 5cm}phys::SimpleTimer::SimpleTimer (
 \begin{DoxyParamCaption}
-\item[{const {\bf Timer::TimerStyle}}]{ style}
+\item[{const {\bf Timer::TimerStyle}}]{style}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d15/classphys_1_1SimpleTimer_a3094be3aaf4cf65189604a413fa56f95}
@@ -124,7 +124,9 @@ Standard Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Style}]The styling/type of timer to be constructed. \end{DoxyParams}
+{\em Style} & The styling/type of timer to be constructed. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 47 of file simpletimer.cpp.
@@ -150,7 +152,7 @@ Returns a Whole representing the current time in Microseconds.
 \end{DoxyReturn}
 
 
-Definition at line 147 of file simpletimer.cpp.
+Definition at line 148 of file simpletimer.cpp.
 
 \hypertarget{classphys_1_1SimpleTimer_a334e151fd080489c1704abd3039b1843}{
 \index{phys::SimpleTimer@{phys::SimpleTimer}!GetCurrentTimeInMilli@{GetCurrentTimeInMilli}}
@@ -170,7 +172,7 @@ Returns a Whole representing the current time in Milliseconds.
 \end{DoxyReturn}
 
 
-Definition at line 162 of file simpletimer.cpp.
+Definition at line 163 of file simpletimer.cpp.
 
 \hypertarget{classphys_1_1SimpleTimer_a37b29b36164f5538988df955fd46e89b}{
 \index{phys::SimpleTimer@{phys::SimpleTimer}!GetGoalTime@{GetGoalTime}}
@@ -190,7 +192,7 @@ Returns a Whole representing the goal time in Microseconds.
 \end{DoxyReturn}
 
 
-Definition at line 152 of file simpletimer.cpp.
+Definition at line 153 of file simpletimer.cpp.
 
 \hypertarget{classphys_1_1SimpleTimer_a69b08da65148ea36b62d9d0f672e8325}{
 \index{phys::SimpleTimer@{phys::SimpleTimer}!GetGoalTimeInMilli@{GetGoalTimeInMilli}}
@@ -210,7 +212,7 @@ Returns a Whole representing the goal time in Milliseconds.
 \end{DoxyReturn}
 
 
-Definition at line 167 of file simpletimer.cpp.
+Definition at line 168 of file simpletimer.cpp.
 
 \hypertarget{classphys_1_1SimpleTimer_a6d56952c8b2f2e3405a1bc2cc3b8a833}{
 \index{phys::SimpleTimer@{phys::SimpleTimer}!GetInitialTime@{GetInitialTime}}
@@ -230,7 +232,7 @@ Returns a Whole representing the initial time in Microseconds.
 \end{DoxyReturn}
 
 
-Definition at line 157 of file simpletimer.cpp.
+Definition at line 158 of file simpletimer.cpp.
 
 \hypertarget{classphys_1_1SimpleTimer_a6ff614afe79f0426c371f67dfe3016fc}{
 \index{phys::SimpleTimer@{phys::SimpleTimer}!GetInitialTimeInMilli@{GetInitialTimeInMilli}}
@@ -250,14 +252,14 @@ Returns a Whole representing the initial time in Milliseconds.
 \end{DoxyReturn}
 
 
-Definition at line 172 of file simpletimer.cpp.
+Definition at line 173 of file simpletimer.cpp.
 
 \hypertarget{classphys_1_1SimpleTimer_a5a278c256d292a68ffbb35f8db9cb445}{
 \index{phys::SimpleTimer@{phys::SimpleTimer}!SetAutoReset@{SetAutoReset}}
 \index{SetAutoReset@{SetAutoReset}!phys::SimpleTimer@{phys::SimpleTimer}}
 \paragraph[{SetAutoReset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SimpleTimer} \& phys::SimpleTimer::SetAutoReset (
 \begin{DoxyParamCaption}
-\item[{const bool}]{ AutoReset}
+\item[{const bool}]{AutoReset}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d15/classphys_1_1SimpleTimer_a5a278c256d292a68ffbb35f8db9cb445}
@@ -271,76 +273,82 @@ Returns a reference to this timer.
 \end{DoxyReturn}
 
 
-Definition at line 123 of file simpletimer.cpp.
+Definition at line 124 of file simpletimer.cpp.
 
 \hypertarget{classphys_1_1SimpleTimer_a1c874c4e367d582ab0006e7cdb8be0d5}{
 \index{phys::SimpleTimer@{phys::SimpleTimer}!SetCurrentTime@{SetCurrentTime}}
 \index{SetCurrentTime@{SetCurrentTime}!phys::SimpleTimer@{phys::SimpleTimer}}
 \paragraph[{SetCurrentTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SimpleTimer} \& phys::SimpleTimer::SetCurrentTime (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole}}]{ Current}
+\item[{const {\bf Whole}}]{Current}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d15/classphys_1_1SimpleTimer_a1c874c4e367d582ab0006e7cdb8be0d5}
 
 
-Sets the current time. 
+Sets the current time in Microseconds. 
 
 \begin{DoxyReturn}{Returns}
 Returns a reference to this timer. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Current}]The value to set as current time in Microseconds. \end{DoxyParams}
+{\em Current} & The value to set as current time in Microseconds. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 129 of file simpletimer.cpp.
+Definition at line 130 of file simpletimer.cpp.
 
 \hypertarget{classphys_1_1SimpleTimer_a09ad426a36971257d2f800075f562eda}{
 \index{phys::SimpleTimer@{phys::SimpleTimer}!SetGoalTime@{SetGoalTime}}
 \index{SetGoalTime@{SetGoalTime}!phys::SimpleTimer@{phys::SimpleTimer}}
 \paragraph[{SetGoalTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SimpleTimer} \& phys::SimpleTimer::SetGoalTime (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole}}]{ Goal}
+\item[{const {\bf Whole}}]{Goal}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d15/classphys_1_1SimpleTimer_a09ad426a36971257d2f800075f562eda}
 
 
-Sets the goal time. 
+Sets the goal time in Microseconds. 
 
 \begin{DoxyReturn}{Returns}
 Returns a reference to this timer. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Goal}]The value to set as goal time in Microseconds. \end{DoxyParams}
+{\em Goal} & The value to set as goal time in Microseconds. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 135 of file simpletimer.cpp.
+Definition at line 136 of file simpletimer.cpp.
 
 \hypertarget{classphys_1_1SimpleTimer_a00bf7f837c8ed515a65bd8dbf6d9d593}{
 \index{phys::SimpleTimer@{phys::SimpleTimer}!SetInitialTime@{SetInitialTime}}
 \index{SetInitialTime@{SetInitialTime}!phys::SimpleTimer@{phys::SimpleTimer}}
 \paragraph[{SetInitialTime}]{\setlength{\rightskip}{0pt plus 5cm}{\bf SimpleTimer} \& phys::SimpleTimer::SetInitialTime (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole}}]{ Initial}
+\item[{const {\bf Whole}}]{Initial}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d0/d15/classphys_1_1SimpleTimer_a00bf7f837c8ed515a65bd8dbf6d9d593}
 
 
-Sets the initial time. 
+Sets the initial time in Microseconds. The time that resetting sets the timer to. 
 
 \begin{DoxyReturn}{Returns}
 Returns a reference to this timer. 
 \end{DoxyReturn}
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Initial}]The value to set as initial time in Microseconds. \end{DoxyParams}
+{\em Initial} & The value to set as initial time in Microseconds. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 141 of file simpletimer.cpp.
+Definition at line 142 of file simpletimer.cpp.
 
 
 

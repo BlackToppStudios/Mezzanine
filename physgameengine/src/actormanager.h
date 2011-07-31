@@ -54,14 +54,21 @@ namespace phys
     /// @class ActorManager
     /// @headerfile actormanager.h
     /// @brief A manager responsible for the storage and management of all actors in use.
-    /// @details
+    /// @details More or less Management point for a container of actors to help keep them sorted.
     ///////////////////////////////////////
     class PHYS_LIB ActorManager : public ManagerBase
     {
         protected:
+            /// @brief The actual actor container
             ActorContainerBase* Actors;
+
+            /// @brief A Second listing of All the Rigid actors
             std::vector<ActorRigid*> RigidActors;
+
+            /// @brief A Second listing of All the Soft actors
             std::vector<ActorSoft*> SoftActors;
+
+            /// @brief A Second listing of All the Character actors
             std::vector<ActorCharacter*> CharacterActors;
         public:
             /// @brief Class constructor.

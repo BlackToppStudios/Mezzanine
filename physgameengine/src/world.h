@@ -63,7 +63,7 @@
  If we do our jobs right this will save time and effort making, updating and porting games between a variety of platforms. If you link only
  against this library, not a single line of your standard compliant C++ code should need to change between platforms. At this early stage we are proving the
  concept with "Catch!" our first sample game. It Currently runs on Linux, Windows and Mac OS X with an Identical
- codebase. When we are done with "Catch!" We want it to have one codebase (with no messy #IFDEFs in game code for compatibility), and downloadable in the Iphone
+ codebase. When we are done with "Catch!" We want it to have one codebase (with no messy \#IFDEFs in game code for compatibility), and downloadable in the Iphone
  app store, on the PS3, Wii download on Steam, and in a variety of linux repositories.
 
  To get the latest news on development checkout: http://gitorious.org/physgame
@@ -105,9 +105,6 @@
   @ref phys::EventBase
 
   @ref phys::GraphicsManager
-
- @section Optional Optional Engine Components
-  @ref phys::WorldQueryTool
 */
 
 #include "crossplatform.h"

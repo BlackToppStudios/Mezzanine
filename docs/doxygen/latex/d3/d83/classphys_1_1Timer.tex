@@ -51,6 +51,11 @@ virtual void \hyperlink{classphys_1_1Timer_aa934478424678f84e8f4afb472eebbae}{St
 \label{d3/d83/classphys_1_1Timer_aa934478424678f84e8f4afb472eebbae}
 
 \begin{DoxyCompactList}\small\item\em Deactivates the \hyperlink{classphys_1_1Timer}{Timer}. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Timer_a3cdb46639055107c23c3de971d913ec1}{
+virtual bool \hyperlink{classphys_1_1Timer_a3cdb46639055107c23c3de971d913ec1}{IsStopped} ()}
+\label{d3/d83/classphys_1_1Timer_a3cdb46639055107c23c3de971d913ec1}
+
+\begin{DoxyCompactList}\small\item\em Gets Whether or not this timer is currently running. \item\end{DoxyCompactList}\item 
 \hypertarget{classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}{
 virtual void \hyperlink{classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}{Reset} ()=0}
 \label{d3/d83/classphys_1_1Timer_a6010a6dab70b542c3e9d5a09caa422f7}
@@ -117,7 +122,7 @@ class {\bfseries TimerManager}}
 \subsubsection{Detailed Description}
 A base timer class for the different timers. 
 
-Definition at line 55 of file timer.h.
+Definition at line 71 of file timer.h.
 
 
 
@@ -138,20 +143,20 @@ The style of timer to be used.
 \hypertarget{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a5debd5b8437d14405bf25cd9b130449f}{
 Normal}
 \label{d3/d83/classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a5debd5b8437d14405bf25cd9b130449f}
-}]Description Required. \index{StopWatch@{StopWatch}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!StopWatch@{StopWatch}}\item[{\em 
+}]Counts up forever, ignoring any goal and autoreset. \index{StopWatch@{StopWatch}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!StopWatch@{StopWatch}}\item[{\em 
 \hypertarget{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a7599daa63100c2134df7d8b7c9b7f867}{
 StopWatch}
 \label{d3/d83/classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a7599daa63100c2134df7d8b7c9b7f867}
-}]Description Required. \index{Alarm@{Alarm}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!Alarm@{Alarm}}\item[{\em 
+}]Counts down, respecting any goal and autoreset. \index{Alarm@{Alarm}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!Alarm@{Alarm}}\item[{\em 
 \hypertarget{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329ae9b9fa35767e4ac2c87c078e1d9a0729}{
 Alarm}
 \label{d3/d83/classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329ae9b9fa35767e4ac2c87c078e1d9a0729}
-}]Description Required. \end{description}
+}]Counts up, respecting any goal and autoreset. \end{description}
 \end{Desc}
 
 
 
-Definition at line 59 of file timer.h.
+Definition at line 75 of file timer.h.
 
 \hypertarget{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1}{
 \index{phys::Timer@{phys::Timer}!TimerType@{TimerType}}
@@ -169,16 +174,16 @@ The type of timer to be used.
 \hypertarget{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1af8d1697e79f90f675fecc82e9aba7819}{
 Simple}
 \label{d3/d83/classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1af8d1697e79f90f675fecc82e9aba7819}
-}]Description Required. \index{Extended@{Extended}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!Extended@{Extended}}\item[{\em 
+}]Measures only Micro Seconds, 1/1,000,000 of a second. \index{Extended@{Extended}!phys::Timer@{phys::Timer}}\index{phys::Timer@{phys::Timer}!Extended@{Extended}}\item[{\em 
 \hypertarget{classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1aba207ea661f064c2041c73852c91efaa}{
 Extended}
 \label{d3/d83/classphys_1_1Timer_aacbbca9cc5543fc8414de59cd085c1c1aba207ea661f064c2041c73852c91efaa}
-}]Description Required. \end{description}
+}]Measures in any unit smaller than day and larger than Micro Seconds. \end{description}
 \end{Desc}
 
 
 
-Definition at line 66 of file timer.h.
+Definition at line 83 of file timer.h.
 
 
 
@@ -188,7 +193,7 @@ Definition at line 66 of file timer.h.
 \index{Timer@{Timer}!phys::Timer@{phys::Timer}}
 \paragraph[{Timer}]{\setlength{\rightskip}{0pt plus 5cm}phys::Timer::Timer (
 \begin{DoxyParamCaption}
-\item[{const {\bf Timer::TimerStyle}}]{ style}
+\item[{const {\bf Timer::TimerStyle}}]{style}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
 \label{d3/d83/classphys_1_1Timer_a25b70d2d45c5c56cce475841b7b18cd0}
@@ -198,10 +203,12 @@ Standard Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Style}]The styling/type of timer to be constructed. \end{DoxyParams}
+{\em Style} & The styling/type of timer to be constructed. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 84 of file timer.h.
+Definition at line 101 of file timer.h.
 
 
 
@@ -224,14 +231,14 @@ Returns an enum value representing the type of timer this is.
 \end{DoxyReturn}
 
 
-Definition at line 98 of file timer.h.
+Definition at line 122 of file timer.h.
 
 \hypertarget{classphys_1_1Timer_a046ca4f7dcf2503e5993a18e11172f5e}{
 \index{phys::Timer@{phys::Timer}!SetCallback@{SetCallback}}
 \index{SetCallback@{SetCallback}!phys::Timer@{phys::Timer}}
 \paragraph[{SetCallback}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::Timer::SetCallback (
 \begin{DoxyParamCaption}
-\item[{{\bf TimerCallback} $\ast$}]{ Call}
+\item[{{\bf TimerCallback} $\ast$}]{Call}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline, virtual\mbox{]}}}\hfill}
 \label{d3/d83/classphys_1_1Timer_a046ca4f7dcf2503e5993a18e11172f5e}
@@ -239,12 +246,14 @@ Definition at line 98 of file timer.h.
 
 Sets the callback to be used with this timer. 
 
-
+This function is called when a goal is reached on a \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329a7599daa63100c2134df7d8b7c9b7f867}{Timer::StopWatch} or a \hyperlink{classphys_1_1Timer_a1ee86bf43e20329d750c5d582dcce329ae9b9fa35767e4ac2c87c078e1d9a0729}{Timer::Alarm}. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Call}]The callback to be set. \end{DoxyParams}
+{\em Call} & The callback to be set. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 89 of file timer.h.
+Definition at line 111 of file timer.h.
 
 
 

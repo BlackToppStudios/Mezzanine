@@ -20,9 +20,9 @@ Inheritance diagram for phys::TestAE:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1TestAE_a851bf73722a9b3a3886e1dbf4600861c}{TestAE} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, \hyperlink{classphys_1_1Vector3}{Vector3} Location)
+\hyperlink{classphys_1_1TestAE_ac3c760a899bbc3b55beb648245e49a21}{TestAE} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
 \begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1TestAE_aa3ceb77df713b5cafa97495de61e4b0a}{$\sim$TestAE} ()
+virtual \hyperlink{classphys_1_1TestAE_aa3ceb77df713b5cafa97495de61e4b0a}{$\sim$TestAE} ()
 \begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
 virtual void \hyperlink{classphys_1_1TestAE_a191c60dbfa277e850ea392d9ab774c42}{ApplyEffect} ()
 \begin{DoxyCompactList}\small\item\em Applies the effect this field has to object inside. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -31,31 +31,35 @@ virtual void \hyperlink{classphys_1_1TestAE_a191c60dbfa277e850ea392d9ab774c42}{A
 \subsubsection{Detailed Description}
 This is a dummy class to test if the AE field works. Details will be output to the log. 
 
-Definition at line 233 of file areaeffect.h.
+Definition at line 244 of file areaeffect.h.
 
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1TestAE_a851bf73722a9b3a3886e1dbf4600861c}{
+\hypertarget{classphys_1_1TestAE_ac3c760a899bbc3b55beb648245e49a21}{
 \index{phys::TestAE@{phys::TestAE}!TestAE@{TestAE}}
 \index{TestAE@{TestAE}!phys::TestAE@{phys::TestAE}}
 \paragraph[{TestAE}]{\setlength{\rightskip}{0pt plus 5cm}phys::TestAE::TestAE (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{ name, }
-\item[{{\bf Vector3}}]{ Location}
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf Vector3} \&}]{Location}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d1/dca/classphys_1_1TestAE_a851bf73722a9b3a3886e1dbf4600861c}
+\label{d1/dca/classphys_1_1TestAE_ac3c760a899bbc3b55beb648245e49a21}
 
 
 Constructor. 
 
 Basic initialization constructor. 
 \begin{DoxyParams}{Parameters}
-\item[{\em name}]The name of the field. \item[{\em Location}]The location of the AE field. \end{DoxyParams}
+{\em name} & The name of the field. \\
+\hline
+{\em Location} & The location of the AE field. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 469 of file areaeffect.cpp.
+Definition at line 507 of file areaeffect.cpp.
 
 \hypertarget{classphys_1_1TestAE_aa3ceb77df713b5cafa97495de61e4b0a}{
 \index{phys::TestAE@{phys::TestAE}!$\sim$TestAE@{$\sim$TestAE}}
@@ -64,7 +68,7 @@ Definition at line 469 of file areaeffect.cpp.
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-)}\hfill}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d1/dca/classphys_1_1TestAE_aa3ceb77df713b5cafa97495de61e4b0a}
 
 
@@ -72,7 +76,7 @@ Destructor.
 
 Class destructor. 
 
-Definition at line 473 of file areaeffect.cpp.
+Definition at line 511 of file areaeffect.cpp.
 
 
 
@@ -96,7 +100,7 @@ Implements \hyperlink{classphys_1_1AreaEffect_a3b285ecfcf9c9200662d510e48dd222a}
 
 
 
-Definition at line 477 of file areaeffect.cpp.
+Definition at line 515 of file areaeffect.cpp.
 
 
 

@@ -20,7 +20,7 @@ Inheritance diagram for phys::GraphicsManager:\begin{figure}[H]
 \subsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classphys_1_1GraphicsManager_aceab258136ec2f29c8f163bf270f62c1}{GraphicsManager} ()
+\hyperlink{classphys_1_1GraphicsManager_a8ad84818a761900ef4d03575d7543fa1}{GraphicsManager} ()
 \begin{DoxyCompactList}\small\item\em Basic constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1GraphicsManager_a886beb1a86c4d25fde0a2965e464be62}{GraphicsManager} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Width, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Height, const bool \&FullScreen)
 \begin{DoxyCompactList}\small\item\em Versatile Constructor. \item\end{DoxyCompactList}\item 
@@ -75,31 +75,31 @@ Definition at line 69 of file graphicsmanager.h.
 
 
 \subsubsection{Constructor \& Destructor Documentation}
-\hypertarget{classphys_1_1GraphicsManager_aceab258136ec2f29c8f163bf270f62c1}{
+\hypertarget{classphys_1_1GraphicsManager_a8ad84818a761900ef4d03575d7543fa1}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GraphicsManager@{GraphicsManager}}
 \index{GraphicsManager@{GraphicsManager}!phys::GraphicsManager@{phys::GraphicsManager}}
-\paragraph[{GraphicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::GraphicsManager::GraphicsManager (
+\paragraph[{GraphicsManager}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame physgameengine src graphicsmanager cpp home sqeaky physgame physgameengine src graphicsmanager cpp phys::GraphicsManager::GraphicsManager (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{dd/d63/classphys_1_1GraphicsManager_aceab258136ec2f29c8f163bf270f62c1}
+\label{dd/d63/classphys_1_1GraphicsManager_a8ad84818a761900ef4d03575d7543fa1}
 
 
 Basic constructor. 
 
 This creates a basic Graphics Settings with resolution 640x480 with fullscreen set to false 
 
-Definition at line 56 of file graphicsmanager.cpp.
+Definition at line 70 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a886beb1a86c4d25fde0a2965e464be62}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GraphicsManager@{GraphicsManager}}
 \index{GraphicsManager@{GraphicsManager}!phys::GraphicsManager@{phys::GraphicsManager}}
 \paragraph[{GraphicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::GraphicsManager::GraphicsManager (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Width, }
-\item[{const {\bf Whole} \&}]{ Height, }
-\item[{const bool \&}]{ FullScreen}
+\item[{const {\bf Whole} \&}]{Width, }
+\item[{const {\bf Whole} \&}]{Height, }
+\item[{const bool \&}]{FullScreen}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d63/classphys_1_1GraphicsManager_a886beb1a86c4d25fde0a2965e464be62}
@@ -109,10 +109,16 @@ Versatile Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Width}]The desired width. \item[{\em Height}]The desired height. \item[{\em FullScreen}]True if fullscreen, false if not.\end{DoxyParams}
+{\em Width} & The desired width. \\
+\hline
+{\em Height} & The desired height. \\
+\hline
+{\em FullScreen} & True if fullscreen, false if not.\\
+\hline
+\end{DoxyParams}
 This creates a Graphics Settings with resolution and fullscreen passed into to it that will be used when creating the primary window if one isn't already created when this manager in initialized. Be careful that the settings selected are appropriate. Many mobile devices do not support windows, and many screens do not support arbitrary resolutions in fullscreen mode. 
 
-Definition at line 63 of file graphicsmanager.cpp.
+Definition at line 76 of file graphicsmanager.cpp.
 
 
 
@@ -122,10 +128,10 @@ Definition at line 63 of file graphicsmanager.cpp.
 \index{CreateGameWindow@{CreateGameWindow}!phys::GraphicsManager@{phys::GraphicsManager}}
 \paragraph[{CreateGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GameWindow} $\ast$ phys::GraphicsManager::CreateGameWindow (
 \begin{DoxyParamCaption}
-\item[{const {\bf String} \&}]{ WindowCaption, }
-\item[{const {\bf Whole} \&}]{ Width, }
-\item[{const {\bf Whole} \&}]{ Height, }
-\item[{const {\bf Whole} \&}]{ Flags}
+\item[{const {\bf String} \&}]{WindowCaption, }
+\item[{const {\bf Whole} \&}]{Width, }
+\item[{const {\bf Whole} \&}]{Height, }
+\item[{const {\bf Whole} \&}]{Flags}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d63/classphys_1_1GraphicsManager_a31c4d90e4ee016b96b7f4e78e20d87a0}
@@ -135,17 +141,25 @@ Creates a new game window to be rendered to.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em WindowCaption}]The caption to be set in the window titlebar. \item[{\em Width}]The desired width in pixels. \item[{\em Height}]The desired height in pixels. \item[{\em Flags}]Additional misc parameters, see \hyperlink{classphys_1_1GameWindow}{GameWindow} class for more info. \end{DoxyParams}
+{\em WindowCaption} & The caption to be set in the window titlebar. \\
+\hline
+{\em Width} & The desired width in pixels. \\
+\hline
+{\em Height} & The desired height in pixels. \\
+\hline
+{\em Flags} & Additional misc parameters, see \hyperlink{classphys_1_1GameWindow}{GameWindow} class for more info. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 147 of file graphicsmanager.cpp.
+Definition at line 166 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a2824743d519bcc98abe5c95d0180c73c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!DestroyAllGameWindows@{DestroyAllGameWindows}}
 \index{DestroyAllGameWindows@{DestroyAllGameWindows}!phys::GraphicsManager@{phys::GraphicsManager}}
 \paragraph[{DestroyAllGameWindows}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::DestroyAllGameWindows (
 \begin{DoxyParamCaption}
-\item[{bool}]{ ExcludePrimary = {\ttfamily true}}
+\item[{bool}]{ExcludePrimary = {\ttfamily true}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d63/classphys_1_1GraphicsManager_a2824743d519bcc98abe5c95d0180c73c}
@@ -155,17 +169,19 @@ Destroys every game window created.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em ExcludePrimary}]Whether or not you want to spare the primary window created. \end{DoxyParams}
+{\em ExcludePrimary} & Whether or not you want to spare the primary window created. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 187 of file graphicsmanager.cpp.
+Definition at line 206 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a814eb66a4da0075dc8f46199a4716241}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!DestroyGameWindow@{DestroyGameWindow}}
 \index{DestroyGameWindow@{DestroyGameWindow}!phys::GraphicsManager@{phys::GraphicsManager}}
 \paragraph[{DestroyGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GraphicsManager::DestroyGameWindow (
 \begin{DoxyParamCaption}
-\item[{{\bf GameWindow} $\ast$}]{ ToBeDestroyed}
+\item[{{\bf GameWindow} $\ast$}]{ToBeDestroyed}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d63/classphys_1_1GraphicsManager_a814eb66a4da0075dc8f46199a4716241}
@@ -175,10 +191,12 @@ Destroys a created game window by index.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em WindowIndex}]The index of the window to be destroyed. \end{DoxyParams}
+{\em WindowIndex} & The index of the window to be destroyed. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 174 of file graphicsmanager.cpp.
+Definition at line 193 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a72e5dc563c6947cded348f19d3df41ee}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!DoMainLoopItems@{DoMainLoopItems}}
@@ -199,7 +217,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7
 
 
 
-Definition at line 292 of file graphicsmanager.cpp.
+Definition at line 311 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ab2b1a8f5e714454f26f936bd746b256a}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetDesktopSettings@{GetDesktopSettings}}
@@ -216,17 +234,19 @@ Gets the desktop display settings.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Returns}]a \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} struct with the desktop display settings. \end{DoxyParams}
+{\em Returns} & a \hyperlink{structphys_1_1GraphicsSettings}{GraphicsSettings} struct with the desktop display settings. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 205 of file graphicsmanager.cpp.
+Definition at line 224 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a94952747ba141966fb138101b10864ee}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetGameWindow@{GetGameWindow}}
 \index{GetGameWindow@{GetGameWindow}!phys::GraphicsManager@{phys::GraphicsManager}}
 \paragraph[{GetGameWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GameWindow} $\ast$ phys::GraphicsManager::GetGameWindow (
 \begin{DoxyParamCaption}
-\item[{const {\bf Whole} \&}]{ Index}
+\item[{const {\bf Whole} \&}]{Index}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d63/classphys_1_1GraphicsManager_a94952747ba141966fb138101b10864ee}
@@ -239,7 +259,7 @@ Returns a pointer to the game window requested.
 \end{DoxyReturn}
 
 
-Definition at line 164 of file graphicsmanager.cpp.
+Definition at line 183 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ae54cf5861681ef6b1849b35bfaa55bb6}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetNumGameWindows@{GetNumGameWindows}}
@@ -259,7 +279,7 @@ Returns a Whole representing the number of game windows within this manager.
 \end{DoxyReturn}
 
 
-Definition at line 169 of file graphicsmanager.cpp.
+Definition at line 188 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a4a0ef06c307c1521f60d39bd7a020643}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetPrimaryGameWindow@{GetPrimaryGameWindow}}
@@ -279,7 +299,7 @@ Returns a pointer to the primary game window.
 \end{DoxyReturn}
 
 
-Definition at line 200 of file graphicsmanager.cpp.
+Definition at line 219 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a9138c2f79ff9b711494089802724615e}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetRenderSystemName@{GetRenderSystemName}}
@@ -299,7 +319,7 @@ Returns a string containing the name of the current render system.
 \end{DoxyReturn}
 
 
-Definition at line 235 of file graphicsmanager.cpp.
+Definition at line 254 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a7d1cce1c63d5678266337323da1e8ff5}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetSupportedDevices@{GetSupportedDevices}}
@@ -319,7 +339,7 @@ Returns a Const Pointer to the vector storing all the supported devices.
 \end{DoxyReturn}
 
 
-Definition at line 248 of file graphicsmanager.cpp.
+Definition at line 267 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a4bfa1c07f2c2305ec892e603a71c6341}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetSupportedResolutions@{GetSupportedResolutions}}
@@ -339,7 +359,7 @@ Returns a Const Pointer to the vector storing all the supported resolutions.
 \end{DoxyReturn}
 
 
-Definition at line 243 of file graphicsmanager.cpp.
+Definition at line 262 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_abf48faad2e09cd564442e66bc0473e58}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!GetType@{GetType}}
@@ -363,7 +383,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 313 of file graphicsmanager.cpp.
+Definition at line 332 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ab7ab98ff594726f8cc6d3ca0fac0ecdf}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!HasOgreBeenInitialized@{HasOgreBeenInitialized}}
@@ -383,7 +403,7 @@ Returns a bool indicating whether or not Ogre has been initialized yet.
 \end{DoxyReturn}
 
 
-Definition at line 215 of file graphicsmanager.cpp.
+Definition at line 234 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ad07600281c765e22bc413a1a9df1a22c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!HasSDLBeenInitialized@{HasSDLBeenInitialized}}
@@ -403,7 +423,7 @@ Returns a bool indicating whether or not SDL has been initialized yet.
 \end{DoxyReturn}
 
 
-Definition at line 210 of file graphicsmanager.cpp.
+Definition at line 229 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_a554572de5d1cdce37aa1760d6e6e039c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!Initialize@{Initialize}}
@@ -424,7 +444,7 @@ Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed
 
 
 
-Definition at line 259 of file graphicsmanager.cpp.
+Definition at line 278 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ae2330172be150cd4d12aa2ed62b0474c}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!PostMainLoopItems@{PostMainLoopItems}}
@@ -448,7 +468,7 @@ Reimplemented from \hyperlink{classphys_1_1ManagerBase_afc3572602f96bdeb8215c386
 
 
 
-Definition at line 316 of file graphicsmanager.cpp.
+Definition at line 335 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_ac4b864de93827447bf8f47487da3bf32}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!ResetRenderTimer@{ResetRenderTimer}}
@@ -465,7 +485,7 @@ Resets the Render timer.
 
 This function should not be called unless you know exactly what you are doing. This will reset the timer keeping track of game frame times, and thus can disrupt functionality of the mainloop. 
 
-Definition at line 253 of file graphicsmanager.cpp.
+Definition at line 272 of file graphicsmanager.cpp.
 
 \hypertarget{classphys_1_1GraphicsManager_adcded385b6442aa5da6097f1edd5471a}{
 \index{phys::GraphicsManager@{phys::GraphicsManager}!ShowGraphicsSettingDialog@{ShowGraphicsSettingDialog}}
@@ -482,7 +502,7 @@ This Shows an Engine Generated Configuration Screen.
 
 This could look like and could offer just about any option to the user. It is loosely expected to show Graphical Configuration options, like Vsync and Resolution, But it might ask some really silly stuff. I think this would be fine for smaller simpler apps Which have no other way to configure such things, but any sizable project should develop their own way to expose and manage user settings. 
 
-Definition at line 223 of file graphicsmanager.cpp.
+Definition at line 242 of file graphicsmanager.cpp.
 
 
 

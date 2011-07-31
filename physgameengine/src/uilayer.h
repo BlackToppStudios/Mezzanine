@@ -77,7 +77,6 @@ namespace phys
         class PagedCellGrid;
         class Screen;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class UILayer
         /// @headerfile uilayer.h
         /// @brief This class is the basic container class for UI elements.
         /// @details A layer is a container for widgets and other UI elements that are visable.

@@ -399,8 +399,8 @@ namespace phys
 #ifdef PHYSXML
         // Serializable
         /// @brief Convert this class to an xml::Node ready for serialization
-        /// @return An xml::Node
-        virtual xml::Node ProtoSerialize() const;
+        /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+        virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
 
         // DeSerializable
         /// @brief Take the data stored in an XML and overwrite this instance of this object with it

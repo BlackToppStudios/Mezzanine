@@ -47,7 +47,7 @@ An XPath node which can store handles to a \hyperlink{classphys_1_1xml_1_1Node}{
  \par
  XPath nodes can be null, in which case both accessors return null handles. 
 
-Definition at line 1329 of file xml.h.
+Definition at line 1346 of file xml.h.
 
 
 
@@ -57,7 +57,7 @@ Definition at line 1329 of file xml.h.
 \index{XPathNode@{XPathNode}!phys::xml::XPathNode@{phys::xml::XPathNode}}
 \paragraph[{XPathNode}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathNode::XPathNode (
 \begin{DoxyParamCaption}
-\item[{const {\bf Node} \&}]{ node}
+\item[{const {\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{df/dd4/classphys_1_1xml_1_1XPathNode_ab70dcfefef2107eca2d1932faada475e}
@@ -67,14 +67,16 @@ Construct From a \hyperlink{classphys_1_1xml_1_1Node}{xml::Node}.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em node}]The \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} this handle should reference. \end{DoxyParams}
+{\em node} & The \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} this handle should reference. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1xml_1_1XPathNode_a3f9446596022b6e0ab77afc2748c98e0}{
 \index{phys::xml::XPathNode@{phys::xml::XPathNode}!XPathNode@{XPathNode}}
 \index{XPathNode@{XPathNode}!phys::xml::XPathNode@{phys::xml::XPathNode}}
 \paragraph[{XPathNode}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::XPathNode::XPathNode (
 \begin{DoxyParamCaption}
-\item[{const {\bf Attribute} \&}]{ GetAttribute, }
-\item[{const {\bf Node} \&}]{ GetParent}
+\item[{const {\bf Attribute} \&}]{GetAttribute, }
+\item[{const {\bf Node} \&}]{GetParent}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{df/dd4/classphys_1_1xml_1_1XPathNode_a3f9446596022b6e0ab77afc2748c98e0}
@@ -84,7 +86,11 @@ Construct From a \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute}.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em GetAttribute}]The \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} this handle should reference. \item[{\em GetParent}]The \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} the \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} is on. \end{DoxyParams}
+{\em GetAttribute} & The \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} this handle should reference. \\
+\hline
+{\em GetParent} & The \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} the \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} is on. \\
+\hline
+\end{DoxyParams}
 
 
 \subsubsection{Member Function Documentation}
@@ -159,7 +165,7 @@ A bool that is the opposite of evaluatig this as a bool normally.
 \index{operator!=@{operator!=}!phys::xml::XPathNode@{phys::xml::XPathNode}}
 \paragraph[{operator!=}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::XPathNode::operator!= (
 \begin{DoxyParamCaption}
-\item[{const {\bf XPathNode} \&}]{ n}
+\item[{const {\bf XPathNode} \&}]{n}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{df/dd4/classphys_1_1xml_1_1XPathNode_a121ba0e04b6619f45c5392374f2dc98d}
@@ -169,7 +175,9 @@ Called when comparing two \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} i
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em n}]The other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} to compare this \hyperlink{classphys_1_1xml_1_1Node}{Node} against for inequality. \end{DoxyParams}
+{\em n} & The other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} to compare this \hyperlink{classphys_1_1xml_1_1Node}{Node} against for inequality. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if this and the other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} are referencing the same item, false otherwise; 
 \end{DoxyReturn}
@@ -178,7 +186,7 @@ True if this and the other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathN
 \index{operator==@{operator==}!phys::xml::XPathNode@{phys::xml::XPathNode}}
 \paragraph[{operator==}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::XPathNode::operator== (
 \begin{DoxyParamCaption}
-\item[{const {\bf XPathNode} \&}]{ n}
+\item[{const {\bf XPathNode} \&}]{n}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{df/dd4/classphys_1_1xml_1_1XPathNode_ab13702ded8707602871596e4f34e8302}
@@ -188,7 +196,9 @@ Called when comparing two \hyperlink{classphys_1_1xml_1_1XPathNode}{XPathNode} i
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em n}]The other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} to compare this \hyperlink{classphys_1_1xml_1_1Node}{Node} against for equality. \end{DoxyParams}
+{\em n} & The other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} to compare this \hyperlink{classphys_1_1xml_1_1Node}{Node} against for equality. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 True if this and the other \hyperlink{classphys_1_1xml_1_1XPathNode}{xml::XPathNode} are referencing the same item, false otherwise; 
 \end{DoxyReturn}

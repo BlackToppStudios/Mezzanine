@@ -1,0 +1,387 @@
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings}{
+\subsection{phys::ActorRigidPhysicsSettings Class Reference}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings}\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+}
+
+
+This is a helper class for configuring physics settings of an \hyperlink{classphys_1_1ActorRigid}{ActorRigid}.  
+
+
+
+
+{\ttfamily \#include $<$actorphysicssettings.h$>$}
+
+Inheritance diagram for phys::ActorRigidPhysicsSettings:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d1/d17/classphys_1_1ActorRigidPhysicsSettings}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ActorRigidPhysicsSettings_a002e4932e1d8192a7aa45c1e4c159774}{ActorRigidPhysicsSettings} (\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$Actor, btRigidBody $\ast$PhysicsObject)
+\begin{DoxyCompactList}\small\item\em Standard Constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a8c8d4581ff653208bbe5ddaad84feb4d}{
+virtual \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a8c8d4581ff653208bbe5ddaad84feb4d}{$\sim$ActorRigidPhysicsSettings} ()}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a8c8d4581ff653208bbe5ddaad84feb4d}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigidPhysicsSettings_abcb4e6a9ec828ac7f70075e5e70b529b}{SetDamping} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LinDamping, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&AngDamping)
+\begin{DoxyCompactList}\small\item\em Sets the Damping for this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ActorRigidPhysicsSettings_af81213793393bec576a60d943ff461d0}{GetLinearDamping} () const 
+\begin{DoxyCompactList}\small\item\em Get the linear damping. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a91df099d9af175cc5f5a0f253c8e1f32}{GetAngularDamping} () const 
+\begin{DoxyCompactList}\small\item\em Get the Angular damping. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a65cda21e8cd8837f057349d05de15f18}{SetLinearVelocity} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&LinVel)
+\begin{DoxyCompactList}\small\item\em Sets the Linear Velocity of this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigidPhysicsSettings_adbd0280f78f4a40891d3130835e0111a}{GetLinearVelocity} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Linear Velocity of this object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a222c6ea9a61937cf7cb053c194981e41}{SetAngularVelocity} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&AngVel)
+\begin{DoxyCompactList}\small\item\em Sets the Angular Velocity of this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a20e3be137706e477f94b66ed2dbb56de}{GetAngularVelocity} () const 
+\begin{DoxyCompactList}\small\item\em Gets the Angular Velocity of this object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigidPhysicsSettings_af595556bb71a257785038b6c2da379a9}{SetIndividualGravity} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Gravity)
+\begin{DoxyCompactList}\small\item\em Sets the gravity for only this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigidPhysicsSettings_ac581da07915d7c09d92b251f60b17090}{GetIndividualGravity} () const 
+\begin{DoxyCompactList}\small\item\em Gets the gravity being applied to this object. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a6e9b49a990b04411e5a2a29372cafa85}{GetForce} () const 
+\begin{DoxyCompactList}\small\item\em Get the total Force/Movement on the actor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a0e72a68536fa4e48b489bd069f5fba82}{GetTorque} () const 
+\begin{DoxyCompactList}\small\item\em Get the Torque/Rotation. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a3738b083fd0c21e07176c302f63ce993}{ApplyForce} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Force)
+\begin{DoxyCompactList}\small\item\em Push/Apply force to an object. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorRigidPhysicsSettings_ad95f1a52c00ab5af3add795b547970a5}{ApplyTorque} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Torque)
+\begin{DoxyCompactList}\small\item\em Spin/Apply Torque to an object. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_af92d6c9108279828425390b02612861f}{
+btRigidBody $\ast$ \hyperlink{classphys_1_1ActorRigidPhysicsSettings_af92d6c9108279828425390b02612861f}{ActorRB}}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_af92d6c9108279828425390b02612861f}
+
+\begin{DoxyCompactList}\small\item\em Physics Object of the actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a8fe8b3e8632c9ae82fdd091f9628690b}{
+\hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ \hyperlink{classphys_1_1ActorRigidPhysicsSettings_a8fe8b3e8632c9ae82fdd091f9628690b}{RigidParent}}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a8fe8b3e8632c9ae82fdd091f9628690b}
+
+\begin{DoxyCompactList}\small\item\em The Actor this belongs to. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a helper class for configuring physics settings of an \hyperlink{classphys_1_1ActorRigid}{ActorRigid}. This class contains functions for the configuring of physics specific settings of an \hyperlink{classphys_1_1ActorRigid}{ActorRigid}. This class can only configure the ActorRigids physics. For configuring actor graphics, see \hyperlink{classphys_1_1ActorGraphicsSettings}{ActorGraphicsSettings}. 
+
+Definition at line 191 of file actorphysicssettings.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a002e4932e1d8192a7aa45c1e4c159774}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!ActorRigidPhysicsSettings@{ActorRigidPhysicsSettings}}
+\index{ActorRigidPhysicsSettings@{ActorRigidPhysicsSettings}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{ActorRigidPhysicsSettings}]{\setlength{\rightskip}{0pt plus 5cm}phys::ActorRigidPhysicsSettings::ActorRigidPhysicsSettings (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorRigid} $\ast$}]{Actor, }
+\item[{btRigidBody $\ast$}]{PhysicsObject}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a002e4932e1d8192a7aa45c1e4c159774}
+
+
+Standard Constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor this settings class configures. \\
+\hline
+{\em PhysicsObject} & The physics object belonging to the actor this class configures. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 222 of file actorphysicssettings.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a3738b083fd0c21e07176c302f63ce993}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!ApplyForce@{ApplyForce}}
+\index{ApplyForce@{ApplyForce}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{ApplyForce}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigidPhysicsSettings::ApplyForce (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Force}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a3738b083fd0c21e07176c302f63ce993}
+
+
+Push/Apply force to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Force} & The amount and direction of the force in a \hyperlink{classphys_1_1Vector3}{Vector3} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 283 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_ad95f1a52c00ab5af3add795b547970a5}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!ApplyTorque@{ApplyTorque}}
+\index{ApplyTorque@{ApplyTorque}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{ApplyTorque}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigidPhysicsSettings::ApplyTorque (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Torque}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_ad95f1a52c00ab5af3add795b547970a5}
+
+
+Spin/Apply Torque to an object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Torque} & The amount and direction of the torque in a \hyperlink{classphys_1_1Vector3}{Vector3} \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 286 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a91df099d9af175cc5f5a0f253c8e1f32}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!GetAngularDamping@{GetAngularDamping}}
+\index{GetAngularDamping@{GetAngularDamping}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{GetAngularDamping}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::ActorRigidPhysicsSettings::GetAngularDamping (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a91df099d9af175cc5f5a0f253c8e1f32}
+
+
+Get the Angular damping. 
+
+\begin{DoxyReturn}{Returns}
+A Real that has the Angular damping. 
+\end{DoxyReturn}
+
+
+Definition at line 242 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a20e3be137706e477f94b66ed2dbb56de}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!GetAngularVelocity@{GetAngularVelocity}}
+\index{GetAngularVelocity@{GetAngularVelocity}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{GetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigidPhysicsSettings::GetAngularVelocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a20e3be137706e477f94b66ed2dbb56de}
+
+
+Gets the Angular Velocity of this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns the currently set Angular Velocity of this object. 
+\end{DoxyReturn}
+
+
+Definition at line 260 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a6e9b49a990b04411e5a2a29372cafa85}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!GetForce@{GetForce}}
+\index{GetForce@{GetForce}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{GetForce}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigidPhysicsSettings::GetForce (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a6e9b49a990b04411e5a2a29372cafa85}
+
+
+Get the total Force/Movement on the actor. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the force of the entire Actor 
+\end{DoxyReturn}
+
+
+Definition at line 277 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_ac581da07915d7c09d92b251f60b17090}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!GetIndividualGravity@{GetIndividualGravity}}
+\index{GetIndividualGravity@{GetIndividualGravity}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{GetIndividualGravity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigidPhysicsSettings::GetIndividualGravity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_ac581da07915d7c09d92b251f60b17090}
+
+
+Gets the gravity being applied to this object. 
+
+This is the gravity applied to this object, which may or may not be the same as the world gravity. \begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector3}{Vector3} representing the gravity currently being applied to this object. 
+\end{DoxyReturn}
+
+
+Definition at line 271 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_af81213793393bec576a60d943ff461d0}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!GetLinearDamping@{GetLinearDamping}}
+\index{GetLinearDamping@{GetLinearDamping}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{GetLinearDamping}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::ActorRigidPhysicsSettings::GetLinearDamping (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_af81213793393bec576a60d943ff461d0}
+
+
+Get the linear damping. 
+
+\begin{DoxyReturn}{Returns}
+A Real that has the Linear damping. 
+\end{DoxyReturn}
+
+
+Definition at line 239 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_adbd0280f78f4a40891d3130835e0111a}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!GetLinearVelocity@{GetLinearVelocity}}
+\index{GetLinearVelocity@{GetLinearVelocity}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{GetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigidPhysicsSettings::GetLinearVelocity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_adbd0280f78f4a40891d3130835e0111a}
+
+
+Gets the Linear Velocity of this object. 
+
+\begin{DoxyReturn}{Returns}
+Returns the currently set Linear Velocity of this object. 
+\end{DoxyReturn}
+
+
+Definition at line 249 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a0e72a68536fa4e48b489bd069f5fba82}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!GetTorque@{GetTorque}}
+\index{GetTorque@{GetTorque}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{GetTorque}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ActorRigidPhysicsSettings::GetTorque (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a0e72a68536fa4e48b489bd069f5fba82}
+
+
+Get the Torque/Rotation. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the Torque 
+\end{DoxyReturn}
+
+
+Definition at line 280 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a222c6ea9a61937cf7cb053c194981e41}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!SetAngularVelocity@{SetAngularVelocity}}
+\index{SetAngularVelocity@{SetAngularVelocity}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{SetAngularVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigidPhysicsSettings::SetAngularVelocity (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{AngVel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a222c6ea9a61937cf7cb053c194981e41}
+
+
+Sets the Angular Velocity of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em AngVel} & \hyperlink{classphys_1_1Vector3}{Vector3} representing the Angular Velocity to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 255 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_abcb4e6a9ec828ac7f70075e5e70b529b}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!SetDamping@{SetDamping}}
+\index{SetDamping@{SetDamping}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{SetDamping}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigidPhysicsSettings::SetDamping (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{LinDamping, }
+\item[{const {\bf Real} \&}]{AngDamping}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_abcb4e6a9ec828ac7f70075e5e70b529b}
+
+
+Sets the Damping for this object. 
+
+Both of Linear Damping and Angular Damping default to zero. This is useful if you wish to simulate something like air resistance. Values can range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em LinDamping} & Real representing the amount of Linear Damping(Movement) to be applied. \\
+\hline
+{\em AngDamping} & Real representing the amount of Angular Damping(Rotation) to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 236 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_af595556bb71a257785038b6c2da379a9}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!SetIndividualGravity@{SetIndividualGravity}}
+\index{SetIndividualGravity@{SetIndividualGravity}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{SetIndividualGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigidPhysicsSettings::SetIndividualGravity (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Gravity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_af595556bb71a257785038b6c2da379a9}
+
+
+Sets the gravity for only this object. 
+
+This value will override the world gravity. Should be called after adding to the world. When the object is added to the world the world gravity is applied to it. 
+\begin{DoxyParams}{Parameters}
+{\em Gravity} & \hyperlink{classphys_1_1Vector3}{Vector3} representing the direction and strength of gravity to be applied. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 266 of file actorphysicssettings.cpp.
+
+\hypertarget{classphys_1_1ActorRigidPhysicsSettings_a65cda21e8cd8837f057349d05de15f18}{
+\index{phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}!SetLinearVelocity@{SetLinearVelocity}}
+\index{SetLinearVelocity@{SetLinearVelocity}!phys::ActorRigidPhysicsSettings@{phys::ActorRigidPhysicsSettings}}
+\paragraph[{SetLinearVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorRigidPhysicsSettings::SetLinearVelocity (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{LinVel}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{d1/d17/classphys_1_1ActorRigidPhysicsSettings_a65cda21e8cd8837f057349d05de15f18}
+
+
+Sets the Linear Velocity of this object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em LinVel} & \hyperlink{classphys_1_1Vector3}{Vector3} representing the Linear Velocity to be set. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 245 of file actorphysicssettings.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actorphysicssettings.h\item 
+actorphysicssettings.cpp\end{DoxyCompactItemize}

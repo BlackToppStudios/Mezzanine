@@ -25,7 +25,7 @@ virtual \hyperlink{classphys_1_1xml_1_1TreeWalker_a84d0c68cf364a81e29f0cc321098a
 
 \begin{DoxyCompactList}\small\item\em Virtual deconstructor. Tears down a \hyperlink{classphys_1_1xml_1_1TreeWalker}{TreeWalker}. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1xml_1_1TreeWalker_a649d9e5a06542be0282d3d20994a62fc}{begin} (\hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
-\begin{DoxyCompactList}\small\item\em Called on the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal begins. \item\end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Called by the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal begins. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1xml_1_1TreeWalker_a03267e73acac44809f16739fd00a536d}{for\_\-each} (\hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)=0
 \begin{DoxyCompactList}\small\item\em A Pure Virtual function that is expected to be implemented to create the desired behavior. \item\end{DoxyCompactList}\item 
 virtual bool \hyperlink{classphys_1_1xml_1_1TreeWalker_a210f6d60579a152f89e651be797885b9}{end} (\hyperlink{classphys_1_1xml_1_1Node}{Node} \&node)
@@ -59,7 +59,7 @@ If you want to do a deep tree traversal, you'll either have to do it via a recur
 \par
  You can get the node's depth relative to the traversal root at any point by calling \hyperlink{classphys_1_1xml_1_1TreeWalker_a90fdd705ae4d5e8e3b931bb8896e4397}{TreeWalker::Depth()} function. 
 
-Definition at line 917 of file xml.h.
+Definition at line 927 of file xml.h.
 
 
 
@@ -69,14 +69,19 @@ Definition at line 917 of file xml.h.
 \index{begin@{begin}!phys::xml::TreeWalker@{phys::xml::TreeWalker}}
 \paragraph[{begin}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::TreeWalker::begin (
 \begin{DoxyParamCaption}
-\item[{{\bf Node} \&}]{ node}
+\item[{{\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d5/d8d/classphys_1_1xml_1_1TreeWalker_a649d9e5a06542be0282d3d20994a62fc}
 
 
-Called on the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal begins. 
+Called by the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal begins. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The first node the Tree to traverse\\
+\hline
+\end{DoxyParams}
 By default this simply returns true, but is expected to be overridden with any desired behavior \begin{DoxyReturn}{Returns}
 True by default. If it returns false, then traversal ends and the \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{Node::Traverse()} that was called is expected to return false. 
 \end{DoxyReturn}
@@ -101,7 +106,7 @@ This returns -\/1 if called from \hyperlink{classphys_1_1xml_1_1TreeWalker_a649d
 \index{end@{end}!phys::xml::TreeWalker@{phys::xml::TreeWalker}}
 \paragraph[{end}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::TreeWalker::end (
 \begin{DoxyParamCaption}
-\item[{{\bf Node} \&}]{ node}
+\item[{{\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
 \label{d5/d8d/classphys_1_1xml_1_1TreeWalker_a210f6d60579a152f89e651be797885b9}
@@ -109,6 +114,11 @@ This returns -\/1 if called from \hyperlink{classphys_1_1xml_1_1TreeWalker_a649d
 
 Called on the root \hyperlink{classphys_1_1xml_1_1Node}{Node} of the xml subtree when traversal ends. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The last node the Tree to traverse\\
+\hline
+\end{DoxyParams}
 By default this simply returns true, but is expected to be overridden with any desired behavior \begin{DoxyReturn}{Returns}
 True by default. If it returns false, then traversal ends and the \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{Node::Traverse()} that was called is expected to return false. 
 \end{DoxyReturn}
@@ -117,7 +127,7 @@ True by default. If it returns false, then traversal ends and the \hyperlink{cla
 \index{for\_\-each@{for\_\-each}!phys::xml::TreeWalker@{phys::xml::TreeWalker}}
 \paragraph[{for\_\-each}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::TreeWalker::for\_\-each (
 \begin{DoxyParamCaption}
-\item[{{\bf Node} \&}]{ node}
+\item[{{\bf Node} \&}]{node}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}pure virtual\mbox{]}}}\hfill}
 \label{d5/d8d/classphys_1_1xml_1_1TreeWalker_a03267e73acac44809f16739fd00a536d}
@@ -125,6 +135,11 @@ True by default. If it returns false, then traversal ends and the \hyperlink{cla
 
 A Pure Virtual function that is expected to be implemented to create the desired behavior. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The curren node being trraversed.\\
+\hline
+\end{DoxyParams}
 This is called on every \hyperlink{classphys_1_1xml_1_1Node}{Node} that is traversed except the root node of the traversed subtree. Can be used to perform sophisticated searches of a portion of the xml document, alter the document on a large scale, gather statistics, or just about any other behavior that requires touching many nodes. \begin{DoxyReturn}{Returns}
 if true Traversal is expected to continue, if false, then traversal ends and the \hyperlink{classphys_1_1xml_1_1Node_a0029d08d3689c36d882ada0c0c9cf6e9}{Node::Traverse()} that was called is expected to return false. 
 \end{DoxyReturn}

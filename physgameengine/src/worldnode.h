@@ -191,12 +191,12 @@ namespace phys
             void DetachObject(Attachable* Target);
 
             /// @internal
-            /// @brief Does the actual work of attaching on the WorldNode Side so that ::Attach() can be called on WorldNode or Attachable without caveats
+            /// @brief Does the actual work of attaching on the WorldNode Side so that WorldNode::AttachObject(Attachable* Target) can be called on WorldNode or Attachable without caveats
             /// @param Target A pointer to the Attachable to finalize the attaching of.
             void AttachObjectFinal(Attachable* Target);
 
             /// @internal
-            /// @brief Does the actual work of dettaching on the WorldNode Side so that ::Dettach() can be called on WorldNode or Attachable without caveats
+            /// @brief Does the actual work of dettaching on the WorldNode Side so that WorldNode::DetachObject(Attachable* Target) can be called on WorldNode or Attachable without caveats
             /// @param Target A pointer to the Attachable to finalize the dettaching of.
             void DetachObjectFinal(Attachable* Target);
 

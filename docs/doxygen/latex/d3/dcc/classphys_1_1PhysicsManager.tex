@@ -24,12 +24,12 @@ Inheritance diagram for phys::PhysicsManager:\begin{figure}[H]
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1PhysicsManager_a1072c647c64ec82381ddc9f1a17c5909}{PhysicsManager} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyLowerBounds\_\-, const \hyperlink{classphys_1_1Vector3}{Vector3} \&GeographyUpperbounds\_\-, const unsigned short int \&MaxPhysicsProxies\_\-)
 \begin{DoxyCompactList}\small\item\em Simple Constructor. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{Initialize} ()
-\begin{DoxyCompactList}\small\item\em This configures the Physics Manager to work with the Graphic settings. \item\end{DoxyCompactList}\item 
-virtual void \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{DoMainLoopItems} ()
-\begin{DoxyCompactList}\small\item\em Physics stepping during the main loop. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}{$\sim$PhysicsManager} ()
 \begin{DoxyCompactList}\small\item\em Deconstructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a107d5540a9bef91325807f77542c9176}{PauseSimulation} (bool Pause)
+\begin{DoxyCompactList}\small\item\em Pauses the simulation, preventing the physics world from taking action. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1PhysicsManager_a62e19a64f13c5dff40a6f454331dae70}{SimulationIsPaused} ()
+\begin{DoxyCompactList}\small\item\em Gets Whether or not the simulation is currently paused. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}{SetGravity} (\hyperlink{classphys_1_1Vector3}{Vector3} pgrav)
 \begin{DoxyCompactList}\small\item\em Sets the gravity. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsManager_a880950ca6093afd3267dcadf30934574}{GetGravity} ()
@@ -40,6 +40,53 @@ void \hyperlink{classphys_1_1PhysicsManager_acd1fe36f7cd593da0c466002304065eb}{S
 \begin{DoxyCompactList}\small\item\em Gets the soft body gravity. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1PhysicsManager_af6acab3a35e52b1e25f1ab47f494d90d}{SetIndividualGravity} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{classphys_1_1Vector3}{Vector3} igrav)
 \begin{DoxyCompactList}\small\item\em Sets the gravity to be applied to a single object. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_aa2e58b40c1031c777d828b2409befbb9}{AddConstraint} (TypedConstraint $\ast$Constraint, bool DisableCollisions=false)
+\begin{DoxyCompactList}\small\item\em Adds a constraint to the world. \item\end{DoxyCompactList}\item 
+TypedConstraint $\ast$ \hyperlink{classphys_1_1PhysicsManager_af3a7b3a98c885785875375cae608b4d5}{GetConstraint} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} Index)
+\begin{DoxyCompactList}\small\item\em Gets a constraint by index. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsManager_aa21fe7e9349d638020627c58b90faa38}{GetNumConstraints} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of constraints currently in the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_ace94aa20b5191b01630e7a5046cb7af6}{RemoveConstraint} (TypedConstraint $\ast$Constraint)
+\begin{DoxyCompactList}\small\item\em Removes a constraint from the world. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a34b684f447c56dee94dc80d8df8051eb}{DestroyAllConstraints} ()
+\begin{DoxyCompactList}\small\item\em Destroys all constraints currently in the manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_aee6b1c15ac2689e8d228ff074f79f224}{StorePhysicsShape} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ShapeName)
+\begin{DoxyCompactList}\small\item\em Stores an already generated physics shape. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a5b8767880619cefce97218207c251544}{ApplyPhysicsShape} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ShapeName)
+\begin{DoxyCompactList}\small\item\em Applies a previously stored shape. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1PhysicsManager_a51a1fc148baa6d4d32a0f47cbc0dbc97}{
+void \hyperlink{classphys_1_1PhysicsManager_a51a1fc148baa6d4d32a0f47cbc0dbc97}{DestroyAllPhysicsShapes} ()}
+\label{d3/dcc/classphys_1_1PhysicsManager_a51a1fc148baa6d4d32a0f47cbc0dbc97}
+
+\begin{DoxyCompactList}\small\item\em Destroys all physics shapes currently in the manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a64e75a71598b6440c4feb1a2214a1420}{AddAreaEffect} (\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$AE)
+\begin{DoxyCompactList}\small\item\em Adds an area effect to the world. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$ \hyperlink{classphys_1_1PhysicsManager_a458b0649bee606aa6dd2d724135f1871}{GetAreaEffect} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an Area Effect by name. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a5ee0f784a8239be56164a7a67a28f227}{RemoveAreaEffect} (\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$AE)
+\begin{DoxyCompactList}\small\item\em Removes an area effect from the world. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1PhysicsManager_ac0157bc0c953b13162c680d1c49980f6}{
+void \hyperlink{classphys_1_1PhysicsManager_ac0157bc0c953b13162c680d1c49980f6}{DestroyAllAreaEffects} ()}
+\label{d3/dcc/classphys_1_1PhysicsManager_ac0157bc0c953b13162c680d1c49980f6}
+
+\begin{DoxyCompactList}\small\item\em Destroys all area effects currently in the manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_abed0578d971b6df80120a0a5fcc4a1d9}{AddWorldTrigger} (\hyperlink{classphys_1_1WorldTrigger}{WorldTrigger} $\ast$Trig)
+\begin{DoxyCompactList}\small\item\em Adds a trigger to the world. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1WorldTrigger}{WorldTrigger} $\ast$ \hyperlink{classphys_1_1PhysicsManager_a6d55d03e86909138587c0b36012ba4a6}{GetWorldTrigger} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets a trigger by name. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a48bd725a1a2b3e8193b549a915ef4dc2}{RemoveWorldTrigger} (\hyperlink{classphys_1_1WorldTrigger}{WorldTrigger} $\ast$Trig)
+\begin{DoxyCompactList}\small\item\em Removes a trigger from the world. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1PhysicsManager_a778ebdcf3d67f4527978f51bb4249af2}{
+void \hyperlink{classphys_1_1PhysicsManager_a778ebdcf3d67f4527978f51bb4249af2}{DestroyAllWorldTriggers} ()}
+\label{d3/dcc/classphys_1_1PhysicsManager_a778ebdcf3d67f4527978f51bb4249af2}
+
+\begin{DoxyCompactList}\small\item\em Destroys all triggers currently in the manager. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1PhysicsManager_a98ee9704eec230ff759850ffa8394489}{SetCollisionParams} (const unsigned short int Age, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Force)
+\begin{DoxyCompactList}\small\item\em Sets the Collision Parameters. \item\end{DoxyCompactList}\item 
+unsigned short int \hyperlink{classphys_1_1PhysicsManager_a4232e8cd52e70b623ef30c40be6cdb4a}{GetCollisionAge} ()
+\begin{DoxyCompactList}\small\item\em Gets the Collision Age limit. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1PhysicsManager_ad11ee3904e1725f95ce9bd58f4ee3925}{GetImpulse} ()
+\begin{DoxyCompactList}\small\item\em Gets the Collision Impulse limit. \item\end{DoxyCompactList}\item 
 void \hyperlink{classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}{SetDebugPhysicsRendering} (int ToBeEnabled)
 \begin{DoxyCompactList}\small\item\em Enables and Disables Physics Debug Drawing. \item\end{DoxyCompactList}\item 
 int \hyperlink{classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}{GetDebugPhysicsRendering} ()
@@ -48,32 +95,19 @@ void \hyperlink{classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}{S
 \begin{DoxyCompactList}\small\item\em How many Wireframes do you want drawn from previous events. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}{GetDebugPhysicsWireCount} ()
 \begin{DoxyCompactList}\small\item\em This gets how many WireFrames are being drawn. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{DoMainLoopItems} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&TimeElapsed)
-\begin{DoxyCompactList}\small\item\em This does all the work reuired for the main loop to process physics. \item\end{DoxyCompactList}\item 
 \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1PhysicsManager_a54a48fdfd9db914c25a0f892c2f56301}{GetActorOffset} (const \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} \&OffsetInfo)
 \begin{DoxyCompactList}\small\item\em Gets the offset between a point and an actor. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_ab31bf38e9ed68c484946731546425691}{AddConstraint} (TypedConstraint $\ast$Constraint)
-\begin{DoxyCompactList}\small\item\em Adds a constraint to the world. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_ace94aa20b5191b01630e7a5046cb7af6}{RemoveConstraint} (TypedConstraint $\ast$Constraint)
-\begin{DoxyCompactList}\small\item\em Removes a constraint from the world. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a24fae734b5750db6fc1d2b1e3656bb71}{StorePhysicsShape} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ShapeName)
-\begin{DoxyCompactList}\small\item\em Stores an already generated physics shape. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a58653c59133900a432169a7c980105ce}{ApplyPhysicsShape} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&ShapeName)
-\begin{DoxyCompactList}\small\item\em Applies a previously stored shape. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a64e75a71598b6440c4feb1a2214a1420}{AddAreaEffect} (\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$AE)
-\begin{DoxyCompactList}\small\item\em Adds an area effect to the world. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a5ee0f784a8239be56164a7a67a28f227}{RemoveAreaEffect} (\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$AE)
-\begin{DoxyCompactList}\small\item\em Removes an area effect from the world. \item\end{DoxyCompactList}\item 
-\hyperlink{classphys_1_1AreaEffect}{AreaEffect} $\ast$ \hyperlink{classphys_1_1PhysicsManager_a36b575504b1de592ee24d08ebf1fd620}{GetAreaEffect} (\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} Name)
-\begin{DoxyCompactList}\small\item\em Gets an Area Effect by name. \item\end{DoxyCompactList}\item 
-void \hyperlink{classphys_1_1PhysicsManager_a98ee9704eec230ff759850ffa8394489}{SetCollisionParams} (const unsigned short int Age, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Force)
-\begin{DoxyCompactList}\small\item\em Sets the Collision Parameters. \item\end{DoxyCompactList}\item 
-unsigned short int \hyperlink{classphys_1_1PhysicsManager_a4232e8cd52e70b623ef30c40be6cdb4a}{GetCollisionAge} ()
-\begin{DoxyCompactList}\small\item\em Gets the Collision Age limit. \item\end{DoxyCompactList}\item 
-\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1PhysicsManager_ad11ee3904e1725f95ce9bd58f4ee3925}{GetImpulse} ()
-\begin{DoxyCompactList}\small\item\em Gets the Collision Impulse limit. \item\end{DoxyCompactList}\item 
-btSoftRigidDynamicsWorld $\ast$ \hyperlink{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{GetPhysicsWorldPointer} ()
+void \hyperlink{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{DoMainLoopItems} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&TimeElapsed)
+\begin{DoxyCompactList}\small\item\em This does all the work reuired for the main loop to process physics. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{
+btSoftRigidDynamicsWorld $\ast$ \hyperlink{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{GetPhysicsWorldPointer} ()}
+\label{d3/dcc/classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}
+
 \begin{DoxyCompactList}\small\item\em This returns a pointer to the bullet physics world. This is for internal use only. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{Initialize} ()
+\begin{DoxyCompactList}\small\item\em This configures the Physics Manager to work with the Graphic settings. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Physics stepping during the main loop. \item\end{DoxyCompactList}\item 
 virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{GetType} () const 
 \begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -81,7 +115,7 @@ virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{M
 \subsubsection{Detailed Description}
 This is simply a place for storing all the Physics Related functions. This is a place for storing items related to Debug physics drawing, Adding constraints, screwing with gravity and doing other physics Related features. 
 
-Definition at line 79 of file physicsmanager.h.
+Definition at line 80 of file physicsmanager.h.
 
 
 
@@ -101,16 +135,16 @@ Simple Constructor.
 
 This constructor will assign some sane default values and will create a physics world that can be used immediately 
 
-Definition at line 265 of file physicsmanager.cpp.
+Definition at line 267 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a1072c647c64ec82381ddc9f1a17c5909}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!PhysicsManager@{PhysicsManager}}
 \index{PhysicsManager@{PhysicsManager}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{PhysicsManager}]{\setlength{\rightskip}{0pt plus 5cm}phys::PhysicsManager::PhysicsManager (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector3} \&}]{ GeographyLowerBounds\_\-, }
-\item[{const {\bf Vector3} \&}]{ GeographyUpperbounds\_\-, }
-\item[{const unsigned short int \&}]{ MaxPhysicsProxies\_\-}
+\item[{const {\bf Vector3} \&}]{GeographyLowerBounds\_\-, }
+\item[{const {\bf Vector3} \&}]{GeographyUpperbounds\_\-, }
+\item[{const unsigned short int \&}]{MaxPhysicsProxies\_\-}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_a1072c647c64ec82381ddc9f1a17c5909}
@@ -120,10 +154,16 @@ Simple Constructor.
 
 This constructor will assign some sane default values and will create a physics world that can be used immediately 
 \begin{DoxyParams}{Parameters}
-\item[{\em GeographyLowerBounds\_\-}]This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the lower right conrer of the world \item[{\em GeographyUpperbounds\_\-}]This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the upper left conrer of the world \item[{\em MaxPhysicsProxies\_\-}]This approximates the maximum amount of items allowed in the physics world \end{DoxyParams}
+{\em GeographyLowerBounds\_\-} & This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the lower right conrer of the world \\
+\hline
+{\em GeographyUpperbounds\_\-} & This \hyperlink{classphys_1_1Vector3}{Vector3} will loosely represent the upper left conrer of the world \\
+\hline
+{\em MaxPhysicsProxies\_\-} & This approximates the maximum amount of items allowed in the physics world \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 270 of file physicsmanager.cpp.
+Definition at line 273 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a4898702f889c6b4aa7c0b59991d310b0}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!$\sim$PhysicsManager@{$\sim$PhysicsManager}}
@@ -140,7 +180,7 @@ Deconstructor.
 
 This deletes all those crazy pointers that Bullet, the physics subsystem need. 
 
-Definition at line 275 of file physicsmanager.cpp.
+Definition at line 279 of file physicsmanager.cpp.
 
 
 
@@ -150,7 +190,7 @@ Definition at line 275 of file physicsmanager.cpp.
 \index{AddAreaEffect@{AddAreaEffect}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{AddAreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::AddAreaEffect (
 \begin{DoxyParamCaption}
-\item[{{\bf AreaEffect} $\ast$}]{ AE}
+\item[{{\bf AreaEffect} $\ast$}]{AE}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_a64e75a71598b6440c4feb1a2214a1420}
@@ -160,51 +200,123 @@ Adds an area effect to the world.
 
 Adds an area effect to the world so that it can/will take effect. 
 \begin{DoxyParams}{Parameters}
-\item[{\em AE}]The area effect to be added. \end{DoxyParams}
+{\em AE} & The area effect to be added. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 513 of file physicsmanager.cpp.
+Definition at line 480 of file physicsmanager.cpp.
 
-\hypertarget{classphys_1_1PhysicsManager_ab31bf38e9ed68c484946731546425691}{
+\hypertarget{classphys_1_1PhysicsManager_aa2e58b40c1031c777d828b2409befbb9}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!AddConstraint@{AddConstraint}}
 \index{AddConstraint@{AddConstraint}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{AddConstraint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::AddConstraint (
 \begin{DoxyParamCaption}
-\item[{TypedConstraint $\ast$}]{ Constraint}
+\item[{TypedConstraint $\ast$}]{Constraint, }
+\item[{bool}]{DisableCollisions = {\ttfamily false}}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d3/dcc/classphys_1_1PhysicsManager_ab31bf38e9ed68c484946731546425691}
+\label{d3/dcc/classphys_1_1PhysicsManager_aa2e58b40c1031c777d828b2409befbb9}
 
 
 Adds a constraint to the world. 
 
 Adds the constraint to the world so that it can/will take effect. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Constraint}]The constraint to be added. \end{DoxyParams}
+{\em Constraint} & The constraint to be added. \\
+\hline
+{\em DisableCollisions} & Sets whether or not the linked bodies collide with each other. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 503 of file physicsmanager.cpp.
+Definition at line 400 of file physicsmanager.cpp.
 
-\hypertarget{classphys_1_1PhysicsManager_a58653c59133900a432169a7c980105ce}{
+\hypertarget{classphys_1_1PhysicsManager_abed0578d971b6df80120a0a5fcc4a1d9}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!AddWorldTrigger@{AddWorldTrigger}}
+\index{AddWorldTrigger@{AddWorldTrigger}!phys::PhysicsManager@{phys::PhysicsManager}}
+\paragraph[{AddWorldTrigger}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::AddWorldTrigger (
+\begin{DoxyParamCaption}
+\item[{{\bf WorldTrigger} $\ast$}]{Trig}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d3/dcc/classphys_1_1PhysicsManager_abed0578d971b6df80120a0a5fcc4a1d9}
+
+
+Adds a trigger to the world. 
+
+Adds a trigger to the world so that it can/will take effect. 
+\begin{DoxyParams}{Parameters}
+{\em Trig} & The trigger to be added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 523 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a5b8767880619cefce97218207c251544}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!ApplyPhysicsShape@{ApplyPhysicsShape}}
 \index{ApplyPhysicsShape@{ApplyPhysicsShape}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{ApplyPhysicsShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::ApplyPhysicsShape (
 \begin{DoxyParamCaption}
-\item[{{\bf ActorBase} $\ast$}]{ Actor, }
-\item[{{\bf String} \&}]{ ShapeName}
+\item[{{\bf ActorBase} $\ast$}]{Actor, }
+\item[{const {\bf String} \&}]{ShapeName}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d3/dcc/classphys_1_1PhysicsManager_a58653c59133900a432169a7c980105ce}
+\label{d3/dcc/classphys_1_1PhysicsManager_a5b8767880619cefce97218207c251544}
 
 
 Applies a previously stored shape. 
 
 This function will take a stored shape and apply it to the actor provided. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Actor}]The actor to which you want to apply the shape. \item[{\em ShapeName}]The name of the shape you wish to have applied to the actor. \end{DoxyParams}
+{\em Actor} & The actor to which you want to apply the shape. \\
+\hline
+{\em ShapeName} & The name of the shape you wish to have applied to the actor. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 561 of file physicsmanager.cpp.
+Definition at line 445 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a34b684f447c56dee94dc80d8df8051eb}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!DestroyAllConstraints@{DestroyAllConstraints}}
+\index{DestroyAllConstraints@{DestroyAllConstraints}!phys::PhysicsManager@{phys::PhysicsManager}}
+\paragraph[{DestroyAllConstraints}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::DestroyAllConstraints (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d3/dcc/classphys_1_1PhysicsManager_a34b684f447c56dee94dc80d8df8051eb}
+
+
+Destroys all constraints currently in the manager. 
+
+In practice it is cleaner to remove constraints from the world before removing any constrained actors. 
+
+Definition at line 429 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::PhysicsManager@{phys::PhysicsManager}}
+\paragraph[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{TimeElapsed}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d3/dcc/classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}
+
+
+This does all the work reuired for the main loop to process physics. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em TimeElapsed} & This is a real that represents the amount of time we need to simulate \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 637 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a62741a2582ac9bfd0255cf8a3ad2310c}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!DoMainLoopItems@{DoMainLoopItems}}
@@ -225,34 +337,14 @@ Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7
 
 
 
-Definition at line 347 of file physicsmanager.cpp.
-
-\hypertarget{classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}{
-\index{phys::PhysicsManager@{phys::PhysicsManager}!DoMainLoopItems@{DoMainLoopItems}}
-\index{DoMainLoopItems@{DoMainLoopItems}!phys::PhysicsManager@{phys::PhysicsManager}}
-\paragraph[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::DoMainLoopItems (
-\begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{ TimeElapsed}
-\end{DoxyParamCaption}
-)}\hfill}
-\label{d3/dcc/classphys_1_1PhysicsManager_ad363d6683a0276395eeb2c42a56f95fc}
-
-
-This does all the work reuired for the main loop to process physics. 
-
-
-\begin{DoxyParams}{Parameters}
-\item[{\em TimeElapsed}]This is a real that represents the amount of time we need to simulate \end{DoxyParams}
-
-
-Definition at line 352 of file physicsmanager.cpp.
+Definition at line 742 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a54a48fdfd9db914c25a0f892c2f56301}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetActorOffset@{GetActorOffset}}
 \index{GetActorOffset@{GetActorOffset}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{GetActorOffset}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::PhysicsManager::GetActorOffset (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector3WActor} \&}]{ OffsetInfo}
+\item[{const {\bf Vector3WActor} \&}]{OffsetInfo}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_a54a48fdfd9db914c25a0f892c2f56301}
@@ -262,36 +354,40 @@ Gets the offset between a point and an actor.
 
 This function will return the offset between the specified world point and the specified actors center of mass. 
 \begin{DoxyParams}{Parameters}
-\item[{\em OffsetInfo}]The vector and actor to compare for offset data. \end{DoxyParams}
+{\em OffsetInfo} & The vector and actor to compare for offset data. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 Returns the \hyperlink{classphys_1_1Vector3}{Vector3} representing the actors offset from the world point. 
 \end{DoxyReturn}
 
 
-Definition at line 490 of file physicsmanager.cpp.
+Definition at line 624 of file physicsmanager.cpp.
 
-\hypertarget{classphys_1_1PhysicsManager_a36b575504b1de592ee24d08ebf1fd620}{
+\hypertarget{classphys_1_1PhysicsManager_a458b0649bee606aa6dd2d724135f1871}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetAreaEffect@{GetAreaEffect}}
 \index{GetAreaEffect@{GetAreaEffect}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{GetAreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf AreaEffect} $\ast$ phys::PhysicsManager::GetAreaEffect (
 \begin{DoxyParamCaption}
-\item[{{\bf String}}]{ Name}
+\item[{const {\bf String} \&}]{Name}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d3/dcc/classphys_1_1PhysicsManager_a36b575504b1de592ee24d08ebf1fd620}
+\label{d3/dcc/classphys_1_1PhysicsManager_a458b0649bee606aa6dd2d724135f1871}
 
 
 Gets an Area Effect by name. 
 
-This function will return the named area effect if it is stored. 
+
 \begin{DoxyParams}{Parameters}
-\item[{\em Name}]The name of the area effect to find. \end{DoxyParams}
+{\em Name} & The name of the area effect to find. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Returns a pointer to the named area effect. 
+Returns a pointer to the named area effect, or NULL if it doesn't exist. 
 \end{DoxyReturn}
 
 
-Definition at line 531 of file physicsmanager.cpp.
+Definition at line 488 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a4232e8cd52e70b623ef30c40be6cdb4a}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetCollisionAge@{GetCollisionAge}}
@@ -311,7 +407,32 @@ This function will return the number of physics ticks the collision has to have 
 \end{DoxyReturn}
 
 
-Definition at line 573 of file physicsmanager.cpp.
+Definition at line 565 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_af3a7b3a98c885785875375cae608b4d5}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!GetConstraint@{GetConstraint}}
+\index{GetConstraint@{GetConstraint}!phys::PhysicsManager@{phys::PhysicsManager}}
+\paragraph[{GetConstraint}]{\setlength{\rightskip}{0pt plus 5cm}TypedConstraint $\ast$ phys::PhysicsManager::GetConstraint (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{Index}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d3/dcc/classphys_1_1PhysicsManager_af3a7b3a98c885785875375cae608b4d5}
+
+
+Gets a constraint by index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the constraint you want. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the specified constraint. 
+\end{DoxyReturn}
+
+
+Definition at line 406 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a64f96d2e4b25c2b9a66042998bf334ff}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetDebugPhysicsRendering@{GetDebugPhysicsRendering}}
@@ -331,7 +452,7 @@ lets you check if Physics Debug Drawing is enabled or not. \begin{DoxyReturn}{Re
 \end{DoxyReturn}
 
 
-Definition at line 465 of file physicsmanager.cpp.
+Definition at line 592 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a8f46e55e4cadfcd1c2c03bcdbfe6c06f}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetDebugPhysicsWireCount@{GetDebugPhysicsWireCount}}
@@ -351,7 +472,7 @@ This returns either 2 or the last amount passed into World::SetDebugPhysicsWireC
 \end{DoxyReturn}
 
 
-Definition at line 480 of file physicsmanager.cpp.
+Definition at line 616 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a880950ca6093afd3267dcadf30934574}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetGravity@{GetGravity}}
@@ -371,7 +492,7 @@ Returns the currently set world gravity.
 \end{DoxyReturn}
 
 
-Definition at line 426 of file physicsmanager.cpp.
+Definition at line 374 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_ad11ee3904e1725f95ce9bd58f4ee3925}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetImpulse@{GetImpulse}}
@@ -391,26 +512,27 @@ This function will return the lower limit of the allowed force of the collision 
 \end{DoxyReturn}
 
 
-Definition at line 578 of file physicsmanager.cpp.
+Definition at line 570 of file physicsmanager.cpp.
 
-\hypertarget{classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}{
-\index{phys::PhysicsManager@{phys::PhysicsManager}!GetPhysicsWorldPointer@{GetPhysicsWorldPointer}}
-\index{GetPhysicsWorldPointer@{GetPhysicsWorldPointer}!phys::PhysicsManager@{phys::PhysicsManager}}
-\paragraph[{GetPhysicsWorldPointer}]{\setlength{\rightskip}{0pt plus 5cm}btSoftRigidDynamicsWorld $\ast$ phys::PhysicsManager::GetPhysicsWorldPointer (
+\hypertarget{classphys_1_1PhysicsManager_aa21fe7e9349d638020627c58b90faa38}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!GetNumConstraints@{GetNumConstraints}}
+\index{GetNumConstraints@{GetNumConstraints}!phys::PhysicsManager@{phys::PhysicsManager}}
+\paragraph[{GetNumConstraints}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::PhysicsManager::GetNumConstraints (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d3/dcc/classphys_1_1PhysicsManager_a4b4f8a23259a94a50c81649f39256d7f}
+\label{d3/dcc/classphys_1_1PhysicsManager_aa21fe7e9349d638020627c58b90faa38}
 
 
-This returns a pointer to the bullet physics world. This is for internal use only. 
+Gets the number of constraints currently in the world. 
 
-\begin{DoxyInternal}{For internal use only.}
-\end{DoxyInternal}
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the number of constraints in the world. 
+\end{DoxyReturn}
 
 
-Definition at line 485 of file physicsmanager.cpp.
+Definition at line 411 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_acdaad0849c3d6386e8cff5c98fc46664}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetSoftGravity@{GetSoftGravity}}
@@ -430,7 +552,7 @@ Returns the currently set soft body world gravity.
 \end{DoxyReturn}
 
 
-Definition at line 437 of file physicsmanager.cpp.
+Definition at line 385 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a4d151cd24052ef3cccde6b66b8745be6}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!GetType@{GetType}}
@@ -454,7 +576,32 @@ Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3
 
 
 
-Definition at line 584 of file physicsmanager.cpp.
+Definition at line 747 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a6d55d03e86909138587c0b36012ba4a6}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!GetWorldTrigger@{GetWorldTrigger}}
+\index{GetWorldTrigger@{GetWorldTrigger}!phys::PhysicsManager@{phys::PhysicsManager}}
+\paragraph[{GetWorldTrigger}]{\setlength{\rightskip}{0pt plus 5cm}{\bf WorldTrigger} $\ast$ phys::PhysicsManager::GetWorldTrigger (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d3/dcc/classphys_1_1PhysicsManager_a6d55d03e86909138587c0b36012ba4a6}
+
+
+Gets a trigger by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the trigger to find. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the named trigger, or NULL if it doesn't exist. 
+\end{DoxyReturn}
+
+
+Definition at line 528 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a28885be750bb763d957f122593815388}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!Initialize@{Initialize}}
@@ -471,24 +618,40 @@ This configures the Physics Manager to work with the Graphic settings.
 
 This configures the Physics manager to work with the existing graphics settings. This must be called before the physics manager is used, but after the graphics have been initialized 
 
-\begin{Desc}
-\item[\hyperlink{todo__todo000018}{Todo}]Possibly restructure this so that it'll detect ogre first, preventing a crash. At current this makes the physics manager depend on the graphicsmanager. \end{Desc}
-
-
-
-
 Implements \hyperlink{classphys_1_1ManagerBase_a57dd8e54e767427d5bdcc86dc66d73ed}{phys::ManagerBase}.
 
 
 
-Definition at line 338 of file physicsmanager.cpp.
+Definition at line 737 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a107d5540a9bef91325807f77542c9176}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!PauseSimulation@{PauseSimulation}}
+\index{PauseSimulation@{PauseSimulation}!phys::PhysicsManager@{phys::PhysicsManager}}
+\paragraph[{PauseSimulation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::PauseSimulation (
+\begin{DoxyParamCaption}
+\item[{bool}]{Pause}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d3/dcc/classphys_1_1PhysicsManager_a107d5540a9bef91325807f77542c9176}
+
+
+Pauses the simulation, preventing the physics world from taking action. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Pause} & Wether or not to pause the simulation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 359 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a5ee0f784a8239be56164a7a67a28f227}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!RemoveAreaEffect@{RemoveAreaEffect}}
 \index{RemoveAreaEffect@{RemoveAreaEffect}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{RemoveAreaEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::RemoveAreaEffect (
 \begin{DoxyParamCaption}
-\item[{{\bf AreaEffect} $\ast$}]{ AE}
+\item[{{\bf AreaEffect} $\ast$}]{AE}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_a5ee0f784a8239be56164a7a67a28f227}
@@ -498,17 +661,19 @@ Removes an area effect from the world.
 
 Removes an area effect from the world so that it will have no effect. 
 \begin{DoxyParams}{Parameters}
-\item[{\em AE}]The area effect to be removed. \end{DoxyParams}
+{\em AE} & The area effect to be removed. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 519 of file physicsmanager.cpp.
+Definition at line 500 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_ace94aa20b5191b01630e7a5046cb7af6}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!RemoveConstraint@{RemoveConstraint}}
 \index{RemoveConstraint@{RemoveConstraint}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{RemoveConstraint}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::RemoveConstraint (
 \begin{DoxyParamCaption}
-\item[{TypedConstraint $\ast$}]{ Constraint}
+\item[{TypedConstraint $\ast$}]{Constraint}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_ace94aa20b5191b01630e7a5046cb7af6}
@@ -518,18 +683,42 @@ Removes a constraint from the world.
 
 Removes a constraint from the world so that it will have no effect. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Constraint}]The constraint to be removed. \end{DoxyParams}
+{\em Constraint} & The constraint to be removed. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 508 of file physicsmanager.cpp.
+Definition at line 416 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_a48bd725a1a2b3e8193b549a915ef4dc2}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!RemoveWorldTrigger@{RemoveWorldTrigger}}
+\index{RemoveWorldTrigger@{RemoveWorldTrigger}!phys::PhysicsManager@{phys::PhysicsManager}}
+\paragraph[{RemoveWorldTrigger}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::RemoveWorldTrigger (
+\begin{DoxyParamCaption}
+\item[{{\bf WorldTrigger} $\ast$}]{Trig}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d3/dcc/classphys_1_1PhysicsManager_a48bd725a1a2b3e8193b549a915ef4dc2}
+
+
+Removes a trigger from the world. 
+
+Removes a trigger from the world so that it will have no effect. 
+\begin{DoxyParams}{Parameters}
+{\em Trig} & The trigger to be removed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 540 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a98ee9704eec230ff759850ffa8394489}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetCollisionParams@{SetCollisionParams}}
 \index{SetCollisionParams@{SetCollisionParams}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{SetCollisionParams}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetCollisionParams (
 \begin{DoxyParamCaption}
-\item[{const unsigned short int}]{ Age, }
-\item[{{\bf Real}}]{ Force}
+\item[{const unsigned short int}]{Age, }
+\item[{{\bf Real}}]{Force}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_a98ee9704eec230ff759850ffa8394489}
@@ -540,17 +729,21 @@ Sets the Collision Parameters.
 Sets the Collision Age and Force Filters used in filtering out collision contacts used to make events. The lower these numbers, the more events will be generated. \par
  These numbers both default to 1. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Age}]The number of physics ticks the collision has to have existed to be used. Usually you want 1 or 2. Default: 1 \item[{\em Force}]The amount of force applied in the collision to filter by. This amount can vary more then the other param based on what you need. Default: 1.0 \end{DoxyParams}
+{\em Age} & The number of physics ticks the collision has to have existed to be used. Usually you want 1 or 2. Default: 1 \\
+\hline
+{\em Force} & The amount of force applied in the collision to filter by. This amount can vary more then the other param based on what you need. Default: 1.0 \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 567 of file physicsmanager.cpp.
+Definition at line 559 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetDebugPhysicsRendering@{SetDebugPhysicsRendering}}
 \index{SetDebugPhysicsRendering@{SetDebugPhysicsRendering}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{SetDebugPhysicsRendering}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetDebugPhysicsRendering (
 \begin{DoxyParamCaption}
-\item[{int}]{ ToBeEnabled}
+\item[{int}]{ToBeEnabled}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_a67fb59148a94ced0a92b288a638f89db}
@@ -560,17 +753,19 @@ Enables and Disables Physics Debug Drawing.
 
 Enables and Disables Physics Debug Drawing using default wireframes. This will force renderings that match the physics subsytem pixel for pixel. 
 \begin{DoxyParams}{Parameters}
-\item[{\em ToBeEnabled}]1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control \end{DoxyParams}
+{\em ToBeEnabled} & 1 to turn it on, 0 to turn it off. There may be other options in the future, to enable fine tuned control \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 455 of file physicsmanager.cpp.
+Definition at line 576 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetDebugPhysicsWireCount@{SetDebugPhysicsWireCount}}
 \index{SetDebugPhysicsWireCount@{SetDebugPhysicsWireCount}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{SetDebugPhysicsWireCount}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetDebugPhysicsWireCount (
 \begin{DoxyParamCaption}
-\item[{{\bf Whole}}]{ WireFrameCount\_\-}
+\item[{{\bf Whole}}]{WireFrameCount\_\-}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_ab43a963cf26ca4293a7c34a2a68c4f2c}
@@ -580,17 +775,19 @@ How many Wireframes do you want drawn from previous events.
 
 Each frame of the action gets its own wire frame, and how many of those back did you want to see? To see a minimal amount set this to 2, as the first wireframe is commonly entirely inside the the rendered 3d mesh. You can use \hyperlink{classphys_1_1World_aa063ace52be484c7b03ec5859453f48b}{World::GetTargetFrameTime()} In conjunction with this to specify an amout of seconds worth of wireframes. 
 \begin{DoxyParams}{Parameters}
-\item[{\em WireFrameCount\_\-}]This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate, Any amount more than just a few seconds worth can be cumbersome. \end{DoxyParams}
+{\em WireFrameCount\_\-} & This is a whole number that is the amount of wire frames you wan to see. Don't forget to be mindful of the framerate, Any amount more than just a few seconds worth can be cumbersome. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 475 of file physicsmanager.cpp.
+Definition at line 605 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetGravity@{SetGravity}}
 \index{SetGravity@{SetGravity}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{SetGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetGravity (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ pgrav}
+\item[{{\bf Vector3}}]{pgrav}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_a3e74f3e0288706d44dc90657a8fa1118}
@@ -600,18 +797,20 @@ Sets the gravity.
 
 Sets the strength and direction of gravity within the world. 
 \begin{DoxyParams}{Parameters}
-\item[{\em pgrav}]\hyperlink{classphys_1_1Vector3}{Vector3} representing the strength and direction of gravity. \end{DoxyParams}
+{\em pgrav} & \hyperlink{classphys_1_1Vector3}{Vector3} representing the strength and direction of gravity. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 421 of file physicsmanager.cpp.
+Definition at line 369 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_af6acab3a35e52b1e25f1ab47f494d90d}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetIndividualGravity@{SetIndividualGravity}}
 \index{SetIndividualGravity@{SetIndividualGravity}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{SetIndividualGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetIndividualGravity (
 \begin{DoxyParamCaption}
-\item[{{\bf ActorBase} $\ast$}]{ Actor, }
-\item[{{\bf Vector3}}]{ igrav}
+\item[{{\bf ActorBase} $\ast$}]{Actor, }
+\item[{{\bf Vector3}}]{igrav}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_af6acab3a35e52b1e25f1ab47f494d90d}
@@ -621,17 +820,21 @@ Sets the gravity to be applied to a single object.
 
 This function does not change the global gravity, only how gravity behaves for this specific object. Note: This function only works on ActorRigid's. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Actor}]The actor whos gravity is to be changed. \item[{\em igrav}]The value of the gravity to be applied. \end{DoxyParams}
+{\em Actor} & The actor whos gravity is to be changed. \\
+\hline
+{\em igrav} & The value of the gravity to be applied. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 443 of file physicsmanager.cpp.
+Definition at line 391 of file physicsmanager.cpp.
 
 \hypertarget{classphys_1_1PhysicsManager_acd1fe36f7cd593da0c466002304065eb}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!SetSoftGravity@{SetSoftGravity}}
 \index{SetSoftGravity@{SetSoftGravity}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{SetSoftGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::SetSoftGravity (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ sgrav}
+\item[{{\bf Vector3}}]{sgrav}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d3/dcc/classphys_1_1PhysicsManager_acd1fe36f7cd593da0c466002304065eb}
@@ -641,31 +844,57 @@ Sets the gravity for soft bodies.
 
 Gravity for soft bodies is stored separately from rigid bodies. So if you plan to use soft bodies in your game/simulation you need to call this function otherwise they won't fall. 
 \begin{DoxyParams}{Parameters}
-\item[{\em sgrav}]\hyperlink{classphys_1_1Vector3}{Vector3} representing the strength and direction of gravity. \end{DoxyParams}
+{\em sgrav} & \hyperlink{classphys_1_1Vector3}{Vector3} representing the strength and direction of gravity. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 432 of file physicsmanager.cpp.
+Definition at line 380 of file physicsmanager.cpp.
 
-\hypertarget{classphys_1_1PhysicsManager_a24fae734b5750db6fc1d2b1e3656bb71}{
+\hypertarget{classphys_1_1PhysicsManager_a62e19a64f13c5dff40a6f454331dae70}{
+\index{phys::PhysicsManager@{phys::PhysicsManager}!SimulationIsPaused@{SimulationIsPaused}}
+\index{SimulationIsPaused@{SimulationIsPaused}!phys::PhysicsManager@{phys::PhysicsManager}}
+\paragraph[{SimulationIsPaused}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::PhysicsManager::SimulationIsPaused (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{d3/dcc/classphys_1_1PhysicsManager_a62e19a64f13c5dff40a6f454331dae70}
+
+
+Gets Whether or not the simulation is currently paused. 
+
+\begin{DoxyReturn}{Returns}
+Returns whether or not the simulation is paused. 
+\end{DoxyReturn}
+
+
+Definition at line 364 of file physicsmanager.cpp.
+
+\hypertarget{classphys_1_1PhysicsManager_aee6b1c15ac2689e8d228ff074f79f224}{
 \index{phys::PhysicsManager@{phys::PhysicsManager}!StorePhysicsShape@{StorePhysicsShape}}
 \index{StorePhysicsShape@{StorePhysicsShape}!phys::PhysicsManager@{phys::PhysicsManager}}
 \paragraph[{StorePhysicsShape}]{\setlength{\rightskip}{0pt plus 5cm}void phys::PhysicsManager::StorePhysicsShape (
 \begin{DoxyParamCaption}
-\item[{{\bf ActorBase} $\ast$}]{ Actor, }
-\item[{{\bf String} \&}]{ ShapeName}
+\item[{{\bf ActorBase} $\ast$}]{Actor, }
+\item[{const {\bf String} \&}]{ShapeName}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{d3/dcc/classphys_1_1PhysicsManager_a24fae734b5750db6fc1d2b1e3656bb71}
+\label{d3/dcc/classphys_1_1PhysicsManager_aee6b1c15ac2689e8d228ff074f79f224}
 
 
 Stores an already generated physics shape. 
 
 This function will take an actors physics shape and store it for re-\/use in other actors, in case a shape is able to be re-\/used by other actors. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Actor}]The actor from which to store the shape. \item[{\em ShapeName}]The name you wish to assign to the shape being stored. \end{DoxyParams}
+{\em Actor} & The actor from which to store the shape. \\
+\hline
+{\em ShapeName} & The name you wish to assign to the shape being stored. \\
+\hline
+\end{DoxyParams}
 
 
-Definition at line 555 of file physicsmanager.cpp.
+Definition at line 439 of file physicsmanager.cpp.
 
 
 

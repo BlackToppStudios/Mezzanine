@@ -80,9 +80,9 @@ Definition at line 62 of file viewport.h.
 \index{Viewport@{Viewport}!phys::Viewport@{phys::Viewport}}
 \paragraph[{Viewport}]{\setlength{\rightskip}{0pt plus 5cm}phys::Viewport::Viewport (
 \begin{DoxyParamCaption}
-\item[{{\bf Camera} $\ast$}]{ ViewportCamera, }
-\item[{{\bf Whole}}]{ ZOrder, }
-\item[{{\bf GameWindow} $\ast$}]{ ParentWindow}
+\item[{{\bf Camera} $\ast$}]{ViewportCamera, }
+\item[{{\bf Whole}}]{ZOrder, }
+\item[{{\bf GameWindow} $\ast$}]{ParentWindow}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d5/d62/classphys_1_1Viewport_a83634ee2144fadd80fec3028885b92f2}
@@ -92,7 +92,13 @@ Class constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em ViewportCamera}]The camera that is to be attached to this veiwport. \item[{\em ZOrder}]The render order of this viewport relative to other viewports in the game window. \item[{\em ParentWindow}]The game window this viewport belongs to. \end{DoxyParams}
+{\em ViewportCamera} & The camera that is to be attached to this veiwport. \\
+\hline
+{\em ZOrder} & The render order of this viewport relative to other viewports in the game window. \\
+\hline
+{\em ParentWindow} & The game window this viewport belongs to. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 51 of file viewport.cpp.
@@ -233,11 +239,9 @@ Definition at line 83 of file viewport.cpp.
 
 Gets the internal Ogre \hyperlink{classphys_1_1Viewport}{Viewport}. 
 
-\begin{DoxyInternal}{For internal use only.}
 \begin{DoxyReturn}{Returns}
 Returns a pointer to the Ogre \hyperlink{classphys_1_1Viewport}{Viewport} this class is based on. 
 \end{DoxyReturn}
-\end{DoxyInternal}
 
 
 Definition at line 123 of file viewport.cpp.
@@ -327,10 +331,10 @@ Definition at line 93 of file viewport.cpp.
 \index{SetDimensions@{SetDimensions}!phys::Viewport@{phys::Viewport}}
 \paragraph[{SetDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Viewport::SetDimensions (
 \begin{DoxyParamCaption}
-\item[{const {\bf Real} \&}]{ Left, }
-\item[{const {\bf Real} \&}]{ Top, }
-\item[{const {\bf Real} \&}]{ Width, }
-\item[{const {\bf Real} \&}]{ Height}
+\item[{const {\bf Real} \&}]{Left, }
+\item[{const {\bf Real} \&}]{Top, }
+\item[{const {\bf Real} \&}]{Width, }
+\item[{const {\bf Real} \&}]{Height}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d5/d62/classphys_1_1Viewport_a49269f1ada31f280adc8d832c9536514}
@@ -340,7 +344,15 @@ Sets the position and size of this viewport within the game window.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Left}]A relative value(range: 0-\/1) representing the leftmost position of the viewport. \item[{\em Top}]A relative value(range: 0-\/1) representing the topmost position of the viewport. \item[{\em Width}]A relative value(range: 0-\/1) representing the width of the viewport. \item[{\em Height}]A relative value(range: 0-\/1) representing the height of the viewport. \end{DoxyParams}
+{\em Left} & A relative value(range: 0-\/1) representing the leftmost position of the viewport. \\
+\hline
+{\em Top} & A relative value(range: 0-\/1) representing the topmost position of the viewport. \\
+\hline
+{\em Width} & A relative value(range: 0-\/1) representing the width of the viewport. \\
+\hline
+{\em Height} & A relative value(range: 0-\/1) representing the height of the viewport. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 78 of file viewport.cpp.
@@ -350,8 +362,8 @@ Definition at line 78 of file viewport.cpp.
 \index{SetDimensions@{SetDimensions}!phys::Viewport@{phys::Viewport}}
 \paragraph[{SetDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Viewport::SetDimensions (
 \begin{DoxyParamCaption}
-\item[{const {\bf Vector2} \&}]{ Position, }
-\item[{const {\bf Vector2} \&}]{ Size}
+\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf Vector2} \&}]{Size}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d5/d62/classphys_1_1Viewport_a0d0c47add1187921fd40a8c8c363bc30}
@@ -361,7 +373,11 @@ Sets the position and size of this viewport within the game window.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]\hyperlink{classphys_1_1Vector2}{Vector2} of relative values(range: 0-\/1) representing the top left corner of the viewport. Values are relative to the game window this viewport belongs to. \item[{\em Size}]\hyperlink{classphys_1_1Vector2}{Vector2} of relative values(range: 0-\/1) representing the width and height of the viewport. Values are relative to the game window this viewport belongs to. \end{DoxyParams}
+{\em Position} & \hyperlink{classphys_1_1Vector2}{Vector2} of relative values(range: 0-\/1) representing the top left corner of the viewport. Values are relative to the game window this viewport belongs to. \\
+\hline
+{\em Size} & \hyperlink{classphys_1_1Vector2}{Vector2} of relative values(range: 0-\/1) representing the width and height of the viewport. Values are relative to the game window this viewport belongs to. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 73 of file viewport.cpp.

@@ -37,12 +37,10 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _serializable_cpp
-#define _serializable_cpp
+#ifndef _serialization_cpp
+#define _serialization_cpp
 
 #include "serialization.h"
-
-#include <memory>
 
 namespace phys
 {

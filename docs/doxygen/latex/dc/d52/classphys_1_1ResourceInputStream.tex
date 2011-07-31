@@ -48,8 +48,8 @@ Definition at line 63 of file resourceinputstream.h.
 \index{ResourceInputStream@{ResourceInputStream}!phys::ResourceInputStream@{phys::ResourceInputStream}}
 \paragraph[{ResourceInputStream}]{\setlength{\rightskip}{0pt plus 5cm}phys::ResourceInputStream::ResourceInputStream (
 \begin{DoxyParamCaption}
-\item[{std::streambuf $\ast$}]{ InputBuffer, }
-\item[{{\bf ResourceManager} $\ast$}]{ ResourceManager\_\-}
+\item[{std::streambuf $\ast$}]{InputBuffer, }
+\item[{{\bf ResourceManager} $\ast$}]{ResourceManager\_\-}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily  \mbox{[}inline\mbox{]}}}\hfill}
 \label{dc/d52/classphys_1_1ResourceInputStream_a890b739ac7f1c68108dc29f6887d2fa2}
@@ -59,7 +59,11 @@ Descriptive Constructor.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em InputBuffer}]A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it. \item[{\em ResourceManager\_\-}]Currently unused, future functionality may tuse this. \end{DoxyParams}
+{\em InputBuffer} & A pointer to an internal::OgreDataStreamBuf. A buffer to read from the disk access subsystem (which happens to be part of Ogre). This Stream will assume ownership of this buffer and will handle deleting it. \\
+\hline
+{\em ResourceManager\_\-} & Currently unused, future functionality may tuse this. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyWarning}{Warning}
 Do not delete the InputBuffer you pass in, this class will assume owner ship and delete it on it's own 
 \end{DoxyWarning}
@@ -88,7 +92,7 @@ A bool true if it can be read from
 \end{DoxyReturn}
 
 
-Definition at line 77 of file resourceinputstream.cpp.
+Definition at line 76 of file resourceinputstream.cpp.
 
 \hypertarget{classphys_1_1ResourceInputStream_a6e7619bf3efd3b344fab92d326385009}{
 \index{phys::ResourceInputStream@{phys::ResourceInputStream}!Writeable@{Writeable}}
@@ -108,7 +112,7 @@ A bool true if it can be written to
 \end{DoxyReturn}
 
 
-Definition at line 82 of file resourceinputstream.cpp.
+Definition at line 81 of file resourceinputstream.cpp.
 
 
 

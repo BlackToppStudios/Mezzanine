@@ -64,6 +64,8 @@ namespace phys
             };
 
         protected:
+
+            ///@brief Boundaries for rotation on one axis
             struct AngleLimits
             {
                 Real Upper;

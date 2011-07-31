@@ -49,7 +49,7 @@ void \hyperlink{classphys_1_1xml_1_1Document_aba87e21330118fb43b2aab2c36486b03}{
 \begin{DoxyCompactList}\small\item\em Load document from file. \item\end{DoxyCompactList}\item 
 \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} \hyperlink{classphys_1_1xml_1_1Document_a31c36783e033d6d43d51e31a6dd4099f}{LoadBuffer} (const void $\ast$contents, size\_\-t size, unsigned int options=\hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto)
 \begin{DoxyCompactList}\small\item\em Load document from buffer. Copies/converts the buffer, so it may be deleted or changed after the function returns. \item\end{DoxyCompactList}\item 
-\hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} \hyperlink{classphys_1_1xml_1_1Document_afaf92d3a52dcdbbff46c2ebe02bd93f6}{LoadBufferInplace} (void $\ast$contents, size\_\-t size, unsigned int options=\hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto)
+\hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} \hyperlink{classphys_1_1xml_1_1Document_ad1dd510bd1106edb92c69715eb015dc3}{LoadBufferInplace} (void $\ast$contents, size\_\-t size, unsigned int options=\hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto)
 \begin{DoxyCompactList}\small\item\em Load document from buffer, using the buffer for in-\/place parsing (the buffer is modified and used for storage of document data). \item\end{DoxyCompactList}\item 
 \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} \hyperlink{classphys_1_1xml_1_1Document_a9213b8bf4fa5423ea292a3d03c826608}{LoadBufferInplaceOwn} (void $\ast$contents, size\_\-t size, unsigned int options=\hyperlink{namespacephys_1_1xml_aa6b8f7f8c2322fd683a235b498834d60}{ParseDefault}, \hyperlink{namespacephys_1_1xml_a420f5de782438f88160321385bea2015}{Encoding} DocumentEncoding=EncodingAuto)
 \begin{DoxyCompactList}\small\item\em Load document from buffer, using the buffer for in-\/place parsing (the buffer is modified and used for storage of document data). \item\end{DoxyCompactList}\item 
@@ -70,7 +70,7 @@ bool \hyperlink{classphys_1_1xml_1_1Document_a39fd70a3f157cacc4a6e7bc6696750b9}{
 \subsubsection{Detailed Description}
 The root node of any xml hierarchy is a \hyperlink{classphys_1_1xml_1_1Document}{Document} \hyperlink{classphys_1_1xml_1_1Node}{Node}. This has all the same features as a \hyperlink{classphys_1_1xml_1_1Node}{Node} and include a few features for saving, loading, streaming and to a limited degree managing the document declaration. 
 
-Definition at line 990 of file xml.h.
+Definition at line 1000 of file xml.h.
 
 
 
@@ -96,9 +96,9 @@ An \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} that is the root element of t
 \index{Load@{Load}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{Load}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Document::Load (
 \begin{DoxyParamCaption}
-\item[{std::basic\_\-istream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{ stream, }
-\item[{unsigned int}]{ options = {\ttfamily {\bf ParseDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{std::basic\_\-istream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{stream, }
+\item[{unsigned int}]{options = {\ttfamily {\bf ParseDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a9d4ddfd3b987fa3d31d41c06d06a001e}
@@ -108,7 +108,13 @@ Load XML from a stream.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em stream}]An std::istream which has xml text in it. \item[{\em options}]A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto \end{DoxyParams}
+{\em stream} & An std::istream which has xml text in it. \\
+\hline
+{\em options} & A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the outcome of attempting to load the document. 
 \end{DoxyReturn}
@@ -117,8 +123,8 @@ A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the 
 \index{Load@{Load}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{Load}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Document::Load (
 \begin{DoxyParamCaption}
-\item[{std::basic\_\-istream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{ stream, }
-\item[{unsigned int}]{ options = {\ttfamily {\bf ParseDefault}}}
+\item[{std::basic\_\-istream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{stream, }
+\item[{unsigned int}]{options = {\ttfamily {\bf ParseDefault}}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a5c31cda427eeeb61cd40932f7bec6376}
@@ -128,7 +134,11 @@ Load XML from a wide stream.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em stream}]An std::basic\_\-istream which has xml wide character text in it. \item[{\em options}]A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \end{DoxyParams}
+{\em stream} & An std::basic\_\-istream which has xml wide character text in it. \\
+\hline
+{\em options} & A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the outcome of attempting to load the document. 
 \end{DoxyReturn}
@@ -137,8 +147,8 @@ A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the 
 \index{Load@{Load}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{Load}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Document::Load (
 \begin{DoxyParamCaption}
-\item[{const {\bf char\_\-t} $\ast$}]{ contents, }
-\item[{unsigned int}]{ options = {\ttfamily {\bf ParseDefault}}}
+\item[{const {\bf char\_\-t} $\ast$}]{contents, }
+\item[{unsigned int}]{options = {\ttfamily {\bf ParseDefault}}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a7ae98719610eefc5c05255e305c75e56}
@@ -148,7 +158,11 @@ Load XML from a Character array.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em contents}]A pointer to the Null terminated array of Characters. \item[{\em options}]A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \end{DoxyParams}
+{\em contents} & A pointer to the Null terminated array of Characters. \\
+\hline
+{\em options} & A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the outcome of attempting to load the document. 
 \end{DoxyReturn}
@@ -157,10 +171,10 @@ A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the 
 \index{LoadBuffer@{LoadBuffer}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{LoadBuffer}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Document::LoadBuffer (
 \begin{DoxyParamCaption}
-\item[{const void $\ast$}]{ contents, }
-\item[{size\_\-t}]{ size, }
-\item[{unsigned int}]{ options = {\ttfamily {\bf ParseDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{const void $\ast$}]{contents, }
+\item[{size\_\-t}]{size, }
+\item[{unsigned int}]{options = {\ttfamily {\bf ParseDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a31c36783e033d6d43d51e31a6dd4099f}
@@ -170,41 +184,57 @@ Load document from buffer. Copies/converts the buffer, so it may be deleted or c
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em contents}]A pointer to buffer containing the xml document to be parsed, that must remain for the lifecycle of the \hyperlink{classphys_1_1xml_1_1Document}{xml::Document}. \item[{\em size}]The size of the buffer. \item[{\em options}]A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto \end{DoxyParams}
+{\em contents} & A pointer to buffer containing the xml document to be parsed, that will remain unchanged. \\
+\hline
+{\em size} & The size of the buffer. \\
+\hline
+{\em options} & A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the outcome of attempting to load the document. 
 \end{DoxyReturn}
-
-\begin{DoxyParams}{Parameters}
-\item[{\em contents}]A pointer to buffer containing the xml document to be parsed, that will remain unchanged. \item[{\em size}]The size of the buffer. \item[{\em options}]A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto \end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the outcome of attempting to load the document. 
-\end{DoxyReturn}
-\hypertarget{classphys_1_1xml_1_1Document_afaf92d3a52dcdbbff46c2ebe02bd93f6}{
+\hypertarget{classphys_1_1xml_1_1Document_ad1dd510bd1106edb92c69715eb015dc3}{
 \index{phys::xml::Document@{phys::xml::Document}!LoadBufferInplace@{LoadBufferInplace}}
 \index{LoadBufferInplace@{LoadBufferInplace}!phys::xml::Document@{phys::xml::Document}}
-\paragraph[{LoadBufferInplace}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Document::LoadBufferInplace (
+\paragraph[{LoadBufferInplace}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParseResult} phys::xml::Document::LoadBufferInplace (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{ contents, }
-\item[{size\_\-t}]{ size, }
-\item[{unsigned int}]{ options = {\ttfamily {\bf ParseDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{void $\ast$}]{contents, }
+\item[{size\_\-t}]{size, }
+\item[{unsigned int}]{options = {\ttfamily {\bf ParseDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 )}\hfill}
-\label{dd/d44/classphys_1_1xml_1_1Document_afaf92d3a52dcdbbff46c2ebe02bd93f6}
+\label{dd/d44/classphys_1_1xml_1_1Document_ad1dd510bd1106edb92c69715eb015dc3}
 
 
 Load document from buffer, using the buffer for in-\/place parsing (the buffer is modified and used for storage of document data). 
 
-You should ensure that buffer data will persist throughout the document's lifetime, and free the buffer memory manually once document is destroyed. \hypertarget{classphys_1_1xml_1_1Document_a9213b8bf4fa5423ea292a3d03c826608}{
+You should ensure that buffer data will persist throughout the documents lifetime, and free the buffer memory manually once document is destroyed. 
+\begin{DoxyParams}{Parameters}
+{\em contents} & A pointer to buffer containing the xml document to be parsed, that must remain for the lifecycle of the \hyperlink{classphys_1_1xml_1_1Document}{xml::Document}. \\
+\hline
+{\em size} & The size of the buffer. \\
+\hline
+{\em options} & A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the outcome of attempting to load the document. 
+\end{DoxyReturn}
+\hypertarget{classphys_1_1xml_1_1Document_a9213b8bf4fa5423ea292a3d03c826608}{
 \index{phys::xml::Document@{phys::xml::Document}!LoadBufferInplaceOwn@{LoadBufferInplaceOwn}}
 \index{LoadBufferInplaceOwn@{LoadBufferInplaceOwn}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{LoadBufferInplaceOwn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParseResult} phys::xml::Document::LoadBufferInplaceOwn (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{ contents, }
-\item[{size\_\-t}]{ size, }
-\item[{unsigned int}]{ options = {\ttfamily {\bf ParseDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{void $\ast$}]{contents, }
+\item[{size\_\-t}]{size, }
+\item[{unsigned int}]{options = {\ttfamily {\bf ParseDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a9213b8bf4fa5423ea292a3d03c826608}
@@ -214,7 +244,15 @@ Load document from buffer, using the buffer for in-\/place parsing (the buffer i
 
 You should allocate the buffer with pugixml allocation function; \hyperlink{classphys_1_1xml_1_1Document}{xml::Document} will free the buffer when it is no longer needed (you can not use it anymore). 
 \begin{DoxyParams}{Parameters}
-\item[{\em contents}]A pointer to buffer containing the xml document to be parsed. \item[{\em size}]The size of the buffer. \item[{\em options}]A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \end{DoxyParams}
+{\em contents} & A pointer to buffer containing the xml document to be parsed. \\
+\hline
+{\em size} & The size of the buffer. \\
+\hline
+{\em options} & A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the outcome of attempting to load the document. 
 \end{DoxyReturn}
@@ -223,9 +261,9 @@ A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the 
 \index{LoadFile@{LoadFile}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{LoadFile}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParseResult} phys::xml::Document::LoadFile (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{ Path, }
-\item[{unsigned int}]{ options = {\ttfamily {\bf ParseDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{const char $\ast$}]{Path, }
+\item[{unsigned int}]{options = {\ttfamily {\bf ParseDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a7f9dfcc3d30347773f92c8d46fe18f9a}
@@ -235,7 +273,13 @@ Load document from file.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Path}]An c-\/style char array that contains the path and filename of the xml document to load. \item[{\em options}]A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto \end{DoxyParams}
+{\em Path} & An c-\/style char array that contains the path and filename of the xml document to load. \\
+\hline
+{\em options} & A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the outcome of attempting to load the document. 
 \end{DoxyReturn}
@@ -244,9 +288,9 @@ A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the 
 \index{LoadFile@{LoadFile}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{LoadFile}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ParseResult} phys::xml::Document::LoadFile (
 \begin{DoxyParamCaption}
-\item[{const wchar\_\-t $\ast$}]{ Path, }
-\item[{unsigned int}]{ options = {\ttfamily {\bf ParseDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{const wchar\_\-t $\ast$}]{Path, }
+\item[{unsigned int}]{options = {\ttfamily {\bf ParseDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a9ac2ad5ecfe73457083c39fb89429673}
@@ -256,7 +300,13 @@ Load document from file.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Path}]An c-\/style wide char array that contains the path and filename of the xml document to load. \item[{\em options}]A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto \end{DoxyParams}
+{\em Path} & An c-\/style wide char array that contains the path and filename of the xml document to load. \\
+\hline
+{\em options} & A bitset of parse options that should be set using the Parse variables. This Defaults to ParseDefault. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the outcome of attempting to load the document. 
 \end{DoxyReturn}
@@ -265,7 +315,7 @@ A \hyperlink{structphys_1_1xml_1_1ParseResult}{ParseResult} that stores the the 
 \index{Reset@{Reset}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{Reset}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::Document::Reset (
 \begin{DoxyParamCaption}
-\item[{const {\bf Document} \&}]{ proto}
+\item[{const {\bf Document} \&}]{proto}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_aba87e21330118fb43b2aab2c36486b03}
@@ -275,15 +325,17 @@ Removes all nodes, then copies the entire contents of the specified document.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em proto}]The \hyperlink{classphys_1_1xml_1_1Document}{Document} to copy. \end{DoxyParams}
+{\em proto} & The \hyperlink{classphys_1_1xml_1_1Document}{Document} to copy. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1xml_1_1Document_a034a5497b68d8531886fdc7a6a67bd7d}{
 \index{phys::xml::Document@{phys::xml::Document}!Save@{Save}}
 \index{Save@{Save}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{Save}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Document::Save (
 \begin{DoxyParamCaption}
-\item[{std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{ stream, }
-\item[{const {\bf char\_\-t} $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
-\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}}
+\item[{std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{stream, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a034a5497b68d8531886fdc7a6a67bd7d}
@@ -293,16 +345,22 @@ Save XML document to a stream of wide characters.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em stream}]The output stream of wide characters to send the XML document to. \item[{\em indent}]The Character(s) used to represent a tab in the output, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \end{DoxyParams}
+{\em stream} & The output stream of wide characters to send the XML document to. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the output, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1xml_1_1Document_aa9f44d46ec6139680ebde26122cc6281}{
 \index{phys::xml::Document@{phys::xml::Document}!Save@{Save}}
 \index{Save@{Save}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{Save}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Document::Save (
 \begin{DoxyParamCaption}
-\item[{std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{ stream, }
-\item[{const {\bf char\_\-t} $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
-\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{stream, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_aa9f44d46ec6139680ebde26122cc6281}
@@ -312,16 +370,24 @@ Save XML document to a stream.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em stream}]The output stream to send the XML document to. \item[{\em indent}]The Character(s) used to represent a tab in the output, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \end{DoxyParams}
+{\em stream} & The output stream to send the XML document to. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the output, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1xml_1_1Document_a6aacc12d692e13976c568ed50186b85d}{
 \index{phys::xml::Document@{phys::xml::Document}!Save@{Save}}
 \index{Save@{Save}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{Save}]{\setlength{\rightskip}{0pt plus 5cm}void phys::xml::Document::Save (
 \begin{DoxyParamCaption}
-\item[{{\bf Writer} \&}]{ WriterInstance, }
-\item[{const {\bf char\_\-t} $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
-\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{{\bf Writer} \&}]{WriterInstance, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a6aacc12d692e13976c568ed50186b85d}
@@ -331,16 +397,24 @@ Save XML document to WriterInstance.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em WriterInstance}]The \hyperlink{classphys_1_1xml_1_1Writer}{Writer} that will be used to output the xml text. \item[{\em indent}]The Character(s) used to represent a tab in the output, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \end{DoxyParams}
+{\em WriterInstance} & The \hyperlink{classphys_1_1xml_1_1Writer}{Writer} that will be used to output the xml text. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the output, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \\
+\hline
+\end{DoxyParams}
 \hypertarget{classphys_1_1xml_1_1Document_a39fd70a3f157cacc4a6e7bc6696750b9}{
 \index{phys::xml::Document@{phys::xml::Document}!SaveFile@{SaveFile}}
 \index{SaveFile@{SaveFile}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{SaveFile}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Document::SaveFile (
 \begin{DoxyParamCaption}
-\item[{const wchar\_\-t $\ast$}]{ Path, }
-\item[{const {\bf char\_\-t} $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}	\char`\"{})}, }
-\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{const wchar\_\-t $\ast$}]{Path, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}	\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a39fd70a3f157cacc4a6e7bc6696750b9}
@@ -350,7 +424,15 @@ Save XML to file.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Path}]A c-\/style array of wide chars that contain the filename (and any path) of the file to be output. \item[{\em indent}]The Character(s) used to represent a tab in the output, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \end{DoxyParams}
+{\em Path} & A c-\/style array of wide chars that contain the filename (and any path) of the file to be output. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the output, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 False if the target file could not be opened for writing 
 \end{DoxyReturn}
@@ -359,10 +441,10 @@ False if the target file could not be opened for writing
 \index{SaveFile@{SaveFile}!phys::xml::Document@{phys::xml::Document}}
 \paragraph[{SaveFile}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::xml::Document::SaveFile (
 \begin{DoxyParamCaption}
-\item[{const char $\ast$}]{ Path, }
-\item[{const {\bf char\_\-t} $\ast$}]{ indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
-\item[{unsigned int}]{ flags = {\ttfamily {\bf FormatDefault}}, }
-\item[{{\bf Encoding}}]{ DocumentEncoding = {\ttfamily EncodingAuto}}
+\item[{const char $\ast$}]{Path, }
+\item[{const {\bf char\_\-t} $\ast$}]{indent = {\ttfamily XML\_\-TEXT(\char`\"{}$\backslash$t\char`\"{})}, }
+\item[{unsigned int}]{flags = {\ttfamily {\bf FormatDefault}}, }
+\item[{{\bf Encoding}}]{DocumentEncoding = {\ttfamily EncodingAuto}}
 \end{DoxyParamCaption}
 ) const}\hfill}
 \label{dd/d44/classphys_1_1xml_1_1Document_a67c47df1019344f2b62696e2d05e6555}
@@ -372,7 +454,15 @@ Save XML to file.
 
 
 \begin{DoxyParams}{Parameters}
-\item[{\em Path}]A c-\/style array of chars that contain the filename (and any path) of the file to be output. \item[{\em indent}]The Character(s) used to represent a tab in the output, this defaults to one tab character. \item[{\em flags}]The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \item[{\em DocumentEncoding}]What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \end{DoxyParams}
+{\em Path} & A c-\/style array of chars that contain the filename (and any path) of the file to be output. \\
+\hline
+{\em indent} & The Character(s) used to represent a tab in the output, this defaults to one tab character. \\
+\hline
+{\em flags} & The output format flags, this is a bitfield that defaults to \hyperlink{namespacephys_1_1xml_a08bf6aab51f79929d9097706a5e64408}{xml::FormatDefault}. \\
+\hline
+{\em DocumentEncoding} & What kind of text is in the stream, this defaults to Encoding::EncodingAuto. \\
+\hline
+\end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 False if the target file could not be opened for writing 
 \end{DoxyReturn}

@@ -67,7 +67,7 @@ Definition at line 60 of file soundlistener.h.
 \index{SoundListener@{SoundListener}!phys::SoundListener@{phys::SoundListener}}
 \paragraph[{SoundListener}]{\setlength{\rightskip}{0pt plus 5cm}phys::SoundListener::SoundListener (
 \begin{DoxyParamCaption}
-\item[{cAudio::IListener $\ast$}]{ Listener}
+\item[{cAudio::IListener $\ast$}]{Listener}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d5a/classphys_1_1SoundListener_ab4063bdd8b0bc654a416915354ed0312}
@@ -77,7 +77,9 @@ Class constructor. Internal use only.
 
 The Class constructor. This is an internal function and shouldn't be called manually. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Listener}]Pointer to the internal listener. \end{DoxyParams}
+{\em Listener} & Pointer to the internal listener. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 48 of file soundlistener.cpp.
@@ -227,7 +229,7 @@ Definition at line 105 of file soundlistener.cpp.
 \index{Move@{Move}!phys::SoundListener@{phys::SoundListener}}
 \paragraph[{Move}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::Move (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Position}
+\item[{{\bf Vector3}}]{Position}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d5a/classphys_1_1SoundListener_a6fb5a26760d0ec460271393fd493dda2}
@@ -237,7 +239,9 @@ Moves the listener to a new location.
 
 This function will set a new position and velocity of the listener. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]The new position of the listener. \end{DoxyParams}
+{\em Position} & The new position of the listener. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 82 of file soundlistener.cpp.
@@ -247,7 +251,7 @@ Definition at line 82 of file soundlistener.cpp.
 \index{SetDirection@{SetDirection}!phys::SoundListener@{phys::SoundListener}}
 \paragraph[{SetDirection}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetDirection (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Direction}
+\item[{{\bf Vector3}}]{Direction}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d5a/classphys_1_1SoundListener_ad4ba93b650897e355c26b09e3f95bce0}
@@ -257,7 +261,9 @@ Sets the direction the listener is facing.
 
 Sets the direction the listener is facing. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Direction}]The new direction for the listener. \end{DoxyParams}
+{\em Direction} & The new direction for the listener. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 62 of file soundlistener.cpp.
@@ -267,7 +273,7 @@ Definition at line 62 of file soundlistener.cpp.
 \index{SetMasterVolume@{SetMasterVolume}!phys::SoundListener@{phys::SoundListener}}
 \paragraph[{SetMasterVolume}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetMasterVolume (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ Volume}
+\item[{{\bf Real}}]{Volume}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d5a/classphys_1_1SoundListener_a8375218557d4a79889bc59da6b064a43}
@@ -277,7 +283,9 @@ Sets the master volume for all sources heard by this listener.
 
 This function will scale the volume for all sources heard by this listener by the amount provided. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Volume}]The amount by which to scale all sound sources heard. \end{DoxyParams}
+{\em Volume} & The amount by which to scale all sound sources heard. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 77 of file soundlistener.cpp.
@@ -287,7 +295,7 @@ Definition at line 77 of file soundlistener.cpp.
 \index{SetMetersPerUnit@{SetMetersPerUnit}!phys::SoundListener@{phys::SoundListener}}
 \paragraph[{SetMetersPerUnit}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetMetersPerUnit (
 \begin{DoxyParamCaption}
-\item[{{\bf Real}}]{ Meters}
+\item[{{\bf Real}}]{Meters}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d5a/classphys_1_1SoundListener_ae5d432f4e1bf7eb788364e7ea0c4e0a6}
@@ -297,7 +305,9 @@ Sets the scale to be used by the manager for this listener.
 
 This function will set the engines scale for use with sounds. Internally the engine assumes all units are in meters. If that is not the case then this function should be called to set the scale. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Meters}]The amount of meters that are in one unit of your games scale. \end{DoxyParams}
+{\em Meters} & The amount of meters that are in one unit of your games scale. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 116 of file soundlistener.cpp.
@@ -307,7 +317,7 @@ Definition at line 116 of file soundlistener.cpp.
 \index{SetPosition@{SetPosition}!phys::SoundListener@{phys::SoundListener}}
 \paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetPosition (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Position}
+\item[{{\bf Vector3}}]{Position}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d5a/classphys_1_1SoundListener_ab2a679aaf18c646365285c8691ffcb0c}
@@ -317,7 +327,9 @@ Sets the listener position.
 
 Sets the listeners position. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Position}]The new position for the listener. \end{DoxyParams}
+{\em Position} & The new position for the listener. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 57 of file soundlistener.cpp.
@@ -327,7 +339,7 @@ Definition at line 57 of file soundlistener.cpp.
 \index{SetUpVector@{SetUpVector}!phys::SoundListener@{phys::SoundListener}}
 \paragraph[{SetUpVector}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetUpVector (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Up}
+\item[{{\bf Vector3}}]{Up}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d5a/classphys_1_1SoundListener_a51d6f4ccbbbe059e330eba6ef218eda8}
@@ -337,7 +349,9 @@ Sets the up direction for the listener.
 
 Sets the direction that is up relative to the orientation of the listener. Default: +Y 
 \begin{DoxyParams}{Parameters}
-\item[{\em Up}]The new upward vector to be used by the listener. \end{DoxyParams}
+{\em Up} & The new upward vector to be used by the listener. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 67 of file soundlistener.cpp.
@@ -347,7 +361,7 @@ Definition at line 67 of file soundlistener.cpp.
 \index{SetVelocity@{SetVelocity}!phys::SoundListener@{phys::SoundListener}}
 \paragraph[{SetVelocity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::SoundListener::SetVelocity (
 \begin{DoxyParamCaption}
-\item[{{\bf Vector3}}]{ Velocity}
+\item[{{\bf Vector3}}]{Velocity}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d1/d5a/classphys_1_1SoundListener_a22e63d58ca9710f9a54fb08dbd9be4d9}
@@ -357,7 +371,9 @@ Sets the velocity of the listener.
 
 Sets the listeners velocity, for use in determining doppler effects. 
 \begin{DoxyParams}{Parameters}
-\item[{\em Velocity}]The new velocity for the listener. \end{DoxyParams}
+{\em Velocity} & The new velocity for the listener. \\
+\hline
+\end{DoxyParams}
 
 
 Definition at line 72 of file soundlistener.cpp.

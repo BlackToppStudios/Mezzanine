@@ -10,12 +10,22 @@ This namespace is used for internal helper classes, and in general it should be 
 \subsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
+class \hyperlink{classphys_1_1internal_1_1InternalActorGraphicsSettings}{InternalActorGraphicsSettings}
+\begin{DoxyCompactList}\small\item\em Used to store internal data about an actors. \item\end{DoxyCompactList}\item 
 struct \hyperlink{structphys_1_1internal_1_1EventManagerInternalData}{EventManagerInternalData}
 \begin{DoxyCompactList}\small\item\em Used to increase encapsulation, just a bit. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1internal_1_1BulletFile}{BulletFile}
+\begin{DoxyCompactList}\small\item\em This is an internal resource class that allows the integration of the .bullet file format into the Ogre resource system. \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1internal_1_1BulletFilePtr}{BulletFilePtr}
+\item 
+class \hyperlink{classphys_1_1internal_1_1BulletFileManager}{BulletFileManager}
+\begin{DoxyCompactList}\small\item\em This is an internal resource manager class that allows the integration of the .bullet file format into the Ogre resource system. \item\end{DoxyCompactList}\item 
 class \hyperlink{classphys_1_1internal_1_1Line3D}{Line3D}
 \begin{DoxyCompactList}\small\item\em Does the bulk of the work that that the \hyperlink{classphys_1_1LineGroup}{phys::LineGroup} performs. \item\end{DoxyCompactList}\item 
 struct \hyperlink{structphys_1_1internal_1_1ParticleEffectInternalData}{ParticleEffectInternalData}
-\begin{DoxyCompactList}\small\item\em used to store internal data and functions for the \hyperlink{classphys_1_1ParticleEffect}{ParticleEffect}; \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em used to store internal data and functions for the \hyperlink{classphys_1_1ParticleEffect}{ParticleEffect}; \item\end{DoxyCompactList}\item 
+class \hyperlink{classphys_1_1internal_1_1SceneManagerData}{SceneManagerData}
+\begin{DoxyCompactList}\small\item\em Stores internal data for the SCeneManager to keep it from cluttering the Header file. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -24,9 +34,7 @@ int \hyperlink{namespacephys_1_1internal_acd8a05884c6de30dc6db8573d55d1af0}{Phys
 
 
 \subsubsection{Detailed Description}
-This namespace is used for internal helper classes, and in general it should be ignored by game developers. \begin{DoxyInternal}{For internal use only.}
-This whole internal namespace is a home for dirty hacks and internal dependant code. This is where code goes that must implement classes or functions for the various subsytems the Physgame engine draws on. \end{DoxyInternal}
-
+This namespace is used for internal helper classes, and in general it should be ignored by game developers. This whole internal namespace is a home for dirty hacks and internal dependant code. This is where code goes that must implement classes or functions for the various subsytems the Physgame engine draws on. 
 
 \subsubsection{Function Documentation}
 \hypertarget{namespacephys_1_1internal_acd8a05884c6de30dc6db8573d55d1af0}{
@@ -34,8 +42,8 @@ This whole internal namespace is a home for dirty hacks and internal dependant c
 \index{PhysSDLFilter@{PhysSDLFilter}!phys::internal@{phys::internal}}
 \paragraph[{PhysSDLFilter}]{\setlength{\rightskip}{0pt plus 5cm}int phys::internal::PhysSDLFilter (
 \begin{DoxyParamCaption}
-\item[{void $\ast$}]{ userdata, }
-\item[{SDL\_\-Event $\ast$}]{ event}
+\item[{void $\ast$}]{userdata, }
+\item[{SDL\_\-Event $\ast$}]{event}
 \end{DoxyParamCaption}
 )}\hfill}
 \label{d0/d26/namespacephys_1_1internal_acd8a05884c6de30dc6db8573d55d1af0}
@@ -43,18 +51,20 @@ This whole internal namespace is a home for dirty hacks and internal dependant c
 
 SDL uses this to filter events it presents to applications. 
 
-\begin{DoxyInternal}{For internal use only.}
 This is used used to filter out SQL\_\-quit messages, and generate appropriate messages for the game developer to use. This will always drop quit events, and store that information for later use. 
 \begin{DoxyParams}{Parameters}
-\item[{\em event}]This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages \item[{\em userdata}]Nothing, a dummy argument that could be used by SDL \end{DoxyParams}
+{\em event} & This is the event SDL expects use to filters, To get real data from this we setup it up so that if the event is a null pointer the function will return data about quit messages \\
+\hline
+{\em userdata} & Nothing, a dummy argument that could be used by SDL \\
+\hline
+\end{DoxyParams}
 \begin{DoxyWarning}{Warning}
 Do not use this. It can only cause problems. This is for SDL, the user input subsystem, to filter certain events. 
 \end{DoxyWarning}
 \begin{DoxyReturn}{Returns}
 This will always return either 0 or 1 to SDL. 0 if it should drop the event, which it does to all SDL\_\-quit events, 1 if the event should be allowed, which it does to all events which are not SDL\_\-quit events. If a null pointer was passed, then this will return 4 if it dropped an SDL\_\-Quit, and 2 if it has not droppped an SDL\_\-quit. 
 \end{DoxyReturn}
-\end{DoxyInternal}
 
 
-Definition at line 68 of file eventmanager.cpp.
+Definition at line 89 of file eventmanager.cpp.
 

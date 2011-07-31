@@ -26,10 +26,14 @@ namespace \hyperlink{namespacephys_1_1xml}{phys::xml}
 \subsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-String \hyperlink{namespacephys_1_1xml_a9d912900518f0d84d323d1514dfb93a2}{phys::xml::GetOneTag} (std::istream \&stream)
+String PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2b175958ac1d39cc297c24e3f377739b}{phys::xml::GetOneTag} (std::istream \&stream)
 \begin{DoxyCompactList}\small\item\em Gets the first tag out of the Stream and returns it as a String. \item\end{DoxyCompactList}\item 
-Document $\ast$ \hyperlink{namespacephys_1_1xml_a61f614191fad81859f2aa87a80f6bb36}{phys::xml::PreParseClassFromSingleTag} (const String \&NameSpace, const String \&ClassName, const String \&OneTag)
-\begin{DoxyCompactList}\small\item\em Perform a basic series of checks for extracting meaning from a single xml tag. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+Document $\ast$PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_ab5e51b3ea3a6e61bf4c8368005232210}{phys::xml::PreParseClassFromSingleTag} (const String \&NameSpace, const String \&ClassName, const String \&OneTag)
+\begin{DoxyCompactList}\small\item\em Perform a basic series of checks for extracting meaning from a single xml tag. \item\end{DoxyCompactList}\item 
+Document $\ast$PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_ad6253962e86b5e7c149aef36662d17e1}{phys::xml::PreParseClassFromSingleTag} (const String \&ClassName, const String \&OneTag)
+\begin{DoxyCompactList}\small\item\em Calls PreParseClassFromSingleTag passing a \char`\"{}\char`\"{} as the Namespace. \item\end{DoxyCompactList}\item 
+String PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_abdfe44958945865c471158d8c071f727}{phys::xml::EscapeXML} (const String \&XMLText)
+\begin{DoxyCompactList}\small\item\em Convert $<$ $>$ \& and " in text to $<$, $>$, \& and \&quote so text can safely be stored in XML. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsubsection{Detailed Description}

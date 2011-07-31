@@ -45,28 +45,35 @@
 
 namespace phys
 {
-            Vector3WActor::Vector3WActor()
-            {
-                this->Actor=0;
-            }
+    Vector3WActor::Vector3WActor()
+    {
+        this->Actor=0;
+    }
 
-            Vector3WActor::Vector3WActor(ActorBase* Actor_, Vector3 Vector_)
-            {
-                this->Actor=Actor_;
-                this->Vector=Vector_;
-            }
+    Vector3WActor::Vector3WActor(ActorBase* Actor_, Vector3 Vector_)
+    {
+        this->Actor=Actor_;
+        this->Vector=Vector_;
+    }
 
 }
 
+#ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::Vector3WActor& x)
 {
     if (x.Actor != NULL)
     {
-        stream << "( Actor:" << x.Actor->ProtoSerialize() << " Vector:" << x.Vector << ")";
+        //Creating a Document here is a sloppy mess used only to integrate old and new code
+        phys::xml::Document Doc;
+        Doc.Load("");
+        x.Actor->ProtoSerialize(Doc);
+        stream << "( Actor:" << Doc << " Vector:" << x.Vector << ")";
     }else{
         stream << "( Actor: NULL" << " Vector:" << x.Vector << ")";
     }
     return stream;
 }
+#endif
+
 
 #endif
