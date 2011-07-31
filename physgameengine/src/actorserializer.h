@@ -40,15 +40,25 @@
 #ifndef _actorserializer_h
 #define _actorserializer_h
 
+#include "actormanager.h"
 #include "datatypes.h"
-#include "xml.h"
 #include "xmldoc.h"
-
-#include <memory>
 
 namespace phys
 {
 
+    class ActorSerializer
+    {
+        private:
+            ActorManager* Target;
+
+        public:
+
+            ActorSerializer(ActorManager* DeSerializeTarget)
+                    : Target(DeSerializeTarget)
+            {}
+
+    };
 }
 
 #ifdef PHYSXML

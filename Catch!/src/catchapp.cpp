@@ -570,11 +570,6 @@ bool CatchApp::PostUI()
     {
         if(!TheWorld->GetUIManager()->MouseIsInUISystem())
         {
-            #ifdef PHYSDEBUG
-            TheWorld->Log("Gamebase CLICK:");
-            TheWorld->LogStream << "Camera Location: " << TheWorld->GetCameraManager()->GetDefaultCamera()->GetLocation() << endl;
-            #endif
-
             Ray *MouseRay = RayQueryer->GetMouseRay(5000);
             //*MouseRay *= 1000;
             //Ray *MouseRay = new Ray(Vector3(500.0, 0.0, 0.0),Vector3(-500.0, 0.0, 0.0));
@@ -582,6 +577,7 @@ bool CatchApp::PostUI()
             Vector3WActor *ClickOnActor = RayQueryer->GetFirstActorOnRayByPolygon(*MouseRay,phys::WOT_ActorRigid);
             #ifdef PHYSDEBUG
             TheWorld->LogStream << "MouseRay: " << *MouseRay << "| Length: " << MouseRay->Length() << endl;
+            TheWorld->Log("PlaneOfPlay"); TheWorld->Log(PlaneOfPlay);
             #endif
 
             //ActorBase *temp = ClickOnActor->Actor;
@@ -598,10 +594,10 @@ bool CatchApp::PostUI()
                 #endif
             }else{
                 #ifdef PHYSDEBUG
-                TheWorld->Log("Actor Clicked on"); TheWorld->Log(*ClickOnActor);
-                TheWorld->Log("MouseRay"); TheWorld->Log(*MouseRay);
-                TheWorld->Log("PlaneOfPlay"); TheWorld->Log(PlaneOfPlay);
-                TheWorld->Log("ClickOnActor"); TheWorld->Log(*ClickOnActor);
+                TheWorld->Log("Actor Clicked on");
+                //TheWorld->Log(*ClickOnActor);
+                //TheWorld->Log(*ClickOnActor);
+                //TheWorld->Log("ClickOnActor"); TheWorld->Log(*ClickOnActor);
                 #endif
                 if(!(ClickOnActor->Actor->IsStaticOrKinematic()))
                 {

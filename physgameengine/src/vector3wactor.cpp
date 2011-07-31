@@ -58,11 +58,12 @@ namespace phys
 
 }
 
+#ifdef PHYSXML
 std::ostream& operator << (std::ostream& stream, const phys::Vector3WActor& x)
 {
     if (x.Actor != NULL)
     {
-        //Creating a Document here is a sloppy mess used only to integrate old an new code
+        //Creating a Document here is a sloppy mess used only to integrate old and new code
         phys::xml::Document Doc;
         Doc.Load("");
         x.Actor->ProtoSerialize(Doc);
@@ -72,5 +73,7 @@ std::ostream& operator << (std::ostream& stream, const phys::Vector3WActor& x)
     }
     return stream;
 }
+#endif
+
 
 #endif

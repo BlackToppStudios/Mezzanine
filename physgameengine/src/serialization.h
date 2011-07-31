@@ -46,6 +46,7 @@
 
 #include <memory>
 
+#ifdef PHYSXML
 namespace phys
 {
 
@@ -199,8 +200,6 @@ namespace phys
 
 }
 
-#ifdef PHYSXML
-
 /*
 /// @brief This will call convert an xml::Node into Text in a stream
 /// @param Stream The std::ostream that the serializable will be stuffed into.
@@ -212,37 +211,6 @@ std::ostream& PHYS_LIB operator << (std::ostream& Stream, const phys::xml::Node&
     return Stream;11
 }
 */
-
-/*
-/// @brief This will call T::Serialize(std::ostream&) and put the contents into the Stream.
-/// @param Stream The std::ostream that the serializable will be stuffed into.
-/// @param Outy This is the object that will be serialized.
-/// @return This returns Stream that is passed in, with the additional data of the serialized object.
-template<class T>
-std::ostream& PHYS_LIB operator << (std::ostream& Stream, const T& Outy)
-    { return Outy.Serialize(Stream); }
-
-/// @brief This will call T::ProtoSerialize() and overwrite the given xml::Node with the generate contents.
-/// @param XMLData The xml::Node that the serializable will be stuffed into.
-/// @param Outy This is the object that will be serialized.
-template<class T>
-void PHYS_LIB operator << (phys::xml::Node& OneNode, const T& Outy)
-    { OneNode = Outy.ProtoSerialize(); }
-
-/// @brief Deserial XML in a stream to a proper Class, by calling T::ProtoDeSerialize(xml::Node)
-/// @param Iny The item to overwrite with the serialized data
-/// @param Stream The istream to get XML from
-/// @warning The XML in the stream needs to start with the same class you are serializing too.
-template<class T>
-std::istream& PHYS_LIB operator >> (std::istream& Stream, T& Iny)
-    { return Iny.DeSerialize(Stream); }
-
-/// @brief Simply calls Serializable Deserialize on The Item to deserialize
-/// @param Iny The item to Serialize in
-/// @param OneNode Parsed XML Data ready to go from the XML Subsystem.
-template<class T>
-void PHYS_LIB operator >> (const phys::xml::Node& OneNode, T& Iny)
-    { Iny.ProtDeSerialized(OneNode); }*/
 
 #endif // \PHYSXML
 
