@@ -52,14 +52,16 @@
 #include "actorgraphicssettings.h"
 #include "internalmotionstate.h.cpp" // This is required for the internal physmotionstate :(
 #include "internalmeshtools.h.cpp"
+#include "serialization.h"
 
 namespace phys{
     ///////////////////////////////////
     // ActorRigid class functions
 
     ActorRigid::ActorRigid(const Real& mass, const String& name, const String& file, const String& group)
-        : ActorBase ()
+        : ActorBase (), ModelFile(file), ModelGroup(group)
     {
+
         this->GraphicsObject = World::GetWorldPointer()->GetSceneManager()->GetGraphicsWorldPointer()->createEntity(name, file, group);
         this->MotionState = new internal::PhysMotionState(GraphicsNode);
         this->CreateRigidObject(mass);
@@ -274,5 +276,41 @@ namespace phys{
     {
         return physrigidbody;
     }
+
+///////////////////////////////////////////////////////////////////////////////
+// Serialization
+///////////////////////////////////////
+#ifdef PHYSXML
+    void ActorRigid::ThrowSerialError(const String& Fail) const
+        { SerializeError(Fail, "ActorRigid"); }
+
+    void ActorRigid::ProtoSerialize(xml::Node& CurrentRoot) const
+    {
+        xml::Node ActorNode = CurrentRoot.AppendChild("ActorRigid");
+        if (!ActorNode) { ThrowSerialError("create ActorRigidNode");}
+
+        xml::Attribute ActorName = ActorNode.AppendAttribute("Name");
+            ActorName.SetValue(this->GetName());
+        xml::Attribute ActorFile = ActorNode.AppendAttribute("File");
+            ActorFile.SetValue(this->ModelFile);
+        xml::Attribute ActorGroup = ActorNode.AppendAttribute("Group");
+            ActorGroup.SetValue(this->ModelGroup);
+        if( !(ActorName && ActorFile && ActorGroup) )
+            { ThrowSerialError("creating ActorRigid Attributes");}
+
+        ActorBase::ProtoSerialize(ActorNode);
+    }
+
+#endif  // \physxml
+
 }
+
+#ifdef PHYSXML
+std::ostream& operator << (std::ostream& stream, const phys::ActorRigid& ActorToSerialize)
+{
+    Serialize(stream, ActorToSerialize);
+    return stream;
+}
+#endif  // \physxml
+
 #endif

@@ -93,8 +93,8 @@ namespace phys
 
         /// @brief Convert An XML Node into a complete live data structure
         /// @param OneNode A pointer to the XML node to reconstitute into multiple Live classes.
-        /// @details This accepts a pointer to a node because not all nodes are copy constructable. Not implemented in default serializer.
-        virtual void ProtoDeSerializeAll(xml::Node* OneNode) = 0;
+        /// @details This is expected to put the deserialized items somewhere they can be accessed by the calling, but provides no facility for working them itself. Not implemented in default serializer.
+        virtual void ProtoDeSerializeAll(xml::Node& OneNode) = 0;
         /// @brief Send the serialized version of all the live data into the stream.
         /// @param Stream The std::istream to get the data from.
         /// @details The default implementation of this uses ProtoDeSerializeAll(xml::Node*) to accept
@@ -103,9 +103,8 @@ namespace phys
         virtual std::istream& DeSerializeAll(std::istream& Stream)
         {
             phys::String OneTag( phys::xml::GetOneTag(Stream) );
-            xml::Document *Doc = phys::xml::PreParseClassFromSingleTag(GetSerializedClassName(), OneTag) ;
-            ProtoDeSerializeAll(Doc);
-            delete Doc;
+            std::auto_ptr<phys::xml::Document> Doc(phys::xml::PreParseClassFromSingleTag(GetSerializedClassName(), OneTag) );
+            ProtoDeSerializeAll(*Doc);
             return Stream;
         }
 
@@ -178,17 +177,19 @@ namespace phys
     /// @brief Used to interface with a previous version of the serialization code.
     /// @details The older serialization was implemented entirely in streaming operators. This uses those, however inneficient to get the xml::Node that
     /// the current serialization solution is centered around.
-    /// @param Converted The class implementing older serialization code
-    /// @return This returns an xml::Node.
+    /// @param Converted The class implementing older serialization code.
+    /// @param CurrentRoot The place in the xml hiearchy to append the items to be sloppily ProtoSerialized.
     template <class T>
-    void SloppyProtoSerialize(T Converted, xml::Node& CurrentRoot)
+    void SloppyProtoSerialize(const T& Converted, xml::Node& CurrentRoot)
     {
+
         stringstream Depot;         //Make a place to store serialized XML
         xml::Document Staging;      //Make a place to convert from XML to an xml node
         Depot << Converted;         //Use old conversion tools to convert to serialized XML as if writing to a file
         Staging.Load(Depot);        //Load To the staging area as if loading XML form a file or whatever.
 
-        CurrentRoot.AppendCopy(Staging); //Append our work as an xml::node to the desired place in the xml Hierarchy.
+        CurrentRoot.AppendCopy(Staging.DocumentElement()); //Append our work as an xml::node to the desired place in the xml Hierarchy.
+
     }
 
     /// @brief Simply does some string concatenation, then throws an Exception
@@ -197,7 +198,6 @@ namespace phys
     /// @param SOrD Defaults to true, and if true uses the word "Serialization", otherwise uses the word "DeSerialization"
     /// @throw A phys::Exception with the message "Could not {FailedTo} during {ClassName} [De]Serialization."
     void SerializeError(const String& FailedTo, const String& ClassName, bool SOrD = true);
-
 }
 
 /*

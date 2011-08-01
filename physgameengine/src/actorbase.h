@@ -45,7 +45,7 @@
 
 ///////////////////////////////////
 // Forward Declares
-
+class btRigidBody;
 class btCollisionShape;
 class btCollisionObject;
 class btTriangleMesh;
@@ -109,7 +109,7 @@ namespace phys
             };
 
         protected:
-            /// @brief A pointer to the World the actor will reside.
+            // @brief A pointer to the World the actor will reside.
             //World* GameWorld;
 
             //abstraction for other libraries
