@@ -44,8 +44,6 @@
 #include "actorphysicssettings.h"
 #include "crossplatformexport.h"
 
-class btRigidBody;
-
 namespace phys
 {
     ///////////////////////////////////////////////////////////////////////////////

@@ -45,10 +45,6 @@
 #include "crossplatformexport.h"
 
 ///////////////////////////////////
-// Forward Declares
-class btRigidBody;
-
-///////////////////////////////////
 // Actual code
 namespace phys
 {
@@ -75,6 +71,12 @@ namespace phys
             /// This is automaticly called by the Constructor and shouldn't be called manually.
             /// @param pmass "Real Mass" The mass of the object.
             virtual void CreateRigidObject(const Real& pmass);
+
+            /// @brief The File that will store the main 3d model this works with.
+            String ModelFile;
+
+            /// @brief The resource group associated with the 3d model this Actor uses.
+            String ModelGroup;
 
         public:
             /// @brief Descriptive constructor.
@@ -145,6 +147,32 @@ namespace phys
             /// @brief Get the Physics data raw from the physic subsystem
             /// @return Currently this returns a pointer to a btRigidBody.
             virtual btRigidBody* GetBulletObject();
+
+///////////////////////////////////////////////////////////////////////////////
+// Serialization
+///////////////////////////////////////
+#ifdef PHYSXML
+        private:
+            /// @internal
+            /// @brief a Helper function that assembles strings and throws an exception
+            /// @param Fail The item that failed.
+            virtual void ThrowSerialError(const String& Fail) const;
+
+        public:
+            /// @brief Get all the this in an xml::Node.
+            /// @param CurrentRoot The point in the XML hierarchy that all this vector3 should be appended to.
+            virtual void ProtoSerialize(xml::Node& CurrentRoot) const;
+#endif
+
     };
 }
+
+#ifdef PHYSXML
+/// @brief Serialize an actor and send it to a stream
+/// @param ActorToSerialize The actor serialize
+/// @param stream the std::ostream to send the actors xml to.
+/// @return The ostream after the new data has been inserted.
+std::ostream& operator << (std::ostream& stream, const phys::ActorRigid& ActorToSerialize);
+#endif  // \physxml
+
 #endif

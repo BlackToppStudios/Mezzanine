@@ -623,8 +623,8 @@ bool CatchApp::PostUI()
             }else{
                 #ifdef PHYSDEBUG
                 TheWorld->Log("Actor Clicked on");
-                //TheWorld->Log(*ClickOnActor);
-                //TheWorld->Log(*ClickOnActor);
+                TheWorld->Log(*ClickOnActor);
+                TheWorld->Log(*ClickOnActor);
                 //TheWorld->Log("ClickOnActor"); TheWorld->Log(*ClickOnActor);
                 #endif
                 if(!(ClickOnActor->Actor->IsStaticOrKinematic()))

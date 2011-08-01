@@ -328,10 +328,10 @@ namespace phys{
         if (!ScalingNode) { ThrowSerialError("create ScalingNode"); }
         this->GetActorScaling().ProtoSerialize(ScalingNode);
 
-        xml::Node OrientationNode =ActorNode.AppendChild("Orientation");
+        xml::Node OrientationNode = ActorNode.AppendChild("Orientation");
         if(!OrientationNode)  { ThrowSerialError("create OrientationNode"); }
 
-        SloppyProtoSerialize(this->GetOrientation(),OrientationNode);
+        SloppyProtoSerialize( this->GetOrientation(), OrientationNode);
         SloppyProtoSerialize( *(this->GetGraphicsSettings()), ActorNode );
         SloppyProtoSerialize( *(this->GetPhysicsSettings()), ActorNode );
 
@@ -341,6 +341,11 @@ namespace phys{
             ActorVersion.SetValue(1);
         xml::Attribute ActorIsInWorld = ActorNode.AppendAttribute("IsInWorld");
             ActorIsInWorld.SetValue(this->IsInWorld());
+        xml::Attribute ActorShapeIsSaved = ActorNode.AppendAttribute("ShapeIsSaved");
+            ActorShapeIsSaved.SetValue(this->GetShapeIsSaved());
+        if ( !(ActorName && ActorVersion && ActorIsInWorld && ActorShapeIsSaved) )
+            { ThrowSerialError("create ActorNode Attributes"); }
+
         xml::Attribute ActorSoundSetName = ActorNode.AppendAttribute("SoundSet");
         if(this->ActorSounds)
         {
@@ -348,8 +353,6 @@ namespace phys{
         }else{
             ActorSoundSetName.SetValue("");
         }
-        xml::Attribute ActorShapeIsSaved = ActorNode.AppendAttribute("ShapeIsSaved");
-            ActorShapeIsSaved.SetValue(this->GetShapeIsSaved());
 
         // if actor node is in scenemanager just save a name
         if( World::GetWorldPointer()->GetSceneManager(0)->GetNode( this->ActorWorldNode->GetName() ) )
@@ -360,55 +363,11 @@ namespace phys{
         }else{
             SloppyProtoSerialize( *(this->ActorWorldNode),ActorNode);
         }
-
-
-            // add logic here to identify actor
-                //Location
-                //orientation
-                //graphicssettings
-                //physicssettings
-                //name
-                //Scaling
-                //soundset
-    //Constructor Items
-
-
-
-
-            //Shapeissaved
-    //createshapefrommesh
-                //is in world
-                //animation?
-
-                //Actor worldnode name
-
-
-
     }
 
-#endif
+#endif  // \physxml
 }// /phys
 
-
-    // add logic here to identify actor
-    //Location
-    //orientation
-    //graphicssettings
-    //physicssettings
-    //name
-    //Scaling
-
-    //Constructor Items
-
-    //soundset
-
-
-    //Shapeissaved
-    //createshapefrommesh
-    //is in world
-    //animation?
-
-    //Actor worldnode name
 
 
 #endif
