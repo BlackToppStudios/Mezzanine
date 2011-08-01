@@ -227,7 +227,6 @@ namespace phys
             /// @return Returns the currently set Linear Velocity of this object.
             virtual Vector3 GetLinearVelocity() const;
 
-
             /// @brief Sets the Angular Velocity of this object.
             /// @param AngVel Vector3 representing the Angular Velocity to be set.
             virtual void SetAngularVelocity(const Vector3& AngVel);

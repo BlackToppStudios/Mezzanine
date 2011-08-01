@@ -250,11 +250,26 @@ namespace phys{
         return PhysicsSettings;
     }
 
-    void ActorRigid::LimitMovementOnAxis(bool x, bool y, bool z)
+    void ActorRigid::SetLinearMovementFactor(const Vector3& Factor)
     {
-        btVector3 LinFact(x,y,z);
-        this->physrigidbody->setLinearFactor(LinFact);
-        return;
+        this->physrigidbody->setLinearFactor(Factor.GetBulletVector3());
+    }
+
+    Vector3 ActorRigid::GetLinearMovementFactor()
+    {
+        Vector3 LinFact(this->physrigidbody->getLinearFactor());
+        return LinFact;
+    }
+
+    void ActorRigid::SetAngularMovementFactor(const Vector3& Factor)
+    {
+        this->physrigidbody->setAngularFactor(Factor.GetBulletVector3());
+    }
+
+    Vector3 ActorRigid::GetAngularMovementFactor()
+    {
+        Vector3 AngFact(this->physrigidbody->getAngularFactor());
+        return AngFact;
     }
 
     void ActorRigid::AddObjectToWorld(World *TargetWorld)

@@ -684,10 +684,20 @@ namespace phys
         delete BulletSolver;
         delete BulletBroadphase;
         delete GhostCallback;
-        if(BulletDrawer) delete BulletDrawer;
+        bool DebugOn = false;
+        if(BulletDrawer)
+        {
+            delete BulletDrawer;
+            DebugOn = true;
+        }
 
         if(Info) this->Construct(*Info);
         else this->Construct(WorldConstructionInfo);
+        if(DebugOn)
+        {
+            this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
+            this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
+        }
     }
 
     void PhysicsManager::ClearPhysicsMetaData()
