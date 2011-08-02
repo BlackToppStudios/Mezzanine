@@ -1,0 +1,78 @@
+\hypertarget{XMLManual_XMLTOC}{}\subsection{Table Of Contents}\label{XMLManual_XMLTOC}
+
+\begin{DoxyItemize}
+\item \hyperlink{XMLManual_XMLOverview}{Overview}
+\begin{DoxyItemize}
+\item \hyperlink{XMLManual_XMLIntroduction}{Introduction}
+\item \hyperlink{XMLManual_XMLFeedBack}{FeedBack}
+\item \hyperlink{XMLManual_XMLAcknowledgments}{Acknowledgments}
+\item \hyperlink{XMLManual_XMLLicense}{License}
+\end{DoxyItemize}
+\item \hyperlink{XMLManual_XMLDOM}{Document Object Model}
+\item \hyperlink{XMLManual_XMLLoading}{Loading Documents}
+\item \hyperlink{XMLManual_XMLAccessing}{Accessing Document Data}
+\item \hyperlink{XMLManual_XMLModifying}{Modifiying Document}
+\item \hyperlink{XMLManual_XMLSaving}{Saving Documents}
+\item \hyperlink{XMLManual_XMLXPath}{XMLXPath} \par
+ \par
+ 
+\end{DoxyItemize}\hypertarget{XMLManual_XMLOverview}{}\subsection{Overview}\label{XMLManual_XMLOverview}
+
+\begin{DoxyItemize}
+\item \hyperlink{XMLManual_XMLIntroduction}{Introduction}
+\item \hyperlink{XMLManual_XMLFeedBack}{FeedBack}
+\item \hyperlink{XMLManual_XMLAcknowledgments}{Acknowledgments}
+\item \hyperlink{XMLManual_XMLLicense}{License}
+\end{DoxyItemize}\hypertarget{XMLManual_XMLIntroduction}{}\subsubsection{Introduction}\label{XMLManual_XMLIntroduction}
+\hyperlink{namespacephys_1_1xml}{phys::xml} is a light-\/weight C++ XML processing library. It consists of a DOM-\/like interface with rich traversal/modification capabilities, an extremely fast XML parser which constructs the DOM tree from an XML file/buffer, and an \hyperlink{classphys_1_1xml_1_1XPathQuery}{XPath 1.0 implementation} for complex data-\/driven tree queries. Full Unicode support is also available, with \hyperlink{XMLManual_XMLUnicode}{two Unicode interface variants} and conversions between different Unicode encodings (which happen automatically during parsing/saving). \par
+ \par
+ \hyperlink{namespacephys_1_1xml}{phys::xml} enables very fast, convenient and memory-\/efficient XML document processing. However, since \hyperlink{namespacephys_1_1xml}{phys::xml} has a DOM parser, it can't process XML documents that do not fit in memory; also the parser is a non-\/validating one, so if you need DTD or XML Schema validation, the XML parser is not for you. \par
+ \par
+ This is the complete manual for \hyperlink{namespacephys_1_1xml}{phys::xml}, which describes all features of the library in detail. If you want to start writing code as quickly as possible, you are advised to \hyperlink{XMLQuickStart}{read the quick start guide first}. \hypertarget{XMLManual_XMLFeedBack}{}\subsubsection{FeedBack}\label{XMLManual_XMLFeedBack}
+If you believe you've found a bug in \hyperlink{namespacephys_1_1xml}{phys::xml} (bugs include compilation problems (errors/warnings), crashes, performance degradation and incorrect behavior), please contact Blacktopp Studios Inc ( \href{http://www.blacktoppstudios.com/}{\tt http://www.blacktoppstudios.com/} ) . We check the the Forums ( \href{http://www.blacktoppstudios.com/?page_id=753}{\tt http://www.blacktoppstudios.com/?page\_\-id=753} ) and items sent by our contact form ( \href{http://www.blacktoppstudios.com/?page_id=33}{\tt http://www.blacktoppstudios.com/?page\_\-id=33} ) regularly. Be sure to include the relevant information so that the bug can be reproduced: the version of \hyperlink{namespacephys_1_1xml}{phys::xml}, compiler version and target architecture, the code that uses \hyperlink{namespacephys_1_1xml}{phys::xml} and exhibits the bug, etc. \par
+ \par
+ Feature requests can be reported the same way as bugs, so if you're missing some functionality in \hyperlink{namespacephys_1_1xml}{phys::xml} or if the API is rough in some places and you can suggest an improvement, please let us know. However, please note that there are many factors when considering API changes (compatibility with previous versions, API redundancy, etc.). \par
+ \par
+ If you have a contribution to \hyperlink{namespacephys_1_1xml}{phys::xml}, such as build script for some build system/IDE, or a well-\/designed set of helper functions, or a binding to some language other than C++, please let us know. You can include the relevant patches as issue attachments. We will have to communicate on the Licensing terms of your contribution though. \par
+ \par
+ If the provided methods of contact have an issue or not possible due to privacy or other concerns, you can contact the \hyperlink{namespacephys_1_1xml}{phys::xml} author ( \href{mailto:toppij@blacktoppstudios.com}{\tt toppij@blacktoppstudios.com} ) or pugixml author ( \href{mailto:arseny.kapoulkine@gmail.com}{\tt arseny.kapoulkine@gmail.com} ) by e-\/mail directly. If you have an issue that pertains to pugixml and not \hyperlink{namespacephys_1_1xml}{phys::xml} you can visit the pugixml issue submission form ( \href{http://code.google.com/p/pugixml/issues/entry}{\tt http://code.google.com/p/pugixml/issues/entry} ) of the pugixml feature request form ( \href{http://code.google.com/p/pugixml/issues/entry?template=Feature%20request}{\tt http://code.google.com/p/pugixml/issues/entry?template=Feature\%20request} ). \hypertarget{XMLManual_XMLAcknowledgments}{}\subsubsection{Acknowledgments}\label{XMLManual_XMLAcknowledgments}
+\hyperlink{namespacephys_1_1xml}{phys::xml} and pugixml could not be developed without the help from many people; some of them are listed in this section. If you've played a part in \hyperlink{namespacephys_1_1xml}{phys::xml} or pugixml development and you can not find yourself on this list, I'm truly sorry; please send me an e-\/mail ( \href{mailto:toppij@blacktoppstudios.com}{\tt toppij@blacktoppstudios.com} ) so I can fix this. \par
+ \par
+ Thanks to {\bfseries Arseny} {\bfseries Kapoulkine} for pugixml parser, which was used as a basis for \hyperlink{namespacephys_1_1xml}{phys::xml}. \par
+ \par
+ Thanks to {\bfseries Kristen} {\bfseries Wegner} for pugxml parser, which was used as a basis for pugixml. \par
+ \par
+ Thanks to {\bfseries Neville} {\bfseries Franks} for contributions to pugxml parser. \par
+ \par
+ Thanks to {\bfseries Artyom} {\bfseries Palvelev} for suggesting a lazy gap contraction approach. \par
+ \par
+ Thanks to {\bfseries Vyacheslav} {\bfseries Egorov} for documentation proofreading. \hypertarget{XMLManual_XMLLicense}{}\subsubsection{License}\label{XMLManual_XMLLicense}
+With written permission as per \hyperlink{OriginalpugixmlLicense}{The original pugixml license} we he sublicensed \hyperlink{namespacephys_1_1xml}{phys::xml} under the \hyperlink{GPLLicense}{GPL Version 3}. In short This allows you to use \hyperlink{namespacephys_1_1xml}{phys::xml} however you like with a few restrictions. If you change \hyperlink{namespacephys_1_1xml}{phys::xml} you need to make the changes publically available. If you make software using \hyperlink{namespacephys_1_1xml}{phys::xml} you need to make the source code publicly available. You may not use and Digital Rights Management (DRM) software to limit how others use the combined work you make. You can sell resulting works, but not through a digital distribution store that uses DRM.\hypertarget{XMLManual_XMLDOM}{}\subsection{Document Object Model}\label{XMLManual_XMLDOM}
+
+\begin{DoxyItemize}
+\item \hyperlink{XMLManual_XMLTreeStructure}{Tree structure}
+\item \hyperlink{XMLManual_XMLInterface}{C++ interface}
+\item \hyperlink{XMLManual_XMLUnicode}{Unicode Interface}
+\item \hyperlink{XMLManual_XMLThreadSafety}{Thread-\/safety guarantees}
+\item \hyperlink{XMLManual_XMLExceptionSafety}{Exception guarantees}
+\item \hyperlink{XMLManual_XMLMemory}{Memory management}
+\begin{DoxyItemize}
+\item \hyperlink{XMLManual_XMLCustomAlloc}{Custom memory allocation/deallocation functions}
+\item \hyperlink{XMLManual_XMLMemoryInternals}{Document memory management internals} Document memory management internals \par
+ \hyperlink{namespacephys_1_1xml}{phys::xml} stores XML data in DOM-\/like way: the entire XML document (both document structure and element data) is stored in memory as a tree. The tree can be loaded from a character stream (file, string, C++ I/O stream), then traversed with the special API or XPath expressions. The whole tree is mutable: both node structure and node/attribute data can be changed at any time. Finally, the result of document transformations can be saved to a character stream (file, C++ I/O stream or custom transport). 
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{XMLManual_XMLTreeStructure}{}\subsubsection{Tree structure}\label{XMLManual_XMLTreeStructure}
+Still in progress \hypertarget{XMLManual_XMLInterface}{}\subsubsection{C++ interface}\label{XMLManual_XMLInterface}
+Still in progress \hypertarget{XMLManual_XMLUnicode}{}\subsubsection{Unicode Interface}\label{XMLManual_XMLUnicode}
+Still in progress \hypertarget{XMLManual_XMLThreadSafety}{}\subsubsection{Thread-\/safety guarantees}\label{XMLManual_XMLThreadSafety}
+Still in progress \hypertarget{XMLManual_XMLExceptionSafety}{}\subsubsection{Exception guarantees}\label{XMLManual_XMLExceptionSafety}
+Still in progress \hypertarget{XMLManual_XMLMemory}{}\subsubsection{Memory management}\label{XMLManual_XMLMemory}
+Still in progress \hypertarget{XMLManual_XMLCustomAlloc}{}\paragraph{Custom memory allocation/deallocation functions}\label{XMLManual_XMLCustomAlloc}
+Still in progress \hypertarget{XMLManual_XMLMemoryInternals}{}\paragraph{Document memory management internals}\label{XMLManual_XMLMemoryInternals}
+Still in progress \hypertarget{XMLManual_XMLUnicode}{}\subsubsection{Unicode Interface}\label{XMLManual_XMLUnicode}
+Still in progress \hypertarget{XMLManual_XMLLoading}{}\subsection{Loading Documents}\label{XMLManual_XMLLoading}
+Still in progress \hypertarget{XMLManual_XMLAccessing}{}\subsection{Accessing Document Data}\label{XMLManual_XMLAccessing}
+Still in progress \hypertarget{XMLManual_XMLModifying}{}\subsection{Modifiying Document}\label{XMLManual_XMLModifying}
+Still in progress \hypertarget{XMLManual_XMLSaving}{}\subsection{Saving Documents}\label{XMLManual_XMLSaving}
+Still in progress \hypertarget{XMLManual_XMLXPath}{}\subsection{XMLXPath}\label{XMLManual_XMLXPath}
+Still in progress 

@@ -1,0 +1,193 @@
+\hypertarget{classphys_1_1UI_1_1InputCaptureData}{
+\subsection{phys::UI::InputCaptureData Class Reference}
+\label{classphys_1_1UI_1_1InputCaptureData}\index{phys::UI::InputCaptureData@{phys::UI::InputCaptureData}}
+}
+
+
+This class contains all the utilities necessary for capturing input.  
+
+
+
+
+{\ttfamily \#include $<$uiwidget.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1InputCaptureData_a3880b8daa9662bc5c117343040661563}{
+\hyperlink{classphys_1_1UI_1_1InputCaptureData_a3880b8daa9662bc5c117343040661563}{InputCaptureData} ()}
+\label{classphys_1_1UI_1_1InputCaptureData_a3880b8daa9662bc5c117343040661563}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1InputCaptureData_a7bd115ce3c6ab7e3a886c26ea99407a5}{
+\hyperlink{classphys_1_1UI_1_1InputCaptureData_a7bd115ce3c6ab7e3a886c26ea99407a5}{$\sim$InputCaptureData} ()}
+\label{classphys_1_1UI_1_1InputCaptureData_a7bd115ce3c6ab7e3a886c26ea99407a5}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1InputCaptureData_a46e7c734c74bbf8983ef0e87449dd931}{AddInput} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)
+\begin{DoxyCompactList}\small\item\em Adds a single input code to the list of codes to be captured. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1InputCaptureData_af63178e71795b7a1a011c85e76c0e81d}{AddInputRange} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Lower, const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Upper)
+\begin{DoxyCompactList}\small\item\em Adds a range of input codes to the list of codes to be captured. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1InputCaptureData_ac1cbd55bfa9a161f8f545679620491d8}{GetNumCapturedInputs} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of input codes this class is currently set to capture. \item\end{DoxyCompactList}\item 
+std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ $\ast$ \hyperlink{classphys_1_1UI_1_1InputCaptureData_abe46fa1848ded1b019287da766cfda25}{GetCapturedInputs} ()
+\begin{DoxyCompactList}\small\item\em Gets a vector of inputs that have been captured this frame. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1UI_1_1InputCaptureData_a2f22f9d9e8259b8687bfb5dfa8be960d}{IsInputToBeCaptured} (const \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} \&Code)
+\begin{DoxyCompactList}\small\item\em Checks this class to see if the provided code is set to be captured. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1UI_1_1InputCaptureData_ac6ed81ccf6e1fc7ac8c86b71ef7ed6d0}{UpdateCapturedInputs} (std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ \&InputCodes)
+\begin{DoxyCompactList}\small\item\em Updates the list of captured inputs for the frame. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1InputCaptureData_aa40024382c0a0409b47d46926bbb0ae3}{
+std::vector$<$ \hyperlink{classphys_1_1MetaCode_a3e501cbb5bf0f6f1fdb7211465bda8d8}{MetaCode::InputCode} $>$ {\bfseries CapturedCodes}}
+\label{classphys_1_1UI_1_1InputCaptureData_aa40024382c0a0409b47d46926bbb0ae3}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class contains all the utilities necessary for capturing input. This is commonly used for Text-\/based widgets, such as TextBox's, Spinners, and InputBox's. 
+
+Definition at line 61 of file uiwidget.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1UI_1_1InputCaptureData_a46e7c734c74bbf8983ef0e87449dd931}{
+\index{phys::UI::InputCaptureData@{phys::UI::InputCaptureData}!AddInput@{AddInput}}
+\index{AddInput@{AddInput}!phys::UI::InputCaptureData@{phys::UI::InputCaptureData}}
+\paragraph[{AddInput}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::InputCaptureData::AddInput (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{Code}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1UI_1_1InputCaptureData_a46e7c734c74bbf8983ef0e87449dd931}
+
+
+Adds a single input code to the list of codes to be captured. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Code} & The code to be captured. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 61 of file uiwidget.cpp.
+
+\hypertarget{classphys_1_1UI_1_1InputCaptureData_af63178e71795b7a1a011c85e76c0e81d}{
+\index{phys::UI::InputCaptureData@{phys::UI::InputCaptureData}!AddInputRange@{AddInputRange}}
+\index{AddInputRange@{AddInputRange}!phys::UI::InputCaptureData@{phys::UI::InputCaptureData}}
+\paragraph[{AddInputRange}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::InputCaptureData::AddInputRange (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{Lower, }
+\item[{const {\bf MetaCode::InputCode} \&}]{Upper}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1UI_1_1InputCaptureData_af63178e71795b7a1a011c85e76c0e81d}
+
+
+Adds a range of input codes to the list of codes to be captured. 
+
+This function will fail silently if the lower code is higher then the upper code. 
+\begin{DoxyParams}{Parameters}
+{\em Lower} & The first input code in the range to be entered. \\
+\hline
+{\em Upper} & The last input code in the range to be entered. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 66 of file uiwidget.cpp.
+
+\hypertarget{classphys_1_1UI_1_1InputCaptureData_abe46fa1848ded1b019287da766cfda25}{
+\index{phys::UI::InputCaptureData@{phys::UI::InputCaptureData}!GetCapturedInputs@{GetCapturedInputs}}
+\index{GetCapturedInputs@{GetCapturedInputs}!phys::UI::InputCaptureData@{phys::UI::InputCaptureData}}
+\paragraph[{GetCapturedInputs}]{\setlength{\rightskip}{0pt plus 5cm}std::vector$<$ {\bf MetaCode::InputCode} $>$ $\ast$ phys::UI::InputCaptureData::GetCapturedInputs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1UI_1_1InputCaptureData_abe46fa1848ded1b019287da766cfda25}
+
+
+Gets a vector of inputs that have been captured this frame. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the vector containing all the input codes captured this frame. 
+\end{DoxyReturn}
+
+
+Definition at line 77 of file uiwidget.cpp.
+
+\hypertarget{classphys_1_1UI_1_1InputCaptureData_ac1cbd55bfa9a161f8f545679620491d8}{
+\index{phys::UI::InputCaptureData@{phys::UI::InputCaptureData}!GetNumCapturedInputs@{GetNumCapturedInputs}}
+\index{GetNumCapturedInputs@{GetNumCapturedInputs}!phys::UI::InputCaptureData@{phys::UI::InputCaptureData}}
+\paragraph[{GetNumCapturedInputs}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::UI::InputCaptureData::GetNumCapturedInputs (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1UI_1_1InputCaptureData_ac1cbd55bfa9a161f8f545679620491d8}
+
+
+Gets the number of input codes this class is currently set to capture. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Whole representing the number of input codes set to be captured. 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file uiwidget.cpp.
+
+\hypertarget{classphys_1_1UI_1_1InputCaptureData_a2f22f9d9e8259b8687bfb5dfa8be960d}{
+\index{phys::UI::InputCaptureData@{phys::UI::InputCaptureData}!IsInputToBeCaptured@{IsInputToBeCaptured}}
+\index{IsInputToBeCaptured@{IsInputToBeCaptured}!phys::UI::InputCaptureData@{phys::UI::InputCaptureData}}
+\paragraph[{IsInputToBeCaptured}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::InputCaptureData::IsInputToBeCaptured (
+\begin{DoxyParamCaption}
+\item[{const {\bf MetaCode::InputCode} \&}]{Code}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1UI_1_1InputCaptureData_a2f22f9d9e8259b8687bfb5dfa8be960d}
+
+
+Checks this class to see if the provided code is set to be captured. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Code} & The input code to check for. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 82 of file uiwidget.cpp.
+
+\hypertarget{classphys_1_1UI_1_1InputCaptureData_ac6ed81ccf6e1fc7ac8c86b71ef7ed6d0}{
+\index{phys::UI::InputCaptureData@{phys::UI::InputCaptureData}!UpdateCapturedInputs@{UpdateCapturedInputs}}
+\index{UpdateCapturedInputs@{UpdateCapturedInputs}!phys::UI::InputCaptureData@{phys::UI::InputCaptureData}}
+\paragraph[{UpdateCapturedInputs}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::InputCaptureData::UpdateCapturedInputs (
+\begin{DoxyParamCaption}
+\item[{std::vector$<$ {\bf MetaCode::InputCode} $>$ \&}]{InputCodes}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1UI_1_1InputCaptureData_ac6ed81ccf6e1fc7ac8c86b71ef7ed6d0}
+
+
+Updates the list of captured inputs for the frame. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em InputCodes} & Vector of input codes to update the widget with. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 88 of file uiwidget.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uiwidget.h\item 
+uiwidget.cpp\end{DoxyCompactItemize}

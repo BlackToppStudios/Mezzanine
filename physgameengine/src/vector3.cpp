@@ -371,11 +371,11 @@ namespace phys
             phys::xml::Attribute XAttr = VecNode.AppendAttribute("X");
             phys::xml::Attribute YAttr = VecNode.AppendAttribute("Y");
             phys::xml::Attribute ZAttr = VecNode.AppendAttribute("Z");
-            if( VersionAttr && XAttr && YAttr && ZAttr)
+            if( VersionAttr && XAttr && YAttr && ZAttr )
             {
                 if( VersionAttr.SetValue("1") && XAttr.SetValue(this->X) && YAttr.SetValue(this->Y) && ZAttr.SetValue(this->Z))
                 {
-                    // It worked we don't need to do anything
+                    return;
                 }else{
                     throw(Exception("Could not Stream Vector3 XML Attribute Values."));
                 }

@@ -1,0 +1,307 @@
+\hypertarget{classphys_1_1ActorManager}{
+\subsection{phys::ActorManager Class Reference}
+\label{classphys_1_1ActorManager}\index{phys::ActorManager@{phys::ActorManager}}
+}
+
+
+A manager responsible for the storage and management of all actors in use.  
+
+
+
+
+{\ttfamily \#include $<$actormanager.h$>$}
+
+Inheritance diagram for phys::ActorManager:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classphys_1_1ActorManager}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ActorManager_a725d0454ff57bd439c9f3938b1e76ca6}{
+\hyperlink{classphys_1_1ActorManager_a725d0454ff57bd439c9f3938b1e76ca6}{ActorManager} ()}
+\label{classphys_1_1ActorManager_a725d0454ff57bd439c9f3938b1e76ca6}
+
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorManager_ad291d64d82d1ec10c75c356e8ddf75d1}{
+virtual \hyperlink{classphys_1_1ActorManager_ad291d64d82d1ec10c75c356e8ddf75d1}{$\sim$ActorManager} ()}
+\label{classphys_1_1ActorManager_ad291d64d82d1ec10c75c356e8ddf75d1}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorManager_ac2700addfdd0d4fc97dc9afe30b3923d}{GetActor} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Index)
+\begin{DoxyCompactList}\small\item\em Gets an Actor by Index. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$ \hyperlink{classphys_1_1ActorManager_a42dc22df8b201f25f41676b303e5bf95}{GetActor} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets an Actor by Name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1ActorManager_a9ff2ecc8c6b483729ad59a731a737775}{GetNumActors} ()
+\begin{DoxyCompactList}\small\item\em Gets the number of actors stored in this manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorManager_abde76a5c732b77d7bab431d0ef0220ae}{AddActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor)
+\begin{DoxyCompactList}\small\item\em Adds a pre-\/created actor to the manager. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorManager_ac5d3eaf8733a53f433293b0341db55f2}{RemoveActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor)
+\begin{DoxyCompactList}\small\item\em Removes an actor from this manager without destroying it. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorManager_aab80825c7dfbbcf33712d94e925faae8}{
+virtual void \hyperlink{classphys_1_1ActorManager_aab80825c7dfbbcf33712d94e925faae8}{RemoveAllActors} ()}
+\label{classphys_1_1ActorManager_aab80825c7dfbbcf33712d94e925faae8}
+
+\begin{DoxyCompactList}\small\item\em Removes all actors from this manager without destroying them. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorManager_ad6770c0435aef34f359a43f4038b336b}{DestroyActor} (\hyperlink{classphys_1_1ActorBase}{ActorBase} $\ast$Actor)
+\begin{DoxyCompactList}\small\item\em Destroys an actor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorManager_a41f436d640f344000b02978ce6a661e5}{
+virtual void \hyperlink{classphys_1_1ActorManager_a41f436d640f344000b02978ce6a661e5}{DestroyAllActors} ()}
+\label{classphys_1_1ActorManager_a41f436d640f344000b02978ce6a661e5}
+
+\begin{DoxyCompactList}\small\item\em Destroys all actors currently within this manager. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase} $\ast$ \hyperlink{classphys_1_1ActorManager_a7159d9d42e15d9963ee6d0989b1fd74a}{GetActorContainer} ()
+\begin{DoxyCompactList}\small\item\em Gets the internal actor container storing all the actors. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorManager_a231586ede5669da350ced7f5dcd0bee2}{
+virtual void \hyperlink{classphys_1_1ActorManager_a231586ede5669da350ced7f5dcd0bee2}{Initialize} ()}
+\label{classphys_1_1ActorManager_a231586ede5669da350ced7f5dcd0bee2}
+
+\begin{DoxyCompactList}\small\item\em Empty initializer that has been implemented from \hyperlink{classphys_1_1ManagerBase}{ManagerBase}. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ActorManager_abafe749a5ef6f750c6f3bbf2804c186e}{DoMainLoopItems} ()
+\begin{DoxyCompactList}\small\item\em Physics stepping during the main loop. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1ManagerBase_aaa6ccddf23892eaccb898529414f80a5}{ManagerTypeName} \hyperlink{classphys_1_1ActorManager_a7f529913ac6d7c74adfade5c383eeb25}{GetType} () const 
+\begin{DoxyCompactList}\small\item\em This returns the type of this manager. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1ActorManager_a7e6b7f66bdcf78475a2b07f8acac0418}{
+\hyperlink{classphys_1_1ActorContainerBase}{ActorContainerBase} $\ast$ \hyperlink{classphys_1_1ActorManager_a7e6b7f66bdcf78475a2b07f8acac0418}{Actors}}
+\label{classphys_1_1ActorManager_a7e6b7f66bdcf78475a2b07f8acac0418}
+
+\begin{DoxyCompactList}\small\item\em The actual actor container. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorManager_aeef3741b00d08ab6a51ba2962429ba4d}{
+std::vector$<$ \hyperlink{classphys_1_1ActorRigid}{ActorRigid} $\ast$ $>$ \hyperlink{classphys_1_1ActorManager_aeef3741b00d08ab6a51ba2962429ba4d}{RigidActors}}
+\label{classphys_1_1ActorManager_aeef3741b00d08ab6a51ba2962429ba4d}
+
+\begin{DoxyCompactList}\small\item\em A Second listing of All the Rigid actors. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorManager_a36ceb34508b78c5c13cba1dfc833b0f4}{
+std::vector$<$ \hyperlink{classphys_1_1ActorSoft}{ActorSoft} $\ast$ $>$ \hyperlink{classphys_1_1ActorManager_a36ceb34508b78c5c13cba1dfc833b0f4}{SoftActors}}
+\label{classphys_1_1ActorManager_a36ceb34508b78c5c13cba1dfc833b0f4}
+
+\begin{DoxyCompactList}\small\item\em A Second listing of All the Soft actors. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ActorManager_a3c2d7fb69bc1573182dd13c598a56c4f}{
+std::vector$<$ ActorCharacter $\ast$ $>$ \hyperlink{classphys_1_1ActorManager_a3c2d7fb69bc1573182dd13c598a56c4f}{CharacterActors}}
+\label{classphys_1_1ActorManager_a3c2d7fb69bc1573182dd13c598a56c4f}
+
+\begin{DoxyCompactList}\small\item\em A Second listing of All the Character actors. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+A manager responsible for the storage and management of all actors in use. More or less Management point for a container of actors to help keep them sorted. 
+
+Definition at line 59 of file actormanager.h.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1ActorManager_abde76a5c732b77d7bab431d0ef0220ae}{
+\index{phys::ActorManager@{phys::ActorManager}!AddActor@{AddActor}}
+\index{AddActor@{AddActor}!phys::ActorManager@{phys::ActorManager}}
+\paragraph[{AddActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorManager::AddActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{Actor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorManager_abde76a5c732b77d7bab431d0ef0220ae}
+
+
+Adds a pre-\/created actor to the manager. 
+
+In some cases you may want to add and remove an actor from the world without destroying it and do some special manipulations to it to achieve some special/unique affects. This function along with the \char`\"{}RemoveActor()\char`\"{} function facilitates this. \par
+ This function is also necessary for anyone inheriting from our actors to add their actors to the world. 
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor to be added to the manager. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 77 of file actormanager.cpp.
+
+\hypertarget{classphys_1_1ActorManager_ad6770c0435aef34f359a43f4038b336b}{
+\index{phys::ActorManager@{phys::ActorManager}!DestroyActor@{DestroyActor}}
+\index{DestroyActor@{DestroyActor}!phys::ActorManager@{phys::ActorManager}}
+\paragraph[{DestroyActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorManager::DestroyActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{Actor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorManager_ad6770c0435aef34f359a43f4038b336b}
+
+
+Destroys an actor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor to be destroyed. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 107 of file actormanager.cpp.
+
+\hypertarget{classphys_1_1ActorManager_abafe749a5ef6f750c6f3bbf2804c186e}{
+\index{phys::ActorManager@{phys::ActorManager}!DoMainLoopItems@{DoMainLoopItems}}
+\index{DoMainLoopItems@{DoMainLoopItems}!phys::ActorManager@{phys::ActorManager}}
+\paragraph[{DoMainLoopItems}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorManager::DoMainLoopItems (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorManager_abafe749a5ef6f750c6f3bbf2804c186e}
+
+
+Physics stepping during the main loop. 
+
+This increments the the physics world the required amount to keep it in sync with the Graphics/Timing. 
+
+Implements \hyperlink{classphys_1_1ManagerBase_aa9e13a3f7c398b708f0f242610b5abf7}{phys::ManagerBase}.
+
+
+
+Definition at line 142 of file actormanager.cpp.
+
+\hypertarget{classphys_1_1ActorManager_ac2700addfdd0d4fc97dc9afe30b3923d}{
+\index{phys::ActorManager@{phys::ActorManager}!GetActor@{GetActor}}
+\index{GetActor@{GetActor}!phys::ActorManager@{phys::ActorManager}}
+\paragraph[{GetActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorManager::GetActor (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Index}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorManager_ac2700addfdd0d4fc97dc9afe30b3923d}
+
+
+Gets an Actor by Index. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Index} & The index of the actor you wish to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the actor at the specified index. 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file actormanager.cpp.
+
+\hypertarget{classphys_1_1ActorManager_a42dc22df8b201f25f41676b303e5bf95}{
+\index{phys::ActorManager@{phys::ActorManager}!GetActor@{GetActor}}
+\index{GetActor@{GetActor}!phys::ActorManager@{phys::ActorManager}}
+\paragraph[{GetActor}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorBase} $\ast$ phys::ActorManager::GetActor (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorManager_a42dc22df8b201f25f41676b303e5bf95}
+
+
+Gets an Actor by Name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the actor you wish to retrieve. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the actor of the specified name. 
+\end{DoxyReturn}
+
+
+Definition at line 67 of file actormanager.cpp.
+
+\hypertarget{classphys_1_1ActorManager_a7159d9d42e15d9963ee6d0989b1fd74a}{
+\index{phys::ActorManager@{phys::ActorManager}!GetActorContainer@{GetActorContainer}}
+\index{GetActorContainer@{GetActorContainer}!phys::ActorManager@{phys::ActorManager}}
+\paragraph[{GetActorContainer}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ActorContainerBase} $\ast$ phys::ActorManager::GetActorContainer (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorManager_a7159d9d42e15d9963ee6d0989b1fd74a}
+
+
+Gets the internal actor container storing all the actors. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Actor container being used by this manager. 
+\end{DoxyReturn}
+
+
+Definition at line 132 of file actormanager.cpp.
+
+\hypertarget{classphys_1_1ActorManager_a9ff2ecc8c6b483729ad59a731a737775}{
+\index{phys::ActorManager@{phys::ActorManager}!GetNumActors@{GetNumActors}}
+\index{GetNumActors@{GetNumActors}!phys::ActorManager@{phys::ActorManager}}
+\paragraph[{GetNumActors}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::ActorManager::GetNumActors (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorManager_a9ff2ecc8c6b483729ad59a731a737775}
+
+
+Gets the number of actors stored in this manager. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the current actor count. 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file actormanager.cpp.
+
+\hypertarget{classphys_1_1ActorManager_a7f529913ac6d7c74adfade5c383eeb25}{
+\index{phys::ActorManager@{phys::ActorManager}!GetType@{GetType}}
+\index{GetType@{GetType}!phys::ActorManager@{phys::ActorManager}}
+\paragraph[{GetType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ManagerBase::ManagerTypeName} phys::ActorManager::GetType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorManager_a7f529913ac6d7c74adfade5c383eeb25}
+
+
+This returns the type of this manager. 
+
+\begin{DoxyReturn}{Returns}
+This returns ManagerTypeName::PhysicsManager 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1ManagerBase_aff400b6599db635e24796d8221e9a0e3}{phys::ManagerBase}.
+
+
+
+Definition at line 146 of file actormanager.cpp.
+
+\hypertarget{classphys_1_1ActorManager_ac5d3eaf8733a53f433293b0341db55f2}{
+\index{phys::ActorManager@{phys::ActorManager}!RemoveActor@{RemoveActor}}
+\index{RemoveActor@{RemoveActor}!phys::ActorManager@{phys::ActorManager}}
+\paragraph[{RemoveActor}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ActorManager::RemoveActor (
+\begin{DoxyParamCaption}
+\item[{{\bf ActorBase} $\ast$}]{Actor}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ActorManager_ac5d3eaf8733a53f433293b0341db55f2}
+
+
+Removes an actor from this manager without destroying it. 
+
+In some cases you may want to add and remove an actor from the world without destroying it and do some special manipulations to it to achieve some special/unique affects. This function along with the \char`\"{}RemoveActor()\char`\"{} function facilitates this. \par
+ This function is also necessary for anyone inheriting from our actors to remove their actors from the world. 
+\begin{DoxyParams}{Parameters}
+{\em Actor} & The actor to be removed from the manager. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 83 of file actormanager.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+actormanager.h\item 
+actormanager.cpp\end{DoxyCompactItemize}

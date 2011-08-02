@@ -1,0 +1,404 @@
+\hypertarget{classphys_1_1ParticleEffect}{
+\subsection{phys::ParticleEffect Class Reference}
+\label{classphys_1_1ParticleEffect}\index{phys::ParticleEffect@{phys::ParticleEffect}}
+}
+
+
+This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions.  
+
+
+
+
+{\ttfamily \#include $<$particleeffect.h$>$}
+
+Inheritance diagram for phys::ParticleEffect:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classphys_1_1ParticleEffect}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}{ParticleEffect} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Template, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Standard initialization constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1ParticleEffect_aaf5a40f8c22ca3cd01f0feeb08b8308b}{ParticleEffect} (Ogre::ParticleSystem $\ast$System, const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Template, \hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Internal constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}{
+\hyperlink{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}{$\sim$ParticleEffect} ()}
+\label{classphys_1_1ParticleEffect_a8c9c3d0cd1d02acdc626266ee485f51f}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1ParticleEffect_a770309a3ec74b8bff6169ce5aecc64e7}{GetName} () const 
+\begin{DoxyCompactList}\small\item\em Gets the name of this particle effect. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Attachable_acd1fca033e7cc0bb3024a92d466d213a}{Attachable::AttachableElement} \hyperlink{classphys_1_1ParticleEffect_a86553a292cee35953b98d1d7e34b6a0d}{GetAttachableType} () const 
+\begin{DoxyCompactList}\small\item\em What kind of \hyperlink{classphys_1_1Attachable}{Attachable} is this. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ParticleEffect_a83a533b22d3926775562bdf0a1dd8e5b}{AttachToFinal} (Ogre::SceneNode $\ast$RawTarget, \hyperlink{classphys_1_1WorldNode}{phys::WorldNode} $\ast$Target)
+\begin{DoxyCompactList}\small\item\em Does the Final Work to attach on the \hyperlink{classphys_1_1Attachable}{Attachable} Side, should only be called by WorldNode::AttachFinal. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ParticleEffect_a6cecfcd4177514f4323c653d0ea2c2c5}{DetachFromFinal} (Ogre::SceneNode $\ast$RawTarget)
+\begin{DoxyCompactList}\small\item\em Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ParticleEffect_aee95ac9b688885361d3066a5a4b83965}{EnableParticleEffect} ()
+\begin{DoxyCompactList}\small\item\em Enables the particle effect, allowing it to render. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ParticleEffect_abd9f2339d22582055fe4ae45f986ff8c}{DisableParticleEffect} ()
+\begin{DoxyCompactList}\small\item\em Disables the particle effect, preventing it from rendering. \item\end{DoxyCompactList}\item 
+bool \hyperlink{classphys_1_1ParticleEffect_aaa4f853811fe2f638d03f09143fd08ca}{IsEnabled} () const 
+\begin{DoxyCompactList}\small\item\em Is this effect enabled. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1ParticleEffect_a4371533c2d1d533208b7bc8a067a67e5}{SetLocation} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Vec)
+\begin{DoxyCompactList}\small\item\em Set the location of this Particle effect relative to the object it is attached to. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1ParticleEffect_a1776793641c2133def40b572883b4241}{GetLocation} () const 
+\begin{DoxyCompactList}\small\item\em Get the location of the Particle Effect, relative to the Object is is attached to. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1ParticleEffect_aab98a28c2a7984fca81cdfee5e1d2086}{SetOrientation} (\hyperlink{classphys_1_1Quaternion}{Quaternion} Orientation)
+\begin{DoxyCompactList}\small\item\em Sets the orientation of this node. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1ParticleEffect_ac3f90a940601fbe0657f5d8eb51f0509}{GetOrientation} () const 
+\begin{DoxyCompactList}\small\item\em Gets the orientation of this node. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a5ce5049f8b4bf88d6413c47b504ebb31}{ConstString} \& \hyperlink{classphys_1_1ParticleEffect_a7234a58e42de201111439b58433c2319}{GetTemplate} () const 
+\begin{DoxyCompactList}\small\item\em The name of the template used to create this. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is responsible for creating visual particle effects, such as rain, smoke, sparks, and explosions. Particle effects are loaded from particle scripts which are contained in particle files($\ast$.particle). \par
+ All particle effects are created attached to a world node. The world Node provides the Nagivation functionality of for this 
+
+Definition at line 73 of file particleeffect.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!ParticleEffect@{ParticleEffect}}
+\index{ParticleEffect@{ParticleEffect}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}phys::ParticleEffect::ParticleEffect (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name, }
+\item[{const {\bf String} \&}]{Template, }
+\item[{{\bf SceneManager} $\ast$}]{manager}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1ParticleEffect_a42d17b7cd81968603c70920c30e6f812}
+
+
+Standard initialization constructor. 
+
+Construction 
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of this particle effect. \\
+\hline
+{\em Template} & Name of the particle script to be used in creating this particle effect. \\
+\hline
+{\em manager} & Pointer to the manager that this particle effect is to be used in.\\
+\hline
+\end{DoxyParams}
+Construction 
+
+Definition at line 104 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_aaf5a40f8c22ca3cd01f0feeb08b8308b}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!ParticleEffect@{ParticleEffect}}
+\index{ParticleEffect@{ParticleEffect}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{ParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}phys::ParticleEffect::ParticleEffect (
+\begin{DoxyParamCaption}
+\item[{Ogre::ParticleSystem $\ast$}]{System, }
+\item[{const {\bf String} \&}]{Template, }
+\item[{{\bf SceneManager} $\ast$}]{manager}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1ParticleEffect_aaf5a40f8c22ca3cd01f0feeb08b8308b}
+
+
+Internal constructor. 
+
+This constructor should not be called on manually. 
+\begin{DoxyParams}{Parameters}
+{\em System} & Pointer to the Ogre ParticleSystem this class is based on. \\
+\hline
+{\em Template} & Name of the particle script to be used in creating this particle effect. \\
+\hline
+{\em manager} & Pointer to the manager that this particle effect is to be used in. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 110 of file particleeffect.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1ParticleEffect_a83a533b22d3926775562bdf0a1dd8e5b}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!AttachToFinal@{AttachToFinal}}
+\index{AttachToFinal@{AttachToFinal}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{AttachToFinal}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ParticleEffect::AttachToFinal (
+\begin{DoxyParamCaption}
+\item[{Ogre::SceneNode $\ast$}]{RawTarget, }
+\item[{{\bf phys::WorldNode} $\ast$}]{Target}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ParticleEffect_a83a533b22d3926775562bdf0a1dd8e5b}
+
+
+Does the Final Work to attach on the \hyperlink{classphys_1_1Attachable}{Attachable} Side, should only be called by WorldNode::AttachFinal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em RawTarget} & Any Raw data that need to be passed to finalize attaching \\
+\hline
+{\em Target} & a pointer to the Worldnode being attached to.\\
+\hline
+\end{DoxyParams}
+This Sets the attaching pointer appropriately, This must be done if overiding this functioning. Any other specific items relating directly to attaching should happen here. In general other attaching dependent behaviors should not go here. This is called from \hyperlink{classphys_1_1WorldNode_a6e4aa8bc4b916cfff06d03814a7dd80f}{WorldNode::AttachObjectFinal()}. 
+
+Reimplemented from \hyperlink{classphys_1_1Attachable_a77c8234874f53b159f4156c0c984fad0}{phys::Attachable}.
+
+
+
+Definition at line 128 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_a6cecfcd4177514f4323c653d0ea2c2c5}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!DetachFromFinal@{DetachFromFinal}}
+\index{DetachFromFinal@{DetachFromFinal}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{DetachFromFinal}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ParticleEffect::DetachFromFinal (
+\begin{DoxyParamCaption}
+\item[{Ogre::SceneNode $\ast$}]{RawTarget}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ParticleEffect_a6cecfcd4177514f4323c653d0ea2c2c5}
+
+
+Does the Final Work to dettach on the Atachable Side, should only be called by WorldNode::DetachFinal. 
+
+This Sets the attached pointer to 0, This must be done if overiding this functioning. Any other specific items relating directly to detaching should happen here. In general other detaching dependent behaviors should not go here. This is called from \hyperlink{classphys_1_1WorldNode_ae300db6515b782b165e77d19b7137851}{WorldNode::DetachObjectFinal()}. 
+\begin{DoxyParams}{Parameters}
+{\em RawTarget} & Any Raw data that need to be passed to finalize detaching \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classphys_1_1Attachable_a3e4d8113c4b45ece63c29180cf96029a}{phys::Attachable}.
+
+
+
+Definition at line 136 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_abd9f2339d22582055fe4ae45f986ff8c}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!DisableParticleEffect@{DisableParticleEffect}}
+\index{DisableParticleEffect@{DisableParticleEffect}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{DisableParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ParticleEffect::DisableParticleEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1ParticleEffect_abd9f2339d22582055fe4ae45f986ff8c}
+
+
+Disables the particle effect, preventing it from rendering. 
+
+If the Effect is already Disabled, this does nothing 
+
+Definition at line 150 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_aee95ac9b688885361d3066a5a4b83965}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!EnableParticleEffect@{EnableParticleEffect}}
+\index{EnableParticleEffect@{EnableParticleEffect}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{EnableParticleEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ParticleEffect::EnableParticleEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1ParticleEffect_aee95ac9b688885361d3066a5a4b83965}
+
+
+Enables the particle effect, allowing it to render. 
+
+Particle Functionality
+
+If the Effect is already Enabled, this does nothing
+
+Particle Functionality 
+
+Definition at line 144 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_a86553a292cee35953b98d1d7e34b6a0d}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!GetAttachableType@{GetAttachableType}}
+\index{GetAttachableType@{GetAttachableType}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{GetAttachableType}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Attachable::AttachableElement} phys::ParticleEffect::GetAttachableType (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ParticleEffect_a86553a292cee35953b98d1d7e34b6a0d}
+
+
+What kind of \hyperlink{classphys_1_1Attachable}{Attachable} is this. 
+
+\begin{DoxyReturn}{Returns}
+An \hyperlink{classphys_1_1Attachable_a1c84342fe19d8eef33de4789e19c9d00}{Attachable::GetAttachableType} containing \hyperlink{classphys_1_1Attachable_a93c18f22769a1f70ae300fc2c58210eb}{Attachable::Attachable}. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1Attachable_a1c84342fe19d8eef33de4789e19c9d00}{phys::Attachable}.
+
+
+
+Definition at line 125 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_a1776793641c2133def40b572883b4241}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!GetLocation@{GetLocation}}
+\index{GetLocation@{GetLocation}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{GetLocation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::ParticleEffect::GetLocation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ParticleEffect_a1776793641c2133def40b572883b4241}
+
+
+Get the location of the Particle Effect, relative to the Object is is attached to. 
+
+\begin{DoxyReturn}{Returns}
+A \hyperlink{classphys_1_1Vector3}{Vector3} with the location. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1Attachable_acb410686b2719524eb484b50cc9054a4}{phys::Attachable}.
+
+
+
+Definition at line 162 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_a770309a3ec74b8bff6169ce5aecc64e7}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!GetName@{GetName}}
+\index{GetName@{GetName}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{GetName}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& phys::ParticleEffect::GetName (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ParticleEffect_a770309a3ec74b8bff6169ce5aecc64e7}
+
+
+Gets the name of this particle effect. 
+
+Inherited From \hyperlink{classphys_1_1Attachable}{Attachable} \begin{DoxyReturn}{Returns}
+Returns a string containing the name given to this particle effect.
+\end{DoxyReturn}
+Inherited From \hyperlink{classphys_1_1Attachable}{Attachable} 
+
+Implements \hyperlink{classphys_1_1Attachable_a0a07d727fa2630dc3550fd991ca28256}{phys::Attachable}.
+
+
+
+Definition at line 122 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_ac3f90a940601fbe0657f5d8eb51f0509}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!GetOrientation@{GetOrientation}}
+\index{GetOrientation@{GetOrientation}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{GetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Quaternion} phys::ParticleEffect::GetOrientation (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1ParticleEffect_ac3f90a940601fbe0657f5d8eb51f0509}
+
+
+Gets the orientation of this node. 
+
+\begin{DoxyReturn}{Returns}
+Returns a normalized quaternion representing the orientation of this node. 
+\end{DoxyReturn}
+
+
+Definition at line 168 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_a7234a58e42de201111439b58433c2319}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!GetTemplate@{GetTemplate}}
+\index{GetTemplate@{GetTemplate}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{GetTemplate}]{\setlength{\rightskip}{0pt plus 5cm}{\bf ConstString} \& phys::ParticleEffect::GetTemplate (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1ParticleEffect_a7234a58e42de201111439b58433c2319}
+
+
+The name of the template used to create this. 
+
+\begin{DoxyReturn}{Returns}
+A reaference to a ConstString that has the name. 
+\end{DoxyReturn}
+
+
+Definition at line 171 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_aaa4f853811fe2f638d03f09143fd08ca}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!IsEnabled@{IsEnabled}}
+\index{IsEnabled@{IsEnabled}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{IsEnabled}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::ParticleEffect::IsEnabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1ParticleEffect_aaa4f853811fe2f638d03f09143fd08ca}
+
+
+Is this effect enabled. 
+
+\begin{DoxyReturn}{Returns}
+True if enabled, false otherwise 
+\end{DoxyReturn}
+
+
+Definition at line 156 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_a4371533c2d1d533208b7bc8a067a67e5}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!SetLocation@{SetLocation}}
+\index{SetLocation@{SetLocation}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{SetLocation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ParticleEffect::SetLocation (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Vec}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1ParticleEffect_a4371533c2d1d533208b7bc8a067a67e5}
+
+
+Set the location of this Particle effect relative to the object it is attached to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & The location. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1Attachable_a3555ca694cfc9ff96665c16b3e95c698}{phys::Attachable}.
+
+
+
+Definition at line 159 of file particleeffect.cpp.
+
+\hypertarget{classphys_1_1ParticleEffect_aab98a28c2a7984fca81cdfee5e1d2086}{
+\index{phys::ParticleEffect@{phys::ParticleEffect}!SetOrientation@{SetOrientation}}
+\index{SetOrientation@{SetOrientation}!phys::ParticleEffect@{phys::ParticleEffect}}
+\paragraph[{SetOrientation}]{\setlength{\rightskip}{0pt plus 5cm}void phys::ParticleEffect::SetOrientation (
+\begin{DoxyParamCaption}
+\item[{{\bf Quaternion}}]{Orientation}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1ParticleEffect_aab98a28c2a7984fca81cdfee5e1d2086}
+
+
+Sets the orientation of this node. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Orientation} & A \hyperlink{classphys_1_1Quaternion}{Quaternion} representing the orientation of this node. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 165 of file particleeffect.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+particleeffect.h\item 
+\hyperlink{particleeffect_8cpp}{particleeffect.cpp}\end{DoxyCompactItemize}

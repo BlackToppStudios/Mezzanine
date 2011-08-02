@@ -1,0 +1,32 @@
+\hypertarget{classphys_1_1Serializer}{
+\subsection{phys::Serializer Class Reference}
+\label{classphys_1_1Serializer}\index{phys::Serializer@{phys::Serializer}}
+}
+
+
+A tool for serializing classes with specific issues serializing or deserializing them.  
+
+
+
+
+{\ttfamily \#include $<$serialization.h$>$}
+
+
+
+\subsubsection{Detailed Description}
+A tool for serializing classes with specific issues serializing or deserializing them. \hypertarget{classphys_1_1Serializer_Serialization}{}\subsubsection{Serialization}\label{classphys_1_1Serializer_Serialization}
+The following functions are expected to be implemented on every serializable and deserializable:\par
+ void ProtoSerialize(xml::Node\& CurrentRoot) const; \par
+ void ProtoDeSerialize(const xml::Node\&); \par
+ String SerializableName() const; \par
+ Implementing these will allow them to work with the Serialize and Deserialize templates defined in \hyperlink{serialization_8h_source}{serialization.h}.
+
+Some classes Must have certain values available at the time of construction. This make serializing them by overwriting an existing class instance impractical. Other classes have private members and it it impractical to change the class to expose this data. In this case a serializer could be made that is the friend of that class so it can do what is required. 
+
+Definition at line 67 of file serialization.h.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+serialization.h\end{DoxyCompactItemize}

@@ -1,0 +1,87 @@
+\hypertarget{classphys_1_1internal_1_1SceneManagerData}{
+\subsection{phys::internal::SceneManagerData Class Reference}
+\label{classphys_1_1internal_1_1SceneManagerData}\index{phys::internal::SceneManagerData@{phys::internal::SceneManagerData}}
+}
+
+
+Stores internal data for the SCeneManager to keep it from cluttering the Header file.  
+
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_a40d62405f637531b7fd19b6c176c5a50}{
+void {\bfseries DisableSky} (\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ScenePTR)}
+\label{classphys_1_1internal_1_1SceneManagerData_a40d62405f637531b7fd19b6c176c5a50}
+
+\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_a0e4db14de622e028e5bea383d37099ed}{
+void \hyperlink{classphys_1_1internal_1_1SceneManagerData_a0e4db14de622e028e5bea383d37099ed}{UpdateSkyCache} (\hyperlink{classphys_1_1SceneManager_a91dd086aabaab926d070c65fc14828d6}{SceneManager::SkyMethod} FreshSkyMethod=SceneManager::SkyNone, \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} FreshSkyMaterialName=\char`\"{}\char`\"{}, \hyperlink{classphys_1_1Quaternion}{Quaternion} FreshSkyOrientation=\hyperlink{classphys_1_1Quaternion}{Quaternion}(0, 0, 0, 0), \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} FreshSkyMaterialGroupName=\char`\"{}\char`\"{}, bool FreshSkyDrawnFirst=false, \hyperlink{classphys_1_1Plane}{Plane} FreshSkyThePlane=\hyperlink{classphys_1_1Plane}{Plane}(\hyperlink{classphys_1_1Vector3}{Vector3}(0, 0, 0), 0))}
+\label{classphys_1_1internal_1_1SceneManagerData_a0e4db14de622e028e5bea383d37099ed}
+
+\begin{DoxyCompactList}\small\item\em update \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_aedd570da5bdb027ec976e3c29137474c}{
+{\bfseries SceneManagerData} (\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$\_\-SM)}
+\label{classphys_1_1internal_1_1SceneManagerData_aedd570da5bdb027ec976e3c29137474c}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_afd470b7bdba16d0840ce18bb1846fa82}{
+\hyperlink{classphys_1_1SceneManager}{SceneManager} $\ast$ \hyperlink{classphys_1_1internal_1_1SceneManagerData_afd470b7bdba16d0840ce18bb1846fa82}{SM}}
+\label{classphys_1_1internal_1_1SceneManagerData_afd470b7bdba16d0840ce18bb1846fa82}
+
+\begin{DoxyCompactList}\small\item\em A Pointer to the scenemanager this works with. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_a1106e747889ca1b177c33dbe1ea9f775}{
+\hyperlink{classphys_1_1SceneManager_a91dd086aabaab926d070c65fc14828d6}{SceneManager::SkyMethod} \hyperlink{classphys_1_1internal_1_1SceneManagerData_a1106e747889ca1b177c33dbe1ea9f775}{ActiveSky}}
+\label{classphys_1_1internal_1_1SceneManagerData_a1106e747889ca1b177c33dbe1ea9f775}
+
+\begin{DoxyCompactList}\small\item\em The currently active sky, if set to anything other than SkyNone, then the 5 other skycache variable may have meaning. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_a5a450396db70a6705fc0625aab1fb047}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1internal_1_1SceneManagerData_a5a450396db70a6705fc0625aab1fb047}{SkyMaterialName}}
+\label{classphys_1_1internal_1_1SceneManagerData_a5a450396db70a6705fc0625aab1fb047}
+
+\begin{DoxyCompactList}\small\item\em The Name of the Material the sky is made of. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_af28e91e743235d1950527bec3071d59a}{
+\hyperlink{classphys_1_1Quaternion}{Quaternion} \hyperlink{classphys_1_1internal_1_1SceneManagerData_af28e91e743235d1950527bec3071d59a}{SkyOrientation}}
+\label{classphys_1_1internal_1_1SceneManagerData_af28e91e743235d1950527bec3071d59a}
+
+\begin{DoxyCompactList}\small\item\em The orientation of the sky, unless it's a Skyplane, this this is all 0s. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_a6449ba7dd0d50aa7c121e82982aef54c}{
+\hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \hyperlink{classphys_1_1internal_1_1SceneManagerData_a6449ba7dd0d50aa7c121e82982aef54c}{SkyMaterialGroupName}}
+\label{classphys_1_1internal_1_1SceneManagerData_a6449ba7dd0d50aa7c121e82982aef54c}
+
+\begin{DoxyCompactList}\small\item\em The name of the group the sky material is in. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_a26e836bd8dd96a85ff9a9dac53a4a16d}{
+bool \hyperlink{classphys_1_1internal_1_1SceneManagerData_a26e836bd8dd96a85ff9a9dac53a4a16d}{SkyDrawnFirst}}
+\label{classphys_1_1internal_1_1SceneManagerData_a26e836bd8dd96a85ff9a9dac53a4a16d}
+
+\begin{DoxyCompactList}\small\item\em When is the sky drawn, first or per Z-\/order. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_aed226bb4935954873f0d4c7bf8308a43}{
+\hyperlink{classphys_1_1Plane}{Plane} \hyperlink{classphys_1_1internal_1_1SceneManagerData_aed226bb4935954873f0d4c7bf8308a43}{SkyThePlane}}
+\label{classphys_1_1internal_1_1SceneManagerData_aed226bb4935954873f0d4c7bf8308a43}
+
+\begin{DoxyCompactList}\small\item\em Used to describe a skyplane instead of orientation. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_a6564afc7255e32e9211568aab4a561f2}{
+unsigned short \hyperlink{classphys_1_1internal_1_1SceneManagerData_a6564afc7255e32e9211568aab4a561f2}{ShadowTextureSize}}
+\label{classphys_1_1internal_1_1SceneManagerData_a6564afc7255e32e9211568aab4a561f2}
+
+\begin{DoxyCompactList}\small\item\em The size. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1internal_1_1SceneManagerData_a685cc93f5a9070ae7d78f6eaa62db00a}{
+Ogre::SceneManager $\ast$ \hyperlink{classphys_1_1internal_1_1SceneManagerData_a685cc93f5a9070ae7d78f6eaa62db00a}{OgreManager}}
+\label{classphys_1_1internal_1_1SceneManagerData_a685cc93f5a9070ae7d78f6eaa62db00a}
+
+\begin{DoxyCompactList}\small\item\em Pointer for the Ogre Scenemanager, where this manager gets it's functionality. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+Stores internal data for the SCeneManager to keep it from cluttering the Header file. 
+
+Definition at line 62 of file scenemanager.cpp.
+
+
+
+The documentation for this class was generated from the following file:\begin{DoxyCompactItemize}
+\item 
+scenemanager.cpp\end{DoxyCompactItemize}

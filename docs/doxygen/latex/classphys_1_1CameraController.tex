@@ -1,0 +1,548 @@
+\hypertarget{classphys_1_1CameraController}{
+\subsection{phys::CameraController Class Reference}
+\label{classphys_1_1CameraController}\index{phys::CameraController@{phys::CameraController}}
+}
+
+
+This is a simplified controller class for use with cameras.  
+
+
+
+
+{\ttfamily \#include $<$cameracontroller.h$>$}
+
+\subsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structphys_1_1CameraController_1_1AngleLimits}{AngleLimits}
+\begin{DoxyCompactList}\small\item\em Boundaries for rotation on one axis. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}{MovementMode} \{ \hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8a0a4e9439e82433de1e7280332f52f26d}{CCM\_\-Fly}, 
+\hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8a237d443454262ada472562d7385badac}{CCM\_\-Walk}
+ \}
+\begin{DoxyCompactList}\small\item\em Possible options for determining how the camera should move relative to the world. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1CameraController_a6a47754c33f3dca26f2c7fe1a5b25a9f}{CameraController} (\hyperlink{classphys_1_1Camera}{Camera} $\ast$ToBeControlled)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CameraController_afe0cb476611eadd8bf27480f59162db7}{
+\hyperlink{classphys_1_1CameraController_afe0cb476611eadd8bf27480f59162db7}{$\sim$CameraController} ()}
+\label{classphys_1_1CameraController_afe0cb476611eadd8bf27480f59162db7}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Camera}{Camera} $\ast$ \hyperlink{classphys_1_1CameraController_af992a4b3b720ac8179f78d5940a1bf1f}{GetControlledCamera} () const 
+\begin{DoxyCompactList}\small\item\em Gets the camera this controller is controlling. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_aa8e4d48573a2443af3b2111ab82f8a17}{SetMovementMode} (const \hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}{MovementMode} \&MoveMode)
+\begin{DoxyCompactList}\small\item\em Sets the movement mode for this camera/controller. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}{MovementMode} \hyperlink{classphys_1_1CameraController_a16f448ab4f9765f9435e0d3ac0fb89d3}{GetMovementMode} () const 
+\begin{DoxyCompactList}\small\item\em Gets the currently set movement mode. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a188b2fe215da11a2afc60e1b69b42c09}{SetHoverHeight} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Hover)
+\begin{DoxyCompactList}\small\item\em Sets the hover distance for the camera while it's moving. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1CameraController_af0bd947fa14276b01a27d68a4ca9a34d}{GetHoverHeight} () const 
+\begin{DoxyCompactList}\small\item\em Gets the distance the camera hovers over terrain while in CCM\_\-Walk mode. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a0c19fba402f176361aea139ead5a9a40}{SetYawLimits} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&UpperLimit, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LowerLimit)
+\begin{DoxyCompactList}\small\item\em Sets rotational limits on the Y axis. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CameraController_a356fa13a243b5f3645576b9b857ce085}{
+void \hyperlink{classphys_1_1CameraController_a356fa13a243b5f3645576b9b857ce085}{RemoveYawLimits} ()}
+\label{classphys_1_1CameraController_a356fa13a243b5f3645576b9b857ce085}
+
+\begin{DoxyCompactList}\small\item\em Clears any set limits on yaw(Y axis) rotation. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a9ca0500582f46a20189cdc39555b79b3}{SetPitchLimits} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&UpperLimit, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LowerLimit)
+\begin{DoxyCompactList}\small\item\em Sets rotational limits on the X axis. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CameraController_a19478dd2688262f9652410a630dfa731}{
+void \hyperlink{classphys_1_1CameraController_a19478dd2688262f9652410a630dfa731}{RemovePitchLimits} ()}
+\label{classphys_1_1CameraController_a19478dd2688262f9652410a630dfa731}
+
+\begin{DoxyCompactList}\small\item\em Clears any set limits on pitch(X axis) rotation. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a047f16cf47f9648472db34fc8337bd45}{SetRollLimits} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&UpperLimit, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&LowerLimit)
+\begin{DoxyCompactList}\small\item\em Sets rotational limits on the Z axis. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1CameraController_ad2ea07b9eb9c4ebc1d753a7376c307b3}{
+void \hyperlink{classphys_1_1CameraController_ad2ea07b9eb9c4ebc1d753a7376c307b3}{RemoveRollLimits} ()}
+\label{classphys_1_1CameraController_ad2ea07b9eb9c4ebc1d753a7376c307b3}
+
+\begin{DoxyCompactList}\small\item\em Clears any set limits on roll(Z axis) rotation. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a8763326e900562dd6e934f79d52d5d50}{MoveForward} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera forward. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a932450504666cf4820339deb3651bfb3}{MoveBackward} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera backward. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a1b2e0c40120c3604f1929d5fac3cd61f}{StrafeLeft} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera to the left. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_ad494cf9a1e3e233319799116424ad43f}{StrafeRight} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Units)
+\begin{DoxyCompactList}\small\item\em Moves the camera to the right. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a3ad0f3ecf0777a8feb2e4f22f2d644bf}{Rotate} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Yaw, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Pitch, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Roll)
+\begin{DoxyCompactList}\small\item\em Rotates the camera. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1CameraController_a23d1b811021fc77135a556de86f4f32a}{Rotate6DOF} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Yaw, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Pitch, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Roll)
+\begin{DoxyCompactList}\small\item\em Rotates the camera. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CameraController_a2225da030d5a28930c460d0067103274}{
+void {\bfseries CheckAngleRollover} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Angle)}
+\label{classphys_1_1CameraController_a2225da030d5a28930c460d0067103274}
+
+\item 
+\hypertarget{classphys_1_1CameraController_a97de22bfe1e8d98ff2fdde03d38332c9}{
+void {\bfseries CheckAngleLimits} ()}
+\label{classphys_1_1CameraController_a97de22bfe1e8d98ff2fdde03d38332c9}
+
+\item 
+\hypertarget{classphys_1_1CameraController_a0a9984ddd68c2a97c52682f90a3008cd}{
+void {\bfseries CheckAllAngles} ()}
+\label{classphys_1_1CameraController_a0a9984ddd68c2a97c52682f90a3008cd}
+
+\item 
+\hypertarget{classphys_1_1CameraController_a1ee87ff32c7fcb04ddb65cb9ac1535da}{
+void {\bfseries CheckHeight} ()}
+\label{classphys_1_1CameraController_a1ee87ff32c7fcb04ddb65cb9ac1535da}
+
+\item 
+\hypertarget{classphys_1_1CameraController_acadfca85be36af4f631b9427cd8e958a}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries FindDistanceToGround} ()}
+\label{classphys_1_1CameraController_acadfca85be36af4f631b9427cd8e958a}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1CameraController_aeb47496bd26604a4e6e86ee394eb4d15}{
+\hyperlink{classphys_1_1Camera}{Camera} $\ast$ {\bfseries Controlled}}
+\label{classphys_1_1CameraController_aeb47496bd26604a4e6e86ee394eb4d15}
+
+\item 
+\hypertarget{classphys_1_1CameraController_a3ebc9cf2177540543c90d9a3c25f789c}{
+\hyperlink{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}{MovementMode} {\bfseries CurrentMMode}}
+\label{classphys_1_1CameraController_a3ebc9cf2177540543c90d9a3c25f789c}
+
+\item 
+\hypertarget{classphys_1_1CameraController_af9fafefcfbd8d60683cfcaf7e629796c}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries HoverHeight}}
+\label{classphys_1_1CameraController_af9fafefcfbd8d60683cfcaf7e629796c}
+
+\item 
+\hypertarget{classphys_1_1CameraController_ab381584b4af14aecf7ad4a8946f41b41}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries YawRad}}
+\label{classphys_1_1CameraController_ab381584b4af14aecf7ad4a8946f41b41}
+
+\item 
+\hypertarget{classphys_1_1CameraController_ac9ca55bb71c2d3b0a85dabcc207c79a0}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries PitchRad}}
+\label{classphys_1_1CameraController_ac9ca55bb71c2d3b0a85dabcc207c79a0}
+
+\item 
+\hypertarget{classphys_1_1CameraController_abf396244a387ec1cf4d9303e9b930dc9}{
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} {\bfseries RollRad}}
+\label{classphys_1_1CameraController_abf396244a387ec1cf4d9303e9b930dc9}
+
+\item 
+\hypertarget{classphys_1_1CameraController_a89d97e79c04f9a807fd7ff487eb3a3b5}{
+\hyperlink{structphys_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries YawLimits}}
+\label{classphys_1_1CameraController_a89d97e79c04f9a807fd7ff487eb3a3b5}
+
+\item 
+\hypertarget{classphys_1_1CameraController_a4c6ea95a1099bf7494c2ee666b5f61a9}{
+\hyperlink{structphys_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries PitchLimits}}
+\label{classphys_1_1CameraController_a4c6ea95a1099bf7494c2ee666b5f61a9}
+
+\item 
+\hypertarget{classphys_1_1CameraController_ad99abab0906a57263d3ca530194a125d}{
+\hyperlink{structphys_1_1CameraController_1_1AngleLimits}{AngleLimits} $\ast$ {\bfseries RollLimits}}
+\label{classphys_1_1CameraController_ad99abab0906a57263d3ca530194a125d}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a simplified controller class for use with cameras. This class is useful for manipulating cameras to move around in simple ways, such as flying through a scene. 
+
+Definition at line 55 of file cameracontroller.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}{
+\index{phys::CameraController@{phys::CameraController}!MovementMode@{MovementMode}}
+\index{MovementMode@{MovementMode}!phys::CameraController@{phys::CameraController}}
+\paragraph[{MovementMode}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::CameraController::MovementMode}}\hfill}
+\label{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8}
+
+
+Possible options for determining how the camera should move relative to the world. 
+
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{CCM\_\-Fly@{CCM\_\-Fly}!phys::CameraController@{phys::CameraController}}\index{phys::CameraController@{phys::CameraController}!CCM\_\-Fly@{CCM\_\-Fly}}\item[{\em 
+\hypertarget{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8a0a4e9439e82433de1e7280332f52f26d}{
+CCM\_\-Fly}
+\label{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8a0a4e9439e82433de1e7280332f52f26d}
+}]CCM\_\-Fly: This is the default option for every \hyperlink{classphys_1_1Camera}{Camera} Controller. Allows the camera unrestrained movement throughout the scene. \index{CCM\_\-Walk@{CCM\_\-Walk}!phys::CameraController@{phys::CameraController}}\index{phys::CameraController@{phys::CameraController}!CCM\_\-Walk@{CCM\_\-Walk}}\item[{\em 
+\hypertarget{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8a237d443454262ada472562d7385badac}{
+CCM\_\-Walk}
+\label{classphys_1_1CameraController_af7ea701f4b768a0335e8e0115d516af8a237d443454262ada472562d7385badac}
+}]CCM\_\-Walk: This forces the camera to be only a certain distance above the terrain. \end{description}
+\end{Desc}
+
+
+
+Definition at line 60 of file cameracontroller.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1CameraController_a6a47754c33f3dca26f2c7fe1a5b25a9f}{
+\index{phys::CameraController@{phys::CameraController}!CameraController@{CameraController}}
+\index{CameraController@{CameraController}!phys::CameraController@{phys::CameraController}}
+\paragraph[{CameraController}]{\setlength{\rightskip}{0pt plus 5cm}home sqeaky physgame physgameengine src cameracontroller cpp home sqeaky physgame physgameengine src cameracontroller cpp home sqeaky physgame physgameengine src cameracontroller cpp home sqeaky physgame physgameengine src cameracontroller cpp phys::CameraController::CameraController (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{ToBeControlled}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a6a47754c33f3dca26f2c7fe1a5b25a9f}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeControlled} & The camera this controller is controlling. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 57 of file cameracontroller.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1CameraController_af992a4b3b720ac8179f78d5940a1bf1f}{
+\index{phys::CameraController@{phys::CameraController}!GetControlledCamera@{GetControlledCamera}}
+\index{GetControlledCamera@{GetControlledCamera}!phys::CameraController@{phys::CameraController}}
+\paragraph[{GetControlledCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ phys::CameraController::GetControlledCamera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1CameraController_af992a4b3b720ac8179f78d5940a1bf1f}
+
+
+Gets the camera this controller is controlling. 
+
+\begin{DoxyReturn}{Returns}
+Returns a camera pointer for the camera this controller is applied to. 
+\end{DoxyReturn}
+
+
+Definition at line 152 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_af0bd947fa14276b01a27d68a4ca9a34d}{
+\index{phys::CameraController@{phys::CameraController}!GetHoverHeight@{GetHoverHeight}}
+\index{GetHoverHeight@{GetHoverHeight}!phys::CameraController@{phys::CameraController}}
+\paragraph[{GetHoverHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::CameraController::GetHoverHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1CameraController_af0bd947fa14276b01a27d68a4ca9a34d}
+
+
+Gets the distance the camera hovers over terrain while in CCM\_\-Walk mode. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real represening the distance above terrain the camera is to hover, in world units. 
+\end{DoxyReturn}
+
+
+Definition at line 172 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a16f448ab4f9765f9435e0d3ac0fb89d3}{
+\index{phys::CameraController@{phys::CameraController}!GetMovementMode@{GetMovementMode}}
+\index{GetMovementMode@{GetMovementMode}!phys::CameraController@{phys::CameraController}}
+\paragraph[{GetMovementMode}]{\setlength{\rightskip}{0pt plus 5cm}{\bf CameraController::MovementMode} phys::CameraController::GetMovementMode (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1CameraController_a16f448ab4f9765f9435e0d3ac0fb89d3}
+
+
+Gets the currently set movement mode. 
+
+\begin{DoxyReturn}{Returns}
+Returns an enum value representing the current movement mode. See MovementMode enum for more info. 
+\end{DoxyReturn}
+
+
+Definition at line 162 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a932450504666cf4820339deb3651bfb3}{
+\index{phys::CameraController@{phys::CameraController}!MoveBackward@{MoveBackward}}
+\index{MoveBackward@{MoveBackward}!phys::CameraController@{phys::CameraController}}
+\paragraph[{MoveBackward}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::MoveBackward (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Units}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a932450504666cf4820339deb3651bfb3}
+
+
+Moves the camera backward. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Units} & The distance to be moved in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 236 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a8763326e900562dd6e934f79d52d5d50}{
+\index{phys::CameraController@{phys::CameraController}!MoveForward@{MoveForward}}
+\index{MoveForward@{MoveForward}!phys::CameraController@{phys::CameraController}}
+\paragraph[{MoveForward}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::MoveForward (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Units}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a8763326e900562dd6e934f79d52d5d50}
+
+
+Moves the camera forward. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Units} & The distance to be moved in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 228 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a3ad0f3ecf0777a8feb2e4f22f2d644bf}{
+\index{phys::CameraController@{phys::CameraController}!Rotate@{Rotate}}
+\index{Rotate@{Rotate}!phys::CameraController@{phys::CameraController}}
+\paragraph[{Rotate}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::Rotate (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Yaw, }
+\item[{{\bf Real}}]{Pitch, }
+\item[{{\bf Real}}]{Roll}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a3ad0f3ecf0777a8feb2e4f22f2d644bf}
+
+
+Rotates the camera. 
+
+This is a safer rotation method that applies all the checks and can lock behaviors such as roll if configured to do so. 
+\begin{DoxyParams}{Parameters}
+{\em Yaw} & The amount to rotate the camera on it's local Y axis in Radians. \\
+\hline
+{\em Pitch} & The amount to rotate the camera on it's local X axis in Radians. \\
+\hline
+{\em Roll} & The amount to rotate the camera on it's local Z axis in Radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 260 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a23d1b811021fc77135a556de86f4f32a}{
+\index{phys::CameraController@{phys::CameraController}!Rotate6DOF@{Rotate6DOF}}
+\index{Rotate6DOF@{Rotate6DOF}!phys::CameraController@{phys::CameraController}}
+\paragraph[{Rotate6DOF}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::Rotate6DOF (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Yaw, }
+\item[{{\bf Real}}]{Pitch, }
+\item[{{\bf Real}}]{Roll}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a23d1b811021fc77135a556de86f4f32a}
+
+
+Rotates the camera. 
+
+This is a freeform rotation method that will apply the rotation desired to the camera without any checks. This is ideal for spacecraft style controls. 
+\begin{DoxyParams}{Parameters}
+{\em Yaw} & The amount to rotate the camera on it's local Y axis in Radians. \\
+\hline
+{\em Pitch} & The amount to rotate the camera on it's local X axis in Radians. \\
+\hline
+{\em Roll} & The amount to rotate the camera on it's local Z axis in Radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 287 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a188b2fe215da11a2afc60e1b69b42c09}{
+\index{phys::CameraController@{phys::CameraController}!SetHoverHeight@{SetHoverHeight}}
+\index{SetHoverHeight@{SetHoverHeight}!phys::CameraController@{phys::CameraController}}
+\paragraph[{SetHoverHeight}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::SetHoverHeight (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Hover}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a188b2fe215da11a2afc60e1b69b42c09}
+
+
+Sets the hover distance for the camera while it's moving. 
+
+Hover is only applied in CCM\_\-Walk mode. Default: 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Hover} & The distance above the ground to hover, in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 167 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_aa8e4d48573a2443af3b2111ab82f8a17}{
+\index{phys::CameraController@{phys::CameraController}!SetMovementMode@{SetMovementMode}}
+\index{SetMovementMode@{SetMovementMode}!phys::CameraController@{phys::CameraController}}
+\paragraph[{SetMovementMode}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::SetMovementMode (
+\begin{DoxyParamCaption}
+\item[{const {\bf MovementMode} \&}]{MoveMode}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_aa8e4d48573a2443af3b2111ab82f8a17}
+
+
+Sets the movement mode for this camera/controller. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em MoveMode} & The MovementMode value for which mode you want applied. See MovementMode enum for more info. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 157 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a9ca0500582f46a20189cdc39555b79b3}{
+\index{phys::CameraController@{phys::CameraController}!SetPitchLimits@{SetPitchLimits}}
+\index{SetPitchLimits@{SetPitchLimits}!phys::CameraController@{phys::CameraController}}
+\paragraph[{SetPitchLimits}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::SetPitchLimits (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{UpperLimit, }
+\item[{const {\bf Real} \&}]{LowerLimit}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a9ca0500582f46a20189cdc39555b79b3}
+
+
+Sets rotational limits on the X axis. 
+
+The rotation range is from -\/Pi to Pi. 
+\begin{DoxyParams}{Parameters}
+{\em UpperLimit} & The allowed upper rotation limit in radians. \\
+\hline
+{\em LowerLimit} & The allowed upper rotation limit in radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a047f16cf47f9648472db34fc8337bd45}{
+\index{phys::CameraController@{phys::CameraController}!SetRollLimits@{SetRollLimits}}
+\index{SetRollLimits@{SetRollLimits}!phys::CameraController@{phys::CameraController}}
+\paragraph[{SetRollLimits}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::SetRollLimits (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{UpperLimit, }
+\item[{const {\bf Real} \&}]{LowerLimit}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a047f16cf47f9648472db34fc8337bd45}
+
+
+Sets rotational limits on the Z axis. 
+
+The rotation range is from -\/Pi to Pi. 
+\begin{DoxyParams}{Parameters}
+{\em UpperLimit} & The allowed upper rotation limit in radians. \\
+\hline
+{\em LowerLimit} & The allowed upper rotation limit in radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 211 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a0c19fba402f176361aea139ead5a9a40}{
+\index{phys::CameraController@{phys::CameraController}!SetYawLimits@{SetYawLimits}}
+\index{SetYawLimits@{SetYawLimits}!phys::CameraController@{phys::CameraController}}
+\paragraph[{SetYawLimits}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::SetYawLimits (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{UpperLimit, }
+\item[{const {\bf Real} \&}]{LowerLimit}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a0c19fba402f176361aea139ead5a9a40}
+
+
+Sets rotational limits on the Y axis. 
+
+The rotation range is from -\/Pi to Pi. 
+\begin{DoxyParams}{Parameters}
+{\em UpperLimit} & The allowed upper rotation limit in radians. \\
+\hline
+{\em LowerLimit} & The allowed lower rotation limit in radians. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 177 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_a1b2e0c40120c3604f1929d5fac3cd61f}{
+\index{phys::CameraController@{phys::CameraController}!StrafeLeft@{StrafeLeft}}
+\index{StrafeLeft@{StrafeLeft}!phys::CameraController@{phys::CameraController}}
+\paragraph[{StrafeLeft}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::StrafeLeft (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Units}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_a1b2e0c40120c3604f1929d5fac3cd61f}
+
+
+Moves the camera to the left. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Units} & The distance to be moved in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 244 of file cameracontroller.cpp.
+
+\hypertarget{classphys_1_1CameraController_ad494cf9a1e3e233319799116424ad43f}{
+\index{phys::CameraController@{phys::CameraController}!StrafeRight@{StrafeRight}}
+\index{StrafeRight@{StrafeRight}!phys::CameraController@{phys::CameraController}}
+\paragraph[{StrafeRight}]{\setlength{\rightskip}{0pt plus 5cm}void phys::CameraController::StrafeRight (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Units}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1CameraController_ad494cf9a1e3e233319799116424ad43f}
+
+
+Moves the camera to the right. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Units} & The distance to be moved in world units. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 252 of file cameracontroller.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+cameracontroller.h\item 
+cameracontroller.cpp\end{DoxyCompactItemize}

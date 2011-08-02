@@ -49,7 +49,7 @@
  from when they copied, without updates, new features and bugfixes since they started integrating the code. We too have copy and pasted, however we are
  keeping it up to date, and have a plan for upgrading each component we have brought in.
 
- This is not simple, guaranteeing the most up to date libraries with meaningful and working integration means a lot of work. Many linux distributions try
+ This is no simple way to guarantee access to the most up to date libraries, this means there will meaningful work on integration. Many linux distributions try
  to keep the most up to date shared libraries around, but what about when they don't ship what you need, or ship a broken copy or an older library. What about
  Windows and Mac OS X which make no attempt to keep these kinds of software up to date. What if you do manage to get and stay up to date, then you still have to
  work on a confusing compiler and linker options, Code::Blocks or Visual Studio aren't going to set that up for you. The Physgame Engine project depends on a dozen
@@ -64,7 +64,7 @@
  against this library, not a single line of your standard compliant C++ code should need to change between platforms. At this early stage we are proving the
  concept with "Catch!" our first sample game. It Currently runs on Linux, Windows and Mac OS X with an Identical
  codebase. When we are done with "Catch!" We want it to have one codebase (with no messy \#IFDEFs in game code for compatibility), and downloadable in the Iphone
- app store, on the PS3, Wii download on Steam, and in a variety of linux repositories.
+ app store, in the Android Marketplace, on the PS3, Wii, downloadable on Steam, and in a variety of linux repositories.
 
  To get the latest news on development checkout: http://gitorious.org/physgame
  Or check the webpage http://www.blacktoppstudios.com
@@ -83,29 +83,94 @@
  @section Types Data Types
   @ref phys::ColourValue
 
-  @ref phys::Vector3
+  @ref phys::MetaCode "MetaCode - A unit of user input"
 
-  @ref phys::Vector3
+  @ref phys::Plane
 
-  @ref phys::Vector3WActor
+  @ref phys::Quaternion
 
   @ref phys::Ray
 
   @ref phys::Real
 
+  @ref phys::Vector2
+
+  @ref phys::Vector3
+
+  @ref phys::Vector3WActor
+
   @ref phys::Whole
 
-  @ref phys::Quaternion
+ @section Sophisticated Sophisticated Systems
 
-  @ref phys::MetaCode
-
- @section Classes Sophisticated Data Types
   @ref phys::ActorBase "Actors - Items in the world"
 
   @ref phys::EventBase
 
   @ref phys::GraphicsManager
+
+  @ref XMLManual "phys::XML Manual"
+
+ @section Licensing Licensing Information
+
+  @ref GPLLicense "Physgame GNU Public License 3"
+
+  @ref OriginalpugixmlLicense "XML MIT License"
+
+
+
+ @page GPLLicense Physgame GNU Public License 3
+  Here is a simple summary of the license terms. It is included at the top of every
+  source and header file in the engine:
+  \n \n
+  @verbatim
+  © Copyright 2010 - 2011 BlackTopp Studios Inc.
+   This file is part of The PhysGame Engine.
+
+    The PhysGame Engine is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    The PhysGame Engine is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with The PhysGame Engine.  If not, see <http://www.gnu.org/licenses/>.
+
+   The original authors have included a copy of the license specified above in the
+   'Docs' folder. See 'gpl.txt'
+
+   We welcome the use of The PhysGame anyone, including companies who wish to
+   Build professional software and charge for their product.
+
+   However there are some practical restrictions, so if your project involves
+   any of the following you should contact us and we will try to work something
+   out:
+    - DRM or Copy Protection of any kind(except Copyrights)
+    - Software Patents You Do Not Wish to Freely License
+    - Any Kind of Linking to Non-GPL licensed Works
+    - Are Currently In Violation of Another Copyright Holder's GPL License
+    - If You want to change our code and not add a few hundred MB of stuff to
+        your distribution
+
+   These and other limitations could cause serious legal problems if you ignore
+   them, so it is best to simply contact us or the Free Software Foundation, if
+   you have any questions.
+
+   Joseph Toppi - toppij@gmail.com
+   John Blackwood - makoenergy02@gmail.com
+  @endverbatim
+  \n \n
+  Here is the contents of gpl.txt that comes in the docs/ folder of with every
+  complete repository of the engine:
+  \n \n
+  @verbinclude gpl.txt
 */
+
+//And now for actual source code!
 
 #include "crossplatform.h"
 #include "eventbase.h"

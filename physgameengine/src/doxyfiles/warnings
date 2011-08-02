@@ -1,8 +1,11 @@
+Notice: Output directory `../../docs/doxygen' does not exist. I have created it for you.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfile.h.cpp:127: warning: Compound phys::internal::BulletFilePtr is not documented.
 /home/sqeaky/physgame/physgameengine/src/collisionshapegenerator.h:53: warning: Compound phys::CollisionShapeGenerator is not documented.
+/home/sqeaky/physgame/physgameengine/src/actorserializer.h:51: warning: Compound phys::ActorSerializer is not documented.
 /home/sqeaky/physgame/physgameengine/src/internalbulletfilemanager.cpp:49: warning: documented function `BulletFileManager * phys::internal::Ogre::Singleton::ms_Singleton' was not declared or defined.
-/home/sqeaky/physgame/physgameengine/src/actorterrain.h:87: warning: parameters of member phys::ActorTerrain::CreateShapeFromMeshDynamic are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/actorterrain.h:97: warning: return type of member phys::ActorTerrain::GetName is not documented
+/home/sqeaky/physgame/physgameengine/src/actorserializer.h:59: warning: Member ActorSerializer(ActorManager *DeSerializeTarget) (function) of class phys::ActorSerializer is not documented.
+/home/sqeaky/physgame/physgameengine/src/actorterrain.h:85: warning: parameters of member phys::ActorTerrain::CreateShapeFromMeshDynamic are not (all) documented
+/home/sqeaky/physgame/physgameengine/src/actorterrain.h:95: warning: return type of member phys::ActorTerrain::GetName is not documented
 /home/sqeaky/physgame/physgameengine/src/attachable.h:163: warning: argument 'vec' of command @param is not found in the argument list of phys::Attachable::SetLocation(const Vector3 &Vec)
 /home/sqeaky/physgame/physgameengine/src/attachable.h:163: warning: The following parameters of phys::Attachable::SetLocation(const Vector3 &Vec) are not documented:
   parameter 'Vec'
@@ -635,8 +638,8 @@
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:224: warning: parameters of member phys::UI::Window::GetRectangle are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:312: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:308: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1063: warning: return type of member phys::xml::XPathVariable::GetNodeSet is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1053: warning: return type of member phys::xml::XPathVariable::GetNumber is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1089: warning: return type of member phys::xml::XPathVariableSet::Set is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1119: warning: return type of member phys::xml::XPathQuery::EvaluateBoolean is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1203: warning: return type of member phys::xml::XPathNodeSet::operator= is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1221: warning: return type of member phys::xml::XPathVariable::GetNodeSet is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1211: warning: return type of member phys::xml::XPathVariable::GetNumber is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1247: warning: return type of member phys::xml::XPathVariableSet::Set is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1277: warning: return type of member phys::xml::XPathQuery::EvaluateBoolean is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1361: warning: return type of member phys::xml::XPathNodeSet::operator= is not documented

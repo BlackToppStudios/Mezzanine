@@ -1,0 +1,164 @@
+\hypertarget{classphys_1_1GravityField}{
+\subsection{phys::GravityField Class Reference}
+\label{classphys_1_1GravityField}\index{phys::GravityField@{phys::GravityField}}
+}
+
+
+This is a gravity field implementation of the \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class.  
+
+
+
+
+{\ttfamily \#include $<$areaeffect.h$>$}
+
+Inheritance diagram for phys::GravityField:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classphys_1_1GravityField}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1GravityField_aece29280051e47dc6e5bd10fd3bf99c9}{GravityField} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector3}{Vector3} \&Location)
+\begin{DoxyCompactList}\small\item\em Constructor. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1GravityField_ae41a656b247a2982da2e1ae666c605d0}{$\sim$GravityField} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1GravityField_a0322cb1635bbcb951493d9e17cc9acb1}{ApplyEffect} ()
+\begin{DoxyCompactList}\small\item\em Applies the effect this field has to object inside. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1GravityField_a4a784189c09ad4ce6806e0e92be2bc1c}{SetFieldGravity} (const \hyperlink{classphys_1_1Vector3}{Vector3} \&Gravity)
+\begin{DoxyCompactList}\small\item\em Sets the gravity force for this field. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1GravityField_a60473dfc835825b24fe67a86f4bc451e}{GetFieldGravity} () const 
+\begin{DoxyCompactList}\small\item\em Gets the gravity of this field. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1GravityField_a14084e696d0848db88b4a91413245849}{
+\hyperlink{classphys_1_1Vector3}{Vector3} \hyperlink{classphys_1_1GravityField_a14084e696d0848db88b4a91413245849}{Grav}}
+\label{classphys_1_1GravityField_a14084e696d0848db88b4a91413245849}
+
+\begin{DoxyCompactList}\small\item\em The stored value for this fields gravity. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a gravity field implementation of the \hyperlink{classphys_1_1AreaEffect}{AreaEffect} class. This class is not a gravity well, where gravity is pulling to one point. Instead this class uniformly pulls gravity in one direction that is different from the world gravity. 
+
+Definition at line 267 of file areaeffect.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1GravityField_aece29280051e47dc6e5bd10fd3bf99c9}{
+\index{phys::GravityField@{phys::GravityField}!GravityField@{GravityField}}
+\index{GravityField@{GravityField}!phys::GravityField@{phys::GravityField}}
+\paragraph[{GravityField}]{\setlength{\rightskip}{0pt plus 5cm}phys::GravityField::GravityField (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf Vector3} \&}]{Location}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1GravityField_aece29280051e47dc6e5bd10fd3bf99c9}
+
+
+Constructor. 
+
+Basic initialization constructor. 
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the field. \\
+\hline
+{\em Location} & The location of the AE field. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 553 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1GravityField_ae41a656b247a2982da2e1ae666c605d0}{
+\index{phys::GravityField@{phys::GravityField}!$\sim$GravityField@{$\sim$GravityField}}
+\index{$\sim$GravityField@{$\sim$GravityField}!phys::GravityField@{phys::GravityField}}
+\paragraph[{$\sim$GravityField}]{\setlength{\rightskip}{0pt plus 5cm}phys::GravityField::$\sim$GravityField (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1GravityField_ae41a656b247a2982da2e1ae666c605d0}
+
+
+Destructor. 
+
+Class destructor. 
+
+Definition at line 557 of file areaeffect.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1GravityField_a0322cb1635bbcb951493d9e17cc9acb1}{
+\index{phys::GravityField@{phys::GravityField}!ApplyEffect@{ApplyEffect}}
+\index{ApplyEffect@{ApplyEffect}!phys::GravityField@{phys::GravityField}}
+\paragraph[{ApplyEffect}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GravityField::ApplyEffect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1GravityField_a0322cb1635bbcb951493d9e17cc9acb1}
+
+
+Applies the effect this field has to object inside. 
+
+This function defines the behavior for the class. 
+
+Implements \hyperlink{classphys_1_1AreaEffect_a3b285ecfcf9c9200662d510e48dd222a}{phys::AreaEffect}.
+
+
+
+Definition at line 561 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1GravityField_a60473dfc835825b24fe67a86f4bc451e}{
+\index{phys::GravityField@{phys::GravityField}!GetFieldGravity@{GetFieldGravity}}
+\index{GetFieldGravity@{GetFieldGravity}!phys::GravityField@{phys::GravityField}}
+\paragraph[{GetFieldGravity}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} phys::GravityField::GetFieldGravity (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1GravityField_a60473dfc835825b24fe67a86f4bc451e}
+
+
+Gets the gravity of this field. 
+
+Gets the strength and direction of gravity this field has. \begin{DoxyReturn}{Returns}
+Returns a vector3 representing the force and direction of gravity this field has. 
+\end{DoxyReturn}
+
+
+Definition at line 590 of file areaeffect.cpp.
+
+\hypertarget{classphys_1_1GravityField_a4a784189c09ad4ce6806e0e92be2bc1c}{
+\index{phys::GravityField@{phys::GravityField}!SetFieldGravity@{SetFieldGravity}}
+\index{SetFieldGravity@{SetFieldGravity}!phys::GravityField@{phys::GravityField}}
+\paragraph[{SetFieldGravity}]{\setlength{\rightskip}{0pt plus 5cm}void phys::GravityField::SetFieldGravity (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3} \&}]{Gravity}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1GravityField_a4a784189c09ad4ce6806e0e92be2bc1c}
+
+
+Sets the gravity force for this field. 
+
+Sets the strength and direction of gravity this field will have. 
+\begin{DoxyParams}{Parameters}
+{\em Gravity} & The vector3 representing the force and direction of gravity this field will have. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 585 of file areaeffect.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+areaeffect.h\item 
+areaeffect.cpp\end{DoxyCompactItemize}

@@ -1,0 +1,108 @@
+\hypertarget{classphys_1_1xml_1_1WriterStream}{
+\subsection{phys::xml::WriterStream Class Reference}
+\label{classphys_1_1xml_1_1WriterStream}\index{phys::xml::WriterStream@{phys::xml::WriterStream}}
+}
+
+
+An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing std::ostreams.  
+
+
+
+
+{\ttfamily \#include $<$xmldoc.h$>$}
+
+Inheritance diagram for phys::xml::WriterStream:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classphys_1_1xml_1_1WriterStream}
+\end{center}
+\end{figure}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1xml_1_1WriterStream_ae170ab7c429b6f7149d3540243329dfa}{WriterStream} (std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&stream)
+\begin{DoxyCompactList}\small\item\em A constructor that accepts a stream of characters. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1xml_1_1WriterStream_aaebcd545af8e44cf6556a46077f0a366}{WriterStream} (std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&stream)
+\begin{DoxyCompactList}\small\item\em A constructor that accepts a stream of wide characters. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1xml_1_1WriterStream_a743c3f41a010df17f54054031fdc4891}{Write} (const void $\ast$data, size\_\-t size)
+\begin{DoxyCompactList}\small\item\em This will be used to output xml to an external source such as a file or stream. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+An implementation of \hyperlink{classphys_1_1xml_1_1Writer}{Writer} intended for writing std::ostreams. 
+
+Definition at line 323 of file xml.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1xml_1_1WriterStream_ae170ab7c429b6f7149d3540243329dfa}{
+\index{phys::xml::WriterStream@{phys::xml::WriterStream}!WriterStream@{WriterStream}}
+\index{WriterStream@{WriterStream}!phys::xml::WriterStream@{phys::xml::WriterStream}}
+\paragraph[{WriterStream}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::WriterStream::WriterStream (
+\begin{DoxyParamCaption}
+\item[{std::basic\_\-ostream$<$ char, std::char\_\-traits$<$ char $>$ $>$ \&}]{stream}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1xml_1_1WriterStream_ae170ab7c429b6f7149d3540243329dfa}
+
+
+A constructor that accepts a stream of characters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & A stream to send stuff to. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classphys_1_1xml_1_1WriterStream_aaebcd545af8e44cf6556a46077f0a366}{
+\index{phys::xml::WriterStream@{phys::xml::WriterStream}!WriterStream@{WriterStream}}
+\index{WriterStream@{WriterStream}!phys::xml::WriterStream@{phys::xml::WriterStream}}
+\paragraph[{WriterStream}]{\setlength{\rightskip}{0pt plus 5cm}phys::xml::WriterStream::WriterStream (
+\begin{DoxyParamCaption}
+\item[{std::basic\_\-ostream$<$ wchar\_\-t, std::char\_\-traits$<$ wchar\_\-t $>$ $>$ \&}]{stream}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1xml_1_1WriterStream_aaebcd545af8e44cf6556a46077f0a366}
+
+
+A constructor that accepts a stream of wide characters. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em stream} & A stream to send stuff to. \\
+\hline
+\end{DoxyParams}
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1xml_1_1WriterStream_a743c3f41a010df17f54054031fdc4891}{
+\index{phys::xml::WriterStream@{phys::xml::WriterStream}!Write@{Write}}
+\index{Write@{Write}!phys::xml::WriterStream@{phys::xml::WriterStream}}
+\paragraph[{Write}]{\setlength{\rightskip}{0pt plus 5cm}virtual void phys::xml::WriterStream::Write (
+\begin{DoxyParamCaption}
+\item[{const void $\ast$}]{data, }
+\item[{size\_\-t}]{size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1xml_1_1WriterStream_a743c3f41a010df17f54054031fdc4891}
+
+
+This will be used to output xml to an external source such as a file or stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & This is a pointer to something that will get written to the output \\
+\hline
+{\em size} & The size in bytes of whatever was passed in. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1xml_1_1Writer_ab6d4758ab53743f236eb64d5b2dd7e9e}{phys::xml::Writer}.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{xml_8h}{xml.h}\item 
+\hyperlink{xmldoc_8h}{xmldoc.h}\end{DoxyCompactItemize}

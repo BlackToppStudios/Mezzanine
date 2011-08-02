@@ -63,20 +63,178 @@
 #define _xmldoc_h
 namespace phys
 {
-
     ///////////////////////////////////////////////////////////////////////////////
     /// @namespace phys::xml
-    /// @brief This is where bulk of the XML subsystem resides, there are numerous class that are all tighlty integrated so one file seemed appropriate.
-    /// @details Our XML Parser IS a copy of PugiXML. It is simply the fastest,
-    /// most stable, most reliable, feature rich, and robust XML parser we were
-    /// aware of. We are using it with permission per it's included license. See the
-    /// licenses folder, in either the docs folder, or the data/common folder. \n \n
-    /// This XML parser uses an 'in place' design. It attmempts to load all of an XML document to one contiguous location in
-    /// in memory, then create a tree of meta data that reference the already loaded document text. In testing this has been shown to be extremely fast.
-    /// See pugixml.org for more details on the performace. \n \n
+    /// @brief This is where bulk of the XML subsystem resides, (See @ref XMLManual "phys::xml Manual" for details) there are numerous class that are all tighlty integrated so one file seemed appropriate.
+    /// @details Our XML Parser IS a copy of PugiXML. It is simply the fastest, most stable, most reliable, feature rich, and robust XML parser we were
+    /// aware of. We are using it with permission per it's included license. See the licenses folder, in either the docs folder, or the data/common folder.
+    /// \n \n
+    /// This XML parser uses an 'in place' design. It attempts to load all of an XML document to one contiguous location in memory, then create a tree
+    /// of meta data that references the already loaded document text. In testing this has been shown to be extremely fast. See pugixml.org for more
+    /// details on the performace.
+    /// \n \n
     /// The one drawback PugiXML had was that it has a completely different naming
-    /// convention from our code. So we created a script ( docs/tools/PugiConversion)
-    /// to covert version 1.1 and hopefully future versions to out naming convention.
+    /// convention from our code. So we created a script (docs/tools/PugiConversion)
+    /// to convert future versions to our naming convention.
+    /// \n \n
+    /// For the complete XML Documentation, please see the @ref XMLManual "phys::xml Manual"
+    /// @page XMLManual phys::xml Manual
+    /// @section XMLTOC Table Of Contents
+    ///     - @ref XMLOverview
+    ///         - @ref XMLIntroduction
+    ///         - @ref XMLFeedBack
+    ///         - @ref XMLAcknowledgments
+    ///         - @ref XMLLicense
+    ///     - @ref XMLDOM
+    ///     - @ref XMLLoading
+    ///     - @ref XMLAccessing
+    ///     - @ref XMLModifying
+    ///     - @ref XMLSaving
+    ///     - @ref XMLXPath
+    /// \n \n
+    /// @section XMLOverview Overview
+    ///     - @ref XMLIntroduction
+    ///     - @ref XMLFeedBack
+    ///     - @ref XMLAcknowledgments
+    ///     - @ref XMLLicense
+    ///
+    /// @subsection XMLIntroduction Introduction
+    /// phys::xml is a light-weight C++ XML processing library. It consists of a DOM-like interface with rich traversal/modification capabilities, an
+    /// extremely fast XML parser which constructs the DOM tree from an XML file/buffer, and an @ref phys::xml::XPathQuery "XPath 1.0 implementation"
+    /// for complex data-driven tree queries. Full Unicode support is also available, with @ref XMLUnicode "two Unicode interface variants" and
+    /// conversions between different Unicode encodings (which happen automatically during parsing/saving).
+    /// \n \n
+    /// phys::xml enables very fast, convenient and memory-efficient XML document processing. However, since phys::xml has a DOM parser, it can't process
+    /// XML documents that do not fit in memory; also the parser is a non-validating one, so if you need DTD or XML Schema validation, the XML parser
+    /// is not for you.
+    /// \n \n
+    /// This is the complete manual for phys::xml, which describes all features of the library in detail. If you want to start writing code as quickly as
+    /// possible, you are advised to @ref XMLQuickStart "read the quick start guide first".
+    /// @subsection XMLFeedBack FeedBack
+    /// If you believe you've found a bug in phys::xml (bugs include compilation problems (errors/warnings), crashes, performance degradation and incorrect
+    /// behavior), please contact Blacktopp Studios Inc ( http://www.blacktoppstudios.com/ ) . We check the the Forums ( http://www.blacktoppstudios.com/?page_id=753 )
+    /// and items sent by our contact form ( http://www.blacktoppstudios.com/?page_id=33 ) regularly. Be sure to include the relevant information so that
+    /// the bug can be reproduced: the version of phys::xml, compiler version and target architecture, the code that uses phys::xml and exhibits the bug, etc.
+    /// \n \n
+    /// Feature requests can be reported the same way as bugs, so if you're missing some functionality in phys::xml or if the API is rough in some places
+    /// and you can suggest an improvement, please let us know. However, please note that there are many factors when considering API changes (compatibility
+    /// with previous versions, API redundancy, etc.).
+    /// \n \n
+    /// If you have a contribution to phys::xml, such as build script for some build system/IDE, or a well-designed set of helper functions, or a binding
+    /// to some language other than C++, please let us know. You can include the relevant patches as issue attachments. We will have to communicate on the
+    /// Licensing terms of your contribution though.
+    /// \n \n
+    /// If the provided methods of contact have an issue or not possible due to privacy or other concerns, you can contact the phys::xml author ( toppij@blacktoppstudios.com )
+    /// or pugixml author ( arseny.kapoulkine@gmail.com ) by e-mail directly. If you have an issue that pertains to pugixml and not phys::xml you can visit the
+    /// pugixml issue submission form ( http://code.google.com/p/pugixml/issues/entry ) of the pugixml feature request form
+    /// ( http://code.google.com/p/pugixml/issues/entry?template=Feature%20request ).
+    /// @subsection XMLAcknowledgments Acknowledgments
+    /// phys::xml and pugixml could not be developed without the help from many people; some of them are listed in this section. If you've played a part in
+    /// phys::xml or pugixml development and you can not find yourself on this list, I'm truly sorry; please send me an e-mail ( toppij@blacktoppstudios.com )
+    /// so I can fix this.
+    /// \n \n
+    /// Thanks to \b Arseny \b Kapoulkine for pugixml parser, which was used as a basis for phys::xml.
+    /// \n \n
+    /// Thanks to \b Kristen \b Wegner for pugxml parser, which was used as a basis for pugixml.
+    /// \n \n
+    /// Thanks to \b Neville \b Franks for contributions to pugxml parser.
+    /// \n \n
+    /// Thanks to \b Artyom \b Palvelev for suggesting a lazy gap contraction approach.
+    /// \n \n
+    /// Thanks to \b Vyacheslav \b Egorov for documentation proofreading.
+    /// @subsection XMLLicense License
+    /// With written permission as per @ref OriginalpugixmlLicense "The original pugixml license" we he sublicensed phys::xml under the @ref GPLLicense "GPL Version 3". In short
+    /// This allows you to use phys::xml however you like with a few restrictions. If you change phys::xml you need to make the changes publically available.
+    /// If you make software using phys::xml you need to make the source code publicly available. You may not use and Digital Rights Management (DRM) software
+    /// to limit how others use the combined work you make. You can sell resulting works, but not through a digital distribution store that uses DRM.
+    ///
+    /// @section XMLDOM Document Object Model
+    ///     - @ref XMLTreeStructure
+    ///     - @ref XMLInterface
+    ///     - @ref XMLUnicode
+    ///     - @ref XMLThreadSafety
+    ///     - @ref XMLExceptionSafety
+    ///     - @ref XMLMemory
+    ///         - @ref XMLCustomAlloc
+    ///         - @ref XMLMemoryInternals Document memory management internals
+    /// \n
+    /// phys::xml stores XML data in DOM-like way: the entire XML document (both document structure and element data) is stored in memory as a tree. The tree can be
+    /// loaded from a character stream (file, string, C++ I/O stream), then traversed with the special API or XPath expressions. The whole tree is mutable: both node
+    /// structure and node/attribute data can be changed at any time. Finally, the result of document transformations can be saved to a character stream (file, C++
+    /// I/O stream or custom transport).
+    /// @subsection XMLTreeStructure Tree structure
+    /// Still in progress
+    /// @subsection XMLInterface C++ interface
+    /// Still in progress
+    /// @subsection XMLUnicode Unicode Interface
+    /// Still in progress
+    /// @subsection XMLThreadSafety Thread-safety guarantees
+    /// Still in progress
+    /// @subsection XMLExceptionSafety Exception guarantees
+    /// Still in progress
+    /// @subsection XMLMemory Memory management
+    /// Still in progress
+    /// @subsubsection XMLCustomAlloc Custom memory allocation/deallocation functions
+    /// Still in progress
+    /// @subsubsection XMLMemoryInternals Document memory management internals
+    /// Still in progress
+    /// @subsection XMLUnicode Unicode
+    /// Still in progress
+    /// @section XMLLoading Loading Documents
+    /// Still in progress
+    /// @section XMLAccessing Accessing Document Data
+    /// Still in progress
+    /// @section XMLModifying Modifiying Document
+    /// Still in progress
+    /// @section XMLSaving Saving Documents
+    /// Still in progress
+    /// @section XMLXPath
+    /// Still in progress
+
+
+    /// @page XMLQuickStart Jumping into phys::xml
+    /// copy : http://pugixml.googlecode.com/svn/tags/latest/docs/quickstart.html
+
+    /**
+    @page OriginalpugixmlLicense Original pugixml License
+    The original pugixml software had the following license text:
+    @section pugixmloriginallicense Original Text
+    @verbatim
+    The pugixml library is distributed under the MIT license:
+
+         Copyright (c) 2006-2010 Arseny Kapoulkine
+
+         Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+         and associated documentation files (the "Software"), to deal in the Software without restriction,
+         including without limitation the rights to use, copy, modify, merge, publish, distribute,
+         sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+         furnished to do so, subject to the following conditions:
+
+         The above copyright notice and this permission notice shall be included in all copies or
+         substantial portions of the Software.
+
+         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+         BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+         NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+         DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+    This means that you can freely use pugixml in your applications, both open-source and proprietary.
+    If you use pugixml in a product, it is sufficient to add an acknowledgment like this to the product
+    distribution:
+
+         This software is based on pugixml library (http://pugixml.org).
+         pugixml is Copyright (C) 2006-2010 Arseny Kapoulkine.
+    @endverbatim
+    \n \n
+    The documentation was copied with permission per the copyright notice near the bottom of Table of contents and several other pages as follows:
+    \n \n
+    @verbatim
+    Copyright © 2010 Arseny Kapoulkine
+    Distributed under the MIT License
+    @endverbatim
+    */
+
     ///////////////////////////////////////
     namespace xml
     {

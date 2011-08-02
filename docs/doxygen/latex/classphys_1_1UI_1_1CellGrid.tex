@@ -1,0 +1,1036 @@
+\hypertarget{classphys_1_1UI_1_1CellGrid}{
+\subsection{phys::UI::CellGrid Class Reference}
+\label{classphys_1_1UI_1_1CellGrid}\index{phys::UI::CellGrid@{phys::UI::CellGrid}}
+}
+
+
+This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surface.  
+
+
+
+
+{\ttfamily \#include $<$uicellgrid.h$>$}
+
+Inheritance diagram for phys::UI::CellGrid:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{classphys_1_1UI_1_1CellGrid}
+\end{center}
+\end{figure}
+\subsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75}{PageStyle} \{ \hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75a5cc13206330cf9ed55fb443ff4600c77}{CG\_\-Paged}, 
+\hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75add8259b571786b4e1976dcdb97a8e9c6}{CG\_\-Scrolled}
+ \}
+\item 
+enum \hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496b}{OrderingStyle} \{ \hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496ba40efb4a2512c8f3129eaf967522c9b30}{CG\_\-Horizontal\_\-Vertical\_\-Ascending}, 
+\hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496badecf0f97dbc2c5f4df2ac84b1c063de6}{CG\_\-Horizontal\_\-Vertical\_\-Decending}, 
+\hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496ba6114116f4ee36620ca28d2ca052d6839}{CG\_\-Vertical\_\-Horizontal\_\-Ascending}, 
+\hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496bab220567598ddaadfe133b9fef6f14b43}{CG\_\-Vertical\_\-Horizontal\_\-Decending}
+ \}
+\end{DoxyCompactItemize}
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1UI_1_1CellGrid_ace71a7178cd85b2c322403d59aec8e4f}{CellGrid} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&name, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size, \hyperlink{classphys_1_1UI_1_1Layer}{Layer} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}{
+virtual \hyperlink{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}{$\sim$CellGrid} ()}
+\label{classphys_1_1UI_1_1CellGrid_ac1abc38620bbb790afb01443cb2d6853}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_abd1b3b422680a8b549c1c897b300da5d}{SetVisible} (bool visible)
+\begin{DoxyCompactList}\small\item\em Sets the visibility of this widget. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_af53601ab18e77237550c3eb97043e68c}{IsVisible} ()
+\begin{DoxyCompactList}\small\item\em Gets the visibility of this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe6241e8dac5585b}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe6241e8dac5585b}{Show} ()}
+\label{classphys_1_1UI_1_1CellGrid_a772ea260724d009cfe6241e8dac5585b}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to be shown. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a8f1ea23b55724f3346a6c32c87f4eabc}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a8f1ea23b55724f3346a6c32c87f4eabc}{Hide} ()}
+\label{classphys_1_1UI_1_1CellGrid_a8f1ea23b55724f3346a6c32c87f4eabc}
+
+\begin{DoxyCompactList}\small\item\em Forces this widget to hide. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ad8a6d111b1906b0eb165fcedc0917452}{SetFixedCellSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&FixedSize)
+\begin{DoxyCompactList}\small\item\em Sets the fixed size cells in this grid are to have. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a7106972be4c03ac453894fcb7ef4782f}{GetFixedCellSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set fixed size applied to all cells in this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ac4f29519b3e2bca1fa146b2a9a20ec61}{AddCell} (\hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ToBeAdded)
+\begin{DoxyCompactList}\small\item\em Addes a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} to this widget that will be rendered. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a563d2fcfdb017579633727094a3176f3}{GetCell} (const \hyperlink{namespacephys_aa03900411993de7fbfec4789bc1d392e}{String} \&Name)
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} on the grid by name. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a6a39785b673abb8cffc8bbd0b8837208}{GetCell} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Row, const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&Column)
+\begin{DoxyCompactList}\small\item\em Gets a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} at the specified row/column. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_af7ff6b201aa24939c82ee34e96e67a32}{RemoveCell} (\hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ToBeRemoved)
+\begin{DoxyCompactList}\small\item\em Removes a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} from this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a12736adff3718820b4915cbe9961c66f}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a12736adff3718820b4915cbe9961c66f}{DestroyAllCells} ()}
+\label{classphys_1_1UI_1_1CellGrid_a12736adff3718820b4915cbe9961c66f}
+
+\begin{DoxyCompactList}\small\item\em Destroys all Cells currently stored within this widget. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a7a990cd514b6c02ea8f7747b0b058c93}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a7a990cd514b6c02ea8f7747b0b058c93}{GenerateGrid} ()}
+\label{classphys_1_1UI_1_1CellGrid_a7a990cd514b6c02ea8f7747b0b058c93}
+
+\begin{DoxyCompactList}\small\item\em Forces a reconstruction of the grid. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a785a41fd3e38dbd5a58d9a4f72f06a26}{SetWorkAreaLimits} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&AreaLimit)
+\begin{DoxyCompactList}\small\item\em Sets the limits of the grid, to determine when and where objects need to be wrapped. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a328392c90b93da93354756607e328e0c}{GetWorkAreaLimits} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set logical limits for the grid. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_aa55c328e2d222570d5c72bb50a48f8a5}{SetEdgeSpacing} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Spacing)
+\begin{DoxyCompactList}\small\item\em Sets the spacing from the edge of the entire grid area that no cell should overlap. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_afcf2689f1cc38acb157deb8ee5717906}{GetEdgeSpacing} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set edge spacing. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ac62bf02320f381012d22941d07ae62a2}{SetCellSpacing} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Spacing)
+\begin{DoxyCompactList}\small\item\em Sets the spacing from each cell around any given cell there should be. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a232260f23808cd7099f2f9a15850a14e}{GetCellSpacing} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently set cell spacing. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_ae901b18d90b8ed0d16da25ccfa91e84e}{CellsOffGrid} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if there are any remaining cells that aren't on the grid due to a lack of space. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ae539f6b21c3ed84852df37153ae2aebf}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ae539f6b21c3ed84852df37153ae2aebf}{SortGrid} ()}
+\label{classphys_1_1UI_1_1CellGrid_ae539f6b21c3ed84852df37153ae2aebf}
+
+\begin{DoxyCompactList}\small\item\em Sorts the grid based on the priority set in the cells. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ae2ad049f3e426c8a26cca6c59fb853aa}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ae2ad049f3e426c8a26cca6c59fb853aa}{ClearSelected} ()}
+\label{classphys_1_1UI_1_1CellGrid_ae2ad049f3e426c8a26cca6c59fb853aa}
+
+\begin{DoxyCompactList}\small\item\em Sets the selected pointer to NULL, so no cells are selected. \item\end{DoxyCompactList}\item 
+virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_a9c5f899c7db6c24d9aa2b03e59e5f0f0}{CheckMouseHover} ()
+\begin{DoxyCompactList}\small\item\em Checks to see if the current mouse position is over this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_abf0552ebbe369f6b695f91fdaa220c20}{SetPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a6b7fcbfd8a965e69c6e3e92d474f121f}{GetPosition} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a911ce43c124ca7ac9f02ba7d8e08d919}{SetActualPosition} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position)
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_a1ead8b427b5989ec137aa0ca8e017f73}{GetActualPosition} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel position of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a83de47589cb02ce49882f795e9281f57}{SetSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_aa0ad4f1e0159f8c6ca3928595dffd837}{GetSize} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a86a0ff7a5a916278d901bae05df01847}{SetActualSize} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1Vector2}{Vector2} \hyperlink{classphys_1_1UI_1_1CellGrid_ad0ea7915446ba7821212e6a43aede7e1}{GetActualSize} ()
+\begin{DoxyCompactList}\small\item\em Sets the pixel size of this widget. \item\end{DoxyCompactList}\item 
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf3ff787837e5}{UpdateDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&OldViewportSize)
+\begin{DoxyCompactList}\small\item\em Updates the dimensions of this widget to match those of the new screen size. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a25796d285052da2f0d833e6c8694edd1}{GetGridBack} ()
+\begin{DoxyCompactList}\small\item\em Gets the background to this Grid. \item\end{DoxyCompactList}\item 
+virtual \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ \hyperlink{classphys_1_1UI_1_1CellGrid_a4c68b88de0b02ef66ee192db430435ee}{GetSelected} ()
+\begin{DoxyCompactList}\small\item\em Gets the currently selected \hyperlink{classphys_1_1UI_1_1Cell}{Cell}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a24c08c84b9377eebfef28decfbc6d1ed}{
+typedef std::list$<$ \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ $>$ {\bfseries CellList}}
+\label{classphys_1_1UI_1_1CellGrid_a24c08c84b9377eebfef28decfbc6d1ed}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a3ead604b78c9ee142e3c3434f4752982}{
+typedef std::vector$<$ \hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ $>$ {\bfseries CellVector}}
+\label{classphys_1_1UI_1_1CellGrid_a3ead604b78c9ee142e3c3434f4752982}
+
+\end{DoxyCompactItemize}
+\subsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ab031e5d26dcb8b2617533e284816b5ed}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1CellGrid_ab031e5d26dcb8b2617533e284816b5ed}{GetMaxRows} ()}
+\label{classphys_1_1UI_1_1CellGrid_ab031e5d26dcb8b2617533e284816b5ed}
+
+\begin{DoxyCompactList}\small\item\em Gets the max number of rows in the grid. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ac7338fc2ba7cc9575c9f47d70d998574}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1CellGrid_ac7338fc2ba7cc9575c9f47d70d998574}{GetMaxColumns} ()}
+\label{classphys_1_1UI_1_1CellGrid_ac7338fc2ba7cc9575c9f47d70d998574}
+
+\begin{DoxyCompactList}\small\item\em Gest the max number of columns in the grid. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ae2970e94e9f4e79520ff93bb0c3238b0}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1CellGrid_ae2970e94e9f4e79520ff93bb0c3238b0}{FindTallestInRow} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&RowIndex)}
+\label{classphys_1_1UI_1_1CellGrid_ae2970e94e9f4e79520ff93bb0c3238b0}
+
+\begin{DoxyCompactList}\small\item\em Finds the Tallest cell in a row. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_af659299b53bb143d6593c6ac84ef45a3}{
+virtual \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1UI_1_1CellGrid_af659299b53bb143d6593c6ac84ef45a3}{FindWidestInColumn} (const \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \&ColumnIndex)}
+\label{classphys_1_1UI_1_1CellGrid_af659299b53bb143d6593c6ac84ef45a3}
+
+\begin{DoxyCompactList}\small\item\em Finds the Widest cell in a column. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_af4f183946fb12cb9150b337c17343c31}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_af4f183946fb12cb9150b337c17343c31}{CreateOrDestroyRow} (CellVector $\ast$ToDestory)}
+\label{classphys_1_1UI_1_1CellGrid_af4f183946fb12cb9150b337c17343c31}
+
+\begin{DoxyCompactList}\small\item\em Creates(if null) or destroys(if pointer is valid) a CellVector. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a62025df19045011c3ef7958c253f8f3c}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a62025df19045011c3ef7958c253f8f3c}{ClearGrid} ()}
+\label{classphys_1_1UI_1_1CellGrid_a62025df19045011c3ef7958c253f8f3c}
+
+\begin{DoxyCompactList}\small\item\em Removes all Cells from the grid. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a1fecbe653e802df38b5bb416a73efda9}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_a1fecbe653e802df38b5bb416a73efda9}{RegenerateGrid} ()}
+\label{classphys_1_1UI_1_1CellGrid_a1fecbe653e802df38b5bb416a73efda9}
+
+\begin{DoxyCompactList}\small\item\em Re-\/populates the grid and the positions of it's elements. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ab426bff9fe6c637aa4438fd00cdde71b}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ab426bff9fe6c637aa4438fd00cdde71b}{RegenerateGrid} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&WinDim)}
+\label{classphys_1_1UI_1_1CellGrid_ab426bff9fe6c637aa4438fd00cdde71b}
+
+\begin{DoxyCompactList}\small\item\em Re-\/populates the grid and the positions of it's elements. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ada5c15ae1b0372277d1bde05e348ccfd}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ada5c15ae1b0372277d1bde05e348ccfd}{DrawGrid} ()=0}
+\label{classphys_1_1UI_1_1CellGrid_ada5c15ae1b0372277d1bde05e348ccfd}
+
+\begin{DoxyCompactList}\small\item\em Draws the grid, used for updating after any change. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_aa4c2f8c2c5f11ce5cffa1b8a1c44d57d}{
+virtual bool \hyperlink{classphys_1_1UI_1_1CellGrid_aa4c2f8c2c5f11ce5cffa1b8a1c44d57d}{GridNeedsRedraw} ()=0}
+\label{classphys_1_1UI_1_1CellGrid_aa4c2f8c2c5f11ce5cffa1b8a1c44d57d}
+
+\begin{DoxyCompactList}\small\item\em Determines whether or not the grid needs to be redrawn. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ae72ca5a4a8924596df199c66e64c136f}{
+virtual void \hyperlink{classphys_1_1UI_1_1CellGrid_ae72ca5a4a8924596df199c66e64c136f}{Update} (bool Force=false)}
+\label{classphys_1_1UI_1_1CellGrid_ae72ca5a4a8924596df199c66e64c136f}
+
+\begin{DoxyCompactList}\small\item\em For use with widget update/automation. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a587671fd85e0b5ce7e9e70522a8cc413}{
+\hyperlink{classphys_1_1UI_1_1Rectangle}{Rectangle} $\ast$ {\bfseries GridBack}}
+\label{classphys_1_1UI_1_1CellGrid_a587671fd85e0b5ce7e9e70522a8cc413}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a4b764a148bda707ee96ce6e918b9159e}{
+bool {\bfseries GridDirty}}
+\label{classphys_1_1UI_1_1CellGrid_a4b764a148bda707ee96ce6e918b9159e}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a36827609cc2e20dcc7b8350632c19f4e}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries FixedCellSize}}
+\label{classphys_1_1UI_1_1CellGrid_a36827609cc2e20dcc7b8350632c19f4e}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ad8ba6bc71f9c8f6b6b45c44a018710fd}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries EdgeSpacing}}
+\label{classphys_1_1UI_1_1CellGrid_ad8ba6bc71f9c8f6b6b45c44a018710fd}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a68050ec93322d9368c2229871d397596}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries CellSpacing}}
+\label{classphys_1_1UI_1_1CellGrid_a68050ec93322d9368c2229871d397596}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a13d9fb5036b9e47fe04614079ca0f801}{
+\hyperlink{classphys_1_1Vector2}{Vector2} {\bfseries WorkAreaLimits}}
+\label{classphys_1_1UI_1_1CellGrid_a13d9fb5036b9e47fe04614079ca0f801}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_add1de3de8d067ef7efa60b5b23081fde}{
+\hyperlink{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75}{CellGrid::PageStyle} {\bfseries Paging}}
+\label{classphys_1_1UI_1_1CellGrid_add1de3de8d067ef7efa60b5b23081fde}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_afb953bc3382663245dc6abba83a31c17}{
+\hyperlink{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496b}{CellGrid::OrderingStyle} {\bfseries Ordering}}
+\label{classphys_1_1UI_1_1CellGrid_afb953bc3382663245dc6abba83a31c17}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ae5864a7174fee981647f339075a11e10}{
+\hyperlink{classphys_1_1UI_1_1Cell}{UI::Cell} $\ast$ {\bfseries Selected}}
+\label{classphys_1_1UI_1_1CellGrid_ae5864a7174fee981647f339075a11e10}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_ac4bb16b8e9fa149d2196362e32a57fdf}{
+CellList {\bfseries Cells}}
+\label{classphys_1_1UI_1_1CellGrid_ac4bb16b8e9fa149d2196362e32a57fdf}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a7fcb9ac98852926abf686df661acc72d}{
+CellVector {\bfseries VisibleCells}}
+\label{classphys_1_1UI_1_1CellGrid_a7fcb9ac98852926abf686df661acc72d}
+
+\item 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a38f49946396c1d3f1f34edb3e9bf4297}{
+std::vector$<$ CellVector $\ast$ $>$ {\bfseries TheGrid}}
+\label{classphys_1_1UI_1_1CellGrid_a38f49946396c1d3f1f34edb3e9bf4297}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This is a widget used to determine spacing and ordering of other widgets(Cells) on a grid like surface. This grid does support cells of different sizes, but all the cells of the same row/column will behave as if they share the size as the largest cell, in terms of spacing. The cells themselves will not be altered in size, and only the appropriate dimention will be applied(I.E. Each column will be spaced according to the largest width+spacing, and each row will be spaced according to the largest height+spacing). Thus it is ideal to have each cell be the same size, but not required. 
+
+Definition at line 64 of file uicellgrid.h.
+
+
+
+\subsubsection{Member Enumeration Documentation}
+\hypertarget{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496b}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!OrderingStyle@{OrderingStyle}}
+\index{OrderingStyle@{OrderingStyle}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{OrderingStyle}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::UI::CellGrid::OrderingStyle}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496b}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{CG\_\-Horizontal\_\-Vertical\_\-Ascending@{CG\_\-Horizontal\_\-Vertical\_\-Ascending}!phys::UI::CellGrid@{phys::UI::CellGrid}}\index{phys::UI::CellGrid@{phys::UI::CellGrid}!CG\_\-Horizontal\_\-Vertical\_\-Ascending@{CG\_\-Horizontal\_\-Vertical\_\-Ascending}}\item[{\em 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496ba40efb4a2512c8f3129eaf967522c9b30}{
+CG\_\-Horizontal\_\-Vertical\_\-Ascending}
+\label{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496ba40efb4a2512c8f3129eaf967522c9b30}
+}]-\/-\/-\/ Objects on the grid will be ordered based on their priority from left to right, top to bottom, in increasing order. \index{CG\_\-Horizontal\_\-Vertical\_\-Decending@{CG\_\-Horizontal\_\-Vertical\_\-Decending}!phys::UI::CellGrid@{phys::UI::CellGrid}}\index{phys::UI::CellGrid@{phys::UI::CellGrid}!CG\_\-Horizontal\_\-Vertical\_\-Decending@{CG\_\-Horizontal\_\-Vertical\_\-Decending}}\item[{\em 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496badecf0f97dbc2c5f4df2ac84b1c063de6}{
+CG\_\-Horizontal\_\-Vertical\_\-Decending}
+\label{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496badecf0f97dbc2c5f4df2ac84b1c063de6}
+}]-\/-\/-\/ Objects on the grid will be ordered based on their priority from left to right, top to bottom, in decreasing order. \index{CG\_\-Vertical\_\-Horizontal\_\-Ascending@{CG\_\-Vertical\_\-Horizontal\_\-Ascending}!phys::UI::CellGrid@{phys::UI::CellGrid}}\index{phys::UI::CellGrid@{phys::UI::CellGrid}!CG\_\-Vertical\_\-Horizontal\_\-Ascending@{CG\_\-Vertical\_\-Horizontal\_\-Ascending}}\item[{\em 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496ba6114116f4ee36620ca28d2ca052d6839}{
+CG\_\-Vertical\_\-Horizontal\_\-Ascending}
+\label{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496ba6114116f4ee36620ca28d2ca052d6839}
+}]-\/-\/-\/ Objects on the grid will be ordered based on their priority from top to bottom, left to right, in increasing order. \index{CG\_\-Vertical\_\-Horizontal\_\-Decending@{CG\_\-Vertical\_\-Horizontal\_\-Decending}!phys::UI::CellGrid@{phys::UI::CellGrid}}\index{phys::UI::CellGrid@{phys::UI::CellGrid}!CG\_\-Vertical\_\-Horizontal\_\-Decending@{CG\_\-Vertical\_\-Horizontal\_\-Decending}}\item[{\em 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496bab220567598ddaadfe133b9fef6f14b43}{
+CG\_\-Vertical\_\-Horizontal\_\-Decending}
+\label{classphys_1_1UI_1_1CellGrid_a4b77ef63082513fc9f845537d104496bab220567598ddaadfe133b9fef6f14b43}
+}]-\/-\/-\/ Objects on the grid will be ordered based on their priority from top to bottom, left to right, in decreasing order. \end{description}
+\end{Desc}
+
+
+
+Definition at line 72 of file uicellgrid.h.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!PageStyle@{PageStyle}}
+\index{PageStyle@{PageStyle}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{PageStyle}]{\setlength{\rightskip}{0pt plus 5cm}enum {\bf phys::UI::CellGrid::PageStyle}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75}
+\begin{Desc}
+\item[Enumerator: ]\par
+\begin{description}
+\index{CG\_\-Paged@{CG\_\-Paged}!phys::UI::CellGrid@{phys::UI::CellGrid}}\index{phys::UI::CellGrid@{phys::UI::CellGrid}!CG\_\-Paged@{CG\_\-Paged}}\item[{\em 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75a5cc13206330cf9ed55fb443ff4600c77}{
+CG\_\-Paged}
+\label{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75a5cc13206330cf9ed55fb443ff4600c77}
+}]-\/-\/-\/ Contents of the grid will be shown as pages. Ideally used with \char`\"{}Horizontal\_\-Vertical\char`\"{} ordering. \index{CG\_\-Scrolled@{CG\_\-Scrolled}!phys::UI::CellGrid@{phys::UI::CellGrid}}\index{phys::UI::CellGrid@{phys::UI::CellGrid}!CG\_\-Scrolled@{CG\_\-Scrolled}}\item[{\em 
+\hypertarget{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75add8259b571786b4e1976dcdb97a8e9c6}{
+CG\_\-Scrolled}
+\label{classphys_1_1UI_1_1CellGrid_a3644cef16e10c867c233105aae7b4e75add8259b571786b4e1976dcdb97a8e9c6}
+}]-\/-\/-\/ Scrollbars will be made available to scroll through the grid, both horizontal and vertical as necessary. \end{description}
+\end{Desc}
+
+
+
+Definition at line 67 of file uicellgrid.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1UI_1_1CellGrid_ace71a7178cd85b2c322403d59aec8e4f}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!CellGrid@{CellGrid}}
+\index{CellGrid@{CellGrid}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{CellGrid}]{\setlength{\rightskip}{0pt plus 5cm}phys::UI::CellGrid::CellGrid (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{name, }
+\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf Vector2} \&}]{Size, }
+\item[{{\bf Layer} $\ast$}]{parent}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_ace71a7178cd85b2c322403d59aec8e4f}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the widget. \\
+\hline
+{\em Position} & The position of the widget. \\
+\hline
+{\em Size} & The size of the widget. \\
+\hline
+{\em parent} & The parent layer this widget belongs to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 72 of file uicellgrid.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1UI_1_1CellGrid_ac4f29519b3e2bca1fa146b2a9a20ec61}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!AddCell@{AddCell}}
+\index{AddCell@{AddCell}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{AddCell}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::AddCell (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Cell} $\ast$}]{ToBeAdded}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_ac4f29519b3e2bca1fa146b2a9a20ec61}
+
+
+Addes a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} to this widget that will be rendered. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeAdded} & The \hyperlink{classphys_1_1UI_1_1Cell}{Cell} to be added to this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 363 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_ae901b18d90b8ed0d16da25ccfa91e84e}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!CellsOffGrid@{CellsOffGrid}}
+\index{CellsOffGrid@{CellsOffGrid}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{CellsOffGrid}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::CellGrid::CellsOffGrid (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_ae901b18d90b8ed0d16da25ccfa91e84e}
+
+
+Checks to see if there are any remaining cells that aren't on the grid due to a lack of space. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool indicating whether or not this widgets work area needs to be increased. 
+\end{DoxyReturn}
+
+
+Definition at line 452 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a9c5f899c7db6c24d9aa2b03e59e5f0f0}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!CheckMouseHover@{CheckMouseHover}}
+\index{CheckMouseHover@{CheckMouseHover}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{CheckMouseHover}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::CellGrid::CheckMouseHover (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a9c5f899c7db6c24d9aa2b03e59e5f0f0}
+
+
+Checks to see if the current mouse position is over this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool value, true if the mouse is over this widget, false if it's not. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a613df6dbb42efe139d185043a00259dc}{phys::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a859ed3c174faf86962df4d0fd2b43fab}{phys::UI::PagedCellGrid}, and \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a976e99e204f912d82712872e4e80b833}{phys::UI::ScrolledCellGrid}.
+
+
+
+Definition at line 473 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a1ead8b427b5989ec137aa0ca8e017f73}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetActualPosition@{GetActualPosition}}
+\index{GetActualPosition@{GetActualPosition}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CellGrid::GetActualPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a1ead8b427b5989ec137aa0ca8e017f73}
+
+
+Sets the pixel position of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel position of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a0a29fecff7f56d7909f65fd63b0990e7}{phys::UI::Widget}.
+
+
+
+Definition at line 519 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_ad0ea7915446ba7821212e6a43aede7e1}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetActualSize@{GetActualSize}}
+\index{GetActualSize@{GetActualSize}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CellGrid::GetActualSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_ad0ea7915446ba7821212e6a43aede7e1}
+
+
+Sets the pixel size of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a vector2 representing the pixel size of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_af3a685621ed220748c0940ea38c96ed2}{phys::UI::Widget}.
+
+
+
+Definition at line 543 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a563d2fcfdb017579633727094a3176f3}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetCell@{GetCell}}
+\index{GetCell@{GetCell}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetCell}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Cell} $\ast$ phys::UI::CellGrid::GetCell (
+\begin{DoxyParamCaption}
+\item[{const {\bf String} \&}]{Name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a563d2fcfdb017579633727094a3176f3}
+
+
+Gets a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} on the grid by name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Name} & The name of the \hyperlink{classphys_1_1UI_1_1Cell}{Cell} to get. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the \hyperlink{classphys_1_1UI_1_1Cell}{Cell} requested, or NULL if not found. 
+\end{DoxyReturn}
+
+
+Definition at line 371 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a6a39785b673abb8cffc8bbd0b8837208}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetCell@{GetCell}}
+\index{GetCell@{GetCell}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetCell}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Cell} $\ast$ phys::UI::CellGrid::GetCell (
+\begin{DoxyParamCaption}
+\item[{const {\bf Whole} \&}]{Row, }
+\item[{const {\bf Whole} \&}]{Column}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a6a39785b673abb8cffc8bbd0b8837208}
+
+
+Gets a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} at the specified row/column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Row} & The Row to check. Specified a point on the grid when used along side \char`\"{}Column\char`\"{} param. \\
+\hline
+{\em Column} & The Column to check. Specifies a point on the grid when used along side \char`\"{}Row\char`\"{} param. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the cell requested, or NULL if nothing is at the requested row/column. 
+\end{DoxyReturn}
+
+
+Definition at line 385 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a232260f23808cd7099f2f9a15850a14e}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetCellSpacing@{GetCellSpacing}}
+\index{GetCellSpacing@{GetCellSpacing}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetCellSpacing}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CellGrid::GetCellSpacing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a232260f23808cd7099f2f9a15850a14e}
+
+
+Gets the currently set cell spacing. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the spacing to be used between Cells of this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 447 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_afcf2689f1cc38acb157deb8ee5717906}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetEdgeSpacing@{GetEdgeSpacing}}
+\index{GetEdgeSpacing@{GetEdgeSpacing}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetEdgeSpacing}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CellGrid::GetEdgeSpacing (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_afcf2689f1cc38acb157deb8ee5717906}
+
+
+Gets the currently set edge spacing. 
+
+\begin{DoxyReturn}{Returns}
+Returns a Real representing the spacing to be used on edges of this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 437 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a7106972be4c03ac453894fcb7ef4782f}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetFixedCellSize@{GetFixedCellSize}}
+\index{GetFixedCellSize@{GetFixedCellSize}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetFixedCellSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CellGrid::GetFixedCellSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a7106972be4c03ac453894fcb7ef4782f}
+
+
+Gets the currently set fixed size applied to all cells in this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector2}{Vector2} containing the size applied to all cells in this widget. 
+\end{DoxyReturn}
+
+
+Definition at line 358 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a25796d285052da2f0d833e6c8694edd1}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetGridBack@{GetGridBack}}
+\index{GetGridBack@{GetGridBack}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetGridBack}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Rectangle} $\ast$ phys::UI::CellGrid::GetGridBack (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a25796d285052da2f0d833e6c8694edd1}
+
+
+Gets the background to this Grid. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the background of this grid. 
+\end{DoxyReturn}
+
+
+Definition at line 558 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a6b7fcbfd8a965e69c6e3e92d474f121f}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetPosition@{GetPosition}}
+\index{GetPosition@{GetPosition}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetPosition}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CellGrid::GetPosition (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a6b7fcbfd8a965e69c6e3e92d474f121f}
+
+
+Gets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative position of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3e464b028b0d1b5755923b8790260c33}{phys::UI::Widget}.
+
+
+
+Definition at line 507 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a4c68b88de0b02ef66ee192db430435ee}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetSelected@{GetSelected}}
+\index{GetSelected@{GetSelected}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetSelected}]{\setlength{\rightskip}{0pt plus 5cm}{\bf UI::Cell} $\ast$ phys::UI::CellGrid::GetSelected (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a4c68b88de0b02ef66ee192db430435ee}
+
+
+Gets the currently selected \hyperlink{classphys_1_1UI_1_1Cell}{Cell}. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the selected \hyperlink{classphys_1_1UI_1_1Cell}{Cell}. 
+\end{DoxyReturn}
+
+
+Definition at line 563 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_aa0ad4f1e0159f8c6ca3928595dffd837}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetSize@{GetSize}}
+\index{GetSize@{GetSize}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetSize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CellGrid::GetSize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_aa0ad4f1e0159f8c6ca3928595dffd837}
+
+
+Gets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. \begin{DoxyReturn}{Returns}
+Returns a vector2 representing the relative size of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a07039c19e57de314147ce066417da0a2}{phys::UI::Widget}.
+
+
+
+Definition at line 531 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a328392c90b93da93354756607e328e0c}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!GetWorkAreaLimits@{GetWorkAreaLimits}}
+\index{GetWorkAreaLimits@{GetWorkAreaLimits}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{GetWorkAreaLimits}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector2} phys::UI::CellGrid::GetWorkAreaLimits (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a328392c90b93da93354756607e328e0c}
+
+
+Gets the currently set logical limits for the grid. 
+
+\begin{DoxyReturn}{Returns}
+Returns a \hyperlink{classphys_1_1Vector2}{Vector2} representing the logical limits of the grid. 
+\end{DoxyReturn}
+
+
+Definition at line 427 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_af53601ab18e77237550c3eb97043e68c}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!IsVisible@{IsVisible}}
+\index{IsVisible@{IsVisible}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{IsVisible}]{\setlength{\rightskip}{0pt plus 5cm}bool phys::UI::CellGrid::IsVisible (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_af53601ab18e77237550c3eb97043e68c}
+
+
+Gets the visibility of this widget. 
+
+\begin{DoxyReturn}{Returns}
+Returns a bool representing the visibility of this widget. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_aaf1a1bd31b8e626467ce9cdb69bdf7ac}{phys::UI::Widget}.
+
+
+
+Definition at line 328 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_af7ff6b201aa24939c82ee34e96e67a32}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!RemoveCell@{RemoveCell}}
+\index{RemoveCell@{RemoveCell}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{RemoveCell}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::RemoveCell (
+\begin{DoxyParamCaption}
+\item[{{\bf UI::Cell} $\ast$}]{ToBeRemoved}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_af7ff6b201aa24939c82ee34e96e67a32}
+
+
+Removes a \hyperlink{classphys_1_1UI_1_1Cell}{Cell} from this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ToBeRemoved} & The \hyperlink{classphys_1_1UI_1_1Cell}{Cell} to be removed from this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 398 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a911ce43c124ca7ac9f02ba7d8e08d919}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetActualPosition@{SetActualPosition}}
+\index{SetActualPosition@{SetActualPosition}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{SetActualPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::SetActualPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a911ce43c124ca7ac9f02ba7d8e08d919}
+
+
+Sets the pixel position of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the pixel position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a77727351d98b10f1f4eb45048cb882e3}{phys::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aceff3ee36c2677d55e1a4e355611eef9}{phys::UI::ScrolledCellGrid}.
+
+
+
+Definition at line 512 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a86a0ff7a5a916278d901bae05df01847}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetActualSize@{SetActualSize}}
+\index{SetActualSize@{SetActualSize}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{SetActualSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::SetActualSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a86a0ff7a5a916278d901bae05df01847}
+
+
+Sets the pixel size of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the pixel size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_acda63a62fa158d5fe00c86f50e5c120d}{phys::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a32ee6cc683f7357afef8b7075d8b8f20}{phys::UI::ScrolledCellGrid}.
+
+
+
+Definition at line 536 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_ac62bf02320f381012d22941d07ae62a2}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetCellSpacing@{SetCellSpacing}}
+\index{SetCellSpacing@{SetCellSpacing}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{SetCellSpacing}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::SetCellSpacing (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Spacing}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_ac62bf02320f381012d22941d07ae62a2}
+
+
+Sets the spacing from each cell around any given cell there should be. 
+
+Default 0.01,0.01. 
+\begin{DoxyParams}{Parameters}
+{\em Spacing} & The minimum amount of space (in relative units) from each cell a given cell should be. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_ad565437a52149f099c1757903f930723}{phys::UI::PagedCellGrid}.
+
+
+
+Definition at line 442 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_aa55c328e2d222570d5c72bb50a48f8a5}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetEdgeSpacing@{SetEdgeSpacing}}
+\index{SetEdgeSpacing@{SetEdgeSpacing}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{SetEdgeSpacing}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::SetEdgeSpacing (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Spacing}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_aa55c328e2d222570d5c72bb50a48f8a5}
+
+
+Sets the spacing from the edge of the entire grid area that no cell should overlap. 
+
+Default: 0,0. 
+\begin{DoxyParams}{Parameters}
+{\em Spacing} & The minimum amount of space (in relative units) from the edge Cells should be. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a1bfa7f6ebfc9cec285509f5ddb649f08}{phys::UI::PagedCellGrid}.
+
+
+
+Definition at line 432 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_ad8a6d111b1906b0eb165fcedc0917452}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetFixedCellSize@{SetFixedCellSize}}
+\index{SetFixedCellSize@{SetFixedCellSize}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{SetFixedCellSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::SetFixedCellSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{FixedSize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_ad8a6d111b1906b0eb165fcedc0917452}
+
+
+Sets the fixed size cells in this grid are to have. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em FixedSize} & The fixed size to apply to cells. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a0083810bb8c7857ef2b4e2ce40dbaa8d}{phys::UI::PagedCellGrid}.
+
+
+
+Definition at line 353 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_abf0552ebbe369f6b695f91fdaa220c20}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetPosition@{SetPosition}}
+\index{SetPosition@{SetPosition}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{SetPosition}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::SetPosition (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_abf0552ebbe369f6b695f91fdaa220c20}
+
+
+Sets the relative position of this widget. 
+
+The position is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Position} & A vector2 representing the relative position of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a3ef894be2c0868105b2bf495ae944d00}{phys::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef62a124cb71b39bc73bda770741882f}{phys::UI::ScrolledCellGrid}.
+
+
+
+Definition at line 500 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a83de47589cb02ce49882f795e9281f57}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetSize@{SetSize}}
+\index{SetSize@{SetSize}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{SetSize}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::SetSize (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a83de47589cb02ce49882f795e9281f57}
+
+
+Sets the relative size of this widget. 
+
+The size is relative to the screen size. Values range from 0.0 to 1.0. 
+\begin{DoxyParams}{Parameters}
+{\em Size} & A vector2 representing the relative size of this widget. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_a00f73c12583d25a75c089f944075b24d}{phys::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_a793a775a3603e71db5ad29686c27ae68}{phys::UI::ScrolledCellGrid}.
+
+
+
+Definition at line 524 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_abd1b3b422680a8b549c1c897b300da5d}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetVisible@{SetVisible}}
+\index{SetVisible@{SetVisible}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{SetVisible}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::SetVisible (
+\begin{DoxyParamCaption}
+\item[{bool}]{visible}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_abd1b3b422680a8b549c1c897b300da5d}
+
+
+Sets the visibility of this widget. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em visible} & Bool determining whether or not this widget should be visible. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classphys_1_1UI_1_1Widget_ab049233d8d5522a6ab42654b8924a3e0}{phys::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a76ff4b649f4687203ba9d1473474ce99}{phys::UI::PagedCellGrid}, and \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aef5b78f205e75d33fff05623a1b61aa4}{phys::UI::ScrolledCellGrid}.
+
+
+
+Definition at line 318 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_a785a41fd3e38dbd5a58d9a4f72f06a26}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!SetWorkAreaLimits@{SetWorkAreaLimits}}
+\index{SetWorkAreaLimits@{SetWorkAreaLimits}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{SetWorkAreaLimits}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::SetWorkAreaLimits (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{AreaLimit}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_a785a41fd3e38dbd5a58d9a4f72f06a26}
+
+
+Sets the limits of the grid, to determine when and where objects need to be wrapped. 
+
+This does not alter the actual size of the widget, just the logical area the widget has to work with. 
+\begin{DoxyParams}{Parameters}
+{\em Area} & The new limits to the grid. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_af50d0b6337d727ac914f1f0c6f15c198}{phys::UI::PagedCellGrid}.
+
+
+
+Definition at line 422 of file uicellgrid.cpp.
+
+\hypertarget{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf3ff787837e5}{
+\index{phys::UI::CellGrid@{phys::UI::CellGrid}!UpdateDimensions@{UpdateDimensions}}
+\index{UpdateDimensions@{UpdateDimensions}!phys::UI::CellGrid@{phys::UI::CellGrid}}
+\paragraph[{UpdateDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void phys::UI::CellGrid::UpdateDimensions (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{OldViewportSize}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}virtual\mbox{]}}}\hfill}
+\label{classphys_1_1UI_1_1CellGrid_addbc1338b3b321018cbaf3ff787837e5}
+
+
+Updates the dimensions of this widget to match those of the new screen size. 
+
+This function is called automatically when a viewport changes in size, and shouldn't need to be called manually. 
+\begin{DoxyParams}{Parameters}
+{\em OldViewportSize} & The old size of the viewport. \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \hyperlink{classphys_1_1UI_1_1Widget_acbda7003549c6caac46078c034657929}{phys::UI::Widget}.
+
+
+
+Reimplemented in \hyperlink{classphys_1_1UI_1_1PagedCellGrid_a7d6ddd7126f86d2ea6592ac3f9a91037}{phys::UI::PagedCellGrid}, and \hyperlink{classphys_1_1UI_1_1ScrolledCellGrid_aed1f61cbdab04c555e26076ec933bbf2}{phys::UI::ScrolledCellGrid}.
+
+
+
+Definition at line 548 of file uicellgrid.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+uicellgrid.h\item 
+uicellgrid.cpp\end{DoxyCompactItemize}

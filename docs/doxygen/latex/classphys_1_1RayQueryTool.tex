@@ -1,0 +1,236 @@
+\hypertarget{classphys_1_1RayQueryTool}{
+\subsection{phys::RayQueryTool Class Reference}
+\label{classphys_1_1RayQueryTool}\index{phys::RayQueryTool@{phys::RayQueryTool}}
+}
+
+
+This provides a number of optional tools for working with a \hyperlink{classphys_1_1World}{phys::World}.  
+
+
+
+
+{\ttfamily \#include $<$rayquerytool.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1RayQueryTool_a84d018a05dfa069066a22ce8a20b43ec}{RayQueryTool} ()
+\begin{DoxyCompactList}\small\item\em Basic Constructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1RayQueryTool_aef5f45a61870962a556a0a65f4a7080f}{$\sim$RayQueryTool} ()
+\begin{DoxyCompactList}\small\item\em Destructor. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1RayQueryTool_a89a45879ef765c569ca2b2f0a54f3dcd}{GetFirstActorOnRayByPolygon} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ObjectFlags)
+\begin{DoxyCompactList}\small\item\em This will find the first Actor to intesect the Given ray. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1RayQueryTool_af4bba2ed8f201d4b0e9a05728d8bd1b6}{GetFirstActorOnRayByAABB} (\hyperlink{classphys_1_1Ray}{Ray} ActorRay, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ObjectFlags)
+\begin{DoxyCompactList}\small\item\em Partially implemented. This should find the first Actor that is on or almost on the a given \hyperlink{classphys_1_1Ray}{Ray}. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} $\ast$ \hyperlink{classphys_1_1RayQueryTool_a15b961426b667f9b9cbec9dd0d72c2b1}{GetActorUnderMouse} (\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ObjectFlags, \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} RayLength=1000.0, bool UsePolygon=true)
+\begin{DoxyCompactList}\small\item\em This will find the actor under the mouse. \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Vector3}{Vector3} $\ast$ \hyperlink{classphys_1_1RayQueryTool_aa9daac724e8af535d1ec2b71f2ac5d83}{RayPlaneIntersection} (const \hyperlink{classphys_1_1Ray}{Ray} \&QueryRay, const \hyperlink{classphys_1_1Plane}{Plane} \&QueryPlane)
+\begin{DoxyCompactList}\small\item\em Where does this \hyperlink{classphys_1_1Ray}{Ray} Meet this \hyperlink{classphys_1_1Plane}{Plane}? \item\end{DoxyCompactList}\item 
+static \hyperlink{classphys_1_1Ray}{Ray} $\ast$ \hyperlink{classphys_1_1RayQueryTool_a33d1350b7ce016b2b1c5a6ef329eb193}{GetMouseRay} (\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} Length=1000)
+\begin{DoxyCompactList}\small\item\em Get a \hyperlink{classphys_1_1Ray}{Ray} from the current viewport, following the mouse. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This provides a number of optional tools for working with a \hyperlink{classphys_1_1World}{phys::World}. Currently this allows for more seamless mouse use, including 'picking' of objects with the mouse, and associated functionality. 
+
+Definition at line 68 of file rayquerytool.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1RayQueryTool_a84d018a05dfa069066a22ce8a20b43ec}{
+\index{phys::RayQueryTool@{phys::RayQueryTool}!RayQueryTool@{RayQueryTool}}
+\index{RayQueryTool@{RayQueryTool}!phys::RayQueryTool@{phys::RayQueryTool}}
+\paragraph[{RayQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}phys::RayQueryTool::RayQueryTool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1RayQueryTool_a84d018a05dfa069066a22ce8a20b43ec}
+
+
+Basic Constructor. 
+
+This creates a WorldQueryTool Ready to run queries on the the world you pass it. 
+
+Definition at line 66 of file rayquerytool.cpp.
+
+\hypertarget{classphys_1_1RayQueryTool_aef5f45a61870962a556a0a65f4a7080f}{
+\index{phys::RayQueryTool@{phys::RayQueryTool}!$\sim$RayQueryTool@{$\sim$RayQueryTool}}
+\index{$\sim$RayQueryTool@{$\sim$RayQueryTool}!phys::RayQueryTool@{phys::RayQueryTool}}
+\paragraph[{$\sim$RayQueryTool}]{\setlength{\rightskip}{0pt plus 5cm}phys::RayQueryTool::$\sim$RayQueryTool (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1RayQueryTool_aef5f45a61870962a556a0a65f4a7080f}
+
+
+Destructor. 
+
+Deletes everything in the world query tool. 
+
+Definition at line 70 of file rayquerytool.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1RayQueryTool_a15b961426b667f9b9cbec9dd0d72c2b1}{
+\index{phys::RayQueryTool@{phys::RayQueryTool}!GetActorUnderMouse@{GetActorUnderMouse}}
+\index{GetActorUnderMouse@{GetActorUnderMouse}!phys::RayQueryTool@{phys::RayQueryTool}}
+\paragraph[{GetActorUnderMouse}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::RayQueryTool::GetActorUnderMouse (
+\begin{DoxyParamCaption}
+\item[{{\bf Whole}}]{ObjectFlags, }
+\item[{{\bf Real}}]{RayLength = {\ttfamily 1000.0}, }
+\item[{bool}]{UsePolygon = {\ttfamily true}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1RayQueryTool_a15b961426b667f9b9cbec9dd0d72c2b1}
+
+
+This will find the actor under the mouse. 
+
+This will use 
+\begin{DoxyParams}{Parameters}
+{\em ObjectFlags} & A whole comprising all the valid objects to be checked in the scene. See WorldObjectType in \hyperlink{enumerations_8h_source}{enumerations.h} for a listing of objects to use as flags. \\
+\hline
+{\em RayLength} & The length of the ray to cast from te mouse to search for actors. This defaults to 1000.0. \\
+\hline
+{\em UsePolygon} & If true this will use GetFirstActorOnRayByPolygon, otherwise this will use GetFirstActorOnRayByAABB. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor} which has a pointer to the actor under the mouse, and a vector representing the distance of the mouse fromt the center of mass. 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file rayquerytool.cpp.
+
+\hypertarget{classphys_1_1RayQueryTool_af4bba2ed8f201d4b0e9a05728d8bd1b6}{
+\index{phys::RayQueryTool@{phys::RayQueryTool}!GetFirstActorOnRayByAABB@{GetFirstActorOnRayByAABB}}
+\index{GetFirstActorOnRayByAABB@{GetFirstActorOnRayByAABB}!phys::RayQueryTool@{phys::RayQueryTool}}
+\paragraph[{GetFirstActorOnRayByAABB}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::RayQueryTool::GetFirstActorOnRayByAABB (
+\begin{DoxyParamCaption}
+\item[{{\bf Ray}}]{ActorRay, }
+\item[{{\bf Whole}}]{ObjectFlags}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1RayQueryTool_af4bba2ed8f201d4b0e9a05728d8bd1b6}
+
+
+Partially implemented. This should find the first Actor that is on or almost on the a given \hyperlink{classphys_1_1Ray}{Ray}. 
+
+This casts a ray through the gameworld. The first actor with an Axis Aligned Bounding Box that intersects that ray is returned. Presently this is untested and does not return the Offset of the intersection. This should perform faster than WorldQueryTool::GetFirstActorOnRayByPolygon but not by a known amount. 
+\begin{DoxyParams}{Parameters}
+{\em ActorRay} & The \hyperlink{classphys_1_1Ray}{Ray} to search along. \\
+\hline
+{\em ObjectFlags} & A whole comprising all the valid objects to be checked in the scene. See WorldObjectType in \hyperlink{enumerations_8h_source}{enumerations.h} for a listing of objects to use as flags. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a pointer to an actorbase, which is the first actor to have an Axis-\/Aligned Bounding Box along the ray. 
+\end{DoxyReturn}
+
+
+\begin{Desc}
+\item[\hyperlink{todo__todo000019}{Todo}]TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not return an valid offset. This needs to be calculated somehow. \end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000020}{Todo}]TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB has not been tested and needs to be tested \end{Desc}
+\begin{Desc}
+\item[\hyperlink{todo__todo000021}{Todo}]TODO: The function WorldQueryTool::GetFirstActorOnRayByAABB does not take other obstructions into account \end{Desc}
+
+
+
+
+Definition at line 173 of file rayquerytool.cpp.
+
+\hypertarget{classphys_1_1RayQueryTool_a89a45879ef765c569ca2b2f0a54f3dcd}{
+\index{phys::RayQueryTool@{phys::RayQueryTool}!GetFirstActorOnRayByPolygon@{GetFirstActorOnRayByPolygon}}
+\index{GetFirstActorOnRayByPolygon@{GetFirstActorOnRayByPolygon}!phys::RayQueryTool@{phys::RayQueryTool}}
+\paragraph[{GetFirstActorOnRayByPolygon}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3WActor} $\ast$ phys::RayQueryTool::GetFirstActorOnRayByPolygon (
+\begin{DoxyParamCaption}
+\item[{{\bf Ray}}]{ActorRay, }
+\item[{{\bf Whole}}]{ObjectFlags}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1RayQueryTool_a89a45879ef765c569ca2b2f0a54f3dcd}
+
+
+This will find the first Actor to intesect the Given ray. 
+
+This use the graphics subsystem to cast a ray in the world. If the ray passes through any the triangles in an actor This will return that actor. This function runs in linear time relative to the amount of triangles in 3d meshes near the the ray being cast. This will start at ray.from and go to ray.to . 
+\begin{DoxyParams}{Parameters}
+{\em ActorRay} & The \hyperlink{classphys_1_1Ray}{Ray} to search along. \\
+\hline
+{\em ObjectFlags} & A whole comprising all the valid objects to be checked in the scene. See WorldObjectType in \hyperlink{enumerations_8h_source}{enumerations.h} for a listing of objects to use as flags. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a pointer to an \hyperlink{classphys_1_1Vector3WActor}{Vector3WActor}, which contains the first actor along the ray and the point of intersection Relative to the actor 
+\end{DoxyReturn}
+
+
+Definition at line 76 of file rayquerytool.cpp.
+
+\hypertarget{classphys_1_1RayQueryTool_a33d1350b7ce016b2b1c5a6ef329eb193}{
+\index{phys::RayQueryTool@{phys::RayQueryTool}!GetMouseRay@{GetMouseRay}}
+\index{GetMouseRay@{GetMouseRay}!phys::RayQueryTool@{phys::RayQueryTool}}
+\paragraph[{GetMouseRay}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Ray} $\ast$ phys::RayQueryTool::GetMouseRay (
+\begin{DoxyParamCaption}
+\item[{{\bf Real}}]{Length = {\ttfamily 1000}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1RayQueryTool_a33d1350b7ce016b2b1c5a6ef329eb193}
+
+
+Get a \hyperlink{classphys_1_1Ray}{Ray} from the current viewport, following the mouse. 
+
+This calls on the graphics subsystem to get a ray from the location of the current camera 
+\begin{DoxyParams}{Parameters}
+{\em Length} & how long of a ray do you want? Thsi defaults to 1000 \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a ray that matches originates at the camera and goes out in 3d space behind the mouse pointer. 
+\end{DoxyReturn}
+
+
+Definition at line 326 of file rayquerytool.cpp.
+
+\hypertarget{classphys_1_1RayQueryTool_aa9daac724e8af535d1ec2b71f2ac5d83}{
+\index{phys::RayQueryTool@{phys::RayQueryTool}!RayPlaneIntersection@{RayPlaneIntersection}}
+\index{RayPlaneIntersection@{RayPlaneIntersection}!phys::RayQueryTool@{phys::RayQueryTool}}
+\paragraph[{RayPlaneIntersection}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3} $\ast$ phys::RayQueryTool::RayPlaneIntersection (
+\begin{DoxyParamCaption}
+\item[{const {\bf Ray} \&}]{QueryRay, }
+\item[{const {\bf Plane} \&}]{QueryPlane}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily  \mbox{[}static\mbox{]}}}\hfill}
+\label{classphys_1_1RayQueryTool_aa9daac724e8af535d1ec2b71f2ac5d83}
+
+
+Where does this \hyperlink{classphys_1_1Ray}{Ray} Meet this \hyperlink{classphys_1_1Plane}{Plane}? 
+
+This does some fancy math to return the point where the ray and the plane intersent. This returns a NULL pointer in the event the ray and plane do not meet, or are completely coterminous. 
+\begin{DoxyParams}{Parameters}
+{\em QueryRay} & This is the \hyperlink{classphys_1_1Ray}{Ray} that could intersent the plane \\
+\hline
+{\em QueryPlane} & This is the plane to be interesected. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+This returns a pointer to a vector that matches where the intersection of the plane and \hyperlink{classphys_1_1Ray}{Ray}, if possible 
+\end{DoxyReturn}
+
+
+Definition at line 226 of file rayquerytool.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+rayquerytool.h\item 
+rayquerytool.cpp\end{DoxyCompactItemize}

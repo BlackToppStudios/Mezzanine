@@ -144,7 +144,7 @@ namespace phys
     /// @details Any Class will work with this template as long as it implements the method "xml::Node ProtoSerialize(xml::Document&) const"
     /// @param Stream The ostream to put the serializable into.
     /// @param Converted The item to be serialized, which must have a "xml::Node ProtoSerialize(xml::Node& CurrentRoot) const" method.
-    /// @param Indent Defaults to nothing but can be set to "/t" to get normal
+    /// @param Indent Defaults to nothing but can be set to "\t" to get normal
     /// @return A the stream that was passed and now contains the serialized object.
     template <class T>
     std::ostream& Serialize(std::ostream& Stream, const T& Converted, const String& Indent = String("") )

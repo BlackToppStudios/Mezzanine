@@ -1,0 +1,390 @@
+\hypertarget{classphys_1_1Viewport}{
+\subsection{phys::Viewport Class Reference}
+\label{classphys_1_1Viewport}\index{phys::Viewport@{phys::Viewport}}
+}
+
+
+This class is for creating and managing viewports within a game window.  
+
+
+
+
+{\ttfamily \#include $<$viewport.h$>$}
+
+\subsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classphys_1_1Viewport_a83634ee2144fadd80fec3028885b92f2}{Viewport} (\hyperlink{classphys_1_1Camera}{Camera} $\ast$ViewportCamera, \hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} ZOrder, \hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ParentWindow)
+\begin{DoxyCompactList}\small\item\em Class constructor. \item\end{DoxyCompactList}\item 
+\hypertarget{classphys_1_1Viewport_a2ac669dde60b69641d309e81c3108db4}{
+\hyperlink{classphys_1_1Viewport_a2ac669dde60b69641d309e81c3108db4}{$\sim$Viewport} ()}
+\label{classphys_1_1Viewport_a2ac669dde60b69641d309e81c3108db4}
+
+\begin{DoxyCompactList}\small\item\em Class destructor. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ \hyperlink{classphys_1_1Viewport_ac350d4c2e790edd488b212ccb6b20991}{GetParentWindow} ()
+\begin{DoxyCompactList}\small\item\em Gets the game window this viewport belongs to. \item\end{DoxyCompactList}\item 
+\hyperlink{classphys_1_1Camera}{Camera} $\ast$ \hyperlink{classphys_1_1Viewport_a755f7ede5f6552ef8b64d75f745b7957}{GetViewportCamera} ()
+\begin{DoxyCompactList}\small\item\em Gets the camera associated with this viewport. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Viewport_a0d0c47add1187921fd40a8c8c363bc30}{SetDimensions} (const \hyperlink{classphys_1_1Vector2}{Vector2} \&Position, const \hyperlink{classphys_1_1Vector2}{Vector2} \&Size)
+\begin{DoxyCompactList}\small\item\em Sets the position and size of this viewport within the game window. \item\end{DoxyCompactList}\item 
+void \hyperlink{classphys_1_1Viewport_a49269f1ada31f280adc8d832c9536514}{SetDimensions} (const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Left, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Top, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Width, const \hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \&Height)
+\begin{DoxyCompactList}\small\item\em Sets the position and size of this viewport within the game window. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_a9a5667cbbb1127a89e4702219fe44c7a}{GetLeft} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative left position of the viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_af5d0413ab59dcd7bd428d73762a239e4}{GetTop} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative top position of the viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_af6df304a6b33f34134b29a61deb98e55}{GetWidth} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative width of the viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_af7eb897198d265b8e868f45240230d5f}{Real} \hyperlink{classphys_1_1Viewport_ae1a6473f3ccdac16535f985453caf691}{GetHeight} ()
+\begin{DoxyCompactList}\small\item\em Gets the relative height of the viewport. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Viewport_ad0390466fc2980e8469ddcbed66900ca}{GetActualLeft} ()
+\begin{DoxyCompactList}\small\item\em Gets the left position of the viewport in pixels. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Viewport_a1eff4fac830986548cb94123b6b31898}{GetActualTop} ()
+\begin{DoxyCompactList}\small\item\em Gets the top position of the viewport in pixels. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Viewport_a301262e5da6926296241f0e2cc2de7d2}{GetActualWidth} ()
+\begin{DoxyCompactList}\small\item\em Gets the width of the viewport in pixels. \item\end{DoxyCompactList}\item 
+\hyperlink{namespacephys_a460f6bc24c8dd347b05e0366ae34f34a}{Whole} \hyperlink{classphys_1_1Viewport_a1eee22594548a38910dee8e838e6449d}{GetActualHeight} ()
+\begin{DoxyCompactList}\small\item\em Gets the height of the viewport in pixels. \item\end{DoxyCompactList}\item 
+Ogre::Viewport $\ast$ \hyperlink{classphys_1_1Viewport_a005b39a37464c4f4a365c2bdb08ffb04}{GetOgreViewport} () const 
+\begin{DoxyCompactList}\small\item\em Gets the internal Ogre \hyperlink{classphys_1_1Viewport}{Viewport}. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classphys_1_1Viewport_a5251d485654d73414b9efdbb73015c83}{
+Ogre::Viewport $\ast$ {\bfseries OgreViewport}}
+\label{classphys_1_1Viewport_a5251d485654d73414b9efdbb73015c83}
+
+\item 
+\hypertarget{classphys_1_1Viewport_a833d36e97945498b2a4766c47c756e2f}{
+\hyperlink{classphys_1_1GameWindow}{GameWindow} $\ast$ {\bfseries Parent}}
+\label{classphys_1_1Viewport_a833d36e97945498b2a4766c47c756e2f}
+
+\item 
+\hypertarget{classphys_1_1Viewport_a3eb772321faeee0f76a80329ddc61885}{
+\hyperlink{classphys_1_1Camera}{Camera} $\ast$ {\bfseries ViewportCam}}
+\label{classphys_1_1Viewport_a3eb772321faeee0f76a80329ddc61885}
+
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Detailed Description}
+This class is for creating and managing viewports within a game window. A game window can contain several veiwports, and veiwports can overlap. This is useful for editors mostly, but can be of use in games as well. Be careful about positioning Veiwports in a game window. 
+
+Definition at line 62 of file viewport.h.
+
+
+
+\subsubsection{Constructor \& Destructor Documentation}
+\hypertarget{classphys_1_1Viewport_a83634ee2144fadd80fec3028885b92f2}{
+\index{phys::Viewport@{phys::Viewport}!Viewport@{Viewport}}
+\index{Viewport@{Viewport}!phys::Viewport@{phys::Viewport}}
+\paragraph[{Viewport}]{\setlength{\rightskip}{0pt plus 5cm}phys::Viewport::Viewport (
+\begin{DoxyParamCaption}
+\item[{{\bf Camera} $\ast$}]{ViewportCamera, }
+\item[{{\bf Whole}}]{ZOrder, }
+\item[{{\bf GameWindow} $\ast$}]{ParentWindow}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_a83634ee2144fadd80fec3028885b92f2}
+
+
+Class constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ViewportCamera} & The camera that is to be attached to this veiwport. \\
+\hline
+{\em ZOrder} & The render order of this viewport relative to other viewports in the game window. \\
+\hline
+{\em ParentWindow} & The game window this viewport belongs to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 51 of file viewport.cpp.
+
+
+
+\subsubsection{Member Function Documentation}
+\hypertarget{classphys_1_1Viewport_a1eee22594548a38910dee8e838e6449d}{
+\index{phys::Viewport@{phys::Viewport}!GetActualHeight@{GetActualHeight}}
+\index{GetActualHeight@{GetActualHeight}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetActualHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::Viewport::GetActualHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_a1eee22594548a38910dee8e838e6449d}
+
+
+Gets the height of the viewport in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the height of this veiwport in pixels. 
+\end{DoxyReturn}
+
+
+Definition at line 118 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_ad0390466fc2980e8469ddcbed66900ca}{
+\index{phys::Viewport@{phys::Viewport}!GetActualLeft@{GetActualLeft}}
+\index{GetActualLeft@{GetActualLeft}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetActualLeft}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::Viewport::GetActualLeft (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_ad0390466fc2980e8469ddcbed66900ca}
+
+
+Gets the left position of the viewport in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the left position of this veiwport in pixels. 
+\end{DoxyReturn}
+
+
+Definition at line 103 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_a1eff4fac830986548cb94123b6b31898}{
+\index{phys::Viewport@{phys::Viewport}!GetActualTop@{GetActualTop}}
+\index{GetActualTop@{GetActualTop}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetActualTop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::Viewport::GetActualTop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_a1eff4fac830986548cb94123b6b31898}
+
+
+Gets the top position of the viewport in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the top position of this veiwport in pixels. 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_a301262e5da6926296241f0e2cc2de7d2}{
+\index{phys::Viewport@{phys::Viewport}!GetActualWidth@{GetActualWidth}}
+\index{GetActualWidth@{GetActualWidth}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetActualWidth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Whole} phys::Viewport::GetActualWidth (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_a301262e5da6926296241f0e2cc2de7d2}
+
+
+Gets the width of the viewport in pixels. 
+
+\begin{DoxyReturn}{Returns}
+Returns a whole representing the width of this veiwport in pixels. 
+\end{DoxyReturn}
+
+
+Definition at line 113 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_ae1a6473f3ccdac16535f985453caf691}{
+\index{phys::Viewport@{phys::Viewport}!GetHeight@{GetHeight}}
+\index{GetHeight@{GetHeight}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetHeight}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Viewport::GetHeight (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_ae1a6473f3ccdac16535f985453caf691}
+
+
+Gets the relative height of the viewport. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the relative height of this veiwport. 
+\end{DoxyReturn}
+
+
+Definition at line 98 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_a9a5667cbbb1127a89e4702219fe44c7a}{
+\index{phys::Viewport@{phys::Viewport}!GetLeft@{GetLeft}}
+\index{GetLeft@{GetLeft}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetLeft}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Viewport::GetLeft (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_a9a5667cbbb1127a89e4702219fe44c7a}
+
+
+Gets the relative left position of the viewport. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the relative left position of this veiwport. 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_a005b39a37464c4f4a365c2bdb08ffb04}{
+\index{phys::Viewport@{phys::Viewport}!GetOgreViewport@{GetOgreViewport}}
+\index{GetOgreViewport@{GetOgreViewport}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetOgreViewport}]{\setlength{\rightskip}{0pt plus 5cm}Ogre::Viewport $\ast$ phys::Viewport::GetOgreViewport (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\hfill}
+\label{classphys_1_1Viewport_a005b39a37464c4f4a365c2bdb08ffb04}
+
+
+Gets the internal Ogre \hyperlink{classphys_1_1Viewport}{Viewport}. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the Ogre \hyperlink{classphys_1_1Viewport}{Viewport} this class is based on. 
+\end{DoxyReturn}
+
+
+Definition at line 123 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_ac350d4c2e790edd488b212ccb6b20991}{
+\index{phys::Viewport@{phys::Viewport}!GetParentWindow@{GetParentWindow}}
+\index{GetParentWindow@{GetParentWindow}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetParentWindow}]{\setlength{\rightskip}{0pt plus 5cm}{\bf GameWindow} $\ast$ phys::Viewport::GetParentWindow (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_ac350d4c2e790edd488b212ccb6b20991}
+
+
+Gets the game window this viewport belongs to. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the game window that created this viewport. 
+\end{DoxyReturn}
+
+
+Definition at line 63 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_af5d0413ab59dcd7bd428d73762a239e4}{
+\index{phys::Viewport@{phys::Viewport}!GetTop@{GetTop}}
+\index{GetTop@{GetTop}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetTop}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Viewport::GetTop (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_af5d0413ab59dcd7bd428d73762a239e4}
+
+
+Gets the relative top position of the viewport. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the relative top position of this veiwport. 
+\end{DoxyReturn}
+
+
+Definition at line 88 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_a755f7ede5f6552ef8b64d75f745b7957}{
+\index{phys::Viewport@{phys::Viewport}!GetViewportCamera@{GetViewportCamera}}
+\index{GetViewportCamera@{GetViewportCamera}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetViewportCamera}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Camera} $\ast$ phys::Viewport::GetViewportCamera (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_a755f7ede5f6552ef8b64d75f745b7957}
+
+
+Gets the camera associated with this viewport. 
+
+\begin{DoxyReturn}{Returns}
+Returns a pointer to the camera using this viewport. 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_af6df304a6b33f34134b29a61deb98e55}{
+\index{phys::Viewport@{phys::Viewport}!GetWidth@{GetWidth}}
+\index{GetWidth@{GetWidth}!phys::Viewport@{phys::Viewport}}
+\paragraph[{GetWidth}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Real} phys::Viewport::GetWidth (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_af6df304a6b33f34134b29a61deb98e55}
+
+
+Gets the relative width of the viewport. 
+
+\begin{DoxyReturn}{Returns}
+Returns a real representing the relative width of this veiwport. 
+\end{DoxyReturn}
+
+
+Definition at line 93 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_a49269f1ada31f280adc8d832c9536514}{
+\index{phys::Viewport@{phys::Viewport}!SetDimensions@{SetDimensions}}
+\index{SetDimensions@{SetDimensions}!phys::Viewport@{phys::Viewport}}
+\paragraph[{SetDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Viewport::SetDimensions (
+\begin{DoxyParamCaption}
+\item[{const {\bf Real} \&}]{Left, }
+\item[{const {\bf Real} \&}]{Top, }
+\item[{const {\bf Real} \&}]{Width, }
+\item[{const {\bf Real} \&}]{Height}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_a49269f1ada31f280adc8d832c9536514}
+
+
+Sets the position and size of this viewport within the game window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Left} & A relative value(range: 0-\/1) representing the leftmost position of the viewport. \\
+\hline
+{\em Top} & A relative value(range: 0-\/1) representing the topmost position of the viewport. \\
+\hline
+{\em Width} & A relative value(range: 0-\/1) representing the width of the viewport. \\
+\hline
+{\em Height} & A relative value(range: 0-\/1) representing the height of the viewport. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 78 of file viewport.cpp.
+
+\hypertarget{classphys_1_1Viewport_a0d0c47add1187921fd40a8c8c363bc30}{
+\index{phys::Viewport@{phys::Viewport}!SetDimensions@{SetDimensions}}
+\index{SetDimensions@{SetDimensions}!phys::Viewport@{phys::Viewport}}
+\paragraph[{SetDimensions}]{\setlength{\rightskip}{0pt plus 5cm}void phys::Viewport::SetDimensions (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector2} \&}]{Position, }
+\item[{const {\bf Vector2} \&}]{Size}
+\end{DoxyParamCaption}
+)}\hfill}
+\label{classphys_1_1Viewport_a0d0c47add1187921fd40a8c8c363bc30}
+
+
+Sets the position and size of this viewport within the game window. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Position} & \hyperlink{classphys_1_1Vector2}{Vector2} of relative values(range: 0-\/1) representing the top left corner of the viewport. Values are relative to the game window this viewport belongs to. \\
+\hline
+{\em Size} & \hyperlink{classphys_1_1Vector2}{Vector2} of relative values(range: 0-\/1) representing the width and height of the viewport. Values are relative to the game window this viewport belongs to. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file viewport.cpp.
+
+
+
+The documentation for this class was generated from the following files:\begin{DoxyCompactItemize}
+\item 
+viewport.h\item 
+viewport.cpp\end{DoxyCompactItemize}
