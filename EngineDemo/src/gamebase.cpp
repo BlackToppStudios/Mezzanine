@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
     //TheWorld->SetLoggingFrequency(World::LogOncePerXFrames,250); //Every 250 frames should be once every 5 seconds or so.
     //TheWorld->SetLoggingFrequency(World::LogOncePerXSeconds,5);
-    TheWorld->SetLoggingFrequency(World::LogNever);
+    //TheWorld->SetLoggingFrequency(World::LogNever);
 
     #ifdef PHYSDEBUG
     TheWorld->Log("World Created:");
@@ -272,12 +272,6 @@ bool PostInput()
     //User Input through a WorldQueryTool
     static RayQueryTool* RayQueryer = new RayQueryTool();
     static InputQueryTool* InputQueryer = new InputQueryTool();
-
-    UI::Caption* WMPos = TheWorld->GetUIManager()->GetScreen("DefaultScreen")->GetLayer("StatsLayer")->GetCaption("WMPos");
-    std::stringstream WMPosstream;
-    WMPosstream << InputQueryer->GetMouseCoordinates().X << "," << InputQueryer->GetMouseCoordinates().Y;
-    String WMPosTex = WMPosstream.str();
-    WMPos->SetText(WMPosTex);
 
     //Queryer.GatherEvents();
     #ifdef PHYSDEBUG
@@ -1213,19 +1207,11 @@ void MakeGUI()
     AvFPSText->SetBackgroundColour(Transparent);
     AvFPSText->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* WMPos = Stats->CreateCaption( "WMPos", UI::RenderableRect(Vector2(0.16, 0.15), Vector2(0.12, 0.065), true), (Whole)14, "0,0");
-    WMPos->SetBackgroundColour(Transparent);
-    WMPos->HorizontallyAlign(UI::Txt_Left);
-
-    UI::Caption* WMPosText = Stats->CreateCaption( "WMPosText", UI::RenderableRect(Vector2(0.008, 0.15), Vector2(0.15, 0.065), true), (Whole)14, "World M Pos: ");
-    WMPosText->SetBackgroundColour(Transparent);
-    WMPosText->HorizontallyAlign(UI::Txt_Left);
-
-    UI::Caption* IMPos = Stats->CreateCaption( "IMPos", UI::RenderableRect(Vector2(0.16, 0.195), Vector2(0.12, 0.065), true), (Whole)14, "0,0");
+    UI::Caption* IMPos = Stats->CreateCaption( "IMPos", UI::RenderableRect(Vector2(0.16, 0.15), Vector2(0.12, 0.065), true), (Whole)14, "0,0");
     IMPos->SetBackgroundColour(Transparent);
     IMPos->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* IMPosText = Stats->CreateCaption( "IMPosText", UI::RenderableRect(Vector2(0.008, 0.195), Vector2(0.15, 0.065), true), (Whole)14, "Input M Pos: ");
+    UI::Caption* IMPosText = Stats->CreateCaption( "IMPosText", UI::RenderableRect(Vector2(0.008, 0.15), Vector2(0.15, 0.065), true), (Whole)14, "Mouse Pos: ");
     IMPosText->SetBackgroundColour(Transparent);
     IMPosText->HorizontallyAlign(UI::Txt_Left);
     //End of Stats Layer

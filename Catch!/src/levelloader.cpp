@@ -359,24 +359,25 @@ void LevelLoader::LoadBlowsNotSucks()
     FanBody->SetLocation(Vector3(132.5,-70,25));
     ActMan->AddActor(FanBody);
 
-    ActorRigid* FanButton = new ActorRigid(5,"FanButton","button.mesh",BlowsNotSucksGroup);
+    ActorRigid* FanButton = new ActorRigid(0.5,"FanButton","button.mesh",BlowsNotSucksGroup);
     FanButton->CreateShapeFromMeshDynamic(1);
     FanButton->SetLocation(Vector3(0,0,0));
+    FanButton->SetAngularMovementFactor(Vector3(0,0,0));
     ActMan->AddActor(FanButton);
 
     // Create the series of constraints for assembling the fan
     HingeConstraint* FanToBody = new HingeConstraint(FanBody,Fan,Vector3(-12,-6,-17.5),Vector3(0,-24.2,0),Vector3(-1,1,0).Normalize(),Vector3(0,1,0),false);
     PhysMan->AddConstraint(FanToBody,true);
-    FanToBody->EnableAngularMotor(true,2000.f,200.0f);
+    FanToBody->EnableAngularMotor(true,2000.f,400.0f);
     FanToBody->SetLimit(1.0,-1.0);
 
-    Generic6DofSpringConstraint* ButtonToBody = new Generic6DofSpringConstraint(FanBody,FanButton,Vector3(-143,-40,-25.5),Vector3(0,0,0),Quaternion(0,0,0,1),Quaternion(0,0,0,1),true);
+    Generic6DofSpringConstraint* ButtonToBody = new Generic6DofSpringConstraint(FanBody,FanButton,Vector3(-143,-52,-25.5),Vector3(0,0,0),Quaternion(0,0,0,1),Quaternion(0,0,0,1),true);
     ButtonToBody->SetLinearUpperLimit(Vector3(0,15,0));
     ButtonToBody->SetLinearLowerLimit(Vector3(0,0,0));
     ButtonToBody->SetAngularUpperLimit(Vector3(0,0,0));
     ButtonToBody->SetAngularLowerLimit(Vector3(0,0,0));
     ButtonToBody->EnableSpring(1,true);
-    ButtonToBody->SetStiffness(1,575.f);
+    ButtonToBody->SetStiffness(1,150.f);
     ButtonToBody->SetEquilibriumPoint(1);
     PhysMan->AddConstraint(ButtonToBody,true);
 
