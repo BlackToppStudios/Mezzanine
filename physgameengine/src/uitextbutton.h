@@ -64,20 +64,18 @@ namespace phys
             public:
                 /// @brief Internal constructor
                 /// @param name The name of the button.
-                /// @param Position The top left position of the button.
-                /// @param Size The size of the Button.
+                /// @param Rect The Rect representing the position and size of the button.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
                 /// @param Layer Pointer to the Layer that created this button.
-                TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer);
+                TextButton(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer);
                 /// @brief Internal constructor
                 /// @param name The name of the button.
-                /// @param Position The top left position of the button.
-                /// @param Size The size of the Button.
+                /// @param Rect The Rect representing the position and size of the button.
                 /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
                 /// @param Text Any text you want printed on the button.
                 /// @param Layer Pointer to the Layer that created this button.
-                TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text, Layer* PLayer);
+                TextButton(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~TextButton();
                 /// @brief Sets the visibility of this button.

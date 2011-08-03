@@ -52,14 +52,14 @@ namespace phys
 {
     namespace UI
     {
-        PagedCellGrid::PagedCellGrid(const String& name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent)
-            : CellGrid(name,Position,Size,parent),
+        PagedCellGrid::PagedCellGrid(const String& name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent)
+            : CellGrid(name,Rect,parent),
               CurrentPage(1),
               XCellsPerPage(1),
               YCellsPerPage(1),
               MaxPages(1)
         {
-            PageSpinner = new UI::Spinner(Name+"Spn",SpnPosition,SpnSize,SStyle,GlyphHeight,Parent);
+            PageSpinner = new UI::Spinner(Name+"Spn",SpnRect,SStyle,GlyphHeight,Parent);
             PageSpinner->SetSpinnerValue((int)CurrentPage);
         }
 

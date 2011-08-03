@@ -40,7 +40,7 @@
 #ifndef _uiwidget_h
 #define _uiwidget_h
 
-#include "vector2.h"
+#include "uirenderablerect.h"
 #include "metacode.h"
 
 #include <set>
@@ -103,6 +103,7 @@ namespace phys
                     Cell,
                     CellGrid,
                     CheckBox,
+                    DropDownList,
                     DropDownMenu,
                     ListBox,
                     Menu,
@@ -153,7 +154,7 @@ namespace phys
                 virtual void Hide() = 0;
                 /// @brief Gets the type of widget this is.
                 /// @return Returns an enum value representing the type of widget this is.
-                WidgetType GetType() const;
+                virtual WidgetType GetType() const;
                 /// @brief Checks if this is an input capturing widget.
                 /// @return Returns a bool indicating whether or not this widget will capture input.
                 virtual bool IsInputCaptureWidget();
@@ -163,6 +164,13 @@ namespace phys
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
                 virtual bool CheckMouseHover() = 0;
+                /// @brief Sets the Rect(Position and Size) of this Widget.
+                /// @param Rect The Rect to set.
+                virtual void SetRect(const RenderableRect& Rect);
+                /// @brief Gets this Widgets' Rect.
+                /// @param Relative Whether or not you want the Rect to be populated with Relative values.
+                /// @return Returns a Rect containing this Widgets' Position and Size.
+                virtual RenderableRect GetRect(bool Relative = true);
                 /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.

@@ -54,16 +54,24 @@ namespace phys
 {
     namespace UI
     {
-        Rectangle::Rectangle(const Vector2& Position, const Vector2& Size, Layer* PLayer)
+        Rectangle::Rectangle(const RenderableRect& Rect, Layer* PLayer)
             : Parent(PLayer),
-              MouseHover(false),
-              RelPosition(Position),
-              RelSize(Size)
+              MouseHover(false)
         {
             Manager = World::GetWorldPointer()->GetUIManager();
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
 
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GRectangle = Parent->GetGorillaLayer()->createRectangle((Position * WinDim).GetOgreVector2(),(Size * WinDim).GetOgreVector2());
+                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+                GRectangle = Parent->GetGorillaLayer()->createRectangle((Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2());
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+
+                GRectangle = Parent->GetGorillaLayer()->createRectangle(Rect.Position.GetOgreVector2(),Rect.Size.GetOgreVector2());
+            }
             GRectangle->SetNameFile(Parent->GetParent()->GetPrimaryAtlas());
         }
 

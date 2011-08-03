@@ -65,16 +65,22 @@ namespace phys
 {
     namespace UI
     {
-        Window::Window(ConstString& name, const Vector2& Position, const Vector2& Size, Layer* PLayer)
+        Window::Window(ConstString& name, const RenderableRect& Rect, Layer* PLayer)
             : Widget(name,PLayer),
               BorderWidth(0),
               CurrentRM(RM_None)
         {
             Type = Widget::Window;
-            RelPosition = Position;
-            RelSize = Size;
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+            }
 
-            WindowBack = new Rectangle(Position,Size,Parent);
+            WindowBack = new Rectangle(Rect,Parent);
         }
 
         Window::~Window()
@@ -541,10 +547,12 @@ namespace phys
             }
         }
 
-        Button* Window::CreateButton(ConstString& Name, const Vector2& Position, const Vector2& Size)
+        Button* Window::CreateButton(ConstString& Name, const RenderableRect& Rect)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            OffsetButtonInfo buttoninfo(new Button(Name, Position, Size, Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            OffsetButtonInfo buttoninfo(new Button(Name,Rect,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(buttoninfo);
             if(Manager->ButtonAutoRegisterEnabled())
             {
@@ -556,10 +564,12 @@ namespace phys
             return buttoninfo.Object;
         }
 
-        TextButton* Window::CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString& Text)
+        TextButton* Window::CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            TextButton* tbutton = new TextButton(Name, Position, Size, Glyph, Text, Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            TextButton* tbutton = new TextButton(Name,Rect,Glyph,Text,Parent);
             OffsetButtonInfo tbuttoninfo(tbutton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(tbuttoninfo);
             if(Manager->ButtonAutoRegisterEnabled())
@@ -572,10 +582,12 @@ namespace phys
             return tbutton;
         }
 
-        TextButton* Window::CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, ConstString& Text)
+        TextButton* Window::CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, ConstString& Text)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            TextButton* tbutton = new TextButton(Name, Position, Size, LineHeight, Text, Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            TextButton* tbutton = new TextButton(Name,Rect,LineHeight,Text,Parent);
             OffsetButtonInfo tbuttoninfo(tbutton,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Buttons.push_back(tbuttoninfo);
             if(Manager->ButtonAutoRegisterEnabled())
@@ -643,10 +655,12 @@ namespace phys
             }
         }
 
-        Rectangle* Window::CreateRectangle(const Vector2& Position, const Vector2& Size)
+        Rectangle* Window::CreateRectangle(const RenderableRect& Rect)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            OffsetRectangleInfo rectangle(new Rectangle(Position,Size,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            OffsetRectangleInfo rectangle(new Rectangle(Rect,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Rectangles.push_back(rectangle);
             rectangle.Object->SetVisible(Visible);
             return rectangle.Object;
@@ -681,19 +695,23 @@ namespace phys
             }
         }
 
-        Caption* Window::CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text)
+        Caption* Window::CreateCaption(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            OffsetCaptionInfo caption(new Caption(Name,Position,Size,Glyph,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            OffsetCaptionInfo caption(new Caption(Name,Rect,Glyph,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Captions.push_back(caption);
             caption.Object->SetVisible(Visible);
             return caption.Object;
         }
 
-        Caption* Window::CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text)
+        Caption* Window::CreateCaption(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            OffsetCaptionInfo caption(new Caption(Name,Position,Size,LineHeight,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            OffsetCaptionInfo caption(new Caption(Name,Rect,LineHeight,Text,Parent),UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Captions.push_back(caption);
             caption.Object->SetVisible(Visible);
             return caption.Object;
@@ -754,20 +772,24 @@ namespace phys
             }
         }
 
-        MarkupText* Window::CreateMarkupText(ConstString& Name, const Vector2& Position, const Whole& Glyph, const String& Text)
+        MarkupText* Window::CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            MarkupText* markup = new MarkupText(Name,Position,Glyph,Text,Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            MarkupText* markup = new MarkupText(Name,Rect,Glyph,Text,Parent);
             OffsetMarkupTextInfo markupinfo(markup,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             MarkupTexts.push_back(markupinfo);
             markupinfo.Object->SetVisible(Visible);
             return markupinfo.Object;
         }
 
-        MarkupText* Window::CreateMarkupText(ConstString& Name, const Vector2& Position, const Real& LineHeight, const String& Text)
+        MarkupText* Window::CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            MarkupText* markup = new MarkupText(Name,Position,LineHeight,Text,Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            MarkupText* markup = new MarkupText(Name,Rect,LineHeight,Text,Parent);
             OffsetMarkupTextInfo markupinfo(markup,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             MarkupTexts.push_back(markupinfo);
             markupinfo.Object->SetVisible(Visible);
@@ -884,70 +906,84 @@ namespace phys
             }
         }
 
-        UI::Scrollbar* Window::CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style)
+        UI::Scrollbar* Window::CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Position,Size,Style,Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            UI::Scrollbar* Scroll = new UI::Scrollbar(Name,Rect,Style,Parent);
             OffsetWidgetInfo ScrollInfo(Scroll,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(ScrollInfo);
             Scroll->SetVisible(Visible);
             return Scroll;
         }
 
-        UI::CheckBox* Window::CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String &LabelText)
+        UI::CheckBox* Window::CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String &LabelText)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            UI::CheckBox* Check = new UI::CheckBox(Name,Position,Size,Glyph,LabelText,Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            UI::CheckBox* Check = new UI::CheckBox(Name,Rect,Glyph,LabelText,Parent);
             OffsetWidgetInfo CheckInfo(Check,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(CheckInfo);
             Check->SetVisible(Visible);
             return Check;
         }
 
-        UI::ButtonListBox* Window::CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
+        UI::ButtonListBox* Window::CreateButtonListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            UI::ButtonListBox* BLB = new UI::ButtonListBox(Name,Rect,ScrollbarWidth,ScrollStyle,Parent);
             OffsetWidgetInfo BLBInfo(BLB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(BLBInfo);
             BLB->SetVisible(Visible);
             return BLB;
         }
 
-        UI::ListBox* Window::CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
+        UI::ListBox* Window::CreateListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            UI::ListBox* LB = new UI::ListBox(Name,Position,Size,ScrollbarWidth,ScrollStyle,Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            UI::ListBox* LB = new UI::ListBox(Name,Rect,ScrollbarWidth,ScrollStyle,Parent);
             OffsetWidgetInfo LBInfo(LB,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(LBInfo);
             LB->SetVisible(Visible);
             return LB;
         }
 
-        UI::Spinner* Window::CreateSpinner(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        UI::Spinner* Window::CreateSpinner(ConstString& Name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            UI::Spinner* Spn = new UI::Spinner(Name,Position,Size,SStyle,GlyphHeight,Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            UI::Spinner* Spn = new UI::Spinner(Name,Rect,SStyle,GlyphHeight,Parent);
             OffsetWidgetInfo SpnInfo(Spn,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(SpnInfo);
             Spn->SetVisible(Visible);
             return Spn;
         }
 
-        UI::ScrolledCellGrid* Window::CreateScrolledCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& Thickness, const UI::ScrollbarStyle& Style)
+        UI::ScrolledCellGrid* Window::CreateScrolledCellGrid(ConstString& Name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            UI::ScrolledCellGrid* SCG = new UI::ScrolledCellGrid(Name,Position,Size,Thickness,Style,Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            UI::ScrolledCellGrid* SCG = new UI::ScrolledCellGrid(Name,Rect,Thickness,Style,Parent);
             OffsetWidgetInfo SCGInfo(SCG,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(SCGInfo);
             SCG->SetVisible(Visible);
             return SCG;
         }
 
-        UI::PagedCellGrid* Window::CreatePagedCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
+        UI::PagedCellGrid* Window::CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight)
         {
-            Vector2 Offset = (Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
-            UI::PagedCellGrid* PCG = new UI::PagedCellGrid(Name,Position,Size,SpnPosition,SpnSize,SStyle,GlyphHeight,Parent);
+            Vector2 Offset;
+            if(Rect.Relative) Offset = (Rect.Position - RelPosition) * Parent->GetParent()->GetViewportDimensions();
+            else Offset = Rect.Position - GetActualPosition();
+            UI::PagedCellGrid* PCG = new UI::PagedCellGrid(Name,Rect,SpnRect,SStyle,GlyphHeight,Parent);
             OffsetWidgetInfo PCGInfo(PCG,UI::RA_AnchorMiddle,UI::RT_TetherBoth,Offset);
             Widgets.push_back(PCGInfo);
             PCG->SetVisible(Visible);

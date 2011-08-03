@@ -54,24 +54,29 @@ namespace phys
 {
     namespace UI
     {
-        CheckBox::CheckBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString &LabelText, Layer* PLayer)
+        CheckBox::CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString &LabelText, Layer* PLayer)
             : Widget(name,PLayer),
               GlyphIndex(Glyph),
               Checked(false),
               CheckLock(true)
         {
             Type = Widget::CheckBox;
-            RelPosition = Position;
-            RelSize = Size;
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+            }
 
-            Box = new Button(Name+"CB",Position,Size,Parent);
+            Box = new Button(Name+"CB",Rect,Parent);
             if(LabelText.empty())
             {
                 Label = NULL;
             }else{
-                Vector2 Adjusted = Position;
-                Adjusted.X = Position.X + Size.X;
-                Label = new MarkupText(Name+"CM",Adjusted,GlyphIndex,LabelText,Parent);
+                RenderableRect AdjustedRect = RenderableRect(Vector2(Rect.Position.X + Rect.Size.X,Rect.Position.Y),Vector2(),Rect.Relative);
+                Label = new MarkupText(Name+"CM",AdjustedRect,GlyphIndex,LabelText,Parent);
             }
         }
 
@@ -192,7 +197,8 @@ namespace phys
             {
                 Vector2 Position = Box->GetPosition();
                 Position.X+=Box->GetSize().X;
-                Label = new MarkupText(Name+"CM",Position,GlyphIndex,LabelText,Parent);
+                RenderableRect LabelRect(Position,Vector2(),true);
+                Label = new MarkupText(Name+"CM",LabelRect,GlyphIndex,LabelText,Parent);
                 Label->SetVisible(Box->IsVisible());
             }else{
                 Label->SetText(LabelText);

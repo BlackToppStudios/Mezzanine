@@ -53,7 +53,7 @@ namespace phys
 {
     namespace UI
     {
-        Button::Button(ConstString& name, const Vector2& Position, const Vector2& Size, Layer* PLayer)
+        Button::Button(ConstString& name, const RenderableRect& Rect, Layer* PLayer)
             : Parent(PLayer),
               NormalSprite(NULL),
               HoveredSprite(NULL),
@@ -63,14 +63,22 @@ namespace phys
               Activated(false),
               MultipleActivations(false),
               ActCond(UI::AC_OnLift),
-              RelPosition(Position),
-              RelSize(Size),
               Name(name)
         {
             Manager = World::GetWorldPointer()->GetUIManager();
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
 
-            const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-            GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Position * WinDim).GetOgreVector2(),(Size * WinDim).GetOgreVector2());
+                const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+                GorillaRectangle = Parent->GetGorillaLayer()->createRectangle((Rect.Position * WinDim).GetOgreVector2(),(Rect.Size * WinDim).GetOgreVector2());
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+
+                GorillaRectangle = Parent->GetGorillaLayer()->createRectangle(Rect.Position.GetOgreVector2(),Rect.Size.GetOgreVector2());
+            }
             GorillaRectangle->SetNameFile(Parent->GetParent()->GetPrimaryAtlas());
         }
 

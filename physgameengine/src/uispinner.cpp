@@ -56,7 +56,7 @@ namespace phys
 {
     namespace UI
     {
-        Spinner::Spinner(const String& name, const Vector2& Position, const Vector2& Size, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent)
+        Spinner::Spinner(const String& name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent)
             : Widget(name,parent),
               IncrementOffset(Vector2(0,0)),
               DecrementOffset(Vector2(0,0)),
@@ -73,45 +73,63 @@ namespace phys
               ValueDisplay(NULL)
         {
             Type = Widget::Spinner;
-            RelPosition = Position;
-            RelSize = Size;
             SpinLayout = SStyle;
-
-            switch (SpinLayout)
+            if(Rect.Relative)
             {
-                case UI::Spn_Separate:
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+            }
+
+            if(UI::Spn_Separate == SpinLayout)
+            {
+                if(Rect.Size.X > Rect.Size.Y * 2)
                 {
-                    if(Size.X > Size.Y * 2)
+                    if(Rect.Relative)
                     {
                         const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-                        Vector2 APos = Position * WinDim;
-                        Vector2 ASize = Size * WinDim;
+                        Vector2 APos = Rect.Position * WinDim;
+                        Vector2 ASize = Rect.Size * WinDim;
                         CalculateOffsets(ASize);
                         CreateHorizontalSpinner(APos,ASize,GlyphHeight);
+                    }else{
+                        CalculateOffsets(Rect.Size);
+                        CreateBoxSpinner(Rect.Position,Rect.Size,GlyphHeight);
                     }
-                    else if(Size.Y > Size.X * 2)
+                }
+                else if(Rect.Size.Y > Rect.Size.X * 2)
+                {
+                    if(Rect.Relative)
                     {
                         const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-                        Vector2 APos = Position * WinDim;
-                        Vector2 ASize = Size * WinDim;
+                        Vector2 APos = Rect.Position * WinDim;
+                        Vector2 ASize = Rect.Size * WinDim;
                         CalculateOffsets(ASize);
                         CreateVerticalSpinner(APos,ASize,GlyphHeight);
+                    }else{
+                        CalculateOffsets(Rect.Size);
+                        CreateBoxSpinner(Rect.Position,Rect.Size,GlyphHeight);
                     }
-                    else
-                    {
-                        World::GetWorldPointer()->LogAndThrow("Spinner dimensions incompatible with this widget.");
-                    }
-                    break;
                 }
-                case UI::Spn_Together_Left:
-                case UI::Spn_Together_Right:
+                else
+                {
+                    World::GetWorldPointer()->LogAndThrow("Spinner dimensions incompatible with this widget.");
+                }
+            }
+            else if(UI::Spn_Together_Left == SpinLayout || UI::Spn_Together_Right == SpinLayout)
+            {
+                if(Rect.Relative)
                 {
                     const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
-                    Vector2 APos = Position * WinDim;
-                    Vector2 ASize = Size * WinDim;
+                    Vector2 APos = Rect.Position * WinDim;
+                    Vector2 ASize = Rect.Size * WinDim;
                     CalculateOffsets(ASize);
                     CreateBoxSpinner(APos,ASize,GlyphHeight);
-                    break;
+                }else{
+                    CalculateOffsets(Rect.Size);
+                    CreateBoxSpinner(Rect.Position,Rect.Size,GlyphHeight);
                 }
             }
             CaptureData = new InputCaptureData();
@@ -138,9 +156,9 @@ namespace phys
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = new Button(Name+"Inc",IncPos / WinDim,Vector2(Size.Y,Size.Y) / WinDim,Parent);
-            Decrement = new Button(Name+"Dec",DecPos / WinDim,Vector2(Size.Y,Size.Y) / WinDim,Parent);
-            ValueDisplay = new Caption(Name+"Dis",ValPos / WinDim,Vector2(Size.X - (Size.Y * 2),Size.Y) / WinDim,GlyphInfo.first,GetValueAsText(),Parent);
+            Increment = new Button(Name+"Inc",RenderableRect(IncPos / WinDim,Vector2(Size.Y,Size.Y) / WinDim,false),Parent);
+            Decrement = new Button(Name+"Dec",RenderableRect(DecPos / WinDim,Vector2(Size.Y,Size.Y) / WinDim,false),Parent);
+            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos / WinDim,Vector2(Size.X - (Size.Y * 2),Size.Y) / WinDim,false),GlyphInfo.first,GetValueAsText(),Parent);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
@@ -153,9 +171,9 @@ namespace phys
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = new Button(Name+"Inc",IncPos / WinDim,Vector2(Size.X,Size.X) / WinDim,Parent);
-            Decrement = new Button(Name+"Dec",DecPos / WinDim,Vector2(Size.X,Size.X) / WinDim,Parent);
-            ValueDisplay = new Caption(Name+"Dis",ValPos / WinDim,Vector2(Size.X,Size.Y - (Size.X * 2)) / WinDim,GlyphInfo.first,GetValueAsText(),Parent);
+            Increment = new Button(Name+"Inc",RenderableRect(IncPos / WinDim,Vector2(Size.X,Size.X) / WinDim,false),Parent);
+            Decrement = new Button(Name+"Dec",RenderableRect(DecPos / WinDim,Vector2(Size.X,Size.X) / WinDim,false),Parent);
+            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos / WinDim,Vector2(Size.X,Size.Y - (Size.X * 2)) / WinDim,false),GlyphInfo.first,GetValueAsText(),Parent);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }
@@ -168,9 +186,9 @@ namespace phys
             Vector2 IncPos = Position + IncrementOffset;
             Vector2 DecPos = Position + DecrementOffset;
             Vector2 ValPos = Position + ValueDisplayOffset;
-            Increment = new Button(Name+"Inc",IncPos / WinDim,Vector2(Size.Y * 0.5,Size.Y * 0.5) / WinDim,Parent);
-            Decrement = new Button(Name+"Dec",DecPos / WinDim,Vector2(Size.Y * 0.5,Size.Y * 0.5) / WinDim,Parent);
-            ValueDisplay = new Caption(Name+"Dis",ValPos / WinDim,Vector2(Size.X - (Size.Y * 0.5),Size.Y) / WinDim,GlyphInfo.first,GetValueAsText(),Parent);
+            Increment = new Button(Name+"Inc",RenderableRect(IncPos / WinDim,Vector2(Size.Y * 0.5,Size.Y * 0.5) / WinDim,false),Parent);
+            Decrement = new Button(Name+"Dec",RenderableRect(DecPos / WinDim,Vector2(Size.Y * 0.5,Size.Y * 0.5) / WinDim,false),Parent);
+            ValueDisplay = new Caption(Name+"Dis",RenderableRect(ValPos / WinDim,Vector2(Size.X - (Size.Y * 0.5),Size.Y) / WinDim,false),GlyphInfo.first,GetValueAsText(),Parent);
             if(1 != GlyphInfo.second)
                 ValueDisplay->SetTextScale(GlyphInfo.second);
         }

@@ -50,8 +50,8 @@ namespace phys
 {
     namespace UI
     {
-        TextButton::TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer)
-            : Button(name,Position,Size,PLayer)
+        TextButton::TextButton(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer)
+            : Button(name,Rect,PLayer)
         {
             AutoScaleText = false;
             RelLineHeight = 0.0;
@@ -62,8 +62,8 @@ namespace phys
             GorillaButton->vertical_align(Gorilla::VerticalAlign_Middle);
         }
 
-        TextButton::TextButton(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text, Layer* PLayer)
-            : Button(name,Position,Size,PLayer)
+        TextButton::TextButton(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer)
+            : Button(name,Rect,PLayer)
         {
             AutoScaleText = true;
             RelLineHeight = LineHeight;

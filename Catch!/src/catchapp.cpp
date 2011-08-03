@@ -13,7 +13,7 @@ using namespace phys;
 
 CatchApp* CatchApp::TheRealCatchApp = 0;
 
-CatchApp::CatchApp(const Vector3 &WorldLowerBounds, const Vector3 &WorldUpperBounds, SceneManager::SceneManagerType SceneType, const unsigned short int &MaxPhysicsProxies)
+CatchApp::CatchApp()
     : CurrScore(0),
       LastActorThrown(NULL),
       EndTimer(NULL),
@@ -25,7 +25,9 @@ CatchApp::CatchApp(const Vector3 &WorldLowerBounds, const Vector3 &WorldUpperBou
 
     try
     {
-        TheWorld = new World( WorldLowerBounds, WorldUpperBounds, SceneType, MaxPhysicsProxies);
+        PhysicsConstructionInfo Info;
+        Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_LimitlessWorld | PhysicsConstructionInfo::PCF_SoftRigidWorld);
+        TheWorld = new World( Info, SceneManager::Generic );
     }catch( exception x){
         //could not create world
     }
@@ -55,55 +57,81 @@ void CatchApp::MakeGUI()
     UI::Layer* MainMenuLayer = MainMenuScreen->CreateLayer("MainMenuLayer",0);
 
     //Build the Main Menu Screen
-    UI::Rectangle* Background = MainMenuLayer->CreateRectangle( Vector2(0,0), Vector2(1,1));
+    UI::Rectangle* Background = MainMenuLayer->CreateRectangle( UI::RenderableRect(Vector2(0,0), Vector2(1,1), true));
     Background->SetBackgroundSprite("MainMenuBackground");
 
-    UI::Menu* MainMenuMenu = MainMenuLayer->CreateMenu( "MS_Menu", Vector2(0.0,0.915), Vector2(1.0,0.086));
+    UI::Menu* MainMenuMenu = MainMenuLayer->CreateMenu( "MS_Menu", UI::RenderableRect(Vector2(0.0,0.915), Vector2(1.0,0.086), true));
     MainMenuMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MMBrickBackground");
     MainMenuMenu->GetRootWindow()->SetAutoHide(false);
 
     Real MMTextLineHeight = 0.04;
     //std::pair<Whole,Real> MainMenuText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
-    UI::TextButton* LevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", Vector2(0.05, 0.93), Vector2(0.22, 0.06), MMTextLineHeight, "Level Select" );
+    UI::TextButton* LevelSelectAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_LevelSelect", UI::RenderableRect(Vector2(0.05, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Level Select" );
     LevelSelectAccess->SetBackgroundSprite("MMButton");
     LevelSelectAccess->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* LevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelect", Vector2(0.05,0.02), Vector2(0.90,0.84), LevelSelectAccess);
+    UI::MenuWindow* LevelSelectWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_LevelSelect", UI::RenderableRect(Vector2(0.05,0.02), Vector2(0.90,0.84), true), LevelSelectAccess);
     LevelSelectWin->GetWindowBack()->SetBackgroundSprite("MMLSBackground");
-    UI::PagedCellGrid* LevelSelectGrid = LevelSelectWin->CreatePagedCellGrid("MS_LevelGrid", Vector2(0.14,0.14), Vector2(0.72,0.66), Vector2(0.60,0.85), Vector2(0.24,0.06), UI::Spn_Separate, 0.05);
+    UI::PagedCellGrid* LevelSelectGrid = LevelSelectWin->CreatePagedCellGrid("MS_LevelGrid", UI::RenderableRect(Vector2(0.14,0.14), Vector2(0.72,0.66), true), UI::RenderableRect(Vector2(0.60,0.85), Vector2(0.24,0.06), true), UI::Spn_Separate, 0.05);
     LevelSelectGrid->GetGridBack()->SetBackgroundColour(Transparent);
     LevelSelectGrid->GetPageSpinner()->GetIncrement()->SetBackgroundSprite("MMIncrementPage");
     LevelSelectGrid->GetPageSpinner()->GetDecrement()->SetBackgroundSprite("MMDecrementPage");
     LevelSelectGrid->GetPageSpinner()->GetValueDisplay()->SetBackgroundSprite("MMPageBox");
     PopulateLevelList(LevelSelectGrid);
     LevelSelectGrid->GenerateGrid();
-    UI::TextButton* LevelStart = LevelSelectWin->CreateTextButton("MS_LevelStart", Vector2(0.42,0.85), Vector2(0.16,0.07),Whole(18),"Start");
+    UI::TextButton* LevelStart = LevelSelectWin->CreateTextButton("MS_LevelStart", UI::RenderableRect(Vector2(0.42,0.85), Vector2(0.16,0.07), true),Whole(18),"Start");
     LevelStart->SetButtonCallback(new MSStart(LevelStart,LevelSelectGrid));
     LevelStart->SetBackgroundSprite("MMLevelStart");
     LevelStart->SetHoveredSprite("MMLevelStartHovered");
 
-    UI::TextButton* OptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", Vector2(0.28, 0.93), Vector2(0.22, 0.06), MMTextLineHeight, "Options" );
+    UI::TextButton* OptionsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Options", UI::RenderableRect(Vector2(0.28, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Options" );
     OptionsAccess->SetBackgroundSprite("MMButton");
     OptionsAccess->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* OptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Options", Vector2(0.01,0.01), Vector2(0.01,0.01), OptionsAccess);
+    UI::MenuWindow* OptionsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Options", UI::RenderableRect(Vector2(0.35, 0.27), Vector2(0.3, 0.45), true), OptionsAccess);
+    OptionsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsMenuBackground");
+    UI::TextButton* VideoOptsAccess = OptionsWin->CreateAccessorButton( "MS_VideoOptions", UI::RenderableRect(Vector2(0.39, 0.43), Vector2(0.22, 0.06), true), MMTextLineHeight, "Video Options" );
+    VideoOptsAccess->SetBackgroundSprite("MMButton");
+    VideoOptsAccess->SetHoveredSprite("MMHoveredButton");
+    UI::TextButton* SoundOptsAccess = OptionsWin->CreateAccessorButton( "MS_SoundOptions", UI::RenderableRect(Vector2(0.39, 0.51), Vector2(0.22, 0.06), true), MMTextLineHeight, "Sound Options" );
+    SoundOptsAccess->SetBackgroundSprite("MMButton");
+    SoundOptsAccess->SetHoveredSprite("MMHoveredButton");// */
+    /*UI::TextButton* VideoOptsAccess = OptionsWin->CreateAccessorButton( "MS_VideoOptions", UI::RenderableRect(Vector2(0.37, 0.43), Vector2(0.26, 0.05), true), MMTextLineHeight, "Video Options" );
+    VideoOptsAccess->SetBackgroundSprite("MMOptionsButton");
+    VideoOptsAccess->SetHoveredSprite("MMOptionsHoveredButton");
+    UI::TextButton* SoundOptsAccess = OptionsWin->CreateAccessorButton( "MS_SoundOptions", UI::RenderableRect(Vector2(0.37, 0.50), Vector2(0.26, 0.05), true), MMTextLineHeight, "Sound Options" );
+    SoundOptsAccess->SetBackgroundSprite("MMOptionsButton");
+    SoundOptsAccess->SetHoveredSprite("MMOptionsHoveredButton");// */
+    UI::MenuWindow* VideoOptsWin = OptionsWin->CreateChildMenuWindow("MS_VideoOptions", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), VideoOptsAccess);
+    VideoOptsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsBackground");
+    UI::TextButton* VideoOptsApply = VideoOptsWin->CreateTextButton("MM_VideoOptionsApply", UI::RenderableRect(Vector2(0.57, 0.69), Vector2(0.10, 0.05), true), MMTextLineHeight, "Apply");
+    VideoOptsApply->SetBackgroundSprite("MMOptionsApplyButton");
+    VideoOptsApply->SetHoveredSprite("MMOptionsApplyHoveredButton");
+    UI::TextButton* VideoOptsBack = VideoOptsWin->CreateBackButton(UI::RenderableRect(Vector2(0.68, 0.69), Vector2(0.10, 0.05), true), MMTextLineHeight, "Back");
+    VideoOptsBack->SetBackgroundSprite("MMOptionsApplyButton");
+    VideoOptsBack->SetHoveredSprite("MMOptionsApplyHoveredButton");
+    UI::MenuWindow* SoundOptsWin = OptionsWin->CreateChildMenuWindow("MS_SoundOptions", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), SoundOptsAccess);
+    SoundOptsWin->GetWindowBack()->SetBackgroundSprite("MMOptionsBackground");
+    UI::TextButton* SoundOptsBack = SoundOptsWin->CreateBackButton(UI::RenderableRect(Vector2(0.68, 0.69), Vector2(0.10, 0.05), true), MMTextLineHeight, "Back");
+    SoundOptsBack->SetBackgroundSprite("MMOptionsApplyButton");
+    SoundOptsBack->SetHoveredSprite("MMOptionsApplyHoveredButton");
 
-    UI::TextButton* CreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", Vector2(0.51, 0.93), Vector2(0.22, 0.06), MMTextLineHeight, "Credits" );
+    UI::TextButton* CreditsAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_Credits", UI::RenderableRect(Vector2(0.51, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Credits" );
     CreditsAccess->SetBackgroundSprite("MMButton");
     CreditsAccess->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* CreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Credits", Vector2(0.01,0.01), Vector2(0.01,0.01), CreditsAccess);
+    UI::MenuWindow* CreditsWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_Credits", UI::RenderableRect(Vector2(0.01,0.01), Vector2(0.01,0.01), true), CreditsAccess);
 
-    UI::TextButton* AppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", Vector2(0.74, 0.93), Vector2(0.22, 0.06), MMTextLineHeight, "Exit Game" );
+    UI::TextButton* AppExitAccess = MainMenuMenu->GetRootWindow()->CreateAccessorButton( "MS_AppExit", UI::RenderableRect(Vector2(0.74, 0.93), Vector2(0.22, 0.06), true), MMTextLineHeight, "Exit Game" );
     AppExitAccess->SetBackgroundSprite("MMButton");
     AppExitAccess->SetHoveredSprite("MMHoveredButton");
-    UI::MenuWindow* AppExitWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_AppExit", Vector2(0.25, 0.3), Vector2(0.5, 0.3), AppExitAccess);
+    UI::MenuWindow* AppExitWin = MainMenuMenu->GetRootWindow()->CreateChildMenuWindow("MS_AppExit", UI::RenderableRect(Vector2(0.25, 0.3), Vector2(0.5, 0.3), true), AppExitAccess);
     AppExitWin->GetWindowBack()->SetBackgroundSprite("MMAppExitBackground");
     std::pair<Whole,Real> AppExitText = GUI->SuggestGlyphIndex(0.04 * MainMenuScreen->GetViewportDimensions().Y,MainMenuScreen->GetPrimaryAtlas());
-    UI::Caption* AppExitWarn = AppExitWin->CreateCaption("MS_AppExitWarn", Vector2(0.32, 0.35), Vector2(0.36, 0.07), AppExitText.first, "Are you sure you want to exit?");
+    UI::Caption* AppExitWarn = AppExitWin->CreateCaption("MS_AppExitWarn", UI::RenderableRect(Vector2(0.32, 0.35), Vector2(0.36, 0.07), true), AppExitText.first, "Are you sure you want to exit?");
     AppExitWarn->SetBackgroundSprite("MMAppExitText");
-    UI::TextButton* AppExitConf = AppExitWin->CreateTextButton("MS_AppExitConf", Vector2(0.30, 0.47), Vector2(0.18, 0.06), AppExitText.first, "Yes");
+    UI::TextButton* AppExitConf = AppExitWin->CreateTextButton("MS_AppExitConf", UI::RenderableRect(Vector2(0.30, 0.47), Vector2(0.18, 0.06), true), AppExitText.first, "Yes");
     AppExitConf->SetButtonCallback(new AllAppExit(AppExitConf));
     AppExitConf->SetBackgroundSprite("MMAppExitButton");
     AppExitConf->SetHoveredSprite("MMAppExitHoveredButton");
-    UI::TextButton* AppExitDeny = AppExitWin->CreateBackButton(/*"MS_AppExitDeny", */Vector2(0.52, 0.47), Vector2(0.18, 0.06), AppExitText.first, "No");
+    UI::TextButton* AppExitDeny = AppExitWin->CreateBackButton(/*"MS_AppExitDeny", */UI::RenderableRect(Vector2(0.52, 0.47), Vector2(0.18, 0.06), true), AppExitText.first, "No");
     AppExitDeny->SetBackgroundSprite("MMAppExitButton");
     AppExitDeny->SetHoveredSprite("MMAppExitHoveredButton");
     //End of Main Menu Screen
@@ -119,35 +147,35 @@ void CatchApp::MakeGUI()
 
     //Build the Game Screen
     //Build the HUD layer
-    UI::Caption* Timer = HUD->CreateCaption( "GS_Timer", Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), Whole(20), "0:00");
+    UI::Caption* Timer = HUD->CreateCaption( "GS_Timer", UI::RenderableRect(Vector2(0.8995, 0.006), Vector2(0.0965, 0.06), true), Whole(20), "0:00");
     Timer->SetBackgroundSprite("TimerArea");
 
-    UI::Rectangle* TIcon = HUD->CreateRectangle( Vector2(0.8515, 0.006), Vector2(0.0482, 0.06));
+    UI::Rectangle* TIcon = HUD->CreateRectangle( UI::RenderableRect(Vector2(0.8515, 0.006), Vector2(0.0482, 0.06), true));
     TIcon->SetBackgroundSprite("TimerLogo");
 
-    UI::Button* MenuButton = HUD->CreateButton( "GS_Menu", Vector2(0.008, 0.922), Vector2(0.16, 0.065));
+    UI::Button* MenuButton = HUD->CreateButton( "GS_Menu", UI::RenderableRect(Vector2(0.008, 0.922), Vector2(0.16, 0.065), true));
     MenuButton->SetButtonCallback(new GSMenu(MenuButton));
     MenuButton->SetBackgroundSprite("MenuButtonHiRes");
 
-    UI::Button* StoreButton = HUD->CreateButton( "GS_Store", Vector2(0.922, 0.922), Vector2(0.06, 0.065));
+    UI::Button* StoreButton = HUD->CreateButton( "GS_Store", UI::RenderableRect(Vector2(0.922, 0.922), Vector2(0.06, 0.065), true));
     StoreButton->SetButtonCallback(new GSStore(StoreButton));
     StoreButton->SetBackgroundSprite("StoreButtonHiRes");
 
-    UI::Rectangle* StoreText = HUD->CreateRectangle( Vector2(0.767, 0.922), Vector2(0.14, 0.065));
+    UI::Rectangle* StoreText = HUD->CreateRectangle( UI::RenderableRect(Vector2(0.767, 0.922), Vector2(0.14, 0.065), true));
     StoreText->SetBackgroundSprite("StoreText");
 
-    UI::Caption* ScoreAmount = HUD->CreateCaption( "GS_ScoreArea", Vector2(0.135, 0.006), Vector2(0.15, 0.065), Whole(20), "0");
+    UI::Caption* ScoreAmount = HUD->CreateCaption( "GS_ScoreArea", UI::RenderableRect(Vector2(0.135, 0.006), Vector2(0.15, 0.065), true), Whole(20), "0");
     ScoreAmount->SetBackgroundColour(Transparent);
 
-    UI::Rectangle* ScoreText = HUD->CreateRectangle( Vector2(0.008, 0.006), Vector2(0.12, 0.06));
+    UI::Rectangle* ScoreText = HUD->CreateRectangle( UI::RenderableRect(Vector2(0.008, 0.006), Vector2(0.12, 0.06), true));
     ScoreText->SetBackgroundSprite("ScoreText");
     //End of HUD Layer
 
     //Build the ItemShop Layer
-    UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", Vector2(0.25, 0.11), Vector2(0.5, 0.78125));
+    UI::Window* ItemShopWindow = ItemShop->CreateWidgetWindow("ItemShop", UI::RenderableRect(Vector2(0.25, 0.11), Vector2(0.5, 0.78125), true));
     ItemShopWindow->GetWindowBack()->SetBackgroundSprite("WindowVertBack");
 
-    UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",Vector2(0.28,0.54),Vector2(0.44,0.32),0.02,UI::SB_Separate);
+    UI::ButtonListBox* ItemShopList = ItemShopWindow->CreateButtonListBox("StoreItemList",UI::RenderableRect(Vector2(0.28,0.54),Vector2(0.44,0.32), true),0.02,UI::SB_Separate);
     ItemShopList->SetAutoHideScroll(false);
     ItemShopList->GetBoxBack()->SetBackgroundColour(TransBlack);
     ItemShopList->GetVertScroll()->GetScrollBack()->SetBackgroundColour(TransBlack);
@@ -155,58 +183,58 @@ void CatchApp::MakeGUI()
     //End of ItemShop Layer
 
     //Build the Menu Layer
-    UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", Vector2(0.35, 0.27), Vector2(0.3, 0.45));
+    UI::Menu* GameMenu = Menu->CreateMenu( "GameMenu", UI::RenderableRect(Vector2(0.35, 0.27), Vector2(0.3, 0.45), true));
     GameMenu->GetRootWindow()->GetWindowBack()->SetBackgroundSprite("MenuBack");
-    UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "GS_Return", Vector2(0.37, 0.56), Vector2(0.26, 0.05));
+    UI::Button* ReturnButton = GameMenu->GetRootWindow()->CreateButton( "GS_Return", UI::RenderableRect(Vector2(0.37, 0.56), Vector2(0.26, 0.05), true));
     ReturnButton->SetButtonCallback(new GSReturn(ReturnButton));
     ReturnButton->SetBackgroundSprite("ReturnButton");
-    UI::Button* GameExitButton = GameMenu->GetRootWindow()->CreateButton( "GS_GameExit", Vector2(0.37, 0.64), Vector2(0.26, 0.05));
+    UI::Button* GameExitButton = GameMenu->GetRootWindow()->CreateButton( "GS_GameExit", UI::RenderableRect(Vector2(0.37, 0.64), Vector2(0.26, 0.05), true));
     GameExitButton->SetButtonCallback(new GSMMReturn(GameExitButton));
     GameExitButton->SetBackgroundSprite("ExitButton");
 
-    UI::Button* VideoAccess = GameMenu->GetRootWindow()->CreateAccessorButton("GS_VideoSettingsButton", Vector2(0.37, 0.32), Vector2(0.26, 0.05));
-    UI::MenuWindow* VideoSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("VideoSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), VideoAccess);
+    UI::Button* VideoAccess = GameMenu->GetRootWindow()->CreateAccessorButton("GS_VideoSettingsButton", UI::RenderableRect(Vector2(0.37, 0.32), Vector2(0.26, 0.05), true));
+    UI::MenuWindow* VideoSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("VideoSettings", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), VideoAccess);
     VideoSettings->GetWindowBack()->SetBackgroundSprite("WindowHoriBack");
     VideoAccess->SetBackgroundSprite("VideoSetButton");
 
-    UI::Button* VideoBack = VideoSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
+    UI::Button* VideoBack = VideoSettings->CreateBackButton(UI::RenderableRect(Vector2(0.72, 0.705), Vector2(0.09, 0.05), true));
     VideoBack->SetBackgroundColour(Black);
 
-    UI::Button* SoundAccess = GameMenu->GetRootWindow()->CreateAccessorButton("GS_SoundSettingsButton", Vector2(0.37, 0.40), Vector2(0.26, 0.05));
-    UI::MenuWindow* SoundSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("SoundSettings", Vector2(0.18, 0.22), Vector2(0.64, 0.55), SoundAccess);
+    UI::Button* SoundAccess = GameMenu->GetRootWindow()->CreateAccessorButton("GS_SoundSettingsButton", UI::RenderableRect(Vector2(0.37, 0.40), Vector2(0.26, 0.05), true));
+    UI::MenuWindow* SoundSettings = GameMenu->GetRootWindow()->CreateChildMenuWindow("SoundSettings", UI::RenderableRect(Vector2(0.18, 0.22), Vector2(0.64, 0.55), true), SoundAccess);
     SoundSettings->GetWindowBack()->SetBackgroundSprite("WindowHoriBack");
     SoundAccess->SetBackgroundSprite("SoundSetButton");
 
-    UI::Button* SoundBack = SoundSettings->CreateBackButton(Vector2(0.72, 0.705), Vector2(0.09, 0.05));
+    UI::Button* SoundBack = SoundSettings->CreateBackButton(UI::RenderableRect(Vector2(0.72, 0.705), Vector2(0.09, 0.05), true));
     SoundBack->SetBackgroundColour(Black);
     Menu->Hide();
     //End of Menu Layer
 
     //Build the Stats Layer
-    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", Vector2(0.16, 0.06), Vector2(0.06, 0.065), Whole(14), "0.0");
+    UI::Caption* CurFPS = Stats->CreateCaption( "CurFPS", UI::RenderableRect(Vector2(0.16, 0.06), Vector2(0.06, 0.065), true), Whole(14), "0.0");
     CurFPS->SetBackgroundColour(Transparent);
     CurFPS->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", Vector2(0.008, 0.06), Vector2(0.15, 0.065), Whole(14), "Current FPS: ");
+    UI::Caption* CurFPSText = Stats->CreateCaption( "CurFPSText", UI::RenderableRect(Vector2(0.008, 0.06), Vector2(0.15, 0.065), true), Whole(14), "Current FPS: ");
     CurFPSText->SetBackgroundColour(Transparent);
     CurFPSText->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", Vector2(0.16, 0.105), Vector2(0.06, 0.065), Whole(14), "0.0");
+    UI::Caption* AvFPS = Stats->CreateCaption( "AvFPS", UI::RenderableRect(Vector2(0.16, 0.105), Vector2(0.06, 0.065), true), Whole(14), "0.0");
     AvFPS->SetBackgroundColour(Transparent);
     AvFPS->HorizontallyAlign(UI::Txt_Left);
 
-    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", Vector2(0.008, 0.105), Vector2(0.15, 0.065), Whole(14), "Average FPS: ");
+    UI::Caption* AvFPSText = Stats->CreateCaption( "AvFPSText", UI::RenderableRect(Vector2(0.008, 0.105), Vector2(0.15, 0.065), true), Whole(14), "Average FPS: ");
     AvFPSText->SetBackgroundColour(Transparent);
     AvFPSText->HorizontallyAlign(UI::Txt_Left);
     //End of Stats Layer
 
     //Build the Report Layer
-    UI::Window* LevelReport = Report->CreateWidgetWindow("LevelReport", Vector2(0.2, 0.2), Vector2(0.6, 0.6));
+    UI::Window* LevelReport = Report->CreateWidgetWindow("LevelReport", UI::RenderableRect(Vector2(0.2, 0.2), Vector2(0.6, 0.6), true));
     LevelReport->GetWindowBack()->SetBackgroundColour(Gray);
     //TempCaption
-    UI::Caption* TempCapt = LevelReport->CreateCaption("GS_TempWarning", Vector2(0.25, 0.3), Vector2(0.5, 0.3), Whole(18), "Future spot of level reports.");
+    UI::Caption* TempCapt = LevelReport->CreateCaption("GS_TempWarning", UI::RenderableRect(Vector2(0.25, 0.3), Vector2(0.5, 0.3), true), Whole(18), "Future spot of level reports.");
     TempCapt->SetBackgroundColour(Transparent);
-    UI::TextButton* FinishButton = LevelReport->CreateTextButton("GS_Finish", Vector2(0.42, 0.66), Vector2(0.16, 0.08), Whole(14), "Finish");
+    UI::TextButton* FinishButton = LevelReport->CreateTextButton("GS_Finish", UI::RenderableRect(Vector2(0.42, 0.66), Vector2(0.16, 0.08), true), Whole(14), "Finish");
     FinishButton->SetButtonCallback(new GSMMReturn(FinishButton));
     FinishButton->SetBackgroundColour(TransBlack);
     Report->Hide();
@@ -222,7 +250,7 @@ void CatchApp::CreateLoadingScreen()
     Viewport* UIViewport = TheWorld->GetGraphicsManager()->GetPrimaryGameWindow()->GetViewport(0);
     UI::Screen* LoadScreen = GUI->CreateScreen("LoadingScreen", "Catch_Loading", UIViewport);
     UI::Layer* LoadLayer = LoadScreen->CreateLayer("LoadingLayer", 0);
-    UI::Rectangle* Load = LoadLayer->CreateRectangle( Vector2(0, 0), Vector2(1, 1));
+    UI::Rectangle* Load = LoadLayer->CreateRectangle( UI::RenderableRect(Vector2(0, 0), Vector2(1, 1), true));
     Load->SetBackgroundSprite("BTSBanner");
     //LoadScreen->RenderOnce();
     crossplatform::RenderPhysWorld();
@@ -266,10 +294,9 @@ void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
     UIManager* UIMan = World::GetWorldPointer()->GetUIManager();
     ResourceMan->AddResourceLocation("/Previews","FileSystem","Previews",false);
     ResourceMan->InitResourceGroup("Previews");
-    Vector2 CellPosition(0.1,0.1);
-    Vector2 CellSize(0.33,0.11);
+    UI::RenderableRect CellRect(Vector2(0.1,0.1),Vector2(0.33,0.11),true);
     Vector2 CellSpacing(0.06,0.04);
-    Grid->SetFixedCellSize(CellSize);
+    Grid->SetFixedCellSize(CellRect.Size);
     Grid->SetCellSpacing(CellSpacing);
     UI::Layer* ParentLayer = Grid->GetLayer();
 
@@ -284,7 +311,7 @@ void CatchApp::PopulateLevelList(UI::PagedCellGrid* Grid)
             continue;
 
         String LevelName = FileName.substr(0,(*it).size() - 4);
-        LevelSelectCell* CurrCell = new LevelSelectCell(LevelName,CellPosition,CellSize,ParentLayer);
+        LevelSelectCell* CurrCell = new LevelSelectCell(LevelName,CellRect,ParentLayer);
         CurrCell->GetCellBack()->SetBackgroundSprite("MMLevelCellBack");
         CurrCell->GetPreviewBorder()->SetBackgroundSprite("MMLevelPreviewBox");
         CurrCell->GetLevelTitle()->SetText(LevelName);
@@ -429,6 +456,7 @@ void CatchApp::UnloadLevel()
     PlayZone = NULL;
 
     ResMan->DestroyResourceGroup(Loader->GetCurrentLevel());
+    PhysMan->ResetPhysicsWorld();
     MeshGenerator::DestroyAllGeneratedMeshes();
     CurrScore = 0;
     TimeMan->DestroyTimer(EndTimer);

@@ -44,7 +44,7 @@
 #include "colourvalue.h"
 #include "datatypes.h"
 #include "enumerations.h"
-#include "vector2.h"
+#include "uirenderablerect.h"
 
 namespace Gorilla
 {
@@ -84,24 +84,22 @@ namespace phys
                 Vector2 RelPosition;
                 Vector2 RelSize;
                 String Name;
-                void ConstructCaption(const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text);
+                void ConstructCaption(const RenderableRect& Rect, const Whole& Glyph, const String& Text);
             public:
                 /// @brief Internal constructor
                 /// @param Name The name of this caption.
-                /// @param Position The top left position of the caption.
-                /// @param Size The size of the Button.
+                /// @param Rect The Rect representing the position and size of the caption.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
                 /// @param Layer Pointer to the layer that created this caption.
-                Caption(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text, Layer* PLayer);
+                Caption(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, const String& Text, Layer* PLayer);
                 /// @brief Internal constructor
                 /// @param Name The name of this caption.
-                /// @param Position The top left position of the caption.
-                /// @param Size The size of the Button.
+                /// @param Rect The Rect representing the position and size of the caption.
                 /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
                 /// @param Text Any text you want printed on the caption.
                 /// @param Layer Pointer to the layer that created this caption.
-                Caption(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text, Layer* PLayer);
+                Caption(ConstString& name, const RenderableRect& Rect, const Real& LineHeight, const String& Text, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~Caption();
                 /// @brief Sets the visibility of this caption.

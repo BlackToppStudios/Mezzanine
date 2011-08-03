@@ -57,28 +57,50 @@ namespace phys
 {
     namespace UI
     {
-        ListBox::ListBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
+        ListBox::ListBox(ConstString& name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollStyle, Layer* PLayer)
             : Widget(name,PLayer),
               Selected(NULL),
               AutoHideScroll(true),
               LastScrollValue(0),
               NumVisible(0),
-              SelectionDist(0.0),
-              THAlign(UI::Txt_Middle),
-              TVAlign(UI::Txt_Center),
-              TTColour(ColourValue(0.0,0.0,0.0,1.0)),
-              TBGColour(ColourValue(1.0,1.0,1.0,1.0)),
-              SelectColour(ColourValue(1.0,1.0,1.0,1.0))
+              MaxDisplay(2)
         {
+            /// @todo Currently this class has little support for a border around the selections.
+            /// Ideally when the UI system is more complete we'll be able to seemlessly move
+            /// objects around different layers and thus have more control over z-order.  When
+            /// that happens we should add a rect to this class be be placed over the selections
+            /// for use with a border or other kind of decoration.
             Type = Widget::ListBox;
-            RelPosition = Position;
-            RelSize = Size;
 
-            BoxBack = new Rectangle(Position,Size,Parent);
-            Vector2 ScrollP((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
-            Vector2 ScrollS(ScrollbarWidth,RelSize.Y);
+            // Set some sane template defaults
+            SelectionTemplate.BackgroundColour = ColourValue(1.0,1.0,1.0,1.0);
+            SelectionTemplate.TextColour = ColourValue(0.0,0.0,0.0,1.0);
+            SelectionTemplate.TextScale = 1.0;
+            SelectionTemplate.CursorOffset = 0.0;
+            SelectionTemplate.HorizontalAlign = UI::Txt_Middle;
+            SelectionTemplate.VerticalAlign = UI::Txt_Center;
+
+            RenderableRect ScrollRect;
+            if(Rect.Relative)
+            {
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
+
+                ScrollRect.Position = Vector2((RelPosition.X + RelSize.X) - ScrollbarWidth,RelPosition.Y);
+                ScrollRect.Size = Vector2(ScrollbarWidth,RelSize.Y);
+                ScrollRect.Relative = Rect.Relative;
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+
+                ScrollRect.Position = Vector2((Rect.Position.X + Rect.Size.X) - ScrollbarWidth,Rect.Position.Y);
+                ScrollRect.Size = Vector2(ScrollbarWidth,Rect.Size.Y);
+                ScrollRect.Relative = Rect.Relative;
+            }
+
+            BoxBack = new Rectangle(Rect,Parent);
             /// @todo Fourth instance of needing to include the namespace in the declaration seemingly needlessly.
-            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollP,ScrollS,ScrollStyle,Parent);
+            VertScroll = new UI::Scrollbar(Name+"Scr",ScrollRect,ScrollStyle,Parent);
             VertScroll->Hide();
         }
 
@@ -98,7 +120,7 @@ namespace phys
 
         void ListBox::CalculateVisibleSelections()
         {
-            NumVisible = (Whole)(RelSize.Y / (TSize.Y + SelectionDist));
+            NumVisible = (Whole)(RelSize.Y / SelectionTemplate.Size.Y);
             if(Selections.size() > NumVisible)
             {
                 //if(Selections.size() > 0)
@@ -120,28 +142,25 @@ namespace phys
             Vector2 NewSize;
             if(VertScroll->IsVisible())
             {
-                Real MaxWidth = RelSize.X - (VertScroll->GetSize().X + SelectionDist);
-                if(TSize.X > MaxWidth)
+                Real MaxWidth = RelSize.X - VertScroll->GetSize().X;
+                if(SelectionTemplate.Size.X > MaxWidth)
                 {
                     NewSize.X = MaxWidth;
-                    NewSize.Y = TSize.Y;
+                    NewSize.Y = SelectionTemplate.Size.Y;
                 }
             }else{
-                if(TSize.X > Selections[0]->GetSize().X)
+                if(SelectionTemplate.Size.X > Selections[0]->GetSize().X)
                 {
-                    NewSize = TSize;
+                    NewSize = SelectionTemplate.Size;
                 }
             }
             VisibleSelections.clear();
-            Real One = 1;
             Real ToBeRounded = VertScroll->GetScrollerValue() * (Real)Selections.size();
-            Real Remainder = fmod(ToBeRounded,One);
-            Whole FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (One - Remainder) : ToBeRounded - Remainder);
+            Real Remainder = fmod(ToBeRounded,(Real)1.0);
+            Whole FirstCaption = (Whole)(Remainder >= 0.5 ? ToBeRounded + (1.0 - Remainder) : ToBeRounded - Remainder);
             Vector2 SelectionPos = GetActualPosition();
-            Real ActualDist = SelectionDist * Parent->GetParent()->GetViewportDimensions().Y;
-            Real ActualInc = ActualDist + (TSize.Y * Parent->GetParent()->GetViewportDimensions().Y);
-            SelectionPos.X+=ActualDist;
-            SelectionPos.Y+=ActualDist;
+            Real ActualInc = SelectionTemplate.Size.Y * Parent->GetParent()->GetViewportDimensions().Y;
+
             for( Whole w = 0 ; w < FirstCaption ; w++ )
             {
                 Selections[w]->SetPosition(GetPosition());
@@ -180,10 +199,6 @@ namespace phys
             {
                 if(MetaCode::BUTTON_PRESSING == State)
                 {
-                    if(Selected)
-                        Selected->SetBackgroundColour(TBGColour);
-                    if(SelectColour != ColourValue(1.0,1.0,1.0,1.0))
-                        HoveredCaption->SetBackgroundColour(SelectColour);
                     Selected = HoveredCaption;
                 }
             }
@@ -258,7 +273,6 @@ namespace phys
                 {
                     HoveredSubWidget = NULL;
                     HoveredCaption = (*it);
-                    //Update();
                     return true;
                 }
             }
@@ -266,14 +280,12 @@ namespace phys
             {
                 HoveredSubWidget = VertScroll;
                 HoveredCaption = NULL;
-                //Update();
                 return true;
             }
             else if(BoxBack->CheckMouseHover())
             {
                 HoveredSubWidget = NULL;
                 HoveredCaption = NULL;
-                //Update();
                 return true;
             }
             HoveredSubWidget = NULL;
@@ -281,34 +293,75 @@ namespace phys
             return false;
         }
 
-        void ListBox::SetBasicTemplateParameters(Vector2 Size, const Whole Glyph)
+        ListBox& ListBox::SetTemplateSize(const Vector2& Size, bool Relative)
         {
-            if(Size.X > RelSize.X)
-                Size.X = RelSize.X;
-            if(Size.Y > RelSize.Y)
-                Size.Y = RelSize.Y;
-            TSize = Size;
-            TGlyph = Glyph;
+            if(Relative) this->SelectionTemplate.Size = Size;
+            else this->SelectionTemplate.Size = Size / Parent->GetParent()->GetViewportDimensions();
+            return *this;
         }
 
-        void ListBox::SetMoreTemplateParameters(const ColourValue& TextColour, const ColourValue& BackgroundColour, UI::TextHorizontalAlign HorAlign, UI::TextVerticalAlign VertAlign)
+        ListBox& ListBox::SetTemplateGlyphIndex(const Whole& Glyph)
         {
-            TTColour = TextColour;
-            TBGColour = BackgroundColour;
-            THAlign = HorAlign;
-            TVAlign = VertAlign;
+            this->SelectionTemplate.GlyphIndex = Glyph;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateTextColour(const ColourValue& TextColour)
+        {
+            this->SelectionTemplate.TextColour = TextColour;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateTextScale(const Real& Scale)
+        {
+            this->SelectionTemplate.TextScale = Scale;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateCursorOffset(const Whole& Offset)
+        {
+            this->SelectionTemplate.CursorOffset = Offset;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateBackgroundColour(const ColourValue& BackgroundColour)
+        {
+            this->SelectionTemplate.BackgroundColour = BackgroundColour;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateHorizontalAlign(const UI::TextHorizontalAlign& HorAlign)
+        {
+            this->SelectionTemplate.HorizontalAlign = HorAlign;
+            return *this;
+        }
+
+        ListBox& ListBox::SetTemplateVerticalAlign(const UI::TextVerticalAlign& VertAlign)
+        {
+            this->SelectionTemplate.VerticalAlign = VertAlign;
+            return *this;
+        }
+
+        const ListBox::TemplateParams& ListBox::GetTemplateInfo()
+        {
+            return this->SelectionTemplate;
         }
 
         Caption* ListBox::AddSelection(ConstString& name, ConstString &Text, ConstString& BackgroundSprite)
         {
-            Caption* Select = new Caption(name,GetPosition(),TSize,TGlyph,Text,Parent);
+            RenderableRect SelectionRect(GetPosition(),SelectionTemplate.Size,true);
+            Caption* Select = new Caption(name,SelectionRect,SelectionTemplate.GlyphIndex,Text,Parent);
             if(!BackgroundSprite.empty())
                 Select->SetBackgroundSprite(BackgroundSprite);
-            if(TBGColour != ColourValue(1.0,1.0,1.0,1.0))
-                Select->SetBackgroundColour(TBGColour);
-            Select->SetTextColour(TTColour);
-            Select->HorizontallyAlign(THAlign);
-            Select->VerticallyAlign(TVAlign);
+            if(SelectionTemplate.BackgroundColour != ColourValue(1.0,1.0,1.0,1.0))
+                Select->SetBackgroundColour(SelectionTemplate.BackgroundColour);
+            if(SelectionTemplate.CursorOffset != 0)
+                Select->SetCursorOffset(SelectionTemplate.CursorOffset);
+            if(SelectionTemplate.TextScale != 1)
+                Select->SetTextScale(SelectionTemplate.TextScale);
+            Select->SetTextColour(SelectionTemplate.TextColour);
+            Select->HorizontallyAlign(SelectionTemplate.HorizontalAlign);
+            Select->VerticallyAlign(SelectionTemplate.VerticalAlign);
             Select->Hide();
             Selections.push_back(Select);
             CalculateVisibleSelections();
@@ -357,9 +410,9 @@ namespace phys
             }
         }
 
-        void ListBox::SetSelectionDistance(const Real& Dist)
+        void ListBox::SetMaxDisplayedSelections(const Whole& MaxSelections)
         {
-            SelectionDist = Dist;
+            MaxDisplay = MaxSelections;
         }
 
         void ListBox::SetAutoHideScroll(bool AutoHide)
@@ -367,16 +420,6 @@ namespace phys
             AutoHideScroll = AutoHide;
             if(!AutoHide)
                 VertScroll->Show();
-        }
-
-        void ListBox::EnableBackgroundSelector(const ColourValue& Colour)
-        {
-            SelectColour = Colour;
-        }
-
-        void ListBox::DisableBackgroundSelector()
-        {
-            SelectColour = ColourValue(1.0,1.0,1.0,1.0);
         }
 
         void ListBox::SetPosition(const Vector2& Position)
@@ -430,8 +473,8 @@ namespace phys
             BoxBack->SetActualSize(Size);
             Vector2 ScrollP((GetActualPosition().X + Size.X) - VertScroll->GetActualSize().X,GetActualPosition().Y);
             Vector2 ScrollS(VertScroll->GetActualSize().X,Size.Y);
-            VertScroll->SetPosition(ScrollP);
-            VertScroll->SetSize(ScrollS);
+            VertScroll->SetActualPosition(ScrollP);
+            VertScroll->SetActualSize(ScrollS);
             CalculateVisibleSelections();
             DrawList();
         }

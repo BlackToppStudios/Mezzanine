@@ -3,22 +3,32 @@
 
 #include "levelselectcell.h"
 
-LevelSelectCell::LevelSelectCell(const String& name, const Vector2& Position, const Vector2& Size, UI::Layer* parent)
+LevelSelectCell::LevelSelectCell(const String& name, const UI::RenderableRect& Rect, UI::Layer* parent)
     : UI::Cell(name,parent),
       PreviewImageOffset(Vector2(-0.005,-0.005)),
       PreviewBorderOffset(Vector2(-0.01,-0.01)),
       LevelTitleOffset(Vector2(0.115,0.01)),
       EarnedMaxScoreOffset(Vector2(0.18,0.05))
 {
-    RelPosition = Position;
-    RelSize = Size;
-    std::pair<Whole,Real> Result = World::GetWorldPointer()->GetUIManager()->SuggestGlyphIndex((Size.Y * 0.36) * Parent->GetParent()->GetViewportDimensions().Y,Parent->GetParent()->GetPrimaryAtlas());
+    const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+    std::pair<Whole,Real> Result;
+    if(Rect.Relative)
+    {
+        RelPosition = Rect.Position;
+        RelSize = Rect.Size;
+        Result = World::GetWorldPointer()->GetUIManager()->SuggestGlyphIndex((Rect.Size.Y * 0.36) * WinDim.Y,Parent->GetParent()->GetPrimaryAtlas());
 
-    CellBack = new UI::Rectangle(Position,Size,Parent);
-    PreviewImage = new UI::Rectangle(Position+PreviewImageOffset,Vector2(Size.Y * 1.05,Size.Y * 1.05),Parent);
-    PreviewBorder = new UI::Rectangle(Position+PreviewBorderOffset,Vector2(Size.Y * 1.15,Size.Y * 1.15),Parent);
-    LevelTitle = new UI::Caption(Name+"LT",Position+LevelTitleOffset,Vector2(Size.X * 0.6,Size.Y * 0.36),Result.first,Name,Parent);
-    EarnedMaxScore = new UI::Caption(Name+"EMS",Position+EarnedMaxScoreOffset,Vector2(Size.X * 0.4,Size.Y * 0.36),Result.first,"0/0",Parent);
+        CellBack = new UI::Rectangle(Rect,Parent);
+        PreviewImage = new UI::Rectangle(UI::RenderableRect(Rect.Position+PreviewImageOffset,Vector2(Rect.Size.Y * 1.05,Rect.Size.Y * 1.05),true),Parent);
+        PreviewBorder = new UI::Rectangle(UI::RenderableRect(Rect.Position+PreviewBorderOffset,Vector2(Rect.Size.Y * 1.15,Rect.Size.Y * 1.15),true),Parent);
+        LevelTitle = new UI::Caption(Name+"LT",UI::RenderableRect(Rect.Position+LevelTitleOffset,Vector2(Rect.Size.X * 0.6,Rect.Size.Y * 0.36),true),Result.first,Name,Parent);
+        EarnedMaxScore = new UI::Caption(Name+"EMS",UI::RenderableRect(Rect.Position+EarnedMaxScoreOffset,Vector2(Rect.Size.X * 0.4,Rect.Size.Y * 0.36),true),Result.first,"0/0",Parent);
+    }else{
+        RelPosition = Rect.Position / WinDim;
+        RelSize = Rect.Size / WinDim;
+        Result = World::GetWorldPointer()->GetUIManager()->SuggestGlyphIndex(Rect.Size.Y * 0.36,Parent->GetParent()->GetPrimaryAtlas());
+    }
+
     if(1.f != Result.second)
     {
         //LevelTitle->SetTextScale(Result.second);

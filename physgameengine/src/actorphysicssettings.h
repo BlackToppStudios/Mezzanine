@@ -178,7 +178,6 @@ namespace phys
             /// @brief Get a pointer to this class of type ActorBasePhysicsSettings
             /// @return A pointer ActorBasePhysicsSettings
             ActorBasePhysicsSettings* GetBasePointer();
-
     };//actorbasephysicssettings
 
     ///////////////////////////////////////////////////////////////////////////////
@@ -228,7 +227,6 @@ namespace phys
             /// @return Returns the currently set Linear Velocity of this object.
             virtual Vector3 GetLinearVelocity() const;
 
-
             /// @brief Sets the Angular Velocity of this object.
             /// @param AngVel Vector3 representing the Angular Velocity to be set.
             virtual void SetAngularVelocity(const Vector3& AngVel);
@@ -236,7 +234,6 @@ namespace phys
             /// @brief Gets the Angular Velocity of this object.
             /// @return Returns the currently set Angular Velocity of this object.
             virtual Vector3 GetAngularVelocity() const;
-
 
             /// @brief Sets the gravity for only this object.
             /// @details This value will override the world gravity.  Should be called after adding to the world.
@@ -264,9 +261,7 @@ namespace phys
             /// @brief Spin/Apply Torque to an object.
             /// @param Torque The amount and direction of the torque in a Vector3
             virtual void ApplyTorque(const Vector3& Torque);
-
     };//actorrigidphysicssettings
-
 
     ///////////////////////////////////////////////////////////////////////////////
     /// @class ActorSoftPhysicsSettings
@@ -290,7 +285,7 @@ namespace phys
             ActorSoftPhysicsSettings(ActorSoft* Actor, btSoftBody* PhysicsObject);
 
             /// @brief Class destructor.
-            ~ActorSoftPhysicsSettings();
+            virtual ~ActorSoftPhysicsSettings();
     };//actorsoftphysicssettings
 }//phys
 

@@ -37,124 +37,112 @@
    Joseph Toppi - toppij@gmail.com
    John Blackwood - makoenergy02@gmail.com
 */
-#ifndef _uicell_h
-#define _uicell_h
+#ifndef _uidropdownlist_h
+#define _uidropdownlist_h
 
 #include "uiwidget.h"
+#include "enumerations.h"
 
 namespace phys
 {
     namespace UI
     {
-        class CellCallback;
+        class ListBox;
+        class Button;
+        class Caption;
         ///////////////////////////////////////////////////////////////////////////////
-        /// @class Cell
-        /// @headerfile uicell.h
-        /// @brief This class is a base class to be used with the CellGrid class.
-        /// @details This class is intended to be inherited from, like the Widget class, but simply adds
-        /// some functionality to ease it's use and placement on a CellGrid.
+        /// @class DropDownList
+        /// @headerfile uidropdownlist.h
+        /// @brief A widget that displays one selection from a list that can have it's visibility toggled.
+        /// @details Note: When getting or setting either the position or size of this widget, you are altering
+        /// the caption and button only, and not the list.  The list will be moved and resized appropriately, automatically.
         ///////////////////////////////////////
-        class PHYS_LIB Cell : public Widget
+        class DropDownList : public Widget
         {
             protected:
-                Whole SortPriority;
-                bool Selected;
-                CellCallback* Callback;
+                Caption* Selection;
+                Button* ListToggle;
+                UI::ListBox* SelectionList;
+                bool ToggleActivated;
+                /// @brief Internal construction function.
+                void ConstructDropDownList(const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle);
                 /// @brief For use with widget update/automation.
-                virtual void Update(bool Force = false) = 0;
+                virtual void Update(bool Force = false);
             public:
                 /// @brief Class constructor.
-                Cell(const String& name, Layer* parent);
+                /// @param name The Name for the Widget.
+                /// @param Rect The renderable rect representing the position and size of ths widget.
+                /// @param LineHeight The lineheight you want the text to have.
+                /// If the Rect passed in is relative, this will expect LineHeight to be relative as well.
+                /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
+                /// class for more information.
+                /// @param parent The parent layer that created this widget.
+                DropDownList(const String& name, const RenderableRect& Rect, const Real& LineHeight, const UI::ScrollbarStyle& ScrollStyle, Layer* parent);
+                /// @brief Class constructor.
+                /// @param name The Name for the Widget.
+                /// @param Rect The renderable rect representing the position and size of ths widget.
+                /// @param Glyph The Glyph index to be applied to all text in this widget.  Must be valid.
+                /// @param ScrollStyle The style of the scrollbar you want for this List Box.  See Scrollbar
+                /// class for more information.
+                /// @param parent The parent layer that created this widget.
+                DropDownList(const String& name, const RenderableRect& Rect, const Whole& Glyph, const UI::ScrollbarStyle& ScrollStyle, Layer* parent);
                 /// @brief Class destructor.
-                virtual ~Cell();
-                /// @brief Sets the priority of this cell for use in sorting on the cell grid.
-                /// @param Priority The priority to be set.
-                virtual void SetPriority(const Whole& Priority);
-                /// @brief Gets the currently set priority of this Cell.
-                /// @return Returns a Whole representing the current priority of this Cell.
-                virtual Whole GetPriority();
-                /// @brief Sets whether or not this Cell is currently selected.
-                /// @param Select Whether or not this Cell should be activated.
-                virtual void SetSelected(bool Select);
-                /// @brief Gets whether or not this Cell is currently selected.
-                /// @return Returns a bool indicating whether or not this Cell is currently selected.
-                virtual bool IsSelected();
-                /// @brief Sets a callback for this Cell.
-                /// @details You can pass in a null pointer to disable the callback of a Cell.
-                /// @param CB The callback to be attached to this Cell.
-                virtual void SetCellCallback(CellCallback* CB);
+                virtual ~DropDownList();
                 /// @brief Sets the visibility of this widget.
                 /// @param visible Bool determining whether or not this widget should be visible.
-                virtual void SetVisible(bool visible) = 0;
+                virtual void SetVisible(bool visible);
                 /// @brief Gets the visibility of this widget.
                 /// @return Returns a bool representing the visibility of this widget.
-                virtual bool IsVisible() = 0;
+                virtual bool IsVisible();
                 /// @brief Forces this widget to be shown.
-                virtual void Show() = 0;
+                virtual void Show();
                 /// @brief Forces this widget to hide.
-                virtual void Hide() = 0;
+                virtual void Hide();
                 /// @brief Checks to see if the current mouse position is over this widget.
                 /// @return Returns a bool value, true if the mouse is over this widget, false if it's not.
-                virtual bool CheckMouseHover() = 0;
+                virtual bool CheckMouseHover();
                 /// @brief Sets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Position A vector2 representing the relative position of this widget.
-                virtual void SetPosition(const Vector2& Position) = 0;
+                virtual void SetPosition(const Vector2& Position);
                 /// @brief Gets the relative position of this widget.
                 /// @details The position is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative position of this widget.
-                virtual Vector2 GetPosition() = 0;
+                virtual Vector2 GetPosition();
                 /// @brief Sets the pixel position of this widget.
                 /// @param Position A vector2 representing the pixel position of this widget.
-                virtual void SetActualPosition(const Vector2& Position) = 0;
+                virtual void SetActualPosition(const Vector2& Position);
                 /// @brief Sets the pixel position of this widget.
                 /// @return Returns a vector2 representing the pixel position of this widget.
-                virtual Vector2 GetActualPosition() = 0;
+                virtual Vector2 GetActualPosition();
                 /// @brief Sets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @param Size A vector2 representing the relative size of this widget.
-                virtual void SetSize(const Vector2& Size) = 0;
+                virtual void SetSize(const Vector2& Size);
                 /// @brief Gets the relative size of this widget.
                 /// @details The size is relative to the screen size.  Values range from 0.0 to 1.0.
                 /// @return Returns a vector2 representing the relative size of this widget.
-                virtual Vector2 GetSize() = 0;
+                virtual Vector2 GetSize();
                 /// @brief Sets the pixel size of this widget.
                 /// @param Size A vector2 representing the pixel size of this widget.
-                virtual void SetActualSize(const Vector2& Size) = 0;
+                virtual void SetActualSize(const Vector2& Size);
                 /// @brief Sets the pixel size of this widget.
                 /// @return Returns a vector2 representing the pixel size of this widget.
-                virtual Vector2 GetActualSize() = 0;
-                /// @brief Overloaded Less-Than operator used for sorting on the grid.
-                /// @param Other The other Cell to be compared to this one.
-                virtual bool operator<(Cell* Other);
-                /// @brief Overloaded Greater-Than operator used for sorting on the grid.
-                /// @param Other The other Cell to be compared to this one.
-                virtual bool operator>(Cell* Other);
-        };//Cell
-
-        ///////////////////////////////////////////////////////////////////////////////
-        /// @headerfile uibutton.h
-        /// @brief This class provides customizable functionality to the button class.
-        /// @details This is a pure virtual class that must be inherited from for use with specialized
-        /// behaviors when working with buttons.
-        ///////////////////////////////////////
-        class PHYS_LIB CellCallback
-        {
-            protected:
-                Cell* Caller;
-            public:
-                /// @brief Class constructor.
-                /// @param CallerButton The Cell to which this callback belongs.
-                CellCallback(Cell* CallerCell);
-                /// @brief Class Destructor.
-                ~CellCallback();
-                /// @brief The hover function for this callback.  This will be called every time the
-                /// Cell is hovered over by the mouse.
-                virtual void DoSelectedItems() = 0;
-                /// @brief The activation function for this callback.  This will be called every time the
-                /// Cell is activated by the mouse or keyboard.
-                virtual void DoUnselectedItems() = 0;
-        };//cellcallback
+                virtual Vector2 GetActualSize();
+                /// @brief Updates the dimensions of this widget to match those of the new screen size.
+                /// @details This function is called automatically when a viewport changes in size, and shouldn't need to be called manually.
+                /// @param OldViewportSize The old size of the viewport.
+                virtual void UpdateDimensions(const Vector2& OldViewportSize);
+                /// @brief Gets the caption showing the current selection in this widget.
+                /// @return Returns a pointer to the caption showing the current selection.
+                virtual Caption* GetSelection();
+                /// @brief Gets the button that toggles the appearance of the listbox in this widget.
+                /// @return Returns a pointer to the button controlling the visibility of the listbox.
+                virtual Button* GetListToggle();
+                /// @brief Gets the listbox showing all the selections in this widget.
+                /// @return Returns a pointer to the listbox containing the possible choices.
+                virtual UI::ListBox* GetSelectionList();
+        };//dropdownlist
     }//ui
 }//phys
 

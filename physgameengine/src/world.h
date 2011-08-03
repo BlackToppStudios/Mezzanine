@@ -193,6 +193,7 @@ namespace phys
     class ResourceManager;
     class TimerManager;
     class UIManager;
+    class PhysicsConstructionInfo;
 }
 #include <list>
 #include <string>
@@ -249,15 +250,11 @@ namespace phys
             //Used by the constructors
             /// @internal
             /// @brief This is called by all the constructors so that the is one unified place to have all the settings made.
-            /// @param GeographyLowerBounds This is the lower boundary of the phyiscs estimation.
-            /// @param GeographyUpperbounds This is the upper boundary of the phyiscs estimation.
-            /// @param MaxPhysicsProxies This is an estimation of the limit of bodies in the physics world.
+            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
             /// @param SceneType This is the type of Scene Manager to be created.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating the default ones
-            void Construct( const Vector3 &GeographyLowerBounds,
-                            const Vector3 &GeographyUpperbounds,
-                            const unsigned short int &MaxPhysicsProxies,
+            void Construct( const PhysicsConstructionInfo& PhysicsInfo,
                             SceneManager::SceneManagerType SceneType,
                             std::string LogFileName,
                             std::vector < ManagerBase* > ManagerToBeAdded);
@@ -293,32 +290,24 @@ namespace phys
 
             /// @brief Descriptive constructor With Manager Pointers
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
-            /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation
-            /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
-            /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
+            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @warning Do not make a new world if one already exists. This can only cause problems
-            World(  const Vector3 &GeographyLowerBounds_,
-                    const Vector3 &GeographyUpperbounds_,
+            World(  const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
-                    const unsigned short int &MaxPhysicsProxies_=1024,
                     std::string LogFileName="Physgame.log" );
 
             /// @brief Descriptive constructor
             /// @details This constructor allows for an easier way to define the boundaries for items moving about inside the physworld.
             /// This constructor provides no default arguments, but allows for maximum customization. In addition to everything the other
             /// constructors this one can accept a vector of pointers to managers. They will be add
-            /// @param GeographyLowerBounds_ The lower limits for the size of the physics simulation
-            /// @param GeographyUpperbounds_ The Upper limits for the size of the physics simulation
-            /// @param MaxPhysicsProxies_ This is the amount of Actors (Also called Proxies) allowed in a physics simulation.
+            /// @param PhysicsInfo All the info needed to initialize the physics subsystem.
             /// @param LogFileName This is the place that log messages get sent to.
             /// @param SceneType A cue to the scenemanager as to how rendering should occur.
             /// @param ManagerToBeAdded This is a vector of manager pointers that will be used instead of creating new ones
             /// @warning Do not make a new world if one already exists. This can only cause problems.
-            World(  const Vector3 &GeographyLowerBounds_,
-                    const Vector3 &GeographyUpperbounds_,
-                    const unsigned short int &MaxPhysicsProxies_,
+            World(  const PhysicsConstructionInfo& PhysicsInfo,
                     SceneManager::SceneManagerType SceneType,
                     const std::string &LogFileName,
                     const std::vector <ManagerBase*> &ManagerToBeAdded);

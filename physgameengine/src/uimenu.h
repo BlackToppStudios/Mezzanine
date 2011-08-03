@@ -69,12 +69,11 @@ namespace phys
             public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the window.
-                /// @param Position The position of the window.
-                /// @param Size The size of the window.
+                /// @param Rect The Rect representing the position and size of the window.
                 /// @param Layer The parent layer this window belongs to.
-                Menu(ConstString name, const Vector2& Position, const Vector2& Size, Layer* PLayer);
+                Menu(ConstString name, const RenderableRect& Rect, Layer* PLayer);
                 /// @brief Standard destructor.
-                ~Menu();
+                virtual ~Menu();
                 /// @brief Hides and removes from the stack all windows from the top until it reaches the specified window, or root window.
                 /// @param Win The window to roll back to.
                 virtual void RollMenuBackToWindow(UI::MenuWindow* Win);

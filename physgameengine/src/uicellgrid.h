@@ -116,10 +116,9 @@ namespace phys
             public:
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
-                /// @param Position The position of the widget.
-                /// @param Size The size of the widget.
+                /// @param Rect The Rect representing the position and size of the widget.
                 /// @param parent The parent layer this widget belongs to.
-                CellGrid(const String& name, const Vector2& Position, const Vector2& Size, Layer* parent);
+                CellGrid(const String& name, const RenderableRect& Rect, Layer* parent);
                 /// @brief Class destructor.
                 virtual ~CellGrid();
                 /// @brief Sets the visibility of this widget.

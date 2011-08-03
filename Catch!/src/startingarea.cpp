@@ -4,13 +4,14 @@
 #include "startingarea.h"
 #include "physgame.h"
 
-StartingArea::StartingArea(const String &name, Vector3 Location) : AreaEffect(name, Location)
+StartingArea::StartingArea(const String &name, Vector3 Location)
+    : AreaEffect(name, Location),
+      Init(true)
 {
 }
 
 StartingArea::~StartingArea()
 {
-
 }
 
 bool StartingArea::IsInside(ActorBase* Actor)
@@ -36,6 +37,10 @@ void StartingArea::ApplyEffect()
             Act = (*it);
             Act->GetPhysicsSettings()->DisableCollisionResponse();
             PhysMan->SetIndividualGravity(Act, Grav);
+            if(Init && Act->GetType() == ActorBase::Actorrigid)
+            {
+                ((ActorRigid*)Act)->GetPhysicsSettings()->SetLinearVelocity(Vector3());
+            }
         }
     }
     if(!RemovedActors.empty())
@@ -47,6 +52,7 @@ void StartingArea::ApplyEffect()
             PhysMan->SetIndividualGravity(Act, PhysMan->GetGravity());
         }
     }
+    if(Init) Init = false;
 }
 
 bool StartingArea::IsEmpty()

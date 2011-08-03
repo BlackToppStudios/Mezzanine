@@ -262,18 +262,46 @@ namespace phys
 
     }// /debug
 
-
-
-    PhysicsManager::PhysicsManager()
-        : BulletDrawer(NULL)
+    PhysicsConstructionInfo::PhysicsConstructionInfo()
+        : PhysicsFlags(0),
+          MaxProxies(0),
+          EventFilterAge(1),
+          EventFilterImpulse(1.0),
+          GeographyLowerBounds(Vector3()),
+          GeographyUpperBounds(Vector3()),
+          Gravity(Vector3())
     {
-        this->Construct(Vector3(-10.0,-10.0,-10.0), Vector3(10.0,10.0,10.0), 10);
     }
 
-    PhysicsManager::PhysicsManager(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
-        : BulletDrawer(NULL)
+    PhysicsConstructionInfo::~PhysicsConstructionInfo()
     {
-        this->Construct(GeographyLowerBounds_, GeographyUpperbounds_, MaxPhysicsProxies_);
+    }
+
+    PhysicsConstructionInfo& PhysicsConstructionInfo::operator=(const PhysicsConstructionInfo& Other)
+    {
+        this->PhysicsFlags = Other.PhysicsFlags;
+        this->MaxProxies = Other.MaxProxies;
+        this->EventFilterAge = Other.EventFilterAge;
+        this->EventFilterImpulse = Other.EventFilterImpulse;
+        this->GeographyLowerBounds = Other.GeographyLowerBounds;
+        this->GeographyUpperBounds = Other.GeographyUpperBounds;
+        this->Gravity = Other.Gravity;
+    }
+
+    PhysicsManager::PhysicsManager()
+        : BulletDrawer(NULL),
+          SimulationPaused(false)
+    {
+        PhysicsConstructionInfo Info;
+        Info.PhysicsFlags = (PhysicsConstructionInfo::PCF_SoftRigidWorld | PhysicsConstructionInfo::PCF_LimitlessWorld);
+        this->Construct(Info);
+    }
+
+    PhysicsManager::PhysicsManager(const PhysicsConstructionInfo& Info)
+        : BulletDrawer(NULL),
+          SimulationPaused(false)
+    {
+        this->Construct(Info);
     }
 
     PhysicsManager::~PhysicsManager()
@@ -287,49 +315,63 @@ namespace phys
         delete BulletCollisionConfiguration;
         delete BulletSolver;
         delete BulletBroadphase;
-        delete BulletDrawer;
+        if(BulletDrawer) delete BulletDrawer;
     }
 
-    void PhysicsManager::Construct(const Vector3 &GeographyLowerBounds_, const Vector3 &GeographyUpperbounds_, const unsigned short int &MaxPhysicsProxies_)
+    void PhysicsManager::Construct(const PhysicsConstructionInfo& Info)
     {
         this->Priority = -30;
-        this->CollisionAge = 1;
-        this->Impulse = 1.0;
-        this->SimulationPaused = false;
+        this->CollisionAge = Info.EventFilterAge;
+        this->Impulse = Info.EventFilterImpulse;
 
-        //instantiate the Physics engine and related items
-        //this->PhysicsStepsize = btScalar(1.)/btScalar(60.);
-
-        this->GeographyLowerBounds = GeographyLowerBounds_;
-        this->GeographyUpperBounds = GeographyUpperbounds_;
-        this->MaxPhysicsProxies = MaxPhysicsProxies_;
-
-        /*this->BulletBroadphase = new btAxisSweep3(  GeographyLowerBounds.GetBulletVector3(),
-                                                    GeographyUpperBounds.GetBulletVector3(),
-                                                    MaxPhysicsProxies
-                                                 );*/
-        this->BulletBroadphase = new btDbvtBroadphase();
+        if(Info.PhysicsFlags & PhysicsConstructionInfo::PCF_LimitlessWorld)
+        {
+            this->BulletBroadphase = new btDbvtBroadphase();
+        }else{
+            if(Info.MaxProxies < 65536)
+            {
+                this->BulletBroadphase = new btAxisSweep3(Info.GeographyLowerBounds.GetBulletVector3(),
+                                                          Info.GeographyUpperBounds.GetBulletVector3(),
+                                                          Info.MaxProxies);
+            }else{
+                this->BulletBroadphase = new bt32BitAxisSweep3(Info.GeographyLowerBounds.GetBulletVector3(),
+                                                               Info.GeographyUpperBounds.GetBulletVector3(),
+                                                               Info.MaxProxies);
+            }
+        }
 
         this->GhostCallback = new btGhostPairCallback();
         this->BulletBroadphase->getOverlappingPairCache()->setInternalGhostPairCallback(GhostCallback);
-
         this->BulletSolver = new btSequentialImpulseConstraintSolver;
-        //this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
-        this->BulletCollisionConfiguration = new btSoftBodyRigidBodyCollisionConfiguration();
-        this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
-        btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
 
-        this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld(
-                                                    BulletDispatcher,
-                                                    BulletBroadphase,
-                                                    BulletSolver,
-                                                    BulletCollisionConfiguration);
+        //if(Info.PhysicsFlags & PhysicsConstructionInfo::PCF_SoftRigidWorld)
+        //{
+            this->BulletCollisionConfiguration = new btSoftBodyRigidBodyCollisionConfiguration();
+            this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
+            btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
 
-        this->BulletDynamicsWorld->getWorldInfo().m_dispatcher = this->BulletDispatcher;
-        this->BulletDynamicsWorld->getWorldInfo().m_broadphase = this->BulletBroadphase;
-        this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.Initialize();
+            this->BulletDynamicsWorld = new btSoftRigidDynamicsWorld(
+                                                        BulletDispatcher,
+                                                        BulletBroadphase,
+                                                        BulletSolver,
+                                                        BulletCollisionConfiguration);
 
+            this->BulletDynamicsWorld->getWorldInfo().m_dispatcher = this->BulletDispatcher;
+            this->BulletDynamicsWorld->getWorldInfo().m_broadphase = this->BulletBroadphase;
+            this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.Initialize();
+        /*}else{
+            this->BulletCollisionConfiguration = new btDefaultCollisionConfiguration();
+            this->BulletDispatcher = new btCollisionDispatcher(BulletCollisionConfiguration);
+            btGImpactCollisionAlgorithm::registerAlgorithm(BulletDispatcher);
+
+            this->BulletDynamicsWorld = new btDiscreteDynamicsWorld(
+                                                        BulletDispatcher,
+                                                        BulletBroadphase,
+                                                        BulletSolver,
+                                                        BulletCollisionConfiguration);
+        }// */
         this->BulletDynamicsWorld->getDispatchInfo().m_enableSPU = true;
+        this->WorldConstructionInfo = Info;
     }
 
     void PhysicsManager::ProcessAllEffects()
@@ -634,6 +676,55 @@ namespace phys
         }
     }
 
+    void PhysicsManager::ResetPhysicsWorld(PhysicsConstructionInfo* Info)
+    {
+        delete BulletDynamicsWorld;
+        delete BulletDispatcher;
+        delete BulletCollisionConfiguration;
+        delete BulletSolver;
+        delete BulletBroadphase;
+        delete GhostCallback;
+        bool DebugOn = false;
+        if(BulletDrawer)
+        {
+            delete BulletDrawer;
+            DebugOn = true;
+        }
+
+        if(Info) this->Construct(*Info);
+        else this->Construct(WorldConstructionInfo);
+        if(DebugOn)
+        {
+            this->BulletDrawer = new debug::InternalDebugDrawer(this->GameWorld);
+            this->BulletDynamicsWorld->setDebugDrawer(this->BulletDrawer);
+        }
+    }
+
+    void PhysicsManager::ClearPhysicsMetaData()
+    {
+        // Clean the broadphase of AABB data
+        btOverlappingPairCache* Pairs = BulletBroadphase->getOverlappingPairCache();
+        int NumPairs = Pairs->getNumOverlappingPairs();
+        btBroadphasePairArray PairArray = Pairs->getOverlappingPairArray();
+        for( Whole X = 0 ; X < NumPairs ; X++ )
+        {
+            btBroadphasePair& CurrPair = PairArray.at(X);
+            Pairs->cleanOverlappingPair(CurrPair,BulletDispatcher);
+            Pairs->removeOverlappingPair(CurrPair.m_pProxy0,CurrPair.m_pProxy1,BulletDispatcher);
+        }
+
+        // Clean the dispatcher(narrowphase) of shape data
+        int numManifolds = BulletDynamicsWorld->getDispatcher()->getNumManifolds();
+        for ( int i = 0 ; i < numManifolds ; i++ )
+        {
+            BulletDispatcher->releaseManifold(BulletDispatcher->getManifoldByIndexInternal(i));
+        }
+
+        BulletBroadphase->resetPool(BulletDispatcher);
+        BulletSolver->reset();
+        BulletDynamicsWorld->stepSimulation(1.f/60.f,1,1.f/60.f);
+    }
+
     void PhysicsManager::DoMainLoopItems(const Real &TimeElapsed)
     {
         if(SimulationPaused)
@@ -642,20 +733,12 @@ namespace phys
         static Ogre::Timer* Profiler = new Ogre::Timer();
         Profiler->reset();
         #endif
-        ProcessAllEffects();
-        #ifdef PHYSPROFILE
-        GameWorld->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
-        GameWorld->Log();
-        #endif
 
         Real FloatTime = TimeElapsed;
         FloatTime *= 0.001;    //Convert from MilliSeconds to Seconds
-
         Real IdealStep = this->GameWorld->GetTargetFrameTime();
         IdealStep *= 0.001;
-
-        //int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
-        int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+2);  //used 2 simply to be extra safe
+        int MaxSteps = (FloatTime<IdealStep) ? 1 : int(FloatTime/IdealStep+1);
         #ifdef PHYSPROFILE
         Profiler->reset();
         #endif
@@ -663,23 +746,28 @@ namespace phys
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "StepSimulation() took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
-        #endif
-
-        // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
-        //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
+        #endif // */
 
         #ifdef PHYSPROFILE
         Profiler->reset();
         #endif
-        if( this->BulletDrawer && this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
-        {
-            this->BulletDrawer->PrepareForRendering();
-            this->BulletDynamicsWorld->debugDrawWorld();
-        }
+        ProcessAllEffects();
         #ifdef PHYSPROFILE
-        GameWorld->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->LogStream << "AreaEffects took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
+        #endif // */
+
+        #ifdef PHYSPROFILE
+        Profiler->reset();
         #endif
+        ProcessAllTriggers();
+        #ifdef PHYSPROFILE
+        GameWorld->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->Log();
+        #endif // */
+
+        // This is supposedly to speed up the performance of soft bodies, if any are in the simulation.
+        //this->BulletDynamicsWorld->getWorldInfo().m_sparsesdf.GarbageCollect();
 
         #ifdef PHYSDEBUG
         this->GameWorld->Log("Checking for Collisions.");
@@ -696,12 +784,17 @@ namespace phys
             for (int j=0;j<numContacts;j++)
             {
                 btManifoldPoint& pt = contactManifold->getContactPoint(j);
-                if (pt.m_lifeTime==CollisionAge && pt.m_appliedImpulse>=Impulse)
+                if (pt.m_lifeTime == CollisionAge && pt.m_appliedImpulse >= Impulse && pt.m_distance1 < 0)
                 {
+                    /// @todo This chunk of code won't take the upcoming terrain system into account, and should be modified accordingly
                     btCollisionObject* objectA = static_cast<btCollisionObject*>(contactManifold->getBody0());
                     btCollisionObject* objectB = static_cast<btCollisionObject*>(contactManifold->getBody1());
                     ActorBase* ActA = this->GameWorld->GetActorManager()->GetActorContainer()->FindActor(objectA);
                     ActorBase* ActB = this->GameWorld->GetActorManager()->GetActorContainer()->FindActor(objectB);
+
+                    if( !ActA || !ActB )
+                        continue;
+
                     Vector3 WorldLoc((pt.getPositionWorldOnA() + pt.getPositionWorldOnB()) * 0.5);
                     Vector3 ActALoc(pt.m_localPointA);
                     Vector3 ActBLoc(pt.m_localPointB);
@@ -718,14 +811,20 @@ namespace phys
         #ifdef PHYSPROFILE
         GameWorld->LogStream << "Contact Manifold Iteration took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
+        #endif // */
 
+        #ifdef PHYSPROFILE
         Profiler->reset();
         #endif
-        ProcessAllTriggers();
+        if( this->BulletDrawer && this->BulletDrawer->getDebugMode() )        //this part is responsible for drawing the wireframes
+        {
+            this->BulletDrawer->PrepareForRendering();
+            this->BulletDynamicsWorld->debugDrawWorld();
+        }
         #ifdef PHYSPROFILE
-        GameWorld->LogStream << "Triggers took " << Profiler->getMicroseconds() << " microseconds.";
+        GameWorld->LogStream << "DebugDrawer took " << Profiler->getMicroseconds() << " microseconds.";
         GameWorld->Log();
-        #endif
+        #endif // */
     }
 
     btSoftRigidDynamicsWorld* PhysicsManager::GetPhysicsWorldPointer()

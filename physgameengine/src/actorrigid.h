@@ -120,15 +120,24 @@ namespace phys
             virtual ActorRigidPhysicsSettings* GetPhysicsSettings();
 
             /// @brief Restricts movement on the axis or axies of your choice.
-            /// @details This function will lock any and all axies you define you want to be locked.
-            /// Simply pass true to allow movement on that axis, false if you don't.  This function
-            /// is primarily useful for 2D games, in which if you are viewing the playing area from
-            /// the side you can pass in LimitMovementOnAxis(true,true,false) and the object will
-            /// only be able to move up, down, or side to side, but not in or out.
-            /// @param x Allow or Disallow use of the X axis for movement.
-            /// @param y Allow or Disallow use of the Y axis for movement.
-            /// @param z Allow or Disallow use of the Z axis for movement.
-            virtual void LimitMovementOnAxis(bool x, bool y, bool z);
+            /// @details This function can lock or limit any and all axes you define.
+            /// 0.0 means no linear movement on that axis.  1.0 means normal movement.
+            /// @param Factor Vector3 containing the Factors for the 3 linear axes.
+            virtual void SetLinearMovementFactor(const Vector3& Factor);
+
+            /// @brief Gets the current linear factors being applied to this actor.
+            /// @return Returns a Vector3 representing the factors on the 3 linear axes.
+            virtual Vector3 GetLinearMovementFactor();
+
+            /// @brief Restricts movement on the axis or axies of your choice.
+            /// @details This function can lock or limit any and all axes you define.
+            /// 0.0 means no angular movement on that axis.  1.0 means normal movement.
+            /// @param Factor Vector3 containing the Factors for the 3 angular axes.
+            virtual void SetAngularMovementFactor(const Vector3& Factor);
+
+            /// @brief Gets the current angular factors being applied to this actor.
+            /// @return Returns a Vector3 representing the factors on the 3 angular axes.
+            virtual Vector3 GetAngularMovementFactor();
 
             // Inherited from ActorBase
             virtual void AddObjectToWorld (World *TargetWorld);

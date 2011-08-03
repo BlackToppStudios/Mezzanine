@@ -44,7 +44,7 @@
 #include "crossplatformexport.h"
 #include "datatypes.h"
 #include "enumerations.h"
-#include "vector2.h"
+#include "uirenderablerect.h"
 
 namespace Gorilla
 {
@@ -76,12 +76,11 @@ namespace phys
                 bool MouseHover;
             public:
                 /// @brief Class constructor.
-                /// @param Position The top left position of the rectangle.
-                /// @param Size The size of the rectangle.
+                /// @param Rect The Rect representing the position and size of the rectangle.
                 /// @param Layer Pointer to the parent Layer that created this rectangle.
-                Rectangle(const Vector2& Position, const Vector2& Size, Layer* PLayer);
+                Rectangle(const RenderableRect& Rect, Layer* PLayer);
                 /// @brief Class destructor.
-                ~Rectangle();
+                virtual ~Rectangle();
                 /// @brief Sets the visibility of this rectangle.
                 /// @param Visible Bool determining whether or not this rectangle should be visible.
                 virtual void SetVisible(bool Visible);

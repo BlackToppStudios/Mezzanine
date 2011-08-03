@@ -57,7 +57,7 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     PyriteData->ThrowableName = "Pyrite";
     PyriteData->MeshName = "pyrite.mesh";
     PyriteData->GroupName = "Common";
-    PyriteData->Mass = 6.0;//
+    PyriteData->Mass = 7.0;//
     Throwables.push_back(PyriteData);
 
     ThrowableData* RubberData = new ThrowableData();
@@ -83,6 +83,14 @@ void ThrowableGenerator::ParseThrowables(const String& FileName)
     UraniumData->GroupName = "Common";
     UraniumData->Mass = 15.5;//18.74
     Throwables.push_back(UraniumData);
+
+    ThrowableData* WoodData = new ThrowableData();
+    WoodData->ThrowableCount = 0;
+    WoodData->ThrowableName = "Wood";
+    WoodData->MeshName = "woodpin.mesh";
+    WoodData->GroupName = "Common";
+    WoodData->Mass = 4.5;//18.74
+    Throwables.push_back(UraniumData);
 }
 
 ThrowableData* ThrowableGenerator::GetThrowableData(const String& Throwable)
@@ -103,7 +111,10 @@ ActorRigid* ThrowableGenerator::CreateThrowable(const String& Throwable)
     std::stringstream NameGen;
     (ToBeCreated->ThrowableCount)++;
     NameGen << ToBeCreated->ThrowableName << ToBeCreated->ThrowableCount;
-    return new ActorRigid(ToBeCreated->Mass,NameGen.str(),ToBeCreated->MeshName,ToBeCreated->GroupName);
+    ActorRigid* Created = new ActorRigid(ToBeCreated->Mass,NameGen.str(),ToBeCreated->MeshName,ToBeCreated->GroupName);
+    Created->SetLinearMovementFactor(Vector3(1,1,0));
+    Created->SetOrientation(Quaternion(MathTool::GetPi(),Vector3(0,1,0)));
+    return Created;
 }
 
 #endif

@@ -53,7 +53,7 @@ namespace phys
 {
     namespace UI
     {
-        Scrollbar::Scrollbar(ConstString& name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style, Layer* parent)
+        Scrollbar::Scrollbar(ConstString& name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style, Layer* parent)
             : Widget(name, parent),
               UpLeftButton(NULL),
               DownRightButton(NULL),
@@ -65,24 +65,46 @@ namespace phys
               DownRightLock(true)
         {
             Type = Widget::Scrollbar;
-            RelPosition = Position;
-            RelSize = Size;
             ScrollStyle = Style;
-            if(Size.Y > Size.X * 2)
+            if(Rect.Relative)
             {
-                Vector2 ASize = Size * Parent->GetParent()->GetViewportDimensions();
-                CalculateOffsets(ASize);
-                CreateVerticalScrollbar(Position, Size);
-            }
-            else if(Size.X > Size.Y * 2)
-            {
-                Vector2 ASize = Size * Parent->GetParent()->GetViewportDimensions();
-                CalculateOffsets(ASize);
-                CreateHorizontalScrollbar(Position, Size);
-            }
-            else
-            {
-                World::GetWorldPointer()->LogAndThrow("Scrollbar dimensions incompatible with this widget.");
+                RelPosition = Rect.Position;
+                RelSize = Rect.Size;
+
+                if(Rect.Size.Y > Rect.Size.X * 2)
+                {
+                    Vector2 ASize = Rect.Size * Parent->GetParent()->GetViewportDimensions();
+                    CalculateOffsets(ASize);
+                    CreateVerticalScrollbar(Rect);
+                }
+                else if(Rect.Size.X > Rect.Size.Y * 2)
+                {
+                    Vector2 ASize = Rect.Size * Parent->GetParent()->GetViewportDimensions();
+                    CalculateOffsets(ASize);
+                    CreateHorizontalScrollbar(Rect);
+                }
+                else
+                {
+                    World::GetWorldPointer()->LogAndThrow("Scrollbar dimensions incompatible with this widget.");
+                }
+            }else{
+                RelPosition = Rect.Position / Parent->GetParent()->GetViewportDimensions();
+                RelSize = Rect.Size / Parent->GetParent()->GetViewportDimensions();
+
+                if(Rect.Size.Y > Rect.Size.X * 2)
+                {
+                    CalculateOffsets(Rect.Size);
+                    CreateVerticalScrollbar(Rect);
+                }
+                else if(Rect.Size.X > Rect.Size.Y * 2)
+                {
+                    CalculateOffsets(Rect.Size);
+                    CreateHorizontalScrollbar(Rect);
+                }
+                else
+                {
+                    World::GetWorldPointer()->LogAndThrow("Scrollbar dimensions incompatible with this widget.");
+                }
             }
         }
 
@@ -94,122 +116,146 @@ namespace phys
             delete DownRightButton;
         }
 
-        void Scrollbar::CreateHorizontalScrollbar(const Vector2& Position, const Vector2& Size)
+        void Scrollbar::CreateHorizontalScrollbar(const RenderableRect& Rect)
         {
             Horizontal = true;
             //Get the size for all items involved
-            Vector2 ScrollBackSize, LeftButtonSize, RightButtonSize;
+            RenderableRect ScrollBackRect, LeftButtonRect, RightButtonRect;
             if(UI::SB_NoButtons==ScrollStyle)
             {
-                ScrollBackSize = Size;
+                ScrollBackRect.Size = Rect.Size;
             }else{
-                ScrollBackSize.X = Size.X - (Size.Y * 2);
-                ScrollBackSize.Y = Size.Y;
-                LeftButtonSize.X = Size.Y;
-                LeftButtonSize.Y = Size.Y;
-                RightButtonSize.X = Size.Y;
-                RightButtonSize.Y = Size.Y;
+                if(Rect.Relative)
+                {
+                    const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+                    Vector2 ARectSize(Rect.Size * WinDim);
+
+                    ScrollBackRect.Size.X = Rect.Size.X - ((ARectSize.Y * 2) / WinDim.X);
+                    ScrollBackRect.Size.Y = Rect.Size.Y;
+                    LeftButtonRect.Size.X = ARectSize.Y / WinDim.X;
+                    LeftButtonRect.Size.Y = Rect.Size.Y;
+                    RightButtonRect.Size.X = ARectSize.Y / WinDim.X;
+                    RightButtonRect.Size.Y = Rect.Size.Y;
+                }else{
+                    ScrollBackRect.Size.X = Rect.Size.X - (Rect.Size.Y * 2);
+                    ScrollBackRect.Size.Y = Rect.Size.Y;
+                    LeftButtonRect.Size.X = Rect.Size.Y;
+                    LeftButtonRect.Size.Y = Rect.Size.Y;
+                    RightButtonRect.Size.X = Rect.Size.Y;
+                    RightButtonRect.Size.Y = Rect.Size.Y;
+                }
             }
             //Get the position for all items involved and configure their offsets
-            Vector2 ScrollBackPosition, LeftButtonPosition, RightButtonPosition;
             if(UI::SB_Separate==ScrollStyle)
             {
-                ScrollBackPosition.X = Position.X + LeftButtonSize.X;
-                ScrollBackPosition.Y = Position.Y;
-                LeftButtonPosition = Position;
-                RightButtonPosition.X = Position.X + LeftButtonSize.X + ScrollBackSize.X;
-                RightButtonPosition.Y = Position.Y;
+                ScrollBackRect.Position.X = Rect.Position.X + LeftButtonRect.Size.X;
+                ScrollBackRect.Position.Y = Rect.Position.Y;
+                LeftButtonRect.Position = Rect.Position;
+                RightButtonRect.Position.X = Rect.Position.X + LeftButtonRect.Size.X + ScrollBackRect.Size.X;
+                RightButtonRect.Position.Y = Rect.Position.Y;
             }
             else if(UI::SB_TogetherDownRight==ScrollStyle)
             {
-                ScrollBackPosition = Position;
-                LeftButtonPosition.X = Position.X + ScrollBackSize.X;
-                LeftButtonPosition.Y = Position.Y;
-                RightButtonPosition.X = Position.X + ScrollBackSize.X + LeftButtonSize.X;
-                RightButtonPosition.Y = Position.Y;
+                ScrollBackRect.Position = Rect.Position;
+                LeftButtonRect.Position.X = Rect.Position.X + ScrollBackRect.Size.X;
+                LeftButtonRect.Position.Y = Rect.Position.Y;
+                RightButtonRect.Position.X = Rect.Position.X + ScrollBackRect.Size.X + LeftButtonRect.Size.X;
+                RightButtonRect.Position.Y = Rect.Position.Y;
             }
             else if(UI::SB_TogetherUpLeft==ScrollStyle)
             {
-                ScrollBackPosition.X = Position.X + LeftButtonSize.X + RightButtonSize.X;
-                ScrollBackPosition.Y = Position.Y;
-                LeftButtonPosition = Position;
-                RightButtonPosition.X = Position.X + LeftButtonSize.X;
-                RightButtonPosition.Y = Position.Y;
+                ScrollBackRect.Position.X = Rect.Position.X + LeftButtonRect.Size.X + RightButtonRect.Size.X;
+                ScrollBackRect.Position.Y = Rect.Position.Y;
+                LeftButtonRect.Position = Rect.Position;
+                RightButtonRect.Position.X = Rect.Position.X + LeftButtonRect.Size.X;
+                RightButtonRect.Position.Y = Rect.Position.Y;
             }
             else
             {
-                ScrollBackPosition = Position;
+                ScrollBackRect.Position = Rect.Position;
             }
             //Now create the objects, since we have all the position and size data we need
-            ScrollBack = new Rectangle(ScrollBackPosition,ScrollBackSize,Parent);
-            Scroller = new Button(Name+"SC",ScrollBackPosition,ScrollBackSize,Parent);
-            if(LeftButtonSize.X > 0 && LeftButtonSize.Y > 0)
+            ScrollBack = new Rectangle(ScrollBackRect,Parent);
+            Scroller = new Button(Name+"SC",ScrollBackRect,Parent);
+            if(LeftButtonRect.Size.X > 0 && LeftButtonRect.Size.Y > 0)
             {
-                UpLeftButton = new Button(Name+"LB",LeftButtonPosition,LeftButtonSize,Parent);
+                UpLeftButton = new Button(Name+"LB",LeftButtonRect,Parent);
             }
-            if(RightButtonSize.X > 0 && RightButtonSize.Y > 0)
+            if(RightButtonRect.Size.X > 0 && RightButtonRect.Size.Y > 0)
             {
-                DownRightButton = new Button(Name+"RB",RightButtonPosition,RightButtonSize,Parent);
+                DownRightButton = new Button(Name+"RB",RightButtonRect,Parent);
             }
             CalculateScrollLimits();
         }
 
-        void Scrollbar::CreateVerticalScrollbar(const Vector2& Position, const Vector2& Size)
+        void Scrollbar::CreateVerticalScrollbar(const RenderableRect& Rect)
         {
             Horizontal = false;
             //Get the size for all items involved
-            Vector2 ScrollBackSize, UpButtonSize, DownButtonSize;
+            RenderableRect ScrollBackRect, UpButtonRect, DownButtonRect;
             if(UI::SB_NoButtons==ScrollStyle)
             {
-                ScrollBackSize = Size;
+                ScrollBackRect.Size = Rect.Size;
             }else{
-                ScrollBackSize.X = Size.X;
-                ScrollBackSize.Y = Size.Y - (Size.X * 2);
-                UpButtonSize.X = Size.X;
-                UpButtonSize.Y = Size.X;
-                DownButtonSize.X = Size.X;
-                DownButtonSize.Y = Size.X;
+                if(Rect.Relative)
+                {
+                    const Vector2& WinDim = Parent->GetParent()->GetViewportDimensions();
+                    Vector2 ARectSize(Rect.Size * WinDim);
+
+                    ScrollBackRect.Size.X = Rect.Size.X;
+                    ScrollBackRect.Size.Y = Rect.Size.Y - ((ARectSize.X * 2) / WinDim.Y);
+                    UpButtonRect.Size.X = Rect.Size.X;
+                    UpButtonRect.Size.Y = ARectSize.X / WinDim.Y;
+                    DownButtonRect.Size.X = Rect.Size.X;
+                    DownButtonRect.Size.Y = ARectSize.X / WinDim.Y;
+                }else{
+                    ScrollBackRect.Size.X = Rect.Size.X;
+                    ScrollBackRect.Size.Y = Rect.Size.Y - (Rect.Size.X * 2);
+                    UpButtonRect.Size.X = Rect.Size.X;
+                    UpButtonRect.Size.Y = Rect.Size.X;
+                    DownButtonRect.Size.X = Rect.Size.X;
+                    DownButtonRect.Size.Y = Rect.Size.X;
+                }
             }
             //Get the position for all items involved and configure their offsets
-            Vector2 ScrollBackPosition, UpButtonPosition, DownButtonPosition;
             if(UI::SB_Separate==ScrollStyle)
             {
-                ScrollBackPosition.X = Position.X;
-                ScrollBackPosition.Y = Position.Y + UpButtonSize.Y;
-                UpButtonPosition = Position;
-                DownButtonPosition.X = Position.X;
-                DownButtonPosition.Y = Position.Y + UpButtonSize.Y + ScrollBackSize.Y;
+                ScrollBackRect.Position.X = Rect.Position.X;
+                ScrollBackRect.Position.Y = Rect.Position.Y + UpButtonRect.Size.Y;
+                UpButtonRect.Position = Rect.Position;
+                DownButtonRect.Position.X = Rect.Position.X;
+                DownButtonRect.Position.Y = Rect.Position.Y + UpButtonRect.Size.Y + ScrollBackRect.Size.Y;
             }
             else if(UI::SB_TogetherDownRight==ScrollStyle)
             {
-                ScrollBackPosition = Position;
-                UpButtonPosition.X = Position.X;
-                UpButtonPosition.Y = Position.Y + ScrollBackSize.Y;
-                DownButtonPosition.X = Position.X;
-                DownButtonPosition.Y = Position.Y + ScrollBackSize.Y + UpButtonSize.Y;
+                ScrollBackRect.Position = Rect.Position;
+                UpButtonRect.Position.X = Rect.Position.X;
+                UpButtonRect.Position.Y = Rect.Position.Y + ScrollBackRect.Size.Y;
+                DownButtonRect.Position.X = Rect.Position.X;
+                DownButtonRect.Position.Y = Rect.Position.Y + ScrollBackRect.Size.Y + UpButtonRect.Size.Y;
             }
             else if(UI::SB_TogetherUpLeft==ScrollStyle)
             {
-                ScrollBackPosition.X = Position.X;
-                ScrollBackPosition.Y = Position.Y + UpButtonSize.Y + DownButtonSize.Y;
-                UpButtonPosition = Position;
-                DownButtonPosition.X = Position.X;
-                DownButtonPosition.Y = Position.Y + UpButtonSize.Y;
+                ScrollBackRect.Position.X = Rect.Position.X;
+                ScrollBackRect.Position.Y = Rect.Position.Y + UpButtonRect.Size.Y + DownButtonRect.Size.Y;
+                UpButtonRect.Position = Rect.Position;
+                DownButtonRect.Position.X = Rect.Position.X;
+                DownButtonRect.Position.Y = Rect.Position.Y + UpButtonRect.Size.Y;
             }
             else
             {
-                ScrollBackPosition = Position;
+                ScrollBackRect.Position = Rect.Position;
             }
             //Now create the objects, since we have all the position and size data we need
-            ScrollBack = new Rectangle(ScrollBackPosition,ScrollBackSize,Parent);
-            Scroller = new Button(Name+"SC",ScrollBackPosition,ScrollBackSize,Parent);
-            if(UpButtonSize.X > 0 && UpButtonSize.Y > 0)
+            ScrollBack = new Rectangle(ScrollBackRect,Parent);
+            Scroller = new Button(Name+"SC",ScrollBackRect,Parent);
+            if(UpButtonRect.Size.X > 0 && UpButtonRect.Size.Y > 0)
             {
-                UpLeftButton = new Button(Name+"UB",UpButtonPosition,UpButtonSize,Parent);
+                UpLeftButton = new Button(Name+"UB",UpButtonRect,Parent);
             }
-            if(DownButtonSize.X > 0 && DownButtonSize.Y > 0)
+            if(DownButtonRect.Size.X > 0 && DownButtonRect.Size.Y > 0)
             {
-                DownRightButton = new Button(Name+"DB",DownButtonPosition,DownButtonSize,Parent);
+                DownRightButton = new Button(Name+"DB",DownButtonRect,Parent);
             }
             CalculateScrollLimits();
         }

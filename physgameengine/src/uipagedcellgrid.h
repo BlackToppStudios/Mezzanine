@@ -75,14 +75,12 @@ namespace phys
             public:
                 /// @brief Class constructor.
                 /// @param name The name of the widget.
-                /// @param Position The position of the widget.
-                /// @param Size The size of the widget.
-                /// @param SpnPosition The position of the spinner created alongside this widget.
-                /// @param SpnSize The size of the spinner created alongside this widget.
+                /// @param Rect The Rect representing the position and size of the widget.
+                /// @param SpnRect The Rect representing the position and size of the spinner to be created alonhside this widget.
                 /// @param SStyle The style of spinner to create.
                 /// @param GlyphHeight The desired lineheight of the glyphs to be used with the spinner.
                 /// @param parent The parent layer this widget belongs to.
-                PagedCellGrid(const String& name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent);
+                PagedCellGrid(const String& name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent);
                 /// @brief Class destructor.
                 virtual ~PagedCellGrid();
                 /// @brief Sets the visibility of this widget.

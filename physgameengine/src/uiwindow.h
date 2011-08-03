@@ -115,10 +115,9 @@ namespace phys
             public:
                 /// @brief Standard initialization constructor.
                 /// @param name The name of the window.
-                /// @param Position The position of the window.
-                /// @param Size The size of the window.
+                /// @param Rect The Rect representing the position and size of the window.
                 /// @param Layer The parent layer this window belongs to.
-                Window(ConstString& name, const Vector2& Position, const Vector2& Size, Layer* PLayer);
+                Window(ConstString& name, const RenderableRect& Rect, Layer* PLayer);
                 /// @brief Standard destructor.
                 virtual ~Window();
                 /// @brief Sets the visibility of this window.
@@ -173,30 +172,24 @@ namespace phys
                 // Creating and working with All Basic UI Elements
                 ///////////////////////////////////////
                 /// @brief Creates a button within this Window.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created button.
                 /// @param Name The name of the button.
-                /// @param Position The top left position of the button.
-                /// @param Size The size of the Button.
-                virtual Button* CreateButton(ConstString& Name, const Vector2& Position, const Vector2& Size);
+                /// @param Rect The Rect representing the position and size of the button.
+                virtual Button* CreateButton(ConstString& Name, const RenderableRect& Rect);
                 /// @brief Creates a text button within this Window.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created button.
                 /// @param Name The name of the button.
-                /// @param Position The top left position of the button.
-                /// @param Size The size of the Button.
+                /// @param Rect The Rect representing the position and size of the button.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the button.
-                virtual TextButton* CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString& Text);
+                virtual TextButton* CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, ConstString& Text);
                 /// @brief Creates a text button within this layer.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created button.
                 /// @param Name The name of the button.
-                /// @param Position The top left position of the button.
-                /// @param Size The size of the Button.
+                /// @param Rect The Rect representing the position and size of the button.
                 /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
                 /// @param Text Any text you want printed on the button.
-                virtual TextButton* CreateTextButton(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, ConstString& Text);
+                virtual TextButton* CreateTextButton(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, ConstString& Text);
                 /// @brief Gets an already created button by name.
                 /// @return Returns a pointer to the button of the specified name.
                 virtual Button* GetButton(ConstString& Name);
@@ -216,11 +209,9 @@ namespace phys
                 /// @param ToBeDestroyed Pointer to the button you want destroyed.
                 void DestroyButton(UI::Button* ToBeDestroyed);
                 /// @brief Creates a rectangle within this Window.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0). @n
-                /// Rectangles are innately put behind all captions, so z-order is not necessary.
-                /// @param Position The top left position of the button.
-                /// @param Size The size of the Button.
-                virtual Rectangle* CreateRectangle(const Vector2& Position, const Vector2& Size);
+                /// @return Returns a pointer to the created rectangle.
+                /// @param Rect The Rect representing the position and size of the rectangle.
+                virtual Rectangle* CreateRectangle(const RenderableRect& Rect);
                 /// @brief Gets an already created rectangle by index.
                 /// @return Returns a pointer to the rectangle at the specified index.
                 virtual Rectangle* GetRectangle(const Whole& Index);
@@ -234,23 +225,19 @@ namespace phys
                 /// @param ToBeDestroyed Pointer to the rectangle you want destroyed.
                 virtual void DestroyRectangle(UI::Rectangle* ToBeDestroyed);
                 /// @brief Creates a caption within this Window.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created caption.
                 /// @param Name The name of this caption.
-                /// @param Position The top left position of the caption.
-                /// @param Size The size of the Button.
+                /// @param Rect The Rect representing the position and size of the caption.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the caption.
-                virtual Caption* CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String& Text);
+                virtual Caption* CreateCaption(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text);
                 /// @brief Creates a caption within this layer.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created caption.
                 /// @param Name The name of this caption.
-                /// @param Position The top left position of the caption.
-                /// @param Size The size of the Button.
+                /// @param Rect The Rect representing the position and size of the caption.
                 /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
                 /// @param Text Any text you want printed on the caption.
-                virtual Caption* CreateCaption(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& LineHeight, const String& Text);
+                virtual Caption* CreateCaption(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text);
                 /// @brief Gets an already created caption by name.
                 /// @return Returns a pointer to the caption of the specified name.
                 virtual Caption* GetCaption(ConstString& Name);
@@ -270,21 +257,21 @@ namespace phys
                 /// @param ToBeDestroyed Pointer to the caption you want destroyed.
                 virtual void DestroyCaption(UI::Caption* ToBeDestroyed);
                 /// @brief Creates a markup text within this Window.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @details The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size.
                 /// @return Returns a pointer to the created markup text.
                 /// @param Name The name of this markup text.
-                /// @param Position The top left position of the markup text.
+                /// @param Rect The Rect representing the position and size of the markup text.
                 /// @param Glyph One of the glyphs specified in your gorilla file.  Must be valid.
                 /// @param Text Any text you want printed on the markup text.
-                virtual MarkupText* CreateMarkupText(ConstString& Name, const Vector2& Position, const Whole& Glyph, const String& Text);
+                virtual MarkupText* CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String& Text);
                 /// @brief Creates a markup text within this layer.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
+                /// @details The constructor will ignore the size portion of the Rect passed in, since Markup Texts don't have a default size.
                 /// @return Returns a pointer to the created markup text.
                 /// @param Name The name of this markup text.
-                /// @param Position The top left position of the markup text.
+                /// @param Rect The Rect representing the position and size of the markup text.
                 /// @param LineHeight The lineheight you want the text to have in relative units.  This will automatically select the glyph and scale it for you.
                 /// @param Text Any text you want printed on the markup text.
-                virtual MarkupText* CreateMarkupText(ConstString& Name, const Vector2& Position, const Real& LineHeight, const String& Text);
+                virtual MarkupText* CreateMarkupText(ConstString& Name, const RenderableRect& Rect, const Real& LineHeight, const String& Text);
                 /// @brief Gets an already created markup text by name.
                 /// @return Returns a pointer to the markup text of the specified name.
                 virtual MarkupText* GetMarkupText(ConstString& Name);
@@ -328,72 +315,57 @@ namespace phys
                 // Creating Widgets
                 ///////////////////////////////////////
                 /// @brief Creates a Scrollbar within this Window.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Scrollbar.
                 /// @param Name The name of the Scrollbar.
-                /// @param Position The top left position of the Scrollbar.
-                /// @param Size The size of the Scrollbar.
+                /// @param Rect The Rect representing the position and size of the widget.
                 /// @param Style The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                virtual UI::Scrollbar* CreateScrollbar(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::ScrollbarStyle& Style);
+                virtual UI::Scrollbar* CreateScrollbar(ConstString& Name, const RenderableRect& Rect, const UI::ScrollbarStyle& Style);
                 /// @brief Creates a CheckBox within this Window.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created CheckBox.
                 /// @param Name The name of the CheckBox.
-                /// @param Position The top left position of the CheckBox.
-                /// @param Size The size of the CheckBox.
+                /// @param Rect The Rect representing the position and size of the widget.
                 /// @param Glyph The glyphs to use by default for use with the label.  Glyphs are defined in your .gorilla file.
                 /// @param LabelText The text to display with the label.  The label uses the Markup Text class, and thus it's
                 /// light markup text language.  You can also pass in a blank string if you don't wish to have a label, you can
                 /// create a label after construction.
-                virtual UI::CheckBox* CreateCheckBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, const String &LabelText);
+                virtual UI::CheckBox* CreateCheckBox(ConstString& Name, const RenderableRect& Rect, const Whole& Glyph, const String &LabelText);
                 /// @brief Creates a Button List Box within this Window.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Button List Box.
                 /// @param Name The name of the Button List Box.
-                /// @param Position The top left position of the Button List Box.
-                /// @param Size The size of the Button List Box.
+                /// @param Rect The Rect representing the position and size of the widget.
                 /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
                 /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                virtual UI::ButtonListBox* CreateButtonListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollbarStyle);
+                virtual UI::ButtonListBox* CreateButtonListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollbarStyle);
                 /// @brief Creates a List Box within this Window.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created List Box.
                 /// @param Name The name of the List Box.
-                /// @param Position The top left position of the List Box.
-                /// @param Size The size of the List Box.
+                /// @param Rect The Rect representing the position and size of the widget.
                 /// @param ScrollbarWidth The relative width of the scrollbar thats created with this widget.
                 /// @param ScrollbarStyle The style of scrollbar you want to create, see Scrollbar documentation for more details.
-                virtual UI::ListBox* CreateListBox(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollbarStyle);
+                virtual UI::ListBox* CreateListBox(ConstString& Name, const RenderableRect& Rect, const Real& ScrollbarWidth, const UI::ScrollbarStyle& ScrollbarStyle);
                 /// @brief Creates a Spinner within this layer.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created Spinner.
                 /// @param Name The Name for the Widget.
-                /// @param Position The position of the widget.
-                /// @param Size The size of the widget.
+                /// @param Rect The Rect representing the position and size of the widget.
                 /// @param SStyle The layout of buttons this widget will have.  See SpinnerStyle enum or class description for more details.
                 /// @param GlyphHeight The desired relative height of the text you want.
-                virtual UI::Spinner* CreateSpinner(ConstString& Name, const Vector2& Position, const Vector2& Size, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
+                virtual UI::Spinner* CreateSpinner(ConstString& Name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
                 /// @brief Creates a scrolled cell grid within this layer.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created ScrolledCellGrid.
                 /// @param Name The name of the widget.
-                /// @param Position The position of the widget.
-                /// @param Size The size of the widget.
+                /// @param Rect The Rect representing the position and size of the widget.
                 /// @param Thickness The width of the vertical scrollbar in relative units.  The same amount of actual pixels is used
                 /// to determine the height of the horizontal scrollbar.
                 /// @param Style An enum value representing how you want your scrollbar constructed.  See class details for more info.
-                virtual UI::ScrolledCellGrid* CreateScrolledCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Real& Thickness, const UI::ScrollbarStyle& Style);
+                virtual UI::ScrolledCellGrid* CreateScrolledCellGrid(ConstString& Name, const RenderableRect& Rect, const Real& Thickness, const UI::ScrollbarStyle& Style);
                 /// @brief Creates a paged cell grid within this layer.
-                /// @details This constructor expects relative values for position and size(values from 0.0 to 1.0).
                 /// @return Returns a pointer to the created PagedCellGrid.
                 /// @param Name The name of the widget.
-                /// @param Position The position of the widget.
-                /// @param Size The size of the widget.
-                /// @param SpnPosition The position of the spinner created alongside this widget.
-                /// @param SpnSize The size of the spinner created alongside this widget.
+                /// @param Rect The Rect representing the position and size of the CellGrid.
+                /// @param SpnRect The Rect representing the position and size of the Spinner.
                 /// @param SStyle The style of spinner to create.
                 /// @param GlyphHeight The desired lineheight of the glyphs to be used with the spinner.
-                virtual UI::PagedCellGrid* CreatePagedCellGrid(ConstString& Name, const Vector2& Position, const Vector2& Size, const Vector2& SpnPosition, const Vector2& SpnSize, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
+                virtual UI::PagedCellGrid* CreatePagedCellGrid(ConstString& Name, const RenderableRect& Rect, const RenderableRect& SpnRect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight);
         };//window
     }//UI
 }//phys

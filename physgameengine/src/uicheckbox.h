@@ -75,10 +75,11 @@ namespace phys
                 /// @brief Class constructor
                 /// @details The dimensions provided
                 /// @param name The name of the checkbox.
-                /// @param Position The top left position of the checkbox.
-                /// @param Size The size of the checkbox.
+                /// @param Rect The Rect representing the position and size of the checkbox.
+                /// @param Glyph The glyph index to use for the text in the label.
+                /// @param LabelText The text to put into the label.
                 /// @param Layer Pointer to the Layer that created this checkbox.
-                CheckBox(ConstString& name, const Vector2& Position, const Vector2& Size, const Whole& Glyph, ConstString &LabelText, Layer* PLayer);
+                CheckBox(ConstString& name, const RenderableRect& Rect, const Whole& Glyph, ConstString &LabelText, Layer* PLayer);
                 /// @brief Class destructor.
                 virtual ~CheckBox();
                 /// @brief Sets the visibility of this checkbox.

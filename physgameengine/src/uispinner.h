@@ -103,14 +103,13 @@ namespace phys
             public:
                 /// @brief Class constructor.
                 /// @param name The Name for the Widget.
-                /// @param Position The position of the widget.
-                /// @param Size The size of the widget.
+                /// @param Rect The Rect representing the position and size of the widget.
                 /// @param SStyle The layout of buttons this widget will have.  See SpinnerStyle enum or class description for more details.
                 /// @param GlyphHeight The desired relative height of the text you want.
                 /// @param parent The parent layer that created this widget.
-                Spinner(const String& name, const Vector2& Position, const Vector2& Size, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent);
+                Spinner(const String& name, const RenderableRect& Rect, const UI::SpinnerStyle& SStyle, const Real& GlyphHeight, Layer* parent);
                 /// @brief Class destructor.
-                ~Spinner();
+                virtual ~Spinner();
                 /// @brief Sets the visibility of this widget.
                 /// @param visible Bool determining whether or not this widget should be visible.
                 virtual void SetVisible(bool visible);

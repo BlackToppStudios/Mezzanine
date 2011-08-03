@@ -53,6 +53,8 @@
 namespace phys
 {
     GameWindow::GameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
+        : OgreWindow(NULL),
+          SDLWindow(NULL)
     {
         CreateGameWindow(WindowCaption,Width,Height,Flags);
     }
@@ -67,8 +69,8 @@ namespace phys
     {
         OgreWindow->destroy();
         SDL_DestroyWindow(SDLWindow);
-        if(this == Manager->GetPrimaryGameWindow())
-            RC = 0;
+        //if(this == Manager->GetPrimaryGameWindow())
+        //    RC = 0;
     }
 
     void GameWindow::CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags)
@@ -76,7 +78,7 @@ namespace phys
         Manager = World::GetWorldPointer()->GetGraphicsManager();
         Settings.RenderWidth = Width;
         Settings.RenderHeight = Height;
-        RenderContext = 0;
+        //RenderContext = 0;
         int SDLFlags = 0;
         Ogre::NameValuePairList Opts;
         if(WF_Fullscreen & Flags)
@@ -125,7 +127,7 @@ namespace phys
             SDLFlags|=SDL_WINDOW_BORDERLESS;
             Opts["border"] = "none";
         }
-        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+        /*SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
         SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
         SDLFlags|=SDL_WINDOW_OPENGL;
@@ -139,9 +141,32 @@ namespace phys
         Ogre::NameValuePairList* Binder;
 
         Binder = (Ogre::NameValuePairList*) crossplatform::GetSDLOgreBinder(SDLWindow,(size_t)RenderContext);
-        Opts.insert(Binder->begin(),Binder->end());
+        Opts.insert(Binder->begin(),Binder->end());// */
         OgreWindow = Ogre::Root::getSingleton().createRenderWindow(WindowCaption, Settings.RenderWidth, Settings.RenderHeight, Settings.Fullscreen, &Opts);
-        delete Binder;
+
+        #ifdef WINDOWS
+        size_t Data = 0;
+        OgreWindow->getCustomAttribute("WINDOW",&Data);
+
+        std::stringstream stream;
+        stream << "Windows HWND: " << ((size_t)Data) << endl;
+        World::GetWorldPointer()->LogString(stream.str());
+        World::GetWorldPointer()->DoMainLoopLogging();
+
+        SDLWindow = SDL_CreateWindowFrom(&Data);
+        #endif
+        #ifdef LINUX
+        Window* Data = 0;
+        OgreWindow->getCustomAttribute("WINDOW",Data);
+        SDLWindow = SDL_CreateWindowFrom(Data);
+        #endif
+        #ifdef MACOS
+        NSWindow* Data = 0;
+        OgreWindow->getCustomAttribute("WINDOW",Data);
+        SDLWindow = SDL_CreateWindowFrom(Data);
+        #endif// */
+        //SDL_SetWindowGrab(SDLWindow,SDL_TRUE);
+        //delete Binder;
     }
 
     void GameWindow::CorrectViewportAndCamera(const Whole& Index)
@@ -362,7 +387,7 @@ namespace phys
 
     void* GameWindow::GetRenderContext()
     {
-        return (void*)RenderContext;
+        return 0;//(void*)RenderContext;
     }
 
     Ogre::RenderWindow* GameWindow::GetOgreWindowPointer()
