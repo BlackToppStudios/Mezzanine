@@ -149,6 +149,10 @@ namespace phys
     /// to limit how others use the combined work you make. You can sell resulting works, but not through a digital distribution store that uses DRM.
     ///
     /// @section XMLDOM Document Object Model
+    /// phys::xml stores XML data in DOM-like way: the entire XML document (both document structure and element data) is stored in memory as a tree. The tree can be
+    /// loaded from a character stream (file, string, C++ I/O stream), then traversed with the special API or XPath expressions. The whole tree is mutable: both node
+    /// structure and node/attribute data can be changed at any time. Finally, the result of document transformations can be saved to a character stream (file, C++
+    /// I/O stream or custom transport).
     ///     - @ref XMLTreeStructure
     ///     - @ref XMLInterface
     ///     - @ref XMLUnicode
@@ -156,22 +160,203 @@ namespace phys
     ///     - @ref XMLExceptionSafety
     ///     - @ref XMLMemory
     ///         - @ref XMLCustomAlloc
-    ///         - @ref XMLMemoryInternals Document memory management internals
-    /// \n
-    /// phys::xml stores XML data in DOM-like way: the entire XML document (both document structure and element data) is stored in memory as a tree. The tree can be
-    /// loaded from a character stream (file, string, C++ I/O stream), then traversed with the special API or XPath expressions. The whole tree is mutable: both node
-    /// structure and node/attribute data can be changed at any time. Finally, the result of document transformations can be saved to a character stream (file, C++
-    /// I/O stream or custom transport).
+    ///         - @ref XMLMemoryInternals
     /// @subsection XMLTreeStructure Tree structure
-    /// Still in progress
+    /// The XML document is represented with a tree data structure. The root of the tree is the document itself, which corresponds to C++ type phys::xml::Document.
+    /// A Document has one or more child nodes, which correspond to C++ type phys::xml::Node. Nodes have different types; depending on a type, a node can have a
+    /// collection of child nodes, a collection of attributes, which correspond to C++ type phys::xml::Attribute, and some additional data (i.e. Name).
+    /// \n \n
+    /// The tree nodes can be of one of the following types (which together form the enumeration phys::xml::NodeType):
+    ///     - @ref phys::xml::NodeType "NodeType::NodeDocument Document node" - This is the root of the tree, which consists of several child nodes. This node corresponds
+    ///     to phys::xml::Document class; note that phys::xml::Document is a sub-class of phys::xml::Node, so the entire node interface is also available. However,
+    ///     document nodes are special in several ways, which are covered below. There can be only one document node in the tree; document node does not have any XML
+    ///     representation. \n
+    ///     - @ref phys::xml::NodeType "NodeType::NodeElement Element/tag node" - This is the most common type of node, which represents XML elements. Element nodes
+    ///     have a name, a collection of attributes and a collection of child nodes (both of which may be empty). The attribute is a simple name/value pair. The example
+    ///     XML representation of element nodes is as follows:
+    ///     @code <node attr="value"><child/></node> @endcode
+    ///     There are two element nodes here: one has name "node", single attribute "attr" and the single child "child" which has the name "child" and does not have
+    ///     any attributes or child nodes. \n
+    ///     - @ref phys::xml::NodeType "NodeType::NodePcdata Plain character data node" - Represent plain text in XML. PCDATA nodes have a value, but do not have a name
+    ///     or children/attributes. Note that plain character data is not a part of the element node but instead has its own node; for example, an element node can have
+    ///     several child PCDATA nodes. The example XML representation of text nodes is as follows:
+    ///     @code <node> text1 <child/> text2 </node> @endcode
+    ///     Here "node" element has three children, two of which are PCDATA nodes with values "text1" and "text2". \n
+    ///     - @ref phys::xml::NodeType "NodeType::NodeCdata Character data nodes" - These represent text in XML that is quoted in a special way. CDATA nodes do not differ
+    ///     from PCDATA nodes except in XML representation - the above text example looks like this with CDATA:
+    ///     @code <node> <![CDATA[[text1]]> <child/> <![CDATA[[text2]]> </node> @endcode
+    ///     CDATA nodes make it easy to include non-escaped \<, \& and \> characters in plain text. CDATA value can not contain the character sequence ]]\>, since it is
+    ///     used to determine the end of node contents. \n
+    ///     - @ref phys::xml::NodeType "NodeType::NodeComment Comment nodes" - represent comments in XML. Comment nodes have a value, but do not have a name or
+    ///     children/attributes. The example XML representation of a comment node is as follows:
+    ///     @code <!-- comment text --> @endcode
+    ///     Here the comment node has value "comment text". By default comment nodes are treated as non-essential part of XML markup and are not loaded during XML parsing.
+    ///     You can override this behavior with phys::xml::ParseComments flag. \n
+    ///     - @ref phys::xml::NodeType "NodeType::NodePi Processing instruction node" - Represent Processing Instructions (PI) in XML. PI nodes have a name and an optional
+    ///     value, but do not have children/attributes. The example XML representation of a PI node is as follows:
+    ///     @code <?name value?> @endcode
+    ///     Here the name (also called PI target) is "name", and the value is "value". By default PI nodes are treated as non-essential part of XML markup and are not
+    ///     loaded during XML parsing. You can override this behavior with phys::xml::ParsePi flag. \n
+    ///     - @ref phys::xml::NodeType "NodeType::NodeDeclaration Declaration node" - Represents document declarations in XML. Declaration nodes have a name ("xml") and an
+    ///     optional collection of attributes, but do not have value or children. There can be only one declaration node in a document; moreover, it should be the topmost
+    ///     node (its parent should be the document). The example XML representation of a declaration node is as follows:
+    ///     @code <?xml version="1.0"?> @endcode
+    ///     Here the node has name "xml" and a single attribute with name "version" and value "1.0". By default declaration nodes are treated as non-essential part of XML
+    ///     markup and are not loaded during XML parsing. You can override this behavior with phys::xml::ParseDeclaration flag. Also, by default a dummy declaration is
+    ///     output when XML document is saved unless there is already a declaration in the document; you can disable this with phys::xml::FormatNoDeclaration flag. \n
+    ///     - @ref phys::xml::NodeType "NodeType::NodeDocType Document type declaration node" - Represents document type declarations in XML. Document type declaration nodes
+    ///     have a value, which corresponds to the entire document type contents; no additional nodes are created for inner elements like \<!ENTITY\>. There can be only one
+    ///     document type declaration node in a document; moreover, it should be the topmost node (its parent should be the document). The example XML representation of a
+    ///     document type declaration node is as follows:
+    ///     @code <!DOCTYPE greeting [ <!ELEMENT greeting (#PCDATA)> ]> @endcode
+    ///     Here the node has value "greeting [ <!ELEMENT greeting (#PCDATA)> ]". By default document type declaration nodes are treated as non-essential part of XML markup
+    ///     and are not loaded during XML parsing. You can override this behavior with phys::xml::ParseDocType flag. \n
+    /// \n
+    /// Finally, here is a complete example of XML document and the corresponding tree representation:
+    /// @code
+    /// <?xml version="1.0"?>
+    /// <mesh name="mesh_root">
+    ///     <!-- here is a mesh node -->
+    ///     some text
+    ///     <![CDATA[someothertext]]>
+    ///     some more text
+    ///     <node attr1="value1" attr2="value2" />
+    ///     <node attr1="value2">
+    ///         <innernode/>
+    ///     </node>
+    /// </mesh>
+    /// <?include somedata?>
+    /// @endcode
+    /// @image html SampleTree.jpg "Complete Tree Representation of the Sample"
+    /// @image latex SampleTree.jpg "Complete Tree Representation of the Sample"
+    /// @image rtf SampleTree.jpg "Complete Tree Representation of the Sample"
     /// @subsection XMLInterface C++ interface
-    /// Still in progress
+    /// Despite the fact that there are several node types, there are only three C++ classes representing the tree (phys::xml::Document, phys::xml::Node, phys::xml::Attribute);
+    /// some operations on phys::xml::Node are only valid for certain node types. The classes are described below.
+    /// \n \n
+    /// phys::xml::Document is the owner of the entire document structure; it is a non-copyable class. The interface of phys::xml::Document consists of loading functions
+    /// ( see @ref XMLLoading ), saving functions ( see @ref XMLSaving ) and the entire interface of phys::xml::Node, which allows for document inspection and/or modification.
+    /// Note that while phys::xml::Document is a sub-class of phys::xml::Node, phys::xml::Node is not a polymorphic type; the inheritance is present only to simplify usage.
+    /// Alternatively you can use the phys::xml::Document::DocumentElement function to get the element node that's the immediate child of the document.
+    /// \n \n
+    /// Default constructor of phys::xml::Document initializes the document to the tree with only a root node ( phys::xml::Document node). You can then populate it with data
+    /// using either tree modification functions or loading functions; all loading functions destroy the previous tree with all occupied memory, which puts existing
+    /// node/attribute handles for this document to invalid state. If you want to destroy the previous tree, you can use the phys::xml::Document::Reset function; it destroys
+    /// the tree and replaces it with either an empty one or a copy of the specified document. Destructor of phys::xml::Document also destroys the tree, thus the lifetime of
+    /// the document object should exceed the lifetimes of any node/attribute handles that point to the tree.
+    /// @warning While technically node/attribute handles can be alive when the tree they're referring to is destroyed, calling any member function for these handles results
+    /// in undefined behavior. Thus it is recommended to make sure that the document is destroyed only after all references to its nodes/attributes are destroyed.
+    ///
+    /// phys::xml::Node is the handle to a document node; it can point to any node in the document, including the document node itself. There is a common interface for nodes
+    /// of all types; the actual node type can be queried via the phys::xml::Node::Type() method. Note that phys::xml::Node is only a handle to the actual node, not the node
+    /// itself - you can have several phys::xml::node handles pointing to the same underlying object. Destroying phys::xml::Node handle does not destroy the node and does not
+    /// remove it from the tree. The size of phys::xml::Node is equal to that of a pointer, so it is nothing more than a lightweight wrapper around a pointer; you can safely
+    /// pass or return phys::xml:Node objects by value without additional overhead.
+    /// \n \n
+    /// There is a special value of phys::xml::Node type, known as null node or empty node (such nodes have type NodeNull). It does not correspond to any node in any document,
+    /// and thus resembles null pointer. However, all operations are defined on empty nodes; generally the operations don't do anything and return empty nodes/attributes or
+    /// empty strings as their result (see documentation for specific functions for more detailed information). This is useful for chaining calls; i.e. you can get the
+    /// grandparent of a node like so: node.GetParent().GetParent(); if a node is a null node or it does not have a parent, the first Node::GetParent() call returns null node;
+    /// the second GetParent() call then also returns null node, which can make error handling easier.
+    /// \n \n
+    /// phys::xml::Attribute is a handle to an XML attribute; it has the same semantics as phys::xml::Node, i.e. there can be several phys::xml::Attribute handles pointing to
+    /// the same underlying object and there is a special null attribute value, which propagates to function results.
+    /// \n \n
+    /// Both phys::xml::Node and phys::xml::Attribute have the default constructor which initializes them to null objects.
+    /// \n \n
+    /// phys::xml::Node and phys::xml::Attribute try to behave like pointers, that is, they can be compared with other objects of the same type, making it possible to use them
+    /// as keys in associative containers. All handles to the same underlying object are equal, and any two handles to different underlying objects are not equal. Null handles
+    /// only compare as equal to themselves. The result of relational comparison can not be reliably determined from the order of nodes in file or in any other way. Do not use
+    /// relational comparison operators except for search optimization (i.e. associative container keys).
+    /// \n \n
+    /// If you want to use phys::xml::Node or phys::xml::Attribute objects as keys in hash-based associative containers, you can use the phys::xml::Node::HashValue or
+    /// phys::xml::Attribute::HashValue member functions. They return the hash values that are guaranteed to be the same for all handles to the same underlying object. The hash
+    /// value for null handles is 0.
+    /// \n \n
+    /// Finally handles can be implicitly cast to boolean-like objects, so that you can test if the node/attribute is empty with the following code: if (node) { ... } or if
+    /// (!node) { ... } else { ... }. Alternatively you can check if a given Node/Attribute handle is null by calling the phys::xml::Attribute::Empty or the
+    /// phys::xml::Node::Empty Methods.
+    /// \n \n
+    /// Nodes and attributes do not exist without a document tree, so you can't create them without adding them to some document. Once underlying node/attribute objects are
+    /// destroyed, the handles to those objects become invalid. While this means that destruction of the entire tree invalidates all node/attribute handles, it also means that
+    /// destroying a subtree ( by calling phys::xml::Node::RemoveChild ) or removing an attribute invalidates the corresponding handles. There is no way to check handle
+    /// validity; you have to ensure correctness through external mechanisms.
+    /// \n \n
     /// @subsection XMLUnicode Unicode Interface
-    /// Still in progress
+    /// There are two choices of interface and internal representation when working with phys::xml : you can either choose the UTF-8 (also called char) interface or UTF-16/32
+    /// (also called wchar_t) one. The choice is controlled via XML_WCHAR_MODE define; you can set it via xml.h or via preprocessor options beore engine compilation. If this
+    /// define is set, the wchar_t interface is used; otherwise (by default) the char interface is used. The exact wide character encoding is assumed to be either UTF-16 or
+    /// UTF-32 and is determined based on the size of wchar_t type.
+    /// @warning There are a few places that the reset of the engine assumes the use of the UTF-8/char interface. The task of integrating this cleanly is currently considered
+    /// a low priority. If you use XML_WCHAR_MODE you will encounter bugs, they could be tiny or huge. Since we didn't test it, we assumed it doesn't work.
+    ///
+    /// @note If the size of wchar_t is 2, phys::xml assumes UTF-16 encoding instead of UCS-2, which means that some characters are represented as two code points.
+    ///
+    /// All tree functions that work with strings work with either C-style null terminated strings or STL strings of the selected character type. For example, node name
+    /// accessors look like this in char mode:
+    /// @code
+    /// const char* phys::xml::Node::Name() const;
+    /// bool phys::xml::Node::SetName(const char* value);
+    /// @endcode
+    /// and like this in wchar_t mode:
+    /// @code
+    /// const wchar_t* phys::xml::Node::Name() const;
+    /// bool phys::xml::Node::SetName(const wchar_t* value);
+    /// @endcode
+    /// There is a special type, phys::xml::char_t, that is defined as the character type and depends on the engine configuration; it will be also used in the documentation
+    /// hereafter. There is also a type phys::xml::string_t, which is defined as the STL string of the character type; it corresponds to std::string in char mode and to
+    /// std::wstring in wchar_t mode.
+    /// @note This is one our list of items to integrate more tighlty. At some point phys::xml::char_t will be replace by phys::Character, and phys::xml::string_t will be
+    /// replaced by phys::String. For now they remain Interoperable.
+    ///
+    /// In addition to the interface, the internal implementation changes to store XML data as phys::xml::char_t; this means that these two modes have different memory usage
+    /// characteristics. The conversion to phys::xml::char_t upon document loading and from phys::xml::char_t upon document saving happen automatically, which also carries
+    /// minor performance penalty. The general advice however is to select the character mode based on usage scenario, i.e. if UTF-8 is inconvenient to process and most of
+    /// your XML data is non-ASCII, wchar_t mode is probably a better choice (if this is the case any patches, notifications or bugfixes that could be sent our way would
+    /// help.)
+    /// \n \n
+    /// There are cases when you'll have to convert string data between UTF-8 and wchar_t encodings; the following helper functions are provided for such purposes:
+    /// @code
+    /// std::string AsUtf8(const wchar_t* str);
+    /// std::wstring AsUtf8(const char* str);
+    /// @endcode
+    /// Both functions accept a null-terminated string as an argument str, and return the converted string. AsUtf8 performs conversion from UTF-16/32 to UTF-8; AsWide performs
+    /// conversion from UTF-8 to UTF-16/32. Invalid UTF sequences are silently discarded upon conversion. str has to be a valid string; passing null pointer results in
+    /// undefined behavior. There are also two overloads with the same semantics which accept a string as an argument:
+    /// @code
+    /// std::string AsUtf8(const std::wstring& str);
+    /// std::wstring AsWide(const std::string& str);
+    /// @endcode
+    /// @note
+    /// Most examples in this documentation assume char interface and therefore will not compile with XML_WCHAR_MODE. This is done to simplify the documentation; usually the
+    /// only changes you'll have to make is to pass wchar_t string literals, i.e. instead of
+    /// \n \n
+    /// @code phys::xml::Node node = doc.GetChild("bookstore").FindChildbyAttribute("book", "id", "12345"); @endcode
+    /// \n \n
+    /// you'll have to do
+    /// \n \n
+    /// @code phys::xml::Node node = doc.GetChild(L"bookstore").FindChildbyAttribute(L"book", L"id", L"12345"); @endcode
+    ///
     /// @subsection XMLThreadSafety Thread-safety guarantees
-    /// Still in progress
+    ///Almost all functions in phys::xml have the following thread-safety guarantees:
+    ///     - It is safe to call free (non-member) functions from multiple threads
+    ///     - It is safe to perform concurrent read-only accesses to the same tree (all constant member functions do not modify the tree)
+    ///     - It is safe to perform concurrent read/write accesses, if there is only one read or write access to the single tree at a time
+    ///
+    /// Concurrent modification and traversing of a single tree requires synchronization, for example via reader-writer lock. Modification includes altering document structure
+    /// and altering individual node/attribute data, i.e. changing names/values.
+    /// \n \n
+    /// The only exception is phys::SetMemory_management_functions; it modifies global variables and as such is not thread-safe. Its usage policy has more restrictions, see
+    /// @ref XMLCustomAlloc .
     /// @subsection XMLExceptionSafety Exception guarantees
-    /// Still in progress
+    /// With the exception of XPath, phys::xml itself does not throw any exceptions. Additionally, most phys::xml functions have a no-throw exception guarantee.
+    /// \n \n
+    /// This is not applicable to functions that operate on STL strings or IOstreams; such functions have either strong guarantee (functions that operate on strings) or basic
+    /// guarantee (functions that operate on streams). Also functions that call user-defined callbacks (i.e. phys::xml::Node::Traverse or phys::xml::Node::FindNode) do not
+    /// provide any exception guarantees beyond the ones provided by the callback.
+    /// \n \n
+    /// If exception handling is not disabled with XML_NO_EXCEPTIONS define, XPath functions may throw phys::xml::XPathException on parsing errors; also, XPath functions may
+    /// throw std::bad_alloc in low memory conditions. Still, XPath functions provide strong exception guarantee.
     /// @subsection XMLMemory Memory management
     /// Still in progress
     /// @subsubsection XMLCustomAlloc Custom memory allocation/deallocation functions
@@ -1464,8 +1649,8 @@ namespace phys
         /// @throw This can throw a phys::exception in the event that the xml cannot be parsed.
         Document* PHYS_LIB PreParseClassFromSingleTag(const String& ClassName, const String& OneTag);
 
-        /// @brief Convert < > & and " in text to &lt;, &gt;, &amp; and &quote so text can safely be stored in XML
-        /// @details Usually this is not required. Entering text into an xml::Attribute or and xml::Node with correctly escape it.
+        /// @brief Convert \< \> \& and " in text to \&lt;, \&gt;, \&amp; and \&quote so text can safely be stored in XML
+        /// @details Usually this is not required. Entering text into an xml::Attribute or and xml::Node will correctly escape it.
         /// Use this when you will be creating raw xml want to safely escape these characters.
         /// @param XMLText The Text to convert to xml safe text
         /// @return a String containing the escaped version of XMLText

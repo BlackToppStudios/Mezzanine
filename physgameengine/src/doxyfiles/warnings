@@ -638,8 +638,8 @@ Notice: Output directory `../../docs/doxygen' does not exist. I have created it 
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:224: warning: parameters of member phys::UI::Window::GetRectangle are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:312: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
 /home/sqeaky/physgame/physgameengine/src/uiwindow.h:308: warning: parameters of member phys::UI::Window::GetWidget are not (all) documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1221: warning: return type of member phys::xml::XPathVariable::GetNodeSet is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1211: warning: return type of member phys::xml::XPathVariable::GetNumber is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1247: warning: return type of member phys::xml::XPathVariableSet::Set is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1277: warning: return type of member phys::xml::XPathQuery::EvaluateBoolean is not documented
-/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1361: warning: return type of member phys::xml::XPathNodeSet::operator= is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1406: warning: return type of member phys::xml::XPathVariable::GetNodeSet is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1396: warning: return type of member phys::xml::XPathVariable::GetNumber is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1432: warning: return type of member phys::xml::XPathVariableSet::Set is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1462: warning: return type of member phys::xml::XPathQuery::EvaluateBoolean is not documented
+/home/sqeaky/physgame/physgameengine/src/xmldoc.h:1546: warning: return type of member phys::xml::XPathNodeSet::operator= is not documented
