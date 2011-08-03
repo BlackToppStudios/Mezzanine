@@ -146,7 +146,7 @@ void PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_a2ad88e4331ac29a86c99d5e40b31f9
 \hyperlink{classphys_1_1xml_1_1Document}{Document} $\ast$PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_ad6253962e86b5e7c149aef36662d17e1}{PreParseClassFromSingleTag} (const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&ClassName, const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&OneTag)
 \begin{DoxyCompactList}\small\item\em Calls PreParseClassFromSingleTag passing a \char`\"{}\char`\"{} as the Namespace. \item\end{DoxyCompactList}\item 
 \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} PHYS\_\-LIB \hyperlink{namespacephys_1_1xml_abdfe44958945865c471158d8c071f727}{EscapeXML} (const \hyperlink{namespacephys_1_1xml_a4d8ca7638328d16d303e5a4c849f4704}{String} \&XMLText)
-\begin{DoxyCompactList}\small\item\em Convert $<$ $>$ \& and " in text to $<$, $>$, \& and \&quote so text can safely be stored in XML. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Convert $<$ $>$ \& and " in text to \&lt;, \&gt;, \&amp; and \&quote so text can safely be stored in XML. \item\end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsubsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
@@ -595,9 +595,9 @@ A std::basic\_\-string$<$wchar\_\-t, std::char\_\-traits$<$wchar\_\-t$>$, std::a
 \label{namespacephys_1_1xml_abdfe44958945865c471158d8c071f727}
 
 
-Convert $<$ $>$ \& and " in text to $<$, $>$, \& and \&quote so text can safely be stored in XML. 
+Convert $<$ $>$ \& and " in text to \&lt;, \&gt;, \&amp; and \&quote so text can safely be stored in XML. 
 
-Usually this is not required. Entering text into an \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} or and \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} with correctly escape it. Use this when you will be creating raw xml want to safely escape these characters. 
+Usually this is not required. Entering text into an \hyperlink{classphys_1_1xml_1_1Attribute}{xml::Attribute} or and \hyperlink{classphys_1_1xml_1_1Node}{xml::Node} will correctly escape it. Use this when you will be creating raw xml want to safely escape these characters. 
 \begin{DoxyParams}{Parameters}
 {\em XMLText} & The Text to convert to xml safe text \\
 \hline
