@@ -308,7 +308,7 @@ namespace phys
 
     void GraphicsManager::DoMainLoopItems()
     {
-        Ogre::WindowEventUtilities::messagePump();
+        //Ogre::WindowEventUtilities::messagePump();
         crossplatform::RenderPhysWorld();
 
         //Do Time Calculations to Determine Rendering Time

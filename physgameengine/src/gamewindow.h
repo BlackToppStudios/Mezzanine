@@ -100,7 +100,7 @@ namespace phys
 
             GraphicsManager* Manager;
 
-            //void* RenderContext;
+            void* RenderContext;
 
             void CreateGameWindow(const String& WindowCaption, const Whole& Width, const Whole& Height, const Whole& Flags);
             void CorrectViewportAndCamera(const Whole& Index);

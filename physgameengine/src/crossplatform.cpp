@@ -163,8 +163,8 @@ namespace phys
             #endif
             #ifdef WINDOWS
                 Ogre::Root::getSingleton().renderOneFrame();
-                //for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
-                //    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
+                for( Whole X = 0 ; X < Graphics->GetNumGameWindows() ; X++ )
+                    SDL_GL_SwapWindow(Graphics->GetGameWindow(X)->GetSDLWindowPointer());
             #else
                 Ogre::Root::getSingleton()._fireFrameStarted();
                 Ogre::Root::getSingleton()._fireFrameRenderingQueued();
